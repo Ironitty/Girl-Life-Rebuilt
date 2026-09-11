@@ -41,36 +41,42 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3)  &&  (((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 2  ||  ((s as any).month ?? 0) === 12)) {
         scene.img('images/locations/pavlovsk/park/event/walk/walk_winter_day.jpg');
       } else {
-        scene.img('images/locations/pavlovsk/lake/skver.winter.night.jpg');
-        if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-          scene.img('images/locations/pavlovsk/park/event/walk/walk_day.jpg');
+        if ((((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 2  ||  ((s as any).month ?? 0) === 12)) {
+          scene.img('images/locations/pavlovsk/lake/skver.winter.night.jpg');
         } else {
-          scene.img('images/locations/pavlovsk/park/event/walk/walk_night.jpg');
+          if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
+            scene.img('images/locations/pavlovsk/park/event/walk/walk_day.jpg');
+          } else {
+            scene.img('images/locations/pavlovsk/park/event/walk/walk_night.jpg');
+          }
         }
-        scene.text('You take a relaxing and refreshing walk through the park, trying to figure out the meaning of life.');
       }
-      if (((s as any).pav_park_meet_kol_event_type ?? 0) === 'meet_start_1') {
-        scene.img('images/locations/pavlovsk/park/skver_znacom_1.jpg');
-        scene.text('Some gopniks are sitting on their haunches just off to the side of one of the main paths, drinking beer. The area around them is littered with empty bottles.');
-        if (((s as any).pcs_hotcat ?? 0) >= 5) {
-          qspCall(s, 'placer', 'init');
-          (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 4) + 3;
-          (s as any).placerParameter['recognize_status'] = 2;
-          (s as any).place = 1;
-          qspCall(s, 'placer_man', '');
-          scene.text('You don\'t think you\'ve ever seen them before as the guys walk towards you.');
-          // TODO-QSP: dynamic text: "<<$placerStringParameter['text_start_meet']>>"
-          scene.text(`"${((s as any).placerStringParameter ?? 0)?.['text_start_meet']}"`);
-          scene.actions([
-            { label: 'Meet', goto: ['placer_act', ''] },
-          ]);
-        } else {
-          scene.text('The guys look at you for a second, but you see one of them shake his head before they turn their backs on you and pretend you\'re not there.');
-          scene.actions([
-            { label: 'Finish your walk', goto: ['pav_park', 'deeper_park'] },
-          ]);
-        }
+      scene.text('You take a relaxing and refreshing walk through the park, trying to figure out the meaning of life.');
+    }
+  } else {
+    if (((s as any).pav_park_meet_kol_event_type ?? 0) === 'meet_start_1') {
+      scene.img('images/locations/pavlovsk/park/skver_znacom_1.jpg');
+      scene.text('Some gopniks are sitting on their haunches just off to the side of one of the main paths, drinking beer. The area around them is littered with empty bottles.');
+      if (((s as any).pcs_hotcat ?? 0) >= 5) {
+        qspCall(s, 'placer', 'init');
+        (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 4) + 3;
+        (s as any).placerParameter['recognize_status'] = 2;
+        (s as any).place = 1;
+        qspCall(s, 'placer_man', '');
+        scene.text('You don\'t think you\'ve ever seen them before as the guys walk towards you.');
+        // TODO-QSP: dynamic text: "<<$placerStringParameter['text_start_meet']>>"
+        scene.text(`"${((s as any).placerStringParameter ?? 0)?.['text_start_meet']}"`);
+        scene.actions([
+          { label: 'Meet', goto: ['placer_act', ''] },
+        ]);
       } else {
+        scene.text('The guys look at you for a second, but you see one of them shake his head before they turn their backs on you and pretend you\'re not there.');
+        scene.actions([
+          { label: 'Finish your walk', goto: ['pav_park', 'deeper_park'] },
+        ]);
+      }
+    } else {
+      if (((s as any).pav_park_meet_kol_event_type ?? 0) === 'meet_start_2') {
         scene.img('images/locations/pavlovsk/park/event/walk/walk_deep_day.jpg');
         scene.text('You stroll through the park by yourself, enjoying its beauty.');
         if (((s as any).pcs_hotcat ?? 0) >= 6) {

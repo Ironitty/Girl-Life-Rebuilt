@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   (s as any).nosave = 1;
   qspCall(s, 'stat', '');
-  (s as any).KGZVars['rec'] = (((s as any).KGZVars ?? 0)?.['day'] - 1) * 24 + (((s as any).KGZVars ?? 0)?.['hour'] - 8);
+  (s as any).KGZVars['rec'] = (((s as any).KGZVars ?? {})?.['day'] - 1) * 24 + (((s as any).KGZVars ?? {})?.['hour'] - 8);
   if (((s as any).KGZVars ?? 0)?.['record'] < ((s as any).KGZVars ?? 0)?.['rec']) {
     (s as any).KGZVars['record'] = ((s as any).KGZVars ?? 0)?.['rec'];
   }

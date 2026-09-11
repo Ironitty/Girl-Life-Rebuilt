@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay');

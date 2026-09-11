@@ -4,7 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterSextalk(s: GameState, scene: SceneBuilder): void {
   scene.text('After talking for some time, Katja looks at you thoughtfully as her face turns completely red.');
   if (((s as any).katjaQW ?? 0)?.['boy_block'] === 1  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
     (s as any).kattalkrand = Math.floor(Math.random() * 2) + 3;
@@ -35,8 +35,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
@@ -47,16 +50,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
     }
   } else {
-    if (((s as any).katjaQW ?? 0)?.['knows_sex'] > 0) {
-      // TODO-QSP: dynamic text: "Tell me, <<$pcs_nickname>>. About some of the times you have had sex with a guy...
-      scene.text(`"Tell me, ${((s as any).pcs_nickname ?? 0)}. About some of the times you have had sex with a guy,"`);
-    } else {
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever had sex with a guy?"
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you ever had sex with a guy?"`);
-    }
-    if (((s as any).stat ?? 0)?.['vaginal'] > 0) {
-      scene.actions([
-        { label: 'Talk about sex', handler: (st: GameState) => {
+    if (((s as any).kattalkrand ?? 0) === 1) {
+      if (((s as any).katjaQW ?? 0)?.['knows_sex'] > 0) {
+        // TODO-QSP: dynamic text: "Tell me, <<$pcs_nickname>>. About some of the times you have had sex with a guy...
+        scene.text(`"Tell me, ${((s as any).pcs_nickname ?? 0)}. About some of the times you have had sex with a guy,"`);
+      } else {
+        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever had sex with a guy?"
+        scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you ever had sex with a guy?"`);
+      }
+      if (((s as any).stat ?? 0)?.['vaginal'] > 0) {
+        scene.actions([
+          { label: 'Talk about sex', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     (s as any).katjaQW['knows_sex'] = 1;
@@ -75,16 +79,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.actions([
+          { label: 'No', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -104,28 +111,32 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-      ]);
-    }
-    if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
-      // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
-    }
-    if (((s as any).kattalkrand ?? 0) === 2) {
-      if (((s as any).katjaQW ?? 0)?.['knows_anal'] > 0) {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what's anal sex like?"
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}, what's anal sex like?"`);
-      } else {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever had a guy stick it in your ass?"
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you ever had a guy stick it in your ass?"`);
+        ]);
       }
-      if (((s as any).stat ?? 0)?.['anal'] > 0) {
-        scene.actions([
-          { label: 'Talk about anal', handler: (st: GameState) => {
+      if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
+        // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
+      }
+    } else {
+      if (((s as any).kattalkrand ?? 0) === 2) {
+        if (((s as any).katjaQW ?? 0)?.['knows_anal'] > 0) {
+          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what's anal sex like?"
+          scene.text(`"${((s as any).pcs_nickname ?? 0)}, what's anal sex like?"`);
+        } else {
+          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever had a guy stick it in your ass?"
+          scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you ever had a guy stick it in your ass?"`);
+        }
+        if (((s as any).stat ?? 0)?.['anal'] > 0) {
+          scene.actions([
+            { label: 'Talk about anal', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     (s as any).katjaQW['knows_anal'] = 1;
@@ -144,16 +155,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'You\'ve never had anal sex', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'You\'ve never had anal sex', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -172,28 +186,32 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-        ]);
-      }
-      if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
-        // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
-      }
-    } else {
-      if (((s as any).katjaQW ?? 0)?.['knows_cuni'] > 0  ||  ((s as any).npc_had_sex ?? 0)?.['A14']) {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, tell me how you lick pussy."
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}, tell me how you lick pussy."`);
+          ]);
+        }
+        if (((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
+          // TODO-QSP: act 'Tell Katja you''re not into boys <br>' + $func('wrap', 'neg', '(blocks further contents with Ka...
+        }
       } else {
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you gone down on a girl?"
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you gone down on a girl?"`);
-      }
-      if (((s as any).stat ?? 0)?.['cuni_give'] > 0) {
-        scene.actions([
-          { label: 'Talk about licking pussy', handler: (st: GameState) => {
+        if (((s as any).kattalkrand ?? 0) === 3) {
+          if (((s as any).katjaQW ?? 0)?.['knows_cuni'] > 0  ||  ((s as any).npc_had_sex ?? 0)?.['A14']) {
+            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, tell me how you lick pussy."
+            scene.text(`"${((s as any).pcs_nickname ?? 0)}, tell me how you lick pussy."`);
+          } else {
+            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you gone down on a girl?"
+            scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you gone down on a girl?"`);
+          }
+          if (((s as any).stat ?? 0)?.['cuni_give'] > 0) {
+            scene.actions([
+              { label: 'Talk about licking pussy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     (s as any).katjaQW['knows_cuni'] = 1;
@@ -226,8 +244,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
@@ -237,8 +258,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
       ]);
@@ -249,17 +273,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
       ]);
     }
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'No', handler: (st: GameState) => {
+            ]);
+          } else {
+            scene.actions([
+              { label: 'No', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -286,8 +313,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
@@ -301,8 +331,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
       ]);
@@ -322,8 +355,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
@@ -338,26 +374,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-        ]);
-      }
-      if (((s as any).kattalkrand ?? 0) === 4) {
-        if (((s as any).katjaQW ?? 0)?.['knows_masturbation'] > 0) {
-          // TODO-QSP: dynamic text: "Tell me how you masturbate, <<$pcs_nickname>>."
-          scene.text(`"Tell me how you masturbate, ${((s as any).pcs_nickname ?? 0)}."`);
+            ]);
+          }
         } else {
-          // TODO-QSP: dynamic text: "Do you masturbate, <<$pcs_nickname>>?"
-          scene.text(`"Do you masturbate, ${((s as any).pcs_nickname ?? 0)}?"`);
-        }
-        if (((s as any).stat ?? 0)?.['mast'] > 0) {
-          if (((s as any).stat ?? 0)?.['self_fisting'] > 0) {
-            scene.actions([
-              { label: 'Tell her how you pushed your hand into your pussy', handler: (st: GameState) => {
+          if (((s as any).kattalkrand ?? 0) === 4) {
+            if (((s as any).katjaQW ?? 0)?.['knows_masturbation'] > 0) {
+              // TODO-QSP: dynamic text: "Tell me how you masturbate, <<$pcs_nickname>>."
+              scene.text(`"Tell me how you masturbate, ${((s as any).pcs_nickname ?? 0)}."`);
+            } else {
+              // TODO-QSP: dynamic text: "Do you masturbate, <<$pcs_nickname>>?"
+              scene.text(`"Do you masturbate, ${((s as any).pcs_nickname ?? 0)}?"`);
+            }
+            if (((s as any).stat ?? 0)?.['mast'] > 0) {
+              if (((s as any).stat ?? 0)?.['self_fisting'] > 0) {
+                scene.actions([
+                  { label: 'Tell her how you pushed your hand into your pussy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
@@ -378,18 +418,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).loc ?? 0) === 'katja_dorm') {
         scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+        if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+          scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+        }
       }
     }
   } },
     ]);
   } },
-            ]);
-          }
-          if (((s as any).stat ?? 0)?.['self_fisting_anal'] > 0) {
-            scene.actions([
-              { label: 'Tell her how you fisted your ass', handler: (st: GameState) => {
+                ]);
+              }
+              if (((s as any).stat ?? 0)?.['self_fisting_anal'] > 0) {
+                scene.actions([
+                  { label: 'Tell her how you fisted your ass', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     if (((s as any).katjaQW ?? 0)?.['knows_self_fisting_anal'] === 0) {
@@ -405,16 +448,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-            ]);
-          }
-          scene.actions([
-            { label: 'Talk about masturbation', handler: (st: GameState) => {
+                ]);
+              }
+              scene.actions([
+                { label: 'Talk about masturbation', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     (s as any).katjaQW['knows_masturbation'] = 1;
@@ -428,8 +474,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
       ]);
@@ -447,8 +496,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
@@ -456,10 +508,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: 'You\'ve never masturbated', handler: (st: GameState) => {
+              ]);
+            } else {
+              scene.actions([
+                { label: 'You\'ve never masturbated', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -475,17 +527,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-          ]);
+              ]);
+            }
+          }
         }
       }
-      scene.actions([
-        { label: 'Refuse to talk about such topics', handler: (st: GameState) => {
+    }
+  }
+  scene.actions([
+    { label: 'Refuse to talk about such topics', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You refuse to talk about such topics with her and she looks down in confusion an...
@@ -496,16 +555,214 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
-      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
     }
   } },
     ]);
   } },
-      ]);
+  ]);
+  scene.build();
+}
+
+function enterBjTalk1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 3;
+  if (((s as any).katjaQW ?? 0)?.['knows_BJ'] > 0) {
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" she says, a sparkle in her eye. "Tell me what it's like to ...
+    scene.text(`"${((s as any).pcs_nickname ?? 0)}!" she says, a sparkle in her eye. "Tell me what it's like to suck dick again."`);
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['knows_BJ']=== 0) {
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you ever given a guy a blowjob?"
+      scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you ever given a guy a blowjob?"`);
     }
   }
+  if (((s as any).stat ?? 0)?.['bj'] > 0) {
+    if (((s as any).katjaQW ?? 0)?.['knows_BJ'] === 0) {
+      scene.actions([
+        { label: 'No (lie)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"No," you shake your head before shamelessly lying through your teeth. "I\'ve never given a blowjob before."');
+    scene.text('"Oh." She sits back, looking disappointed for some reason.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).loc ?? 0) === 'katja_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
+    } else {
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
+    }
+  } },
+    ]);
+  } },
+        { label: 'Yes', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    (s as any).katjaQW['knows_BJ'] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Yeah, I\'ve given a few," you admit.');
+    scene.text('"What\'s it like?" she asks, eyes wide with excitement.');
+    qspCall(s, 'katja_sex_talk', 'bj_talk2');
+  } },
+      ]);
+    } else {
+      if (((s as any).stat ?? 0)?.['bj'] > 0) {
+        (s as any).minut = ((s as any).minut ?? 0) + 3;
+        (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+        qspCall(s, 'katja_sex_talk', 'bj_talk2');
+      }
+    }
+  } else {
+    scene.actions([
+      { label: 'No', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"No," you shake your head. "I\'ve never given a blowjob before."');
+    scene.text('"Oh." She sits back, looking disappointed for some reason. "Guess we\'re both clueless then, huh?"');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).loc ?? 0) === 'katja_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
+    } else {
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
+    }
+  } },
+    ]);
+  } },
+    ]);
+  }
   scene.build();
+}
+
+function enterBjTalk2(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'It tastes funny', handler: (st: GameState) => {
+    scene.text('You wrinkle your nose. "It tastes funny. It\'s like, kinda salty? But also sort of… musty? I don\'t think I mind the act itself that much, but dick has a weird flavor."');
+    scene.text('Katja seems taken aback, almost disappointed. You guess this isn\'t the answer she was hoping for.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).loc ?? 0) === 'katja_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
+    } else {
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
+    }
+  } },
+    ]);
+  } },
+    { label: 'It\'s fun', handler: (st: GameState) => {
+    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    scene.text('"It\'s fun!" you grin. "I\'m not really sure what it is, but something about having a dick in your mouth is really entertaining. It\'s like, totally alive! And you can feel it making all these tiny movements when it\'s on your tongue. I really like giving head."');
+    scene.text('Katja hangs on your every word, nodding excitedly for you to keep describing your experiences with oral sex to her.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).loc ?? 0) === 'katja_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
+    } else {
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
+    }
+  } },
+    ]);
+  } },
+    { label: 'It\'s whatever', handler: (st: GameState) => {
+    scene.text('You shrug. "I don\'t mind doing it, but I don\'t love it either," you say. "Dick doesn\'t really taste like anything if it\'s clean. Kinda salty if it isn\'t. I don\'t know. It\'s whatever I guess."');
+    scene.text('Katja seems taken aback, almost disappointed. You guess this isn\'t the answer she was hoping for.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).loc ?? 0) === 'katja_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
+    } else {
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
+    }
+  } },
+    ]);
+  } },
+    { label: 'It\'s boring', handler: (st: GameState) => {
+    scene.text('You roll your eyes. "It\'s boring. You have to keep sucking the whole time and after a while, my jaw just starts to ache with the motion. It\'s a dick in your mouth, I don\'t know what to tell you."');
+    scene.text('Katja seems taken aback, looking almost worried. You guess you just shattered some impressions she had about giving head.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).loc ?? 0) === 'katja_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
+    } else {
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
+    }
+  } },
+    ]);
+  } },
+    { label: 'It turns me on', handler: (st: GameState) => {
+    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    scene.text('"It turns me on so much," you admit, biting your lip in a lusty smile. "When someone\'s in your mouth, you can make them feel <i>really</i> good. And they\'ll respond to what you do. If you take their whole length, they\'ll squirm. If you lick the head, it\'ll twitch under your touch. Just knowing you can make someone else feel that way… Ugh, just <i>thinking</i> about it gets me wet!"');
+    scene.text('Katja hangs on your every word, nodding along with wide eyes as you describe what it is you love so much about giving head. A faint blush also comes to her cheeks and you notice her unconsciously rubbing her thighs together.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).loc ?? 0) === 'katja_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'talk'] }]);
+    } else {
+      if (((s as any).loc ?? 0) === 'mey_home'  &&  ((s as any).loc_arg ?? 0) === 'garden') {
+        scene.actions([{ label: 'Continue', goto: ['katja_pool', 'sunbating_chat_finish'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', ''] }]);
+      }
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'Sextalk':
+      enterSextalk(s, scene);
+      break;
+    case 'bj_talk1':
+      enterBjTalk1(s, scene);
+      break;
+    case 'bj_talk2':
+      enterBjTalk2(s, scene);
+      break;
+    default:
+      enterSextalk(s, scene);
+      break;
+  }
 }
 
 export const katja_sex_talk: LocationDef = {

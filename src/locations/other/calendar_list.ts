@@ -731,7 +731,7 @@ function enterAnnaBdsmSession(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
-  (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + ((s as any).nerd_game ?? 0)?.['fixed_uni_day'];
+  (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + ((s as any).nerd_game ?? {})?.['fixed_uni_day'];
   (s as any).event_vars['id'] = 'nerd_game_night_event';
   (s as any).event_vars['title'] = 'Game Night';
   (s as any).event_vars['loc'] = 'Coffee Hole';
@@ -751,7 +751,7 @@ function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
 function enterGopnikFightNightEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 1);
   // TODO-QSP: gs 'time', 'to_date', dateVars['daystart']
-  (s as any).event_vars['daystart'] = ((s as any).dateVars ?? 0)?.['daystart'] + ((6 - ((s as any).dateVars ?? 0)?.['week'] + 7) % 7) + 14;
+  (s as any).event_vars['daystart'] = ((s as any).dateVars ?? {})?.['daystart'] + ((6 - ((s as any).dateVars ?? {})?.['week'] + 7) % 7) + 14;
   (s as any).event_vars['id'] = 'gopnik_fight_night_event';
   (s as any).event_vars['title'] = 'Gopnik Fight Night';
   (s as any).event_vars['loc'] = 'Old Pavlovsk School';
@@ -806,7 +806,7 @@ function enterCheerleadingPractice_1(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingPractice_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 11, 11);
-  (s as any).event_vars['daystart'] = ((s as any).max ?? 0)(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
+  (s as any).event_vars['daystart'] = Math.max(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
   (s as any).event_vars['id'] = 'cheerleading_practice';
   (s as any).event_vars['title'] = 'Cheerleading Practice';
   (s as any).event_vars['loc'] = 'School Gym';
@@ -825,7 +825,7 @@ function enterCheerleadingPractice_2(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingPractice_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 1, 15);
-  (s as any).event_vars['daystart'] = ((s as any).max ?? 0)(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
+  (s as any).event_vars['daystart'] = Math.max(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
   (s as any).event_vars['id'] = 'cheerleading_practice';
   (s as any).event_vars['title'] = 'Cheerleading Practice';
   (s as any).event_vars['loc'] = 'School Gym';
@@ -844,7 +844,7 @@ function enterCheerleadingPractice_3(s: GameState, scene: SceneBuilder): void {
 
 function enterCheerleadingPractice_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2017, 3, 26);
-  (s as any).event_vars['daystart'] = ((s as any).max ?? 0)(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
+  (s as any).event_vars['daystart'] = Math.max(((s as any).daystart ?? 0), ((s as any).dateVars ?? 0)?.['daystart']) - ((s as any).week ?? 0) + 2;
   (s as any).event_vars['id'] = 'cheerleading_practice';
   (s as any).event_vars['title'] = 'Cheerleading Practice';
   (s as any).event_vars['loc'] = 'School Gym';
@@ -972,12 +972,12 @@ function enterVolleyballTournament(s: GameState, scene: SceneBuilder): void {
 
 function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['daystart'] = ((s as any).ml_guitarlesson ?? 0)?.['nextlesson'];
-  (s as any).event_vars['id'] = '((s as any).guitar_lessons_ ?? 0)' + ((s as any).ml_guitarlesson ?? 0)?.['nextlesson'] + '((s as any)._ ?? 0)' + ((s as any).ml_guitarlesson ?? 0)?.['lessonhour'];
+  (s as any).event_vars['id'] = 'guitar_lessons_' + ((s as any).ml_guitarlesson ?? {})?.['nextlesson'] + '_' + ((s as any).ml_guitarlesson ?? {})?.['lessonhour'];
   (s as any).event_vars['title'] = 'Guitar Lesson';
   (s as any).event_vars['loc'] = 'Pavlovsk Community Center';
   (s as any).event_vars['flex_type'] = 1;
-  (s as any).event_vars['window_start_ts'] = (((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] * 4) + (0 / 15);
-  (s as any).event_vars['window_end_ts'] = ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] + 1) * 4) + (0 / 15);
+  (s as any).event_vars['window_start_ts'] = (((s as any).ml_guitarlesson ?? {})?.['lessonhour'] * 4) + (0 / 15);
+  (s as any).event_vars['window_end_ts'] = ((((s as any).ml_guitarlesson ?? {})?.['lessonhour'] + 1) * 4) + (0 / 15);
   (s as any).event_vars['duration_ts'] = (45 / 15);
   return;
   scene.build();
@@ -1001,8 +1001,8 @@ function enterMitkaDrinkingInvite(s: GameState, scene: SceneBuilder): void {
 
 function enterFineDeadline(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['daystart'] = ((s as any).policeQW ?? 0)?.['fine_deadline'];
-  (s as any).event_vars['id'] = '((s as any).fine_deadline_ ?? 0)' + ((s as any).policeQW ?? 0)?.['fine_deadline'];
-  (s as any).event_vars['title'] = ((s as any).policeQW ?? 0)?.['legal_fine'] + ' ((s as any).Fine ?? 0) ((s as any).Due ?? 0)';
+  (s as any).event_vars['id'] = 'fine_deadline_' + ((s as any).policeQW ?? {})?.['fine_deadline'];
+  (s as any).event_vars['title'] = ((s as any).policeQW ?? {})?.['legal_fine'] + ' Fine Due';
   (s as any).event_vars['all_day'] = 1;
   return;
   scene.build();
@@ -1027,8 +1027,11 @@ function enterBelgangPaymentDeadline(s: GameState, scene: SceneBuilder): void {
   if (((s as any).belfirstweek ?? 0) === 1) {
     (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 14;
   } else {
-    (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) + 7;
-    (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 7;
+    if (((s as any).week ?? 0) === 7) {
+      (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) + 7;
+    } else {
+      (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 7;
+    }
   }
   (s as any).event_vars['id'] = 'belgang_payment_deadline';
   (s as any).event_vars['title'] = 'Vadim Bely Payment Due';
@@ -1045,7 +1048,7 @@ function enterBelgangPaymentDeadline(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_0(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_0';
-  (s as any).event_vars['title'] = '((s as any).Menstrual ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
+  (s as any).event_vars['title'] = 'Menstrual Phase' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 3;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';
@@ -1055,7 +1058,7 @@ function enterCyclePhase_0(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_1(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_1';
-  (s as any).event_vars['title'] = '((s as any).Follicular ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
+  (s as any).event_vars['title'] = 'Follicular Phase' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 5;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';
@@ -1065,7 +1068,7 @@ function enterCyclePhase_1(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_2(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_2';
-  (s as any).event_vars['title'] = '((s as any).Fertile ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
+  (s as any).event_vars['title'] = 'Fertile Phase' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 7;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';
@@ -1075,7 +1078,7 @@ function enterCyclePhase_2(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_3(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_3';
-  (s as any).event_vars['title'] = '((s as any).Luteal ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
+  (s as any).event_vars['title'] = 'Luteal Phase' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 9;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';

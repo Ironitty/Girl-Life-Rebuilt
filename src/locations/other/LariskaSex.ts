@@ -319,10 +319,15 @@ function enterBj_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
-        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
-      ]);
+      if (((s as any).temp ?? 0) === 2) {
+        scene.actions([
+          { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+        ]);
+      }
     }
   } },
     ]);
@@ -374,10 +379,15 @@ function enterMiss_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
-        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
-      ]);
+      if (((s as any).temp ?? 0) === 2) {
+        scene.actions([
+          { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+        ]);
+      }
     }
   } },
     ]);
@@ -428,10 +438,15 @@ function enterCow_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
-        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
-      ]);
+      if (((s as any).temp ?? 0) === 2) {
+        scene.actions([
+          { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+        ]);
+      }
     }
   } },
     ]);
@@ -482,10 +497,15 @@ function enterDog_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
-        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
-      ]);
+      if (((s as any).temp ?? 0) === 2) {
+        scene.actions([
+          { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+        ]);
+      }
     }
   } },
     ]);
@@ -539,10 +559,15 @@ function enterAnalMiss_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
-        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
-      ]);
+      if (((s as any).temp ?? 0) === 2) {
+        scene.actions([
+          { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+        ]);
+      }
     }
   } },
     ]);
@@ -595,10 +620,15 @@ function enterAnalCow_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
-        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
-      ]);
+      if (((s as any).temp ?? 0) === 2) {
+        scene.actions([
+          { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+        ]);
+      }
     }
   } },
     ]);
@@ -653,10 +683,15 @@ function enterAnalDog_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
-        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
-      ]);
+      if (((s as any).temp ?? 0) === 2) {
+        scene.actions([
+          { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+        ]);
+      }
     }
   } },
     ]);

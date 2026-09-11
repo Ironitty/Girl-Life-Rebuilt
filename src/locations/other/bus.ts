@@ -43,7 +43,7 @@ function enterCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
   if (((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] > 60) {
     // TODO-QSP: dynamic text: It's too late to take the bus. The next one arrives in <<transportVars['bus_wait...
-    scene.text(`It's too late to take the bus. The next one arrives in ${((s as any).transportVars ?? 0)?.['bus_wait_gadukino']/60} hours`);
+    scene.text(`It's too late to take the bus. The next one arrives in ${((s as any).transportVars ?? {})?.['bus_wait_gadukino']/60} hours`);
   } else {
     // TODO-QSP: 'The next bus in the direction of Gadukino ' + iif(transportVars['bus_wait_gadukino'] = 0, 'is leavi...
     if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['buspass_day']) {

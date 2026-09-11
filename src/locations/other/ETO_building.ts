@@ -61,9 +61,11 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).neighborQW['rand'] = Math.floor(Math.random() * 101) + 0;
-    if (((s as any).neighborQW ?? 0)?.['rand'] >= 70) {
-      scene.text('Your neighbor, Timofei, is in the hallway. He\'s smoking a cigarette, flicking the ashes into a jar.');
+    if (((s as any).neighborQW ?? 0)?.['stage'] > 0  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).neighborQW ?? 0)?.['last_day'] !== ((s as any).daystart ?? 0)) {
+      (s as any).neighborQW['rand'] = Math.floor(Math.random() * 101) + 0;
+      if (((s as any).neighborQW ?? 0)?.['rand'] >= 70) {
+        scene.text('Your neighbor, Timofei, is in the hallway. He\'s smoking a cigarette, flicking the ashes into a jar.');
+      }
     }
   }
   scene.actions([
@@ -72,10 +74,13 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>You need to get dressed.</b></center>');
       // TODO-QSP: xgt $curloc
     } else {
-      scene.text('<center><b>You are too ill to go outside.</b></center>');
-      // TODO-QSP: xgt $curloc
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      // TODO-QSP: xgt 'city_residential'
+      if (((s as any).sick ?? 0) > 72) {
+        scene.text('<center><b>You are too ill to go outside.</b></center>');
+        // TODO-QSP: xgt $curloc
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 1;
+        // TODO-QSP: xgt 'city_residential'
+      }
     }
   } },
     { label: 'Go to the attic', goto: ['ETO_building', 'attic'] },
@@ -147,9 +152,11 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
       scene.text('You lie down to sunbathe.');
     } else {
-      (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
-      (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
-      scene.text('You apply sunblock to your body and lie down on the roof to sunbathe.');
+      if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
+        (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
+        scene.text('You apply sunblock to your body and lie down on the roof to sunbathe.');
+      }
     }
     scene.actions([
       { label: 'Get up', goto: ['ETO_building', 'roof'] },

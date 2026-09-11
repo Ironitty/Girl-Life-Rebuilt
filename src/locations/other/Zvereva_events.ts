@@ -73,8 +73,11 @@ function enterChristinaBu_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) === 'gm') {
       // TODO-QSP: $temp_txt += 'ugly'
     } else {
-      // TODO-QSP: $temp_txt += 'slutty'
-      // TODO-QSP: $temp_txt += 'cute'
+      if (((s as any).pantyworntype ?? 0) === 'eroto'  ||  ((s as any).pantyworntype ?? 0) === 'salacious'  ||  ((s as any).pantyworntype ?? 0) === 'lusso') {
+        // TODO-QSP: $temp_txt += 'slutty'
+      } else {
+        // TODO-QSP: $temp_txt += 'cute'
+      }
     }
     // TODO-QSP: $temp_txt += ' panties, slut." She finishes sending the picture, gives you a smirk, and walks away.'
     // TODO-QSP: $temp_txt

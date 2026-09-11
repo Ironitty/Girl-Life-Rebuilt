@@ -4,7 +4,7 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'get_job_definition', 'city_office_cleaner');
   qspCall(s, 'jobs', 'get_job_definition', 'city_office_toilet_cleaner');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 17) {
@@ -89,7 +89,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Put your hand on his pants', handler: (st: GameState) => {
+        { label: 'Put your hand on his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).borodachTimes = ((s as any).borodachTimes ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -165,7 +165,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Sorry, I have to go', handler: (st: GameState) => {
+        { label: 'Sorry, I have to go [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['city_smalloffice', 'start'] },
       ]);
@@ -192,7 +192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'React', handler: (st: GameState) => {
+        { label: 'React [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -273,9 +273,86 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).job_status ?? 0)?.['city_office_cleaner'] === 'employed'  &&  ((s as any).job_last_work_day ?? 0)?.['city_office_cleaner'] !== ((s as any).daystart ?? 0)  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_office_cleaner') === 1) {
-    if (((s as any).job_status ?? 0)?.['city_office_toilet_cleaner'] === 'employed'  &&  ((s as any).job_last_work_day ?? 0)?.['city_office_toilet_cleaner'] !== ((s as any).daystart ?? 0)  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_office_toilet_cleaner') === 1) {
-      scene.actions([
-        { label: 'Clean toilets for <<$func(\'money\', \'string_profit\', 65)>> (1:00)', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Mop the floor in the office for <<$func(\'money\', \'string_profit\', 65)>> (1:00)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    qspCall(s, 'jobs', 'clock', 'city_office_cleaner');
+    qspCall(s, 'mood', 'lower', 'medium');
+    qspCall(s, 'jobs', 'paycheck', 'city_office_cleaner');
+    qspCall(s, 'sweat', 'add', 20);
+    scene.img('images/locations/city/residential/office/clener1.jpg');
+    if (((s as any).job_shifts_total ?? 0)?.['city_office_cleaner'] < 3) {
+      if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16) {
+        scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor.');
+      }
+    } else {
+      if (((s as any).job_shifts_total ?? 0)?.['city_office_cleaner'] >= 3  &&  ((s as any).job_shifts_total ?? 0)?.['city_office_cleaner'] < 8) {
+        if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16) {
+          (s as any).jouryQw = ((s as any).jouryQw ?? 0) + (1);
+          scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. One of the office workers, a man with blond hair and a red face looks at you and tries to hide it, but you can feel his burning gaze.');
+        }
+      } else {
+        if (((s as any).job_shifts_total ?? 0)?.['city_office_cleaner'] >= 8) {
+          if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jouryQw ?? 0) < 7) {
+            (s as any).jouryQw = ((s as any).jouryQw ?? 0) + (1);
+            scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. One of the office workers, a man with blond hair and a red face looks at you and tries to hide it, but you can feel his burning gaze.');
+          } else {
+            if (((s as any).jouryQw ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16) {
+              qspCall(s, 'stat', '');
+              (s as any).jouryQw = ((s as any).jouryQw ?? 0) + (1);
+              scene.img('images/locations/city/residential/office/clener1.jpg');
+              scene.text('You fill a bucket of water and head over to the office with a mop. All the staff are out of the office, except for a red faced blond man. He walks up to you visibly nervous and quietly says, "Hi. My name Yuri. And I think I\'m in love with you… Can we meet and do something after work?"');
+              return;
+              scene.actions([
+                { label: 'No', handler: (st: GameState) => {
+    (s as any).jouryQwNo = 1;
+    scene.text('You look angrily at him, "No, I don\'t mix business with pleasure…" Yuri looks dejected as he moves away from you.');
+    // TODO-QSP: dynamic text: As you've finished, you head over to Boris Ivanovich's office. He gives you <<$f...
+    scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
+    scene.actions([
+      { label: 'Leave', goto: ['city_smalloffice', 'start'] },
+    ]);
+  } },
+                { label: 'Yes', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.text('You smile and nod. Yuri says that he\'s just about to finish and will meet you at the entrance of the building.');
+    // TODO-QSP: dynamic text: As you've finished, you head over to Boris Ivanovich's office. He gives you <<$f...
+    scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
+    scene.text('As you leave, you notice Yuri awiting you. He\'s pretty nervous and it seems as if he doesn\'t know what to do. Not knowing what to say, he blurts out, "How about we head over to my place, watch some movies, drink champagne and talk."');
+    scene.actions([
+      { label: 'No', handler: (st: GameState) => {
+    (st as any).jouryQwNo = 1;
+  }, goto: ['city_smalloffice', 'start'] },
+      { label: 'Go with Yuri', goto: ['youry', 'quest'] },
+    ]);
+  } },
+              ]);
+            }
+          }
+          if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  (!((s as any).jourySex ?? 0))) {
+            scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. Yuri looks at you studying every inch of your figure.');
+          }
+          if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jourySex ?? 0) > 0) {
+            scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. Yuri pretends not to notice you in the office.');
+          }
+        }
+      }
+    }
+    if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 16) {
+      scene.text('The office is empty of people, you quietly wash the floor and wipe the floor in the office.');
+    }
+    // TODO-QSP: dynamic text: As you've finished, you head over to Boris Ivanovich's office. He gives you <<$f...
+    scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
+    scene.actions([
+      { label: 'Leave', goto: ['city_smalloffice', 'start'] },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).job_status ?? 0)?.['city_office_toilet_cleaner'] === 'employed'  &&  ((s as any).job_last_work_day ?? 0)?.['city_office_toilet_cleaner'] !== ((s as any).daystart ?? 0)  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_office_toilet_cleaner') === 1) {
+    scene.actions([
+      { label: 'Clean toilets for <<$func(\'money\', \'string_profit\', 65)>> (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'exp_gain', 'cleaning', Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'jobs', 'clock', 'city_office_toilet_cleaner');
@@ -301,7 +378,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Fuck you', handler: (st: GameState) => {
+        { label: 'Fuck you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).jouryResult = 1;
     scene.text('You\'re offended by his behaviour and without any hesitation you tell Yuri to go to hell. He quickly turns and walks away.');
@@ -368,78 +445,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },
     ]);
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Mop the floor in the office for <<$func(\'money\', \'string_profit\', 65)>> (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'jobs', 'clock', 'city_office_cleaner');
-    qspCall(s, 'mood', 'lower', 'medium');
-    qspCall(s, 'jobs', 'paycheck', 'city_office_cleaner');
-    qspCall(s, 'sweat', 'add', 20);
-    scene.img('images/locations/city/residential/office/clener1.jpg');
-    if (((s as any).job_shifts_total ?? 0)?.['city_office_cleaner'] < 3) {
-      if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16) {
-        scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor.');
-      }
-    } else {
-      if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16) {
-        (s as any).jouryQw = ((s as any).jouryQw ?? 0) + (1);
-        scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. One of the office workers, a man with blond hair and a red face looks at you and tries to hide it, but you can feel his burning gaze.');
-      }
-      if (((s as any).job_shifts_total ?? 0)?.['city_office_cleaner'] >= 8) {
-        if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jouryQw ?? 0) < 7) {
-          (s as any).jouryQw = ((s as any).jouryQw ?? 0) + (1);
-          scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. One of the office workers, a man with blond hair and a red face looks at you and tries to hide it, but you can feel his burning gaze.');
-        } else {
-          qspCall(s, 'stat', '');
-          (s as any).jouryQw = ((s as any).jouryQw ?? 0) + (1);
-          scene.img('images/locations/city/residential/office/clener1.jpg');
-          scene.text('You fill a bucket of water and head over to the office with a mop. All the staff are out of the office, except for a red faced blond man. He walks up to you visibly nervous and quietly says, "Hi. My name Yuri. And I think I\'m in love with you… Can we meet and do something after work?"');
-          return;
-          scene.actions([
-            { label: 'No', handler: (st: GameState) => {
-    (s as any).jouryQwNo = 1;
-    scene.text('You look angrily at him, "No, I don\'t mix business with pleasure…" Yuri looks dejected as he moves away from you.');
-    // TODO-QSP: dynamic text: As you've finished, you head over to Boris Ivanovich's office. He gives you <<$f...
-    scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
-    scene.actions([
-      { label: 'Leave', goto: ['city_smalloffice', 'start'] },
-    ]);
-  } },
-            { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
-    scene.text('You smile and nod. Yuri says that he\'s just about to finish and will meet you at the entrance of the building.');
-    // TODO-QSP: dynamic text: As you've finished, you head over to Boris Ivanovich's office. He gives you <<$f...
-    scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
-    scene.text('As you leave, you notice Yuri awiting you. He\'s pretty nervous and it seems as if he doesn\'t know what to do. Not knowing what to say, he blurts out, "How about we head over to my place, watch some movies, drink champagne and talk."');
-    scene.actions([
-      { label: 'No', handler: (st: GameState) => {
-    (st as any).jouryQwNo = 1;
-  }, goto: ['city_smalloffice', 'start'] },
-      { label: 'Go with Yuri', goto: ['youry', 'quest'] },
-    ]);
-  } },
-          ]);
-        }
-        if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  (!((s as any).jourySex ?? 0))) {
-          scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. Yuri looks at you studying every inch of your figure.');
-        }
-        if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jourySex ?? 0) > 0) {
-          scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. Yuri pretends not to notice you in the office.');
-        }
-      }
-      if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 16) {
-        scene.text('The office is empty of people, you quietly wash the floor and wipe the floor in the office.');
-      }
-      // TODO-QSP: dynamic text: As you've finished, you head over to Boris Ivanovich's office. He gives you <<$f...
-      scene.text(`As you've finished, you head over to Boris Ivanovich's office. He gives you ${qspFunc(s, 'money', 'string_profit', 65)} for the work.`);
-      scene.actions([
-        { label: 'Leave', goto: ['city_smalloffice', 'start'] },
-      ]);
-    }
-  } },
     ]);
   }
   scene.actions([
@@ -448,6 +453,256 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
   ]);
   scene.build();
+}
+
+function enterBorodachNo(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'I\'ve had enough', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.text('You refuse to drink and start to leave. The guard tries to persuade you to stay with him and continue.');
+    qspCall(s, 'willpower', 'drink', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(st, 'willpower', 'pay', 'resist');
+  }, goto: ['city_smalloffice', 'start'] },
+      ]);
+    }
+    qspCall(s, 'city_smalloffice', 'borodachDrink');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBorodachNo2(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'I have to go now', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.text('You gather your things and start to leave, Sasha tries to persuade you to stay with him and continue.');
+    qspCall(s, 'willpower', 'sex', 'resist', 'easy');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(st, 'willpower', 'pay', 'resist');
+  }, goto: ['city_smalloffice', 'start'] },
+      ]);
+    }
+    qspCall(s, 'city_smalloffice', 'borodachSex');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBorodachDrink(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Another drink', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+    qspCall(s, 'stat', '');
+    scene.text('You drink and eat some more cheese, you realize that you are happily drunk. The guard\'s hand does not stop caressing your ass.');
+    qspCall(s, 'city_smalloffice', 'borodachNo2');
+    qspCall(s, 'city_smalloffice', 'borodachSex');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBorodachSex(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Relax', handler: (st: GameState) => {
+    if ((!((s as any).borodachSex ?? 0))) {
+      (s as any).borodachSex = 1;
+      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    }
+    scene.text('You calm down and begin to enjoy the hands caressing you. Sasha has openly embraced and started kissing you.');
+    scene.text('His hands slide under your clothes, unbuttoning and removing them. Soon he has exposed your chest and begins to suck your nipples.');
+    qspCall(s, 'arousal', 'foreplay', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lie down on the sofa', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).borodachSexDay = ((s as any).daystart ?? 0);
+    (s as any).pose = 0;
+    qspCall(s, 'boyStat', 'A39');
+    scene.img('images/shared/sex/vag/miss/vag.jpg');
+    // TODO-QSP: dynamic text: <<$boydesc>> lays you on the sofa, spreads your legs and pulls out his <<dick>> ...
+    scene.text(`${((s as any).boydesc ?? 0)} lays you on the sofa, spreads your legs and pulls out his ${((s as any).dick ?? 0)} cm dick, his fingers begin to caress your pussy, preparing it for entry.`);
+    qspCall(s, 'dinsex', 'boy_puts_condom');
+    qspCall(s, 'arousal', 'vaginal_finger', 5);
+    qspCall(s, 'dinsex', 'vaginal_sex', 15);
+    qspCall(s, 'dinsex', 'sexcum');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['city_residential', ''] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterOhrhj(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Masturbate him', handler: (st: GameState) => {
+    scene.text('You start stroking his cock with your delicate hands. Quickly Sasha groans, "I can\'t hold on much longer."');
+    qspCall(s, 'arousal', 'hj', 5, 'dom');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'city_smalloffice', 'ohrbj');
+    qspCall(s, 'city_smalloffice', 'ohrhjcum');
+    qspCall(s, 'city_smalloffice', 'ohrsex');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterOhrhjcum(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Masturbate him more', handler: (st: GameState) => {
+    (s as any).borodachSexDay = ((s as any).daystart ?? 0);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/residential/office/sex/guard/hjcum.jpg');
+    scene.text('Sasha groans and his cock enthusiastically paints your hand white.');
+    qspCall(s, 'arousal', 'hj', 5, 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['city_residential', ''] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterOhrbj(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Suck him', handler: (st: GameState) => {
+    (s as any).picrand = Math.floor(Math.random() * 4) + 1;
+    scene.img(`images/locations/city/residential/office/sex/guard/bj${((s as any).picrand ?? 0)}.jpg`);
+    // TODO-QSP: dynamic text: You wrap your <<$pc_desc['lips']>> lips around his strong and warm 15 cm cock an...
+    scene.text(`You wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around his strong and warm 15 cm cock and quickly begin by sucking the head, caressing it with your tongue and lips. Sasha groans, "I'm going to come."`);
+    qspCall(s, 'arousal', 'bj', 5, 'sub');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'city_smalloffice', 'ohrbjcum');
+    qspCall(s, 'city_smalloffice', 'ohrsex');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Suck harder', handler: (st: GameState) => {
+    (s as any).spafinloc = 12;
+    qspCall(s, 'cum_manage', '');
+    qspCall(s, 'stat', '');
+    (s as any).picrand = Math.floor(Math.random() * 4) + 1;
+    scene.img(`images/locations/city/residential/office/sex/guard/bjcum${((s as any).picrand ?? 0)}.jpg`);
+    // TODO-QSP: dynamic text: You redouble your efforts, sucking his hard cock with your <<$pc_desc['lips']>> ...
+    scene.text(`You redouble your efforts, sucking his hard cock with your ${((s as any).pc_desc ?? 0)?.['lips']} lips. Hot sperm hits your mouth, again and again. You continue to suck, ignoring your mouth full of viscous sperm. Until he finally nothing left.`);
+    qspCall(s, 'arousal', 'bj', 5, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Swallow sperm', handler: (st: GameState) => {
+    (s as any).borodachSexDay = ((s as any).daystart ?? 0);
+    qspCall(s, 'stat', '');
+    (s as any).picrand = Math.floor(Math.random() * 3) + 1;
+    scene.img(`images/locations/city/residential/office/sex/guard/swallow${((s as any).picrand ?? 0)}.jpg`);
+    scene.text('You open your sperm filled mouth and show off your hard work, then swallow it.');
+    qspCall(s, 'arousal', 'bj', 1, 'sub');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['city_residential', ''] },
+    ]);
+  } },
+      { label: 'Spit it out', handler: (st: GameState) => {
+    (s as any).borodachSexDay = ((s as any).daystart ?? 0);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/residential/office/sex/guard/spit.jpg');
+    scene.text('You open your sperm filled mouth and show off your hard work, then quickly find the sink and spit it out.');
+    qspCall(s, 'arousal', 'bj', 1, 'sub');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['city_residential', ''] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterOhrsex(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Sex', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).borodachSexDay = ((s as any).daystart ?? 0);
+    (s as any).pose = 0;
+    qspCall(s, 'boyStat', 'A39');
+    scene.img('images/shared/sex/vag/miss/vag.jpg');
+    // TODO-QSP: dynamic text: <<$boydesc>> lays you on the sofa, spreads your legs and pulls out his <<dick>> ...
+    scene.text(`${((s as any).boydesc ?? 0)} lays you on the sofa, spreads your legs and pulls out his ${((s as any).dick ?? 0)} centimeter dick. His fingers begin to caress your pussy, preparing it for entry.`);
+    qspCall(s, 'arousal', 'vaginal_finger', 5);
+    qspCall(s, 'arousal', 'vaginal', 15, 'sub');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['city_residential', ''] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'borodachNo':
+      enterBorodachNo(s, scene);
+      break;
+    case 'borodachNo2':
+      enterBorodachNo2(s, scene);
+      break;
+    case 'borodachDrink':
+      enterBorodachDrink(s, scene);
+      break;
+    case 'borodachSex':
+      enterBorodachSex(s, scene);
+      break;
+    case 'ohrhj':
+      enterOhrhj(s, scene);
+      break;
+    case 'ohrhjcum':
+      enterOhrhjcum(s, scene);
+      break;
+    case 'ohrbj':
+      enterOhrbj(s, scene);
+      break;
+    case 'ohrbjcum':
+      enterOhrbjcum(s, scene);
+      break;
+    case 'ohrsex':
+      enterOhrsex(s, scene);
+      break;
+    default:
+      enterStart(s, scene);
+      break;
+  }
 }
 
 export const city_smalloffice: LocationDef = {

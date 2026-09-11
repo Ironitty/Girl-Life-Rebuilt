@@ -17,15 +17,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'komp_cam_functions', 'stop_camming');
-    qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
-    qspCall(s, 'stat', '');
-    scene.img('images/pc/items/accessories/computer/camwhore2.jpg');
-    // TODO-QSP: *p $access['nocamshow']
-    scene.actions([
-      { label: 'Leave this website', goto: ['komp', 'browse'] },
-      { label: 'Go to your MFC homepage', handler: (st: GameState) => {
+    if (((s as any).access ?? 0)?.['nocamshow'] !== '') {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'komp_cam_functions', 'stop_camming');
+      qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
+      qspCall(s, 'stat', '');
+      scene.img('images/pc/items/accessories/computer/camwhore2.jpg');
+      // TODO-QSP: *p $access['nocamshow']
+      scene.actions([
+        { label: 'Leave this website', goto: ['komp', 'browse'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Go to your MFC homepage', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
     qspCall(s, 'arousal', 'end');
@@ -42,13 +46,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'startpage'] },
     ]);
   } },
-      { label: 'Leave this website', handler: (st: GameState) => {
+        { label: 'Leave this website', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'komp_cam_functions', 'stop_camming');
     qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
     qspCall(s, 'stat', '');
   }, goto: ['komp', 'browse'] },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -127,49 +132,242 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 10) {
     // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You don''t have enough stamina to do th...
   } else {
-    // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You are too thirsty to do this.')
-    if (((s as any).pcs_energy ?? 0) < 5) {
-      // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You are too hungry to do this.')
+    if (((s as any).pcs_hydra ?? 0) < 5) {
+      // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You are too thirsty to do this.')
     } else {
-      scene.actions([
-        { label: 'Dance', goto: ['komp_cam_MFC_main', 'dance'] },
-      ]);
+      if (((s as any).pcs_energy ?? 0) < 5) {
+        // TODO-QSP: act $func('wrap', 'neg', 'Dance'): $func('wrap', 'neg', '<br>You are too hungry to do this.')
+      } else {
+        scene.actions([
+          { label: 'Dance', goto: ['komp_cam_MFC_main', 'dance'] },
+        ]);
+      }
     }
-    if (((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
-      scene.actions([
-        { label: 'Perform a striptease', goto: ['komp_cam_MFC_main', 'striptease'] },
-      ]);
-    }
-    if (((s as any).braworntype ?? 0) === 'none') {
-      scene.actions([
-        { label: 'Idly play with your boobs', goto: ['komp_cam_MFC_main', 'play_with_tits'] },
-      ]);
-    } else {
+  }
+  if (((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+    scene.actions([
+      { label: 'Perform a striptease', goto: ['komp_cam_MFC_main', 'striptease'] },
+    ]);
+  }
+  if (((s as any).braworntype ?? 0) === 'none') {
+    scene.actions([
+      { label: 'Idly play with your boobs', goto: ['komp_cam_MFC_main', 'play_with_tits'] },
+    ]);
+  } else {
+    if (((s as any).braworntype ?? 0) !== 'bodysuit') {
       scene.actions([
         { label: 'Take off your bra', goto: ['komp_cam_MFC_main', 'strip_bra'] },
       ]);
     }
-    if (((s as any).pantyworntype ?? 0) === 'none') {
-      scene.actions([
-        { label: 'Play with your pussy', goto: ['komp_cam_MFC_main', 'play_with_pussy'] },
-        { label: 'Play with your ass', goto: ['komp_cam_MFC_main', 'play_with_ass'] },
-      ]);
-    } else {
+  }
+  if (((s as any).pantyworntype ?? 0) === 'none') {
+    scene.actions([
+      { label: 'Play with your pussy', goto: ['komp_cam_MFC_main', 'play_with_pussy'] },
+      { label: 'Play with your ass', goto: ['komp_cam_MFC_main', 'play_with_ass'] },
+    ]);
+  } else {
+    if (((s as any).pantyworntype ?? 0) !== 'bodysuit') {
       scene.actions([
         { label: 'Take off your panties', goto: ['komp_cam_MFC_main', 'strip_panties'] },
       ]);
     }
-    if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pain ?? 0)?.['nippleR'] < 10  &&  ((s as any).pain ?? 0)?.['nippleL'] < 10) {
-      scene.actions([
-        { label: 'Pinch your nipples hard', goto: ['komp_cam_MFC_main', 'pinch_nipples'] },
-      ]);
-    }
+  }
+  if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pain ?? 0)?.['nippleR'] < 10  &&  ((s as any).pain ?? 0)?.['nippleL'] < 10) {
     scene.actions([
-      { label: 'Turn off the webcam', goto: ['komp_cam_MFC_main', 'startpage'] },
+      { label: 'Pinch your nipples hard', goto: ['komp_cam_MFC_main', 'pinch_nipples'] },
     ]);
   }
   scene.actions([
     { label: 'Wait for more viewers', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    { label: 'Turn off the webcam', goto: ['komp_cam_MFC_main', 'startpage'] },
+  ]);
+  scene.build();
+}
+
+function enterDance(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'dance');
+  qspCall(s, 'exercise', 'tier1', (-5), 'dancero');
+  qspCall(s, 'stat', '');
+  if (((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+    (s as any).video_source = 4;
+  } else {
+    if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+      (s as any).video_source = 7;
+    } else {
+      if (((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+        (s as any).video_source = 6;
+      } else {
+        (s as any).video_source = 5;
+      }
+    }
+  }
+  scene.img('images/pc/items/accessories/computer/webcam/strip\' + video_source + \'.mp4');
+  scene.text('Turning on some music you dance erotically hoping to entice some viewers.');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  qspCall(s, 'arousal', 'porn', (-5));
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterStriptease(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/residential/sauna/sex/striptease4.mp4');
+  scene.text('You decide that making a show of stripping yourself might encourage some attention. Repositioning your cam, you stand up and dance as you remove your underwear.');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  qspCall(s, 'exp_gain', 'dancero', 1);
+  qspCall(s, 'underwear', 'remove');
+  qspCall(s, 'arousal', 'striptease', 5);
+  qspCall(s, 'arousal', 'porn', (-5));
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterStripBra(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic');
+  qspCall(s, 'stat', '');
+  if (((s as any).pantyworntype ?? 0) !== 'none') {
+    scene.img('images/pc/items/accessories/computer/camwhore4.jpg');
+  } else {
+    scene.img('images/pc/items/accessories/computer/camwhore5.jpg');
+  }
+  scene.text('Even though no one requested you to do so, you figure showing off your nice boobs might get some more viewers into the channel. You slowly take off your bra and wiggle your breasts seductively at the camera.');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  qspCall(s, 'bras', 'remove');
+  qspCall(s, 'arousal', 'porn', (-5));
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterPlayWithTits(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic');
+  qspCall(s, 'stat', '');
+  if (((s as any).alko ?? 0) >= 4) {
+    qspCall(s, 'pain', '', 2, 'slap', 'breasts');
+    scene.img('images/pc/items/accessories/computer/camwhore80.jpg');
+  } else {
+    scene.img('images/pc/items/accessories/computer/camwhore9.jpg');
+  }
+  scene.text('You chat with your viewers for a little while and begin to play with your boobs absent-mindedly in a slow moment. It feels quite nice! You knead your boobs and play with them more and more intently, almost completely forgetting about the camera.');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  qspCall(s, 'arousal', 'porn', (-5));
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterStripPanties(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic');
+  qspCall(s, 'stat', '');
+  if (((s as any).braworntype ?? 0) !== 'none') {
+    scene.img('images/pc/items/accessories/computer/camwhore5.jpg');
+  } else {
+    scene.img('images/pc/items/accessories/computer/camwhore6.jpg');
+  }
+  scene.text('You know that the fewer clothes you have on, the more viewers will be inclined to check out your channel. You slowly take off your panties in front of the camera, rewarding the viewers already in your channel to a free show when you expose your naked pussy to them.');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  qspCall(s, 'panties', 'remove');
+  qspCall(s, 'arousal', 'porn', (-5));
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterPlayWithPussy(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic');
+  qspCall(s, 'stat', '');
+  scene.img('images/pc/items/accessories/computer/camwhore11.jpg');
+  scene.text('You get bored during a slow moment in the chat, and begin to play with your pussy without giving it another thought.');
+  scene.text('"How does that feel, girl?" one of your viewers asks. "I bet you love fingering yourself, with a bunch of strangers watching you!" another adds.');
+  scene.text('Giving them a defensive smile, you shrug and reply with one hand, while you keep rubbing your clit slowly with the other.');
+  qspCall(s, 'arousal', 'porn', (-5));
+  if (((s as any).pcs_horny ?? 0) >= 100) {
+  }
+  qspCall(s, 'arousal', 'vaginal_finger', (-5));
+  qspCall(s, 'stat', '');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterPlayWithAss(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic');
+  if (((s as any).pcs_ass ?? 0) < 10) {
+    (s as any).analplay = ((s as any).analplay ?? 0) + (1);
+  }
+  scene.img('images/pc/items/accessories/computer/camwhore45.jpg');
+  scene.text('You put two fingers in your mouth and generously cover them in saliva, and then turn your back to the camera. Much to the appreciation of your viewers, you give them a short preview of what an anal show would look like from you. You finger your anus for the camera for a little while, giving your viewers a happy smile the whole time.');
+  qspCall(s, 'arousal', 'porn', (-5));
+  if (((s as any).pcs_horny ?? 0) >= 100) {
+  }
+  qspCall(s, 'arousal', 'anal_finger', (-5));
+  qspCall(s, 'stat', '');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterPinchNipples(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'camming', 5, 'fetish');
+  qspCall(s, 'pain', '', 2, 'pinch', 'nipples');
+  qspCall(s, 'stat', '');
+  scene.img('images/pc/items/accessories/computer/camwhore80.jpg');
+  scene.text('You\'re getting too turned on, and need to slow yourself down a little!');
+  scene.text('You tightly pinch your nipples and pull hard on them. It hurts a lot, and the sharp pain lowers your excitement by quite a lot. Nevertheless, your viewers enjoy the free show and have no idea you actually did that for your own good.');
+  qspCall(s, 'arousal', 'porn', (-5));
+  qspCall(s, 'stat', '');
+  if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+    // TODO-QSP: $camGirl['MFC_donate_message']
+  }
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+  ]);
+  scene.build();
+}
+
+function enterAnyaInterrupted(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'komp_cam_functions', 'stop_camming');
+  qspCall(s, 'stat', '');
+  scene.img('images/pc/items/accessories/computer/camwhore2.jpg');
+  // TODO-QSP: dynamic text: Suddenly you hear the handle of your door creak, and an annoyed voice shouting: ...
+  scene.text(`Suddenly you hear the handle of your door creak, and an annoyed voice shouting: "${((s as any).pcs_nickname ?? 0)}, what the hell!? Why is the door locked? Let me in!"`);
+  scene.text('Oh crap, it\'s your sister! "Sorry everyone, the show\'s over!" you whisper to the camera and you close the stream and hide the website. You quickly put your clothes back on and open your door, trying to avoid the scrutinizing gaze of your sister.');
+  scene.text('When she\'s no longer paying attention to you, you open the site again and find yourself in the main lobby of MyFreeCams. You\'re a bit bummed that you couldn\'t get more out of that session, but cash in your earnings.');
+  qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You can\'t watch porn with your sister in the room');
+  qspCall(s, 'internet_mobile', 'add_limitation', 'nocamshow', 'You can\'t do a camshow with your sister in the room');
+  scene.actions([
+    { label: 'Continue', goto: ['komp_cam_MFC_main', 'start'] },
   ]);
   scene.build();
 }
@@ -185,6 +383,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'waitclients':
       enterWaitclients(s, scene);
+      break;
+    case 'dance':
+      enterDance(s, scene);
+      break;
+    case 'striptease':
+      enterStriptease(s, scene);
+      break;
+    case 'strip_bra':
+      enterStripBra(s, scene);
+      break;
+    case 'play_with_tits':
+      enterPlayWithTits(s, scene);
+      break;
+    case 'strip_panties':
+      enterStripPanties(s, scene);
+      break;
+    case 'play_with_pussy':
+      enterPlayWithPussy(s, scene);
+      break;
+    case 'play_with_ass':
+      enterPlayWithAss(s, scene);
+      break;
+    case 'pinch_nipples':
+      enterPinchNipples(s, scene);
+      break;
+    case 'anya_interrupted':
+      enterAnyaInterrupted(s, scene);
       break;
     default:
       enterStart(s, scene);

@@ -11,8 +11,11 @@ function enterYgym(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[11] === 2) {
     scene.img('images/locations/city/suburb/mansion/y_gym.jpg');
   } else {
-    scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
-    scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    if (((s as any).ymanrem ?? 0)[11] === 1) {
+      scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
+    } else {
+      scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    }
   }
   if (((s as any).bassMansion ?? 0) === 1) {
     // TODO-QSP: act 'Go to your pool area': minut += 1

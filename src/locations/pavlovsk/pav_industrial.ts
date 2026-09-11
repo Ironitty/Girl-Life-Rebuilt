@@ -27,7 +27,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Behind the security checkpoint, you can see the <a href="exec:minut += 5 & gt 'p...
     scene.text('Behind the security checkpoint, you can see the <a href="exec:minut += 5 & gt \'pav_factory\', \'enter\'">entrance</a> that every employee passes through.');
   } else {
-    scene.text('The factory is currently closed.');
+    if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 20  ||  ((s as any).week ?? 0) > 5) {
+      scene.text('The factory is currently closed.');
+    }
   }
   scene.text('Opening hours are Monday through Friday:');
   // TODO-QSP: dynamic text: First shift - '+func('time', 'get_time_string', 8, 0)+' to '+func('time', 'get_t...
@@ -46,8 +48,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] < 150) {
       scene.text('<br>You catch people staring at you intently, as if they\'re supposed to know who you are but can\'t quite remember why. You sincerely hope they don\'t realize your promiscuous adventures are the reason why. The occasional person chuckling and pointing at you crushes those hopes, and you quickly keep walking before they get a chance to say anything.');
     } else {
-      scene.text('<br>People look at you with lewd grins on their faces, some of them even making vulgar gestures. Looks like they know what you\'ve been up to.');
-      scene.text('<br>Everywhere you go, people recognize you as a whore. Some even come over and slap you on the ass, claiming they know you like it when they do, or claiming they want to sample your goods. An elderly woman sitting on a bench calls out to you, loudly calling you a slut and a whore. You hide your face and run away as fast as you can, before she can draw too much attention to you.');
+      if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
+        scene.text('<br>People look at you with lewd grins on their faces, some of them even making vulgar gestures. Looks like they know what you\'ve been up to.');
+      } else {
+        scene.text('<br>Everywhere you go, people recognize you as a whore. Some even come over and slap you on the ass, claiming they know you like it when they do, or claiming they want to sample your goods. An elderly woman sitting on a bench calls out to you, loudly calling you a slut and a whore. You hide your face and run away as fast as you can, before she can draw too much attention to you.');
+      }
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
@@ -75,14 +80,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Go to the jeep', goto: ['belgang', 'payday'] },
       ]);
     } else {
-      (s as any).daybelisex = ((s as any).daystart ?? 0);
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'stat', '');
-      scene.img('images/characters/pavlovsk/vadim/belyjeep.jpg');
-      scene.text('You see the by now familiar old Mitsubishi Pajero driving through the streets with Vadim Bely and his gang. Your heart skips a beat as you notice one of them pointing at you, and soon they pull over.');
-      scene.actions([
-        { label: 'Go to the jeep', goto: ['belgang', 'workofdebt'] },
-      ]);
+      if (((s as any).belgangPayWeek ?? 0) >= 300  &&  ((s as any).belgangProstitute ?? 0) === 1  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+        (s as any).daybelisex = ((s as any).daystart ?? 0);
+        (s as any).minut = ((s as any).minut ?? 0) + 5;
+        qspCall(s, 'stat', '');
+        scene.img('images/characters/pavlovsk/vadim/belyjeep.jpg');
+        scene.text('You see the by now familiar old Mitsubishi Pajero driving through the streets with Vadim Bely and his gang. Your heart skips a beat as you notice one of them pointing at you, and soon they pull over.');
+        scene.actions([
+          { label: 'Go to the jeep', goto: ['belgang', 'workofdebt'] },
+        ]);
+      }
     }
   }
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');

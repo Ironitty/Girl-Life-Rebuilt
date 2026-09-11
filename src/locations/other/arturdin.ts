@@ -30,11 +30,13 @@ function enterFacefuck(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).artfacefucktimes ?? 0) >= 2) {
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -80,15 +82,17 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: act 'Continue': gt 'arturdin', 'fist'
     }
   } else {
-    (s as any).artrand = Math.floor(Math.random() * 3) + 0;
-    if ((!((s as any).artrand ?? 0))) {
-      // TODO-QSP: act 'Continue': gt 'arturdin', 'sexdog_cum'
-    }
-    if (((s as any).artrand ?? 0) === 1) {
-      // TODO-QSP: act 'Continue': gt 'arturdin', 'cum'
-    }
-    if (((s as any).artrand ?? 0) === 2) {
-      // TODO-QSP: act 'Continue': gt 'arturdin', 'anal_cum'
+    if (((s as any).artfucktimes ?? 0) >= 2) {
+      (s as any).artrand = Math.floor(Math.random() * 3) + 0;
+      if ((!((s as any).artrand ?? 0))) {
+        // TODO-QSP: act 'Continue': gt 'arturdin', 'sexdog_cum'
+      }
+      if (((s as any).artrand ?? 0) === 1) {
+        // TODO-QSP: act 'Continue': gt 'arturdin', 'cum'
+      }
+      if (((s as any).artrand ?? 0) === 2) {
+        // TODO-QSP: act 'Continue': gt 'arturdin', 'anal_cum'
+      }
     }
   }
   scene.build();
@@ -104,11 +108,13 @@ function enterBedmiss(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['arturdin', 'sexmiss'] },
     ]);
   } else {
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).artfucktimes ?? 0) >= 2) {
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'sexmiss_cum', 'cum')
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

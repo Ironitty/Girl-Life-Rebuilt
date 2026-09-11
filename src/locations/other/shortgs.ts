@@ -9,8 +9,11 @@ function enterAutosave(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
       // TODO-QSP: savegame 'autosave_city_<<$weekName[week]>>.sav'
     } else {
-      // TODO-QSP: savegame 'autosave_uni_<<$weekName[week]>>.sav'
-      // TODO-QSP: savegame 'autosave_sg_<<$weekName[week]>>.sav'
+      if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
+        // TODO-QSP: savegame 'autosave_uni_<<$weekName[week]>>.sav'
+      } else {
+        // TODO-QSP: savegame 'autosave_sg_<<$weekName[week]>>.sav'
+      }
     }
   }
   return;

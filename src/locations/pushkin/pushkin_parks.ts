@@ -187,11 +187,13 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).knowsfairy ?? 0) < 1  &&  ((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
       // TODO-QSP: xgt 'MagEncounterFairy'
     } else {
-      scene.actions([
-        { label: 'Go to where the Fairy may be', handler: (st: GameState) => {
+      if (((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
+        scene.actions([
+          { label: 'Go to where the Fairy may be', handler: (st: GameState) => {
     // TODO-QSP: xgt 'MagEncounterFairy'
   } },
-      ]);
+        ]);
+      }
     }
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
@@ -223,12 +225,15 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
       scene.text('AS you strip off. A couple of passing men do a double-take and pause a moment to look at your sopping wet panties, probably thinking about what is making you so excited. You don\'t care about what they might say or think of you and carry on stripping.');
       scene.text('Once you are naked you play around and have fun in the pond, enjoying the feel of the warm water on your body. The clean pond water refreshes and invigorates you.');
     } else {
-      scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/undressnudebeach.jpg');
-      scene.text('Not caring if anyone is looking at you, you slowly take off your clothes. You peel off each item like a stripper. Soon, you are completely naked.');
-      scene.text('You play around and have fun in the pond, enjoying the feel of the warm water on your naked body. The clean pond water refreshes and invigorates you.');
-      scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/undressnudebeach.jpg');
-      scene.text('You quickly check to see if anyone is watching, and when you\'re satisfied no one is paying you undue attention, you take off your clothes.');
-      scene.text('You play around and have fun in the pond, enjoying the feel of the warm water on your naked body. The clean pond water refreshes and invigorates you.');
+      if (((s as any).pcs_inhib ?? 0) >= 60) {
+        scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/undressnudebeach.jpg');
+        scene.text('Not caring if anyone is looking at you, you slowly take off your clothes. You peel off each item like a stripper. Soon, you are completely naked.');
+        scene.text('You play around and have fun in the pond, enjoying the feel of the warm water on your naked body. The clean pond water refreshes and invigorates you.');
+      } else {
+        scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/undressnudebeach.jpg');
+        scene.text('You quickly check to see if anyone is watching, and when you\'re satisfied no one is paying you undue attention, you take off your clothes.');
+        scene.text('You play around and have fun in the pond, enjoying the feel of the warm water on your naked body. The clean pond water refreshes and invigorates you.');
+      }
     }
     if (((s as any).deodorant_on ?? 0) === 1) {
       qspCall(s, 'sweat', 'remove_deo');

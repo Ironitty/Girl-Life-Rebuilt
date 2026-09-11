@@ -6,8 +6,11 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['current'] === 'hunters_lodge') {
     scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
-    // TODO-QSP: gt $home['location']
+    if (((s as any).home ?? 0)?.['location'] === 'pav_complex') {
+      scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+    } else {
+      // TODO-QSP: gt $home['location']
+    }
   }
   scene.build();
 }
@@ -16,8 +19,11 @@ function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['current'] === 'lyceum_dorm') {
     scene.actions([{ label: 'Continue', goto: ['ETO_hostel', 'town_hostel'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['uni_dorm', 'dorm_room'] }]);
-    // TODO-QSP: gt $home['entrance'], 'start'
+    if (((s as any).home ?? 0)?.['current'] === 'university_dorm') {
+      scene.actions([{ label: 'Continue', goto: ['uni_dorm', 'dorm_room'] }]);
+    } else {
+      // TODO-QSP: gt $home['entrance'], 'start'
+    }
   }
   scene.build();
 }

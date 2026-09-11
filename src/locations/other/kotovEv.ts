@@ -20,7 +20,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'It\'s all lies, babe!', handler: (st: GameState) => {
+        { label: 'It\'s all lies, babe! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     if (((s as any).fame ?? 0)?.['pav_sex'] > 75) {
@@ -95,35 +95,38 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: dynamic text: Vitek smiles when he sees you and puts his arms around you, hugging you tightly ...
-      scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname ?? 0)}. It's nice seeing you, but the training starts soon!"`);
-      scene.actions([
-        { label: 'Let him go to his training', handler: (st: GameState) => {
+      if (((s as any).kotovKnowSport ?? 0) > 0) {
+        // TODO-QSP: dynamic text: Vitek smiles when he sees you and puts his arms around you, hugging you tightly ...
+        scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname ?? 0)}. It's nice seeing you, but the training starts soon!"`);
+        scene.actions([
+          { label: 'Let him go to his training', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-      ]);
+        ]);
+      }
     }
   } else {
-    // TODO-QSP: dynamic text: Vitek sees you walk by, and waves his hand: "Hey <<$pcs_nickname>>! Come on, joi...
-    scene.text(`Vitek sees you walk by, and waves his hand: "Hey ${((s as any).pcs_nickname ?? 0)}! Come on, join me!"`);
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if (((s as any).loc ?? 0) === 'pav_park') {
+      // TODO-QSP: dynamic text: Vitek sees you walk by, and waves his hand: "Hey <<$pcs_nickname>>! Come on, joi...
+      scene.text(`Vitek sees you walk by, and waves his hand: "Hey ${((s as any).pcs_nickname ?? 0)}! Come on, join me!"`);
+      qspCall(s, 'willpower', 'misc', 'resist', 'medium');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'No time right now, sorry!', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.actions([
+          { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Walk over to him', handler: (st: GameState) => {
+        ]);
+      }
+      scene.actions([
+        { label: 'Walk over to him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
@@ -138,7 +141,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No time right now, sorry!', handler: (st: GameState) => {
+        { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -167,7 +170,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No time right now, sorry!', handler: (st: GameState) => {
+        { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -190,7 +193,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

@@ -138,14 +138,50 @@ function enterPhotojobPay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_photoskl ?? 0) <= 50) {
     qspCall(s, 'jobs_gigs', 'set_wage_scale', 5, 100);
   } else {
-    qspCall(s, 'jobs_gigs', 'set_wage_scale', 1);
-    if (((s as any).pcs_photoskl ?? 0) <= 100) {
-      qspCall(s, 'jobs_gigs', 'set_wage_scale', 2);
+    if (((s as any).pcs_photoskl ?? 0) <= 75) {
+      qspCall(s, 'jobs_gigs', 'set_wage_scale', 1);
     } else {
-      qspCall(s, 'jobs_gigs', 'set_wage_scale', 3);
-      qspCall(s, 'jobs_gigs', 'set_wage_scale', 4);
+      if (((s as any).pcs_photoskl ?? 0) <= 100) {
+        qspCall(s, 'jobs_gigs', 'set_wage_scale', 2);
+      } else {
+        if (((s as any).pcs_photoskl ?? 0) <= 125) {
+          qspCall(s, 'jobs_gigs', 'set_wage_scale', 3);
+        } else {
+          qspCall(s, 'jobs_gigs', 'set_wage_scale', 4);
+        }
+      }
     }
   }
+  scene.build();
+}
+
+function enterJob_1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'jobs_gigs', 'set_event', 1, 1, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
+  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_industrial', '', "gt 'photography_work', 'evt_stage'"
+  scene.build();
+}
+
+function enterJob_2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'jobs_gigs', 'set_event', 1, 2, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
+  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', "gt 'photography_work', 'evt_stage'"
+  scene.build();
+}
+
+function enterJob_3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'jobs_gigs', 'set_event', 1, 3, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
+  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_residential', '', "gt 'photography_work', 'evt_stage'"
+  scene.build();
+}
+
+function enterJob_4(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'jobs_gigs', 'set_event', 1, 4, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
+  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'city_industrial', '', "gt 'photography_work', 'evt_stage'"
+  scene.build();
+}
+
+function enterJob_5(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'jobs_gigs', 'set_event', 1, 5, ((s as any).temp_job_desc ?? 0), ((s as any).temp_journal_desc ?? 0), 1);
+  // TODO-QSP: gs 'jobs_gigs', 'set_loc_code', 'shop_photography', 'start', "gt 'photography_work', 'evt_stage'"
   scene.build();
 }
 
@@ -172,6 +208,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'photojob_pay':
       enterPhotojobPay(s, scene);
+      break;
+    case 'job_1':
+      enterJob_1(s, scene);
+      break;
+    case 'job_2':
+      enterJob_2(s, scene);
+      break;
+    case 'job_3':
+      enterJob_3(s, scene);
+      break;
+    case 'job_4':
+      enterJob_4(s, scene);
+      break;
+    case 'job_5':
+      enterJob_5(s, scene);
       break;
     default:
       enterStage_1(s, scene);

@@ -62,11 +62,56 @@ function enterWearPantiesDecider(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 0) {
       scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 1 & gs \'stat\' & gt \'bed2\', \'main\'">AS IS</a>.');
     } else {
-      scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 2 & gs \'stat\' & gt \'bed2\', \'main\'">YES</a>.');
-      if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 2) {
-        scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 0 & gs \'stat\' & gt \'bed2\', \'main\'">NO</a>.');
+      if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 1) {
+        scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 2 & gs \'stat\' & gt \'bed2\', \'main\'">YES</a>.');
+      } else {
+        if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 2) {
+          scene.text('Will you always wear your underwear to bed? Currently - <a href="exec:sleepVars[\'bedPanty\'] = 0 & gs \'stat\' & gt \'bed2\', \'main\'">NO</a>.');
+        }
       }
     }
+  }
+  scene.build();
+}
+
+function enterWearButtplugDecider(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1) {
+    if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 0) {
+      scene.text('Should you always remove your anal plug before bed? Currently - <a href="exec:sleepVars[\'bedAnal\'] = 1 & gs \'stat\' & gt \'bed2\', \'main\'">NO</a>.');
+    } else {
+      if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1) {
+        scene.text('Should you always remove your anal plug before bed? Currently - <a href="exec:sleepVars[\'bedAnal\'] = 0 & gs \'stat\' & gt \'bed2\', \'main\'">YES</a>.');
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterWearVibeDecider(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['vibe'] === 1  &&  ((s as any).cheatVars ?? 0)?.['sleep_vib'] === 1) {
+    if (((s as any).sleepVars ?? 0)?.['bedVibrator'] === 0) {
+      scene.text('Should you always remove your vibrator before bed? Currently - <a href="exec:sleepVars[\'bedVibrator\'] = 1 & gs \'stat\' & gt \'bed2\', \'main\'">NO</a>.');
+    } else {
+      if (((s as any).sleepVars ?? 0)?.['bedVibrator'] === 1) {
+        scene.text('Should you always remove your vibrator before bed? Currently - <a href="exec:sleepVars[\'bedVibrator\'] = 0 & gs \'stat\' & gt \'bed2\', \'main\'">YES</a>.');
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterFin(s: GameState, scene: SceneBuilder): void {
+  if ((('bedr;korr').indexOf((((s as any).loc ?? 0)))) + 1) {
+    scene.actions([{ label: 'Continue', goto: ['bedr', ''] }]);
+  }
+  if ((('bedr2x;korr2x').indexOf((((s as any).loc ?? 0)))) + 1) {
+    scene.actions([{ label: 'Continue', goto: ['bedr2x', ''] }]);
+  }
+  if (((s as any).loc ?? 0) === 'uni_dorm') {
+    scene.actions([{ label: 'Continue', goto: ['uni_dorm', 'dorm_room'] }]);
+  }
+  if (((s as any).loc ?? 0) === 'nichBedroomServant') {
+    scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', ''] }]);
   }
   scene.build();
 }
@@ -82,6 +127,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'wear_panties_decider':
       enterWearPantiesDecider(s, scene);
+      break;
+    case 'wear_buttplug_decider':
+      enterWearButtplugDecider(s, scene);
+      break;
+    case 'wear_vibe_decider':
+      enterWearVibeDecider(s, scene);
+      break;
+    case 'fin':
+      enterFin(s, scene);
       break;
     default:
       enterModSleeptriggers(s, scene);

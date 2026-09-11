@@ -13,11 +13,13 @@ function enterTalkwithzariyah(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept the offer to play at Del Parco', goto: ['music_delparco', 'delparco_accept'] },
     ]);
   } else {
-    // TODO-QSP: dynamic text: She puts down the phone "<<$pcs_nickname>>, so glad that you came. How are you? ...
-    scene.text(`She puts down the phone "${((s as any).pcs_nickname ?? 0)}, so glad that you came. How are you? Did you come to talk about the offer?" she smiles at you as you sit down.`);
-    scene.actions([
-      { label: 'Discuss the live music with', goto: ['music_delparco', 'firstdiscussion'] },
-    ]);
+    if (((s as any).ml_delparcoQW ?? 0)?.['Stage'] === 2) {
+      // TODO-QSP: dynamic text: She puts down the phone "<<$pcs_nickname>>, so glad that you came. How are you? ...
+      scene.text(`She puts down the phone "${((s as any).pcs_nickname ?? 0)}, so glad that you came. How are you? Did you come to talk about the offer?" she smiles at you as you sit down.`);
+      scene.actions([
+        { label: 'Discuss the live music with', goto: ['music_delparco', 'firstdiscussion'] },
+      ]);
+    }
   }
   scene.actions([
     { label: 'Leave', goto: ['cafe_parco', 'start'] },
@@ -98,7 +100,7 @@ function enterAcceptafterthinking(s: GameState, scene: SceneBuilder): void {
 
 function enterEveningshow(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  (s as any).ml_correction_chance = ((s as any).ml_performance ?? 0)?.['set_quality'] + ((((s as any).pcs_hotcat ?? 0) - 5)*3) + (((s as any).pcs_perform ?? 0)/10);
+  (s as any).ml_correction_chance = ((s as any).ml_performance ?? {})?.['set_quality'] + ((((s as any).pcs_hotcat ?? 0) - 5)*3) + (((s as any).pcs_perform ?? 0)/10);
   (s as any).ml_success = Math.floor(Math.random() * 101) + 0;
   qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 2) + 1);
@@ -111,27 +113,30 @@ function enterEveningshow(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'small');
     scene.text('You played with no issues playing everything as it was meant to be.');
   } else {
-    (s as any).ml_delparco['performance'] = ((s as any).ml_delparco['performance'] ?? 0) + (5);
-    qspCall(s, 'fame', 'pav', 'music', Math.floor(Math.random() * 3) + 1);
-    scene.text('You made some mistakes and forgot the lyrics in some places, but you were able to compensate by your performance and yes, your looks.');
-    qspCall(s, 'mood', 'raise', 'tiny');
-    if (((s as any).ml_success ?? 0) < ((s as any).ml_correction_chance ?? 0) + 10) {
-      qspCall(s, 'fame', 'pav', 'music', ((s as any).rand ?? 0)(-2, 0));
-      qspCall(s, 'mood', 'lower', 'small');
-      scene.text('You made quite a few mistakes and forgot the lyrics in places, and even though you tried your best to compensate by your performance and your looks, you could see that people have noticed them. ');
-      scene.text('You will have to practice even more and rehearse your songs before your next gig.');
+    if (((s as any).ml_success ?? 0) < ((s as any).ml_correction_chance ?? 0)) {
+      (s as any).ml_delparco['performance'] = ((s as any).ml_delparco['performance'] ?? 0) + (5);
+      qspCall(s, 'fame', 'pav', 'music', Math.floor(Math.random() * 3) + 1);
+      scene.text('You made some mistakes and forgot the lyrics in some places, but you were able to compensate by your performance and yes, your looks.');
+      qspCall(s, 'mood', 'raise', 'tiny');
     } else {
-      (s as any).ml_delparco['performance'] = ((s as any).ml_delparco['performance'] ?? 0) - (20);
-      qspCall(s, 'fame', 'pav', 'music', ((s as any).rand ?? 0)(-10, -5));
-      qspCall(s, 'mood', 'lower', 'medium');
-      scene.text('Today definitely wasn\'t your day. You bombed, there is no better word for it. While you lasted your 30 minutes, you could see on the audience that they didn\'t really enjoy it, even though they politely clapped at the end.');
-      scene.text('You will have to do some serious practicing if you want to have another chance to perform.');
+      if (((s as any).ml_success ?? 0) < ((s as any).ml_correction_chance ?? 0) + 10) {
+        qspCall(s, 'fame', 'pav', 'music', ((s as any).rand ?? 0)(-2, 0));
+        qspCall(s, 'mood', 'lower', 'small');
+        scene.text('You made quite a few mistakes and forgot the lyrics in places, and even though you tried your best to compensate by your performance and your looks, you could see that people have noticed them. ');
+        scene.text('You will have to practice even more and rehearse your songs before your next gig.');
+      } else {
+        (s as any).ml_delparco['performance'] = ((s as any).ml_delparco['performance'] ?? 0) - (20);
+        qspCall(s, 'fame', 'pav', 'music', ((s as any).rand ?? 0)(-10, -5));
+        qspCall(s, 'mood', 'lower', 'medium');
+        scene.text('Today definitely wasn\'t your day. You bombed, there is no better word for it. While you lasted your 30 minutes, you could see on the audience that they didn\'t really enjoy it, even though they politely clapped at the end.');
+        scene.text('You will have to do some serious practicing if you want to have another chance to perform.');
+      }
     }
-    scene.text('(The event is unfinished - do not complain about quality - report only serious bugs)');
-    scene.actions([
-      { label: 'Leave', goto: ['cafe_parco', 'start'] },
-    ]);
   }
+  scene.text('(The event is unfinished - do not complain about quality - report only serious bugs)');
+  scene.actions([
+    { label: 'Leave', goto: ['cafe_parco', 'start'] },
+  ]);
   scene.build();
 }
 

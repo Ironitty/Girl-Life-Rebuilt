@@ -49,9 +49,11 @@ function enterYaqw(s: GameState, scene: SceneBuilder): void {
           { label: 'Agree', goto: ['yarik', '3'] },
         ]);
       } else {
-        scene.actions([
-          { label: 'Agree', goto: ['yarik', '1'] },
-        ]);
+        if (((s as any).uborkayar ?? 0) > 0) {
+          scene.actions([
+            { label: 'Agree', goto: ['yarik', '1'] },
+          ]);
+        }
       }
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {

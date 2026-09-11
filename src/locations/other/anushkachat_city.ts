@@ -275,7 +275,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Kiss her', handler: (st: GameState) => {
+        { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     if (((s as any).anushkaQW ?? 0)?.['kiss'] <= 0) {
@@ -432,7 +432,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her', handler: (st: GameState) => {
+        { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -567,12 +567,15 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       scene.text('She nods. "Well, you should decide before you get stuck in this crappy little town married to some asshole whose kids you\'re popping out every few years. Not judging you, unless that\'s what you want. I\'m just saying…"');
       scene.text('You\'re not sure what more to say about it, so you decide to change the subject.');
     } else {
-      scene.text('"I\'m not sure, but I guess I have a few options, for right now. Work and make ends meet." you tell her.');
-      scene.text('She nods. "Well, you should see about doing something more, going to the University or getting some form of certification or something or you might end up married to some asshole whose kids you\'re popping out every few years. Not judging you, unless that\'s what you want. I\'m just saying…"');
-      scene.text('You\'re not sure what more to say about it, so you decide to change the subject.');
-      scene.text('"I\'m not sure, but I guess I have a few options," you tell her.');
-      scene.text('She nods. "Well, you should decide before you get stuck in this crappy little town married to some asshole whose kids you\'re popping out every few years. Not judging you, unless that\'s what you want. I\'m just saying…"');
-      scene.text('You\'re not sure what more to say about it, so you decide to change the subject.');
+      if (((s as any).home ?? 0)?.['current'] === 'city_apartment') {
+        scene.text('"I\'m not sure, but I guess I have a few options, for right now. Work and make ends meet." you tell her.');
+        scene.text('She nods. "Well, you should see about doing something more, going to the University or getting some form of certification or something or you might end up married to some asshole whose kids you\'re popping out every few years. Not judging you, unless that\'s what you want. I\'m just saying…"');
+        scene.text('You\'re not sure what more to say about it, so you decide to change the subject.');
+      } else {
+        scene.text('"I\'m not sure, but I guess I have a few options," you tell her.');
+        scene.text('She nods. "Well, you should decide before you get stuck in this crappy little town married to some asshole whose kids you\'re popping out every few years. Not judging you, unless that\'s what you want. I\'m just saying…"');
+        scene.text('You\'re not sure what more to say about it, so you decide to change the subject.');
+      }
     }
     scene.actions([
       { label: 'Stop talking', goto: ['anush_bedroom_city', 'anushroom'] },

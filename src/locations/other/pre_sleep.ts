@@ -56,29 +56,35 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('Before going to bed, you take out your butt plug and vibrator and give it a quick wash.');
     } else {
-      (s as any).vibratorIN = 0;
-      qspCall(s, 'stat', '');
-      scene.text('Before going to bed, you take out your vibrator and give it a quick wash.');
-      scene.text('You decide to leave your butt plug in.');
-      if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1  &&  ((s as any).sleepVars ?? 0)?.['bedVibrator'] === 0) {
-        (s as any).analPlugIn = 0;
-        (s as any).analPlugOut = 0;
+      if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 0  &&  ((s as any).sleepVars ?? 0)?.['bedVibrator'] === 1) {
+        (s as any).vibratorIN = 0;
         qspCall(s, 'stat', '');
-        scene.text('Before going to bed, you take out your butt plug and give it a quick wash.');
-        scene.text('You decide to leave your vibrator in.');
+        scene.text('Before going to bed, you take out your vibrator and give it a quick wash.');
+        scene.text('You decide to leave your butt plug in.');
       } else {
-        scene.text('You decide to leave your butt plug and vibrator in.');
-      }
-      if (((s as any).analPlugIn ?? 0) === 1  &&  (!((s as any).vibratorIN ?? 0))) {
-        if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1) {
+        if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1  &&  ((s as any).sleepVars ?? 0)?.['bedVibrator'] === 0) {
           (s as any).analPlugIn = 0;
           (s as any).analPlugOut = 0;
           qspCall(s, 'stat', '');
           scene.text('Before going to bed, you take out your butt plug and give it a quick wash.');
+          scene.text('You decide to leave your vibrator in.');
         } else {
-          scene.text('You decide to leave your butt plug in.');
+          scene.text('You decide to leave your butt plug and vibrator in.');
         }
+      }
+    }
+  } else {
+    if (((s as any).analPlugIn ?? 0) === 1  &&  (!((s as any).vibratorIN ?? 0))) {
+      if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1) {
+        (s as any).analPlugIn = 0;
+        (s as any).analPlugOut = 0;
+        qspCall(s, 'stat', '');
+        scene.text('Before going to bed, you take out your butt plug and give it a quick wash.');
       } else {
+        scene.text('You decide to leave your butt plug in.');
+      }
+    } else {
+      if (((s as any).analPlugIn ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 1) {
         if (((s as any).sleepVars ?? 0)?.['bedVibrator'] === 1) {
           (s as any).vibratorIN = 0;
           scene.text('Before going to bed, you take out your vibrator and give it a quick wash.');
@@ -86,47 +92,73 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
           scene.text('You decide to leave your vibrator in.');
         }
       }
-      if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 1) {
-        if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).braworntype ?? 0) === 'none') {
-          scene.text('You put on your bra and panties.');
+    }
+  }
+  if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 1) {
+    if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).braworntype ?? 0) === 'none') {
+      scene.text('You put on your bra and panties.');
+    } else {
+      if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) === 'none') {
+        scene.text('You put on your bra.');
+      } else {
+        if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) !== 'none') {
+          scene.text('You put on your panties.');
         } else {
-          scene.text('You put on your bra.');
-          if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) !== 'none') {
-            scene.text('You put on your panties.');
-          } else {
-            scene.text('You change your bra and panties.');
-          }
-          if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 2) {
-            if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).braworntype ?? 0) !== 'none') {
-              scene.text('You remove your bra and panties.');
-            } else {
-              scene.text('You remove your panties.');
-              if (((s as any).braworntype ?? 0) !== 'none') {
-                scene.text('You remove your bra.');
-              }
-              scene.text('You were too tired to worry about your underwear, so for tonight you left it as is.');
-            }
-            if (((s as any).hairstyle ?? 0) !== '') {
-              // TODO-QSP: $hairstyle
-            } else {
-              scene.text('Your hair is loose and free.');
-            }
-            if (((s as any).pcs_makeup ?? 0) > ((s as any).cosmetic_tattoo ?? 0) + 1) {
-              (s as any).pcs_makeup = 0;
-              (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
-              qspCall(s, 'body', 'SkinLoss', 'MakeUpSleep');
-              scene.text('You went to bed wearing your makeup, which will smear your face as you sleep; your skin will age faster from this!');
-            }
-            if (((s as any).fat ?? 0) > 5  &&  ((s as any).stringimplant ?? 0) === 1) {
-              (s as any).bodyVars['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) + (1);
-              (s as any).fat = ((s as any).fat ?? 0) - (5);
-            }
-            // TODO-QSP: xgt 'pre_sleep', 'mod_sleeptriggers'
-          }
+          scene.text('You change your bra and panties.');
         }
       }
     }
+  } else {
+    if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 2) {
+      if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).braworntype ?? 0) !== 'none') {
+        scene.text('You remove your bra and panties.');
+      } else {
+        if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) === 'none') {
+          scene.text('You remove your panties.');
+        } else {
+          if (((s as any).braworntype ?? 0) !== 'none') {
+            scene.text('You remove your bra.');
+          }
+        }
+      }
+    } else {
+      scene.text('You were too tired to worry about your underwear, so for tonight you left it as is.');
+    }
   }
+  if (((s as any).hairstyle ?? 0) !== '') {
+    // TODO-QSP: $hairstyle
+  } else {
+    scene.text('Your hair is loose and free.');
+  }
+  if (((s as any).pcs_makeup ?? 0) > ((s as any).cosmetic_tattoo ?? 0) + 1) {
+    (s as any).pcs_makeup = 0;
+    (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
+    qspCall(s, 'body', 'SkinLoss', 'MakeUpSleep');
+    scene.text('You went to bed wearing your makeup, which will smear your face as you sleep; your skin will age faster from this!');
+  }
+  if (((s as any).fat ?? 0) > 5  &&  ((s as any).stringimplant ?? 0) === 1) {
+    (s as any).bodyVars['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) + (1);
+    (s as any).fat = ((s as any).fat ?? 0) - (5);
+  }
+  // TODO-QSP: xgt 'pre_sleep', 'mod_sleeptriggers'
+  scene.build();
+}
+
+function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'mod_system', 'sleep', 'pre_sleep', 'mod_sleeptriggers');
+  // TODO-QSP: xgt 'pre_sleep', 'end'
+  scene.build();
+}
+
+function enterEnd(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Sleep…', handler: (st: GameState) => {
+    (s as any).clo_flag['bed'] = 0;
+    (s as any).inSleep = 1;
+    qspCall(s, 'stat', '');
+    qspCall(s, 'mood', 'reset');
+  }, goto: ['sleep', 'start'] },
+  ]);
   scene.build();
 }
 
@@ -138,6 +170,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'prepare_sleep':
       enterPrepareSleep(s, scene);
+      break;
+    case 'mod_sleeptriggers':
+      enterModSleeptriggers(s, scene);
+      break;
+    case 'end':
+      enterEnd(s, scene);
       break;
     default:
       enterPreSleep2(s, scene);

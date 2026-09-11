@@ -1,28 +1,835 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspFunc } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterGetTotal(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'cats') {
     (s as any).result = 41;
   } else {
-    (s as any).result = 8;
-    if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'eroto') {
-      (s as any).result = 27;
+    if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'danilovich') {
+      (s as any).result = 8;
     } else {
-      (s as any).result = 42;
-      if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'gm') {
-        (s as any).result = 19;
+      if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'eroto') {
+        (s as any).result = 27;
       } else {
-        (s as any).result = 33;
-        if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious') {
-          (s as any).result = 37;
+        if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'fashionista') {
+          (s as any).result = 42;
+        } else {
+          if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'gm') {
+            (s as any).result = 19;
+          } else {
+            if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'lusso') {
+              (s as any).result = 33;
+            } else {
+              if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious') {
+                (s as any).result = 37;
+              }
+            }
+          }
         }
-        return;
       }
     }
   }
+  return;
   scene.build();
+}
+
+function enterTotals(s: GameState, scene: SceneBuilder): void {
+  (s as any).total = qspFunc(s, 'bras', 'get_total', ((s as any).locArgs?.[1] ?? 0));
+  return;
+  scene.build();
+}
+
+function enterSum(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = 0;
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'bras', 'sum_inner', 'lusso'));
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'bras', 'sum_inner', 'cats'));
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'bras', 'sum_inner', 'salacious'));
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'bras', 'sum_inner', 'fashionista'));
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'bras', 'sum_inner', 'gm'));
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'bras', 'sum_inner', 'eroto'));
+  (s as any).result = ((s as any).result ?? 0) + (qspFunc(s, 'bras', 'sum_inner', 'danilovich'));
+  if (((s as any).locArgs?.[1] ?? 0) === 'dresser') {
+    if (((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).result ?? 0) > 0) {
+      (s as any).result = ((s as any).result ?? 0) - (1);
+    }
+  }
+  return;
+  scene.build();
+}
+
+function enterSumInner(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = 0;
+  (s as any).bras_i = 1;
+  (s as any).bras_max_i = 0;
+  // TODO-QSP: :loopsumbras
+  if (qspFunc(s, 'bras', 'in_wardrobe', ((s as any).locArgs?.[1] ?? 0), ((s as any).bras_i ?? 0))) {
+    (s as any).result = ((s as any).result ?? 0) + (1);
+  }
+  (s as any).bras_i = ((s as any).bras_i ?? 0) + (1);
+  if (((s as any).bras_i ?? 0) < ((s as any).bras_max_i ?? 0)) {
+    // TODO-QSP: jump 'loopsumbras'
+  }
+  return;
+  scene.build();
+}
+
+function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 3) {
+    // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
+  }
+  if (qspFunc(s, 'bras', 'is_immutable', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: exit
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" })) === 0) {
+    return;
+  }
+  if (qspFunc(s, 'bras', 'in_wardrobe', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" })) === 0) {
+    return;
+  }
+  if (qspFunc(s, 'bras', 'is_strength_low', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    return;
+  }
+  if (qspFunc(s, 'bras', 'is_hypno_approved', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" })) === 0) {
+    return;
+  }
+  return;
+  scene.build();
+}
+
+function enterCanWear(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 3) {
+    // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
+  }
+  (s as any).result = (qspFunc(s, 'bras', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }), 'attributes_set') === '');
+  return;
+  scene.build();
+}
+
+function enterIsOwned(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  (s as any).result = 0;
+  return;
+  scene.build();
+}
+
+function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  (s as any).result = 0;
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    (s as any).result = 0;
+  }
+  return;
+  scene.build();
+}
+
+function enterInStorage(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  (s as any).result = 0;
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    (s as any).result = 0;
+  }
+  return;
+  scene.build();
+}
+
+function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  (s as any).result = 0;
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    (s as any).result = 0;
+  }
+  return;
+  scene.build();
+}
+
+function enterIsStrengthLow(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  (s as any).result = 0;
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    (s as any).result = 0;
+  }
+  return;
+  scene.build();
+}
+
+function enterIsHypnoApproved(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = ((!((s as any).hypnoBra ?? 0)));
+  return;
+  scene.build();
+}
+
+function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = (((s as any).braworntype ?? 0) !== ''  &&  ((s as any).braworntype ?? 0) !== 'none');
+  return;
+  scene.build();
+}
+
+function enterIsWearing(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = (((s as any).braworntype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).brawornnumber ?? 0) === ((s as any).locArgs?.[2] ?? 0));
+  return;
+  scene.build();
+}
+
+function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'gm'  &&  ((s as any).locArgs?.[2] ?? 0) === 1);
+  return;
+  scene.build();
+}
+
+function enterBraOwned(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  (s as any).result = qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }));
+  return;
+  scene.build();
+}
+
+function enterIcons(s: GameState, scene: SceneBuilder): void {
+  return;
+  scene.build();
+}
+
+function enterAddItem(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    // TODO-QSP: exit
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    // TODO-QSP: exit
+  }
+  // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
+  if ((!((s as any).BraQuality ?? 0))) {
+    // TODO-QSP: exit
+  }
+  // TODO-QSP: dynamic "
+  // TODO-QSP: <<$ARGS[1]>>_bras[<<ARGS[2]>>] = 1
+  // TODO-QSP: <<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 0
+  // TODO-QSP: <<$ARGS[1]>>_bras_dirt[<<ARGS[2]>>] = 0
+  // TODO-QSP: <<$ARGS[1]>>_bras_h[<<ARGS[2]>>] = BraStrength
+  // TODO-QSP: "
+  return;
+  scene.build();
+}
+
+function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
+    // TODO-QSP: exit
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'gm'  &&  ((s as any).locArgs?.[2] ?? 0) === 1) {
+    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
+      qspCall(s, 'bras', 'strip');
+    }
+    return;
+  }
+  // TODO-QSP: dynamic "
+  // TODO-QSP: <<$ARGS[1]>>_bras[<<ARGS[2]>>] = 0
+  // TODO-QSP: <<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 0
+  // TODO-QSP: <<$ARGS[1]>>_bras_dirt[<<ARGS[2]>>] = 0
+  // TODO-QSP: <<$ARGS[1]>>_bras_h[<<ARGS[2]>>] = 0
+  // TODO-QSP: "
+  if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
+    qspCall(s, 'bras', 'strip_code');
+    qspCall(s, 'outfit', 'set_derived_vars');
+    (s as any).lastwornbranumber = 0;
+  }
+  return;
+  scene.build();
+}
+
+function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
+  (s as any).gm_bras[1] = 1;
+  (s as any).gm_brasS[1] = 0;
+  (s as any).gm_bras_dirt[1] = 1440;
+  (s as any).gm_bras_h[1] = 10;
+  return;
+  scene.build();
+}
+
+function enterDispose(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).underwear ?? 0)?.['type'] === 2) {
+    qspCall(s, 'underwear_bodysuits', 'dispose');
+    return;
+  }
+  qspCall(s, 'bras', 'remove_item', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
+  return;
+  scene.build();
+}
+
+function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: dynamic "<<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 0"
+  }
+  return;
+  scene.build();
+}
+
+function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: dynamic "<<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 1"
+  }
+  return;
+  scene.build();
+}
+
+function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: dynamic "<<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 2"
+  }
+  return;
+  scene.build();
+}
+
+function enterRemove(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'bras', 'strip');
+  scene.build();
+}
+
+function enterStrip(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).underwear ?? 0)?.['type'] === 2) {
+    qspCall(s, 'underwear_bodysuits', 'strip');
+    return;
+  }
+  if (((s as any).braworntype ?? 0) === '') {
+    (s as any).brawornnumber = 0;
+  }
+  (s as any).lastwornbranumber = ((s as any).brawornnumber ?? 0);
+  (s as any).lastwornunderwear = 0;
+  qspCall(s, 'bras', 'strip_code');
+  scene.build();
+}
+
+function enterStripCode(s: GameState, scene: SceneBuilder): void {
+  (s as any).brawornnumber = 0;
+  (s as any).bodysuitwornnumber = 0;
+  qspCall(s, 'bras', 'reset_BraVars');
+  qspCall(s, 'bras', 'reset_PBraVars');
+  qspCall(s, 'outfit', 'set_derived_vars');
+  scene.build();
+}
+
+function enterReset_BraVars(s: GameState, scene: SceneBuilder): void {
+  (s as any).BraMaterial = 0;
+  (s as any).BraType = 0;
+  (s as any).BraFun = 0;
+  (s as any).BraQuality = 0;
+  (s as any).BraThinness = 0;
+  (s as any).BraCover = 4;
+  (s as any).BraSport = 0;
+  (s as any).BraPrice = 0;
+  (s as any).BraDirt = 0;
+  (s as any).BraStrength = 0;
+  (s as any).BraMaxStrength = 0;
+  (s as any).underwear['pair'] = 0;
+  return;
+  scene.build();
+}
+
+function enterReset_PBraVars(s: GameState, scene: SceneBuilder): void {
+  (s as any).PBraMaterial = 0;
+  (s as any).PBraType = 0;
+  (s as any).PBraFun = 0;
+  (s as any).PBraQuality = 0;
+  (s as any).PBraThinness = 0;
+  (s as any).PBraCover = 4;
+  (s as any).PBraSport = 0;
+  (s as any).PBraPrice = 0;
+  (s as any).PBraDirt = 0;
+  (s as any).PBraStrength = 0;
+  (s as any).PBraMaxStrength = 0;
+  (s as any).PBraBorrowed = 0;
+  return;
+  scene.build();
+}
+
+function enterWear(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
+    if (((s as any).lastwornunderwear ?? 0) === 2) {
+      qspCall(s, 'underwear_bodysuits', 'wear', 'last_worn');
+      return;
+    }
+    // TODO-QSP: $ARGS[1] = $lastwornbratype
+    (s as any).ARGS[2] = ((s as any).lastwornbranumber ?? 0);
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
+    // TODO-QSP: exit
+  }
+  qspCall(s, 'bras', 'strip');
+  // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
+  if ((!((s as any).BraQuality ?? 0))) {
+    return;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('check') : -1) > 0) {
+    if (((s as any).temp_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_not_wear_reason ?? 0) !== 'hypno') {
+      if (((s as any).temp_not_wear_reason ?? 0) === 'not_owned') {
+      } else {
+        if (((s as any).temp_not_wear_reason ?? 0) === 'not_in_wardrobe') {
+        } else {
+          if (((s as any).temp_not_wear_reason ?? 0) === 'low_strength') {
+          } else {
+            if (((s as any).temp_not_wear_reason ?? 0) === 'hypno') {
+            }
+          }
+        }
+      }
+      return;
+    }
+  }
+  (s as any).brawornnumber = qspUntranslated(s, "ARGS[2]", { location: "bras" });
+  (s as any).underwear['type'] = 0;
+  // TODO-QSP: dynamic "
+  // TODO-QSP: <<$braworntype>>_brasS[<<brawornnumber>>] = 0
+  // TODO-QSP: "
+  (s as any).PBraMaterial = ((s as any).BraMaterial ?? 0);
+  (s as any).PBraType = ((s as any).BraType ?? 0);
+  (s as any).PBraFun = ((s as any).BraFun ?? 0);
+  (s as any).PBraQuality = ((s as any).BraQuality ?? 0);
+  (s as any).PBraThinness = ((s as any).BraThinness ?? 0);
+  (s as any).PBraCover = ((s as any).BraCover ?? 0);
+  (s as any).PBraSport = ((s as any).BraSport ?? 0);
+  (s as any).PBraPrice = ((s as any).BraPrice ?? 0);
+  (s as any).PBraDirt = ((s as any).BraDirt ?? 0);
+  (s as any).PBraStrength = ((s as any).BraStrength ?? 0);
+  (s as any).PBraMaxStrength = ((s as any).BraMaxStrength ?? 0);
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('borrowed') : -1) >= 0) {
+    (s as any).PBraBorrowed = 1;
+    (s as any).PBraDirt = 0;
+    (s as any).PBraStrength = ((s as any).PBraMaxStrength ?? 0);
+  }
+  qspCall(s, 'outfit', 'set_derived_vars');
+  return;
+  scene.build();
+}
+
+function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).lastwornbratype ?? 0) === '') {
+  }
+  qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0), ((s as any).lastwornbranumber ?? 0));
+  scene.build();
+}
+
+function enterIncreaseCurDirt(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'bras', 'increase_dirt', $braworntype, brawornnumber, ARGS[1]
+  return;
+  scene.build();
+}
+
+function enterDecreaseCurDirt(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'bras', 'decrease_dirt', $braworntype, brawornnumber, ARGS[1]
+  return;
+  scene.build();
+}
+
+function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+    (s as any).ARGS[3] = 1;
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: dynamic "
+    // TODO-QSP: <<$ARGS[1]>>_bras_dirt[<<ARGS[2]>>] += <<ARGS[3]>>
+    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
+      (s as any).PBraDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_bras_dirt[qspUntranslated(s, \"ARGS[2]\", { location: \"bras\" })]", { location: "bras" });
+    }
+    // TODO-QSP: "
+  }
+  return;
+  scene.build();
+}
+
+function enterDecreaseDirt(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+    (s as any).ARGS[3] = 1;
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: dynamic "
+    // TODO-QSP: <<$ARGS[1]>>_bras_dirt[<<ARGS[2]>>] -= <<ARGS[3]>>
+    if (((s as any).locArgs?.[1] ?? 0)((s as any)._bras_dirt ?? 0)[((s as any).locArgs?.[2] ?? 0)] < 0) {
+      // TODO-QSP: <<$ARGS[1]>>_bras_dirt[<<ARGS[2]>>] = 0
+    }
+    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
+      (s as any).PBraDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_bras_dirt[qspUntranslated(s, \"ARGS[2]\", { location: \"bras\" })]", { location: "bras" });
+    }
+    // TODO-QSP: "
+  }
+  return;
+  scene.build();
+}
+
+function enterDecreaseCurStrength(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'bras', 'decrease_strength', $braworntype, brawornnumber, ARGS[1]
+  return;
+  scene.build();
+}
+
+function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'bras', 'increase_strength', $braworntype, brawornnumber, ARGS[1]
+  return;
+  scene.build();
+}
+
+function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+    (s as any).ARGS[3] = 1;
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: dynamic "
+    // TODO-QSP: <<$ARGS[1]>>_bras_h[<<ARGS[2]>>] -= <<ARGS[3]>>
+    if (((s as any).locArgs?.[1] ?? 0)((s as any)._bras_h ?? 0)[((s as any).locArgs?.[2] ?? 0)] < 0) {
+      // TODO-QSP: <<$ARGS[1]>>_bras_h[<<ARGS[2]>>] = 0
+    }
+    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
+      (s as any).PBraStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_bras_h[qspUntranslated(s, \"ARGS[2]\", { location: \"bras\" })]", { location: "bras" });
+    }
+    // TODO-QSP: "
+  }
+  return;
+  scene.build();
+}
+
+function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+  }
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+  }
+  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+    (s as any).ARGS[3] = 1;
+  }
+  if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
+    // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
+    // TODO-QSP: dynamic "
+    // TODO-QSP: <<$ARGS[1]>>_bras_h[<<ARGS[2]>>] = min(<<$ARGS[1]>>_bras_h[<<ARGS[2]>>] + <<ARGS[3]>>, <<BraMaxStren...
+    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
+      (s as any).PBraStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_bras_h[qspUntranslated(s, \"ARGS[2]\", { location: \"bras\" })]", { location: "bras" });
+    }
+    // TODO-QSP: "
+  }
+  return;
+  scene.build();
+}
+
+function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'bra_view', 'init', 'set_exceptions');
+  return;
+  scene.build();
+}
+
+function enterViewBraList(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gt 'bra_view', 'view_grid', $ARGS[1]
+  scene.build();
+}
+
+function enterViewBraItem(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gt 'bra_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  scene.build();
+}
+
+function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'bra_view', 'storage_options');
+  return;
+  scene.build();
+}
+
+function enterDest0(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'bras', 'move_to_wardrobe', $ARGS[2], ARGS[3]
+  // TODO-QSP: gt 'bra_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  scene.build();
+}
+
+function enterDest1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'bras', 'move_to_storage', $ARGS[2], ARGS[3]
+  // TODO-QSP: gt 'bra_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  scene.build();
+}
+
+function enterDest2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'bras', 'move_to_unwanted', $ARGS[2], ARGS[3]
+  // TODO-QSP: gt 'bra_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  scene.build();
+}
+
+function enterGetFilterHeader(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'bra_view', 'filter_builder', 'setup_home_filters');
+  return;
+  scene.build();
+}
+
+function enterBraFilter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'bra_view', 'home_filter');
+  return;
+  scene.build();
+}
+
+function enterGetShopFilterHeader(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'bra_view', 'filter_builder', 'setup_shop_filters');
+  return;
+  scene.build();
+}
+
+function enterGetBrasgridHeader(s: GameState, scene: SceneBuilder): void {
+  return;
+  scene.build();
+}
+
+function enterShopFilter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'bra_view', 'shop_filter');
+  return;
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'get_total':
+      enterGetTotal(s, scene);
+      break;
+    case 'totals':
+      enterTotals(s, scene);
+      break;
+    case 'sum':
+      enterSum(s, scene);
+      break;
+    case 'sum_inner':
+      enterSumInner(s, scene);
+      break;
+    case 'not_wear_reason':
+      enterNotWearReason(s, scene);
+      break;
+    case 'can_wear':
+      enterCanWear(s, scene);
+      break;
+    case 'is_owned':
+      enterIsOwned(s, scene);
+      break;
+    case 'in_wardrobe':
+      enterInWardrobe(s, scene);
+      break;
+    case 'in_storage':
+      enterInStorage(s, scene);
+      break;
+    case 'in_unwanted':
+      enterInUnwanted(s, scene);
+      break;
+    case 'is_strength_low':
+      enterIsStrengthLow(s, scene);
+      break;
+    case 'is_hypno_approved':
+      enterIsHypnoApproved(s, scene);
+      break;
+    case 'is_wearing_any':
+      enterIsWearingAny(s, scene);
+      break;
+    case 'is_wearing':
+      enterIsWearing(s, scene);
+      break;
+    case 'is_immutable':
+      enterIsImmutable(s, scene);
+      break;
+    case 'bra_owned':
+      enterBraOwned(s, scene);
+      break;
+    case 'icons':
+      enterIcons(s, scene);
+      break;
+    case 'add_item':
+      enterAddItem(s, scene);
+      break;
+    case 'remove_item':
+      enterRemoveItem(s, scene);
+      break;
+    case 'reset_immutables':
+      enterResetImmutables(s, scene);
+      break;
+    case 'dispose':
+      enterDispose(s, scene);
+      break;
+    case 'move_to_wardrobe':
+      enterMoveToWardrobe(s, scene);
+      break;
+    case 'move_to_storage':
+      enterMoveToStorage(s, scene);
+      break;
+    case 'move_to_unwanted':
+      enterMoveToUnwanted(s, scene);
+      break;
+    case 'remove':
+      enterRemove(s, scene);
+      break;
+    case 'strip':
+      enterStrip(s, scene);
+      break;
+    case 'strip_code':
+      enterStripCode(s, scene);
+      break;
+    case 'reset_BraVars':
+      enterReset_BraVars(s, scene);
+      break;
+    case 'reset_PBraVars':
+      enterReset_PBraVars(s, scene);
+      break;
+    case 'wear':
+      enterWear(s, scene);
+      break;
+    case 'wear_last_worn':
+      enterWearLastWorn(s, scene);
+      break;
+    case 'increase_cur_dirt':
+      enterIncreaseCurDirt(s, scene);
+      break;
+    case 'decrease_cur_dirt':
+      enterDecreaseCurDirt(s, scene);
+      break;
+    case 'increase_dirt':
+      enterIncreaseDirt(s, scene);
+      break;
+    case 'decrease_dirt':
+      enterDecreaseDirt(s, scene);
+      break;
+    case 'decrease_cur_strength':
+      enterDecreaseCurStrength(s, scene);
+      break;
+    case 'increase_cur_strength':
+      enterIncreaseCurStrength(s, scene);
+      break;
+    case 'decrease_strength':
+      enterDecreaseStrength(s, scene);
+      break;
+    case 'increase_strength':
+      enterIncreaseStrength(s, scene);
+      break;
+    case 'set_shop_display_exceptions':
+      enterSetShopDisplayExceptions(s, scene);
+      break;
+    case 'view_bra_list':
+      enterViewBraList(s, scene);
+      break;
+    case 'view_bra_item':
+      enterViewBraItem(s, scene);
+      break;
+    case 'storage_options':
+      enterStorageOptions(s, scene);
+      break;
+    case 'dest0':
+      enterDest0(s, scene);
+      break;
+    case 'dest1':
+      enterDest1(s, scene);
+      break;
+    case 'dest2':
+      enterDest2(s, scene);
+      break;
+    case 'get_filter_header':
+      enterGetFilterHeader(s, scene);
+      break;
+    case 'bra_filter':
+      enterBraFilter(s, scene);
+      break;
+    case 'get_shop_filter_header':
+      enterGetShopFilterHeader(s, scene);
+      break;
+    case 'get_brasgrid_header':
+      enterGetBrasgridHeader(s, scene);
+      break;
+    case 'shop_filter':
+      enterShopFilter(s, scene);
+      break;
+    default:
+      enterGetTotal(s, scene);
+      break;
+  }
 }
 
 export const bras: LocationDef = {

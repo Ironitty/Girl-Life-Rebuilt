@@ -33,7 +33,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -59,7 +59,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -83,7 +83,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -127,7 +127,7 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -153,7 +153,7 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

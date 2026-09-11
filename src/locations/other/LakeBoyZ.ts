@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Smile and leave', handler: (st: GameState) => {
+          { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
         ]);
@@ -60,7 +60,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Smile and leave', handler: (st: GameState) => {
+          { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
         ]);
@@ -84,7 +84,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Thank him for the beer and leave', handler: (st: GameState) => {
+        { label: 'Thank him for the beer and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
       ]);
@@ -108,7 +108,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Push him away and leave', handler: (st: GameState) => {
+          { label: 'Push him away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
         ]);
@@ -135,7 +135,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Call it a day and leave', handler: (st: GameState) => {
+        { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
       ]);
@@ -181,7 +181,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Call it a day and leave', handler: (st: GameState) => {
+        { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
       ]);

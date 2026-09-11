@@ -16,7 +16,7 @@ function enterInitFight(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'ClearAllyLoop'
   }
   // TODO-QSP: $pcs_name[0] = 'You'
-  if (((s as any).ARGS ?? 0)[1] === 1) {
+  if (((s as any).locArgs?.[1] ?? 0) === 1) {
     // TODO-QSP: $pcs_image[0] = 'images/system/1_openings/1_tf/mikhail_1.jpg'
   } else {
     // TODO-QSP: $pcs_image[0] = $func('$face_image')
@@ -69,29 +69,32 @@ function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: ""<<$fightAppDam['TargetName']>> loses a clone.""
     }
   } else {
-    // TODO-QSP: <<$fightAppDam['TargetType']>>_shield[<<fightAppDam['TargetNumber']>>] -= <<fightAppDam['Damage']>>
-    if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
-      // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['Damage']>> defense.""
-    } else {
-      // TODO-QSP: ""<<$fightAppDam['TargetName']>> loses <<fightAppDam['Damage']>> defense.""
-    }
-    if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._shield ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > 0) {
-      // TODO-QSP: <<$fightAppDam['TargetType']>>_shield[<<fightAppDam['TargetNumber']>>] = 0
+    if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._shield ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] >= ((s as any).fightAppDam ?? 0)?.['Damage']) {
+      // TODO-QSP: <<$fightAppDam['TargetType']>>_shield[<<fightAppDam['TargetNumber']>>] -= <<fightAppDam['Damage']>>
       if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
-        // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['Shield']>> defense.""
+        // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['Damage']>> defense.""
       } else {
-        // TODO-QSP: ""<<$fightAppDam['TargetName']>> losses <<fightAppDam['Shield']>> defense.""
+        // TODO-QSP: ""<<$fightAppDam['TargetName']>> loses <<fightAppDam['Damage']>> defense.""
       }
-    }
-    if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._health ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > ((s as any).fightAppDam ?? 0)?.['OverShieldDamage']) {
-      // TODO-QSP: <<$fightAppDam['TargetType']>>_health[<<fightAppDam['TargetNumber']>>] -= <<fightAppDam['OverShieldD...
     } else {
-      // TODO-QSP: <<$fightAppDam['TargetType']>>_health[<<fightAppDam['TargetNumber']>>] = 0
-    }
-    if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
-      // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['OverShieldDamage']>> health.""
-    } else {
-      // TODO-QSP: ""<<$fightAppDam['TargetName']>> loses <<fightAppDam['OverShieldDamage']>> health.""
+      if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._shield ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > 0) {
+        // TODO-QSP: <<$fightAppDam['TargetType']>>_shield[<<fightAppDam['TargetNumber']>>] = 0
+        if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
+          // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['Shield']>> defense.""
+        } else {
+          // TODO-QSP: ""<<$fightAppDam['TargetName']>> losses <<fightAppDam['Shield']>> defense.""
+        }
+      }
+      if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._health ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > ((s as any).fightAppDam ?? 0)?.['OverShieldDamage']) {
+        // TODO-QSP: <<$fightAppDam['TargetType']>>_health[<<fightAppDam['TargetNumber']>>] -= <<fightAppDam['OverShieldD...
+      } else {
+        // TODO-QSP: <<$fightAppDam['TargetType']>>_health[<<fightAppDam['TargetNumber']>>] = 0
+      }
+      if (((s as any).fightAppDam ?? 0)?.['TargetName'] === 'you') {
+        // TODO-QSP: ""<<$fightAppDam['TargetName']>> lose <<fightAppDam['OverShieldDamage']>> health.""
+      } else {
+        // TODO-QSP: ""<<$fightAppDam['TargetName']>> loses <<fightAppDam['OverShieldDamage']>> health.""
+      }
     }
   }
   // TODO-QSP: "
@@ -157,9 +160,11 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
       (s as any).pcs_stun[String((s as any).i ?? 0)] = ((s as any).pcs_stun[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
-      if (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
-        (s as any).fightTimLow = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
-        (s as any).fightTimNum = ((s as any).i ?? 0);
+      if (((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
+        if (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
+          (s as any).fightTimLow = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
+          (s as any).fightTimNum = ((s as any).i ?? 0);
+        }
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -171,9 +176,11 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
       (s as any).opp_stun[String((s as any).i ?? 0)] = ((s as any).opp_stun[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
-      if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
-        (s as any).fightTimLow = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
-        (s as any).fightTimNum = ((s as any).i ?? 0);
+      if (((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
+        if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
+          (s as any).fightTimLow = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
+          (s as any).fightTimNum = ((s as any).i ?? 0);
+        }
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -294,31 +301,630 @@ function enterResultCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('<b><font color = red> You lost!</font></b>');
     // TODO-QSP: xgt 'ender', 'loss'
   } else {
-    scene.text('<b><font color = green> You won!</font></b>');
-    // TODO-QSP: xgt 'ender', 'win'
-    if (((s as any).pcs_willpwr ?? 0) <= 0) {
-      scene.text('<b><font color = red> You cannot summon the will to fight!</font></b>');
-      // TODO-QSP: xgt 'ender', 'loss'
+    if (qspFunc(s, 'fight', 'AvailableTargets', 'opp') === 0) {
+      scene.text('<b><font color = green> You won!</font></b>');
+      // TODO-QSP: xgt 'ender', 'win'
+    } else {
+      if (((s as any).pcs_willpwr ?? 0) <= 0) {
+        scene.text('<b><font color = red> You cannot summon the will to fight!</font></b>');
+        // TODO-QSP: xgt 'ender', 'loss'
+      }
     }
   }
-  // TODO-QSP: $AttackType[0] = 'Kick'
-  // TODO-QSP: $AttackSkill[0] = 'kick'
-  (s as any).AttackMin[0] = 5;
-  (s as any).AttackMax[0] = 8;
-  (s as any).AttackTime[0] = 40;
-  // TODO-QSP: $AttackType[1] = 'Hard Punch'
-  // TODO-QSP: $AttackSkill[1] = 'punch'
-  (s as any).AttackMin[1] = 4;
-  (s as any).AttackMax[1] = 6;
-  (s as any).AttackTime[1] = 30;
-  // TODO-QSP: $AttackType[2] = 'Jab'
-  // TODO-QSP: $AttackSkill[2] = 'jab'
-  (s as any).AttackMin[2] = 2;
-  (s as any).AttackMax[2] = 3;
-  (s as any).AttackTime[2] = 15;
-  // TODO-QSP: $ARGS[1] = Attack Type (Kick, Hard Punch, Jab)
-  (s as any).ARGS[2] = ((s as any).Which_target ?? 0);
-  (s as any).ARGS[3] = ((s as any).Which_Attacker ?? 0);
+  scene.build();
+}
+
+function enterAttack(s: GameState, scene: SceneBuilder): void {
+  (s as any).fightAtk_Type = qspUntranslated(s, "arrpos('AttackType', fightAtk_Type_str)", { location: "fight" });
+  (s as any).fightAtk_TargetNumber = qspUntranslated(s, "ARGS[3]", { location: "fight" });
+  (s as any).fightAtk_AttackerNumber = qspUntranslated(s, "ARGS[4]", { location: "fight" });
+  if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
+    (s as any).fightAtk['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+    (s as any).fightAtk['AttackerName'] = 'You';
+    // TODO-QSP: gs 'exp_gain', $AttackSkill[fightAtk_Type], rand(1, 3)
+    qspCall(s, 'exp_gain', 'def', Math.floor(Math.random() * 3) + 0);
+  } else {
+    if (((s as any).fightAtk_TargetType ?? 0) === 'opp') {
+      (s as any).fightAtk['AttackerName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
+      (s as any).fightAtk['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+    } else {
+      (s as any).fightAtk['AttackerName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
+      (s as any).fightAtk['DefenderName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+    }
+  }
+  (s as any).fightAtk['AttackerSkillValue'] = 0;
+  (s as any).fightAtk['TargetReactValue'] = 0;
+  (s as any).fightAtk['TargetAgilValue'] = 0;
+  (s as any).fightAtk['TargetHealthBefore'] = 0;
+  (s as any).fightAtk['MinDamage'] = ((s as any).AttackMin ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
+  (s as any).fightAtk['MaxDamage'] = ((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
+  if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
+    // TODO-QSP: dynamic text: You attempt to <<$fightAtk_Type_str>> <<$fightAtk["DefenderName"]>>!
+    scene.text(`You attempt to ${((s as any).fightAtk_Type_str ?? 0)} ${((s as any).fightAtk ?? 0)?.['DefenderName']}!`);
+  } else {
+    // TODO-QSP: dynamic text: <<$fightAtk["AttackerName"]>> attempts to <<$fightAtk_Type_str>> <<$fightAtk["De...
+    scene.text(`${((s as any).fightAtk ?? 0)?.['AttackerName']} attempts to ${((s as any).fightAtk_Type_str ?? 0)} ${((s as any).fightAtk ?? 0)?.['DefenderName']}!`);
+  }
+  if ((0 as any) > 0) {
+    (s as any).rand_fogRedDmgMax = ((s as any).rand ?? 0)(0, ((s as any).fightAtk ?? {})?.['MaxDamage']-((s as any).fightAtk ?? {})?.['MinDamage']) + ((s as any).fightAtk ?? {})?.['MinDamage'];
+    (s as any).rand_fogRedDmgMin = qspUntranslated(s, "rand(0, fightAtk['MinDamage'])", { location: "fight" });
+    (s as any).fightAtk['MaxDamage'] = ((s as any).fightAtk['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
+    (s as any).fightAtk['MinDamage'] = ((s as any).fightAtk['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));
+    (s as any).fightAtk['Damage'] = qspUntranslated(s, "rand(fightAtk['MinDamage'], fightAtk['MaxDamage'])", { location: "fight" });
+    if (((s as any).fightAtk ?? 0)?.['MaxDamage'] < ((s as any).fightAtk ?? 0)?.['MinDamage']) {
+      (s as any).fightAtk['MaxDamage'] = ((s as any).fightAtk ?? 0)?.['MinDamage'];
+    }
+    // TODO-QSP: dynamic "<<$fightAtk_TargetType>>_fog[<<fightAtk_TargetNumber>>] -= rand(1, 5)"
+  }
+  if ((0 as any) < 0) {
+    // TODO-QSP: dynamic "<<$fightAtk_TargetType>>_fog[<<fightAtk_TargetNumber>>] = 0"
+  }
+  if (((s as any).fightAtk ?? 0)?.['AttackerSkillValue'] + (Math.floor(Math.random() * 41) + 0) > ((s as any).fightAtk ?? 0)?.['TargetReactValue'] / 4 + 3 * ((s as any).fightAtk ?? 0)?.['TargetAgilValue'] / 4) {
+    // TODO-QSP: dynamic "fightAtk['Damage'] = <<$fightAtk_AttackerType>>_stren[<<fightAtk_AttackerNumber>>] * rand(<...
+    // TODO-QSP: gs 'fight', 'applyDamage', $fightAtk_TargetType, fightAtk_TargetNumber, fightAtk['Damage']
+  } else {
+    if ((Math.floor(Math.random() * 4) + 0) !== 0) {
+      if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
+        scene.text('You avoid the blow.');
+      } else {
+        // TODO-QSP: dynamic text: <<$fightAtk["DefenderName"]>> avoids the blow.
+        scene.text(`${((s as any).fightAtk ?? 0)?.['DefenderName']} avoids the blow.`);
+      }
+    } else {
+      // TODO-QSP: gs 'fight', 'applyDamage', $fightAtk_TargetType, fightAtk_TargetNumber, fightAtk['Damage']
+    }
+  }
+  (s as any).fightAtk['TargetHealthLoss'] = 0;
+  if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss']*2 > ((s as any).fightAtk ?? 0)?.['TargetHealthBefore']) {
+    qspCall(s, 'fight', 'devastating');
+  } else {
+    if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss'] > 50) {
+      qspCall(s, 'fight', 'hard');
+    } else {
+      if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss'] > 0) {
+        qspCall(s, 'fight', 'light');
+      } else {
+        if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+          scene.text('You avoid their attack.');
+        } else {
+          scene.text('They avoid your attack.');
+        }
+      }
+    }
+  }
+  // TODO-QSP: dynamic "<<$fightAtk_AttackerType>>_timer[<<fightAtk_AttackerNumber>>] += AttackTime[<<fightAtk_Type...
+  scene.actions([
+    { label: 'Next', goto: ['fight', 'main'] },
+  ]);
+  scene.build();
+}
+
+function enterDevastating(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).fightAtk_Type ?? 0))) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
+    }
+    if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+      // TODO-QSP: dynamic text: They land a devastating kick to your <<$bodypart>>. You are stunned.
+      scene.text(`They land a devastating kick to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+      if (((s as any).bodypart ?? 0) === 'head') {
+        qspCall(s, 'pain', '', 7, 'head', 'kick');
+      } else {
+        qspCall(s, 'pain', '', 7, 'tummy', 'kick');
+      }
+    } else {
+      // TODO-QSP: dynamic text: You deliver a devastating kick to their <<$bodypart>>. <<$fightAtk["DefenderName...
+      scene.text(`You deliver a devastating kick to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+    }
+  } else {
+    if (((s as any).fightAtk_Type ?? 0) === 1) {
+      if ((!(Math.floor(Math.random() * 4) + 0))) {
+      } else {
+        if ((!(Math.floor(Math.random() * 3) + 0))) {
+        } else {
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+          }
+        }
+      }
+      if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+        // TODO-QSP: dynamic text: They land a devastating punch to your <<$bodypart>>. You are stunned.
+        scene.text(`They land a devastating punch to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+        if (((s as any).bodypart ?? 0) === 'head') {
+          qspCall(s, 'pain', '', 7, 'head', 'hit');
+        } else {
+          if (((s as any).bodypart ?? 0) === 'chest') {
+            qspCall(s, 'pain', '', 5, 'chest', 'hit');
+            qspCall(s, 'pain', '', 5, 'breast', 'hit');
+          } else {
+            if (((s as any).bodypart ?? 0) === 'ribs') {
+              qspCall(s, 'pain', '', 7, 'ribs', 'hit');
+            } else {
+              qspCall(s, 'pain', '', 7, 'tummy', 'hit');
+            }
+          }
+        }
+      } else {
+        // TODO-QSP: dynamic text: You deliver a devastating punch to their <<$bodypart>>. <<$fightAtk["DefenderNam...
+        scene.text(`You deliver a devastating punch to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+      }
+    } else {
+      if (((s as any).fightAtk_Type ?? 0) === 2) {
+        if ((!(Math.floor(Math.random() * 4) + 0))) {
+        } else {
+          if ((!(Math.floor(Math.random() * 3) + 0))) {
+          } else {
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
+            }
+          }
+        }
+        if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+          // TODO-QSP: dynamic text: They land a devastating jab to your <<$bodypart>>. You are stunned.
+          scene.text(`They land a devastating jab to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+          if (((s as any).bodypart ?? 0) === 'head') {
+            qspCall(s, 'pain', '', 7, 'head', 'hit');
+          } else {
+            if (((s as any).bodypart ?? 0) === 'chest') {
+              qspCall(s, 'pain', '', 5, 'chest', 'hit');
+              qspCall(s, 'pain', '', 5, 'breast', 'hit');
+            } else {
+              if (((s as any).bodypart ?? 0) === 'ribs') {
+                qspCall(s, 'pain', '', 7, 'ribs', 'hit');
+              } else {
+                qspCall(s, 'pain', '', 7, 'tummy', 'hit');
+              }
+            }
+          }
+        } else {
+          // TODO-QSP: dynamic text: You deliver a devastating jab to their <<$bodypart>>. <<$fightAtk["DefenderName"...
+          scene.text(`You deliver a devastating jab to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+        }
+      }
+    }
+  }
+  // TODO-QSP: dynamic '<<$fightAtk_TargetType>>_stun[<<fightAtk_TargetNumber>>] += 1'
+  // TODO-QSP: dynamic '<<$fightAtk_TargetType>>_timer[<<fightAtk_TargetNumber>>] += AttackTime[<<fightAtk_Type>>]'
+  scene.build();
+}
+
+function enterHard(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).fightAtk_Type ?? 0))) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
+    }
+    if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+      // TODO-QSP: dynamic text: They land a hard kick to your <<$bodypart>>. You are stunned.
+      scene.text(`They land a hard kick to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+      if (((s as any).bodypart ?? 0) === 'head') {
+        qspCall(s, 'pain', '', 4, 'head', 'kick');
+      } else {
+        qspCall(s, 'pain', '', 4, 'tummy', 'kick');
+      }
+    } else {
+      // TODO-QSP: dynamic text: You deliver a hard kick to their <<$bodypart>>. <<$fightAtk["DefenderName"]>> is...
+      scene.text(`You deliver a hard kick to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+    }
+  } else {
+    if (((s as any).fightAtk_Type ?? 0) === 1) {
+      if ((!(Math.floor(Math.random() * 6) + 0))) {
+      } else {
+        if ((!(Math.floor(Math.random() * 6) + 0))) {
+        } else {
+          if ((!(Math.floor(Math.random() * 6) + 0))) {
+          } else {
+            if ((!(Math.floor(Math.random() * 6) + 0))) {
+            } else {
+              if ((!(Math.floor(Math.random() * 3) + 0))) {
+              } else {
+                if ((!(Math.floor(Math.random() * 2) + 0))) {
+                }
+              }
+            }
+          }
+        }
+      }
+      if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+        // TODO-QSP: dynamic text: They land a hard punch to your <<$bodypart>>. You are stunned.
+        scene.text(`They land a hard punch to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+        if (((s as any).bodypart ?? 0) === 'head') {
+          qspCall(s, 'pain', '', 4, 'head', 'hit');
+        } else {
+          if (((s as any).bodypart ?? 0) === 'cheeks') {
+            qspCall(s, 'pain', '', 4, 'cheeks', 'hit');
+          } else {
+            if (((s as any).bodypart ?? 0) === 'nose') {
+              qspCall(s, 'pain', '', 4, 'nose', 'hit');
+            } else {
+              if (((s as any).bodypart ?? 0) === 'mouth') {
+                qspCall(s, 'pain', '', 4, 'mouth', 'hit');
+                if ((Math.floor(Math.random() * 10) + 1) === 1) {
+                  scene.text('You can feel a teeth rock out from the impact.');
+                  (s as any).pcs_missing_teeth = ((s as any).pcs_missing_teeth ?? 0) + (1);
+                }
+              } else {
+                if (((s as any).bodypart ?? 0) === 'chest') {
+                  qspCall(s, 'pain', '', 3, 'chest', 'hit');
+                  qspCall(s, 'pain', '', 3, 'breast', 'hit');
+                } else {
+                  if (((s as any).bodypart ?? 0) === 'ribs') {
+                    qspCall(s, 'pain', '', 4, 'ribs', 'hit');
+                  } else {
+                    qspCall(s, 'pain', '', 4, 'tummy', 'hit');
+                  }
+                }
+              }
+            }
+          }
+        }
+      } else {
+        // TODO-QSP: dynamic text: You deliver a hard punch to their <<$bodypart>>. <<$fightAtk["DefenderName"]>> i...
+        scene.text(`You deliver a hard punch to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+      }
+    } else {
+      if (((s as any).fightAtk_Type ?? 0) === 2) {
+        if ((!(Math.floor(Math.random() * 6) + 0))) {
+        } else {
+          if ((!(Math.floor(Math.random() * 6) + 0))) {
+          } else {
+            if ((!(Math.floor(Math.random() * 6) + 0))) {
+            } else {
+              if ((!(Math.floor(Math.random() * 6) + 0))) {
+              } else {
+                if ((!(Math.floor(Math.random() * 3) + 0))) {
+                } else {
+                  if ((!(Math.floor(Math.random() * 2) + 0))) {
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+          // TODO-QSP: dynamic text: They land a hard jab to your <<$bodypart>>.
+          scene.text(`They land a hard jab to your ${((s as any).bodypart ?? 0)}.`);
+          if (((s as any).bodypart ?? 0) === 'head') {
+            qspCall(s, 'pain', '', 4, 'head', 'hit');
+          } else {
+            if (((s as any).bodypart ?? 0) === 'cheeks') {
+              qspCall(s, 'pain', '', 4, 'cheeks', 'hit');
+            } else {
+              if (((s as any).bodypart ?? 0) === 'nose') {
+                qspCall(s, 'pain', '', 4, 'nose', 'hit');
+              } else {
+                if (((s as any).bodypart ?? 0) === 'mouth') {
+                  qspCall(s, 'pain', '', 4, 'mouth', 'hit');
+                  if ((Math.floor(Math.random() * 20) + 1) === 1) {
+                    scene.text('You can feel a teeth rock out from the impact.');
+                    (s as any).pcs_missing_teeth = ((s as any).pcs_missing_teeth ?? 0) + (1);
+                  }
+                } else {
+                  if (((s as any).bodypart ?? 0) === 'chest') {
+                    qspCall(s, 'pain', '', 3, 'chest', 'hit');
+                    qspCall(s, 'pain', '', 3, 'breast', 'hit');
+                  } else {
+                    if (((s as any).bodypart ?? 0) === 'ribs') {
+                      qspCall(s, 'pain', '', 4, 'ribs', 'hit');
+                    } else {
+                      qspCall(s, 'pain', '', 4, 'tummy', 'hit');
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } else {
+          // TODO-QSP: dynamic text: You deliver a hard jab to their <<$bodypart>>.
+          scene.text(`You deliver a hard jab to their ${((s as any).bodypart ?? 0)}.`);
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterLight(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).fightAtk_Type ?? 0))) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
+    }
+    if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+      // TODO-QSP: dynamic text: They only manage a glancing kick to your <<$bodypart>>.
+      scene.text(`They only manage a glancing kick to your ${((s as any).bodypart ?? 0)}.`);
+      if (((s as any).bodypart ?? 0) === 'leg') {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
+          qspCall(s, 'pain', '', 1, 'legL', 'kick');
+        } else {
+          qspCall(s, 'pain', '', 1, 'legR', 'kick');
+        }
+      } else {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
+          qspCall(s, 'pain', '', 1, 'armL', 'kick');
+        } else {
+          qspCall(s, 'pain', '', 1, 'armR', 'kick');
+        }
+      }
+    } else {
+      // TODO-QSP: dynamic text: Your kick just glances their <<$bodypart>>.
+      scene.text(`Your kick just glances their ${((s as any).bodypart ?? 0)}.`);
+    }
+  } else {
+    if (((s as any).fightAtk_Type ?? 0) === 1) {
+      if ((!(Math.floor(Math.random() * 6) + 0))) {
+      } else {
+        if ((!(Math.floor(Math.random() * 6) + 0))) {
+        } else {
+          if ((!(Math.floor(Math.random() * 6) + 0))) {
+          } else {
+            if ((!(Math.floor(Math.random() * 6) + 0))) {
+            } else {
+              if ((!(Math.floor(Math.random() * 3) + 0))) {
+              }
+            }
+          }
+        }
+      }
+      if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+        // TODO-QSP: dynamic text: They punch you but it just glances your <<$bodypart>>.
+        scene.text(`They punch you but it just glances your ${((s as any).bodypart ?? 0)}.`);
+        if (((s as any).bodypart ?? 0) === 'leg') {
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            qspCall(s, 'pain', '', 1, 'legL', 'kick');
+          } else {
+            qspCall(s, 'pain', '', 1, 'legR', 'kick');
+          }
+        } else {
+          if (((s as any).bodypart ?? 0) === 'arm') {
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
+              qspCall(s, 'pain', '', 1, 'armL', 'kick');
+            } else {
+              qspCall(s, 'pain', '', 1, 'armR', 'kick');
+            }
+          } else {
+            if (((s as any).bodypart ?? 0) === 'nose') {
+              qspCall(s, 'pain', '', 1, 'nose', 'hit');
+            } else {
+              if (((s as any).bodypart ?? 0) === 'mouth') {
+                qspCall(s, 'pain', '', 1, 'mouth', 'hit');
+              } else {
+                if (((s as any).bodypart ?? 0) === 'chest') {
+                  qspCall(s, 'pain', '', 1, 'chest', 'hit');
+                  qspCall(s, 'pain', '', 1, 'breast', 'hit');
+                } else {
+                  qspCall(s, 'pain', '', 1, 'tummy', 'hit');
+                }
+              }
+            }
+          }
+        }
+      } else {
+        // TODO-QSP: dynamic text: You hard punch just glaces their <<$bodypart>>. <<$fightAtk["DefenderName"]>> is...
+        scene.text(`You hard punch just glaces their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+      }
+    } else {
+      if (((s as any).fightAtk_Type ?? 0) === 2) {
+        if ((!(Math.floor(Math.random() * 6) + 0))) {
+        } else {
+          if ((!(Math.floor(Math.random() * 6) + 0))) {
+          } else {
+            if ((!(Math.floor(Math.random() * 6) + 0))) {
+            } else {
+              if ((!(Math.floor(Math.random() * 6) + 0))) {
+              } else {
+                if ((!(Math.floor(Math.random() * 3) + 0))) {
+                } else {
+                  if ((!(Math.floor(Math.random() * 2) + 0))) {
+                  }
+                }
+              }
+            }
+          }
+        }
+        if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
+          // TODO-QSP: dynamic text: They jab you but it just glances your <<$bodypart>>.
+          scene.text(`They jab you but it just glances your ${((s as any).bodypart ?? 0)}.`);
+          if (((s as any).bodypart ?? 0) === 'head') {
+            qspCall(s, 'pain', '', 1, 'head', 'hit');
+          } else {
+            if (((s as any).bodypart ?? 0) === 'cheeks') {
+              qspCall(s, 'pain', '', 1, 'cheeks', 'hit');
+            } else {
+              if (((s as any).bodypart ?? 0) === 'nose') {
+                qspCall(s, 'pain', '', 1, 'nose', 'hit');
+              } else {
+                if (((s as any).bodypart ?? 0) === 'mouth') {
+                  qspCall(s, 'pain', '', 1, 'mouth', 'hit');
+                } else {
+                  if (((s as any).bodypart ?? 0) === 'chest') {
+                    qspCall(s, 'pain', '', 1, 'chest', 'hit');
+                    qspCall(s, 'pain', '', 1, 'breast', 'hit');
+                  } else {
+                    if (((s as any).bodypart ?? 0) === 'ribs') {
+                      qspCall(s, 'pain', '', 1, 'ribs', 'hit');
+                    } else {
+                      qspCall(s, 'pain', '', 1, 'tummy', 'hit');
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } else {
+          // TODO-QSP: dynamic text: Your jab just glaces their <<$bodypart>>.
+          scene.text(`Your jab just glaces their ${((s as any).bodypart ?? 0)}.`);
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterAvailableTargets(s: GameState, scene: SceneBuilder): void {
+  (s as any).i = 0;
+  // TODO-QSP: :AvailTargetLoop
+  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0)+'_health')) {
+    if ((0 as any) > 0) {
+      // TODO-QSP: fightAvailTarg[] = i
+    }
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    // TODO-QSP: jump 'AvailTargetLoop'
+  }
+  (s as any).result = 0;
+  return;
+  scene.build();
+}
+
+function enterRandomTarget(s: GameState, scene: SceneBuilder): void {
+  if (qspFunc(s, 'fight', 'AvailableTargets', ((s as any).locArgs?.[1] ?? 0)) > 0) {
+    (s as any).result = ((s as any).fightAvailTarg ?? 0)[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('fightAvailTarg'))-1];
+  } else {
+    (s as any).result = (-1);
+  }
+  return;
+  scene.build();
+}
+
+function enterFightAlgorithm(s: GameState, scene: SceneBuilder): void {
+  (s as any).AttackerNumber = qspUntranslated(s, "ARGS[2]", { location: "fight" });
+  if (((s as any).AttackerType ?? 0) === 'pcs') {
+  }
+  (s as any).TargetNumber = qspFunc(s, 'fight', 'RandomTarget', ((s as any).TargetType ?? 0));
+  if (((s as any).TargetNumber ?? 0)>= 0) {
+    (s as any).ActionMade = 0;
+    if ((0 as any) > 0) {
+      // TODO-QSP: gs 'fight', 'buildCasterSpellList', $dyneval('$result=$<<$AttackerType>>_spells[<<AttackerNumber>>]'...
+      if ((0 as any) < 50) {
+        (s as any).ActionMade = qspFunc(s, 'fight', 'spellListCheck', '$comHealSpells', ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0), ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0));
+      }
+      if ((0 as any) === 0  &&  (!((s as any).ActionMade ?? 0))) {
+        (s as any).ActionMade = qspFunc(s, 'fight', 'spellCheck', 'multiclone', ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0), ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0));
+        if ((!((s as any).ActionMade ?? 0))) {
+          (s as any).ActionMade = qspFunc(s, 'fight', 'spellCheck', 'clone', ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0), ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0));
+        }
+      }
+      if ((0 as any) === 0  &&  (!((s as any).ActionMade ?? 0))) {
+        (s as any).ActionMade = qspFunc(s, 'fight', 'spellListCheck', '$comShldSpells', ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0), ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0));
+      }
+      if ((!((s as any).ActionMade ?? 0))) {
+        (s as any).ActionMade = qspFunc(s, 'fight', 'spellListCheck', '$comAtkSpells', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerType ?? 0), ((s as any).AttackerNumber ?? 0));
+      }
+      scene.actions([
+        { label: 'Next', goto: ['fight', 'main'] },
+      ]);
+    }
+    if ((!((s as any).ActionMade ?? 0))) {
+      if ((Math.floor(Math.random() * ((0 as any) - 0 + 1)) + (0)) > 40) {
+        qspCall(s, 'fight', 'Attack', 'Kick', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0));
+      } else {
+        if ((Math.floor(Math.random() * ((0 as any) - 0 + 1)) + (0)) > 40) {
+          qspCall(s, 'fight', 'Attack', 'Hard Punch', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0));
+        } else {
+          qspCall(s, 'fight', 'Attack', 'Jab', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0));
+        }
+      }
+    } else {
+      // TODO-QSP: dynamic "<<$AttackerType>>_timer[<<AttackerNumber>>] += 50"
+    }
+  } else {
+    scene.actions([{ label: 'Continue', goto: ['fight', 'main'] }]);
+  }
+  scene.build();
+}
+
+function enterOpponent(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'fight', 'statDisplay');
+  // TODO-QSP: gs 'fight', 'fightAlgorithm', 'opp', ARGS[1]
+  scene.build();
+}
+
+function enterPlayer(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'fight', 'statDisplay');
+  if ((!((s as any).locArgs?.[2] ?? 0))) {
+    if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
+      scene.actions([
+        { label: 'Cast a Spell', handler: (st: GameState) => {
+    qspCall(st, 'fight', 'spellcast');
+  } },
+      ]);
+    }
+    if (qspFunc(s, 'fight', 'AvailableTargets', 'opp') > 0) {
+      (s as any).i = 0;
+      // TODO-QSP: :loop000000
+      if (((s as any).i ?? 0) < Object.keys((s as any).fightAvailTarg ?? {}).length) {
+        // TODO-QSP: dynamic "
+        // TODO-QSP: "
+        (s as any).i = ((s as any).i ?? 0) + (1);
+        // TODO-QSP: jump 'loop000000'
+        scene.actions([
+          { label: 'Kick <<$op_name_000000>>', handler: (st: GameState) => {
+    // TODO-QSP: gs 'fight', 'Attack', 'Kick', 'opp', <<fightAvailTarg[i]>>, 0
+  } },
+          { label: 'Punch <<$op_name_000000>> hard', handler: (st: GameState) => {
+    // TODO-QSP: gs 'fight', 'Attack', 'Hard Punch', 'opp', <<fightAvailTarg[i]>>, 0
+  } },
+          { label: 'Jab <<$op_name_000000>>', handler: (st: GameState) => {
+    // TODO-QSP: gs 'fight', 'Attack', 'Jab', 'opp', <<fightAvailTarg[i]>>, 0
+  } },
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Surrender', goto: ['ender', 'surrender'] },
+    ]);
+  } else {
+    // TODO-QSP: gs 'fight', 'fightAlgorithm', 'pcs', ARGS[2]
+  }
+  scene.build();
+}
+
+function enterBuildCasterSpellList(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: :loop000001
+  (s as any).i = qspUntranslated(s, "instr(tmpStr, ',')", { location: "fight" });
+  if (((s as any).i ?? 0) > 0) {
+    // TODO-QSP: $casterSpellList[] = $trim($mid($tmpStr, 1, i-1))
+    // TODO-QSP: jump 'loop000001'
+  } else {
+    // TODO-QSP: $casterSpellList[] = $trim($tmpStr)
+  }
+  return;
+  scene.build();
+}
+
+function enterSpellCheck(s: GameState, scene: SceneBuilder): void {
+  (s as any).spellCheckVar['SpellName'] = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).spellCheckVar['TargetType'] = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).spellCheckVar['TargetNumber'] = qspUntranslated(s, "ARGS[3]", { location: "fight" });
+  (s as any).spellCheckVar['CasterType'] = ((s as any).locArgs?.[4] ?? 0);
+  (s as any).spellCheckVar['CasterNumber'] = qspUntranslated(s, "ARGS[5]", { location: "fight" });
+  (s as any).spellCheckVar['CasterMana'] = 0;
+  if ((Array.isArray((s as any).casterSpellList) ? ((s as any).casterSpellList as any[]).indexOf(((s as any).spellCheckVar ?? 0)?.['SpellName']) : -1)>=0  &&  ((s as any).spellCheckVar ?? 0)?.['CasterMana'] >= ((s as any).spellMana ?? 0)[((s as any).spellCheckVar ?? 0)?.['SpellName']]) {
+    if (((s as any).spellTarget ?? 0)[((s as any).spellCheckVar ?? 0)?.['SpellName']] === 'self') {
+      // TODO-QSP: gs 'castSpellNPC', $spellCheckVar['SpellName'], $spellCheckVar['CasterType'], spellCheckVar['CasterN...
+    } else {
+      // TODO-QSP: gs 'castSpellNPC', $spellCheckVar['SpellName'], $spellCheckVar['TargetType'], spellCheckVar['TargetN...
+    }
+    (s as any).result = 1;
+  } else {
+    (s as any).result = 0;
+  }
+  return;
+  scene.build();
+}
+
+function enterSpellListCheck(s: GameState, scene: SceneBuilder): void {
+  (s as any).i = 0;
+  (s as any).ActionMade1 = 0;
+  // TODO-QSP: :loop000002
+  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0))  &&  ((s as any).ActionMade1 ?? 0)===0) {
+    (s as any).ActionMade1 = qspFunc(s, 'fight', 'spellCheck', '' + qspUntranslated(s, "ARGS[1]>", { location: "fight" }) + '[<<i>>]', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "fight" }), ((s as any).locArgs?.[4] ?? 0), qspUntranslated(s, "ARGS[5]", { location: "fight" }));
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    // TODO-QSP: jump 'loop000002'
+  }
+  (s as any).result = ((s as any).ActionMade1 ?? 0);
+  return;
+  scene.build();
+}
+
+function enterSpellcast(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: func('spellBook', 'targetable', '$combatSpells', 'gt ''fight'', ''main''', 'pcs_timer[0] += 50')
+  scene.actions([
+    { label: 'Next', goto: ['fight', 'main'] },
+  ]);
   scene.build();
 }
 
@@ -357,6 +963,45 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'result_check':
       enterResultCheck(s, scene);
+      break;
+    case 'Attack':
+      enterAttack(s, scene);
+      break;
+    case 'devastating':
+      enterDevastating(s, scene);
+      break;
+    case 'hard':
+      enterHard(s, scene);
+      break;
+    case 'light':
+      enterLight(s, scene);
+      break;
+    case 'AvailableTargets':
+      enterAvailableTargets(s, scene);
+      break;
+    case 'RandomTarget':
+      enterRandomTarget(s, scene);
+      break;
+    case 'fightAlgorithm':
+      enterFightAlgorithm(s, scene);
+      break;
+    case 'opponent':
+      enterOpponent(s, scene);
+      break;
+    case 'player':
+      enterPlayer(s, scene);
+      break;
+    case 'buildCasterSpellList':
+      enterBuildCasterSpellList(s, scene);
+      break;
+    case 'spellCheck':
+      enterSpellCheck(s, scene);
+      break;
+    case 'spellListCheck':
+      enterSpellListCheck(s, scene);
+      break;
+    case 'spellcast':
+      enterSpellcast(s, scene);
       break;
     default:
       enterInitFight(s, scene);

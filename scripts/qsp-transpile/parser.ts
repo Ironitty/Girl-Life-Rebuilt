@@ -11,6 +11,36 @@ function isCleanGsArg(a: string): boolean {
   return false;
 }
 
+function splitTopLevelAmp(s: string): string[] {
+  const parts: string[] = [];
+  let cur = '';
+  let inStr = false;
+  let strCh = '';
+  for (let i = 0; i < s.length; i++) {
+    if (inStr) {
+      cur += s[i];
+      if (s[i] === strCh) {
+        if (s[i + 1] === strCh) { cur += s[i + 1]; i++; continue; }
+        inStr = false;
+      }
+      continue;
+    }
+    if (s[i] === "'" || s[i] === '"') { inStr = true; strCh = s[i]; cur += s[i]; continue; }
+    if (s[i] === '&') {
+      const t = cur.trim();
+      if (t) parts.push(t);
+      cur = '';
+      continue;
+    }
+    cur += s[i];
+  }
+  const t = cur.trim();
+  if (t) parts.push(t);
+  if (s.includes("'") && s.includes('&') && parts.length > 1) {
+  }
+  return parts;
+}
+
 // QSP "&" statement separator in an assignment value:
 //   "1 & $word['key'] = 'val'"  ->  first="1", second="word['key'] = 'val'"
 function splitAssignStmtSep(value: string): { first: string; secondVar: string; secondOp: string; secondValue: string } | null {
@@ -21,13 +51,13 @@ function splitAssignStmtSep(value: string): { first: string; secondVar: string; 
   return null;
 }
 
-// Emit one or two assign nodes for an assignment whose value may contain a "&" statement separator.
+// Emit assign nodes for an assignment whose value may contain multiple "&" statement separators.
 function assignNodes(varName: string, op: string, value: string): QspAssign[] {
   const result: QspAssign[] = [];
   const sep = splitAssignStmtSep(value);
   if (sep) {
     result.push({ kind: 'assign', var: varName, op: op as '=' | '+=' | '-=', value: sep.first });
-    result.push({ kind: 'assign', var: sep.secondVar, op: sep.secondOp as '=' | '+=' | '-=', value: sep.secondValue });
+    result.push(...assignNodes(sep.secondVar, sep.secondOp, sep.secondValue));
   } else {
     result.push({ kind: 'assign', var: varName, op: op as '=' | '+=' | '-=', value: value });
   }
@@ -109,6 +139,8 @@ export function parseQsp(content: string, fileName: string): QspLocation {
     bodyLines.push(line);
   }
 
+  const hasInstr = bodyLines.some(l => l.includes('instr('));
+  const hasToAscii = bodyLines.some(l => l.includes('to_ascii'));
   const parseResult = parseBlock(bodyLines, 0, unsupported);
   const allNodes = parseResult.nodes;
 
@@ -153,10 +185,10 @@ interface ParseResult {
    let i = startIdx;
    let inBlockComment = false;
 
-   while (i < lines.length) {
-     const raw = lines[i];
-     const trimmed = raw.trim();
-     if (!trimmed) { i++; continue; }
+    while (i < lines.length) {
+      const raw = lines[i];
+      const trimmed = raw.trim();
+      if (!trimmed) { i++; continue; }
 
      // QSP block comment: !{ ... !} (may span lines; text on marker lines is also comment)
      if (inBlockComment) {
@@ -245,28 +277,38 @@ interface ParseResult {
     // If block: if condition:
     const ifMatch = trimmed.match(/^if\s+(.+?)\s*:\s*$/);
     if (ifMatch) {
-      const condition = ifMatch[1];
-      const thenResult = parseUntilElseOrEnd(lines, i + 1, unsupported);
-      const ifNode: QspIf = { kind: 'if', condition, thenBody: thenResult.nodes, elseBody: [] };
-
-      if (thenResult.elseFound) {
-        const elseResult = parseBlock(lines, thenResult.endIdx, unsupported);
-        ifNode.elseBody = elseResult.nodes;
-        i = elseResult.endIdx;
-      } else {
-        i = thenResult.endIdx;
-      }
-
+      const { node: ifNode, nextIdx } = parseIfChain(lines, i + 1, ifMatch[1], unsupported);
       nodes.push(ifNode);
+      i = nextIdx;
       continue;
     }
 
     // Inline if: if cond: stmt1 & stmt2
-    const inlineIfMatch = trimmed.match(/^if\s+(.+?)\s*:\s*(.+)$/);
-    if (inlineIfMatch) {
-      const condition = inlineIfMatch[1];
-      const stmtStr = inlineIfMatch[2].trim();
-      const stmts = stmtStr.split('&').map(s => s.trim()).filter(Boolean);
+    // Use bracket/quote-aware scan to find the condition separator colon
+    const inlineIfPrefix = trimmed.match(/^if\s+/);
+    if (inlineIfPrefix) {
+      const rest = trimmed.slice(inlineIfPrefix[0].length);
+      let colonIdx = -1;
+      let depth = 0;
+      let inStr = false;
+      let strCh = '';
+      for (let ci = 0; ci < rest.length; ci++) {
+        if (inStr) {
+          if (rest[ci] === strCh) {
+            if (rest[ci + 1] === strCh) { ci++; continue; }
+            inStr = false;
+          }
+          continue;
+        }
+        if (rest[ci] === "'" || rest[ci] === '"') { inStr = true; strCh = rest[ci]; continue; }
+        if (rest[ci] === '[') depth++;
+        else if (rest[ci] === ']') depth--;
+        else if (rest[ci] === ':' && depth === 0) { colonIdx = ci; break; }
+      }
+      if (colonIdx !== -1) {
+      const condition = rest.slice(0, colonIdx).trim();
+      const stmtStr = rest.slice(colonIdx + 1).trim();
+      const stmts = splitTopLevelAmp(stmtStr);
       const thenBody: QspNode[] = [];
       for (const stmt of stmts) {
         const parsed = parseInlineStatement(stmt, unsupported);
@@ -275,6 +317,7 @@ interface ParseResult {
       nodes.push({ kind: 'if', condition, thenBody, elseBody: [] });
       i++;
       continue;
+      }
     }
 
     // Text line: 'text'
@@ -424,17 +467,9 @@ interface ParseResult {
     // elseif block: treat as nested if
     const elseifMatch = trimmed.match(/^elseif\s+(.+?)\s*:\s*$/);
     if (elseifMatch) {
-      const condition = elseifMatch[1];
-      const thenResult = parseUntilElseOrEnd(lines, i + 1, unsupported);
-      const ifNode: QspIf = { kind: 'if', condition, thenBody: thenResult.nodes, elseBody: [] };
-      if (thenResult.elseFound) {
-        const elseResult = parseBlock(lines, thenResult.endIdx, unsupported);
-        ifNode.elseBody = elseResult.nodes;
-        i = elseResult.endIdx;
-      } else {
-        i = thenResult.endIdx;
-      }
+      const { node: ifNode, nextIdx } = parseIfChain(lines, i + 1, elseifMatch[1], unsupported);
       nodes.push(ifNode);
+      i = nextIdx;
       continue;
     }
 
@@ -518,12 +553,39 @@ function parseUntilElseOrEnd(lines: string[], startIdx: number, unsupported: str
   return { nodes, endIdx: i, elseFound: false };
 }
 
+function parseIfChain(lines: string[], startIdx: number, condition: string, unsupported: string[]): { node: QspIf; nextIdx: number } {
+  const thenResult = parseUntilElseOrEnd(lines, startIdx, unsupported);
+  const ifNode: QspIf = { kind: 'if', condition, thenBody: thenResult.nodes, elseBody: [] };
+  let currentIf = ifNode;
+  let nextIdx = thenResult.endIdx;
+  let result = thenResult;
+  while (result.elseFound) {
+    const markerLine = lines[nextIdx - 1].trim();
+    const elseifMatch = markerLine.match(/^elseif\s+(.+?)\s*:\s*$/);
+    if (elseifMatch) {
+      const elseifResult = parseUntilElseOrEnd(lines, nextIdx, unsupported);
+      const elseifNode: QspIf = { kind: 'if', condition: elseifMatch[1], thenBody: elseifResult.nodes, elseBody: [] };
+      currentIf.elseBody = [elseifNode];
+      currentIf = elseifNode;
+      nextIdx = elseifResult.endIdx;
+      result = elseifResult;
+    } else {
+      const elseResult = parseUntilElseOrEnd(lines, nextIdx, unsupported);
+      currentIf.elseBody = elseResult.nodes;
+      nextIdx = elseResult.endIdx;
+      break;
+    }
+  }
+  return { node: ifNode, nextIdx };
+}
+
 function parseSingleLine(trimmed: string, lines: string[], idx: number, unsupported: string[]): { nodes: QspNode[]; nextIdx: number } {
   const nodes: QspNode[] = [];
 
   if (trimmed.includes('&') && !trimmed.startsWith('act ') && !trimmed.startsWith('if ') && !trimmed.startsWith('end') && !trimmed.startsWith('else') && !trimmed.startsWith("'") && !trimmed.startsWith('gt ') && !trimmed.startsWith('gs ')) {
-    const parts = trimmed.split('&').map(p => p.trim()).filter(Boolean);
-    if (parts.length > 1 && parts.every(p => /^[\w$]+\[?\w*\]?\s*(\+=|-=|=)\s*/.test(p))) {
+    const parts = splitTopLevelAmp(trimmed);
+    const stmtRe = /^(?:[\w$]+\[?\w*\]?\s*(?:\+=|-=|=)\s*|jump\s+|gt\s+|gs\s+|\*p\s+|\*s\s+|killvar\s+|dynamic\s+)/;
+    if (parts.length > 1 && parts.every(p => stmtRe.test(p))) {
       for (const part of parts) {
         nodes.push(...parseInlineStatement(part, unsupported));
       }
@@ -561,9 +623,12 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
       } else {
         act.inlineStatements = rest;
       }
+      nodes.push(act);
+      return { nodes, nextIdx: idx + 1 };
     }
-    nodes.push(act);
-    return { nodes, nextIdx: idx + 1 };
+    const inner = parseBlock(lines, idx + 1, unsupported);
+    act.body = inner.nodes;
+    return { nodes: [act], nextIdx: inner.endIdx };
   }
 
   // Act inline
@@ -582,34 +647,46 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
-  // Inline if: if cond: stmt
-  const inlineIfMatch = trimmed.match(/^if\s+(.+?)\s*:\s*(.+)$/);
-  if (inlineIfMatch) {
-    const condition = inlineIfMatch[1];
-    const stmtStr = inlineIfMatch[2].trim();
-    const stmts = stmtStr.split('&').map(s => s.trim()).filter(Boolean);
-    const thenBody: QspNode[] = [];
-    for (const stmt of stmts) {
-      const parsed = parseInlineStatement(stmt, unsupported);
-      thenBody.push(...parsed);
-    }
-    nodes.push({ kind: 'if', condition, thenBody, elseBody: [] });
-    return { nodes, nextIdx: idx + 1 };
-  }
-
-  // If block
+  // If block (must come before inline-if so the non-greedy match doesn't stop at a ':' inside a key)
   const ifMatch = trimmed.match(/^if\s+(.+?)\s*:\s*$/);
   if (ifMatch) {
-    const thenResult = parseUntilElseOrEnd(lines, idx + 1, unsupported);
-    const ifNode: QspIf = { kind: 'if', condition: ifMatch[1], thenBody: thenResult.nodes, elseBody: [] };
-    let nextIdx = thenResult.endIdx;
-    if (thenResult.elseFound) {
-      const elseResult = parseBlock(lines, thenResult.endIdx, unsupported);
-      ifNode.elseBody = elseResult.nodes;
-      nextIdx = elseResult.endIdx;
-    }
+    const { node: ifNode, nextIdx } = parseIfChain(lines, idx + 1, ifMatch[1], unsupported);
     nodes.push(ifNode);
     return { nodes, nextIdx };
+  }
+
+  // Inline if: if cond: stmt (bracket/quote-aware colon scan)
+  if (trimmed.startsWith('if ')) {
+    const rest = trimmed.slice(3);
+    let colonIdx = -1;
+    let depth = 0;
+    let inStr = false;
+    let strCh = '';
+    for (let ci = 0; ci < rest.length; ci++) {
+      if (inStr) {
+        if (rest[ci] === strCh) {
+          if (rest[ci + 1] === strCh) { ci++; continue; }
+          inStr = false;
+        }
+        continue;
+      }
+      if (rest[ci] === "'" || rest[ci] === '"') { inStr = true; strCh = rest[ci]; continue; }
+      if (rest[ci] === '[') depth++;
+      else if (rest[ci] === ']') depth--;
+      else if (rest[ci] === ':' && depth === 0) { colonIdx = ci; break; }
+    }
+    if (colonIdx !== -1) {
+      const condition = rest.slice(0, colonIdx).trim();
+      const stmtStr = rest.slice(colonIdx + 1).trim();
+      const stmts = splitTopLevelAmp(stmtStr);
+      const thenBody: QspNode[] = [];
+      for (const stmt of stmts) {
+        const parsed = parseInlineStatement(stmt, unsupported);
+        thenBody.push(...parsed);
+      }
+      nodes.push({ kind: 'if', condition, thenBody, elseBody: [] });
+      return { nodes, nextIdx: idx + 1 };
+    }
   }
 
   // Text
@@ -743,15 +820,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   // elseif: treat as nested if
   const elseifMatch = trimmed.match(/^elseif\s+(.+?)\s*:\s*$/);
   if (elseifMatch) {
-    const condition = elseifMatch[1];
-    const thenResult = parseUntilElseOrEnd(lines, idx + 1, unsupported);
-    const ifNode: QspIf = { kind: 'if', condition, thenBody: thenResult.nodes, elseBody: [] };
-    let nextIdx = thenResult.endIdx;
-    if (thenResult.elseFound) {
-      const elseResult = parseBlock(lines, thenResult.endIdx, unsupported);
-      ifNode.elseBody = elseResult.nodes;
-      nextIdx = elseResult.endIdx;
-    }
+    const { node: ifNode, nextIdx } = parseIfChain(lines, idx + 1, elseifMatch[1], unsupported);
     nodes.push(ifNode);
     return { nodes, nextIdx };
   }
@@ -797,7 +866,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
   const trimmed = stmt.trim();
 
   if (trimmed.includes('&') && !trimmed.startsWith("'")) {
-    const parts = trimmed.split('&').map(p => p.trim()).filter(Boolean);
+    const parts = splitTopLevelAmp(trimmed);
     if (parts.length > 1 && parts.every(p => /^[\w$]+\[?\w*\]?\s*(\+=|-=|=)\s*/.test(p))) {
       for (const part of parts) {
         nodes.push(...parseInlineStatement(part, unsupported));

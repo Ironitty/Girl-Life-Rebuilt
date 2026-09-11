@@ -1,4 +1,4 @@
-import { dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -9,7 +9,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).TatianaMissionQW ?? 0) === 1) {
     scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission1'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission2'] }]);
+    if (((s as any).TatianaMissionQW ?? 0) === 2) {
+      scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission2'] }]);
+    }
   }
   scene.build();
 }
@@ -176,33 +178,37 @@ function enterMission1(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/lake/skver.spring.night.jpg');
       }
     } else {
-      if (((s as any).hour ?? 0)>=6  &&  ((s as any).hour ?? 0)<=19) {
-        scene.img('images/locations/pavlovsk/park/skver.jpg');
-      } else {
-        scene.img('images/locations/pavlovsk/lake/skver.summer.night.jpg');
-      }
-      if (((s as any).month ?? 0)===9  ||  ((s as any).month ?? 0)===10  ||  ((s as any).month ?? 0)===11) {
-        if (((s as any).hour ?? 0)>=6  &&  ((s as any).hour ?? 0)<=18) {
-          scene.img('images/locations/pavlovsk/lake/skver.autumn.jpg');
+      if (((s as any).month ?? 0)===6  ||  ((s as any).month ?? 0)===7  ||  ((s as any).month ?? 0)===8) {
+        if (((s as any).hour ?? 0)>=6  &&  ((s as any).hour ?? 0)<=19) {
+          scene.img('images/locations/pavlovsk/park/skver.jpg');
         } else {
-          scene.img('images/locations/pavlovsk/lake/skver.autumn.night.jpg');
+          scene.img('images/locations/pavlovsk/lake/skver.summer.night.jpg');
         }
       } else {
-        if (((s as any).hour ?? 0)>=7  &&  ((s as any).hour ?? 0)<=16) {
-          scene.img('images/locations/pavlovsk/lake/skver.winter.jpg');
+        if (((s as any).month ?? 0)===9  ||  ((s as any).month ?? 0)===10  ||  ((s as any).month ?? 0)===11) {
+          if (((s as any).hour ?? 0)>=6  &&  ((s as any).hour ?? 0)<=18) {
+            scene.img('images/locations/pavlovsk/lake/skver.autumn.jpg');
+          } else {
+            scene.img('images/locations/pavlovsk/lake/skver.autumn.night.jpg');
+          }
         } else {
-          scene.img('images/locations/pavlovsk/lake/skver.winter.night.jpg');
+          if (((s as any).hour ?? 0)>=7  &&  ((s as any).hour ?? 0)<=16) {
+            scene.img('images/locations/pavlovsk/lake/skver.winter.jpg');
+          } else {
+            scene.img('images/locations/pavlovsk/lake/skver.winter.night.jpg');
+          }
         }
       }
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      scene.text('The walk to the park takes a while, given the lack of public transportation in Pavlovsk, and it is boring to boot. To you, at least - Tatiana has an amused look on her face all along the way and seems to be silently laughing at anything that catches her eye in this "backwater".');
-      scene.text('You see a few familiar faces along the way, mostly schoolmates of yours who give the woman next to you curious, in the case of the gopniks outright lustful looks. To your eternal gratitude, none of them stop you and the few who greet you are content with your saying that you\'re "in a hurry".');
-      scene.text('The park is the same as always - the same people hang or stroll around. You look in all directions, but you cannot, for the life of you, make out anything even remotely resembling a fairy. "I don\'t see any fairy here."');
-      scene.text('"What would I do without your keen observations?" Tatiana mocks.');
-      scene.text('"So, what, would you like to go looking for her in the undergrowth?"');
-      scene.text('"Sure. Don\'t tell me you\'re afraid of bushes?" With that, she walks off the path and into the thickest part of the thicket.');
-      scene.actions([
-        { label: 'Keep following her', handler: (st: GameState) => {
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    scene.text('The walk to the park takes a while, given the lack of public transportation in Pavlovsk, and it is boring to boot. To you, at least - Tatiana has an amused look on her face all along the way and seems to be silently laughing at anything that catches her eye in this "backwater".');
+    scene.text('You see a few familiar faces along the way, mostly schoolmates of yours who give the woman next to you curious, in the case of the gopniks outright lustful looks. To your eternal gratitude, none of them stop you and the few who greet you are content with your saying that you\'re "in a hurry".');
+    scene.text('The park is the same as always - the same people hang or stroll around. You look in all directions, but you cannot, for the life of you, make out anything even remotely resembling a fairy. "I don\'t see any fairy here."');
+    scene.text('"What would I do without your keen observations?" Tatiana mocks.');
+    scene.text('"So, what, would you like to go looking for her in the undergrowth?"');
+    scene.text('"Sure. Don\'t tell me you\'re afraid of bushes?" With that, she walks off the path and into the thickest part of the thicket.');
+    scene.actions([
+      { label: 'Keep following her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.text('You could have done without a tour through the brambles - at the very least, she could have started looking for the fairy in the easier-to-traverse parts of the park - but you sigh and accept your fate as you follow the redhead.');
     scene.text('For a while, you just wander around aimlessly, always a few meters behind your mentor, always on the lookout for a glowing orb of light. In vain.');
@@ -264,8 +270,722 @@ function enterMission1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMission2(s: GameState, scene: SceneBuilder): void {
+  (s as any).TatianaMissionQW = ((s as any).TatianaMissionQW ?? 0) + (1);
+  (s as any).TatianaMissionDay = ((s as any).daystart ?? 0);
+  (s as any).AlexandriaQW = 1;
+  scene.img('images/characters/city/btatiana/VT1.jpg');
+  // TODO-QSP: dynamic text: As you approach Tatiana to find out exactly what your new, "exciting work" invol...
+  scene.text(`As you approach Tatiana to find out exactly what your new, "exciting work" involves, she flashes you a Cheshire smile and raises her smartphone. "Okay, ${((s as any).pcs_nickname ?? 0)}. Do you recognize her?"`);
+  scene.text('The screen shows an attractive redhead modeling vintage lingerie. You… don\'t recognize her, but there is some familial resemblance with Tatiana.');
+  scene.text('"Your sister?" you dare to ask, which prompts Tatiana\'s smile to widen.');
+  scene.text('"Nope! That woman is me! It\'s surprising what you can do with a little magic." She looks proudly at the image and continues.');
+  // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>, it's storytime! Some years ago, when I was learning bo...
+  scene.text(`"Well, ${((s as any).pcs_nickname ?? 0)}, it's storytime! Some years ago, when I was learning body magic, I picked a glamour model job at the 'Aphrodite Model Agency'. The money was great, those girls knew how to party, and the "brain-dead" act was funny, but I wasn't in it for that. My true reason for being there was to practice my appearance-altering magic. I was so successful that I even tricked them into paying me as TWO different models!"`);
+  scene.text('She stops to see if you are following her.');
+  scene.text('"And… I suppose that something bad happened?" you ask.');
+  scene.text('Tatiana sighs, look pensively at the image. "Yes, it was too good to last. So, when Reinhold called me to deal with this dragon…"');
+  scene.actions([
+    { label: 'A dragon?!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Tatiana</b></center>');
+    scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
+    scene.text('Your face must show surprise at her words, because she is smiling. What the fuck?! A dragon?! Is this a joke? Maybe she\'s talking about something else, like a triad boss?');
+    // TODO-QSP: dynamic text: "Yes, <<$pcs_nickname>>, <i>HIC SUNT DRACONES!</i> Not Salvatore's sissyfied one...
+    scene.text(`"Yes, ${((s as any).pcs_nickname ?? 0)}, <i>HIC SUNT DRACONES!</i> Not Salvatore's sissyfied ones, I mean Tolkien's kingdom-destroying Smaug version! I will tell you about them some other day." She gives you another cheeky smile and continues.`);
+    scene.text('"Dealing with that crisis took us a while, and when I returned, "The Veil" did something to the agency. It made them… hm… <i>forget</i> me. I tried to return using mundane and magical means, but I was repelled again and again. In the end, I lost the gig and the royalties, so I decided to give it time and see if whatever magical effect was in place dissipated on its own."');
+    if (((s as any).pcs_splcstng ?? 0) >=50) {
+      // TODO-QSP: dynamic text: Tatiana grabs some papers and passes them to you. "Read this, <<$pcs_nickname>>!...
+      scene.text(`Tatiana grabs some papers and passes them to you. "Read this, ${((s as any).pcs_nickname ?? 0)}!"`);
+      scene.text('Without magical training, the information would be nonsense, but now that you can read them, the mismatched charts and behavioral studies show a… kind of curse floating around the \'Aphrodite Model Agency\' that makes some models suffer a significant loss of IQ and partake in overly archetypal behavior."');
+      // TODO-QSP: dynamic text: "Yes, <<$pcs_nickname>>, they are transforming into scatter-brained bimbos! The ...
+      scene.text(`"Yes, ${((s as any).pcs_nickname ?? 0)}, they are transforming into scatter-brained bimbos! The interesting part is that they are copying some of my mannerisms and views. Following this lead, I consulted some curse experts. In summary, they think that there must be a personal item of mine at its center, and that it's what made the curse repel me."`);
+    } else {
+      // TODO-QSP: dynamic text: Tatiana grabs some papers and passes them to you. "Read this, <<$pcs_nickname>>!...
+      scene.text(`Tatiana grabs some papers and passes them to you. "Read this, ${((s as any).pcs_nickname ?? 0)}!"`);
+      scene.text('You try to understand, but the mismatched information on the files is utterly incomprehensible with your limited magical knowledge. Seeing your puzzled expression, Tatiana takes the papers back.');
+      // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>, the magical anomaly seems centered around a personal i...
+      scene.text(`"Well, ${((s as any).pcs_nickname ?? 0)}, the magical anomaly seems centered around a personal item of mine, and it's the reason for the repel effect."`);
+    }
+    scene.actions([
+      { label: 'Your mission is…', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Tatiana</b></center>');
+    scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
+    if (((s as any).pfilmNO ?? 0) === 1) {
+      (s as any).AlexandriaQW = 3;
+      scene.text('"Then, what should I do Tatiana? Sneak in after dark looking for this item? Because I was blacklisted, so I can\'t enter the Agency now."');
+      // TODO-QSP: dynamic text: The sorceress shrugs. "Don't worry, <<$pcs_nickname>>, I have Gustav for those s...
+      scene.text(`The sorceress shrugs. "Don't worry, ${((s as any).pcs_nickname ?? 0)}, I have Gustav for those sorts of jobs." I know a way to help you infiltrate the place so you can look for the item in question. When the moment feels right, go to Aphrodite Model Agency and give me a call, but remember, only when the building is open. The curse seems to go dormant when there are no people around. Don't worry, I will pay you for your time."`);
+    } else {
+      if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+        scene.text('"But, Tatiana, I am one of their models, and I didn\'t feel anything unusual during the times I was there."');
+        scene.text('The sorceress shrugs. "For an impersonal force, magic can be pretty devious. Maybe the effect masked its presence, or -- and this is going to give you nightmares -- it made you forget. Well, now that you know that there is something magical in the agency, you need to go and look for it. Talk to the models, eavesdrop, walk around and look for something wrong. It will be good training, and when you finally find whatever is at its center, bring it to me so that I can end the curse. Don\'t worry, I will pay you for your time."');
+      } else {
+        scene.text('"Then, what should I do, Tatiana? Sneak in after dark looking for this item?"');
+        if (((s as any).pcs_hotcat ?? 0) <= 5) {
+          // TODO-QSP: dynamic text: The sorceress shrugs and glances at you. "Nothing that dramatic, <<$pcs_nickname...
+          scene.text(`The sorceress shrugs and glances at you. "Nothing that dramatic, ${((s as any).pcs_nickname ?? 0)}. I want to practice the tricks that I used during my tenure, so I was thinking about giving you a magical makeover, and after that, you can go and ask for work at the agency. Once inside, you need to look for the item. Talk to the models, eavesdrop, walk around and look for something wrong. It will be good training, and when you finally find whatever is at its center, bring it to me so that I can end the curse. Don't worry, I will pay you for your time."`);
+          scene.text('Saying this, Tatiana turns towards her studies, leaving you to your own devices.');
+        } else {
+          // TODO-QSP: dynamic text: The sorceress looks you over and smiles. "Nothing that dramatic, <<$pcs_nickname...
+          scene.text(`The sorceress looks you over and smiles. "Nothing that dramatic, ${((s as any).pcs_nickname ?? 0)}. Just look for work at the agency. Once inside, you need to look for the item. Talk to the models, eavesdrop, walk around and look for something wrong. It will be good training, and when you finally find whatever is at its center, bring it to me so that I can end the curse. Don't worry, I will pay you for your time."`);
+        }
+      }
+    }
+    scene.text('Saying this, Tatiana turns towards her studies, leaving you to your own devices.');
+    scene.actions([
+      { label: 'Continue', goto: ['tatiana_lab', 'Tatiana'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMission2A(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/citycenter/photo/foto.jpg');
+  scene.text('If this was a horror flick, you, the clueless heroine, would enter a dark and dust-covered room where some unspeakable evil waits to kill you. As your friends continue partying downstairs, your screams would be muffled by the music.');
+  scene.text('But somebody hasn\'t read the script.');
+  scene.text('This room is well illuminated, with props neatly organized, showing constant use. There is even a photographer in here, taking stock for a shoot. So, no, the horror flick atmosphere is utterly crushed.');
+  scene.text('"Can I help you?" the photographer, a man, asks you, without even looking away from the props. It\'s baffling how he can stand beside a pretty, naked woman and still react like it is the most normal thing in the world.');
+  scene.text('"Maybe? I\'m looking for a model named Tatiana. Someone told me that she hangs out around here."');
+  scene.text('The man looks around the room and then motions towards the corner, where a chair and some boxes sit, half hidden by the props. Unlike the rest of the room, they look like they haven\'t been used in a while.');
+  scene.text('"I think she likes to take a rest on that old chair between shoots. Just wait around there, and she should turn up."');
+  scene.text('He returns to his work and lets you continue to search for unspeakable evil. <i>Dum Dum DUM!</i>');
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Examining the chair', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    if (((s as any).arch_vars ?? 0)?.['main_active'] === 'bimbo') {
+      scene.text('<center><b>Vintage Tatiana?</b></center>');
+      scene.img('images/characters/city/btatiana/VT2.jpg');
+      scene.text('The chair isn\'t special, but you are pretty sure you\'ve seen it somewhere. Where? The boxes are full of old albums, but what really catches your attention is a roll of film. You hold it up to the light and notice that the woman in the negatives resembles… Tatiana?!');
+      scene.text('"Umm… can you leave that in the box?"');
+      scene.text('Turning towards the voice, you see a familiar redhead sitting half-naked on the chair, gazing at you with apprehension.');
+      scene.text('Her appearance is so sudden that you point a finger at her, screaming the first thing that enters your mind. "You!"');
+      scene.text('"Me?"');
+      scene.text('Obviously, this isn\'t your finest moment, and… err… \'Vintage Tatiana?\' looks both cross-eyed and very confused at your pointing hand.');
+      qspCall(s, 'willpower', 'misc', 'self', 'easy');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Kick Vintage Tatiana\'s ass! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Kick Vintage Tatiana\'s ass! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    scene.text('<center><b>Sword Wielding Tatiana?</b></center>');
+    scene.img('images/characters/city/btatiana/ST1.jpg');
+    scene.text('You throw a quick punch towards a surprised "VT" and see how it passes straight through her face as if she wasn\'t even there. Then there\'s a shimmer, and her appearance changes to a sword-wielding bikini-clad screaming bitch.');
+    scene.text('"Blondie was right! You came here to hurt me!"');
+    scene.text('You don\'t know whether you should laugh at the weird pose or ask her about the bikini, but it is evident that there\'s about to be an epic beatdown between you and--');
+    scene.text('"What the hell are you two doing?!"');
+    scene.text('You both freeze and look back to the now-shooting photographer. Without missing a beat, you motion to "VT" and try to make him understand. "She\'s evil! I must stop Vintage Tatiana from hurting more people!"');
+    scene.text('"What? I\'m not \'Vintage\'! It\'s just Tatiana, and I\'m not evil!"');
+    scene.text('"Yes, you are!"');
+    scene.text('"No, I\'m not!"');
+    scene.text('"Shut up you two! I don\'t care about your stupid "Game of Bimbos"! If you want to brawl, do it like everyone else and look for a back alley! If you don\'t want to be blacklisted, dial it down to the normal model bitching! Understood, ladies?"');
+    scene.text('You and Not-Vintage Tatiana murmur an apology, and as he returns to his work, you eye the wary clone that has returned to her \'vintage\' appearance.');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'fame', 'city', 'modelling', (-10));
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Talk to "Not-Vintage Tatiana"', goto: ['tatiana_missions', 'mission2C'] },
+    ]);
+  } },
+        ]);
+      }
+      qspCall(s, 'willpower', 'misc', 'self', 'medium');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Talk to Vintage Tatiana [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Talk to Vintage Tatiana [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'misc', 'self', 'medium');
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+  }, goto: ['tatiana_missions', 'mission2C'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'She grabs your pointing finger.', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/MT2.jpg');
+    scene.text('You find yourself lying face down, wearing only panties in what appears to be a photography set. "Tatiana" kneels by your side in a somewhat diaphanous robe.');
+    // TODO-QSP: dynamic text: "Are you ready for your massage <<$pcs_nickname>>?"
+    scene.text(`"Are you ready for your massage ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text('You are about to retort, but her oiled hands begin to press on your back, and you suddenly find out what that gossiping model was talking about earlier.');
+    scene.text('"Oh, that\'s <i>good</i> Tatiana! More to the left!"');
+    scene.text('Moaning in pleasure, you surrender to Tatiana\'s massage as she begins to work out all your knots with utter mastery. But something is off. As time passes, you hear Tatiana huffing in obvious exhaustion.');
+    scene.text('"Tatiana, are you okay?" Turning towards the redhead, you see her in distress, biting her lip in concentration.');
+    // TODO-QSP: dynamic text: "Sorry, <<$pcs_nickname>>! It's just that, like, you don't have much in your hea...
+    scene.text(`"Sorry, ${((s as any).pcs_nickname ?? 0)}! It's just that, like, you don't have much in your head."`);
+    scene.text('What? Is she is calling you an \'airhead\'? You\'re about to retort, but then she looks at you in fear and… freezes.');
+    (s as any).minut = ((s as any).minut ?? 0) + 6;
+    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (25);
+    qspCall(s, 'mood', 'raise', 'small');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'You awaken', handler: (st: GameState) => {
+    scene.text('<center><b>Blondie?</b></center>');
+    scene.img('images/characters/city/alexandria/alexandria.jpg');
+    scene.text('Blinking in confusion, you find yourself sitting back in the props room, in front of a pissed-looking blonde in a suit who\'s going off on a tirade.');
+    if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
+      scene.text('"Is this some kind of joke?! The final taunt from that three-times-damned Rikudo?! He cursed you to be a vapid woman?!"');
+    } else {
+      scene.text('"Is this some kind of joke?! The ultimate power falling into the hands of a vapid woman?!"');
+    }
+    scene.text('You look around, confused. Who is she? There was another woman. She was… She was… "Tatiana?"');
+    scene.text('The blonde stops in her rant and looks at you. Now that she isn\'t in some insulting monologue, you can see a familiar film in her hand, which quickly disappears into the woman\'s pocket.');
+    scene.text('"Don\'t worry about her, I took care of her before she had time to, well… The truth is that I doubt that your mind can be drained any more, but even without that, she was potentially dangerous."');
+    scene.text('Your mind begins to clear and you get a better look at the woman. Blonde and tall, wearing a <i>horrible</i> business suit with some <i>utterly plain</i> shoes! As you examine her, she seems to calm a little and talks to you.');
+    scene.text('"Hmm… I suppose it\'s time for a presentation." She sighs. "You can call me Aleksei, and you are?"');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify_exact', 'A241', (-1));
+    (s as any).AlexandriaQW = 5;
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: '"I am…"', goto: ['tatiana_missions', 'mission2D'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.text('<center><b>Vintage Tatiana?</b></center>');
+      scene.img('images/characters/city/btatiana/VT2.jpg');
+      scene.text('You have seen the chair before. It appeared in the photo that Tatiana showed you. The boxes are full of old photo albums from the last twenty years, but what catches your attention is a roll of film that sits on top. You hold it up to the light, and notice that the woman in the negatives resembles… Tatiana?! The albums, the physical film. How old is she?');
+      scene.text('"Umm… can you leave that in the box?"');
+      scene.text('Turning towards the voice, you see a familiar redhead sitting half-naked on the chair, gazing at you with apprehension. Her appearance is surprising, as your magical senses can\'t seem to \'feel\' her presence.');
+      // TODO-QSP: dynamic text: "Hmm… I think it's better if we talk somewhere else, <<$pcs_nickname>>."
+      scene.text(`"Hmm… I think it's better if we talk somewhere else, ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text('Suddenly, she surges towards you with her hand outstretched. You instinctively lift your hand to slap away her wrist, only for it to pass straight through the apparition.');
+      scene.actions([
+        { label: 'Battle in the center of the mind', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    if (((s as any).succubusQW ?? 0) !== 5) {
+      scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission2sex'] }]);
+    } else {
+      scene.img('images/characters/city/btatiana/ST1.jpg');
+      scene.text('You find yourself lying face down, wearing only panties in what appears to be a photography set. \'Tatiana\' kneels by your side in a somewhat diaphanous robe.');
+      // TODO-QSP: dynamic text: "Are you ready for your massage, <<$pcs_nickname>>?"
+      scene.text(`"Are you ready for your massage, ${((s as any).pcs_nickname ?? 0)}?"`);
+      // TODO-QSP: dynamic text: You call <<$sucself1>> up from its resting place.
+      scene.text(`You call ${((s as any).sucself1 ?? 0)} up from its resting place.`);
+      scene.text('It fills you completely, suffusing your being with power…');
+      scene.text('<center><b> and hunger</b></center>');
+      scene.text('She jumps away from you, and her appearance changes to that of a sword-wielding bikini-clad screaming bitch.');
+      scene.text('"What?! What are you?!"');
+      scene.text('Snorting at the ridiculous pose, you answer, "I am better."');
+      qspCall(s, 'willpower', 'misc', 'force', 'hard');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Make her submit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Make her submit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 2);
+    qspCall(s, 'stat', '');
+  }, goto: ['tatiana_missions', 'mission2E'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Kick her ass!', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/ST1.jpg');
+    qspCall(s, 'fight', 'initFight');
+    qspCall(s, 'fight_npcdata', 'btatiana');
+    // TODO-QSP: xgt 'fight', 'start'
+  } },
       ]);
     }
+  } },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMission2B(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Tatiana</b></center>');
+  scene.img('images/characters/city/tatiana/magiclook.jpg');
+  scene.text('You wait outside Aphrodite for Tatiana\'s arrival, envying the beautiful women going about their business entering and exiting the place. All of that is forfeit to you now. Luckily, Tatiana appears in no time, and stops you from eating your brain.');
+  // TODO-QSP: dynamic text: "Come on, <<$pcs_nickname>>, this way!"
+  scene.text(`"Come on, ${((s as any).pcs_nickname ?? 0)}, this way!"`);
+  scene.text('Without missing a beat, she grabs your hand and leads you into an alleyway, where she looks for something in her pockets, then holds it out in her hand. It\'s the ID of a woman you don\'t recognize.');
+  scene.text('"What is this, Tatiana?"');
+  // TODO-QSP: dynamic text: Smiling, she answers, "Your new temporary identity! Now comes the hard part. Lis...
+  scene.text(`Smiling, she answers, "Your new temporary identity! Now comes the hard part. Listen, ${((s as any).pcs_nickname ?? 0)}, I can temporarily change your appearance so you can enter agency and look for the curse's focus. Additionally, that will set your magical senses in tune with the curse, making it easier to look for it. So… are you ready?"`);
+  scene.text('She takes you delicately by the wrist and raises an eyebrow, looking for approbation.');
+  scene.text('"Okay, Tatiana."');
+  scene.actions([
+    { label: 'PAIN!', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (360);
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>YOU!?</b></center>');
+    scene.img(`images/locations/shared/${Math.floor(Math.random() * 30) + 31}.jpg`);
+    scene.text('Suddenly, you find yourself paralyzed as an electrical jolt courses through your nerves, realigning flesh and tissue into your new shape. Just when you think it\'s over, your suffering reverses course through your veins and up into your head, where the pain sits, simmering like a burning lake of lava.');
+    scene.text('"What the fuck Tatiana?!" you groan, "What have you done to me?!"');
+    // TODO-QSP: dynamic text: "Sorry, <<$pcs_nickname>>! Three drops of your blood must be put in the potion!"...
+    scene.text(`"Sorry, ${((s as any).pcs_nickname ?? 0)}! Three drops of your blood must be put in the potion!" You look at Tatiana like she's mad, and she pinches her nose tiredly. "Not a Raziel's fan are you? Damn… sorry, that was inappropriate. Look, ${((s as any).pcs_nickname ?? 0)}, I can change your appearance superficially, but your magic will still try to revert any changes I make, that's the reason why it hurt. Now I need to do a more extensive transformation, and it will probably hurt a lot more-- but don't worry! It will pass, and the changes are only temporary."`);
+    scene.text('"Well, you could\'ve warned me!"');
+    // TODO-QSP: dynamic text: She gives you a tired half-smile, before handing you a pocket mirror so that you...
+    scene.text(`She gives you a tired half-smile, before handing you a pocket mirror so that you can see the stranger you've become. "Pretty neat, isn't it, ${((s as any).pcs_nickname ?? 0)}?" Tatiana says, as she looks over your shoulder.`);
+    scene.text('"Okay! Time for some action! My magic will only work for a while, so hurry into the agency and look for the McGuffin."');
+    scene.text('Tatiana ushers you out of the alleyway, and towards the building.');
+    scene.actions([
+      { label: 'Looking for the MacGuffin', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/citycenter/photo/models1.jpg');
+    scene.text('You enter the Agency with the fake ID, get undressed, and proceed to search the place, hoping that your aching senses guide you to the "McGuffin". Soon, you feel a magic tingle that takes you to the bathroom, where some models are having an interesting conversation.');
+    scene.text('"Oh my god! You need to meet this girl! She is an incredible mass… massa… masse… Damn! She is good with her hands!"');
+    scene.text('"Sorry, I don\'t swing that way. Well… except on my boyfriend\'s birthday."');
+    scene.text('"Huh?! No! Well… maybe? I mean that she can help you with your boob pains!"');
+    scene.text('"You mean my BACK pains? Are you feeling alright? You sound a little off today."');
+    scene.text('"What? Yes! I\'m feeling great! You <i>must</i> meet her! She\'s a redhead named Tatiana! She hangs out back there, in the room where we store the… umm… the things that we use for the shoots!"');
+    scene.text('"You mean the props room"?"');
+    scene.text('Okay, that\'s a clue! Maybe you should search the props room?');
+    scene.actions([
+      { label: 'Search the props room', goto: ['tatiana_missions', 'mission2A'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMission2C(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>BTatiana?</b></center>');
+  scene.img('images/characters/city/btatiana/VT1.jpg');
+  scene.text('What do you say to a magical clone? Now that you can give her a good look over… she has nice shoes.');
+  scene.text('"Err… I like your shoes. Where did you get them, ahh… Tatiana?"');
+  scene.text('She seems taken aback by your question, but quickly smiles and begins modeling for you.');
+  scene.text('"These little things? Hmm… I don\'t know. They… I mean, like I was born with them, but for sure! I think they are pretty! I love how they stylize my hips!"');
+  scene.text('She then stops and nervously licks her lips.');
+  scene.text('"Look, sorry if I scared you, but there was this blonde that warned me about somebody coming to… banish me and, well, I was a little confused. You don\'t look like that sort of person. I mean, hell, you know about shoes! Okay, give me a moment. Talking this way is tiring, let\'s talk somewhere else."');
+  scene.text('She extends a hand, touching you and…');
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Bimbos in the center of the mind', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/MT1.jpg');
+    scene.text('Blinking at some spotlights, you find yourself sitting naked in a low bed in what appears to be some kind of photography set, a pale looking Tatiana beside you.');
+    scene.text('"Tatiana, where are we?"');
+    scene.text('"Umm… I don\'t know. Hmm. Someplace in your head?"');
+    scene.text('She leans against you and sighs. It is obvious that talking \'outside\' is tiring. Her skin, now that you can perceive it, is cold and tense under your touch. Not knowing what to do, you instinctively raise your hands and begin to give her a massage.');
+    scene.text('"Ohhh… yes! Thanks! That hit the spot!"');
+    scene.text('You continue massaging a moaning Tatiana for a while before a question finally forms in your head.');
+    scene.text('"Hey, Tatiana, you told me something about a blonde?"');
+    scene.text('"Hmm? Blondie? Yeah, she was the one that warned me about you. She is like this tall, business suit-wearing blonde jerk with a stick up her ass! I told her to try wearing some stilettos and a leather skirt suit, you know for the "hot boss dominatrix" look, and she was like, pretty insulting!" Tatiana sighs. "Look, I know that the \'other\' Tatiana sent you, but can you, like, forget it? I mean, I don\'t want to be banished! I don\'t know what will happen to me if that happens! I just…"');
+    scene.text('Tatiana turns towards you with a look of fear on the face and… freezes.');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).AlexandriaQW = 4;
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'You awaken', handler: (st: GameState) => {
+    scene.text('<center><b>Blondie?</b></center>');
+    scene.img('images/characters/city/alexandria/alexandria.jpg');
+    scene.text('Blinking in confusion, you find yourself sitting back in the props room, in front of a pissed-looking blonde in a suit who is giving you a tirade.');
+    if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
+      scene.text('"Is this some kind of joke?! The final taunt from that three-times-damned Rikudo?! He cursed you to be a vapid woman?!"');
+    } else {
+      scene.text('"Is this some kind of joke?! The ultimate power falling into the hands of a vapid woman?!"');
+    }
+    scene.text('You look around, confused. Who is she? There was another woman. She was… She was…');
+    scene.text('"Tatiana?"');
+    scene.text('The blonde stops in her rant and looks at you. Now that she isn\'t in some insulting monologue, you can see a familiar film in her hand, which quickly disappears into the woman\'s pocket.');
+    scene.text('"Don\'t worry about her, I took care of her before she had time to, well… The truth is that I doubt that your mind can be drained any more, but even without that, she was potentially dangerous."');
+    scene.text('Your mind begins to clear, and you get a better look at the woman. Blonde and tall, wearing a <i>horrible</i> business suit with some <i>utterly plain</i> shoes! As you examine her, she seems to calm a little and talks to you.');
+    scene.text('"Hmm… I suppose it\'s time for a presentation." She sighs. "You can call me Aleksei, and you are?"');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify_exact', 'A241', (-1));
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: '"I am…"', goto: ['tatiana_missions', 'mission2D'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMission2D(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Aleksei</b></center>');
+  scene.img('images/characters/city/alexandria/alexandria.jpg');
+  // TODO-QSP: dynamic text: "…<<$pcs_lastname>>, <<$pcs_firstname>> <<$pcs_lastname>>."
+  scene.text(`"…${((s as any).pcs_lastname ?? 0)}, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}."`);
+  if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
+    qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 1);
+    // TODO-QSP: dynamic text: "Isn't it Mr. Ivanov?" You blink, surprised at her words, and she smiles at your...
+    scene.text(`"Isn't it Mr. Ivanov?" You blink, surprised at her words, and she smiles at your reaction. "Yes, ${((s as any).pcs_lastname ?? 0)}, I know who you <i>really</i> are."`);
+  } else {
+    // TODO-QSP: dynamic text: "So here we are, <<$pcs_lastname>>."
+    scene.text(`"So here we are, ${((s as any).pcs_lastname ?? 0)}."`);
+  }
+  scene.text('As the powerful magician in front of you continues with her presentation, you become aware that this is a trap.');
+  scene.text('"I admit that your presence here was all according to my design. Your -- let\'s be generous -- <i>friend</i> sent you on a fool\'s errand so that we could have some privacy, beyond Reinhold\'s prying eyes. It was I who sent that trickster the information about the curse and--"');
+  scene.text('"Hey girl, remember the dress code!"');
+  scene.text('Alex blinks, surprised at the interruption, as a photographer calls to attention the properly dressed wizard. She slowly turns, puts her hands on her hips, sticks out her well-developed chest, and screams at him,');
+  scene.text('<i>"WHAT DID YOU JUST CALL ME?!!"</i>');
+  scene.text('The man looks nervously towards you, and begins to fidget under Alex\'s hateful gaze, before continuing to stumble over his words. "Uhh… Umm… a woman? I mean, sorry, I know that you are a beautiful, well-developed woman, but you know… you need to be naked."');
+  scene.text('You feel mana piling up around Alex, and for a moment, it seems that the man is going to end up getting roasted, but suddenly, she groans and pushes the photographer away, running out of the room.');
+  scene.text('"What the hell? What did I do wrong?"');
+  scene.text('Neither the photographer nor you can understand what just happened, but you must talk quickly to Tatiana.');
+  (s as any).minut = ((s as any).minut ?? 0) + 12;
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'outfit', 'wear_last_worn');
+  }, goto: ['city_center', ''] },
+  ]);
+  scene.build();
+}
+
+function enterMission2E(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Your bitch</b></center>');
+  scene.img('images/characters/city/btatiana/LT1.jpg');
+  scene.text('The sword turns to smoke as the photography set transforms into a bondage dungeon through your will, and the bootleg Tatiana finds herself handcuffed at your feet.');
+  scene.text('"I think we need to talk, Tatiana."');
+  scene.text('The woman looks around frantically, trying to find an escape route, but she\'s trapped in your mind and, realizing this, finally begins to talk.');
+  scene.text('"Please! Don\'t banish me! Blondie told me to do it!"');
+  scene.text('"Okay, Tatiana. Tell me about this \'Blondie\'."');
+  scene.text('She nervously licks her lips and continues.');
+  scene.text('"Blondie? Yeah, she was the one that warned me about you. She is like this tall, business suit-wearing blonde jerk with a stick up her ass! She told me that the \'other\' Tatiana would send you to banish me and… I was afraid! Can you, like, forget it? I mean, I don\'t want to be banished! I don\'t know what will happen to me if that happens! I just…"');
+  scene.text('She stops midsentence, looks around in fear and… freezes.');
+  scene.actions([
+    { label: 'You awaken', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).AlexandriaQW = 4;
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Blondie?</b></center>');
+    scene.img('images/characters/city/alexandria/alexandria.jpg');
+    scene.text('Blinking, you find yourself sitting back in the props room, your bitch nowhere to be found. In her place is a tall blonde in a suit, who is giving you the once-over.');
+    scene.text('"I admit that I wasn\'t expecting this. I came here to find another of Rikudo\'s victims, but no, I found a predator."');
+    scene.text('You look towards the boxes, searching for Tatiana\'s film, but find it in "Blondie\'s" hand, and as you give her a questioning gaze, she locks her eyes to your own. Your instincts kick in and for a moment, a silent confrontation rages in the room.');
+    scene.text('Blondie isn\'t a Succubus, but she is old and powerful. That means two things. First, you will be hard-pressed to take the film from her grasp, and second, she must be an incredible tasty lay! As you ponder exactly what to do, she pockets the roll of film.');
+    scene.text('"I suppose that you can manage her, but it is better if a more experienced magician takes care of this anomaly. Hmm… I suppose this is time for a presentation."');
+    scene.text('"Yeah, I suppose. \'Blondie\', isn\'t it?"');
+    scene.text('You smile as she goes stiff then begins to grind her teeth. She seems pissed. Score!');
+    scene.text('"No! You can call me Aleksei, and you are?"');
+    scene.actions([
+      { label: '"I am…"', goto: ['tatiana_missions', 'mission2D'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMission2F(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).intel_lvlst = ((s as any).intel_lvlst ?? 0) - (5);
+  qspCall(s, 'archetypes', 'gain', 'bimbo', 'small', 'Tatiana mission');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/btatiana/HT1.jpg');
+  scene.text('As you submit to her, Tatiana gives you a big toothy smile and grabs your head for some cold kisses.');
+  scene.text('"Thank <i>mwah!</i> goodness <i>mwah!</i> you <i>mwah!</i> understand! <i>mwah!</i> I promise <i>mwah!</i> You won\'t <i>mwah!</i> regret <i>mwah!</i> this! <i>mwah!</i> Fuck! <i>mwah!</i> You <i>mwah!</i> make <i>mwah!</i> me <i>mwah!</i> so <i>mwah!</i> horny!"');
+  scene.text('Tatiana stops and looks at you, with a horny/hungry/scary face, and you\'re so preoccupied with wondering what she is going to do that all the tenderness she showed before evaporates from your mind.');
+  scene.text('"Tatiana… are you okay?"');
+  scene.text('She doesn\'t answer you, just licks her lips before giving you an incredible sloppy kiss. Her tongue plays with yours and… then it goes past your tonsils! You try to push Tatiana away, but your limbs go numb as her tongue worms its way down your throat.');
+  // TODO-QSP: dynamic text: "<i>Shh,</i> it's okay, <<$pcs_nickname>>! Don't fight it! You won't remember th...
+  scene.text(`"<i>Shh,</i> it's okay, ${((s as any).pcs_nickname ?? 0)}! Don't fight it! You won't remember this!"`);
+  scene.text('Tatiana\'s voice resonates inside your head, and you can only lie there paralyzed, as the now freezing tongue burrows its way through your insides and towards your brain, where it metastasizes into a million tendrils that begin to do… something.');
+  // TODO-QSP: dynamic text: "<i>Mmm…</i> So good! What a wonderful taste, <<$pcs_nickname>>!"
+  scene.text(`"<i>Mmm…</i> So good! What a wonderful taste, ${((s as any).pcs_nickname ?? 0)}!"`);
+  scene.actions([
+    { label: 'Where are you?', goto: ['tatiana_missions', 'mission2sex'] },
+  ]);
+  scene.build();
+}
+
+function enterMission2sex(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/btatiana/MT2.jpg');
+  scene.text('You find yourself lying face down, wearing only panties in what appears to be a photography set. Tatiana kneels by your side in a somewhat diaphanous robe.');
+  // TODO-QSP: dynamic text: "Are you ready for your massage, <<$pcs_nickname>>?"
+  scene.text(`"Are you ready for your massage, ${((s as any).pcs_nickname ?? 0)}?"`);
+  scene.text('Huh? Oh yeah! How could you forget? You were about to do a photoshoot for a new essential oil with her. It seems you dozed off for a moment, but what were you to do? Tatiana is a professional masseuse, so it\'s hard not to get carried away.');
+  // TODO-QSP: dynamic text: "Okay! Let's start with the oil, <<$pcs_nickname>>!"
+  scene.text(`"Okay! Let's start with the oil, ${((s as any).pcs_nickname ?? 0)}!"`);
+  scene.text('A freezing sensation spreads down your back as Tatiana pours the oil over you. Its coldness seeps into your spine and travels up into your head, making you forget.');
+  scene.text('…Huh…? Didn\'t you have to do something?');
+  // TODO-QSP: dynamic text: "Hey! Look, <<$pcs_nickname>>! The guys are gone! Tell me… Doesn't this give you...
+  scene.text(`"Hey! Look, ${((s as any).pcs_nickname ?? 0)}! The guys are gone! Tell me… Doesn't this give you ideas?"`);
+  scene.text('Tatiana turns your face up and sits on your lap, her robe nowhere to be seen as a mischievous smile crosses her face. She bends over, and her cold lips close over your left nipple.');
+  qspCall(s, 'willpower', 'misc', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Try to remember! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Try to remember! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/Sex/MT3.jpg');
+    // TODO-QSP: dynamic text: "Tee hee, <<$pcs_nickname>>. Do you like this? Am I making your panties wet? Don...
+    scene.text(`"Tee hee, ${((s as any).pcs_nickname ?? 0)}. Do you like this? Am I making your panties wet? Don't worry, no girl has left feeling unsatisfied after playing with me!"`);
+    scene.text('Tatiana kisses, licks and fondles your nipples and breasts, her touch exuding a soothing coldness that somehow gets you hornier.');
+    scene.text('Something suddenly clicks in your mind. <i>This isn\'t real.</i>');
+    scene.text('As if reading your mind, Tatiana stops and pouts. "Hmm? What? Hey! It\'s real to me! And even if it was a dream… Well, you should just enjoy it!"');
+    scene.text('She\'s encroaching on your mind. You must find a way to get rid of her, but how?');
+    scene.text('"It\'s not going to happen!"');
+    scene.text('<i>This is an illusion… a thematic illusion with a script.</i>');
+    scene.text('"Can you stop using big words?!"');
+    scene.text('<i>Just do it. Take control of the performance with a new enactment.</i>');
+    scene.text('"What the hell does that mean?"');
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, please! I'm not going to hurt you! Just enjoy it like all th...
+    scene.text(`"${((s as any).pcs_nickname ?? 0)}, please! I'm not going to hurt you! Just enjoy it like all the other girls!"`);
+    scene.text('Tatiana momentarily stops her assault and looks at you, a little confused. This is your opportunity!');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'kiss', 'force', 'hard');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Counterattack! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Counterattack! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/Sex/MT4.jpg');
+    scene.text('You push away a surprised Tatiana… and then cuddle by her side, kissing your way from collarbone to lips, startling the wannabe vamp, who is shocked to see her hold over your mind broken.');
+    // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>! This isn't how-- <i>mmph?!</i>"
+    scene.text(`"Hey, ${((s as any).pcs_nickname ?? 0)}! This isn't how-- <i>mmph?!</i>"`);
+    scene.text('You silence her with more kisses as your hands roam her sexy body, pinching her nipples, caressing her skin and slowly making your way toward her pure white panties.');
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Please! Stop!"
+    scene.text(`"${((s as any).pcs_nickname ?? 0)}! Please! Stop!"`);
+    scene.text('Tatiana\'s body squirms under your assault, her skin cold, but somehow reacting in arousal, with a mix of goosebumps and hard nipples, and as one of your hands finally reaches her crotch area, she pushes you away with pleading eyes.');
+    // TODO-QSP: dynamic text: "Please, <<$pcs_nickname>>! Don't do that! I'm not supposed to work like this! I...
+    scene.text(`"Please, ${((s as any).pcs_nickname ?? 0)}! Don't do that! I'm not supposed to work like this! I… don't know what will happen if you continue! Please…"`);
+    scene.text('You stop at her pleading, and as Tatiana grows restless, you somehow know that this is her last bullet. Beyond this she will be yours… but maybe this isn\'t a good idea. She seems utterly terrified by your actions.');
+    scene.text('Do you want to continue?');
+    qspCall(s, 'willpower', 'pay', 'force');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'sex', 'force', 'easy');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'No mercy! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'No mercy! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/Sex/MT5.jpg');
+    scene.text('You delicately caress her face, reassuring the scared woman. Without further preamble, your lips follow her body\'s curves, your small kisses drinking in her coldness as your tongue licks her nipples, slowly approaching the prize.');
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>… <i>mmm…</i> There is something I must tell you!"
+    scene.text(`"${((s as any).pcs_nickname ?? 0)}… <i>mmm…</i> There is something I must tell you!"`);
+    scene.text('The aroused redhead grabs a lock of your hair and makes you turn your head towards her.');
+    // TODO-QSP: dynamic text: "Umm… Look <<$pcs_nickname>>. I have done girls, but… I have never let girls do ...
+    scene.text(`"Umm… Look ${((s as any).pcs_nickname ?? 0)}. I have done girls, but… I have never let girls do me. What I mean is… umm… I'm like… a virgin?"`);
+    scene.text('You rest your head against one of her sexy legs and ponder her words for a moment.');
+    if (((s as any).stat ?? 0)?.['lesbian_count'] === 0) {
+      scene.text('"Umm… Tatiana, if we\'re being honest here, I have never done it with a girl either. So maybe this can be the first time for both of us. What do you think?"');
+    } else {
+      scene.text('"Don\'t worry Tatiana, I\'m not going to hurt you! Just enjoy it like all the other girls!"');
+    }
+    scene.text('An embarrassed Tatiana blinks and releases you before opening her legs so you have access to her panties. She obediently allows you push them aside, revealing a brunette bush over her wet pussy. Instinct kicks in, and you lower your head so your suddenly dry tongue can feast on the squirming woman.');
+    qspCall(s, 'willpower', 'sex', 'force', 'easy');
+    qspCall(s, 'willpower', 'pay', 'force');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Break her!', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/Sex/MT6.jpg');
+    scene.text('Tatiana lies back and relaxes as you begin to drink on her chaste nethers, giving her moans and encouraging words. You are doing a damn good job of breaking her away from her innocence and virginity!');
+    // TODO-QSP: dynamic text: "Oh, fuck, <<$pcs_nickname>>! I love being your little slut!"
+    scene.text(`"Oh, fuck, ${((s as any).pcs_nickname ?? 0)}! I love being your little slut!"`);
+    scene.text('And yes, she is a dirty talker who screams your name and encouraging words, as her own hands roam a cold, sexy body that is somehow burning with desire.');
+    // TODO-QSP: dynamic text: "Yes, <<$pcs_nickname>>! Treat me like your bitch! Fuck my cunt!"
+    scene.text(`"Yes, ${((s as any).pcs_nickname ?? 0)}! Treat me like your bitch! Fuck my cunt!"`);
+    scene.text('You don\'t need her encouragement, because every time you lick, caress, finger and drink her cold wetness, your mind explodes with cold mini-orgasms.');
+    // TODO-QSP: dynamic text: "Oh my fucking God! Yes! <<$pcs_nickname>>! I never want to get out of this bed!...
+    scene.text(`"Oh my fucking God! Yes! ${((s as any).pcs_nickname ?? 0)}! I never want to get out of this bed!"`);
+    scene.text('She then grabs your head and pushes it towards her rising thighs, so you can drink from her orgasming cunt. As you feast, half-forgotten memories get clearer, your insight gets sharper, and a calming sensation melts away all your problems.');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).girl = ((s as any).girl ?? 0) + (1);
+    (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cuddles', handler: (st: GameState) => {
+    scene.img('images/characters/city/btatiana/MT1.jpg');
+    scene.text('Tatiana sits between your arms, green and sickly. Whatever you have done has startled the copycat who, despite that, seems to be in good humor.');
+    // TODO-QSP: dynamic text: "Fuck, <<$pcs_nickname>>! That was weird… like eating backward? I mean, I don't ...
+    scene.text(`"Fuck, ${((s as any).pcs_nickname ?? 0)}! That was weird… like eating backward? I mean, I don't care if we do that again and again, but give a girl time to recover."`);
+    scene.text('You massage and kiss the woman as she tiredly leans against you.');
+    // TODO-QSP: dynamic text: "Umm… <<$pcs_nickname>>? Sorry if I freaked you out. It was that woman's fault… ...
+    scene.text(`"Umm… ${((s as any).pcs_nickname ?? 0)}? Sorry if I freaked you out. It was that woman's fault… err, Blondie. She was the one that warned me about you. She's this tall, business suit-wearing blonde jerk with a stick up her ass! I told her to wear some stilettos and a leather skirt suit -- you know, for the "hot boss dominatrix" look -- and she was like, pretty insulting!" Tatiana sighs. "Look, I know that the 'other' Tatiana sent you, and…"`);
+    scene.text('She turns towards you with bright puppy-dog eyes filled with hope… and maybe some love, before carrying on.');
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Do you remember the tale 'Beauty and The Beast'? Well, in it...
+    scene.text(`"${((s as any).pcs_nickname ?? 0)}! Do you remember the tale 'Beauty and The Beast'? Well, in it, The Serpent ends up screwing the girl pretty hard, and she is like, "You know, you must marry me!" So, I mean… you're like The Serpent, and I'm The Beauty, so… can I, like, come and live with you? I don't want to go with the other Tatiana! We can even…"`);
+    scene.text('She stops mid-sentence, looks around in fear and… freezes.');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'mood', 'raise', 'small');
+    qspCall(s, 'exp_gain', 'intel', 20);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'You awaken', handler: (st: GameState) => {
+    scene.text('<center><b>Blondie?</b></center>');
+    scene.img('images/characters/city/alexandria/alexandria.jpg');
+    scene.text('Blinking, you find yourself sitting back in the props room, Tatiana nowhere to be found. In her place is a tall blonde in a suit, who is looking at you with surprise.');
+    scene.text('"I wasn\'t expecting this! A, let\'s say, \'unorthodox\' stratagem, but it worked, congratulations."');
+    scene.text('Taking into consideration her style, she must be \'Blondie\', and as your gaze roams over her figure, your attention focuses on her hand, where Tatiana\'s film rests. \'Blondie\' takes notice, and before you can complain, she pockets the trinket.');
+    scene.text('"Don\'t worry about her. I am sure that you can manage this anomaly, but it is better if a more experienced magician takes care of this. Hmm, I suppose this is time for a presentation."');
+    scene.text('"Yeah, I suppose. \'Blondie\', isn\'t it?"');
+    scene.text('You smile as she goes stiff then begins to grind her teeth. She seems pissed. Score!');
+    scene.text('"No! You can call me Aleksei, and you are?"');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 3);
+    (s as any).AlexandriaQW = 4;
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: '"I am…"', goto: ['tatiana_missions', 'mission2D'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'You submit', goto: ['tatiana_missions', 'mission2F'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'You submit', goto: ['tatiana_missions', 'mission2F'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'That feels nice!', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (25);
+    qspCall(s, 'mood', 'raise', 'small');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/btatiana/Sex/MT3.jpg');
+    // TODO-QSP: dynamic text: "Tee hee, <<$pcs_nickname>>>! Do you like this? Am I making your panties wet? Do...
+    scene.text(`"Tee hee, ${((s as any).pcs_nickname ?? 0)}>! Do you like this? Am I making your panties wet? Don't worry, no girl has left feeling unsatisfied after playing with me!"`);
+    scene.text('Tatiana kisses, licks and fondles your nipples and breasts, her touch exuding a soothing coldness that somehow gets you hornier, and you… all you can do is embrace Tatiana so she doesn\'t stop her feasting.');
+    scene.text('"Oh please, Tatiana! Don\'t stop!"');
+    scene.text('She playfully slaps your hands away, sitting back without stopping her own caresses over your breasts. She does so slowly, delicately, while looking at you tenderly.');
+    // TODO-QSP: dynamic text: "You know, <<$pcs_nickname>>, there have been other girls, but they were like… I...
+    scene.text(`"You know, ${((s as any).pcs_nickname ?? 0)}, there have been other girls, but they were like… I dunno… Vodka shots? Yeah, that! Quick and dirty fun! But you? You're my 'Billion Bucks Vodka!' So, I was thinking… want to be my special girl? You know, like… my morning girl? The one that must be tasted slow and with care?`);
+    scene.text('Before you can answer or even think about her question, Tatiana pushes a finger inside your mouth and waits until your somewhat muddled mind reacts and you suck the offered appendage. After a moment, she withdraws, and using her tongue, passionately licks her spit covered finger.');
+    scene.actions([
+      { label: 'She goes down on you', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).cuni = ((s as any).cuni ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/btatiana/Sex/MT7.jpg');
+    scene.text('After taking a while to savor you, Tatiana gets up, and with her trademarked mischievous smile, grabs your panties and pulls them off -- without complaint on your part -- so she can take in their fragrance.');
+    // TODO-QSP: dynamic text: "Ahhh… <<$pcs_nickname>>, I knew it! I made you so wet! Damn! You're a slut! Tee...
+    scene.text(`"Ahhh… ${((s as any).pcs_nickname ?? 0)}, I knew it! I made you so wet! Damn! You're a slut! Tee-hee! You have no idea how much I love that!"`);
+    scene.text('Tatiana then proceeds to grab your knees, opening your legs wide so she can push her cold lips against one of your thighs, before a loud <i>\'muach\'</i> is heard on the set.');
+    // TODO-QSP: dynamic text: "Tee-hee. There it is, <<$pcs_nickname>>! From now on, you are marked as my girl...
+    scene.text(`"Tee-hee. There it is, ${((s as any).pcs_nickname ?? 0)}! From now on, you are marked as my girl!"`);
+    scene.text('A reddening circle is now forming on your thigh. Strangely, the hickey didn\'t hurt, and as you caress the skin, you feel it numbed with cold.');
+    scene.text('"Tatiana, how did you… <i>Oh my god!</i>"');
+    scene.text('You shiver in pleasure as an ice-cold sensation rises from your loins, Tatiana\'s tongue beginning to twist around inside your cunt. It\'s an utterly alien feeling that you want to experience again and again. Thankfully, Tatiana is perfectly happy for you to enjoy it as she hungrily licks your pussy.');
+    scene.actions([
+      { label: 'She fingers you', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).girl = ((s as any).girl ?? 0) + (1);
+    (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/btatiana/Sex/MT8.jpg');
+    scene.text('At some point, between your moans, calls to God and screaming her name, Tatiana has managed to turn you face down. She lies over you, kissing your back and whispering sweet-nothings at the same time as her finger penetrates your vulva.');
+    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+      scene.text('"Tatiana! I am… <i>ahh…</i> a virgin!"');
+      scene.text('You don\'t know exactly why you muttered those words as Tatiana drills your cunt a little too deep, but it makes her stop and withdraw the intruding finger to your engorged outer lips, where she proceeds to do more delicate masturbation.');
+      // TODO-QSP: dynamic text: "Oh… okay. Sorry, <<$pcs_nickname>>, I won't take that from you. I… understand t...
+      scene.text(`"Oh… okay. Sorry, ${((s as any).pcs_nickname ?? 0)}, I won't take that from you. I… understand that you want to gift it to someone special."`);
+    } else {
+      scene.text('"Tatiana! It\'s so cold! Don\'t stop!"');
+      scene.text('She doesn\'t, and indeed, pushes her fingers even deeper, filling your insides with that sweet freezing sensation that makes you groan and squirm in pleasure, enticing giggles from your fingering mistress.');
+      // TODO-QSP: dynamic text: "Yeah… Do you like this, <<$pcs_nickname>>? Tee-hee. I just love how you squirm!...
+      scene.text(`"Yeah… Do you like this, ${((s as any).pcs_nickname ?? 0)}? Tee-hee. I just love how you squirm! <i>Muach!</i> Don't worry, I'm going to make you my little slutty girl!"`);
+    }
+    scene.text('You can only answer by thrashing under her touch and biting your lip, submitting to a Tatiana who seems dedicated to extending her delicious cold all over your body through caresses and kisses.');
+    scene.actions([
+      { label: '"Want to know something?"', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).intel_lvlst = ((s as any).intel_lvlst ?? 0) - (20);
+    qspCall(s, 'archetypes', 'gain', 'bimbo', 'large', 'Tatiana mission');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/btatiana/HT1.jpg');
+    scene.text('You barely hear Tatiana whisper in your ear, before her cold tongue slithers down your ear canal, pushing beyond your eardrum and into your head, where a not unpleasant sensation takes hold. Her tongue metastasizes into a million tendrils that begin to do… something.');
+    // TODO-QSP: dynamic text: "Blondie, that tall, business suit-wearing blonde jerk with a stick up her ass, ...
+    scene.text(`"Blondie, that tall, business suit-wearing blonde jerk with a stick up her ass, warned me about your quest for the 'other' Tatiana, and I can't let you take me to her. I don't know what will happen, but I don't think it will be pretty, so I was thinking about erasing your memory and letting you go. But do you know how good do you taste? Incredible! So, I have an idea! You can help me escape! Sorry, ${((s as any).pcs_nickname ?? 0)}, but I must do more than just erase your memory and take a bite here and there. Relax, this isn't going to hurt you. I promise!"`);
+    scene.text('Your mind is too fuzzy, and you are barely capable of understanding her words, but you know that it isn\'t a good idea to submit to her, so you thrash against her hold, a moan of pleasure escape your lips as your numbed body submits completely to the vampiric apparition.');
+    // TODO-QSP: dynamic text: "Oh… No, no, no! <<$pcs_nickname>>! Please just enjoy it! I'm going to… What?! N...
+    scene.text(`"Oh… No, no, no! ${((s as any).pcs_nickname ?? 0)}! Please just enjoy it! I'm going to… What?! No, wait! Please! N--"`);
+    scene.text('Tatiana screams, and you suddenly find yourself free from her hold.');
+    scene.actions([
+      { label: 'You awaken', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).AlexandriaQW = 5;
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Blondie?</b></center>');
+    scene.img('images/characters/city/alexandria/alexandria.jpg');
+    scene.text('Blinking in confusion, you find yourself sitting back in the props room, in front of a pissed-looking blonde in a suit who\'s going off on a tirade.');
+    scene.text('"Utterly disappointing! For a moment I believed that you could impose yourself against this <i>trifling</i> problem! I misjudged you!"');
+    scene.text('You look around, confused. Who is she? There was another woman. She was… She was… "Tatiana?"');
+    scene.text('The blonde stops in her rant and looks at you. Now that she isn\'t in some insulting monologue, you can see a familiar film in her hand, which quickly disappears into the woman\'s pocket.');
+    scene.text('"Don\'t worry about her, I took care of her before she had time to, well… The truth is that I doubt that your mind can be drained any more, but even without that, she was potentially dangerous. Hmm… I suppose this is time for a presentation."');
+    scene.text('Your mind begins to clear, and you get a better look at the woman. Blonde and tall, wearing a <i>horrible</i> business suit with some <i>utterly plain</i> shoes! There\'s no doubt, she must be…');
+    scene.text('"Blondie?"');
+    scene.text('She goes stiff and grinds her teeth. She seems pissed, more pissed actually.');
+    scene.text('"No! You can call me Aleksei, and you are?"');
+    scene.actions([
+      { label: '"I am…"', goto: ['tatiana_missions', 'mission2D'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
   } },
     ]);
   } },
@@ -292,6 +1012,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'mission1':
       enterMission1(s, scene);
+      break;
+    case 'mission2':
+      enterMission2(s, scene);
+      break;
+    case 'mission2A':
+      enterMission2A(s, scene);
+      break;
+    case 'mission2B':
+      enterMission2B(s, scene);
+      break;
+    case 'mission2C':
+      enterMission2C(s, scene);
+      break;
+    case 'mission2D':
+      enterMission2D(s, scene);
+      break;
+    case 'mission2E':
+      enterMission2E(s, scene);
+      break;
+    case 'mission2F':
+      enterMission2F(s, scene);
+      break;
+    case 'mission2sex':
+      enterMission2sex(s, scene);
       break;
     default:
       enterStart(s, scene);

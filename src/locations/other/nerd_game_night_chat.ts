@@ -46,7 +46,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
       scene.text('You look over and see Anushka clearing away a table and wonder if Artem might want to hang around and wait for her to get off work.');
       scene.actions([
         { label: 'Wait for Anushka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).max ?? 0)(0, (23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
+    (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
     scene.text('You stop him before he makes it to the door. "Let\'s wait for Anushka to get off work."');
@@ -63,45 +63,301 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (((s as any).npc_rel ?? 0)?.['A2'] <= 20) {
-      scene.text('When he sees you walking over, he gives you a disgusted look. "Get away from me, you disgusting slut!" he says as he leaves.');
-    } else {
-      scene.text('You try talking to Artem, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
-      scene.text('He quickly gathers his stuff up and leaves.');
-      scene.text('You try talking to Artem, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but I need to get home."');
-      scene.text('You can tell he\'s trying to be nice, but obviously doesn\'t want to be seen talking to you in front of his fellow nerds.');
-    }
-    if (((s as any).grupTipe ?? 0) === 3) {
+    if (((s as any).fame ?? 0)?.['pav_slut'] > 175) {
       if (((s as any).npc_rel ?? 0)?.['A2'] <= 20) {
-        scene.text('Artem isn\'t really interested in talking to you, but you insist and try to keep up a conversation until he finally stops you. "Hey, I\'ve gotta go… I need to be home before it gets too late. I guess I\'ll see you later?" he says halfheartedly with an awkward laugh.');
+        scene.text('When he sees you walking over, he gives you a disgusted look. "Get away from me, you disgusting slut!" he says as he leaves.');
       } else {
-        // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-        scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
-        if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
-          (s as any).artemQW['knows_dorm_room_number'] = 1;
-          scene.text('You greet Artem with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself. Just before he leaves, he tells you he\'s living on the second floor of the university dorm building and that you should come and visit him sometime.');
+        if (((s as any).npc_rel ?? 0)?.['A2'] < 60) {
+          scene.text('You try talking to Artem, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
+          scene.text('He quickly gathers his stuff up and leaves.');
         } else {
-          scene.text('You greet Artem with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
+          scene.text('You try talking to Artem, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but I need to get home."');
+          scene.text('You can tell he\'s trying to be nice, but obviously doesn\'t want to be seen talking to you in front of his fellow nerds.');
         }
+      }
+    } else {
+      if (((s as any).grupTipe ?? 0) === 3) {
+        if (((s as any).npc_rel ?? 0)?.['A2'] <= 20) {
+          scene.text('Artem isn\'t really interested in talking to you, but you insist and try to keep up a conversation until he finally stops you. "Hey, I\'ve gotta go… I need to be home before it gets too late. I guess I\'ll see you later?" he says halfheartedly with an awkward laugh.');
+        } else {
+          if (((s as any).npc_rel ?? 0)?.['A2'] < 60) {
+            // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+            scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+          } else {
+            if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
+              (s as any).artemQW['knows_dorm_room_number'] = 1;
+              scene.text('You greet Artem with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself. Just before he leaves, he tells you he\'s living on the second floor of the university dorm building and that you should come and visit him sometime.');
+            } else {
+              scene.text('You greet Artem with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
+            }
+          }
+        }
+      } else {
         if (((s as any).npc_rel ?? 0)?.['A2'] <= 20) {
           scene.text('You try talking to Artem, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
           scene.text('He quickly gathers his stuff up and leaves.');
         } else {
-          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
-          if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
-            (s as any).artemQW['knows_dorm_room_number'] = 1;
+          if (((s as any).npc_rel ?? 0)?.['A2'] < 60) {
             // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-            scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went. Just before he leaves, he tells you he's living on the second floor of the university dorm building and that you should come and visit him sometime.`);
+            scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
           } else {
-            // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-            scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+            if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
+              (s as any).artemQW['knows_dorm_room_number'] = 1;
+              // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+              scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went. Just before he leaves, he tells you he's living on the second floor of the university dorm building and that you should come and visit him sometime.`);
+            } else {
+              // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+              scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+            }
           }
-          qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
         }
       }
     }
   }
+  qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  scene.build();
+}
+
+function enterPetka(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', 'A6', 'like');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big6.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] > 175) {
+    if (((s as any).npc_rel ?? 0)?.['A6'] <= 20) {
+      scene.text('When he sees you walking over, he gives you a disgusted look. "Get away from me, you disgusting slut!" he says as he leaves.');
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A6'] < 60) {
+        scene.text('You try talking to Petka, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
+        scene.text('He quickly gathers his stuff up and leaves.');
+      } else {
+        scene.text('You try talking to Petka, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but I need to get home."');
+        scene.text('You can tell he\'s trying to be nice, but obviously doesn\'t want to be seen talking to you in front of his fellow nerds.');
+      }
+    }
+  } else {
+    if (((s as any).grupTipe ?? 0) === 3) {
+      if (((s as any).npc_rel ?? 0)?.['A6'] <= 20) {
+        scene.text('Petka isn\'t really interested in talking to you, but you insist and try to keep up a conversation until he finally stops you. "Hey, I\'ve gotta go… I need to be home before it gets too late. I guess I\'ll see you later?" he says halfheartedly with an awkward laugh.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A6'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+        } else {
+          scene.text('You greet Petka with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A6'] <= 20) {
+        scene.text('You try talking to Petka, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
+        scene.text('He quickly gathers his stuff up and leaves.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A6'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+        } else {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+        }
+      }
+    }
+  }
+  qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  scene.build();
+}
+
+function enterJulia(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big12.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] > 175) {
+    if (((s as any).npc_rel ?? 0)?.['A12'] <= 20) {
+      scene.text('When she sees you walking over, she gives you a disgusted look. "Get away from me, you disgusting slut!" she says as she leaves.');
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A12'] < 60) {
+        scene.text('You try talking to Julia, but it\'s a very one-sided conversation with you doing all of the talking until she finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," she says quietly. "Anyway, I need to get home." She gathers her stuff up and leaves.');
+      } else {
+        scene.text('You try talking to Julia, but it\'s a very one-sided conversation with you doing all of the talking until she finally speaks up. "I don\'t want to sound rude, but I need to get home."');
+        scene.text('You can tell she\'s trying to be nice, but obviously doesn\'t want to be seen talking to you in front of her fellow nerds.');
+      }
+    }
+  } else {
+    if (((s as any).grupTipe ?? 0) === 3) {
+      if (((s as any).npc_rel ?? 0)?.['A12'] <= 20) {
+        scene.text('Julia isn\'t really interested in talking to you, but you insist and try to keep up a conversation until she finally stops you. "Hey, I\'ve gotta go… I need to be home before it gets too late. I guess I\'ll see you later?" she says halfheartedly with an awkward laugh.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A12'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+        } else {
+          scene.text('You greet Julia with a smile and make a point to ask her how the game was. With a shy smile, she tells you in great detail how the game went; she seems to have really enjoyed herself.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A12'] <= 20) {
+        scene.text('You try talking to Julia, but it\'s a very one-sided conversation with you doing all of the talking until she finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," she says quietly. "Anyway, I need to get home."');
+        scene.text('She quickly gathers her stuff up and leaves.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A12'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+        } else {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and tells you in great detail how the game went.`);
+        }
+      }
+    }
+  }
+  qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  scene.build();
+}
+
+function enterFeofan(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', 'A152', 'like');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big152.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] > 175) {
+    if (((s as any).npc_rel ?? 0)?.['A152'] <= 20) {
+      scene.text('When he sees you walking over, he gives you a disgusted look. "Get away from me you disgusting slut!" he says as he leaves.');
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A152'] < 60) {
+        scene.text('You try talking to Feofan, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home." He gathers his stuff up and leaves.');
+      } else {
+        scene.text('You try talking to Feofan, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but I need to get home."');
+        scene.text('You can tell he\'s trying to be nice, but obviously doesn\'t want to be seen talking to you in front of his fellow nerds.');
+      }
+    }
+  } else {
+    if (((s as any).grupTipe ?? 0) === 3) {
+      if (((s as any).npc_rel ?? 0)?.['A152'] <= 20) {
+        scene.text('Feofan isn\'t really interested in talking to you, but you insist and try to keep up a conversation until he finally stops you. "Hey, I\'ve gotta go… I need to be home before it gets too late. I guess I\'ll see you later?" he says halfheartedly with an awkward laugh.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A152'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played. He seems to really enjoy it and talks about it for some time.`);
+        } else {
+          scene.text('You greet Feofan with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A152'] <= 20) {
+        scene.text('You try talking to Feofan, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
+        scene.text('He quickly gathers his stuff up and leaves.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A152'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+        } else {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+        }
+      }
+    }
+  }
+  qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  scene.build();
+}
+
+function enterGerasim(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', 'A153', 'like');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big153.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] > 175) {
+    if (((s as any).npc_rel ?? 0)?.['A153'] <= 20) {
+      scene.text('When he sees you walking over, he gives you a disgusted look. "Get away from me, you disgusting slut!" he says as he leaves.');
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A153'] < 60) {
+        scene.text('You try talking to Gerasim, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
+        scene.text('He quickly gathers his stuff up and leaves.');
+      } else {
+        scene.text('You try talking to Gerasim, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but I need to get home."');
+        scene.text('You can tell he\'s trying to be nice, but obviously doesn\'t want to be seen talking to you in front of his fellow nerds.');
+      }
+    }
+  } else {
+    if (((s as any).grupTipe ?? 0) === 3) {
+      if (((s as any).npc_rel ?? 0)?.['A153'] <= 20) {
+        scene.text('Gerasim isn\'t really interested in talking to you, but you insist and try to keep up a conversation until he finally stops you. "Hey, I\'ve gotta go… I need to be home before it gets too late. I guess I\'ll see you later?" he says halfheartedly with an awkward laugh.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A153'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+        } else {
+          scene.text('You greet Gerasim with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A153'] <= 20) {
+        scene.text('You try talking to Gerasim, but it\'s a very one-sided conversation with you doing all of the talking until he finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," he says quietly. "Anyway, I need to get home."');
+        scene.text('He quickly gathers his stuff up and leaves.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A153'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+        } else {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+        }
+      }
+    }
+  }
+  qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  scene.build();
+}
+
+function enterZinaida(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', 'A142', 'like');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big142.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] > 175) {
+    if (((s as any).npc_rel ?? 0)?.['A142'] <= 20) {
+      scene.text('When she sees you walking over, she gives you a disgusted look. "Get away from me you disgusting slut!" she says as she leaves.');
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A142'] < 60) {
+        scene.text('You try talking to Zinaida, but it\'s a very one-sided conversation with you doing all of the talking until she finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," she says quietly. "Anyway, I need to get home."');
+        scene.text('She quickly gathers her stuff up and leaves.');
+      } else {
+        scene.text('You try talking to Zinaida, but it\'s a very one-sided conversation with you doing all of the talking until she finally speaks up. "I don\'t want to sound rude, but I need to get home."');
+        scene.text('You can tell she\'s trying to be nice, but obviously doesn\'t want to be seen talking to you in front of her fellow nerds.');
+      }
+    }
+  } else {
+    if (((s as any).grupTipe ?? 0) === 3) {
+      if (((s as any).npc_rel ?? 0)?.['A142'] <= 20) {
+        scene.text('Zinaida isn\'t really interested in talking to you, but you insist and try to keep up a conversation until she finally stops you. "Hey, I\'ve gotta go… I need to be home before it gets too late. I guess I\'ll see you later?" she says halfheartedly with an awkward laugh.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A142'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+        } else {
+          scene.text('You greet Zinaida with a smile and make a point to ask her how the game was. With a shy smile, she tells you in great detail how the game went; she seems to have really enjoyed herself.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A142'] <= 20) {
+        scene.text('You try talking to Zinaida, but it\'s a very one-sided conversation with you doing all of the talking until she finally speaks up. "I don\'t want to sound rude, but we\'re not really friends so I\'m not sure why you\'d want to talk to me," she says quietly. "Anyway, I need to get home."');
+        scene.text('She quickly gathers her stuff up and leaves.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A142'] < 60) {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+        } else {
+          // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? 0)}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and tells you in great detail how the game went.`);
+        }
+      }
+    }
+  }
+  qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
   scene.build();
 }
 
@@ -116,6 +372,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'artem':
       enterArtem(s, scene);
+      break;
+    case 'petka':
+      enterPetka(s, scene);
+      break;
+    case 'julia':
+      enterJulia(s, scene);
+      break;
+    case 'feofan':
+      enterFeofan(s, scene);
+      break;
+    case 'gerasim':
+      enterGerasim(s, scene);
+      break;
+    case 'zinaida':
+      enterZinaida(s, scene);
       break;
     default:
       enterSetLeaveAct(s, scene);

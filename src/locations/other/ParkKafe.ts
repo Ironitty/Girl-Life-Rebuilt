@@ -95,7 +95,7 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Turn them down', handler: (st: GameState) => {
+          { label: 'Turn them down [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -193,7 +193,7 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Reject him', handler: (st: GameState) => {
+        { label: 'Reject him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -415,7 +415,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop!', handler: (st: GameState) => {
+        { label: 'Stop! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -807,7 +807,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Decline', handler: (st: GameState) => {
+        { label: 'Decline [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/parkcafe.jpg');
@@ -1141,24 +1141,15 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.img('images/locations/city/centralpark/cafe/africantable1.jpg');
-    scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start talking amongst themselves. From their constant glances, you\'re sure that they\'re talking about you.');
-    // TODO-QSP: dynamic text: Djibril gives you a huge grin and waves you over. "Hello again, <<$pcs_nickname>...
-    scene.text(`Djibril gives you a huge grin and waves you over. "Hello again, ${((s as any).pcs_nickname ?? 0)}! We were about to head back to our dorm and were wondering if you'd like to come with us again?"`);
-    if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1  &&  ((s as any).pcs_hotcat ?? 0) >= 5) {
-      (s as any).DjibrilQW['invite'] = 1;
-      scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
-      scene.text('Djibril gives you a huge grin and waves you over. As you approach their table, Djibril speaks and gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look.');
-      // TODO-QSP: dynamic text: "Hello again <<$pcs_nickname>>, this is my dorm roommate, Farai. The rest are fr...
-      scene.text(`"Hello again ${((s as any).pcs_nickname ?? 0)}, this is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna, and Arendse."`);
-      if (((s as any).npc_had_sex ?? 0)?.['A243'] !== 0  ||  ((s as any).ErmiasQW ?? 0)?.['dorm_bj'] === 1) {
-        scene.text('You and Ermias knowingly grin at each other, but the rest of the group don\'t seem to notice.');
-      }
-      scene.text('You talk to them for a while and they are very flirty with you before Ermias looks at his phone. "Come on, Djibril. We need to go."');
-      scene.text('Djibril glances over at him as the rest of them all get up. "Sorry, I have to go, but it was nice meeting you again. Have a nice day." Just as they\'re about to leave, Djibril stops. "We were about to head back to our dorm and I was wondering if you\'d like to come with us? I promise it will be a lot of fun."');
+    if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1  &&  ((s as any).DjibrilQW ?? 0)?.['african_gangbang'] > 0) {
+      scene.img('images/locations/city/centralpark/cafe/africantable1.jpg');
+      scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start talking amongst themselves. From their constant glances, you\'re sure that they\'re talking about you.');
+      // TODO-QSP: dynamic text: Djibril gives you a huge grin and waves you over. "Hello again, <<$pcs_nickname>...
+      scene.text(`Djibril gives you a huge grin and waves you over. "Hello again, ${((s as any).pcs_nickname ?? 0)}! We were about to head back to our dorm and were wondering if you'd like to come with us again?"`);
       scene.actions([
         { label: 'Accept', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
+    (s as any).DjibrilQW['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
@@ -1194,6 +1185,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Decline', handler: (st: GameState) => {
+    (s as any).DjibrilQW['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'dislike');
@@ -1215,32 +1207,109 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).DjibrilQW['invite'] = 1;
-      scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
-      scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
-      // TODO-QSP: dynamic text: After a few minutes, Djibril heads over to your table as his friends head outsid...
-      scene.text(`After a few minutes, Djibril heads over to your table as his friends head outside. "Hello again ${((s as any).pcs_nickname ?? 0)}, I didn't expect to see you here."`);
-      scene.text('You talk to him for a few minutes before one of his friends peeks their head back inside. "Come on, Djibril! Let\'s go!"');
-      scene.text('He glances over at them, then looks back at you. "Sorry, I have to go, but it was nice meeting you again. Have a nice day."');
-      scene.text('He turns and leaves to join his friends outside before stopping at the door. "Hey if you want, why don\'t you stop by my dorm some time?"');
-      scene.text('He tells you which building it is and which room is his before he heads outside with his friends and they walk away.');
-      if (((s as any).pcs_hotcat ?? 0) >= 5) {
-        (s as any).DjibrilQW['meet'] = 1;
-        scene.text('A few young African men sitting at another table see you and start talking amongst themselves. From the constant glances you receive, you\'re sure they\'re talking about you.');
-        scene.text('Eventually, they all get up and come over to your table. One of them steps forward and introduces himself. "Hey, I\'m Djibril."');
-        scene.text('As he speaks, he gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look. "This is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna, and Arendse. What\'s your name?"');
+      if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1  &&  ((s as any).pcs_hotcat ?? 0) >= 5) {
+        (s as any).DjibrilQW['invite'] = 1;
+        scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
+        scene.text('Djibril gives you a huge grin and waves you over. As you approach their table, Djibril speaks and gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look.');
+        // TODO-QSP: dynamic text: "Hello again <<$pcs_nickname>>, this is my dorm roommate, Farai. The rest are fr...
+        scene.text(`"Hello again ${((s as any).pcs_nickname ?? 0)}, this is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna, and Arendse."`);
         if (((s as any).npc_had_sex ?? 0)?.['A243'] !== 0  ||  ((s as any).ErmiasQW ?? 0)?.['dorm_bj'] === 1) {
           scene.text('You and Ermias knowingly grin at each other, but the rest of the group don\'t seem to notice.');
         }
-        // TODO-QSP: dynamic text: You smile at him. "<<$pcs_firstname>> <<$pcs_lastname>>, but most people just ca...
-        scene.text(`You smile at him. "${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, but most people just call me ${((s as any).pcs_nickname ?? 0)}."`);
-        scene.text('He looks surprised. "Are you from Pavlovsk?" When you nod your head, he looks even more surprised. "Do you have an Aunt Luda, dating Olu?"');
-        scene.text('Now it\'s your turn to look surprised. "Yes, how did you know that?"');
-        scene.text('He shakes his head with a slight laugh. "He\'s my uncle. They told me about you. Small world, huh?"');
-        scene.text('You giggle. "Yeah, it really is…"');
-        scene.text('"We were about to head back to our dorm and were wondering if you would like to come with us?" he asks. "I promise it will be a lot of fun."');
+        scene.text('You talk to them for a while and they are very flirty with you before Ermias looks at his phone. "Come on, Djibril. We need to go."');
+        scene.text('Djibril glances over at him as the rest of them all get up. "Sorry, I have to go, but it was nice meeting you again. Have a nice day." Just as they\'re about to leave, Djibril stops. "We were about to head back to our dorm and I was wondering if you\'d like to come with us? I promise it will be a lot of fun."');
         scene.actions([
           { label: 'Accept', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
+    qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
+    qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
+    qspCall(s, 'npc_relationship', 'modify', 'A244', 'like');
+    qspCall(s, 'npc_relationship', 'modify', 'A245', 'like');
+    qspCall(s, 'npc_relationship', 'modify', 'A246', 'like');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/walktodorm.jpg');
+    scene.text('You smile at them. "Sure, that sounds like fun."');
+    scene.text('They share some looks, then smile back at you.');
+    scene.text('As you leave, Djibril wraps his arm around your shoulder and walks with you while the rest lead the way. You walk out of the park and board the metro.');
+    scene.text('During the trip, they all flatter you by telling you how pretty you are and how good you were last time before you finally arrive at the university dorms.');
+    scene.actions([
+      { label: 'Change your mind', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A82', 'hate');
+    qspCall(s, 'npc_relationship', 'modify', 'A242', 'hate');
+    qspCall(s, 'npc_relationship', 'modify', 'A243', 'hate');
+    qspCall(s, 'npc_relationship', 'modify', 'A244', 'hate');
+    qspCall(s, 'npc_relationship', 'modify', 'A245', 'hate');
+    qspCall(s, 'npc_relationship', 'modify', 'A246', 'hate');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/walktodorm.jpg');
+    scene.text('When you think about it some more, you decide that you don\'t want to be gangbanged by a bunch of African college guys and pretend to check your phone.');
+    scene.text('"Oh, sorry guys, I just noticed the time and I have to go."');
+    scene.text('You slip away from Djibril and walk away from them. You don\'t glance back, but you\'re sure they\'re unhappy.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_island', ''] },
+    ]);
+  } },
+      { label: 'Go to dorm', goto: ['djibrilev1', 'djibrilgb'] },
+    ]);
+  } },
+          { label: 'Decline', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
+    qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
+    qspCall(s, 'npc_relationship', 'modify', 'A243', 'dislike');
+    qspCall(s, 'npc_relationship', 'modify', 'A244', 'dislike');
+    qspCall(s, 'npc_relationship', 'modify', 'A245', 'dislike');
+    qspCall(s, 'npc_relationship', 'modify', 'A246', 'dislike');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/reply.jpg');
+    scene.text('You shake your head as you get up from your table. "No thank you."');
+    scene.text('"Come on, Djibril," one of his friends says. "Let\'s go."');
+    scene.text('He glances over at them, then looks back at you. "Sorry, I have to go, but it was nice meeting you again. Have a nice day."');
+    scene.text('He turns and leaves to join his friends outside, but stops at the door. "Hey, if you want, why don\'t you stop by my dorm some time?"');
+    scene.text('He tells you which building it is and which room is his before he heads outside and walks away with his friends.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+        ]);
+      } else {
+        if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
+          (s as any).DjibrilQW['invite'] = 1;
+          scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
+          scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
+          // TODO-QSP: dynamic text: After a few minutes, Djibril heads over to your table as his friends head outsid...
+          scene.text(`After a few minutes, Djibril heads over to your table as his friends head outside. "Hello again ${((s as any).pcs_nickname ?? 0)}, I didn't expect to see you here."`);
+          scene.text('You talk to him for a few minutes before one of his friends peeks their head back inside. "Come on, Djibril! Let\'s go!"');
+          scene.text('He glances over at them, then looks back at you. "Sorry, I have to go, but it was nice meeting you again. Have a nice day."');
+          scene.text('He turns and leaves to join his friends outside before stopping at the door. "Hey if you want, why don\'t you stop by my dorm some time?"');
+          scene.text('He tells you which building it is and which room is his before he heads outside with his friends and they walk away.');
+          scene.actions([
+            { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+          ]);
+        } else {
+          if (((s as any).pcs_hotcat ?? 0) >= 5) {
+            (s as any).DjibrilQW['meet'] = 1;
+            scene.text('A few young African men sitting at another table see you and start talking amongst themselves. From the constant glances you receive, you\'re sure they\'re talking about you.');
+            scene.text('Eventually, they all get up and come over to your table. One of them steps forward and introduces himself. "Hey, I\'m Djibril."');
+            scene.text('As he speaks, he gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look. "This is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna, and Arendse. What\'s your name?"');
+            if (((s as any).npc_had_sex ?? 0)?.['A243'] !== 0  ||  ((s as any).ErmiasQW ?? 0)?.['dorm_bj'] === 1) {
+              scene.text('You and Ermias knowingly grin at each other, but the rest of the group don\'t seem to notice.');
+            }
+            // TODO-QSP: dynamic text: You smile at him. "<<$pcs_firstname>> <<$pcs_lastname>>, but most people just ca...
+            scene.text(`You smile at him. "${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, but most people just call me ${((s as any).pcs_nickname ?? 0)}."`);
+            scene.text('He looks surprised. "Are you from Pavlovsk?" When you nod your head, he looks even more surprised. "Do you have an Aunt Luda, dating Olu?"');
+            scene.text('Now it\'s your turn to look surprised. "Yes, how did you know that?"');
+            scene.text('He shakes his head with a slight laugh. "He\'s my uncle. They told me about you. Small world, huh?"');
+            scene.text('You giggle. "Yeah, it really is…"');
+            scene.text('"We were about to head back to our dorm and were wondering if you would like to come with us?" he asks. "I promise it will be a lot of fun."');
+            scene.actions([
+              { label: 'Accept', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
@@ -1277,7 +1346,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to dorm', goto: ['djibrilev1', 'djibrilgb'] },
     ]);
   } },
-          { label: 'Decline', handler: (st: GameState) => {
+              { label: 'Decline', handler: (st: GameState) => {
     (s as any).DjibrilQW['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
@@ -1298,82 +1367,295 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        ]);
-      } else {
-        scene.img('images/locations/city/centralpark/cafe/african_students.jpg');
-        scene.text('You stealthily glance over at the black men, but it seems like they\'re not interested in you since they never look in your direction.');
-        scene.actions([
-          { label: 'Leave', handler: (st: GameState) => {
+            ]);
+          } else {
+            scene.img('images/locations/city/centralpark/cafe/african_students.jpg');
+            scene.text('You stealthily glance over at the black men, but it seems like they\'re not interested in you since they never look in your direction.');
+            scene.actions([
+              { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
   } },
-        ]);
+            ]);
+          }
+        }
       }
+    }
+  }
+  scene.build();
+}
+
+function enterTheBoy(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  if (((s as any).pcs_hotcat ?? 0) < 5  &&  (!((s as any).gosh ?? 0))) {
+    scene.img('images/characters/shared/headshots_main/big127.jpg');
+    scene.text('The two of you exchange glances, but that\'s about all that happens. After a while, he finishes his meal and leaves the café without either of you saying anything to each other.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } else {
+    if ((!((s as any).gosh ?? 0))) {
+      scene.img('images/characters/shared/headshots_main/big127.jpg');
+      scene.text('The two of you exchange glances and it doesn\'t take long before he walks over to your table to introduce himself, "Hi, I\'m Gosha!"');
+      // TODO-QSP: dynamic text: You smile. "<<$pcs_firstname>>, but you can call me <<$pcs_nickname>>."
+      scene.text(`You smile. "${((s as any).pcs_firstname ?? 0)}, but you can call me ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text('"Cute name!" he says as the two of you become acquainted with one another. You learn that he\'s a student at the nearby university and he invites you visit him. He smiles as he gives you directions to his dorm.');
+      // TODO-QSP: dynamic text: "Well, I won't disturb you anymore, <<$pcs_nickname>>! Don't be a stranger and c...
+      scene.text(`"Well, I won't disturb you anymore, ${((s as any).pcs_nickname ?? 0)}! Don't be a stranger and come by!"`);
       scene.actions([
+        { label: 'Leave', handler: (st: GameState) => {
+    (st as any).gosh = 1;
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+      ]);
+    } else {
+      scene.img('images/characters/shared/headshots_main/big127.jpg');
+      scene.text('The two of you exchange glances and you swear you recognize him from somewhere. Then it hits you… it\'s Gosha! Just as you remember, he comes to the same realization. Before you know it, he\'s heading over.');
+      // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>! I'm surprised to see you here."
+      scene.text(`"Hi, ${((s as any).pcs_nickname ?? 0)}! I'm surprised to see you here."`);
+      scene.actions([
+        { label: 'Greet him', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'npc_relationship', 'modify', 'A127', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/greet.jpg');
+    scene.text('You make an awkward-looking facial expression. "Oh, hi Gosha! I didn\'t recognize you there."');
+    scene.text('"I didn\'t realize I\'d changed that much since last time!" he jests.');
+    scene.text('You hit him jokingly on the shoulder. "Glad you\'re not offended. I would\'ve been so upset if you had been!"');
+    if ((!((s as any).goshsex ?? 0))) {
+      // TODO-QSP: dynamic text: "Are you here alone, <<$pcs_nickname>>?" he asks.
+      scene.text(`"Are you here alone, ${((s as any).pcs_nickname ?? 0)}?" he asks.`);
+      scene.text('You nod. "I heard some great things about this park, so I was exploring."');
+      scene.text('He breaks out in a wide smile. "Well, you\'re in luck then because I know every nook and cranny in this park. Let me show you around!"');
+      scene.actions([
+        { label: 'Accept', handler: (st: GameState) => {
+    qspCall(s, 'mood', 'raise', 'small');
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/walk.jpg');
+    scene.text('"I\'d love to!" you exclaim and the two of you quickly head off.');
+    scene.text('You both take a walk around the park for a while as Gosha shows you all the different sights.');
+    scene.text('"This is my favorite spot, here." He points towards a little hill overlooking the whole park.');
+    scene.text('You\'re really enjoying yourself and time flies by quickly before you end up back at the café.');
+    // TODO-QSP: dynamic text: "I'm sorry <<$pcs_nickname>>, but I've got to run! Hope to see you around again!...
+    scene.text(`"I'm sorry ${((s as any).pcs_nickname ?? 0)}, but I've got to run! Hope to see you around again!" He excuses himself and disappears.`);
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+        { label: 'Decline', handler: (st: GameState) => {
+    qspCall(s, 'mood', 'lower', 'small');
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/parkcafe.jpg');
+    scene.text('"I\'m sorry, but I can\'t today. I need to be on my way," you reply.');
+    // TODO-QSP: dynamic text: "No worries, <<$pcs_nickname>>! Next time!" he responds, joyful as usual.
+    scene.text(`"No worries, ${((s as any).pcs_nickname ?? 0)}! Next time!" he responds, joyful as usual.`);
+    scene.text('"I actually need to be heading off too," he says. "I\'ll see you around, okay?"');
+    scene.text('You nod. "I\'ll see you around, Gosha!"');
+    scene.text('He says his goodbyes and quickly leaves the café.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.text('"I know of an amazing hidden spot in this park which I want to show you!" he winks suggestively, which clearly hints at something.');
+      scene.actions([
+        { label: 'Sounds interesting', handler: (st: GameState) => {
+    qspCall(s, 'mood', 'raise', 'tiny');
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/talk.jpg');
+    scene.text('You ponder the proposition for a short while. You know what this probably will lead to, but you\'re too intrigued to let this opportunity pass by. "Okay, I want to see this hidden spot you\'re raving about."');
+    scene.text('He smiles as he grabs you by the hand and starts leading you outside. "It\'s so great! There\'s a great view, and it\'s totally secluded!"');
+    scene.text('The two of you start walking deeper inside the park, leaving the café behind.');
+    scene.actions([
+      { label: 'Keep walking', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/walk.jpg');
+    scene.text('You walk for quite a while and have to keep asking him if you\'ve arrived yet. You notice that he\'s getting a bit annoyed by you asking all the time, but you\'re too pumped to find out where he\'s taking you.');
+    scene.text('He points at a cut out part of the fence. "Through here."');
+    scene.text('"I don\'t really know about this…" you tell him. "Isn\'t this illegal? What if we get caught?"');
+    scene.text('He waves your worries away. "Don\'t worry about it. I\'ve done this a dozen times and have never been caught."');
+    qspCall(s, 'willpower', 'misc', 'self', 'easy');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Head back [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Head back [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'npc_relationship', 'modify', 'A127', (-1));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/parkcafe.jpg');
+    scene.text('You stumble on your words. "I-I\'m sorry, but I can\'t…"');
+    scene.text('You notice the disappointment on his face, but he can\'t do anything but accept it. "It\'s okay. I just thought you\'d like to see some really cool views was all."');
+    scene.text('The two of you walk slowly back. You\'re afraid to say anything, and he seems to be a bit upset that you didn\'t want to go along with him. As you near the café, you say your goodbyes and he leaves.');
+    scene.actions([
+      { label: 'Head back to the café', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Go through the fence', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/fence.jpg');
+    scene.text('"If you say so, but if we get caught I\'m blaming it all on you," you teasingly say.');
+    // TODO-QSP: dynamic text: He grins as he goes through the fence and walks up a well worn path. "Hurry up, ...
+    scene.text(`He grins as he goes through the fence and walks up a well worn path. "Hurry up, ${((s as any).pcs_nickname ?? 0)}, before someone sees us!"`);
+    scene.text('As you hunker down to press yourself through the fence, you decide to have a bit of fun. "Help, I\'m stuck!" you yell out.');
+    scene.text('Gosha starts looking nervously around and hastily walks back towards you. As he approaches, you press yourself through and stick out your tongue. He sighs when he sees that you\'re only joking around.');
+    scene.actions([
+      { label: 'Reach the secluded area', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/secluded.jpg');
+    // TODO-QSP: dynamic text: "Funny <<$pcs_nickname>>, real funny…" he mumbles.
+    scene.text(`"Funny ${((s as any).pcs_nickname ?? 0)}, real funny…" he mumbles.`);
+    scene.text('You make a funny face in response and the two of you start laughing.');
+    scene.text('"This way, then…" he says and the two of you head up the path. You walk through some thick bushes and up a small hill.');
+    scene.text('When you reach the top, you stop by a clearing. "So what do you say? Great place, no?"');
+    scene.text('You nod. "Yeah, it\'s really awesome and no one can see you here."');
+    scene.text('He walks up next to you. "How about a reward for showing you this place?"');
+    qspCall(s, 'willpower', 'bj', 'self');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Suggest a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Suggest a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A127', 1);
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'fame', 'city', 'sex', 3);
+    scene.img('images/locations/city/centralpark/cafe/sex/bjgosha.jpg');
+    scene.text('You give him a teasing smile as you squat down in front of him. "You\'re lucky it\'s really secluded here."');
+    scene.text('He\'s already hard as you start to unbutton his pants. He looks excitingly at you, ready for what\'s to come.');
+    scene.text('You pull down his pants and his cock pops out, ready for you. You look at him and lick your lips as you move in. You start playing with his head and he groans lightly.');
+    scene.text('"Want me to keep going?" you playfully ask. The only response you get is him silently nodding his head, so you take his cock into your mouth and start sucking him off as Gosha grabs the back of your head to push you deeper.');
+    // TODO-QSP: dynamic text: "Don't stop, <<$pcs_nickname>>…" you hear him groan. He's rock-hard and you can ...
+    scene.text(`"Don't stop, ${((s as any).pcs_nickname ?? 0)}…" you hear him groan. He's rock-hard and you can feel that he's ready to cum.`);
+    scene.text('You tease him a little more before he explodes in your mouth.');
+    qspCall(s, 'arousal', 'bj', 15, 'sub');
+    qspCall(s, 'cum_call', 'mouth', '127', 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Head back to the café', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+      ]);
+    }
+    qspCall(s, 'willpower', 'flash', 'resist', 'easy');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'What for? [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'What for? [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'npc_relationship', 'modify', 'A127', (-1));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/parkcafe.jpg');
+    scene.text('You cross your arms. "What should I reward you for? For showing me this? It\'s a nice place, but nothing you should get rewarded for."');
+    scene.text('You can see he\'s clearly annoyed by your response, but keeps his mouth shut. "Let\'s head back then."');
+    scene.text('The walk back is awkward with the two of you barely saying a word to each other.');
+    // TODO-QSP: dynamic text: "I need to go and meet a friend. It was good seeing you, <<$pcs_nickname>>…" He ...
+    scene.text(`"I need to go and meet a friend. It was good seeing you, ${((s as any).pcs_nickname ?? 0)}…" He gives you stand offish hug before he leaves.`);
+    scene.actions([
+      { label: 'Head back to the café', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Flash him', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A127', 1);
+    scene.img('images/locations/city/centralpark/cafe/sex/flash.jpg');
+    scene.text('You look around to make sure no one can see you before you quickly pull up your shirt, exposing your breasts.');
+    scene.text('He stands there not saying a word, only watching you closely. As he starts approaching you, you pull up your shirt. "No touching allowed."');
+    scene.text('You can clearly see that he has more in mind, but he\'s keeping his distance and respecting your wishes for now. "You\'re going to leave me like that?"');
+    scene.text('You let out a laugh. "Yeah. Did you expect something more for only showing me this place?"');
+    scene.text('The two of you chat for a while before heading back to the café.');
+    qspCall(s, 'arousal', 'flash', 15, 'sub', 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Head back to the café', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+        { label: 'Decline', handler: (st: GameState) => {
+    qspCall(s, 'mood', 'lower', 'small');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/centralpark/cafe/parkcafe.jpg');
+    scene.text('"I\'m sorry, but I can\'t today. I need to be on my way," you reply.');
+    // TODO-QSP: dynamic text: "No worries, <<$pcs_nickname>>! Next time!" he responds, joyful as usual.
+    scene.text(`"No worries, ${((s as any).pcs_nickname ?? 0)}! Next time!" he responds, joyful as usual.`);
+    scene.text('"I actually need to be heading off too," he says. "I\'ll see you around, okay?"');
+    scene.text('You nod. "I\'ll see you around, Gosha!"');
+    scene.text('He says his goodbyes and quickly leaves the café.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
+  } },
+    ]);
+  } },
+      ]);
+    }
+  } },
         { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
   } },
       ]);
     }
-    scene.actions([
-      { label: 'Accept', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).DjibrilQW['invite'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A244', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A245', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A246', 'like');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/city/centralpark/cafe/walktodorm.jpg');
-    scene.text('You smile at them. "Sure, that sounds like fun."');
-    scene.text('They share some looks, then smile back at you.');
-    scene.text('As you leave, Djibril wraps his arm around your shoulder and walks with you while the rest lead the way. You walk out of the park and board the metro.');
-    scene.text('During the trip, they all flatter you by telling you how pretty you are and how good you were last time before you finally arrive at the university dorms.');
-    scene.actions([
-      { label: 'Change your mind', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A82', 'hate');
-    qspCall(s, 'npc_relationship', 'modify', 'A242', 'hate');
-    qspCall(s, 'npc_relationship', 'modify', 'A243', 'hate');
-    qspCall(s, 'npc_relationship', 'modify', 'A244', 'hate');
-    qspCall(s, 'npc_relationship', 'modify', 'A245', 'hate');
-    qspCall(s, 'npc_relationship', 'modify', 'A246', 'hate');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/city/centralpark/cafe/walktodorm.jpg');
-    scene.text('When you think about it some more, you decide that you don\'t want to be gangbanged by a bunch of African college guys and pretend to check your phone.');
-    scene.text('"Oh, sorry guys, I just noticed the time and I have to go."');
-    scene.text('You slip away from Djibril and walk away from them. You don\'t glance back, but you\'re sure they\'re unhappy.');
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 5;
-  }, goto: ['city_island', ''] },
-    ]);
-  } },
-      { label: 'Go to dorm', goto: ['djibrilev1', 'djibrilgb'] },
-    ]);
-  } },
-      { label: 'Decline', handler: (st: GameState) => {
-    (s as any).DjibrilQW['invite'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A243', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A244', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A245', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A246', 'dislike');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/city/centralpark/cafe/reply.jpg');
-    scene.text('You shake your head as you get up from your table. "No thank you."');
-    scene.text('"Come on, Djibril," one of his friends says. "Let\'s go."');
-    scene.text('He glances over at them, then looks back at you. "Sorry, I have to go, but it was nice meeting you again. Have a nice day."');
-    scene.text('He turns and leaves to join his friends outside, but stops at the door. "Hey, if you want, why don\'t you stop by my dorm some time?"');
-    scene.text('He tells you which building it is and which room is his before he heads outside and walks away with his friends.');
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'parkKafe', 'end', 'cafe'
-  } },
-    ]);
-  } },
-    ]);
+  }
+  scene.build();
+}
+
+function enterEnd(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  if (((s as any).locArgs?.[1] ?? 0) === 'city_residential') {
+    scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 'cafe') {
+      scene.actions([{ label: 'Continue', goto: ['parkKafe', 'start'] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+    }
   }
   scene.build();
 }
@@ -1407,6 +1689,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'blacks':
       enterBlacks(s, scene);
+      break;
+    case 'the_boy':
+      enterTheBoy(s, scene);
+      break;
+    case 'end':
+      enterEnd(s, scene);
       break;
     default:
       enterStart(s, scene);

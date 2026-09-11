@@ -175,9 +175,11 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
       scene.text('You lie down to sunbathe.');
     } else {
-      (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
-      (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
-      scene.text('You put the sunblock on your body and lie down on the roof to sunbathe.');
+      if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
+        (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
+        scene.text('You put the sunblock on your body and lie down on the roof to sunbathe.');
+      }
     }
     scene.actions([
       { label: 'Get Up', goto: ['pav_complexb2', 'roof'] },
@@ -220,7 +222,9 @@ function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pod_lift_ev ?? 0) <= 5) {
     scene.actions([{ label: 'Continue', goto: ['pav_complexb2', 'lift_event_1'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['pav_complexb2', 'lift_event_2'] }]);
+    if (((s as any).pod_lift_ev ?? 0) <= 10  ||  ((s as any).liftnotwork_count ?? 0) <= 0) {
+      scene.actions([{ label: 'Continue', goto: ['pav_complexb2', 'lift_event_2'] }]);
+    }
   }
   scene.build();
 }

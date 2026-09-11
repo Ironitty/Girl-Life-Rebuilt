@@ -20,8 +20,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Pay the remaining debt ( [+$func(\'money\', \'string_debt\', belgangPay...]', goto: ['belgang', 'payremaining'] },
     ]);
   } else {
-    scene.actions([
-      { label: 'Pay for this week ( [+$func(\'money\', \'string_debt\', belgangPay...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).belgangPayWeek ?? 0), 'cash')) {
+      scene.actions([
+        { label: 'Pay for this week ( [+$func(\'money\', \'string_debt\', belgangPay...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'money', 'debt_pay', 'belgangPay', ((s as any).belgangPayWeek ?? 0), 'cash');
     qspCall(s, 'money', 'debt_pay', 'belgangPayWeek', 0, 'none');
@@ -38,7 +39,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'payday') {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
@@ -57,27 +59,49 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Pay the remaining debt ( [+$func(\'money\', \'string_debt\', belgangPay...]', goto: ['belgang', 'payremaining'] },
       ]);
     } else {
-      scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
-      if (((s as any).belfirstweek ?? 0) === 1) {
-        (s as any).belfirstweek = 0;
-        // TODO-QSP: dynamic text: Vadim Bely steps out, along with several of his henchmen. He gives you a smile t...
-        scene.text(`Vadim Bely steps out, along with several of his henchmen. He gives you a smile that you know is 100% fake and behaves amicably while he says: "Long time no see, ${((s as any).pcs_nickname ?? 0)}! Remember next Sunday you need to start paying us," he says.`);
-      } else {
-        // TODO-QSP: dynamic text: Vadim Bely steps out, along with several of his henchmen. He gives you a smile t...
-        scene.text(`Vadim Bely steps out, along with several of his henchmen. He gives you a smile that you know is 100% fake and behaves amicably while he says: "Long time no see, ${((s as any).pcs_nickname ?? 0)}! You are doing good. If you keep paying early, this will work out for the both of us," he says.`);
-      }
-      qspCall(s, 'belgang', 'saunamention');
-      if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).belgangPayWeek ?? 0), 'cash')) {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        qspCall(s, 'money', 'debt_pay', 'belgangPay', ((s as any).belgangPayWeek ?? 0), 'cash');
-        qspCall(s, 'money', 'debt_pay', 'belgangPayWeek', 0, 'none');
-        scene.img('images/characters/pavlovsk/vadim/belymoney.jpg');
-        scene.text('You hand over the payment for this week. "That\'s it, everything for this week."');
-        scene.text('He takes a moment to count the money and nods approvingly. "Very good, it\'s the full amount."');
+      if (((s as any).belgangPayWeek ?? 0) <= 0) {
+        scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
+        if (((s as any).belfirstweek ?? 0) === 1) {
+          (s as any).belfirstweek = 0;
+          // TODO-QSP: dynamic text: Vadim Bely steps out, along with several of his henchmen. He gives you a smile t...
+          scene.text(`Vadim Bely steps out, along with several of his henchmen. He gives you a smile that you know is 100% fake and behaves amicably while he says: "Long time no see, ${((s as any).pcs_nickname ?? 0)}! Remember next Sunday you need to start paying us," he says.`);
+        } else {
+          // TODO-QSP: dynamic text: Vadim Bely steps out, along with several of his henchmen. He gives you a smile t...
+          scene.text(`Vadim Bely steps out, along with several of his henchmen. He gives you a smile that you know is 100% fake and behaves amicably while he says: "Long time no see, ${((s as any).pcs_nickname ?? 0)}! You are doing good. If you keep paying early, this will work out for the both of us," he says.`);
+        }
         qspCall(s, 'belgang', 'saunamention');
         scene.actions([
-          { label: 'Pay for this week ( [+$func(\'money\', \'string_debt\', belgangPay...]' }, // TODO-QSP: empty action body
           { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'money', 'debt_add', 'belgangPayWeek', ((s as any).belgangPayWeekAmount ?? 0));
+    if (((s as any).belgangPayWeek ?? 0) > ((s as any).belgangPay ?? 0)) {
+      (s as any).belgangPayWeek = ((s as any).belgangPay ?? 0);
+    }
+    qspCall(s, 'belgang', 'update_debt_calendar');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
+    scene.text('He gives you a fake smile, gets back in his jeep and drives away.');
+    // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
+    // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
+    scene.actions([
+      { label: 'Move on', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc');
+  } },
+    ]);
+  } },
+        ]);
+      } else {
+        if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).belgangPayWeek ?? 0), 'cash')) {
+          scene.actions([
+            { label: 'Pay for this week ( [+$func(\'money\', \'string_debt\', belgangPay...]', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'money', 'debt_pay', 'belgangPay', ((s as any).belgangPayWeek ?? 0), 'cash');
+    qspCall(s, 'money', 'debt_pay', 'belgangPayWeek', 0, 'none');
+    scene.img('images/characters/pavlovsk/vadim/belymoney.jpg');
+    scene.text('You hand over the payment for this week. "That\'s it, everything for this week."');
+    scene.text('He takes a moment to count the money and nods approvingly. "Very good, it\'s the full amount."');
+    qspCall(s, 'belgang', 'saunamention');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'money', 'debt_add', 'belgangPayWeek', ((s as any).belgangPayWeekAmount ?? 0));
     if (((s as any).belgangPayWeek ?? 0) > ((s as any).belgangPay ?? 0)) {
@@ -95,27 +119,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        ]);
-      }
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'debt_add', 'belgangPayWeek', ((s as any).belgangPayWeekAmount ?? 0));
-    if (((s as any).belgangPayWeek ?? 0) > ((s as any).belgangPay ?? 0)) {
-      (s as any).belgangPayWeek = ((s as any).belgangPay ?? 0);
-    }
-    qspCall(s, 'belgang', 'update_debt_calendar');
-    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
-    scene.text('He gives you a fake smile, gets back in his jeep and drives away.');
-    // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
-    // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
-    scene.actions([
-      { label: 'Move on', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc');
-  } },
     ]);
   } },
-        { label: 'You don\'t have the money', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'You don\'t have the money', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('You\'re tearing up as you look down at your shoes, not daring to look him in the eye. "I\'m… I\'m sorry, mister Bely. I simply don\'t have the of money. If you give me some more time, I wi-"');
@@ -143,27 +152,31 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).belgangPayextension = ((s as any).belgangPayextension ?? 0) + (1);
-      qspCall(s, 'money', 'debt_add', 'belgangPay', 5000);
-      qspCall(s, 'money', 'debt_add', 'belgangPayWeek', 5000);
-      if (((s as any).belgangPayWeek ?? 0) > ((s as any).belgangPay ?? 0)) {
-        (s as any).belgangPayWeek = ((s as any).belgangPay ?? 0);
-      }
-      qspCall(s, 'belgang', 'update_debt_calendar');
-      // TODO-QSP: dynamic text: He frowns, abruptly cutting you off. You can see the disapproval in his eyes whe...
-      scene.text(`He frowns, abruptly cutting you off. You can see the disapproval in his eyes when you glance up. "That is the last time, ${((s as any).pcs_nickname ?? 0)}," he says. "You can pay me next week, but I expect ' + $func('money', 'string_debt_addition', 5000) + ' extra.`);
-      qspCall(s, 'belgang', 'saunamention');
-      // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
-      // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
-      // TODO-QSP: dynamic text: He frowns, abruptly cutting you off. You can see the disapproval in his eyes whe...
-      scene.text(`He frowns, abruptly cutting you off. You can see the disapproval in his eyes when you glance up. "That is very unfortunate ${((s as any).pcs_nickname ?? 0)}. I had such high hopes for you," he says. "I guess we will have to find an alternative way for you to pay off your debts."`);
-      scene.text('He then directs his attention to two of his henchmen: "She\'s coming with us."');
-      scene.text('Too scared to resist, you simply let the two men grab you by your arms and pull you into the Mitsubishi. Vadim gets back behind the wheel and within minutes you\'ve left Pavlovsk. You notice you\'re being taken to the city, and you wonder what they\'re planning for you there.');
-      scene.actions([
-        { label: 'Move on', handler: (st: GameState) => {
+      if (((s as any).belgangPayextension ?? 0) === 1) {
+        (s as any).belgangPayextension = ((s as any).belgangPayextension ?? 0) + (1);
+        qspCall(s, 'money', 'debt_add', 'belgangPay', 5000);
+        qspCall(s, 'money', 'debt_add', 'belgangPayWeek', 5000);
+        if (((s as any).belgangPayWeek ?? 0) > ((s as any).belgangPay ?? 0)) {
+          (s as any).belgangPayWeek = ((s as any).belgangPay ?? 0);
+        }
+        qspCall(s, 'belgang', 'update_debt_calendar');
+        // TODO-QSP: dynamic text: He frowns, abruptly cutting you off. You can see the disapproval in his eyes whe...
+        scene.text(`He frowns, abruptly cutting you off. You can see the disapproval in his eyes when you glance up. "That is the last time, ${((s as any).pcs_nickname ?? 0)}," he says. "You can pay me next week, but I expect ' + $func('money', 'string_debt_addition', 5000) + ' extra.`);
+        qspCall(s, 'belgang', 'saunamention');
+        // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
+        // TODO-QSP: 'Next week you need to pay him: ' + $func('money', 'string_debt', belgangPayWeek)
+        scene.actions([
+          { label: 'Move on', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-        { label: 'In the city…', handler: (st: GameState) => {
+        ]);
+      } else {
+        // TODO-QSP: dynamic text: He frowns, abruptly cutting you off. You can see the disapproval in his eyes whe...
+        scene.text(`He frowns, abruptly cutting you off. You can see the disapproval in his eyes when you glance up. "That is very unfortunate ${((s as any).pcs_nickname ?? 0)}. I had such high hopes for you," he says. "I guess we will have to find an alternative way for you to pay off your debts."`);
+        scene.text('He then directs his attention to two of his henchmen: "She\'s coming with us."');
+        scene.text('Too scared to resist, you simply let the two men grab you by your arms and pull you into the Mitsubishi. Vadim gets back behind the wheel and within minutes you\'ve left Pavlovsk. You notice you\'re being taken to the city, and you wonder what they\'re planning for you there.');
+        scene.actions([
+          { label: 'In the city…', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).workDolg = ((s as any).workDolg ?? 0) + (((s as any).belgangPay ?? 0));
     qspCall(s, 'money', 'debt_pay', 'workDolg', ((s as any).money ?? 0));
@@ -176,10 +189,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Look around', goto: ['city_sauna', 'saunaroom'] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
-      ]);
+          ]);
+        }
+      }
     }
   }
   scene.actions([

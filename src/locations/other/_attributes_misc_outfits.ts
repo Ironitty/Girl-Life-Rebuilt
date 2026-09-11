@@ -4,7 +4,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 2026/05/13
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).CloQuality = 1;
     (s as any).CloStrength = 187500;
     (s as any).CloThinness = 1;

@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -259,7 +257,7 @@ function enterStarjersey(s: GameState, scene: SceneBuilder): void {
   (s as any).fightClubQW['name'] = 'Dark Star';
   scene.actions([
     { label: 'Choose a fight name (Default: <<$fightClubQW[\'name\']>>)', handler: (st: GameState) => {
-    (s as any).fightClubQW['name'] = qspUntranslated(s, "input (\"Enter the name you want to be known as.\")", { location: "fightClub_intro" });
+    (s as any).fightClubQW['name'] = 0;
     if (((s as any).fightClubQW ?? 0)?.['name'] === '') {
       (s as any).fightClubQW['name'] = 'Dark Star';
     }

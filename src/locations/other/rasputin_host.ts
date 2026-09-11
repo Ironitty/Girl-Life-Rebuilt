@@ -8,19 +8,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'rasputin_host', 'start');
   qspCall(s, 'stat', '');
-  if (((s as any).ARGS ?? 0)[1] === 1) {
+  if (((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
     scene.text('Nadia waits with a warm smile.');
     // TODO-QSP: dynamic text: "Is there anything else I can help you with <<$pcs_firstname>>?"
     scene.text(`"Is there anything else I can help you with ${((s as any).pcs_firstname ?? 0)}?"`);
   } else {
-    scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
-    scene.text('There is a woman sits on a chair with a glass of wine in hand and lost in her thoughts.');
-    scene.text('She returns to alertness when she realizes she isn\'t alone and gives you a welcoming smile.');
-    scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
-    scene.text('Nadia notices as you walk into the club. She smiles and greets you with a warm smile.');
-    // TODO-QSP: dynamic text: "Hello, <<$pcs_firstname>>, how can I help you today?"
-    scene.text(`"Hello, ${((s as any).pcs_firstname ?? 0)}, how can I help you today?"`);
+    if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
+      scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
+      scene.text('There is a woman sits on a chair with a glass of wine in hand and lost in her thoughts.');
+      scene.text('She returns to alertness when she realizes she isn\'t alone and gives you a welcoming smile.');
+    } else {
+      scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
+      scene.text('Nadia notices as you walk into the club. She smiles and greets you with a warm smile.');
+      // TODO-QSP: dynamic text: "Hello, <<$pcs_firstname>>, how can I help you today?"
+      scene.text(`"Hello, ${((s as any).pcs_firstname ?? 0)}, how can I help you today?"`);
+    }
   }
   if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
     scene.actions([

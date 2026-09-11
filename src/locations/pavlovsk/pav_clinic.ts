@@ -30,22 +30,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('Soon another Nurse comes with a wheelchair and brings you to the delivery room in the maternity ward.');
         (s as any).pcs_know_mward = 1;
       } else {
-        scene.text('"My Baby is coming!" you tell the nurse in between two contractions with clenched jaws.');
-        scene.text('"Calm down. Sit down, take deep, regluar breaths." the Nurse tells you in a soothing and experienced way as she sits you down on one of the chairs in the waiting area.');
-        scene.text('"Somebody will bring you a wheelchair and then we get that baby delivered safe and sound. Don\'t worry."');
-        scene.text('"Thank you", you manage to murmur even with a bit of a forced smile as your womb sends a new wave of pain through your body.');
-        (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 5) + 3);
-        qspCall(s, 'stat', '');
-        scene.text('Soon another Nurse comes with a wheelchair and brings you to the delivery room in the maternity ward.');
-        (s as any).pcs_know_mward = 1;
-        scene.text('"Yeah, my water broke". you tell her in between the waves of pain coursing through your abdomen. You take deep, regular breaths and sit down in the next available chair.');
-        scene.text('"Could you get me a wheelchair?" you ask. "Of course, one is comming right up." the Nurse answers.');
-        // TODO-QSP: dynamic text: "Thanks" you say. "This is not your first one." the nurse states more as a fact ...
-        scene.text(`"Thanks" you say. "This is not your first one." the nurse states more as a fact than as a question. "No, it's actually my ${qspFunc(s, 'string', 'parse_number', ((s as any).kid ?? 0), 'rank')}." you say with a little smile, placing your hand on your bulging belly. Just the thought of holding another baby in your arms soon makes you happy.`);
-        (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 5) + 3);
-        qspCall(s, 'stat', '');
-        scene.text('Soon another Nurse comes with a wheelchair and brings you to the delivery room in the maternity ward.');
-        (s as any).pcs_know_mward = 1;
+        if (((s as any).kid ?? 0) < 2) {
+          scene.text('"My Baby is coming!" you tell the nurse in between two contractions with clenched jaws.');
+          scene.text('"Calm down. Sit down, take deep, regluar breaths." the Nurse tells you in a soothing and experienced way as she sits you down on one of the chairs in the waiting area.');
+          scene.text('"Somebody will bring you a wheelchair and then we get that baby delivered safe and sound. Don\'t worry."');
+          scene.text('"Thank you", you manage to murmur even with a bit of a forced smile as your womb sends a new wave of pain through your body.');
+          (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 5) + 3);
+          qspCall(s, 'stat', '');
+          scene.text('Soon another Nurse comes with a wheelchair and brings you to the delivery room in the maternity ward.');
+          (s as any).pcs_know_mward = 1;
+        } else {
+          scene.text('"Yeah, my water broke". you tell her in between the waves of pain coursing through your abdomen. You take deep, regular breaths and sit down in the next available chair.');
+          scene.text('"Could you get me a wheelchair?" you ask. "Of course, one is comming right up." the Nurse answers.');
+          // TODO-QSP: dynamic text: "Thanks" you say. "This is not your first one." the nurse states more as a fact ...
+          scene.text(`"Thanks" you say. "This is not your first one." the nurse states more as a fact than as a question. "No, it's actually my ${qspFunc(s, 'string', 'parse_number', ((s as any).kid ?? 0), 'rank')}." you say with a little smile, placing your hand on your bulging belly. Just the thought of holding another baby in your arms soon makes you happy.`);
+          (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 5) + 3);
+          qspCall(s, 'stat', '');
+          scene.text('Soon another Nurse comes with a wheelchair and brings you to the delivery room in the maternity ward.');
+          (s as any).pcs_know_mward = 1;
+        }
       }
       scene.actions([
         { label: 'Give birth', handler: (st: GameState) => {
@@ -139,21 +142,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (qspFunc(s, 'jobs', 'is_arrival_time', 'pav_clinic_cleaner') === 1  &&  ((s as any).job_last_work_day ?? 0)?.['pav_clinic_cleaner'] !== ((s as any).daystart ?? 0)) {
-        (s as any).minut = ((s as any).minut ?? 0) + 60;
-        qspCall(s, 'jobs', 'clock', 'pav_clinic_cleaner');
-        qspCall(s, 'exp_gain', 'cleaning', Math.floor(Math.random() * 3) + 1);
-        qspCall(s, 'mood', 'lower', 'medium');
-        qspCall(s, 'sweat', 'add', 10);
-        qspCall(s, 'stat', '');
-        scene.img('images/locations/city/residential/office/clener1.jpg');
-        scene.text('As instructed, you take a mop and a bucket from the maintenance closet and begin by cleaning the corridors throughout the clinic. Once you\'re done with that, you enter the examination rooms and offices one by one, occasionally hearing a softly muttered curse from a doctor when you interrupt their work. Nevertheless, you work quickly and the doctors don\'t give you any trouble while you clean the floors of the rooms.');
-        (s as any).ginrand = Math.floor(Math.random() * 2) + 0;
-        if (((s as any).Gspravka ?? 0) < 10  &&  (!((s as any).ginrand ?? 0))) {
-          scene.text('When you clean the floor of the gynecologist\'s examination room, he leaves the room to let you do your work in peace. You\'re alone now.');
-          if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
-            scene.actions([
-              { label: 'Forge a referral to give to your mother', handler: (st: GameState) => {
+      if (((s as any).job_status ?? 0)?.['pav_clinic_cleaner'] === 'employed') {
+        if (qspFunc(s, 'jobs', 'is_arrival_time', 'pav_clinic_cleaner') === 1  &&  ((s as any).job_last_work_day ?? 0)?.['pav_clinic_cleaner'] !== ((s as any).daystart ?? 0)) {
+          (s as any).minut = ((s as any).minut ?? 0) + 60;
+          qspCall(s, 'jobs', 'clock', 'pav_clinic_cleaner');
+          qspCall(s, 'exp_gain', 'cleaning', Math.floor(Math.random() * 3) + 1);
+          qspCall(s, 'mood', 'lower', 'medium');
+          qspCall(s, 'sweat', 'add', 10);
+          qspCall(s, 'stat', '');
+          scene.img('images/locations/city/residential/office/clener1.jpg');
+          scene.text('As instructed, you take a mop and a bucket from the maintenance closet and begin by cleaning the corridors throughout the clinic. Once you\'re done with that, you enter the examination rooms and offices one by one, occasionally hearing a softly muttered curse from a doctor when you interrupt their work. Nevertheless, you work quickly and the doctors don\'t give you any trouble while you clean the floors of the rooms.');
+          (s as any).ginrand = Math.floor(Math.random() * 2) + 0;
+          if (((s as any).Gspravka ?? 0) < 10  &&  (!((s as any).ginrand ?? 0))) {
+            scene.text('When you clean the floor of the gynecologist\'s examination room, he leaves the room to let you do your work in peace. You\'re alone now.');
+            if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
+              scene.actions([
+                { label: 'Forge a referral to give to your mother', handler: (st: GameState) => {
     (s as any).Gspravka = 30;
     (s as any).GspravkaT = 1;
     (s as any).Gspassed = 1;
@@ -171,17 +175,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_clinic', ''] },
     ]);
   } },
-            ]);
+              ]);
+            }
           }
-        }
-        scene.actions([
-          { label: 'Work as a cleaner for  [+$func(\'money\', \'string_profit\', 100)+\' (...]', handler: (st: GameState) => {
+          scene.actions([
+            { label: 'Work as a cleaner for  [+$func(\'money\', \'string_profit\', 100)+\' (...]', handler: (st: GameState) => {
     // TODO-QSP: 00)':
   } },
-          { label: 'Finish cleaning', handler: (st: GameState) => {
+            { label: 'Finish cleaning', handler: (st: GameState) => {
     qspCall(st, 'jobs', 'paycheck', 'pav_clinic_cleaner');
   }, goto: ['pav_clinic', ''] },
-        ]);
+          ]);
+        }
       }
     }
   }

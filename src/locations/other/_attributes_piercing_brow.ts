@@ -14,12 +14,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 6: 2600
   // TODO-QSP: 7: 2700
   (s as any).PirFirst = 3000;
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).PirQuality = 3;
     (s as any).PirPrice = 2300;
   } else {
-    (s as any).PirQuality = 3;
-    (s as any).PirPrice = 2300;
+    if (((s as any).locArgs?.[0] ?? 0) === 2) {
+      (s as any).PirQuality = 3;
+      (s as any).PirPrice = 2300;
+    }
   }
   scene.build();
 }

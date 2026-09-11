@@ -46,8 +46,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([
-      { label: 'Ask about the maid job', handler: (st: GameState) => {
+    if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] < 3) {
+      scene.actions([
+        { label: 'Ask about the maid job', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.text('You approach the man\'s desk, but he doesn\'t look up from his work.');
@@ -86,7 +87,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.actions([
     { label: 'Return to the lobby', goto: ['pav_hotel', ''] },

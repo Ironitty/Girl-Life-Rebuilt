@@ -21,7 +21,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-10));
     (s as any).minut = ((s as any).minut ?? 0) + 7;
     qspCall(s, 'willpower', 'pay', 'resist');

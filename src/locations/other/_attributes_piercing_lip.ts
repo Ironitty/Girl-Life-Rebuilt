@@ -14,27 +14,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 6: 3900
   // TODO-QSP: 7: 4050
   (s as any).PirFirst = 3000;
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).PirQuality = 3;
     (s as any).PirPrice = 3450;
   } else {
-    (s as any).PirQuality = 3;
-    (s as any).PirPrice = 3450;
-    if (((s as any).ARGS ?? 0)[0] === 3) {
+    if (((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).PirQuality = 3;
       (s as any).PirPrice = 3450;
     } else {
-      (s as any).PirQuality = 3;
-      (s as any).PirPrice = 3450;
-      if (((s as any).ARGS ?? 0)[0] === 5) {
+      if (((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).PirQuality = 3;
         (s as any).PirPrice = 3450;
       } else {
-        (s as any).PirQuality = 3;
-        (s as any).PirPrice = 3450;
-        if (((s as any).ARGS ?? 0)[0] === 7) {
+        if (((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).PirQuality = 3;
           (s as any).PirPrice = 3450;
+        } else {
+          if (((s as any).locArgs?.[0] ?? 0) === 5) {
+            (s as any).PirQuality = 3;
+            (s as any).PirPrice = 3450;
+          } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 6) {
+              (s as any).PirQuality = 3;
+              (s as any).PirPrice = 3450;
+            } else {
+              if (((s as any).locArgs?.[0] ?? 0) === 7) {
+                (s as any).PirQuality = 3;
+                (s as any).PirPrice = 3450;
+              }
+            }
+          }
         }
       }
     }

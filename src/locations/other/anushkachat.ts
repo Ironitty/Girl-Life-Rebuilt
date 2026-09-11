@@ -325,7 +325,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Kiss her', handler: (st: GameState) => {
+        { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).anushkaQW['kiss_day'] = ((s as any).daystart ?? 0);
@@ -500,7 +500,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Convince her', handler: (st: GameState) => {
+          { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).artemQW['nush3some_again'] = 3;
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
@@ -550,20 +550,24 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
       ]);
     } else {
-      (s as any).artemQW['nush3some_again'] = 5;
-      scene.text('You glance over at her. "I talked to Artem about having another threesome and… he\'s wants to do it again."');
-      scene.text('She giggles softly. "Yeah, I bet he does." She looks thoughtful for a moment. "I have to admit, he wasn\'t bad. Not as bad as I was expecting anyway, but not as good as I like either."');
-      scene.text('She glances at you and looks you right in the eye. "Are you up for this?"');
-      scene.text('You nod. "Yeah. Like I said, we talked about it and we\'d both like to do it again if you\'re willing."');
-      scene.text('She looks at you before she sighs and nods. "Okay… For you I will, but this is the last time unless he gets better."');
-      scene.text('You smile at her. "Thanks. You won\'t regret it, I promise."');
-      scene.text('You glance over at her. "I talked to Artem about having another threesome and… he wants to do it again."');
-      scene.text('She rolls her eyes slightly. "Yeah, I bet he does. Look no offense, but your boyfriend isn\'t very good at fucking and wasn\'t any better the second time." She quickly continues before you can inject. "He might be great for you, but I like it rough. I like to fuck and you know how I feel about people that won\'t stand up for themselves. Sorry, but I\'m just not interested."');
-      scene.text('You start to try and convince her, but she quickly interrupts you. "Noast time I let you talk me into this again and I regretted it, just drop it ok?"');
-      scene.actions([
-        { label: 'Stop talking', goto: ['anush_bedroom', 'anushroom'] },
-        { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
-        { label: 'Drop it', handler: (st: GameState) => {
+      if (((s as any).artemQW ?? 0)?.['rough_anal_nush'] === 1) {
+        (s as any).artemQW['nush3some_again'] = 5;
+        scene.text('You glance over at her. "I talked to Artem about having another threesome and… he\'s wants to do it again."');
+        scene.text('She giggles softly. "Yeah, I bet he does." She looks thoughtful for a moment. "I have to admit, he wasn\'t bad. Not as bad as I was expecting anyway, but not as good as I like either."');
+        scene.text('She glances at you and looks you right in the eye. "Are you up for this?"');
+        scene.text('You nod. "Yeah. Like I said, we talked about it and we\'d both like to do it again if you\'re willing."');
+        scene.text('She looks at you before she sighs and nods. "Okay… For you I will, but this is the last time unless he gets better."');
+        scene.text('You smile at her. "Thanks. You won\'t regret it, I promise."');
+        scene.actions([
+          { label: 'Stop talking', goto: ['anush_bedroom', 'anushroom'] },
+          { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
+        ]);
+      } else {
+        scene.text('You glance over at her. "I talked to Artem about having another threesome and… he wants to do it again."');
+        scene.text('She rolls her eyes slightly. "Yeah, I bet he does. Look no offense, but your boyfriend isn\'t very good at fucking and wasn\'t any better the second time." She quickly continues before you can inject. "He might be great for you, but I like it rough. I like to fuck and you know how I feel about people that won\'t stand up for themselves. Sorry, but I\'m just not interested."');
+        scene.text('You start to try and convince her, but she quickly interrupts you. "Noast time I let you talk me into this again and I regretted it, just drop it ok?"');
+        scene.actions([
+          { label: 'Drop it', handler: (st: GameState) => {
     (s as any).artemQW['nush3some_again'] = (-1);
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -573,7 +577,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
       ]);

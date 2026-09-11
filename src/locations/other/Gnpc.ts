@@ -17,121 +17,186 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You spot a guy in the park. He looks like he's waiting for someone. "Ah, yes, th...
     scene.text(`You spot a guy in the park. He looks like he's waiting for someone. "Ah, yes, this must be ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]}!", you think. ${((s as any).bfRelationship ?? 0)?.[String((s as any).numnpc ?? 0)]}`);
   } else {
-    // TODO-QSP: $bfRelationship[numnpc] = 'You recently started dating him'
-    if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 20) {
-      // TODO-QSP: $bfRelationship[numnpc] += ', but you are already off to a bad start. You don''t get along at all.'
-    } else {
-      // TODO-QSP: $bfRelationship[numnpc] += ', but there are already some tensions between you.'
-      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-        // TODO-QSP: $bfRelationship[numnpc] += ', but you don''t know him that well yet.'
+    if (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] <= 4) {
+      // TODO-QSP: $bfRelationship[numnpc] = 'You recently started dating him'
+      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 20) {
+        // TODO-QSP: $bfRelationship[numnpc] += ', but you are already off to a bad start. You don''t get along at all.'
       } else {
-        // TODO-QSP: $bfRelationship[numnpc] += ' and you don''t know him that well yet. But you like to occasionally blo...
-        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-          // TODO-QSP: $bfRelationship[numnpc] += ' and you don''t know him that well yet, but you think you''re off to a g...
+        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 40) {
+          // TODO-QSP: $bfRelationship[numnpc] += ', but there are already some tensions between you.'
         } else {
-          // TODO-QSP: $bfRelationship[numnpc] += '. You don''t know him that well yet, but you enjoy each other''s company...
-          if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 100  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-            // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long you think you found a won...
+          if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+            // TODO-QSP: $bfRelationship[numnpc] += ', but you don''t know him that well yet.'
           } else {
-            // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long you have already strong f...
-            if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 100  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-              // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long it feels like he''s alrea...
+            if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+              // TODO-QSP: $bfRelationship[numnpc] += ' and you don''t know him that well yet. But you like to occasionally blo...
             } else {
-              // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long it feels like you found y...
-            }
-            // TODO-QSP: dynamic text: You see <<$nameBoyfrend[numnpc]>> in the park, apparently waiting for you. <<$bf...
-            scene.text(`You see ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} in the park, apparently waiting for you. ${((s as any).bfRelationship ?? 0)?.[String((s as any).numnpc ?? 0)]}`);
-            if (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] <= 16) {
-              // TODO-QSP: $bfRelationship[numnpc] = 'You''ve been dating him for a while now'
-              if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 20) {
-                // TODO-QSP: $bfRelationship[numnpc] += ' and you don''t know why you''re still wasting your time with him. You d...
+              if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                // TODO-QSP: $bfRelationship[numnpc] += ' and you don''t know him that well yet, but you think you''re off to a g...
               } else {
-                // TODO-QSP: $bfRelationship[numnpc] += ', but there are some tensions in your relationship.'
-                if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                  // TODO-QSP: $bfRelationship[numnpc] += ' and you get along pretty well.'
+                if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                  // TODO-QSP: $bfRelationship[numnpc] += '. You don''t know him that well yet, but you enjoy each other''s company...
+                } else {
+                  if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 100  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                    // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long you think you found a won...
+                  } else {
+                    if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 100  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                      // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long you have already strong f...
+                    } else {
+                      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 100  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                        // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long it feels like he''s alrea...
+                      } else {
+                        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 100  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                          // TODO-QSP: $bfRelationship[numnpc] += ' and even though you don''t know him that long it feels like you found y...
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      // TODO-QSP: dynamic text: You see <<$nameBoyfrend[numnpc]>> in the park, apparently waiting for you. <<$bf...
+      scene.text(`You see ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} in the park, apparently waiting for you. ${((s as any).bfRelationship ?? 0)?.[String((s as any).numnpc ?? 0)]}`);
+    } else {
+      if (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] <= 16) {
+        // TODO-QSP: $bfRelationship[numnpc] = 'You''ve been dating him for a while now'
+        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 20) {
+          // TODO-QSP: $bfRelationship[numnpc] += ' and you don''t know why you''re still wasting your time with him. You d...
+        } else {
+          if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 40) {
+            // TODO-QSP: $bfRelationship[numnpc] += ', but there are some tensions in your relationship.'
+          } else {
+            if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+              // TODO-QSP: $bfRelationship[numnpc] += ' and you get along pretty well.'
+              // TODO-QSP: $bfTitle[numnpc] = 'friend'
+            } else {
+              if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                // TODO-QSP: $bfRelationship[numnpc] += 'and you like to occasionally blow off a little steam with him, no string...
+                // TODO-QSP: $bfTitle[numnpc] = 'lover'
+              } else {
+                if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                  // TODO-QSP: $bfRelationship[numnpc] += '. He''s a fun guy to hang around with.'
                   // TODO-QSP: $bfTitle[numnpc] = 'friend'
                 } else {
-                  // TODO-QSP: $bfRelationship[numnpc] += 'and you like to occasionally blow off a little steam with him, no string...
-                  // TODO-QSP: $bfTitle[numnpc] = 'lover'
-                  if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                    // TODO-QSP: $bfRelationship[numnpc] += '. He''s a fun guy to hang around with.'
-                    // TODO-QSP: $bfTitle[numnpc] = 'friend'
-                  } else {
+                  if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
                     // TODO-QSP: $bfRelationship[numnpc] += '. You are friends with benefits.'
                     // TODO-QSP: $bfTitle[numnpc] = 'lover'
+                  } else {
                     if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
                       // TODO-QSP: $bfRelationship[numnpc] += '. He''s a good friend and you feel very comfortable around him.'
                       // TODO-QSP: $bfTitle[numnpc] = 'friend'
                     } else {
-                      // TODO-QSP: $bfRelationship[numnpc] += ' and you consider him your boyfriend. You really like him a lot.'
-                      // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
-                      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                        // TODO-QSP: $bfRelationship[numnpc] += ' and he''s become one of your best friends by now.'
-                        // TODO-QSP: $bfTitle[numnpc] = 'best friend'
-                      } else {
-                        // TODO-QSP: $bfRelationship[numnpc] += ' and you enjoy every minute with your lovely boyfriend. You love him dee...
+                      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                        // TODO-QSP: $bfRelationship[numnpc] += ' and you consider him your boyfriend. You really like him a lot.'
                         // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
-                      }
-                      // TODO-QSP: dynamic text: You see <<$nameBoyfrend[numnpc]>> in the park, apparently waiting for you. <<$bf...
-                      scene.text(`You see ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} in the park, apparently waiting for you. ${((s as any).bfRelationship ?? 0)?.[String((s as any).numnpc ?? 0)]}`);
-                      // TODO-QSP: $bfRelationship[numnpc] = ''
-                      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 20) {
-                        // TODO-QSP: $bfRelationship[numnpc] = 'For as long as it lasted, your relationship is now ruined. You can''t sta...
                       } else {
-                        // TODO-QSP: $bfRelationship[numnpc] = 'You''ve been dating him pretty long, but there are tensions in your relat...
-                        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                          // TODO-QSP: $bfRelationship[numnpc] = 'You like to occasionally hang out with him.'
-                          // TODO-QSP: $bfTitle[numnpc] = 'friend'
+                        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                          // TODO-QSP: $bfRelationship[numnpc] += ' and he''s become one of your best friends by now.'
+                          // TODO-QSP: $bfTitle[numnpc] = 'best friend'
                         } else {
-                          // TODO-QSP: $bfRelationship[numnpc] = 'You like to occasionally blow off some steam with him, no strings attache...
-                          // TODO-QSP: $bfTitle[numnpc] = 'lover'
-                          if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                            // TODO-QSP: $bfRelationship[numnpc] = 'He''s been a good friend to you and you have fun hanging out with him.'
-                            // TODO-QSP: $bfTitle[numnpc] = 'friend'
+                          if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                            // TODO-QSP: $bfRelationship[numnpc] += ' and you enjoy every minute with your lovely boyfriend. You love him dee...
+                            // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        // TODO-QSP: dynamic text: You see <<$nameBoyfrend[numnpc]>> in the park, apparently waiting for you. <<$bf...
+        scene.text(`You see ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} in the park, apparently waiting for you. ${((s as any).bfRelationship ?? 0)?.[String((s as any).numnpc ?? 0)]}`);
+      } else {
+        // TODO-QSP: $bfRelationship[numnpc] = ''
+        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 20) {
+          // TODO-QSP: $bfRelationship[numnpc] = 'For as long as it lasted, your relationship is now ruined. You can''t sta...
+        } else {
+          if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 40) {
+            // TODO-QSP: $bfRelationship[numnpc] = 'You''ve been dating him pretty long, but there are tensions in your relat...
+          } else {
+            if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+              // TODO-QSP: $bfRelationship[numnpc] = 'You like to occasionally hang out with him.'
+              // TODO-QSP: $bfTitle[numnpc] = 'friend'
+            } else {
+              if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 60  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                // TODO-QSP: $bfRelationship[numnpc] = 'You like to occasionally blow off some steam with him, no strings attache...
+                // TODO-QSP: $bfTitle[numnpc] = 'lover'
+              } else {
+                if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                  // TODO-QSP: $bfRelationship[numnpc] = 'He''s been a good friend to you and you have fun hanging out with him.'
+                  // TODO-QSP: $bfTitle[numnpc] = 'friend'
+                } else {
+                  if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                    // TODO-QSP: $bfRelationship[numnpc] = 'One could consider you a couple for as long as you''ve been together now,...
+                    // TODO-QSP: $bfTitle[numnpc] = 'lover'
+                  } else {
+                    if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                      // TODO-QSP: $bfRelationship[numnpc] = 'He''s always been a very good friend and you love spending your time with...
+                      // TODO-QSP: $bfTitle[numnpc] = 'friend'
+                    } else {
+                      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                        // TODO-QSP: $bfRelationship[numnpc] = 'He''s your lovely boyfriend.'
+                        // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
+                      } else {
+                        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 160  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                          // TODO-QSP: $bfRelationship[numnpc] = 'He''s one of your best friends, you could talk with him about anything.'
+                          // TODO-QSP: $bfTitle[numnpc] = 'best friend'
+                        } else {
+                          if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 160  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                            // TODO-QSP: $bfRelationship[numnpc] = 'You still feel lucky that you can call him your boyfriend. You love him d...
+                            // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
                           } else {
-                            // TODO-QSP: $bfRelationship[numnpc] = 'One could consider you a couple for as long as you''ve been together now,...
-                            // TODO-QSP: $bfTitle[numnpc] = 'lover'
-                            if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 120  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                              // TODO-QSP: $bfRelationship[numnpc] = 'He''s always been a very good friend and you love spending your time with...
-                              // TODO-QSP: $bfTitle[numnpc] = 'friend'
+                            if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 160  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+                              // TODO-QSP: $bfRelationship[numnpc] = 'He''s your best friend, you would trust him with your life.'
+                              // TODO-QSP: $bfTitle[numnpc] = 'best friend'
                             } else {
-                              // TODO-QSP: $bfRelationship[numnpc] = 'He''s your lovely boyfriend.'
-                              // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
-                              if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 160  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                                // TODO-QSP: $bfRelationship[numnpc] = 'He''s one of your best friends, you could talk with him about anything.'
-                                // TODO-QSP: $bfTitle[numnpc] = 'best friend'
-                              } else {
-                                // TODO-QSP: $bfRelationship[numnpc] = 'You still feel lucky that you can call him your boyfriend. You love him d...
+                              if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 160  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+                                // TODO-QSP: $bfRelationship[numnpc] = 'He''s your lovely boyfriend and the guy you want to marry someday. You ab...
                                 // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
-                                if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 160  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-                                  // TODO-QSP: $bfRelationship[numnpc] = 'He''s your best friend, you would trust him with your life.'
-                                  // TODO-QSP: $bfTitle[numnpc] = 'best friend'
-                                } else {
-                                  // TODO-QSP: $bfRelationship[numnpc] = 'He''s your lovely boyfriend and the guy you want to marry someday. You ab...
-                                  // TODO-QSP: $bfTitle[numnpc] = 'boyfriend'
-                                }
-                                // TODO-QSP: dynamic text: You see the familiar face of <<$nameBoyfrend[numnpc]>> in the park, obviously wa...
-                                scene.text(`You see the familiar face of ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} in the park, obviously waiting for you. ${((s as any).bfRelationship ?? 0)?.[String((s as any).numnpc ?? 0)]}`);
                               }
-                              if (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] > 40) {
-                                if ((((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] > 80)  ||  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
-                                  // TODO-QSP: $bfGreeting += ' with a hug'
-                                }
-                                if ((((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] > 120)  ||  (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80)) {
-                                  // TODO-QSP: $bfGreeting += ' and a kiss on the cheek'
-                                } else {
-                                  // TODO-QSP: $bfGreeting += ' and a kiss on the lips'
-                                  qspCall(s, 'arousal', 'kiss', 1);
-                                  qspCall(s, 'arousal', 'end');
-                                }
-                              }
-                              // TODO-QSP: dynamic text: You approach <<$nameBoyfrend[numnpc]>> and greet him<<$bfGreeting>>.
-                              scene.text(`You approach ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} and greet him${((s as any).bfGreeting ?? 0)}.`);
-                              if (((s as any).preg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) <= 1920  &&  ((s as any).npc_pregtalk ?? 0)?.[String((s as any).numnpc ?? 0)] === 0  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).knowpreg ?? 0) === 1) {
-                                if (((s as any).npc_usedname ?? 0)[((s as any).ChildFath ?? 0)[Object.keys((s as any).ChildFath ?? {}).length - 1]] !== ((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]) {
-                                }
-                                scene.actions([
-                                  { label: '<<$pregLie>>Tell him that he knocked you up', handler: (st: GameState) => {
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        // TODO-QSP: dynamic text: You see the familiar face of <<$nameBoyfrend[numnpc]>> in the park, obviously wa...
+        scene.text(`You see the familiar face of ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} in the park, obviously waiting for you. ${((s as any).bfRelationship ?? 0)?.[String((s as any).numnpc ?? 0)]}`);
+      }
+    }
+  }
+  if (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] > 40) {
+    if ((((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] > 80)  ||  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+      // TODO-QSP: $bfGreeting += ' with a hug'
+    }
+    if ((((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] > 120)  ||  (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80)) {
+      // TODO-QSP: $bfGreeting += ' and a kiss on the cheek'
+    } else {
+      if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] > 80) {
+        // TODO-QSP: $bfGreeting += ' and a kiss on the lips'
+        qspCall(s, 'arousal', 'kiss', 1);
+        qspCall(s, 'arousal', 'end');
+      }
+    }
+  }
+  // TODO-QSP: dynamic text: You approach <<$nameBoyfrend[numnpc]>> and greet him<<$bfGreeting>>.
+  scene.text(`You approach ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} and greet him${((s as any).bfGreeting ?? 0)}.`);
+  if (((s as any).preg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) <= 1920  &&  ((s as any).npc_pregtalk ?? 0)?.[String((s as any).numnpc ?? 0)] === 0  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).knowpreg ?? 0) === 1) {
+    if (((s as any).npc_usedname ?? 0)[((s as any).ChildFath ?? 0)[Object.keys((s as any).ChildFath ?? {}).length - 1]] !== ((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]) {
+    }
+    scene.actions([
+      { label: '<<$pregLie>>Tell him that he knocked you up', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'huge');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You tell <<$nameBoyfrend[numnpc]>> that he got you pregnant. His eyes nearly pop...
@@ -184,12 +249,71 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-                                ]);
-                              }
-                              if (((s as any).GboyBalabol ?? 0)?.[String((s as any).numnpc ?? 0)] === 1) {
-                                if ((((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] <= 4  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 100)  ||  (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] > 4  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 120)) {
-                                  scene.actions([
-                                    { label: 'End the relationship', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).GboyBalabol ?? 0)?.[String((s as any).numnpc ?? 0)] === 1) {
+    scene.actions([
+      { label: 'Blame him for your bad reputation', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: You accuse <<$nameBoyfrend[numnpc]>> that he blabbed about your sexual relations...
+    scene.text(`You accuse ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} that he blabbed about your sexual relationship and now and everyone thinks that you're a ${((s as any).gnikname ?? 0)}.`);
+    (s as any).reaktrand = Math.floor(Math.random() * 3) + 0;
+    if ((!((s as any).reaktrand ?? 0))) {
+      // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> begins to apologize, he's been drinking with a friend ...
+      scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} begins to apologize, he's been drinking with a friend and accidentally told him about your sexual exploits together. He vows that this will never happen again.`);
+    } else {
+      if (((s as any).reaktrand ?? 0) === 1) {
+        // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> tries to comfort you, "<<$pcs_nickname>>, I would neve...
+        scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} tries to comfort you, "${((s as any).pcs_nickname ?? 0)}, I would never do such a thing. Just ignore what those idiots say. They will soon find someone else to gossip about."`);
+      } else {
+        if (((s as any).reaktrand ?? 0) === 2) {
+          // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> grins, "Relax, <<$pcs_nickname>>. It's a fact that you...
+          scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} grins, "Relax, ${((s as any).pcs_nickname ?? 0)}. It's a fact that you're a ${((s as any).gnikname ?? 0)}. So what?"`);
+        }
+      }
+    }
+    qspCall(s, 'willpower', 'misc', 'self');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Break up with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Break up with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 2;
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
+    qspCall(s, 'stat', '');
+    scene.text('You furiously scream at him that you never want to see him again and storm off.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Forgive him', handler: (st: GameState) => {
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 2;
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: You think about what he said. Because of the rumors, a lot of people have alread...
+    scene.text(`You think about what he said. Because of the rumors, a lot of people have already a bad opinion about you and you don't want to lose your ${((s as any).bfTitle ?? 0)?.[String((s as any).numnpc ?? 0)]}, too. So you reluctantly decide to forgive him.`);
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if ((((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] <= 4  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 100)  ||  (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] > 4  &&  ((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 120)) {
+    scene.actions([
+      { label: 'End the relationship', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You think about how you could approach your <<$bfTitle[numnpc]>> with this delic...
     scene.text(`You think about how you could approach your ${((s as any).bfTitle ?? 0)?.[String((s as any).numnpc ?? 0)]} with this delicate matter…`);
     if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 40) {
@@ -205,7 +329,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Break up with him', handler: (st: GameState) => {
+        { label: 'Break up with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 40) {
       qspCall(s, 'willpower', 'misc', 'self', 'easy');
     } else {
@@ -234,7 +358,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Just be friends', handler: (st: GameState) => {
+          { label: 'Just be friends [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).temprand = Math.floor(Math.random() * 5) + 0;
@@ -273,70 +397,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Back down', goto: ['Gnpc', ''] },
     ]);
   } },
-                                  ]);
-                                }
-                                scene.actions([
-                                  { label: 'Blame him for your bad reputation', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: You accuse <<$nameBoyfrend[numnpc]>> that he blabbed about your sexual relations...
-    scene.text(`You accuse ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} that he blabbed about your sexual relationship and now and everyone thinks that you're a ${((s as any).gnikname ?? 0)}.`);
-    (s as any).reaktrand = Math.floor(Math.random() * 3) + 0;
-    if ((!((s as any).reaktrand ?? 0))) {
-      // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> begins to apologize, he's been drinking with a friend ...
-      scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} begins to apologize, he's been drinking with a friend and accidentally told him about your sexual exploits together. He vows that this will never happen again.`);
-    } else {
-      // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> tries to comfort you, "<<$pcs_nickname>>, I would neve...
-      scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} tries to comfort you, "${((s as any).pcs_nickname ?? 0)}, I would never do such a thing. Just ignore what those idiots say. They will soon find someone else to gossip about."`);
-      if (((s as any).reaktrand ?? 0) === 2) {
-        // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> grins, "Relax, <<$pcs_nickname>>. It's a fact that you...
-        scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} grins, "Relax, ${((s as any).pcs_nickname ?? 0)}. It's a fact that you're a ${((s as any).gnikname ?? 0)}. So what?"`);
-      }
-      qspCall(s, 'willpower', 'misc', 'self');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Break up with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Break up with him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 2;
-    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
-    qspCall(s, 'stat', '');
-    scene.text('You furiously scream at him that you never want to see him again and storm off.');
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
     ]);
-  } },
-        ]);
-      }
-      scene.actions([
-        { label: 'Forgive him', handler: (st: GameState) => {
-    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 2;
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: You think about what he said. Because of the rumors, a lot of people have alread...
-    scene.text(`You think about what he said. Because of the rumors, a lot of people have already a bad opinion about you and you don't want to lose your ${((s as any).bfTitle ?? 0)?.[String((s as any).numnpc ?? 0)]}, too. So you reluctantly decide to forgive him.`);
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
-    ]);
-  } },
-      ]);
-    }
-  } },
-                                ]);
-                              }
-                              scene.actions([
-                                { label: 'Apologize and leave', handler: (st: GameState) => {
+  }
+  scene.actions([
+    { label: 'Apologize and leave', handler: (st: GameState) => {
     // TODO-QSP: otnBoyFrend[numnpc] -= 5
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-                                { label: 'Take a walk through the park', handler: (st: GameState) => {
+    { label: 'Take a walk through the park', handler: (st: GameState) => {
     if (((s as any).pcs_hairbsh ?? 0) < 1) {
       (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (5);
     }
@@ -355,7 +423,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_sweat ?? 0) > 19) {
       (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (5);
     } else {
-      (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (1);
+      if (((s as any).pcs_sweat ?? 0) < 10) {
+        (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (1);
+      }
     }
     if (((s as any).PCloSkirt ?? 0) > 2) {
       (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (3);
@@ -400,14 +470,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Go to the cinema', goto: ['Gnpc_cinema', ''] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> suggests to drink some beers in the park.
-      scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} suggests to drink some beers in the park.`);
-      scene.actions([
-        { label: 'Apologize and leave', handler: (st: GameState) => {
+      if (((s as any).gboyrand ?? 0) === 1) {
+        // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> suggests to drink some beers in the park.
+        scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} suggests to drink some beers in the park.`);
+        scene.actions([
+          { label: 'Apologize and leave', handler: (st: GameState) => {
     // TODO-QSP: otnBoyFrend[numnpc] -= 5
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-        { label: 'Go for a beer', handler: (st: GameState) => {
+          { label: 'Go for a beer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You head with <<$nameBoyfrend[numnpc]>> to the nearest kiosk. He buys a few a be...
@@ -431,24 +502,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
-  } },
-                              ]);
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]);
       }
     }
-  }
+  } },
+  ]);
   scene.build();
 }
 

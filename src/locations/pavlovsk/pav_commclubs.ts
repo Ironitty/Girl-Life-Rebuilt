@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -93,27 +91,31 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if ((((s as any).ml_guitarlesson ?? 0)?.['nextlesson'] === ((s as any).daystart ?? 0))) {
       if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour']-1 === ((s as any).hour ?? 0))) {
-        if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "\u00000\u0000", { location: "pav_commclubs" })) === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-        } else {
-          (s as any).minut = ((s as any).minut ?? 0) + ((60 - ((s as any).minut ?? 0)));
-          scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
-        }
         scene.actions([
-          { label: 'Wait for your guitar lesson [+$func(\'money\', \'get_cost_string\', ml_gui...]' }, // TODO-QSP: empty action body
+          { label: 'Wait for your guitar lesson [+$func(\'money\', \'get_cost_string\', ml_gui...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + ((60 - ((s as any).minut ?? 0)));
+      scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
+    }
+  } },
+        ]);
+      }
+      if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] === ((s as any).hour ?? 0))) {
+        scene.actions([
+          { label: 'Go to your guitar lesson [+$func(\'money\', \'get_cost_string\', ml_gui...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
+    }
+  } },
         ]);
       }
     }
-    if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] === ((s as any).hour ?? 0))) {
-      if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "\u00000\u0000", { location: "pav_commclubs" })) === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-      } else {
-        scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
-      }
-      scene.actions([
-        { label: 'Go to your guitar lesson [+$func(\'money\', \'get_cost_string\', ml_gui...]' }, // TODO-QSP: empty action body
-      ]);
-    }
+  } else {
+    scene.text('Club\'s closed.');
   }
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },

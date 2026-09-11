@@ -24,7 +24,7 @@ function enterDjibrilgb(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Change your mind and leave', handler: (st: GameState) => {
+      { label: 'Change your mind and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
@@ -76,7 +76,7 @@ function enterDjibrilgb(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Change your mind and leave', handler: (st: GameState) => {
+        { label: 'Change your mind and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
@@ -832,33 +832,13 @@ function enterDjibrilNush(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.text('She looks him over lustfully, then looks to you while biting her lower lip. "I\'m up for getting ploughed by all of them if you are."');
-      if (((s as any).temp ?? 0) <= 5) {
-        scene.text('You glance at Djibril, who seems happy with any of the options.');
-        scene.text('She looks him over lustfully before glancing at you. "I want him all to myself. Is that okay with you?"');
-        scene.text('You can\'t help but feel a little disappointed, but you nod in response. "Sure, of course."');
+      if (((s as any).temp ?? 0) <= 3) {
+        scene.text('She looks him over lustfully, then looks to you while biting her lower lip. "I\'m up for getting ploughed by all of them if you are."');
         scene.actions([
-          { label: 'Stay and watch', goto: ['djibrilev1', 'djibril_nush1'] },
-          { label: 'Excuse yourself', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some1.jpg');
-    scene.text('You stand up. "I\'ll leave you guys to it then."');
-    scene.text('Anushka smiles at you as she scoots over against Djibril and starts running her hands down his body while he looks at you. "Okay, thanks for stopping by. Come by any time you want."');
-    scene.text('He then turns his full attention to Anushka and you make your way over to the door. You glance back and see them kissing before you walk out and close the door behind you.');
-    scene.actions([
-      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
-    ]);
-  } },
+          { label: 'Have Djibril invite his friends', goto: ['djibrilev1', 'djibril_sveta_nush_gangbang1'] },
         ]);
       } else {
-        scene.text('She looks him over lustfully, then looks at you while biting her lower lip. "How about we keep it to just the three of us?"');
-        scene.text('You nod and Djibril pours each of you a glass of wine.');
-        scene.actions([
-          { label: 'Just the three of you', goto: ['djibrilev1', 'djibril_sveta_nush1'] },
-        ]);
-      }
-      if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).DjibrilQW ?? 0)?.['nush_inv'] === 1) {
-        if ((Math.floor(Math.random() * 3) + 1) === 1) {
+        if (((s as any).temp ?? 0) <= 5) {
           scene.text('You glance at Djibril, who seems happy with any of the options.');
           scene.text('She looks him over lustfully before glancing at you. "I want him all to myself. Is that okay with you?"');
           scene.text('You can\'t help but feel a little disappointed, but you nod in response. "Sure, of course."');
@@ -876,13 +856,42 @@ function enterDjibrilNush(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          scene.text('She looks him over lustfully, then looks at you while biting her lower lip. "Yeah, I\'m cool with sharing him."');
+          scene.text('She looks him over lustfully, then looks at you while biting her lower lip. "How about we keep it to just the three of us?"');
           scene.text('You nod and Djibril pours each of you a glass of wine.');
           scene.actions([
             { label: 'Just the three of you', goto: ['djibrilev1', 'djibril_sveta_nush1'] },
           ]);
         }
+      }
+    }
+  } else {
+    if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).DjibrilQW ?? 0)?.['nush_inv'] === 1) {
+      if ((Math.floor(Math.random() * 3) + 1) === 1) {
+        scene.text('You glance at Djibril, who seems happy with any of the options.');
+        scene.text('She looks him over lustfully before glancing at you. "I want him all to myself. Is that okay with you?"');
+        scene.text('You can\'t help but feel a little disappointed, but you nod in response. "Sure, of course."');
+        scene.actions([
+          { label: 'Stay and watch', goto: ['djibrilev1', 'djibril_nush1'] },
+          { label: 'Excuse yourself', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some1.jpg');
+    scene.text('You stand up. "I\'ll leave you guys to it then."');
+    scene.text('Anushka smiles at you as she scoots over against Djibril and starts running her hands down his body while he looks at you. "Okay, thanks for stopping by. Come by any time you want."');
+    scene.text('He then turns his full attention to Anushka and you make your way over to the door. You glance back and see them kissing before you walk out and close the door behind you.');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
+    ]);
+  } },
+        ]);
       } else {
+        scene.text('She looks him over lustfully, then looks at you while biting her lower lip. "Yeah, I\'m cool with sharing him."');
+        scene.text('You nod and Djibril pours each of you a glass of wine.');
+        scene.actions([
+          { label: 'Just the three of you', goto: ['djibrilev1', 'djibril_sveta_nush1'] },
+        ]);
+      }
+    } else {
+      if (((s as any).pcs_hotcat ?? 0) <= 5  &&  ((s as any).DjibrilQW ?? 0)?.['nush_inv'] === 2) {
         if ((Math.floor(Math.random() * 4) + 1) === 1) {
           scene.text('She looks him over lustfully, then glances at you. "I want all the dick to myself. Is that okay with you?"');
           scene.text('You can\'t help but feel a little disappointed, but you nod in response. "Sure, of course."');
@@ -918,6 +927,7 @@ function enterDjibrilNush(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         }
+      } else {
         scene.text('You glance at Djibril, who seems happy with any of the options.');
         scene.text('She looks him over lustfully before glancing at you. "I want him all to myself. Is that okay with you?"');
         scene.text('You can\'t help but feel a little disappointed, but you nod in response. "Sure, of course."');
@@ -935,11 +945,605 @@ function enterDjibrilNush(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       }
-      scene.actions([
-        { label: 'Have Djibril invite his friends', goto: ['djibrilev1', 'djibril_sveta_nush_gangbang1'] },
-      ]);
     }
   }
+  scene.build();
+}
+
+function enterDjibrilSvetaNush1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A82');
+  qspCall(s, 'npcStat', 'A33', 'a');
+  scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some2.jpg');
+  scene.text('As you sit and chat while drinking a glass of wine, Djibril gets a little bold and points at his crotch. "So which one of you beautiful girls is going to suck my dick?"');
+  scene.text('Anushka glances at you and giggles, clearly finding his antics amusing instead of crude.');
+  scene.text('You glance at him and can\'t help but grin. "Pull out your dick first! We can\'t suck it in your pants."');
+  scene.text('He grins and wastes no time unbuttoning his pants and pulling out his semi hard cock.');
+  scene.actions([
+    { label: 'Push her head to his lap', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'city', 'sex', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some3.jpg');
+    if (((s as any).DjibrilQW ?? 0)?.['sveta_nush'] === 0) {
+      scene.text('Anushka bites her lower lip as she sets her empty glass down. You put your hand on the back of her head and push her head over to his lap.');
+      scene.text('With her face only a few inches from his cock, she reaches over to take hold of it with her hand and starts stroking it. "Oh my god, it\'s so fucking big!"');
+      scene.text('You think she\'s just stroking his ego and it seems to work, as her comments make him grin. "You\'re one of those Russian girls that just loves a big black cock, aren\'t you?"');
+      scene.text('She bites her lower lip and looks a little bashful. Now you know she\'s just playing him.');
+      scene.text('She keeps stroking him. "Oh yes, I\'ve never seen one so big! I don\'t know if it will fit, but I want to find out…"');
+    } else {
+      scene.text('Anushka bites her lower lip as she sets her empty glass down. You put your hand on the back of her head and push her head over to his lap.');
+      scene.text('With her face only a few inches from his cock, she reaches over to take hold of it with her hand and starts stroking it. "Fuck, no matter how many times I see it, I always forget just how huge your big black cock is."');
+      scene.text('You know she\'s just stroking his ego at this point, but her comments still make him grin widely in pleasure. "You\'re just a big black cock slut who just loves getting fucked by one, aren\'t you? Tell me how much you love it."');
+      scene.text('She bites her lower lip and moans slightly as she keeps stroking him. "Oh yes, I love it when your big… black… cock… stretches my tight… little… white holes."');
+    }
+    qspCall(s, 'arousal', 'voyeur_sex', 3, 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Push her head down further', handler: (st: GameState) => {
+    (s as any).DjibrilQW['sveta_nush'] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some4.jpg');
+    scene.text('"Don\'t tease him! Suck his dick, Nush!" you tell her as you push her head down onto his hard cock.');
+    scene.text('She opens her mouth and starts sucking his massive member while stroking it at the same time.');
+    scene.text('Djibril moans as she does and leans back on the couch to take another sip of wine. "Oh fuck, that feels so good!"');
+    qspCall(s, 'arousal', 'voyeur_sex', 3, 'group', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Make out with him', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some5.jpg');
+    scene.text('You crawl up over her, place a hand on the back of her neck and force her head down even more until you hear her gag.');
+    scene.text('"Oh fuck YEAH!" is the response you get out of Djibril as you turn your attention to him and start kissing him. He returns your kisses with passion as you keep forcing Anushka to deepthroat him before he stops. "I want you to lick her pussy and get it nice and wet for me."');
+    qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID ?? 0), 'group', 'dom');
+    qspCall(s, 'arousal', 'voyeur_sex', (-2), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat Anushka out', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some6.jpg');
+    scene.text('Djibril encourages Anushka to stand up and bend over so she can keep sucking his dick as you kneel on the couch next to her and push her dress up over her hips before pulling her panties aside.');
+    scene.text('You lean over and start licking her slit, her pussy already soaking wet as you work your tongue inside her. You can hear her moaning around his dick as you do.');
+    scene.text('After a few minutes, Djibril has you stop. "Get on the couch, spread your legs and show me that pretty pussy of yours."');
+    qspCall(s, 'arousal', 'cuni_give', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get eaten out', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some7.jpg');
+    scene.text('Once you\'re on your back and stripped from the waist down, he grabs Anushka by the hair and pulls her off his dick before dragging her head over between your legs. "Eat her pussy and get it nice and wet for me."');
+    scene.text('She kneels on the couch, places her face between your legs and starts licking your pussy, her tongue darting inside you to tongue fuck you.');
+    scene.text('Djibril watches before he half kneels on the couch and half stands behind Anushka. She moans loudly, but keeps eating you out.');
+    scene.text('"Fuck, your pussy is so tight!" he moans as he starts slowly but steadily fucking her as she eats you out. A few minutes go by until he suddenly sits on the couch behind her and looks you in the eye. "Come over here and suck my dick, taste your friend\'s juices."');
+    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck Djibril', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some8.jpg');
+    // TODO-QSP: dynamic text: As you get up and Anushka slides off the couch, he looks at her and says "Strip ...
+    scene.text(`As you get up and Anushka slides off the couch, he looks at her and says "Strip ${((s as any).pcs_nickname ?? 0)} for me."`);
+    scene.text('Anushka starts pulling your clothes off and once you\'re completely naked, you get on your knees on the couch before bending forward to suck his dick. You can taste Anushka\'s pussy juices on his dick.');
+    scene.text('Djibril reaches up and slaps you on the ass. "Come on Nush, don\'t leave her hanging. Keep that pussy nice and wet for me."');
+    scene.text('You feel her tongue dart back inside your pussy, causing you to moan around his dick. A few more minutes go by before he pulls your mouth off his cock. "Strip your friend for me."');
+    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'arousal', 'bj', (-3), ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Strip her', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some9.jpg');
+    scene.text('As you stop sucking him, she stops eating you out. You turn around and strip her before she puts one foot up on the couch and spreads her legs wide while looking at you. You then get down and start licking her soaking wet pussy, slipping your tongue between her lips as you do.');
+    scene.text('He watches the two of you for a few minutes while stroking his dick before he stands up.');
+    scene.text('"I can\'t take this anymore. I\'ve got to fuck both of you. Come over here girls." You both approach him and he gets Anushka down on all fours on the couch, then encourages you to climb on top of her.');
+    scene.text('You stand above her as he pushes you forward so you\'re both bent over, one on top of the other with your backsides facing him.');
+    qspCall(s, 'arousal', 'cuni_give', 2, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get fucked', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some10.jpg');
+    // TODO-QSP: dynamic text: You feel the tip of his dick sliding against your wet clit before he pushes his ...
+    scene.text(`You feel the tip of his dick sliding against your wet clit before he pushes his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock inside you.`);
+    scene.text('He starts off slowly fucking you, letting you get used to his size, but as you moan more loudly, he starts fucking you a little faster. Just as it\'s really starting to feel good, he suddenly pulls out of you.');
+    qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Nush\'s turn', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some11.jpg');
+    scene.text('"Ooooh… Fuck… It\'s too big!" Her cries seem like a mix of pain and pleasure and she starts taking deep breaths.');
+    scene.text('You feel his stomach smack against your ass with each thrust as he fucks Anushka. "Fuck yeah! Your ass feels so good!"');
+    scene.text('She continues moaning and groaning in a mix of pain and pleasure as he fucks her ass. As he keeps fucking her, you feel the cool liquid from the lube being squirted on your asshole before he works the lube into you with his fingers.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3, 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get assfucked', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some12.jpg');
+    scene.text('She gasps and goes silent as you feel the tip of his dick against your asshole before he pushes his dick into your ass.');
+    scene.text('He\'s slow and shallow at first, but slowly starts pushing his huge cock deeper inside you as he fucks you. "Mhm, damn another tight ass to stretch out."');
+    scene.text('After a few minutes, he pulls out of you and pushes you forward.');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID ?? 0), 'group', 'lube');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anushka\'s turn again', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some13.jpg');
+    scene.text('As he moves you forward, your legs go around her waist and the back of your thighs are against the top of her hips, resulting in your clit resting against her back. You hear Anushka gasp again, followed by the sounds of slapping flesh as you feel her hips bouncing against your thighs, which holds her in place for Djibril as he starts fucking her hard and fast.');
+    scene.text('"Oooh… fuck… OH FUCK!" she cries out as her body bounces back and forth, her lower back rubbing against your clit as she does.');
+    scene.text('The louder she gets, the harder he fucks her. "Fuck yeah! I\'m going to tear this little ass up!"');
+    scene.text('He slaps you on the ass. "Don\'t worry sweetness, your ass is next." He slaps you on the ass a few more times as he keeps hammering Anushka\'s asshole.');
+    scene.text('A few minutes later, she starts crying out and you feel her whole body start shaking and quivering underneath you. "Don\'t stop… Don\'t stop… Fuck… I\'m cumming!"');
+    scene.text('He does what she asks and doesn\'t stop. He fucks her through her orgasm, only slowing down once she comes down.');
+    qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Back to you', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some14.jpg');
+    scene.text('You suddenly feel his dick slide back into your asshole and he starts fucking it hard and fast. You can hear him grunting as he approaches orgasm himself.');
+    scene.text('A few minutes go by until he pulls back out of you and stands by the coffee table. "Fuck… I\'m about to cum. Come over here, girls!"');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID ?? 0), 'group', 'lube', 'rough');
+    qspCall(s, 'arousal', 'foreplay', (-3), ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'He\'s cumming', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some15.jpg');
+    scene.text('You quickly climb off Anushka and get on your knees in front of Djibril as Anushka quickly joins you on the other side of him. He jerks his dick a few times and starts cumming.');
+    scene.text('When he finishes, he squeezes the last few drops out on each of your faces. "OOOOH… FUCK, that was amazing." He pauses for a second before adding "Damn, look at the mess you girls made! Why don\'t you lick the table clean?"');
+    qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lick it up', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some16.jpg');
+    scene.text('He grabs you both by the hair and forces you down against the table. The cum from your face just adds to the mess. "Come on, lick it up."');
+    scene.text('Anushka starts licking it up and you follow suit as he holds your head down until the two of you have licked up every last drop off the table. He then lets go and flops down on the couch. "Good girls, good girls…" Then he laughs out loud. "Fuck, that was amazing. I hope you girls enjoyed that as much as I did."');
+    scene.text('Anuska gets up and grabs some tissues to clean the cum off her face, offering one to you. You take it and start cleaning your face as well.');
+    scene.text('"Yeah I had fun, even if my ass is going to be a little sore tomorrow," she says with a smile.');
+    scene.text('You smile at him as you toss the used tissue away. "Yeah, I had a great time as always."');
+    scene.text('You all start getting dressed while joking and flirting. Once Anushka is dressed, she smiles at you. "I need to get going. I\'d like to do some shopping before I take the train home."');
+    scene.text('He nods. "Cool, cool. Yeah, I had a blast. I hope you come by again, Nush. Be safe."');
+    scene.text('She has a bemused look on her face. "Maybe. See you guys later."');
+    scene.text('"I should really get going too," you tell Djibril.');
+    scene.text('He nods. "Yeah, I\'ve got some school work I need to do. See you later, sweetness."');
+    scene.text('With that, you make your way out of the room.');
+    qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID ?? 0), 'group', 'sub', 'humiliation');
+    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
+    (s as any).cumspclnt = 12;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDjibrilNush1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril1.jpg');
+  scene.text('You get up and make room for them by taking a seat on one of the beds. He stands and pulls her up with him before he moves behind her and starts nuzzling her neck and undressing her.');
+  scene.text('He soon has her clothes removed and his dark hands roam over her pale naked body as she moans and leans against him. He then pushes her down to her knees and pulls his dick out of his pants.');
+  qspCall(s, 'arousal', 'voyeur_sex', 2, 'deepthroat');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Watch her suck his dick', handler: (st: GameState) => {
+    (s as any).DjibrilQW['sveta_nush'] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril2.jpg');
+    scene.text('She turns as he pushes her down and gets on her knees in front of him, sucking his dick while using her hands to pull his pants and underwear off.');
+    scene.text('He places his hand on the back of her head and starts forcing her to deepthroat him. You can hear her gagging, but she doesn\'t seem to be struggling or resisting.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Watch Anushka get fucked', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A82');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril3.jpg');
+    // TODO-QSP: dynamic text: He grabs her by the hair and pulls her up before leading her back over to the co...
+    scene.text(`He grabs her by the hair and pulls her up before leading her back over to the couch, where he pushes her onto her knees and moves in behind her to slide his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into her wet pussy.`);
+    scene.text('She looks back at him, crying out as she furrows her brow. "Oh fuck, you\'re so big!"');
+    scene.text('He smiles back at her. "Don\'t worry, I\'ll have this tight little pussy stretched out in no time."');
+    scene.text('She has a slightly bemused look on her face. "Fuck you!"');
+    scene.text('He laughs. "I think you\'re confused. You\'re the one getting fucked," he says as he slams himself balls deep into her, making her cry out and cutting off any reply she might have had.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'They play rough', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril4.jpg');
+    scene.text('He pushes her head down against the couch and starts hammering away at her pussy, her moans getting louder as she reaches back to play with her clit.');
+    scene.text('"Yeah, you love getting your little white pussy pounded by a big black cock, don\'t you?"');
+    scene.text('She seems unable or unwilling to reply to him, so you decide to offer some advice to him. "She also loves big black cock up her tight little ass."');
+    scene.text('He glances at you and grins. "Is that right? You love getting your little white ass fucked by black cock?"');
+    scene.text('"She loves all cock up her ass. She\'s a total butt slut," you add.');
+    scene.text('He laughs at your comment and slaps her ass. "That right? You a butt slut? You want me to fuck your ass?"');
+    scene.text('He slaps her ass again before she finally answers. "YES!" She seems to have trouble focusing on anything but the fucking she\'s getting.');
+    scene.text('He slaps her ass again, then turns his head to you as he keeps fucking her pussy. "Toss me that bottle of lube." He points at the end table and you get up and open the drawer, pulling out the bottle of lube.');
+    scene.text('You hand it to him and he squirts some on her asshole before tossing the bottle aside as he works the lube into her ass with his fingers.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Up the ass', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A82');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril5.jpg');
+    scene.text('He pulls out of her and grabs her by the hair before leading her over to the window, where he grabs a chair from his desk and slides it in front of the window. He lifts her up and puts her in the chair facing the window.');
+    scene.text('"Look out there," he says as he grips her hair and makes her look at the window. From your position, you can see one of the other dorms and parts of the city. You know his window also looks out over the quad.');
+    scene.text('"Everyone looking in this window is going to see your little white ass getting fucked by my big black cock, and they\'re all going to know that you\'re not just a butt slut, but that you\'re a black cock butt slut."');
+    scene.text('She doesn\'t respond to what he says as he grabs his dick and slides it between her cheeks. Her hands grip the back of the chair hard as she cries out. "OH FUCK!!"');
+    scene.text('"That\'s right. Your ass is mine, you little butt slut," he tells her as he starts fucking her in the ass.');
+    scene.text('"Oh fuck, it\'s too big… Not so deep!" she whines.');
+    qspCall(s, 'arousal', 'voyeur_sex', 2);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Butt slut', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A82');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril6.jpg');
+    scene.text('Her whines start turning into moans of pleasure as she stops gripping the back of the chair slightly and leans forward, relaxing and starting to really enjoying the butt fucking Djibril is giving her. "Yes… yes… Oooh… Fuck me, fuck me!"');
+    scene.text('You\'ve seen Anushka have sex enough to know she likes it rough once she gets into it.');
+    scene.text('"Well? Hurry up and fuck her!" you tell Djibril.');
+    scene.text('He glances over at you.');
+    scene.text('"She asked you to fuck her. Now pound that little asshole hard and deep until your balls are bouncing off her pussy!" you tell him.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal pounding', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril7.jpg');
+    scene.text('He takes your advice and starts fucking her ass harder, slowly working himself deeper until his balls start slapping against her pussy. She starts making a high pitched whining noise, but you\'ve heard her make it before. He glances at you and you just nod for him to continue, so he does.');
+    scene.text('Within a few minutes, she starts saying "OH… OH… Harder… Harder… OH… Fuck me harder… Ooo… Ooo…"');
+    scene.text('He does as she asks and pulls most of the way out of her and starts fucking her hard until she starts crying out and her whole body starts shaking as she has a massive orgasm.');
+    scene.text('Before she even finishes, he starts grunting as well, but he manages to ride out her orgasm. Once she stops, he quickly jerks out of her and pulls her off the chair onto the floor.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Happy facial', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril8.jpg');
+    scene.text('She barely gets on her knees in front of him before he starts cumming on her face. She grins as the spurts of cum splatter her face as she grabs his dick and milks it, squeezing every last drop of cum out of him.');
+    scene.text('When he finishes, he walks over and collapses on the couch. "Oh my god, that was fucking amazing! You okay?"');
+    scene.text('She nods as she grabs her phone and takes a selfie with her face still covered in his cum before she grabs some tissues to clean up. "Yeah, I loved it. I love my ass getting fucked hard and rough."');
+    scene.text('He laughs. "Works for me. I love fucking you hard and rough."');
+    scene.text('Once her face is clean, she starts getting dressed and lets out a small sigh. "My ass is going to be sore tomorrow though…" She glances at you and winks. "But it was totally worth it."');
+    // TODO-QSP: dynamic text: Once she's fully dressed, she smiles at the two of you. "Thanks for the fun, but...
+    scene.text(`Once she's fully dressed, she smiles at the two of you. "Thanks for the fun, but I should get going. See you later, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text('She walks out the door as Djibril glances over at you. "I don\'t want to be rude, but I\'ve got some homework I need to do."');
+    scene.text('You get up and nod. "It\'s okay, I should get going too," you tell him and head for the door.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDjibrilSvetaNushGangbang1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A82');
+  qspCall(s, 'npcStat', 'A144', 'a');
+  qspCall(s, 'npcStat', 'A242', 'b');
+  qspCall(s, 'npcStat', 'A243', 'c');
+  qspCall(s, 'npcStat', 'A244', 'd');
+  qspCall(s, 'npcStat', 'A245', 'e');
+  qspCall(s, 'npcStat', 'A246', 'f');
+  (s as any).DjibrilQW['sveta_nush'] = 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang1.jpg');
+  scene.text('You think for a second before smiling at Djibril. "Call your friends."');
+  // TODO-QSP: dynamic text: He grins and pulls out his phone and starts texting. Within a few minutes, there...
+  scene.text(`He grins and pulls out his phone and starts texting. Within a few minutes, there's a knock at the door and Djibril invites five of his friends in. He checks his phone before introducing the two of you to his friends. "This is ${((s as any).pcs_nickname ?? 0)} and her friend, Nush. They want to have some fun with us."`);
+  scene.text('The guys chuckle and look at the two of you. This is a seemingly regular thing since they seem to know exactly what\'s about to happen and start stripping down. You recognize all but one of them from your own gangbang.');
+  scene.text('The group surrounds the two of you and as you both start to get up, Djibril positions you in the middle of the couch as a few of them start talking to each other in a language you don\'t understand and laughing. Even without understanding them, you get the gist of it. They\'re talking about who gets to fuck which one of you first.');
+  scene.text('Some of them seem more interested in you and some of them more interested in Anushka. Once their conversation is done, it seems things have been decided. The guys get up and pull the two of you off the couch and onto the floor, where you both squat down as they finish undressing.');
+  scene.actions([
+    { label: 'Suck dick', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'city', 'sex', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang2.jpg');
+    scene.text('Three of them surround each of you, their dicks in your face. You start sucking one of them while giving another a handjob. The other one paws at your body and pulls your top away, exposing your breasts as you glance over at Anushka and notice that she\'s in the same position as you.');
+    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID2 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'hj', (-3), ((s as any).npcID3 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'foreplay', (-3), ((s as any).npcID4 ?? 0), 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck more dicks', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang3.jpg');
+    scene.text('The dick in your mouth is soon replaced with another. You suck each of their dicks while jerking off others. After a few minutes of this, they seem to be ready for more.');
+    scene.text('One of them sits on the couch and is joined by a second as they start lubing up their dicks. Anushka is then guided over to one of the guys sitting on the couch as you\'re pulled over to the other one.');
+    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID3 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID4 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'hj', (-3), ((s as any).npcID2 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'hj', (-3), ((s as any).npcID5 ?? 0), 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Sit on a dick', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang4.jpg');
+    scene.text('You\'re pushed onto the guy\'s lap and he lines his dick up with your asshole. As you\'re pushed down, his dick pops into your ass and you place your feet on the couch in an effort to control the speed and depth, but he quickly grabs you by the hips and starts forcing you down further, impaling you on his dick while using his hands to speed up your motion.');
+    scene.text('You start rubbing your clit as you glance over at Anushka and see she has a dick up her ass as another guy fucks her pussy, and a third walks over behind the couch and sticks his dick in her mouth.');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID4 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'clit_finger', (-3), 'self', 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Another dick up the butt', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang5.jpg');
+    scene.text('The one fucking Anushka in the ass turns towards you and tells his friend to swap. You\'re lifted off the dick in your ass, as is Anushka.');
+    scene.text('The one under her scoots over under you and you\'re lowered back down, his dick sliding into your asshole. One of the other guys slides under Anushka as she\'s lowered down, his dick sliding up her ass as another one sticks his dick in her pussy. The one that was fucking her pussy then moves around behind the couch and sticks his dick in her mouth.');
+    scene.text('After a few minutes, one of the guys speaks up. "Come on, I want to fuck one of them in the ass."');
+    scene.text('"Let\'s pull a train on their asses!" another chimes in.');
+    scene.text('There are murmurs of agreement and they all seem to like the idea.');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID6 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'clit_finger', (-3), 'self', 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Doggy style', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang6.jpg');
+    scene.text('You\'re lifted up and placed on the couch on your knees, with your face pressed against the cushion. Anushka is given similar treatment with your heads touching one another. You\'re barely in position when you feel a dick slide back into your ass.');
+    scene.text('Another does the same to Anushka, and after a few minutes, the ones fucking the two of you pull out and are replaced.');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID2 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID3 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID4 ?? 0), 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal train', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang7.jpg');
+    scene.text('Minutes pass as they all take turns fucking your ass. At some point, Anushka starts crying out and her body shakes as she has an orgasm, which only a few minutes later is followed by a second one.');
+    scene.text('This seems to excite and encourage the guys, who start getting a lot rougher with the two of you. The ones waiting their turns watch while jerking off.');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID5 ?? 0), 'gangbang');
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID6 ?? 0), 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Facial', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang8.jpg');
+    scene.text('As the guys start grunting and getting close, they pull out and lightly jerk off while others take their place. All of them soon seem to be on the edge and you\'re both pulled off the couch and placed on the floor, where you both squat down and one starts cumming on your face, then a second.');
+    qspCall(s, 'arousal', 'foreplay', 2, 'gangbang');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID3 ?? 0), 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'More facials', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang9.jpg');
+    scene.text('They take turns cumming on your faces until the last cums on Anushka\'s face. With your faces covered in their cum, they back off and start getting dressed and cleaned up as Anushka grabs her phone and takes a selfie of her face covered in cum before grabbing some tissues and handing you one.');
+    scene.text('You both start cleaning up before you start getting dressed.');
+    scene.text('Before you finish dressing, one of them turns to Djibril. "Damn man, I don\'t know where you find bitches like this, but thanks for the invite!"');
+    scene.text('Several of the others say similar things, all impressed with his ability to find hot girls like you and Anushka and thanking him for the invite.');
+    scene.text('By the time you finish dressing, they\'ve all walked out the door, leaving you and Anushka alone with Djibril. "Sorry about that. They don\'t mean anything by it."');
+    scene.text('Anushka laughs. "It\'s cool. You guys used us for sex and we used you for sex. No harm, no foul." She walks over and gives him a fist bump like several of the guys did. "Thanks for the invite."');
+    scene.text('He nods. "Uh… You\'re welcome?" He glances at you, amused by her attitude.');
+    // TODO-QSP: dynamic text: Once she's dressed, she smiles at you. "Thanks for the fun, but I should get goi...
+    scene.text(`Once she's dressed, she smiles at you. "Thanks for the fun, but I should get going. See you later, ${((s as any).pcs_nickname ?? 0)}." Just before walking out, she puts her hand on her ass and you hear her mutter "Fuck, my ass is going to be sore tomorrow…"`);
+    scene.text('She walks out the door as Djibril glances over at you. "I don\'t want to be rude, but I\'ve got some homework I need to do."');
+    scene.text('You get up and nod. "It\'s okay, I should get going too," you tell him and head for the door.');
+    qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'gangbang');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID6 ?? 0), 1);
+    (s as any).cumspclnt = 12;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDjibrilNushGangbang1(s: GameState, scene: SceneBuilder): void {
+  (s as any).DjibrilQW['sveta_nush'] = 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang1.jpg');
+  scene.text('Djibril pulls his phone out and sends a few texts. Within a few minutes, there\'s a knock on the door and two other black guys come in. You recognize both of them from your gangbang and make room for them by taking a seat on one of the beds.');
+  scene.text('After they close the door, Djibril sits on her left side and one of the others on her right, while the last one sits on the bed next to you.');
+  scene.text('The one sitting on the right introduces himself. "I am Lebogang, but most call me Lebo. Him over there," He points to the guy sitting next to you. "That\'s Ermias."');
+  scene.text('She shakes his offered hand. "Pleased to meet you, your Russian is very good. I\'m Anushka, but everyone except my mother calls me Nush."');
+  scene.text('He laughs. "Nush… I like it. And thank you. Like Djibril, I have worked hard on mastering your language." He gestures to Djibril. "So my man here tells me one black cock isn\'t enough for you, that you need as many as you can get. Is that right, baby?"');
+  scene.text('She rubs his and Djibril\'s thighs with her hands as she answers. "I need your big… black… cocks… in all my holes… I just love getting used." She\'s practically purring and loving the attention.');
+  scene.text('Lebogang looks at Djibril. "Damn man, you found us a wild one this time!" Then he looks at Anushka. "We can help you out with that, for sure."');
+  scene.actions([
+    { label: 'Watch her make out', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A82');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang2.jpg');
+    scene.text('Lebogang stands up and pulls her up into a kiss as Djibril stands up as well. After a few seconds, he grabs her waist and pulls her over to him to start kissing her as Lebogang crowds up behind her.');
+    scene.text('Ermias keeps watching, but you notice the growing bulge in his pants. You can\'t really blame him; you can feel yourself getting wet watching this.');
+    qspCall(s, 'arousal', 'voyeur', 2, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'She loves it rough', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang3.jpg');
+    scene.text('Djibril and Lebogang start pawing at Anushka, groping her breasts, ass, thighs and even rubbing her crotch through her dress before they each grab one side of her dress and pull it up, showing off her black panties underneath. She laughs at that and runs her hands over their bodies in return.');
+    scene.text('Ermias seems to have seen enough. He gets up and rapidly walks over to the three of them, pulling his enormous hard cock from his pants as he does.');
+    scene.text('Once he reaches them, he roughly shoves Anushka down to her knees and smacks her in the face with his hard cock, which is even longer and thicker than Djibril\'s.');
+    scene.text('"Suck my dick, slut!"');
+    qspCall(s, 'arousal', 'voyeur', 2, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'She sucks a dick', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang4.jpg');
+    scene.text('Anushka looks wide eyed at the monstrous cock in front of her before she opens her mouth and starts sucking on it as Djibril and Lebogang pull their dicks out too. Lebo\'s dick is fairly long and thick, but looks a bit undersized next to his friends.');
+    scene.text('Djibril and Lebogang start stroking their dicks while Ermias places his hand on the back of Anushka\'s head and forces her to deepthroat him. You can hear her gagging when he does.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'She sucks more dicks', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang5.jpg');
+    scene.text('"Hey man, share!" Lebogang interrupts and Ermias steps aside and releases Anushka\'s head. She gasps and catches her breath, but only for a moment as Lebogang sticks his dick in her mouth and she starts sucking it while stroking Djibril.');
+    scene.text('After a while, she starts sucking Djibril and stroking Ermias, all three of them enjoying her attention when they have it.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Watch her get fucked', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A243');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang6.jpg');
+    scene.text('Ermias sits down on the couch. "Bring her over, I want to fuck her."');
+    // TODO-QSP: dynamic text: Lebogang and Djibril pull her up by her hands and carry her to the couch, placin...
+    scene.text(`Lebogang and Djibril pull her up by her hands and carry her to the couch, placing her in Ermias' lap. As they lower her down, Ermias lines his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick up so it slides into her pussy. She moans loudly for a moment, but then Djibril shoves his dick back in her mouth as Lebogang grabs one of her hands and pulls it up to his dick, which she starts stroking.`);
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'They take turns', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang7.jpg');
+    scene.text('Lebogang sits on the arm rest next to Ermias. "Pass her over. It\'s my turn."');
+    scene.text('Ermias and Lebogang manhandle her over until Lebogang\'s dick slides inside her pussy and he starts fucking her. Ermias moves over next to the arm rest and turns her head to face him, then sticks his massive dick in her mouth.');
+    scene.text('She jerks Djibril off while sucking Ermias as Lebogang fucks her pussy, moaning loudly and loving every moment of it.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Djibril\'s turn', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang8.jpg');
+    scene.text('After a few minutes, Djibril moves over and pushes Ermias aside. "My turn."');
+    scene.text('He then lifts her off Lebogang and lays her on her back on the arm rest before he plunges his cock into her soaking wet pussy and starts fucking her hard and fast.');
+    scene.text('Lebogang gets up and places his dick right in her face from one side, while Ermias does the same from the other. Anushka jerks them both off and alternates between sucking on their dicks as Djibril fucks her before she starts crying out. "YES… OH GOD… YES… Fuck me… harder…"');
+    scene.text('She has a massive orgasm as Djibril continues to fuck her.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Djibril her ass up', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A82');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang9.jpg');
+    scene.text('Djibril pulls out of her and flips her over onto her stomach on the arm rest before he slides his dick between her ass cheeks.');
+    // TODO-QSP: dynamic text: "Wait…" she starts, but she never finishes her sentence as he shoves his hips fo...
+    scene.text(`"Wait…" she starts, but she never finishes her sentence as he shoves his hips forward and his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock pops into her ass. "AAAAH! FUCK!" She places a hand on his chest to try and stop him from going deeper.`);
+    scene.text('Ermias sits by her head and places her hand on his dick. She starts stroking it while trying to keep Djibril from tearing her ass up.');
+    scene.text('Djibril stops trying to force it in more and apologises before he turns to Lebogang. "Give me that lube."');
+    scene.text('Lebogang grabs a bottle and passes it to Djibril, who proceeds to pour a lot of lube onto his dick. With his dick now lubed up, he starts working deeper into her ass and starting to slowly fuck her a little faster.');
+    scene.text('After a while, she seems to relax and starts to moan a little before she starts sucking Lebogang\'s dick.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Next in her ass', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang10.jpg');
+    scene.text('After a few minutes, Ermias speaks up. "My turn. I want to fuck her ass before you two break it!" he says with a laugh.');
+    scene.text('Djibril chuckles and pulls out of her ass before stepping aside. Ermias moves behind Anushka and slides his enormous dick into her ass before he roughly starts fucking her ass hard and fast, causing her to cry out and place a hand against his hips to try and slow him down. "AAAhhh… Too big… You\'re too big! Not so rough!"');
+    scene.text('He pushes her hand aside and slams himself balls deep into her ass. "Take it, bitch!"');
+    scene.text('Anushka moans and cries out in a mix of pain and pleasure as Ermias pounds her ass before Djibril smacks his arm with the back of his hand. Ermias sighs, but slows down a little as Djirbil grabs a towel and starts cleaning his dick off.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Two for one', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A242');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang11.jpg');
+    scene.text('Lebogang then stands up. "Okay, my turn before you two wear her ass out."');
+    scene.text('Ermias pulls out of her and you can hear the relieved sigh that escapes her lips. Djibril waves her over and she crawls over to him. He pushes her head down on his dick, which she starts sucking as Lebogang comes up behind her and pulls her towards him.');
+    // TODO-QSP: dynamic text: Lebogang lubes up his <<dick>>cm <<$dick_girth>> cock before sliding it into her...
+    scene.text(`Lebogang lubes up his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock before sliding it into her ass. He takes it slow as Ermias watches and jerks off. As Anushka starts moaning louder, Lebogang starts fucking her harder and faster until her body is wracked by another orgasm.`);
+    scene.text('As soon as her orgasm passes, Lebogang pulls out of her. "I\'m cumming, I\'m cumming!"');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'gangbang');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Facials', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang12.jpg');
+    scene.text('The boys quickly manhandle Anushka to the floor, where she sits with her legs apart and her face tilted up, mouth open and tongue stuck out. They gather around her and start jerking off. Lebogang soon starts cumming on her face, quickly followed by the other two. Her face is quickly covered by their cum and a fair bit of it lands in her mouth. Once they\'ve finished squeezing out every last drop, they move away, clean up and start getting dressed.');
+    scene.text('Anushka crawls over to her purse and takes out her phone to take a selfie of her face covered in cum. After taking a few, she seems happy with the pictures. Putting her phone away, she grabs some tissues and starts cleaning up her face before getting dressed. The boys talk briefly before Lebogang and Ermias head for the door, Ermias slapping Anushka hard on the ass as he does, which earns him a slightly dirty look from her before they walk out.');
+    scene.text('Djibril watches as she dresses. "Are you alright? I hope me and my friends didn\'t hurt you."');
+    scene.text('She grins at him. "It\'s fine, I get it. We all get carried away in the moment. Just remember… Lube. Lots of lube."');
+    scene.text('He laughs and nods. "Lots of lube, got it."');
+    // TODO-QSP: dynamic text: Once she's dressed, she smiles at you. "Thanks for the fun, but I should get goi...
+    scene.text(`Once she's dressed, she smiles at you. "Thanks for the fun, but I should get going. See you later, ${((s as any).pcs_nickname ?? 0)}." Just before walking out, she puts her hand on her ass and you hear her mutter "Fuck, my ass is going to be sore tomorrow…"`);
+    scene.text('She walks out the door as Djibril glances over at you. "I don\'t want to be rude, but I\'ve got some homework I need to do."');
+    scene.text('You get up and nod. "It\'s okay, I should get going too," you tell him and head for the door.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'gangbang');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -981,6 +1585,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'djibril_nush':
       enterDjibrilNush(s, scene);
+      break;
+    case 'djibril_sveta_nush1':
+      enterDjibrilSvetaNush1(s, scene);
+      break;
+    case 'djibril_nush1':
+      enterDjibrilNush1(s, scene);
+      break;
+    case 'djibril_sveta_nush_gangbang1':
+      enterDjibrilSvetaNushGangbang1(s, scene);
+      break;
+    case 'djibril_nush_gangbang1':
+      enterDjibrilNushGangbang1(s, scene);
       break;
     default:
       enterDjibrilgb(s, scene);

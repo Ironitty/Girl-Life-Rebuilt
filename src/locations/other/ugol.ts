@@ -22,7 +22,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloPants ?? 0) > 0) {
       scene.text('Feeling desperate for release, you pull down your pants and kick them off.');
     } else {
-      scene.text('Feeling desperate for release, you hitch up your skirt above your waist.');
+      if (((s as any).PCloSkirt ?? 0) > 0) {
+        scene.text('Feeling desperate for release, you hitch up your skirt above your waist.');
+      }
     }
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You are distracted by your wet panties sticking to you, your arousal keeping your pussy soaking wet. Looking around once more to make sure you are alone, you pull down your panties a bit to expose your pussy.');

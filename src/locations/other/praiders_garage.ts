@@ -200,21 +200,16 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
-      (s as any).volume = 100;
-      (s as any).music_loop = 1;
-    }
-    scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
-    scene.text('They start playing and seem to just be in perfect sync tonight. They have great timing and Radomir rips off some amazing vocals, showing off his range, as well as holding a note for an amazing length of time.');
-    if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
-      (s as any).volume = 100;
-      (s as any).music_loop = 1;
-    }
-    scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
-    scene.text('They start playing and seem to be in perfect sync tonight. They have great timing and Anushka is able to hit the low contralto notes, followed by hitting the high soprano notes. She has a great vocal range too. During one of the songs, she and Radomir have a duet and the way they sing together side by side and look at each other makes it apparent that they have real chemistry with each other.');
-    scene.actions([
-      { label: 'Leave', goto: ['pav_complex', 'garages'] },
-      { label: 'Keep listening', handler: (st: GameState) => {
+    if (((s as any).practice_session ?? 0) <= 3) {
+      if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+        (s as any).volume = 100;
+        (s as any).music_loop = 1;
+      }
+      scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
+      scene.text('They start playing and seem to just be in perfect sync tonight. They have great timing and Radomir rips off some amazing vocals, showing off his range, as well as holding a note for an amazing length of time.');
+      scene.actions([
+        { label: 'Leave', goto: ['pav_complex', 'garages'] },
+        { label: 'Keep listening', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice2.jpg');
     scene.text('They play a few more songs and Arkadi pulls off one of the best drum solos you\'ve ever heard in the middle of one of the songs. They sound a lot better than your typical garage band.');
     scene.actions([
@@ -313,8 +308,17 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'Leave', goto: ['pav_complex', 'garages'] },
-      { label: 'Keep listening', handler: (st: GameState) => {
+      ]);
+    } else {
+      if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
+        (s as any).volume = 100;
+        (s as any).music_loop = 1;
+      }
+      scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
+      scene.text('They start playing and seem to be in perfect sync tonight. They have great timing and Anushka is able to hit the low contralto notes, followed by hitting the high soprano notes. She has a great vocal range too. During one of the songs, she and Radomir have a duet and the way they sing together side by side and look at each other makes it apparent that they have real chemistry with each other.');
+      scene.actions([
+        { label: 'Leave', goto: ['pav_complex', 'garages'] },
+        { label: 'Keep listening', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice3.jpg');
     scene.text('They play a few more songs and Arkadi really sets the tone and melody for one of the songs, creating the perfect beat for the rest to follow. But the whole group was just still spot on.');
     scene.actions([
@@ -414,7 +418,8 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -912,16 +917,22 @@ function enterPartyOver(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temprand ?? 0) === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
     scene.actions([{ label: 'Continue', goto: ['praiders_garage_events', 'alyona_dad'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['praiders_garage_events', 'roman_fight'] }]);
-    if (((s as any).temprand ?? 0) === 3  &&  ((s as any).gopnikbandQW ?? 0)?.['roman_present'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['praiders_garage_events', 'lav_baddrugs'] }]);
+    if (((s as any).temprand ?? 0) === 2  &&  ((s as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
+      scene.actions([{ label: 'Continue', goto: ['praiders_garage_events', 'roman_fight'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['praiders_garage_events', 'radnush_love'] }]);
-      scene.img('images/locations/pavlovsk/resident/apartment/garage/band/band_garage.jpg');
-      scene.text('It eventually starts getting late and everyone starts to slowly leave until you\'re one of the last people left. Everyone left seems to be pairing up or leaving in small groups, leaving you on your own as one of the last people to leave. Arkadi stops to lock the garage up before walking off himself, leaving you alone among the garages.');
-      scene.actions([
-        { label: 'Leave', goto: ['pav_complex', 'garages'] },
-      ]);
+      if (((s as any).temprand ?? 0) === 3  &&  ((s as any).gopnikbandQW ?? 0)?.['roman_present'] === 1) {
+        scene.actions([{ label: 'Continue', goto: ['praiders_garage_events', 'lav_baddrugs'] }]);
+      } else {
+        if (((s as any).temprand ?? 0) === 4) {
+          scene.actions([{ label: 'Continue', goto: ['praiders_garage_events', 'radnush_love'] }]);
+        } else {
+          scene.img('images/locations/pavlovsk/resident/apartment/garage/band/band_garage.jpg');
+          scene.text('It eventually starts getting late and everyone starts to slowly leave until you\'re one of the last people left. Everyone left seems to be pairing up or leaving in small groups, leaving you on your own as one of the last people to leave. Arkadi stops to lock the garage up before walking off himself, leaving you alone among the garages.');
+          scene.actions([
+            { label: 'Leave', goto: ['pav_complex', 'garages'] },
+          ]);
+        }
+      }
     }
   }
   scene.build();

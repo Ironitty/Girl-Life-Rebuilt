@@ -149,35 +149,41 @@ function enterAbdSomeoneComing(s: GameState, scene: SceneBuilder): void {
           { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenAsk'] },
         ]);
       } else {
-        if (((s as any).customerChance ?? 0) <= 50) {
-          (s as any).abdCustomerCount = ((s as any).abdCustomerCount ?? 0) + (1);
+        if ((((s as any).broken ?? 0) >= 10  &&  ((s as any).abdTools ?? 0) === 0)) {
           scene.actions([
-            { label: 'Welcome back, Master', goto: ['abductionCustomer', 'abdCustomerGate'] },
+            { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenGiveTools'] },
           ]);
         } else {
-          if (((s as any).abdCustomerCount ?? 0) > 5  &&  ((s as any).saleChanceRand ?? 0) <= (2 * ((s as any).saleChance ?? 0))) {
-            scene.text('"I have some good news for you slave."');
+          if (((s as any).customerChance ?? 0) <= 50) {
+            (s as any).abdCustomerCount = ((s as any).abdCustomerCount ?? 0) + (1);
             scene.actions([
-              { label: 'Yes Master?', goto: ['abduction', 'abdBeSold'] },
+              { label: 'Welcome back, Master', goto: ['abductionCustomer', 'abdCustomerGate'] },
             ]);
           } else {
-            if (((s as any).painkillerChance ?? 0) <= 30) {
+            if (((s as any).abdCustomerCount ?? 0) > 5  &&  ((s as any).buyoutChanceRand ?? 0) <= (2 * ((s as any).buyoutChance ?? 0))) {
               scene.actions([
-                { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenGivePainkiller'] },
+                { label: 'Welcome back, Master', goto: ['abductionCustomer', 'abdCustomerGateBuyout'] },
               ]);
             } else {
-              scene.actions([
-                { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenAsk'] },
-              ]);
+              if (((s as any).abdCustomerCount ?? 0) > 5  &&  ((s as any).saleChanceRand ?? 0) <= (2 * ((s as any).saleChance ?? 0))) {
+                scene.text('"I have some good news for you slave."');
+                scene.actions([
+                  { label: 'Yes Master?', goto: ['abduction', 'abdBeSold'] },
+                ]);
+              } else {
+                if (((s as any).painkillerChance ?? 0) <= 30) {
+                  scene.actions([
+                    { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenGivePainkiller'] },
+                  ]);
+                } else {
+                  scene.actions([
+                    { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenAsk'] },
+                  ]);
+                }
+              }
             }
           }
-          scene.actions([
-            { label: 'Welcome back, Master', goto: ['abductionCustomer', 'abdCustomerGateBuyout'] },
-          ]);
         }
-        scene.actions([
-          { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenGiveTools'] },
-        ]);
       }
     }
   }
@@ -199,7 +205,7 @@ function enterAbdExamStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Resist', handler: (st: GameState) => {
+      { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -328,7 +334,7 @@ function enterAbdBreak1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Spit in his face', handler: (st: GameState) => {
+      { label: 'Spit in his face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -373,7 +379,7 @@ function enterAbdBrokenGivePainkiller(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse and keep your mouth shut', handler: (st: GameState) => {
+      { label: 'Refuse and keep your mouth shut [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

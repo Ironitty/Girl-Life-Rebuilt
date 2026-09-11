@@ -48,19 +48,238 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rex ?? 0)?.['relationship'] < 10) {
     // TODO-QSP: '<<$rex[''name'']>> ignores you when you approach. '+iif(objects['chew'] = 0, 'His old chew toy has ...
   } else {
-    // TODO-QSP: '<<$rex[''name'']>> looks up when you approach. '+iif(objects['chew'] = 0, 'His old chew toy has see...
-    if (((s as any).rex ?? 0)?.['relationship'] < 60) {
-      // TODO-QSP: '<<$rex[''name'']>> looks up and wags his tail'+iif(rex['relationship'] > 45, ',', ' a bit')+' when ...
+    if (((s as any).rex ?? 0)?.['relationship'] < 30) {
+      // TODO-QSP: '<<$rex[''name'']>> looks up when you approach. '+iif(objects['chew'] = 0, 'His old chew toy has see...
     } else {
-      // TODO-QSP: '<<$rex[''name'']>> jumps up and'+iif(rex['relationship'] > 80, ' happily ', ' ')+'wags his tail whe...
+      if (((s as any).rex ?? 0)?.['relationship'] < 60) {
+        // TODO-QSP: '<<$rex[''name'']>> looks up and wags his tail'+iif(rex['relationship'] > 45, ',', ' a bit')+' when ...
+      } else {
+        // TODO-QSP: '<<$rex[''name'']>> jumps up and'+iif(rex['relationship'] > 80, ' happily ', ' ')+'wags his tail whe...
+      }
     }
-    qspCall(s, 'pet_dog', 'activities_normal');
+  }
+  qspCall(s, 'pet_dog', 'activities_normal');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).rex ?? 0)?.['count_feed'] > 0  &&  ((s as any).hour ?? 0) > (((s as any).rex ?? 0)?.['timer_feed'] + 3)  &&  (((s as any).home ?? 0)?.['current'] === 'parents_home'  ||  ((s as any).objects ?? 0)?.['dog_food'] > 0)) {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Feed him (0:03)', goto: ['pet_dog', 'feed'] },
+    ]);
+  } else {
+    if (((s as any).rex ?? 0)?.['count_feed'] > 0  &&  ((s as any).hour ?? 0) > (((s as any).rex ?? 0)?.['timer_feed'] + 3)  &&  ((s as any).home ?? 0)?.['current'] !== 'parents_home'  &&  ((s as any).objects ?? 0)?.['dog_food'] <= 0) {
+      scene.text('<br>You don\'t have dog food to feed him.');
+    }
+  }
+  if (((s as any).objects ?? 0)?.['treats'] > 0  &&  ((s as any).rex ?? 0)?.['timer_treat'] !== ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Give him a treat (0:01)', goto: ['pet_dog', 'treat'] },
+    ]);
+  } else {
+    if (((s as any).objects ?? 0)?.['treats'] === 0  &&  ((s as any).rex ?? 0)?.['timer_treat'] !== ((s as any).daystart ?? 0)) {
+      scene.text('<br>You don\'t have any treats to give him.');
+    }
+  }
+  if (((s as any).clothingworntype ?? 0) === 'nude') {
+    // TODO-QSP: dynamic text: <br>You should put some clothes on if you want to go for a walk with <<$rex['nam...
+    scene.text(`<br>You should put some clothes on if you want to go for a walk with ${((s as any).rex ?? 0)?.['name']}.`);
+  } else {
+    if (((s as any).rex ?? 0)?.['count_walk'] > 0  &&  ((s as any).hour ?? 0) > (((s as any).rex ?? 0)?.['timer_walk'] + 3)) {
+      if (((s as any).rex ?? 0)?.['count_run'] === 0  &&  ((s as any).PSport ?? 0) === 1) {
+        if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
+          scene.actions([
+            { label: 'Go for a run with him (1:00)', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pet_dog', 'exercise', 'run'
+  } },
+          ]);
+        } else {
+          // TODO-QSP: dynamic text: <br>It's too '+iif(hour < 7, 'early', 'late')+' to go for a run with him.
+          scene.text('<br>It\'s too \'+iif(hour < 7, \'early\', \'late\')+\' to go for a run with him.');
+        }
+      }
+      scene.actions([
+        { label: 'Go for a walk with him  [+iif(daystage = 5 or sunWeather = 0, \'(0]', handler: (st: GameState) => {
+    // TODO-QSP: 10)', '(0:15)')+' ': gt 'pet_dog', 'exercise', 'walk'
+  } },
+      ]);
+    }
+  }
+  if (((s as any).rex ?? 0)?.['count_bath'] > 0) {
+    // TODO-QSP: act 'Bath <<$rex[''name'']>> (0:25)': gt 'pet_dog', 'bath'
+  }
+  if (((s as any).rex ?? 0)?.['play_inside'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).objects ?? 0)?.['toys'] === 1) {
+    // TODO-QSP: act 'Play with him inside (0:20)': gt 'pet_dog', 'play_inside'
+  }
+  scene.build();
+}
+
+function enterFeed(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 3;
+  (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (1);
+  (s as any).rex['timer_feed'] = ((s as any).hour ?? 0);
+  (s as any).rex['count_feed'] = ((s as any).rex['count_feed'] ?? 0) - (1);
+  if (((s as any).home ?? 0)?.['current'] !== 'parents_home') {
+    (s as any).objects['dog_food'] = ((s as any).objects['dog_food'] ?? 0) - (1);
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/rex/feeding_\'+rand(0, 1)+\'.jpg');
+  // TODO-QSP: dynamic text: "Come '+iif(rand(0, 1) = 0, 'boy', $rex['name'])+' let's get you something to ea...
+  scene.text('"Come \'+iif(rand(0, 1) = 0, \'boy\', $rex[\'name\'])+\' let\'s get you something to eat," you say and go into the kitchen. He \'+iif(rand(0, 1) = 0, \'follows and watches you fill his bowl with big thankful eyes\', \'runs into the kitchen the second he hears you filling his bowl\')+\' before he eagerly digs in.');
+  if (((s as any).home ?? 0)?.['current'] !== 'parents_home') {
+    // TODO-QSP: dynamic text: You have enough dog food for <<objects['dog_food']>> meals.
+    scene.text(`You have enough dog food for ${((s as any).objects ?? 0)?.['dog_food']} meals.`);
+  }
+  scene.actions([
+    { label: 'Let him eat', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterTreat(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (2);
+  (s as any).objects['treats'] = ((s as any).objects['treats'] ?? 0) - (1);
+  (s as any).rex['timer_treat'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/rex/treat.jpg');
+  scene.text('"Who\'s a good boy?" you ask with a smile and pull one of his favorite treats out of your pocket. He sniffs and his tail wags back and forth. "Who\'s a good boy?" you ask again and he barks in response. "Yes, you are!" you agree and hold out the treat. He snatches it right out of your hand and happily goes back to his dog basket.');
+  scene.actions([
+    { label: 'Continue', goto: ['pet_dog', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterExercise(s: GameState, scene: SceneBuilder): void {
+  (s as any).rex['count_walk'] = ((s as any).rex['count_walk'] ?? 0) - (1);
+  if (((s as any).locArgs?.[1] ?? 0) === 'walk') {
+    (s as any).rex['timer_walk'] = ((s as any).hour ?? 0);
+    (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (1);
+    (s as any).minut = ((s as any).minut ?? 0) + (((((s as any).daystage ?? 0) === 5  ||  (!((s as any).sunWeather ?? 0))) ? (10) : (15)));
+    if (((s as any).daystage ?? 0) === 5) {
+      scene.img('images/characters/shared/rex/walk_night_\'+rand(0, 2)+\'.jpg');
+      // TODO-QSP: dynamic text: It's too '+iif(hour < 9, 'early', 'late')+' to go for a long walk or play with h...
+      scene.text('It\'s too \'+iif(hour < 9, \'early\', \'late\')+\' to go for a long walk or play with him. You only take him around the neighborhood until he has finished his business.');
+    } else {
+      if ((!((s as any).sunWeather ?? 0))) {
+        scene.img('images/characters/shared/rex/walk_rain.jpg');
+        scene.text('The weather is horrible and a long walk is out of the question. You only walk him around the neighborhood until he has finished his business.');
+      } else {
+        scene.img('images/characters/shared/rex/walk_day_\'+rand(0, 4)+\'.jpg');
+        scene.text('He stops every few meters to sniff something interesting, happily greet another dog or mark his territory and you occasionally chat with another dog owner for a minute or two before you finally reach the park. You untie his leash when you reach the area marked for dogs and let him roam free for a while.');
+        scene.actions([
+          { label: 'Play with him (0:10)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (((((s as any).objects ?? 0)?.['toys'] === 1) ? (2) : (1)));
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/rex/play_outside_\'+rand(0, 3)+\'.jpg');
+    // TODO-QSP: dynamic text: You '+iif(objects['toys'] = 1, 'pull out one of the rubber balls', 'pick up a br...
+    scene.text('You \'+iif(objects[\'toys\'] = 1, \'pull out one of the rubber balls\', \'pick up a branch\')+\' and he happily wags his tail, knowing what\'s going to happen next. "Catch!" you say and throw the \'+iif(objects[\'toys\'] = 1, \'ball\', \'branch\')+\' as far as you can. He barks and runs after it before picking it up and proudly returning it to you. \'+iif(objects[\'toys\'] = 1, \'He seems to enjoy playing fetch even more with his toy ball. \', \')+\'You continue this for ten minutes before you finally…');
+    scene.actions([
+      { label: '… return home', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Return home', handler: (st: GameState) => {
+    // TODO-QSP: gt $loc, $loc_arg, 'check'
+  } },
+    ]);
+  } else {
+    (s as any).rex['timer_walk'] = ((s as any).hour ?? 0);
+    (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (3);
+    qspCall(s, 'mood', 'raise', 'small');
+    (s as any).sunWeather = 1;
+    qspCall(s, 'sweat', 'add', 20);
+    qspCall(s, 'exercise', 'tier1', 60, 'run');
+    (s as any).fat = ((s as any).fat ?? 0) - (Math.floor(Math.random() * 3) + 1);
+    scene.img('images/characters/shared/rex/run_\'+iif(daystage = 1 or daystage = 3 or daystage = 4 or daystage = 6, \'sunset\', str(rand(0, 1)))+\'.jpg');
+    // TODO-QSP: dynamic text: <<$rex['name']>> excitedly runs around you as you put on your running shoes. He ...
+    scene.text(`${((s as any).rex ?? 0)?.['name']} excitedly runs around you as you put on your running shoes. He loves going on runs with you. "Yes," you say with a smile. "We're going for a run. Are you ready?" He wags his tail. "Alright, let's go boy!"`);
+    // TODO-QSP: dynamic text: You head out and start your run. <<$rex['name']>> follows obediently, sometimes ...
+    scene.text(`You head out and start your run. ${((s as any).rex ?? 0)?.['name']} follows obediently, sometimes stopping to sniff or mark his territory, but he always returns to your side before you get too far away.`);
+    scene.text('You return home an hour later, exhausted and sweaty.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     ]);
   }
+  qspCall(s, 'stat', '');
+  scene.build();
+}
+
+function enterPlayInside(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 20;
+  qspCall(s, 'mood', 'raise', 'small');
+  (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (2);
+  (s as any).rex['play_inside'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/rex/play_inside_\'+rand(0, 3)+\'.jpg');
+  // TODO-QSP: dynamic text: You cavort with <<$rex['name']>> and lavish him with all the attention he deserv...
+  scene.text(`You cavort with ${((s as any).rex ?? 0)?.['name']} and lavish him with all the attention he deserves. You get one of his toy balls and roll it around the apartment, playing a safe version of indoor catch. You cuddle up on the couch with him and spend the last few minutes stroking his soft fur.`);
+  scene.actions([
+    { label: 'Stop playing', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBath(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 25;
+  (s as any).rex['count_bath'] = ((s as any).rex['count_bath'] ?? 0) - (1);
+  (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (3);
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/rex/bath.jpg');
+  // TODO-QSP: dynamic text: "Come <<$rex['name']>>, time to take a bath," you say and open the door to the b...
+  scene.text(`"Come ${((s as any).rex ?? 0)?.['name']}, time to take a bath," you say and open the door to the bathroom. ${((s as any).rex ?? 0)?.['name']} looks a bit confused. "Come on boy," you say clicking your fingers and he finally follows you inside.`);
+  scene.text('You brush his fur before trying to get him into the tub. It takes a few tries to convince him, but he eventually listens.');
+  scene.text('"Stay," you say in a calm and reassuring voice and gently start scrubbing him with dog shampoo before rinsing and drying his fur. Once you\'re finished, you let him leave the bathroom.');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterName(s: GameState, scene: SceneBuilder): void {
+  (s as any).rex['status'] = 1;
+  (s as any).rex['count_walk_base'] = 2;
+  (s as any).rex['count_feed_base'] = 2;
+  (s as any).rex['count_bath_base'] = 1;
+  (s as any).rex['count_walk'] = ((s as any).rex ?? 0)?.['count_walk_base'];
+  (s as any).rex['count_feed'] = ((s as any).rex ?? 0)?.['count_feed_base'];
+  (s as any).rex['count_bath'] = ((s as any).rex ?? 0)?.['count_bath_base'];
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/citycenter/mall/pet shop/pets/dog.jpg');
+  (s as any).rex['name'] = 0;
+  if (((s as any).rex ?? 0)?.['name'] === '') {
+    (s as any).rex['name'] = 'Rex';
+  }
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: $status['dog'] = 'active'
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    { label: 'Remove the dog (can be restored later in the cheat menu)', handler: (st: GameState) => {
+    // TODO-QSP: $status['dog'] = 'blocked'
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
   scene.build();
 }
 
@@ -72,6 +291,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'start':
       enterStart(s, scene);
+      break;
+    case 'activities_normal':
+      enterActivitiesNormal(s, scene);
+      break;
+    case 'feed':
+      enterFeed(s, scene);
+      break;
+    case 'treat':
+      enterTreat(s, scene);
+      break;
+    case 'exercise':
+      enterExercise(s, scene);
+      break;
+    case 'play_inside':
+      enterPlayInside(s, scene);
+      break;
+    case 'bath':
+      enterBath(s, scene);
+      break;
+    case 'name':
+      enterName(s, scene);
       break;
     default:
       enterGadukino(s, scene);

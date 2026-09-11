@@ -11,7 +11,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).ml_musicstorevisited = 1;
     scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'firstvisit'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'cameback'] }]);
+    if (((s as any).ml_didntbuyguitarthefirstvisit ?? 0) === 1) {
+      scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'cameback'] }]);
+    }
   }
   scene.img('images/locations/city/citycenter/mall/musicstore/music_store.jpg');
   scene.text('You enter the store, welcomed by the familiar mix of random notes and bits of songs screaming from the back.');
@@ -45,23 +47,26 @@ function enterSetRadomirCounterText(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A154'] < 20) {
       scene.text('He visibly sighs when he sees you and does his best to ignore you, though he answers any questions about instruments that you ask with the barest amount of information.');
     } else {
-      if (((s as any).pcs_hotcat ?? 0) >= 6) {
-        scene.text('Radomir is talking about the band\'s latest gig as you approach. He looks your body up and down when he sees you. "Nice to see all the working out is paying off. Looking good."');
-        scene.text('You smile. "Thanks, but I just came to look around and maybe do a little shopping."');
-        scene.text('He nods and starts telling you about a variety of instruments. He seems to really know his stuff.');
+      if (((s as any).npc_rel ?? 0)?.['A154'] < 60) {
+        if (((s as any).pcs_hotcat ?? 0) >= 6) {
+          scene.text('Radomir is talking about the band\'s latest gig as you approach. He looks your body up and down when he sees you. "Nice to see all the working out is paying off. Looking good."');
+          scene.text('You smile. "Thanks, but I just came to look around and maybe do a little shopping."');
+          scene.text('He nods and starts telling you about a variety of instruments. He seems to really know his stuff.');
+        } else {
+          scene.text('He smirks when he sees you. "Come to try and butter me up before I get famous?"');
+          scene.text('You ignore his comment and ask him about some of the instruments.');
+          scene.text('He nods and starts telling you about a variety of instruments. He seems to really know his stuff.');
+        }
       } else {
-        scene.text('He smirks when he sees you. "Come to try and butter me up before I get famous?"');
-        scene.text('You ignore his comment and ask him about some of the instruments.');
-        scene.text('He nods and starts telling you about a variety of instruments. He seems to really know his stuff.');
-      }
-      if (((s as any).pcs_hotcat ?? 0) >= 6) {
-        scene.text('He gives you a smile when he sees you. "Come to hang out with me on my break? Maybe we can have a little fun?" he asks with a wink.');
-        scene.text('You smile. "No, I just came to look around and maybe do a little shopping."');
-        scene.text('He smiles and starts telling you about a variety of instruments. He seems to really know his stuff.');
-      } else {
-        scene.text('He gives you a slight knowing smirk when he sees you. "So what can I do for one of my fans?"');
-        scene.text('"I just came to look around and maybe do a little shopping," you reply.');
-        scene.text('He nods and starts telling you about a variety of instruments. He seems to really know his stuff.');
+        if (((s as any).pcs_hotcat ?? 0) >= 6) {
+          scene.text('He gives you a smile when he sees you. "Come to hang out with me on my break? Maybe we can have a little fun?" he asks with a wink.');
+          scene.text('You smile. "No, I just came to look around and maybe do a little shopping."');
+          scene.text('He smiles and starts telling you about a variety of instruments. He seems to really know his stuff.');
+        } else {
+          scene.text('He gives you a slight knowing smirk when he sees you. "So what can I do for one of my fans?"');
+          scene.text('"I just came to look around and maybe do a little shopping," you reply.');
+          scene.text('He nods and starts telling you about a variety of instruments. He seems to really know his stuff.');
+        }
       }
     }
   } },
@@ -77,13 +82,16 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     scene.text('You enter the store, passing the door to be submerged in a loud, cacophony environment. The walls are filled with guitars, bass, amps, drums and even keyboards. In the back are three teenage boys trying to play some of the guitars. They\'re loud and not very good…');
     scene.text('A tall, ginger haired man turns to you with a bored expression that turns into a perplexed smile as he takes your sight in.');
   } else {
-    scene.img('images/locations/city/citycenter/mall/musicstore/nostairways.jpg');
-    scene.text('You enter the store, passing the door to be submerged in a loud, cacophony environment. The walls are filled with guitars, bass, amps, drums and even keyboards.');
-    scene.text('A tall, ginger haired man turns to you with a bored expression that turns into a perplexed smile as he takes your sight in.');
-    scene.text('He suddenly turns and throws a sponge at one of the boys playing in the back. "No. Stairway. To. Heaven!" he growls and points at the sign on the wall before turning back to you.');
-    scene.img('images/locations/city/citycenter/mall/musicstore/music_store.jpg');
-    scene.text('You enter the store, passing the door to be submerged in a loud, cacophony environment. The walls are filled with guitars, bass, amps, drums and even keyboards.');
-    scene.text('A tall, ginger haired man turns to you with a bored expression that turns into a perplexed smile as he takes your sight in.');
+    if (((s as any).musicrand ?? 0) === 2) {
+      scene.img('images/locations/city/citycenter/mall/musicstore/nostairways.jpg');
+      scene.text('You enter the store, passing the door to be submerged in a loud, cacophony environment. The walls are filled with guitars, bass, amps, drums and even keyboards.');
+      scene.text('A tall, ginger haired man turns to you with a bored expression that turns into a perplexed smile as he takes your sight in.');
+      scene.text('He suddenly turns and throws a sponge at one of the boys playing in the back. "No. Stairway. To. Heaven!" he growls and points at the sign on the wall before turning back to you.');
+    } else {
+      scene.img('images/locations/city/citycenter/mall/musicstore/music_store.jpg');
+      scene.text('You enter the store, passing the door to be submerged in a loud, cacophony environment. The walls are filled with guitars, bass, amps, drums and even keyboards.');
+      scene.text('A tall, ginger haired man turns to you with a bored expression that turns into a perplexed smile as he takes your sight in.');
+    }
   }
   scene.actions([
     { label: 'Approach the counter', handler: (st: GameState) => {

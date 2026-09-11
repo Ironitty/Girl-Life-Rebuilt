@@ -1,4 +1,6 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -40,14 +42,14 @@ function enterHourly(s: GameState, scene: SceneBuilder): void {
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 0) {
-      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((((s as any).katjaQW ?? 0)?.['slut'] - ((s as any).rand ?? 0)(1, 50))/10);
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + ((((s as any).katjaQW ?? {})?.['slut'] - ((s as any).rand ?? 0)(1, 50))/10);
     }
     if (((s as any).katjaQW ?? 0)?.['horny'] < 0) {
       (s as any).katjaQW['horny'] = 0;
     }
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
       if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).week ?? 0) < 6) {
-        (s as any).katjaQW['horny'] = ((s as any).max ?? 0)(((s as any).katjaQW ?? 0)?.['slut']/2, 50);
+        (s as any).katjaQW['horny'] = Math.max(((s as any).katjaQW ?? {})?.['slut']/2, 50);
         if (((s as any).katjaQW ?? 0)?.['masturbates'] === 0) {
           (s as any).katjaQW['masturbates'] = 1;
         }
@@ -95,102 +97,478 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['slut'] > 100) {
     (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (1);
   } else {
-    if (((s as any).week ?? 0) % 2 === 0) {
-      (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (1);
-    }
-    if (((s as any).katjaQW ?? 0)?.['slut'] > 50) {
-      if (((s as any).week ?? 0) === 1) {
+    if (((s as any).katjaQW ?? 0)?.['slut'] > 80) {
+      if (((s as any).week ?? 0) % 2 === 0) {
         (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (1);
       }
-    }
-    if (((s as any).katjaQW ?? 0)?.['slut'] > 50  &&  ((s as any).katjaQW ?? 0)?.['preference_change'] === 0) {
-      (s as any).katjaQW['preference_change'] = 1;
-      qspCall(s, 'npc_set_preference', 'A14', 'short_skirt', 'like');
     } else {
+      if (((s as any).katjaQW ?? 0)?.['slut'] > 50) {
+        if (((s as any).week ?? 0) === 1) {
+          (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (1);
+        }
+      }
+    }
+  }
+  if (((s as any).katjaQW ?? 0)?.['slut'] > 50  &&  ((s as any).katjaQW ?? 0)?.['preference_change'] === 0) {
+    (s as any).katjaQW['preference_change'] = 1;
+    qspCall(s, 'npc_set_preference', 'A14', 'short_skirt', 'like');
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['slut'] > 100  &&  ((s as any).katjaQW ?? 0)?.['preference_change'] === 1) {
       (s as any).katjaQW['preference_change'] = 2;
       qspCall(s, 'npc_set_preference', 'A14', 'clothes_thin_high', 'like');
       qspCall(s, 'npc_set_preference', 'A14', 'short_skirt', 'love');
     }
-    if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] > 0  &&  ((s as any).katjaQW ?? 0)?.['preference_change_pantQW'] === 0) {
-      (s as any).katjaQW['preference_change_pantQW'] = 1;
-      qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_ass', 'neutral');
-      qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_bra', 'neutral');
-      qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_panties', 'neutral');
-      qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_pussy', 'dislike');
-      qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_tits', 'dislike');
-    } else {
+  }
+  if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] > 0  &&  ((s as any).katjaQW ?? 0)?.['preference_change_pantQW'] === 0) {
+    (s as any).katjaQW['preference_change_pantQW'] = 1;
+    qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_ass', 'neutral');
+    qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_bra', 'neutral');
+    qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_panties', 'neutral');
+    qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_pussy', 'dislike');
+    qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_tits', 'dislike');
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] > 4  &&  ((s as any).katjaQW ?? 0)?.['preference_change_pantQW'] === 1) {
       (s as any).katjaQW['preference_change_pantQW'] = 2;
       qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_pussy', 'neutral');
       qspCall(s, 'npc_set_preference', 'A14', 'clothes_exposed_tits', 'neutral');
     }
-    if ((((s as any).katjaQW ?? 0)?.['liberated'] === 1  ||  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1)  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0) {
-      if (((s as any).locat ?? 0)?.['katja_save2'] === 53  &&  (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)  ||  ((s as any).katjaQW ?? 0)?.['disco_met'] + 600 < ((s as any).totminut ?? 0))) {
-        if (((Math.floor(Math.random() * 15) + 1) <= (((s as any).min ?? 0)(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50)/10  &&  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0)  ||  (((s as any).katjaQW ?? 0)?.['relationship_talk'] === 0  &&  ((s as any).katjaQW ?? 0)?.['liberated']  &&  (Math.floor(Math.random() * 4) + 0) === 0)) {
-          qspCall(s, 'katja_procedural', 'sex_set', ((s as any).rand ?? 0)(0, ((s as any).katjaQW ?? 0)?.['simultanous_boys'] + 1), ((s as any).rand ?? 0)(0, ((s as any).katjaQW ?? 0)?.['simultanous_girls']+1));
-        }
+  }
+  if ((((s as any).katjaQW ?? 0)?.['liberated'] === 1  ||  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1)  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0) {
+    if (((s as any).locat ?? 0)?.['katja_save2'] === 53  &&  (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)  ||  ((s as any).katjaQW ?? 0)?.['disco_met'] + 600 < ((s as any).totminut ?? 0))) {
+      if (((Math.floor(Math.random() * 15) + 1) <= (Math.min(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50)/10  &&  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0)  ||  (((s as any).katjaQW ?? 0)?.['relationship_talk'] === 0  &&  ((s as any).katjaQW ?? 0)?.['liberated']  &&  (Math.floor(Math.random() * 4) + 0) === 0)) {
+        qspCall(s, 'katja_procedural', 'sex_set', ((s as any).rand ?? 0)(0, ((s as any).katjaQW ?? {})?.['simultanous_boys'] + 1), ((s as any).rand ?? 0)(0, ((s as any).katjaQW ?? {})?.['simultanous_girls']+1));
       }
     }
-    if (((s as any).katjaQW ?? 0)?.['coke_stage'] >= 5) {
-      if (((s as any).locat ?? 0)?.['katja_save2'] === 53  &&  (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)  ||  ((s as any).katjaQW ?? 0)?.['disco_met'] + 600 < ((s as any).totminut ?? 0))) {
-        if ((Math.floor(Math.random() * (((s as any).katjaQW ?? 0)?.['coke_stage'] - 0 + 1)) + (0)) >= 5) {
-          qspCall(s, 'katja_procedural', 'take_cocaine', 1, 1);
-        }
-      } else {
+  }
+  if (((s as any).katjaQW ?? 0)?.['coke_stage'] >= 5) {
+    if (((s as any).locat ?? 0)?.['katja_save2'] === 53  &&  (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)  ||  ((s as any).katjaQW ?? 0)?.['disco_met'] + 600 < ((s as any).totminut ?? 0))) {
+      if ((Math.floor(Math.random() * (((s as any).katjaQW ?? 0)?.['coke_stage'] - 0 + 1)) + (0)) >= 5) {
+        qspCall(s, 'katja_procedural', 'take_cocaine', 1, 1);
+      }
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['alone_with_other_day'] >= ((s as any).daystart ?? 0) -1) {
         if ((Math.floor(Math.random() * (((s as any).katjaQW ?? 0)?.['coke_stage'] - 2 + 1)) + (2)) >= 5) {
           qspCall(s, 'katja_procedural', 'take_cocaine', 1, 1);
         }
       }
     }
-    if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 1  &&  ((s as any).katjaQW ?? 0)?.['coke_point'] > 3) {
-      (s as any).katjaQW['coke_stage'] = 2;
-    } else {
+  }
+  if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 1  &&  ((s as any).katjaQW ?? 0)?.['coke_point'] > 3) {
+    (s as any).katjaQW['coke_stage'] = 2;
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 2  &&  ((s as any).katjaQW ?? 0)?.['coke_point'] > 8) {
       (s as any).katjaQW['coke_stage'] = 3;
+    } else {
       if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 3  &&  ((s as any).katjaQW ?? 0)?.['coke_point'] > 15) {
         (s as any).katjaQW['coke_stage'] = 4;
       } else {
-        if (((s as any).katjaQW ?? 0)?.['coke_point'] > 25) {
-          (s as any).katjaQW['coke_stage'] = 5;
-        } else {
-          (s as any).katjaQW['coke_stage'] = 3;
-        }
-        if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 5) {
-          if (((s as any).katjaQW ?? 0)?.['coke_point'] > 35) {
-            (s as any).katjaQW['coke_stage'] = 6;
-          } else {
+        if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 4) {
+          if (((s as any).katjaQW ?? 0)?.['coke_point'] > 25) {
             (s as any).katjaQW['coke_stage'] = 5;
-          }
-        } else {
-          if (((s as any).katjaQW ?? 0)?.['coke_point'] > 50) {
-            (s as any).katjaQW['coke_stage'] = 7;
           } else {
-            (s as any).katjaQW['coke_stage'] = 5;
-          }
-          if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 7) {
-            if (((s as any).katjaQW ?? 0)?.['coke_day'] + 1 < ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 4) + 0)=== 0) {
-              qspCall(s, 'katja_procedural', 'take_cocaine', 1, 1);
+            if (((s as any).katjaQW ?? 0)?.['coke_point'] < 8) {
+              (s as any).katjaQW['coke_stage'] = 3;
             }
-            if (((s as any).katjaQW ?? 0)?.['coke_point'] > 70) {
-              (s as any).katjaQW['coke_stage'] = 8;
-            } else {
+          }
+        } else {
+          if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 5) {
+            if (((s as any).katjaQW ?? 0)?.['coke_point'] > 35) {
               (s as any).katjaQW['coke_stage'] = 6;
+            } else {
+              if (((s as any).katjaQW ?? 0)?.['coke_point'] < 25) {
+                (s as any).katjaQW['coke_stage'] = 5;
+              }
             }
           } else {
-            if (((s as any).katjaQW ?? 0)?.['coke_day'] + 1 < ((s as any).daystart ?? 0)) {
-              (s as any).katjaQW['financial_strain'] = ((s as any).katjaQW['financial_strain'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
-              qspCall(s, 'katja_procedural', 'take_cocaine', 1, 1);
+            if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 6) {
+              if (((s as any).katjaQW ?? 0)?.['coke_point'] > 50) {
+                (s as any).katjaQW['coke_stage'] = 7;
+              } else {
+                if (((s as any).katjaQW ?? 0)?.['coke_point'] < 35) {
+                  (s as any).katjaQW['coke_stage'] = 5;
+                }
+              }
+            } else {
+              if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 7) {
+                if (((s as any).katjaQW ?? 0)?.['coke_day'] + 1 < ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 4) + 0)=== 0) {
+                  qspCall(s, 'katja_procedural', 'take_cocaine', 1, 1);
+                }
+                if (((s as any).katjaQW ?? 0)?.['coke_point'] > 70) {
+                  (s as any).katjaQW['coke_stage'] = 8;
+                } else {
+                  if (((s as any).katjaQW ?? 0)?.['coke_point'] < 45) {
+                    (s as any).katjaQW['coke_stage'] = 6;
+                  }
+                }
+              } else {
+                if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 8) {
+                  if (((s as any).katjaQW ?? 0)?.['coke_day'] + 1 < ((s as any).daystart ?? 0)) {
+                    (s as any).katjaQW['financial_strain'] = ((s as any).katjaQW['financial_strain'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+                    qspCall(s, 'katja_procedural', 'take_cocaine', 1, 1);
+                  }
+                  if (((s as any).katjaQW ?? 0)?.['coke_point'] < 55) {
+                    (s as any).katjaQW['coke_stage'] = 7;
+                  }
+                }
+              }
             }
-            if (((s as any).katjaQW ?? 0)?.['coke_point'] < 55) {
-              (s as any).katjaQW['coke_stage'] = 7;
-            }
-          }
-          if (((s as any).katjaQW ?? 0)?.['coke_day'] + 7 < ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['coke_day_lapse'] === 1) {
-            (s as any).katjaQW['coke_day_lapse'] = 0;
-            (s as any).katjaQW['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) - (1);
-          }
-          if (((s as any).katjaQW ?? 0)?.['coke_point'] < 0) {
-            (s as any).katjaQW['coke_point'] = 0;
           }
         }
+      }
+    }
+  }
+  if (((s as any).katjaQW ?? 0)?.['coke_day'] + 7 < ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['coke_day_lapse'] === 1) {
+    (s as any).katjaQW['coke_day_lapse'] = 0;
+    (s as any).katjaQW['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) - (1);
+  }
+  if (((s as any).katjaQW ?? 0)?.['coke_point'] < 0) {
+    (s as any).katjaQW['coke_point'] = 0;
+  }
+  scene.build();
+}
+
+function enterFaceColor(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).katjaQW ?? 0)?.['QWstage'] <= 2) {
+    if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+    } else {
+      scene.text('Katja looks at you with a smile.');
+    }
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['horny'] < 20) {
+      if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+      } else {
+        scene.text('Katja looks calm and stoic.');
+      }
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['horny'] < 40) {
+        if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+        } else {
+          scene.text('Katja looks at you with a naughty twinkle in her eyes.');
+        }
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['horny'] < 60) {
+          if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+          } else {
+            scene.text('Katja looks at you, a faint blush on her cheeks as she smiles at you mischievously.');
+          }
+        } else {
+          if (((s as any).katjaQW ?? 0)?.['horny'] < 80) {
+            if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+            } else {
+              scene.text('Katja is blushing fairly obviously and looks at you longingly.');
+            }
+          } else {
+            if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+            } else {
+              scene.text('Katja\'s face is flushed bright red and her chest is heaving from her heavy breathing. She\'s idly rubbing her thighs against one another.');
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterMakeup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: dynamic text: Katja looks at you with a smile. "<<$pcs_nickname>>, I bet you would look great ...
+  scene.text(`Katja looks at you with a smile. "${((s as any).pcs_nickname ?? 0)}, I bet you would look great with a little make-up on you! What do you say?"`);
+  scene.actions([
+    { label: 'Let her put makeup on you', handler: (st: GameState) => {
+    (s as any).pcs_hairbsh = 1;
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14']} ${((s as any).npc_lastname ?? 0)?.['A14']}</b></center>`);
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('Katja happily grins as she quickly straightens your hair. "What do you want? A light touch-up, some normal make-up or shall I just shovel it on?"');
+    scene.actions([
+      { label: 'Light touch-up', handler: (st: GameState) => {
+    (s as any).pcs_makeup = 2;
+    scene.text('Katja subtly applies some neutral tones, with a light application of makeup to bring out your natural beauty.');
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
+    }
+    scene.actions([
+      { label: 'Thank Katja for the makeup', handler: (st: GameState) => {
+    dynamicGoto(st, 'temp_loc', 'temp_loc_arg');
+  } },
+    ]);
+  } },
+      { label: 'Normal make-up', handler: (st: GameState) => {
+    (s as any).pcs_makeup = 3;
+    scene.text('Katja applies some mildly vibrate tones and colors of makeup to cover your minor imperfections and enhance your best features.');
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
+    }
+    scene.actions([
+      { label: 'Thank Katja for the makeup', handler: (st: GameState) => {
+    dynamicGoto(st, 'temp_loc', 'temp_loc_arg');
+  } },
+    ]);
+  } },
+      { label: 'Heavy make-up', handler: (st: GameState) => {
+    (s as any).pcs_makeup = 4;
+    scene.text('Katja applies some deeper, richer shades of makeup that are thick enough to cover most imperfections while drawing attention to your eyes and lips.');
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
+    }
+    scene.actions([
+      { label: 'Thank Katja for the makeup', handler: (st: GameState) => {
+    dynamicGoto(st, 'temp_loc', 'temp_loc_arg');
+  } },
+    ]);
+  } },
+      { label: 'You really don\'t need it', handler: (st: GameState) => {
+    dynamicGoto(st, 'temp_loc', 'temp_loc_arg');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterWillingToBeNaughty(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp = ((s as any).katjaQW ?? 0)?.['slut'];
+  if (((s as any).katjaQW ?? 0)?.['under_influnece_of_cocaine'] > 0) {
+    (s as any).temp = ((s as any).temp ?? 0) + (30/((s as any).katjaQW ?? {})?.['coke_stage']);
+  }
+  (s as any).temp = ((s as any).temp ?? 0) + (5*Math.max(((s as any).katjaQW ?? 0)?.['drinks'], 8)/2);
+  (s as any).RESULT = ((s as any).temp ?? 0);
+  scene.build();
+}
+
+function enterTakeCocaine(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 0) {
+    (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (10);
+    (s as any).katjaQW['coke_stage'] = 1;
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 1) {
+      (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 2) {
+        (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 3) {
+          (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+        }
+      }
+    }
+  }
+  if (((s as any).katjaQW ?? 0)?.['coke_stage'] === -1  &&  (!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).katjaQW['coke_stage'] = 4;
+  }
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
+    (s as any).katjaQW['under_influnece_of_cocaine'] = ((s as any).katjaQW['under_influnece_of_cocaine'] ?? 0) + (2);
+    if (((s as any).katjaQW ?? 0)?.['coke_stage'] > 0) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (4*(11-((s as any).katjaQW ?? {})?.['coke_stage']));
+    } else {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (40);
+    }
+  }
+  if (((s as any).katjaQW ?? 0)?.['coke_stage'] < 3) {
+    (s as any).katjaQW['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['coke_stage'] < 6) {
+      if (((s as any).katjaQW ?? 0)?.['coke_day'] + 7 > ((s as any).daystart ?? 0) - ((s as any).locArgs?.[2] ?? 0)) {
+        (s as any).katjaQW['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
+      }
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['coke_stage'] < 8) {
+        if (((s as any).katjaQW ?? 0)?.['coke_day'] + 2 > ((s as any).daystart ?? 0) - ((s as any).locArgs?.[2] ?? 0)) {
+          (s as any).katjaQW['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
+        }
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 8) {
+          if (((s as any).katjaQW ?? 0)?.['coke_day'] === ((s as any).daystart ?? 0) - ((s as any).locArgs?.[2] ?? 0)) {
+            (s as any).katjaQW['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
+          }
+        }
+      }
+    }
+  }
+  (s as any).katjaQW['coke_day'] = ((s as any).daystart ?? 0) - ((s as any).ARGS ?? 0)[2];
+  (s as any).katjaQW['coke_day_lapse'] = 1;
+  scene.build();
+}
+
+function enterSexSet(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) > 0) {
+    if (((s as any).katjaQW ?? 0)?.['simultanous_boys'] === 0  &&  (Math.floor(Math.random() * 5) + 0) <= ((s as any).katjaQW ?? 0)?.['slut']/25) {
+      if (((s as any).npc_vag ?? 0)?.['A14'] === 0  &&  ((s as any).npc_ass ?? 0)?.['A14'] === 0) {
+        if ((!(Math.floor(Math.random() * 5) + 0))) {
+          (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (2);
+          (s as any).katjaQW['anal_sex'] = 1;
+        } else {
+          (s as any).npc_vag['A14'] = 20;
+          (s as any).katjaQW['pussy_sex'] = 1;
+        }
+      } else {
+        if (((s as any).npc_vag ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 4) + 0) > 0) {
+          if (((s as any).katjaQW ?? 0)?.['pussy_sex'] === 0) {
+            (s as any).katjaQW['pussy_sex'] = 1;
+          }
+          if (((s as any).npc_vag ?? 0)?.['A14'] < (Math.floor(Math.random() * 6) + 5)) {
+            (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (2);
+          } else {
+            if (((s as any).npc_vag ?? 0)?.['A14'] < (Math.floor(Math.random() * 11) + 10)) {
+              (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+            }
+          }
+        } else {
+          if ((!(Math.floor(Math.random() * 6) + 0))) {
+            (s as any).npc_vag['A14'] = 20;
+            if (((s as any).katjaQW ?? 0)?.['pussy_sex'] === 0) {
+              (s as any).katjaQW['pussy_sex'] = 1;
+            }
+          }
+        }
+        if (((s as any).npc_ass ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 4) + 0) > 0) {
+          if (((s as any).katjaQW ?? 0)?.['anal_sex'] === 0) {
+            (s as any).katjaQW['anal_sex'] = 1;
+          }
+          if (((s as any).npc_ass ?? 0)?.['A14'] < (Math.floor(Math.random() * 6) + 5)) {
+            (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (2);
+          } else {
+            if (((s as any).npc_ass ?? 0)?.['A14'] < (Math.floor(Math.random() * 11) + 10)) {
+              (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+            }
+          }
+        } else {
+          if ((!(Math.floor(Math.random() * 8) + 0))) {
+            if (((s as any).npc_ass ?? 0)?.['A14'] < (Math.floor(Math.random() * 11) + 10)) {
+              (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (2);
+            }
+            if (((s as any).katjaQW ?? 0)?.['anal_sex'] === 0) {
+              (s as any).katjaQW['anal_sex'] = 1;
+            }
+          }
+        }
+      }
+      if (((s as any).npc_throat ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 8) + 0) > 0) {
+        if (((s as any).npc_throat ?? 0)?.['A14'] < (Math.floor(Math.random() * 15) + 8)) {
+          (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+        }
+      } else {
+        if ((Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).npc_throat ?? 0)?.['A14'] < (Math.floor(Math.random() * 15) + 8)) {
+          (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+        }
+      }
+      (s as any).katjaQW['simultanous_boys'] = 0;
+      (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (((s as any).katjaQW ?? {})?.['simultanous_boys']*5);
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['simultanous_boys'] > 0  &&  (Math.floor(Math.random() * 3) + 0) <= ((s as any).katjaQW ?? 0)?.['slut']/50) {
+        if (((s as any).npc_vag ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 4) + 0) > 0) {
+          if (((s as any).katjaQW ?? 0)?.['pussy_sex'] === 0) {
+            (s as any).katjaQW['pussy_sex'] = 1;
+          }
+          if (((s as any).npc_vag ?? 0)?.['A14'] < (Math.floor(Math.random() * 6) + 5)) {
+            (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (2);
+          } else {
+            if (((s as any).npc_vag ?? 0)?.['A14'] < (Math.floor(Math.random() * 11) + 10)) {
+              (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+            }
+          }
+          if (((s as any).katjaQW ?? 0)?.['creampie'] > 0  &&  (!(Math.floor(Math.random() * 6) + 0))) {
+            (s as any).katjaQW['creampie'] = ((s as any).katjaQW['creampie'] ?? 0) + (1);
+          }
+        } else {
+          if ((!(Math.floor(Math.random() * 6) + 0))) {
+            (s as any).npc_vag['A14'] = 20;
+            if (((s as any).katjaQW ?? 0)?.['pussy_sex'] === 0) {
+              (s as any).katjaQW['pussy_sex'] = 1;
+            }
+          }
+        }
+        if (((s as any).npc_ass ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 4) + 0) > 0) {
+          if (((s as any).katjaQW ?? 0)?.['anal_sex'] === 0) {
+            (s as any).katjaQW['anal_sex'] = 1;
+          }
+          if (((s as any).npc_ass ?? 0)?.['A14'] < (Math.floor(Math.random() * 6) + 5)) {
+            (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (2);
+          } else {
+            if (((s as any).npc_ass ?? 0)?.['A14'] < (Math.floor(Math.random() * 11) + 10)) {
+              (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+            }
+          }
+        } else {
+          if ((!(Math.floor(Math.random() * 8) + 0))) {
+            if (((s as any).npc_ass ?? 0)?.['A14'] < (Math.floor(Math.random() * 11) + 10)) {
+              (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (2);
+            }
+            if (((s as any).katjaQW ?? 0)?.['anal_sex'] === 0) {
+              (s as any).katjaQW['anal_sex'] = 1;
+            }
+          }
+        }
+        if (((s as any).npc_throat ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 8) + 0) > 0) {
+          if (((s as any).npc_throat ?? 0)?.['A14'] < (Math.floor(Math.random() * 15) + 8)) {
+            (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+          }
+        } else {
+          if ((Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).npc_throat ?? 0)?.['A14'] < (Math.floor(Math.random() * 15) + 8)) {
+            (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+          }
+        }
+        (s as any).katjaQW['simultanous_boys'] = ((s as any).katjaQW['simultanous_boys'] ?? 0) + (Math.max(0, ((s as any).rand ?? 0)(0, ((s as any).ARGS ?? 0)[1] - ((s as any).katjaQW ?? {})?.['simultanous_boys'])));
+        (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_boys'], qspUntranslated(s, "ARGS[1]", { location: "katja_procedural" }))*3);
+      }
+    }
+  }
+  if (((s as any).locArgs?.[2] ?? 0) > 0) {
+    if (((s as any).katjaQW ?? 0)?.['simultanous_girls'] === 0  &&  (Math.floor(Math.random() * 4) + 0) <= ((s as any).katjaQW ?? 0)?.['slut']/33) {
+      if ((!((s as any).locArgs?.[1] ?? 0))) {
+        if (((s as any).npc_vag ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 6) + 0) > 0  &&  ((s as any).npc_vag ?? 0)?.['A14'] < 15) {
+          (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+        } else {
+          if ((!(Math.floor(Math.random() * 10) + 0))) {
+            (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+          }
+        }
+        if (((s as any).npc_ass ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 8) + 0) > 0  &&  ((s as any).npc_ass ?? 0)?.['A14'] < 15) {
+          (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+        } else {
+          if ((!(Math.floor(Math.random() * 15) + 0))) {
+            (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+          }
+        }
+        if (((s as any).npc_throat ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).npc_throat ?? 0)?.['A14'] < 15) {
+          (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+        } else {
+          if ((!(Math.floor(Math.random() * 7) + 0))) {
+            (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+          }
+        }
+      }
+      (s as any).katjaQW['simultanous_girls'] = 0;
+      (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (((s as any).katjaQW ?? {})?.['simultanous_girls']*4);
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['simultanous_girls'] > 0  &&  (Math.floor(Math.random() * 2) + 0) <= ((s as any).katjaQW ?? 0)?.['slut']/50) {
+        if (((s as any).npc_vag ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 6) + 0) > 0) {
+          (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+        } else {
+          if ((!(Math.floor(Math.random() * 10) + 0))) {
+            (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+          }
+        }
+        if (((s as any).npc_ass ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 8) + 0) > 0) {
+          (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+        } else {
+          if ((!(Math.floor(Math.random() * 15) + 0))) {
+            (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+          }
+        }
+        if (((s as any).npc_throat ?? 0)?.['A14'] > 0  &&  (!(Math.floor(Math.random() * 3) + 0))) {
+          (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+        } else {
+          if ((!(Math.floor(Math.random() * 7) + 0))) {
+            (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+          }
+        }
+        (s as any).katjaQW['simultanous_girls'] = ((s as any).katjaQW['simultanous_girls'] ?? 0) + (Math.max(0, ((s as any).rand ?? 0)(0, ((s as any).ARGS ?? 0)[2] - ((s as any).katjaQW ?? {})?.['simultanous_girls'])));
+        (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_gitls'], qspUntranslated(s, "ARGS[2]", { location: "katja_procedural" }))*2);
       }
     }
   }
@@ -205,6 +583,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'cikl':
       enterCikl(s, scene);
+      break;
+    case 'face_color':
+      enterFaceColor(s, scene);
+      break;
+    case 'makeup':
+      enterMakeup(s, scene);
+      break;
+    case 'willing_to_be_naughty':
+      enterWillingToBeNaughty(s, scene);
+      break;
+    case 'take_cocaine':
+      enterTakeCocaine(s, scene);
+      break;
+    case 'sex_set':
+      enterSexSet(s, scene);
       break;
     default:
       enterHourly(s, scene);

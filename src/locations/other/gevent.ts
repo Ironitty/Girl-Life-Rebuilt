@@ -210,19 +210,22 @@ function enter5(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
-      // TODO-QSP: dynamic text: The guy hurries you into the bushes for a quick fuck. He doesn't bother to undre...
-      scene.text(`The guy hurries you into the bushes for a quick fuck. He doesn't bother to undress you, just pushes your shorts and panties to the side and thrusts his dick inside you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
+    if (((s as any).PCloPants ?? 0) === 6) {
+      if (((s as any).pantyworntype ?? 0) !== 'none') {
+        // TODO-QSP: dynamic text: The guy hurries you into the bushes for a quick fuck. He doesn't bother to undre...
+        scene.text(`The guy hurries you into the bushes for a quick fuck. He doesn't bother to undress you, just pushes your shorts and panties to the side and thrusts his dick inside you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
+      } else {
+        // TODO-QSP: dynamic text: The guy pulls you into the bushes for a quick fuck. He pushes your shorts to the...
+        scene.text(`The guy pulls you into the bushes for a quick fuck. He pushes your shorts to the side and thrusts his dick inside you. "No panties, nice," he chuckles as he starts to fuck you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
+      }
     } else {
-      // TODO-QSP: dynamic text: The guy pulls you into the bushes for a quick fuck. He pushes your shorts to the...
-      scene.text(`The guy pulls you into the bushes for a quick fuck. He pushes your shorts to the side and thrusts his dick inside you. "No panties, nice," he chuckles as he starts to fuck you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
-    }
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
-      // TODO-QSP: dynamic text: The guy leads you into the bushes for a quick fuck. He yanks your pants down to ...
-      scene.text(`The guy leads you into the bushes for a quick fuck. He yanks your pants down to your knees and shoves his cock inside you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
-    } else {
-      // TODO-QSP: dynamic text: The guy takes you into the bushes for a quick fuck. He pulls down your pants to ...
-      scene.text(`The guy takes you into the bushes for a quick fuck. He pulls down your pants to your knees and pushes his cock deep inside you. "No panties, nice," he grunts as he starts to fuck you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
+      if (((s as any).pantyworntype ?? 0) !== 'none') {
+        // TODO-QSP: dynamic text: The guy leads you into the bushes for a quick fuck. He yanks your pants down to ...
+        scene.text(`The guy leads you into the bushes for a quick fuck. He yanks your pants down to your knees and shoves his cock inside you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
+      } else {
+        // TODO-QSP: dynamic text: The guy takes you into the bushes for a quick fuck. He pulls down your pants to ...
+        scene.text(`The guy takes you into the bushes for a quick fuck. He pulls down your pants to your knees and pushes his cock deep inside you. "No panties, nice," he grunts as he starts to fuck you. Within minutes, his breathing grows heavier and he pulls out, jerking his load onto your ass cheeks. "Nice, babe…" he pants. "You're definitely worth the money", as he hands you ${qspFunc(s, 'money', 'string_profit', 200)} and leaves.`);
+      }
     }
   }
   qspCall(s, 'arousal', 'vaginal', 15, 'prostitution');

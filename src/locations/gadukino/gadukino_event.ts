@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -85,9 +87,11 @@ function enterMitkaApologise(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well, what can I do. If she begs me to do it, I can\'t promise I\'ll say no." he laughed. "Well, I think we\'re all set. I\'ll try to avoid Mira… But I won\'t say no if she begs me to fuck her."');
       scene.text('Mitka starts walking towards Kolyamba\'s house. You watch him for a while until he disappears behind a corner.');
     } else {
-      scene.text('"And you must stop having sex with Mira." you look at Mitka with distrust.');
-      scene.text('"Well, what can I do. If she begs me to do it, I can\'t promise I\'ll say no." he laughed. "Well, I think we\'re all set. I\'ll try to avoid Mira… But I won\'t say no if she begs me to fuck her."');
-      scene.text('Mitka starts walking towards Kolyamba\'s house. You watch him for a while until he disappears behind a corner.');
+      if (((s as any).MiraVars ?? 0)?.['QW'] >= 3) {
+        scene.text('"And you must stop having sex with Mira." you look at Mitka with distrust.');
+        scene.text('"Well, what can I do. If she begs me to do it, I can\'t promise I\'ll say no." he laughed. "Well, I think we\'re all set. I\'ll try to avoid Mira… But I won\'t say no if she begs me to fuck her."');
+        scene.text('Mitka starts walking towards Kolyamba\'s house. You watch him for a while until he disappears behind a corner.');
+      }
     }
     scene.actions([
       { label: 'Go back to the village', goto: ['gadukino', ''] },
@@ -147,7 +151,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).GadBoy['river_gang'] = 3;
     qspCall(s, 'willpower', 'prostitution', 'resist', 'hard');
@@ -730,7 +734,7 @@ function enterGadukinoMitka(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -766,7 +770,7 @@ function enterGadukinoKolyamba(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -802,7 +806,7 @@ function enterGadukinoVasyan(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -835,45 +839,287 @@ function enterGadukino_2boys(s: GameState, scene: SceneBuilder): void {
     (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
     scene.text('Walking through the village, you meet Mitka and Kolyamba. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
   } else {
-    (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
-    (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
-    scene.text('Walking through the village, you meet Mitka and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
-    if (((s as any).locArgs?.[1] ?? 0) === '3') {
-      (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+    if (((s as any).locArgs?.[1] ?? 0) === '2') {
+      (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
       (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
-      scene.text('Walking through the village, you meet Kolyamba and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
+      scene.text('Walking through the village, you meet Mitka and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === '3') {
+        (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+        (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+        scene.text('Walking through the village, you meet Kolyamba and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
+      }
     }
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+  }
+  qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
-    if (((s as any).max ?? 0)(parseFloat(((s as any).locArgs?.[1] ?? 0)), ((s as any).ARGS ?? 0)[1]) === 1) {
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if (Math.max(parseFloat(((s as any).locArgs?.[1] ?? 0)), qspUntranslated(s, "ARGS[1]", { location: "gadukino_event" })) === 1) {
       qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
       qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
     } else {
-      qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
-      qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
-      if (((s as any).max ?? 0)(parseFloat(((s as any).locArgs?.[1] ?? 0)), ((s as any).ARGS ?? 0)[1]) === 3) {
-        qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
+      if (Math.max(parseFloat(((s as any).locArgs?.[1] ?? 0)), qspUntranslated(s, "ARGS[1]", { location: "gadukino_event" })) === 2) {
+        qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
         qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
+      } else {
+        if (Math.max(parseFloat(((s as any).locArgs?.[1] ?? 0)), qspUntranslated(s, "ARGS[1]", { location: "gadukino_event" })) === 3) {
+          qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
+          qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
+        }
       }
-      qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-      qspCall(s, 'willpower', 'pay', 'resist');
-      qspCall(s, 'stat', '');
-      scene.text('You tell them to go away while quickly walking away in the other direction.');
-      scene.actions([
-        { label: 'Walk away', goto: ['gadukino', ''] },
-      ]);
     }
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You tell them to go away while quickly walking away in the other direction.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gadukino', ''] },
+    ]);
   } },
-        { label: 'Go with them', goto: ['mitkasex', 'gad2'] },
-      ]);
+    ]);
+  }
+  scene.actions([
+    { label: 'Go with them', goto: ['mitkasex', 'gad2'] },
+  ]);
+  scene.build();
+}
+
+function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Mitka Shkvoryen</b></center>');
+  scene.img('images/characters/shared/headshots_main/big63.jpg');
+  scene.text('Walking with Mira in the village, you met Mitka. Seeing you and Mira, he starts playing with his balls and says with a grin.');
+  scene.text('"Oh hey, girls, let\'s have some fun getting rid of this boner you both gave me."');
+  qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You take Mira by the hand and tell him to go away while quickly walking away in the other direction.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gadukino', ''] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go with him', handler: (st: GameState) => {
+    // TODO-QSP: gt 'mitkasex', 'forest1', 'A63'
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMiraKolyamba(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Kolyamba Pyut</b></center>');
+  scene.img('images/characters/shared/headshots_main/big61.jpg');
+  scene.text('Walking with Mira in the village, you meet Kolyamba. Seeing you and Mira, he starts playing with his balls and tries to grab you both by the hand.');
+  qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You take Mira by the hand and tell him to go away while quickly walking away in the other direction.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gadukino', ''] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go with him', handler: (st: GameState) => {
+    // TODO-QSP: gt 'mitkasex', 'forest1', 'A61'
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMiraVasyan(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Vasyan Paket</b></center>');
+  scene.img('images/characters/shared/headshots_main/big62.jpg');
+  scene.text('Walking with Mira in the village, you meet Vasyan. Seeing you and Mira, he smiles and tries to grab you both by the hand.');
+  qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You take Mira by the hand and tell him to go away while quickly walking away in the other direction.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gadukino', ''] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go with them', handler: (st: GameState) => {
+    // TODO-QSP: gt 'mitkasex', 'forest1', 'A62'
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  if (((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 8) {
+    scene.img('images/locations/gadukino/village/2boys.1.jpg');
+  } else {
+    scene.img('images/locations/gadukino/village/2boys.2.jpg');
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+    (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+    (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+    scene.text('Walking with Mira in the village, you meet Mitka and Kolyamba. Seeing you both, they smile at each other and drag you both into the bushes.');
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 2) {
+      (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+      (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+      scene.text('Walking with Mira in the village, you meet Mitka and Vasyan. Seeing you both, they smile at each other and drag you both into the bushes.');
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 3) {
+        (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+        (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+        scene.text('Walking with Mira in the village, you meet Kolyamba and Vasyan. Seeing you both, they smile at each other and drag you both into the bushes.');
+      }
+    }
+  }
+  qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+      qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
+      qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+        qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
+        qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
+      } else {
+        if (((s as any).locArgs?.[1] ?? 0) === 3) {
+          qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
+          qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
+        }
+      }
+    }
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You take Mira by the hand and tell them to go away while quickly walking away in the other direction.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gadukino', ''] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go with them', handler: (st: GameState) => {
+    // TODO-QSP: gt 'mitkasex', 'forest2', $ARGS[1]
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMira_3boys(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+  (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+  (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  if (((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 8) {
+    scene.img('images/locations/gadukino/village/3boys.1.jpg');
+  } else {
+    scene.img('images/locations/gadukino/village/drunk.jpg');
+  }
+  scene.text('Walking with Mira in the village, you meet Mitka, Kolyamba, and Vasyan. Seeing you both, they smile at each other and drag you both into the bushes.');
+  qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
+    qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
+    qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You take Mira by the hand and tell them to go away while quickly walking away in the other direction.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gadukino', ''] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go with them', goto: ['mitkasex', 'forest3'] },
+  ]);
+  scene.build();
+}
+
+function enterSound(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    if (((s as any).month ?? 0) >=11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >=1  &&  ((s as any).month ?? 0) <=3) {
+      if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
+      }
+      if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
+      }
+    } else {
+      if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
+      }
+      if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
+      }
     }
   }
   scene.build();
@@ -917,6 +1163,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'gadukino_2boys':
       enterGadukino_2boys(s, scene);
+      break;
+    case 'mira_mitka':
+      enterMiraMitka(s, scene);
+      break;
+    case 'mira_kolyamba':
+      enterMiraKolyamba(s, scene);
+      break;
+    case 'mira_vasyan':
+      enterMiraVasyan(s, scene);
+      break;
+    case 'mira_2boys':
+      enterMira_2boys(s, scene);
+      break;
+    case 'mira_3boys':
+      enterMira_3boys(s, scene);
+      break;
+    case 'sound':
+      enterSound(s, scene);
       break;
     default:
       enterMiraApologise(s, scene);

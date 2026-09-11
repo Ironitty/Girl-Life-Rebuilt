@@ -45,15 +45,21 @@ function enterCheckSemesterVsDate(s: GameState, scene: SceneBuilder): void {
     if (((s as any).month ?? 0) > ((s as any).uniexam_m ?? 0) % 12  &&  qspFunc(s, 'uniutil', 'semester_passed')  &&  ((s as any).month ?? 0) <= ((s as any).uniexam_mns ?? 0)) {
       (s as any).result = 1;
     } else {
-      (s as any).result = 0;
-      (s as any).result = (-1);
+      if (((s as any).month ?? 0) <= ((s as any).uniexam_m ?? 0)) {
+        (s as any).result = 0;
+      } else {
+        (s as any).result = (-1);
+      }
     }
   } else {
     if (((s as any).unilect_sm ?? 0) > ((s as any).uniexam_m ?? 0)  ||  ((s as any).month ?? 0) <= ((s as any).uniexam_m ?? 0)) {
       (s as any).result = 0;
     } else {
-      (s as any).result = 1;
-      (s as any).result = (-1);
+      if (qspFunc(s, 'uniutil', 'semester_result', 'is_passed')  &&  (((s as any).uniexam_m ?? 0) > ((s as any).uniexam_mns ?? 0)  ||  ((s as any).month ?? 0) <= ((s as any).uniexam_mns ?? 0))) {
+        (s as any).result = 1;
+      } else {
+        (s as any).result = (-1);
+      }
     }
   }
   return;
@@ -67,11 +73,14 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
       if (((s as any).uni_semvdateres ?? 0) < 0) {
         qspCall(s, 'uniutil', 'student', 'expel');
       } else {
-        qspCall(s, 'uniutil', 'semester', 'update');
-        qspCall(s, 'uniutil', 'semester', 'update_year');
-        qspCall(s, 'uniutil', 'semester_result', 'reset');
-        qspCall(s, 'uniutil', 'passed_semesters', 'update');
-        qspCall(s, 'uniutil', 'semester', 'update_year');
+        if (((s as any).uni_semvdateres ?? 0) > 0) {
+          qspCall(s, 'uniutil', 'semester', 'update');
+          qspCall(s, 'uniutil', 'semester', 'update_year');
+          qspCall(s, 'uniutil', 'semester_result', 'reset');
+          qspCall(s, 'uniutil', 'passed_semesters', 'update');
+        } else {
+          qspCall(s, 'uniutil', 'semester', 'update_year');
+        }
       }
     }
     (s as any).result = ((s as any).student ?? 0);
@@ -101,10 +110,13 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'uniutil', 'student', 'unenroll');
       qspCall(s, 'uniutil', 'student', 'set_status', (-1));
     } else {
-      qspCall(s, 'uniutil', 'student', 'unenroll');
-      qspCall(s, 'uniutil', 'student', 'set_status', (-2));
-      qspCall(s, 'uniutil', 'student', 'unenroll');
-      qspCall(s, 'uniutil', 'student', 'set_status', (-3));
+      if (qspFunc(s, 'uniutil', 'check_semester_vs_date') < 0) {
+        qspCall(s, 'uniutil', 'student', 'unenroll');
+        qspCall(s, 'uniutil', 'student', 'set_status', (-2));
+      } else {
+        qspCall(s, 'uniutil', 'student', 'unenroll');
+        qspCall(s, 'uniutil', 'student', 'set_status', (-3));
+      }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'graduate') {
@@ -222,7 +234,7 @@ function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignment_progress'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    (s as any).unisemestrstats['assignment_progress'] = ((((s as any).ARGS ?? 0)[2] <= 100) ? (qspUntranslated(s, "ARGS[2]", { location: "uniutil" })) : (100));
+    (s as any).unisemestrstats['assignment_progress'] = ((((s as any).locArgs?.[2] ?? 0) <= 100) ? (qspUntranslated(s, "ARGS[2]", { location: "uniutil" })) : (100));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update') {
     qspCall(s, 'uniutil', 'assignment_progress', 'set', qspFunc(s, 'uniutil', 'assignment_progress', 'get') + ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0) / 20, ((s as any).pcs_intel ?? 0) / 10));
@@ -298,19 +310,25 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 6;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'start_month') {
-    if (((s as any).ARGS ?? 0)[2] === 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 1) {
       (s as any).result = 9;
     } else {
-      (s as any).result = 2;
-      (s as any).result = 13;
+      if (((s as any).locArgs?.[2] ?? 0) === 2) {
+        (s as any).result = 2;
+      } else {
+        (s as any).result = 13;
+      }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'end_month') {
-    if (((s as any).ARGS ?? 0)[2] === 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 1) {
       (s as any).result = 11;
     } else {
-      (s as any).result = 4;
-      (s as any).result = 0;
+      if (((s as any).locArgs?.[2] ?? 0) === 2) {
+        (s as any).result = 4;
+      } else {
+        (s as any).result = 0;
+      }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'offered_this_month') {
@@ -347,11 +365,14 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
 
 function enterExam(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'month') {
-    if (((s as any).ARGS ?? 0)[2] === 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 1) {
       (s as any).result = 12;
     } else {
-      (s as any).result = 5;
-      (s as any).result = 0;
+      if (((s as any).locArgs?.[2] ?? 0) === 2) {
+        (s as any).result = 5;
+      } else {
+        (s as any).result = 0;
+      }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'offered_this_month') {
@@ -441,10 +462,13 @@ function enterExamOutcome(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uniutil', 'semester_result', 'set_passed');
     qspCall(s, 'uniutil', 'scholarship', 'set', qspFunc(s, 'uniutil', 'scholarship', 'honors_value'));
   } else {
-    qspCall(s, 'uniutil', 'semester_result', 'set_passed');
-    qspCall(s, 'uniutil', 'scholarship', 'reset');
-    qspCall(s, 'uniutil', 'semester_result', 'set_failed');
-    qspCall(s, 'uniutil', 'scholarship', 'reset');
+    if (((s as any).locArgs?.[1] ?? 0) === 'passed') {
+      qspCall(s, 'uniutil', 'semester_result', 'set_passed');
+      qspCall(s, 'uniutil', 'scholarship', 'reset');
+    } else {
+      qspCall(s, 'uniutil', 'semester_result', 'set_failed');
+      qspCall(s, 'uniutil', 'scholarship', 'reset');
+    }
   }
   return;
   scene.build();
@@ -452,7 +476,7 @@ function enterExamOutcome(s: GameState, scene: SceneBuilder): void {
 
 function enterPassedSemesters(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['prev_passed_count'] + ((qspFunc(s, 'uniutil', 'semester_result', 'is_passed')) ? (1) : (0));
+    (s as any).result = ((s as any).unisemestrstats ?? {})?.['prev_passed_count'] + ((qspFunc(s, 'uniutil', 'semester_result', 'is_passed')) ? (1) : (0));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
     (s as any).unisemestrstats['prev_passed_count'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });

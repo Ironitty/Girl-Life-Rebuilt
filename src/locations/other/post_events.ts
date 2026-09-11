@@ -29,7 +29,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Flirt with him', handler: (st: GameState) => {
+        { label: 'Flirt with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.text('"What about me?" you ask him sweetly. When he looks at you, you ask again. "What about me? Do you think I look hot in it?"');
@@ -47,7 +47,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Press on and seduce him', handler: (st: GameState) => {
+        { label: 'Press on and seduce him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -67,7 +67,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Don\'t do it, but tell him he deserves better', handler: (st: GameState) => {
+        { label: 'Don\'t do it, but tell him he deserves better [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -229,7 +229,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'You don\'t want to do this', handler: (st: GameState) => {
+        { label: 'You don\'t want to do this [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"I\'m sorry, but I really can\'t do this," you tell her and push her off you.');
@@ -274,7 +274,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'You don\'t want to do this', handler: (st: GameState) => {
+        { label: 'You don\'t want to do this [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"I\'m sorry, but I really can\'t do this," you tell her and push her off you.');
@@ -437,7 +437,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Decline and let her do it', handler: (st: GameState) => {
+        { label: 'Decline and let her do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/locations/shared/postoffice/sex/postevent2-14.jpg');
     scene.text('You discretely shake your head at her and she bites her lower lip in disappointment, but then smiles at Arsen as she straddles him. "You\'re not done yet, babe!" she tells him in a sing-song voice while she slowly lets his cock sink into her again.');
@@ -647,29 +647,34 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['post_events', '3-2'] },
     ]);
   } else {
-    scene.text('You have some experience giving blowjobs, but it\'s difficult to do without being able to use your hands!');
-    scene.text('You do the best you can, but struggle when he tries to push more of his length down your throat. The thick head makes it very difficult.');
-    scene.text('"Time\'s up!" he grunts and grabs a firm hold of your head. He starts fucking your mouth, roaring as he shoots his cum directly down your throat.');
-    qspCall(s, 'arousal', 'bj', 15, 'sub', 'prostitution');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A108');
-    qspCall(s, 'stat', '');
-    scene.text('"That… was decent," he says. "I\'ve had better, but we can make a good cocksucker out of you yet."');
-    scene.text('You swallow nervously when you see his cock dangling in front of you. It\'s bigger than you thought it would be!');
-    scene.text('The man notices your hesitation. "Well? I said start sucking!"');
-    scene.text('You try your best, but it\'s painfully obvious to him that you\'re no good at pleasing a man with your mouth.');
-    qspCall(s, 'arousal', 'bj', 5);
-    scene.text('After he feels your teeth on his cock for the second time, he pulls away and scolds you. "That was terrible! Wait here…"');
-    scene.text('He walks away before returning with a ring gag. "Since you can\'t give a decent blowjob, you\'re going to wear this. Open your mouth."');
-    qspCall(s, 'willpower', 'humiliation', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((s as any).stat ?? 0)?.['bj'] > 15) {
+      scene.text('You have some experience giving blowjobs, but it\'s difficult to do without being able to use your hands!');
+      scene.text('You do the best you can, but struggle when he tries to push more of his length down your throat. The thick head makes it very difficult.');
+      scene.text('"Time\'s up!" he grunts and grabs a firm hold of your head. He starts fucking your mouth, roaring as he shoots his cum directly down your throat.');
+      qspCall(s, 'arousal', 'bj', 15, 'sub', 'prostitution');
+      qspCall(s, 'cum_call', 'mouth_swallow', 'A108');
+      qspCall(s, 'stat', '');
+      scene.text('"That… was decent," he says. "I\'ve had better, but we can make a good cocksucker out of you yet."');
       scene.actions([
-        { label: 'Beg him to let you try again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
+        { label: 'Continue', goto: ['post_events', '3-2'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Beg him to let you try again', handler: (st: GameState) => {
+      scene.text('You swallow nervously when you see his cock dangling in front of you. It\'s bigger than you thought it would be!');
+      scene.text('The man notices your hesitation. "Well? I said start sucking!"');
+      scene.text('You try your best, but it\'s painfully obvious to him that you\'re no good at pleasing a man with your mouth.');
+      qspCall(s, 'arousal', 'bj', 5);
+      scene.text('After he feels your teeth on his cock for the second time, he pulls away and scolds you. "That was terrible! Wait here…"');
+      scene.text('He walks away before returning with a ring gag. "Since you can\'t give a decent blowjob, you\'re going to wear this. Open your mouth."');
+      qspCall(s, 'willpower', 'humiliation', 'resist');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Beg him to let you try again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Beg him to let you try again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/locations/shared/postoffice/sex/postevent3-6.jpg');
     scene.text('You shake your head. "No, I can do it! Please let me try again! No need for that thing."');
@@ -685,11 +690,10 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['post_events', '3-2'] },
     ]);
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Continue', goto: ['post_events', '3-2'] },
-      { label: 'Open your mouth obediently', handler: (st: GameState) => {
+        ]);
+      }
+      scene.actions([
+        { label: 'Open your mouth obediently', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent3-5.jpg');
     scene.text('You let the man put the ring into your mouth and wait obediently as he fastens it behind your head.');
     scene.text('When he guides his cock back towards your wide open mouth, you realize how little control you have now. You cough and splutter several times when he shoves his cock inside your mouth further than you can handle. He usually backs off just enough to give you a moment to recover, then continues to fuck your unexperienced throat.');
@@ -702,7 +706,8 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['post_events', '3-2'] },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -789,7 +794,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'That\'s not good enough', handler: (st: GameState) => {
+        { label: 'That\'s not good enough [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.text('"Not good enough!" you yell as you tighten your grip on his junk even more. "You take advantage of me while I\'m just trying to do my job!? How many girls have you degraded like this before me? I really should make you suffer…"');

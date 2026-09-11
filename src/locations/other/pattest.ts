@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[1] !== 1  &&  ((s as any).pattest ?? 0) > 0) {
+  if (((s as any).locArgs?.[1] ?? 0) !== 1  &&  ((s as any).pattest ?? 0) > 0) {
     (s as any).j = 0;
     // TODO-QSP: p ''
     if (((s as any).kid ?? 0) > 0  &&  (Array.isArray((s as any).surefather) ? ((s as any).surefather as any[]).indexOf('0') : -1) !== ((s as any).kid ?? 0)) {
@@ -14,24 +14,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).kidid[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
       (s as any).value = ((s as any).kidid ?? 0)?.[String((s as any).j ?? 0)];
       if (((s as any).surefather ?? 0)?.[String((s as any).j ?? 0)] === 0) {
-        // TODO-QSP: pl '    <a href="exec:func(''pattest'', value, 1)
-        (s as any).pattest = ((s as any).pattest ?? 0) - (1);
-        // TODO-QSP: gs ''stat''"><<$kidname[j]>></a>'
+        // TODO-QSP: pl '    <a href="exec:func(''pattest'', value, 1) & pattest -= 1 & gs ''stat''"><<$kidname[j]>></a>'
       }
       if (((s as any).j ?? 0) < ((s as any).kid ?? 0)-1) {
         (s as any).j = ((s as any).j ?? 0) + (1);
         // TODO-QSP: jump 'kiddieloop'
       }
     } else {
-      qspCall(s, 'stat', '');
-      qspCall(s, 'stat', '');
+      if ((!((s as any).kid ?? 0))) {
+        qspCall(s, 'stat', '');
+      } else {
+        qspCall(s, 'stat', '');
+      }
     }
   } else {
-    qspCall(s, 'stat', '');
+    if (((s as any).locArgs?.[1] ?? 0) !== 1) {
+      qspCall(s, 'stat', '');
+    }
   }
-  if (((s as any).ARGS ?? 0)[1] === 1) {
+  if (((s as any).locArgs?.[1] ?? 0) === 1) {
     // TODO-QSP: testresDay[ARGS[0]] = 2147483647
-    if (((s as any).ChildFath ?? 0)[((s as any).ARGS ?? 0)[0]] === ((s as any).papa ?? 0)) {
+    if (((s as any).ChildFath ?? 0)[((s as any).locArgs?.[0] ?? 0)] === ((s as any).papa ?? 0)) {
       // TODO-QSP: testresRes[ARGS[0]] = 1 else testresRes[ARGS[0]] = 0
     }
     // TODO-QSP: $testresPotfath[ARGS[0]] = $papa
@@ -52,10 +55,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :kloop
   (s as any).kidid[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
   if (((s as any).patpack ?? 0)?.[String((s as any).j ?? 0)] === 1) {
-    // TODO-QSP: '    <a href="exec: testresDay[kidid[j]] = daystart+rand(5,7)
-    // TODO-QSP: patpack[kidid[j]] = 0
-    (s as any).used_pattest = ((s as any).used_pattest ?? 0) - (1);
-    // TODO-QSP: gs ''money'', ''pay'', 20000">$kidname[j]</a>'
+    // TODO-QSP: dynamic text:     <a href="exec: testresDay[kidid[j]] = daystart+rand(5,7) & patpack[kidid[j]]...
+    scene.text('    <a href="exec: testresDay[kidid[j]] = daystart+rand(5,7) & patpack[kidid[j]] = 0 & used_pattest -= 1 & gs \'money\', \'pay\', 20000">$kidname[j]</a>');
   }
   if (((s as any).j ?? 0) < ((s as any).kid ?? 0) - 1) {
     (s as any).j = ((s as any).j ?? 0) + (1);

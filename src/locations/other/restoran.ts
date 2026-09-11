@@ -34,6 +34,8 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Babel</b></center>');
     scene.img('images/locations/city/citycenter/expensiverest/maitredseat.jpg');
     scene.text('The well-dressed maître d\' politely asks whether you would prefer the VIP section or the common room.');
+    scene.actions([
+      { label: 'Go to the VIP room [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -48,25 +50,28 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
         { label: 'Change your mind', goto: ['restoran', 'maitred'] },
       ]);
     }
-    scene.actions([
-      { label: 'Go to the VIP room [+$func(\'money\', \'get_cost_string\', 5000)]' }, // TODO-QSP: empty action body
+  } },
+      { label: 'Go to the Common Room', goto: ['restoran', 'zal'] },
     ]);
-  }
-  scene.text('<center><b>Restaurant</b></center>');
-  scene.img('images/locations/city/citycenter/expensiverest/maitredrefuse.jpg');
-  scene.text('The maître d\' politely informs you that customers must look presentable and wear formal clothing if they wish to dine here.');
-  if (((s as any).clothingworntype ?? 0) !== 'moncheri_dress'  &&  ((s as any).clothingworntype ?? 0) !== 'moncheri_gown') {
-    scene.text('He suggests you try shopping at Mon Chéri if you want to meet their dress code.');
   } else {
-    scene.text('He tells you that it\'s important for ladies to take the time to look their best and mimes applying make up.');
-    if (((s as any).pcs_hairbsh ?? 0) !== 1) {
-      scene.text('He tells you that one\'s hair must be neat and tidy.');
+    scene.text('<center><b>Restaurant</b></center>');
+    scene.img('images/locations/city/citycenter/expensiverest/maitredrefuse.jpg');
+    scene.text('The maître d\' politely informs you that customers must look presentable and wear formal clothing if they wish to dine here.');
+    if (((s as any).clothingworntype ?? 0) !== 'moncheri_dress'  &&  ((s as any).clothingworntype ?? 0) !== 'moncheri_gown') {
+      scene.text('He suggests you try shopping at Mon Chéri if you want to meet their dress code.');
     } else {
-      scene.text('He waves his hand in front of his nose and gives you a disgusted look. It might be time to have a shower.');
+      if (((s as any).pcs_makeup ?? 0) < 2) {
+        scene.text('He tells you that it\'s important for ladies to take the time to look their best and mimes applying make up.');
+      } else {
+        if (((s as any).pcs_hairbsh ?? 0) !== 1) {
+          scene.text('He tells you that one\'s hair must be neat and tidy.');
+        } else {
+          scene.text('He waves his hand in front of his nose and gives you a disgusted look. It might be time to have a shower.');
+        }
+      }
     }
   }
   scene.actions([
-    { label: 'Go to the Common Room', goto: ['restoran', 'zal'] },
     { label: 'Return to the foyer', goto: ['restoran', 'start'] },
   ]);
   scene.build();
@@ -92,7 +97,7 @@ function enterZal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Smile at her', handler: (st: GameState) => {
+        { label: 'Smile at her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['nastja', 'pos1'] },

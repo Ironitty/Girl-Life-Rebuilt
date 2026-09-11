@@ -45,7 +45,7 @@ function enterInterview1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Ask Reinhold to leave', handler: (st: GameState) => {
+        { label: 'Ask Reinhold to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     scene.text('<center><b>?????????</b></center>');
     scene.img('images/characters/city/thelilith/thelilith.jpg');
     scene.text('You must stop this, they are two high-level wizards in the middle of the street, go figure the level of damage, so there is only one thing you can do… stand before Reinhold, look him in the eyes and…');
@@ -749,8 +749,11 @@ function enterAnachase2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
       scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase3'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anacrash1'] }]);
-      scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase4'] }]);
+      if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
+        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anacrash1'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'anachase4'] }]);
+      }
     }
   } },
     ]);
@@ -928,7 +931,7 @@ function enterAnacrash1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Will you to cast Heal.', handler: (st: GameState) => {
+        { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'heal1'] },
@@ -1273,102 +1276,107 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
       { label: 'Endgame', goto: ['alexandriaEv', 'anachasefinal'] },
     ]);
   } else {
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0)/((s as any).rand ?? 0)(2, 10);
-    (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
-    (s as any).pain['feet'] = ((s as any).pain['feet'] ?? 0) + (0);
-    (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (0);
-    (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (0);
-    (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (0);
-    (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (0);
-    (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (0);
-    (s as any).pain['cheeks'] = ((s as any).pain['cheeks'] ?? 0) + (0);
-    (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (0);
-    (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (0);
-    (s as any).pain['hands'] = ((s as any).pain['hands'] ?? 0) + (0);
-    (s as any).pain['jaw'] = ((s as any).pain['jaw'] ?? 0) + (0);
-    (s as any).pain['thighs'] = ((s as any).pain['thighs'] ?? 0) + (0);
-    (s as any).pain['toes'] = ((s as any).pain['toes'] ?? 0) + (0);
-    (s as any).pain['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
-    (s as any).pain['nose'] = ((s as any).pain['nose'] ?? 0) + (0);
-    (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (0);
-    (s as any).pain['ribs'] = ((s as any).pain['ribs'] ?? 0) + (0);
-    (s as any).pain['hips'] = ((s as any).pain['hips'] ?? 0) + (0);
-    (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (0);
-    (s as any).pain['ears'] = ((s as any).pain['ears'] ?? 0) + (0);
-    (s as any).pain['eyebrows'] = ((s as any).pain['eyebrows'] ?? 0) + (0);
-    (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (0);
-    (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (0);
-    (s as any).pain['neck'] = ((s as any).pain['neck'] ?? 0) + (0);
-    (s as any).pain['chest'] = ((s as any).pain['chest'] ?? 0) + (0);
-    (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (0);
-    (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (0);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).fat = ((s as any).fat ?? 0) - (5);
-    qspCall(s, 'mood', 'lower', 'huge');
-    // TODO-QSP: gs 'exp_gain', 'run', rand (0, 5)
-    // TODO-QSP: gs 'exp_gain', 'stren', rand (0, 5)
-    // TODO-QSP: gs 'exp_gain', 'agil', rand (0, 5)
-    // TODO-QSP: gs 'exp_gain', 'vital', rand (0, 5)
-    // TODO-QSP: gs 'exp_gain', 'react', rand (0, 5)
-    qspCall(s, 'sweat', 'add', 10);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (8);
-    if (((s as any).temper ?? 0) >= 25  &&  ((s as any).sunWeather ?? 0) === 1) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (24);
-      qspCall(s, 'sweat', 'add', 12);
-    } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (18);
+    if (((s as any).dummy ?? 0) >= 90  &&  ((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).pcs_stren ?? 0) >= 50  &&  ((s as any).pcs_agil ?? 0) >= 50  &&  ((s as any).pcs_vital ?? 0) >= 50  &&  ((s as any).pcs_react ?? 0) >=50) {
+      (s as any).pcs_health = ((s as any).pcs_health ?? 0)/((s as any).rand ?? 0)(2, 10);
+      (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
+      (s as any).pain['feet'] = ((s as any).pain['feet'] ?? 0) + (0);
+      (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (0);
+      (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (0);
+      (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (0);
+      (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (0);
+      (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (0);
+      (s as any).pain['cheeks'] = ((s as any).pain['cheeks'] ?? 0) + (0);
+      (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (0);
+      (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (0);
+      (s as any).pain['hands'] = ((s as any).pain['hands'] ?? 0) + (0);
+      (s as any).pain['jaw'] = ((s as any).pain['jaw'] ?? 0) + (0);
+      (s as any).pain['thighs'] = ((s as any).pain['thighs'] ?? 0) + (0);
+      (s as any).pain['toes'] = ((s as any).pain['toes'] ?? 0) + (0);
+      (s as any).pain['fingers'] = ((s as any).pain['fingers'] ?? 0) + (0);
+      (s as any).pain['nose'] = ((s as any).pain['nose'] ?? 0) + (0);
+      (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (0);
+      (s as any).pain['ribs'] = ((s as any).pain['ribs'] ?? 0) + (0);
+      (s as any).pain['hips'] = ((s as any).pain['hips'] ?? 0) + (0);
+      (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (0);
+      (s as any).pain['ears'] = ((s as any).pain['ears'] ?? 0) + (0);
+      (s as any).pain['eyebrows'] = ((s as any).pain['eyebrows'] ?? 0) + (0);
+      (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (0);
+      (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (0);
+      (s as any).pain['neck'] = ((s as any).pain['neck'] ?? 0) + (0);
+      (s as any).pain['chest'] = ((s as any).pain['chest'] ?? 0) + (0);
+      (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (0);
+      (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (0);
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      (s as any).fat = ((s as any).fat ?? 0) - (5);
+      qspCall(s, 'mood', 'lower', 'huge');
+      // TODO-QSP: gs 'exp_gain', 'run', rand (0, 5)
+      // TODO-QSP: gs 'exp_gain', 'stren', rand (0, 5)
+      // TODO-QSP: gs 'exp_gain', 'agil', rand (0, 5)
+      // TODO-QSP: gs 'exp_gain', 'vital', rand (0, 5)
+      // TODO-QSP: gs 'exp_gain', 'react', rand (0, 5)
       qspCall(s, 'sweat', 'add', 10);
-    }
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/city/ana/crash.jpg');
-    scene.text('You take some moments to stretch, and show off to a puzzled Ana, then… without hesitation, run towards a garbage container to use it as a trampoline(<i>somehow</i> that work), you jump towards her, grabbing the stairs\' railing and propelling yo behind a surprised Ana(<i>somehow</i> that work <i>again</i>).');
-    scene.text('"Sexy! That is Cool! But… two can play to that!"');
-    scene.text('She then… give an inhuman-looking jump towards the opposite wall, latch at it like Spider-Man and continue with a series of acrobatics that put Ana two floors over you! There, she gives a bowing and begins to climb towards the rooftop.');
-    scene.text('"That isn\'t going to help you, Ana!"');
-    scene.text('You scream at that nut, and climb after her, reaching the rooftop, seeing Ana running away quickly, but… as you try to reach to her, you fumble a jump, and fall towards the street! Fortunately, some clotheslines and the low height save your life.');
-    if (((s as any).spellKnown ?? 0)?.['heal'] === 1  &&  ((s as any).pcs_mana ?? 0) >= 400) {
-      qspCall(s, 'willpower', 'misc', 'self', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (8);
+      if (((s as any).temper ?? 0) >= 25  &&  ((s as any).sunWeather ?? 0) === 1) {
+        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (24);
+        qspCall(s, 'sweat', 'add', 12);
+      } else {
+        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (18);
+        qspCall(s, 'sweat', 'add', 10);
+      }
+      qspCall(s, 'stat', '');
+      scene.img('images/characters/city/ana/crash.jpg');
+      scene.text('You take some moments to stretch, and show off to a puzzled Ana, then… without hesitation, run towards a garbage container to use it as a trampoline(<i>somehow</i> that work), you jump towards her, grabbing the stairs\' railing and propelling yo behind a surprised Ana(<i>somehow</i> that work <i>again</i>).');
+      scene.text('"Sexy! That is Cool! But… two can play to that!"');
+      scene.text('She then… give an inhuman-looking jump towards the opposite wall, latch at it like Spider-Man and continue with a series of acrobatics that put Ana two floors over you! There, she gives a bowing and begins to climb towards the rooftop.');
+      scene.text('"That isn\'t going to help you, Ana!"');
+      scene.text('You scream at that nut, and climb after her, reaching the rooftop, seeing Ana running away quickly, but… as you try to reach to her, you fumble a jump, and fall towards the street! Fortunately, some clotheslines and the low height save your life.');
+      if (((s as any).spellKnown ?? 0)?.['heal'] === 1  &&  ((s as any).pcs_mana ?? 0) >= 400) {
+        qspCall(s, 'willpower', 'misc', 'self', 'hard');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Will you to cast Heal.', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'heal3'] },
-        ]);
+          ]);
+        }
       }
-    }
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'mood', 'lower', 'small');
-    (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
-    qspCall(s, 'stat', '');
-    scene.text('<center><b>Ana</b></center>');
-    scene.img('images/characters/city/ana/ana4.jpg');
-    scene.text('You take some moments to stretch, and show off to a puzzled Ana, then… without hesitation, run towards a garbage container to use it like a trampoline and jump towards her… At least, that WAS the plan.');
-    scene.text('"Pfff… Sexy? Hmm… What are you doing? Te-He!"');
-    scene.text('Ana look at your sprawling form on the ground, a hand over her mouth… Yes… Because free-running looks easy on the films, and you just made a fool of yourself as your improvised acrobatics, has ended with you falling on your ass, and Ana trying to contain a giggle');
-    scene.text('"Ok Sexy! Let acts like… this has not happened!"');
-    if (((s as any).spellKnown ?? 0)?.['shock'] === 1  &&  ((s as any).pcs_mana ?? 0) >= 20) {
       scene.actions([
-        { label: 'The paint job on the fire escape has peeled away… and you know Electric Shock…', handler: (st: GameState) => {
+        { label: 'You fall unconscious', goto: ['alexandriaEv', 'hospital'] },
+      ]);
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      qspCall(s, 'mood', 'lower', 'small');
+      (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (0);
+      qspCall(s, 'stat', '');
+      scene.text('<center><b>Ana</b></center>');
+      scene.img('images/characters/city/ana/ana4.jpg');
+      scene.text('You take some moments to stretch, and show off to a puzzled Ana, then… without hesitation, run towards a garbage container to use it like a trampoline and jump towards her… At least, that WAS the plan.');
+      scene.text('"Pfff… Sexy? Hmm… What are you doing? Te-He!"');
+      scene.text('Ana look at your sprawling form on the ground, a hand over her mouth… Yes… Because free-running looks easy on the films, and you just made a fool of yourself as your improvised acrobatics, has ended with you falling on your ass, and Ana trying to contain a giggle');
+      scene.text('"Ok Sexy! Let acts like… this has not happened!"');
+      if (((s as any).spellKnown ?? 0)?.['shock'] === 1  &&  ((s as any).pcs_mana ?? 0) >= 20) {
+        scene.actions([
+          { label: 'The paint job on the fire escape has peeled away… and you know Electric Shock…', handler: (st: GameState) => {
     (st as any).dummy = Math.floor(Math.random() * 100) + 1;
   }, goto: ['alexandriaEv', 'anachase7'] },
-      ]);
-    }
-    if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
+        ]);
+      }
+      if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
+        scene.actions([
+          { label: 'Accept the bribe.', goto: ['alexandriaEv', 'anabribe1'] },
+        ]);
+      }
       scene.actions([
-        { label: 'Accept the bribe.', goto: ['alexandriaEv', 'anabribe1'] },
+        { label: 'Climb after her!', goto: ['alexandriaEv', 'anachase5'] },
       ]);
     }
-    scene.actions([
-      { label: 'You fall unconscious', goto: ['alexandriaEv', 'hospital'] },
-      { label: 'Climb after her!', goto: ['alexandriaEv', 'anachase5'] },
-    ]);
   }
   scene.build();
 }
@@ -1515,7 +1523,7 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: '"You know that I am not going to stop."', handler: (st: GameState) => {
+        { label: '"You know that I am not going to stop." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'anascore'] },
@@ -1532,7 +1540,7 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: '"Or you can kindly give me the key."', handler: (st: GameState) => {
+        { label: '"Or you can kindly give me the key." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'anaryan'] },

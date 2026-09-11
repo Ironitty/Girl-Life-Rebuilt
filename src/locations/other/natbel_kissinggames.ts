@@ -271,12 +271,15 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
       scene.text('Slowly moving your body up and down you start edging her using your boob.');
       scene.text('It\'s not long before her hand appears between her leg gently brushing against your boob as she slowly massages her clit in rhythm with your actions.');
     } else {
-      scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
-      scene.text('Slowly moving your body up and down you start edging her using your boob, your hard erect nipple gliding over her soaking wet slit.');
-      scene.text('It\'s not long before her hand appears between her leg gently brushing against your boob as she slowly massages her clit.');
-      scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
-      scene.text('Slowly moving your body up and down you start edging her using your boob, your hard erect nipple gliding over her soaking wet slit.');
-      scene.text('It\'s not long before her hand appears between her leg gently brushing against your boob as she slowly massages her clit in rhythm with your actions.');
+      if (((s as any).temp_rand ?? 0) === 1) {
+        scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
+        scene.text('Slowly moving your body up and down you start edging her using your boob, your hard erect nipple gliding over her soaking wet slit.');
+        scene.text('It\'s not long before her hand appears between her leg gently brushing against your boob as she slowly massages her clit.');
+      } else {
+        scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
+        scene.text('Slowly moving your body up and down you start edging her using your boob, your hard erect nipple gliding over her soaking wet slit.');
+        scene.text('It\'s not long before her hand appears between her leg gently brushing against your boob as she slowly massages her clit in rhythm with your actions.');
+      }
     }
     qspCall(s, 'arousal', 'foreplay_give', 5, 'lesbian');
     qspCall(s, 'arousal', 'breasts', (-5), 'lesbian');
@@ -288,7 +291,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['horny'] % 10000 >= 100) {
     scene.actions([
       { label: 'Making Natasha cum', handler: (st: GameState) => {
-    (s as any).NatbelQW['horny'] = 10000 + (((s as any).NatbelQW ?? 0)?.['horny'] / 10000) * 10000;
+    (s as any).NatbelQW['horny'] = 10000 + (((s as any).NatbelQW ?? {})?.['horny'] / 10000) * 10000;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha55.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -298,16 +301,19 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
       scene.text('It seems that she\'s nearly there so you run your tongue up and down flicking it in and out of her and stopping to suck up her juices which are by now freely flowing.');
       scene.text('All of a sudden she stops licking and kissing you as her breathing gets ragged and she grabs hold of your right leg cuddling it and bringing it up to her face as she cums, her juices flowing into your waiting mouth.');
     } else {
-      scene.text('After you lie back and spread your legs for Natasha to lick you out she smiles and shakes her head and instead climbs on top of you and slowly kisses your body as she gradually works her way down and begins licking you from above after kissing your pussy.');
-      scene.text('Her own is directly above your face and you can see it glistening with arousal with the odd drip forming.');
-      scene.text('It\'s just so tempting that you lick up her moistness then flick your tongue in and out of her pussy at which point Natasha groans.');
-      scene.text('It seems that she\'s nearly there so you run your tongue up and down flicking it in and out of her and stopping to suck up her juices which are by now freely flowing.');
-      scene.text('All of a sudden she stops licking and kissing you as her breathing gets ragged and at the same time starts to tremble uncontrollably. She grabs hold of your right leg cuddling it and bringing it up to her face as she cums, her juices flowing into your waiting mouth.');
-      scene.text('After you lie back and spread your legs for Natasha to lick you out. However, she smiles and shakes her head and instead climbs on top of you and slowly kisses your body as she gradually works her way down and begins licking you from above after kissing your pussy.');
-      scene.text('Her own is directly above your face and you can see it glistening with arousal with the odd drip forming.');
-      scene.text('It\'s just so tempting that you lick up her moistness then flick your tongue in and out of her pussy at which point Natasha groans.');
-      scene.text('It seems that she\'s nearly there so you run your tongue up and down flicking it in and out of her and stopping to suck up her juices which are by now freely flowing.');
-      scene.text('All of a sudden she stops licking and kissing you as her breathing gets ragged and at the same time starts to tremble uncontrollably. She grabs hold of your right leg cuddling it and bringing it up to her face as she cums, her juices flowing into your waiting mouth.');
+      if (((s as any).temp_rand ?? 0) === 1) {
+        scene.text('After you lie back and spread your legs for Natasha to lick you out she smiles and shakes her head and instead climbs on top of you and slowly kisses your body as she gradually works her way down and begins licking you from above after kissing your pussy.');
+        scene.text('Her own is directly above your face and you can see it glistening with arousal with the odd drip forming.');
+        scene.text('It\'s just so tempting that you lick up her moistness then flick your tongue in and out of her pussy at which point Natasha groans.');
+        scene.text('It seems that she\'s nearly there so you run your tongue up and down flicking it in and out of her and stopping to suck up her juices which are by now freely flowing.');
+        scene.text('All of a sudden she stops licking and kissing you as her breathing gets ragged and at the same time starts to tremble uncontrollably. She grabs hold of your right leg cuddling it and bringing it up to her face as she cums, her juices flowing into your waiting mouth.');
+      } else {
+        scene.text('After you lie back and spread your legs for Natasha to lick you out. However, she smiles and shakes her head and instead climbs on top of you and slowly kisses your body as she gradually works her way down and begins licking you from above after kissing your pussy.');
+        scene.text('Her own is directly above your face and you can see it glistening with arousal with the odd drip forming.');
+        scene.text('It\'s just so tempting that you lick up her moistness then flick your tongue in and out of her pussy at which point Natasha groans.');
+        scene.text('It seems that she\'s nearly there so you run your tongue up and down flicking it in and out of her and stopping to suck up her juices which are by now freely flowing.');
+        scene.text('All of a sudden she stops licking and kissing you as her breathing gets ragged and at the same time starts to tremble uncontrollably. She grabs hold of your right leg cuddling it and bringing it up to her face as she cums, her juices flowing into your waiting mouth.');
+      }
     }
     if (((s as any).pcs_makeup ?? 0) > 1) {
       (s as any).pcs_makeup = 0;

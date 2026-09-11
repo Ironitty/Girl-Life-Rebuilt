@@ -16,19 +16,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('A member of staff informs you that it is too early to watch either show.');
     } else {
       if (((s as any).hour ?? 0) === 17  ||  (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) < 30)) {
-        // TODO-QSP: dynamic text: The staff informs you that you are too late for the first half of the burlesque ...
-        scene.text('The staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between \'+func(\'time\', \'get_time_string\', 19, 30)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'.');
-      } else {
-        if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 2) {
-          // TODO-QSP: dynamic text: A member of staff informs you that entry for the second half of the burlesque sh...
-          scene.text('A member of staff informs you that entry for the second half of the burlesque show is between \'+func(\'time\', \'get_time_string\', 19, 30)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'');
-        } else {
-          // TODO-QSP: dynamic text: A member of staff informs you that you are too late for the first half of the bu...
-          scene.text('A member of staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between \'+func(\'time\', \'get_time_string\', 19, 30)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'.');
-        }
-        if (((s as any).hour ?? 0) === 19) {
-          scene.actions([
-            { label: 'Watch second half of the burlesque show', handler: (st: GameState) => {
+        scene.actions([
+          { label: 'Go watch the burlesque show', handler: (st: GameState) => {
     if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
       scene.text('You must first purchase a ticket from the hostess.');
     } else {
@@ -36,34 +25,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', ''] }]);
     }
   } },
-          ]);
+        ]);
+      } else {
+        if (((s as any).hour ?? 0) === 17  ||  (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) < 30)) {
+          // TODO-QSP: dynamic text: The staff informs you that you are too late for the first half of the burlesque ...
+          scene.text('The staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between \'+func(\'time\', \'get_time_string\', 19, 30)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'.');
         } else {
-          // TODO-QSP: dynamic text: A member of staff informs you that the burlesque show has finished and the exoti...
-          scene.text('A member of staff informs you that the burlesque show has finished and the exotic variety show will be starting from \'+func(\'time\', \'get_time_string\', 21, 0)+\'');
-          if (((s as any).hour ?? 0) === 21) {
-            scene.actions([
-              { label: 'Go watch the exotic variety show', handler: (st: GameState) => {
-    if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 0) {
-      scene.text('You must first purchase a ticket from the hostess.');
-    } else {
-      (s as any).rasputin['variety_ticket'] = 0;
-      scene.actions([{ label: 'Continue', goto: ['rasputin_show_var', ''] }]);
-    }
-  } },
-            ]);
+          if (((s as any).hour ?? 0) === 18  ||  (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) < 30)) {
+            if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 2) {
+              // TODO-QSP: dynamic text: A member of staff informs you that entry for the second half of the burlesque sh...
+              scene.text('A member of staff informs you that entry for the second half of the burlesque show is between \'+func(\'time\', \'get_time_string\', 19, 30)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'');
+            } else {
+              // TODO-QSP: dynamic text: A member of staff informs you that you are too late for the first half of the bu...
+              scene.text('A member of staff informs you that you are too late for the first half of the burlesque show, but you can still enter after the intermission between \'+func(\'time\', \'get_time_string\', 19, 30)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'.');
+            }
           } else {
-            // TODO-QSP: dynamic text: The staff apologizes and let you know that you are too late for the enter the fi...
-            scene.text('The staff apologizes and let you know that you are too late for the enter the first half of the show and asks you to return during the intermission between \'+func(\'time\', \'get_time_string\', 23, 30)+\' and midnight.');
-            if (((s as any).hour ?? 0) === 23  &&  ((s as any).minut ?? 0) < 30) {
-              if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
-                // TODO-QSP: dynamic text: A member of staff informs you that entry for the second half of the erotic varie...
-                scene.text('A member of staff informs you that entry for the second half of the erotic variety show is between \'+func(\'time\', \'get_time_string\', 23, 30)+\' and \'+func(\'time\', \'get_time_string\', 0, 0)+\'');
-              } else {
-                // TODO-QSP: dynamic text: A member of staff informs you that you are too late for the first half of the er...
-                scene.text('A member of staff informs you that you are too late for the first half of the erotic variety show, but you can still enter after the intermission between \'+func(\'time\', \'get_time_string\', 23, 30)+\' and midnight.');
-              }
+            if (((s as any).hour ?? 0) === 19) {
               scene.actions([
-                { label: 'Watch second half of the erotic variety show', handler: (st: GameState) => {
+                { label: 'Watch second half of the burlesque show', handler: (st: GameState) => {
     if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
       scene.text('You must first purchase a ticket from the hostess.');
     } else {
@@ -73,12 +52,59 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
               ]);
             } else {
-              scene.text('The inner door to the variety shows is closed. A member of staff informs you that the last show is in progress and that there are no more shows tonight.');
+              if (((s as any).hour ?? 0) < 21) {
+                // TODO-QSP: dynamic text: A member of staff informs you that the burlesque show has finished and the exoti...
+                scene.text('A member of staff informs you that the burlesque show has finished and the exotic variety show will be starting from \'+func(\'time\', \'get_time_string\', 21, 0)+\'');
+              } else {
+                if (((s as any).hour ?? 0) === 21) {
+                  scene.actions([
+                    { label: 'Go watch the exotic variety show', handler: (st: GameState) => {
+    if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 0) {
+      scene.text('You must first purchase a ticket from the hostess.');
+    } else {
+      (s as any).rasputin['variety_ticket'] = 0;
+      scene.actions([{ label: 'Continue', goto: ['rasputin_show_var', ''] }]);
+    }
+  } },
+                  ]);
+                } else {
+                  if (((s as any).hour ?? 0) === 22) {
+                    // TODO-QSP: dynamic text: The staff apologizes and let you know that you are too late for the enter the fi...
+                    scene.text('The staff apologizes and let you know that you are too late for the enter the first half of the show and asks you to return during the intermission between \'+func(\'time\', \'get_time_string\', 23, 30)+\' and midnight.');
+                  } else {
+                    if (((s as any).hour ?? 0) === 23  &&  ((s as any).minut ?? 0) < 30) {
+                      if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
+                        // TODO-QSP: dynamic text: A member of staff informs you that entry for the second half of the erotic varie...
+                        scene.text('A member of staff informs you that entry for the second half of the erotic variety show is between \'+func(\'time\', \'get_time_string\', 23, 30)+\' and \'+func(\'time\', \'get_time_string\', 0, 0)+\'');
+                      } else {
+                        // TODO-QSP: dynamic text: A member of staff informs you that you are too late for the first half of the er...
+                        scene.text('A member of staff informs you that you are too late for the first half of the erotic variety show, but you can still enter after the intermission between \'+func(\'time\', \'get_time_string\', 23, 30)+\' and midnight.');
+                      }
+                      scene.actions([
+                        { label: 'Watch second half of the erotic variety show', handler: (st: GameState) => {
+    if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
+      scene.text('You must first purchase a ticket from the hostess.');
+    } else {
+      (s as any).rasputin['burlesque_ticket'] = 0;
+      scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', ''] }]);
+    }
+  } },
+                      ]);
+                    } else {
+                      scene.text('The inner door to the variety shows is closed. A member of staff informs you that the last show is in progress and that there are no more shows tonight.');
+                    }
+                  }
+                }
+              }
             }
-            if (((s as any).rasputin ?? 0)?.['free_drink'] !== ((s as any).daystart ?? 0)) {
-              if ((((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) > 30)  ||  (((s as any).hour ?? 0) === 20  &&  ((s as any).minut ?? 0) < 30)  &&  ((s as any).rasputin ?? 0)?.['burlesque_ticket'] > 0) {
-                scene.actions([
-                  { label: 'Take a free drink', handler: (st: GameState) => {
+          }
+        }
+      }
+    }
+    if (((s as any).rasputin ?? 0)?.['free_drink'] !== ((s as any).daystart ?? 0)) {
+      if ((((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) > 30)  ||  (((s as any).hour ?? 0) === 20  &&  ((s as any).minut ?? 0) < 30)  &&  ((s as any).rasputin ?? 0)?.['burlesque_ticket'] > 0) {
+        scene.actions([
+          { label: 'Take a free drink', handler: (st: GameState) => {
     (s as any).rasputin['free_drink'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'champagne');
@@ -89,11 +115,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['rasputin_walkway', ''] },
     ]);
   } },
-                ]);
-              }
-              if ((((s as any).hour ?? 0) === 21  &&  ((s as any).minut ?? 0) > 30)  ||  ((s as any).hour ?? 0) > 21  ||  ((s as any).hour ?? 0) < 2  &&  ((s as any).rasputin ?? 0)?.['variety_ticket'] > 0) {
-                scene.actions([
-                  { label: 'Take a free drink', handler: (st: GameState) => {
+        ]);
+      }
+      if ((((s as any).hour ?? 0) === 21  &&  ((s as any).minut ?? 0) > 30)  ||  ((s as any).hour ?? 0) > 21  ||  ((s as any).hour ?? 0) < 2  &&  ((s as any).rasputin ?? 0)?.['variety_ticket'] > 0) {
+        scene.actions([
+          { label: 'Take a free drink', handler: (st: GameState) => {
     (s as any).rasputin['free_drink'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'champagne');
@@ -104,22 +130,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['rasputin_walkway', ''] },
     ]);
   } },
-                ]);
-              }
-            }
-          }
-        }
+        ]);
       }
-      scene.actions([
-        { label: 'Go watch the burlesque show', handler: (st: GameState) => {
-    if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
-      scene.text('You must first purchase a ticket from the hostess.');
-    } else {
-      (s as any).rasputin['burlesque_ticket'] = 0;
-      scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', ''] }]);
-    }
-  } },
-      ]);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

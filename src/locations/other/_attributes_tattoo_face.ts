@@ -13,30 +13,41 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 5: 12500
   // TODO-QSP: 6: 13000
   // TODO-QSP: 7: 13500
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).TatQuality = 3;
     (s as any).TatPrice = 11500;
   } else {
-    (s as any).TatQuality = 3;
-    (s as any).TatPrice = 11500;
-    if (((s as any).ARGS ?? 0)[0] === 3) {
+    if (((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).TatQuality = 3;
       (s as any).TatPrice = 11500;
     } else {
-      (s as any).TatQuality = 3;
-      (s as any).TatPrice = 11500;
-      if (((s as any).ARGS ?? 0)[0] === 5) {
+      if (((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).TatQuality = 3;
         (s as any).TatPrice = 11500;
       } else {
-        (s as any).TatQuality = 3;
-        (s as any).TatPrice = 11500;
-        if (((s as any).ARGS ?? 0)[0] === 7) {
+        if (((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).TatQuality = 3;
           (s as any).TatPrice = 11500;
         } else {
-          (s as any).TatQuality = 3;
-          (s as any).TatPrice = 11500;
+          if (((s as any).locArgs?.[0] ?? 0) === 5) {
+            (s as any).TatQuality = 3;
+            (s as any).TatPrice = 11500;
+          } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 6) {
+              (s as any).TatQuality = 3;
+              (s as any).TatPrice = 11500;
+            } else {
+              if (((s as any).locArgs?.[0] ?? 0) === 7) {
+                (s as any).TatQuality = 3;
+                (s as any).TatPrice = 11500;
+              } else {
+                if (((s as any).locArgs?.[0] ?? 0) === 8) {
+                  (s as any).TatQuality = 3;
+                  (s as any).TatPrice = 11500;
+                }
+              }
+            }
+          }
         }
       }
     }

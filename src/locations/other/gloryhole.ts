@@ -13,9 +13,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You walk down to the last stall and sit down, next to the toilet is a rather large almost perfectly round hole. Puzzled, you wonder how it got there and why no one has fixed it.');
   } else {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'stat', '');
-    scene.text('You walk down to the last stall. The large almost perfectly round hole is still there. You wonder how many women have used that hole. You feel a little excited as you contemplate your next move.');
+    if (((s as any).stat ?? 0)?.['bj'] >= 1) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      qspCall(s, 'stat', '');
+      scene.text('You walk down to the last stall. The large almost perfectly round hole is still there. You wonder how many women have used that hole. You feel a little excited as you contemplate your next move.');
+    }
   }
   qspCall(s, 'gloryhole', 'start_options');
   scene.build();
@@ -29,9 +31,11 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You are still in the last stall. Next to the toilet is a rather large almost perfectly round hole. You still don\'t know how it got there and why no one has fixed it.');
   } else {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'stat', '');
-    scene.text('You are still in the last stall. The large almost perfectly round hole is still there. You wonder how many women have used that hole. You feel a little excited as you contemplate your next move.');
+    if (((s as any).stat ?? 0)?.['bj'] >= 1) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      qspCall(s, 'stat', '');
+      scene.text('You are still in the last stall. The large almost perfectly round hole is still there. You wonder how many women have used that hole. You feel a little excited as you contemplate your next move.');
+    }
   }
   qspCall(s, 'gloryhole', 'start_options');
   scene.build();
@@ -48,7 +52,7 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Caress Yourself', handler: (st: GameState) => {
+        { label: 'Caress Yourself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 40) {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
@@ -103,7 +107,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop', handler: (st: GameState) => {
+        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'mast', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -170,7 +174,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Suck it', handler: (st: GameState) => {
+        { label: 'Suck it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['gloryhole', 'blowjob'] },
@@ -186,7 +190,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Touch the shaft', handler: (st: GameState) => {
+          { label: 'Touch the shaft [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'hj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['gloryhole', 'virgin'] },
@@ -209,19 +213,20 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/shared/gloryhole/action/see_men.jpg');
-    scene.text('You look through the hole and see several men with their backs to you, using the urinals.');
-    qspCall(s, 'willpower', 'bj', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Stick your finger in the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if ((Math.floor(Math.random() * 10) + 1) >= 7 - (((s as any).ghnow ?? 0) * 2)) {
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/shared/gloryhole/action/see_men.jpg');
+      scene.text('You look through the hole and see several men with their backs to you, using the urinals.');
+      qspCall(s, 'willpower', 'bj', 'self');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Stick your finger in the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Stick your finger in the hole', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Stick your finger in the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 100);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'willpower', 'bj', 'self');
@@ -233,10 +238,12 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: The man slips <<$func('money', 'string_profit', 100)>> into the hole, and then p...
       scene.text(`The man slips ${qspFunc(s, 'money', 'string_profit', 100)} into the hole, and then puts his erect cock through the hole.`);
     } else {
-      scene.img('images/locations/shared/gloryhole/action/ready.jpg');
-      scene.text('You poke your finger in the hole showing that you are ready to serve a man. Then you put your face close to the hole and open your mouth.');
-      // TODO-QSP: dynamic text: The stranger slips <<$func('money', 'string_profit', 100)>> into the hole, and t...
-      scene.text(`The stranger slips ${qspFunc(s, 'money', 'string_profit', 100)} into the hole, and then his erect cock pokes out of the hole.`);
+      if (((s as any).stat ?? 0)?.['gloryhole'] > 0) {
+        scene.img('images/locations/shared/gloryhole/action/ready.jpg');
+        scene.text('You poke your finger in the hole showing that you are ready to serve a man. Then you put your face close to the hole and open your mouth.');
+        // TODO-QSP: dynamic text: The stranger slips <<$func('money', 'string_profit', 100)>> into the hole, and t...
+        scene.text(`The stranger slips ${qspFunc(s, 'money', 'string_profit', 100)} into the hole, and then his erect cock pokes out of the hole.`);
+      }
     }
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -247,7 +254,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop', handler: (st: GameState) => {
+        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -261,7 +268,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Take his money and Leave', handler: (st: GameState) => {
+        { label: 'Take his money and Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -283,13 +290,10 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck it', goto: ['gloryhole', 'blowjob'] },
     ]);
   } },
-      ]);
-    }
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/shared/gloryhole/action/see_none.jpg');
-    scene.text('Looking through the hole, you can see a row of urinals on the other side. The hole must be to the men\'s room next door. You don\'t see any men currently in there.');
-    scene.actions([
-      { label: 'Don\'t do it', handler: (st: GameState) => {
+        ]);
+      }
+      scene.actions([
+        { label: 'Don\'t do it', handler: (st: GameState) => {
     scene.text('You move away from the hole reconsidering what you were about to do and quickly leave the stall.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -297,11 +301,18 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'Leave', handler: (st: GameState) => {
+      ]);
+    } else {
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/shared/gloryhole/action/see_none.jpg');
+      scene.text('Looking through the hole, you can see a row of urinals on the other side. The hole must be to the men\'s room next door. You don\'t see any men currently in there.');
+      scene.actions([
+        { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-      { label: 'Wait to see if someone turns up', goto: ['gloryhole', 'hole'] },
-    ]);
+        { label: 'Wait to see if someone turns up', goto: ['gloryhole', 'hole'] },
+      ]);
+    }
   }
   scene.build();
 }
@@ -335,7 +346,7 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop', handler: (st: GameState) => {
+        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'hj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
@@ -405,7 +416,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Step back', handler: (st: GameState) => {
+        { label: 'Step back [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'swallow', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'cum_call', 'face', 'an unknown guy from the gloryhole');
@@ -470,7 +481,7 @@ function enterGhsex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Pussy', handler: (st: GameState) => {
+        { label: 'Pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).sexcontra = 0;
   }, goto: ['gloryhole', 'pussy'] },
@@ -529,7 +540,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Allow him to cum inside', handler: (st: GameState) => {
+          { label: 'Allow him to cum inside [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'cum_call', '', '', 'an unknown guy from the gloryhole');
@@ -594,10 +605,13 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You pull off of <<$boydesc>> and look at his dick and think, "Oh shit! The condo...
       scene.text(`You pull off of ${((s as any).boydesc ?? 0)} and look at his dick and think, "Oh shit! The condom burst."`);
     } else {
-      // TODO-QSP: dynamic text: You pull off of <<$boydesc>> and look at his dick and think, "Oh shit! The condo...
-      scene.text(`You pull off of ${((s as any).boydesc ?? 0)} and look at his dick and think, "Oh shit! The condom is missing!"`);
-      // TODO-QSP: dynamic text: <<$boydesc>> groaned and you realized that he came in the condom.
-      scene.text(`${((s as any).boydesc ?? 0)} groaned and you realized that he came in the condom.`);
+      if (((s as any).sexcontra ?? 0) === 5) {
+        // TODO-QSP: dynamic text: You pull off of <<$boydesc>> and look at his dick and think, "Oh shit! The condo...
+        scene.text(`You pull off of ${((s as any).boydesc ?? 0)} and look at his dick and think, "Oh shit! The condom is missing!"`);
+      } else {
+        // TODO-QSP: dynamic text: <<$boydesc>> groaned and you realized that he came in the condom.
+        scene.text(`${((s as any).boydesc ?? 0)} groaned and you realized that he came in the condom.`);
+      }
     }
     (s as any).sexcontra = 0;
     (s as any).protect = 0;
@@ -628,8 +642,11 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_ass ?? 0) < 10) {
       scene.text('The pain doesn\'t fade and instead it starts to hurt worse after a while and the pleasure starts to fade. You fuck his dick with your ass, at first taking him deeper and deeper, as you get faster and faster. As the pleasure fades and the pain gets worse you slow down and don\'t take him as deep. You start to rub your clit to help with the sensation of pleasure. You consider stopping as the pain gets worse, but you can tell by the throbbing of his dick and ragged breathing he is about to cum and decided to keep it up so he can finish.');
     } else {
-      scene.text('The pain fades slowly and soon all you feel pleasure. You fuck his dick with your ass, taking him deeper and deeper, as you get faster and faster, you start to rub your clit as you feel yourself getting close to climax. You can tell by the throbbing of his dick and ragged breathing he is about to cum.');
-      scene.text('The pain fades quickly and soon all you feel pleasure. You fuck his dick with your ass, taking him deeper and deeper, as you get faster and faster, you start to rub your clit as you feel yourself getting close to climax. You can tell by the throbbing of his dick and ragged breathing he is about to cum.');
+      if (((s as any).pcs_ass ?? 0) < 20) {
+        scene.text('The pain fades slowly and soon all you feel pleasure. You fuck his dick with your ass, taking him deeper and deeper, as you get faster and faster, you start to rub your clit as you feel yourself getting close to climax. You can tell by the throbbing of his dick and ragged breathing he is about to cum.');
+      } else {
+        scene.text('The pain fades quickly and soon all you feel pleasure. You fuck his dick with your ass, taking him deeper and deeper, as you get faster and faster, you start to rub your clit as you feel yourself getting close to climax. You can tell by the throbbing of his dick and ragged breathing he is about to cum.');
+      }
     }
     qspCall(s, 'arousal', 'anal', 5, 'unknown', 'sub');
     qspCall(s, 'stat', '');
@@ -642,7 +659,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Stop', handler: (st: GameState) => {
+          { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'anal', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
@@ -667,7 +684,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Turn around, kneel and let him cum in your mouth', handler: (st: GameState) => {
+        { label: 'Turn around, kneel and let him cum in your mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'swallow', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');

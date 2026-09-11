@@ -126,7 +126,9 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
     (s as any).pic_rand = Math.floor(Math.random() * 3) + 1;
     if (((s as any).pic_rand ?? 0) === 1) {
     } else {
-      scene.text('…');
+      if (((s as any).pic_rand ?? 0) === 2) {
+        scene.text('…');
+      }
     }
     scene.actions([
       { label: 'part 2', handler: (st: GameState) => {

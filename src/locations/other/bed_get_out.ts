@@ -15,7 +15,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'bedrPar') {
       scene.actions([{ label: 'Continue', goto: ['vanrPar', ''] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['vanr', ''] }]);
+      if (((s as any).loc ?? 0) === 'bedr') {
+        scene.actions([{ label: 'Continue', goto: ['vanr', ''] }]);
+      }
     }
   }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);

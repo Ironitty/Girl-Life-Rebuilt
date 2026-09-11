@@ -126,7 +126,7 @@ function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Yes', handler: (st: GameState) => {
+      { label: 'Yes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'hard');
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/park/ksenya/ksenya8.jpg');

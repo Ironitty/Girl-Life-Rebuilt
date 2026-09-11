@@ -150,19 +150,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).ngpVars['i'] = 0;
     // TODO-QSP: :choose_pref_loop
     (s as any).ngpVars['trait'] = qspUntranslated(s, "ngp_pref[ngpVars['i']]", { location: "npc_get_preference" });
-    if (qspFunc(s, 'pcs_has_attr', qspUntranslated(s, "\u00000\u0000", { location: "npc_get_preference" }))) {
+    if (qspFunc(s, 'pcs_has_attr', ((s as any).ngpVars ?? 0)?.['trait'])) {
       if (((s as any).npc_ngp_pref_values ?? 0)[((s as any).ngpVars ?? 0)?.['trait']] > 0) {
         // TODO-QSP: $temp_ngpPrefHasPos[] = $ngpVars['trait']
       } else {
-        // TODO-QSP: $temp_ngpPrefHasInd[] = $ngpVars['trait']
-        // TODO-QSP: $temp_ngpPrefHasNeg[] = $ngpVars['trait']
+        if (((s as any).npc_ngp_pref_values ?? 0)[((s as any).ngpVars ?? 0)?.['trait']] === 0) {
+          // TODO-QSP: $temp_ngpPrefHasInd[] = $ngpVars['trait']
+        } else {
+          // TODO-QSP: $temp_ngpPrefHasNeg[] = $ngpVars['trait']
+        }
       }
     } else {
       if (((s as any).npc_ngp_pref_values ?? 0)[((s as any).ngpVars ?? 0)?.['trait']] > 0) {
         // TODO-QSP: $temp_ngpPrefNotPos[] = $ngpVars['trait']
       } else {
-        // TODO-QSP: $temp_ngpPrefNotInd[] = $ngpVars['trait']
-        // TODO-QSP: $temp_ngpPrefNotNeg[] = $ngpVars['trait']
+        if (((s as any).npc_ngp_pref_values ?? 0)[((s as any).ngpVars ?? 0)?.['trait']] === 0) {
+          // TODO-QSP: $temp_ngpPrefNotInd[] = $ngpVars['trait']
+        } else {
+          // TODO-QSP: $temp_ngpPrefNotNeg[] = $ngpVars['trait']
+        }
       }
     }
     (s as any).ngpVars['i'] = ((s as any).ngpVars['i'] ?? 0) + (1);
@@ -170,32 +176,32 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'choose_pref_loop'
     }
     if (Object.keys((s as any).temp_ngpPrefHasPos ?? {}).length > 0) {
-      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).temp_ngpPrefHasPos ?? 0)') - 1);
+      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefHasPos') - 1);
       (s as any).ngpVars['trait'] = qspUntranslated(s, "temp_ngpPrefHasPos[npgVars['i']]", { location: "npc_get_preference" });
       (s as any).ngpPrefResult['HasPos'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefHasInd ?? {}).length > 0) {
-      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).temp_ngpPrefHasInd ?? 0)') - 1);
+      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefHasInd') - 1);
       (s as any).ngpVars['trait'] = qspUntranslated(s, "temp_ngpPrefHasInd[npgVars['i']]", { location: "npc_get_preference" });
       (s as any).ngpPrefResult['HasInd'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefHasNeg ?? {}).length > 0) {
-      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).temp_ngpPrefHasNeg ?? 0)') - 1);
+      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefHasNeg') - 1);
       (s as any).ngpVars['trait'] = qspUntranslated(s, "temp_ngpPrefHasNeg[npgVars['i']]", { location: "npc_get_preference" });
       (s as any).ngpPrefResult['HasNeg'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefNotPos ?? {}).length > 0) {
-      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).temp_ngpPrefNotPos ?? 0)') - 1);
+      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefNotPos') - 1);
       (s as any).ngpVars['trait'] = qspUntranslated(s, "temp_ngpPrefNotPos[npgVars['i']]", { location: "npc_get_preference" });
       (s as any).ngpPrefResult['NotPos'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefNotInd ?? {}).length > 0) {
-      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).temp_ngpPrefNotInd ?? 0)') - 1);
+      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefNotInd') - 1);
       (s as any).ngpVars['trait'] = qspUntranslated(s, "temp_ngpPrefNotInd[npgVars['i']]", { location: "npc_get_preference" });
       (s as any).ngpPrefResult['NotInd'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }
     if (Object.keys((s as any).temp_ngpPrefNotNeg ?? {}).length > 0) {
-      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).temp_ngpPrefNotNeg ?? 0)') - 1);
+      (s as any).npgVars['i'] = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp_ngpPrefNotNeg') - 1);
       (s as any).ngpVars['trait'] = qspUntranslated(s, "temp_ngpPrefNotNeg[npgVars['i']]", { location: "npc_get_preference" });
       (s as any).ngpPrefResult['NotNeg'] = ((s as any).ngpVars ?? 0)?.['trait'];
     }

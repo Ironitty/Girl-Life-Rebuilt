@@ -9,8 +9,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'get_job_definition', 'city_diner_secretary');
   }
   if (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) < ((s as any).job_start_time ?? 0)?.['city_diner_secretary']) {
-    (s as any).hour = ((s as any).job_start_time ?? 0)?.['city_diner_secretary'] / 60;
-    (s as any).minut = ((s as any).job_start_time ?? 0)?.['city_diner_secretary'] % 60;
+    (s as any).hour = ((s as any).job_start_time ?? {})?.['city_diner_secretary'] / 60;
+    (s as any).minut = ((s as any).job_start_time ?? {})?.['city_diner_secretary'] % 60;
   }
   qspCall(s, 'jobs', 'clock', 'city_diner_secretary');
   qspCall(s, 'BurgerTip', '');
@@ -29,15 +29,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).BurgerQW['TerminalTask'] = 0;
       scene.text('Anatoly Borisovich scolds you for not getting documents to the storage terminal, disrupting supplies.');
     } else {
-      (s as any).BurgerQW['TerminalTask'] = 0;
-      scene.text('Anatoly Borisovich thanks you for delivering the documents to the storage terminal.');
+      if (((s as any).BurgerQW ?? 0)?.['TerminalTask'] === 2) {
+        (s as any).BurgerQW['TerminalTask'] = 0;
+        scene.text('Anatoly Borisovich thanks you for delivering the documents to the storage terminal.');
+      }
     }
     if (((s as any).BurgerQW ?? 0)?.['BankTask'] === 1) {
       (s as any).BurgerQW['BankTask'] = 0;
       scene.text('Anatoly Borisovich chastises you for not taking the documents to the bank.');
     } else {
-      (s as any).BurgerQW['BankTask'] = 0;
-      scene.text('Anatoly Borisovich thanks you for delivering the documents to the bank.');
+      if (((s as any).BurgerQW ?? 0)?.['BankTask'] === 2) {
+        (s as any).BurgerQW['BankTask'] = 0;
+        scene.text('Anatoly Borisovich thanks you for delivering the documents to the bank.');
+      }
     }
     if (((s as any).BurgerQW ?? 0)?.['SaunaWhoreKnown'] === 1  ||  ((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] === 1) {
       scene.text('Anatoly Borisovich comes into your office and puts the paper in front of you with a pen. "Write up your resignation. I don\'t need a secretary with a past like yours."');
@@ -76,33 +80,37 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     (s as any).kobl = 0;
     (s as any).kobl2 = 2;
   } else {
-    (s as any).kobl = 0;
-    (s as any).kobl2 = 2;
-    if (((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] < 6) {
+    if (((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] >= 6  &&  ((s as any).BurgerQW ?? 0)?.['IlyQWBJFilmed'] === 0) {
       (s as any).kobl = 0;
-      (s as any).kobl2 = 1;
+      (s as any).kobl2 = 2;
+    } else {
+      if (((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] < 6) {
+        (s as any).kobl = 0;
+        (s as any).kobl2 = 1;
+      }
     }
-    (s as any).komblrand = 0;
-    if (((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] >= 2) {
-      if ((!((s as any).komblrand ?? 0))) {
-        scene.text('After work, you are about to leave the bistro, but Ilyushkin stops you. "Where are you going, baby? Want to suck my dick?"');
-        qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+  }
+  (s as any).komblrand = 0;
+  if (((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] >= 2) {
+    if ((!((s as any).komblrand ?? 0))) {
+      scene.text('After work, you are about to leave the bistro, but Ilyushkin stops you. "Where are you going, baby? Want to suck my dick?"');
+      qspCall(s, 'willpower', 'bj', 'resist', 'medium');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: 'Refuse', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
-          ]);
-        }
-        scene.actions([
-          { label: 'Agree', handler: (st: GameState) => {
+        ]);
+      }
+      scene.actions([
+        { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A76');
     qspCall(s, 'cum_call', 'mouth_swallow', 'A76', 1);
     (s as any).BurgerQW['IlyQWBlackmail'] = ((s as any).BurgerQW['IlyQWBlackmail'] ?? 0) + (1);
@@ -115,8 +123,9 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
   } },
-        ]);
-      } else {
+      ]);
+    } else {
+      if (((s as any).komblrand ?? 0) === 1) {
         scene.text('After work, you are about to leave the bistro, but Ilyushkin stops you. "Where are you going, baby? Want to suck my dick?"');
         qspCall(s, 'willpower', 'bj', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -127,12 +136,29 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse', handler: (st: GameState) => {
+            { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
           ]);
         }
+        scene.actions([
+          { label: 'Agree', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A76');
+    qspCall(s, 'cum_call', 'mouth_swallow', 'A76', 1);
+    (s as any).BurgerQW['IlyQWBlackmail'] = ((s as any).BurgerQW['IlyQWBlackmail'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/ilyushkin/sex/ilybjcar.jpg');
+    // TODO-QSP: dynamic text: Ilyushkin takes you to his car standing in the alley. He gets behind the wheel a...
+    scene.text(`Ilyushkin takes you to his car standing in the alley. He gets behind the wheel and you sit next to him. Ilyushkin gets his dick out of his pants and grabs you by the hair pulling your face to his groin until his cock is buried in your ${((s as any).pc_desc ?? 0)?.['lips']} lips. You open your mouth and allow the member to enter between your lips. You are trying to suck hard, using your ${((s as any).pc_desc ?? 0)?.['lips']} lips on the penis so Ilyushkin would be finished quickly. Ilyushkin's body finally jerks and he finishes in your mouth. You continue to suck his dick swallowing the sperm without spilling a drop. Ilyushkin tucks his dick back in his pants and says, "Okay cocksucker, get out."`);
+    qspCall(s, 'arousal', 'bj', 5, 'sub');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['city_center', ''] },
+    ]);
+  } },
+        ]);
+      } else {
         if (((s as any).komblrand ?? 0) === 2) {
           scene.text('After work, you are about to leave the bistro, but Ilyushkin stops you. "Where are you going, baby? Want to suck my dick?"');
           qspCall(s, 'willpower', 'bj', 'resist', 'medium');
@@ -144,7 +170,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             scene.actions([
-              { label: 'Refuse', handler: (st: GameState) => {
+              { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
@@ -166,7 +192,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
@@ -212,27 +238,22 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         }
-        return;
-        scene.actions([
-          { label: 'Agree', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A76');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A76', 1);
-    (s as any).BurgerQW['IlyQWBlackmail'] = ((s as any).BurgerQW['IlyQWBlackmail'] ?? 0) + (1);
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/city/ilyushkin/sex/ilybjcar.jpg');
-    // TODO-QSP: dynamic text: Ilyushkin takes you to his car standing in the alley. He gets behind the wheel a...
-    scene.text(`Ilyushkin takes you to his car standing in the alley. He gets behind the wheel and you sit next to him. Ilyushkin gets his dick out of his pants and grabs you by the hair pulling your face to his groin until his cock is buried in your ${((s as any).pc_desc ?? 0)?.['lips']} lips. You open your mouth and allow the member to enter between your lips. You are trying to suck hard, using your ${((s as any).pc_desc ?? 0)?.['lips']} lips on the penis so Ilyushkin would be finished quickly. Ilyushkin's body finally jerks and he finishes in your mouth. You continue to suck his dick swallowing the sperm without spilling a drop. Ilyushkin tucks his dick back in his pants and says, "Okay cocksucker, get out."`);
-    qspCall(s, 'arousal', 'bj', 5, 'sub');
-    qspCall(s, 'arousal', 'end');
-    scene.actions([
-      { label: 'Leave', goto: ['city_center', ''] },
-    ]);
-  } },
-        ]);
       }
-      scene.actions([{ label: 'Continue', goto: ['burger', 'start'] }]);
     }
+    return;
   }
+  scene.actions([{ label: 'Continue', goto: ['burger', 'start'] }]);
+  scene.build();
+}
+
+function enterWork3(s: GameState, scene: SceneBuilder): void {
+  (s as any).BurgerQW['WorkShift'] = 2;
+  (s as any).minut = ((s as any).minut ?? 0) + 30;
+  (s as any).minut = ((s as any).minut ?? 0) + (60 * 4);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/citycenter/diner/work.jpg');
+  scene.text('You sit down and start preparing the contract on the computer.');
+  qspCall(s, 'BurgerTip', 'work');
   scene.build();
 }
 
@@ -247,6 +268,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'work2':
       enterWork2(s, scene);
+      break;
+    case 'work3':
+      enterWork3(s, scene);
       break;
     default:
       enterStart(s, scene);

@@ -17,8 +17,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).parkrand ?? 0) < 10) {
       scene.actions([{ label: 'Continue', goto: ['park_walkevents', '<<parkrand>>'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'find_baby'] }]);
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+      if (((s as any).parkrand ?? 0) === 19  &&  ((s as any).lactation ?? 0)?.['active'] > 0) {
+        scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'find_baby'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+      }
     }
   } else {
     if (((s as any).suchunt ?? 0) === 1) {
@@ -31,18 +34,26 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).fairyrand = 21;
       }
     } else {
-      if ((((s as any).fairychat ?? 0) - ((s as any).fairyshoo ?? 0)) < 5  ||  ((((s as any).fairychat ?? 0) - ((s as any).fairyshoo ?? 0)) < 10  &&  ((s as any).fairylooking ?? 0) === 1)) {
-        (s as any).fairyrand = 19 - (((s as any).fairychat ?? 0) - ((s as any).fairyshoo ?? 0));
-      } else {
-        (s as any).fairyrand = 10;
-        (s as any).fairyrand = 15;
+      if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
+        if ((((s as any).fairychat ?? 0) - ((s as any).fairyshoo ?? 0)) < 5  ||  ((((s as any).fairychat ?? 0) - ((s as any).fairyshoo ?? 0)) < 10  &&  ((s as any).fairylooking ?? 0) === 1)) {
+          (s as any).fairyrand = 19 - (((s as any).fairychat ?? 0) - ((s as any).fairyshoo ?? 0));
+        } else {
+          if (((s as any).fairylooking ?? 0) === 1) {
+            (s as any).fairyrand = 10;
+          } else {
+            (s as any).fairyrand = 15;
+          }
+        }
       }
     }
     if (((s as any).parkrand ?? 0) <= 5) {
       scene.actions([{ label: 'Continue', goto: ['park_walkevents', '1'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['MagEncounterFairy', ''] }]);
-      scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+      if (((s as any).parkrand ?? 0) >= ((s as any).fairyrand ?? 0)  &&  ((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
+        scene.actions([{ label: 'Continue', goto: ['MagEncounterFairy', ''] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
+      }
     }
   }
   scene.build();

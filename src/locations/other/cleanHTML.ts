@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   (s as any).cleanHTML['ReturnStr'] = qspUntranslated(s, "replace(cleanHTML['ReturnStr'], cleanHTML['newline'],  '')", { location: "cleanHTML" });
   (s as any).cleanHTML['ReturnStr'] = qspUntranslated(s, "replace(cleanHTML['ReturnStr'], cleanHTML['tab'],    '')", { location: "cleanHTML" });
-  if (((s as any).ARGS ?? 0)[1] === 0) {
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).cleanHTML['ReturnStr'] = ((((s as any).cleanHTML ?? 0)?.['ReturnStr']).split('<tr></tr>').join(''));
     (s as any).cleanHTML['ReturnStr'] = ((((s as any).cleanHTML ?? 0)?.['ReturnStr']).split('<td></td>').join(''));
   }

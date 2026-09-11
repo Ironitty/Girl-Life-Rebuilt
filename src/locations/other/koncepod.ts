@@ -131,8 +131,10 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       // TODO-QSP: xgt 'koncepod', 'start'
     } else {
-      scene.text('<b><font color = red>You need to get dressed.</font></b>');
-      // TODO-QSP: xgt $curloc
+      if (((s as any).clothingworntype ?? 0) === 'nude') {
+        scene.text('<b><font color = red>You need to get dressed.</font></b>');
+        // TODO-QSP: xgt $curloc
+      }
     }
   } },
     ]);

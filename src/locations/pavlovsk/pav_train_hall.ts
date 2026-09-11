@@ -38,8 +38,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).week ?? 0) < 6) {
     if (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) <= 0) {
-      // TODO-QSP: 'You see your classmates <a href="exec: minut += 3
-      // TODO-QSP: gt ''gopskver''">Vitek, Dan and Vasily</a> hanging around.'
+      // TODO-QSP: dynamic text: You see your classmates <a href="exec: minut += 3 & gt 'gopskver'">Vitek, Dan an...
+      scene.text('You see your classmates <a href="exec: minut += 3 & gt \'gopskver\'">Vitek, Dan and Vasily</a> hanging around.');
     }
   }
   if (((s as any).podbros ?? 0) === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  (!(Math.floor(Math.random() * 2) + 0))) {

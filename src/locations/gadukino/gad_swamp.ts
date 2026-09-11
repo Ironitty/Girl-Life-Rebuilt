@@ -50,71 +50,28 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
       scene.img('images/locations/gadukino/hunters/goswamp1.jpg');
     } else {
-      scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');
-      if (((s as any).clothingworntype ?? 0) === 'nude') {
-        scene.img('images/locations/gadukino/hunters/goswamp_nude0.\' + rand(4, 5) + \'.jpg');
-      }
-      scene.text('As you walk through the swamp, you feel yourself begin to sink into the mud with each step.');
-      scene.text('You know you\'re so close to your destination, but you\'re not sure you can make it.');
-      scene.actions([
-        { label: 'Struggle', handler: (st: GameState) => {
-    (s as any).swamp_stuck = ((s as any).swamp_stuck ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'sweat', 'add', 15);
-    qspCall(s, 'stat', '');
-    if (((s as any).swamp_stuck ?? 0) % 3 === 0) {
-      (s as any).swamp_check = ((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_bushcraft ?? 0);
-      (s as any).swamprand = Math.floor(Math.random() * 226) + 0;
-    } else {
-      (s as any).swamp_check = ((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0);
-      (s as any).swamprand = Math.floor(Math.random() * 151) + 0;
-      (s as any).swamp_check = ((s as any).pcs_stren ?? 0);
-      (s as any).swamprand = Math.floor(Math.random() * 76) + 0;
-    }
-    if (((s as any).swamp_stuck ?? 0) === 10) {
-      qspCall(s, 'gameover', 'check', 10);
-    }
-    if (((s as any).swamp_check ?? 0) > ((s as any).swamprand ?? 0)) {
-      scene.text('<center><h4>Swamp</h4></center>');
-      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
-        scene.img('images/locations/gadukino/hunters/goswamp.jpg');
+      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+        scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');
       } else {
-        scene.img('images/locations/gadukino/hunters/goswamp_ski.jpg');
         if (((s as any).clothingworntype ?? 0) === 'nude') {
-          (s as any).swamprand = Math.floor(Math.random() * 4) + 0;
-          if ((!((s as any).swamprand ?? 0))) {
-            scene.img('images/locations/gadukino/hunters/goswamp_nude0..jpg');
-          } else {
-            scene.img('images/locations/gadukino/hunters/goswamp_nude0.\' + rand(1, 3) + \'.jpg');
-          }
+          scene.img('images/locations/gadukino/hunters/goswamp_nude0.\' + rand(4, 5) + \'.jpg');
         }
-        scene.text('Your efforts are not vain as you begin to feel the mud\'s hold loosen. Then, with another burst of strength, you free yourself and sigh in relief.');
-        scene.text('<center><h4>Swamp</h4></center>');
-        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
-          scene.img('images/locations/gadukino/hunters/goswamp1.jpg');
-        } else {
-          scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');
-          if (((s as any).clothingworntype ?? 0) === 'nude') {
-            scene.img('images/locations/gadukino/hunters/goswamp_nude0.\' + rand(4, 5) + \'.jpg');
-          }
-          scene.text('Your efforts are for nothing. The mud\'s hold feels as tight as ever. In fact, you feel yourself sinking even deeper.');
-          scene.actions([
-            { label: 'Failure', goto: ['gad_swamp', 'stuck'] },
-          ]);
-        }
-        scene.actions([
-          { label: 'Success!', goto: ['gad_swamp_yard', 'start'] },
-        ]);
       }
-      if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-        scene.actions([
-          { label: 'Scream for help', handler: (st: GameState) => {
+    }
+    scene.text('As you walk through the swamp, you feel yourself begin to sink into the mud with each step.');
+    scene.text('You know you\'re so close to your destination, but you\'re not sure you can make it.');
+    if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
+      scene.actions([
+        { label: 'Scream for help', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))) {
       (s as any).swamprand = Math.floor(Math.random() * 4) + 1;
     } else {
-      (s as any).swamprand = Math.floor(Math.random() * 5) + 1;
-      (s as any).swamprand = Math.floor(Math.random() * 6) + 1;
+      if ((((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 23)) {
+        (s as any).swamprand = Math.floor(Math.random() * 5) + 1;
+      } else {
+        (s as any).swamprand = Math.floor(Math.random() * 6) + 1;
+      }
     }
     scene.text('<center><h4>Swamp</h4></center>');
     scene.img('images/locations/gadukino/hunters/gadforestlosthelp.jpg');
@@ -136,30 +93,91 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        ]);
+      ]);
+    }
+    scene.actions([
+      { label: 'Struggle', handler: (st: GameState) => {
+    (s as any).swamp_stuck = ((s as any).swamp_stuck ?? 0) + (1);
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'sweat', 'add', 15);
+    qspCall(s, 'stat', '');
+    if (((s as any).swamp_stuck ?? 0) % 3 === 0) {
+      (s as any).swamp_check = ((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_bushcraft ?? 0);
+      (s as any).swamprand = Math.floor(Math.random() * 226) + 0;
+    } else {
+      if (((s as any).swamp_stuck ?? 0) % 2 === 0) {
+        (s as any).swamp_check = ((s as any).pcs_stren ?? 0) + ((s as any).pcs_agil ?? 0);
+        (s as any).swamprand = Math.floor(Math.random() * 151) + 0;
+      } else {
+        (s as any).swamp_check = ((s as any).pcs_stren ?? 0);
+        (s as any).swamprand = Math.floor(Math.random() * 76) + 0;
       }
+    }
+    if (((s as any).swamp_stuck ?? 0) === 10) {
+      qspCall(s, 'gameover', 'check', 10);
+    }
+    if (((s as any).swamp_check ?? 0) > ((s as any).swamprand ?? 0)) {
+      scene.text('<center><h4>Swamp</h4></center>');
+      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
+        scene.img('images/locations/gadukino/hunters/goswamp.jpg');
+      } else {
+        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+          scene.img('images/locations/gadukino/hunters/goswamp_ski.jpg');
+        } else {
+          if (((s as any).clothingworntype ?? 0) === 'nude') {
+            (s as any).swamprand = Math.floor(Math.random() * 4) + 0;
+            if ((!((s as any).swamprand ?? 0))) {
+              scene.img('images/locations/gadukino/hunters/goswamp_nude0..jpg');
+            } else {
+              scene.img('images/locations/gadukino/hunters/goswamp_nude0.\' + rand(1, 3) + \'.jpg');
+            }
+          }
+        }
+      }
+      scene.text('Your efforts are not vain as you begin to feel the mud\'s hold loosen. Then, with another burst of strength, you free yourself and sigh in relief.');
+      scene.actions([
+        { label: 'Success!', goto: ['gad_swamp_yard', 'start'] },
+      ]);
     } else {
       scene.text('<center><h4>Swamp</h4></center>');
-      if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-        scene.img('images/locations/gadukino/hunters/\' + iif(DayStage < 4, \'gadforestlostswamp.jpg\', \'gadforestlostswamp_night.jpg\') + \'');
+      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
+        scene.img('images/locations/gadukino/hunters/goswamp1.jpg');
       } else {
-        scene.img('images/locations/gadukino/hunters/\' + iif(DayStage < 4, \'gadforestlostswamp_winter.jpg\', \'gadforestlostswamp_winter_night.jpg\') + \'');
+        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+          scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');
+        } else {
+          if (((s as any).clothingworntype ?? 0) === 'nude') {
+            scene.img('images/locations/gadukino/hunters/goswamp_nude0.\' + rand(4, 5) + \'.jpg');
+          }
+        }
       }
-      if (((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
-        (s as any).minut = ((s as any).minut ?? 0) + 60;
-        scene.text('After an hour of walking through the forest, you finally see the hunters\' cabin ahead.');
-      } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 15;
-        scene.text('After walking through the swamp for a few minutes, you finally see the hunters\' cabin ahead.');
-      }
-      qspCall(s, 'stat', '');
+      scene.text('Your efforts are for nothing. The mud\'s hold feels as tight as ever. In fact, you feel yourself sinking even deeper.');
       scene.actions([
-        { label: 'Continue', goto: ['gad_swamp_yard', 'start'] },
+        { label: 'Failure', goto: ['gad_swamp', 'stuck'] },
       ]);
     }
   } },
-      ]);
+    ]);
+  } else {
+    scene.text('<center><h4>Swamp</h4></center>');
+    if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
+      scene.img('images/locations/gadukino/hunters/\' + iif(DayStage < 4, \'gadforestlostswamp.jpg\', \'gadforestlostswamp_night.jpg\') + \'');
+    } else {
+      scene.img('images/locations/gadukino/hunters/\' + iif(DayStage < 4, \'gadforestlostswamp_winter.jpg\', \'gadforestlostswamp_winter_night.jpg\') + \'');
     }
+    if (((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
+      (s as any).minut = ((s as any).minut ?? 0) + 60;
+      scene.text('After an hour of walking through the forest, you finally see the hunters\' cabin ahead.');
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 'swamp') {
+        (s as any).minut = ((s as any).minut ?? 0) + 15;
+        scene.text('After walking through the swamp for a few minutes, you finally see the hunters\' cabin ahead.');
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', goto: ['gad_swamp_yard', 'start'] },
+    ]);
   }
   scene.build();
 }

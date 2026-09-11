@@ -14,6 +14,9 @@ function enterTsToStr(s: GameState, scene: SceneBuilder): void {
 function enterFormatRelativeDay(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_frd_offset = ((s as any).ARGS ?? 0)[1] - ((s as any).daystart ?? 0);
   if ((!((s as any).temp_frd_offset ?? 0))) {
+  } else {
+    if (((s as any).temp_frd_offset ?? 0) === 1) {
+    }
   }
   return;
   scene.build();
@@ -31,13 +34,13 @@ function enterGetEventDisplayRange(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
     (s as any).result_start_ts = ((s as any).event_vars ?? 0)?.['window_start_ts'];
-    (s as any).result_end_ts = ((s as any).event_vars ?? 0)?.['window_end_ts'] + ((s as any).event_vars ?? 0)?.['duration_ts'] - 1;
+    (s as any).result_end_ts = ((s as any).event_vars ?? {})?.['window_end_ts'] + ((s as any).event_vars ?? {})?.['duration_ts'] - 1;
     (s as any).result_is_flex = 1;
     (s as any).result_window_end_ts = ((s as any).event_vars ?? 0)?.['window_end_ts'];
     (s as any).result_duration_ts = ((s as any).event_vars ?? 0)?.['duration_ts'];
   } else {
     (s as any).result_start_ts = ((s as any).event_vars ?? 0)?.['start_ts'];
-    (s as any).result_end_ts = ((s as any).event_vars ?? 0)?.['start_ts'] + ((s as any).event_vars ?? 0)?.['duration_ts'] - 1;
+    (s as any).result_end_ts = ((s as any).event_vars ?? {})?.['start_ts'] + ((s as any).event_vars ?? {})?.['duration_ts'] - 1;
     (s as any).result_is_flex = 0;
     (s as any).result_window_end_ts = 0;
     (s as any).result_duration_ts = 0;
@@ -128,7 +131,7 @@ function enterShouldEventBeVisible(s: GameState, scene: SceneBuilder): void {
 function enterGetEventSpanForDay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_events', 'get_event', ((s as any).locArgs?.[1] ?? 0));
   if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-    (s as any).result = (((s as any).event_vars ?? 0)?.['window_end_ts'] - ((s as any).event_vars ?? 0)?.['window_start_ts']) + ((s as any).event_vars ?? 0)?.['duration_ts'];
+    (s as any).result = (((s as any).event_vars ?? {})?.['window_end_ts'] - ((s as any).event_vars ?? {})?.['window_start_ts']) + ((s as any).event_vars ?? {})?.['duration_ts'];
   } else {
     (s as any).result = ((s as any).event_vars ?? 0)?.['duration_ts'];
   }
@@ -152,8 +155,8 @@ function enterGetEventStartTimeslot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetUpcoming(s: GameState, scene: SceneBuilder): void {
-  (s as any).upc['max'] = ((((s as any).ARGS ?? 0)[1] > 0) ? (qspUntranslated(s, "ARGS[1]", { location: "calendar_query" })) : (3));
-  (s as any).upc['today'] = ((((s as any).ARGS ?? 0)[2] > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "calendar_query" })) : (((s as any).daystart ?? 0)));
+  (s as any).upc['max'] = ((((s as any).locArgs?.[1] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[1]", { location: "calendar_query" })) : (3));
+  (s as any).upc['today'] = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "calendar_query" })) : (((s as any).daystart ?? 0)));
   (s as any).upc['cur_ts'] = qspUntranslated(s, "ARGS[3]", { location: "calendar_query" });
   (s as any).upc['count'] = 0;
   (s as any).upc['ei'] = 0;
@@ -164,7 +167,7 @@ function enterGetUpcoming(s: GameState, scene: SceneBuilder): void {
     if (((s as any).upc ?? 0)?.['id'] !== '') {
       // TODO-QSP: gs 'calendar_events', 'get_event', $upc['id']
       qspCall(s, 'calendar_events', 'load_new_ev', 1);
-      (s as any).upc['search_from'] = ((s as any).max ?? 0)(((s as any).upc ?? 0)?.['today'] - 1, ((s as any).event_vars ?? 0)?.['daystart'] - 1);
+      (s as any).upc['search_from'] = Math.max(((s as any).upc ?? {})?.['today'] - 1, ((s as any).event_vars ?? {})?.['daystart'] - 1);
       if (((s as any).new_ev ?? 0)?.['recur'] === '') {
         (s as any).upc['occ'] = ((((s as any).new_ev ?? 0)?.['daystart'] >= ((s as any).upc ?? 0)?.['search_from'] + 1) ? (((s as any).new_ev ?? 0)?.['daystart']) : ((-1)));
       } else {
@@ -184,8 +187,10 @@ function enterGetUpcoming(s: GameState, scene: SceneBuilder): void {
           (s as any).upc['count'] = ((s as any).upc['count'] ?? 0) + (1);
           (s as any).upc['do_insert'] = 1;
         } else {
-          (s as any).upc['ins'] = ((s as any).upc ?? 0)?.['count'] - 1;
-          (s as any).upc['do_insert'] = 1;
+          if (((s as any).upc ?? 0)?.['occ'] < ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['count'] - 1]  ||  (((s as any).upc ?? 0)?.['occ'] === ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['count'] - 1]  &&  ((s as any).upc ?? 0)?.['sort_ts'] < ((s as any).upcoming_ts ?? 0)[((s as any).upc ?? 0)?.['count'] - 1])) {
+            (s as any).upc['ins'] = ((s as any).upc ?? {})?.['count'] - 1;
+            (s as any).upc['do_insert'] = 1;
+          }
         }
         if (((s as any).upc ?? 0)?.['do_insert'] === 1) {
           // TODO-QSP: $upcoming_ids[upc['ins']] = $upc['id']
@@ -194,7 +199,7 @@ function enterGetUpcoming(s: GameState, scene: SceneBuilder): void {
           (s as any).upc['bi'] = ((s as any).upc ?? 0)?.['ins'];
           // TODO-QSP: :upc_bubble
           if (((s as any).upc ?? 0)?.['bi'] > 0) {
-            (s as any).upc['bj'] = ((s as any).upc ?? 0)?.['bi'] - 1;
+            (s as any).upc['bj'] = ((s as any).upc ?? {})?.['bi'] - 1;
             if (((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bi']] < ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bj']]  ||  (((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bi']] === ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bj']]  &&  ((s as any).upcoming_ts ?? 0)[((s as any).upc ?? 0)?.['bi']] < ((s as any).upcoming_ts ?? 0)[((s as any).upc ?? 0)?.['bj']])) {
               (s as any).upc['tmp'] = qspUntranslated(s, "upcoming_ids[upc['bj']]", { location: "calendar_query" });
               (s as any).upc['tmp_d'] = qspUntranslated(s, "upcoming_days[upc['bj']]", { location: "calendar_query" });

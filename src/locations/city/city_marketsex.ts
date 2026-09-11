@@ -48,21 +48,22 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
         { label: 'Go home', goto: ['city_residential', ''] },
       ]);
     } else {
-      scene.text('While Arthur is fucking you, you hear the creaking of the front door and look up to see two more men enter the room. It\'s Abdul and Hassan, the owners of the neighboring stalls.');
-      scene.text('You freeze in shock and shame, but Arthur apparently doesn\'t care and keeps fucking you. The men smile and laugh, whispering something to each other before they say something to Arthur, who barely grunts a reply to them as he keeps fucking you.');
-      scene.text('Hassan then smiles at you. "Hey girl, why don\'t you give us a turn? We won\'t tell anyone in the market." You glance back at Arthur, but he doesn\'t show any indication that he cares.');
-      qspCall(s, 'arousal', 'vaginal', 20, 'sub', 'rough');
-      qspCall(s, 'stat', '');
-      qspCall(s, 'willpower', 'gangbang', 'resist', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Agree to gangbang [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      if (((s as any).gbrand ?? 0) >= 95  &&  ((s as any).palevorin ?? 0) === 1) {
+        scene.text('While Arthur is fucking you, you hear the creaking of the front door and look up to see two more men enter the room. It\'s Abdul and Hassan, the owners of the neighboring stalls.');
+        scene.text('You freeze in shock and shame, but Arthur apparently doesn\'t care and keeps fucking you. The men smile and laugh, whispering something to each other before they say something to Arthur, who barely grunts a reply to them as he keeps fucking you.');
+        scene.text('Hassan then smiles at you. "Hey girl, why don\'t you give us a turn? We won\'t tell anyone in the market." You glance back at Arthur, but he doesn\'t show any indication that he cares.');
+        qspCall(s, 'arousal', 'vaginal', 20, 'sub', 'rough');
+        qspCall(s, 'stat', '');
+        qspCall(s, 'willpower', 'gangbang', 'resist', 'hard');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Agree to gangbang [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Agree to gangbang', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Agree to gangbang [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).palevorin = 4;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -98,10 +99,10 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   } },
-        ]);
-      }
-      scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+          ]);
+        }
+        scene.actions([
+          { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 2000);
     (s as any).palevorin = 2;
     scene.text('Your face red with shame, you just silently shake your head. They again whisper something to each other and then sit down to watch as Arthur continues fucking you. Unable to do anything about it, you try to ignore them.');
@@ -113,7 +114,8 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
       { label: 'Suck', handler: (st: GameState) => {
@@ -143,19 +145,20 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
         { label: 'Go home', goto: ['city_residential', ''] },
       ]);
     } else {
-      scene.text('After some time, he pulls his dick almost all the way out of your mouth, leaving only the tip inside. Within a few seconds, you taste his cum as he shoots his load into your mouth, spurt after spurt filling your mouth. Once he\'s done, he pulls his dick out of your mouth and wipes it on your lips.');
-      scene.text('As he finishes, you notice that Abdul and Hassan are watching. You don\'t remember hearing them enter and freeze in shock and shame. The men smile and laugh, whispering something to each other before they say something to Arthur, who barely grunts a reply to them.');
-      scene.text('Hassan then smiles at you. "Hey girl, why don\'t you give us a turn? We won\'t tell anyone in the market." You glance back at Arthur, but he doesn\'t show any indication that he cares.');
-      qspCall(s, 'willpower', 'bj', 'resist', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Agree to suck them as well [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      if (((s as any).gbrand ?? 0) >= 95  &&  ((s as any).palevorin ?? 0) === 1) {
+        scene.text('After some time, he pulls his dick almost all the way out of your mouth, leaving only the tip inside. Within a few seconds, you taste his cum as he shoots his load into your mouth, spurt after spurt filling your mouth. Once he\'s done, he pulls his dick out of your mouth and wipes it on your lips.');
+        scene.text('As he finishes, you notice that Abdul and Hassan are watching. You don\'t remember hearing them enter and freeze in shock and shame. The men smile and laugh, whispering something to each other before they say something to Arthur, who barely grunts a reply to them.');
+        scene.text('Hassan then smiles at you. "Hey girl, why don\'t you give us a turn? We won\'t tell anyone in the market." You glance back at Arthur, but he doesn\'t show any indication that he cares.');
+        qspCall(s, 'willpower', 'bj', 'resist', 'hard');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Agree to suck them as well [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Agree to suck them as well', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Agree to suck them as well [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).palevorin = 4;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -184,10 +187,10 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   } },
-        ]);
-      }
-      scene.actions([
-        { label: 'Wipe your mouth and leave', handler: (st: GameState) => {
+          ]);
+        }
+        scene.actions([
+          { label: 'Wipe your mouth and leave', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 2000);
     (s as any).palevorin = 2;
     // TODO-QSP: dynamic text: Your face red with shame, you wipe the cum from your lips and fix your clothes b...
@@ -197,7 +200,8 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
     ]);
@@ -285,19 +289,14 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
         { label: 'Go home', goto: ['city_residential', ''] },
       ]);
     } else {
-      qspCall(s, 'stat', '');
-      scene.img('images/shared/sex/vag/miss/vagmis1.jpg');
-      scene.text('He pulls his dick out of your mouth and pushes you down on a couch on your back. He spreads your legs and lines his dick up with your pussy, rubbing the tip against your lips before he shoves his dick inside and starts fucking you hard and fast.');
-      qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'rough');
-      qspCall(s, 'stat', '');
-      qspCall(s, 'stat', '');
-      scene.img('images/shared/sex/anal/doggy/anal28.jpg');
-      scene.text('He pulls his dick out of your mouth and bends you over onto all fours. He kneels down behind you and rubs the tip of his dick against your pussy lips before he moves up and rubs it against your asshole. He pushes his dick in, with only your saliva and pussy juices for lucubration. You squeal in pain.');
-      scene.text('He slowly works his way deeper into your ass, holding onto your hips tightly so you can\'t pull away. He works his way balls deep and then starts fucking you hard and fast.');
-      qspCall(s, 'arousal', 'anal', 10, 'sub', 'rough');
-      qspCall(s, 'stat', '');
-      scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+      if (((s as any).rand_act ?? 0) === 1) {
+        qspCall(s, 'stat', '');
+        scene.img('images/shared/sex/vag/miss/vagmis1.jpg');
+        scene.text('He pulls his dick out of your mouth and pushes you down on a couch on your back. He spreads your legs and lines his dick up with your pussy, rubbing the tip against your lips before he shoves his dick inside and starts fucking you hard and fast.');
+        qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'rough');
+        qspCall(s, 'stat', '');
+        scene.actions([
+          { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'cum_manage', '');
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/cum/stomach/bellycum.jpg');
@@ -310,7 +309,16 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   } },
-        { label: 'Finish', handler: (st: GameState) => {
+        ]);
+      } else {
+        qspCall(s, 'stat', '');
+        scene.img('images/shared/sex/anal/doggy/anal28.jpg');
+        scene.text('He pulls his dick out of your mouth and bends you over onto all fours. He kneels down behind you and rubs the tip of his dick against your pussy lips before he moves up and rubs it against your asshole. He pushes his dick in, with only your saliva and pussy juices for lucubration. You squeal in pain.');
+        scene.text('He slowly works his way deeper into your ass, holding onto your hips tightly so you can\'t pull away. He works his way balls deep and then starts fucking you hard and fast.');
+        qspCall(s, 'arousal', 'anal', 10, 'sub', 'rough');
+        qspCall(s, 'stat', '');
+        scene.actions([
+          { label: 'Finish', handler: (st: GameState) => {
     (s as any).spafinloc = 1;
     qspCall(s, 'cum_manage', '');
     qspCall(s, 'stat', '');
@@ -324,7 +332,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
   ]);

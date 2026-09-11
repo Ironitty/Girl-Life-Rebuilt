@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -34,7 +36,7 @@ function enterLeaveBuilding(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Yes, go outside', handler: (st: GameState) => {
+      { label: 'Yes, go outside [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['pav_complex', 'start'] },
     ]);
@@ -71,12 +73,17 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['korrPar', ''] },
     ]);
   } else {
-    scene.actions([
-      { label: '<b>Apartment 7: Your parents (knock)</b>', goto: ['mother_chats', 'knock'] },
-      { label: '<b>Apartment 7: Your parents</b>', handler: (st: GameState) => {
+    if (((s as any).mother ?? 0)?.['kickedout_pending'] === 1) {
+      scene.actions([
+        { label: '<b>Apartment 7: Your parents (knock)</b>', goto: ['mother_chats', 'knock'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: '<b>Apartment 7: Your parents</b>', handler: (st: GameState) => {
     // TODO-QSP: msg 'Your knock is unanswered, and you no longer have a key....
   } },
-    ]);
+      ]);
+    }
   }
   scene.actions([
     { label: 'Go down to the first floor', handler: (st: GameState) => {
@@ -89,36 +96,2524 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 5) {
       scene.text('It\'s too late to visit Uncle Misha, he\'s probably sleeping now.');
     } else {
-      scene.text('It\'s too early in the morning to visit Uncle Misha, he\'s probably still sleeping.');
-      if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 19) {
-        scene.text('You ring the doorbell, but no one answers the door.');
+      if (((s as any).hour ?? 0) >= 5  &&  ((s as any).hour ?? 0) < 10) {
+        scene.text('It\'s too early in the morning to visit Uncle Misha, he\'s probably still sleeping.');
       } else {
-        qspCall(s, 'stat', '');
-        scene.text('The door opens and Uncle Misha invites you into the apartment.');
-        if (((s as any).mishahouse_count ?? 0) <= 0  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 23  ||  ((s as any).mishahouse_count ?? 0) <= 0  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 23) {
-          // TODO-QSP: dynamic text: You ring the bell and Uncle Misha opens the door. He says: "Sorry <<$pcs_nicknam...
-          scene.text(`You ring the bell and Uncle Misha opens the door. He says: "Sorry ${((s as any).pcs_nickname ?? 0)}, I'm busy right now. Maybe come back tomorrow?"`);
-        } else {
+        if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 19) {
           scene.text('You ring the doorbell, but no one answers the door.');
-        }
-        scene.actions([
-          { label: 'Enter', handler: (st: GameState) => {
+        } else {
+          if (((s as any).mishahouse_count ?? 0) === 1  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 23  ||  ((s as any).mishahouse_count ?? 0) === 1  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 23) {
+            qspCall(s, 'stat', '');
+            scene.text('The door opens and Uncle Misha invites you into the apartment.');
+            scene.actions([
+              { label: 'Enter', handler: (st: GameState) => {
     (s as any).mishahouse_day = ((s as any).daystart ?? 0);
     (s as any).mishahouse_count = ((s as any).mishahouse_count ?? 0) - (1);
   }, goto: ['misha', '1'] },
+            ]);
+          } else {
+            if (((s as any).mishahouse_count ?? 0) <= 0  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 23  ||  ((s as any).mishahouse_count ?? 0) <= 0  &&  ((s as any).dyadyamishaevent ?? 0) >= 1  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 23) {
+              // TODO-QSP: dynamic text: You ring the bell and Uncle Misha opens the door. He says: "Sorry <<$pcs_nicknam...
+              scene.text(`You ring the bell and Uncle Misha opens the door. He says: "Sorry ${((s as any).pcs_nickname ?? 0)}, I'm busy right now. Maybe come back tomorrow?"`);
+            } else {
+              scene.text('You ring the doorbell, but no one answers the door.');
+            }
+          }
+        }
+      }
+    }
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } },
+    { label: 'Take the elevator', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_2'
+  } },
+    { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
+    qspCall(st, 'pod_ezd', 'leave_building');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEtaj2Paint(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj2_paint');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj2_whore.jpg');
+  scene.text('You look at the graffiti and sigh: "Maybe I should get some paint and cover that up, it\'s attracting a lot of people to our home."');
+  if (((s as any).paint_blue ?? 0) <= 0) {
+    scene.text('<br>If you want to cover up the graffiti, you should go buy some paint.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } else {
+    // TODO-QSP: dynamic text: You paint: <<paint_blue>>
+    scene.text(`You paint: ${((s as any).paint_blue ?? 0)}`);
+    scene.actions([
+      { label: 'Shake your head and leave', goto: ['pod_ezd', 'etaj_2'] },
+      { label: 'Cover it up', handler: (st: GameState) => {
+    (s as any).pod_whore_countQW = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 40;
+    (s as any).paint_blue = ((s as any).paint_blue ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj2.jpg');
+    scene.text('You spend about 40 minutes covering up the graffiti. When you\'re done, you step back and admire your work. Much better! Hopefully people won\'t bother you as often now.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 3) + 0) === 0  &&  (((s as any).totminut ?? 0) > ((s as any).floor3_event_time ?? 0) + 60)  ||  (((s as any).totminut ?? 0) < ((s as any).floor3_event_time ?? 0) - 1440)) {
+    (s as any).floor3_event_time = ((s as any).totminut ?? 0);
+    qspCall(s, 'pod_ezd', 'floor3_events');
+  }
+  qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_3');
+  qspCall(s, 'stat', '');
+  scene.text('<center>3rd floor of the apartment building</center>');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj3.jpg');
+  scene.text('<center>The third floor stairwell was renovated not long ago, but some hoodlums already sprayed graffiti on the walls.</center>');
+  scene.text('<br>The stairwell is empty.');
+  if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 1) {
+    // TODO-QSP: act 'Apartment 15: Julia Milova': gt 'JuliaMilHome', 'home'
+  }
+  scene.actions([
+    { label: 'Go down to the second floor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pod_ezd', 'etaj_2'] },
+    { label: 'Go up to the fourth floor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pod_ezd', 'etaj_4'] },
+    { label: 'Apartment 13: Vasily and Sergei Shulgin', goto: ['vasilyhome', 'home'] },
+    { label: 'Take the elevator', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_3'
+  } },
+    { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
+    qspCall(st, 'pod_ezd', 'leave_building');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 3) + 0) === 0  &&  (((s as any).totminut ?? 0) > ((s as any).floor4_event_time ?? 0) + 60)  ||  (((s as any).totminut ?? 0) < ((s as any).floor4_event_time ?? 0) - 1440)) {
+    (s as any).floor4_event_time = ((s as any).totminut ?? 0);
+    qspCall(s, 'pod_ezd', 'floor4_events');
+  }
+  qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_4');
+  qspCall(s, 'stat', '');
+  scene.text('<center>4th floor of the apartment building</center>');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj4.jpg');
+  scene.text('<center>A dirty and poorly maintained stairwell. The inhabitants don\'t seem to care about how it looks.</center>');
+  scene.text('');
+  scene.text('<br>The stairwell is empty.');
+  if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 1) {
+    // TODO-QSP: act 'Apartment 19: Natasha Belova': gt 'natbelapt', 'home'
+  }
+  scene.actions([
+    { label: 'Go down to the third floor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Go up to the fifth floor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pod_ezd', 'etaj_5'] },
+    { label: 'Apartment 21: Aunt Luda', goto: ['ludahome', 'home'] },
+    { label: 'Take the elevator', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_4'
+  } },
+    { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
+    qspCall(st, 'pod_ezd', 'leave_building');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 3) + 0) === 0  &&  (((s as any).totminut ?? 0) > ((s as any).floor5_event_time ?? 0) + 60)  ||  (((s as any).totminut ?? 0) < ((s as any).floor5_event_time ?? 0) - 1440)) {
+    (s as any).floor5_event_time = ((s as any).totminut ?? 0);
+    qspCall(s, 'pod_ezd', 'floor5_events');
+  }
+  qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_5');
+  qspCall(s, 'stat', '');
+  scene.text('<center>Floor #5</center>');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj5.jpg');
+  scene.text('The fifth floor stairwell is in a poor state of repair. This floor was never renovated; all the apartments are vacant and in a poor state of repair. So now almost no one comes up here, other than younger people to privately hangout. They hang out in some of the vacant apartments. Some even come from the other apartment buildings around the area to hangout. There is a final set of stairs at the other end of the hall that go up to the roof.');
+  scene.text('<br>The stairwell is empty.');
+  scene.actions([
+    { label: 'Go down to the fourth floor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pod_ezd', 'etaj_4'] },
+    { label: 'Go up to the roof', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pod_ezd', 'roof'] },
+    { label: 'Take the elevator', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_5'
+  } },
+    { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
+    qspCall(st, 'pod_ezd', 'leave_building');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterRoof(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'roof');
+  qspCall(s, 'stat', '');
+  scene.text('<center>Roof</center>');
+  if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
+    scene.img('images/locations/pavlovsk/resident/apartment/roof/roofw.jpg');
+  } else {
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
+      scene.img('images/locations/pavlovsk/resident/apartment/roof/roof.jpg');
+    } else {
+      scene.img('images/locations/pavlovsk/resident/apartment/roof/roofn.jpg');
+    }
+  }
+  scene.text('<center>The roof is fairly flat, with the roof access door in a raised part in the middle of the roof. Along one of the walls is another door to some type of storage or maintenance access. There are several ventilation stacks on the roof as well.</center>');
+  if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
+    scene.actions([
+      { label: 'Smoke a joint', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'drugs', 'joint');
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  }
+  if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
+    scene.actions([
+      { label: 'Change back into clothes', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'outfit', 'restore', 'swim');
+  }, goto: ['pod_ezd', 'roof'] },
+      { label: 'Change clothes', goto: ['changingroom', ''] },
+    ]);
+  }
+  if (((s as any).temper ?? 0) >= 15  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21) {
+    if (qspFunc(s, 'changingroom', 'count_swim_item') > 0  &&  (!((s as any).PSwim ?? 0))) {
+      scene.actions([
+        { label: 'Change into a bikini', goto: ['changingroom', ''] },
+      ]);
+    }
+    if (((s as any).PSwim ?? 0) === 1) {
+      scene.actions([
+        { label: 'Sunbathe (1:00)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    if (((s as any).pcs_sweat ?? 0) < 35) {
+      qspCall(s, 'sweat', 'add', 5);
+    }
+    qspCall(s, 'mood', 'raise', 'tiny');
+    scene.img('images/locations/city/residential/apartment/zagar1.jpg');
+    if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
+      (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
+      scene.text('You lay down to sunbathe.');
+    } else {
+      if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
+        (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
+        scene.text('You put the sunblock on your body and lay down on the roof to sunbathe.');
+      }
+    }
+    scene.actions([
+      { label: 'Get Up', goto: ['pod_ezd', 'roof'] },
+    ]);
+  } },
+      ]);
+    }
+  }
+  scene.actions([
+    { label: 'Go down to the fifth floor', handler: (st: GameState) => {
+    if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'roof'] }]);
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'etaj_5'] }]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLift(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'pod_ezd', 'lift_events');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator.jpg');
+  scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="exec:gt \'pod_ezd\',\'elev_objava\',$ARGS[1]">notification</a> in the elevator.</center>');
+  scene.actions([
+    { label: 'Push button: floor 1', goto: ['pod_ezd', 'etaj_1'] },
+    { label: 'Push button: floor 2', goto: ['pod_ezd', 'etaj_2'] },
+    { label: 'Push button: floor 3', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Push button: floor 4', goto: ['pod_ezd', 'etaj_4'] },
+    { label: 'Push button: floor 5', goto: ['pod_ezd', 'etaj_5'] },
+  ]);
+  scene.build();
+}
+
+function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
+  (s as any).pod_lift_ev = Math.floor(Math.random() * 11) + 0;
+  if (((s as any).pod_lift_ev ?? 0) === 1) {
+    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'lift_event_1'] }]);
+  } else {
+    if (((s as any).pod_lift_ev ?? 0) <= 5  ||  ((s as any).liftnotwork_count ?? 0) <=0) {
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'lift_event_2'] }]);
+    }
+  }
+  scene.build();
+}
+
+function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/elevator\'+rand(1, 2)+\'.jpg');
+  scene.text('When the elevator door opens, you see a naked woman standing in it! She looks at you in panic and is frantically pressing all the elevator buttons. You\'re too baffled to do anything until it\'s too late. The door is already closed again, and the elevator is moving away from you.');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    // TODO-QSP: gt 'pod_ezd', $ARGS[1]
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).liftnotwork_day = ((s as any).daystart ?? 0);
+  (s as any).liftnotwork_count = ((s as any).liftnotwork_count ?? 0) - (1);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/liftnotwork.jpg');
+  scene.text('The building supervisor put a sign on the elevator: "Dear tenants, the elevator is out of order for today. Don\'t worry, I should have it working again by tomorrow!"');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    // TODO-QSP: gt 'pod_ezd', $ARGS[1]
+  } },
+  ]);
+  scene.build();
+}
+
+function enterElevObjava(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator_ob\'+rand(1, 2)+\'.jpg');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', 'lift', $ARGS[1]
+  } },
+  ]);
+  scene.build();
+}
+
+function enterPodObjava(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob\'+rand(1, 2)+\'.jpg');
+  scene.text('<br>As you pass by the advertisements, you notice a sign - "сдаeтся в аренду комната" (Room for rent!). Some guys are looking for a roommate. They live in an apartment in one of the other buildings in the apartment complex.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_1'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor2Events(s: GameState, scene: SceneBuilder): void {
+  (s as any).floor2 = Math.floor(Math.random() * 12) + 1;
+  if (((s as any).floor2 ?? 0) < 6  &&  (((s as any).hour ?? 0) >= 19  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10))) {
+    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_1'] }]);
+  } else {
+    if (((s as any).floor2 ?? 0) < 9) {
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_2'] }]);
+    } else {
+      if (((s as any).floor2 ?? 0) === 9) {
+        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_3'] }]);
+      } else {
+        if (((s as any).floor2 ?? 0) === 10) {
+          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_4'] }]);
+        } else {
+          if (((s as any).floor2 ?? 0) === 11) {
+            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_5'] }]);
+          } else {
+            if (((s as any).floor2 ?? 0) === 12) {
+              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor2_event_6'] }]);
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterFloor2Event_1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/mishasmoke.jpg');
+  scene.text('Uncle Misha is currently outside his apartment, smoking a cigarette. His name is Mikhail, though everyone calls him Uncle Misha. He lives in the other apartment on the same floor as yours. Your mother always forbade you to talk to him, warning you that he used to be a local crime lord, and that you shouldn\'t get involved with him. However, he has always been polite and nice to you.');
+  if ((Math.floor(Math.random() * 5) + 0) === 0  &&  qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  ((s as any).pcs_hotcat ?? 0) >= 4) {
+    scene.text('While you chat with Uncle Misha he finishes his cigarette. Once he does, he pulls out a pack to get another one. He then grunts and frowns at the pack, crumpling it up. He is obviously out. Before you can say anything, he asks you, "Would you be an angel and go get me a new pack of cigarettes from my apartment and bring it to me?" You glance at the door behind him. He could easily do it himself, but you guess he just doesn\'t feel like moving.');
+    scene.actions([
+      { label: 'Say yes', goto: ['misha', 'wallet'] },
+      { label: 'Make an excuse', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/mishasmoke.jpg');
+    scene.text('You shake your head no. "Sorry, I need to get going." He shakes his head a little, but doesn\'t say anything before disappearing into his apartment.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } },
+    ]);
+  } else {
+    if ((Math.floor(Math.random() * 2) + 0) === 0  &&  (((((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 300)  ||  ((s as any).dyadyamishaevent ?? 0) >= 1  ||  ((s as any).PCloStyle2 ?? 0) === 3  ||  ((s as any).PCloStrip ?? 0) === 1)) {
+      scene.text('You have a chat with Uncle Misha as he smokes his cigarette. You can tell he\'s undressing you in his mind, but in a way you find it kind of flattering. As he stubs out his cigarette and puffs away the last bits of smoke, he asks:');
+      // TODO-QSP: dynamic text: "Say, <<$pcs_nickname>>, would you like to make an old man feel good? I could us...
+      scene.text(`"Say, ${((s as any).pcs_nickname ?? 0)}, would you like to make an old man feel good? I could use a quick blowjob… there'll be ${qspFunc(s, 'money', 'string_profit', 100)} in it for you, for your troubles."`);
+      qspCall(s, 'willpower', 'bj', 'resist');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/mishasmoke.jpg');
+    scene.text('"Sorry Uncle Misha, but I can\'t right now. Maybe some other time?" you apologize. He doesn\'t seem to mind at all.');
+    // TODO-QSP: dynamic text: "No problem <<$pcs_nickname>>, I'll hold you to that!" he says as he gives you a...
+    scene.text(`"No problem ${((s as any).pcs_nickname ?? 0)}, I'll hold you to that!" he says as he gives you a lewd grin. "In that case, I'd better get going. I'll talk to you later."`);
+    scene.actions([
+      { label: 'Say goodbye', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } },
         ]);
       }
       scene.actions([
-        { label: 'Take the elevator', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_2'
+        { label: 'Suck him off', goto: ['pod_ezd', 'misha_bj'] },
+      ]);
+    } else {
+      qspCall(s, 'mood', 'raise', 'tiny');
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
+        scene.text('You have a chat with Uncle Misha as he smokes his cigarette. He talks about how his life has been much easier ever since he retired.');
+      } else {
+        scene.text('While Uncle Misha smokes his cigarette, you engage with him in some small talk. When he finishes the cigarette, he apologizes and says he has to go.');
+      }
+      scene.actions([
+        { label: 'Say goodbye', goto: ['pod_ezd', 'etaj_2'] },
+      ]);
+    }
+  }
+  scene.build();
+}
+
+function enterFloor2Event_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
+  scene.text('Some older boys that live in your building are currently sharing a cigarette in the stairwell.');
+  scene.actions([
+    { label: 'Ignore them', goto: ['pod_ezd', 'etaj_2'] },
+    { label: 'Approach them', handler: (st: GameState) => {
+    // TODO-QSP: $smoke_loc = 'etaj_2'
+  }, goto: ['pod_ezd', 'boys_smoke'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor2Event_3(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/passedoutfat.jpg');
+  scene.text('Some fat chick is sitting on the chairs leaned against the railing passed out. You\'ve seen her around before. You think she lives with her boyfriend or maybe husband, you\'re not sure which. They live on the third floor. Apparently, she got too drunk to make it the rest of the way home.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_2'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor2Event_4(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/nakedstairs.jpg');
+  scene.text('You hear someone coming up the stairs. As you turn and look, you see a naked woman walking up the stairs, carrying her clothes in her hands. When she sees you, she blushes and ducks her head down, not meeting your gaze. She continues on up to the next floor, before you hear a door open and close above. You have no idea why she was naked carrying her clothes.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_2'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor2Event_5(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/openrobe.jpg');
+  scene.text('You see a woman standing outside of her open apartment door. She\'s leaning on the stair railing wearing only a robe, which is untied and open, allowing you or anyone else to see her naked body. When she sees you, she smiles. "Hello," she says, as if everything were normal. You say hi back and try not to stare. After a couple more drags off the cigarette, she crushes it out and goes back into her apartment.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_2'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor2Event_6(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev1_1.jpg');
+  scene.text('As you walk around a corner in the stairwell, you\'re suddenly looking straight at a woman\'s bare pussy! She\'s sitting on some stairs and is casually smoking a cigarette. Her partner chats her up, while he has a great look at her naked pussy and her widely spread legs.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'stat', '');
+  qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-        { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
-    qspCall(st, 'pod_ezd', 'leave_building');
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev1_2.jpg');
+    scene.text('The girl notices you, and gives you a cute wink. She keeps talking with her partner and pulls her boobs out of her shirt while spreading her legs even further. You\'re confused… is she doing this for you, or for him?');
+    scene.text('You know you really should not be staring, especially when she knows, but at the same time you can\'t take your eyes off her. After a few minutes, the guy helps her up and they head upstairs, towards one of the apartments there. The girl flashes you a conspiratory smile as her face disappears around the corner.');
+    qspCall(s, 'arousal', 'erotic_nudity', 3);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor3Events(s: GameState, scene: SceneBuilder): void {
+  (s as any).floor3 = Math.floor(Math.random() * 22) + 1;
+  if ((((s as any).floor3 ?? 0) <= 3  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)))) {
+    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_1'] }]);
+  } else {
+    if ((((s as any).floor3 ?? 0) <= 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)) {
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_2'] }]);
+    } else {
+      if ((((s as any).floor3 ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)) {
+        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_3'] }]);
+      } else {
+        if ((((s as any).floor3 ?? 0) <= 11  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)  ||  (((s as any).floor3 ?? 0) <= 5  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)) {
+          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_event_4'] }]);
+        } else {
+          if (((s as any).floor3 ?? 0) > 11  &&  ((s as any).floor3 ?? 0) <= 14  &&  ((s as any).hour ?? 0) >= 15) {
+            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_5'] }]);
+          } else {
+            if (((s as any).floor3 ?? 0) === 17) {
+              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_6'] }]);
+            } else {
+              if (((s as any).floor3 ?? 0) === 18  &&  ((((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20))) {
+                scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_7'] }]);
+              } else {
+                if (((s as any).floor3 ?? 0) === 19  ||  ((s as any).floor3 ?? 0) === 20) {
+                  scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_8'] }]);
+                } else {
+                  if (((s as any).floor3 ?? 0) === 21  ||  ((s as any).floor3 ?? 0) === 22) {
+                    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor3_event_9'] }]);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterGopnikEvent_1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/vassmoke.jpg');
+  scene.text('You see Vasily standing in the stairwell having a smoke.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Ask him for a smoke', goto: ['pod_ezd', 'vasily_smoke'] },
+  ]);
+  scene.build();
+}
+
+function enterGopnikEvent_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/danvas.jpg');
+  scene.text('Vasily and Dan are standing outside Uncle Sergey\'s apartment smoking a cigarette.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Ask them for a smoke', goto: ['pod_ezd', 'smoke_danvas'] },
+  ]);
+  scene.build();
+}
+
+function enterGopnikEvent_3(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/vitdanvas.jpg');
+  scene.text('Vasily, Vitek and Dan are standing outside Uncle Sergey\'s apartment smoking a cigarette.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Ask them for a smoke', goto: ['pod_ezd', 'smoke_vitdanvas'] },
+  ]);
+  scene.build();
+}
+
+function enterGopnikEvent_4(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/lena.jpg');
+  scene.text('Lena is sitting outside Uncle Sergey\'s apartment, drinking.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Talk to Lena', goto: ['pod_ezd', 'lena_chat'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/julia.jpg');
+  scene.text('You run into Julia Milova in the stairwell, just as she\'s stepped out of her apartment.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Stop and chat', goto: ['pod_ezd', 'juliamil'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor3Event_6(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
+  scene.text('Some older boys that live in your building are currently sharing a cigarette in the stairwell.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Approach the boys', handler: (st: GameState) => {
+    // TODO-QSP: $smoke_loc = 'etaj_3'
+  }, goto: ['pod_ezd', 'boys_smoke'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor3Event_7(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev3.jpg');
+  scene.text('As you walk around a corner in the stairwell, you run into Vasily and Dan fucking some random girl dressed in lingerie and a coat. She looks familiar, but you can\'t get a good look at her face to know who it is for sure.');
+  scene.text('You hide for a second and try to see if you can recognize her in some way, but she\'s squeezed between the boys and her face is hidden the whole time.');
+  scene.text('You would\'ve liked to stay a while longer to get a glimpse of her face, but suddenly you hear footsteps behind you on the stairs. You quickly walk away, not wanting to get caught staring.');
+  qspCall(s, 'arousal', 'voyeur_sex', 5);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor3Event_8(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/titsmoke.jpg');
+  scene.text('You see a topless girl wearing a skirt in the stairwell, standing next to an open window smoking a cigarette. She nods and smiles at you, but doesn\'t say anything. You decided to mind your own business.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor3Event_9(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/passedoutf.jpg');
+  scene.text('Laying on the floor is some girl, she seems to be passed out. She reeks of alcohol, she obviously drank way too much and passed out before she could make it back home.');
+  scene.actions([
+    { label: 'Ignore her', goto: ['pod_ezd', 'etaj_3'] },
+    { label: 'Try to wake her up.', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/passedoutsf.jpg');
+    scene.text('You walk over and squat down next to her. You shake her shoulder several times until she finally groggily wakes up, rolling over onto her back and looking at you. She stares for several moments looking fairly confused.');
+    scene.text('"You ok? I found you laying here passed out." You tell her.');
+    scene.text('She looks around a moment then climbs to her feet. "Yeah, thanks." She tells you, then she grabs her purse and stumbles away.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Events(s: GameState, scene: SceneBuilder): void {
+  (s as any).floor4 = Math.floor(Math.random() * 15) + 1;
+  if (((s as any).floor4 ?? 0) === 1) {
+    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_1'] }]);
+  } else {
+    if (((s as any).floor4 ?? 0) < 6) {
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_2'] }]);
+    } else {
+      if (((s as any).floor4 ?? 0) === 6) {
+        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_3'] }]);
+      } else {
+        if (((s as any).floor4 ?? 0) === 7) {
+          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_4'] }]);
+        } else {
+          if (((s as any).floor4 ?? 0) < 10) {
+            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_5'] }]);
+          } else {
+            if (((s as any).floor4 ?? 0) < 12) {
+              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_6'] }]);
+            } else {
+              if (((s as any).floor4 ?? 0) < 14) {
+                scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_7'] }]);
+              } else {
+                scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor4_event_8'] }]);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterFloor4Event_1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/luda/event/ev2.jpg');
+  scene.text('You hear someone coming up the stairs. They sound like they\'re in a hurry. You turn around just in time to see Aunt Luda in the stairwell. She\'s not even wearing any pants or underwear! She can be so slutty sometimes. She\'s on her way back up after "throwing away some garbage", she tells you, adding that she has no time to chat as she rushes past you and into her apartment.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Event_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
+  scene.text('Some older boys that live in your building are currently sharing a cigarette in the stairwell.');
+  scene.actions([
+    { label: 'Continue', goto: ['pod_ezd', 'etaj_4'] },
+    { label: 'Approach the boys', handler: (st: GameState) => {
+    // TODO-QSP: $smoke_loc = 'etaj_4'
+  }, goto: ['pod_ezd', 'boys_smoke'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Event_3(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev4_1.jpg');
+  scene.text('As you walk around a corner in the stairwell, you see Yelena Kotov, a girl from your class. She\'s taking off her panties in front of several guys. If her brother Vitek could see this, he\'d probably be beating the crap out of them right now. He\'s extremely protective of his sister.');
+  qspCall(s, 'arousal', 'erotic', 3);
+  qspCall(s, 'arousal', 'end');
+  qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Hide and watch them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Hide and watch them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+  }, goto: ['pod_ezd', 'lena_show'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Event_4(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/opendoor.jpg');
+  scene.text('You glance down the stairs and see that the apartment at the bottom has its door open. You can see inside the apartment, all the way to the bathroom, which also has its door wide open. Apparently, the girl inside didn\'t notice or maybe she did it on purpose; she stands there naked applying facial cream to her face in the mirror.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Event_5(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/flashp\' + rand(1, 5) + \'.jpg');
+  scene.text('As you walk around a corner in the stairwell, you see some girl hanging out with the boys that smoke. They are encouraging her to lift her dress and show them her pussy. After a bit, she finally relents and lifts her dress showing off her pussy. This only seems to encourage them as they crowd her a bit and encourage her to get naked. When you catch one of them boys looking at you, you decide it is best to be on your way.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Event_6(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/flasht.jpg');
+  scene.text('As you walk around a corner in the stairwell, you see some girl hanging out with the boys that smoke. They are encouraging her to show her tits. After a bit, she finally relents and pulls down her top, exposing her tits. This only seems to encourage them as they crowd her a bit and encourage her to get naked. When you catch one of them boys looking at you, you decide it is best to be on your way.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Event_7(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/nakeddoor.jpg');
+  scene.text('You hear some knocking and a girl\'s voice. "Open up, come on please let me in before someone comes along." As you round the corner you see a naked girl standing at a door, frantically twisting and pulling on the doorknob. When she finally notices you, she blushes and you hear her say to whoever is in the apartment, "There is some girl here watching me, let me in!" When there is no reply she turns to face you. "My boyfriend is just being an asshole." Before you can reply, the door opens behind her and she quickly darts inside. You see some guy just inside laughing before the door closes.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor4Event_8(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/passedoutm.jpg');
+  scene.text('You run across a naked passed out fat guy on the stairs. You recognize he lives in the building with his wife and realize you\'ve never seen him sober. You have heard when he gets too drunk and passes out, his wife strips him and drags him out into the hall to teach him a lesson, but it doesn\'t appear he has learned the lesson yet. A couple of kids, who you think are from your brother\'s class, are around him laughing and taking pictures.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor5Events(s: GameState, scene: SceneBuilder): void {
+  (s as any).floor5 = Math.floor(Math.random() * 7) + 1;
+  if (((s as any).floor5 ?? 0) === 1) {
+    scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_1'] }]);
+  } else {
+    if (((s as any).floor5 ?? 0) === 2) {
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_2'] }]);
+    } else {
+      if (((s as any).floor5 ?? 0) === 3) {
+        scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_3'] }]);
+      } else {
+        if (((s as any).floor5 ?? 0) === 4) {
+          scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_4'] }]);
+        } else {
+          if (((s as any).floor5 ?? 0) < 7  &&  ((((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 11  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 20))) {
+            scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_5'] }]);
+          } else {
+            if (((s as any).floor5 ?? 0) === 7) {
+              scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'floor5_event_6'] }]);
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterFloor5Event_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev4_1.jpg');
+  scene.text('When you walk up the stairs to the fifth floor, you see an unfamiliar girl showing off her boobs to two guys. One of them is holding a camera. You\'re fairly sure you have never seen any of them before.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+  }, goto: ['pod_ezd', 'home_movie1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor5Event_2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev3_1.jpg');
+  scene.text('When you walk up the stairs to the fifth floor, you see a girl giving two guys an enthusiastic blowjob at the same time. One of the guys is filming everything with his camera.');
+  qspCall(s, 'arousal', 'voyeur_sex', 3);
+  qspCall(s, 'stat', '');
+  qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+  }, goto: ['pod_ezd', 'home_movie2'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor5Event_3(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_1.jpg');
+  scene.text('When you walk up the stairs to the fifth floor, you see a guy and a girl having sex. Currently, the girl is giving him an enthusiastic blowjob while a second guy films everything with his camera.');
+  qspCall(s, 'arousal', 'voyeur_sex', 3);
+  qspCall(s, 'stat', '');
+  qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+  }, goto: ['pod_ezd', 'home_movie3'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor5Event_4(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_1.jpg');
+  scene.text('When you walk up the stairs to the fifth floor, you see a guy and a girl having sex. Currently, the girl is giving him an enthusiastic blowjob while a second guy films everything with his camera.');
+  qspCall(s, 'arousal', 'voyeur_sex', 3);
+  qspCall(s, 'stat', '');
+  qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Hide and keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+  }, goto: ['pod_ezd', 'home_movie4'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+  ]);
+  scene.build();
+}
+
+function enterFloor5Event_5(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+  scene.text('When you walk up the stairs to the fifth floor, you see Vitek, Dan, Vasily, Lena, Lera, along with a few older gopniks you don\'t know, hanging out. They are smoking, drinking and laughing.');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    { label: 'Join them', handler: (st: GameState) => {
+    if ((Math.floor(Math.random() * 3) + 0) === 2) {
+      // TODO-QSP: gt 'pod_ezd', 'gopnik_events', rand(1, 4)
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'gopnik_group_chat'] }]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterFloor5Event_6(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/passedoutsf.jpg');
+  scene.text('When you walk up the stairs to the fifth floor, you see a girl laying on the ground passed out. She reeks of alcohol and her pants are only half on, leaving most of her bare ass exposed. Her purse and panties are lying nearby. By the looks of it, it seems someone started to put her pants back on her, but never finished the job and just left her there.');
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Ignore her', goto: ['pod_ezd', 'etaj_5'] },
+    { label: 'Try to wake her up.', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/passedoutsf.jpg');
+    scene.text('You walk over and squat down next to her. You shake her shoulder several times until she finally groggily wakes up, rolling over onto her back and looking at you. She stares at you for several moments looking fairly confused.');
+    scene.text('"You ok? I found you laying here passed out." You tell her.');
+    scene.text('She looks around a moment then climbs to her feet. "Yeah, thanks," she tells you as she pulls her pants up, then grabs her purse and panties and stumbles away.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'boyStat', 'A<<rand(122,126)>>', 1);
+  // TODO-QSP: :ssboyloop
+  qspCall(s, 'boyStat', 'A<<rand(122,126)>>', 2);
+  if (((s as any).boy ?? 0)[1] === ((s as any).boy ?? 0)[2]) {
+    // TODO-QSP: jump 'ssboyloop'
+  }
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
+  scene.text('The guys greet you, having seen you around before, and offer you a cigarette.');
+  scene.actions([
+    { label: 'Decline and leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+    { label: 'Take the cigarette', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'drugs', 'smoke', 'borrowed');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
+    if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      scene.text('You gladly accept and spend the next five minutes smoking a cigarette with them, talking about trivial things.');
+      scene.actions([
+        { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+      ]);
+    } else {
+      if (((s as any).fame ?? 0)?.['pav_sex'] < ((s as any).fame ?? 0)?.['pav_prostitute']) {
+        // TODO-QSP: dynamic text: As you smoke the cigarette, you hear the boys whisper among themselves. "That's ...
+        scene.text(`As you smoke the cigarette, you hear the boys whisper among themselves. "That's ${((s as any).pcs_nickname ?? 0)}! I heard she's a '+func('gopsex', 'hide', 'gg_whore_text')+'. From what I've been told, she'll let you do anything to her if the price is right. Let's see if she'll fuck us cheap!."`);
+        // TODO-QSP: dynamic text: One of the guys walks close to you and gestures for you to lean your head closer...
+        scene.text(`One of the guys walks close to you and gestures for you to lean your head closer to his. When you do, he pulls all of his money out of his pocket. He counts the crumpled bills and offers them to you, asking, "Is ${qspFunc(s, 'money', 'string_profit', ((s as any).rnd_money_sex ?? 0))} enough for two?"`);
+        scene.text('He never mentions what exactly he wants you to do for him and his friend, but their lecherous and lustful eyes keep roaming all over your body.');
+        qspCall(s, 'willpower', 'prostitution', 'resist');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Refuse and get away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Refuse and get away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Accept and fuck them', handler: (st: GameState) => {
+    qspCall(s, 'money', 'earn', ((s as any).rnd_money_sex ?? 0));
+    qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 7) + 3);
+  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+        ]);
+      } else {
+        qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+        // TODO-QSP: dynamic text: As you smoke the cigarette, you hear the boys whisper among themselves: "That's ...
+        scene.text(`As you smoke the cigarette, you hear the boys whisper among themselves: "That's ${((s as any).pcs_nickname ?? 0)}. I heard she's a total fleshlight-wannabe. I bet she would start drooling and sucking us if we unzip and show her our dicks!"`);
+        qspCall(s, 'willpower', 'gangbang', 'resist');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Get angry and tell them off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Get angry and tell them off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/megera.jpg');
+    scene.text('Tired of always having to defend yourself, you take all your anger out on the guys. "Are you kidding me!? Did all the blood drain from your brains and into your cocks or something?"');
+    scene.text('"If I start screaming right now, and accuse you of rape, everyone in the entire housing block will come to see what is happening. Who do you think they\'re going to believe, me or you?"');
+    scene.text('The guys realize they overplayed their hand, and the guy with his pants down quickly pulls them back up. "Okay okay, we\'re sorry! We were just messing around!" they say, and quickly walk away before you can get another word in.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+    ]);
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Leave before they get any ideas', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+          { label: 'Keep smoking', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 2);
+  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+        ]);
+      }
+    }
+  } },
+    { label: 'Just chat with them', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/smokeboys.jpg');
+    scene.text('You decline, but you stay for a while talking about trivial things.');
+    if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+      scene.actions([
+        { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+      ]);
+    } else {
+      if (((s as any).fame ?? 0)?.['pav_sex'] < ((s as any).fame ?? 0)?.['pav_prostitute']) {
+        qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+        // TODO-QSP: dynamic text: You hear the boys trying to whisper among themselves. "That's <<$pcs_nickname>>!...
+        scene.text(`You hear the boys trying to whisper among themselves. "That's ${((s as any).pcs_nickname ?? 0)}! I heard she's a '+func('gopsex', 'hide', 'gg_whore_text')+'. Rumor says she'll let you do anything to her for rubles, I want to see if she'll fuck us cheap!"`);
+        // TODO-QSP: dynamic text: One of the guys walks closer to you and gestures for you to do the same. When yo...
+        scene.text(`One of the guys walks closer to you and gestures for you to do the same. When you do, he pulls all of his money out of his pocket. He counts the bills and offers them to you, asking somewhat excitedly: "Is ${qspFunc(s, 'money', 'string_profit', ((s as any).rnd_money_sex ?? 0))} enough for two?"`);
+        scene.text('He never mentions what exactly he wants you to do for him and his friend, but their lecherous and lustful gaze make you shudder.');
+        qspCall(s, 'willpower', 'prostitution', 'resist');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Refuse and get away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Refuse and get away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Accept and fuck them', handler: (st: GameState) => {
+    qspCall(s, 'money', 'earn', ((s as any).rnd_money_sex ?? 0));
+    qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 7) + 3);
+    (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+        ]);
+      } else {
+        qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+        // TODO-QSP: dynamic text: You hear the boys whisper among themselves. "That's <<$pcs_nickname>>. I heard s...
+        scene.text(`You hear the boys whisper among themselves. "That's ${((s as any).pcs_nickname ?? 0)}. I heard she's a wanton slut that lives only for pleasing cocks. I bet she would start drooling and sucking if we just show her our dicks!"`);
+        qspCall(s, 'willpower', 'gangbang', 'resist');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Get angry and tell them off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Get angry and tell them off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/megera.jpg');
+    scene.text('Tired of always having to defend yourself, you take all your anger out on the guys: "Are you kidding me!? Did all the blood drain away from your brains and into your cocks or something?"');
+    scene.text('"If I start screaming right now, and accuse you of rape, everyone in the entire housing block will come to see what is happening. Who do you think they\'re going to believe, me or you?"');
+    scene.text('The guys realize they overplayed their hand, and the guy with his pants down quickly pulls them back up. "Okay okay, we\'re sorry! We were just messing around!" they say, and quickly walk away before you can get another word in.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', $smoke_loc
+  } },
+    ]);
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Do as they say', handler: (st: GameState) => {
+    qspCall(st, 'fame', 'pav', 'sex', Math.floor(Math.random() * 7) + 3);
+  }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
+        ]);
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMishaBj(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'money', 'earn', 100);
+  qspCall(s, 'fame', 'pav', 'prostitute', 1);
+  qspCall(s, 'boyStat', 'A54');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/misha/sex/otsos_misha.jpg');
+  // TODO-QSP: dynamic text: You give him a quick nod and take a seat on the steps. As he approaches you, he ...
+  scene.text(`You give him a quick nod and take a seat on the steps. As he approaches you, he pulls his erect ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick out through his opened zipper. You wrap your lips around the head of his cock and tease it with your tongue, putting your fingers around his shaft and beginning to gently stroke him while you suck. He doesn't last long at all, and within a few minutes, he spurts his load onto your tongue. You swallow it down and show him your open mouth, lifting your tongue and moving it to the sides to prove you swallowed it. "Well worth it. That was great, ${((s as any).pcs_nickname ?? 0)}", he says while he hands you the money as promised. Then he excuses himself and turns to leave, saying. "Sorry girl, but I got things to do."`);
+  qspCall(s, 'arousal', 'bj', 5, 'prostitution', 'exhibitionism');
+  qspCall(s, 'cum_call', 'mouth', 'A54');
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Say goodbye', goto: ['pod_ezd', 'etaj_2'] },
+  ]);
+  scene.build();
+}
+
+function enterJuliamil(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A12');
+  qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big12.jpg');
+  scene.text('Having some time to spare, you stop and chat with her. The two of you stop and sit down to have a quick chat for a few minutes, catching up on the latest events.');
+  if (((s as any).juliaQW ?? 0)?.['JulMilBestFrend'] >= 15) {
+    (s as any).juliamil_rnd = Math.floor(Math.random() * 3) + 1;
+    if (((s as any).juliamil_rnd ?? 0) === 1) {
+      scene.text('Julia tells you an interesting story of what happened to her the other day.');
+    }
+    if (((s as any).juliamil_rnd ?? 0) === 2) {
+      scene.text('Julia tells you some random nonsense story. You enjoy her company, despite the story not being all that interesting.');
+    }
+    if (((s as any).juliamil_rnd ?? 0) === 3) {
+      scene.text('While you chat, you notice Julia keeps looking at you strangely, and then looking away with an embarrassed look on her face.');
+      scene.actions([
+        { label: 'Ask her what\'s wrong', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia1.jpg');
+    // TODO-QSP: dynamic text: Julia says nothing, but quickly kisses your <<$pc_desc['lips']>> lips when you l...
+    scene.text(`Julia says nothing, but quickly kisses your ${((s as any).pc_desc ?? 0)?.['lips']} lips when you least expect it. She's actually a pretty good kisser. You also notice a dildo poking out of her bag.`);
+    qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Julia please, leave me alone', goto: ['pod_ezd', 'etaj_3'] },
+      { label: 'Kiss her back and show her your boobs', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia2.jpg');
+    // TODO-QSP: dynamic text: You return her kiss, which makes her grow bolder and kiss you more enthusiastica...
+    scene.text(`You return her kiss, which makes her grow bolder and kiss you more enthusiastically. After an intense make-out session, she pulls her shirt down revealing her modest boobs. As you mimic her, she pulls you in for another deep kiss. Then she whispers in your ear: "${((s as any).pcs_nickname ?? 0)}, I need you please, lick my pussy!"`);
+    qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'cuni', 'force');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Make her lick you instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Make her lick you instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia5.jpg');
+    scene.text('You expose your pussy and gently rub a finger over your clit, telling her. "No, you\'re going to lick me first."');
+    // TODO-QSP: dynamic text: "No <<$pcs_nickname>>, please lick me, I'm begging you!"
+    scene.text(`"No ${((s as any).pcs_nickname ?? 0)}, please lick me, I'm begging you!"`);
+    scene.text('You lay back and spread you legs. "Do as I say." You tell her and pull her head into your crotch, once there she starts to eagerly lick at your pussy.');
+    qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Return the favor', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia4.jpg');
+    scene.text('She really seems to want this. You push Julia back against the wall and drop to your knees, teasingly running your tongue over her inner thighs and vulva, always staying just a tiny bit off your mark. It definitely has an effect on her; in no time, she\'s begging and moaning. You decide you\'ve teased Julia enough and lick her wet pussy, paying extra attention to her clit.');
+    qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Use the dildo on her', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia9.jpg');
+    scene.text('When you notice her pussy is getting soaked, you pull away from her. She opens her mouth to complain, but closes it again when she sees you were just grabbing the dildo and closes her eyes.');
+    scene.text('Her juices have lubricated her pussy quite well, and you have no difficulty working the dildo all the way in. Fucking her pussy with it in a teasingly slow fashion, you stop moving it for a few seconds every time she begs or complains. Her pussy is so slick now, the juices are beginning to cover your fingers as they run down the dildo. She starts bucking against your hand holding the dildo, trying her best to stifle her moans and stay upright as her orgasm hits her hard.');
+    // TODO-QSP: dynamic text: After a few seconds she looks into your eyes and whispers: "Wow, <<$pcs_nickname...
+    scene.text(`After a few seconds she looks into your eyes and whispers: "Wow, ${((s as any).pcs_nickname ?? 0)}, that was amazing! I don't think I've ever orgasmed that hard before."`);
+    // TODO-QSP: dynamic text: Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry <<$pcs_nic...
+    scene.text(`Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry ${((s as any).pcs_nickname ?? 0)}, I'll make it up to you! I promise! Maybe come visit me later at my place? If you bring some wine we could finish our homework quickly, and then have a good time?" she says with a wink.`);
+    scene.text('Without waiting for a response, Julia quickly gathers her belongings and runs off. Despite not getting off yourself, that was a lot of fun.');
+    qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Straighten your clothes and gather your things', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
   } },
       ]);
     }
     scene.actions([
+      { label: 'Lick her', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia4.jpg');
+    scene.text('She really seems to want this. You push Julia back against the wall and drop to your knees, teasingly running your tongue over her inner thighs and vulva, always staying just a tiny bit off your mark. It definitely has an effect on her; in no time, she\'s begging and moaning. You decide you\'ve teased Julia enough and lick her wet pussy, paying extra attention to her clit.');
+    qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Use the dildo on her', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia6.jpg');
+    scene.text('When you notice her pussy is getting soaked, you pull away from her. She opens her mouth to complain, but closes it again when she sees you were just grabbing the dildo, and closes her eyes.');
+    scene.text('Her juices have lubricated her pussy quite well, and you have no difficulty working the dildo all the way in. Fucking her pussy with it in a teasingly slow fashion, you stop moving it for a few seconds every time she begs or complains. Her pussy is so slick now, the juices are beginning to cover your fingers as they run down the dildo.');
+    qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia7.jpg');
+    // TODO-QSP: dynamic text: Julia feels like she has completely lost control of the situation, begging and p...
+    scene.text(`Julia feels like she has completely lost control of the situation, begging and pleading whenever she talks now. "${((s as any).pcs_nickname ?? 0)}, please lick my ass! It would feel so good, please!" You decide to enjoy your power trip a little more, and tell her, "Right after you suck your juices off this dildo and my fingers." Julia happily complies, lapping and sucking her own juices off your fingers and the dildo.`);
+    qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lick her butthole', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia8.jpg');
+    scene.text('Well fair\'s fair, she earned it. You turn her around and put your hands on her ass cheeks and pull them apart as you gently lick her asshole. Just when you were getting ready to really dig in, she is already bucking against your face, trying her best to stifle her moans and stay upright as her orgasm hits her hard.');
+    // TODO-QSP: dynamic text: After a few seconds she looks into your eyes and whispers: "Wow, <<$pcs_nickname...
+    scene.text(`After a few seconds she looks into your eyes and whispers: "Wow, ${((s as any).pcs_nickname ?? 0)}, that was amazing! I don't think I've ever orgasmed that hard before."`);
+    // TODO-QSP: dynamic text: Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry <<$pcs_nic...
+    scene.text(`Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry ${((s as any).pcs_nickname ?? 0)}, I'll make it up to you! I promise! Maybe come visit me later at my place? If you bring some wine we could finish our homework quickly, and then have a good time?" she says with a wink.`);
+    scene.text('Without waiting for a response, Julia quickly gathers her belongings and runs off. Despite not getting off yourself, that was a lot of fun.');
+    qspCall(s, 'arousal', 'rimming_give', 2, 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Straighten your clothes and gather your things', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+  ]);
+  scene.build();
+}
+
+function enterVasilySmoke(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/smoke5.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'drugs', 'smoke', 'borrowed');
+    scene.text('You see Vasily standing in the stairwell, smoking a cigarette. You approach him and ask: "Hi Shulga, do you have a cigarette for me? I could really use a smoke right now."');
+    scene.text('He nods and offers you one. You happily take it and light it up.');
+    scene.actions([
+      { label: 'Have a chat while you smoke', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/vasya/vasya.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. When it\'s gone, you thank him for the cigarette and turn to leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+    ]);
+  } else {
+    scene.text('You see Vasily standing in the stairwell, smoking a cigarette. You approach him and ask: "Hi Shulga, do you have a cigarette for me? I could really use a smoke right now."');
+    // TODO-QSP: dynamic text: Vasily shakes his head, but gives you a horny grin: "Sorry <<$pcs_nickname>>, I'...
+    scene.text(`Vasily shakes his head, but gives you a horny grin: "Sorry ${((s as any).pcs_nickname ?? 0)}, I'm just finishing my last one. I do have something else you can put your lips around though…"`);
+    scene.text('He idly runs his hand over his groin, and you can see the outline of his hard cock through the fabric of his pants quite clearly.');
+    scene.text('You look at him with some doubt. "I don\'t know Shulga, people might see."');
+    // TODO-QSP: dynamic text: He reassures you, "Don't worry <<$pcs_nickname>>, you'll be fine. I'll keep an e...
+    scene.text(`He reassures you, "Don't worry ${((s as any).pcs_nickname ?? 0)}, you'll be fine. I'll keep an eye out, and there's no one here now, right? Just take it in your mouth. I know you're good at it, you can finish me off quickly."`);
+    qspCall(s, 'willpower', 'bj', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Refuse giving him a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Refuse giving him a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      scene.text('You adamantly shake your head: "Sorry Shulga, but it\'s not gonna happen. Just give me a cigarette please."');
+      scene.text('He takes a long drag off the cigarette then crushes it out on the railing. "Buy your own cigarettes, slut!" With that, he walks back into his apartment.');
+      scene.actions([
+        { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+      ]);
+    } else {
+      scene.text('You adamantly shake your head: "Sorry Shulga, but it\'s not gonna happen. Just give me a cigarette please."');
+      scene.text('He sighs dramatically and then pulls a pack out of his pocket and hands you one. You happily take it and light it up.');
+      scene.actions([
+        { label: 'Have a chat while you smoke', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
+    qspCall(s, 'drugs', 'smoke', 'borrowed');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/vasya/vasya.jpg');
+    scene.text('Vasily, also known as Shulga, is usually seen together with his friends Dan and Vitek. Vitek often makes jokes at his expense, but they\'re very good friends nevertheless.');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. When it\'s gone, you thank him for the cigarette and turn to leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Suck him off quickly', goto: ['pod_ezd', 'vasily_smoke_bj'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterVasilySmokeBj(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A11');
+  scene.img('images/characters/pavlovsk/school/boy/vasya/sex/stairs/otsos\'+rand(1, 2)+\'.jpg');
+  // TODO-QSP: dynamic text: You sigh, and squat before <<$boydesc>>. While you take his <<dick>>cm <<$dick_g...
+  scene.text(`You sigh, and squat before ${((s as any).boydesc ?? 0)}. While you take his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock out of his pants you say, "Okay Shulga, if it's quick. Just promise you'll tell me if you see or hear anyone, okay?" He nods his head in understanding.`);
+  // TODO-QSP: dynamic text: You know you have to be quick about this, so you take his <<dick>>cm <<$dick_gir...
+  scene.text(`You know you have to be quick about this, so you take his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock in your mouth without a second thought. Using all the tricks you know, you massage his balls and stroke his shaft with your delicate fingers while you suck and lick the head of his dick. He reaches his orgasm very quickly, shooting his load in your mouth.`);
+  scene.text('You quickly swallow his semen and tuck his dick back into his pants after you lick it clean. You look at Vasily as you get back up and ask him, "There, satisfied?"');
+  // TODO-QSP: dynamic text: He nods with a blissful look on his face: "Thanks <<$pcs_nickname>>, that felt g...
+  scene.text(`He nods with a blissful look on his face: "Thanks ${((s as any).pcs_nickname ?? 0)}, that felt great. You're a really good friend. I need to get going though, I'll see you around."`);
+  qspCall(s, 'arousal', 'bj', 5);
+  qspCall(s, 'cum_call', 'mouth', 'A11');
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+  ]);
+  scene.build();
+}
+
+function enterSmokeDanvas(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'drugs', 'smoke', 'borrowed');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/smoke4.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
+    scene.text('You see Vasily and Dan standing in the stairwell, smoking a cigarette. You approach them and ask: "Hi guys, do you have a cigarette for me? I could really use a smoke right now."');
+    scene.text('Vasily nods and offers you one. You happily take it and light it up.');
+    scene.actions([
+      { label: 'Chat with Vasily', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/vasya/vasya.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. When it\'s gone, you thank him for the cigarette and turn to leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+      { label: 'Chat with Dan', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/dan/dan.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. Sometimes you get the feeling he\'s mocking you, but he\'s never impolite in a direct manner, so you let it slide.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+    ]);
+  } else {
+    scene.text('You see Dan and Vasily standing in the stairwell, smoking a cigarette. You approach them and ask: "Hi Shulga, do you have a cigarette for me? I could really use a smoke right now."');
+    // TODO-QSP: dynamic text: Dan snorts and Vasily shakes his head, but gives you a horny grin: "Sorry <<$pcs...
+    scene.text(`Dan snorts and Vasily shakes his head, but gives you a horny grin: "Sorry ${((s as any).pcs_nickname ?? 0)}, I'm just finishing my last one. I do have something else you can put your lips around though…"`);
+    scene.text('He idly runs his hand over his groin, and you can see the outline of his hard cock through the fabric of his pants quite clearly.');
+    scene.text('You look at him with some doubt: "I don\'t know Shulga, people might see."');
+    // TODO-QSP: dynamic text: He reassures you: "Don't worry <<$pcs_nickname>>, you'll be fine. We'll keep an ...
+    scene.text(`He reassures you: "Don't worry ${((s as any).pcs_nickname ?? 0)}, you'll be fine. We'll keep an eye out, and there's no one here now, right? Just take it in your mouth. I know you're good at it, you can finish me off quickly."`);
+    qspCall(s, 'willpower', 'bj', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Refuse giving him a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Refuse giving him a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      scene.text('You adamantly shake your head. "Sorry Shulga, but it\'s not gonna happen. Just give me a cigarette please."');
+      scene.text('He takes a long drag off the cigarette, then crushes it out on the railing. "Buy your own cigarettes, slut!" Dan laughs at that and then they both walk into his apartment.');
+      scene.actions([
+        { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+      ]);
+    } else {
+      scene.text('You adamantly shake your head. "Sorry Shulga, but it\'s not gonna happen. Just give me a cigarette please."');
+      scene.text('He sighs dramatically and then pulls a pack out of his pocket and hands you one. You happily take it and light it up.');
+      scene.actions([
+        { label: 'Chat with Vasily', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/vasya/vasya.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. When it\'s gone, you thank him for the cigarette and turn to leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+        { label: 'Chat with Dan', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/dan/dan.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. Sometimes you get the feeling he\'s mocking you, but he\'s never impolite in a direct manner, so you let it slide.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Suck him off quickly', goto: ['pod_ezd', 'danvas_smoke_bj'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterDanvasSmokeBj(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
+  qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
+  qspCall(s, 'fame', 'pav', 'sex', 2);
+  qspCall(s, 'npcStat', 'A11');
+  qspCall(s, 'npcStat', 'A10', 'a');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/danvas1.jpg');
+  // TODO-QSP: dynamic text: You sigh, and squat between Dan and Vasily. While you take Vasily's <<dick_lengt...
+  scene.text(`You sigh, and squat between Dan and Vasily. While you take Vasily's ${((s as any).dick_length ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock out of his pants you say, "Okay Shulga, if it's quick. Just promise you'll tell me if you see or hear anyone, okay?" He nods his head in understanding.`);
+  // TODO-QSP: dynamic text: You know you have to be quick about this, so take his <<dick_length>>cm <<$dick_...
+  scene.text(`You know you have to be quick about this, so take his ${((s as any).dick_length ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock in your mouth without a second thought. Using all the tricks you know, you massage his balls and stroke his shaft with your delicate fingers while you suck and lick the head of his dick. Then Dan pulls his dick out and takes ahold of your hand and places it on his dick, so you start stroking it while sucking off Vasily.`);
+  qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'group');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Suck Dan too', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/danvas2.jpg');
+    // TODO-QSP: dynamic text: You switch your attention to Dan and take his <<dick_length1>>cm <<$dick_girth1>...
+    scene.text(`You switch your attention to Dan and take his ${((s as any).dick_length1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} cock in your mouth in your mouth and start sucking it, while you keep stroking Vasily's dick with your hand. The both start moaning loudly as you suck their dicks.`);
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group');
+    qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck both of them', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/danvas3.jpg');
+    scene.text('You can tell they are both starting to get close, so you start quickly switching between sucking one and jerking the other, then back again. You hear Vasily mutter, "I\'m about to cum."');
+    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID1 ?? 0), 'group');
+    qspCall(s, 'arousal', 'hj', (-2), ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'arousal', 'hj', (-3), ((s as any).npcID1 ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Take their cum', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/danvas4.jpg');
+    // TODO-QSP: dynamic text: You open your mouth and start jerking both of them, Vasily is the first one to s...
+    scene.text(`You open your mouth and start jerking both of them, Vasily is the first one to shoot his load all over your face with some of it going into your mouth. Just a few seconds later, Dan starts cumming on your face and in your mouth as well. Once you've milked the last of their cum out of their cocks, you stand up and start to reach into your purse to get something to clean their cum off your face. As you do Vasily grabs you hand and stops you. "Leave the cum on your face, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text('You give him a curious look. "Why?" You ask.');
+    scene.text('Dan answers, "Because it is fucking hot as hell to see a girl covered in your cum."');
+    qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'group');
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1);
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'willpower', 'humiliation', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Clean your face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Clean your face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'cum_cleanup', 'external');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/vassmoke.jpg');
+    scene.text('You clean their cum off your face, while they put their dicks away and button up their pants. You chat with them for a bit more, before they tell you they need to get going and go into Vasily\'s apartment.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Wear their cum', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 2);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/cumface.jpg');
+    scene.text('You leave their cum on your face, which they seem to really enjoy. They put their dicks away and button up their pants. You chat with them for a bit more, with their cum dripping down your face, before they tell you they need to get going and go into Vasily\'s apartment.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSmokeVitdanvas(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'drugs', 'smoke', 'borrowed');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/vitdanvas.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] >= 300) {
+    scene.text('When you walk over, before you can even say a word they give you a look of disgust and Vitek says. "Get lost slut, or we\'ll give you to some really rough guys to pull a train on you." Not wanting to test if he is serious, you quickly move on.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } else {
+    scene.text('You see Vitek, Vasily and Dan standing in the stairwell, smoking a cigarette. You approach them and ask: "Hi guys, do you have a cigarette for me? I could really use a smoke right now."');
+    scene.text('Vasily nods and offers you one. You happily take it and light it up.');
+    scene.actions([
+      { label: 'Chat with Vitek', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/vitek/vitek.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. When it\'s gone, you thank him for the cigarette and turn to leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+      { label: 'Chat with Vasily', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/vasya/vasya.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. When it\'s gone, you thank him for the cigarette and turn to leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+      { label: 'Chat with Dan', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/dan/dan.jpg');
+    scene.text('You spend the next five minutes smoking a cigarette with him, talking about trivial things. Sometimes you get the feeling he\'s mocking you, but he\'s never impolite in a direct manner, so you let it slide.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterLenaChat(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/lena.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+    scene.text('As you walk over she gives you a look of pure disgust. "Get the fuck away from me you filthy whore." Knowing it won\'t do any good to try and talk to her, you walk away.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } else {
+    scene.text('You take a seat next to Lena. "Hey what are you doing?" You ask her.');
+    scene.text('She takes a drink. "Trying to find my fucking brother, he isn\'t answering his phone and I thought he would be over here at Shulga\'s place, but his dad says they aren\'t here, so… I\'m waiting to see if they show up," she tells you.');
+    scene.text('"Anything wrong?" You ask.');
+    scene.text('She gives you a look but what ever it is, she doesn\'t seem to want to talk about it. "No, I just need to talk to him."');
+    scene.actions([
+      { label: 'Chat with Lena', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'npc_relationship', 'modify', 'A20', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/lena.jpg');
+    scene.text('You spend the next five minutes talking to her as she smokes a cigarette and drinks. It\'s mostly trivial things you talk about, and once she finishes her cigarette, she drops the butt on the ground and stands up. "Fuck it! I\'m tired of waiting for him. Anyways, I need to get going." And with that, she walks down the stairs.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterGopnikGroupChat(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+  if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+    scene.text('As you walk over several of them give you a look of pure disgust. "Get the fuck away from me, you filthy whore," one of them says. Then Dan adds, "Unless you want to be our entertainment." This gets a harsh cruel laugh from the rest. Knowing it won\'t do any good to try and talk to them, and could lead to a gang rape or worse, you walk away.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } else {
+    if (((s as any).grupTipe ?? 0) !== 4) {
+      scene.text('"Hey guys, what are you doing?" You greet the group as you approach.');
+      scene.text('One of the older guys looks at you and then the rest. "Who the fuck is this bitch?"');
+      // TODO-QSP: dynamic text: Vasily answers before you can. "She is just some girl we go to school with." Wit...
+      scene.text(`Vasily answers before you can. "She is just some girl we go to school with." With that he gets up and walks over to you and leads you back to the stairs. "You should get going ${((s as any).pcs_nickname ?? 0)}, this is no place for you." With that he prods you to go down the stairs.`);
+      scene.actions([
+        { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+      ]);
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A21'] >= 50) {
+        scene.text('You take a seat next to Lena and Lera. "Hey guys, what\'s up?" You ask them.');
+        scene.text('Lera leans over and kisses you on the lips. "Just hanging out and having fun." She slurs; obviously she is pretty drunk already. Her breath smells like a distillery.');
+        // TODO-QSP: dynamic text: Vasily offers you one of the beers. "Here <<$pcs_nickname>>."
+        scene.text(`Vasily offers you one of the beers. "Here ${((s as any).pcs_nickname ?? 0)}."`);
+      } else {
+        scene.text('You take a seat next to Lena and Lera. "Hey guys, what\'s up?" You ask them.');
+        scene.text('Lera says. "Just hanging out and having fun." She slurs; obviously she is pretty drunk already. Her breath smells like a distillery.');
+        // TODO-QSP: dynamic text: Vasily offers you one of the beers. "Here <<$pcs_nickname>>."
+        scene.text(`Vasily offers you one of the beers. "Here ${((s as any).pcs_nickname ?? 0)}."`);
+      }
+      qspCall(s, 'willpower', 'drink', 'resist');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Decline the beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Decline the beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+    scene.text('You shake your head no. "No thanks, I just wanted to chat."');
+    scene.text('Dan snatches the beer out of Vasily\'s hand. "Fine by us, pussy, means more beer for me." This gets a laugh from the rest. Everyone drinks, smokes and talks. You engage in the talk a bit, but you get the feeling of being partially ignored as they rarely respond to you much and mostly just ignore that you are there.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Take the beer', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(s, 'drugs', 'alcohol', 'beer');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+    scene.text('You take the offered beer and take a swig of it. Soon you are all engaged in a variety of conversations, just hanging out and having fun. Many of them tell jokes or share funny stories that they\'ve experienced.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Take another beer', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'drugs', 'alcohol', 'beer');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+    scene.text('You grab another beer and take a swig of it. You share one of your stories about your little brother: A few years ago at your grandparents\', he fell face first into some mud. Every time he tried to get back up, he just fell down again, until he was wallowing in the mud trying to get up. All of them burst out laughing at that.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Take another beer', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'drugs', 'alcohol', 'beer');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+    scene.text('You grab another beer and take a swig of it. You listen to each of them share various stories of their own, or talk about some things they want to do over the weekend.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Take another beer', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'drugs', 'alcohol', 'beer');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+    scene.text('You grab another beer and take a swig of it. You share one of your stories about your sister: About how, a couple of years ago, your family went to the lake. Your sister disappeared for a couple of hours and when it was time to leave, she had not returned. So the whole family went looking for her. You went with your mother and the two of you found Anya skinny dipping in a secluded area of the beach. When you got home, your mother spanked your sister so hard, she couldn\'t sit down the rest of the day.');
+    scene.text('Several laugh at that, a few of them comment your sister is hot, and one of the older guys says he fucked her one time when she was drunk at Rex\'s party.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Take another beer', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'drugs', 'alcohol', 'beer');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
+    scene.text('You grab another beer and take a swig of it. Things seem to be winding down, several people are pretty drunk and not talking much anymore. A couple of the boys are trying to chat up the girls. Then, one of the guys starts hitting on Lena and Vitek jumps up and grabs him. Soon they are struggling before they are pulled apart. Vitek yells, "Stay the fuck away from my sister!"');
+    scene.text('The other guy holds up his hands. "Hey, I was just talking to her!"');
+    scene.text('Lena gets up pissed off and shoves Vitek. "Stop being such a fucking asshole, we were just talking. I can take care of myself!" With that, she storms off, with Lera in tow. Vitek glares at the other guy, then the party breaks up and everyones goes their own way.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  }
+  scene.build();
+}
+
+function enterHomeMovie1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev3_2.jpg');
+  scene.text('Suddenly, she gets up and turns around, leaning forward against the wall and sticking her ass up in the air as much as she can. The guy not holding the camera immediately understands the invitation and rams his dick up her snatch, then begins to fuck her roughly. The girl moans happily, thoroughly enjoying the fucking she\'s getting.');
+  qspCall(s, 'arousal', 'voyeur_sex', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev3_3.jpg');
+    scene.text('The man holding the camera is tired of being left out, and he asks his friend to swing her around so she can use her mouth at the same time. He does, and tells the girl to lean against the other man\'s chest while she sucks him off. The girl does, and from the look in her eyes, you can tell she\'s thrilled by all this.');
+    scene.text('After about five minutes the body of the guy behind her tenses, and from his grunting you can only assume he finished right in her pussy.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev3_4.jpg');
+    scene.text('Now that the first guy is spent, she devotes her full attention to the second guy. Assuming he must be close, she drops to her haunches without even being asked to, and as if on cue the second guy shoots his load onto her tongue, which she happily shows off to the camera for a few seconds before letting it run out of her mouth and rubbing it all over her cute breasts.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev3_5.jpg');
+    scene.text('Then she turns around and leans over, showing off her semen-glazed pussy, all the while giving the camera a seductive smile. She\'s hot! You wouldn\'t mind a copy of that video!');
+    scene.text('It looks like they\'re finished and they begin to gather their things. You quickly hide behind a pillar so they don\'t see you when they leave.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterHomeMovie2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev4_2.jpg');
+  scene.text('One of the guys boldly walks up to the girl, his dicking hanging out of his pants already. She unashamedly squats before him and takes the dick in her mouth, giving him a skillful blowjob while the other guy keeps filming everything. Are they shooting a porn video!?');
+  qspCall(s, 'arousal', 'voyeur_sex', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev4_3.jpg');
+    scene.text('While she\'s doing her best to make the first guy feel good with her mouth, the second guy decides he wants in and also drops his pants, not missing any of the action with his camera. She seemed to be expecting this already, and tries to take both of the cocks in her mouth at the same time now.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev4_4.jpg');
+    scene.text('The girl then stands up straight and gets between the two guys, presenting her ass to one of them while she leans over to take the dick of the other back in her mouth. Soon she\'s being spit-roasted, taking in dicks on both ends.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev4_5.jpg');
+    scene.text('She greedily bucks her hips back against the guy behind her, and the sounds of her sopping pussy getting pounded by his hard dick over and over are quite hard to ignore in the stairwell. At the same time, she\'s sucking the large cock of the camera man, with a defiant look in her eyes.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev4_6.jpg');
+    scene.text('When the boys are reaching their orgasms, she gets on her haunches in front of them and closes her eyes in anticipation. After their rain of cum has settled on her face, she carefully opens her eyes again, and crap! She\'s looking right at you!');
+    scene.text('You quickly run down the stairs, and listen to see if they\'re following you. They don\'t, and moments later, you hear a door open and close. Phew, that was close…');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterHomeMovie3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_2.jpg');
+  scene.text('After a moment she decides that one cock is not enough and, with a lewd voice, begs, "Please, I need more cocks, let me suck yours, too."');
+  scene.text('The other guy is happy to oblige, and soon she is struggling to take both cocks in her mouth. You can tell this is definitely not the first time she has done this.');
+  qspCall(s, 'arousal', 'voyeur_sex', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_3.jpg');
+    scene.text('Suddenly, the boys pull away from the girl. They tell her, "Alright, time to fuck. Show your ass to the camera, Maria."');
+    scene.text('She obediently does, pulling her ass cheeks aside to show the boys her puckered anus. It doesn\'t look very tight, but does look ready for anal sex. Maybe they had been planning this?');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_4.jpg');
+    scene.text('The guy not holding the camera moves up behind her, and slides his cock between her wet pussy lips. The girl moans eagerly, and begins to grind her hips against him. The guy just stands still with a grin on his face, happy to see his partner being so eager for his cock.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_5.jpg');
+    scene.text('After a while, the couple changes position and you see the guy rubbing his dick against her ass. As you expected, his cock slides in her ass quite easily, and the guy takes the initiative now and begins to thrust his dick deeper inside her ass while she tries to steady herself against the wall.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_6.jpg');
+    scene.text('After watching and filming the couple having sex for several minutes, the camera guy couldn\'t resist any more. He tells her, "Maria, suck me off while he fucks you."');
+    scene.text('She happily takes his dick in her mouth and begins to suck him off skillfully, while the first guy keeps fucking her asshole. The camera guy struggles to keep his camera steady while the girl\'s body is shivering all over - she must be orgasming!');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_7.jpg');
+    scene.text('The guys tell her to get on her knees, and eagerly jerk off over her while the camera guy films the jets of cum landing on her face.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_8.jpg');
+    scene.text('When they\'re both spent, the girl poses for the camera, proudly showing off the amount of sperm she caught in her mouth before swallowing it all. Then she wipes the rest of the cum towards her mouth, and licks her lips and fingers playfully.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev2_9.jpg');
+    scene.text('The three of them quickly brush up and get dressed while they put the camera away. Realizing they might see you if you stay here, you quickly walk down the stairs.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterHomeMovie4(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev1_2.jpg');
+  scene.text('Suddenly you see the guy holding the camera reach down to undo his pants, before telling her to take his cock out and give him a blowjob. She happily does and takes the large cock in her mouth while the guy behind her is still pounding her. He slaps her ass a few times, knowing her moans will make the other guy feel great.');
+  qspCall(s, 'arousal', 'voyeur_sex', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_5'] },
+    { label: 'Stay hidden and keep watching', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/ev1_3.jpg');
+    scene.text('The guys switch places, and the other guy now holds the camera while the girl keeps sucking on one cock while getting fucked by the other. He makes sure to zoom in on her face while the other guy spanks her hard, trying to provoke a cute reaction for the video.');
+    scene.text('After a few minutes you have seen enough, and let them enjoy their debauchery in peace.');
+    qspCall(s, 'arousal', 'voyeur_sex', 3);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_5'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLenaShow(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'erotic_nudity', 3);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev4_2.jpg');
+  scene.text('Lena turns her back to the guys next, and pulls up her skirt slightly. She shows off her well-toned ass, slowly wagging it as she asks seductively over her shoulder, "Do you like what you see, boys?"');
+  qspCall(s, 'arousal', 'erotic', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev4_3.jpg');
+    scene.text('One of the guys has a lewd grin on his face as he gets an idea, and tells Lena to strike a pose as he pulls his phone out of his pocket. He begins to take photos of Lena, while the other guys encourage her to show more.');
+    qspCall(s, 'arousal', 'erotic', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev4_4.jpg');
+    scene.text('Lena really gets into it, posing seductively for the camera now while she lets her skirt ride up a little more. You can tell the stares of the guys turn her on a lot, and you realize Vitek\'s little sister is not as innocent as she looks.');
+    qspCall(s, 'arousal', 'erotic', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev4_5.jpg');
+    scene.text('Lena spreads her legs further, really showing off her pussy to the camera now. The guys are getting quite aroused, and a few of them are rubbing their groins uncomfortably.');
+    qspCall(s, 'arousal', 'erotic_nudity', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pod_ezd', 'etaj_4'] },
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/ev4_6.jpg');
+    scene.text('Lena turns her back to the guys again, her skirt pulled up so far now that she\'s showing off all her holes to the camera.');
+    scene.text('Then she decides the photo shoot is over, and asks them, "So boys, who wants to go first?"');
+    scene.text('While the guys enthusiastically gather around her you realize you should probably go, before someone notices you.');
+    qspCall(s, 'arousal', 'erotic', 3);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSexEv1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  if (((s as any).podwhoreQW ?? 0) < 3) {
+    (s as any).podwhoreQW = ((s as any).podwhoreQW ?? 0) + (1);
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_1.jpg');
+  scene.text('One of the boys is content to just keep smoking, but the other one grows more bold and approaches you. He starts pulling at your clothes with one hand while his other hand starts massaging your ass.');
+  scene.text('The other boy, who is still smoking, grins as he watches his friend pull at your clothes. He says nothing, deciding to see how far they can push you, and simply commands you, "Show us your tits, slut."');
+  qspCall(s, 'willpower', 'exhib', 'resist');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+  }, goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Show them your boobs', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_2.jpg');
+    scene.text('You don\'t have the courage to refuse, and do as he says, showing them your tits.');
+    // TODO-QSP: dynamic text: This brings an evil grin to his face, "Well well, look at that. You really are a...
+    scene.text(`This brings an evil grin to his face, "Well well, look at that. You really are an obedient little slut, aren't you ${((s as any).pcs_nickname ?? 0)}? Now turn your back to my friend and bend over, he's going to fuck you."`);
+    qspCall(s, 'arousal', 'flash', 3, 'sub', 'exhibitionism');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'anal', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+  }, goto: ['pod_ezd', 'etaj_2'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Continue to obey', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 2);
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_3.jpg');
+    scene.text('You meekly turn your back to the guy and bend over as you were told, he pulls your clothes away until he exposes your bare ass.');
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      scene.text('He runs his hand over your butt plug for a second, and then pulls it out while he tells his friend: "Dude, she\'s got a plug up her butt! This slut likes it in the ass!"');
+    }
+    if (((s as any).mc_inventory ?? 0)?.['tampons'] === 1) {
+      scene.text('He runs his hand over your ass and down to your pussy, feeling the string from the tampon he pulls his hand away. "Fuck man, she\'s got a tampon plugging up her twat." You feel yourself blushing. His friend looks over, shrugs and says. "She\'s got another hole, use that one." The one standing behind you slaps you hard on the ass. "Hell yeah! You hear that slut? We\'re going to fuck you up the ass," he says as he gives your ass another hard slap.');
+      if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+        (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+        scene.text('You realize he\'s going to fuck your ass!');
+        scene.text('You quickly interrupt him: "Wait! I have some lubricant in my purse, use that! It\'ll feel better for both of us!" you say in a pleading voice.');
+        // TODO-QSP: dynamic text: <<$boydesc[2]>> grunts and grabs the lube out of your purse and he spreads some ...
+        scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} grunts and grabs the lube out of your purse and he spreads some lube on his cock with his fingers before he moves his fingers to your clenched sphincter and slips two of his lubricated fingers in and out of your ass quickly, to give you the barest amount of lubrication.`);
+        // TODO-QSP: dynamic text: His friend smirks at the two of you, and says, "I guess it's true! <<$pcs_nickna...
+        scene.text(`His friend smirks at the two of you, and says, "I guess it's true! ${((s as any).pcs_nickname ?? 0)} really is a buttslut, trained and ready to get fucked up her ass anywhere, anytime."`);
+      } else {
+        // TODO-QSP: dynamic text: The <<$boydesc[2]>> spits on your ass and uses his fingers to rub his spit on yo...
+        scene.text(`The ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} spits on your ass and uses his fingers to rub his spit on your anus.`);
+        scene.text('You realize he\'s going to fuck your ass!');
+      }
+      qspCall(s, 'arousal', 'anal_finger', 3, 'sub');
+      qspCall(s, 'stat', '');
+      scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'sex_ev1_anal'] }]);
+    }
+    // TODO-QSP: dynamic text: With you bent over, <<$boydesc[2]>> does not waste any time, and immediately ram...
+    scene.text(`With you bent over, ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} does not waste any time, and immediately rams his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} into your pussy before it is hardly wet. He drives his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} balls deep as he begins to roughly fuck your pussy.`);
+    // TODO-QSP: dynamic text: After a couple of minutes of fucking you roughly, <<$boydesc[2]>> turns to his f...
+    scene.text(`After a couple of minutes of fucking you roughly, ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} turns to his friend and says, "Man, I'm not feeling anything, it's so loose. It feels like her pussy has been ploughed by every cock in town."`);
+    scene.text('His friend walks over to you and roughly grabs your chin with his hand, forcing you to look up at him as he asks you in a firm voice, "Do you fuck guys every day?" Without waiting for an answer, he nods and absentmindedly waves his hand at his friend, "Try her other hole, it should be tighter."');
+    if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+      (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+      (s as any).pod_ezd_lube = 1;
+      scene.text('You realize he\'s going to fuck your ass!');
+      scene.text('You quickly interrupt him: "Wait! I have some lubricant in my purse, use that! It\'ll feel better for both of us!" you say in a pleading voice.');
+      // TODO-QSP: dynamic text: <<$boydesc[2]>> grunts and grabs the lube out of your purse and he spreads some ...
+      scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} grunts and grabs the lube out of your purse and he spreads some lube on his cock with his fingers before he moves his fingers to your clenched sphincter and slips two of his lubricated fingers in and out of your ass quickly, to give you the barest amount of lubrication.`);
+      // TODO-QSP: dynamic text: His friend smirks at the two of you, and says: "I guess it's true! <<$pcs_nickna...
+      scene.text(`His friend smirks at the two of you, and says: "I guess it's true! ${((s as any).pcs_nickname ?? 0)} really is a buttslut, trained and ready to get fucked up her ass anywhere, anytime."`);
+    } else {
+      // TODO-QSP: dynamic text: The <<$boydesc[2]>> spits on your ass and uses his fingers to rub his spit on yo...
+      scene.text(`The ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} spits on your ass and uses his fingers to rub his spit on your anus. You realize he's going to fuck your ass!`);
+    }
+    qspCall(s, 'arousal', 'anal_finger', 3, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', goto: ['pod_ezd', 'sex_ev1_anal'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSexEv1Anal(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'arousal', 'anal', 3, $npcID[2], 'sub'
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_4.jpg');
+  // TODO-QSP: dynamic text: The <<$boydesc[2]>> rubs the head of his <<dick[2]>>cm <<$dick_girth[2]>> agains...
+  scene.text(`The ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} rubs the head of his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} against your anus for a second, before slowly pushing it in and sliding his cock balls deep in your ass.`);
+  // TODO-QSP: dynamic text: <<$boydesc[2]>> grins at his friend as he pounds his <<dick[2]>>cm <<$dick_girth...
+  scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} grins at his friend as he pounds his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} cock balls deep in your ass. "You're right man, her ass is much tighter."`);
+  scene.text('He accelerates his thrusting. His balls are slapping against your bare pussy as he brutally fucks your asshole. The sounds must be clearly audible throughout the stairwell. You just hope no one comes to investigate and find you getting violently sodomized. You do your best to stifle your groans and moans of pain and pleasure by biting your lips.');
+  qspCall(s, 'gopsex', 'gg_sex_orgasm');
+  qspCall(s, 'willpower', 'anal', 'resist');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Suggest you\'ll give them a blowjob instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Suggest you\'ll give them a blowjob instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_4.jpg');
+    scene.text('Several thoughts race through your mind as you\'re being brutally assfucked. You quickly dismiss the thoughts of getting away; there\'s no way the guys will just let you go now. Your tactic switches to the next-most desirable option: making them cum as quick as possible before anyone comes along and finds you getting assfucked in the stairwell.');
+    // TODO-QSP: dynamic text: While <<$boydesc[2]>> is still pounding your ass, you do your best to give the o...
+    scene.text(`While ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} is still pounding your ass, you do your best to give the other guy a seductive smile as you say, "We need to wrap this up, boys. How about I suck you both off quickly now and you can both cum in my mouth? You can fuck my ass some other time?"`);
+    if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      // TODO-QSP: dynamic text: <<$boydesc[1]>> glares at you when you make your request. "What, you think your ...
+      scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} glares at you when you make your request. "What, you think your ass is too good for us or something!? Huh?! Is that it, bitch?" He walks over and slaps you in the face, glancing at his friend. "Fuck this slut harder!" His friend is more than happy to obey. Then he looks back to you. "Tell him how much you love him fucking your ass, then beg me to fuck it next. If you don't, I will call up every one of my friends and they will all be taking a turn fucking your ass." You feel a chill of fear run through you as you realize he means it, so you do as he tells you. Looking over your shoulder at the boy behind you, you whisper, "I love feeling your dick in my ass." Then you look back to the boy in front of you. "Please fuck my ass…"`);
+      scene.actions([
+        { label: 'Carry on letting them fuck you', goto: ['pod_ezd', 'sex_ev1_anal1'] },
+      ]);
+    } else {
+      scene.text('He looks at you a moment as if considering your offer and then shrugs. "Ok slut, if you want to eat our cum that badly."');
+      scene.actions([
+        { label: 'Get them to cum', goto: ['pod_ezd', 'sex_ev1_bj'] },
+      ]);
+    }
+    // TODO-QSP: gs 'arousal', 'bj', 3, $npcID[2], 'sub'
+    // TODO-QSP: gs 'arousal', 'bj', -3, $npcID[1], 'sub'
+    qspCall(s, 'stat', '');
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Say nothing and let keep ripping up your ass', goto: ['pod_ezd', 'sex_ev1_anal1'] },
+  ]);
+  scene.build();
+}
+
+function enterSexEv1Anal1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'cum_call', 'mouth', $boy[2], 1
+  // TODO-QSP: gs 'cum_call', 'anus', $boy[1], 1
+  // TODO-QSP: gs 'arousal', 'bj', 3, $npcID[1], 'sub'
+  // TODO-QSP: npc_had_sex[$boy[1]] = 1
+  // TODO-QSP: npc_had_sex[$boy[2]] = 1
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_6.jpg');
+  // TODO-QSP: dynamic text: <<$boydesc[2]>> begins to reach a frenzied pace, you can tell he is about to cum...
+  scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} begins to reach a frenzied pace, you can tell he is about to cum.`);
+  // TODO-QSP: dynamic text: His friend <<$boydesc[1]>>, who had been watching, speaks up. "Alright enough of...
+  scene.text(`His friend ${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })}, who had been watching, speaks up. "Alright enough of that, it's my turn. I don't want your sloppy seconds." You glance over at him as he walks over pulling out his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} cock. You feel a little shudder of excitement run through your body at the thought of having your ass fucked by such a big dick. ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} does as he friend says and pulls out of you, then starts jerking off. "Fuck, man, I was just about to pop my load in her."`);
+  // TODO-QSP: dynamic text: <<$boydesc[1]>> lines his dick up with one hand, while his other hand holds your...
+  scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} lines his dick up with one hand, while his other hand holds your hip and says to his friend. "Jerk off in the bitch's mouth then." ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} grins at the idea and moves around in front of you. "Open your mouth and stick out your tongue, slut." You obey him, opening your mouth wide and sticking out your tongue.`);
+  // TODO-QSP: dynamic text: Meanwhile <<$boydesc[1]>> slips the head of his <<dick[1]>>cm <<$dick_girth[1]>>...
+  scene.text(`Meanwhile ${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} slips the head of his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} dick in your ass and he lets out a moan of pleasure. "Oh yeah her ass is still tight, this feels good." He reaches up with his other hand to take a firm grip on both your hips, then jerks you back as he drives forward, burying his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} cock balls deep in your ass. You gasp in a mixture of pain and pleasure, just as ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} starts cumming while ${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} starts pounding your ass hard and fast. Thick heavy spurts of cum splatter the inside of your mouth and your tongue. ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} grins down at you and says in a firm voice, "Now swallow it, whore." You do as you're told and swallow down his cum, opening your mouth after to show him.`);
+  // TODO-QSP: dynamic text: <<$boydesc[2]>> uses the opening you give him to shove his dick in your mouth an...
+  scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} uses the opening you give him to shove his dick in your mouth and uses your mouth to clean his dick, laughing as he does. Once ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} is done with your mouth, ${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} reaches up and grabs you by your hair, twisting his hand to pull your hair and head back painfully while continuing to pound your ass furiously with his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} cock. After several more minutes of this, he grunts and his body spasms. He stops moving, leaving himself buried balls deep in you while filling your ass with his cum. After he's done, he pulls his cock out of you and pulls his pants up. He looks over at you with disdain. "Get the fuck out of here. We're done with you, slut."`);
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+  ]);
+  scene.build();
+}
+
+function enterSexEv1Bj(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'arousal', 'bj', 2, $npcID[2]
+  // TODO-QSP: gs 'arousal', 'bj', 1, $npcID[1]
+  // TODO-QSP: gs 'cum_call', 'face', $boy[1], 1, '', '', 20
+  // TODO-QSP: gs 'cum_call', 'mouth', $boy[2], 1, '', '', 20
+  // TODO-QSP: gs 'cum_call', 'face', $boy[2], 1, '', '', 20
+  // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1, '', '', 20
+  // TODO-QSP: npc_had_sex[$boy[1]] = 1
+  // TODO-QSP: npc_had_sex[$boy[2]] = 1
+  qspCall(s, 'arousal', 'end');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_5.jpg');
+  // TODO-QSP: dynamic text: The boys think on it a moment before they happily agree. The one behind you pull...
+  scene.text(`The boys think on it a moment before they happily agree. The one behind you pulls his cock out of your ass, as ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} walks over and pulls out his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} dick. You quickly get down on your knees, grabbing their cocks in your hands, and start sucking them off in turns. You switch back and forth sucking their cocks, stroking the one you don't currently have in your mouth with your hands. You try to ignore the taste of your own ass when you suck off the guy who was just fucking your ass.`);
+  scene.text('You try to use every trick you know to get them to cum as fast as possible and it works. Within minutes, both of the boys are shooting their jism all over your face and into your mouth. You lick their cum off your lips and wink at them before quickly collecting your things and leaving, before they realize you owe them a buttfuck now.');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+  ]);
+  scene.build();
+}
+
+function enterSexEv2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).podwhoreQW ?? 0) < 3) {
+    (s as any).podwhoreQW = ((s as any).podwhoreQW ?? 0) + (1);
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_1.jpg');
+  scene.text('One of the boys is content to just keep smoking, but the other one grows more bold and approaches you. He stops in front of you with his arms crossed. He doesn\'t look like he\'ll take no for an answer when he orders you: "Take off your clothes, slut."');
+  qspCall(s, 'willpower', 'exhib', 'resist');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+  }, goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Do as he says', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'flash', 3, 'sub');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_2.jpg');
+    scene.text('You don\'t have the courage to refuse, so you slowly take off your jacket and begin to undo your pants. His hands explore your body as you undress.');
+    // TODO-QSP: dynamic text: "<<$boydesc[2]>>, I told you man! Look how submissive <<$pcs_nickname>> is. She'...
+    scene.text(`"${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}, I told you man! Look how submissive ${((s as any).pcs_nickname ?? 0)} is. She's going to do everything we say… isn't that right slut? Show us your tits!"`);
+    scene.actions([
+      { label: 'Nod obediently and show him your boobs', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'flashlite', 3, 'sub');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_3.jpg');
+    // TODO-QSP: dynamic text: You nod obediently and pull up your shirt and take off your bra, showing him you...
+    scene.text(`You nod obediently and pull up your shirt and take off your bra, showing him your ${((s as any).titsize ?? 0)} breasts. He immediately puts his hands on your tits, and pinches your nipples firmly.`);
+    scene.text('He grins at your involuntary moans: "I know, slut, I know… you love it when guys play with your tits. Don\'t worry, we\'ll take good care of you."');
+    // TODO-QSP: dynamic text: The older of the two looks at his younger friend and tells him, "<<$boydesc[2]>>...
+    scene.text(`The older of the two looks at his younger friend and tells him, "${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}, tell her to suck us both. Don't worry, she'll do it."`);
+    // TODO-QSP: dynamic text: The younger guy hesitates for a moment, but then decides to listen to his friend...
+    scene.text(`The younger guy hesitates for a moment, but then decides to listen to his friend. He walks over to you and pulls his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} dick out of his pants as he tells you, "Slut, get on your knees and start sucking my dick!"`);
+    qspCall(s, 'willpower', 'bj', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+  }, goto: ['pod_ezd', 'etaj_2'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Suck their dick', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 2);
+    // TODO-QSP: gs 'arousal', 'bj', 3, $npcID[2], 'sub'
+    // TODO-QSP: gs 'arousal', 'bj', 3, $npcID[1], 'sub'
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_4.jpg');
+    // TODO-QSP: dynamic text: You're too far in to start being reluctant now, so you just drop to your knees a...
+    scene.text(`You're too far in to start being reluctant now, so you just drop to your knees and take ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}'s ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} cock in your mouth, ignoring the looks of the two guys.`);
+    // TODO-QSP: dynamic text: The <<$boydesc[1]>> quickly takes out his <<dick[1]>>cm <<$dick_girth[1]>> cock ...
+    scene.text(`The ${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} quickly takes out his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} cock and offers it to you as well, and you alternate sucking on the two hard cocks at your disposal. You take the one you're not sucking in your hand and gently masturbate it to keep it hard, and also to make sure the owner doesn't feel left out.`);
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: gs 'arousal', 'vaginal', 3, $npcID[1], 'sub'
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_5.jpg');
+    // TODO-QSP: dynamic text: The <<$boydesc[1]>> tells you to get up. "Enough of that, slut. Get up and turn ...
+    scene.text(`The ${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} tells you to get up. "Enough of that, slut. Get up and turn around, so I can fuck your pussy now."`);
+    // TODO-QSP: dynamic text: You get up and turn around. As you do, he pushes you forward, bending you over i...
+    scene.text(`You get up and turn around. As you do, he pushes you forward, bending you over in front of him. He slowly pushes his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} cock inside of you. It easily slides into your wet pussy and he begins to fuck you vigorously.`);
+    qspCall(s, 'gopsex', 'gg_sex_orgasm');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_6.jpg');
+    // TODO-QSP: dynamic text: He looks at his friend in disbelief and scoffs. "<<$boydesc[2]>>, for fuck's sak...
+    scene.text(`He looks at his friend in disbelief and scoffs. "${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}, for fuck's sake, man. Don't just stand there, give her something to suck on!"`);
+    // TODO-QSP: dynamic text: The younger guy nods and walks up to you, rubbing his dick against your lips, sm...
+    scene.text(`The younger guy nods and walks up to you, rubbing his dick against your lips, smearing them with his precum for a few seconds before you open your mouth and allow it in. He's a bit rough with you, sometimes shoving his ${qspUntranslated(s, "dick[2]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[2]", { location: "pod_ezd" })} cock a bit further down your throat than you're comfortable with. You do your best to suppress your gag reflex and, after a while, you get into a decent pace and dutifully serve the two random guys as good as you can.`);
+    // TODO-QSP: gs 'arousal', 'bj', -3, $npcID[2], 'sub'
+    // TODO-QSP: gs 'arousal', 'vaginal', 5, $npcID[1], 'sub'
+    qspCall(s, 'gopsex', 'gg_sex_orgasm');
+    scene.text('After a few minutes, you feel your muscles getting sore, and you tell the guys you\'re getting tired and are not very comfortable in this position.');
+    scene.text('The younger kid must\'ve felt inspired by his friend. He slaps you in the face while you\'re still sucking on his dick and says, "Whores don\'t get to be comfortable. Keep sucking!"');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_7.jpg');
+    scene.text('Despite his tough talk, After a while the guys take pity on you. They let you lean on the railing and give your mouth some rest. The older guy pounds your wet pussy from behind and you begin to moan in pleasure. From the increased power of his thrusts, you can tell he\'s about to blow his load. The younger guy is standing next to the two of you, watching and jerking off.');
+    // TODO-QSP: gs 'arousal', 'bj', -2, $npcID[2], 'sub'
+    // TODO-QSP: gs 'arousal', 'vaginal', 3, $npcID[1], 'sub'
+    qspCall(s, 'gopsex', 'gg_sex_orgasm');
+    qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: gs 'arousal', 'hj', 3, $npcID[2]
+    // TODO-QSP: gs 'cum_call', 'face', $boy[1], 1, '', '', 20
+    // TODO-QSP: gs 'cum_call', 'mouth', $boy[2], 1, '', '', 20
+    // TODO-QSP: gs 'cum_call', 'face', $boy[2], 1, '', '', 20
+    // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1, '', '', 20
+    (s as any).pcs_hairbsh = 0;
+    // TODO-QSP: npc_had_sex[$boy[1]] = 1
+    // TODO-QSP: npc_had_sex[$boy[2]] = 1
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_8.jpg');
+    // TODO-QSP: dynamic text: Mere moments later, <<$boydesc[1]>> moans and suddenly pulls out of you. He puts...
+    scene.text(`Mere moments later, ${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} moans and suddenly pulls out of you. He puts his free hand on your shoulder and forces you to kneel down, just in time to take both of their loads on your face. The guys, now done with you, pull up their pants and ignore you. Their cum is still slowly running down your face as they start talking like you're not even there.`);
+    qspCall(s, 'fame', 'pav', 'sex', 4);
+    qspCall(s, 'stat', '');
+    scene.actions([
       { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSexEv3(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).podwhoreQW ?? 0) < 3) {
+    (s as any).podwhoreQW = ((s as any).podwhoreQW ?? 0) + (1);
+  }
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev3_1.jpg');
+  scene.text('One of the boys smirks at you, with an impatient look on his face. "What are you waiting for, whore? Show us your tits!"');
+  qspCall(s, 'willpower', 'exhib', 'resist');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+  }, goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Show them your tits', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'flashlite', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev3_2.jpg');
+    scene.text('You quickly pull up your shirt and take your bra off, not wanting to make him any angrier. He reaches and roughly grabs one of your bare breasts, playing with your nipple.');
+    scene.text('He continues to roughly squeeze your boobs with both his hands. "That\'s more like it, slut. Now strip and show us your ass!"');
+    qspCall(s, 'willpower', 'exhib', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Pull away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+  }, goto: ['pod_ezd', 'etaj_2'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Strip naked for them', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'flash', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev3_3.jpg');
+    scene.text('You rush to obey and strip your clothes off, turning around so they can see your bare ass.');
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      // TODO-QSP: dynamic text: The guy grins as he tugs at your butt plug: "<<$boydesc[2]>>, look at this whore...
+      scene.text(`The guy grins as he tugs at your butt plug: "${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}, look at this whore! She has a plug in her ass already… you were just hoping for someone to find you wearing this, weren't you? Don't worry, we'll replace that with something much better in a minute. You can wear it for a little while longer though, it looks good in you."`);
+    }
+    scene.text('After he plays with your bare ass cheeks for a while, he pushes you face first against the wall. "Now I\'m going to fuck you like the slut you are."');
+    scene.actions([
+      { label: 'Get fucked', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 2);
+    // TODO-QSP: gs 'arousal', 'vaginal', 3, $npcID[1]
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev3_4.jpg');
+    // TODO-QSP: dynamic text: <<$boydesc[1]>> immediately rams his <<dick[1]>>cm <<$dick_girth[1]>> dick in yo...
+    scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "pod_ezd" })} immediately rams his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} dick in your wet pussy and begins to fuck you roughly. You feel like you're just a piece of meat to him, but you can't help but moan in pleasure and feel your pussy getting wetter by the second.`);
+    scene.text('After a couple minutes or so, he pulls your head back by your hair. "Your pussy is way too loose, slut. I\'m going to use your ass now."');
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      scene.text('He closes his fingers around your butt plug and gives it a few exploratory tugs, before pulling it out slowly. He mutters, "I hope this thing didn\'t loosen your ass too much, whore."');
+    }
+    if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+      (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+      (s as any).agape = 1;
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+      scene.text('You quickly interrupt him: "Wait! I have some lubricant, use that! It\'ll feel better for both of us!"');
+      scene.text('You give him the lubricant, and he spreads some onto his cock with his fingers before he moves them to your clenched sphincter and slips two of his fingers inside of your ass to spread the lubricant around.');
+      // TODO-QSP: dynamic text: He smirks and says: "I guess it's true… <<$pcs_nickname>> really is a skilled bu...
+      scene.text(`He smirks and says: "I guess it's true… ${((s as any).pcs_nickname ?? 0)} really is a skilled buttslut, trained and ready to get fucked in her ass at anytime, anywhere. She'll even provide the lube. Nice tight ass, by the way."`);
+    } else {
+      if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
+        (s as any).agape = 2;
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      }
+    }
+    // TODO-QSP: dynamic text: After a few seconds of grinding the head of his <<dick[1]>>cm <<$dick_girth[1]>>...
+    scene.text(`After a few seconds of grinding the head of his ${qspUntranslated(s, "dick[1]", { location: "pod_ezd" })}cm ${qspUntranslated(s, "dick_girth[1]", { location: "pod_ezd" })} cock against your asshole, he finally slides it in. Slamming it balls deep in your ass, he begins to fuck you at a quick and furious pace, with little regard to how it feels for you.`);
+    if (((s as any).mesec ?? 0) > 0) {
+      (s as any).pcs_horny = 0;
+      qspCall(s, 'mood', 'lower', 'small');
+      scene.text('<br><font color = red><b>Even though the sex feels good, you\'re still on your period. The menstrual blood slowly flows from your vagina as you get your ass fucked and the blood on your fingers makes you feel disgusted to the point that you no longer want to stimulate yourself.</b></font>');
+    } else {
+      if (((s as any).mesec ?? 0) <= 0  &&  ((s as any).pcs_horny ?? 0) >=70) {
+        qspCall(s, 'arousal', 'anal', 3);
+        // TODO-QSP: dynamic text: The boys laugh. "<<$pcs_nickname>> even orgasms from anal sex, amazing! She real...
+        scene.text(`The boys laugh. "${((s as any).pcs_nickname ?? 0)} even orgasms from anal sex, amazing! She really must be the biggest slut in Pavlovsk!"`);
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'anal', 3);
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev3_5.jpg');
+    scene.text('You start to get into it, as groans of pain and moans of pleasure escape your lips. You eagerly buck your hips back against his, encouraging him to fuck your ass harder in an attempt to hopefully make him cum faster.');
+    if (((s as any).mesec ?? 0) > 0) {
+      (s as any).pcs_horny = 0;
+      qspCall(s, 'mood', 'lower', 'small');
+      scene.text('<br><font color = red><b>Even though the sex feels good, you\'re still on your period. The menstrual blood slowly flows from your vagina as you get your ass fucked and the blood on your fingers makes you feel disgusted to the point that you no longer want to stimulate yourself.</b></font>');
+    } else {
+      if (((s as any).mesec ?? 0) <= 0  &&  ((s as any).pcs_horny ?? 0) >=70) {
+        qspCall(s, 'arousal', 'masturbate', (-3));
+        // TODO-QSP: dynamic text: The guy groans at his friend. "Whoa dude, she's orgasming from getting fucked in...
+        scene.text(`The guy groans at his friend. "Whoa dude, she's orgasming from getting fucked in her ass!" he calls out while continuing to ram his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into your ass.`);
+      }
+    }
+    scene.text('His friend is looking at you getting fucked from across the hallway. You can see he\'s stroking his dick, content to just watch you get your ass fucked.');
+    qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: gs 'arousal', 'hj', 2, $npcID[2]
+    // TODO-QSP: gs 'cum_call', 'face', $boy[2], 1
+    (s as any).pcs_hairbsh = 0;
+    // TODO-QSP: gs 'arousal', 'bj', 2, $npcID[1]
+    // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'fame', 'pav', 'sex', 4);
+    qspCall(s, 'stat', '');
+    // TODO-QSP: npc_had_sex[$boy[1]] = 1
+    // TODO-QSP: npc_had_sex[$boy[2]] = 1
+    scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev3_6.jpg');
+    scene.text('When they\'re both close to orgasming, they tell you to get on your knees.');
+    scene.text('The older guy orders you, "Take it all in your mouth, slut. Don\'t swallow it until we tell you to."');
+    scene.text('You nod, just as the first guy is shooting his sperm all over your face. You do your best to catch as much of it as you can in your mouth, and seconds later the second guy follows. You open mouth to the guys, showing them your cum coated mouth. After about a minute of this the older one smirks to the younger buy and then gives you the nod to swallow their cum.');
+    scene.text('The older one shoos you away: "Good job, slut. You can go now, we\'re done here."');
+    scene.text('You quickly gather your things and leave before they decide to come back for seconds.');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
     ]);
   } },
   ]);
@@ -136,6 +2631,201 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'etaj_2':
       enterEtaj_2(s, scene);
+      break;
+    case 'etaj2_paint':
+      enterEtaj2Paint(s, scene);
+      break;
+    case 'etaj_3':
+      enterEtaj_3(s, scene);
+      break;
+    case 'etaj_4':
+      enterEtaj_4(s, scene);
+      break;
+    case 'etaj_5':
+      enterEtaj_5(s, scene);
+      break;
+    case 'roof':
+      enterRoof(s, scene);
+      break;
+    case 'lift':
+      enterLift(s, scene);
+      break;
+    case 'lift_events':
+      enterLiftEvents(s, scene);
+      break;
+    case 'lift_event_1':
+      enterLiftEvent_1(s, scene);
+      break;
+    case 'lift_event_2':
+      enterLiftEvent_2(s, scene);
+      break;
+    case 'elev_objava':
+      enterElevObjava(s, scene);
+      break;
+    case 'pod_objava':
+      enterPodObjava(s, scene);
+      break;
+    case 'floor2_events':
+      enterFloor2Events(s, scene);
+      break;
+    case 'floor2_event_1':
+      enterFloor2Event_1(s, scene);
+      break;
+    case 'floor2_event_2':
+      enterFloor2Event_2(s, scene);
+      break;
+    case 'floor2_event_3':
+      enterFloor2Event_3(s, scene);
+      break;
+    case 'floor2_event_4':
+      enterFloor2Event_4(s, scene);
+      break;
+    case 'floor2_event_5':
+      enterFloor2Event_5(s, scene);
+      break;
+    case 'floor2_event_6':
+      enterFloor2Event_6(s, scene);
+      break;
+    case 'floor3_events':
+      enterFloor3Events(s, scene);
+      break;
+    case 'gopnik_event_1':
+      enterGopnikEvent_1(s, scene);
+      break;
+    case 'gopnik_event_2':
+      enterGopnikEvent_2(s, scene);
+      break;
+    case 'gopnik_event_3':
+      enterGopnikEvent_3(s, scene);
+      break;
+    case 'gopnik_event_4':
+      enterGopnikEvent_4(s, scene);
+      break;
+    case 'floor3_event_5':
+      enterFloor3Event_5(s, scene);
+      break;
+    case 'floor3_event_6':
+      enterFloor3Event_6(s, scene);
+      break;
+    case 'floor3_event_7':
+      enterFloor3Event_7(s, scene);
+      break;
+    case 'floor3_event_8':
+      enterFloor3Event_8(s, scene);
+      break;
+    case 'floor3_event_9':
+      enterFloor3Event_9(s, scene);
+      break;
+    case 'floor4_events':
+      enterFloor4Events(s, scene);
+      break;
+    case 'floor4_event_1':
+      enterFloor4Event_1(s, scene);
+      break;
+    case 'floor4_event_2':
+      enterFloor4Event_2(s, scene);
+      break;
+    case 'floor4_event_3':
+      enterFloor4Event_3(s, scene);
+      break;
+    case 'floor4_event_4':
+      enterFloor4Event_4(s, scene);
+      break;
+    case 'floor4_event_5':
+      enterFloor4Event_5(s, scene);
+      break;
+    case 'floor4_event_6':
+      enterFloor4Event_6(s, scene);
+      break;
+    case 'floor4_event_7':
+      enterFloor4Event_7(s, scene);
+      break;
+    case 'floor4_event_8':
+      enterFloor4Event_8(s, scene);
+      break;
+    case 'floor5_events':
+      enterFloor5Events(s, scene);
+      break;
+    case 'floor5_event_1':
+      enterFloor5Event_1(s, scene);
+      break;
+    case 'floor5_event_2':
+      enterFloor5Event_2(s, scene);
+      break;
+    case 'floor5_event_3':
+      enterFloor5Event_3(s, scene);
+      break;
+    case 'floor5_event_4':
+      enterFloor5Event_4(s, scene);
+      break;
+    case 'floor5_event_5':
+      enterFloor5Event_5(s, scene);
+      break;
+    case 'floor5_event_6':
+      enterFloor5Event_6(s, scene);
+      break;
+    case 'boys_smoke':
+      enterBoysSmoke(s, scene);
+      break;
+    case 'misha_bj':
+      enterMishaBj(s, scene);
+      break;
+    case 'juliamil':
+      enterJuliamil(s, scene);
+      break;
+    case 'vasily_smoke':
+      enterVasilySmoke(s, scene);
+      break;
+    case 'vasily_smoke_bj':
+      enterVasilySmokeBj(s, scene);
+      break;
+    case 'smoke_danvas':
+      enterSmokeDanvas(s, scene);
+      break;
+    case 'danvas_smoke_bj':
+      enterDanvasSmokeBj(s, scene);
+      break;
+    case 'smoke_vitdanvas':
+      enterSmokeVitdanvas(s, scene);
+      break;
+    case 'lena_chat':
+      enterLenaChat(s, scene);
+      break;
+    case 'gopnik_group_chat':
+      enterGopnikGroupChat(s, scene);
+      break;
+    case 'home_movie1':
+      enterHomeMovie1(s, scene);
+      break;
+    case 'home_movie2':
+      enterHomeMovie2(s, scene);
+      break;
+    case 'home_movie3':
+      enterHomeMovie3(s, scene);
+      break;
+    case 'home_movie4':
+      enterHomeMovie4(s, scene);
+      break;
+    case 'lena_show':
+      enterLenaShow(s, scene);
+      break;
+    case 'sex_ev1':
+      enterSexEv1(s, scene);
+      break;
+    case 'sex_ev1_anal':
+      enterSexEv1Anal(s, scene);
+      break;
+    case 'sex_ev1_anal1':
+      enterSexEv1Anal1(s, scene);
+      break;
+    case 'sex_ev1_bj':
+      enterSexEv1Bj(s, scene);
+      break;
+    case 'sex_ev2':
+      enterSexEv2(s, scene);
+      break;
+    case 'sex_ev3':
+      enterSexEv3(s, scene);
       break;
     default:
       enterOccupants(s, scene);

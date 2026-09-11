@@ -28,11 +28,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to office and pay subscription', goto: ['bdsm_mansion', 'office'] },
     ]);
   } else {
-    scene.actions([
-      { label: 'Enter the club\'s foyer (dominant role)', handler: (st: GameState) => {
+    if (((s as any).PCloQuality ?? 0) >= 5  &&  ((s as any).bdsmclub ?? 0)?.['domtraining'] === 1) {
+      scene.actions([
+        { label: 'Enter the club\'s foyer (dominant role)', handler: (st: GameState) => {
     (s as any).bdsmclub['role'] = 'dom';
   }, goto: ['bdsm_hallway', 'foyer'] },
-    ]);
+      ]);
+    }
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     scene.actions([

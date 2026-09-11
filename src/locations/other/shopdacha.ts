@@ -17,36 +17,42 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'purchased', 'city_apartment')) {
       if ((!((s as any).rembedr ?? 0))) {
-        if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
-          (s as any).rembedr = 1;
-          qspCall(s, 'money', 'pay', 50000, 'card');
-          qspCall(s, 'homes_properties', 'renovate_property', 'city_apartment', qspFunc(s, 'money', 'price', 50000), 'bedroom');
-          scene.text('You upgrade your apartment bedroom.');
-        } else {
-          scene.text('Unfortunately, you do not have enough money in your bank account.');
-        }
         scene.actions([
-          { label: 'Renovate city apartment bedroom ( [+$func(\'money\', \'string_price\', 50000) + ...]' }, // TODO-QSP: empty action body
-          { label: 'Return', goto: ['shopdacha', ''] },
+          { label: 'Renovate city apartment bedroom ( [+$func(\'money\', \'string_price\', 50000) + ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
+      (s as any).rembedr = 1;
+      qspCall(s, 'money', 'pay', 50000, 'card');
+      qspCall(s, 'homes_properties', 'renovate_property', 'city_apartment', qspFunc(s, 'money', 'price', 50000), 'bedroom');
+      scene.text('You upgrade your apartment bedroom.');
+    } else {
+      scene.text('Unfortunately, you do not have enough money in your bank account.');
+    }
+    scene.actions([
+      { label: 'Return', goto: ['shopdacha', ''] },
+    ]);
+  } },
         ]);
       }
+      if ((!((s as any).remsitr ?? 0))) {
+        scene.actions([
+          { label: 'Renovate city apartment living room ( [+$func(\'money\', \'string_price\', 50000) + ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
+      (s as any).remsitr = 1;
+      qspCall(s, 'money', 'pay', 50000, 'card');
+      qspCall(s, 'homes_properties', 'renovate_property', 'city_apartment', qspFunc(s, 'money', 'price', 50000), 'living room');
+      scene.text('You upgrade your apartment living room.');
+    } else {
+      scene.text('Unfortunately, you do not have enough money in your bank account.');
     }
-    if ((!((s as any).remsitr ?? 0))) {
-      if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
-        (s as any).remsitr = 1;
-        qspCall(s, 'money', 'pay', 50000, 'card');
-        qspCall(s, 'homes_properties', 'renovate_property', 'city_apartment', qspFunc(s, 'money', 'price', 50000), 'living room');
-        scene.text('You upgrade your apartment living room.');
-      } else {
-        scene.text('Unfortunately, you do not have enough money in your bank account.');
+    scene.actions([
+      { label: 'Return', goto: ['shopdacha', ''] },
+    ]);
+  } },
+        ]);
       }
-      scene.actions([
-        { label: 'Renovate city apartment living room ( [+$func(\'money\', \'string_price\', 50000) + ...]' }, // TODO-QSP: empty action body
-        { label: 'Return', goto: ['shopdacha', ''] },
-      ]);
-    }
-  }
-  if ((!((s as any).remkorr ?? 0))) {
+      if ((!((s as any).remkorr ?? 0))) {
+        scene.actions([
+          { label: 'Renovate city apartment hallway ( [+$func(\'money\', \'string_price\', 50000) + ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
       (s as any).remkorr = 1;
       qspCall(s, 'money', 'pay', 50000, 'card');
@@ -56,9 +62,530 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('Unfortunately, you do not have enough money in your bank account.');
     }
     scene.actions([
-      { label: 'Renovate city apartment hallway ( [+$func(\'money\', \'string_price\', 50000) + ...]' }, // TODO-QSP: empty action body
       { label: 'Return', goto: ['shopdacha', ''] },
     ]);
+  } },
+        ]);
+      }
+      if ((!((s as any).remvanr ?? 0))) {
+        scene.actions([
+          { label: 'Renovate city apartment bathroom ( [+$func(\'money\', \'string_price\', 50000) + ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
+      (s as any).remvanr = 1;
+      qspCall(s, 'money', 'pay', 50000, 'card');
+      qspCall(s, 'homes_properties', 'renovate_property', 'city_apartment', qspFunc(s, 'money', 'price', 50000), 'bathroom');
+      scene.text('You upgrade your apartment bathroom.');
+    } else {
+      scene.text('Unfortunately, you do not have enough money in your bank account.');
+    }
+    scene.actions([
+      { label: 'Return', goto: ['shopdacha', ''] },
+    ]);
+  } },
+        ]);
+      }
+      if ((!((s as any).remkuhr ?? 0))) {
+        scene.actions([
+          { label: 'Renovate city apartment kitchen ( [+$func(\'money\', \'string_price\', 50000) + ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
+      (s as any).remkuhr = 1;
+      qspCall(s, 'money', 'pay', 50000, 'card');
+      qspCall(s, 'homes_properties', 'renovate_property', 'city_apartment', qspFunc(s, 'money', 'price', 50000), 'kitchen');
+      scene.text('You upgrade your apartment kitchen.');
+    } else {
+      scene.text('Unfortunately, you do not have enough money in your bank account.');
+    }
+    scene.actions([
+      { label: 'Return', goto: ['shopdacha', ''] },
+    ]);
+  } },
+        ]);
+      }
+    }
+    if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'village_cottage')  &&  qspFunc(s, 'homes_properties', 'is_property_renovated', 'village_cottage') === 0) {
+      scene.actions([
+        { label: 'Upgrade your cottage [+$func(\'money\', \'get_cost_string\', 200000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 200000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 200000, 'card');
+      qspCall(s, 'homes_properties', 'renovate_property', 'village_cottage', qspFunc(s, 'money', 'price', 200000));
+      (s as any).minut = ((s as any).minut ?? 0) + 15;
+      qspCall(s, 'stat', '');
+      scene.text('You upgrade your dacha in the cooperative.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+      ]);
+    }
+    if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'matryona_mansion')) {
+      if (qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion') === 0) {
+        scene.actions([
+          { label: 'Connect water, electricity [+$func(\'money\', \'get_cost_string\', 500000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 500000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 500000, 'card');
+      qspCall(s, 'homes_properties', 'progress_construction_status', 'matryona_mansion');
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for a connection of services to the site.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+        ]);
+      }
+      if (qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion') === 1) {
+        scene.actions([
+          { label: 'Build mansion\'s shell [+$func(\'money\', \'get_cost_string\', 150000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1500000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 1500000, 'card');
+      qspCall(s, 'homes_properties', 'progress_construction_status', 'matryona_mansion');
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for the construction of the mansion\'s shell.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+        ]);
+      }
+      if (qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion') === 2  &&  ((s as any).ymanrem ?? 0)[3] === 0) {
+        scene.actions([
+          { label: 'Build internal walls [+$func(\'money\', \'get_cost_string\', 500000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 500000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 500000, 'card');
+      (s as any).ymanrem[3] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for the construction of the mansion\'s internal walls.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+        ]);
+      }
+      if (qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion') > 0) {
+        if ((!((s as any).banaMansion ?? 0))) {
+          scene.actions([
+            { label: 'Install electrics and plumbing [+$func(\'money\', \'get_cost_string\', 800000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 800000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 800000, 'card');
+      (s as any).banaMansion = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for the electrics and plumbing to be installed.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        }
+        if ((!((s as any).bassMansion ?? 0))) {
+          scene.actions([
+            { label: 'Build a pool [+$func(\'money\', \'get_cost_string\', 500000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 500000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 500000, 'card');
+      (s as any).bassMansion = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for the construction of the mansion\'s pool.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        }
+      }
+      if (qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion') === 2) {
+        if (((s as any).ymanrem ?? 0)[3] === 1) {
+          scene.actions([
+            { label: 'Build hallways [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[3] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for hallways to be built.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[3] === 2) {
+            scene.actions([
+              { label: 'Buy lounge furniture [+$func(\'money\', \'get_cost_string\', 150000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 150000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 150000, 'card');
+      (s as any).ymanrem[3] = 3;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You buy lounge furniture.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[4] === 0) {
+          scene.actions([
+            { label: 'Build main bedroom [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[4] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for the main bedroom to be built.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[4] === 1) {
+            scene.actions([
+              { label: 'Buy bedroom furniture [+$func(\'money\', \'get_cost_string\', 300000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 300000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 300000, 'card');
+      (s as any).ymanrem[4] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You buy bedroom furniture.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[5] === 0) {
+          scene.actions([
+            { label: 'Pay for bathroom [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[5] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for the bathroom to be built.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[5] === 1) {
+            scene.actions([
+              { label: 'Pay for bathroom fixtures and fittings [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[5] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You purchase the bathroom suite.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[6] === 0) {
+          scene.actions([
+            { label: 'Pay for kitchen installation [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[6] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for the kitchen installation.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[6] === 1) {
+            scene.actions([
+              { label: 'Pay for kitchen units [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[6] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You purchase the kitchen units.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[7] === 0) {
+          scene.actions([
+            { label: 'Pay for the living room [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[7] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for your living room.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[7] === 1) {
+            scene.actions([
+              { label: 'Buy furniture for the living room [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[7] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You buy furniture for your living room.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[8] === 0) {
+          scene.actions([
+            { label: 'Pay for your lounge [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[8] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for your lounge.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[8] === 1) {
+            scene.actions([
+              { label: 'Purchase furniture for the lounge [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[8] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You purchase furniture for your lounge.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[9] === 0) {
+          scene.actions([
+            { label: 'Build a children\'s room [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[9] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for a children\'s room.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[9] === 1) {
+            scene.actions([
+              { label: 'Buy furniture for the nursery [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[9] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay furniture for the nursery.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[10] === 0) {
+          scene.actions([
+            { label: 'Pay for a library [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[10] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for a library.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[10] === 1) {
+            scene.actions([
+              { label: 'Purchase furniture for your library [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[10] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You buy furniture for the library.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[11] === 0) {
+          scene.actions([
+            { label: 'Buy a gym [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[11] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You buy a gym.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[11] === 1) {
+            scene.actions([
+              { label: 'Buy gym equipment [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[11] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You buy gym equipment.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+        if (((s as any).ymanrem ?? 0)[12] === 0) {
+          scene.actions([
+            { label: 'Buy an office [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[12] = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You pay for an office to be built.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+          ]);
+        } else {
+          if (((s as any).ymanrem ?? 0)[12] === 1) {
+            scene.actions([
+              { label: 'Purchase furniture for the office [+$func(\'money\', \'get_cost_string\', 250000...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250000, 'card') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250000, 'card');
+      (s as any).ymanrem[12] = 2;
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('You buy office furniture.');
+      scene.actions([
+        { label: 'Return', goto: ['shopdacha', ''] },
+      ]);
+    }
+  } },
+            ]);
+          }
+        }
+      }
+    }
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {

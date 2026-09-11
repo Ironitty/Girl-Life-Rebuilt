@@ -7,15 +7,18 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterForced(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[1] <= 0) {
+  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
     qspCall(s, 'sleep_simple', 'simple');
     return;
   }
   if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
     (s as any).sleepVars['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 353) / 100;
   } else {
-    (s as any).sleepVars['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 636) / 100;
-    (s as any).sleepVars['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
+    if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === -1) {
+      (s as any).sleepVars['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 636) / 100;
+    } else {
+      (s as any).sleepVars['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
+    }
   }
   (s as any).sleepVars['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) + (60 + ((s as any).rand ?? 0)(0, 90));
   (s as any).sleepVars['minutes_to_wakeup'] = qspUntranslated(s, "ARGS[1]", { location: "sleep_simple" });
@@ -44,8 +47,8 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
     (s as any).sleepVars['health_stock'] = ((s as any).sleepVars['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
   }
   if (((s as any).sleepVars ?? 0)?.['health_stock'] >= 960) {
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).sleepVars ?? 0)?.['health_stock'] / 960);
-    (s as any).sleepVars['health_stock'] = ((s as any).sleepVars ?? 0)?.['health_stock'] % 960;
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).sleepVars ?? {})?.['health_stock'] / 960);
+    (s as any).sleepVars['health_stock'] = ((s as any).sleepVars ?? {})?.['health_stock'] % 960;
   }
   if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
@@ -55,14 +58,17 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
     }
   } else {
-    if (((s as any).sleepVars ?? 0)?.['stime'] % 7 === 0) {
-      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
-      if ((Math.floor(Math.random() * 100) + 1) <= 18) {
+    if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === -1) {
+      if (((s as any).sleepVars ?? 0)?.['stime'] % 7 === 0) {
+        (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
+        if ((Math.floor(Math.random() * 100) + 1) <= 18) {
+          (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
+        }
+      }
+    } else {
+      if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
       }
-    }
-    if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
-      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
     }
   }
   if (((s as any).sleepVars ?? 0)?.['stime'] >= 60) {
@@ -92,14 +98,17 @@ function enterNapBed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shortgs', 'autosave');
     scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'prepare_sleep'] }]);
   } else {
-    (s as any).inSleep = 1;
-    qspCall(s, 'sleep_simple', 'nap_base', 60);
-    if (((s as any).ARGS ?? 0)[1] === 0) {
-      scene.text('You sleep about an hour.');
-    }
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).ARGS ?? 0)[1] === 0) {
-      scene.text('You are not tired enough to sleep, even for a short nap.');
+    if (((s as any).pcs_sleep ?? 0) <= 90) {
+      (s as any).inSleep = 1;
+      qspCall(s, 'sleep_simple', 'nap_base', 60);
+      if ((!((s as any).locArgs?.[1] ?? 0))) {
+        scene.text('You sleep about an hour.');
+      }
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      if ((!((s as any).locArgs?.[1] ?? 0))) {
+        scene.text('You are not tired enough to sleep, even for a short nap.');
+      }
     }
   }
   qspCall(s, 'stat', '');
@@ -115,12 +124,12 @@ function enterNap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) <= 90) {
     (s as any).inSleep = 1;
     qspCall(s, 'sleep_simple', 'nap_base', 60);
-    if (((s as any).ARGS ?? 0)[1] === 0) {
+    if ((!((s as any).locArgs?.[1] ?? 0))) {
       scene.text('You nap for about an hour.');
     }
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).ARGS ?? 0)[1] === 0) {
+    if ((!((s as any).locArgs?.[1] ?? 0))) {
       scene.text('You are not tired enough even for a short nap.');
     }
   }
@@ -135,7 +144,7 @@ function enterNap(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNapBase(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[1] > 0) {
+  if (((s as any).locArgs?.[1] ?? 0) > 0) {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "sleep_simple" }));
   } else {
     // TODO-QSP: ARGS[1] *= -1

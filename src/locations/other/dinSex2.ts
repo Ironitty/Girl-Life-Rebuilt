@@ -32,7 +32,7 @@ function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[1] === 0) {
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).ARGS[1] = (-1);
   }
   (s as any).frost = 0;
@@ -81,8 +81,8 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
 
 function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((((s as any).ARGS ?? 0)[2] > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
-  if (((s as any).ARGS ?? 0)[1] === 0) {
+  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).ARGS[1] = (-1);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
@@ -130,7 +130,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
 
 function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  if (((s as any).ARGS ?? 0)[1] === 0) {
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).ARGS[1] = (-1);
   }
   // TODO-QSP: dynamic text: <<$boydesc>> tucks a finger into your anus, then a second one.
@@ -166,9 +166,11 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You cry and bite your lip when the <<dick>> centimeter fake cock begins to fuck ...
     scene.text(`You cry and bite your lip when the ${((s as any).dick ?? 0)} centimeter fake cock begins to fuck your ass with full force!. Your ass feels like it is on fire and all you want is for this torture to be over quickly.`);
   } else {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    // TODO-QSP: dynamic text: You feel like your anus is stretching when <<$xyr>> fake shaft enters you. You s...
-    scene.text(`You feel like your anus is stretching when ${((s as any).xyr ?? 0)} fake shaft enters you. You start to moan rhythmically in unison with ${((s as any).xyr ?? 0)} fake cock's movements inside of you.`);
+    if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 20  &&  (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) < 30) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      // TODO-QSP: dynamic text: You feel like your anus is stretching when <<$xyr>> fake shaft enters you. You s...
+      scene.text(`You feel like your anus is stretching when ${((s as any).xyr ?? 0)} fake shaft enters you. You start to moan rhythmically in unison with ${((s as any).xyr ?? 0)} fake cock's movements inside of you.`);
+    }
   }
   // TODO-QSP: gs 'arousal', 'anal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
   scene.build();
@@ -176,8 +178,8 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((((s as any).ARGS ?? 0)[2] > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
-  if (((s as any).ARGS ?? 0)[1] === 0) {
+  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).ARGS[1] = (-1);
   }
   if (((s as any).analPlugIn ?? 0) === 1) {
@@ -214,8 +216,10 @@ function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You feel like your anus is stretching when the bottle enters you. You start to moan rhythmically in unison with the bottle\'s movements inside of you.');
   } else {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    scene.text('You moan in pleasure when the bottle moves inside your ass.');
+    if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 20  &&  (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) < 30) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      scene.text('You moan in pleasure when the bottle moves inside your ass.');
+    }
   }
   // TODO-QSP: gs 'arousal', 'anal_dildo', ARGS[1], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
   scene.build();
@@ -224,7 +228,7 @@ function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
 function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   (s as any).totPain = 0;
-  if (((s as any).ARGS ?? 0)[1] / 2 === 0) {
+  if (((s as any).locArgs?.[1] ?? 0) / 2 === 0) {
     (s as any).ARGS[1] = (-2);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
@@ -288,9 +292,11 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
     scene.text(`You cry and bite your lip when the ${((s as any).dick2 ?? 0)}cm cock begins to fuck your ass.`);
     (s as any).totPain = ((s as any).totPain ?? 0) + (1);
   } else {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    // TODO-QSP: dynamic text: You feel like your anus is stretching when <<$xyr2>> penis enters you. You start...
-    scene.text(`You feel like your anus is stretching when ${((s as any).xyr2 ?? 0)} penis enters you. You start to moan rhythmically in unison with ${((s as any).xyr2 ?? 0)} cock's movements inside of you.`);
+    if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= 20  &&  (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) < 30) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      // TODO-QSP: dynamic text: You feel like your anus is stretching when <<$xyr2>> penis enters you. You start...
+      scene.text(`You feel like your anus is stretching when ${((s as any).xyr2 ?? 0)} penis enters you. You start to moan rhythmically in unison with ${((s as any).xyr2 ?? 0)} cock's movements inside of you.`);
+    }
   }
   if ((!((s as any).totPain ?? 0))) {
     // TODO-QSP: dynamic text: Feelings merge together when you move inside two members in contact with each ot...
@@ -306,34 +312,40 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
       scene.text('Suddenly you powerfully orgasm while moaning and screaming until your muscles are tightening frantically around two members on the inside of your body.');
     }
   } else {
-    // TODO-QSP: dynamic text: Feelings merge together when you move inside two members in contact with each ot...
-    scene.text(`Feelings merge together when you move inside two members in contact with each other through a thin opening share your vagina filled ${((s as any).dick1 ?? 0)} centimeter and a member of your ${((s as any).anustipe ?? 0)} anus filled ${((s as any).dick2 ?? 0)} centimeter member. It hurts a little, but still very nice while all free holes are being filled by members.`);
-    if (((s as any).totPain ?? 0) === 2) {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0)/2;
-      (s as any).pcs_mood = 50;
-      // TODO-QSP: dynamic text: You strattle themselves and feel like your holes are about ready to burst when y...
-      scene.text(`You strattle themselves and feel like your holes are about ready to burst when you move inside two members in contact with each other through a thin opening sharing your vagina filled ${((s as any).dick ?? 0)} centimeter and a member of your ${((s as any).anustipe ?? 0)} anus filled ${((s as any).dick2 ?? 0)} centimeter member. Feeling very strange, in a tangle of mixed pain, pleasure and painful overcrowding.`);
+    if (((s as any).totPain ?? 0) === 1) {
+      // TODO-QSP: dynamic text: Feelings merge together when you move inside two members in contact with each ot...
+      scene.text(`Feelings merge together when you move inside two members in contact with each other through a thin opening share your vagina filled ${((s as any).dick1 ?? 0)} centimeter and a member of your ${((s as any).anustipe ?? 0)} anus filled ${((s as any).dick2 ?? 0)} centimeter member. It hurts a little, but still very nice while all free holes are being filled by members.`);
     } else {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0)/4;
-      (s as any).pcs_mood = 25;
-      if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
-        (s as any).pcs_makeup = 0;
-      }
-      // TODO-QSP: dynamic text: You hurt and sometimes sharp bursts of pain shoot through your groan when you mo...
-      scene.text(`You hurt and sometimes sharp bursts of pain shoot through your groan when you move inside two members in contact with each other through a thin opening sharing your vagina filled ${((s as any).dick ?? 0)} centimeter and a member of your ${((s as any).anustipe ?? 0)} anus filled ${((s as any).dick2 ?? 0)} centimeter member. You feel like you are being split in two as your ass and pussy feel merged into one pretty painful lump. Your eyes are a veil of tears.`);
-      if (((s as any).totPain ?? 0) >= 4) {
-        (s as any).pcs_mood = 5;
-        (s as any).pcs_horny = 0;
-        if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
-          (s as any).pcs_makeup = 0;
+      if (((s as any).totPain ?? 0) === 2) {
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0)/2;
+        (s as any).pcs_mood = 50;
+        // TODO-QSP: dynamic text: You strattle themselves and feel like your holes are about ready to burst when y...
+        scene.text(`You strattle themselves and feel like your holes are about ready to burst when you move inside two members in contact with each other through a thin opening sharing your vagina filled ${((s as any).dick ?? 0)} centimeter and a member of your ${((s as any).anustipe ?? 0)} anus filled ${((s as any).dick2 ?? 0)} centimeter member. Feeling very strange, in a tangle of mixed pain, pleasure and painful overcrowding.`);
+      } else {
+        if (((s as any).totPain ?? 0) === 3) {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0)/4;
+          (s as any).pcs_mood = 25;
+          if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+            (s as any).pcs_makeup = 0;
+          }
+          // TODO-QSP: dynamic text: You hurt and sometimes sharp bursts of pain shoot through your groan when you mo...
+          scene.text(`You hurt and sometimes sharp bursts of pain shoot through your groan when you move inside two members in contact with each other through a thin opening sharing your vagina filled ${((s as any).dick ?? 0)} centimeter and a member of your ${((s as any).anustipe ?? 0)} anus filled ${((s as any).dick2 ?? 0)} centimeter member. You feel like you are being split in two as your ass and pussy feel merged into one pretty painful lump. Your eyes are a veil of tears.`);
+        } else {
+          if (((s as any).totPain ?? 0) >= 4) {
+            (s as any).pcs_mood = 5;
+            (s as any).pcs_horny = 0;
+            if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+              (s as any).pcs_makeup = 0;
+            }
+            // TODO-QSP: dynamic text: Squeals and tears stream pouring out of your eyes from the terrible pain, your e...
+            scene.text(`Squeals and tears stream pouring out of your eyes from the terrible pain, your entire abdomen and genitals feel a sharp pain while ${((s as any).boydesc1 ?? 0)} fucks your vagina with ${((s as any).xyr1 ?? 0)} ${((s as any).dick1 ?? 0)} centimeter dick and ${((s as any).boydesc2 ?? 0)} almost tearing your ${((s as any).anustipe ?? 0)} with ${((s as any).xyr2 ?? 0)} ${((s as any).dick2 ?? 0)} centimeter instrument.`);
+          }
         }
-        // TODO-QSP: dynamic text: Squeals and tears stream pouring out of your eyes from the terrible pain, your e...
-        scene.text(`Squeals and tears stream pouring out of your eyes from the terrible pain, your entire abdomen and genitals feel a sharp pain while ${((s as any).boydesc1 ?? 0)} fucks your vagina with ${((s as any).xyr1 ?? 0)} ${((s as any).dick1 ?? 0)} centimeter dick and ${((s as any).boydesc2 ?? 0)} almost tearing your ${((s as any).anustipe ?? 0)} with ${((s as any).xyr2 ?? 0)} ${((s as any).dick2 ?? 0)} centimeter instrument.`);
       }
-      // TODO-QSP: gs 'arousal', 'vaginal',  ARGS[1] / 2, $npcID1, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $A...
-      // TODO-QSP: gs 'arousal', 'anal',    ARGS[1] / 2, $npcID2, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $AR...
     }
   }
+  // TODO-QSP: gs 'arousal', 'vaginal',  ARGS[1] / 2, $npcID1, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $A...
+  // TODO-QSP: gs 'arousal', 'anal',    ARGS[1] / 2, $npcID2, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $AR...
   scene.build();
 }
 

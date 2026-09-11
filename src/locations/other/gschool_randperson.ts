@@ -7,59 +7,137 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).couple_rand = Math.floor(Math.random() * 53) + 1;
   if (((s as any).couple_rand ?? 0) === 1) {
   } else {
-    if (((s as any).couple_rand ?? 0) === 3) {
+    if (((s as any).couple_rand ?? 0) === 2) {
     } else {
-      if (((s as any).couple_rand ?? 0) === 5) {
+      if (((s as any).couple_rand ?? 0) === 3) {
       } else {
-        if (((s as any).couple_rand ?? 0) === 7) {
+        if (((s as any).couple_rand ?? 0) === 4) {
         } else {
-          if (((s as any).couple_rand ?? 0) === 9) {
+          if (((s as any).couple_rand ?? 0) === 5) {
           } else {
-            if (((s as any).couple_rand ?? 0) === 11) {
+            if (((s as any).couple_rand ?? 0) === 6) {
             } else {
-              if (((s as any).couple_rand ?? 0) === 13) {
+              if (((s as any).couple_rand ?? 0) === 7) {
               } else {
-                if (((s as any).couple_rand ?? 0) === 15) {
+                if (((s as any).couple_rand ?? 0) === 8) {
                 } else {
-                  if (((s as any).couple_rand ?? 0) === 17) {
+                  if (((s as any).couple_rand ?? 0) === 9) {
                   } else {
-                    if (((s as any).couple_rand ?? 0) === 19) {
+                    if (((s as any).couple_rand ?? 0) === 10) {
                     } else {
-                      if (((s as any).couple_rand ?? 0) === 21) {
+                      if (((s as any).couple_rand ?? 0) === 11) {
                       } else {
-                        if (((s as any).couple_rand ?? 0) === 23) {
+                        if (((s as any).couple_rand ?? 0) === 12  &&  ((s as any).kotovLoveQW ?? 0) <= 0) {
                         } else {
-                          if (((s as any).couple_rand ?? 0) === 25) {
+                          if (((s as any).couple_rand ?? 0) === 13) {
                           } else {
-                            if (((s as any).couple_rand ?? 0) === 27) {
+                            if (((s as any).couple_rand ?? 0) === 14) {
                             } else {
-                              if (((s as any).couple_rand ?? 0) === 29) {
+                              if (((s as any).couple_rand ?? 0) === 15) {
                               } else {
-                                if (((s as any).couple_rand ?? 0) === 31) {
+                                if (((s as any).couple_rand ?? 0) === 16) {
                                 } else {
-                                  if (((s as any).couple_rand ?? 0) === 33) {
+                                  if (((s as any).couple_rand ?? 0) === 17) {
                                   } else {
-                                    if (((s as any).couple_rand ?? 0) === 35) {
+                                    if (((s as any).couple_rand ?? 0) === 18) {
                                     } else {
-                                      if (((s as any).couple_rand ?? 0) === 37) {
+                                      if (((s as any).couple_rand ?? 0) === 19) {
                                       } else {
-                                        if (((s as any).couple_rand ?? 0) === 39) {
+                                        if (((s as any).couple_rand ?? 0) === 20) {
                                         } else {
-                                          if (((s as any).couple_rand ?? 0) === 41) {
+                                          if (((s as any).couple_rand ?? 0) === 21) {
                                           } else {
-                                            if (((s as any).couple_rand ?? 0) === 43) {
+                                            if (((s as any).couple_rand ?? 0) === 22) {
                                             } else {
-                                              if (((s as any).couple_rand ?? 0) === 45) {
+                                              if (((s as any).couple_rand ?? 0) === 23) {
                                               } else {
-                                                if (((s as any).couple_rand ?? 0) === 47) {
+                                                if (((s as any).couple_rand ?? 0) === 24) {
                                                 } else {
-                                                  if (((s as any).couple_rand ?? 0) === 49) {
+                                                  if (((s as any).couple_rand ?? 0) === 25) {
                                                   } else {
-                                                    if (((s as any).couple_rand ?? 0) === 51) {
+                                                    if (((s as any).couple_rand ?? 0) === 26  &&  ((s as any).fedorlove ?? 0) < 1) {
                                                     } else {
-                                                      if (((s as any).couple_rand ?? 0) === 53) {
+                                                      if (((s as any).couple_rand ?? 0) === 27) {
                                                       } else {
-                                                        // TODO-QSP: jump 'couple_jump'
+                                                        if (((s as any).couple_rand ?? 0) === 28  &&  ((s as any).kotovLoveQW ?? 0) <= 0) {
+                                                        } else {
+                                                          if (((s as any).couple_rand ?? 0) === 29) {
+                                                          } else {
+                                                            if (((s as any).couple_rand ?? 0) === 30) {
+                                                            } else {
+                                                              if (((s as any).couple_rand ?? 0) === 31) {
+                                                              } else {
+                                                                if (((s as any).couple_rand ?? 0) === 32) {
+                                                                } else {
+                                                                  if (((s as any).couple_rand ?? 0) === 33) {
+                                                                  } else {
+                                                                    if (((s as any).couple_rand ?? 0) === 34) {
+                                                                    } else {
+                                                                      if (((s as any).couple_rand ?? 0) === 35) {
+                                                                      } else {
+                                                                        if (((s as any).couple_rand ?? 0) === 36) {
+                                                                        } else {
+                                                                          if (((s as any).couple_rand ?? 0) === 37) {
+                                                                          } else {
+                                                                            if (((s as any).couple_rand ?? 0) === 38) {
+                                                                            } else {
+                                                                              if (((s as any).couple_rand ?? 0) === 39) {
+                                                                              } else {
+                                                                                if (((s as any).couple_rand ?? 0) === 40) {
+                                                                                } else {
+                                                                                  if (((s as any).couple_rand ?? 0) === 41) {
+                                                                                  } else {
+                                                                                    if (((s as any).couple_rand ?? 0) === 42) {
+                                                                                    } else {
+                                                                                      if (((s as any).couple_rand ?? 0) === 43) {
+                                                                                      } else {
+                                                                                        if (((s as any).couple_rand ?? 0) === 44) {
+                                                                                        } else {
+                                                                                          if (((s as any).couple_rand ?? 0) === 45) {
+                                                                                          } else {
+                                                                                            if (((s as any).couple_rand ?? 0) === 46) {
+                                                                                            } else {
+                                                                                              if (((s as any).couple_rand ?? 0) === 47) {
+                                                                                              } else {
+                                                                                                if (((s as any).couple_rand ?? 0) === 48) {
+                                                                                                } else {
+                                                                                                  if (((s as any).couple_rand ?? 0) === 49) {
+                                                                                                  } else {
+                                                                                                    if (((s as any).couple_rand ?? 0) === 50) {
+                                                                                                    } else {
+                                                                                                      if (((s as any).couple_rand ?? 0) === 51) {
+                                                                                                      } else {
+                                                                                                        if (((s as any).couple_rand ?? 0) === 52) {
+                                                                                                        } else {
+                                                                                                          if (((s as any).couple_rand ?? 0) === 53) {
+                                                                                                          } else {
+                                                                                                            // TODO-QSP: jump 'couple_jump'
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
                                                       }
                                                     }
                                                   }

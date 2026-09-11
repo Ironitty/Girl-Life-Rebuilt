@@ -5,9 +5,15 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'bomba') {
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'dolls') {
+    if (((s as any).locArgs?.[0] ?? 0) === 'cats') {
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'danilovich') {
+      if (((s as any).locArgs?.[0] ?? 0) === 'dolls') {
+      } else {
+        if (((s as any).locArgs?.[0] ?? 0) === 'gm') {
+        } else {
+          if (((s as any).locArgs?.[0] ?? 0) === 'danilovich') {
+          }
+        }
       }
     }
   }

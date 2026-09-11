@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -149,62 +149,215 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(s, 'albina_wine_event', 'pussy_taste');
     } else {
-      if (((s as any).AlbinaQW ?? 0)?.['wine_convo_2'] === ((s as any).daystart ?? 0)) {
-        scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
-      } else {
-        (s as any).AlbinaQW['wine_convo_2'] = ((s as any).daystart ?? 0);
-      }
-      qspCall(s, 'albina_wine_event', 'shave_talk');
-      if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 3) {
-        if (((s as any).AlbinaQW ?? 0)?.['wine_convo_3'] === ((s as any).daystart ?? 0)) {
+      if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 2) {
+        if (((s as any).AlbinaQW ?? 0)?.['wine_convo_2'] === ((s as any).daystart ?? 0)) {
           scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
         } else {
-          (s as any).AlbinaQW['wine_convo_3'] = ((s as any).daystart ?? 0);
+          (s as any).AlbinaQW['wine_convo_2'] = ((s as any).daystart ?? 0);
         }
-        qspCall(s, 'albina_wine_event', 'dominate_albina');
+        qspCall(s, 'albina_wine_event', 'shave_talk');
       } else {
-        if (((s as any).AlbinaQW ?? 0)?.['wine_convo_4'] === ((s as any).daystart ?? 0)) {
-          scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
-        } else {
-          (s as any).AlbinaQW['wine_convo_4'] = ((s as any).daystart ?? 0);
-        }
-        qspCall(s, 'albina_wine_event', 'masturbation_talk');
-        if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 5) {
-          if (((s as any).AlbinaQW ?? 0)?.['wine_convo_5'] === ((s as any).daystart ?? 0)) {
+        if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 3) {
+          if (((s as any).AlbinaQW ?? 0)?.['wine_convo_3'] === ((s as any).daystart ?? 0)) {
             scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
           } else {
-            (s as any).AlbinaQW['wine_convo_5'] = ((s as any).daystart ?? 0);
+            (s as any).AlbinaQW['wine_convo_3'] = ((s as any).daystart ?? 0);
           }
-          qspCall(s, 'albina_wine_event', 'porn_talk');
+          qspCall(s, 'albina_wine_event', 'dominate_albina');
         } else {
-          if (((s as any).AlbinaQW ?? 0)?.['wine_convo_6'] === ((s as any).daystart ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
-          } else {
-            (s as any).AlbinaQW['wine_convo_6'] = ((s as any).daystart ?? 0);
-          }
-          qspCall(s, 'albina_wine_event', 'boob_size_talk');
-          if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 7) {
-            if (((s as any).AlbinaQW ?? 0)?.['commando_know'] === 0) {
-              scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
-            }
-            if (((s as any).AlbinaQW ?? 0)?.['wine_convo_7'] === ((s as any).daystart ?? 0)) {
+          if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 4) {
+            if (((s as any).AlbinaQW ?? 0)?.['wine_convo_4'] === ((s as any).daystart ?? 0)) {
               scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
             } else {
-              (s as any).AlbinaQW['wine_convo_7'] = ((s as any).daystart ?? 0);
+              (s as any).AlbinaQW['wine_convo_4'] = ((s as any).daystart ?? 0);
             }
-            qspCall(s, 'albina_wine_event', 'commando_talk');
+            qspCall(s, 'albina_wine_event', 'masturbation_talk');
           } else {
-            if (((s as any).AlbinaQW ?? 0)?.['wine_convo_8'] === ((s as any).daystart ?? 0)) {
-              scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+            if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 5) {
+              if (((s as any).AlbinaQW ?? 0)?.['wine_convo_5'] === ((s as any).daystart ?? 0)) {
+                scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+              } else {
+                (s as any).AlbinaQW['wine_convo_5'] = ((s as any).daystart ?? 0);
+              }
+              qspCall(s, 'albina_wine_event', 'porn_talk');
             } else {
-              (s as any).AlbinaQW['wine_convo_8'] = ((s as any).daystart ?? 0);
+              if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 6) {
+                if (((s as any).AlbinaQW ?? 0)?.['wine_convo_6'] === ((s as any).daystart ?? 0)) {
+                  scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                } else {
+                  (s as any).AlbinaQW['wine_convo_6'] = ((s as any).daystart ?? 0);
+                }
+                qspCall(s, 'albina_wine_event', 'boob_size_talk');
+              } else {
+                if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 7) {
+                  if (((s as any).AlbinaQW ?? 0)?.['commando_know'] === 0) {
+                    scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                  }
+                  if (((s as any).AlbinaQW ?? 0)?.['wine_convo_7'] === ((s as any).daystart ?? 0)) {
+                    scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                  } else {
+                    (s as any).AlbinaQW['wine_convo_7'] = ((s as any).daystart ?? 0);
+                  }
+                  qspCall(s, 'albina_wine_event', 'commando_talk');
+                } else {
+                  if (((s as any).AlbinaQW ?? 0)?.['wine_convo'] === 8) {
+                    if (((s as any).AlbinaQW ?? 0)?.['wine_convo_8'] === ((s as any).daystart ?? 0)) {
+                      scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
+                    } else {
+                      (s as any).AlbinaQW['wine_convo_8'] = ((s as any).daystart ?? 0);
+                    }
+                    qspCall(s, 'albina_wine_event', 'stripper_talk');
+                  }
+                }
+              }
             }
-            qspCall(s, 'albina_wine_event', 'stripper_talk');
           }
         }
       }
     }
   }
+  scene.build();
+}
+
+function enterPussyTaste(s: GameState, scene: SceneBuilder): void {
+  scene.text('"I love the taste of my own pussy," she abruptly says out loud. "Is that weird?"');
+  if (((s as any).stat ?? 0)?.['mast'] > 0) {
+    scene.actions([
+      { label: 'I lick my fingers after masturbating', handler: (st: GameState) => {
+    scene.text('"I like the taste of my pussy too," you slur back. "Sometimes I stick my fingers in my mouf after I masturbate, lick it all off."');
+    scene.text('"Oh fuck, I do that too! Suck my dildo fucking clean right after I cum! It always makes me want to rub another one out. <i>Fuuuuck</i>, I wanna rub one out right now!" she moans while unconsciously squeezing her thighs together.');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    ]);
+  }
+  if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
+    scene.actions([
+      { label: 'I like tasting it on a guy\'s dick', handler: (st: GameState) => {
+    scene.text('"I like the taste of my pussy too," you slur back. "It tastes even better when it\'s on a dick."');
+    // TODO-QSP: dynamic text: "You're a fuckin' slut, <<$pcs_nickname>>!" she replies and you nearly choke on ...
+    scene.text(`"You're a fuckin' slut, ${((s as any).pcs_nickname ?? 0)}!" she replies and you nearly choke on your wine as you both burst into laughter.`);
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    ]);
+  }
+  if (((s as any).npc_had_sex ?? 0)?.['A23']) {
+    scene.actions([
+      { label: 'I like your taste too', handler: (st: GameState) => {
+    scene.text('"I like the taste of your pussy too," you slur back and give her a filthy grin.');
+    scene.text('"Nnnngh~!" She rolls her hips while rubbing her thighs together hard. "<i>Fuuuck!</i> Don\'t say that! You make me want to shove your head between my legs right now!"');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Super weird', handler: (st: GameState) => {
+    scene.text('"That\'s super fucking weird," you slur back.');
+    scene.text('"Bullshit!" she shouts even louder than before. "You can\'t tell me you don\'t like the taste of \'ur own brand. I know you do, you filthy slut!"');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    { label: 'I like mine too', handler: (st: GameState) => {
+    scene.text('"I like the taste of my pussy too," you slur back.');
+    scene.text('"I fucking knew it!" she shouts triumphantly. "Every girl loves her own juice!"');
+    scene.text('"If you knew, then why are you asking if it\'s weird?" you ask, puzzled.');
+    scene.text('"I jus\' wanted to see if <i>you</i> were the weird one!" she mumbles into her glass as she takes another sip, her voice echoing off the inside.');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterShaveTalk(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).pubestyle ?? 0) === 1  &&  ((s as any).pcs_pubes ?? 0) <= 3) {
+    scene.text('"I can\'t believe how many girls at school don\'t shave their pussy," she says with a disgusted look on her face. "How can they stand having all that hair down there?"');
+    qspCall(s, 'albina_wine_event', 'shave_answer1');
+  } else {
+    if (((s as any).pcs_pubes ?? 0) <= 15) {
+      scene.text('"You need a shave," she says with a disgusted look on her face as she moves her head uncomfortably on your lap. "I can practically feel your stubble velcroing to my hair right now!"');
+      qspCall(s, 'albina_wine_event', 'shave_answer2');
+    } else {
+      if (((s as any).pcs_pubes ?? 0) <= 25) {
+        if ((((s as any).pubestyle ?? 0) >= 2  &&  ((s as any).pubestyle ?? 0) <= 8)  ||  ((s as any).pubestyle ?? 0) >= 12) {
+          scene.text('"Ugh, how can you stand having hair down there?" she rants. "I bet making it look all fancy doesn\'t make it any less itchy!"');
+          qspCall(s, 'albina_wine_event', 'shave_answer5');
+        } else {
+          scene.text('Ugh, how can you stand having hair down there?" she rants. "You\'ve already trimmed it down, so why not just finish the job and shave it off?"');
+          qspCall(s, 'albina_wine_event', 'shave_answer5');
+        }
+      } else {
+        if (((s as any).pcs_pubes ?? 0) <= 30) {
+          scene.text('"Ugh, how can you stand having all that hair down there?" she says with a disgusted look on her face as she turns to glance down at the pubic hair covering your pussy. "It feels like I\'m putting my head on a fucking hamster!"');
+          qspCall(s, 'albina_wine_event', 'shave_answer5');
+        } else {
+          // TODO-QSP: dynamic text: "Holy shit <<$pcs_nickname>>, do you <i>ever</i> shave?" she asks with a disgust...
+          scene.text(`"Holy shit ${((s as any).pcs_nickname ?? 0)}, do you <i>ever</i> shave?" she asks with a disgusted look on her face as she moves her head uncomfortably on your lap before turning to glance down at the wild bush between your legs. "You practically have an entire sheep down there! How can you stand it?"`);
+          qspCall(s, 'albina_wine_event', 'shave_answer6');
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterDominateAlbina(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: dynamic text: "Serious question, <<$pcs_nickname>>," she says, looking up at you with a mirthl...
+  scene.text(`"Serious question, ${((s as any).pcs_nickname ?? 0)}," she says, looking up at you with a mirthless expression on her face. "If you wanted to dominate me in bed, what would you do?"`);
+  scene.actions([
+    { label: 'Why would I do that?', handler: (st: GameState) => {
+    scene.text('"Why would I do that?" you say, puzzled. "You\'re my friend, I wouldn\'t want to do that to you."');
+    scene.text('"I was just being hypothetical.." she responds stiffly before burying her face in her wine glass.');
+    scene.text('"I thought you said it was serious?" you ask with a nervous chuckle. You try to talk to her, but she seems a bit pouty for some reason, so you leave it alone.');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    { label: 'Am I some sort of pervert?', handler: (st: GameState) => {
+    scene.text('"Why would I do that?" you ask. "What am I? Some kind of pervert?"');
+    scene.text('"It was just a hypothetical…" she responds stiffly before burying her face in her wine glass.');
+    scene.text('"I thought you said it was serious?" you ask with a nervous chuckle. You try to talk to her, but she gives you the silent treatment for the next few minutes.');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    { label: 'Bend you over and spank you', handler: (st: GameState) => {
+    scene.text('"First, I\'d bend you over my lap," you smile gently, running your fingers through her hair. Something in your voice makes her eyes go wide. She glances to the side as if realizing that her head is exactly where you said you\'d bend her over.');
+    scene.text('"Then, I\'d sit you up so your ass is nice and high," you continue. "And then I\'d <i>spank you within an inch of your life.</i>" You keep your easy tone, but give Albina a hard stare and her breath hitches. "I\'d keep going until your ass is red and swollen. Let my fingers trail over your pussy, edging you until you <i>beg</i> me to let you cum. And then, <i>I won\'t.</i>"');
+    scene.text('Her face flushes red and she swallows reflexively. Looking down her body, you see her nipples are rock-hard and her thighs are practically dripping with girl cum.');
+    scene.text('"That…" she gulps. "Would be a pretty good way of doing it…"');
+    scene.text('She tears herself away from your gaze and buries her face in her wine glass, taking big desperate gulps.');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    { label: 'I\'d sit on your face', handler: (st: GameState) => {
+    scene.text('"I\'d sit on your face," you grin. "Bury your face in my pussy. Force you to lick your way out or drown."');
+    scene.text('"Well…" she smiles back. "My head is already here… You could… you know… Just throw one leg over and see what happens…"');
+    scene.actions([
+      { label: 'Is that an invitation?', handler: (st: GameState) => {
+    scene.text('"Is that an invitation?" you ask.');
+    scene.text('"Come and find out," she whispers.');
+    // TODO-QSP: end !}
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+      { label: 'Force you between my legs', handler: (st: GameState) => {
+    scene.text('"I\'d force your head into my crotch and wrap my legs around your head. I\'d keep squeezing harder until you make me cum all over your pretty little face," you tell her with a wicked grin.');
+    scene.text('"Well…" she smiles back. "My head is already here… You could, you know, grab my hair and see if I resist…"');
+    scene.actions([
+      { label: 'Is that an invitation?', handler: (st: GameState) => {
+    scene.text('"Is that an invitation?" you ask.');
+    scene.text('"Come and find out," she whispers.');
+    // TODO-QSP: end !}
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+      { label: 'Grab you by the hair and fuck your ass', handler: (st: GameState) => {
+    scene.text('"Well, first thing I would get a nice, <i>big</i>, strapon," you smirk. Albina bites her lip, unconsciously rubbing her thighs together while she waits for your next words. "And then I\'d grab you by the hair, nice and tight, and shove it right up your ass!"');
+    scene.text('"<i>Fuck!</i> That\'s good!" she moans, her hand snaking between her legs and shamelessly rubbing her pussy. "Have you been watching me and Lazar or something? That\'s <i>just</i> how I like it," she says, a twinkle in her eye as her fingers come back up wet and sticky. She maintains eye contact as she runs her tongue across them, licking up her own juices.');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+      { label: 'Tie you down', handler: (st: GameState) => {
+    scene.text('"I\'d get some rope and tie you to your own bed," you grin. "And then… I think I\'d do whatever I want to you."');
+    scene.text('You let imagination take over for you and it seems to work. Her cheeks immediately flush and her breath grows heavy. Her nipples harden and her thighs rub together as moisture glistens between them.');
+    scene.text('"That," she gulps. "Sounds like a pretty good way of doing it…"');
+    qspCall(s, 'albina_wine_event', 'wine_chat2');
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -219,6 +372,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'wine_chat1':
       enterWineChat1(s, scene);
+      break;
+    case 'pussy_taste':
+      enterPussyTaste(s, scene);
+      break;
+    case 'shave_talk':
+      enterShaveTalk(s, scene);
+      break;
+    case 'dominate_albina':
+      enterDominateAlbina(s, scene);
       break;
     default:
       enterWineInvite(s, scene);

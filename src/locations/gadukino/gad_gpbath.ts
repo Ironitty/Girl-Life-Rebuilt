@@ -79,10 +79,11 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You put the wood into the stove to feed the fire. The banya will be ready to use...
       scene.text('You put the wood into the stove to feed the fire. The banya will be ready to use around \'+func(\'time\', \'get_time_string\', 19, 0)+\'.');
     } else {
-      scene.text('The banya is now ready.');
-      if (((s as any).banaday ?? 0) !== ((s as any).daystart ?? 0)) {
-        scene.actions([
-          { label: 'Relax in the banya (2:00)', handler: (st: GameState) => {
+      if (((s as any).hour ?? 0) > 18  &&  ((s as any).hour ?? 0) < 22) {
+        scene.text('The banya is now ready.');
+        if (((s as any).banaday ?? 0) !== ((s as any).daystart ?? 0)) {
+          scene.actions([
+            { label: 'Relax in the banya (2:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     (s as any).pcs_sweat = Math.floor(Math.random() * 6) + 0;
     (s as any).noshampoo = 1;
@@ -123,14 +124,18 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['gad_gpbath', 'start'] },
     ]);
   } },
-        ]);
+          ]);
+        }
+      } else {
+        // TODO-QSP: dynamic text: The banya is not in use at this time. However, it is available between '+func('t...
+        scene.text('The banya is not in use at this time. However, it is available between \'+func(\'time\', \'get_time_string\', 19, 0)+\' and \'+func(\'time\', \'get_time_string\', 22, 0)+\' during the weekend.');
       }
-      // TODO-QSP: dynamic text: The banya is not in use at this time. However, it is available between '+func('t...
-      scene.text('The banya is not in use at this time. However, it is available between \'+func(\'time\', \'get_time_string\', 19, 0)+\' and \'+func(\'time\', \'get_time_string\', 22, 0)+\' during the weekend.');
     }
   } else {
-    // TODO-QSP: dynamic text: The banya is not used during the week. However, it is usually ready to use from ...
-    scene.text('The banya is not used during the week. However, it is usually ready to use from \'+func(\'time\', \'get_time_string\', 19, 0)+\' during the weekend.');
+    if (((s as any).week ?? 0) < 6) {
+      // TODO-QSP: dynamic text: The banya is not used during the week. However, it is usually ready to use from ...
+      scene.text('The banya is not used during the week. However, it is usually ready to use from \'+func(\'time\', \'get_time_string\', 19, 0)+\' during the weekend.');
+    }
   }
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] > 0  ||  (((s as any).locat ?? 0)?.['Fam_inGad'] === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home'))) {
     scene.actions([

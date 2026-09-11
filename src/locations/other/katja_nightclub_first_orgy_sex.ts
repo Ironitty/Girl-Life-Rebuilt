@@ -19,20 +19,23 @@ function enterFirstOrgyObserve1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Are you going to join them?" you ask.');
     scene.text('"I don\'t think so. Maybe... I\'m not sure. It does look hot," she answers.');
   } else {
-    // TODO-QSP: dynamic text: "Have you seen what's going, <<$pcs_nickname>>?" she asks
-    scene.text(`"Have you seen what's going, ${((s as any).pcs_nickname ?? 0)}?" she asks`);
-    scene.text('"Yes. The sluts are being slutty," you answer.');
-    scene.text('"So what are we going to do?" she replies.');
-    scene.text('"Whatever you want," you reply. "If you want to fuck one of the guys, go ahead, but you can also just continue to drink and dance."');
-    scene.text('"I don\'t know... It looks hot, but... It makes you look like a slut. I don\'t know..." she answers, clearly excited enough to do it, but still having some internal resistance from thinking about her reputation.');
-    scene.text('"Don\'t worry about what others think. Do what you want and screw the rest! Literally if you want," you wink.');
-    // TODO-QSP: dynamic text: "Have you seen what's going on, <<$pcs_nickname>>?" she asks, looking very shock...
-    scene.text(`"Have you seen what's going on, ${((s as any).pcs_nickname ?? 0)}?" she asks, looking very shocked. "I don't know what's happening."`);
-    scene.text('"The sluts have started the orgy, just like Nush predicted," you answer.');
-    scene.text('"What are we going to do?!" she replies, almost panicking.');
-    scene.text('"Whatever you want," you reply. "If you want to fuck one of the guys, go ahead, but you can also just continue to drink and dance."');
-    scene.text('"No, I don\'t think so... I mean, I\'m not one to just have sex with strangers..... Also it makes you look like a slut," she answers, but looks a little excited at the idea.');
-    scene.text('"Don\'t be afraid. Just go with the flow and let your lust guide you," you reply. "And if in doubt, do what I would do."');
+    if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') >= 100) {
+      // TODO-QSP: dynamic text: "Have you seen what's going, <<$pcs_nickname>>?" she asks
+      scene.text(`"Have you seen what's going, ${((s as any).pcs_nickname ?? 0)}?" she asks`);
+      scene.text('"Yes. The sluts are being slutty," you answer.');
+      scene.text('"So what are we going to do?" she replies.');
+      scene.text('"Whatever you want," you reply. "If you want to fuck one of the guys, go ahead, but you can also just continue to drink and dance."');
+      scene.text('"I don\'t know... It looks hot, but... It makes you look like a slut. I don\'t know..." she answers, clearly excited enough to do it, but still having some internal resistance from thinking about her reputation.');
+      scene.text('"Don\'t worry about what others think. Do what you want and screw the rest! Literally if you want," you wink.');
+    } else {
+      // TODO-QSP: dynamic text: "Have you seen what's going on, <<$pcs_nickname>>?" she asks, looking very shock...
+      scene.text(`"Have you seen what's going on, ${((s as any).pcs_nickname ?? 0)}?" she asks, looking very shocked. "I don't know what's happening."`);
+      scene.text('"The sluts have started the orgy, just like Nush predicted," you answer.');
+      scene.text('"What are we going to do?!" she replies, almost panicking.');
+      scene.text('"Whatever you want," you reply. "If you want to fuck one of the guys, go ahead, but you can also just continue to drink and dance."');
+      scene.text('"No, I don\'t think so... I mean, I\'m not one to just have sex with strangers..... Also it makes you look like a slut," she answers, but looks a little excited at the idea.');
+      scene.text('"Don\'t be afraid. Just go with the flow and let your lust guide you," you reply. "And if in doubt, do what I would do."');
+    }
   }
   // TODO-QSP: dynamic text: "What are you going to do, <<$pcs_nickname>>? Are you going to fuck the guys?" s...
   scene.text(`"What are you going to do, ${((s as any).pcs_nickname ?? 0)}? Are you going to fuck the guys?" she asks.`);
@@ -741,7 +744,7 @@ function enterFirstOrgyObserveDance2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'erotic_nudity', 2, 'orgy');
     qspCall(s, 'stat', '');
@@ -751,8 +754,11 @@ function enterFirstOrgyObserveDance2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "What happened to you, <<$pcs_nickname>>? You used to be fun! Whatever, I'll fin...
       scene.text(`"What happened to you, ${((s as any).pcs_nickname ?? 0)}? You used to be fun! Whatever, I'll find somebody else," she says and moves on.`);
     } else {
-      scene.text('"So the rumors about you being a slut aren\'t true? Whatever, I\'ll find somebody else," she says and moves on.');
-      scene.text('"You\'re just as boring as everybody says you are. Whateverm I\'ll find somebody else," she says and moves on.');
+      if (((s as any).fame ?? 0)?.['pav_slut'] >= 150  ||  ((s as any).fame ?? 0)?.['city_slut'] >= 150) {
+        scene.text('"So the rumors about you being a slut aren\'t true? Whatever, I\'ll find somebody else," she says and moves on.');
+      } else {
+        scene.text('"You\'re just as boring as everybody says you are. Whateverm I\'ll find somebody else," she says and moves on.');
+      }
     }
     // TODO-QSP: dynamic text: You watch as she approaches <<$katja_first_orgy_temp['first_orgy_name_wavey']>>,...
     scene.text(`You watch as she approaches ${((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_wavey']}, who quickly agrees and gets on the couch.`);
@@ -1456,10 +1462,13 @@ function enterFirstOrgyPlayerTakesInitiative(s: GameState, scene: SceneBuilder):
     if (((s as any).katjaQW ?? 0)?.['simultanous_boys'] > 3  ||  ((s as any).katjaQW ?? 0)?.['park_sex'] >= 3) {
       scene.text('"You\'re right. This is no more crazy than what I\'ve done before. Why should I not fuck the hot guys?" she answers, but her resolve seems to fade as she\'s saying it.');
     } else {
-      scene.text('"Maybe. I don\'t know. It looks hot. But... It also makes you look like a slut. I don\'t know...." she answers, clearly excited enough to do it, but still having some internal resistance from thinking about her reputation.');
-      scene.text('"Don\'t worry about what others think! Do what you want and screw the rest. Literally!" you answer.');
-      scene.text('"No, I don\'t thinks so... I mean I\'m not one to just have sex with strangers..... Also it makes you look like a slut. I\'m sorry," she answers, clearly not wanting to insult you, but looking very excited at the same time.');
-      scene.text('"Don\'t be afraid. Just go with the flow and let your lust guide you. If in doubt, just do what I would do," you tell her.');
+      if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') >= 100) {
+        scene.text('"Maybe. I don\'t know. It looks hot. But... It also makes you look like a slut. I don\'t know...." she answers, clearly excited enough to do it, but still having some internal resistance from thinking about her reputation.');
+        scene.text('"Don\'t worry about what others think! Do what you want and screw the rest. Literally!" you answer.');
+      } else {
+        scene.text('"No, I don\'t thinks so... I mean I\'m not one to just have sex with strangers..... Also it makes you look like a slut. I\'m sorry," she answers, clearly not wanting to insult you, but looking very excited at the same time.');
+        scene.text('"Don\'t be afraid. Just go with the flow and let your lust guide you. If in doubt, just do what I would do," you tell her.');
+      }
     }
     // TODO-QSP: dynamic text: <<$katja_first_orgy_temp['first_orgy_name_tatoo_guy']>> is clearly getting impat...
     scene.text(`${((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy']} is clearly getting impatient. Before you can hear Katja's response, he grabs you and places you on your back on the couch.`);

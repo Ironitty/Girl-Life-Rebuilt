@@ -149,46 +149,64 @@ function enterKGOLrise2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Increased Armor = <<KGOLspell3>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell3...
       scene.text(`Increased Armor = ${((s as any).KGOLspell3 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell3 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
     } else {
-      // TODO-QSP: dynamic text: Stealth Strike = <<KGOLspell4>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell4 ...
-      scene.text(`Stealth Strike = ${((s as any).KGOLspell4 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell4 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-      // TODO-QSP: dynamic text: Poison Blade = <<KGOLspell5>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell5 +=...
-      scene.text(`Poison Blade = ${((s as any).KGOLspell5 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell5 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-      // TODO-QSP: dynamic text: Invisibility = <<KGOLspell6>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell6 +=...
-      scene.text(`Invisibility = ${((s as any).KGOLspell6 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell6 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-      if (((s as any).KGOLklass ?? 0) === 'Mage') {
-        // TODO-QSP: dynamic text: Fireball = <<KGOLspell7>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell7 += 1 &...
-        scene.text(`Fireball = ${((s as any).KGOLspell7 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell7 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-        // TODO-QSP: dynamic text: Kinetic Pulse = <<KGOLspell8>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell8 +...
-        scene.text(`Kinetic Pulse = ${((s as any).KGOLspell8 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell8 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-        // TODO-QSP: dynamic text: Circle of Fire = <<KGOLspell9>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell9 ...
-        scene.text(`Circle of Fire = ${((s as any).KGOLspell9 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell9 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+      if (((s as any).KGOLklass ?? 0) === 'Rogue') {
+        // TODO-QSP: dynamic text: Stealth Strike = <<KGOLspell4>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell4 ...
+        scene.text(`Stealth Strike = ${((s as any).KGOLspell4 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell4 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+        // TODO-QSP: dynamic text: Poison Blade = <<KGOLspell5>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell5 +=...
+        scene.text(`Poison Blade = ${((s as any).KGOLspell5 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell5 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+        // TODO-QSP: dynamic text: Invisibility = <<KGOLspell6>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell6 +=...
+        scene.text(`Invisibility = ${((s as any).KGOLspell6 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell6 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
       } else {
-        // TODO-QSP: dynamic text: Divine Strike = <<KGOLspell10>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell10...
-        scene.text(`Divine Strike = ${((s as any).KGOLspell10 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell10 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-        // TODO-QSP: dynamic text: Healing = <<KGOLspell11>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell11 += 1 ...
-        scene.text(`Healing = ${((s as any).KGOLspell11 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell11 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-        // TODO-QSP: dynamic text: Divine Protection = <<KGOLspell12>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspe...
-        scene.text(`Divine Protection = ${((s as any).KGOLspell12 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell12 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-        if (((s as any).KGOLklass ?? 0) === 'Archer') {
-          // TODO-QSP: dynamic text: Powerful Shot = <<KGOLspell13>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell13...
-          scene.text(`Powerful Shot = ${((s as any).KGOLspell13 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell13 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-          // TODO-QSP: dynamic text: Triple Shot = <<KGOLspell14>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell14 +...
-          scene.text(`Triple Shot = ${((s as any).KGOLspell14 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell14 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-          // TODO-QSP: dynamic text: Regen Mana = <<KGOLspell15>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell15 +=...
-          scene.text(`Regen Mana = ${((s as any).KGOLspell15 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell15 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+        if (((s as any).KGOLklass ?? 0) === 'Mage') {
+          // TODO-QSP: dynamic text: Fireball = <<KGOLspell7>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell7 += 1 &...
+          scene.text(`Fireball = ${((s as any).KGOLspell7 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell7 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+          // TODO-QSP: dynamic text: Kinetic Pulse = <<KGOLspell8>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell8 +...
+          scene.text(`Kinetic Pulse = ${((s as any).KGOLspell8 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell8 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+          // TODO-QSP: dynamic text: Circle of Fire = <<KGOLspell9>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell9 ...
+          scene.text(`Circle of Fire = ${((s as any).KGOLspell9 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell9 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
         } else {
-          // TODO-QSP: dynamic text: Thunderbolt = <<KGOLspell16>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell16 +...
-          scene.text(`Thunderbolt = ${((s as any).KGOLspell16 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell16 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-          // TODO-QSP: dynamic text: Stun = <<KGOLspell17>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell17 += 1 & g...
-          scene.text(`Stun = ${((s as any).KGOLspell17 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell17 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
-          // TODO-QSP: dynamic text: Recovery = <<KGOLspell18>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell18 += 1...
-          scene.text(`Recovery = ${((s as any).KGOLspell18 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell18 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+          if (((s as any).KGOLklass ?? 0) === 'Priest') {
+            // TODO-QSP: dynamic text: Divine Strike = <<KGOLspell10>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell10...
+            scene.text(`Divine Strike = ${((s as any).KGOLspell10 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell10 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+            // TODO-QSP: dynamic text: Healing = <<KGOLspell11>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell11 += 1 ...
+            scene.text(`Healing = ${((s as any).KGOLspell11 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell11 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+            // TODO-QSP: dynamic text: Divine Protection = <<KGOLspell12>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspe...
+            scene.text(`Divine Protection = ${((s as any).KGOLspell12 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell12 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+          } else {
+            if (((s as any).KGOLklass ?? 0) === 'Archer') {
+              // TODO-QSP: dynamic text: Powerful Shot = <<KGOLspell13>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell13...
+              scene.text(`Powerful Shot = ${((s as any).KGOLspell13 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell13 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+              // TODO-QSP: dynamic text: Triple Shot = <<KGOLspell14>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell14 +...
+              scene.text(`Triple Shot = ${((s as any).KGOLspell14 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell14 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+              // TODO-QSP: dynamic text: Regen Mana = <<KGOLspell15>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell15 +=...
+              scene.text(`Regen Mana = ${((s as any).KGOLspell15 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell15 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+            } else {
+              if (((s as any).KGOLklass ?? 0) === 'Barbarian') {
+                // TODO-QSP: dynamic text: Thunderbolt = <<KGOLspell16>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell16 +...
+                scene.text(`Thunderbolt = ${((s as any).KGOLspell16 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell16 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+                // TODO-QSP: dynamic text: Stun = <<KGOLspell17>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell17 += 1 & g...
+                scene.text(`Stun = ${((s as any).KGOLspell17 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell17 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+                // TODO-QSP: dynamic text: Recovery = <<KGOLspell18>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell18 += 1...
+                scene.text(`Recovery = ${((s as any).KGOLspell18 ?? 0)}. <a href="exec:KGOLspellpoint -= 4 & KGOLspell18 += 1 & gs 'KGOLexpa', 'KGOLrise2'">Spend a skill point</a>`);
+              }
+            }
+          }
         }
       }
-      scene.actions([
-        { label: 'Exit the skills screen', goto: ['KGOLgame', ''] },
-      ]);
     }
+  }
+  scene.actions([
+    { label: 'Exit the skills screen', goto: ['KGOLgame', ''] },
+  ]);
+  scene.build();
+}
+
+function enterKGOLatkKGOLspell2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: :multiloop
+  qspCall(s, 'KGOLexpa', 'KGOLatk');
+  (s as any).KGLOloop = ((s as any).KGLOloop ?? 0) - (1);
+  if (((s as any).KGLOloop ?? 0) > 0) {
+    // TODO-QSP: jump 'multiloop'
   }
   scene.build();
 }
@@ -213,6 +231,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'KGOLrise2':
       enterKGOLrise2(s, scene);
+      break;
+    case 'KGOLatkKGOLspell2':
+      enterKGOLatkKGOLspell2(s, scene);
       break;
     default:
       enterDefault(s, scene);

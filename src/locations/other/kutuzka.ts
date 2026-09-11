@@ -24,12 +24,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.text('You have finally spent enough time in the prison cell, and captain Katalkin comes to let you out.');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).kutime ?? 0) <= 0) {
+      scene.text('You have finally spent enough time in the prison cell, and captain Katalkin comes to let you out.');
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_train_hall', ''] },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

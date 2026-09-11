@@ -71,8 +71,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
       scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
-      scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+      if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
+        scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
+      }
     }
   } },
     ]);

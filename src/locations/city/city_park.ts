@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -59,10 +57,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('"Nope!" you call back. "Just remembered not to!"');
       scene.text('You flip up the back of your skirt, flashing your ass at him before you keep walking with a bit of a spring in your step.');
     } else {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
-      scene.text('"Nah, just didn\'t feel like it," you shrug and continue on your way.');
-      qspCall(s, 'mood', 'lower', 'tiny');
-      scene.text('You blush with shame and try to walk out of his sight as fast as possible.');
+      if (((s as any).pcs_inhib ?? 0) > 30) {
+        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
+        scene.text('"Nah, just didn\'t feel like it," you shrug and continue on your way.');
+      } else {
+        qspCall(s, 'mood', 'lower', 'tiny');
+        scene.text('You blush with shame and try to walk out of his sight as fast as possible.');
+      }
     }
   }
   qspCall(s, 'treeCircEntry', 'CentralPark');
@@ -94,11 +95,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pusher ?? 0) === 1  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21) {
     scene.text('There\'s a drug dealer casually sitting on one of the benches. He\'s trying not to be too suspicious.');
+    scene.actions([
+      { label: 'Buy "Pale Lady" aka cocaine [+$func(\'money\', \'get_cost_string\', 360)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 360) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
-      (s as any).temp_doses = qspUntranslated(s, "input (\"How many doses do you want to buy?\")", { location: "city_park" });
+      (s as any).temp_doses = 0;
       if (qspFunc(s, 'money', 'can_afford', ((s as any).temp_doses ?? 0) * 360) !== 1  ||  ((s as any).temp_doses ?? 0) <= 0) {
         scene.text('"Either tell me how many you want to buy or get lost!"');
       } else {
@@ -110,8 +113,67 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Casually walk away', goto: ['city_park', 'start'] },
       ]);
     }
+  } },
+    ]);
+  }
+  if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).parkrunday ?? 0) !== ((s as any).daystart ?? 0)) {
+    if ((!((s as any).PSport ?? 0))) {
+      scene.text('You could go for a run in the park if you were wearing sports clothes and shoes.');
+    } else {
+      if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
+        scene.actions([
+          { label: 'Go for a run in the park (1:00)', handler: (st: GameState) => {
+    // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
+  } },
+        ]);
+      } else {
+        if (((s as any).pcs_energy ?? 0) < 10) {
+          scene.actions([
+            { label: 'Go for a run in the park (1:00)', handler: (st: GameState) => {
+    // TODO-QSP: $func('wrap', 'neg', '<br>You''re so hungry you can''t face ...
+  } },
+          ]);
+        } else {
+          if (((s as any).pcs_hydra ?? 0) < 10) {
+            scene.actions([
+              { label: 'Go for a run in the park (1:00)', handler: (st: GameState) => {
+    // TODO-QSP: $func('wrap', 'neg', '<br>You''re so thirsty you can''t face...
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Go for a run in the park (1:00)', goto: ['city_park', 'run'] },
+            ]);
+          }
+        }
+      }
+    }
+  }
+  qspCall(s, 'music_actions', 'start');
+  if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 8) {
+    // TODO-QSP: If succubusQW = 14 and suchuntday ! daystart:
     scene.actions([
-      { label: 'Buy "Pale Lady" aka cocaine [+$func(\'money\', \'get_cost_string\', 360)]' }, // TODO-QSP: empty action body
+      { label: 'Go hunting (this can take a lot of time)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + (40 + ((s as any).rand ?? 0)(0, 20) - 5 * ((s as any).succublvl ?? 0));
+    qspCall(s, 'stat', '');
+    if ((Math.floor(Math.random() * 8) + 0) - ((s as any).succublvl ?? 0) < 2) {
+      (s as any).suchunt = 1;
+      scene.actions([{ label: 'Continue', goto: ['park_walkevents', '1'] }]);
+    } else {
+      qspCall(s, 'mood', 'lower', 'tiny');
+      scene.text('No luck! After searching for half an hour, you find no one. For such a large city, you would have thought there would be more suitable prey around. Your needs remain, so maybe another search will be required?');
+      scene.actions([
+        { label: 'Continue', goto: ['city_park', 'start'] },
+      ]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).knowsfairy ?? 0) >= 1  &&  ((s as any).pcs_magik ?? 0) > 4) {
+    scene.actions([
+      { label: 'Find a place the Fairy may be', handler: (st: GameState) => {
+    (st as any).fairylooking = 1;
+  }, goto: ['park_walkeventsrnd', ''] },
     ]);
   }
   scene.actions([

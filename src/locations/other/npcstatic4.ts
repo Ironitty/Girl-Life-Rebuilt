@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -6,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).npctemp = 150;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A150'  ||  ((s as any).ARGS ?? 0)[0] === 150) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A150'  ||  ((s as any).locArgs?.[0] ?? 0) === 150) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Erast';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Erast';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Vagin';
@@ -21,11 +23,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 4;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 110;
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 26;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 151;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A151'  ||  ((s as any).ARGS ?? 0)[0] === 151) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A151'  ||  ((s as any).locArgs?.[0] ?? 0) === 151) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Evgeny';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Evgeny';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Kuznetsov';
@@ -40,11 +42,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 3;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 0;
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 87;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 152;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A152'  ||  ((s as any).ARGS ?? 0)[0] === 152) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A152'  ||  ((s as any).locArgs?.[0] ?? 0) === 152) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Feofan';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Feofan';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Krupin';
@@ -60,11 +62,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 70;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 60;
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 6;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 153;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A153'  ||  ((s as any).ARGS ?? 0)[0] === 153) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A153'  ||  ((s as any).locArgs?.[0] ?? 0) === 153) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Gerasim';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Gerasim';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Vasilyev';
@@ -80,11 +82,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 92;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 20;
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 4;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 154;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A154'  ||  ((s as any).ARGS ?? 0)[0] === 154) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A154'  ||  ((s as any).locArgs?.[0] ?? 0) === 154) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Radomir';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Radomir';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Popov';
@@ -99,11 +101,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 7;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 370;
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 51;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 155;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A155'  ||  ((s as any).ARGS ?? 0)[0] === 155) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A155'  ||  ((s as any).locArgs?.[0] ?? 0) === 155) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Lavrenti';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Lavrenti';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Romanov';
@@ -119,11 +121,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 51;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 240;
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 7;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 156;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A156'  ||  ((s as any).ARGS ?? 0)[0] === 156) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A156'  ||  ((s as any).locArgs?.[0] ?? 0) === 156) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Arkadi';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Arkadi';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Fyodorov';
@@ -138,11 +140,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 5;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 260;
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 42;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 157;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A157'  ||  ((s as any).ARGS ?? 0)[0] === 157) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A157'  ||  ((s as any).locArgs?.[0] ?? 0) === 157) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Roman';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Roman';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Yakovlev';
@@ -157,11 +159,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 5;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 170;
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 34;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 158;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A158'  ||  ((s as any).ARGS ?? 0)[0] === 158) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A158'  ||  ((s as any).locArgs?.[0] ?? 0) === 158) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Valentin';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Valentin';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Bogdanov';
@@ -176,11 +178,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 6;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 280;
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 44;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 159;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A159'  ||  ((s as any).ARGS ?? 0)[0] === 159) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A159'  ||  ((s as any).locArgs?.[0] ?? 0) === 159) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Petia';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Petia';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Alkaev';
@@ -196,11 +198,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 28;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 0;
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 1;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 160;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A160'  ||  ((s as any).ARGS ?? 0)[0] === 160) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A160'  ||  ((s as any).locArgs?.[0] ?? 0) === 160) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Leonid';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Leonid';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Nosov';
@@ -210,11 +212,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_thdick['A' + String((s as any).npctemp || '') + ''] = 'thicker than average';
     (s as any).npc_girth['A' + String((s as any).npctemp || '') + ''] = 12;
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 17;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 161;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A161'  ||  ((s as any).ARGS ?? 0)[0] === 161) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A161'  ||  ((s as any).locArgs?.[0] ?? 0) === 161) {
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Nicholas\'s Friend';
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
     qspCall(s, 'npcstaticdefaults', 'defaults');
@@ -223,7 +225,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 14;
   }
   (s as any).npctemp = 162;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A162'  ||  ((s as any).ARGS ?? 0)[0] === 162) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A162'  ||  ((s as any).locArgs?.[0] ?? 0) === 162) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Victor';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Mistress\'s Driver';
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
@@ -233,7 +235,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 19;
   }
   (s as any).npctemp = 163;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A163'  ||  ((s as any).ARGS ?? 0)[0] === 163) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A163'  ||  ((s as any).locArgs?.[0] ?? 0) === 163) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Arsen';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Arsen';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Arsen';
@@ -244,7 +246,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 13;
   }
   (s as any).npctemp = 164;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A164'  ||  ((s as any).ARGS ?? 0)[0] === 164) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A164'  ||  ((s as any).locArgs?.[0] ?? 0) === 164) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Maksim';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Maksim';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Maksim';
@@ -255,7 +257,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 18;
   }
   (s as any).npctemp = 165;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A165'  ||  ((s as any).ARGS ?? 0)[0] === 165) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A165'  ||  ((s as any).locArgs?.[0] ?? 0) === 165) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Vanya';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Vanya';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Yanka';
@@ -271,11 +273,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 36;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 120;
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 5;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 166;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A166'  ||  ((s as any).ARGS ?? 0)[0] === 166) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A166'  ||  ((s as any).locArgs?.[0] ?? 0) === 166) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Nikita';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Kirill';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Nikita';
@@ -284,11 +286,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_thdick['A' + String((s as any).npctemp || '') + ''] = 'well proportioned';
     (s as any).npc_girth['A' + String((s as any).npctemp || '') + ''] = 11;
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 14;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 167;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A167'  ||  ((s as any).ARGS ?? 0)[0] === 167) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A167'  ||  ((s as any).locArgs?.[0] ?? 0) === 167) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Reinhold';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Reinhold';
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
@@ -298,7 +300,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 16;
   }
   (s as any).npctemp = 168;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A168'  ||  ((s as any).ARGS ?? 0)[0] === 168) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A168'  ||  ((s as any).locArgs?.[0] ?? 0) === 168) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Gedo';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Mazo';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Gedo Mazo';
@@ -309,7 +311,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 16;
   }
   (s as any).npctemp = 169;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A169'  ||  ((s as any).ARGS ?? 0)[0] === 169) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A169'  ||  ((s as any).locArgs?.[0] ?? 0) === 169) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Dmitry';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Dima';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Dima';
@@ -320,7 +322,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 16;
   }
   (s as any).npctemp = 170;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A170'  ||  ((s as any).ARGS ?? 0)[0] === 170) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A170'  ||  ((s as any).locArgs?.[0] ?? 0) === 170) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Aleksei';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Alex';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Alex';
@@ -331,7 +333,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 16;
   }
   (s as any).npctemp = 171;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A171'  ||  ((s as any).ARGS ?? 0)[0] === 171) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A171'  ||  ((s as any).locArgs?.[0] ?? 0) === 171) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Styopa';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Stepan';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Uncle Stepan';
@@ -346,7 +348,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 2;
   }
   (s as any).npctemp = 172;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A172'  ||  ((s as any).ARGS ?? 0)[0] === 172) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A172'  ||  ((s as any).locArgs?.[0] ?? 0) === 172) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Andrei';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Andrei';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Andrei';
@@ -360,7 +362,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 6;
   }
   (s as any).npctemp = 173;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A173'  ||  ((s as any).ARGS ?? 0)[0] === 173) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A173'  ||  ((s as any).locArgs?.[0] ?? 0) === 173) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Igor';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Igor';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Igor';
@@ -381,7 +383,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_icon['A' + String((s as any).npctemp || '') + ''] = 'images/system/phone/icons/icon_bf31.png';
   }
   (s as any).npctemp = 174;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A174'  ||  ((s as any).ARGS ?? 0)[0] === 174) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A174'  ||  ((s as any).locArgs?.[0] ?? 0) === 174) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Sergei';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Sergei';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Sergei';
@@ -396,7 +398,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 6;
   }
   (s as any).npctemp = 175;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A175'  ||  ((s as any).ARGS ?? 0)[0] === 175) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A175'  ||  ((s as any).locArgs?.[0] ?? 0) === 175) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Gustav';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Gustav';
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
@@ -407,7 +409,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 1;
   }
   (s as any).npctemp = 176;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A176'  ||  ((s as any).ARGS ?? 0)[0] === 176) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A176'  ||  ((s as any).locArgs?.[0] ?? 0) === 176) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Tatiana';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Tatiana';
     (s as any).npc_dob['A' + String((s as any).npctemp || '') + ''] = 19970410;
@@ -416,7 +418,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_bust['A' + String((s as any).npctemp || '') + ''] = 9;
   }
   (s as any).npctemp = 177;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A177'  ||  ((s as any).ARGS ?? 0)[0] === 177) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A177'  ||  ((s as any).locArgs?.[0] ?? 0) === 177) {
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Rude Fisherman';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Rude Fisherman';
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
@@ -427,7 +429,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 2;
   }
   (s as any).npctemp = 178;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A178'  ||  ((s as any).ARGS ?? 0)[0] === 178) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A178'  ||  ((s as any).locArgs?.[0] ?? 0) === 178) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Natalya';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Natalya';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Petrovna';
@@ -437,7 +439,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_bust['A' + String((s as any).npctemp || '') + ''] = 19;
   }
   (s as any).npctemp = 179;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A179'  ||  ((s as any).ARGS ?? 0)[0] === 179) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A179'  ||  ((s as any).locArgs?.[0] ?? 0) === 179) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Ilari';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Ilari';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Markov';
@@ -450,7 +452,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 2;
   }
   (s as any).npctemp = 180;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A180'  ||  ((s as any).ARGS ?? 0)[0] === 180) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A180'  ||  ((s as any).locArgs?.[0] ?? 0) === 180) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Sasori';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Sasori';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Sasori';
@@ -462,7 +464,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 16;
   }
   (s as any).npctemp = 181;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A181'  ||  ((s as any).ARGS ?? 0)[0] === 181) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A181'  ||  ((s as any).locArgs?.[0] ?? 0) === 181) {
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Sexshop Cashier';
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
     qspCall(s, 'npcstaticdefaults', 'defaults');
@@ -472,7 +474,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 2;
   }
   (s as any).npctemp = 182;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A182'  ||  ((s as any).ARGS ?? 0)[0] === 182) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A182'  ||  ((s as any).locArgs?.[0] ?? 0) === 182) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Conan';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Conan';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Conan';
@@ -484,7 +486,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 1;
   }
   (s as any).npctemp = 183;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A183'  ||  ((s as any).ARGS ?? 0)[0] === 183) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A183'  ||  ((s as any).locArgs?.[0] ?? 0) === 183) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Hidan';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Hidan';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Hidan';
@@ -496,7 +498,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 1;
   }
   (s as any).npctemp = 184;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A184'  ||  ((s as any).ARGS ?? 0)[0] === 184) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A184'  ||  ((s as any).locArgs?.[0] ?? 0) === 184) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Eugene';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Eugene';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Isenberg';
@@ -504,11 +506,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 1;
     qspCall(s, 'npcstaticdefaults', 'defaults');
     (s as any).npc_bust['A' + String((s as any).npctemp || '') + ''] = 9;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 185;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A185'  ||  ((s as any).ARGS ?? 0)[0] === 185) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A185'  ||  ((s as any).locArgs?.[0] ?? 0) === 185) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Michael';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Misha';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Michael';
@@ -520,7 +522,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 2;
   }
   (s as any).npctemp = 186;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A186'  ||  ((s as any).ARGS ?? 0)[0] === 186) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A186'  ||  ((s as any).locArgs?.[0] ?? 0) === 186) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Ivan';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Master';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Pavlov';
@@ -534,7 +536,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_spermpot['A' + String((s as any).npctemp || '') + ''] = 15000;
   }
   (s as any).npctemp = 187;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A187'  ||  ((s as any).ARGS ?? 0)[0] === 187) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A187'  ||  ((s as any).locArgs?.[0] ?? 0) === 187) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Elisabeta';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Liz';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Liz';
@@ -543,7 +545,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_bust['A' + String((s as any).npctemp || '') + ''] = 9;
   }
   (s as any).npctemp = 188;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A188'  ||  ((s as any).ARGS ?? 0)[0] === 188) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A188'  ||  ((s as any).locArgs?.[0] ?? 0) === 188) {
     (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
     qspCall(s, 'npcstaticdefaults', 'defaults');
     (s as any).npc_thdick['A' + String((s as any).npctemp || '') + ''] = 'skinny';
@@ -552,7 +554,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 2;
   }
   (s as any).npctemp = 189;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A189'  ||  ((s as any).ARGS ?? 0)[0] === 189) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A189'  ||  ((s as any).locArgs?.[0] ?? 0) === 189) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Nikolai';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Niko';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Volkov';
@@ -568,11 +570,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_hotcat['A' + String((s as any).npctemp || '') + ''] = 6;
     (s as any).npc_rep['A' + String((s as any).npctemp || '') + ''] = 140;
     (s as any).npc_intel['A' + String((s as any).npctemp || '') + ''] = 64;
-    qspCall(s, 'npc_set_preference', 'reset', 'A<<npctemp>>');
+    qspCall(s, 'npc_set_preference', 'reset', 'A' + qspUntranslated(s, "npctemp>", { location: "npcstatic4" }) + '');
     qspCall(s, 'npc_standard_preferences', 'A<<npctemp>>');
   }
   (s as any).npctemp = 190;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A190'  ||  ((s as any).ARGS ?? 0)[0] === 190) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A190'  ||  ((s as any).locArgs?.[0] ?? 0) === 190) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Yurik';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Yurik';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Volkov';
@@ -586,7 +588,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 2;
   }
   (s as any).npctemp = 191;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A191'  ||  ((s as any).ARGS ?? 0)[0] === 191) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A191'  ||  ((s as any).locArgs?.[0] ?? 0) === 191) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Isabella';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Isabella';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Belova';
@@ -597,7 +599,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_bust['A' + String((s as any).npctemp || '') + ''] = 23;
   }
   (s as any).npctemp = 192;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A192'  ||  ((s as any).ARGS ?? 0)[0] === 192) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A192'  ||  ((s as any).locArgs?.[0] ?? 0) === 192) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Anastasia';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Nastja';
     (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Nastja';
@@ -606,7 +608,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_bust['A' + String((s as any).npctemp || '') + ''] = 9;
   }
   (s as any).npctemp = 193;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A193'  ||  ((s as any).ARGS ?? 0)[0] === 193) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A193'  ||  ((s as any).locArgs?.[0] ?? 0) === 193) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Alexander';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Alexei';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Radimov';
@@ -622,7 +624,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_spermpot['A' + String((s as any).npctemp || '') + ''] = 12000;
   }
   (s as any).npctemp = 194;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A194'  ||  ((s as any).ARGS ?? 0)[0] === 194) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A194'  ||  ((s as any).locArgs?.[0] ?? 0) === 194) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Sergei';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = '';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Tatarov';
@@ -638,7 +640,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_spermpot['A' + String((s as any).npctemp || '') + ''] = 10000;
   }
   (s as any).npctemp = 195;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A195'  ||  ((s as any).ARGS ?? 0)[0] === 195) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A195'  ||  ((s as any).locArgs?.[0] ?? 0) === 195) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Egor';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = '';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Klyuyev';
@@ -654,7 +656,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_spermpot['A' + String((s as any).npctemp || '') + ''] = 8000;
   }
   (s as any).npctemp = 196;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A196'  ||  ((s as any).ARGS ?? 0)[0] === 196) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A196'  ||  ((s as any).locArgs?.[0] ?? 0) === 196) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Ignatio';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Ignat';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Vedenin';
@@ -671,7 +673,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_spermpot['A' + String((s as any).npctemp || '') + ''] = 11000;
   }
   (s as any).npctemp = 197;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A197'  ||  ((s as any).ARGS ?? 0)[0] === 197) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A197'  ||  ((s as any).locArgs?.[0] ?? 0) === 197) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Simeon';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Syoma';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Rodionov';
@@ -687,7 +689,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_spermpot['A' + String((s as any).npctemp || '') + ''] = 18000;
   }
   (s as any).npctemp = 198;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A198'  ||  ((s as any).ARGS ?? 0)[0] === 198) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A198'  ||  ((s as any).locArgs?.[0] ?? 0) === 198) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Vasilij';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Vasya';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Harkov';
@@ -702,7 +704,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npc_haircol['A' + String((s as any).npctemp || '') + ''] = 3;
   }
   (s as any).npctemp = 199;
-  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A199'  ||  ((s as any).ARGS ?? 0)[0] === 199) {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) === 0  ||  ((s as any).locArgs?.[0] ?? 0) === 'A199'  ||  ((s as any).locArgs?.[0] ?? 0) === 199) {
     (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Boris';
     (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = '';
     (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = 'Tabrov';

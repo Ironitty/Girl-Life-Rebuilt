@@ -10,8 +10,11 @@ function enterGetFilterHeader(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'shop') {
     qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
   } else {
-    qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_list_filters');
-    qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_grid_filters');
+    if (((s as any).ward_list_file ?? 0) === 'clothing') {
+      qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_list_filters');
+    } else {
+      qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_grid_filters');
+    }
   }
   return;
   scene.build();
@@ -27,8 +30,11 @@ function enterGetFilterHeaderBase(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'shop') {
     qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
   } else {
-    qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_list_filters');
-    qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_grid_filters');
+    if (((s as any).ward_list_file ?? 0) === 'clothing') {
+      qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_list_filters');
+    } else {
+      qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_grid_filters');
+    }
   }
   return;
   scene.build();
@@ -94,7 +100,9 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   if (((s as any).outfitfilter ?? 0)?.['quality'] === 0  &&  ((s as any).clo_i ?? 0) <= 7) {
     // TODO-QSP: jump 'loopdanilovich_outfits_filter2'
   } else {
-    // TODO-QSP: jump 'loopdanilovich_outfits_filter2'
+    if (((s as any).outfitfilter ?? 0)?.['inhibition'] === 0  &&  ((s as any).clo_i ?? 0) <= 50) {
+      // TODO-QSP: jump 'loopdanilovich_outfits_filter2'
+    }
   }
   if (((s as any).clothingworntype ?? 0) !== ((s as any).regularwornclothingtype ?? 0)) {
     qspCall(s, 'clothing_QV', 'gym2');
@@ -162,8 +170,8 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterChange(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
-  scene.img(`${qspFunc(s, '\'$clothing_image\'', '$ARGS[1]', qspUntranslated(s, "ARGS[2]", { location: "clothing_QV" }))}`);
-  if (((s as any).locArgs?.[1] ?? 0) === 'misc_outfits'  &&  ((s as any).ARGS ?? 0)[2] === 1) {
+  scene.img(`${qspFunc(s, '$clothing_image', '$ARGS[1]', qspUntranslated(s, "ARGS[2]", { location: "clothing_QV" }))}`);
+  if (((s as any).locArgs?.[1] ?? 0) === 'misc_outfits'  &&  ((s as any).locArgs?.[2] ?? 0) === 1) {
     scene.text('A hessian sack the hunters gave you.');
   } else {
     if (((s as any).swimwear_description ?? 0) === '') {
@@ -208,21 +216,23 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).CloStyle2 ?? 0) === 6  ||  ((s as any).CloSport ?? 0) === 1) {
     scene.text('This outfit is a gym outfit.');
   }
-  if (((s as any).clothingworntype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).clothingwornnumber ?? 0) === ((s as any).ARGS ?? 0)[2]) {
+  if (((s as any).clothingworntype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).clothingwornnumber ?? 0) === ((s as any).locArgs?.[2] ?? 0)) {
     scene.text('You are wearing this outfit.');
   } else {
-    scene.text('You don\'t feel confident enough to wear an outfit this revealing.');
-    if ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(((s as any).ARGS ?? 0)[2]) : -1) >= 0) {
-      scene.text('You lost these clothes somewhere, maybe you can find them again?.');
+    if (((s as any).CloInhibit ?? 0) > ((s as any).pcs_inhib ?? 0)) {
+      scene.text('You don\'t feel confident enough to wear an outfit this revealing.');
     } else {
-      if (((s as any).CloInhibit ?? 0) > 10) {
-        if (((s as any).CloInhibit ?? 0) + 10 > ((s as any).pcs_inhib ?? 0)) {
-          scene.text('You find this outfit more revealing than you are completely comfortable with but that makes it quite exciting too.');
+      if ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(((s as any).locArgs?.[2] ?? 0)) : -1) >= 0) {
+        scene.text('You lost these clothes somewhere, maybe you can find them again?.');
+      } else {
+        if (((s as any).CloInhibit ?? 0) > 10) {
+          if (((s as any).CloInhibit ?? 0) + 10 > ((s as any).pcs_inhib ?? 0)) {
+            scene.text('You find this outfit more revealing than you are completely comfortable with but that makes it quite exciting too.');
+          }
         }
-      }
-      if (((s as any).hypnoClothes ?? 0) <= 0  ||  qspFunc(s, 'clothing', 'is_hypno_approved', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-        scene.actions([
-          { label: 'Wear this outfit', handler: (st: GameState) => {
+        if (((s as any).hypnoClothes ?? 0) <= 0  ||  qspFunc(s, 'clothing', 'is_hypno_approved', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
+          scene.actions([
+            { label: 'Wear this outfit', handler: (st: GameState) => {
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
     if (((s as any).regularwornclothingtype ?? 0) === '') {
       scene.actions([{ label: 'Continue', goto: ['wardrobe', 'main'] }]);
@@ -230,10 +240,10 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['clothing_QV', 'gym'] }]);
     }
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Wear this outfit', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Wear this outfit', handler: (st: GameState) => {
     scene.text('You pick up the outfit and think about trying them on… but you don\'t really like wearing these type of outfits');
     qspCall(s, 'willpower', 'misc', 'resist', 'easy');
     if (((s as any).cheatVars ?? 0)?.['willpower'] === 0) {
@@ -247,7 +257,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Put them on anyways', handler: (st: GameState) => {
+        { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
@@ -269,7 +279,8 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        ]);
+          ]);
+        }
       }
     }
   }

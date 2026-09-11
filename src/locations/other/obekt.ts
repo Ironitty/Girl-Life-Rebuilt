@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -106,66 +104,71 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     { label: 'Sign in 2w room', handler: (st: GameState) => {
     if (((s as any).obekt ?? 0)?.['openstateDM1'] === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (5);
+      scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon4'] }]);
     } else {
-      // TODO-QSP: :markanotherrand
-      (s as any).obekt['DMN'] = '<<$mid($str(10000 + rand(0, 9999)), 2, 4)>>';
-      if (((s as any).obekt ?? 0)?.['DMN'] === '\'3\'\'4\'') {
-        // TODO-QSP: jump 'markanotherrand'
+      if (((s as any).obekt ?? 0)?.['openstateDM1'] === 0) {
+        // TODO-QSP: :markanotherrand
+        (s as any).obekt['DMN'] = '' + ((String(10000 + ((s as any).rand ?? 0)(0, 9999))).slice((2)-1, ((2)-1)+(4)))> + '';
+        if (((s as any).obekt ?? 0)?.['DMN'] === ((((s as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + ((((s as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '8809') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '7111') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '2172') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '3213') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '7662') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '9312') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '8193') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '8096') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '7756') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '6855') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '9881') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        if (((s as any).obekt ?? 0)?.['DMN'] === '5531') {
+          // TODO-QSP: jump 'markanotherrand'
+        }
+        (s as any).obekt['i'] = 1;
+        (s as any).obekt['numdmr'] = 0;
+        // TODO-QSP: :markdnm
+        if (((s as any).strpos ?? 0)('69', ((((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1)))) > 0) {
+          (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (1);
+        } else {
+          if (((((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1))) === '8') {
+            (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (2);
+          }
+        }
+        (s as any).obekt['i'] = ((s as any).obekt['i'] ?? 0) + (1);
+        if (((s as any).obekt ?? 0)?.['i'] < 5) {
+          // TODO-QSP: jump 'markdnm'
+        }
+        (s as any).obekt['numberOSDM'] = 0;
+        if (((s as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] !== ((s as any).obekt ?? 0)?.['numdmr']) {
+        } else {
+          (s as any).obekt['openstateDM1'] = 1;
+        }
+        scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon2'] }]);
       }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '8809') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '7111') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '2172') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '3213') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '7662') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '9312') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '8193') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '8096') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '7756') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '6855') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '9881') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      if (((s as any).obekt ?? 0)?.['DMN'] === '5531') {
-        // TODO-QSP: jump 'markanotherrand'
-      }
-      (s as any).obekt['i'] = 1;
-      (s as any).obekt['numdmr'] = 0;
-      // TODO-QSP: :markdnm
-      if (((s as any).strpos ?? 0)('69', ((qspUntranslated(s, "\u00000\u0000", { location: "obekt" })).slice((qspUntranslated(s, "\u00001\u0000", { location: "obekt" }))-1, ((qspUntranslated(s, "\u00001\u0000", { location: "obekt" }))-1)+(1)))) > 0) {
-        (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (1);
-      } else {
-        (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (2);
-      }
-      (s as any).obekt['i'] = ((s as any).obekt['i'] ?? 0) + (1);
-      if (((s as any).obekt ?? 0)?.['i'] < 5) {
-        // TODO-QSP: jump 'markdnm'
-      }
-      (s as any).obekt['numberOSDM'] = ((s as any).input ?? 0)("((s as any).obekt ?? 0)?.['DMN'] >= ?");
-      if (((s as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] !== ((s as any).obekt ?? 0)?.['numdmr']) {
-      } else {
-        (s as any).obekt['openstateDM1'] = 1;
-      }
-      scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon2'] }]);
     }
   } },
   ]);
@@ -220,7 +223,7 @@ function enterDungeon4(s: GameState, scene: SceneBuilder): void {
     scene.text('In another barrel you see a device where you can enter numbers.');
     scene.actions([
       { label: 'Enter the numbers', handler: (st: GameState) => {
-    (s as any).obekt['numberOSDM2'] = qspUntranslated(s, "input(\"12, 1, 1, 1, 2, 1, 3, ?, ?, ?, ?\")", { location: "obekt" });
+    (s as any).obekt['numberOSDM2'] = 0;
     if (((s as any).obekt ?? 0)?.['numberOSDM2'] === 1415) {
       (s as any).obekt['openstateDM2'] = 2;
     }

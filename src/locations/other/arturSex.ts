@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Masturbate him', handler: (st: GameState) => {
+        { label: 'Masturbate him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     scene.text('You began to slowly stroke his large member, but as you look up at Arthur, you see him roll his eyes with impatience before reaching for you.');
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');

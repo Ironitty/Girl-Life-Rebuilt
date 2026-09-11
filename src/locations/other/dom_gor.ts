@@ -41,11 +41,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.text('You spot one of your pupils in the park. When they see you, they jog over and ask if they can join you.');
-      if (((s as any).parkrand ?? 0) > 4  &&  ((s as any).beguch ?? 0) >= 6  &&  ((s as any).beguch ?? 0) < 9) {
-        scene.text('You recognize one of your pupils jogging in the park. They notice you too and ask to join your run.');
+      if (((s as any).parkrand ?? 0) > 4  &&  ((s as any).beguch ?? 0) >= 3  &&  ((s as any).beguch ?? 0) < 6) {
+        scene.text('You spot one of your pupils in the park. When they see you, they jog over and ask if they can join you.');
         scene.actions([
           { label: 'Run together', handler: (st: GameState) => {
+    (s as any).beguch = ((s as any).beguch ?? 0) + (1);
+    scene.img('images/locations/pavlovsk/hostel/stop2.jpg');
+    scene.text('After running for a while, you both stop to do some stretching exercises for your muscles.');
+    scene.text('As you stretch, your pupil sighs. "If only the girls at school could be more like you!"');
+    scene.text('You smile knowingly. "You should try getting to know them better. They might surprise you."');
+    scene.actions([
+      { label: 'Complete run', goto: ['pav_park', 'start'] },
+    ]);
+  } },
+        ]);
+      } else {
+        if (((s as any).parkrand ?? 0) > 4  &&  ((s as any).beguch ?? 0) >= 6  &&  ((s as any).beguch ?? 0) < 9) {
+          scene.text('You recognize one of your pupils jogging in the park. They notice you too and ask to join your run.');
+          scene.actions([
+            { label: 'Run together', handler: (st: GameState) => {
     (s as any).beguch = ((s as any).beguch ?? 0) + (1);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (3);
     scene.img('images/locations/pavlovsk/hostel/stop3.jpg');
@@ -62,70 +76,64 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Complete run', goto: ['pav_park', 'start'] },
     ]);
   } },
-        ]);
+          ]);
+        }
       }
-      scene.actions([
-        { label: 'Run together', handler: (st: GameState) => {
-    (s as any).beguch = ((s as any).beguch ?? 0) + (1);
-    scene.img('images/locations/pavlovsk/hostel/stop2.jpg');
-    scene.text('After running for a while, you both stop to do some stretching exercises for your muscles.');
-    scene.text('As you stretch, your pupil sighs. "If only the girls at school could be more like you!"');
-    scene.text('You smile knowingly. "You should try getting to know them better. They might surprise you."');
+    }
     scene.actions([
       { label: 'Complete run', goto: ['pav_park', 'start'] },
     ]);
   } },
-        { label: 'Complete run', goto: ['pav_park', 'start'] },
       ]);
     }
-  } },
-      ]);
-    }
-    if (((s as any).hour ?? 0) < 23) {
-      scene.actions([
-        { label: 'Lie on the couch (1:00)', handler: (st: GameState) => {
+  }
+  if (((s as any).hour ?? 0) < 23) {
+    scene.actions([
+      { label: 'Lie on the couch (1:00)', handler: (st: GameState) => {
     qspCall(st, 'sleep_simple', 'nap');
   } },
-      ]);
-    }
-    if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
-      // TODO-QSP: dynamic text: In the refrigerator food is stored that's good for <b><<mc_inventory['food_basic...
-      scene.text(`In the refrigerator food is stored that's good for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> servings.`);
-    }
-    if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
-      // TODO-QSP: $func('wrap', 'v_neg b', 'The fridge is empty, nothing to eat in sight.')
-    }
-    if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
-      // TODO-QSP: dynamic text: The refrigerator contains healthy meals that are good for <b><<mc_inventory['foo...
-      scene.text(`The refrigerator contains healthy meals that are good for <b>${((s as any).mc_inventory ?? 0)?.['food_diet']}</b> servings.`);
-    }
-    qspCall(s, 'kit_din', 'kitchen_acts');
-    if (((s as any).hostel ?? 0)?.['status'] > 0) {
-      // TODO-QSP: act 'Go to shared bathroom': gt 'ETO_hostel', 'shared_bathroom'
-    }
-    qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
-    qspCall(s, 'daily_routine', 'offer_here');
-    if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
-      scene.actions([
-        { label: 'Set this small room as your main home', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
+    // TODO-QSP: dynamic text: In the refrigerator food is stored that's good for <b><<mc_inventory['food_basic...
+    scene.text(`In the refrigerator food is stored that's good for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> servings.`);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
+    // TODO-QSP: $func('wrap', 'v_neg b', 'The fridge is empty, nothing to eat in sight.')
+  }
+  if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
+    // TODO-QSP: dynamic text: The refrigerator contains healthy meals that are good for <b><<mc_inventory['foo...
+    scene.text(`The refrigerator contains healthy meals that are good for <b>${((s as any).mc_inventory ?? 0)?.['food_diet']}</b> servings.`);
+  }
+  qspCall(s, 'kit_din', 'kitchen_acts');
+  if (((s as any).hostel ?? 0)?.['status'] > 0) {
+    // TODO-QSP: act 'Go to shared bathroom': gt 'ETO_hostel', 'shared_bathroom'
+  }
+  qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
+  qspCall(s, 'daily_routine', 'offer_here');
+  if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
+    scene.actions([
+      { label: 'Set this small room as your main home', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'set_home');
   }, goto: ['dom_gor', ''] },
-      ]);
-    }
-    scene.actions([
-      { label: 'Go out onto the street', handler: (st: GameState) => {
+    ]);
+  }
+  scene.actions([
+    { label: 'Go out onto the street', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed.</b></center>');
       // TODO-QSP: xgt $curloc
     } else {
-      scene.text('<center><b>You feel too ill to travel through the streets.</b></center>');
-      // TODO-QSP: xgt $curloc
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      // TODO-QSP: xgt 'pav_commercial'
+      if (((s as any).sick ?? 0) > 72) {
+        scene.text('<center><b>You feel too ill to travel through the streets.</b></center>');
+        // TODO-QSP: xgt $curloc
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 15;
+        // TODO-QSP: xgt 'pav_commercial'
+      }
     }
   } },
-    ]);
-  }
+  ]);
   scene.build();
 }
 

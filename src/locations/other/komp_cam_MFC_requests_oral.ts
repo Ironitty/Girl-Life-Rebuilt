@@ -57,10 +57,13 @@ function enterSetSmallAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You are terribly inexperienced at giving blowjobs. Hesitantly you take your small dildo into your mouth and do your best to put on an entertaining show.');
       scene.text('Some of your clients critize your clear lack of experience but the majority seem to at least appreciate the effort offering words of support and donations.');
     } else {
-      scene.text('You are fairly inexperienced at giving blowjobs but good enough that you feel you can handle a dildo of small size.');
-      scene.text('Pushing the dildo in your mouth a few times you get a little too ambitious and gag on it as it hits the back of your throat but the crowd seems appreciative of your effort.');
-      scene.text('You easily handle deepthroating the small sized dildo. A few of your clients notice this and offer you something a little larger to work on.');
-      scene.text('You laugh but realize that perhaps you may draw better donations if you push your limits a little more next time.');
+      if (((s as any).pcs_throat ?? 0) < 15) {
+        scene.text('You are fairly inexperienced at giving blowjobs but good enough that you feel you can handle a dildo of small size.');
+        scene.text('Pushing the dildo in your mouth a few times you get a little too ambitious and gag on it as it hits the back of your throat but the crowd seems appreciative of your effort.');
+      } else {
+        scene.text('You easily handle deepthroating the small sized dildo. A few of your clients notice this and offer you something a little larger to work on.');
+        scene.text('You laugh but realize that perhaps you may draw better donations if you push your limits a little more next time.');
+      }
     }
     qspCall(s, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(s, 'stat', '');
@@ -85,10 +88,13 @@ function enterSetNormalAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You are terribly inexperienced at giving blowjobs. Hesitantly you take your medium dildo into your mouth and do your best to put on an entertaining show.');
       scene.text('You realize that with your inexperience you can\'t really do much with this dildo that you couldn\'t do with a smaller one. Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
-      scene.img('images/pc/items/accessories/computer/webcam/toys/midthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('Sucking on the head of the dildo seductively you push it into your mouth giving the toy a sensual blowjob.');
-      scene.img('images/pc/items/accessories/computer/webcam/toys/midthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('You expertly suck on the dildo. Knowing that a toy of this size poses little challenge for someone of your experience you deepthroat the full length a few times to get a rise out the crowd.');
+      if (((s as any).pcs_throat ?? 0) < 20) {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/midthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('Sucking on the head of the dildo seductively you push it into your mouth giving the toy a sensual blowjob.');
+      } else {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/midthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('You expertly suck on the dildo. Knowing that a toy of this size poses little challenge for someone of your experience you deepthroat the full length a few times to get a rise out the crowd.');
+      }
     }
     qspCall(s, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(s, 'stat', '');
@@ -113,12 +119,15 @@ function enterSetBigAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the large dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
-      scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
-      scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
-      scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
-      scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      if (((s as any).pcs_throat ?? 0) < 25) {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
+        scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      } else {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
+        scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      }
     }
     qspCall(s, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(s, 'stat', '');
@@ -143,12 +152,15 @@ function enterSetLargeAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the very large dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
-      scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('The very large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
-      scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
-      scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('The very large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
-      scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      if (((s as any).pcs_throat ?? 0) < 30) {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('The very large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
+        scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      } else {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('The very large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
+        scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      }
     }
     qspCall(s, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(s, 'stat', '');
@@ -173,12 +185,15 @@ function enterSetHugeAct(s: GameState, scene: SceneBuilder): void {
       scene.text('You are not necessarily inexperienced at giving blowjobs but taking the large dildo into your mouth you quickly realize it is well beyond your skill level.');
       scene.text('Nonetheless your clients seem to appreciate the effort and your ambition and you get a few donations.');
     } else {
-      scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
-      scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
-      scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
-      scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
-      scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      if (((s as any).pcs_throat ?? 0) < 35) {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
+        scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      } else {
+        scene.img('images/pc/items/accessories/computer/webcam/toys/bigthroat\'+rand(1, 3)+\'.mp4');
+        scene.text('The large dildo slides easily down your throat as you begin to pump it back and forth to entertain the crowd.');
+        scene.text('Your clients seem geniunely impressed by the show and promptly begin to donate.');
+      }
     }
     qspCall(s, 'arousal', 'dildo_suck', (-5), 'dick_length', 'masturbation', 'deepthroat');
     qspCall(s, 'stat', '');

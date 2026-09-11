@@ -40,8 +40,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Setup your own stand (1:00)', goto: ['gad_market', 'build_stand'] },
       ]);
     } else {
-      scene.text('It\'s too late to build your stand');
-      scene.text('You have nothing to sell.');
+      if (((s as any).hour ?? 0) >= 18) {
+        scene.text('It\'s too late to build your stand');
+      } else {
+        scene.text('You have nothing to sell.');
+      }
     }
     scene.actions([
       { label: 'Return', goto: ['gad_market', 'leave'] },
@@ -252,14 +255,107 @@ function enterSellWares(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) < 2  &&  ((s as any).boletus_stored ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_mushrooms'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_berries'] }]);
-      if (((s as any).temp_rand ?? 0) >= 4  &&  ((s as any).temp_rand ?? 0) < 6  &&  ((s as any).fish_stored ?? 0) > 0) {
-        scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_fish'] }]);
+      if (((s as any).temp_rand ?? 0) >= 2  &&  ((s as any).temp_rand ?? 0) < 4  &&  ((s as any).bilberry_stored ?? 0) > 0) {
+        scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_berries'] }]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_talk'] }]);
+        if (((s as any).temp_rand ?? 0) >= 4  &&  ((s as any).temp_rand ?? 0) < 6  &&  ((s as any).fish_stored ?? 0) > 0) {
+          scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_fish'] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_talk'] }]);
+        }
       }
     }
   }
+  scene.build();
+}
+
+function enterSellNobody(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/gadukino/market/sell_nobody.jpg');
+  qspCall(s, 'gad_market', 'see_stored');
+  scene.text('You wait 10 minutes, but nobody seems interested in what you have to sell');
+  if (((s as any).locArgs?.[0] ?? 0) === 'sell_mushrooms') {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/gadukino/market/sell_mushrooms1.jpg');
+    qspCall(s, 'gad_market', 'see_stored');
+    scene.text('Somebody wants to buy a kg of mushrooms!');
+    scene.actions([
+      { label: 'Sell them 1 kg of stored mushrooms', handler: (st: GameState) => {
+    qspCall(s, 'money', 'earn', 20);
+    (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.img(`images/locations/gadukino/market/sale${Math.floor(Math.random() * 4) + 1}.jpg`);
+    qspCall(s, 'gad_market', 'see_stored');
+    scene.text('You sell 1 kg of stored mushrooms');
+    scene.actions([
+      { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
+      { label: 'Stop selling your wares', goto: ['gad_market', 'your_stand'] },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).locArgs?.[0] ?? 0) === 'sell_berries') {
+      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/gadukino/market/sell_berries1.jpg');
+      qspCall(s, 'gad_market', 'see_stored');
+      scene.text('Somebody wants to buy a kg of berries!');
+      scene.actions([
+        { label: 'Sell them 1 kg of stored berries', handler: (st: GameState) => {
+    qspCall(s, 'money', 'earn', 20);
+    (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.img(`images/locations/gadukino/market/sale${Math.floor(Math.random() * 4) + 1}.jpg`);
+    qspCall(s, 'gad_market', 'see_stored');
+    scene.text('You sell 1 kg of stored berries');
+    scene.actions([
+      { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
+      { label: 'Stop selling your wares', goto: ['gad_market', 'your_stand'] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).locArgs?.[0] ?? 0) === 'sell_fish') {
+        (s as any).minut = ((s as any).minut ?? 0) + 10;
+        qspCall(s, 'stat', '');
+        scene.img('images/locations/gadukino/market/sell_fish1.jpg');
+        qspCall(s, 'gad_market', 'see_stored');
+        scene.text('Somebody wants to buy a kg of preserved fish!');
+        scene.actions([
+          { label: 'Sell them 1 kg of preserved fish', handler: (st: GameState) => {
+    qspCall(s, 'money', 'earn', 20);
+    (s as any).fish_stored = ((s as any).fish_stored ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.img(`images/locations/gadukino/market/sale${Math.floor(Math.random() * 4) + 1}.jpg`);
+    qspCall(s, 'gad_market', 'see_stored');
+    scene.text('You sell 1 kg of preserved fish');
+    scene.actions([
+      { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
+      { label: 'Stop selling your wares', goto: ['gad_market', 'your_stand'] },
+    ]);
+  } },
+        ]);
+      } else {
+        if (((s as any).locArgs?.[0] ?? 0) === 'sell_talk') {
+          (s as any).minut = ((s as any).minut ?? 0) + 10;
+          qspCall(s, 'stat', '');
+          scene.img('images/locations/gadukino/market/sell_talk.jpg');
+          qspCall(s, 'gad_market', 'see_stored');
+          scene.text('A couple of people walk up to your stand and you spend ten minutes making some small-talk.');
+          scene.actions([
+            { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
+            { label: 'Stop selling your wares', goto: ['gad_market', 'your_stand'] },
+          ]);
+        }
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Continue trying to sell your wares', goto: ['gad_market', 'sell_wares'] },
+    { label: 'Stop selling your wares', goto: ['gad_market', 'your_stand'] },
+  ]);
   scene.build();
 }
 
@@ -295,6 +391,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'sell_wares':
       enterSellWares(s, scene);
+      break;
+    case 'sell_nobody':
+      enterSellNobody(s, scene);
       break;
     default:
       enterStart(s, scene);

@@ -111,7 +111,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   (s as any).shop_utils_view['number'] = qspUntranslated(s, "ARGS[3]", { location: "tattoo_view" });
   (s as any).shop_utils_view['discount'] = qspUntranslated(s, "ARGS[4]", { location: "tattoo_view" });
   // TODO-QSP: gs 'tattoo_attributes', $shop_utils_view['type'], shop_utils_view['number']
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '$shop_utils_view[\'type\'] + \'_image\'', ((s as any).shop_utils_view ?? 0)?.['\'number\''])}`);
+  scene.img(`${qspFunc(s, '\'tattoo_management\'', '$shop_utils_view[\'type\'] + \'_image\'', ((s as any).shop_utils_view ?? 0)?.['number'])}`);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop') {
     // TODO-QSP: xgt 'tattoo_view', 'view_item_shop'
   }
@@ -125,18 +125,18 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
-  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._tattoos ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
+  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? {})?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? {})?.['type'] + '_tattoos', ((s as any).shop_utils_view ?? 0)?.['number']);
   (s as any).shop_utils_view['base_price'] = ((s as any).TatPrice ?? 0);
-  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['base_price'] * ((s as any).max ?? 0)(0, 100 - ((s as any).shop_utils_view ?? 0)?.['discount_total']) / 100;
-  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['price'] / 50 * 50;
+  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['base_price'] * Math.max(0, 100 - ((s as any).shop_utils_view ?? {})?.['discount_total']) / 100;
+  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
   if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['base_price']) {
     (s as any).shop_utils_view['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
   } else {
-    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <((s as any).b ?? 0)>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</((s as any).b ?? 0)>';
+    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
     // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
   }
   // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
-  if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "\u00000\u0000", { location: "tattoo_view" })) === 0) {
+  if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['price']) === 0) {
     scene.text('You cannot afford this tattoo.');
     return;
     scene.actions([

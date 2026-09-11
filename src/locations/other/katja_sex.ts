@@ -105,10 +105,11 @@ function enterPark(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.text('Back in the park again, Katja looks over at you. "Who do you think will win today?" Her tone clearly indicates her belief that the results won\'t be any different today than they were yesterday.');
-    scene.text('"Well, let\'s find out," you reply with a determined smile before you both race off to find boys to kiss.');
-    scene.actions([
-      { label: 'Look for a guy', handler: (st: GameState) => {
+    if (((s as any).flag_KissEV ?? 0) === 4) {
+      scene.text('Back in the park again, Katja looks over at you. "Who do you think will win today?" Her tone clearly indicates her belief that the results won\'t be any different today than they were yesterday.');
+      scene.text('"Well, let\'s find out," you reply with a determined smile before you both race off to find boys to kiss.');
+      scene.actions([
+        { label: 'Look for a guy', handler: (st: GameState) => {
     if (((s as any).month ?? 0)===1  ||  ((s as any).month ?? 0)===2  ||  ((s as any).month ?? 0)===12  ||  ((s as any).month ?? 0)===11) {
       scene.img('images/locations/pavlovsk/park/skver7_1.jpg');
     } else {
@@ -148,7 +149,8 @@ function enterPark(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -692,7 +694,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Force the girls to eat you', handler: (st: GameState) => {
+        { label: 'Force the girls to eat you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS10.jpg');
     scene.text('You shove Natasha away and jump on the redhead who, faking surprise, lets your tongue ravage her mouth.');
@@ -779,7 +781,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Force the girls to eat you', handler: (st: GameState) => {
+        { label: 'Force the girls to eat you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS10.jpg');
     scene.text('You shove Natasha away and jump on the redhead who, faking surprise, lets your tongue ravage her mouth.');

@@ -23,12 +23,17 @@ function enterDial(s: GameState, scene: SceneBuilder): void {
       { label: 'You wait', goto: ['fightClub_phone', 'invitation'] },
     ]);
   } else {
-    scene.actions([
-      { label: 'You wait', goto: ['fightClub_phone', 'outofoffice'] },
-      { label: 'Hang up (no reply)', handler: (st: GameState) => {
+    if (((s as any).week ?? 0) === 7  &&  (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 8)) {
+      scene.actions([
+        { label: 'You wait', goto: ['fightClub_phone', 'outofoffice'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Hang up (no reply)', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

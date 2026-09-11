@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -295,7 +295,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'I can\'t right now', handler: (st: GameState) => {
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -494,7 +494,7 @@ function enterLunchChat2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'I can\'t right now', handler: (st: GameState) => {
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -659,16 +659,773 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0  &&  (!((s as any).NikoVsDimka ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['NikoEv', 'dimka'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner 1'] }]);
-    if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 18) {
-      scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward 2'] }]);
+    if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 17) {
+      scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner 1'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner 2'] }]);
-      if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 20  ||  ((s as any).NikoSlut ?? 0) > 0) {
-        scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner Slut'] }]);
+      if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 18) {
+        scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward 2'] }]);
+      } else {
+        if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 19) {
+          scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner 2'] }]);
+        } else {
+          if (((s as any).NikoVolkovQW ?? 0) === 10  &&  ((s as any).NikoEv ?? 0) === 20  ||  ((s as any).NikoSlut ?? 0) > 0) {
+            scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Diner Slut'] }]);
+          }
+        }
       }
     }
   }
+  scene.build();
+}
+
+function enterDiner1(s: GameState, scene: SceneBuilder): void {
+  (s as any).NikoBreakup = 3;
+  if (((s as any).fame ?? 0)?.['pav_sex'] < 230) {
+    qspCall(s, 'fame', 'pav', 'sex', 250);
+  }
+  qspCall(s, 'fame', '');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile3.jpg');
+  // TODO-QSP: dynamic text: Niko notices you approaching and gives you a warm smile. "Hello <<$pcs_firstname...
+  scene.text(`Niko notices you approaching and gives you a warm smile. "Hello ${((s as any).pcs_firstname ?? 0)}. I've been making many preparations and I believe that we're ready to go big league with this business, so we have a very busy afternoon ahead of us. Are you ready to start really making money? I'll also be giving you a cut of the profits because I won't have my girl going home empty handed after working so hard."`);
+  qspCall(s, 'willpower', 'prostitution', 'resist', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/sad1.jpg');
+    scene.text('"That sounds great, but I really need to be somewhere very soon."');
+    scene.text('Niko shrugs. "Oh well. I guess it could wait for another day. Visit me here when you\'re ready."');
+    scene.text('You wave at Niko and he returns the wave as you walk away.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gschool_grounds', 'main'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'I\'m ready', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/park/walk1.jpg');
+    scene.text('Niko wraps his arm around your waist and guides you through the residential district towards the highway. You both spend a few minutes chatting about various topics on the way there. When you arrive at the highway, Niko leads you toward a diner with many trucks and motorcycles parked outside. You enter the diner and see a bunch of truckers and bikers eating lunch.');
+    scene.text('Niko approaches one of the bikers sitting in the corner. "Riding a bike all day must be tough work. I bet you could use some relief right about now."');
+    scene.text('The biker stares at Niko with a very angry look on his face. "You\'re cruising for a bruising kid."');
+    scene.text('Niko looks puzzled. "So you aren\'t interested?"');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/highway/borisdiner/npc/1.jpg');
+    scene.text('"Of course I\'m not interested because I\'m not a fucking faggot!" the biker harshly responds.');
+    scene.text('Niko pauses for a second then bursts into laughter. "Oh no, I didn\'t mean… I meant my girl here will take care of you. For a price of course."');
+    scene.text('The biker chuckles. "I see now. I thought you were hitting on me, kid. You\'re lucky you weren\'t, but let me take a look at her."');
+    scene.actions([
+      { label: 'Let the biker examine you', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/highway/borisdiner/npc/1.jpg');
+    scene.text('You step forward and wait to see what the biker will do. The biker begins looking you up and down. "Can I touch her?" he asks Niko. "I just want to make sure that she isn\'t hiding anything down there." The biker points toward your vagina.');
+    scene.text('Niko chuckles. "Fine, make it quick."');
+    scene.text('The biker rubs on your vagina for a few seconds. "Okay I\'m interested. How much?"');
+    // TODO-QSP: dynamic text: "<<$func('money', 'string_profit', 2000)>>," Niko replies and the biker scratche...
+    scene.text(`"${qspFunc(s, 'money', 'string_profit', 2000)}," Niko replies and the biker scratches his beard.`);
+    scene.text('"She better be real good for that price."');
+    scene.text('"She certainly is," Niko smiles.');
+    scene.text('"So you say," the biker responds. "But what guarantee do I have that you\'re telling the truth? She could be a breathing blow up doll for all I know."');
+    scene.text('"How about this?" Niko asks. "This one time only, you can use her now and pay me afterward. Doesn\'t that sound fair?"');
+    scene.text('The biker nods. "You have yourself a deal. Come on girl, we\'re doing this in the bathroom." The man grabs you by the arm and leads you to the restroom, where he takes off his pants and points at his dick. "Alright girl, get to work."');
+    scene.actions([
+      { label: 'Suck his dick', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'cum_call', 'face');
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/1/BJ1.jpg');
+    scene.text('You drop to your knees in front of him and wrap your lips around his dick before you start licking and sucking, doing your best to please him as the man starts moaning loudly. You increase the pace while feeling him fidgeting. After a few seconds, the man says "Oh fuck girrrrrl!"');
+    scene.text('He starts squirming as he sprays his load into your mouth and all over your face. When he finishes, you look up at the biker and see an adoring look on his face as he looks down at you.');
+    scene.actions([
+      { label: 'Give him a smile', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/1/BJCum1.jpg');
+    scene.text('You give him a friendly smile as the cum leaks from your mouth. "You\'re an amazing girl. You were definitely worth every ruble," he says and you give the tip of his cock a kiss before he buttons his pants up and gives you a wink before leaving the restroom. You wait for him to leave before spitting out the cum into the sink and following him out of the restroom.');
+    scene.actions([
+      { label: 'Leave the restroom', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/highway/borisdiner/npc/1.jpg');
+    // TODO-QSP: dynamic text: You see the biker shake hands with Niko and give him the money. Niko counts the ...
+    scene.text(`You see the biker shake hands with Niko and give him the money. Niko counts the money and gives the biker an approving nod before turning to you. "Good job ${((s as any).pcs_nickname ?? 0)}. We're making some good progre…"`);
+    scene.actions([
+      { label: 'Turn around', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/body/cum/cumface/blonde/15.jpg');
+    scene.text('You turn to see a nearby trucker examining your face. "Is that what I think it is? Hey guys, look at this girl. She\'s walking around with cum on her face!" You freeze in place as the truckers and bikers surround you and start talking to each other.');
+    scene.actions([
+      { label: 'Listen to them', handler: (st: GameState) => {
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/body/cum/cumface/blonde/15.jpg');
+    scene.text('"Wow, she walks around like that?" one of the bikers asks.');
+    scene.text('"Well she\'s obviously a slut looking for customers," another replies.');
+    if (((s as any).pcs_bmi ?? 0) >= 26) {
+      scene.text('"A slut, huh?" a trucker asks. "She looks more like a cow to me."');
+      scene.text('"Yeah, she looks like my old lady," another biker says. "But a pussy\'s a pussy, I guess."');
+    } else {
+      scene.text('"A slut, huh?" a trucker asks. "I wouldn\'t mind trying out her services."');
+      scene.text('"I wonder how much she\'s charging?" another biker asks.');
+    }
+    // TODO-QSP: dynamic text: Niko chuckles. "She's my girl and it will be <<$func('money', 'string_profit', 2...
+    scene.text(`Niko chuckles. "She's my girl and it will be ${qspFunc(s, 'money', 'string_profit', 2000)}, per customer."`);
+    scene.text('All of the truckers and bikers start lining up in front of Niko and giving him money before approaching you. They start undressing you as they roughly finger your holes. You close your eyes as one of the men pushes you down on your knees and another shoves his dick into your mouth.');
+    scene.actions([
+      { label: 'Suck their dicks', handler: (st: GameState) => {
+    qspCall(s, 'outfit', 'strip_all');
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/gang/1.jpg');
+    scene.text('You start obediently sucking the man\'s dick. You close your eyes and try to focus when the man suddenly groans and pulls out of your mouth before covering your face in his cum. Another man quickly takes his place as the man behind you grabs your head and pulls it toward his dick which you immediately wrap your lips around, sucking eagerly as the men talk to each other.');
+    scene.actions([
+      { label: 'Listen to what they say', handler: (st: GameState) => {
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/gang/2.jpg');
+    scene.text('"This girl is smoking hot!" a trucker says. "I hope she comes around here more often."');
+    scene.text('"Oh she can cum around here as much as she wants!" another man replies.');
+    scene.text('The guys start laughing as the man whose dick you\'re sucking groans, giving you barely enough time to pull it out of your mouth before it covers your face with his warm cum. You feel the man\'s cum dripping down your face as another biker approaches and takes a close look at you. "I\'m not sticking my dick in her cum covered mouth." He then lifts you up and places you down on a nearby stool.');
+    qspCall(s, 'cum_call', 'face');
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'arousal', 'bj', (-5));
+    qspCall(s, 'arousal', 'bj', (-5));
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Vaginal', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', '');
+    qspCall(s, 'arousal', 'vaginal', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/gang/3.jpg');
+    scene.text('The men hold your legs open as you suddenly feel the man shove his dick inside your pussy, causing a jolt of pleasure to fill your body and evoke a loud moan from you.');
+    scene.text('"This whore really likes getting her pussy fucked," a biker says.');
+    scene.text('"I bet she\'s been waiting to get fucked all day!" a trucker replies.');
+    if (((s as any).sexcontra ?? 0) >= 3  ||  ((s as any).protect ?? 0) >= 2) {
+      scene.text('You close your eyes and only focus on the pleasure building up inside you when the man fucking you suddenly groans and you feel his warm seed filling the condom inside you. The man continues thrusting, trying to milk himself inside you as another trucker approaches you. "Looks like that hole is all used up. I guess I\'ll have to take this one." He starts rubbing his dick against your anus.');
+    } else {
+      scene.text('You close your eyes and only focus on the pleasure building up inside you when the man fucking you suddenly groans and you feel his warm seed filling your pussy. The man continues thrusting inside you, trying to milk himself dry inside you as another trucker approaches you. "Looks like that hole is all used up. I guess I\'ll have to take this one." He starts rubbing his dick against your anus.');
+    }
+    scene.actions([
+      { label: 'Anal', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/gang/4.jpg');
+    scene.text('The man suddenly shoves his dick into your ass, causing a surge of pain to shoot through you. You scream out in pain as Niko shouts "Hey, take it easy! She\'s not a fucking blow up doll!"');
+    scene.text('The man nods and gives your ass a few seconds to adjust to his dick before casually fucking it.');
+    scene.actions([
+      { label: 'Anal', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/gang/5.jpg');
+    scene.text('As the man continues fucking your ass, another man grabs your head and turns it to face a third man\'s dick, which you immediately wrap your lips around before licking and sucking it eagerly. The pain in your ass fades as pleasure takes it\'s place. You close your eyes and submit to the pleasure when another man approaches you.');
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'arousal', 'anal', (-5));
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Both holes', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/gang/6.jpg');
+    if (((s as any).sexcontra ?? 0) >= 3  ||  ((s as any).protect ?? 0) >= 2) {
+      scene.text('The man shoves his dick into your pussy at the same time that the man fucking your ass cums, filling the condom with his warm seed. Shortly after the man leaves, another takes his place, so now you have both of your holes being fucked simultaneously.');
+    } else {
+      scene.text('The man shoves his dick into your pussy at the same time that the man fucking your ass cums, filling your ass with his warm seed. Shortly after the man leaves, another takes his place, so now you have both of your holes being fucked simultaneously.');
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/gang/7.jpg');
+    if (((s as any).sexcontra ?? 0) >= 3  ||  ((s as any).protect ?? 0) >= 2) {
+      scene.text('You moan loudly, fully submitting to the pleasure of both of your holes being fucked. As you\'re moaning, another man shoves his dick in your mouth, almost gagging you.');
+    } else {
+      scene.text('You moan loudly, fully submitting to the pleasure of both your holes being fucked. As you\'re moaning, another man shoves his dick in your mouth, almost gagging you.');
+    }
+    qspCall(s, 'cum_call', 'anus');
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'arousal', 'anal', 5);
+    qspCall(s, 'arousal', 'vaginal', (-5));
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Suck his dick', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 30);
+    qspCall(s, 'fame', 'pav', 'prostitute', 60);
+    qspCall(s, 'fame', '');
+    (s as any).NikoEv = 18;
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/Gang/Cum/cum2.jpg');
+    if (((s as any).sexcontra ?? 0) >= 3  ||  ((s as any).protect ?? 0) >= 2) {
+      scene.text('Completely entranced in the pleasure, you firmly suck on the man\'s dick, wanting only to give the men the same pleasure that they\'re giving you. The men start breathing heavily for a few seconds before groaning almost simultaneously, filling their condoms at the same time. The men milk their cocks for a few seconds before sitting back in their seats.');
+      scene.text('You look around to see who\'s next when you notice that everyone is sitting down, chatting with each other as if nothing had happened. Niko helps you onto your feet. "You were amazing today! I\'m so proud of you. Get washed up and I\'ll take you home. You\'ll get a nice reward tomorrow." You meekly nod as Niko walks you to the bathroom.');
+    } else {
+      scene.text('Completely entranced in the pleasure, you firmly suck on the man\'s dick, wanting only to give the men the same pleasure that they\'re giving you. The men start breathing heavily for a few seconds before groaning almost simultaneously, filling your body from all sides with cum. The men milk their cocks inside you for a few seconds before sitting back in their seats.');
+      scene.text('You look around to see who\'s next when you notice that everyone is sitting down, chatting with each other as if nothing had happened. Niko helps you onto your feet. "You did amazing today! I\'m so proud of you. Get washed up and I\'ll take you home. You\'ll get a nice reward tomorrow." You meekly nod as Niko walks you to the bathroom.');
+    }
+    qspCall(s, 'cum_call', 'face');
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'cum_call', 'anus');
+    qspCall(s, 'arousal', 'anal', 5);
+    qspCall(s, 'cum_call', '');
+    qspCall(s, 'arousal', 'vaginal', (-5));
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Wash up in the restroom', handler: (st: GameState) => {
+    qspCall(st, 'outfit', 'wear_last_worn');
+  }, goto: ['NikoEv2', 'Diner Washup'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDinerWashup(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).pcs_hairbsh = 0;
+  (s as any).pcs_makeup = 1;
+  (s as any).cumspclnt = 1;
+  qspCall(s, 'cum_cleanup', '');
+  if (((s as any).pcs_sweat ?? 0) < 30) {
+    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+  } else {
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+  }
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Bathroom</b></center>');
+  scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/facecleanse.jpg');
+  scene.text('You grab a few paper towels and approach the sink to clean yourself as thoroughly as possible while taking a few seconds to enjoy a splash of warm water on your face, leaving you feeling refreshed as you finish up and walk away from the sink.');
+  scene.actions([
+    { label: 'Dry off', goto: ['NikoEv2', 'Diner Exit'] },
+  ]);
+  scene.build();
+}
+
+function enterDinerExit(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  qspCall(s, 'money', 'earn', 2400);
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/payment.jpg');
+  // TODO-QSP: dynamic text: You walk out of the diner to find Niko waiting for you. "You did great today, <<...
+  scene.text(`You walk out of the diner to find Niko waiting for you. "You did great today, ${((s as any).pcs_nickname ?? 0)}. I'm so proud of you. Here's your share of the profits."`);
+  // TODO-QSP: dynamic text: He hands you <<$func('money', 'string_profit', 2400)>> and you look up at him. "...
+  scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 2400)} and you look up at him. "I thought that you would give me half? There were at least six men in there."`);
+  scene.text('Niko places his hand on your shoulder with a sympathetic look on his face. "I wanted to split it half way, but it would take us too long to pay up on that debt. You don\'t want your reputation to remain this way, do you?"');
+  scene.text('You lower your head. "I don\'t… I\'m sorry. I was just being greedy."');
+  scene.actions([
+    { label: 'Listen to Niko', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/kiss2.mp4');
+    // TODO-QSP: dynamic text: Niko wraps his arm around your neck. "No need to apologize. I will always look a...
+    scene.text(`Niko wraps his arm around your neck. "No need to apologize. I will always look after you. I love you ${((s as any).pcs_firstname ?? 0)}."`);
+    scene.text('You look up at him with a wide smile before kissing him passionately for a minute. He then takes you home.');
+    scene.actions([
+      { label: 'Enter apartment', goto: ['korrPar', ''] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReward2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A189');
+  if (((s as any).fame ?? 0)?.['pav_sex'] < 230) {
+    qspCall(s, 'fame', 'pav', 'sex', 250);
+  }
+  qspCall(s, 'fame', '');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/kiss.jpg');
+  scene.text('As you approach Niko, he throws his cigarette to the ground and wraps his arm around your lower back before pulling you towards him and giving you a very passionate kiss. You eagerly begin massaging his tongue with yours in a long passionate kiss that lasts for a full minute before Niko slowly pulls away. "I\'ve been thinking about you all day and I\'m ready to reward you for all your hard work." He starts leading you to his house.');
+  scene.actions([
+    { label: 'Niko\'s house', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/kiss3.mp4');
+    scene.text('As soon as you enter Niko\'s house, he pulls you toward him and gives you another passionate kiss as he starts undressing you. When he finishes, he starts removing his clothes before pulling you to the bedroom and pushing you onto the bed.');
+    scene.actions([
+      { label: 'Lay back', handler: (st: GameState) => {
+    qspCall(s, 'outfit', 'strip_all');
+    qspCall(s, 'arousal', 'cuni', 5);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/cuni.mp4');
+    scene.text('Niko spreads your legs and starts firmly but gently licking your pussy. You lay back, enjoying Niko\'s soft tongue on your clitoris before looking down at him. "Your tongue is so soft… Please keep doing that."');
+    scene.text('Niko gives you a wink as he continues, causing the pleasure inside you to build up quickly. After a few minutes, it reaches its climax and your body suddenly erupts into pleasure, causing your muscles to tighten up as you spasm, unable to focus on anything but the pleasure. You take a few seconds to catch your breath before looking down at Niko, who has a loving smile on his face.');
+    scene.actions([
+      { label: 'Lick his dick', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/sex/lick1.mp4');
+    scene.text('You get on your knees and crawl up to Niko before lightly gripping the shaft of his dick and slowly licking up the shaft to the top, where you gently kiss the tip while staring into his eyes.');
+    // TODO-QSP: dynamic text: Niko places his hand on your face. "You're so beautiful <<$pcs_firstname>>, the ...
+    scene.text(`Niko places his hand on your face. "You're so beautiful ${((s as any).pcs_firstname ?? 0)}, the perfect girl." You can feel your heart beating faster at his words.`);
+    scene.actions([
+      { label: 'Suck his dick', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/bj.mp4');
+    // TODO-QSP: dynamic text: You start sucking on Niko's dick and he tilts his head back as he lets out a lig...
+    scene.text(`You start sucking on Niko's dick and he tilts his head back as he lets out a light moan before looking down at you. "Come here, ${((s as any).pcs_firstname ?? 0)}." He beckons you to come closer.`);
+    scene.actions([
+      { label: 'Ride him', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'vaginal', 5);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/cowgirlkiss2.mp4');
+    scene.text('You crawl up to Niko\'s face then give him a passionate kiss as you grab onto his penis and guide it inside of your vagina. You begin thrusting yourself on top of Niko\'s dick, pushing it deeper inside you. Niko suddenly grabs onto your back then kisses you more firmly while pushing himself deeper inside you. After a few seconds, Niko ends the kiss to catch his breath and you take this time to look him in the eyes as you say,');
+    scene.actions([
+      { label: 'Confess your love', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/cowgirlkiss.mp4');
+    scene.text('"I love you Niko. I love you with all my heart and every fiber of my being."');
+    // TODO-QSP: dynamic text: Niko has a guilty look on his face. "I love you too <<$pcs_firstname>>. You're v...
+    scene.text(`Niko has a guilty look on his face. "I love you too ${((s as any).pcs_firstname ?? 0)}. You're very precious to me."`);
+    scene.text('You continue staring into Niko\'s eyes as he continues thrusting his dick inside you. Niko\'s grunts as he says, "I have to pull out now."');
+    qspCall(s, 'arousal', 'vaginal', (-5));
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Make him cum', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'mouth_swallow', 'A189', 1);
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/cum/swallow8.mp4');
+    scene.text('You quickly climb off Niko before wrapping your lips around his dick and sucking. Niko tilts his head back and starts cumming in your mouth as you do your best to suck every drop out of his dick. His cum fills your mouth as you continue swallowing and sucking his dick dry. Once he\'s fully spent, he gently brings your face to his and gives you a gentle kiss on the lips. "I\'m so lucky to have such a beautiful and obedient girl like you."');
+    scene.text('"I feel so lucky to have you in my life too, Nikolai," you reply.');
+    scene.text('Niko rubs your forehead before getting up and heading to the bathroom to get washed up.');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    qspCall(st, 'outfit', 'restore');
+  }, goto: ['VolkovHome', 'Niko Bedroom'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterYurikBJ(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A190');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/home/livingroom.jpg');
+  scene.text('As you reach the bottom of the stairs, you suddenly hear someone calling out to you. "Hey girl."');
+  scene.text('You turn to see Yurik sitting in the living room in front of the TV. He motions you to come toward him, so you comply. "Suck my dick," he says while pointing at his crotch. You meekly nod your head, knowing what could happen if you dare to disobey him. You walk up to him and unbutton his pants before pulling out his giant dick and wrapping your lips around it.');
+  scene.actions([
+    { label: 'Suck his dick', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/sex/bj/bj1.mp4');
+    scene.text('You start sucking Yurik\'s massive dick, trying your best to fit as much of it in your mouth as you can. Yurik continues watching the TV as if you weren\'t even there. Trying to get a response from him, you pull his dick out of your mouth and start licking the tip of it, which causes him to grunt and look down at you.');
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/sex/abuse/slap1.mp4');
+    scene.text('Yurik suddenly give you a firm, but not very powerful slap. "Don\'t go fucking around down there. I told you to suck, not play with my dick, so get back to sucking."');
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Nod', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/sex/bj/bj1.mp4');
+    scene.text('You meekly nod and continue sucking his dick. After a few seconds, Yurik looks down at you. "You don\'t need to worry girl. You\'re doing good." You suddenly feel a lot more confident, knowing that he actually does enjoy what you\'re doing for him. After a few seconds, you can hear him breathing loudly.');
+    qspCall(s, 'arousal', 'bj', (-5));
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Make him cum', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
+    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/sex/bj/bj1.mp4');
+    scene.text('You quicken your pace and Yurik suddenly groans as he starts pumping your mouth full of his cum, which you do your best to swallow. Once he\'s spent, he looks down at you. "I\'m done girl. You can go back to Niko now." You get up and start walking away when you hear him add "Good job girl." You walk back up the stairs with a smile on your face.');
+    scene.actions([
+      { label: 'Head back upstairs', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).NikoEv = 19;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile1.jpg');
+    scene.text('As you reach the top of the stairs, you see Niko walk out of the bathroom. He gives you a smile. "Are you ready to head home? I\'m ready to walk you home whenever you\'re ready."');
+    scene.text('You return the smile as you nod. Niko then takes your hand and walks you out of the house towards your apartment. When you reach your apartment he turns to you. "I had a wonderful time with you today. It\'s fun to sometimes relax and enjoy each other\'s company isn\'t it?"');
+    scene.text('You nod happily as you reply. "I always enjoy being with you."');
+    scene.text('Niko chuckles. "You\'re too sweet. Anyway, have a good night." He leans forward and gives you a kiss on the cheek before turning around and walking away.');
+    scene.actions([
+      { label: 'Enter apartment', goto: ['KorrPar', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDiner2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).fame ?? 0)?.['pav_sex'] < 230) {
+    qspCall(s, 'fame', 'pav', 'sex', 250);
+  }
+  qspCall(s, 'fame', '');
+  qspCall(s, 'stat', '');
+  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+  // TODO-QSP: dynamic text: As soon as Niko notices you, he tosses his cigarette aside. "Hey <<$pcs_nickname...
+  scene.text(`As soon as Niko notices you, he tosses his cigarette aside. "Hey ${((s as any).pcs_nickname ?? 0)}. You ready to make some money?"`);
+  qspCall(s, 'willpower', 'prostitution', 'resist', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/sad1.jpg');
+    scene.text('"That sounds great, but I really need to be somewhere very soon."');
+    scene.text('Niko shrugs. "Oh well. I guess it could wait for another day. Visit me here when you\'re ready."');
+    scene.text('You wave at Niko and he returns the wave as you walk away.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gschool_grounds', 'main'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Sure', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/park/walk1.jpg');
+    scene.text('You nod your head and Niko smiles. "Excellent. Today, we\'re going back to the diner to make a lot of money. We\'re making great progress and I\'d like us to keep it up."');
+    // TODO-QSP: dynamic text: You give Niko a nervous smile as he places his hands on your cheeks. "Don't worr...
+    scene.text(`You give Niko a nervous smile as he places his hands on your cheeks. "Don't worry ${((s as any).pcs_nickname ?? 0)}. I'll make sure that the customer only go one, or two at a time. No more group activities unless you're cool with it."`);
+    scene.text('You give Niko a grateful nod as he takes your hand and leads you towards the diner.');
+    scene.actions([
+      { label: 'Enter the diner', handler: (st: GameState) => {
+    (s as any).NikoDiner = Math.floor(Math.random() * 2) + 2;
+    (s as any).NikoSlut = 2;
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/highway/borisdiner/patrons.jpg');
+    scene.text('As soon as you enter the diner, all of the patrons turn to you and start happily greeting you.');
+    scene.text('"Hey girl, glad to see you back."');
+    scene.text('"You\'re looking good, girl."');
+    scene.text('"I wish my wife looked as good as you."');
+    scene.text('"Is that the girl you were talking about? The slu…" Another guy shoves him in the ribs. "Watch what you say. We don\'t want her to leave."');
+    scene.text('You can feel your cheeks growing red as you respond to all of the attention. "Thank you all for welcoming me back. I\'m… glad to be back."');
+    scene.text('Niko nods. "I agree. It\'s good to be back. If anyone would like to spend some time with my girl here then let me know what you want and I\'ll set it up."');
+    scene.text('Niko guides you to the corner of the room and sits down with you as a few men line up nearby. "What\'s your name, girl?" one of them asks.');
+    scene.actions([
+      { label: 'Give them your real name', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: "My name is <<$pcs_firstname>>," you say. "It's nice to meet you."
+    scene.text(`"My name is ${((s as any).pcs_firstname ?? 0)}," you say. "It's nice to meet you."`);
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>>. Very cute name," he says. "It really suits you."
+    scene.text(`"${((s as any).pcs_firstname ?? 0)}. Very cute name," he says. "It really suits you."`);
+    scene.text('You give the men a friendly smile as one of them approaches Niko.');
+    scene.actions([
+      { label: 'Continue', goto: ['NikoSlut', 'Customer 1'] },
+    ]);
+  } },
+      { label: 'Choose a name', handler: (st: GameState) => {
+    if (((s as any).NikoSlutName ?? 0) === '') {
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: "My name is <<$NikoSlutName>>," you say. "It's nice to meet you."
+    scene.text(`"My name is ${((s as any).NikoSlutName ?? 0)}," you say. "It's nice to meet you."`);
+    // TODO-QSP: dynamic text: "<<$NikoSlutName>> huh?" he replies. "That is is a pretty name."
+    scene.text(`"${((s as any).NikoSlutName ?? 0)} huh?" he replies. "That is is a pretty name."`);
+    scene.text('You give the men a friendly smile as one of them approaches Niko.');
+    scene.actions([
+      { label: 'Continue', goto: ['NikoSlut', 'Customer 1'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDinerExit2(s: GameState, scene: SceneBuilder): void {
+  (s as any).VKLenaBully = 1;
+  if (((s as any).NikoSlut ?? 0) < 3) {
+    // TODO-QSP: gs 'money', 'earn', NikoProfit * 400
+  }
+  (s as any).NikoSlut = 1;
+  (s as any).NikoEv = 20;
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/kiss1.mp4');
+  scene.text('As you and Niko leave the diner, he grabs onto your hand and spins you around before giving you a passionate kiss. You close your eyes and enjoy the caress of Niko\'s tongue massaging yours before he slowly pulls away. "You\'ve been doing an outstanding job and I\'m so proud of you. If we continue doing this everyday, then we\'ll have the money to fix your reputation in no time. Speaking of money, here\'s your share of the profits."');
+  scene.text('He hands you your cut of the profits before wrapping his arm around your neck and walking you home while chatting with you about some of his favorite music groups. As you both pass by the park, you can hear someone singing behind you. "Little slut, little slut, there she goes. Little slut, little slut with her leaking holes."');
+  scene.actions([
+    { label: 'Turn around', handler: (st: GameState) => {
+    (s as any).NikoProfit = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/bully/park/1.jpg');
+    scene.text('You turn and see Lena and Lera following you. They both have wide grins on their faces. "Hey slut! How many cocks have you sucked today?" Lena asks.');
+    scene.text('"I think the easier question would be how many cocks have you not sucked today?" Lera replies.');
+    scene.text('You try to ignore them as they walk in front of you and Niko. "Why don\'t you give us a little show, slut?" Lena says.');
+    scene.text('"Not now ladies!" Niko replies in a stern tone and Lena smiles.');
+    scene.text('"Awww. Are we hurting your little whore\'s feelings?" she laughs as Lera walks directly in front of you, blocking you from moving.');
+    scene.text('"We\'re waiting for your show, slut!" she says.');
+    scene.actions([
+      { label: 'See what Niko does', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.text('"Enough!" Niko shouts. "Why don\'t you both go to the disco? I heard that Vicky\'s been fucking the boys there. Roman sent me the pictures and said that Vicky is the new town slut. You should check it out."');
+    scene.text('"Oh my, I totally don\'t want to miss that," Lera sarcastically replies. "Hey Lena, we need to start running over there before it\'s too late." She then jogs in place before giggling.');
+    scene.text('"As if we would ever believe any of your bullshit. Niko!" Lena says and Niko shakes his head before barging through them as he pulls you with him. You try to ignore the girls as Niko leads you to your apartment.');
+    scene.text('"Little slut, little slut, where does she go? Little slut, little slut, who will she blow?" Lena sings.');
+    scene.text('"Everyone, silly!" Lera answers. They follow you for another minute before getting bored and leaving.');
+    scene.actions([
+      { label: 'Walk home with Niko', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/endkiss.mp4');
+    // TODO-QSP: dynamic text: You finally make it to your apartment, where Niko grabs onto your shoulder and f...
+    scene.text(`You finally make it to your apartment, where Niko grabs onto your shoulder and flips you around before giving you a very passionate kiss before whispering in your ear. "I love you ${((s as any).pcs_firstname ?? 0)}. Never forget it."`);
+    scene.text('You can feel your face growing flushed. "I love you too Nikolai. I love you with all my heart." You then give him another passionate kiss before backing into your apartment.');
+    scene.actions([
+      { label: 'Enter apartment', goto: ['korrPar', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDinerSlut(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).YurikRep ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_sex'] < 230) {
+    qspCall(s, 'fame', 'pav', 'sex', 250);
+  }
+  qspCall(s, 'stat', '');
+  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+  // TODO-QSP: dynamic text: As soon as Niko notices you, he tosses his cigarette aside. "Hey <<$pcs_nickname...
+  scene.text(`As soon as Niko notices you, he tosses his cigarette aside. "Hey ${((s as any).pcs_nickname ?? 0)}. Ready to make some money?"`);
+  qspCall(s, 'willpower', 'prostitution', 'resist', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'I can\'t right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/sad1.jpg');
+    scene.text('"That sounds great, but I really need to be somewhere very soon."');
+    scene.text('He shrugs. "Oh well. I guess it could wait for another day. Visit me here when you\'re ready."');
+    scene.text('You wave at Niko and he returns the wave as you walk away.');
+    scene.actions([
+      { label: 'Walk away', goto: ['gschool_grounds', 'main'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Sure', handler: (st: GameState) => {
+    (s as any).NikoDiner = Math.floor(Math.random() * 2) + 2;
+    (s as any).NikoSlut = 2;
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/park/walk1.jpg');
+    scene.text('You nod and Niko smiles. "You\'re always making me so proud. Let\'s get going."');
+    scene.text('He takes your hand and leads you towards the diner.');
+    scene.actions([
+      { label: 'Walk to the diner', handler: (st: GameState) => {
+    (s as any).alko = ((s as any).alko ?? 0) + (1);
+    (s as any).NikoDiner = Math.floor(Math.random() * 2) + 2;
+    (s as any).NikoSlut = 2;
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/drink.jpg');
+    scene.text('You both arrive at the diner and Niko takes a seat before offering you one. He orders a few drinks as you both make yourself comfortable and spend the next few minutes chatting while you wait for customers to arrive.');
+    scene.actions([
+      { label: 'Wait for customers', goto: ['NikoSlut', 'Customers'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterNikoSearch(s: GameState, scene: SceneBuilder): void {
+  (s as any).NikoDate_Day = ((s as any).daystart ?? 0);
+  (s as any).NikoEv = 22;
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big10.jpg');
+  // TODO-QSP: dynamic text: As you're leaving the cafeteria, you walk toward the restroom to check up on Nik...
+  scene.text(`As you're leaving the cafeteria, you walk toward the restroom to check up on Niko. When you arrive, you can see the boys chatting with each other before turning to you and whispering at each other before Dan grabs onto your arm. "Hey ${((s as any).pcs_firstname ?? 0)}. I know why you're here. You miss our dicks, don't you?"`);
+  scene.text('You recoil. "No, I was just looking for…"');
+  scene.text('Dan grips your arm tighter as he unbuttons his pants. "Don\'t worry, my dick is right here." He pushes you down to your knees and presses his dick against your lips while the other gopniks circle around you.');
+  scene.actions([
+    { label: 'Suck Dan\'s dick', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/restroom/2.jpg');
+    // TODO-QSP: dynamic text: You lick the tip of Dan's dick before taking it into your mouth and sucking it f...
+    scene.text(`You lick the tip of Dan's dick before taking it into your mouth and sucking it firmly. Vitek and Vasily take out their dicks and start lightly stroking them before you reach out and grab onto their dicks. "You're doing well, ${((s as any).pcs_nickname ?? 0)}. Can you suck me next?" Vasily asks and you nod before pulling away from Dan and wrapping your lips around Vasily's dick, sucking it gently while Vitek paws at your breasts through your shirt. After a few seconds, Vitek grows impatient and pushes his dick against your lips.`);
+    if (((s as any).kotovLoveQW ?? 0) < 0) {
+      scene.text('"What are you waiting for, slut? Start sucking my dick. You made a fool of me and you\'ll make up for it." You can feel your heart rapidly beating as you start sucking on Vitek\'s dick, fearful of angering him further.');
+    } else {
+      // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>, don't forget about me." You alternate between suckin...
+      scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}, don't forget about me." You alternate between sucking their dicks as they talk to each other about you.`);
+    }
+    scene.actions([
+      { label: '', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/restroom/1.jpg');
+    scene.text('');
+    scene.actions([
+      { label: 'Continue toward the hallway', goto: ['gschool_lunch', 'break'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterNikoSearch2(s: GameState, scene: SceneBuilder): void {
+  (s as any).NikoDate_Day = ((s as any).daystart ?? 0);
+  (s as any).NikoEv = 22;
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big10.jpg');
+  scene.text('As you\'re leaving the cafeteria, you carefully approach the restroom. When you arrive, you carefully peek through the door to see that no one\'s there. You can\'t help but feel a bit relieved that none of the boys are there, but you soon hear some boys chatting in the hallway behind you, so you quickly run into one of the stalls while hoping that they don\'t enter. To your dismay, they enter the restroom while continuing their conversation.');
+  scene.actions([
+    { label: 'Listen to them', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big10.jpg');
+    scene.text('"I saw him leaving class holding Dimka\'s books like his little whipping boy. That guy has to be the biggest pussy I\'ve ever seen," Vasily says.');
+    scene.text('"I swear that guy is a fag," Vitek replies.');
+    scene.text('Dan interrupts them. "Who\'s in that stall? Are you taking a shit in there?"');
+    scene.text('Dan knocks on the door a few times before walking away as the guys continue laughing and chatting.');
+    scene.actions([
+      { label: 'Continue listening', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big10.jpg');
+    scene.text('"Where the fuck is Sonia?" Dan asks. "I haven\'t seen her all day."');
+    scene.text('"Do you miss her or did she forget to take your call?" Vasily replies in a mocking tone.');
+    scene.text('"I just wanted to empty my balls is all," Dan says.');
+    if (((s as any).kotovLoveQW ?? 0) < 0) {
+      // TODO-QSP: dynamic text: "We can always fetch <<$pcs_firstname>>," Vitek suggests. "She won't dare say no...
+      scene.text(`"We can always fetch ${((s as any).pcs_firstname ?? 0)}," Vitek suggests. "She won't dare say no."`);
+    } else {
+      // TODO-QSP: dynamic text: "You can always look for <<$pcs_firstname>>," Vitek suggests. "She seems to know...
+      scene.text(`"You can always look for ${((s as any).pcs_firstname ?? 0)}," Vitek suggests. "She seems to know her place."`);
+    }
+    scene.text('Dan stretches for a second. "I might just do that. Any of you want to join in?"');
+    scene.text('You can feel your heart pounding as you continue listening to them talk about you.');
+    scene.text('Vitek casually gets up. "Sure why not?" The boys then leave the restroom.');
+    scene.actions([
+      { label: 'Carefully leave the stall', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big10.jpg');
+    // TODO-QSP: dynamic text: You wait for a few seconds after the boys leave and quietly exit the stall, peek...
+    scene.text(`You wait for a few seconds after the boys leave and quietly exit the stall, peeking out of the restroom door to see no one around. You let out a quick sigh of relief as you walk toward the girl's restroom to wait out recess when you suddenly hear someone behind you. "Hey ${((s as any).pcs_nickname ?? 0)}, just the girl we're looking for."`);
+    scene.text('You freeze in your tracks as Dan grabs your hand. "Let\'s have some fun."');
+    scene.text('You try to say something, but your mind is racing too fast. Dan pulls you towards the restroom as the other boys follow closely behind.');
+    scene.actions([
+      { label: 'Follow them to the restroom', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big10.jpg');
+    scene.text('"I haven\'t had your pussy in a while. Take off your clothes," Dan orders and you meekly nod before removing your clothes.');
+    scene.actions([
+      { label: 'Carefully leave the stall', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.text('');
+    scene.actions([
+      { label: 'Carefully leave the stall', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.text('');
+    scene.actions([
+      { label: '', handler: (st: GameState) => {
+    // TODO-QSP: gt '', ''
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -701,6 +1458,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'Events':
       enterEvents(s, scene);
+      break;
+    case 'Diner 1':
+      enterDiner1(s, scene);
+      break;
+    case 'Diner Washup':
+      enterDinerWashup(s, scene);
+      break;
+    case 'Diner Exit':
+      enterDinerExit(s, scene);
+      break;
+    case 'Reward 2':
+      enterReward2(s, scene);
+      break;
+    case 'Yurik BJ':
+      enterYurikBJ(s, scene);
+      break;
+    case 'Diner 2':
+      enterDiner2(s, scene);
+      break;
+    case 'Diner Exit 2':
+      enterDinerExit2(s, scene);
+      break;
+    case 'Diner Slut':
+      enterDinerSlut(s, scene);
+      break;
+    case 'Niko Search':
+      enterNikoSearch(s, scene);
+      break;
+    case 'Niko Search 2':
+      enterNikoSearch2(s, scene);
       break;
     default:
       enterPark(s, scene);

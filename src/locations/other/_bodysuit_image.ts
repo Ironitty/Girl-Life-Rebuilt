@@ -5,7 +5,10 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'moncheri') {
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'lusso') {
+    if (((s as any).locArgs?.[0] ?? 0) === 'salacious') {
+    } else {
+      if (((s as any).locArgs?.[0] ?? 0) === 'lusso') {
+      }
     }
   }
   scene.build();

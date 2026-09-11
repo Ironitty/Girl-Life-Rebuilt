@@ -23,7 +23,9 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -33,7 +35,7 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Da', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Da [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -112,7 +114,9 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -122,7 +126,7 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Da', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Da [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -187,8 +191,11 @@ function enterAsianStudies_101TalkDimka(s: GameState, scene: SceneBuilder): void
     if (((s as any).npc_rel ?? 0)?.['A1'] <= 20) {
       scene.text('You sit next to Dimka, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you.');
     } else {
-      scene.text('You sit next to Dimka. He seems reluctant to talk to you, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Dimka and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A1'] < 60) {
+        scene.text('You sit next to Dimka. He seems reluctant to talk to you, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Dimka and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A1'] < 60) {
@@ -213,8 +220,11 @@ function enterAsianStudies_102TalkDimka(s: GameState, scene: SceneBuilder): void
     if (((s as any).npc_rel ?? 0)?.['A1'] <= 20) {
       scene.text('You sit next to Dimka, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you.');
     } else {
-      scene.text('You sit next to Dimka. He seems reluctant to talk to you, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Dimka and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A1'] < 60) {
+        scene.text('You sit next to Dimka. He seems reluctant to talk to you, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Dimka and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A1'] < 60) {
@@ -239,15 +249,21 @@ function enterAsianStudies_101TalkIgor(s: GameState, scene: SceneBuilder): void 
     if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
       scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
     } else {
-      scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Igor and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A4'] < 60) {
+        scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Igor and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
       scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
     } else {
-      scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
-      scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
+      if (((s as any).npc_rel ?? 0)?.['A4'] < 60) {
+        scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+      } else {
+        scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -265,15 +281,21 @@ function enterAsianStudies_102TalkIgor(s: GameState, scene: SceneBuilder): void 
     if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
       scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
     } else {
-      scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Igor and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A4'] < 60) {
+        scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Igor and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
       scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
     } else {
-      scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
-      scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
+      if (((s as any).npc_rel ?? 0)?.['A4'] < 60) {
+        scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+      } else {
+        scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -290,11 +312,14 @@ function enterAsianStudies_101TalkKatja(s: GameState, scene: SceneBuilder): void
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
     scene.text('text for Sveta trying to talk to the npc hates her');
   } else {
-    scene.text('text if they just know each other and have no strong feelings one way or the other');
-    if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-      scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+    if (((s as any).npc_rel ?? 0)?.['A14'] < 60) {
+      scene.text('text if they just know each other and have no strong feelings one way or the other');
     } else {
-      scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
+        scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+      } else {
+        scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      }
     }
   }
   scene.actions([
@@ -311,11 +336,14 @@ function enterAsianStudies_102TalkKatja(s: GameState, scene: SceneBuilder): void
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
     scene.text('text for Sveta trying to talk to the npc hates her');
   } else {
-    scene.text('text if they just know each other and have no strong feelings one way or the other');
-    if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-      scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+    if (((s as any).npc_rel ?? 0)?.['A14'] < 60) {
+      scene.text('text if they just know each other and have no strong feelings one way or the other');
     } else {
-      scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
+        scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+      } else {
+        scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      }
     }
   }
   scene.actions([
@@ -333,15 +361,21 @@ function enterAsianStudies_101TalkLariska(s: GameState, scene: SceneBuilder): vo
     if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
       scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
     } else {
-      scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Lariska and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A13'] < 60) {
+        scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Lariska and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
       scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
     } else {
-      scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
-      scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      if (((s as any).npc_rel ?? 0)?.['A13'] < 60) {
+        scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+      } else {
+        scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -359,15 +393,21 @@ function enterAsianStudies_102TalkLariska(s: GameState, scene: SceneBuilder): vo
     if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
       scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
     } else {
-      scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Lariska and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A13'] < 60) {
+        scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Lariska and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
       scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
     } else {
-      scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
-      scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      if (((s as any).npc_rel ?? 0)?.['A13'] < 60) {
+        scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+      } else {
+        scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -387,75 +427,74 @@ function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sleep on your own time! Now either pay attention or leave!"');
     scene.text('She says pointing at the door, then goes back to her lecture as the boy struggles to stay awake for the rest of class.');
   } else {
-    scene.img('images/locations/city/island/university/classroom/electives/computer/dimka_hump.jpg');
-    scene.text('During the short break in the middle of class, your fellow students break up into small groups or just relax where they are. As you glance around, you notice Dimka talking to an Asian girl.');
-    scene.text('You can tell they\'re flirting even from here as he leans in close to her and whispers something, causing her to giggle before Dimka spins her around and grabs her by the back of the neck, forcing her head down until she\'s bent over a desk.');
-    scene.text('He keeps one hand on the back of her neck as he grinds his crotch against her ass while grabbing her hip with his other hand. He proceeds to dry hump her in front of everyone while making degrading comments towards her, but she doesn\'t struggle against him.');
-    scene.text('When the professor returns, Dimka lets go of her and retakes his seat while giving her a wink.');
-    scene.text('The girl blushes hard as she retakes her seat, but you notice she keeps glancing at him; she clearly enjoyed what he did and now has a thing for him.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).temp ?? 0) < 6) {
-      scene.img('images/locations/city/island/university/classroom/electives/psychology/girl_smoking.jpg');
-      scene.text('As Professor Da continues her lecture, you glance over and notice a girl bent over hiding her head from Professor Da. She pulls out a cigarette and lights it up before she starts smoking it.');
-      scene.text('After taking a drag, she sits back up while holding the cigarette below the desk before ducking her head back down to take another drag. She keeps repeating this until she finishes the cigarette.');
-    } else {
-      scene.img('images/locations/city/island/university/classroom/electives/psychology/uniskirtpull.jpg');
-      scene.text('As class ends, all the students start leaving. Ahead of you is a boy walking with a girl when another boy suddenly runs over and grabs the hem of her dress before pulling it all the way up, showing off her thong and stockings for everyone to see.');
-      scene.text('The girl squeals and jerks away, getting her dress back in place as her apparent boyfriend looks around in confusion. By the time he figures it out, the other boy has already long took off.');
+    if (((s as any).temp ?? 0) < 4) {
+      scene.img('images/locations/city/island/university/classroom/electives/computer/dimka_hump.jpg');
+      scene.text('During the short break in the middle of class, your fellow students break up into small groups or just relax where they are. As you glance around, you notice Dimka talking to an Asian girl.');
+      scene.text('You can tell they\'re flirting even from here as he leans in close to her and whispers something, causing her to giggle before Dimka spins her around and grabs her by the back of the neck, forcing her head down until she\'s bent over a desk.');
+      scene.text('He keeps one hand on the back of her neck as he grinds his crotch against her ass while grabbing her hip with his other hand. He proceeds to dry hump her in front of everyone while making degrading comments towards her, but she doesn\'t struggle against him.');
+      scene.text('When the professor returns, Dimka lets go of her and retakes his seat while giving her a wink.');
+      scene.text('The girl blushes hard as she retakes her seat, but you notice she keeps glancing at him; she clearly enjoyed what he did and now has a thing for him.');
       qspCall(s, 'arousal', 'erotic', 1);
       qspCall(s, 'arousal', 'end');
-      if (((s as any).temp ?? 0) < 10) {
-        scene.img('images/locations/city/island/university/classroom/electives/asian_studies/bored_asiangs.jpg');
-        scene.text('As Professor Da continues her lecture, you notice two girls sitting directly to your side. They look completely bored by the class and are not paying attention at all.');
-        scene.text('After a few minutes, Professor Da clears her throat loudly. "Am I boring the two of you? If you like, you are welcome to leave."');
-        scene.text('She points at the door and the two girls reluctantly start to pay attention for the rest of class.');
+    } else {
+      if (((s as any).temp ?? 0) < 6) {
+        scene.img('images/locations/city/island/university/classroom/electives/psychology/girl_smoking.jpg');
+        scene.text('As Professor Da continues her lecture, you glance over and notice a girl bent over hiding her head from Professor Da. She pulls out a cigarette and lights it up before she starts smoking it.');
+        scene.text('After taking a drag, she sits back up while holding the cigarette below the desk before ducking her head back down to take another drag. She keeps repeating this until she finishes the cigarette.');
       } else {
-        scene.img('images/locations/city/island/university/classroom/electives/asian_studies/drop_pencil.jpg');
-        scene.text('As Professor Da continues her lecture, you accidentally drop your pencil on the floor. You bend over in your seat and pick it up, but as you start to straighten back up, you find yourself looking up an Asian girl\'s skirt, her legs spread wide as she pulls up the front of her short skirt.');
-        scene.text('Her lacy panties are barely covering her pussy and her pubic hair is visible through the lace. When you glance up at her, you see her grinning.');
-        if (((s as any).hotcat ?? 0) < 5) {
-          scene.text('Once you sit back up, she closes her legs and smooths her skirt back in place before she goes back to paying attention to Professor Da\'s lecture as if nothing had happened.');
-          scene.text('When class is over, she quickly gets up and leaves, leaving you to wonder what that was all about.');
-        } else {
-          scene.text('"You ever taste Asian pussy before?" Before you can answer, she closes her legs and smooths her skirt back into place. "If you would like to, come by my dorm room some time."');
-          scene.text('She tells you which room is hers before she goes back to paying attention to Professor Da\'s lecture as if nothing had happened. When class is over, she quickly gets up and leaves, leaving you to wonder what that was all about.');
-          scene.text('<br>Note: She doesn\'t have a dorm room yet, but will in the future.');
-        }
-        qspCall(s, 'arousal', 'erotic', 1);
-        qspCall(s, 'arousal', 'end');
-        return;
-        if (((s as any).temp ?? 0) < 14) {
-          scene.img('images/locations/city/island/university/classroom/electives/asian_studies/gdom_asiang.jpg');
-          scene.text('Once Professor Da ends her lecture, most of the students get up and leave, as does Professor Da, but you notice an Asian girl and a Russian girl stay behind.');
-          scene.text('You watch the blonde girl sit on the table and slide in front of the Asian girl. Once she\'s in front of her, she spreads her legs wide and wraps a scarf around the Asian girl\'s neck before pulling her head forward.');
-          scene.text('The Asian girl places her hands on the blonde\'s thighs to try and resist, but you\'re not sure how hard she\'s really resisting as her head is slowly lowered between the other girl\'s legs.');
-          scene.text('You\'re fairly sure what happens next, but not wanting to get caught peeping, you quickly leave the classroom.');
+        if (((s as any).temp ?? 0) < 8) {
+          scene.img('images/locations/city/island/university/classroom/electives/psychology/uniskirtpull.jpg');
+          scene.text('As class ends, all the students start leaving. Ahead of you is a boy walking with a girl when another boy suddenly runs over and grabs the hem of her dress before pulling it all the way up, showing off her thong and stockings for everyone to see.');
+          scene.text('The girl squeals and jerks away, getting her dress back in place as her apparent boyfriend looks around in confusion. By the time he figures it out, the other boy has already long took off.');
           qspCall(s, 'arousal', 'erotic', 1);
           qspCall(s, 'arousal', 'end');
-          return;
-          scene.actions([
-            { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
-          ]);
         } else {
-          scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
-          scene.text('Once Professor Da ends her lecture, most of the students get up and leaves, as does Professor Da, but you notice one Asian girl and several Russian boys stay behind.');
-          scene.text('You had noticed how the boys had been talking and flirting with her during class earlier.');
-          return;
-          if (((s as any).temp ?? 0) < 18) {
-            scene.img('images/locations/city/island/university/classroom/electives/asian_studies/nipslip_asian.jpg');
-            scene.text('During the short break in the middle of class, your fellow students break up into small groups or just relax where they are.');
-            scene.text('As you glance around, you notice an Asian girl talking to some of her friends. As she bends over to look at something on the desk, you notice how her shirt hangs down enough to show off her small breasts and nipples.');
-            scene.text('After a few seconds, she stands back up, clearly unaware of her little show, but no one else seems to have noticed.');
-            qspCall(s, 'arousal', 'voyeur', 1);
-            qspCall(s, 'stat', '');
+          if (((s as any).temp ?? 0) < 10) {
+            scene.img('images/locations/city/island/university/classroom/electives/asian_studies/bored_asiangs.jpg');
+            scene.text('As Professor Da continues her lecture, you notice two girls sitting directly to your side. They look completely bored by the class and are not paying attention at all.');
+            scene.text('After a few minutes, Professor Da clears her throat loudly. "Am I boring the two of you? If you like, you are welcome to leave."');
+            scene.text('She points at the door and the two girls reluctantly start to pay attention for the rest of class.');
           } else {
-            scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
-            scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
-          }
-          scene.actions([
-            { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
-            { label: 'Watch', handler: (st: GameState) => {
+            if (((s as any).temp ?? 0) < 12) {
+              scene.img('images/locations/city/island/university/classroom/electives/asian_studies/drop_pencil.jpg');
+              scene.text('As Professor Da continues her lecture, you accidentally drop your pencil on the floor. You bend over in your seat and pick it up, but as you start to straighten back up, you find yourself looking up an Asian girl\'s skirt, her legs spread wide as she pulls up the front of her short skirt.');
+              scene.text('Her lacy panties are barely covering her pussy and her pubic hair is visible through the lace. When you glance up at her, you see her grinning.');
+              if (((s as any).hotcat ?? 0) < 5) {
+                scene.text('Once you sit back up, she closes her legs and smooths her skirt back in place before she goes back to paying attention to Professor Da\'s lecture as if nothing had happened.');
+                scene.text('When class is over, she quickly gets up and leaves, leaving you to wonder what that was all about.');
+              } else {
+                scene.text('"You ever taste Asian pussy before?" Before you can answer, she closes her legs and smooths her skirt back into place. "If you would like to, come by my dorm room some time."');
+                scene.text('She tells you which room is hers before she goes back to paying attention to Professor Da\'s lecture as if nothing had happened. When class is over, she quickly gets up and leaves, leaving you to wonder what that was all about.');
+                scene.text('<br>Note: She doesn\'t have a dorm room yet, but will in the future.');
+              }
+              qspCall(s, 'arousal', 'erotic', 1);
+              qspCall(s, 'arousal', 'end');
+              return;
+              scene.actions([
+                { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
+              ]);
+            } else {
+              if (((s as any).temp ?? 0) < 14) {
+                scene.img('images/locations/city/island/university/classroom/electives/asian_studies/gdom_asiang.jpg');
+                scene.text('Once Professor Da ends her lecture, most of the students get up and leave, as does Professor Da, but you notice an Asian girl and a Russian girl stay behind.');
+                scene.text('You watch the blonde girl sit on the table and slide in front of the Asian girl. Once she\'s in front of her, she spreads her legs wide and wraps a scarf around the Asian girl\'s neck before pulling her head forward.');
+                scene.text('The Asian girl places her hands on the blonde\'s thighs to try and resist, but you\'re not sure how hard she\'s really resisting as her head is slowly lowered between the other girl\'s legs.');
+                scene.text('You\'re fairly sure what happens next, but not wanting to get caught peeping, you quickly leave the classroom.');
+                qspCall(s, 'arousal', 'erotic', 1);
+                qspCall(s, 'arousal', 'end');
+                return;
+                scene.actions([
+                  { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
+                ]);
+              } else {
+                if (((s as any).temp ?? 0) < 16) {
+                  scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
+                  scene.text('Once Professor Da ends her lecture, most of the students get up and leaves, as does Professor Da, but you notice one Asian girl and several Russian boys stay behind.');
+                  scene.text('You had noticed how the boys had been talking and flirting with her during class earlier.');
+                  return;
+                  scene.actions([
+                    { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
+                    { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/electives/asian_studies/naked_asiang.jpg');
     scene.text('They\'re talking softly to each other and she seems slightly embarrassed, but also seems to be loving the attention.');
     scene.text('She then nods and stands up before she slowly starts to strip out of her clothes in front of the boys. She strips down to just her knee socks, though her hairy pussy hides a lot.');
@@ -467,15 +506,30 @@ function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     ]);
   } },
-            { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
-          ]);
+                  ]);
+                } else {
+                  if (((s as any).temp ?? 0) < 18) {
+                    scene.img('images/locations/city/island/university/classroom/electives/asian_studies/nipslip_asian.jpg');
+                    scene.text('During the short break in the middle of class, your fellow students break up into small groups or just relax where they are.');
+                    scene.text('As you glance around, you notice an Asian girl talking to some of her friends. As she bends over to look at something on the desk, you notice how her shirt hangs down enough to show off her small breasts and nipples.');
+                    scene.text('After a few seconds, she stands back up, clearly unaware of her little show, but no one else seems to have noticed.');
+                    qspCall(s, 'arousal', 'voyeur', 1);
+                    qspCall(s, 'stat', '');
+                  } else {
+                    scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
+                    scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
+                  }
+                }
+              }
+            }
+          }
         }
-        scene.actions([
-          { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
-        ]);
       }
     }
   }
+  scene.actions([
+    { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
+  ]);
   scene.build();
 }
 

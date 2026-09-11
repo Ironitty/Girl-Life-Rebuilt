@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 2: 1100
   // TODO-QSP: 3: 1150
   // TODO-QSP: PanQuality ranges from 2 to 3
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).PanType = 1;
     (s as any).PanFun = 2;
     (s as any).PanSport = 1;
@@ -19,68 +19,79 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).PanPrice = 1150;
     (s as any).underwear['pair'] = 1;
   } else {
-    (s as any).PanType = 1;
-    (s as any).PanFun = 2;
-    (s as any).PanSport = 1;
-    (s as any).PanQuality = 2;
-    (s as any).PanStrength = 60000;
-    (s as any).PanThinness = 2;
-    (s as any).PanPrice = 1100;
-    (s as any).underwear['pair'] = 2;
-    if (((s as any).ARGS ?? 0)[0] === 3) {
+    if (((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).PanType = 1;
       (s as any).PanFun = 2;
       (s as any).PanSport = 1;
-      (s as any).PanQuality = 3;
-      (s as any).PanStrength = 80000;
-      (s as any).PanThinness = 3;
-      (s as any).PanPrice = 1150;
-      (s as any).underwear['pair'] = 3;
+      (s as any).PanQuality = 2;
+      (s as any).PanStrength = 60000;
+      (s as any).PanThinness = 2;
+      (s as any).PanPrice = 1100;
+      (s as any).underwear['pair'] = 2;
     } else {
-      (s as any).PanType = 1;
-      (s as any).PanFun = 2;
-      (s as any).PanSport = 1;
-      (s as any).PanQuality = 3;
-      (s as any).PanStrength = 80000;
-      (s as any).PanThinness = 3;
-      (s as any).PanPrice = 1150;
-      (s as any).underwear['pair'] = 4;
-      if (((s as any).ARGS ?? 0)[0] === 5) {
-        (s as any).PanType = 2;
+      if (((s as any).locArgs?.[0] ?? 0) === 3) {
+        (s as any).PanType = 1;
         (s as any).PanFun = 2;
         (s as any).PanSport = 1;
         (s as any).PanQuality = 3;
         (s as any).PanStrength = 80000;
         (s as any).PanThinness = 3;
         (s as any).PanPrice = 1150;
-        (s as any).underwear['pair'] = 5;
+        (s as any).underwear['pair'] = 3;
       } else {
-        (s as any).PanType = 1;
-        (s as any).PanFun = 2;
-        (s as any).PanSport = 1;
-        (s as any).PanQuality = 2;
-        (s as any).PanStrength = 60000;
-        (s as any).PanThinness = 4;
-        (s as any).PanPrice = 1100;
-        (s as any).underwear['pair'] = 6;
-        if (((s as any).ARGS ?? 0)[0] === 7) {
+        if (((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).PanType = 1;
           (s as any).PanFun = 2;
           (s as any).PanSport = 1;
           (s as any).PanQuality = 3;
           (s as any).PanStrength = 80000;
-          (s as any).PanThinness = 2;
+          (s as any).PanThinness = 3;
           (s as any).PanPrice = 1150;
-          (s as any).underwear['pair'] = 7;
+          (s as any).underwear['pair'] = 4;
         } else {
-          (s as any).PanType = 2;
-          (s as any).PanFun = 2;
-          (s as any).PanSport = 1;
-          (s as any).PanQuality = 2;
-          (s as any).PanStrength = 60000;
-          (s as any).PanThinness = 2;
-          (s as any).PanPrice = 1100;
-          (s as any).underwear['pair'] = 8;
+          if (((s as any).locArgs?.[0] ?? 0) === 5) {
+            (s as any).PanType = 2;
+            (s as any).PanFun = 2;
+            (s as any).PanSport = 1;
+            (s as any).PanQuality = 3;
+            (s as any).PanStrength = 80000;
+            (s as any).PanThinness = 3;
+            (s as any).PanPrice = 1150;
+            (s as any).underwear['pair'] = 5;
+          } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 6) {
+              (s as any).PanType = 1;
+              (s as any).PanFun = 2;
+              (s as any).PanSport = 1;
+              (s as any).PanQuality = 2;
+              (s as any).PanStrength = 60000;
+              (s as any).PanThinness = 4;
+              (s as any).PanPrice = 1100;
+              (s as any).underwear['pair'] = 6;
+            } else {
+              if (((s as any).locArgs?.[0] ?? 0) === 7) {
+                (s as any).PanType = 1;
+                (s as any).PanFun = 2;
+                (s as any).PanSport = 1;
+                (s as any).PanQuality = 3;
+                (s as any).PanStrength = 80000;
+                (s as any).PanThinness = 2;
+                (s as any).PanPrice = 1150;
+                (s as any).underwear['pair'] = 7;
+              } else {
+                if (((s as any).locArgs?.[0] ?? 0) === 8) {
+                  (s as any).PanType = 2;
+                  (s as any).PanFun = 2;
+                  (s as any).PanSport = 1;
+                  (s as any).PanQuality = 2;
+                  (s as any).PanStrength = 60000;
+                  (s as any).PanThinness = 2;
+                  (s as any).PanPrice = 1100;
+                  (s as any).underwear['pair'] = 8;
+                }
+              }
+            }
+          }
         }
       }
     }

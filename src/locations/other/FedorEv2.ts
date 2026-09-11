@@ -30,7 +30,7 @@ function enterParkWalk(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Flash Fedor', handler: (st: GameState) => {
+          { label: 'Flash Fedor [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'mood', 'raise', 'tiny');
     (s as any).FedorLuv = ((s as any).FedorLuv ?? 0) + (2);
@@ -221,7 +221,7 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Turn away', handler: (st: GameState) => {
+      { label: 'Turn away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).FedorLuv = ((s as any).FedorLuv ?? 0) - (1);
     qspCall(s, 'stat', '');
@@ -252,7 +252,7 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Unzip his pants', handler: (st: GameState) => {
+        { label: 'Unzip his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/cinema/sex/kinosex3.jpg');
@@ -886,7 +886,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Unzip his pants', handler: (st: GameState) => {
+        { label: 'Unzip his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/tree2.jpg');

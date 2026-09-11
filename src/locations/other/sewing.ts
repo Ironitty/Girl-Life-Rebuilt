@@ -11,8 +11,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You have <<mc_inventory['sewing_fabric']>> pieces of sewing fabric left.
     scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['sewing_fabric']} pieces of sewing fabric left.`);
   } else {
-    scene.text('You have 1 piece of sewing fabric left.');
-    scene.text('You have no fabric left to use as material.');
+    if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] === 1) {
+      scene.text('You have 1 piece of sewing fabric left.');
+    } else {
+      scene.text('You have no fabric left to use as material.');
+    }
   }
   if (((s as any).pcs_sewng ?? 0) > 50  &&  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] >= 1) {
     scene.text('You can resize your own clothing when viewing items in the wardrobe list <a href="exec:gt \'clothing_view\', \'view_lists_list\', \'wardrobe\'">here</a>.');
@@ -42,34 +45,37 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] < 1) {
       scene.text('You do not have any material to sew anything. You should buy some from the supermarket.');
     } else {
-      scene.text('You do not have any further storage space, you need to sell some trinkets to make room before sewing more of them.');
-      (s as any).sew_trinket_success = Math.floor(Math.random() * 240) + 1;
-      (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
-      if (((s as any).pcs_sewng ?? 0) >= 40) {
-        qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
-      }
-      if (((s as any).pcs_sewng ?? 0) < 40) {
-        qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/25, ((s as any).pcs_intel ?? 0)/15));
-      }
-      if (((s as any).sew_trinket_success ?? 0) > ((s as any).pcs_sewng ?? 0)*4) {
-        scene.img('images/pc/activities/sewing/practice.jpg');
-        scene.text('You do your best trying to sew together a trinket at a quality you can sell, but somewhere along the way, you mess it up. The material is ruined, and you\'re frustrated as hell, but at least you feel like you learned something.');
+      if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] === 30  &&  (((s as any).YouCanGar ?? 0) === 0  ||  ((s as any).mc_inventory ?? 0)?.['trinkets_garage'] === 100)) {
+        scene.text('You do not have any further storage space, you need to sell some trinkets to make room before sewing more of them.');
       } else {
-        if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] >= 30  &&  (((s as any).YouCanGar ?? 0) === 0  ||  ((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= 100)) {
-          scene.img('images/pc/activities/sewing/kit.jpg');
-          // TODO-QSP: dynamic text: You put together another trinket but then realize you have too many trinkets alr...
-          scene.text('You put together another trinket but then realize you have too many trinkets already. \' + iif(YouCanGar > 0, \'Even the space in your stepfather\'s garage is full. \', \') + \'With a deep sense of regret, you throw it away, having no place to store it. At least you learned more about sewing…');
+        (s as any).sew_trinket_success = Math.floor(Math.random() * 240) + 1;
+        (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+        if (((s as any).pcs_sewng ?? 0) >= 40) {
+          qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
+        }
+        if (((s as any).pcs_sewng ?? 0) < 40) {
+          qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/25, ((s as any).pcs_intel ?? 0)/15));
+        }
+        if (((s as any).sew_trinket_success ?? 0) > ((s as any).pcs_sewng ?? 0)*4) {
+          scene.img('images/pc/activities/sewing/practice.jpg');
+          scene.text('You do your best trying to sew together a trinket at a quality you can sell, but somewhere along the way, you mess it up. The material is ruined, and you\'re frustrated as hell, but at least you feel like you learned something.');
         } else {
-          scene.img('images/pc/activities/sewing/trinket.jpg');
-          // TODO-QSP: *p 'You spend some time trying to sew something together. After a half hour, you find yourself rewar...
-          if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
-            (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (1);
-            // TODO-QSP: 'Storing it away, you figure you ' + iif(mc_inventory['trinkets_home'] < 30, 'still have space for a...
-            scene.text('You wonder if you can sell them somewhere.');
+          if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] >= 30  &&  (((s as any).YouCanGar ?? 0) === 0  ||  ((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= 100)) {
+            scene.img('images/pc/activities/sewing/kit.jpg');
+            // TODO-QSP: dynamic text: You put together another trinket but then realize you have too many trinkets alr...
+            scene.text('You put together another trinket but then realize you have too many trinkets already. \' + iif(YouCanGar > 0, \'Even the space in your stepfather\'s garage is full. \', \') + \'With a deep sense of regret, you throw it away, having no place to store it. At least you learned more about sewing…');
           } else {
-            (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory['trinkets_garage'] ?? 0) + (1);
-            // TODO-QSP: 'The storage space in your room is full, but you can still store it in your stepfather''s garage, ' ...
-            scene.text('You wonder how many you can sell at the train station.');
+            scene.img('images/pc/activities/sewing/trinket.jpg');
+            // TODO-QSP: *p 'You spend some time trying to sew something together. After a half hour, you find yourself rewar...
+            if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
+              (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (1);
+              // TODO-QSP: 'Storing it away, you figure you ' + iif(mc_inventory['trinkets_home'] < 30, 'still have space for a...
+              scene.text('You wonder if you can sell them somewhere.');
+            } else {
+              (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory['trinkets_garage'] ?? 0) + (1);
+              // TODO-QSP: 'The storage space in your room is full, but you can still store it in your stepfather''s garage, ' ...
+              scene.text('You wonder how many you can sell at the train station.');
+            }
           }
         }
       }

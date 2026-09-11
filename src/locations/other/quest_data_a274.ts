@@ -44,17 +44,28 @@ function enterQuestBody(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mayaqw ?? 0)?.['grave'] === 0) {
       (s as any).npc_quest['body'] = 'Build Maya\'s trust: Continue to meet and talk to Maya.';
     } else {
-      (s as any).npc_quest['body'] = 'You spent the evening dedicated to studying ballet and ignored Maya\'s visit to your room.';
-      if (((s as any).mayaqw ?? 0)?.['grave'] === 1) {
-        (s as any).npc_quest['body'] = 'You ignored Maya\'s first knock when she came to visit.';
+      if (((s as any).mayaqw ?? 0)?.['grave'] === -1) {
+        (s as any).npc_quest['body'] = 'You spent the evening dedicated to studying ballet and ignored Maya\'s visit to your room.';
       } else {
-        (s as any).npc_quest['body'] = 'You invited Maya into your room and had a brief heartfelt conversation about her past.';
-        if (((s as any).mayaqw ?? 0)?.['grave'] === 4) {
-          (s as any).npc_quest['body'] = 'You went to graveyard and supported Maya in her grief, and had a hearftelt conversation with her afterwards in your room.';
+        if (((s as any).mayaqw ?? 0)?.['grave'] === 1) {
+          (s as any).npc_quest['body'] = 'You ignored Maya\'s first knock when she came to visit.';
+        } else {
+          if (((s as any).mayaqw ?? 0)?.['grave'] === 3) {
+            (s as any).npc_quest['body'] = 'You invited Maya into your room and had a brief heartfelt conversation about her past.';
+          } else {
+            if (((s as any).mayaqw ?? 0)?.['grave'] === 4) {
+              (s as any).npc_quest['body'] = 'You went to graveyard and supported Maya in her grief, and had a hearftelt conversation with her afterwards in your room.';
+            }
+          }
         }
       }
     }
   }
+  scene.build();
+}
+
+function enterDebug(s: GameState, scene: SceneBuilder): void {
+  scene.text('Event init failed, $ARGS not set.');
   scene.build();
 }
 
@@ -66,6 +77,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'quest_body':
       enterQuestBody(s, scene);
+      break;
+    case 'debug':
+      enterDebug(s, scene);
       break;
     default:
       enterDefault(s, scene);

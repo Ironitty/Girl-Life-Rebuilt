@@ -31,8 +31,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).momslut ?? 0) >= 1) {
       scene.text('You carefully climb onto the boxes and stand on your toes to reach the small window, giving you a view into the back room of the cafe. Through the window you see your mother on her knees, giving the cafe owner a blowjob. She\'s very enthusiastic about it, and alternates between sucking his dick and licking his balls before she begins to deepthroat him, sliding his dick further and further down her throat until his balls rest on her chin.');
     } else {
-      (s as any).momslut = 1;
-      scene.text('You carefully climb onto the boxes and stand on your toes to reach the small window, giving you a view into the back room of the cafe. Through the window you see a woman on her knees, giving the cafe owner a blowjob. She\'s very enthusiastic about it, and alternates between sucking his dick and licking his balls before she begins to deepthroat him, sliding his dick further and further down her throat until his balls rest on her chin. When you look closer, you realize that it\'s your mother!');
+      if (((s as any).momslut ?? 0)===0) {
+        (s as any).momslut = 1;
+        scene.text('You carefully climb onto the boxes and stand on your toes to reach the small window, giving you a view into the back room of the cafe. Through the window you see a woman on her knees, giving the cafe owner a blowjob. She\'s very enthusiastic about it, and alternates between sucking his dick and licking his balls before she begins to deepthroat him, sliding his dick further and further down her throat until his balls rest on her chin. When you look closer, you realize that it\'s your mother!');
+      }
     }
     scene.actions([
       { label: 'Keep looking', handler: (st: GameState) => {
@@ -100,15 +102,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gevent', '1'] },
         ]);
       } else {
-        scene.text('');
-        // TODO-QSP: dynamic text: A man suddenly slides into the seat next to you as you eat your meal. You look u...
-        scene.text(`A man suddenly slides into the seat next to you as you eat your meal. You look up and see that it's Misha. He has a greedy look in his eyes, the kind that is already stripping you naked in his thoughts. His eyes are fixated on your breasts as he speaks. "Hey, ${((s as any).pcs_nickname ?? 0)}. Would you like to join me for some tea at my place? We can have a bit of fun just like last time, and you can earn some more money…"`);
-        scene.actions([
-          { label: '"Drink tea" with Misha', handler: (st: GameState) => {
+        if (((s as any).razvrand ?? 0) > 7  &&  ((s as any).hour ?? 0) > 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).dyadyamishaevent ?? 0) === 1  &&  ((s as any).dmishaday ?? 0) !== ((s as any).daystart ?? 0)) {
+          scene.text('');
+          // TODO-QSP: dynamic text: A man suddenly slides into the seat next to you as you eat your meal. You look u...
+          scene.text(`A man suddenly slides into the seat next to you as you eat your meal. You look up and see that it's Misha. He has a greedy look in his eyes, the kind that is already stripping you naked in his thoughts. His eyes are fixated on your breasts as he speaks. "Hey, ${((s as any).pcs_nickname ?? 0)}. Would you like to join me for some tea at my place? We can have a bit of fun just like last time, and you can earn some more money…"`);
+          scene.actions([
+            { label: '"Drink tea" with Misha', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A54');
     (st as any).sexpartkno = 1;
   }, goto: ['gevent', '1-1'] },
-        ]);
+          ]);
+        }
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_market', ''] },

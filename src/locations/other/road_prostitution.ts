@@ -42,7 +42,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['prostitution_car_negotiation', 'look_client'] },
     ]);
@@ -57,7 +57,9 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   }, goto: ['road_prostitution', 'work'] },
     ]);
   } else {
-    scene.text('<br>You don\'t have any tissues with you to remove cum from your body.');
+    if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] === 0) {
+      scene.text('<br>You don\'t have any tissues with you to remove cum from your body.');
+    }
   }
   qspCall(s, 'prostitution_car_negotiation', 'general_description');
   scene.actions([
@@ -73,37 +75,67 @@ function enterEventCheck(s: GameState, scene: SceneBuilder): void {
 function enterRoadSegment(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nroad ?? 0))) {
   } else {
-    if (((s as any).nroad ?? 0) === 2) {
-      scene.text('');
+    if (((s as any).nroad ?? 0) === 1) {
     } else {
-      if (((s as any).nroad ?? 0) === 4) {
+      if (((s as any).nroad ?? 0) === 2) {
         scene.text('');
       } else {
-        if (((s as any).nroad ?? 0) === 6) {
-          scene.text('');
+        if (((s as any).nroad ?? 0) === 3) {
         } else {
-          scene.text('');
-          if (((s as any).nroad ?? 0) === 8) {
+          if (((s as any).nroad ?? 0) === 4) {
             scene.text('');
           } else {
-            scene.text('');
-            if (((s as any).nroad ?? 0) === 10) {
+            if (((s as any).nroad ?? 0) === 5) {
             } else {
-              scene.text('');
-              if (((s as any).nroad ?? 0) === 12) {
-              } else {
+              if (((s as any).nroad ?? 0) === 6) {
                 scene.text('');
-                if (((s as any).nroad ?? 0) === 14) {
+              } else {
+                if (((s as any).nroad ?? 0) === 7) {
                   scene.text('');
                 } else {
-                  scene.text('');
-                  if (((s as any).nroad ?? 0) === 16) {
-                  } else {
+                  if (((s as any).nroad ?? 0) === 8) {
                     scene.text('');
-                    if (((s as any).nroad ?? 0) === 18) {
+                  } else {
+                    if (((s as any).nroad ?? 0) === 9) {
                       scene.text('');
                     } else {
-                      if (((s as any).nroad ?? 0) === 20) {
+                      if (((s as any).nroad ?? 0) === 10) {
+                      } else {
+                        if (((s as any).nroad ?? 0) === 11) {
+                          scene.text('');
+                        } else {
+                          if (((s as any).nroad ?? 0) === 12) {
+                          } else {
+                            if (((s as any).nroad ?? 0) === 13) {
+                              scene.text('');
+                            } else {
+                              if (((s as any).nroad ?? 0) === 14) {
+                                scene.text('');
+                              } else {
+                                if (((s as any).nroad ?? 0) === 15) {
+                                  scene.text('');
+                                } else {
+                                  if (((s as any).nroad ?? 0) === 16) {
+                                  } else {
+                                    if (((s as any).nroad ?? 0) === 17) {
+                                      scene.text('');
+                                    } else {
+                                      if (((s as any).nroad ?? 0) === 18) {
+                                        scene.text('');
+                                      } else {
+                                        if (((s as any).nroad ?? 0) === 19) {
+                                        } else {
+                                          if (((s as any).nroad ?? 0) === 20) {
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }

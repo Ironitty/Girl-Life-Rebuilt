@@ -15,14 +15,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('<font color = red>Nicholas asked you to attend him tonight but you are way too late.</font>');
         (s as any).nichGentleclubE1 = 2;
       } else {
-        scene.text('<font color = red>You hear the voices of Nicholas and his business contact coming from the other side of the door. You were expected to attend them but now it\'s too late.</font>');
-        return;
-        scene.actions([{ label: 'Continue', goto: ['nichStudy', 'gentleclubE1'] }]);
-        scene.actions([
-          { label: 'Return to the hallway', handler: (st: GameState) => {
+        if (((s as any).hour ?? 0) > 18) {
+          scene.text('<font color = red>You hear the voices of Nicholas and his business contact coming from the other side of the door. You were expected to attend them but now it\'s too late.</font>');
+          return;
+          scene.actions([
+            { label: 'Return to the hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   }, goto: ['nichApartment', ''] },
-        ]);
+          ]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['nichStudy', 'gentleclubE1'] }]);
+        }
       }
     }
     scene.text('<center><b>Nicholas\' Study</b></center>');
@@ -46,53 +49,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['nichApartment', ''] },
     ]);
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + 90;
-    scene.img('images/characters/city/nicholas/gentleclub/e1p1.jpg');
-    scene.text('As you enter the study you see Nicholas sitting on his table talking to another business man.');
-    // TODO-QSP: dynamic text: "Good, you are here. This is <<$pcs_firstname>>, my new maid. <<$pcs_nickname>>,...
-    scene.text(`"Good, you are here. This is ${((s as any).pcs_firstname ?? 0)}, my new maid. ${((s as any).pcs_nickname ?? 0)}, this is Mister Fetisov."`);
-    scene.text('You curtsy and Mister Fetisov slightly nods in your direction.');
-    scene.text('For the next hour you are busy serving different kinds of refreshments to the two men. They are talking about business opportunities, the course of the industry and the global economy.');
-    scene.text('You have the feeling that Mister Fetisov is inspecting your butt and your breasts whenever you are not looking.');
-    scene.text('At the end of his visit Mister Fetisov looks directly at you while speaking to Nicholas.');
-    scene.text('"When I came here I thought I would waste my time. But now I know that we have way more in common than I thought. Maybe doing business together is not a bad idea after all."');
-    scene.text('He looks back at Nicholas. "There is a gentleman club where I am a member of. I think you would fit in there very well. Just go to this place." he hands Nicholas a business card. "He will inform the bouncer that I have invited you. Come any evening you like. And don\'t forget to bring your <i>maid</i>."');
-    if (((s as any).locArgs?.[0] ?? 0) === 'reHire') {
-      scene.text('<center><b>Nicholas\' Study</b></center>');
-      scene.img('images/locations/city/citycenter/nichApartment/study.jpg');
+    if (((s as any).locArgs?.[0] ?? 0) === 'gentleclubE1') {
+      (s as any).minut = ((s as any).minut ?? 0) + 90;
+      scene.img('images/characters/city/nicholas/gentleclub/e1p1.jpg');
+      scene.text('As you enter the study you see Nicholas sitting on his table talking to another business man.');
+      // TODO-QSP: dynamic text: "Good, you are here. This is <<$pcs_firstname>>, my new maid. <<$pcs_nickname>>,...
+      scene.text(`"Good, you are here. This is ${((s as any).pcs_firstname ?? 0)}, my new maid. ${((s as any).pcs_nickname ?? 0)}, this is Mister Fetisov."`);
+      scene.text('You curtsy and Mister Fetisov slightly nods in your direction.');
+      scene.text('For the next hour you are busy serving different kinds of refreshments to the two men. They are talking about business opportunities, the course of the industry and the global economy.');
+      scene.text('You have the feeling that Mister Fetisov is inspecting your butt and your breasts whenever you are not looking.');
+      scene.text('At the end of his visit Mister Fetisov looks directly at you while speaking to Nicholas.');
+      scene.text('"When I came here I thought I would waste my time. But now I know that we have way more in common than I thought. Maybe doing business together is not a bad idea after all."');
+      scene.text('He looks back at Nicholas. "There is a gentleman club where I am a member of. I think you would fit in there very well. Just go to this place." he hands Nicholas a business card. "He will inform the bouncer that I have invited you. Come any evening you like. And don\'t forget to bring your <i>maid</i>."');
       scene.actions([
-        { label: 'Approach Nicholas and ask for job back.', handler: (st: GameState) => {
-    scene.img('images/characters/city/nicholas/01.jpg');
-    // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, what brings you here?" Nicholas asks while still reading...
-    scene.text(`"Oh, ${((s as any).pcs_nickname ?? 0)}, what brings you here?" Nicholas asks while still reading his papers.`);
-    // TODO-QSP: dynamic text: "'+$npc_nickname['A52']+', I was wondering if you still needed a maid?"
-    scene.text('"\'+$npc_nickname[\'A52\']+\', I was wondering if you still needed a maid?"');
-    qspCall(s, 'nichUtil', 'rehired');
-    if (((s as any).nichSex ?? 0) >= 10) {
-      scene.text('Nicholas looks from his desk at you and sees you in your maid uniform. "How fitting."');
-      scene.text('He approaches you and checks you out in your maid uniform.');
-      if (((s as any).succubusflag ?? 0) === 1) {
-        scene.text('"You look like you never left us, you little demoness." His hand brushes your hair as his face approaches yours.');
-        scene.text('You lean in to kiss your personal battery. You love his quality taste.');
-      } else {
-        scene.text('"You look like you never left us, you little vixen." His hand brushes your hair as his face approaches yours.');
-        scene.text('You lean in and taste your master\'s lips.');
-      }
-      scene.text('"I missed your lips." He says as he moves away. "You are always welcome to work for me again." As he says this, he begins to unzip his pants.');
-      scene.actions([
-        { label: 'Smile at your master.', goto: ['nichNicholas', 'sex'] },
-      ]);
-    } else {
-      scene.text('"Of course, we are glad to have you back."');
-      scene.actions([
-        { label: 'Head out.', goto: ['nichStudy', 'return'] },
-      ]);
-    }
-  } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+        { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/nicholas/01.jpg');
     scene.text('You wait in the study while Nicholas escorts Mister Fetisov to the door and says his farewell.');
     scene.text('When he returns he looks a little bit puzzled.');
@@ -123,7 +93,43 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    } else {
+      if (((s as any).locArgs?.[0] ?? 0) === 'reHire') {
+        scene.text('<center><b>Nicholas\' Study</b></center>');
+        scene.img('images/locations/city/citycenter/nichApartment/study.jpg');
+        scene.actions([
+          { label: 'Approach Nicholas and ask for job back.', handler: (st: GameState) => {
+    scene.img('images/characters/city/nicholas/01.jpg');
+    // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, what brings you here?" Nicholas asks while still reading...
+    scene.text(`"Oh, ${((s as any).pcs_nickname ?? 0)}, what brings you here?" Nicholas asks while still reading his papers.`);
+    // TODO-QSP: dynamic text: "'+$npc_nickname['A52']+', I was wondering if you still needed a maid?"
+    scene.text('"\'+$npc_nickname[\'A52\']+\', I was wondering if you still needed a maid?"');
+    qspCall(s, 'nichUtil', 'rehired');
+    if (((s as any).nichSex ?? 0) >= 10) {
+      scene.text('Nicholas looks from his desk at you and sees you in your maid uniform. "How fitting."');
+      scene.text('He approaches you and checks you out in your maid uniform.');
+      if (((s as any).succubusflag ?? 0) === 1) {
+        scene.text('"You look like you never left us, you little demoness." His hand brushes your hair as his face approaches yours.');
+        scene.text('You lean in to kiss your personal battery. You love his quality taste.');
+      } else {
+        scene.text('"You look like you never left us, you little vixen." His hand brushes your hair as his face approaches yours.');
+        scene.text('You lean in and taste your master\'s lips.');
+      }
+      scene.text('"I missed your lips." He says as he moves away. "You are always welcome to work for me again." As he says this, he begins to unzip his pants.');
+      scene.actions([
+        { label: 'Smile at your master.', goto: ['nichNicholas', 'sex'] },
+      ]);
+    } else {
+      scene.text('"Of course, we are glad to have you back."');
+      scene.actions([
+        { label: 'Head out.', goto: ['nichStudy', 'return'] },
+      ]);
+    }
+  } },
+        ]);
+      }
+    }
   }
   scene.build();
 }

@@ -33,7 +33,7 @@ function enterBreakFun_1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     qspCall(s, 'stat', '');
@@ -142,7 +142,7 @@ function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     qspCall(s, 'stat', '');

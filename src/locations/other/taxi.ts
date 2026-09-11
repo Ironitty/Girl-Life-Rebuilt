@@ -24,7 +24,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Don\'t tell him you can\'t pay', handler: (st: GameState) => {
+          { label: 'Don\'t tell him you can\'t pay [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).taxi_pay = 1;
@@ -42,7 +42,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Offer to trade sex for a ride', handler: (st: GameState) => {
+        { label: 'Offer to trade sex for a ride [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'prostitution', 'self');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['taxi', 'ride'] },
@@ -158,7 +158,7 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Beg him not to cum inside you', handler: (st: GameState) => {
+      { label: 'Beg him not to cum inside you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     if (((s as any).ending ?? 0) === 0  ||  (Math.floor(Math.random() * 3) + 0) !== 0) {
@@ -178,7 +178,7 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Wrap your legs around him', handler: (st: GameState) => {
+      { label: 'Wrap your legs around him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'taxi', 'cum3');
@@ -338,7 +338,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Tell him you\'re a virgin', handler: (st: GameState) => {
+          { label: 'Tell him you\'re a virgin [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.text('"Wait, I\'m still a virgin! Please don\'t fuck my pussy!" you plead, hoping to change his mind. He pauses for just a moment, considering.');
@@ -420,11 +420,14 @@ function enterRandom(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 4) + 0))) {
     scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
-    if ((!(Math.floor(Math.random() * 2) + 0))) {
-      scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
+      scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
+        scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+      }
     }
   }
   scene.build();

@@ -50,7 +50,9 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'camera', 'pav_lake_sonia', 'describe');
+      if (((s as any).camera_event ?? 0) === 'pav_lake'  &&  ((s as any).camera_found ?? 0)?.['sonia'] !== 1  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).soniaQW ?? 0)?.['slut'] > 0) {
+        qspCall(s, 'camera', 'pav_lake_sonia', 'describe');
+      }
     }
   }
   scene.build();

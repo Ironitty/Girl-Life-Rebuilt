@@ -81,7 +81,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Who does he think you are?! - Slap him', handler: (st: GameState) => {
+      { label: 'Who does he think you are?! - Slap him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'set', 'A1', 0);
     qspCall(s, 'stat', '');
@@ -115,7 +115,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'That does it! - Slap him', handler: (st: GameState) => {
+        { label: 'That does it! - Slap him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'set', 'A1', 0);
     qspCall(s, 'stat', '');

@@ -236,14 +236,1018 @@ function enterLong(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((s as any).random_event ?? 0) < 4) {
       scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'nL1'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'nL2'] }]);
-      if (((s as any).npc_rel ?? 0)?.['A241'] === 2  &&  ((s as any).random_event ?? 0) < 4) {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gL1'] }]);
+      if (((s as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((s as any).random_event ?? 0) > 3) {
+        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'nL2'] }]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gL2'] }]);
+        if (((s as any).npc_rel ?? 0)?.['A241'] === 2  &&  ((s as any).random_event ?? 0) < 4) {
+          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gL1'] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gL2'] }]);
+        }
       }
     }
   }
+  scene.build();
+}
+
+function enterShort(s: GameState, scene: SceneBuilder): void {
+  (s as any).random_event = Math.floor(Math.random() * 6) + 1;
+  qspCall(s, 'stat', '');
+  if (((s as any).AlexandriaQW ?? 0) < 12) {
+    if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
+      if (((s as any).random_event ?? 0) < 3) {
+        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns1'] }]);
+      } else {
+        if (((s as any).random_event ?? 0) < 5) {
+          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns2'] }]);
+        } else {
+          if (((s as any).random_event ?? 0) < 7) {
+            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns3'] }]);
+          }
+        }
+      }
+    } else {
+      if (((s as any).random_event ?? 0) < 3) {
+        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs1'] }]);
+      } else {
+        if (((s as any).random_event ?? 0) < 5) {
+          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs2'] }]);
+        } else {
+          if (((s as any).random_event ?? 0) < 7) {
+            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs3'] }]);
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
+      if (((s as any).random_event ?? 0) === 1) {
+        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns1'] }]);
+      } else {
+        if (((s as any).random_event ?? 0) === 2) {
+          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns2'] }]);
+        } else {
+          if (((s as any).random_event ?? 0) === 3) {
+            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns3'] }]);
+          } else {
+            if (((s as any).random_event ?? 0) === 4) {
+              scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns4'] }]);
+            } else {
+              if (((s as any).random_event ?? 0) === 5) {
+                scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns5'] }]);
+              } else {
+                if (((s as any).random_event ?? 0) === 6) {
+                  scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'ns6'] }]);
+                }
+              }
+            }
+          }
+        }
+      }
+    } else {
+      if (((s as any).random_event ?? 0) === 1) {
+        scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs1'] }]);
+      } else {
+        if (((s as any).random_event ?? 0) === 2) {
+          scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs2'] }]);
+        } else {
+          if (((s as any).random_event ?? 0) === 3) {
+            scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs3'] }]);
+          } else {
+            if (((s as any).random_event ?? 0) === 4) {
+              scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs4'] }]);
+            } else {
+              if (((s as any).random_event ?? 0) === 5) {
+                scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs5'] }]);
+              } else {
+                if (((s as any).random_event ?? 0) === 6) {
+                  scene.actions([{ label: 'Continue', goto: ['alexandriaSex', 'gs6'] }]);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterNs1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 12) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pcs_hairbsh = 1;
+  (s as any).pcs_makeup = 1;
+  (s as any).cumspclnt = 4;
+  qspCall(s, 'cum_cleanup', '');
+  (s as any).pcs_sweat = 0;
+  (s as any).pcs_breath = 1;
+  qspCall(s, 'arousal', 'foreplay', 25, 'lesbian');
+  qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N3.jpg');
+  scene.text('Lying down over Aleksei\'s fluffy bed, you treat him with the vision of your hands caressing your body, arousing the flesh, trying and failing to elicit a reaction beyond amusement from your master.');
+  scene.text('"Hm… Okay, let\'s continue with some thaumaturgic terms"');
+  scene.text('With this, he lies on top of you, your rock-hard nipples poking against his perfect bosom and his amused gaze against your dilated pupils. You know that Aleksei won\'t let you climax until he decides that the lesson is over.');
+  scene.text('His lips in the nook of your neck signal the beginning as he slowly caresses and kisses his way down your body, words of power weaving magic all over your skin, making you heave and dig your fingers into the sheets as you let the wizard overload your senses.');
+  scene.text('You are groaning over a needed release as his face reaches your pussy and stops… He smells it and looks at you wickedly before he starts devouring your love button, making you climax in a torrent of magical force that wipes away all your tension and leaves you exhausted.');
+  scene.text('"You have done well, my new apprentice."');
+  scene.text('Aleksei lies down beside your breathless form and after giving you a few minutes to catch your breath, grabs your hips and draws you to him so he can continue with your <i>lesson</i>.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterNs2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 12) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pcs_hairbsh = 1;
+  (s as any).pcs_makeup = 1;
+  (s as any).cumspclnt = 4;
+  qspCall(s, 'cum_cleanup', '');
+  (s as any).pcs_sweat = 0;
+  (s as any).pcs_breath = 1;
+  qspCall(s, 'arousal', 'foreplay', 45, 'lesbian');
+  qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N4.jpg');
+  scene.text('After an exhausting sex session, you lie next to Aleksei as he slowly and methodically explains the secret of the Electric School to you, a sparking nimbus forming between the two of you two as your body and mind learn to channel its force, your breathing synchronized as the two of you utter the same magical invocations.');
+  // TODO-QSP: dynamic text: "I think that is enough for today <<$pcs_lastname>>."
+  scene.text(`"I think that is enough for today ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('The electrical aura that was filling the room quickly evaporates and you find yourself sitting snugly in a comfortable bed, exhausted, but pleased as you look into Aleksei\'s beautiful eyes as they observe you deep in thought, but with less intensity than they normally have, almost… relaxed.');
+  scene.text('For the next few minutes, only the sound of your in sync breathing can barely be heard in the room until this is broken by a slight gasp on your part when one of Aleksei\'s hands caresses your body and makes you bend slightly towards his nipple that ends up in your mouth. After that, the spell is broken as you start kissing down her body to fulfill your part of the deal.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterNs3(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 12) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pcs_hairbsh = 1;
+  (s as any).pcs_makeup = 1;
+  (s as any).cumspclnt = 4;
+  qspCall(s, 'cum_cleanup', '');
+  (s as any).pcs_sweat = 0;
+  (s as any).pcs_breath = 1;
+  qspCall(s, 'arousal', 'foreplay', 30, 'lesbian');
+  qspCall(s, 'arousal', 'cuni_give', 15, 'lesbian');
+  qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N5.jpg');
+  scene.text('After being driven to an intense climax and learning more about the Electrical School, you can\'t do anything more as a dutiful apprentice than show your master all the tricks you have learned.');
+  // TODO-QSP: dynamic text: "<<$pcs_lastname>>… Don't rush, I'm not going anywhere."
+  scene.text(`"${((s as any).pcs_lastname ?? 0)}… Don't rush, I'm not going anywhere."`);
+  scene.text('A sardonic smile accompanies Aleksei\'s statement as he lies comfortably on his bed, a hand caressing your head and marking your rhythm as you lap at his cunt and try with all your heart to break that confident facade and make him scream like a bitch.');
+  scene.text('"Hm… Yes, my apprentice… Hm… You are doing well…"');
+  scene.text('You caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth and tongue, but it\'s not enough. Only elicit entertained half-smiles appear on his face, pushing you a little more in a restless effort until you see him close his eyes and hear a change in his breathing as one of Aleksei\'s hands travels sensually down his body and he soon moans in constricted pleasure,');
+  scene.text('For the next minutes, a smug Aleksei caresses your hair as you lie with your head in his pussy. You have not been able to make him scream like a bitch, but there is always another training lesson.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterGs1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 12) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+  (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
+  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+  (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+  (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  qspCall(s, 'arousal', 'foreplay', 50, 'lesbian');
+  qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian', 'no_orgasm_msg');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G3.jpg');
+  // TODO-QSP: dynamic text: "Get on your knees, look forward and straighten your back <<$pcs_lastname>>."
+  scene.text(`"Get on your knees, look forward and straighten your back ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('The training lesson always begins with a series of reminders about what you must do as Aleksei works your skin, caresses your body and arouses your constricted flesh. His expert hands easily energize your pussy without touching it.');
+  scene.text('"Smack!"');
+  scene.text('Then come the slaps, quick and precise, one after the other in a constant rhythm, all over your taut flesh, sending mixed signals to your brain as pain and arousal crisscross your nerves until Aleksei feels that it is enough and lets you catch your breath behind the ball gag.');
+  // TODO-QSP: dynamic text: "Let's end this lesson <<$pcs_lastname>>."
+  scene.text(`"Let's end this lesson ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('His smug smile meets your eyes as one of his hands travels down your body, little sparks shocking you and adding synesthetic pressure to your brain until he finally reaches your needy cunt and begins a quick and mechanical fingering, making your arousal climb until it peaks, making you scream in orgasmic bliss behind the ball gag.');
+  // TODO-QSP: dynamic text: "Well done <<$pcs_lastname>>. Are you ready for the next part?"
+  scene.text(`"Well done ${((s as any).pcs_lastname ?? 0)}. Are you ready for the next part?"`);
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterGs2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 12) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+  (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
+  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+  (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+  (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  qspCall(s, 'arousal', 'cuni', 45, 'lesbian', 'no_orgasm_msg', 'bound');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G4.jpg');
+  scene.text('After making you orgasm in a session of magical bondage, Aleksei reclines you against the wall and hovers over your tired form, the ropes, seemingly even tighter, digging into your itching flesh as he waits for you to catch your breath.');
+  // TODO-QSP: dynamic text: "Repeat after me <<$pcs_lastname>>."
+  scene.text(`"Repeat after me ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('Maybe a little too soon, Aleksei grabs you by the chin so he can raise your face towards his so nothing obstructs the line of vision as words of power are pronounced and magic energy begins to fill the room as you follow his example and will your mana.');
+  // TODO-QSP: dynamic text: "Hm… Well, that will be all for now <<$pcs_lastname>>."
+  scene.text(`"Hm… Well, that will be all for now ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('After a few minutes, Aleksei releases your head and nonchalantly sits by your side, letting the electric magic exit the room, refilling it with the sound of your ragged breathing until he opens his legs and slowly caresses the side of your face before grabbing a lock of your hair. The message is clear and you begin to kneel.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterGs3(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 12) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+  (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
+  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+  (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+  (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  qspCall(s, 'arousal', 'cuni', 45, 'lesbian', 'no_orgasm_msg', 'bound');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G5.jpg');
+  scene.text('After a session of magical bondage and some <i>teaching</i> from Aleksei, done in his unmistakable style, you find yourself kneeling on hardwood, wrapped in bondage ropes with your head between your teacher\'s toned thighs that cross behind your neck so you can\'t escape.');
+  // TODO-QSP: dynamic text: "Ah-Ah-Ah… Easy now, <<$pcs_lastname>>, you're not some common harlot!"
+  scene.text(`"Ah-Ah-Ah… Easy now, ${((s as any).pcs_lastname ?? 0)}, you're not some common harlot!"`);
+  scene.text('You eat out Aleksei, his constant nagging and <i>helpful</i> advice making sure that you <i>properly</i>, caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth and tongue, but it is not enough. Only elicit moans and even more nagging escape his mouth, pushing you a little more in a restless effort until you see him close his eyes and hear a change in his breathing as one of his handw travels sensually down his body he soon moans in constricted pleasure,');
+  scene.text('For the next minutes, a smug Aleksei sits relaxed, smoking a cigarette as he observes you catching your breath, a silent question in the air… do you want another session?');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterNL1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N3.jpg');
+  scene.text('Lying down over Aleksei\'s fluffy bed, you treat him with the vision of your hands caressing your body, arousing the flesh, trying and failing to elicit a reaction beyond amusement from your master.');
+  scene.text('"Hm… Okay, let\'s continue with some thaumaturgic terms"');
+  scene.text('With this, he lies on top of you, your rock-hard nipples poking against his perfect bosom and his amused gaze against your dilated pupils. You know that Aleksei won\'t let you climax until he decides that the lesson is over.');
+  scene.text('His lips in the nook of your neck signal the beginning as he slowly caresses and kisses his way down your body, words of power weaving magic all over your skin, making you heave and dig your fingers into the sheets as you let the wizard overload your senses.');
+  scene.text('You are groaning over a needed release as his face reaches your pussy and stops… He smells it and looks at you wickedly before he starts devouring your love button, making you climax in a torrent of magical force that wipes away all your tension and leaves you exhausted.');
+  scene.text('"You have done well, my new apprentice."');
+  scene.text('Aleksei lies down beside your breathless form and after giving you a few minutes to catch your breath, grabs your hips and draws you to him so he can continue with your <i>lesson</i>.');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N4.jpg');
+    scene.text('After an exhausting sex session, you lie next to Aleksei as he slowly and methodically explains the secret of the Electric School to you, a sparking nimbus forming between the two of you two as your body and mind learn to channel its force, your breathing synchronized as the two of you utter the same magical invocations.');
+    // TODO-QSP: dynamic text: "I think that is enough for today <<$pcs_lastname>>."
+    scene.text(`"I think that is enough for today ${((s as any).pcs_lastname ?? 0)}."`);
+    scene.text('The electrical aura that was filling the room quickly evaporates and you find yourself sitting snugly in a comfortable bed, exhausted, but pleased as you look into Aleksei\'s beautiful eyes as they observe you deep in thought, but with less intensity than they normally have, almost… relaxed.');
+    scene.text('For the next few minutes, only the sound of your in sync breathing can barely be heard in the room until this is broken by a slight gasp on your part when one of Aleksei\'s hands caresses your body and makes you bend slightly towards his nipple that ends up in your mouth. After that, the spell is broken as you start kissing down her body to fulfill your part of the deal.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).AlexandriaQW ?? 0) < 12) {
+      (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+    }
+    (s as any).pcs_hairbsh = 1;
+    (s as any).pcs_makeup = 1;
+    (s as any).cumspclnt = 4;
+    qspCall(s, 'cum_cleanup', '');
+    (s as any).pcs_sweat = 0;
+    (s as any).pcs_breath = 1;
+    qspCall(s, 'arousal', 'cuni', 40, 'lesbian', 'no_orgasm_msg');
+    qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+    qspCall(s, 'stat', '');
+    if (((s as any).succubusflag ?? 0) === 1) {
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+      (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+      (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+      (s as any).sucabslez = 1;
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N5.jpg');
+    scene.text('After being driven to an intense climax and learning more about the Electrical School, you can\'t do anything more as a dutiful apprentice than show your master all the tricks you have learned.');
+    // TODO-QSP: dynamic text: "<<$pcs_lastname>>… Don't rush, I'm not going anywhere."
+    scene.text(`"${((s as any).pcs_lastname ?? 0)}… Don't rush, I'm not going anywhere."`);
+    scene.text('A sardonic smile accompanies Aleksei\'s statement as he lies comfortably on his bed, a hand caressing your head and marking your rhythm as you lap at his cunt and try with all your heart to break that confident facade and make him scream like a bitch.');
+    scene.text('"Hm… Yes, my apprentice… Hm… You are doing well…"');
+    scene.text('You caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth and tongue, but it\'s not enough. Only elicit entertained half-smiles appear on his face, pushing you a little more in a restless effort until you see him close his eyes and hear a change in his breathing as one of Aleksei\'s hands travels sensually down his body and he soon moans in constricted pleasure,');
+    scene.text('For the next minutes, a smug Aleksei caresses your hair as you lie with your head in his pussy. You have not been able to make him scream like a bitch, but there is always another training lesson.');
+    scene.actions([
+      { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterGL1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G3.jpg');
+  // TODO-QSP: dynamic text: "Get on your knees, look forward and straighten your back <<$pcs_lastname>>."
+  scene.text(`"Get on your knees, look forward and straighten your back ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('The training lesson always begins with a series of reminders about what you must do as Aleksei works your skin, caresses your body and arouses your constricted flesh. His expert hands easily energize your pussy without touching it.');
+  scene.text('"Smack!"');
+  scene.text('Then come the slaps, quick and precise, one after the other in a constant rhythm, all over your taut flesh, sending mixed signals to your brain as pain and arousal crisscross your nerves until Aleksei feels that it is enough and lets you catch your breath behind the ball gag.');
+  // TODO-QSP: dynamic text: "Let's end this lesson <<$pcs_lastname>>."
+  scene.text(`"Let's end this lesson ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('His smug smile meets your eyes as one of his hands travels down your body, little sparks shocking you and adding synesthetic pressure to your brain until he finally reaches your needy cunt and begins a quick and mechanical fingering, making your arousal climb until it peaks, making you scream in orgasmic bliss behind the ball gag.');
+  // TODO-QSP: dynamic text: "Well done <<$pcs_lastname>>. Are you ready for the next part?"
+  scene.text(`"Well done ${((s as any).pcs_lastname ?? 0)}. Are you ready for the next part?"`);
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G4.jpg');
+    scene.text('After making you orgasm in a session of magical bondage, Aleksei reclines you against the wall and hovers over your tired form, the ropes, seemingly even tighter, digging into your itching flesh as he waits for you to catch your breath.');
+    // TODO-QSP: dynamic text: "Repeat after me <<$pcs_lastname>>."
+    scene.text(`"Repeat after me ${((s as any).pcs_lastname ?? 0)}."`);
+    scene.text('Maybe a little too soon, Aleksei grabs you by the chin so he can raise your face towards his so nothing obstructs the line of vision as words of power are pronounced and magic energy begins to fill the room as you follow his example and will your mana.');
+    // TODO-QSP: dynamic text: "Hm… Well, that will be all for now <<$pcs_lastname>>."
+    scene.text(`"Hm… Well, that will be all for now ${((s as any).pcs_lastname ?? 0)}."`);
+    scene.text('After a few minutes, Aleksei releases your head and nonchalantly sits by your side, letting the electric magic exit the room, refilling it with the sound of your ragged breathing until he opens his legs and slowly caresses the side of your face before grabbing a lock of your hair. The message is clear and you begin to kneel.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).AlexandriaQW ?? 0) < 12) {
+      (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+    }
+    (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+    (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (5);
+    (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+    (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+    (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+    (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+    (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+    (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+    (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (5);
+    (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
+    (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+    (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    qspCall(s, 'arousal', 'cuni', 45, 'lesbian', 'no_orgasm_msg', 'bound');
+    qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+    qspCall(s, 'stat', '');
+    if (((s as any).succubusflag ?? 0) === 1) {
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+      (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+      (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+      (s as any).sucabslez = 1;
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G5.jpg');
+    scene.text('After a session of magical bondage and some <i>teaching</i> from Aleksei, done in his unmistakable style, you find yourself kneeling on hardwood, wrapped in bondage ropes with your head between your teacher\'s toned thighs that cross behind your neck so you can\'t escape.');
+    // TODO-QSP: dynamic text: "Ah-Ah-Ah… Easy now, <<$pcs_lastname>>, you're not some common harlot!"
+    scene.text(`"Ah-Ah-Ah… Easy now, ${((s as any).pcs_lastname ?? 0)}, you're not some common harlot!"`);
+    scene.text('You eat out Aleksei, his constant nagging and <i>helpful</i> advice making sure that you <i>properly</i>, caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth and tongue, but it is not enough. Only elicit moans and even more nagging escape his mouth, pushing you a little more in a restless effort until you see him close his eyes and hear a change in his breathing as one of his hand travels sensually down his body he soon moans in constricted pleasure,');
+    scene.text('For the next minutes, a smug Aleksei sits relaxed, smoking a cigarette as he observes you catching your breath, a silent question in the air… do you want another session?');
+    scene.actions([
+      { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterNice2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A241');
+  qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N7.jpg');
+  scene.text('Aleksei, don\'t run to take away your clothes, in fact, he goes slow, taking with care every piece of your outfits and carefully folding them. You in the meantime bit your lips and moans, as every touch coming from the powerful wizard, sent a pleasant mana charge up your body\'s nerves.');
+  scene.text('"Good, my apprentice, good. You are learning to be patient and… <i>obedient</i>."');
+  scene.text('Blushing at the strange level of flattery in Aleksei\'s voice, you <i>obedientlly</i> bend over the bed, so the now very naked wizard, has an easy job taking off the rest of your clothes. You don\'t know what exactly he is perceiving, but you? a beautiful woman, with just the right amount of make-up in a well-lit room taken out from a film… Yes, <i>his</i> curse is bullshit.');
+  scene.text('"Nice my apprentice, very… nice. Now, sit on the headboard and present you to me."');
+  scene.text('You don\'t doubt, and wiggling your ass, climb unto the bed, exposing as much you can to the wizard and tantalizingly dragging yourself towards the headboard, where you sit on the fluffy pillows, and lean back, opening your legs so Aleksei has a close-up of your aroused pussy.');
+  scene.text('Aleksei stands beside the bed, obviously pleased as his eyes travel your body, then climbs unto it, and kneels between your legs. The next moments pass in silence until Aleksei extends a hand and delicately grabs your chin, an amused smirk on his lips.');
+  scene.actions([
+    { label: 'He goes down on you.', handler: (st: GameState) => {
+    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    }
+    qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
+    qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N8.jpg');
+    scene.text('The grab turns into a caress, that slowly goes down your neck towards your bust, where he stops a minute to slowly fondle your diamond-hard nipples, seemingly pleased with the ragged moans, his mana-enhanced touch elicits. You in the meantime clench your teeth, grab the headboard, and somehow resist the urge to dip your hands between your tensed legs.');
+    scene.text('"Hm… It\'s seems that you have waited enough my apprentice. Let\'s see if we can end this in a pleasant note."');
+    scene.text('Aleksei hand continues its travel towards your wetness, where sweetly, he begins to push a finger between your drenched folds… and then stop. You gasp and instinctively try to move your hips to indulge your needs, but again and again, Aleksi moves away his finger, all the time an evil smile on his lips.');
+    scene.text('"Patience my apprentice… I don\'t want to <i>feel</i> you… I want to <i>taste</i> you."');
+    scene.text('He then, begin to bend, first to kiss your bosom, and after that, to lick your blood-engorged love bud, at the same time, the until that moment quiescent fingers, begin to play with the rest of your aroused pussy. The room fills with your unrestricted sex-induced moans, accompanied by the sound of his mouth sucking your wet flesh. Aleksei barely contains your rising hips, as the constant stimulation, begins to charge your nerves with mana-enhanced arousal, quickly peeling away any rational thought, except the need for his tongue. Finally, the arousal is just too much and all the accumulated magical tension… explodes… as your mind turns to mush and your body shakes in a mind-shattering orgasm.');
+    scene.actions([
+      { label: 'Learn some magic', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N9.jpg');
+    scene.text('Enjoying your mana-enhanced afterglow, you lie no-cuddling over Aleksei, with your head resting on his beautiful bust, as he caresses your scalp, his mind seeming on another place, probably thinking in whatever insights your magical link has shown him.');
+    // TODO-QSP: dynamic text: "Enough <<$pcs_lastname>>, is time to continue your training."
+    scene.text(`"Enough ${((s as any).pcs_lastname ?? 0)}, is time to continue your training."`);
+    scene.text('Aleksei accompanies his words with a pair of finger taps to the back of your head before rolling, putting you two on your side, and grabbing your face with both hands, begin to say words of power. You shortly join in a magical duet, filling your mind with knowledge. Finally, instinctively, you interlock a hand, with one of Aleksei\'s ones, and extending the united member, you concentrate to unleash a shower of sparks in the middle of the bedroom.');
+    scene.text('The magical display only lasts a second, and with you looking into Aleksei\'s amused eyes… then, something catches your attention… from the corner of the eye, you see a strange item… a transparent dildo has found its way to Aleksei\'s fluffy bed, and sit innocently by your side - <i>AlExAnDrIa HaVe a BeAuTiFuLl RuMp IsN\'t It?</i> - You blink at the strange thought, and look down at the sex toy - <i>YeS, ShE WiLl ApPrEcIaTe A LiTtLe LoVe DoWn ThErE</i> - Yeah! That is a great idea!');
+    scene.actions([
+      { label: 'FiRsT, TaStE HeR', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N10.jpg');
+    scene.text('You smile and try to put as much sultriness you can on your next words "Master! Will you let your <i>obedient</i> apprentice to <i>requite</i> your largesse?" Aleksei don\'t answers but looks at you with curiosity, and you take that like a keep going. You, then push him to his side until he is on all fours.');
+    scene.text('"Let me <i>serve</i> you master."');
+    scene.text('Kneeling by his side, you bend and begin a trail of kisses, down her back towards his buttocks, where with care, you open them and proceed to cover with kisses his puckered hole, all the way feeling Aleksei\'s tenseness through your lips. He quickly loses that strain and with care, you begin to stick your tongue into the supernaturally clean b-hole.');
+    scene.text('There is a jolt of… something… and your head is flooded with the taste of… a thunderstorm annihilating an army, of old musty books whispering dark secrets and of… agelessness. You blink, your <i>mundane</i> mind trying to understand the alien tastes, but… your growing <i>magical</i> one? Just delight on the taste of true power.');
+    scene.text('You lost track of time, as you plunge your tongue without care beyond Aleksei\'s backdoor, enjoying the pleasured gasps coming from your master, and the occasional assurance caress to the back of your head, progressively drenching his innards with your spit, with the only idea to prepare him for the next part.');
+    scene.actions([
+      { label: 'TiMe To BrInG tHe LoVe!', handler: (st: GameState) => {
+    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    }
+    qspCall(s, 'arousal', 'anal_dildo_give', 5, 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/city/alexandria/sex/N11.jpg');
+    scene.text('Cleaning your mouth with the back of a hand after your feast, you rise and look to an expectant Aleksei. He is obviously flustered and heaving, but his eyes look at you with curiosity, waiting for your next move that is, slide a hand down his tummy towards his drenched cunt. During a moment, your hand plays with Aleksei\'s well-groomed bush before changing objectives, and finger his wet snatch.');
+    scene.text('Aleksei gives a contented sigh and languidly rests his head in the bed, surrendering completely to your ministrations. You take cue of this, and without stopping your attack to his box, you grab the dildo, that soon finds itself against Aleksei\'s backdoor, and with care, you begin to push.');
+    scene.text('"Hmmm…"');
+    scene.text('Aleksei pleasured wailings, fill your ears, as you begin to love with daintiness, his accommodating innards, slowly, but without pause, rising the cranky wizard excitement. You are totally engrossed in the act to give him a well-deserved orgasm, and in a reciprocity gesture - and with flexibility worthy of porn - Aleksei turns slightly to grab your face and look into your eyes.');
+    scene.text('"Ahhh…"');
+    scene.text('You are so utterly lost in Aleksei\'s eyes, that barely hears the orgasmic moan, that accompanies his climax. He trembles and through your skin contact, feel the shivers that signal the highlight of all your work before his limbs fail, and Aleksei drops boneless in orgasmic bliss.');
+    scene.actions([
+      { label: 'No-Cuddling', handler: (st: GameState) => {
+    (s as any).AlexandriaQW = 20;
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).pcs_hairbsh = 1;
+    (s as any).pcs_makeup = 1;
+    (s as any).cumspclnt = 4;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'spellList', 'addAvailableSpells', 'electSpells');
+    (s as any).pcs_sweat = 0;
+    (s as any).pcs_breath = 1;
+    if (((s as any).succubusflag ?? 0) === 1) {
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+      (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+      (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+      (s as any).sucabslez = 1;
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N9.jpg');
+    scene.text('No-cuddling again, over Aleksei\'s comfortable bosom, you somewhat startled, observe the disintegrating dildo in his hands. Now that your <i>teaching lesson</i> has ended, you can see with clarity how Aleksei\'s curse has manipulated you again.');
+    // TODO-QSP: dynamic text: "Fascinating! Isn't it <<$pcs_lastname>>? Your magic interacts with my curse, in...
+    scene.text(`"Fascinating! Isn't it ${((s as any).pcs_lastname ?? 0)}? Your magic interacts with my curse, in truly interesting ways! Beyond altering your thought patterns and senses, now we have <i>Creatio ex nihilo</i>! All of this without true volition!"`);
+    scene.text('Aleksei doesn\'t seems to mind that his curse has basically made you a brainwashed <i>ass</i> crazy, that essentially has had her way with his butt, in fact, he seems genuinely in a good mood after the whole act, as he is caressing your hair as he muses over the whole situation.');
+    // TODO-QSP: dynamic text: "Well, it has been illuminating, but I think that this <i>teaching lesson</i> ha...
+    scene.text(`"Well, it has been illuminating, but I think that this <i>teaching lesson</i> has come to an end, and I must think on how to <i>reward</i> you the next time ${((s as any).pcs_lastname ?? 0)}"`);
+    scene.text('He says this as the dildo finally disappears and during a moment, Aleksei observes the know empty hand, before taking it towards your buttocks and… slice a finger towards your asshole, where he plays a little with it, before rising up from the bed, re-dress and leave the room.');
+    scene.actions([
+      { label: 'Redress and follow him.', goto: ['alexandriaChat', 'tractatus'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterGrumpy2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A241');
+  qspCall(s, 'arousal', 'BDSM', 10, 'sub', 'lesbian');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G7.jpg');
+  scene.text('After reaching the basement and getting naked, Aleksei put your hands and feet in manacles, hogtie you with ropes, and hang up your body face down from the ceiling. The bondage setup, is incredibly annoying, as it cut the blood to your extremities, extending a tingling all over your body and impeding all your movements, letting you only silently observe as Aleksei, undress and carefully fold the clothes on a nearby table. He… takes his time to take away the clothes, seemingly enjoying your discomfort.');
+  scene.text('"…"');
+  scene.text('Aleksei doesn\'t talk. He just sits on a stool and observes you helplessly squirm with a cooly smile, at the same time he takes on a cigar. It\'s smoke carefully exhaled, fly towards your face, so you can take in the strange weed. You don\'t know what it is, but it\'s effects in your current predicament are brutal, as it enhances your sense of self, making you painfully aware of the tightly ropes tied all over your body.');
+  // TODO-QSP: dynamic text: "Ok <<$pcs_lastname>>! Let's get you ready!"
+  scene.text(`"Ok ${((s as any).pcs_lastname ?? 0)}! Let's get you ready!"`);
+  scene.actions([
+    { label: 'Ready?', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'anal_finger', 5, 'sub', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G8.jpg');
+    scene.text('Aleksei finally stands, a tube of K-Y Jelly in hand, and walks towards your backside, so you lose sight of him. Then, a finger caresses your back, and you see stars as your hypersensitive skin flare at the slight touch.');
+    // TODO-QSP: dynamic text: "<<$pcs_lastname>> I want to get something clear. I am not a sadist, and this, d...
+    scene.text(`"${((s as any).pcs_lastname ?? 0)} I want to get something clear. I am not a sadist, and this, doesn't give me any pleasure, but… you on the other hand… ARE enjoying this isn't it? That is what I find fascinating, MY curse is working through OUR link, to make YOU a masochist!"`);
+    scene.text('Saying this, he gives you a hard slap to your backside that sends shivers up your back and distracts you momentarily from the finger that he pushes up your asshole, then… "Ahhhhh!" Your screams fill the room, as an electrical jolt make you struggle against the ropes');
+    // TODO-QSP: dynamic text: "There… There… <<$pcs_lastname>>, you are clean and ready."
+    scene.text(`"There… There… ${((s as any).pcs_lastname ?? 0)}, you are clean and ready."`);
+    scene.text('You stop shaking and find a weird sensation of <i>emptyness</i> in your bowels… It\'s seems that Aleksei\'s electrical spell has thoroughly cleaned your innards, leaving you suddenly very tired, but before you can even begin to heave, his gooey fingers begin to extend the jelly inside your sensitive anus.');
+    scene.actions([
+      { label: 'It stings!', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'anal_finger', 5, 'sub', 'lesbian');
+    qspCall(s, 'arousal', 'BDSM', 5, 'sub', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G9.jpg');
+    scene.text('You moan as the substance touch your now, VERY sensitive asshole, and for the next pair of minutes, you can only gurgle incoherently as Aleksei, prepare your innards for the next part. Unfortunately, the next part is announced with two slaps to your backside.');
+    // TODO-QSP: dynamic text: "SLAP! Wake up <<$pcs_lastname>>! SLAP!"
+    scene.text(`"SLAP! Wake up ${((s as any).pcs_lastname ?? 0)}! SLAP!"`);
+    scene.text('Again, without giving you time to rest, Aleksei, pick something hard and cold and begin to push it beyond your rim. You can\'t see it, but it <i>feels</i> slighted bent, and hooklike? At least is what you surmise, as Aleksei after inserting the item, seems to tie it to the ropes that bind you to the ceiling and…');
+    scene.text('"SLAP! SLAP!"');
+    scene.text('He begins again to slap your sensitive backside, the hits, making the ropes tremble and the <i>anal hook</i>? rub against the slick skin of your anus. Your moans turn into screams of pleasure that fill the room, as the pain sends you quickly towards your climax… and then Aleksei stops.');
+    // TODO-QSP: dynamic text: "No <<$pcs_lastname>>… No… Remember… when I say so."
+    scene.text(`"No ${((s as any).pcs_lastname ?? 0)}… No… Remember… when I say so."`);
+    scene.actions([
+      { label: 'Wait a little', handler: (st: GameState) => {
+    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    }
+    qspCall(s, 'arousal', 'anal_dildo', 5, 'sub', 'lesbian');
+    qspCall(s, 'arousal', 'vaginal_finger', 5, 'sub', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G10.jpg');
+    scene.text('Aleksei returns to your sigh and sits on the stool, a smirk on his lips as he lights another cigar and observes you squirm and sob. The sensations are overwhelming. You suffer painful cramps all over your bound limbs… Your asshole burns after the <i>cleaning</i> and the rubbing <i>analhook</i>… but the WORST is that you are incredibly aroused, and beyond moaning or grunting, there is nothing that you can do to quell the burn in your loins.');
+    // TODO-QSP: dynamic text: "Don't worry <<$pcs_lastname>>! Just relax! We have all the time in the world!"
+    scene.text(`"Don't worry ${((s as any).pcs_lastname ?? 0)}! Just relax! We have all the time in the world!"`);
+    scene.text('Aleksei look at you with the most beatific expression that you have ever seen, like he, in His infinite goodness, is doing you a favor. The mocking display extends several minutes that don\'t help your arousal before he finally gets up and after delicately rearranging your hair, walks away beyond your line of sight.');
+    scene.text('"BRRRRR"');
+    scene.text('Aleksei presses a vibrating something against your needed clit, at the same time, he uses his other hand to play with your vagina and asshole. "Oh, God!" You scream in surprise to the creator, trash against the tight ropes that dig into your skin, and lose all reasoning, as finally, Aleksei decides to <i>play</i> with your needy cunt and anus, but <i>somehow</i>, even with that, you can\'t reach the climax.');
+    // TODO-QSP: dynamic text: "Good <<$pcs_lastname>>, good, now you can have your release."
+    scene.text(`"Good ${((s as any).pcs_lastname ?? 0)}, good, now you can have your release."`);
+    scene.text('With those words, <i>something</i> magical clicks in your head, and all the tension accumulated against your core, explodes in a body-shaking magical orgasm, making you give a silent scream as all your muscles tense fighting against the ropes.');
+    scene.actions([
+      { label: 'Learn some magic', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G11.jpg');
+    scene.text('It takes a while for your mind, to get clear from the mana-enhanced <i>petite mort</i>, and perceive a silent Aleksei looking intensely into your eyes. He then, when finally realizes that you are more or less cognizant, raises your head by your hair… and kisses you. It\'s only a moment, and immediately, he withdraws his head but maintains your lower lip between his teeth… There is a sharp sensation, pain and you taste blood… He has bitten your lip!');
+    // TODO-QSP: dynamic text: "Now <<$pcs_lastname>>, let's see if you can learn something."
+    scene.text(`"Now ${((s as any).pcs_lastname ?? 0)}, let's see if you can learn something."`);
+    scene.text('Uncaring, Aleksei turns your head and puts his mouth beside your ear. Then, words of power began to push into your mana-overloaded brain, building the foundations for a new spell. Somehow, you push over the discomforts and pains, and join Aleksei in a magical duet, that little by little begins to channel all your overflowing mana in a sudden lightning flash, that sends sparks flying all over the room.');
+    // TODO-QSP: dynamic text: "Nice <<$pcs_lastname>>… very nice…"
+    scene.text(`"Nice ${((s as any).pcs_lastname ?? 0)}… very nice…"`);
+    scene.text('Aleksei then, take away your ropes, making you fall down painfully, before returning to the stool, and opening his thighs.');
+    scene.actions([
+      { label: 'You get the message', handler: (st: GameState) => {
+    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    }
+    qspCall(s, 'arousal', 'cuni_give', 10, 'sub', 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/city/alexandria/sex/G5.jpg');
+    // TODO-QSP: dynamic text: "What are you waiting <<$pcs_lastname>>? You are a will-worker! Just come here!"
+    scene.text(`"What are you waiting ${((s as any).pcs_lastname ?? 0)}? You are a will-worker! Just come here!"`);
+    scene.text('<i>Encoraged</i> by Aleksei\'s words, you fight against cramps, soreness, pain, and the blood in your mouth to somehow rise to a doggy position. The next crawl towards the waiting wizard, eternalizes, as you fight to move your sleeping extremities.');
+    // TODO-QSP: dynamic text: "Only a little more <<$pcs_lastname>>!"
+    scene.text(`"Only a little more ${((s as any).pcs_lastname ?? 0)}!"`);
+    scene.text('Finally, breathless, you reach between Aleksei\'s spread legs, where he grabs your hair and forcefully makes you dip into his beautiful pink box. Understanding what he is expecting from you, you open your mouth and begin to eat the cranky wizard only for another jolt of mana to shake your mind… tasting… a thunderstorm annihilating an army, old musty books whispering dark secrets and… agelessness. You blink, your <i>mundane</i> mind trying to understand the alien tastes, but… your growing <i>magical</i> one? Just delight in the taste of true power.');
+    // TODO-QSP: dynamic text: "Hm… ¨You are learning <<$pcs_lastname>>."
+    scene.text(`"Hm… ¨You are learning ${((s as any).pcs_lastname ?? 0)}."`);
+    scene.text('Suddenly, you are re-energized and launch yourself to devour Aleksei\'s pink bottom. Your hands grabbing firmly his thighs as you try to drink on Aleksei\'s <i>unearthly</i> flavor, filling the room with the sound of your lapping, and Aleksei\'s silent moans, until you sense him tensing as he climaxes.');
+    scene.actions([
+      { label: 'Some time afterwards', handler: (st: GameState) => {
+    (s as any).AlexandriaQW = 20;
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'spellList', 'addAvailableSpells', 'electSpells');
+    (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+    (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+    (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+    (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+    (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+    (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+    (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+    (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+    (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+    (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    if (((s as any).succubusflag ?? 0) === 1) {
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+      (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+      (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+      (s as any).sucabslez = 1;
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G4.jpg');
+    scene.text('A pleased Aleksei looks down at your prone form, too sore and tired to do much more than heave in the floor, but… strangely, coming out utterly satisfied from the rough treatment. After some moments of introspective smoking, he bent, grabbed your chin, and looked into your eyes.');
+    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, It's evident to me, that you have enjoyed this lesson beyond...
+    scene.text(`"${((s as any).pcs_lastname ?? 0)}, It's evident to me, that you have enjoyed this lesson beyond whatever the curse made you feel… What do you think about that? Hm? Well, at the end of the day it's unimportant, as it seems that you can't learn without discipline."`);
+    scene.text('Saying this, Aleksei rises, grabs his carefully folded clothes, and exits the room, leaving your slowly recovering body on the floor, until with a great deal of willpower you manage to get up.');
+    scene.actions([
+      { label: 'Redress and follow him.', goto: ['alexandriaChat', 'tractatus'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterNL2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N8.jpg');
+  scene.text('<i>Obediently</i>, you take your clothes for the enjoyment of your <i>master</i>… <i>Obediently</i> you crawl towards the bed\'s headboard for the enjoyment of your <i>master</i>… <i>Obediently</i> you sit on the fluffy pillows and open your legs for the enjoyment of your <i>master</i>… Then, you watch in silence as a chuckling Aleksei, gets himself naked and crawls towards you.');
+  scene.text('"Good, my apprentice, good. You are learning to be patient and… <i>obedient</i>."');
+  scene.text('He then, caress delicately your chin and giving you a half-smile begins the long-road towards your burning sex, taking care that your bosom receives well-earned attention, making your sigh as goosebumps trigger all over your skin. The next minutes pass with you heaving and moaning as Aleksei, do his dammest to impede you from cum! He eats and caresses your cunt, only to retreat and observe pleased at you squirm obediently, wetting his sheets and forcing yourself to don\'t rush your hands towards your sex, until you finally can\'t stop and plead.');
+  scene.text('"So be it, my apprentice."');
+  scene.text('Then, and only then, Aleksei let your arousal rise without impediment under his ministrations. You moan, scream and trash as mana begins to gather in your core, in sync with your sexual excitement, until you climax and a torrent of power sublimates your body in an orgasmic wave.');
+  scene.text('After this, you slide down the headboard and cuddle with Aleksei so you can continue with your <i>lesson</i>.');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N9.jpg');
+    scene.text('After getting eaten by Aleksei, and being overflowed with mana, you lie over his comfortable bust. He doesn\'t seems to dislike your need to cuddle and scratch lazily your scalp.');
+    scene.text('"Ok, my apprentice, that is enough procrastination, is time for your next <i>lesson</i>"');
+    scene.text('He then, grabs your head and looks deep into your eyes. His mouth opens and unearthly words fill your head with arcane knowledge. Little by little you join him in a duet, at first labored but soon easily as you work through your magical connection.');
+    scene.text('"Good my apprentice… good… now show me."');
+    scene.text('You stir over Aleksei and extend a hand, soon, as you push mana through words of power, sparks begin to form between the fingers until there is an electrical flash, and magical lighting illuminates the room. Aleksei observe your demonstration with a critical eye, before assenting with approval. After that, is just you two, lazily lying in each other arms, before a sudden magical compulsion in the back of your head, made you move. Aleksei looks at you in understanding… is time to continue with his part of the <i>lesson</i>.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).AlexandriaQW ?? 0) < 23) {
+      (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+    }
+    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    }
+    (s as any).pcs_hairbsh = 1;
+    (s as any).pcs_makeup = 1;
+    (s as any).cumspclnt = 4;
+    qspCall(s, 'cum_cleanup', '');
+    (s as any).pcs_sweat = 0;
+    (s as any).pcs_breath = 1;
+    qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+    qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+    qspCall(s, 'stat', '');
+    if (((s as any).succubusflag ?? 0) === 1) {
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+      (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+      (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+      (s as any).sucabslez = 1;
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/N10.jpg');
+    scene.text('Aleksei has made you climax, and fill your mind with arcane knowledge, so it is time to reciprocate and give something back to your master, so… you put him in his fours, and delicately begin to kiss his back down to that beautiful rump that hides his little brown star.');
+    scene.text('He doesn\'t stop you as your tongue digs into that delicious hole - a light sigh on his lips as the only reaction - and your mind is flooded with strange visions and sensations, as your magics <i>connect</i>, making you shudder as mana begin to flow between you two. Instinctively, one of your hands reaches towards his pubic mound and plays with his well-groomed bush… but that isn\'t your final destination… After some moments, you reach to his perfect box, and begin to work.');
+    scene.text('The room fills with Aleksei\'s dainty moans and your wet laps, as you edge his wet box and hot asshole, pleasuring the unflappable wizard. The only signal that he is getting near his climax, is when he finally caresses your face, so you turn and look into Aleksei\'s eyes, as he cum.');
+    scene.text('After this, you again cuddle with him thinking in your lessons, until he pats lightly your backhead, to signal the end of your little runt.');
+    scene.actions([
+      { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterGL2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G10.jpg');
+  scene.text('Aleksei, ties you with ropes in utter silence, ignoring your grunts of pain, as your body is bound so you can\'t enact any move. When he is sure you can\'t move your extremities, he hangs you face down from the ceiling. Aleksei then, takes away slowly his clothes, letting you come under cramps as he ignores your suffering.');
+  // TODO-QSP: dynamic text: "Well… Let's begin <<$pcs_lastname>>."
+  scene.text(`"Well… Let's begin ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('You contain your breath because you know what is going to happen. Aleksei disappears from your line of sight as he walks behind you, and pushes a finger up your rectum… "AHHHH!" You scream as an electrical jolt cleans your innards, and make you shake in your bounds… Then, without care for your sore asshole, Aleksei begins to smear some K-Y Jelly inside it. Your ragged breath fills the room at the mix of sensations as the Jelly touches the sensitive inner skin.');
+  scene.text('"Hmpf" That barely whispered grunt, is the only sound that occasionally says Aleksei to accompany your grunts and moans. He, with utter detachment, plays with you, first stirring your asshole with an analhook and after that, he works your cunt with a magic wand. Your body suffers from painful cramps, your asshole is sore and stretched tight, and occasionally magical jolts shake your body. Even with all that you can negate your arousal, and little by little Aleksei manages to forcibly made you cum, triggering your core to suffuse your body in mana.');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G11.jpg');
+    scene.text('After hanging you from the ceiling, and forcefully making you climax, Aleksei stands in front of you. He smokes and seems strangely pleased with your squirming and sore form. Finally, after some moments of introspection, he raises your head by your hair, and kisses you, not forgetting to bite your lips slightly.');
+    // TODO-QSP: dynamic text: Pay attention <<$pcs_lastname>>."
+    scene.text(`Pay attention ${((s as any).pcs_lastname ?? 0)}."`);
+    scene.text('Aleksei puts his mouth beside your ear and begins to spell words of power. You fight through the numbness provoked by the manna-enhanced climax, your tired body, and sore limbs, managing to somehow join him in the spell crafting, and little by little something unearthly begins to form in the room. There is a flash and momentarily lighting illuminates the room.');
+    // TODO-QSP: dynamic text: Hm… Well done <<$pcs_lastname>>."
+    scene.text(`Hm… Well done ${((s as any).pcs_lastname ?? 0)}."`);
+    scene.text('After that, Aleksei rearranges your hair, before without too much fanfare, releases the ropes, that tie you, and you fall painfully to the ground, ready for your next <i>lesson</i>.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).AlexandriaQW ?? 0) < 23) {
+      (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+    }
+    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    }
+    (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+    (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+    (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+    (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+    (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+    (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+    (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+    (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+    (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+    (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+    qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+    qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+    qspCall(s, 'stat', '');
+    if (((s as any).succubusflag ?? 0) === 1) {
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+      (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+      (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+      (s as any).sucabslez = 1;
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/alexandria/sex/G5.jpg');
+    scene.text('After a session of magical bondage and some <i>teaching</i> from Aleksei, done in his unmistakable style, you find yourself, kneeling on hardwood, wrapped in bondage ropes and with your head between your teacher toned thighs, that cross behind your neck, so you can\'t scape this munching session.');
+    // TODO-QSP: dynamic text: "Ah-Ah-Ah… Easy now, <<$pcs_lastname>>, you're not some common harlot!"
+    scene.text(`"Ah-Ah-Ah… Easy now, ${((s as any).pcs_lastname ?? 0)}, you're not some common harlot!"`);
+    scene.text('And you munch… and munch… with Aleksei\'s hand in your head, marking the rhythm, and his constant nagging and <i>helpful</i> advice, so you <i>properly</i>, caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth, and tongue… and is not enough… only elicit more nagging from the elder wizard, pushing you a little more, in a restless effort… until you see him close the eyes, and hear a change in his breathing as one of Aleksei\'s hand travels sensually his body, and soon the blonde, moan in constricted pleasure,');
+    scene.text('During the next minutes, a smug Aleksei sits relaxed, smoking a cigarette as he observes you, recatching your breath, a silent question in the air… do you want another session?');
+    scene.actions([
+      { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterNs4(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 23) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pcs_hairbsh = 1;
+  (s as any).pcs_makeup = 1;
+  (s as any).cumspclnt = 4;
+  qspCall(s, 'cum_cleanup', '');
+  (s as any).pcs_sweat = 0;
+  (s as any).pcs_breath = 1;
+  qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N8.jpg');
+  scene.text('<i>Obediently</i>, you take your clothes for the enjoyment of your <i>master</i>… <i>Obediently</i> you crawl towards the bed\'s headboard for the enjoyment of your <i>master</i>… <i>Obediently</i> you sit on the fluffy pillows and open your legs for the enjoyment of your <i>master</i>… Then, you watch in silence as a chuckling Aleksei, gets himself naked and crawls towards you.');
+  scene.text('"Good, my apprentice, good. You are learning to be patient and… <i>obedient</i>."');
+  scene.text('He then, caress delicately your chin and giving you a half-smile begins the long-road towards your burning sex, taking care that your bosom receives some well-earned attention, making your sigh as goosebumps trigger all over your skin. The next minutes pass with you heaving and moaning as Aleksei, does his damnedest to impede you from cum! He eats and caresses your cunt, only to retreat and observe pleased at you squirm obediently, wetting his sheets and forcing yourself to don\'t rush your hands towards your sex, until you finally can\'t stop and plead.');
+  scene.text('"So be it, my apprentice."');
+  scene.text('Then, and only then, Aleksei let your arousal rise without impediment under his ministrations. You moan, scream and trash as mana begins to gather in your core, in sync with your sexual excitement, until you climax and a torrent of power sublimates your body in an orgasmic wave.');
+  scene.text('After this, you slide down the headboard and cuddle with Aleksei so you can continue with your <i>lesson</i>.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterNs5(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 23) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pcs_hairbsh = 1;
+  (s as any).pcs_makeup = 1;
+  (s as any).cumspclnt = 4;
+  qspCall(s, 'cum_cleanup', '');
+  (s as any).pcs_sweat = 0;
+  (s as any).pcs_breath = 1;
+  qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N9.jpg');
+  scene.text('After getting eaten by Aleksei, and being overflowed with mana, you lie over his comfortable bust. He doesn\'t seems to dislike your need to cuddle and scratch lazily your scalp.');
+  scene.text('"Ok, my apprentice, that is enough procrastination, is time for your next <i>lesson</i>"');
+  scene.text('He then, grabs your head and looks deep into your eyes. His mouth opens and unearthly words fill your head with arcane knowledge. Little by little you join him in a duet, at first labored but soon easily as you work through your magical connection.');
+  scene.text('"Good my apprentice… good… now show me."');
+  scene.text('You stir over Aleksei and extend a hand, soon, as you push mana through words of power, sparks begin to form between the fingers until there is an electrical flash, and magical lighting illuminates the room. Aleksei observe your demonstration with a critical eye, before assenting with approval. After that, is just you two, lazily lying in each other arms, before a sudden magical compulsion in the back of your head, made you move. Aleksei looks at you in understanding… is time to continue with his part of the <i>lesson</i>.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterNs6(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 23) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pcs_hairbsh = 1;
+  (s as any).pcs_makeup = 1;
+  (s as any).cumspclnt = 4;
+  qspCall(s, 'cum_cleanup', '');
+  (s as any).pcs_sweat = 0;
+  (s as any).pcs_breath = 1;
+  qspCall(s, 'arousal', 'cuni', 35, 'lesbian', 'no_orgasm_msg');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/N10.jpg');
+  scene.text('Aleksei has made you climax, and filled your mind with arcane knowledge, so it is time to reciprocate and give something back to your master, so… you put him on his fours, and delicately begin to kiss his back down to that beautiful rump that hides his little brown star.');
+  scene.text('He doesn\'t stop you as your tongue digs into that delicious hole - a light sigh on his lips is the only reaction - and your mind is flooded with strange visions and sensations, as your magics <i>connect</i>, making you shudder as mana begin to flow between you two. Instinctively, one of your hands reaches towards his pubic mound and plays with his well-groomed bush… but that isn\'t your final destination… After some moments, you reach to his perfect box, and begin to work.');
+  scene.text('The room fills with Aleksei\'s dainty moans and your wet laps, as you edge his wet box and hot asshole, pleasuring the unflappable wizard. The only signal that he is getting near his climax, is when he finally caresses your face, so you turn and look into Aleksei\'s eyes, as he cum.');
+  scene.text('After this, you again cuddle with him thinking in your lessons, until he pats lightly your backhead, to signal the end of your little runt.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterGs4(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 23) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+  (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G10.jpg');
+  scene.text('Aleksei, ties you with ropes in utter silence, ignoring your grunts of pain, as your body is bound so you can\'t enact any move. When he is sure you can\'t move your extremities, he hangs you face down from the ceiling. Aleksei then, takes away slowly his clothes, letting you come under cramps as he ignores your suffering.');
+  // TODO-QSP: dynamic text: "Well… Let's begin <<$pcs_lastname>>."
+  scene.text(`"Well… Let's begin ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('You contain your breath because you know what is going to happen. Aleksei disappears from your line of sight as he walks behind you, and push a finger up your rectum… "AHHHH!" You scream as an electrical jolt cleans your innards, and make you shake in your bounds… Then, without care for your sore asshole, Aleksei begins to smear some K-Y Jelly inside it. Your ragged breath fills the room at the mix of sensations as the Jelly touches the sensitive inner skin.');
+  scene.text('"Hmpf" That barely whispered grunt, is the only sound that occasionally says Aleksei to accompany your grunts and moans. He, with utter detachment, play with you, first stirring your asshole with an analhook and after that works your cunt with a magic wand. Your body suffers from painful cramps, your asshole is sore and stretched tight, and occasionally magical jolts shake your body. Even with all that you can negate your arousal, and little by little Aleksei manages to forcibly made you cum, triggering your core to suffuse your body in mana.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterGs5(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 23) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+  (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G11.jpg');
+  scene.text('After hanging you from the ceiling, and forcefully making you climax, Aleksei stands in front of you. He smokes and seems strangely pleased with your squirming and sore form. Finally, after some moments of introspection, he rises your head by your hair, and kisses you, not forgetting to bit slightly your lips.');
+  // TODO-QSP: dynamic text: Pay attention <<$pcs_lastname>>."
+  scene.text(`Pay attention ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('Aleksei put his mouth beside your ear and began to spell words of power. You fight through the numbness provoked by the manna-enhanced climax, your tired body, and sore limbs, managing to somehow join him in the spell crafting, and little by little something unearthly begins to form in the room. There is a flash and momentarily lighting illuminates the room.');
+  // TODO-QSP: dynamic text: Hm… Well done <<$pcs_lastname>>."
+  scene.text(`Hm… Well done ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text('After that, Aleksei rearranges your hair, before without too much fanfare, releases the ropes, that tie you, and you fall painfully to the ground, ready for your next <i>lesson</i>.');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
+  scene.build();
+}
+
+function enterGs6(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).AlexandriaQW ?? 0) < 23) {
+    (s as any).AlexandriaQW = ((s as any).AlexandriaQW ?? 0) + (1);
+  }
+  (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (5);
+  (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  (s as any).pain['legL'] = ((s as any).pain['legL'] ?? 0) + (5);
+  (s as any).pain['legR'] = ((s as any).pain['legR'] ?? 0) + (5);
+  (s as any).pain['shoulders'] = ((s as any).pain['shoulders'] ?? 0) + (5);
+  (s as any).pain['armL'] = ((s as any).pain['armL'] ?? 0) + (5);
+  (s as any).pain['armR'] = ((s as any).pain['armR'] ?? 0) + (5);
+  (s as any).pain['wrists'] = ((s as any).pain['wrists'] ?? 0) + (5);
+  (s as any).pain['ankles'] = ((s as any).pain['ankles'] ?? 0) + (5);
+  qspCall(s, 'arousal', 'cuni', 50, 'lesbian', 'bound', 'no_orgasm_msg');
+  qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).succubusflag ?? 0) === 1) {
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/alexandria/sex/G5.jpg');
+  scene.text('After a session of magical bondage and some <i>teaching</i> from Aleksei, done in his unmistakable style, you find yourself, kneeling on hardwood, wrapped in bondage ropes and with your head between your teacher toned thighs, that cross behind your neck, so you can\'t scape this munching session.');
+  // TODO-QSP: dynamic text: "Ah-Ah-Ah… Easy now, <<$pcs_lastname>>, you're not some common harlot!"
+  scene.text(`"Ah-Ah-Ah… Easy now, ${((s as any).pcs_lastname ?? 0)}, you're not some common harlot!"`);
+  scene.text('And you munch… and munch… with Aleksei\'s hand in your head, marking the rhythm, and his constant nagging and <i>helpful</i> advice, so you <i>properly</i>, caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth, and tongue… and is not enough… only elicit more nagging from the elder wizard, pushing you a little more, in a restless effort… until you see him close the eyes, and hear a change in his breathing as one of Aleksei\'s hand travels sensually his body, and soon the blonde, moan in constricted pleasure,');
+  scene.text('During the next minutes, a smug Aleksei sits relaxed, smoking a cigarette as he observes you, recatching your breath, a silent question in the air… do you want another session?');
+  scene.actions([
+    { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
+  ]);
   scene.build();
 }
 
@@ -258,6 +1262,63 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'long':
       enterLong(s, scene);
+      break;
+    case 'short':
+      enterShort(s, scene);
+      break;
+    case 'ns1':
+      enterNs1(s, scene);
+      break;
+    case 'ns2':
+      enterNs2(s, scene);
+      break;
+    case 'ns3':
+      enterNs3(s, scene);
+      break;
+    case 'gs1':
+      enterGs1(s, scene);
+      break;
+    case 'gs2':
+      enterGs2(s, scene);
+      break;
+    case 'gs3':
+      enterGs3(s, scene);
+      break;
+    case 'nL1':
+      enterNL1(s, scene);
+      break;
+    case 'gL1':
+      enterGL1(s, scene);
+      break;
+    case 'nice2':
+      enterNice2(s, scene);
+      break;
+    case 'grumpy2':
+      enterGrumpy2(s, scene);
+      break;
+    case 'nL2':
+      enterNL2(s, scene);
+      break;
+    case 'gL2':
+      enterGL2(s, scene);
+      break;
+    case 'ns4':
+      enterNs4(s, scene);
+      break;
+    case 'ns5':
+      enterNs5(s, scene);
+      break;
+    case 'ns6':
+      enterNs6(s, scene);
+      break;
+    case 'gs4':
+      enterGs4(s, scene);
+      break;
+    case 'gs5':
+      enterGs5(s, scene);
+      break;
+    case 'gs6':
+      enterGs6(s, scene);
       break;
     default:
       enterNice1(s, scene);

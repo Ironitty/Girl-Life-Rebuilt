@@ -36,7 +36,7 @@ function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.actions([
-            { label: 'Touch her', handler: (st: GameState) => {
+            { label: 'Touch her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['sistersleep', 'sister_sleep_1'] },
           ]);
@@ -58,28 +58,31 @@ function enterSisterSleep_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You place your hand on Anya\'s ass. Touching such a soft butt, you feel a shock run through your body. The feeling is weird, and you can\'t seem to place it.');
     scene.text('Her ass feels as good as it looks. You want to touch it more, but when her breathing changes, you panic and pull away.');
   } else {
-    scene.text('You place your hand on Anya\'s ass. Touching such a soft butt, you feel a shock run through your body. The feeling is weird, and you can\'t seem to place it.');
-    scene.text('Her ass feels as good as it looks.');
-    qspCall(s, 'willpower', 'foreplay', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Continue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if (((s as any).sisterLesb ?? 0) === 3) {
+      scene.text('You place your hand on Anya\'s ass. Touching such a soft butt, you feel a shock run through your body. The feeling is weird, and you can\'t seem to place it.');
+      scene.text('Her ass feels as good as it looks.');
+      qspCall(s, 'willpower', 'foreplay', 'self');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Continue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Continue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['sistersleep', 'sister_sleep_2'] },
+        ]);
+      }
+    } else {
+      scene.text('You can\'t stop thinking about the feelings you experienced last time you touched your sister\'s bare ass.');
+      scene.text('Convinced that Anya is fast asleep, you once more dare yourself to caress her ass.');
+      scene.text('This time, you decide to caress her a little longer, enjoying the moment. You feel yourself being filled with desire…');
+      scene.actions([
+        { label: 'Continue', goto: ['sistersleep', 'sister_sleep_2'] },
       ]);
     }
-    scene.text('You can\'t stop thinking about the feelings you experienced last time you touched your sister\'s bare ass.');
-    scene.text('Convinced that Anya is fast asleep, you once more dare yourself to caress her ass.');
-    scene.text('This time, you decide to caress her a little longer, enjoying the moment. You feel yourself being filled with desire…');
-    scene.actions([
-      { label: 'Continue', goto: ['sistersleep', 'sister_sleep_2'] },
-    ]);
   }
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
@@ -111,7 +114,7 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Kiss her', handler: (st: GameState) => {
+        { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['sistersleep', 'sister_sleep_2_kiss'] },
       ]);
@@ -167,7 +170,7 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Convince her', handler: (st: GameState) => {
+          { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'force');
   }, goto: ['sistersleep', 'sister_sleep_3'] },
         ]);
@@ -331,11 +334,14 @@ function enterSisterSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sisterLesb ?? 0) <= 7) {
     scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_lesbian'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_strapon'] }]);
-    if ((Math.floor(Math.random() * 3) + 1) === 1) {
+    if (((s as any).sisterLesb ?? 0) < 9) {
       scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_strapon'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_lesbian'] }]);
+      if ((Math.floor(Math.random() * 3) + 1) === 1) {
+        scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_strapon'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_lesbian'] }]);
+      }
     }
   }
   scene.build();
@@ -480,17 +486,22 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).sisterQW['knownotvirgin'] = 1;
-      scene.text('After she fucks your mouth with the dildo, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside of your vagina. "Oh, you\'re no longer a virgin. Mom won\'t be happy!" she says as she lies down on her back with the dildo pointing straight up. "Mount up and show me what you\'ve learned, cowgirl."');
-      qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
-      qspCall(s, 'stat', '');
-      scene.text('After she fucks your mouth with the dildo, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside your pussy. "I see you\'re already wet. Good, that will make this more fun," she says as she lies down on her back with the dildo pointing straight up. "Mount up and show me what you\'ve learned, cowgirl."');
-      qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
-      qspCall(s, 'stat', '');
-      scene.actions([
-        { label: 'Get fucked', goto: ['sistersleep', 'sister_strapon_vaginal'] },
-        { label: 'Get fucked', goto: ['sistersleep', 'sister_strapon_vaginal'] },
-      ]);
+      if (((s as any).sisterQW ?? 0)?.['knownotvirgin'] === 0) {
+        (s as any).sisterQW['knownotvirgin'] = 1;
+        scene.text('After she fucks your mouth with the dildo, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside of your vagina. "Oh, you\'re no longer a virgin. Mom won\'t be happy!" she says as she lies down on her back with the dildo pointing straight up. "Mount up and show me what you\'ve learned, cowgirl."');
+        qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
+        qspCall(s, 'stat', '');
+        scene.actions([
+          { label: 'Get fucked', goto: ['sistersleep', 'sister_strapon_vaginal'] },
+        ]);
+      } else {
+        scene.text('After she fucks your mouth with the dildo, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside your pussy. "I see you\'re already wet. Good, that will make this more fun," she says as she lies down on her back with the dildo pointing straight up. "Mount up and show me what you\'ve learned, cowgirl."');
+        qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
+        qspCall(s, 'stat', '');
+        scene.actions([
+          { label: 'Get fucked', goto: ['sistersleep', 'sister_strapon_vaginal'] },
+        ]);
+      }
     }
   } },
     ]);

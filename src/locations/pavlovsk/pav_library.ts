@@ -28,14 +28,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_nerds_here = 1;
       scene.text('The nerds are sitting at a table studying together.');
     } else {
-      if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
-        (s as any).nataliaQW['library_day_check'] = ((s as any).daystart ?? 0);
-        if ((!(Math.floor(Math.random() * 4) + 0))) {
-          (s as any).nataliaQW['library_day'] = ((s as any).daystart ?? 0);
+      if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
+        if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
+          (s as any).nataliaQW['library_day_check'] = ((s as any).daystart ?? 0);
+          if ((!(Math.floor(Math.random() * 4) + 0))) {
+            (s as any).nataliaQW['library_day'] = ((s as any).daystart ?? 0);
+          }
         }
-      }
-      if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
-        scene.text('You see your classmate <a href="exec: gt \'natalia_pavlova\',\'library\'">Natalia Pavlova</a> sitting alone at one of the tables.');
+        if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
+          scene.text('You see your classmate <a href="exec: gt \'natalia_pavlova\',\'library\'">Natalia Pavlova</a> sitting alone at one of the tables.');
+        }
       }
     }
   }
@@ -48,7 +50,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
       (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
     } else {
-      (s as any).will_cost = 0;
+      if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+        (s as any).will_cost = 0;
+      }
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -58,7 +62,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Do your homework (1:00)', handler: (st: GameState) => {
+        { label: 'Do your homework (1:00) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }

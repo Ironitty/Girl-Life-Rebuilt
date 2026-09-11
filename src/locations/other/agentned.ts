@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -26,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Return', goto: ['agentned', 'start'] },
       { label: 'Cancel it', handler: (st: GameState) => {
-    qspCall(s, 'homes_properties', 'cancel_rent', '<<$property_code[agentned_i]>>');
+    qspCall(s, 'homes_properties', 'cancel_rent', '' + qspUntranslated(s, "property_code[agentned_i]>", { location: "agentned" }) + '');
   }, goto: ['agentned', 'start'] },
     ]);
   }

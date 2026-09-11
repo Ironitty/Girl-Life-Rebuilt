@@ -103,25 +103,30 @@ function enterMansionEntrance(s: GameState, scene: SceneBuilder): void {
       { label: 'See what happens', goto: ['nerd_game_night1', 'mansion_interior1'] },
     ]);
   } else {
-    scene.text('Petka rolls the dice and scores high, but doesn\'t get the number he was hoping for. "Damn it!"');
-    scene.text('"While you\'re able to sense the dark magic surrounding the mansion, it\'s too strong. You\'re not able to counter it and can only reveal that the house itself… is an illusion…" Feofan narrates.');
-    scene.text('"An illusion?" Gerasim asks. "You mean the house in front of us <i>isn\'t actually there</i>?"');
-    scene.text('"Yes," Zinaida replies. "It also means that the woman lied to us."');
-    scene.text('"Not necessarily," Artem chimes in. "This magical charm could have fooled her into thinking there was something here that wasn\'t actually there. It <i>is</i> dark magic being guarded by the undead after all."');
-    scene.text('"It doesn\'t really matter now," Julia says. "We should investigate what\'s going on here. This dark magic has likely claimed more than its fair share of victims and we should put an end to it."');
-    scene.text('Artem nods. "This isn\'t exactly what I was expecting, but it\'s still worth checking out. Just be careful. This house isn\'t real, so there could be all sorts of charms and traps waiting for us on the other side of that door."');
-    scene.text('"You all carefully venture forth inside, knowing that something sinister lies in wait on the other side of the door…" Feofan narrates.');
-    scene.text('Petka rolls the dice, but scores poorly. "Damn it!" he scowls. "Another crap roll for me!"');
-    scene.text('"You scan the area for any signs of magic, but don\'t sense anything. It appears to be what it is - a simple old house in the woods," Feofan narrates.');
-    scene.text('"See?" Zinaida says. "Just a few undead who likely just stumbled into the area. There\'s nothing to worry about and the house is right where the woman said it would be. We just need to loot the treasure and be on our way."');
-    scene.text('"I\'m not so sure…" Petka replies. "I still feel like something will go wrong. Or that this is just a waste of our time."');
-    scene.text('"Weren\'t you and Artem complaining about us \'playing it too safe\'?" Julia asks accusingly. "Let\'s do what you wanted and take some risks!"');
-    scene.text('Petka just sighs before he nods in agreement.');
-    scene.text('"You all carefully venture into the house, not knowing what lies in wait on the other side of the door…" Feofan narrates.');
-    scene.actions([
-      { label: 'See what happens', goto: ['nerd_game_night1', 'mansion_interior2'] },
-      { label: 'See what happens', goto: ['nerd_game_night1', 'mansion_interior2'] },
-    ]);
+    if (((s as any).temp ?? 0) >= 11) {
+      scene.text('Petka rolls the dice and scores high, but doesn\'t get the number he was hoping for. "Damn it!"');
+      scene.text('"While you\'re able to sense the dark magic surrounding the mansion, it\'s too strong. You\'re not able to counter it and can only reveal that the house itself… is an illusion…" Feofan narrates.');
+      scene.text('"An illusion?" Gerasim asks. "You mean the house in front of us <i>isn\'t actually there</i>?"');
+      scene.text('"Yes," Zinaida replies. "It also means that the woman lied to us."');
+      scene.text('"Not necessarily," Artem chimes in. "This magical charm could have fooled her into thinking there was something here that wasn\'t actually there. It <i>is</i> dark magic being guarded by the undead after all."');
+      scene.text('"It doesn\'t really matter now," Julia says. "We should investigate what\'s going on here. This dark magic has likely claimed more than its fair share of victims and we should put an end to it."');
+      scene.text('Artem nods. "This isn\'t exactly what I was expecting, but it\'s still worth checking out. Just be careful. This house isn\'t real, so there could be all sorts of charms and traps waiting for us on the other side of that door."');
+      scene.text('"You all carefully venture forth inside, knowing that something sinister lies in wait on the other side of the door…" Feofan narrates.');
+      scene.actions([
+        { label: 'See what happens', goto: ['nerd_game_night1', 'mansion_interior2'] },
+      ]);
+    } else {
+      scene.text('Petka rolls the dice, but scores poorly. "Damn it!" he scowls. "Another crap roll for me!"');
+      scene.text('"You scan the area for any signs of magic, but don\'t sense anything. It appears to be what it is - a simple old house in the woods," Feofan narrates.');
+      scene.text('"See?" Zinaida says. "Just a few undead who likely just stumbled into the area. There\'s nothing to worry about and the house is right where the woman said it would be. We just need to loot the treasure and be on our way."');
+      scene.text('"I\'m not so sure…" Petka replies. "I still feel like something will go wrong. Or that this is just a waste of our time."');
+      scene.text('"Weren\'t you and Artem complaining about us \'playing it too safe\'?" Julia asks accusingly. "Let\'s do what you wanted and take some risks!"');
+      scene.text('Petka just sighs before he nods in agreement.');
+      scene.text('"You all carefully venture into the house, not knowing what lies in wait on the other side of the door…" Feofan narrates.');
+      scene.actions([
+        { label: 'See what happens', goto: ['nerd_game_night1', 'mansion_interior2'] },
+      ]);
+    }
   }
   scene.build();
 }
@@ -165,18 +170,21 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
       scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
       scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
     } else {
-      scene.text('You roll the dice and score high. Feofan checks his notes.');
-      scene.text('"You hear the quiet click of a mechanism and are just about able to dodge a small arrow that whistles past just inches above your head. Unfortunately, it finds another target and pierces into Julia\'s cleric. It appears to have an immediate effect."');
-      scene.text('"What the hell was that?!" Petka asks. "Is there any more of those things?!"');
-      scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
-      scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
-      (s as any).nerd_game['lust_curse'] = 1;
-      scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
-      scene.text('"Distracted by the trap you\'re caught in, you fail to notice the arrow launcher hidden in the wall and flinch as a small arrow pierces your armor. It has an immediate effect on you."');
-      scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
-      scene.text('More dice are rolled and you discover that, while there are no more arrows, you have been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
-      // TODO-QSP: dynamic text: "Just as you're about to give up hope, a secret door opens and <<$pcs_nickname>>...
-      scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname ?? 0)}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
+      if (((s as any).temp ?? 0) >= 11) {
+        scene.text('You roll the dice and score high. Feofan checks his notes.');
+        scene.text('"You hear the quiet click of a mechanism and are just about able to dodge a small arrow that whistles past just inches above your head. Unfortunately, it finds another target and pierces into Julia\'s cleric. It appears to have an immediate effect."');
+        scene.text('"What the hell was that?!" Petka asks. "Is there any more of those things?!"');
+        scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
+        scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
+      } else {
+        (s as any).nerd_game['lust_curse'] = 1;
+        scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
+        scene.text('"Distracted by the trap you\'re caught in, you fail to notice the arrow launcher hidden in the wall and flinch as a small arrow pierces your armor. It has an immediate effect on you."');
+        scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
+        scene.text('More dice are rolled and you discover that, while there are no more arrows, you have been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
+        // TODO-QSP: dynamic text: "Just as you're about to give up hope, a secret door opens and <<$pcs_nickname>>...
+        scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname ?? 0)}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
+      }
     }
     scene.actions([
       { label: 'Follow the tunnel', handler: (st: GameState) => {
@@ -223,18 +231,21 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
       scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
       scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
     } else {
-      scene.text('You roll the dice and score high. Feofan checks his notes.');
-      scene.text('"You hear the quiet click of a mechanism and are just about able to dodge a small arrow that whistles past just inches above your head. Unfortunately, it finds another target and pierces into Julia\'s cleric. It appears to have an immediate effect."');
-      scene.text('"What the hell was that?!" Petka asks. "Is there any more of those things?!"');
-      scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
-      scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
-      (s as any).nerd_game['lust_curse'] = 1;
-      scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
-      scene.text('"Distracted by the trap you\'re caught in, you fail to notice the arrow launcher hidden in the wall and flinch as a small arrow pierces your armor. It has an immediate effect on you."');
-      scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
-      scene.text('More dice are rolled and you discover that, while there are no more arrows, you have been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
-      // TODO-QSP: dynamic text: "Just as you're about to give up hope, a secret door opens and <<$pcs_nickname>>...
-      scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname ?? 0)}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
+      if (((s as any).temp ?? 0) >= 11) {
+        scene.text('You roll the dice and score high. Feofan checks his notes.');
+        scene.text('"You hear the quiet click of a mechanism and are just about able to dodge a small arrow that whistles past just inches above your head. Unfortunately, it finds another target and pierces into Julia\'s cleric. It appears to have an immediate effect."');
+        scene.text('"What the hell was that?!" Petka asks. "Is there any more of those things?!"');
+        scene.text('More dice are rolled and you discover that, while there are no more arrows, Julia has been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
+        scene.text('"Just as you\'re about to give up hope, a secret door opens and Julia\'s cleric hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.');
+      } else {
+        (s as any).nerd_game['lust_curse'] = 1;
+        scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
+        scene.text('"Distracted by the trap you\'re caught in, you fail to notice the arrow launcher hidden in the wall and flinch as a small arrow pierces your armor. It has an immediate effect on you."');
+        scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
+        scene.text('More dice are rolled and you discover that, while there are no more arrows, you have been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
+        // TODO-QSP: dynamic text: "Just as you're about to give up hope, a secret door opens and <<$pcs_nickname>>...
+        scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname ?? 0)}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
+      }
     }
     scene.actions([
       { label: 'Follow the tunnel', handler: (st: GameState) => {
@@ -491,12 +502,15 @@ function enterMansionInterior4(s: GameState, scene: SceneBuilder): void {
       scene.text('Electing to sneak around behind the man to use your back stab ability, you roll the dice and are pleased when the 20 shows up. Feofan checks his notes.');
       scene.text('"With your rogue\'s stealth ability, you easily sneak around the man and quickly jump on his back before thrusting your daggers into him. It\'s a critical hit and he howls in pain before collapsing to the ground," he explains.');
     } else {
-      scene.text('Electing to sneak around behind the man to use your back stab ability, you roll the dice and score high. Feofan checks his notes.');
-      scene.text('"With your rogue\'s stealth ability, you sneak around the man and jump on his back. However, before you can deal a blow with your daggers, the man tosses you over his shoulder and you fall to the floor," Feofan explains.');
-      scene.text('Despite your failure, your attack distracts the man long enough for Zinaida to deal a killing blow.');
-      scene.text('Electing to sneak around behind the man to use your back stab ability, you roll the dice, but score poorly. Feofan checks his notes.');
-      scene.text('"You sneak around behind the man, but when you attempt to jump on his back, he swiftly and effortlessly throws you aside, causing you to hit the ground hard," he explains.');
-      scene.text('Petka uses the distraction to hit the man with a powerful spell, causing him to collapse to the ground.');
+      if (((s as any).temp ?? 0) >= 11) {
+        scene.text('Electing to sneak around behind the man to use your back stab ability, you roll the dice and score high. Feofan checks his notes.');
+        scene.text('"With your rogue\'s stealth ability, you sneak around the man and jump on his back. However, before you can deal a blow with your daggers, the man tosses you over his shoulder and you fall to the floor," Feofan explains.');
+        scene.text('Despite your failure, your attack distracts the man long enough for Zinaida to deal a killing blow.');
+      } else {
+        scene.text('Electing to sneak around behind the man to use your back stab ability, you roll the dice, but score poorly. Feofan checks his notes.');
+        scene.text('"You sneak around behind the man, but when you attempt to jump on his back, he swiftly and effortlessly throws you aside, causing you to hit the ground hard," he explains.');
+        scene.text('Petka uses the distraction to hit the man with a powerful spell, causing him to collapse to the ground.');
+      }
     }
     scene.text('"I\'m… coming… Nyx… Forgive… me…" he whispers with his dying breath.');
     scene.text('"Nyx? Do you think that\'s… Her?" Petka asks while pointing out the corpse of the woman lying next to the man. "Do you think he killed her?"');
@@ -616,15 +630,18 @@ function enterSuccubusFight(s: GameState, scene: SceneBuilder): void {
       scene.text('"You see? Your magic won\'t work on us. We\'ll never be your slaves!" Julia gloats.');
       scene.text('"We\'ll see about that once my boys are done with you!" the succubus snarls.');
     } else {
-      scene.text('You roll your dice and score high. Feofan checks his notes.');
-      scene.text('"It\'s tough and mentally draining, but you fight off the urges trying to overwhelm you. However, the voice never stops and you have to keep fighting, affecting your ability to concentrate on the upcoming battle."');
-      scene.text('"Your magic might be powerful, demon, but you\'ll never break us!" Julia proclaims triumphantly.');
-      scene.text('"We\'ll see about that once my boys are done with you!" the succubus snarls.');
-      (s as any).nerd_game['sveta_slave'] = 1;
-      scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
-      // TODO-QSP: dynamic text: "Despite her best efforts, the voice is victorious and takes control of <<$pcs_n...
-      scene.text(`"Despite her best efforts, the voice is victorious and takes control of ${((s as any).pcs_nickname ?? 0)}'s mind. She obediently walks over and kneels at the feet of the smirking succubus, joining the other mindless slaves surrounding you."`);
-      scene.text('"One down, four to go. I look forward to watching you all break. Or you could just give up and <i>die</i>," the succubus snarls.');
+      if (((s as any).temp ?? 0) >= 11) {
+        scene.text('You roll your dice and score high. Feofan checks his notes.');
+        scene.text('"It\'s tough and mentally draining, but you fight off the urges trying to overwhelm you. However, the voice never stops and you have to keep fighting, affecting your ability to concentrate on the upcoming battle."');
+        scene.text('"Your magic might be powerful, demon, but you\'ll never break us!" Julia proclaims triumphantly.');
+        scene.text('"We\'ll see about that once my boys are done with you!" the succubus snarls.');
+      } else {
+        (s as any).nerd_game['sveta_slave'] = 1;
+        scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
+        // TODO-QSP: dynamic text: "Despite her best efforts, the voice is victorious and takes control of <<$pcs_n...
+        scene.text(`"Despite her best efforts, the voice is victorious and takes control of ${((s as any).pcs_nickname ?? 0)}'s mind. She obediently walks over and kneels at the feet of the smirking succubus, joining the other mindless slaves surrounding you."`);
+        scene.text('"One down, four to go. I look forward to watching you all break. Or you could just give up and <i>die</i>," the succubus snarls.');
+      }
     }
     scene.actions([
       { label: 'Battle the succubus', goto: ['nerd_game_night1', 'succubus_fight1'] },
@@ -664,12 +681,15 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
         scene.text('"Taking the opportunity, you lunge at the succubus and grab one of her wings before swinging your dagger. The succubus lets out a bloodcurdling scream of pain as you slice into her wing and tear it off," he narrates.');
         scene.text('Significantly weakened by your critical strike, the succubus soon falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
       } else {
-        scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice and score high. Feofan checks his notes.');
-        scene.text('"Taking the opportunity, you lunge at the succubus and grab one of her wings before swinging your dagger. She cries out in pain as your blade plunges through her wing and sinks into her back," he narrates.');
-        scene.text('Taking advantage of the distraction, the others launch their own attacks and pile on the damage. The succubus soon falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
-        scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice, but score poorly. Feofan checks his notes.');
-        scene.text('"Taking the opportunity, you lunge at the succubus, but she hears you coming and spins around to slash at your face with her razor sharp claws. Your attempt to strike her fails and all you do is slash her arm," he narrates.');
-        scene.text('Despite your failure, the others are able to pile on their own attacks until the succubus falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
+        if (((s as any).temp ?? 0) >= 11) {
+          scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice and score high. Feofan checks his notes.');
+          scene.text('"Taking the opportunity, you lunge at the succubus and grab one of her wings before swinging your dagger. She cries out in pain as your blade plunges through her wing and sinks into her back," he narrates.');
+          scene.text('Taking advantage of the distraction, the others launch their own attacks and pile on the damage. The succubus soon falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
+        } else {
+          scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice, but score poorly. Feofan checks his notes.');
+          scene.text('"Taking the opportunity, you lunge at the succubus, but she hears you coming and spins around to slash at your face with her razor sharp claws. Your attempt to strike her fails and all you do is slash her arm," he narrates.');
+          scene.text('Despite your failure, the others are able to pile on their own attacks until the succubus falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
+        }
       }
     }
     scene.actions([
@@ -800,12 +820,15 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Taking the opportunity, you lunge at the succubus and grab one of her wings before swinging your dagger. The succubus lets out a bloodcurdling scream of pain as you slice into her wing and tear it off," he narrates.');
       scene.text('Significantly weakened by your critical strike, the succubus soon falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
     } else {
-      scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice and score high. Feofan checks his notes.');
-      scene.text('"Taking the opportunity, you lunge at the succubus and grab one of her wings before swinging your dagger. She cries out in pain as your blade plunges through her wing and sinks into her back," he narrates.');
-      scene.text('Taking advantage of the distraction, the others launch their own attacks and pile on the damage. The succubus soon falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
-      scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice, but score poorly. Feofan checks his notes.');
-      scene.text('"Taking the opportunity, you lunge at the succubus, but she hears you coming and spins around to slash at your face with her razor sharp claws. Your attempt to strike her fails and all you do is slash her arm," he narrates.');
-      scene.text('Despite your failure, the others are able to pile on their own attacks until the succubus falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
+      if (((s as any).temp ?? 0) >= 11) {
+        scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice and score high. Feofan checks his notes.');
+        scene.text('"Taking the opportunity, you lunge at the succubus and grab one of her wings before swinging your dagger. She cries out in pain as your blade plunges through her wing and sinks into her back," he narrates.');
+        scene.text('Taking advantage of the distraction, the others launch their own attacks and pile on the damage. The succubus soon falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
+      } else {
+        scene.text('As the fight continues, you find yourself behind the succubus, her wings presenting an easy target. You roll the dice, but score poorly. Feofan checks his notes.');
+        scene.text('"Taking the opportunity, you lunge at the succubus, but she hears you coming and spins around to slash at your face with her razor sharp claws. Your attempt to strike her fails and all you do is slash her arm," he narrates.');
+        scene.text('Despite your failure, the others are able to pile on their own attacks until the succubus falls to the ground, bloodied and defeated as she makes a pathetic attempt to crawl away.');
+      }
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

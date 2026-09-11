@@ -48,15 +48,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('He talks about what the camera in question can do, along with all it\'s features. It does sound like the perfect camera for someone that\'s serious about getting into photography, but is that you?');
       qspCall(s, 'shop_photography', 'camera_options', 'first');
     } else {
-      scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
-      // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
-      scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((s as any).pcs_firstname ?? 0)}! How fantastic it is that you should return to my shop! Have you changed your mind about buying a camera?"`);
-      qspCall(s, 'shop_photography', 'camera_options', 'repeat');
-      // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
-      scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((s as any).pcs_firstname ?? 0)}! How fantastic it is that you should return to my shop! How are you getting on with your recent purchase? Brilliantly I hope? I know what I see and I see brilliance before me, so it can only be that you would get on brilliantly!"`);
-      scene.actions([
-        { label: 'Walk away', goto: ['shop_photography', 'start'] },
-      ]);
+      if (((s as any).photographyEv ?? 0) === 1) {
+        scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
+        // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
+        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((s as any).pcs_firstname ?? 0)}! How fantastic it is that you should return to my shop! Have you changed your mind about buying a camera?"`);
+        qspCall(s, 'shop_photography', 'camera_options', 'repeat');
+      } else {
+        // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
+        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((s as any).pcs_firstname ?? 0)}! How fantastic it is that you should return to my shop! How are you getting on with your recent purchase? Brilliantly I hope? I know what I see and I see brilliance before me, so it can only be that you would get on brilliantly!"`);
+        scene.actions([
+          { label: 'Walk away', goto: ['shop_photography', 'start'] },
+        ]);
+      }
     }
   } },
     { label: 'Leave', handler: (st: GameState) => {
@@ -140,28 +143,31 @@ function enterShowportfolio(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes yes, when you get more experience I might have a fantastic business opportunity for you! You see, in addition to the shop you see before you, I also have a side business in commissioned photography and from what I\'ve seen, you might just be the person I\'m looking for; you\'ll be paid of course! But first practice, practice practice!"');
     scene.text('You frown a little. At least he likes your work. "Okay, I will. I\'ll keep practicing and when I feel I\'ve improved, I\'ll return."');
   } else {
-    (s as any).photography_start = 1;
-    scene.text('"Ah, your portfolio! By all means, I would love to peruse through it!"');
-    scene.text('"Mmmm… These photographs are good. You have a real eye! With a little more practice, you will become a very skilled photographer."');
-    scene.text('"You can call me Branko. I have a fantastic business opportunity for you! You see, in addition to the shop you see before you, I also have a side business in commissioned photography and from what I\'ve seen, you\'re the perfect person to help me with some additional work. There will be no pressure, just visit my beautiful shop at the weekend and I\'ll let you know if there\'s any photography jobs you can do for me; you\'ll be paid of course!"');
-    scene.text('"Wow, that sounds interesting. I\'ll visit when I can."');
-    if (((s as any).pcs_photoskl ?? 0) <= 75) {
+    if (((s as any).pcs_photoskl ?? 0) <= 50) {
       (s as any).photography_start = 1;
       scene.text('"Ah, your portfolio! By all means, I would love to peruse through it!"');
-      scene.text('"These photographs are terrific! Sensational, absolutely sensational!"');
-      scene.text('"You can call me Branko. I have a fantastic business opportunity for you! You see, in addition to the shop you see before you, I also have a side business in commissioned photography and from what I\'ve seen, you\'re the perfect person to help me with some additional work. There will be no pressure, just visit my beautiful shop and I\'ll let you know if there\'s any photography jobs you can do for me; cash in hand of course!"');
+      scene.text('"Mmmm… These photographs are good. You have a real eye! With a little more practice, you will become a very skilled photographer."');
+      scene.text('"You can call me Branko. I have a fantastic business opportunity for you! You see, in addition to the shop you see before you, I also have a side business in commissioned photography and from what I\'ve seen, you\'re the perfect person to help me with some additional work. There will be no pressure, just visit my beautiful shop at the weekend and I\'ll let you know if there\'s any photography jobs you can do for me; you\'ll be paid of course!"');
       scene.text('"Wow, that sounds interesting. I\'ll visit when I can."');
     } else {
-      (s as any).photography_start = 1;
-      scene.text('"Ah, your portfolio! By all means, I would love to peruse through it!"');
-      scene.text('"My god… These are simply breathtaking my dear, breathtaking! I don\'t think I\'ve ever met anyone with as much potential as you in my life! With a little more seasoning, you could become one of the greatest photographers of our time!"');
-      scene.text('"You can call me Branko. I have a fantastic business opportunity for you! You see, in addition to the shop you see before you, I also have a side business in commissioned photography and from what I\'ve seen, you\'re the perfect person to help me with some additional work. There will be no pressure, just visit my beautiful shop and I\'ll let you know if there\'s any photography jobs you can do for me; you\'ll be paid of course!"');
-      scene.text('"Wow, that sounds interesting. I\'ll visit when I can!"');
+      if (((s as any).pcs_photoskl ?? 0) <= 75) {
+        (s as any).photography_start = 1;
+        scene.text('"Ah, your portfolio! By all means, I would love to peruse through it!"');
+        scene.text('"These photographs are terrific! Sensational, absolutely sensational!"');
+        scene.text('"You can call me Branko. I have a fantastic business opportunity for you! You see, in addition to the shop you see before you, I also have a side business in commissioned photography and from what I\'ve seen, you\'re the perfect person to help me with some additional work. There will be no pressure, just visit my beautiful shop and I\'ll let you know if there\'s any photography jobs you can do for me; cash in hand of course!"');
+        scene.text('"Wow, that sounds interesting. I\'ll visit when I can."');
+      } else {
+        (s as any).photography_start = 1;
+        scene.text('"Ah, your portfolio! By all means, I would love to peruse through it!"');
+        scene.text('"My god… These are simply breathtaking my dear, breathtaking! I don\'t think I\'ve ever met anyone with as much potential as you in my life! With a little more seasoning, you could become one of the greatest photographers of our time!"');
+        scene.text('"You can call me Branko. I have a fantastic business opportunity for you! You see, in addition to the shop you see before you, I also have a side business in commissioned photography and from what I\'ve seen, you\'re the perfect person to help me with some additional work. There will be no pressure, just visit my beautiful shop and I\'ll let you know if there\'s any photography jobs you can do for me; you\'ll be paid of course!"');
+        scene.text('"Wow, that sounds interesting. I\'ll visit when I can!"');
+      }
     }
-    scene.actions([
-      { label: 'Walk away', goto: ['shop_photography', 'start'] },
-    ]);
   }
+  scene.actions([
+    { label: 'Walk away', goto: ['shop_photography', 'start'] },
+  ]);
   scene.build();
 }
 

@@ -58,7 +58,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Make Mira your prostitute', handler: (st: GameState) => {
+      { label: 'Make Mira your prostitute [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).MiraVars['pimp'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'misc', 'force', 'hard');
@@ -101,7 +101,9 @@ function enterMiraRebels(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_QW ?? 0)?.['A63'] >= 11) {
     scene.text('Mira continues, "Look at you, just another slut. Mitka, Kolyamba, and Vasyan told me how much they all love fucking and sharing you now. You thought you were so much better than me, well no more! I\'m not working for you anymore. You have proven yourself perfectly capable of enjoying getting shared by a group of friends."');
   } else {
-    scene.text('Mira continues, "Look at you, just another whore. All the village men can talk about is how much you moaned for each and every one of them. You thought you were so much better than me, well no more! I\'m not working for you anymore. You have proven yourself perfectly capable of enjoying getting gangbanged by multiple groups of strangers."');
+    if (((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {
+      scene.text('Mira continues, "Look at you, just another whore. All the village men can talk about is how much you moaned for each and every one of them. You thought you were so much better than me, well no more! I\'m not working for you anymore. You have proven yourself perfectly capable of enjoying getting gangbanged by multiple groups of strangers."');
+    }
   }
   scene.text('After Mira is done with her preaching, you try to think of something witty to say or raise your hand to slap her back, but you just can\'t bring yourself to do it.');
   // TODO-QSP: dynamic text: Mira sees the defeated look in your eyes and knows that she has won. She pulls y...
@@ -161,11 +163,13 @@ function enterWatchMira(s: GameState, scene: SceneBuilder): void {
       { label: 'Hide', goto: ['gad_prostitutes', 'watch_from_hiding'] },
     ]);
   } else {
-    scene.img('images/characters/gadukino/mira/miraprost2.mp4');
-    scene.text('You walk up and look into the van. You see Mira showing her customer her tits and rubbing her pussy, and you see a hungry gleam in the guy\'s eyes, which Mira returns.');
-    scene.actions([
-      { label: 'Keep watching', goto: ['gad_prostitutes', 'watch_close'] },
-    ]);
+    if (((s as any).temp_gadpro ?? 0) === 1) {
+      scene.img('images/characters/gadukino/mira/miraprost2.mp4');
+      scene.text('You walk up and look into the van. You see Mira showing her customer her tits and rubbing her pussy, and you see a hungry gleam in the guy\'s eyes, which Mira returns.');
+      scene.actions([
+        { label: 'Keep watching', goto: ['gad_prostitutes', 'watch_close'] },
+      ]);
+    }
   }
   scene.build();
 }
@@ -264,7 +268,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['prostitution_car_negotiation', 'look_client'] },
     ]);
@@ -279,7 +283,9 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_prostitutes', 'work'] },
     ]);
   } else {
-    scene.text('<br>You don\'t have any tissues with you to remove cum from your body.');
+    if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] === 0) {
+      scene.text('<br>You don\'t have any tissues with you to remove cum from your body.');
+    }
   }
   qspCall(s, 'prostitution_car_negotiation', 'general_description');
   scene.actions([

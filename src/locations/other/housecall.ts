@@ -118,8 +118,9 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.actions([
-        { label: 'Doctor, what\'s wrong with me?', handler: (st: GameState) => {
+      if (((s as any).sick ?? 0) >= 48) {
+        scene.actions([
+          { label: 'Doctor, what\'s wrong with me?', handler: (st: GameState) => {
     scene.text('Your voice shakes slightly with fear. "Doctor, what\'s wrong with me?"');
     // TODO-QSP: dynamic text: She shakes her head. "I'm afraid that you have angina, <<$pcs_nickname>>. I woul...
     scene.text(`She shakes her head. "I'm afraid that you have angina, ${((s as any).pcs_nickname ?? 0)}. I would advise you to check yourself in."`);
@@ -166,7 +167,8 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
     ]);

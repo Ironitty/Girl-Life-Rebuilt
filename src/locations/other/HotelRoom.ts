@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -22,7 +22,7 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] !== 0) {
-    if (((s as any).HotelRoom ?? 0)?.[String(((s as any).region ?? 0)) + '_room_service_free'] === 1) {
+    if (((s as any).HotelRoom ?? 0)[((s as any).region ?? 0) + '_room_service_free'] === 1) {
       scene.actions([
         { label: 'Order room service (0:30)', handler: (st: GameState) => {
     qspCall(st, 'food', 'hotel_food');
@@ -81,7 +81,7 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] !== 0) {
-    if (((s as any).HotelRoom ?? 0)?.[String(((s as any).region ?? 0)) + '_room_service_free'] === 1) {
+    if (((s as any).HotelRoom ?? 0)[((s as any).region ?? 0) + '_room_service_free'] === 1) {
       scene.actions([
         { label: 'Order room service (0:30)', handler: (st: GameState) => {
     qspCall(st, 'food', 'hotel_food');
@@ -144,7 +144,7 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] !== 0) {
-    if (((s as any).HotelRoom ?? 0)?.[String(((s as any).region ?? 0)) + '_room_service_free'] === 1) {
+    if (((s as any).HotelRoom ?? 0)[((s as any).region ?? 0) + '_room_service_free'] === 1) {
       scene.actions([
         { label: 'Order room service (0:30)', handler: (st: GameState) => {
     qspCall(st, 'food', 'hotel_food');
@@ -260,15 +260,19 @@ function enterShower1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/hotel/hotel.room.normal1.jpg');
     scene.text('A small and unpretentious bathroom, that is nevertheless quite stylish and has everything you need.');
   } else {
-    scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
-    scene.text('A nice looking and spacious bathroom, with separate bathtub.');
-    if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 3) {
-      scene.img('images/locations/pavlovsk/hotel/hotel.room.best1.jpg');
-      scene.text('A very luxurious and spacious bathroom, fit for a king.');
+    if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 2  ||  ((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
+      scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
+      scene.text('A nice looking and spacious bathroom, with separate bathtub.');
+    } else {
+      if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 3) {
+        scene.img('images/locations/pavlovsk/hotel/hotel.room.best1.jpg');
+        scene.text('A very luxurious and spacious bathroom, fit for a king.');
+      }
     }
-    if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
-      scene.actions([
-        { label: 'Return to lobby (It is past check out time)', handler: (st: GameState) => {
+  }
+  if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
+    scene.actions([
+      { label: 'Return to lobby (It is past check out time)', handler: (st: GameState) => {
     (s as any).hotelWiFi = 0;
     if (((s as any).region ?? 0) === 'pav') {
       scene.actions([{ label: 'Continue', goto: ['pav_hotel', ''] }]);
@@ -276,26 +280,88 @@ function enterShower1(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['city_hotel', ''] }]);
     }
   } },
-      ]);
-    } else {
-      qspCall(s, 'din_van', 'private', 'HotelRoom', ((((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) ? ('') : ('bath')));
-      qspCall(s, 'home_events', 'bathroom');
-      scene.actions([
-        { label: 'Return to your room', handler: (st: GameState) => {
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Return to your room', handler: (st: GameState) => {
     (s as any).hotelmc_inventory['shampoo'] = 0;
     if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
       scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'therapist'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'normal'] }]);
-      if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 2) {
-        scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'better'] }]);
+      if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) {
+        scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'normal'] }]);
       } else {
-        scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'best'] }]);
+        if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 2) {
+          scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'better'] }]);
+        } else {
+          if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 3) {
+            scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'best'] }]);
+          }
+        }
       }
     }
   } },
-      ]);
+    ]);
+  }
+  qspCall(s, 'din_van', 'private', 'HotelRoom', ((((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) ? ('') : ('bath')));
+  qspCall(s, 'home_events', 'bathroom');
+  scene.build();
+}
+
+function enterTv(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
+    scene.img('images/locations/pavlovsk/hotel/tv2.jpg');
+  } else {
+    scene.img(`images/locations/pavlovsk/hotel/tv${((s as any).HotelRoom ?? 0)}.jpg`);
+  }
+  scene.text('You turn on the TV and make yourself comfortable on the bed.');
+  if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
+    scene.actions([
+      { label: 'Return to lobby (It is past checkout time)', handler: (st: GameState) => {
+    (s as any).hotelWiFi = 0;
+    if (((s as any).region ?? 0) === 'pav') {
+      scene.actions([{ label: 'Continue', goto: ['pav_hotel', ''] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['city_hotel', ''] }]);
     }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Get up from the bed', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      { label: 'Watch TV (1:00)', goto: ['HotelRoom', 'watch_tv'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterWatchTv(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 60;
+  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 11) + 10);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/hotel/tv0,\'+rand(0, 4)+\'.jpg');
+  scene.text('You are watching the country\'s main television channel. None of their programs are really worth watching, but the distraction is welcome anyway.');
+  if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
+    scene.actions([
+      { label: 'Return to lobby (It is past check out time)', handler: (st: GameState) => {
+    (s as any).hotelWiFi = 0;
+    if (((s as any).region ?? 0) === 'pav') {
+      scene.actions([{ label: 'Continue', goto: ['pav_hotel', ''] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['city_hotel', ''] }]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Get up from the bed', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      { label: 'Watch TV (1:00)', goto: ['HotelRoom', 'watch_tv'] },
+    ]);
   }
   scene.build();
 }
@@ -317,6 +383,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'shower1':
       enterShower1(s, scene);
+      break;
+    case 'tv':
+      enterTv(s, scene);
+      break;
+    case 'watch_tv':
+      enterWatchTv(s, scene);
       break;
     default:
       enterNormal(s, scene);

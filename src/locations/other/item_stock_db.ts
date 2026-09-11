@@ -269,15 +269,17 @@ function enterChemist(s: GameState, scene: SceneBuilder): void {
     (s as any).cost_curr_aisle['' + String((s as any).item_idx || '') + ''] = 500;
     (s as any).img_curr_aisle['' + String((s as any).item_idx || '') + ''] = '';
   } else {
-    (s as any).item_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Condoms';
-    (s as any).var_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'normal_condoms';
-    (s as any).desc_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Male contraceptive';
-    (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
-    (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
-    (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
-    (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
-    (s as any).cost_curr_aisle['' + String((s as any).item_idx || '') + ''] = 500;
-    (s as any).img_curr_aisle['' + String((s as any).item_idx || '') + ''] = '';
+    if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
+      (s as any).item_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Condoms';
+      (s as any).var_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'normal_condoms';
+      (s as any).desc_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Male contraceptive';
+      (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
+      (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
+      (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
+      (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
+      (s as any).cost_curr_aisle['' + String((s as any).item_idx || '') + ''] = 500;
+      (s as any).img_curr_aisle['' + String((s as any).item_idx || '') + ''] = '';
+    }
   }
   if (((s as any).LudaQW ?? 0)?.['work_hours'] === 1  &&  ((s as any).loc_s ?? 0) === 'pav_pharmacy') {
     (s as any).event_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'gt \'pav_pharmacy\', \'buy_condoms\'';
@@ -1033,15 +1035,17 @@ function enterGadStore(s: GameState, scene: SceneBuilder): void {
     (s as any).cost_curr_aisle['' + String((s as any).item_idx || '') + ''] = 500;
     (s as any).img_curr_aisle['' + String((s as any).item_idx || '') + ''] = '';
   } else {
-    (s as any).item_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Condoms';
-    (s as any).var_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'normal_condoms';
-    (s as any).desc_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Male contraceptive';
-    (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
-    (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
-    (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
-    (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
-    (s as any).cost_curr_aisle['' + String((s as any).item_idx || '') + ''] = 500;
-    (s as any).img_curr_aisle['' + String((s as any).item_idx || '') + ''] = '';
+    if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
+      (s as any).item_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Condoms';
+      (s as any).var_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'normal_condoms';
+      (s as any).desc_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Male contraceptive';
+      (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
+      (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
+      (s as any).quantity_curr_aisle['' + String((s as any).item_idx || '') + ''] = 5;
+      (s as any).max_curr_aisle['' + String((s as any).item_idx || '') + ''] = 0;
+      (s as any).cost_curr_aisle['' + String((s as any).item_idx || '') + ''] = 500;
+      (s as any).img_curr_aisle['' + String((s as any).item_idx || '') + ''] = '';
+    }
   }
   (s as any).item_idx = 10;
   (s as any).item_curr_aisle['' + String((s as any).item_idx || '') + ''] = 'Shampoo';

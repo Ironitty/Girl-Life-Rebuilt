@@ -107,8 +107,11 @@ function enter3Way(s: GameState, scene: SceneBuilder): void {
     if (((s as any).VK ?? 0) <= 1) {
       scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way1'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way2'] }]);
-      scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way3'] }]);
+      if (((s as any).VK ?? 0) <= 2) {
+        scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way2'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['FedorEv4_sex', '3way3'] }]);
+      }
     }
   } },
     ]);
@@ -187,8 +190,9 @@ function enter3way1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.actions([
-        { label: 'Inside me', handler: (st: GameState) => {
+      if (((s as any).FedorLoveTalk ?? 0) === 1  &&  ((s as any).IvanPregChat ?? 0) === 1) {
+        scene.actions([
+          { label: 'Inside me', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/3way/bed4.mp4');
     // TODO-QSP: dynamic text: "Cum inside me!" you say before wrapping your lips back around Ivan's dick as he...
     scene.text(`"Cum inside me!" you say before wrapping your lips back around Ivan's dick as he turns to you. "Don't worry ${((s as any).pcs_nickname ?? 0)}. We'll fill you up real good." Ivan and Fedor begin pumping you faster. After a few seconds Fedor groans and you feel his seed filling your womb causing a muffled moan from you which seems to push Ivan over the edge as he begins shooting his load directly down your throat which you do your best to swallow every drop of. When they are finished Fedor slowly pulls out of your causing the cum in your womb to almost gush out of your vagina and onto the bed. You lay back catching your breath as you listen to Fedor and Ivan chatting. "${((s as any).pcs_firstname ?? 0)} is an amazing girl. You gotta invite me here more often."`);
@@ -206,7 +210,8 @@ function enter3way1(s: GameState, scene: SceneBuilder): void {
       { label: 'Wash up', goto: ['FedorEv4', 'Bathroom Wash'] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
     scene.actions([
       { label: 'Pull out', handler: (st: GameState) => {
@@ -380,8 +385,9 @@ function enter3way3(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.actions([
-        { label: 'Inside me', handler: (st: GameState) => {
+      if (((s as any).FedorLoveTalk ?? 0) === 1  &&  ((s as any).IvanPregChat ?? 0) === 1) {
+        scene.actions([
+          { label: 'Inside me', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/3way/double.mp4');
     // TODO-QSP: dynamic text: "I want both of you to fill me up at the same time. Think you can do that?" Fedo...
     scene.text(`"I want both of you to fill me up at the same time. Think you can do that?" Fedor and Ivan nod as Ivan says, "Damn right, I can do that. You ready Fedor?" Fedor responds, "Hell yeah, it should be easy enough." as he picks up the pace. You lay in between Ivan and Fedor completely in a trace of pleasure, waiting for them to finish and soon enough you hear them groan as you feel a warm rush filling both your anus and womb simultaneously causing all of you to let out a perfectly in sync moan as they pump their seed into both of your holes. While you are catching your breath Ivan pulls out from under you. "${((s as any).pcs_firstname ?? 0)} You fuck like a bunny. I love it and can't wait till next time."`);
@@ -397,7 +403,8 @@ function enter3way3(s: GameState, scene: SceneBuilder): void {
       { label: 'Wash up', goto: ['FedorEv4', 'Bathroom Wash'] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
     scene.actions([
       { label: 'All over my face', handler: (st: GameState) => {

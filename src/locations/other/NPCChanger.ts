@@ -80,17 +80,17 @@ function enterBack50(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcdisplay(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).isnum ?? 0)(((s as any).npc_firstname ?? 0)?.['A' + String(((s as any).n ?? 0))])) {
+  if (!isNaN($npc_firstname['A' + ((s as any).n ?? 0)]) && $npc_firstname['A' + ((s as any).n ?? 0)] !== '') {
     // TODO-QSP: *p ''
   } else {
     // TODO-QSP: *p $npc_firstname['A<<n>>']
   }
-  if (((s as any).npc_firstname ?? 0)?.['A' + String(((s as any).n ?? 0))] === ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).n ?? 0))]  ||  ((s as any).isnum ?? 0)(((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).n ?? 0))])) {
+  if (((s as any).npc_firstname ?? 0)['A' + ((s as any).n ?? 0)] === ((s as any).npc_nickname ?? 0)['A' + ((s as any).n ?? 0)]  ||  !isNaN($npc_nickname['A' + ((s as any).n ?? 0)]) && $npc_nickname['A' + ((s as any).n ?? 0)] !== '') {
     // TODO-QSP: *p ''
   } else {
     // TODO-QSP: *p ' "<<$npc_nickname[''A<<n>>'']>>"'
   }
-  if (((s as any).isnum ?? 0)(((s as any).npc_lastname ?? 0)?.['a' + String(((s as any).n ?? 0))])) {
+  if (!isNaN($npc_lastname['a' + ((s as any).n ?? 0)]) && $npc_lastname['a' + ((s as any).n ?? 0)] !== '') {
     // TODO-QSP: *p ''
   } else {
     // TODO-QSP: *p ' <<$npc_lastname[''A<<n>>'']>>'
@@ -121,7 +121,7 @@ function enterSelection2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: NPC date of birth: <<npc_dob['A<<s>>']>> <a href="exec:gt 'NPCChanger', 'editd'"...
   scene.text(`NPC date of birth: ${qspUntranslated(s, "npc_dob['A<<s", { location: "NPCChanger" })}']>> <a href="exec:gt 'NPCChanger', 'editd'">Change</a>`);
   // TODO-QSP: 'NPC description: '+ $func('npc_notes', s)
-  if (((s as any).npc_gender ?? 0)?.['A' + String(((s as any).s ?? 0))] === 0) {
+  if (((s as any).npc_gender ?? 0)['A' + ((s as any).s ?? 0)] === 0) {
     scene.text('NPC gender: Male');
     // TODO-QSP: dynamic text: NPC dick length: <<npc_dick['A<<s>>']>>cm
     scene.text(`NPC dick length: ${qspUntranslated(s, "npc_dick['A<<s", { location: "NPCChanger" })}']>>cm`);
@@ -139,31 +139,31 @@ function enterSelection2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEditf(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_firstname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new first name')", { location: "NPCChanger" });
+  (s as any).npc_firstname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditn(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_nickname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new nickname')", { location: "NPCChanger" });
+  (s as any).npc_nickname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditl(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_lastname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new last name')", { location: "NPCChanger" });
+  (s as any).npc_lastname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditu(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_usedname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new used name')", { location: "NPCChanger" });
+  (s as any).npc_usedname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditd(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_dob['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new date of birth (yyyymmdd)')", { location: "NPCChanger" });
+  (s as any).npc_dob['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }

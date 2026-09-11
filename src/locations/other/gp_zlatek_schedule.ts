@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -63,51 +65,260 @@ function enterGetBaseSchedule(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) <= 5) {
     (s as any).result = 100;
   } else {
-    (s as any).result = 120;
-    if (((s as any).hour ?? 0) === 7) {
-      (s as any).result = 110;
+    if (((s as any).hour ?? 0) === 6) {
+      (s as any).result = 120;
     } else {
-      if (((s as any).week ?? 0) < 4) {
-        (s as any).result = 0;
-      } else {
+      if (((s as any).hour ?? 0) === 7) {
         (s as any).result = 110;
-        (s as any).result = 330;
-      }
-      if (((s as any).hour ?? 0) < 12) {
-        if (((s as any).week ?? 0) < 4) {
-          (s as any).result = 0;
-        } else {
-          (s as any).result = 110;
-          if (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6) {
-            (s as any).result = 330;
+      } else {
+        if (((s as any).hour ?? 0) === 8) {
+          if (((s as any).week ?? 0) < 4) {
+            (s as any).result = 0;
           } else {
-            (s as any).result = 310;
+            if (((s as any).week ?? 0) === 4) {
+              (s as any).result = 110;
+            } else {
+              (s as any).result = 330;
+            }
           }
-          if (((s as any).hour ?? 0) === 12) {
-            (s as any).result = 120;
+        } else {
+          if (((s as any).hour ?? 0) < 12) {
+            if (((s as any).week ?? 0) < 4) {
+              (s as any).result = 0;
+            } else {
+              if (((s as any).week ?? 0) === 4) {
+                (s as any).result = 110;
+              } else {
+                if (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6) {
+                  (s as any).result = 330;
+                } else {
+                  (s as any).result = 310;
+                }
+              }
+            }
           } else {
-            if (((s as any).week ?? 0) === 7) {
+            if (((s as any).hour ?? 0) === 12) {
               (s as any).result = 120;
             } else {
-              (s as any).result = 210;
-            }
-            if (((s as any).hour ?? 0) === 14) {
-              if (((s as any).week ?? 0) === 7) {
-                (s as any).result = 120;
-              } else {
-                (s as any).result = 110;
-              }
-            } else {
-              (s as any).result = 110;
-              if (((s as any).hour ?? 0) === 18) {
-                (s as any).result = 120;
-              } else {
-                if (((s as any).week ?? 0) === 6) {
-                  (s as any).result = 310;
+              if (((s as any).hour ?? 0) === 13) {
+                if (((s as any).week ?? 0) === 7) {
+                  (s as any).result = 120;
                 } else {
-                  (s as any).result = 110;
+                  (s as any).result = 210;
                 }
-                (s as any).result = 100;
+              } else {
+                if (((s as any).hour ?? 0) === 14) {
+                  if (((s as any).week ?? 0) === 7) {
+                    (s as any).result = 120;
+                  } else {
+                    (s as any).result = 110;
+                  }
+                } else {
+                  if (((s as any).hour ?? 0) < 18) {
+                    (s as any).result = 110;
+                  } else {
+                    if (((s as any).hour ?? 0) === 18) {
+                      (s as any).result = 120;
+                    } else {
+                      if (((s as any).hour ?? 0) < 21) {
+                        if (((s as any).week ?? 0) === 6) {
+                          (s as any).result = 310;
+                        } else {
+                          (s as any).result = 110;
+                        }
+                      } else {
+                        (s as any).result = 100;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = qspUntranslated(s, "ARGS[1]", { location: "gp_zlatek_schedule" });
+  if ((!((s as any).result ?? 0))) {
+    if (((s as any).hour ?? 0) / 2 % 2 === 0) {
+      if (((s as any).locat ?? 0)?.['A32_rand'] % 4 === 0) {
+        (s as any).result = 110;
+      } else {
+        if (((s as any).locat ?? 0)?.['A32_rand'] % 4 === 1) {
+          (s as any).result = 200;
+        } else {
+          if (((s as any).locat ?? 0)?.['A32_rand'] % 4 === 2) {
+            (s as any).result = 220;
+          } else {
+            (s as any).result = 320;
+          }
+        }
+      }
+    } else {
+      if (((s as any).locat ?? 0)?.['A32_rand'] / 4 % 4 === 0) {
+        (s as any).result = 110;
+      } else {
+        if (((s as any).locat ?? 0)?.['A32_rand'] / 4 % 4 === 1) {
+          (s as any).result = 200;
+        } else {
+          if (((s as any).locat ?? 0)?.['A32_rand'] / 4 % 4 === 2) {
+            (s as any).result = 220;
+          } else {
+            (s as any).result = 320;
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).result ?? 0) === 110) {
+    if (((s as any).hour ?? 0) < 9) {
+      (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 16 % 2;
+    } else {
+      if (((s as any).hour ?? 0) < 11) {
+        (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 32 % 2;
+      } else {
+        if (((s as any).hour ?? 0) < 13) {
+          (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 64 % 2;
+        } else {
+          if (((s as any).hour ?? 0) < 15) {
+            (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 128 % 2;
+          } else {
+            if (((s as any).hour ?? 0) < 17) {
+              (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 48 % 2;
+            } else {
+              if (((s as any).hour ?? 0) < 19) {
+                (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 96 % 2;
+              } else {
+                if (((s as any).hour ?? 0) < 21) {
+                  (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 80 % 2;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    (s as any).result = 111 + ((s as any).temp_subloc ?? 0);
+  }
+  scene.build();
+}
+
+function enterSetLocats(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 100) {
+    (s as any).locat['A32_loc'] = 'gad_gphouse';
+    (s as any).locat['A32_arg'] = 'gp_room';
+    (s as any).locat['A32_arg1'] = '';
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 110) {
+      (s as any).locat['A32_loc'] = 'gad_gphouse';
+      (s as any).locat['A32_arg'] = 'main';
+      (s as any).locat['A32_arg1'] = '';
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 111) {
+        (s as any).locat['A32_loc'] = 'gad_gphouse';
+        (s as any).locat['A32_arg'] = 'main';
+        (s as any).locat['A32_arg1'] = 'reading';
+      } else {
+        if (((s as any).locArgs?.[1] ?? 0) === 112) {
+          (s as any).locat['A32_loc'] = 'gad_gphouse';
+          (s as any).locat['A32_arg'] = 'main';
+          (s as any).locat['A32_arg1'] = 'watching_tv';
+        } else {
+          if (((s as any).locArgs?.[1] ?? 0) === 120) {
+            (s as any).locat['A32_loc'] = 'gad_gphouse';
+            (s as any).locat['A32_arg'] = 'kitchen';
+            (s as any).locat['A32_arg1'] = 'reading';
+          } else {
+            if (((s as any).locArgs?.[1] ?? 0) === 200) {
+              (s as any).locat['A32_loc'] = 'gad_gpyard';
+              (s as any).locat['A32_arg'] = 'garden';
+              (s as any).locat['A32_arg1'] = '';
+            } else {
+              if (((s as any).locArgs?.[1] ?? 0) === 210) {
+                (s as any).locat['A32_loc'] = 'gad_gpbath';
+                (s as any).locat['A32_arg'] = 'start';
+                (s as any).locat['A32_arg1'] = '';
+              } else {
+                if (((s as any).locArgs?.[1] ?? 0) === 220) {
+                  (s as any).locat['A32_loc'] = 'gad_gpbarn';
+                  (s as any).locat['A32_arg'] = '';
+                  (s as any).locat['A32_arg1'] = '';
+                } else {
+                  if (((s as any).locArgs?.[1] ?? 0) === 300) {
+                    (s as any).locat['A32_loc'] = 'gadukino';
+                    (s as any).locat['A32_arg'] = '';
+                    (s as any).locat['A32_arg1'] = '';
+                  } else {
+                    if (((s as any).locArgs?.[1] ?? 0) === 310) {
+                      (s as any).locat['A32_loc'] = 'gad_church';
+                      (s as any).locat['A32_arg'] = 'start';
+                      (s as any).locat['A32_arg1'] = '';
+                    } else {
+                      if (((s as any).locArgs?.[1] ?? 0) === 320) {
+                        (s as any).locat['A32_loc'] = 'gad_river';
+                        (s as any).locat['A32_arg'] = 'start';
+                        (s as any).locat['A32_arg1'] = '';
+                      } else {
+                        if (((s as any).locArgs?.[1] ?? 0) === 330) {
+                          (s as any).locat['A32_loc'] = 'gad_field';
+                          (s as any).locat['A32_arg'] = 'field';
+                          (s as any).locat['A32_arg1'] = '';
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterGetLocation(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'gp_zlatek_schedule', 'update_locat');
+  if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gphouse') {
+    if (((s as any).locat ?? 0)?.['A32_arg'] === 'gp_room') {
+      (s as any).npcLocation['A32'] = 'Your grandfather is in his bedroom';
+    } else {
+      if (((s as any).locat ?? 0)?.['A32_arg'] === 'main') {
+        (s as any).npcLocation['A32'] = 'Your grandfather is in his livingroom';
+      } else {
+        if (((s as any).locat ?? 0)?.['A32_arg'] === 'kitchen') {
+          (s as any).npcLocation['A32'] = 'Your grandfather is in his kitchen';
+        }
+      }
+    }
+  } else {
+    if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpyard') {
+      (s as any).npcLocation['A32'] = 'Your grandfather is in his garden';
+    } else {
+      if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpbath') {
+        (s as any).npcLocation['A32'] = 'Your grandfather is bathing in his sauna';
+      } else {
+        if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpbarn') {
+          (s as any).npcLocation['A32'] = 'Your grandfather is at his stables';
+        } else {
+          if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpgadukino') {
+            (s as any).npcLocation['A32'] = 'Your grandfather is out and about in Gadukino';
+          } else {
+            if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_church') {
+              (s as any).npcLocation['A32'] = 'Your grandfather is at his church';
+            } else {
+              if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_river') {
+                (s as any).npcLocation['A32'] = 'Your grandfather is fishing at the river';
+              } else {
+                if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_field') {
+                  (s as any).npcLocation['A32'] = 'Your grandfather is at the field';
+                }
               }
             }
           }
@@ -138,6 +349,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'get_base_schedule':
       enterGetBaseSchedule(s, scene);
+      break;
+    case 'get_random_schedule':
+      enterGetRandomSchedule(s, scene);
+      break;
+    case 'set_locats':
+      enterSetLocats(s, scene);
+      break;
+    case 'getLocation':
+      enterGetLocation(s, scene);
       break;
     default:
       enterDefault(s, scene);

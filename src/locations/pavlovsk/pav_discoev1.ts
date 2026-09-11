@@ -368,7 +368,7 @@ function enterStraponIgorBj(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Establish dominance', handler: (st: GameState) => {
+        { label: 'Establish dominance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/disco/disco_peg9.jpg');
@@ -431,7 +431,7 @@ function enterStraponIgorBj(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Establish dominance', handler: (st: GameState) => {
+        { label: 'Establish dominance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/disco/disco_peg9.jpg');
@@ -524,7 +524,7 @@ function enterStraponIgorMagic(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Keep fucking him', handler: (st: GameState) => {
+        { label: 'Keep fucking him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/disco/disco_peg9.jpg');
@@ -597,7 +597,7 @@ function enterStraponIgorMagic(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Keep fucking him', handler: (st: GameState) => {
+        { label: 'Keep fucking him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/disco/disco_peg9.jpg');
@@ -728,7 +728,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop him', handler: (st: GameState) => {
+        { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).IgorQW['Domina'] = 1;
     qspCall(s, 'stat', '');
@@ -746,7 +746,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Make him submit', handler: (st: GameState) => {
+        { label: 'Make him submit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).IgorQW['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (20);
     scene.img('images/shared/sex/dom/leg.jpg');
@@ -911,23 +911,25 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
         { label: 'Get fucked', goto: ['pav_discoev1', 'dan_fuck'] },
       ]);
     } else {
-      if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        scene.text('He reaches down and pulls you up before roughly shoving you over to the railing and bending you over it. He quickly strips you from the waist down and you feel him rubbing the tip of his hard cock against your asshole. He spits in your ass crack and works it in to add a little lubrication.');
-        scene.text('You quickly reach into your purse and pull out the bottle of lube before handing it to him. "Please use this."');
-        scene.text('He snorts and takes the bottle before you feel him squirt some lube onto your asshole and work it in.');
-        // TODO-QSP: dynamic text: "Fuck, you're such a slut, <<$pcs_nickname>>! Carrying around a bottle of lube s...
-        scene.text(`"Fuck, you're such a slut, ${((s as any).pcs_nickname ?? 0)}! Carrying around a bottle of lube so guys can fuck you in the ass!" he says with a laugh.`);
-        scene.actions([
-          { label: 'Get butt fucked', goto: ['pav_discoev1', 'dan_buttfuck'] },
-        ]);
+      if ((Math.floor(Math.random() * 4) + 1) === 2) {
+        if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+          scene.text('He reaches down and pulls you up before roughly shoving you over to the railing and bending you over it. He quickly strips you from the waist down and you feel him rubbing the tip of his hard cock against your asshole. He spits in your ass crack and works it in to add a little lubrication.');
+          scene.text('You quickly reach into your purse and pull out the bottle of lube before handing it to him. "Please use this."');
+          scene.text('He snorts and takes the bottle before you feel him squirt some lube onto your asshole and work it in.');
+          // TODO-QSP: dynamic text: "Fuck, you're such a slut, <<$pcs_nickname>>! Carrying around a bottle of lube s...
+          scene.text(`"Fuck, you're such a slut, ${((s as any).pcs_nickname ?? 0)}! Carrying around a bottle of lube so guys can fuck you in the ass!" he says with a laugh.`);
+          scene.actions([
+            { label: 'Get butt fucked', goto: ['pav_discoev1', 'dan_buttfuck'] },
+          ]);
+        } else {
+          scene.text('He reaches down and pulls you up before roughly shoving you over to the railing and bending you over it. He quickly strips you from the waist down and you feel him rubbing the tip of his hard cock against your asshole. He spits in your ass crack and works it in to add a little lubrication.');
+          scene.actions([
+            { label: 'Get butt fucked', goto: ['pav_discoev1', 'dan_buttfuck'] },
+          ]);
+        }
       } else {
-        scene.text('He reaches down and pulls you up before roughly shoving you over to the railing and bending you over it. He quickly strips you from the waist down and you feel him rubbing the tip of his hard cock against your asshole. He spits in your ass crack and works it in to add a little lubrication.');
         scene.actions([
-          { label: 'Get butt fucked', goto: ['pav_discoev1', 'dan_buttfuck'] },
-        ]);
-      }
-      scene.actions([
-        { label: 'Keep sucking', handler: (st: GameState) => {
+          { label: 'Keep sucking', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dan/sex/disco/disco3.jpg');
     scene.text('You keep sucking his dick as he moans softly. "Not bad. You\'ve been practicing, haven\'t you?"');
     scene.text('He starts sliding his dick in and out of your mouth as you continue sucking on it.');
@@ -958,7 +960,8 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   } },
   ]);

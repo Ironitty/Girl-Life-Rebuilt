@@ -70,17 +70,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('You nod thoughtfully towards Tamara and take a final sip from your tea before pushing it forward. "I\'ll think about it, Ms. Meynold." is all you can think of to say.');
     } else {
-      scene.text('You shake your head and lower it slightly, "I\'m passing my classes, but only just barely. I still have a ways to go if I hope to go to college."');
-      scene.text('"It is good that you are at least passing, but yes, you will have to do better if you want to get into college. Vicky had some issues keeping her grades up as well, but lately she has been catching up.');
-      scene.text('She recently decided she wanted to get into a medical career. And even though she has not yet decided on any particular field of study, it was enough to motivate her to work harder at school. Maybe if you think hard on what your own goals are, that could help motivate you as well." Tamara beams you a motherly smile as she talks.');
-      // TODO-QSP: dynamic text: Your own <<$npc_nickname['A29']>> could take some parenting lessons from this la...
-      scene.text(`Your own ${((s as any).npc_nickname ?? 0)?.['A29']} could take some parenting lessons from this lady. All she ever did was yell and complain about how Anya isn't doing anything worthwhile; holding her up as a poster child of failure, in an attempt to 'scare' you into doing better.`);
-      scene.text('"Thanks Ms. Meynold, that\'s very good advice." you reply, while nodding thoughtfully…');
-      scene.text('What are your goals? Who are you? Who do you want to be? … You can\'t help but think it over as you finish the last bit of your tea.');
-      scene.text('You straighten up and smile, "Oh, I\'m doing pretty well! I\'m top of my class in a few subjects, and I\'m already getting acceptance letters to several colleges. I\'m probably just going to go to our local University though."');
-      scene.text('"That sounds wonderful! I am glad you\'re doing so well. Katja is also doing extremely well in her studies, and I am so proud of her! I think she wants to be a teacher, which doesn\'t pay very well… but her passion for it is easy to see, so I am supporting her decision as best as I can!');
-      scene.text('However, just because you are doing well now, you still need to follow through to the end, so don\'t start slacking off now!" Tamara says as you finish your cup of tea.');
-      scene.text('"I\'m trying my best Ms. Meynold! I\'m not about to let anything stand in the way of my future!" You say with conviction.');
+      if (((s as any).class ?? 0)?.['school_grade_average'] < 80) {
+        scene.text('You shake your head and lower it slightly, "I\'m passing my classes, but only just barely. I still have a ways to go if I hope to go to college."');
+        scene.text('"It is good that you are at least passing, but yes, you will have to do better if you want to get into college. Vicky had some issues keeping her grades up as well, but lately she has been catching up.');
+        scene.text('She recently decided she wanted to get into a medical career. And even though she has not yet decided on any particular field of study, it was enough to motivate her to work harder at school. Maybe if you think hard on what your own goals are, that could help motivate you as well." Tamara beams you a motherly smile as she talks.');
+        // TODO-QSP: dynamic text: Your own <<$npc_nickname['A29']>> could take some parenting lessons from this la...
+        scene.text(`Your own ${((s as any).npc_nickname ?? 0)?.['A29']} could take some parenting lessons from this lady. All she ever did was yell and complain about how Anya isn't doing anything worthwhile; holding her up as a poster child of failure, in an attempt to 'scare' you into doing better.`);
+        scene.text('"Thanks Ms. Meynold, that\'s very good advice." you reply, while nodding thoughtfully…');
+        scene.text('What are your goals? Who are you? Who do you want to be? … You can\'t help but think it over as you finish the last bit of your tea.');
+      } else {
+        scene.text('You straighten up and smile, "Oh, I\'m doing pretty well! I\'m top of my class in a few subjects, and I\'m already getting acceptance letters to several colleges. I\'m probably just going to go to our local University though."');
+        scene.text('"That sounds wonderful! I am glad you\'re doing so well. Katja is also doing extremely well in her studies, and I am so proud of her! I think she wants to be a teacher, which doesn\'t pay very well… but her passion for it is easy to see, so I am supporting her decision as best as I can!');
+        scene.text('However, just because you are doing well now, you still need to follow through to the end, so don\'t start slacking off now!" Tamara says as you finish your cup of tea.');
+        scene.text('"I\'m trying my best Ms. Meynold! I\'m not about to let anything stand in the way of my future!" You say with conviction.');
+      }
     }
     // TODO-QSP: dynamic text: Tamara smiles and shakes her head, "You don't need to be so formal, <<$pcs_nickn...
     scene.text(`Tamara smiles and shakes her head, "You don't need to be so formal, ${((s as any).pcs_nickname ?? 0)}. We're not at work here, so you can just call me Tamara."`);
@@ -121,70 +124,147 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('"My little carrots are somewhere in the house, while I\'m here all alone…"');
           scene.text('You shyly walk past her, passing through a spacious hall from which a staircase leads to the second floor to the kitchen. The kitchen is large, bright and spacious, tastefully furnished. From the kitchen there is access to the veranda. You sit down at the oval dining table and Tamara, wearing an apron, quickly moves over to the fridge, pulling out all sorts of jars with jam, fruit and cheese and placing them on the table.');
         } else {
-          scene.text('There\'s a large vintage nickel plated kettle on the stove boiling, it doesn\'t really fit in with the rest of the kitchen setting, but you think as long as it does what it\'s supposed to than being visually appealing. The kitchen has a lots of flowers in pots, there\'s pots hanging along the walls and pots standing on the floor. The atmosphere is cozy, peaceful and relaxed.');
-          if (((s as any).zz_stage ?? 0) === 3) {
-            scene.text('Aunt Tamara asks you about school, friends, family, and your interests.');
-            scene.text('Finally the tea is ready and you\'re sitting at a table, happily sipping a lemon fragrant tea, and talk about yourself. You start by telling Aunt Tamara about how your father abandoned your mother a long time ago and now you all live with your stepfather. You keep on telling how the stepfather is good to you and your sister. Next you tell her about your sister that was not able to attend the University and now works at the checkout in the supermarket instead…');
-            scene.text('Tamara listens with interest, pouring tea and offering you a plate filled with croissants and toast, while on the other plate there\'s thinly sliced cheese and ham.');
+          if (((s as any).zz_stage ?? 0) === 2) {
+            scene.text('There\'s a large vintage nickel plated kettle on the stove boiling, it doesn\'t really fit in with the rest of the kitchen setting, but you think as long as it does what it\'s supposed to than being visually appealing. The kitchen has a lots of flowers in pots, there\'s pots hanging along the walls and pots standing on the floor. The atmosphere is cozy, peaceful and relaxed.');
           } else {
-            scene.text('Your shyness is disappearing more and more and the two of you start excitedly chatting just like old friends, sharing stories.');
-            scene.text('You don\'t even notice the age difference because Aunt Tamara talks ceaselessly to you, telling you about herself. She is the daughter of a naval officer, and the family had to move around all over the country because the father served in the Baltic, Kamchatka and in the Northern Fleet.');
-            scene.text('Mentioning the North her eyes tighten a bit in a dreamy haze, happily talking about the harsh beauty of those places.');
-            scene.text('Tamara tells you that she enjoyed living in the North the most, and she still feels like her soul was left there…');
-            if (((s as any).zz_stage ?? 0) === 5) {
-              scene.text('You can see both Katja\'s and Vicky\'s small quirks in Aunt Tamara. She has preserved the beauty of Katja, sophisticated but not as youthfully naïve as Katja. She is calmer and more sensible than Vicky, even being more sociable and open than the cautious Katja.');
-              scene.text('Tamara gets a bottle of wine from the wine cooler and one glass:');
-              // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you won't mind if Aunt Tamara has a glass of wine while we h...
-              scene.text(`"${((s as any).pcs_nickname ?? 0)}, you won't mind if Aunt Tamara has a glass of wine while we have this wonderful conversation?"`);
-              scene.text('"I have been living a reclusive life instead of just running wild. So that\'s made me very distrusting. At work, I\'m not dear Tamara, but the big bad "boss", or the strict "businesswoman", I know that the "friendly female staff" are bad mouthing me, they probably think I slept my way up to the top."');
+            if (((s as any).zz_stage ?? 0) === 3) {
+              scene.text('Aunt Tamara asks you about school, friends, family, and your interests.');
+              scene.text('Finally the tea is ready and you\'re sitting at a table, happily sipping a lemon fragrant tea, and talk about yourself. You start by telling Aunt Tamara about how your father abandoned your mother a long time ago and now you all live with your stepfather. You keep on telling how the stepfather is good to you and your sister. Next you tell her about your sister that was not able to attend the University and now works at the checkout in the supermarket instead…');
+              scene.text('Tamara listens with interest, pouring tea and offering you a plate filled with croissants and toast, while on the other plate there\'s thinly sliced cheese and ham.');
             } else {
-              scene.text('You are laughing at the figurative comparison, Tamara is also smiling.');
-              scene.text('"I had a lot of friends here in Pavlovsk in my thirties, but as soon as I learned that I was pregnant the relationships started deteriorating. So I had a hard time talking to someone else but my ex-husband about becoming a mother."');
-              scene.text('"Nine months later I gave birth to them. Katja came out first. It is hard for me to bear. " says Aunt Tamara tearing up a little. "Katja had us scared for a minute or so because she didn\'t make any sounds immediately, it took two slaps from the doctor for her to start screaming."');
-              scene.text('"Vicky flew out soon after like a cork from a bottle! You know, just like you see on comedy shows on tv."');
-              if (((s as any).zz_stage ?? 0) === 7) {
-                scene.text('Tamara glances at the wall clock.');
-                scene.text('"Oh, look at the clock, time really flies by when you\'re enjoying yourself! "');
-                scene.text('"Look how dark it is outside!"');
-                scene.text('"You know what, you can stay the night. I don\'t want you to running around this late! "');
-                scene.text('You start making excuses, but Aunt Tamara\'s not listening:');
-                scene.text('"You never know who you might meet this late. And my little carrots will be glad. Let\'s call your parents and say you\'ll be staying here tonight!"');
-                scene.text('You insist saying you do not want to impose…');
-                scene.text('"Impose? Don\'t be silly. In this large house?!" says Aunt Tamara.');
-                scene.text('"No one will be bothered. We have a guest bedroom, it\'s always empty. And the rest of us have our own private rooms here." You longingly remember about your room, which you shared with your sister all your life… "So let\'s call your parents and let them know you\'re staying, so they don\'t worry."');
+              if (((s as any).zz_stage ?? 0) === 4) {
+                scene.text('Your shyness is disappearing more and more and the two of you start excitedly chatting just like old friends, sharing stories.');
+                scene.text('You don\'t even notice the age difference because Aunt Tamara talks ceaselessly to you, telling you about herself. She is the daughter of a naval officer, and the family had to move around all over the country because the father served in the Baltic, Kamchatka and in the Northern Fleet.');
+                scene.text('Mentioning the North her eyes tighten a bit in a dreamy haze, happily talking about the harsh beauty of those places.');
+                scene.text('Tamara tells you that she enjoyed living in the North the most, and she still feels like her soul was left there…');
+              } else {
+                if (((s as any).zz_stage ?? 0) === 5) {
+                  scene.text('You can see both Katja\'s and Vicky\'s small quirks in Aunt Tamara. She has preserved the beauty of Katja, sophisticated but not as youthfully naïve as Katja. She is calmer and more sensible than Vicky, even being more sociable and open than the cautious Katja.');
+                  scene.text('Tamara gets a bottle of wine from the wine cooler and one glass:');
+                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you won't mind if Aunt Tamara has a glass of wine while we h...
+                  scene.text(`"${((s as any).pcs_nickname ?? 0)}, you won't mind if Aunt Tamara has a glass of wine while we have this wonderful conversation?"`);
+                  scene.text('"I have been living a reclusive life instead of just running wild. So that\'s made me very distrusting. At work, I\'m not dear Tamara, but the big bad "boss", or the strict "businesswoman", I know that the "friendly female staff" are bad mouthing me, they probably think I slept my way up to the top."');
+                } else {
+                  if (((s as any).zz_stage ?? 0) === 6) {
+                    scene.text('You are laughing at the figurative comparison, Tamara is also smiling.');
+                    scene.text('"I had a lot of friends here in Pavlovsk in my thirties, but as soon as I learned that I was pregnant the relationships started deteriorating. So I had a hard time talking to someone else but my ex-husband about becoming a mother."');
+                    scene.text('"Nine months later I gave birth to them. Katja came out first. It is hard for me to bear. " says Aunt Tamara tearing up a little. "Katja had us scared for a minute or so because she didn\'t make any sounds immediately, it took two slaps from the doctor for her to start screaming."');
+                    scene.text('"Vicky flew out soon after like a cork from a bottle! You know, just like you see on comedy shows on tv."');
+                  } else {
+                    if (((s as any).zz_stage ?? 0) === 7) {
+                      scene.text('Tamara glances at the wall clock.');
+                      scene.text('"Oh, look at the clock, time really flies by when you\'re enjoying yourself! "');
+                      scene.text('"Look how dark it is outside!"');
+                      scene.text('"You know what, you can stay the night. I don\'t want you to running around this late! "');
+                      scene.text('You start making excuses, but Aunt Tamara\'s not listening:');
+                      scene.text('"You never know who you might meet this late. And my little carrots will be glad. Let\'s call your parents and say you\'ll be staying here tonight!"');
+                      scene.text('You insist saying you do not want to impose…');
+                      scene.text('"Impose? Don\'t be silly. In this large house?!" says Aunt Tamara.');
+                      scene.text('"No one will be bothered. We have a guest bedroom, it\'s always empty. And the rest of us have our own private rooms here." You longingly remember about your room, which you shared with your sister all your life… "So let\'s call your parents and let them know you\'re staying, so they don\'t worry."');
+                    }
+                  }
+                }
               }
-              (s as any).pcs_energy = 20;
-              (s as any).pcs_hydra = 40;
-              qspCall(s, 'mood', 'raise', 'small');
-              (s as any).minut = ((s as any).minut ?? 0) + (((s as any).max ?? 0)(0, 60 * (22 - ((s as any).hour ?? 0)) - ((s as any).minut ?? 0)) + ((s as any).rand ?? 0)(0, 59));
-              qspCall(s, 'stat', '');
-              scene.text('"I\'m sorry, Aunt Tamara, I must go home or else I\'ll get some stern scolding…"');
-              // TODO-QSP: dynamic text: "Well, I can't say I'm not disappointed <<$pcs_nickname>>. Don't stop anywhere o...
-              scene.text(`"Well, I can't say I'm not disappointed ${((s as any).pcs_nickname ?? 0)}. Don't stop anywhere on your way home." said a disappointed Aunt Tamara.`);
-              scene.text('"Remember this, if you change your mind and want to hang out, come visit us anytime again! You\'re always welcome here!"');
-              scene.actions([
-                { label: 'Drink tea with Tamara', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_tamara_events', 'next_meet', zz_stage + 1
-  } },
-                { label: 'Go home', goto: ['pav_residential', ''] },
-                { label: 'Stay the night', goto: ['mey_home', 'start'] },
-              ]);
             }
           }
         }
-        if (((s as any).args ?? 0)[0] === 'learning0') {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning10.jpg');
-          scene.text('Nervously, you ring the doorbell to the Meynold residence. Short there after you hear the lock click open and the twins\' mother stands in front of you.');
-          scene.text('"Hello Tamara! I\'ve come here to study." You still don\'t dare to call her Aunt Tamara.');
-          scene.text('"So you\'ve finally decided to go through with it. Come in." says Tamara.');
-          scene.text('The two of you make your way to the kitchen, Tamara puts on the familiar nickel plated kettle, and she begins taking out the jars of jam of the closet.');
-          scene.text('While doing her kitchen chores, Tamara is silent and not looking at you. You have a troubling feeling in the stomach, but you do not dare to start a conversation, you\'re still too shy to talk with her.');
-          if (((s as any).args ?? 0)[0] === 'learning1') {
-            (s as any).minut = ((s as any).minut ?? 0) + 30;
-            qspCall(s, 'stat', '');
-            scene.text('You hop into the car and the two of you drive to the city center. Tamara leads you to the shopping mall.');
-            scene.actions([
-              { label: 'Go shopping', handler: (st: GameState) => {
+        scene.actions([
+          { label: 'Drink tea with Tamara', handler: (st: GameState) => {
+    // TODO-QSP: gt 'mey_tamara_events', 'next_meet', zz_stage + 1
+  } },
+        ]);
+      } else {
+        (s as any).pcs_energy = 20;
+        (s as any).pcs_hydra = 40;
+        qspCall(s, 'mood', 'raise', 'small');
+        (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, 60 * (22 - ((s as any).hour ?? 0)) - ((s as any).minut ?? 0)) + ((s as any).rand ?? 0)(0, 59));
+        qspCall(s, 'stat', '');
+        scene.text('"I\'m sorry, Aunt Tamara, I must go home or else I\'ll get some stern scolding…"');
+        // TODO-QSP: dynamic text: "Well, I can't say I'm not disappointed <<$pcs_nickname>>. Don't stop anywhere o...
+        scene.text(`"Well, I can't say I'm not disappointed ${((s as any).pcs_nickname ?? 0)}. Don't stop anywhere on your way home." said a disappointed Aunt Tamara.`);
+        scene.text('"Remember this, if you change your mind and want to hang out, come visit us anytime again! You\'re always welcome here!"');
+        scene.actions([
+          { label: 'Go home', goto: ['pav_residential', ''] },
+          { label: 'Stay the night', goto: ['mey_home', 'start'] },
+        ]);
+      }
+    }
+  }
+  if (((s as any).args ?? 0)[0] === 'learning0') {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning10.jpg');
+    scene.text('Nervously, you ring the doorbell to the Meynold residence. Short there after you hear the lock click open and the twins\' mother stands in front of you.');
+    scene.text('"Hello Tamara! I\'ve come here to study." You still don\'t dare to call her Aunt Tamara.');
+    scene.text('"So you\'ve finally decided to go through with it. Come in." says Tamara.');
+    scene.text('The two of you make your way to the kitchen, Tamara puts on the familiar nickel plated kettle, and she begins taking out the jars of jam of the closet.');
+    scene.text('While doing her kitchen chores, Tamara is silent and not looking at you. You have a troubling feeling in the stomach, but you do not dare to start a conversation, you\'re still too shy to talk with her.');
+    scene.actions([
+      { label: 'Join her for tea', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning11.jpg');
+    scene.text('You drink tea and talk casually with each other. You\'re sitting on needles filled with anticipation waiting for Tamara to speak up.');
+    scene.text('Having finished the tea, Tamara casually says:');
+    // TODO-QSP: dynamic text: "Stand up, <<$pcs_nickname>>. I want to take a look at you."
+    scene.text(`"Stand up, ${((s as any).pcs_nickname ?? 0)}. I want to take a look at you."`);
+    scene.text('You stand up. She carefully examines you like a bug under a microscope.');
+    scene.text('"Turn around, darling."');
+    scene.text('You turn, letting her to check you out from all sides.');
+    // TODO-QSP: dynamic text: "Not bad, <<$pcs_nickname>>. I can work with this." said Tamara nodding. "But ri...
+    scene.text(`"Not bad, ${((s as any).pcs_nickname ?? 0)}. I can work with this." said Tamara nodding. "But right now you're just raw clay, which can be formed as a sculptural masterpiece or a simple brick. And who knows it may turn out to be just a dried up worthless piece of clay. Everything depends on you."`);
+    scene.text('She continues looking at you somewhat skeptical. It feels like she\'s in a store checking the quality of the item. Under her careful scrutiny, you begin to shrink, like a violet.');
+    scene.text('"Walk around a little."');
+    scene.text('You take a few steps in the kitchen. Tamara snorts:');
+    scene.text('"No no, my dear, this will not do!"');
+    scene.text('"What\'s wrong with my walk?" you ask a bit surprised.');
+    scene.text('"Well my dear, to put it lightly, you walk like you just crapped your pants and you\'re afraid it will smudge." hearing this "compliment" you feel ashamed… "But don\'t worry, I\'ll teach you how to walk like a goddess."');
+    scene.text('"Do you know how to dance?"');
+    scene.text('"I love dancing…" you answer.');
+    scene.text('"Show me."');
+    scene.actions([
+      { label: 'Dance', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning10.jpg');
+    if (((s as any).pcs_danc ?? 0) < 50) {
+      scene.text('Tamara, clearly annoyed, answers: "Your dancing skills are exactly what I expected them to be. You dance like a skank from a rural disco."');
+    } else {
+      if (((s as any).pcs_dancero ?? 0) < 50) {
+        scene.text('"You did okay…" nods Tamara. "But you still need to improve."');
+      } else {
+        // TODO-QSP: dynamic text: "Very nice, <<$pcs_nickname>>!" nods Tamara approvingly. "One less thing you nee...
+        scene.text(`"Very nice, ${((s as any).pcs_nickname ?? 0)}!" nods Tamara approvingly. "One less thing you need to learn."`);
+      }
+    }
+    scene.actions([
+      { label: 'Hmm…', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning10.jpg');
+    scene.text('Tamara stands up from the table, putting down her cup, which she had only taken a sip of:');
+    scene.text('"Let\'s take a trip to the city, my dear, so we can get started. Consider this the beginning of your studies."');
+    if (((s as any).pcs_apprnc ?? 0) < 80) {
+      scene.text('"We can\'t have you looking like this… We have a lot of work in front of us."');
+    } else {
+      if (((s as any).pcs_apprnc ?? 0) < 120) {
+        scene.text('"You\'re really cute. But only thing cuteness does is that it makes it possible to marry a regular guy. We\'re going to take it to the next level."');
+      } else {
+        if (((s as any).pcs_apprnc ?? 0) < 160) {
+          scene.text('"You\'re quite good looking, and with such an appearance there will be many suitors asking for your hand in marriage. You might even marry some average sugar daddy, being used by them for some years, until he finds someone prettier."');
+        } else {
+          scene.text('"You\'re really beautiful. But even a diamond needs cutting and polishing to remove all the rough shapes. A little touch up never hurt anyone."');
+        }
+      }
+    }
+    scene.actions([
+      { label: 'Go the city', goto: ['mey_tamara_events', 'learning1'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'learning1') {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    qspCall(s, 'stat', '');
+    scene.text('You hop into the car and the two of you drive to the city center. Tamara leads you to the shopping mall.');
+    scene.actions([
+      { label: 'Go shopping', handler: (st: GameState) => {
     scene.text('Under the watchful eye of your mentor, she says you can buy two outfits, one from Pussy-Cats and the other one from the expensive boutique.');
     (s as any).newdress_count = 0;
     (s as any).newdress_loop = 0;
@@ -234,7 +314,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_pubes = 0;
     (s as any).pcs_lipbalm = 1;
     (s as any).pcs_makeup = 3;
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).max ?? 0)(0, 60 * (19-((s as any).hour ?? 0)) - ((s as any).minut ?? 0)) + 40);
+    (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, 60 * (19-((s as any).hour ?? 0)) - ((s as any).minut ?? 0)) + 40);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Go further', handler: (st: GameState) => {
@@ -322,23 +402,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'wait_qw') {
-            scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
-            scene.text('Near the entrance, glancing at the clock, Tamara waits for you.');
-            scene.actions([
-              { label: 'Return to the Meynolds residence', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'wait_qw') {
+    scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
+    scene.text('Near the entrance, glancing at the clock, Tamara waits for you.');
+    scene.actions([
+      { label: 'Return to the Meynolds residence', handler: (st: GameState) => {
     // TODO-QSP: mey_vika['mey_vika_qw'] = 40
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['mey_home', 'start'] },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'rebuke') {
-            scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea0.jpg');
-            scene.text('You stand outside the Meynold residence. You can hear footsteps behind the door, but when you ring the bell, no one opens.');
-            scene.actions([
-              { label: 'Ring the doorbell', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'rebuke') {
+    scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea0.jpg');
+    scene.text('You stand outside the Meynold residence. You can hear footsteps behind the door, but when you ring the bell, no one opens.');
+    scene.actions([
+      { label: 'Ring the doorbell', handler: (st: GameState) => {
     scene.text('You ring the bell again… Once again you hear the sound of heels, but the door stays shut. You\'re starting to get anxious.');
     scene.actions([
       { label: 'Ring the doorbell again', handler: (st: GameState) => {
@@ -403,16 +483,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-              { label: 'Go home', handler: (st: GameState) => {
+      { label: 'Go home', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
   }, goto: ['pav_residential', ''] },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'party0') {
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
-            scene.text('"My dear, my company is having an office party tonight, would you like to accompany me? I would like to introduce you to some people. If you do decide to tag along, you need to make yourself presentable. As soon as we enter I want the whole room to look at you in awe."');
-            scene.actions([
-              { label: 'Refuse', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'party0') {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
+    scene.text('"My dear, my company is having an office party tonight, would you like to accompany me? I would like to introduce you to some people. If you do decide to tag along, you need to make yourself presentable. As soon as we enter I want the whole room to look at you in awe."');
+    scene.actions([
+      { label: 'Refuse', handler: (st: GameState) => {
     (s as any).mey_vika['mey_vika_qw'] = 50;
     scene.text('"I\'m sorry Aunt Tamara, I don\'t feel well today, I won\'t be able to accompany you…"');
     scene.text('"No worries, maybe next time."');
@@ -420,7 +500,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', goto: ['mey_home', 'start'] },
     ]);
   } },
-              { label: 'Agree', handler: (st: GameState) => {
+      { label: 'Agree', handler: (st: GameState) => {
     (s as any).mey_vika['mey_vika_qw'] = 41;
     scene.text('"I would love to accompany you to the party, Aunt Tamara! I\'ll go and get ready right away."');
     scene.text('Tamara looks mischievously at you, but strictly instructs you to…');
@@ -430,43 +510,43 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', goto: ['mey_home', 'start'] },
     ]);
   } },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'check_look') {
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
-            if ((((s as any).clothingworntype ?? 0) === 'moncheri_gown'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_dress'  ||  ((s as any).clothingworntype ?? 0) === 'fashionista_dress')  &&  (((s as any).pcs_makeup ?? 0) === 3  ||  ((s as any).pcs_makeup ?? 0) === 2)  &&  ((s as any).pcs_sweat ?? 0) <= 20  &&  ((s as any).pcs_apprnc ?? 0) >= 60) {
-              if (((s as any).shorthair ?? 0) === 0  &&  (!((s as any).pcs_hairbsh ?? 0))) {
-                scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
-                scene.text('Tamara examines you and shakes her head in dissaproval. You\'re not ready for your great "debut"… Disappointed, you head back…');
-                scene.actions([
-                  { label: 'Depart', goto: ['mey_home', 'start'] },
-                ]);
-              } else {
-                scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
-                scene.text('"I\'m ready!"');
-                scene.text('Tamara starts examining you.');
-                scene.text('"You\'re looking great. Let\'s go!');
-                scene.actions([
-                  { label: 'Go to the office party', goto: ['mey_tamara_events', 'party1'] },
-                ]);
-              }
-            } else {
-              scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
-              scene.text('Tamara examines you and shakes her head in dissaproval. You\'re not ready for your great "debut"… Disappointed, you head back…');
-              scene.actions([
-                { label: 'Depart', goto: ['mey_home', 'start'] },
-              ]);
-            }
-          }
-          if (((s as any).args ?? 0)[0] === 'party1') {
-            (s as any).minut = ((s as any).minut ?? 0) + 30;
-            scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
-            scene.text('Tamara stops the car in front of the restaurant.');
-            // TODO-QSP: dynamic text: "Listen closely now, <<$pcs_nickname>>. It's a very formal party with some big s...
-            scene.text(`"Listen closely now, ${((s as any).pcs_nickname ?? 0)}. It's a very formal party with some big shots from the city so try not to embarrass me. You should act like Cinderella at the ball, be charming and entrance them with your beauty. Don't get drunk and begin dancing naked on the table or accompany different men to the toilet, you're not a prostitute. I really hope you follow my advice. Unlike the time I let Vicky tag along…`);
-            scene.text('You wisely decide not to ask Aunt Tamara what happened that time she brought Vicky with her, you\'ll ask her at the party instead.');
-            scene.actions([
-              { label: 'Go inside the restaurant', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'check_look') {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
+    if ((((s as any).clothingworntype ?? 0) === 'moncheri_gown'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_dress'  ||  ((s as any).clothingworntype ?? 0) === 'fashionista_dress')  &&  (((s as any).pcs_makeup ?? 0) === 3  ||  ((s as any).pcs_makeup ?? 0) === 2)  &&  ((s as any).pcs_sweat ?? 0) <= 20  &&  ((s as any).pcs_apprnc ?? 0) >= 60) {
+      if (((s as any).shorthair ?? 0) === 0  &&  (!((s as any).pcs_hairbsh ?? 0))) {
+        scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
+        scene.text('Tamara examines you and shakes her head in dissaproval. You\'re not ready for your great "debut"… Disappointed, you head back…');
+        scene.actions([
+          { label: 'Depart', goto: ['mey_home', 'start'] },
+        ]);
+      } else {
+        scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
+        scene.text('"I\'m ready!"');
+        scene.text('Tamara starts examining you.');
+        scene.text('"You\'re looking great. Let\'s go!');
+        scene.actions([
+          { label: 'Go to the office party', goto: ['mey_tamara_events', 'party1'] },
+        ]);
+      }
+    } else {
+      scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
+      scene.text('Tamara examines you and shakes her head in dissaproval. You\'re not ready for your great "debut"… Disappointed, you head back…');
+      scene.actions([
+        { label: 'Depart', goto: ['mey_home', 'start'] },
+      ]);
+    }
+  }
+  if (((s as any).args ?? 0)[0] === 'party1') {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
+    scene.text('Tamara stops the car in front of the restaurant.');
+    // TODO-QSP: dynamic text: "Listen closely now, <<$pcs_nickname>>. It's a very formal party with some big s...
+    scene.text(`"Listen closely now, ${((s as any).pcs_nickname ?? 0)}. It's a very formal party with some big shots from the city so try not to embarrass me. You should act like Cinderella at the ball, be charming and entrance them with your beauty. Don't get drunk and begin dancing naked on the table or accompany different men to the toilet, you're not a prostitute. I really hope you follow my advice. Unlike the time I let Vicky tag along…`);
+    scene.text('You wisely decide not to ask Aunt Tamara what happened that time she brought Vicky with her, you\'ll ask her at the party instead.');
+    scene.actions([
+      { label: 'Go inside the restaurant', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party6.jpg');
     scene.text('The doorman opens the door for you. The restaurant\'s hall filled with people. The men in expensive suits and all the women in evening gowns. You hear classical music playing. The waiters, carrying drinks, are moving effortlessly among the guests. Tamara takes a glass of champagne from a tray while a waiter passes by.');
     scene.text('"Don\'t be shy, my dear. Start mingling. I\'ll call you over when I need you. Remember don\'t drink too much. And be charming!" She says while she theatrically raises her glass, smiling, and quickly moving towards someone she recognizes.');
@@ -507,27 +587,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'party2') {
-            if (((s as any).hour ?? 0) === 2) {
-              scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
-              scene.text('The party finishes. The restaurant is closing. It\'s time to go home.');
-              return;
-              scene.actions([
-                { label: 'Go home', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'party2') {
+    if (((s as any).hour ?? 0) === 2) {
+      scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
+      scene.text('The party finishes. The restaurant is closing. It\'s time to go home.');
+      return;
+      scene.actions([
+        { label: 'Go home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
   }, goto: ['mey_home', 'start'] },
-              ]);
-            }
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party\'+rand(8, 10)+\'.jpg');
-            scene.text('"You must try the food, it\'s what the oligarchs usually eat…" someone points you in the direction of a luxurious table filled with appetizers.');
-            if (((s as any).hour ?? 0) === 23  ||  ((s as any).hour ?? 0) < 2) {
-              // TODO-QSP: act 'Return to the Meynolds residence': minut += 30
-              scene.actions([{ label: 'Continue', goto: ['mey_home', 'start'] }]);
-            }
-            scene.actions([
-              { label: 'Try the food', handler: (st: GameState) => {
+      ]);
+    }
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party\'+rand(8, 10)+\'.jpg');
+    scene.text('"You must try the food, it\'s what the oligarchs usually eat…" someone points you in the direction of a luxurious table filled with appetizers.');
+    if (((s as any).hour ?? 0) === 23  ||  ((s as any).hour ?? 0) < 2) {
+      // TODO-QSP: act 'Return to the Meynolds residence': minut += 30
+      scene.actions([{ label: 'Continue', goto: ['mey_home', 'start'] }]);
+    }
+    scene.actions([
+      { label: 'Try the food', handler: (st: GameState) => {
     if (((s as any).alko ?? 0) > 0) {
       (s as any).alko = ((s as any).alko ?? 0) - (1);
     }
@@ -541,7 +621,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Step away from the table', goto: ['mey_tamara_events', 'party2'] },
     ]);
   } },
-              { label: 'Have a glass of champagne', handler: (st: GameState) => {
+      { label: 'Have a glass of champagne', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'alcohol', 'champagne');
     qspCall(s, 'stat', '');
@@ -551,7 +631,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Step away', goto: ['mey_tamara_events', 'party2'] },
     ]);
   } },
-              { label: 'Walk around the room', handler: (st: GameState) => {
+      { label: 'Walk around the room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party9.jpg');
@@ -579,61 +659,63 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['mey_tamara_events', 'party2'] }]);
     }
   } },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'party3') {
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party15.jpg');
-            scene.text('Champagne is a treacherous drink. It goes down like lemonade. But once it hits you it feels like you were hit by a sledgehammer. Towards the end of the evening you are swaying about, clearly drunk. You keep on drifting around with a glass, giggling and hiccuping. At the end, your legs are no longer able to keep you on your feet. Gathering your last remaining strength, you find a chair in the corner. You crash on it thinking "I need to take a short break. Just a few seconds and then I\'m good to go again!"');
-            scene.text('…');
-            scene.text('You\'re awoken by Tamara in the front yard. She deliberately slams the car door, while you were sleeping in the back seat. Your mouth tastes like crap and you have a hell of a headache.');
-            scene.text('"Go to your room! We\'ll talk about this tomorrow."');
-            (s as any).mey_vika['mey_vika_qw'] = 50;
-            (s as any).mey_tamara['qw_end'] = 1;
-            (s as any).minut = ((s as any).minut ?? 0) + (((s as any).max ?? 0)(180, (23-((s as any).hour ?? 0))*60 + 55-((s as any).minut ?? 0)));
-            qspCall(s, 'stat', '');
-            scene.actions([
-              { label: 'Fall asleep', goto: ['mey_home', 'guest_bedroom'] },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'party4') {
-            (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
-            if ((!((s as any).zz_stage ?? 0))) {
-              (s as any).zz_stage = 16;
-            }
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party\'+iif(zz_stage = 18, 17, zz_stage)+\'.jpg');
-            if (((s as any).zz_stage ?? 0) === 16) {
-              (s as any).zz_stage = ((s as any).zz_stage ?? 0) + (1);
-              scene.text('The champagne silently creeps up on you. You\'re feeling more loose and finally find the strength to mingle. The alcohol is making you a bit horny and you can\'t shake off the desire, wanting to hook up with someone. You are totally forgetting the strict orders that Tamara gave you about "keeping your composure at all times, and not going looking for sexual encounters".');
-              scene.text('You look around the room observing the men. The only men you notice are either ugly or they\'ve brought their wives or girlfriends with them.');
-              scene.text('"Well, fuck!" you think angrily. "They\'re either ugly or taken!"');
-              scene.text('All of a sudden you notice something very interesting… A man in his thirties having a rowdy discussion with his girlfriend. You can see him getting upset when his girlfriend says something quite upsetting. She starts pushing him away, wanting him to leave her alone. As he moves away she mocks him with a foul gesture. Sensing blood, you head in his direction…');
-              scene.actions([
-                { label: 'Approach him', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'party3') {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party15.jpg');
+    scene.text('Champagne is a treacherous drink. It goes down like lemonade. But once it hits you it feels like you were hit by a sledgehammer. Towards the end of the evening you are swaying about, clearly drunk. You keep on drifting around with a glass, giggling and hiccuping. At the end, your legs are no longer able to keep you on your feet. Gathering your last remaining strength, you find a chair in the corner. You crash on it thinking "I need to take a short break. Just a few seconds and then I\'m good to go again!"');
+    scene.text('…');
+    scene.text('You\'re awoken by Tamara in the front yard. She deliberately slams the car door, while you were sleeping in the back seat. Your mouth tastes like crap and you have a hell of a headache.');
+    scene.text('"Go to your room! We\'ll talk about this tomorrow."');
+    (s as any).mey_vika['mey_vika_qw'] = 50;
+    (s as any).mey_tamara['qw_end'] = 1;
+    (s as any).minut = ((s as any).minut ?? 0) + (Math.max(180, (23-((s as any).hour ?? 0))*60 + 55-((s as any).minut ?? 0)));
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fall asleep', goto: ['mey_home', 'guest_bedroom'] },
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'party4') {
+    (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
+    if ((!((s as any).zz_stage ?? 0))) {
+      (s as any).zz_stage = 16;
+    }
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party\'+iif(zz_stage = 18, 17, zz_stage)+\'.jpg');
+    if (((s as any).zz_stage ?? 0) === 16) {
+      (s as any).zz_stage = ((s as any).zz_stage ?? 0) + (1);
+      scene.text('The champagne silently creeps up on you. You\'re feeling more loose and finally find the strength to mingle. The alcohol is making you a bit horny and you can\'t shake off the desire, wanting to hook up with someone. You are totally forgetting the strict orders that Tamara gave you about "keeping your composure at all times, and not going looking for sexual encounters".');
+      scene.text('You look around the room observing the men. The only men you notice are either ugly or they\'ve brought their wives or girlfriends with them.');
+      scene.text('"Well, fuck!" you think angrily. "They\'re either ugly or taken!"');
+      scene.text('All of a sudden you notice something very interesting… A man in his thirties having a rowdy discussion with his girlfriend. You can see him getting upset when his girlfriend says something quite upsetting. She starts pushing him away, wanting him to leave her alone. As he moves away she mocks him with a foul gesture. Sensing blood, you head in his direction…');
+      scene.actions([
+        { label: 'Approach him', handler: (st: GameState) => {
     // TODO-QSP: gt 'mey_tamara_events', 'party4', 17
   } },
-              ]);
-            } else {
-              (s as any).zz_stage = ((s as any).zz_stage ?? 0) + (1);
-              scene.text('You slowly approach the man, leaning close to him, glancing, not really sure how to approach the situation. He immediately notices you, and clearly signals that he doesn\'t want to be bothered right now…');
-              scene.text('"I see that you\'re having some issues with your girlfriend?" You say while trying to look as flirtatious as you can.');
-              scene.text('"Her? She\'s a gold-digger that doesn\'t know when to shut up. She\'s not going anywhere. She\'ll get it all out at the club with her friends, then return home and sleep in my bed. When she wakes up tomorrow, everything will be back to normal again…" Says the man. "And you see, I can do whatever I want tonight, fuck her…"');
-              scene.text('"Well, if you want I could help you out so you don\'t feel lonely tonight. I find this party very boring!" You look seductively at him.');
-              scene.text('"Yeah, sure why not. Come with me, I\'ll give you a grand tour of the restaurant. I\'m one the co-owners. I\'ll show you the hidden parts around here. I\'m sure you\'ll find it exciting."');
-              scene.actions([
-                { label: 'Refuse', handler: (st: GameState) => {
+      ]);
+    } else {
+      if (((s as any).zz_stage ?? 0) === 17) {
+        (s as any).zz_stage = ((s as any).zz_stage ?? 0) + (1);
+        scene.text('You slowly approach the man, leaning close to him, glancing, not really sure how to approach the situation. He immediately notices you, and clearly signals that he doesn\'t want to be bothered right now…');
+        scene.text('"I see that you\'re having some issues with your girlfriend?" You say while trying to look as flirtatious as you can.');
+        scene.text('"Her? She\'s a gold-digger that doesn\'t know when to shut up. She\'s not going anywhere. She\'ll get it all out at the club with her friends, then return home and sleep in my bed. When she wakes up tomorrow, everything will be back to normal again…" Says the man. "And you see, I can do whatever I want tonight, fuck her…"');
+        scene.text('"Well, if you want I could help you out so you don\'t feel lonely tonight. I find this party very boring!" You look seductively at him.');
+        scene.text('"Yeah, sure why not. Come with me, I\'ll give you a grand tour of the restaurant. I\'m one the co-owners. I\'ll show you the hidden parts around here. I\'m sure you\'ll find it exciting."');
+        scene.actions([
+          { label: 'Refuse', handler: (st: GameState) => {
     (s as any).mey_tamara['drink_qw'] = 1;
   }, goto: ['mey_tamara_events', 'party2'] },
-                { label: 'Go with him', goto: ['mey_tamara_events', 'party4a'] },
-              ]);
-            }
-          }
-          if (((s as any).args ?? 0)[0] === 'party4a') {
-            (s as any).zz_stage = 18;
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party18.jpg');
-            scene.text('The two of you get out of the Banquet hall. As you walk he feels your butt and you start getting more excited. You stop at a door, with a bronze sign showing "Employees only". He tells you that this is the first stop and opens the door. Further inside he opens another door leading you in.');
-            scene.text('As soon as the door closes the two of you start kissing passionately. Riled up, you push the man on the table and seat yourself next to him, grab his tie and pull him towards you.');
-            scene.actions([
-              { label: 'Continue', handler: (st: GameState) => {
+          { label: 'Go with him', goto: ['mey_tamara_events', 'party4a'] },
+        ]);
+      }
+    }
+  }
+  if (((s as any).args ?? 0)[0] === 'party4a') {
+    (s as any).zz_stage = 18;
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party18.jpg');
+    scene.text('The two of you get out of the Banquet hall. As you walk he feels your butt and you start getting more excited. You stop at a door, with a bronze sign showing "Employees only". He tells you that this is the first stop and opens the door. Further inside he opens another door leading you in.');
+    scene.text('As soon as the door closes the two of you start kissing passionately. Riled up, you push the man on the table and seat yourself next to him, grab his tie and pull him towards you.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party19.jpg');
     scene.text('Without any hesitation he slides his hand between your legs. Touching your wet pussy lips, making you moan softly. You grab him by the shoulders and push him down on his knees. He lifts your dress and starts kissing you just above your clit. You move your panties aside and he starts licking you. The sensation that hits you is indescribable and when he starts using his finger you can\'t avoid nearing the edge. Your breathing intensifies and your wet pussy is pulsating, the moaning is getting louder and louder and before you know it, you cum in his mouth…');
@@ -712,16 +794,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'party5') {
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party25.jpg');
-            scene.text('"Why is such a sweet young thing standing here alone?" you hear a male voice saying behind you. "Don\'t worry I\'ll keep you company…"');
-            scene.text('You turn facing the direction the voice is coming from. You spot a short, bald man dressed in an expensive suit. The outfit fits him badly, mostly because of his enormous belly. You judge his looks to be those of the classic sugar-daddy.');
-            scene.text('"How can it be possible that such a delicate flower is by herself, don\'t you know it\'s not good for you to be alone?" he smiles. "A delicate flower like yourself must be carefully nurtured and groomed properly, preferably by an experienced gardener. Let me buy you some champagne. I promise it\'ll taste just as heavenly as you."');
-            scene.text('He extends his hand and you notice his thick hairy fingers are decorated with multiple rings. The sugar-daddy grabs another glass from a tray and brings it to you. He speaks up again…');
-            scene.actions([
-              { label: 'Mingle', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'party5') {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party25.jpg');
+    scene.text('"Why is such a sweet young thing standing here alone?" you hear a male voice saying behind you. "Don\'t worry I\'ll keep you company…"');
+    scene.text('You turn facing the direction the voice is coming from. You spot a short, bald man dressed in an expensive suit. The outfit fits him badly, mostly because of his enormous belly. You judge his looks to be those of the classic sugar-daddy.');
+    scene.text('"How can it be possible that such a delicate flower is by herself, don\'t you know it\'s not good for you to be alone?" he smiles. "A delicate flower like yourself must be carefully nurtured and groomed properly, preferably by an experienced gardener. Let me buy you some champagne. I promise it\'ll taste just as heavenly as you."');
+    scene.text('He extends his hand and you notice his thick hairy fingers are decorated with multiple rings. The sugar-daddy grabs another glass from a tray and brings it to you. He speaks up again…');
+    scene.actions([
+      { label: 'Mingle', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party26.jpg');
     scene.text('"You should try the lobster! It goes perfectly with the champagne! To be honest, I\'m not that big of a fan when it comes to champagne and lobster, I\'d rather have a glass of vodka and cabbage rolls in a modest hut by the river. Or a beer and some crayfish! I own a modest house near town. I\'m just a simple contractor. As I\'ve built the house myself, it\'s very modest. The pool is only twenty five meters long." he laughs obscenely, making his second chin shake.');
     scene.text('"So what do you say my delicate flower, I would love to take you on a date. We\'d had a great time, we can swim in the pool, grab something to eat." he says while trying to hug you by the waist.');
@@ -741,13 +823,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'party6') {
-            scene.img('images/characters/pavlovsk/school/girl/vicky/event/party28.jpg');
-            scene.text('You notice a middle-aged, short, but awe-inspiring man with a square face. He\'s rough and ugly, but there\'s something attractive about him, some sort of charisma, just like Charles Bronson. He looks in your direction very often as he assesses you. He\'s standing with an older, once very beautiful woman. She manages to keep up her good looks by paying a lot of money to maintain her appearance, but you can\'t win the battle against time…');
-            scene.actions([
-              { label: 'Observe the man', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'party6') {
+    scene.img('images/characters/pavlovsk/school/girl/vicky/event/party28.jpg');
+    scene.text('You notice a middle-aged, short, but awe-inspiring man with a square face. He\'s rough and ugly, but there\'s something attractive about him, some sort of charisma, just like Charles Bronson. He looks in your direction very often as he assesses you. He\'s standing with an older, once very beautiful woman. She manages to keep up her good looks by paying a lot of money to maintain her appearance, but you can\'t win the battle against time…');
+    scene.actions([
+      { label: 'Observe the man', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party29.jpg');
     scene.text('Someone taps you on the shoulder. Turning around, you see it\'s Tamara. She grabs you under her elbow and leads you over…');
     scene.text('"I noticed you were checking out that man, my dear. Well, let me introduce you to him, I\'m sure you two will hit it off."');
@@ -777,84 +859,80 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
-          }
-          if (((s as any).args ?? 0)[0] === 'reputation') {
-            (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
-            if (((s as any).zz_stage ?? 0)!==3) {
-              // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/eve...
-              scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/pavlovsk/school/girl/vicky/event/reputation'+zz_stage+'.jpg"></center>`);
-            }
-            if ((!((s as any).zz_stage ?? 0))) {
-              scene.text('You stand in front of Tamara, with your eyes tearing up.');
-              scene.text('"Well, what do you want? I don\'t want you here anymore."');
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'reputation') {
+    (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
+    if (((s as any).zz_stage ?? 0)!==3) {
+      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/eve...
+      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/pavlovsk/school/girl/vicky/event/reputation'+zz_stage+'.jpg"></center>`);
+    }
+    if ((!((s as any).zz_stage ?? 0))) {
+      scene.text('You stand in front of Tamara, with your eyes tearing up.');
+      scene.text('"Well, what do you want? I don\'t want you here anymore."');
+    } else {
+      if (((s as any).zz_stage ?? 0) === 1) {
+        scene.text('You start sniffing and let out…');
+        scene.text('"Please, I beg you, don\'t send me away! Please! I… I\'ll do whatever you want…" you say bursting into tears.');
+        scene.text('"Oh… What am I going to do with you?" Tamara sighs after a few minutes. "I can\'t really kick you out, but I can\'t let you off the hook either… I guess I\'ll keep on mentoring you…"');
+        scene.text('"Ma-m-maybe, it\'s possible to redeem myself? Some way to improve?" you sob, trying to wipe away the tears.');
+        scene.text('"I really thought you were smarter than my girls. They\'ve got their brains from their daddy. Both of them."');
+        scene.text('"Especially Vicky, lascivious like a cat in the spring. Not caring who she picks as a sexual partner. You being an example."');
+      } else {
+        if (((s as any).zz_stage ?? 0) === 2) {
+          scene.text('Tamara was deep in her thoughts, biting her glasses, twisting them in her hands until…');
+          scene.text('"But you should be praised that you immediately came here and confessed. So I didn\'t find it out through the "grapevine". So you\'re not completely hopeless. But you\'ve made things more complicated for yourself. There\'s a simple way to save face though. But we need something to raise your reputation all over again…"');
+          scene.text('Tamara thinks out loud to herself, sucking on her glasses, not paying attention to you. The tears are still rolling down your cheeks, but you start getting back your composure! Aunt Tamara starts talking to herself again, silently pointing to the door.');
+        } else {
+          if (((s as any).zz_stage ?? 0) === 3) {
+            scene.img('images/characters/pavlovsk/school/girl/vicky/event/reputation2.jpg');
+            scene.text('Tamara pauses for a short time, continuing to nibble on the earpiece and starts clicking her nails on the armrest. A couple of minutes later, that seem like an eternity, she finally looks at you.');
+            scene.text('"Listen very carefully, I will not repeat myself. I\'ve come up with a way how you can redeem yourself. But for someone like you this might be very hard!" She starts while you fully focus on her. She stands up and continues…');
+            scene.text('"First and foremost. From now on, you\'re going to behave as a nun. You should avoid sex unless for education purpose… No more of that generous attitude to having sex everywhere, the disco, in parks, not even in school! You are forbidden to have sex with anyone in Pavlovsk. The only people you can even consider having sex with are the people closest to you, those who you can fully trust. You have to strictly maintain the good girl reputation in Pavlovsk."');
+            scene.text('"If you really find it unbearable and have to let off some steam, go to the city. There\'s a club there. Or you can go somewhere else where you can meet someone. If nobody knows you, you can have sex however you want and without harm to your reputation. The main thing is that you don\'t forget to use protection or people will know and then not even I can help you."');
+            scene.text('"And finally." Tamara claps her hands. "Time for a lesson. What\'s the quickest way to orgasm?"');
+            scene.text('"By having anal sex…" you quickly answer without thinking, instantly regretting your answer.');
+            scene.text('"Come here!" Tamara sternly tells you…');
+          } else {
+            if (((s as any).zz_stage ?? 0) === 4) {
+              scene.text('She makes you take off your panties, bending you across her knees. She then proceeds slapping your butt over and over again…');
+              scene.text('You try to endure because you deserve it. But Tamara doesn\'t stop after a few slaps, she continues slapping your ass harder and harder, leaving your poor butt with a burning sensation, hurting like hell. You start squealing more loudly with each slap. At the end, you can\'t handle it anymore and you start crying hard. The spanking immediately stops.');
+              scene.text('"There, there, baby, don\'t cry. Come on, stop, I admit, I was filled with anger and got carried away, I may have overdone it a little."');
+              scene.text('Sobbing, you try to pull the panties over your bruised ass. Tamara stops you, and pulls off your panties…');
+              scene.text('"You won\'t be needing them yet. You don\'t have to be embarrassed, no one will see you here. Let\'s go to my room, I have a lotion in my room that\'ll help…" She takes you by the hand and leads you into her room.');
+              scene.text('There, she grabs a bottle with some kind of lotion in it.');
+              scene.text('"Now, lie down on the bed, and relax your cute little butt!" You lie down on Tamara\'s bed. Her bed is quite modest and hard compared to the enormous, luxurious bed in Vicky\'s room!');
+              scene.text('Tamara carefully starts rubbing the pleasant-smelling ointment on your red, marked ass. And as she said, the burning sensation immediately begins to subside under the tender caressing hands of Aunt Tamara. You have a hard time believing these are the same hands that just severely flogged you. "How can she snap so easily?" You once again start thinking about it…');
+              scene.text('Her gentle hands continue caressing your back and feet, no longer focusing only on your butt, which already feels much better. You start enjoying yourself a bit too much. Your bare pussy starts getting wet! Without thinking about it you start moaning under the skillful caresses.');
             } else {
-              scene.text('You start sniffing and let out…');
-              scene.text('"Please, I beg you, don\'t send me away! Please! I… I\'ll do whatever you want…" you say bursting into tears.');
-              scene.text('"Oh… What am I going to do with you?" Tamara sighs after a few minutes. "I can\'t really kick you out, but I can\'t let you off the hook either… I guess I\'ll keep on mentoring you…"');
-              scene.text('"Ma-m-maybe, it\'s possible to redeem myself? Some way to improve?" you sob, trying to wipe away the tears.');
-              scene.text('"I really thought you were smarter than my girls. They\'ve got their brains from their daddy. Both of them."');
-              scene.text('"Especially Vicky, lascivious like a cat in the spring. Not caring who she picks as a sexual partner. You being an example."');
-              if (((s as any).zz_stage ?? 0) === 2) {
-                scene.text('Tamara was deep in her thoughts, biting her glasses, twisting them in her hands until…');
-                scene.text('"But you should be praised that you immediately came here and confessed. So I didn\'t find it out through the "grapevine". So you\'re not completely hopeless. But you\'ve made things more complicated for yourself. There\'s a simple way to save face though. But we need something to raise your reputation all over again…"');
-                scene.text('Tamara thinks out loud to herself, sucking on her glasses, not paying attention to you. The tears are still rolling down your cheeks, but you start getting back your composure! Aunt Tamara starts talking to herself again, silently pointing to the door.');
+              if (((s as any).zz_stage ?? 0) === 5) {
+                scene.text('Suddenly the caresses stop abruptly. You turn your head wondering why it stopped. Sitting on the bed next to you, you notice a completely nude Tamara, awkwardly cross legged, looking away from you…');
+                // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>, I think I got a little carried away again… you've...
+                scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? 0)}, I think I got a little carried away again… you've never seen me naked…"`);
               } else {
-                scene.img('images/characters/pavlovsk/school/girl/vicky/event/reputation2.jpg');
-                scene.text('Tamara pauses for a short time, continuing to nibble on the earpiece and starts clicking her nails on the armrest. A couple of minutes later, that seem like an eternity, she finally looks at you.');
-                scene.text('"Listen very carefully, I will not repeat myself. I\'ve come up with a way how you can redeem yourself. But for someone like you this might be very hard!" She starts while you fully focus on her. She stands up and continues…');
-                scene.text('"First and foremost. From now on, you\'re going to behave as a nun. You should avoid sex unless for education purpose… No more of that generous attitude to having sex everywhere, the disco, in parks, not even in school! You are forbidden to have sex with anyone in Pavlovsk. The only people you can even consider having sex with are the people closest to you, those who you can fully trust. You have to strictly maintain the good girl reputation in Pavlovsk."');
-                scene.text('"If you really find it unbearable and have to let off some steam, go to the city. There\'s a club there. Or you can go somewhere else where you can meet someone. If nobody knows you, you can have sex however you want and without harm to your reputation. The main thing is that you don\'t forget to use protection or people will know and then not even I can help you."');
-                scene.text('"And finally." Tamara claps her hands. "Time for a lesson. What\'s the quickest way to orgasm?"');
-                scene.text('"By having anal sex…" you quickly answer without thinking, instantly regretting your answer.');
-                scene.text('"Come here!" Tamara sternly tells you…');
-                if (((s as any).zz_stage ?? 0) === 4) {
-                  scene.text('She makes you take off your panties, bending you across her knees. She then proceeds slapping your butt over and over again…');
-                  scene.text('You try to endure because you deserve it. But Tamara doesn\'t stop after a few slaps, she continues slapping your ass harder and harder, leaving your poor butt with a burning sensation, hurting like hell. You start squealing more loudly with each slap. At the end, you can\'t handle it anymore and you start crying hard. The spanking immediately stops.');
-                  scene.text('"There, there, baby, don\'t cry. Come on, stop, I admit, I was filled with anger and got carried away, I may have overdone it a little."');
-                  scene.text('Sobbing, you try to pull the panties over your bruised ass. Tamara stops you, and pulls off your panties…');
-                  scene.text('"You won\'t be needing them yet. You don\'t have to be embarrassed, no one will see you here. Let\'s go to my room, I have a lotion in my room that\'ll help…" She takes you by the hand and leads you into her room.');
-                  scene.text('There, she grabs a bottle with some kind of lotion in it.');
-                  scene.text('"Now, lie down on the bed, and relax your cute little butt!" You lie down on Tamara\'s bed. Her bed is quite modest and hard compared to the enormous, luxurious bed in Vicky\'s room!');
-                  scene.text('Tamara carefully starts rubbing the pleasant-smelling ointment on your red, marked ass. And as she said, the burning sensation immediately begins to subside under the tender caressing hands of Aunt Tamara. You have a hard time believing these are the same hands that just severely flogged you. "How can she snap so easily?" You once again start thinking about it…');
-                  scene.text('Her gentle hands continue caressing your back and feet, no longer focusing only on your butt, which already feels much better. You start enjoying yourself a bit too much. Your bare pussy starts getting wet! Without thinking about it you start moaning under the skillful caresses.');
+                if (((s as any).zz_stage ?? 0) === 6) {
+                  scene.text('An impulse makes you take off your shirt and sit next to your mentor. You start caressing her magnificent breasts, touching her pink nipples with your fingers.');
                 } else {
-                  scene.text('Suddenly the caresses stop abruptly. You turn your head wondering why it stopped. Sitting on the bed next to you, you notice a completely nude Tamara, awkwardly cross legged, looking away from you…');
-                  // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>, I think I got a little carried away again… you've...
-                  scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? 0)}, I think I got a little carried away again… you've never seen me naked…"`);
-                  if (((s as any).zz_stage ?? 0) === 6) {
-                    scene.text('An impulse makes you take off your shirt and sit next to your mentor. You start caressing her magnificent breasts, touching her pink nipples with your fingers.');
-                  } else {
+                  if (((s as any).zz_stage ?? 0) === 7) {
                     scene.text('Tamara moans, leans towards you, grabs you at the small of your back and pulls you in closer. She arches her back and throws her head back, like a big red cat, showing her smooth skinned neck.');
                     scene.text('Your hands start gliding over her flawless skin. You kiss her exposed neck, continuing along the jaw line…');
+                  } else {
                     if (((s as any).zz_stage ?? 0) === 8) {
                       scene.text('You kiss her, gently nibbling her lower lip. While you kiss, you slowly slide your hand near Tamara\'s pussy lips. You start circling your finger just inside her lips, being careful not to make contact with her clit.');
                       scene.text('Getting wetter, Tamara pushes you on the bed and spreads your legs. She slowly circles her tongue just inside your lips, right on the edge. Slowly getting closer and then moving away, and then getting closer again teasing you…');
                     } else {
-                      scene.text('You let out a moan, and Tamara moves up your body kissing you. As she approaches your lips you move down a little, slowly making your way towards her chest. Nibbling on her breasts, you hear Tamara letting out tiny moans, wordlessly egging you on. You finally place your mouth around her nipple and gently start sucking them, making her gasp…');
-                      if (((s as any).zz_stage ?? 0) === 10) {
-                        scene.text('Tamara, panting, begins to move down again. All of a sudden you gasp involuntarily and begin moaning louder as she flicks her tongue faster over your anus. While licking your anus she slowly slides a finger inside your wet hole. Overcome with ecstasy you tighten your pussy. She devours your delicious juices and slowly introduces another finger inside of you. As you start panting she increases the speed. You shudder as you start having what feels like never ending orgasms. You sure can learn a lot from her…');
+                      if (((s as any).zz_stage ?? 0) === 9) {
+                        scene.text('You let out a moan, and Tamara moves up your body kissing you. As she approaches your lips you move down a little, slowly making your way towards her chest. Nibbling on her breasts, you hear Tamara letting out tiny moans, wordlessly egging you on. You finally place your mouth around her nipple and gently start sucking them, making her gasp…');
                       } else {
-                        scene.text('Catching your breath, you thank your mentor. But there is no time for that. You slide a finger inside her feeling her pulsating pussy. Tamara pants harder and harder, you edge her several times. While sucking and nibbling on her pussy when you feel she can\'t handle it anymore. She bends her knees, screams, and cums hard. You lick her clean after she orgasms. It looks like you\'re a quick learner! She lays back after a few seconds, panting, with sweat coating her body. Tamara, satisfied, finally turns to face you saying…');
-                        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>! You have a real talent! Promise me you won't waste it...
-                        scene.text(`"Thanks ${((s as any).pcs_nickname ?? 0)}! You have a real talent! Promise me you won't waste it on those primates hanging out in the Park… They don't deserve you…"`);
-                      }
-                      if (((s as any).zz_stage ?? 0) < 11) {
-                        return;
-                        scene.actions([
-                          { label: 'Pleade', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_tamara_events', 'reputation', zz_stage+1
-  } },
-                        ]);
-                      } else {
-                        scene.actions([
-                          { label: 'Go inside', handler: (st: GameState) => {
-    (s as any).mey_tamara['reputation_qw'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 21) + 20);
-    (s as any).pcs_horny = 0;
-    (s as any).spanked = 2;
-  }, goto: ['mey_home', 'guest_bedroom'] },
-                        ]);
+                        if (((s as any).zz_stage ?? 0) === 10) {
+                          scene.text('Tamara, panting, begins to move down again. All of a sudden you gasp involuntarily and begin moaning louder as she flicks her tongue faster over your anus. While licking your anus she slowly slides a finger inside your wet hole. Overcome with ecstasy you tighten your pussy. She devours your delicious juices and slowly introduces another finger inside of you. As you start panting she increases the speed. You shudder as you start having what feels like never ending orgasms. You sure can learn a lot from her…');
+                        } else {
+                          if (((s as any).zz_stage ?? 0) === 11) {
+                            scene.text('Catching your breath, you thank your mentor. But there is no time for that. You slide a finger inside her feeling her pulsating pussy. Tamara pants harder and harder, you edge her several times. While sucking and nibbling on her pussy when you feel she can\'t handle it anymore. She bends her knees, screams, and cums hard. You lick her clean after she orgasms. It looks like you\'re a quick learner! She lays back after a few seconds, panting, with sweat coating her body. Tamara, satisfied, finally turns to face you saying…');
+                            // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>! You have a real talent! Promise me you won't waste it...
+                            scene.text(`"Thanks ${((s as any).pcs_nickname ?? 0)}! You have a real talent! Promise me you won't waste it on those primates hanging out in the Park… They don't deserve you…"`);
+                          }
+                        }
                       }
                     }
                   }
@@ -862,63 +940,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
-          scene.actions([
-            { label: 'Join her for tea', handler: (st: GameState) => {
-    scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning11.jpg');
-    scene.text('You drink tea and talk casually with each other. You\'re sitting on needles filled with anticipation waiting for Tamara to speak up.');
-    scene.text('Having finished the tea, Tamara casually says:');
-    // TODO-QSP: dynamic text: "Stand up, <<$pcs_nickname>>. I want to take a look at you."
-    scene.text(`"Stand up, ${((s as any).pcs_nickname ?? 0)}. I want to take a look at you."`);
-    scene.text('You stand up. She carefully examines you like a bug under a microscope.');
-    scene.text('"Turn around, darling."');
-    scene.text('You turn, letting her to check you out from all sides.');
-    // TODO-QSP: dynamic text: "Not bad, <<$pcs_nickname>>. I can work with this." said Tamara nodding. "But ri...
-    scene.text(`"Not bad, ${((s as any).pcs_nickname ?? 0)}. I can work with this." said Tamara nodding. "But right now you're just raw clay, which can be formed as a sculptural masterpiece or a simple brick. And who knows it may turn out to be just a dried up worthless piece of clay. Everything depends on you."`);
-    scene.text('She continues looking at you somewhat skeptical. It feels like she\'s in a store checking the quality of the item. Under her careful scrutiny, you begin to shrink, like a violet.');
-    scene.text('"Walk around a little."');
-    scene.text('You take a few steps in the kitchen. Tamara snorts:');
-    scene.text('"No no, my dear, this will not do!"');
-    scene.text('"What\'s wrong with my walk?" you ask a bit surprised.');
-    scene.text('"Well my dear, to put it lightly, you walk like you just crapped your pants and you\'re afraid it will smudge." hearing this "compliment" you feel ashamed… "But don\'t worry, I\'ll teach you how to walk like a goddess."');
-    scene.text('"Do you know how to dance?"');
-    scene.text('"I love dancing…" you answer.');
-    scene.text('"Show me."');
-    scene.actions([
-      { label: 'Dance', handler: (st: GameState) => {
-    scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning10.jpg');
-    if (((s as any).pcs_danc ?? 0) < 50) {
-      scene.text('Tamara, clearly annoyed, answers: "Your dancing skills are exactly what I expected them to be. You dance like a skank from a rural disco."');
-    } else {
-      scene.text('"You did okay…" nods Tamara. "But you still need to improve."');
-      // TODO-QSP: dynamic text: "Very nice, <<$pcs_nickname>>!" nods Tamara approvingly. "One less thing you nee...
-      scene.text(`"Very nice, ${((s as any).pcs_nickname ?? 0)}!" nods Tamara approvingly. "One less thing you need to learn."`);
-    }
-    scene.actions([
-      { label: 'Hmm…', handler: (st: GameState) => {
-    scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning10.jpg');
-    scene.text('Tamara stands up from the table, putting down her cup, which she had only taken a sip of:');
-    scene.text('"Let\'s take a trip to the city, my dear, so we can get started. Consider this the beginning of your studies."');
-    if (((s as any).pcs_apprnc ?? 0) < 80) {
-      scene.text('"We can\'t have you looking like this… We have a lot of work in front of us."');
-    } else {
-      scene.text('"You\'re really cute. But only thing cuteness does is that it makes it possible to marry a regular guy. We\'re going to take it to the next level."');
-      if (((s as any).pcs_apprnc ?? 0) < 160) {
-        scene.text('"You\'re quite good looking, and with such an appearance there will be many suitors asking for your hand in marriage. You might even marry some average sugar daddy, being used by them for some years, until he finds someone prettier."');
-      } else {
-        scene.text('"You\'re really beautiful. But even a diamond needs cutting and polishing to remove all the rough shapes. A little touch up never hurt anyone."');
-      }
-      scene.actions([
-        { label: 'Go the city', goto: ['mey_tamara_events', 'learning1'] },
-      ]);
-    }
-  } },
-    ]);
-  } },
-    ]);
-  } },
-          ]);
         }
       }
+    }
+    if (((s as any).zz_stage ?? 0) < 11) {
+      return;
+      scene.actions([
+        { label: 'Pleade', handler: (st: GameState) => {
+    // TODO-QSP: gt 'mey_tamara_events', 'reputation', zz_stage+1
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Go inside', handler: (st: GameState) => {
+    (s as any).mey_tamara['reputation_qw'] = 1;
+    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 21) + 20);
+    (s as any).pcs_horny = 0;
+    (s as any).spanked = 2;
+  }, goto: ['mey_home', 'guest_bedroom'] },
+      ]);
     }
   }
   scene.build();

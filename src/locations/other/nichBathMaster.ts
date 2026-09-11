@@ -22,46 +22,54 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('Nicholas is currently in here using the shower.');
       (s as any).nichCleanAppropriate = 0;
     } else {
-      scene.text('Nicholas is currently in here preparing himself to go out.');
-      (s as any).nichCleanAppropriate = 0;
-      if (((s as any).nichNichAct ?? 0) === 'bathEvening') {
-        scene.text('Nicholas is currently in here brushing his teeth.');
-        (s as any).nichCleanAppropriate = 0;
-      }
-      if (((s as any).nichGalaAct ?? 0) === 'bathMorning') {
-        scene.text('Gala is currently in here using the shower.');
+      if (((s as any).nichNichAct ?? 0) === 'bathClub') {
+        scene.text('Nicholas is currently in here preparing himself to go out.');
         (s as any).nichCleanAppropriate = 0;
       } else {
+        if (((s as any).nichNichAct ?? 0) === 'bathEvening') {
+          scene.text('Nicholas is currently in here brushing his teeth.');
+          (s as any).nichCleanAppropriate = 0;
+        }
+      }
+    }
+    if (((s as any).nichGalaAct ?? 0) === 'bathMorning') {
+      scene.text('Gala is currently in here using the shower.');
+      (s as any).nichCleanAppropriate = 0;
+    } else {
+      if (((s as any).nichGalaAct ?? 0) === 'bathEvening') {
         scene.text('Gala is currently in here brushing her teeth.');
         (s as any).nichCleanAppropriate = 0;
       }
-      if (((s as any).nichTanyAct ?? 0) === 'bathMorning') {
-        scene.text('<a href="exec: gt \'nichTanya\', \'bathroom\'">Tanya</a> is currently in here using the shower.');
-        (s as any).nichCleanAppropriate = 0;
-      } else {
+    }
+    if (((s as any).nichTanyAct ?? 0) === 'bathMorning') {
+      scene.text('<a href="exec: gt \'nichTanya\', \'bathroom\'">Tanya</a> is currently in here using the shower.');
+      (s as any).nichCleanAppropriate = 0;
+    } else {
+      if (((s as any).nichTanyAct ?? 0) === 'bathEvening') {
         scene.text('Tanya is currently in here brushing her teeth.');
         (s as any).nichCleanAppropriate = 0;
+      } else {
         if (((s as any).nichTanyAct ?? 0) === 'prepareClub') {
           scene.text('Tanya is currently in here doing her make-up.');
           (s as any).nichCleanAppropriate = 0;
         }
-        if (((s as any).nichWork ?? 0) === 2) {
-          if ((!((s as any).nichCleanAppropriate ?? 0))) {
-            scene.text('It wouldn\'t be appropriate to clean this room now.');
-          } else {
-            qspCall(s, 'nichChore', 'inspect', 'masterbath');
-          }
-        }
-        scene.actions([
-          { label: 'Go to the master bedroom', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBedroomMaster', ''] },
-          { label: 'Go to Tanya\'s room', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBedroomTanja', ''] },
-        ]);
       }
     }
+    if (((s as any).nichWork ?? 0) === 2) {
+      if ((!((s as any).nichCleanAppropriate ?? 0))) {
+        scene.text('It wouldn\'t be appropriate to clean this room now.');
+      } else {
+        qspCall(s, 'nichChore', 'inspect', 'masterbath');
+      }
+    }
+    scene.actions([
+      { label: 'Go to the master bedroom', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichBedroomMaster', ''] },
+      { label: 'Go to Tanya\'s room', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichBedroomTanja', ''] },
+    ]);
   }
   scene.build();
 }

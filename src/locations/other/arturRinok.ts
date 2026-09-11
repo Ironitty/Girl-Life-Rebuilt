@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -44,7 +44,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -66,7 +66,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'drink', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -90,36 +90,38 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).arturday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([{ label: 'Continue', goto: ['arturQW', 'arturQW_1'] }]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'stat', '');
-      if (((s as any).arturblowday ?? 0) === ((s as any).daystart ?? 0)) {
-        scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
-        scene.text('Arthur smiles kindly at you. "There is much work to do, I\'m sorry."');
-        scene.actions([
-          { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        ]);
-      } else {
-        scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
-        scene.text('Arthur smiles kindly and hands you a particularly juicy looking tangerine. "Sorry, girl, but I have work to do. Unless we make it quick."');
-        qspCall(s, 'willpower', 'bj', 'resist', 'hard');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      if (((s as any).arturday ?? 0) === ((s as any).daystart ?? 0)) {
+        (s as any).minut = ((s as any).minut ?? 0) + 5;
+        qspCall(s, 'stat', '');
+        if (((s as any).arturblowday ?? 0) === ((s as any).daystart ?? 0)) {
+          scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
+          scene.text('Arthur smiles kindly at you. "There is much work to do, I\'m sorry."');
           scene.actions([
-            { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
+            { label: 'Leave', goto: ['pav_train_market', 'start'] },
           ]);
         } else {
-          scene.actions([
-            { label: 'Leave', handler: (st: GameState) => {
+          scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
+          scene.text('Arthur smiles kindly and hands you a particularly juicy looking tangerine. "Sorry, girl, but I have work to do. Unless we make it quick."');
+          qspCall(s, 'willpower', 'bj', 'resist', 'hard');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['pav_train_market', 'start'] },
+            ]);
+          }
+          scene.actions([
+            { label: 'Go with Arthur', goto: ['arturkiosk', ''] },
           ]);
         }
-        scene.actions([
-          { label: 'Go with Arthur', goto: ['arturkiosk', ''] },
-        ]);
       }
     }
   }
@@ -197,7 +199,7 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

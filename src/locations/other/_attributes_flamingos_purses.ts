@@ -13,66 +13,95 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 5: 2500
   // TODO-QSP: 6: 2600
   // TODO-QSP: 7: 2700
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).PurseQuality = 3;
     (s as any).PursePrice = 2300;
   } else {
-    (s as any).PurseQuality = 3;
-    (s as any).PursePrice = 2300;
-    if (((s as any).ARGS ?? 0)[0] === 3) {
+    if (((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).PurseQuality = 3;
       (s as any).PursePrice = 2300;
     } else {
-      (s as any).PurseQuality = 3;
-      (s as any).PursePrice = 2300;
-      if (((s as any).ARGS ?? 0)[0] === 5) {
+      if (((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).PurseQuality = 3;
         (s as any).PursePrice = 2300;
       } else {
-        (s as any).PurseQuality = 3;
-        (s as any).PursePrice = 2300;
-        if (((s as any).ARGS ?? 0)[0] === 7) {
+        if (((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).PurseQuality = 3;
           (s as any).PursePrice = 2300;
         } else {
-          (s as any).PurseQuality = 3;
-          (s as any).PursePrice = 2300;
-          if (((s as any).ARGS ?? 0)[0] === 9) {
+          if (((s as any).locArgs?.[0] ?? 0) === 5) {
             (s as any).PurseQuality = 3;
             (s as any).PursePrice = 2300;
           } else {
-            (s as any).PurseQuality = 3;
-            (s as any).PursePrice = 2300;
-            if (((s as any).ARGS ?? 0)[0] === 11) {
+            if (((s as any).locArgs?.[0] ?? 0) === 6) {
               (s as any).PurseQuality = 3;
               (s as any).PursePrice = 2300;
             } else {
-              (s as any).PurseQuality = 3;
-              (s as any).PursePrice = 2300;
-              if (((s as any).ARGS ?? 0)[0] === 13) {
+              if (((s as any).locArgs?.[0] ?? 0) === 7) {
                 (s as any).PurseQuality = 3;
                 (s as any).PursePrice = 2300;
               } else {
-                (s as any).PurseQuality = 3;
-                (s as any).PursePrice = 2300;
-                if (((s as any).ARGS ?? 0)[0] === 15) {
+                if (((s as any).locArgs?.[0] ?? 0) === 8) {
                   (s as any).PurseQuality = 3;
                   (s as any).PursePrice = 2300;
                 } else {
-                  (s as any).PurseQuality = 3;
-                  (s as any).PursePrice = 2300;
-                  if (((s as any).ARGS ?? 0)[0] === 17) {
+                  if (((s as any).locArgs?.[0] ?? 0) === 9) {
                     (s as any).PurseQuality = 3;
                     (s as any).PursePrice = 2300;
                   } else {
-                    (s as any).PurseQuality = 3;
-                    (s as any).PursePrice = 2300;
-                    if (((s as any).ARGS ?? 0)[0] === 19) {
+                    if (((s as any).locArgs?.[0] ?? 0) === 10) {
                       (s as any).PurseQuality = 3;
                       (s as any).PursePrice = 2300;
                     } else {
-                      (s as any).PurseQuality = 3;
-                      (s as any).PursePrice = 2300;
+                      if (((s as any).locArgs?.[0] ?? 0) === 11) {
+                        (s as any).PurseQuality = 3;
+                        (s as any).PursePrice = 2300;
+                      } else {
+                        if (((s as any).locArgs?.[0] ?? 0) === 12) {
+                          (s as any).PurseQuality = 3;
+                          (s as any).PursePrice = 2300;
+                        } else {
+                          if (((s as any).locArgs?.[0] ?? 0) === 13) {
+                            (s as any).PurseQuality = 3;
+                            (s as any).PursePrice = 2300;
+                          } else {
+                            if (((s as any).locArgs?.[0] ?? 0) === 14) {
+                              (s as any).PurseQuality = 3;
+                              (s as any).PursePrice = 2300;
+                            } else {
+                              if (((s as any).locArgs?.[0] ?? 0) === 15) {
+                                (s as any).PurseQuality = 3;
+                                (s as any).PursePrice = 2300;
+                              } else {
+                                if (((s as any).locArgs?.[0] ?? 0) === 16) {
+                                  (s as any).PurseQuality = 3;
+                                  (s as any).PursePrice = 2300;
+                                } else {
+                                  if (((s as any).locArgs?.[0] ?? 0) === 17) {
+                                    (s as any).PurseQuality = 3;
+                                    (s as any).PursePrice = 2300;
+                                  } else {
+                                    if (((s as any).locArgs?.[0] ?? 0) === 18) {
+                                      (s as any).PurseQuality = 3;
+                                      (s as any).PursePrice = 2300;
+                                    } else {
+                                      if (((s as any).locArgs?.[0] ?? 0) === 19) {
+                                        (s as any).PurseQuality = 3;
+                                        (s as any).PursePrice = 2300;
+                                      } else {
+                                        if (((s as any).locArgs?.[0] ?? 0) === 20) {
+                                          (s as any).PurseQuality = 3;
+                                          (s as any).PursePrice = 2300;
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }

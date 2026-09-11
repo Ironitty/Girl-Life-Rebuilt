@@ -58,49 +58,71 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You have beaten Vitalik '+str(chess_win)+' times.
         scene.text('You have beaten Vitalik \'+str(chess_win)+\' times.');
       } else {
-        scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
-        // TODO-QSP: dynamic text: You have beaten Kostya '+str(chess_win-5)+' times.
-        scene.text('You have beaten Kostya \'+str(chess_win-5)+\' times.');
-        if (((s as any).chess_win ?? 0) >= 10  &&  ((s as any).chess_win ?? 0) < 15) {
+        if (((s as any).chess_win ?? 0) >= 5  &&  ((s as any).chess_win ?? 0) < 10) {
           scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
-          scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
-          // TODO-QSP: dynamic text: You have beaten Sergei '+str(chess_win-10)+' times.
-          scene.text('You have beaten Sergei \'+str(chess_win-10)+\' times.');
+          // TODO-QSP: dynamic text: You have beaten Kostya '+str(chess_win-5)+' times.
+          scene.text('You have beaten Kostya \'+str(chess_win-5)+\' times.');
         } else {
-          scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
-          scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
-          scene.text('You have beaten Sergei 5 times. You cannot play against him anymore.');
-          // TODO-QSP: dynamic text: You have beaten Coach Genrikh '+str(chess_win-15)+' times.
-          scene.text('You have beaten Coach Genrikh \'+str(chess_win-15)+\' times.');
-          if (((s as any).chess_win ?? 0) >= 20) {
+          if (((s as any).chess_win ?? 0) >= 10  &&  ((s as any).chess_win ?? 0) < 15) {
             scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
             scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
-            scene.text('You have beaten Sergei 5 times. You cannot play against him anymore.');
-            scene.text('You have beaten Coach Genrikh 5 times. You cannot play against him anymore.');
-            // TODO-QSP: dynamic text: You have beaten Evgeny Kuznetsov '+str(chess_win-20)+' times. He is the only opp...
-            scene.text('You have beaten Evgeny Kuznetsov \'+str(chess_win-20)+\' times. He is the only opponent left you can challenge.');
+            // TODO-QSP: dynamic text: You have beaten Sergei '+str(chess_win-10)+' times.
+            scene.text('You have beaten Sergei \'+str(chess_win-10)+\' times.');
+          } else {
+            if (((s as any).chess_win ?? 0) >= 15  &&  ((s as any).chess_win ?? 0) < 20) {
+              scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
+              scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
+              scene.text('You have beaten Sergei 5 times. You cannot play against him anymore.');
+              // TODO-QSP: dynamic text: You have beaten Coach Genrikh '+str(chess_win-15)+' times.
+              scene.text('You have beaten Coach Genrikh \'+str(chess_win-15)+\' times.');
+            } else {
+              if (((s as any).chess_win ?? 0) >= 20) {
+                scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
+                scene.text('You have beaten Kostya 5 times. You cannot play against him anymore.');
+                scene.text('You have beaten Sergei 5 times. You cannot play against him anymore.');
+                scene.text('You have beaten Coach Genrikh 5 times. You cannot play against him anymore.');
+                // TODO-QSP: dynamic text: You have beaten Evgeny Kuznetsov '+str(chess_win-20)+' times. He is the only opp...
+                scene.text('You have beaten Evgeny Kuznetsov \'+str(chess_win-20)+\' times. He is the only opponent left you can challenge.');
+              }
+            }
           }
-          // TODO-QSP: dynamic text: You have won a total of '+str(chess_win)+' chess matches.
-          scene.text('You have won a total of \'+str(chess_win)+\' chess matches.');
-          if (((s as any).chess_win ?? 0) < 5) {
-            // TODO-QSP: dynamic text: You are paired against Vitalik, the youngest boy in the club. Despite his age he...
-            scene.text('You are paired against Vitalik, the youngest boy in the club. Despite his age he has already achieved rank 4, the lowest official chess rank corresponding to an ELO rating of 1000+.');
-            scene.actions([
-              { label: 'Play chess with Vitalik', handler: (st: GameState) => {
+        }
+      }
+      // TODO-QSP: dynamic text: You have won a total of '+str(chess_win)+' chess matches.
+      scene.text('You have won a total of \'+str(chess_win)+\' chess matches.');
+      if (((s as any).chess_win ?? 0) < 5) {
+        // TODO-QSP: dynamic text: You are paired against Vitalik, the youngest boy in the club. Despite his age he...
+        scene.text('You are paired against Vitalik, the youngest boy in the club. Despite his age he has already achieved rank 4, the lowest official chess rank corresponding to an ELO rating of 1000+.');
+        scene.actions([
+          { label: 'Play chess with Vitalik', handler: (st: GameState) => {
     (s as any).chessV = 10;
+  }, goto: ['chessplay', ''] },
+        ]);
+      } else {
+        if (((s as any).chess_win ?? 0) < 10) {
+          scene.text('You get to play against Kostya, who recently advanced to rank 3 after passing 1400 ELO points.');
+          scene.actions([
+            { label: 'Play chess with Kostya', handler: (st: GameState) => {
+    (s as any).chessV = 30;
+  }, goto: ['chessplay', ''] },
+          ]);
+        } else {
+          if (((s as any).chess_win ?? 0) < 15) {
+            scene.text('You sit down to play Sergei. You recall that he is a rank 2 player with an ELO rating of more than 1600.');
+            scene.actions([
+              { label: 'Play chess with Sergei', handler: (st: GameState) => {
+    (s as any).chessV = 50;
   }, goto: ['chessplay', ''] },
             ]);
           } else {
-            scene.text('You get to play against Kostya, who recently advanced to rank 3 after passing 1400 ELO points.');
-            if (((s as any).chess_win ?? 0) < 15) {
-              scene.text('You sit down to play Sergei. You recall that he is a rank 2 player with an ELO rating of more than 1600.');
+            if (((s as any).chess_win ?? 0) < 20) {
+              scene.text('You are facing Coach Genrikh. At his peak he achieved an ELO ranking of just over 2000, and despite his skills declining with age he still plays at the level of a rank 1 player.');
               scene.actions([
-                { label: 'Play chess with Sergei', handler: (st: GameState) => {
-    (s as any).chessV = 50;
+                { label: 'Play chess with Coach Genrikh', handler: (st: GameState) => {
+    (s as any).chessV = 70;
   }, goto: ['chessplay', ''] },
               ]);
             } else {
-              scene.text('You are facing Coach Genrikh. At his peak he achieved an ELO ranking of just over 2000, and despite his skills declining with age he still plays at the level of a rank 1 player.');
               if (((s as any).chess_win ?? 0) >= 20) {
                 scene.text('You are challenging Evgeny Kuznetsov. He has already won the regional championship twice and placed well at the nationals each year he has attended. He is already rated above a 2200 in the ELO rankings.');
                 scene.actions([
@@ -109,22 +131,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['chessplay', ''] },
                 ]);
               }
-              scene.actions([
-                { label: 'Play chess with Coach Genrikh', handler: (st: GameState) => {
-    (s as any).chessV = 70;
-  }, goto: ['chessplay', ''] },
-              ]);
             }
-            scene.actions([
-              { label: 'Play chess with Kostya', handler: (st: GameState) => {
-    (s as any).chessV = 30;
-  }, goto: ['chessplay', ''] },
-              { label: 'Leave', goto: ['pav_commclubs', ''] },
-            ]);
           }
         }
       }
     }
+    scene.actions([
+      { label: 'Leave', goto: ['pav_commclubs', ''] },
+    ]);
   }
   scene.build();
 }

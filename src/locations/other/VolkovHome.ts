@@ -41,7 +41,9 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).NikoEv ?? 0) === 5) {
       scene.actions([{ label: 'Continue', goto: ['NikoDates', 'Yurik Intro'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward'] }]);
+      if (((s as any).NikoEv ?? 0) === 11) {
+        scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward'] }]);
+      }
     }
   } },
   ]);
@@ -66,7 +68,9 @@ function enterQuickWash(s: GameState, scene: SceneBuilder): void {
     if (((s as any).NikoEv ?? 0) === 5) {
       scene.actions([{ label: 'Continue', goto: ['NikoDates', 'Yurik Intro'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward'] }]);
+      if (((s as any).NikoEv ?? 0) === 11) {
+        scene.actions([{ label: 'Continue', goto: ['NikoEv2', 'Reward'] }]);
+      }
     }
   } },
   ]);

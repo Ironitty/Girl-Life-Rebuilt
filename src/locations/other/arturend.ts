@@ -41,18 +41,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) + (20);
         scene.text('Arthur hands you a portable set of cosmetics.');
       } else {
-        (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (20);
-        scene.text('Arthur gives you a set of cosmetics.');
-        if (((s as any).temp_rand ?? 0) === 2) {
-          qspCall(s, 'money', 'earn', 1000);
-          // TODO-QSP: dynamic text: Arthur looks away guiltily and says "Uh, so I did not have time to look for a gi...
-          scene.text(`Arthur looks away guiltily and says "Uh, so I did not have time to look for a gift for you. But here is some money, ${qspFunc(s, 'money', 'string_profit', 1000)}. Buy what do you like, sweet girl."`);
+        if (((s as any).temp_rand ?? 0) === 1) {
+          (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (20);
+          scene.text('Arthur gives you a set of cosmetics.');
+        } else {
+          if (((s as any).temp_rand ?? 0) === 2) {
+            qspCall(s, 'money', 'earn', 1000);
+            // TODO-QSP: dynamic text: Arthur looks away guiltily and says "Uh, so I did not have time to look for a gi...
+            scene.text(`Arthur looks away guiltily and says "Uh, so I did not have time to look for a gift for you. But here is some money, ${qspFunc(s, 'money', 'string_profit', 1000)}. Buy what do you like, sweet girl."`);
+          }
         }
       }
-      scene.actions([
-        { label: 'Leave', goto: ['pav_commercial', ''] },
-      ]);
     }
+    scene.actions([
+      { label: 'Leave', goto: ['pav_commercial', ''] },
+    ]);
   } },
   ]);
   scene.build();

@@ -49,16 +49,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Further', goto: ['gad_swamp_woods', 'start'] },
       ]);
     } else {
-      scene.img('images/locations/gadukino/hunters/thinks2.jpg');
-      scene.text('You consider trying to circle around the swamp. You have a vague idea of how to accomplish that, but there is a good chance you may get lost.');
-      (s as any).minut = ((s as any).minut ?? 0) + 90;
-      scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype ! \'nude\', \'pathfinder.jpg\', \'pathfinder_nude.jpg\')+\'');
-      scene.text('You have a rough idea of how the forest curves around the swamp from seeing part of the swamp\'s edge from the hut yard.');
-      scene.text('With that in mind, you go into the forest, aware of your surroundings, to ensure you are not stepping too far from the swamp\'s edge.');
-      scene.text('After a couple hours, you are on the other edge of the forest.');
-      scene.actions([
-        { label: 'Stay around for now', goto: ['gad_swamp_woods', 'start'] },
-        { label: 'Try anyway', handler: (st: GameState) => {
+      if (((s as any).pcs_bushcraft ?? 0) < 40) {
+        scene.img('images/locations/gadukino/hunters/thinks2.jpg');
+        scene.text('You consider trying to circle around the swamp. You have a vague idea of how to accomplish that, but there is a good chance you may get lost.');
+        scene.actions([
+          { label: 'Stay around for now', goto: ['gad_swamp_woods', 'start'] },
+          { label: 'Try anyway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).nearby_woods_check = Math.floor(Math.random() * 10) + 1;
     if (((s as any).nearby_woods_check ?? 0) === 1) {
@@ -72,27 +68,41 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_forest', 'forest_center'] },
       ]);
     } else {
-      scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype ! \'nude\', \'nearby_woods_stuck.jpg\', \'nearby_woods_stuck_nude.jpg\')+\'');
-      scene.text('You stick as close to the swamp as possible and follow the edge in one direction.');
-      scene.text('Trusting the ground, you keep going, but you sink right into the swamp at some point without even realizing it.');
-      scene.text('Seems like the forest can camouflage parts of the swamp, fooling careless hikers.');
-      scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype ! \'nude\', \'nearby_woods_hike.jpg\', \'nearby_woods_hike_nude.jpg\')+\'');
-      scene.text('You start going into the woods in a direction you think will take you around the swamp.');
-      scene.text('After a few hours of walking, you realize your surroundings are familiar.');
-      scene.text('Then you look around you and can see the hut in the distance. Seems like you just walked around in circles and ended up where you started.');
-      scene.text('You can see broken branches and prints ahead of you, marking the direction you initially started walking towards.');
-      scene.actions([
-        { label: 'If only you knew', handler: (st: GameState) => {
+      if (((s as any).nearby_woods_check ?? 0) <= 3) {
+        scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype ! \'nude\', \'nearby_woods_stuck.jpg\', \'nearby_woods_stuck_nude.jpg\')+\'');
+        scene.text('You stick as close to the swamp as possible and follow the edge in one direction.');
+        scene.text('Trusting the ground, you keep going, but you sink right into the swamp at some point without even realizing it.');
+        scene.text('Seems like the forest can camouflage parts of the swamp, fooling careless hikers.');
+        scene.actions([
+          { label: 'If only you knew', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'bushcraft', 3);
   }, goto: ['gad_swamp', 'stuck'] },
-        { label: 'That\'s interesting…', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype ! \'nude\', \'nearby_woods_hike.jpg\', \'nearby_woods_hike_nude.jpg\')+\'');
+        scene.text('You start going into the woods in a direction you think will take you around the swamp.');
+        scene.text('After a few hours of walking, you realize your surroundings are familiar.');
+        scene.text('Then you look around you and can see the hut in the distance. Seems like you just walked around in circles and ended up where you started.');
+        scene.text('You can see broken branches and prints ahead of you, marking the direction you initially started walking towards.');
+        scene.actions([
+          { label: 'That\'s interesting…', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'bushcraft', 2);
   }, goto: ['gad_swamp_woods', 'start'] },
-      ]);
+        ]);
+      }
     }
   } },
-        { label: 'Further', goto: ['gad_swamp_woods', 'start'] },
-      ]);
+        ]);
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 90;
+        scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype ! \'nude\', \'pathfinder.jpg\', \'pathfinder_nude.jpg\')+\'');
+        scene.text('You have a rough idea of how the forest curves around the swamp from seeing part of the swamp\'s edge from the hut yard.');
+        scene.text('With that in mind, you go into the forest, aware of your surroundings, to ensure you are not stepping too far from the swamp\'s edge.');
+        scene.text('After a couple hours, you are on the other edge of the forest.');
+        scene.actions([
+          { label: 'Further', goto: ['gad_swamp_woods', 'start'] },
+        ]);
+      }
     }
   } },
   ]);

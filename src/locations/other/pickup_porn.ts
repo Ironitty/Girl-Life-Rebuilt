@@ -78,7 +78,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave', handler: (st: GameState) => {
+        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -144,7 +144,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -289,7 +289,7 @@ function enterHesitantStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -396,8 +396,11 @@ function enterEnthusiasticStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Damn girl, you\'ve got one amazing rack! What size are you?" he asks as he cups your breast in his hand.');
     scene.text('"Big enough for guys to play with," you giggle.');
   } else {
-    scene.text('"I like a pair of tits that just fit right in your hand," he laughs and you giggle as his hand cups your breast and his thumb teases your nipple.');
-    scene.text('He\'s clearly unimpressed with your lack of sizeable breasts, but continues filming you anyway.');
+    if (((s as any).tits ?? 0) >= 2) {
+      scene.text('"I like a pair of tits that just fit right in your hand," he laughs and you giggle as his hand cups your breast and his thumb teases your nipple.');
+    } else {
+      scene.text('He\'s clearly unimpressed with your lack of sizeable breasts, but continues filming you anyway.');
+    }
   }
   // TODO-QSP: dynamic text: After getting a few more shots of you and asking a few more questions, he stands...
   scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock spring free while motioning for you get in position.`);
@@ -624,17 +627,21 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He makes sure to capture you from every angle, paying special attention to both your breasts and ass. At one point, he even has you press them up against the glass door of the shower.');
     } else {
-      scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
-      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
-        scene.text('He makes sure to capture you from every angle, paying special attention to your ass. At one point, he even has you lather it up before pressing it up against the glass door of the shower.');
+      if (((s as any).tits ?? 0) >= 4) {
+        scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
       } else {
-        scene.text('He makes sure to capture you from every angle.');
+        if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+          scene.text('He makes sure to capture you from every angle, paying special attention to your ass. At one point, he even has you lather it up before pressing it up against the glass door of the shower.');
+        } else {
+          scene.text('He makes sure to capture you from every angle.');
+        }
       }
-      scene.text('You finish your shower by answering a few more questions and showing off your naked body one more time before you step out of the shower and wrap yourself in a towel.');
-      scene.text('You smile and strike a final teasing pose for the camera before he stops recording, looking very happy.');
-      scene.text('"Amazing work," he says. "Get yourself dressed and we can talk about your payment."');
-      scene.actions([
-        { label: 'Finished', handler: (st: GameState) => {
+    }
+    scene.text('You finish your shower by answering a few more questions and showing off your naked body one more time before you step out of the shower and wrap yourself in a towel.');
+    scene.text('You smile and strike a final teasing pose for the camera before he stops recording, looking very happy.');
+    scene.text('"Amazing work," he says. "Get yourself dressed and we can talk about your payment."');
+    scene.actions([
+      { label: 'Finished', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'money', 'earn', 6000);
     qspCall(s, 'stat', '');
@@ -648,9 +655,8 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['pickup_porn', 'casting_aftermath'] },
     ]);
   } },
-      ]);
-    }
-    scene.actions([
+    ]);
+  } },
       { label: 'Go for a shower', handler: (st: GameState) => {
     qspCall(s, 'din_van', 'showerdin');
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -661,17 +667,21 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He makes sure to capture you from every angle, paying special attention to both your breasts and ass. At one point, he even has you press them up against the glass door of the shower.');
     } else {
-      scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
-      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
-        scene.text('He makes sure to capture you from every angle, paying special attention to your ass. At one point, he even has you lather it up before pressing it up against the glass door of the shower.');
+      if (((s as any).tits ?? 0) >= 4) {
+        scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
       } else {
-        scene.text('He makes sure to capture you from every angle.');
+        if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+          scene.text('He makes sure to capture you from every angle, paying special attention to your ass. At one point, he even has you lather it up before pressing it up against the glass door of the shower.');
+        } else {
+          scene.text('He makes sure to capture you from every angle.');
+        }
       }
-      scene.text('You finish your shower by answering a few more questions and showing off your naked body one more time before you step out of the shower and wrap yourself in a towel.');
-      scene.text('You smile and strike a final teasing pose for the camera before he stops recording, looking very happy.');
-      scene.text('"Amazing work," he says. "Get yourself dressed and we can talk about your payment."');
-      scene.actions([
-        { label: 'Finished', handler: (st: GameState) => {
+    }
+    scene.text('You finish your shower by answering a few more questions and showing off your naked body one more time before you step out of the shower and wrap yourself in a towel.');
+    scene.text('You smile and strike a final teasing pose for the camera before he stops recording, looking very happy.');
+    scene.text('"Amazing work," he says. "Get yourself dressed and we can talk about your payment."');
+    scene.actions([
+      { label: 'Finished', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'money', 'earn', 6000);
     qspCall(s, 'stat', '');
@@ -685,21 +695,197 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['pickup_porn', 'casting_aftermath'] },
     ]);
   } },
-      ]);
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterCastingAftermath(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/hotel/hotel.corr.jpg');
+  scene.text('Once out in the corrider, you let out a deep breath, your emotions about what just happened flooding your mind.');
+  scene.actions([
+    { label: 'It was fun', handler: (st: GameState) => {
+    scene.text('You smile. That was pretty fun! Not only was the sex good, but you got paid for it!');
+    scene.text('You count the money again before heading on your way to the lobby.');
+    scene.actions([
+      { label: 'Leave', goto: ['city_hotel', ''] },
+    ]);
+  } },
+    { label: 'Regret it', handler: (st: GameState) => {
+    scene.text('As the adrenaline wears off, you suddenly feel shame and regret at your actions.');
+    scene.text('You were paid to have sex with a complete stranger, and it\'s about to appear on the internet! Was the money really worth it?');
+    scene.text('You can\'t help but think of yourself as a whore as you rush to the lobby. What will people think of you if they find out what happened here?');
+    scene.actions([
+      { label: 'Leave', goto: ['city_hotel', ''] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDiscoverVideo(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/pc/items/accesories/computer/porno.jpg');
+  // TODO-QSP: dynamic text: As you browse through the selection of videos, your attention is suddenly drawn ...
+  scene.text(`As you browse through the selection of videos, your attention is suddenly drawn to one titled "College Exploits #78 - ${((s as any).pcs_firstname ?? 0)}".`);
+  scene.text('Curious, you click on it and discover that it\'s a video of you and that guy who paid you for that "erotic shoot."');
+  scene.text('After watching yourself get fucked from both his point of view and the camera on the bed, you scroll down and read some of the comments.');
+  scene.text('"Such a hot bitch! Ignat the chad scores again!"');
+  scene.text('"That tight little pussy milked the cum right out of him!"');
+  scene.text('"Where on earth does he find all these gorgeous girls to fuck? I want some of that pussy too!"');
+  scene.text('"I wish it was my cock that slut was sucking…"');
+  scene.text('"That whore loved having her pretty face plastered with cum!"');
+  if (((s as any).tits ?? 0) >= 4) {
+    scene.text('"Damn, look at the tits on her! Watching those bad boys bounce was the best part of the video!"');
+  }
+  if (qspFunc(s, 'pcs_has_attr', 'body_ass_bubble')  ||  qspFunc(s, 'pcs_has_attr', 'body_ass_big')) {
+    scene.text('"Absolute PAWG! The things I would do to an ass like that!"');
+  }
+  scene.actions([
+    { label: 'Cry', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'fame', 'city', 'sex', 2);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/computer/porno.jpg');
+    scene.text('Suddenly feeling dirty and ashamed, you bury your head in your hands and start crying as questions start flooding your mind:');
+    scene.text('Why did you agree to do that?');
+    scene.text('How many people have already seen it?');
+    scene.text('How are you going to look your classmates in the eye now?');
+    scene.actions([
+      { label: 'Continue', goto: ['komp', 'porno'] },
+    ]);
+  } },
+    { label: 'Whatever', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+        } else {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+        }
+      }
     }
-  } },
+    qspCall(s, 'fame', 'city', 'sex', 2);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/computer/porno.jpg');
+    scene.text('You shrug off the comments. There\'s nothing you can do about it now and it\'s not like these guys will ever have a chance with you.');
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
+      scene.text('You\'re not sure why, but you feel a little turned on at the idea of them jerking off to you getting fucked.');
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+        scene.text('Even so, you still feel a little aroused at the idea of them watching you get fucked.');
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+          scene.text('Even so, you still find yourself more than a little turned on at the idea of them watching you get fucked.');
+        } else {
+          scene.text('Even so, you feel yourself getting wet at the idea of countless people on the internet watching you get fucked and let out a little moan.');
+        }
+      }
+    }
+    scene.text('You\'re certain that dozens of girls here film actual porn all the time, so what harm can one crappy amateur video of you do?');
+    scene.actions([
+      { label: 'Continue', goto: ['komp', 'porno'] },
     ]);
   } },
+  ]);
+  scene.build();
+}
+
+function enterWatchCastingCall(s: GameState, scene: SceneBuilder): void {
+  (s as any).strip_club['porn_scout_pickup'] = 3;
+  scene.img('images/pc/items/accesories/computer/porno.jpg');
+  scene.text('As you browse through the selection of videos, your attention is suddenly drawn to one titled "Casting Corner #44", the thumbnail of which looks familiar...');
+  scene.text('Curious, you click on it and discover that it\'s the video of you and the porn talent scout who wanted to "test run" you.');
+  scene.text('After watching yourself get fucked from both his point of view and the cameras at the side of the bed, you scroll down and read the comments, almost all of them having been replied to by the talent scout.');
+  if (((s as any).pcs_hotcat ?? 0) === 10) {
+    scene.text('@BigWhiteDuke: "Damn! And I thought the slut with the big bubble butt was smoking hot! You lucky bastard!"');
+    scene.text('@CastingCorner: "This girl was 100% the hottest one I\'ve had yet, that\'s for sure!"');
+  } else {
+    scene.text('@BigWhiteDuke: "Hot, but not as hot as that slut with the big bubble butt. You\'re still one lucky bastard, my friend."');
+    scene.text('@CastingCorner: "This girl was definitely a cutie, that\'s for sure!"');
+  }
+  scene.text('@OneInThePink: "That looked like one tight little pussy you had there, bro!"');
+  scene.text('@CastingCorner: "100%, but would you believe that I had the pleasure of fucking a girl who was even tighter? So tight that I almost came after only a few minutes inside her? Check her out here!"');
+  scene.text('@Anon_69: "Where can I a gorgeous girl like her to suck my dick?"');
+  scene.text('@CastingCorner: "You just have to look in the right places and say the right thing. You\'ll have their panties dropped in no time!"');
+  scene.text('@SpitOrSwallow: "How do you convince these girls to swallow your cum?"');
+  scene.text('@CastingCorner: "I don\'t. They\'re so eager to please you all that they just gulp it right down!"');
+  scene.text('"@Harder_Than_A_Rock: Damn do these girls really know how to tease a guy when they\'re showering at the end!"');
+  scene.text('@CastingCorner: "Watching them in the shower is almost as good as the sex. Almost."');
+  if (((s as any).tits ?? 0) >= 4) {
+    scene.text('@PuffyNipsSociety: "Look at the tits on her! Watching those bad boys bounce was the best part of the video!"');
+    scene.text('@CastingCorner: "100% some of the best tits I\'ve ever had!"');
+  }
+  if (qspFunc(s, 'pcs_has_attr', 'body_ass_bubble')  ||  qspFunc(s, 'pcs_has_attr', 'body_ass_big')) {
+    scene.text('@PAWG_Worshipper: "WHAT AN ASS! Think you could get her and that other PAWG babe you fucked back for a threesome?"');
+    scene.text('@CastingCorner: "I don\'t think I\'d survive that threesome, but fucking them at the same time would be a dream come true!"');
+  }
+  scene.actions([
+    { label: 'Cry', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'fame', 'city', 'sex', 2);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/computer/porno.jpg');
+    scene.text('Suddenly feeling dirty and ashamed, you bury your head in your hands and start crying.');
+    scene.text('Why did you agree to do that? How many people have already seen it?!');
+    scene.actions([
+      { label: 'Continue', goto: ['komp', 'porno'] },
     ]);
   } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
-  } },
+    { label: 'Whatever', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+        } else {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+        }
+      }
+    }
+    qspCall(s, 'fame', 'city', 'sex', 2);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/computer/porno.jpg');
+    scene.text('You shrug off the comments. There\'s nothing you can do about it now and it\'s not like these guys will ever have a chance with you.');
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
+      scene.text('You\'re not sure why, but you feel a little turned on at the idea of them jerking off to you getting fucked.');
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+        scene.text('Even so, you still feel a little aroused at the idea of them watching you get fucked.');
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+          scene.text('Even so, you still find yourself more than a little turned on at the idea of them watching you get fucked.');
+        } else {
+          scene.text('Even so, you feel yourself getting wet at the idea of countless people on the internet watching you get fucked and let out a little moan.');
+        }
+      }
+    }
+    scene.text('Dozens of girls film <i>actual</i> porn all the time, so what harm can one crappy video of you do?');
+    scene.actions([
+      { label: 'Continue', goto: ['komp', 'porno'] },
     ]);
   } },
   ]);
@@ -726,6 +912,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'talent_scout_sex':
       enterTalentScoutSex(s, scene);
+      break;
+    case 'casting_aftermath':
+      enterCastingAftermath(s, scene);
+      break;
+    case 'discover_video':
+      enterDiscoverVideo(s, scene);
+      break;
+    case 'watch_casting_call':
+      enterWatchCastingCall(s, scene);
       break;
     default:
       enterStart(s, scene);

@@ -82,23 +82,26 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
       scene.text(`You take his cock out of your mouth and ${((s as any).boydesc ?? 0)} finishes in your hand.`);
     } else {
-      (s as any).tiprand = Math.floor(Math.random() * 4) + 0;
-      if ((Math.floor(Math.random() * 4) + 0) < 3) {
-        scene.img('images/shared/sex/handjob/hj.jpg');
-        // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
-        scene.text(`You take his cock out of your mouth and ${((s as any).boydesc ?? 0)} finishes in your hand.`);
+      if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
+        (s as any).tiprand = Math.floor(Math.random() * 4) + 0;
+        if ((Math.floor(Math.random() * 4) + 0) < 3) {
+          scene.img('images/shared/sex/handjob/hj.jpg');
+          // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
+          scene.text(`You take his cock out of your mouth and ${((s as any).boydesc ?? 0)} finishes in your hand.`);
+        } else {
+          (s as any).spafinloc = 11;
+          qspCall(s, 'cum_manage', '');
+          scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
+          // TODO-QSP: dynamic text: You took his cock out of your mouth and immediately <<$boydesc>> cums directly o...
+          scene.text(`You took his cock out of your mouth and immediately ${((s as any).boydesc ?? 0)} cums directly on your face, covering it with his warm and sticky seed.`);
+        }
       } else {
         (s as any).spafinloc = 11;
         qspCall(s, 'cum_manage', '');
         scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
-        // TODO-QSP: dynamic text: You took his cock out of your mouth and immediately <<$boydesc>> cums directly o...
-        scene.text(`You took his cock out of your mouth and immediately ${((s as any).boydesc ?? 0)} cums directly on your face, covering it with his warm and sticky seed.`);
+        // TODO-QSP: dynamic text: <<$boydesc>> holds your hair, pulls his dick out of your mouth and finishes on y...
+        scene.text(`${((s as any).boydesc ?? 0)} holds your hair, pulls his dick out of your mouth and finishes on your face. Covering it with warm and sticky cum.`);
       }
-      (s as any).spafinloc = 11;
-      qspCall(s, 'cum_manage', '');
-      scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
-      // TODO-QSP: dynamic text: <<$boydesc>> holds your hair, pulls his dick out of your mouth and finishes on y...
-      scene.text(`${((s as any).boydesc ?? 0)} holds your hair, pulls his dick out of your mouth and finishes on your face. Covering it with warm and sticky cum.`);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -157,7 +160,7 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Make excuses and go', handler: (st: GameState) => {
+        { label: 'Make excuses and go [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_residential', ''] },
@@ -540,7 +543,7 @@ function enterDima32(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Kick', handler: (st: GameState) => {
+      { label: 'Kick [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['event', 'dima37'] },
@@ -931,7 +934,7 @@ function enterDima52(s: GameState, scene: SceneBuilder): void {
 function enterDima53(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'arousal', 'end');
-  scene.img(`${qspUntranslated(s, "FUNC(''clothing_image'', clothingworntype, clothingwornnumber)", { location: "event" })}`);
+  scene.img(`${qspUntranslated(s, "FUNC('clothing_image', clothingworntype, clothingwornnumber)", { location: "event" })}`);
   scene.text('Enraged by your refusal, man pushes you, but you stand firm. Realizing that you\'re not to be messed with, he runs away.');
   scene.text('You sort out you clothing and dress yourself in the outfit you were wearing when this all started.');
   scene.actions([

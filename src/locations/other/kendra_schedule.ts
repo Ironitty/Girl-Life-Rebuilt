@@ -11,19 +11,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).locat['A84_loc'] = 'uni_dorm';
     (s as any).locat['A84_arg'] = 'asleep';
   } else {
-    (s as any).locat['A84_loc'] = 'uni_lessons';
-    if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).locat ?? 0)?.['A84_rand'] < 5) {
-      (s as any).locat['A84_loc'] = 'uni_dorm';
-      (s as any).locat['A84_arg'] = 'eighth_floor';
+    if (((s as any).week ?? 0) < 4  &&  ((s as any).hour ?? 0) < 16) {
+      (s as any).locat['A84_loc'] = 'uni_lessons';
     } else {
-      (s as any).locat['A84_loc'] = 'uni_dorm';
-      (s as any).locat['A84_arg'] = 'eighth_floor';
-      if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).locat ?? 0)?.['A84_rand'] < 8) {
+      if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).locat ?? 0)?.['A84_rand'] < 5) {
         (s as any).locat['A84_loc'] = 'uni_dorm';
         (s as any).locat['A84_arg'] = 'eighth_floor';
       } else {
-        (s as any).locat['A84_loc'] = 'unknown';
-        (s as any).locat['A84_arg'] = 'unknown';
+        if (((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).locat ?? 0)?.['A84_rand'] < 5) {
+          (s as any).locat['A84_loc'] = 'uni_dorm';
+          (s as any).locat['A84_arg'] = 'eighth_floor';
+        } else {
+          if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).locat ?? 0)?.['A84_rand'] < 8) {
+            (s as any).locat['A84_loc'] = 'uni_dorm';
+            (s as any).locat['A84_arg'] = 'eighth_floor';
+          } else {
+            (s as any).locat['A84_loc'] = 'unknown';
+            (s as any).locat['A84_arg'] = 'unknown';
+          }
+        }
       }
     }
   }

@@ -298,9 +298,11 @@ function enterSetUniNursingCourse(s: GameState, scene: SceneBuilder): void {
 function enterSetDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'name') {
   } else {
-    (s as any).birthday = 1;
-    (s as any).birthmonth = 4;
-    (s as any).birthyear = 1999;
+    if (((s as any).locArgs?.[1] ?? 0) === 'birthday') {
+      (s as any).birthday = 1;
+      (s as any).birthmonth = 4;
+      (s as any).birthyear = 1999;
+    }
   }
   return;
   scene.build();

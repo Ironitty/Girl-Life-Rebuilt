@@ -173,14 +173,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave', goto: ['KGZgame', ''] },
         ]);
       } else {
-        (s as any).KGZVars['dist'] = ((s as any).KGZVars['dist'] ?? 0) - (5);
-        (s as any).KGZVars['dead'] = ((s as any).KGZVars['dead'] ?? 0) + (((s as any).rand ?? 0)(((s as any).KGZVars ?? 0)?.['dead'], ((s as any).KGZVars ?? 0)?.['dead'] * 5));
-        scene.text('You make a cautious approach, but manage to alert even more zombies.');
-        scene.actions([
-          { label: 'Fuck!', handler: (st: GameState) => {
+        if (((s as any).KGZVars ?? 0)?.['dedrandrun'] === 1) {
+          (s as any).KGZVars['dist'] = ((s as any).KGZVars['dist'] ?? 0) - (5);
+          (s as any).KGZVars['dead'] = ((s as any).KGZVars['dead'] ?? 0) + (((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['dead'], ((s as any).KGZVars ?? {})?.['dead'] * 5));
+          scene.text('You make a cautious approach, but manage to alert even more zombies.');
+          scene.actions([
+            { label: 'Fuck!', handler: (st: GameState) => {
     dynamicGoto(st, 'curloc');
   } },
-        ]);
+          ]);
+        }
       }
     }
   } },

@@ -44,7 +44,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Refuse', handler: (st: GameState) => {
+          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Keep Refusing', handler: (st: GameState) => {
+        { label: 'Keep Refusing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).kotovLoveQW = (-1);
     (s as any).npc_rel[String((s as any).boy ?? 0)] = 0;
@@ -162,65 +162,71 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.img('images/shared/sex/kiss/kotovpre30.mp4');
-      if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
-        scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
-        qspCall(s, 'arousal', 'kiss', 5);
-      }
-      scene.text('Vitek throws you down onto his bed, and pounces on top of you.');
-      scene.text('You eagerly begin to kiss him again, and silently pray that he didn\'t rip your clothes in his enthusiasm to get you naked. At the same time, you\'re too horny to even be mad at him if he did, you want him badly!');
-      qspCall(s, 'shortgs', 'undress');
-      qspCall(s, 'arousal', 'kiss', 5);
-      qspCall(s, 'stat', '');
-      if (((s as any).i ?? 0) === 4) {
-        scene.img('images/shared/sex/undress/kotovpre50.mp4');
+      if (((s as any).i ?? 0) === 3) {
+        scene.img('images/shared/sex/kiss/kotovpre30.mp4');
         if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
           scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
           qspCall(s, 'arousal', 'kiss', 5);
         }
-        scene.text('Vitek throws you down onto his bed, and pounces on top of you. He slowly works his way down your body, and then eagerly buries his face between your legs. Soon, you feel his tongue on your puffy pussy lips.');
-        qspCall(s, 'arousal', 'foreplay', 5);
+        scene.text('Vitek throws you down onto his bed, and pounces on top of you.');
+        scene.text('You eagerly begin to kiss him again, and silently pray that he didn\'t rip your clothes in his enthusiasm to get you naked. At the same time, you\'re too horny to even be mad at him if he did, you want him badly!');
+        qspCall(s, 'shortgs', 'undress');
+        qspCall(s, 'arousal', 'kiss', 5);
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Enjoy', goto: ['kotovSex', 'kuni'] },
+          { label: 'Spread your legs for him', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
         ]);
       } else {
-        scene.img('images/shared/sex/undress/kotovpre60.mp4');
-        if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
-          scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
-        }
-        scene.text('You and Vitek kiss a while longer, slowly undressing one another. His hands work his way towards your breasts, and he teasingly pinches your nipples while you rub your fingers over his erect penis. When he puts one hand on your shoulder and pushes you down lightly, you immediately understand what he wants…');
-        qspCall(s, 'shortgs', 'undress');
-        qspCall(s, 'arousal', 'foreplay', 5);
-        qspCall(s, 'stat', '');
-        if (((s as any).i ?? 0) === 6) {
-          scene.img('images/shared/sex/undress/kotovpre4\'+rand(0, 2)+\'.mp4');
+        if (((s as any).i ?? 0) === 4) {
+          scene.img('images/shared/sex/undress/kotovpre50.mp4');
           if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
             scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
+            qspCall(s, 'arousal', 'kiss', 5);
           }
-          scene.text('When the two of you burst into his room, Vitek immediately pushes you down to your hands and knees and begins to take off your clothes, eagerly running his hands over your ass cheeks.');
-          qspCall(s, 'shortgs', 'undress');
+          scene.text('Vitek throws you down onto his bed, and pounces on top of you. He slowly works his way down your body, and then eagerly buries his face between your legs. Soon, you feel his tongue on your puffy pussy lips.');
           qspCall(s, 'arousal', 'foreplay', 5);
           qspCall(s, 'stat', '');
           scene.actions([
-            { label: 'Stay on your hands and knees for him', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
+            { label: 'Enjoy', goto: ['kotovSex', 'kuni'] },
           ]);
+        } else {
+          if (((s as any).i ?? 0) === 5) {
+            scene.img('images/shared/sex/undress/kotovpre60.mp4');
+            if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
+              scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
+            }
+            scene.text('You and Vitek kiss a while longer, slowly undressing one another. His hands work his way towards your breasts, and he teasingly pinches your nipples while you rub your fingers over his erect penis. When he puts one hand on your shoulder and pushes you down lightly, you immediately understand what he wants…');
+            qspCall(s, 'shortgs', 'undress');
+            qspCall(s, 'arousal', 'foreplay', 5);
+            qspCall(s, 'stat', '');
+            scene.actions([
+              { label: 'Kneel down before him', goto: ['kotovSex', 'bj'] },
+            ]);
+          } else {
+            if (((s as any).i ?? 0) === 6) {
+              scene.img('images/shared/sex/undress/kotovpre4\'+rand(0, 2)+\'.mp4');
+              if (((s as any).LariskaQW ?? 0)?.['VitekHelp'] === 1  &&  ((s as any).lariskaQwestDay ?? 0) === ((s as any).daystart ?? 0)) {
+                scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
+              }
+              scene.text('When the two of you burst into his room, Vitek immediately pushes you down to your hands and knees and begins to take off your clothes, eagerly running his hands over your ass cheeks.');
+              qspCall(s, 'shortgs', 'undress');
+              qspCall(s, 'arousal', 'foreplay', 5);
+              qspCall(s, 'stat', '');
+              scene.actions([
+                { label: 'Stay on your hands and knees for him', goto: ['kotovSex', 'dog<<rand (1,4)>>'] },
+              ]);
+            }
+          }
         }
-        if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).ekQW ?? 0)?.['piercing_tongue'] === 0) {
-          (s as any).ekQW['piercing_tongue'] = 1;
-          scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
-          scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice! Aren\'t those supposed to make it feel better for the guy when you suck his dick? Is that why you got it?"');
-          scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
-          // TODO-QSP: dynamic text: He's still grinning, intrigued by your tongue piercing. He says: "Don't worry <<...
-          scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry ${((s as any).pcs_nickname ?? 0)}, I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
-        }
-        scene.actions([
-          { label: 'Kneel down before him', goto: ['kotovSex', 'bj'] },
-        ]);
       }
-      scene.actions([
-        { label: 'Spread your legs for him', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
-      ]);
+    }
+    if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).ekQW ?? 0)?.['piercing_tongue'] === 0) {
+      (s as any).ekQW['piercing_tongue'] = 1;
+      scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
+      scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice! Aren\'t those supposed to make it feel better for the guy when you suck his dick? Is that why you got it?"');
+      scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
+      // TODO-QSP: dynamic text: He's still grinning, intrigued by your tongue piercing. He says: "Don't worry <<...
+      scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry ${((s as any).pcs_nickname ?? 0)}, I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   }
   scene.build();

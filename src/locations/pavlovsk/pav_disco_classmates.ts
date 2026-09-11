@@ -31,7 +31,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   (s as any).i2 = 0;
   // TODO-QSP: :discopop_loop
-  if ((((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  ||  ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))] === 'Natasha')  &&  ((s as any).discoenable ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)?.['A' + String(((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
+  if ((((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1  ||  ((s as any).npc_nickname ?? 0)['A' + ((s as any).i ?? 0)] === 'Natasha')  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
     if ((!((s as any).i2 ?? 0))) {
       // TODO-QSP: $table_disco += '<tr>'
     }
@@ -53,7 +53,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 1;
   // TODO-QSP: :discojock_loop
-  if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 2  &&  ((s as any).discoenable ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)?.['A' + String(((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
+  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
     if ((!((s as any).i2 ?? 0))) {
       // TODO-QSP: $table_disco += '<tr>'
     }
@@ -96,7 +96,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     scene.text('The gopniks are lounging in the darkest corner of the hall. They\'re mostly keeping to themselves, but a few of them are out dancing.');
     (s as any).i = 1;
     // TODO-QSP: :discogop_loop
-    if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 4  &&  ((s as any).discoenable ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)?.['A' + String(((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
+    if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
       if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_disco += '<tr>'
       }
@@ -404,36 +404,147 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_vball ?? 0) < 20) {
       scene.text('Mikhail turns and looks at you. "Uh... have we met?" He doesn\'t seem to recognize you. "Ah, I\'ve seen you at school. You\'re in pretty good shape — you should come to volleyball training."');
     } else {
-      // TODO-QSP: dynamic text: The coach looks at you with mild condescension. "<<$pcs_lastname>>, well done. Y...
-      scene.text(`The coach looks at you with mild condescension. "${((s as any).pcs_lastname ?? 0)}, well done. You're getting a hang of the basics. You don't really belong here though... although, what do I know?"`);
-      if (((s as any).pcs_vball ?? 0) < 60) {
-        // TODO-QSP: dynamic text: The coach looks at you disapprovingly. "<<$pcs_lastname>>, you were pretty good ...
-        scene.text(`The coach looks at you disapprovingly. "${((s as any).pcs_lastname ?? 0)}, you were pretty good in training, but places like this set back your development. You should go home."`);
+      if (((s as any).pcs_vball ?? 0) < 35) {
+        // TODO-QSP: dynamic text: The coach looks at you with mild condescension. "<<$pcs_lastname>>, well done. Y...
+        scene.text(`The coach looks at you with mild condescension. "${((s as any).pcs_lastname ?? 0)}, well done. You're getting a hang of the basics. You don't really belong here though... although, what do I know?"`);
       } else {
-        scene.text('The coach looks at you with condemnation. "What are you doing here?"');
-        scene.text('"What are you doing here?" You turn the question back onto him.');
-        // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don't piss me off. What I do is my business, and what you ar...
-        scene.text(`"${((s as any).pcs_lastname ?? 0)}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
-        if (((s as any).pcs_horny ?? 0) > 79) {
-          (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
-          scene.text('"Is that the truth, Mr. Nikolayevich? Are you here because of me?" You move closer to the coach and flutter your eyes at him.');
-          scene.text('"I meant as your coach, and don\'t think you can win just by fluttering your eyes. Want to impress me? Work out, and no partying."');
+        if (((s as any).pcs_vball ?? 0) < 60) {
+          // TODO-QSP: dynamic text: The coach looks at you disapprovingly. "<<$pcs_lastname>>, you were pretty good ...
+          scene.text(`The coach looks at you disapprovingly. "${((s as any).pcs_lastname ?? 0)}, you were pretty good in training, but places like this set back your development. You should go home."`);
         } else {
-          scene.text('"As your coach," he adds with a slight blush.');
+          if (((s as any).pcs_vball ?? 0) < 80) {
+            scene.text('The coach looks at you with condemnation. "What are you doing here?"');
+            scene.text('"What are you doing here?" You turn the question back onto him.');
+            // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don't piss me off. What I do is my business, and what you ar...
+            scene.text(`"${((s as any).pcs_lastname ?? 0)}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
+            if (((s as any).pcs_horny ?? 0) > 79) {
+              (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
+              scene.text('"Is that the truth, Mr. Nikolayevich? Are you here because of me?" You move closer to the coach and flutter your eyes at him.');
+              scene.text('"I meant as your coach, and don\'t think you can win just by fluttering your eyes. Want to impress me? Work out, and no partying."');
+            } else {
+              scene.text('"As your coach," he adds with a slight blush.');
+            }
+          } else {
+            // TODO-QSP: dynamic text: The coach looks at you with condemnation. "<<$pcs_lastname>>, you here again? Th...
+            scene.text(`The coach looks at you with condemnation. "${((s as any).pcs_lastname ?? 0)}, you here again? This is not the place for someone who wants to be on the team."`);
+            scene.text('"Mr. Nikolayevich, you never said anything about not going out on a Friday."');
+            // TODO-QSP: dynamic text: "<<$pcs_lastname>>, are you thick? When does the team play?"
+            scene.text(`"${((s as any).pcs_lastname ?? 0)}, are you thick? When does the team play?"`);
+            scene.text('"Saturday," you respond, sheepishly.');
+            scene.text('"So on Friday I expect my candidates to be home getting some sleep, not hanging out here. Clear? You have some skill — sort out your attitude and you might yet make the team."');
+          }
         }
-        // TODO-QSP: dynamic text: The coach looks at you with condemnation. "<<$pcs_lastname>>, you here again? Th...
-        scene.text(`The coach looks at you with condemnation. "${((s as any).pcs_lastname ?? 0)}, you here again? This is not the place for someone who wants to be on the team."`);
-        scene.text('"Mr. Nikolayevich, you never said anything about not going out on a Friday."');
-        // TODO-QSP: dynamic text: "<<$pcs_lastname>>, are you thick? When does the team play?"
-        scene.text(`"${((s as any).pcs_lastname ?? 0)}, are you thick? When does the team play?"`);
-        scene.text('"Saturday," you respond, sheepishly.');
-        scene.text('"So on Friday I expect my candidates to be home getting some sleep, not hanging out here. Clear? You have some skill — sort out your attitude and you might yet make the team."');
       }
+    }
+    scene.actions([
+      { label: 'Move away', goto: ['pav_disco_classmates', 'classmates'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterCoachSex(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
+  // TODO-QSP: dynamic text: "<<$pcs_lastname>>, let's find somewhere a bit more private." You are about to s...
+  scene.text(`"${((s as any).pcs_lastname ?? 0)}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
+  scene.actions([
+    { label: 'Follow him', handler: (st: GameState) => {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
+      if (((s as any).pcs_horny ?? 0) > 80) {
+        scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco1.mp4');
+        scene.text('He takes you down a side corridor to one of the bathrooms, holding the door for you before following you inside.');
+        scene.actions([
+          { label: 'Pull up your skirt', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A69');
+    qspCall(s, 'npc_relationship', 'modify', 'A69', 5);
+    if (((s as any).pantyworntype ?? 0) !== 'none') {
+      scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco2.mp4');
+      scene.text('You sit on one of the toilets, pulling your skirt up and spreading your legs. Watching your display for a moment, he pulls you to your feet and tugs your panties down around your ankles.');
+    } else {
+      scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco3.jpg');
+      scene.text('You pull up your skirt, showing him your bare, wet pussy. The coach pulls out his already hard cock and begins stroking it slowly as he watches you.');
+    }
+    qspCall(s, 'arousal', 'foreplay', 2);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Bend over', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'foreplay', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco4.mp4');
+    scene.text('As you bend over and pull up your skirt, he grabs your hip and guides himself, rubbing against your pussy then slowly dragging up to your asshole, leaving a slick trail.');
+    scene.text('He pushes the head of his cock gently against your ass. You wince at the stretch. He rubs your back. "Take a breath and relax. It will feel better."');
+    scene.actions([
+      { label: 'Let him', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco5.mp4');
+    qspCall(s, 'dinSex', 'boy_wants_anal', 'lubri');
+    qspCall(s, 'arousal', 'auto_lube', 'anal');
+    scene.text('You take a slow breath and do your best to relax as he begins working into your ass with short, careful strokes. In time the discomfort gives way to a warm, full sensation and you find yourself moaning softly.');
+    scene.text('He picks up the pace, pounding steadily deeper.');
+    qspCall(s, 'arousal', 'anal', 10);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco6.mp4');
+    scene.text('He pulls out suddenly and you feel a warm burst on your ass. With a low, satisfied exhale he tucks himself away and waits while you clean up.');
+    qspCall(s, 'arousal', 'anal', 5);
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
+    if (((s as any).vballVars ?? 0)?.['coachsex'] < 5) {
+      (s as any).vballVars['coachsex'] = 5;
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Walk home together', handler: (st: GameState) => {
+    (s as any).music_loop = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/gorodok.jpg');
+    scene.text('You walk through town together in comfortable silence.');
+    scene.actions([
+      { label: 'He stops near your apartment', goto: ['volley_coach', 'coach_walk_home'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+        ]);
+      } else {
+        scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
+        scene.text('"This isn\'t exactly secluded, Coach." You turn away. He sighs but can\'t stop himself smiling as he watches you go. "Fair enough. Let me walk you home then."');
+        scene.actions([
+          { label: 'Go with the coach', handler: (st: GameState) => {
+    (s as any).music_loop = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/gorodok.jpg');
+    scene.text('You walk home.');
+    scene.actions([
+      { label: 'He stops near your apartment', goto: ['volley_coach', 'coach_walk_home'] },
+    ]);
+  } },
+        ]);
+      }
+    } else {
+      scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
+      scene.text('Having brought you to the bathroom, the coach opens the door to find it packed with students. He looks genuinely put out. "Now that is a pity."');
+      scene.text('He offers to walk you home instead. You don\'t think he\'ll take no for an answer, so you agree.');
+      (s as any).music_loop = 0;
+      (s as any).minut = ((s as any).minut ?? 0) + 20;
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/pavlovsk/gorodok.jpg');
+      scene.text('You walk through town. Near your apartment, the coach stops.');
       scene.actions([
-        { label: 'Move away', goto: ['pav_disco_classmates', 'classmates'] },
+        { label: 'He stops near your apartment', goto: ['volley_coach', 'coach_walk_home'] },
       ]);
     }
-  }
+  } },
+    { label: 'Make an excuse and leave', goto: ['pav_disco_classmates', 'classmates'] },
+  ]);
   scene.build();
 }
 
@@ -478,6 +589,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'coach':
       enterCoach(s, scene);
+      break;
+    case 'coach_sex':
+      enterCoachSex(s, scene);
       break;
     default:
       enterClassmates(s, scene);

@@ -21,13 +21,15 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).washer_total_wash_cost ?? 0) <= 100) {
     scene.text('You do not have any clothes that need washing currently,');
   } else {
-    // TODO-QSP: dynamic text: You do not have enough money to wash all of your clothing. The total cost would ...
-    scene.text(`You do not have enough money to wash all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).washer_total_wash_cost ?? 0))}.`);
-    (s as any).temp_washer_cost = qspFunc(s, 'money', 'price', ((s as any).washer_total_wash_cost ?? 0));
-    // TODO-QSP: dynamic "
-    // TODO-QSP: "
-    scene.actions([
-      { label: 'Wash all your clothes (0:10, <<temp_washer_cost>> <b>₽</b>)', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', ((s as any).washer_total_wash_cost ?? 0)) === 0) {
+      // TODO-QSP: dynamic text: You do not have enough money to wash all of your clothing. The total cost would ...
+      scene.text(`You do not have enough money to wash all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).washer_total_wash_cost ?? 0))}.`);
+    } else {
+      (s as any).temp_washer_cost = qspFunc(s, 'money', 'price', ((s as any).washer_total_wash_cost ?? 0));
+      // TODO-QSP: dynamic "
+      // TODO-QSP: "
+      scene.actions([
+        { label: 'Wash all your clothes (0:10, <<temp_washer_cost>> <b>₽</b>)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     // TODO-QSP: gs 'money', 'pay', <<washer_total_wash_cost>>
     // TODO-QSP: dynamic text: You wash all clothing for <<temp_washer_cost>> <b>₽</b>.
@@ -39,7 +41,8 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -101,7 +104,7 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_washerVars['j'] = 0;
   // TODO-QSP: :core_loop_outer
-  (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? 0)?.['j']] + ((s as any).temp_washerVars ?? 0)?.['array_postfix'];
+  (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? {})?.['j']] + ((s as any).temp_washerVars ?? {})?.['array_postfix'];
   if (((s as any).temp_washerVars ?? 0)?.['type'] !== ((s as any).temp_washerVars ?? 0)?.['array_postfix']) {
     (s as any).temp_washerVars['total'] = 0;
     (s as any).temp_washerVars['number'] = 1;

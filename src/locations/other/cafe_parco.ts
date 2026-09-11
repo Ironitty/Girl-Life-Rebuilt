@@ -36,45 +36,51 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 3) {
       scene.text('You\'re not really close with either of them, so you don\'t really know how to approach them.');
     } else {
-      scene.text('While passing of their table, you greet them with a simple "Hi".');
-      if (((s as any).npc_rel ?? 0)?.['A15'] < 20) {
-        scene.text('Vicky and Vanya only glance in your direction and turn away. Having nothing more to say, you quickly move on.');
-      } else {
-        scene.text('Vicky and Vanya answer "Hi" back at the same time. Having just wanted to greet them, you continue on your way.');
-      }
-      if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 5) {
-        if (((s as any).npc_rel ?? 0)?.['A15'] < 50) {
-          scene.text('You approach the couple and greet them, but they don\'t pay any attention to you.');
+      if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 5) {
+        scene.text('While passing of their table, you greet them with a simple "Hi".');
+        if (((s as any).npc_rel ?? 0)?.['A15'] < 20) {
+          scene.text('Vicky and Vanya only glance in your direction and turn away. Having nothing more to say, you quickly move on.');
         } else {
-          scene.text('You approach the couple and greet them.');
-          scene.text('Vicky starts gossiping straight as always while Vanya mostly jokes about the things you two were talking about.');
-          scene.text('You chat for a few minutes.');
+          scene.text('Vicky and Vanya answer "Hi" back at the same time. Having just wanted to greet them, you continue on your way.');
         }
-        if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
-          if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 10) {
-            scene.text('Vicky and Vanya invite you to join them.');
-            if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
-              scene.actions([
-                { label: 'Refuse', handler: (st: GameState) => {
+      } else {
+        if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 5) {
+          if (((s as any).npc_rel ?? 0)?.['A15'] < 50) {
+            scene.text('You approach the couple and greet them, but they don\'t pay any attention to you.');
+          } else {
+            scene.text('You approach the couple and greet them.');
+            scene.text('Vicky starts gossiping straight as always while Vanya mostly jokes about the things you two were talking about.');
+            scene.text('You chat for a few minutes.');
+          }
+          if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
+            if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 10) {
+              scene.text('Vicky and Vanya invite you to join them.');
+              if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
+                scene.actions([
+                  { label: 'Refuse', handler: (st: GameState) => {
     scene.text('You\'re pretty much broke and don\'t want to be impudent by asking them to pay for you, so you decide to thank them for the invite but that you have a thing elsewhere that you need to attend.');
     scene.actions([
       { label: 'Leave', goto: ['city_park', ''] },
     ]);
   } },
-              ]);
-            }
-            scene.actions([
-              { label: 'Agree', handler: (st: GameState) => {
+                ]);
+              }
+              scene.actions([
+                { label: 'Agree', handler: (st: GameState) => {
     (s as any).mey_vika['mey_vika_qw'] = 15;
   }, goto: ['mey_vika_events', 'cafe_qw'] },
-            ]);
-          } else {
-            scene.text('As you\'re getting up from the table, you notice Vicky whispering something to Vanya. You notice Vanya\'s hand stroking and squeezing Vicky\'s ass as they stare at you with lust in their eyes…');
+              ]);
+            } else {
+              if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 7) {
+                scene.text('As you\'re getting up from the table, you notice Vicky whispering something to Vanya. You notice Vanya\'s hand stroking and squeezing Vicky\'s ass as they stare at you with lust in their eyes…');
+              }
+            }
           }
         }
       }
-      scene.text('You don\'t see anyone familiar here.');
     }
+  } else {
+    scene.text('You don\'t see anyone familiar here.');
   }
   scene.actions([
     { label: 'Exit the cafe', goto: ['pav_park', 'start'] },

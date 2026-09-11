@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'reset_CoatVars');
-  if (((s as any).loc ?? 0)('attributes_\'0\'_coats')) {
+  if (((s as any).loc ?? 0)('$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_coats')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_coats', ARGS[1]
   }
   if ((!((s as any).CoatQuality ?? 0))) {

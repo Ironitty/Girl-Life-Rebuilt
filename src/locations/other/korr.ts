@@ -46,42 +46,52 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).rex ?? 0)?.['status'] === 0) {
         scene.actions([{ label: 'Continue', goto: ['pet_dog', 'name'] }]);
       } else {
-        // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
-        scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name']}</a> is lying on the floor.<br>`);
-        if (((s as any).hour ?? 0) < 6) {
-          // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
-          scene.text(`<br>${((s as any).rex ?? 0)?.['name']} is sleeping in his dog basket.<br>`);
+        if (((s as any).hour ?? 0) > 5) {
+          // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
+          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name']}</a> is lying on the floor.<br>`);
+        } else {
+          if (((s as any).hour ?? 0) < 6) {
+            // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
+            scene.text(`<br>${((s as any).rex ?? 0)?.['name']} is sleeping in his dog basket.<br>`);
+          }
         }
       }
     }
-    if (((s as any).mc_inventory ?? 0)?.['umbrella'] > 0) {
-      scene.text('Your umbrella hangs on a hook.');
-    }
-    if (((s as any).krolik ?? 0) === 1) {
-      // TODO-QSP: dynamic text: Your rabbit <a href="exec:gt 'krol', 'start'"><<$namekrol>></a> sits in it's cag...
-      scene.text(`Your rabbit <a href="exec:gt 'krol', 'start'">${((s as any).namekrol ?? 0)}</a> sits in it's cage on the floor.`);
-    }
-    if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 1) {
-      // TODO-QSP: dynamic text: Your parrot <a href="exec:gt 'popu', 'start'"><<$ParrotQW['Name1']>></a> sits in...
-      scene.text(`Your parrot <a href="exec:gt 'popu', 'start'">${((s as any).ParrotQW ?? 0)?.['Name1']}</a> sits in it's cage.`);
-    }
+  }
+  if (((s as any).mc_inventory ?? 0)?.['umbrella'] > 0) {
+    scene.text('Your umbrella hangs on a hook.');
+  }
+  if (((s as any).krolik ?? 0) === 1) {
+    // TODO-QSP: dynamic text: Your rabbit <a href="exec:gt 'krol', 'start'"><<$namekrol>></a> sits in it's cag...
+    scene.text(`Your rabbit <a href="exec:gt 'krol', 'start'">${((s as any).namekrol ?? 0)}</a> sits in it's cage on the floor.`);
+  }
+  if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 1) {
+    // TODO-QSP: dynamic text: Your parrot <a href="exec:gt 'popu', 'start'"><<$ParrotQW['Name1']>></a> sits in...
+    scene.text(`Your parrot <a href="exec:gt 'popu', 'start'">${((s as any).ParrotQW ?? 0)?.['Name1']}</a> sits in it's cage.`);
   }
   scene.actions([
     { label: '<b>Go to the stairwell</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed before going out.</b></center>');
     } else {
-      scene.text('<center><b>You\'re too sick to leave home.</b></center>');
-      (s as any).minut = ((s as any).minut ?? 0) + (1);
+      if (((s as any).sick ?? 0) > 72) {
+        scene.text('<center><b>You\'re too sick to leave home.</b></center>');
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + (1);
+        scene.actions([{ label: 'Continue', goto: ['city_apt_building', 'floor_5'] }]);
+      }
     }
   } },
     { label: '<b>Go to the street</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed before going out.</b></center>');
     } else {
-      scene.text('<center><b>You\'re too sick to walk around in the streets.</b></center>');
-      (s as any).minut = ((s as any).minut ?? 0) + 2;
-      scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      if (((s as any).sick ?? 0) > 72) {
+        scene.text('<center><b>You\'re too sick to walk around in the streets.</b></center>');
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 2;
+        scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
+      }
     }
   } },
     { label: 'Go to the bedroom', handler: (st: GameState) => {
@@ -105,5 +115,6 @@ export const korr: LocationDef = {
   title: 'Corridor',
   region: 'other',
   locationType: 'private',
+  description: ['Your umbrella hangs on a hook.'],
   enter: enter,
 };

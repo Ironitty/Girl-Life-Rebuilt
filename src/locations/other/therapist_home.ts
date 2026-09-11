@@ -171,20 +171,23 @@ function enterPreSleep(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).therapistQW ?? 0)?.['hotel_firstnight'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['therapist_home', 'first_morning'] }]);
-    }
-    scene.actions([{ label: 'Continue', goto: ['therapist_home', 'wakeup1'] }]);
-    if (((s as any).locArgs?.[0] ?? 0) === 'wakeup1') {
-      scene.img('images/shared/sex/cum/vagcreampie/after1.jpg');
-      scene.text('You wake up in the morning and scoot off the bed.');
-      scene.text('You move and stretch to remove the stiffness of sleep.');
-      scene.text('You feel your husband\'s cum leak out of you as you make your way to the kitchen area and make your husband some eggs and bacon before you go clean up and start your day.');
-      scene.actions([
-        { label: 'Cook breakfast', handler: (st: GameState) => {
+    if (((s as any).locArgs?.[0] ?? 0) === 'wakeup') {
+      if (((s as any).therapistQW ?? 0)?.['hotel_firstnight'] === 1) {
+        scene.actions([{ label: 'Continue', goto: ['therapist_home', 'first_morning'] }]);
+      }
+      scene.actions([{ label: 'Continue', goto: ['therapist_home', 'wakeup1'] }]);
+    } else {
+      if (((s as any).locArgs?.[0] ?? 0) === 'wakeup1') {
+        scene.img('images/shared/sex/cum/vagcreampie/after1.jpg');
+        scene.text('You wake up in the morning and scoot off the bed.');
+        scene.text('You move and stretch to remove the stiffness of sleep.');
+        scene.text('You feel your husband\'s cum leak out of you as you make your way to the kitchen area and make your husband some eggs and bacon before you go clean up and start your day.');
+        scene.actions([
+          { label: 'Cook breakfast', handler: (st: GameState) => {
     qspCall(st, 'wakeup_events', 'exit');
   }, goto: ['therapist_home', 'cook'] },
-      ]);
+        ]);
+      }
     }
   }
   scene.build();

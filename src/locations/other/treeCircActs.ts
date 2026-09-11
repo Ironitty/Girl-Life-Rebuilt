@@ -6,14 +6,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).EntryPoint ?? 0) === ((s as any).locArgs?.[0] ?? 0)) {
     scene.actions([
       { label: 'Leave the circle', handler: (st: GameState) => {
-    if (((s as any).treeCircLoc ?? 0)?.[String(((s as any).locArgs?.[0] ?? 0))] === 'pav_parkev') {
+    if (((s as any).treeCircLoc ?? 0)[((s as any).locArgs?.[0] ?? 0)] === 'pav_parkev') {
       scene.actions([
         { label: 'Park entrance', goto: ['pav_park', 'start'] },
         { label: 'Deeper into the park', goto: ['pav_park', 'deeper_park'] },
       ]);
     } else {
-      // TODO-QSP: gt $treeCircLoc['<<$ARGS[0]>>']
-      // TODO-QSP: gt $treeCircLoc['<<$ARGS[0]>>'], $treeCircArg['<<$ARGS[0]>>']
+      if (((s as any).treeCircArg ?? 0)[((s as any).locArgs?.[0] ?? 0)] === '') {
+        // TODO-QSP: gt $treeCircLoc['<<$ARGS[0]>>']
+      } else {
+        // TODO-QSP: gt $treeCircLoc['<<$ARGS[0]>>'], $treeCircArg['<<$ARGS[0]>>']
+      }
     }
   } },
     ]);

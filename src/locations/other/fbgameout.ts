@@ -144,7 +144,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'React', handler: (st: GameState) => {
+        { label: 'React [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'exp_gain', 'ftbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'stat', '');
@@ -341,7 +341,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'React', handler: (st: GameState) => {
+        { label: 'React [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'exp_gain', 'ftbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'stat', '');

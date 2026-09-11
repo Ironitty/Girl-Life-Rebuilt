@@ -73,9 +73,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).hunterVars ?? 0)?.['KnowSlut'] > 0  &&  ((s as any).pcs_horny ?? 0) > 50  &&  ((s as any).mesec ?? 0) <= 0) {
-      scene.actions([
-        { label: 'Stick around', handler: (st: GameState) => {
+    if (((s as any).hunterVars ?? 0)?.['chattime'] === 1) {
+      if (((s as any).hunterVars ?? 0)?.['KnowSlut'] > 0  &&  ((s as any).pcs_horny ?? 0) > 50  &&  ((s as any).mesec ?? 0) <= 0) {
+        scene.actions([
+          { label: 'Stick around', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A172', '1');
     qspCall(s, 'boyStat', 'A173', '2');
     qspCall(s, 'boyStat', 'A174', '3');
@@ -121,13 +122,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
-    if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] >= 10  &&  ((s as any).shootingday ?? 0) !== ((s as any).daystart ?? 0)) {
-      if (((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
-        if ((!((s as any).shooting ?? 0))) {
-          scene.actions([
-            { label: 'Ask to learn how to shoot the rifle', handler: (st: GameState) => {
+        ]);
+      }
+      if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] >= 10  &&  ((s as any).shootingday ?? 0) !== ((s as any).daystart ?? 0)) {
+        if (((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
+          if ((!((s as any).shooting ?? 0))) {
+            scene.actions([
+              { label: 'Ask to learn how to shoot the rifle', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).shootingday = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
@@ -185,10 +186,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: 'Ask to shoot the rifle', handler: (st: GameState) => {
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Ask to shoot the rifle', handler: (st: GameState) => {
     if ((!((s as any).fingal ?? 0))) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).shootingday = ((s as any).daystart ?? 0);
@@ -200,10 +201,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, just don't end up like the first time," Andrei said jo...
         scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}, just don't end up like the first time," Andrei said jokingly.`);
       } else {
-        // TODO-QSP: dynamic text: "Sure, <<$pcs_nickname>>, just be careful." Andrei said smiling.
-        scene.text(`"Sure, ${((s as any).pcs_nickname ?? 0)}, just be careful." Andrei said smiling.`);
-        // TODO-QSP: dynamic text: "Here, <<$pcs_nickname>>, just don't shoot too much, the bullets are expensive."...
-        scene.text(`"Here, ${((s as any).pcs_nickname ?? 0)}, just don't shoot too much, the bullets are expensive." Andrei said smiling.`);
+        if (((s as any).pcs_shoot ?? 0) <= 10) {
+          // TODO-QSP: dynamic text: "Sure, <<$pcs_nickname>>, just be careful." Andrei said smiling.
+          scene.text(`"Sure, ${((s as any).pcs_nickname ?? 0)}, just be careful." Andrei said smiling.`);
+        } else {
+          // TODO-QSP: dynamic text: "Here, <<$pcs_nickname>>, just don't shoot too much, the bullets are expensive."...
+          scene.text(`"Here, ${((s as any).pcs_nickname ?? 0)}, just don't shoot too much, the bullets are expensive." Andrei said smiling.`);
+        }
       }
       if (((s as any).pcs_shoot ?? 0) >= 1  &&  ((s as any).pcs_shoot ?? 0) <= 10) {
         scene.actions([
@@ -267,41 +271,38 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-          ]);
-        }
-      } else {
-        if ((!((s as any).huntslutsex ?? 0))) {
-          (s as any).minut = ((s as any).minut ?? 0) + 5;
-          (s as any).shootingday = ((s as any).daystart ?? 0);
-          (s as any).hunterVars['sexnude'] = 1;
-          qspCall(s, 'stat', '');
-          scene.img('images/locations/gadukino/hunters/claps_eyes.jpg');
-          scene.text('You approach the hunters sitting in the meadow. "Guys, let me shoot the rifle," you look at them with your puppy eyes.');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, come closer," replied Andrei. "If you want to shoot you need...
-          scene.text(`"${((s as any).pcs_nickname ?? 0)}, come closer," replied Andrei. "If you want to shoot you need to repay us somehow."`);
-          scene.actions([
-            { label: 'Approach', goto: ['hunters', 'start'] },
-          ]);
+            ]);
+          }
         } else {
-          (s as any).minut = ((s as any).minut ?? 0) + 5;
-          (s as any).shootingday = ((s as any).daystart ?? 0);
-          qspCall(s, 'stat', '');
-          scene.img('images/locations/gadukino/hunters/claps_eyes.jpg');
-          scene.text('"Please guys, I really want to shoot with the rifle."');
-          // TODO-QSP: dynamic text: "Don't you worry <<$pcs_nickname>>, you have other talents that are more needed....
-          scene.text(`"Don't you worry ${((s as any).pcs_nickname ?? 0)}, you have other talents that are more needed." Andrei replied.`);
-          scene.text('He scoffs, pleased with the joke.');
-          scene.actions([
-            { label: 'Move away', goto: ['gad_swamp_yard', 'start'] },
-          ]);
+          if ((!((s as any).huntslutsex ?? 0))) {
+            (s as any).minut = ((s as any).minut ?? 0) + 5;
+            (s as any).shootingday = ((s as any).daystart ?? 0);
+            (s as any).hunterVars['sexnude'] = 1;
+            qspCall(s, 'stat', '');
+            scene.img('images/locations/gadukino/hunters/claps_eyes.jpg');
+            scene.text('You approach the hunters sitting in the meadow. "Guys, let me shoot the rifle," you look at them with your puppy eyes.');
+            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, come closer," replied Andrei. "If you want to shoot you need...
+            scene.text(`"${((s as any).pcs_nickname ?? 0)}, come closer," replied Andrei. "If you want to shoot you need to repay us somehow."`);
+            scene.actions([
+              { label: 'Approach', goto: ['hunters', 'start'] },
+            ]);
+          } else {
+            (s as any).minut = ((s as any).minut ?? 0) + 5;
+            (s as any).shootingday = ((s as any).daystart ?? 0);
+            qspCall(s, 'stat', '');
+            scene.img('images/locations/gadukino/hunters/claps_eyes.jpg');
+            scene.text('"Please guys, I really want to shoot with the rifle."');
+            // TODO-QSP: dynamic text: "Don't you worry <<$pcs_nickname>>, you have other talents that are more needed....
+            scene.text(`"Don't you worry ${((s as any).pcs_nickname ?? 0)}, you have other talents that are more needed." Andrei replied.`);
+            scene.text('He scoffs, pleased with the joke.');
+            scene.actions([
+              { label: 'Move away', goto: ['gad_swamp_yard', 'start'] },
+            ]);
+          }
         }
       }
-    }
-    if (((s as any).hunterVars ?? 0)?.['evening'] === 0) {
-      // TODO-QSP: act 'Talk to Andrei': gt 'andreihunter'
-    }
-    scene.actions([
-      { label: 'Chat (0:30)', handler: (st: GameState) => {
+      scene.actions([
+        { label: 'Chat (0:30)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (0);
     qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 11) + 10);
     if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 10) {
@@ -332,9 +333,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', goto: ['gad_swamp_yard', 'start'] },
     ]);
   } },
-      { label: 'Talk to Sergei', goto: ['sergeihunter', ''] },
-      { label: 'Talk to Igor', goto: ['igorhunter', ''] },
-    ]);
+      ]);
+    } else {
+      if (((s as any).hunterVars ?? 0)?.['evening'] === 0) {
+        // TODO-QSP: act 'Talk to Andrei': gt 'andreihunter'
+      }
+      scene.actions([
+        { label: 'Talk to Sergei', goto: ['sergeihunter', ''] },
+        { label: 'Talk to Igor', goto: ['igorhunter', ''] },
+      ]);
+    }
   }
   if (((s as any).hunterVars ?? 0)?.['Rape'] === 3) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -820,8 +828,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).forest_gopsex ?? 0) === 1) {
       qspCall(s, 'outfit', 'strip_all', 'forest_edge');
     } else {
-      qspCall(s, 'outfit', 'strip_all', 'gad_backwater');
-      qspCall(s, 'outfit', 'strip_all');
+      if (((s as any).slutgosex ?? 0) === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 1) {
+        qspCall(s, 'outfit', 'strip_all', 'gad_backwater');
+      } else {
+        qspCall(s, 'outfit', 'strip_all');
+      }
     }
     if (((s as any).hunterandreisex ?? 0) === 0  &&  ((s as any).temphunt ?? 0) === 1) {
       (s as any).hunterandreisex = 1;
@@ -3962,183 +3973,234 @@ function enterHuntersTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s the difference between a dog and a fox?"');
     scene.text('"Two shots of vodka!"');
   } else {
-    scene.text('"The Dachshund is a hunting dog. They??????re pretty funny looking, only a half size of a regular dog."');
-    if (((s as any).temp ?? 0) === 3) {
-      scene.text('"We once found a perfect spot while hunting. We got settled and checked what we brought with us. There were rifles, ammo and pickles. But we forgot the vodka. I had to go back all the way…"');
+    if (((s as any).temp ?? 0) === 2) {
+      scene.text('"The Dachshund is a hunting dog. They??????re pretty funny looking, only a half size of a regular dog."');
     } else {
-      scene.text('The men had gathered for a hunt, all but one were joyful. He had fallen in trouble with his wife. She had said: "I know what you do when you go hunt, you only get drunk as pigs and then crawl home…" In the middle of the argument the man had enough and told his wife that she could join them. When the rest of the men noticed that a woman was supposed to join them they got quite irritated.');
-      scene.text('They walked into the forest, found a suitable clearing, and the man gave his wife a rifle and said:');
-      scene.text('"You can sit here hidden in the bushes, and I will drive the moose towards you. I will drive it straight at you and you better do not miss, or else all the hard work will go waste…"');
-      scene.text('The man leaves, and joins the other men near a hut and they start to drink. Time passed by and all of a sudden the man woke up after sundown… The man grabbed his head, thinking that he would get a scolding by his wife.');
-      scene.text('He comes near the clearing and sees an odd picture: in the middle of the clearing there lies a carcass and the wife is jumping with joy around it. Standing next to her is an upset man, rubbing his bald head.');
-      scene.text('"Yes dear, look at the elk you killed. We just need to remove the saddle…"');
-      if (((s as any).temp ?? 0) === 5) {
-        scene.text('This one happened to my dad…');
-        scene.text('He was crossing a stubble field one morning before dawn and heard something moving toward him in the darkness. He froze and shone his flashlight in the direction of the sounds and discovered a skunk was making his way down a row of corn stubble and was headed toward him on a direct collision course.');
-        scene.text('Not wanting to spook the little fella into spraying him, my dad slowly retreated toward the fence line, walking backwards and keeping the light trained on the skunk.');
-        scene.text('Suddenly, he felt something brush across his shoulders and back and quickly swung the flashlight around and shone it directly into the face of a scarecrow!');
+      if (((s as any).temp ?? 0) === 3) {
+        scene.text('"We once found a perfect spot while hunting. We got settled and checked what we brought with us. There were rifles, ammo and pickles. But we forgot the vodka. I had to go back all the way…"');
       } else {
-        scene.text('There once was politician that was going hunting. He drove out in his fancy jeep, dressed in camouflage and had a super fancy rifle with optical sight night vision… He walks into the forest, and met a man in sandals, a simple hat and a torn jacket, he looked like a typical village guy.');
-        scene.text('Man: "Where are you heading?"');
-        scene.text('Politician: "I\'m gonna shoot a bear!"');
-        scene.text('Man: "Yes, you seem well prepared…"');
-        scene.text('Politician: "Yes, you see! This rifle can shoot down an elephant…"');
-        scene.text('He continues on walking into the woods.');
-        scene.text('Sighing deeply the man says: "Too bad you\'re going deeper into the forest… There haven\'t been any bears here for quite a while now…"');
-        if (((s as any).temp ?? 0) === 7) {
-          scene.text('After a shot a hunter asks his partner:');
-          scene.text('"Can you take a look what beast I\'ve put down?"');
-          scene.text('He comes back after a while:');
-          scene.text('"Judging by the beasts passport, his last name was Ivanov."');
+        if (((s as any).temp ?? 0) === 4) {
+          scene.text('The men had gathered for a hunt, all but one were joyful. He had fallen in trouble with his wife. She had said: "I know what you do when you go hunt, you only get drunk as pigs and then crawl home…" In the middle of the argument the man had enough and told his wife that she could join them. When the rest of the men noticed that a woman was supposed to join them they got quite irritated.');
+          scene.text('They walked into the forest, found a suitable clearing, and the man gave his wife a rifle and said:');
+          scene.text('"You can sit here hidden in the bushes, and I will drive the moose towards you. I will drive it straight at you and you better do not miss, or else all the hard work will go waste…"');
+          scene.text('The man leaves, and joins the other men near a hut and they start to drink. Time passed by and all of a sudden the man woke up after sundown… The man grabbed his head, thinking that he would get a scolding by his wife.');
+          scene.text('He comes near the clearing and sees an odd picture: in the middle of the clearing there lies a carcass and the wife is jumping with joy around it. Standing next to her is an upset man, rubbing his bald head.');
+          scene.text('"Yes dear, look at the elk you killed. We just need to remove the saddle…"');
         } else {
-          scene.text('There are two types of trips you can get from the mushrooms in the forest.');
-          scene.text('The first can lead you to an extremely thoughtful introspection.');
-          scene.text('While the second can make you feel paranoid as if you were being chased by a guy with a chainsaw in a maze.');
-          if (((s as any).temp ?? 0) === 9) {
-            scene.text('The three hunters are talking:');
-            scene.text('"I once killed a whale with one shot."');
-            scene.text('"I strangled a bear with my bare hands."');
-            scene.text('"Have you ever heard of the Dead Sea?"');
-            scene.text('"Who hasn\'t heard of it?"');
-            scene.text('"So I…"');
+          if (((s as any).temp ?? 0) === 5) {
+            scene.text('This one happened to my dad…');
+            scene.text('He was crossing a stubble field one morning before dawn and heard something moving toward him in the darkness. He froze and shone his flashlight in the direction of the sounds and discovered a skunk was making his way down a row of corn stubble and was headed toward him on a direct collision course.');
+            scene.text('Not wanting to spook the little fella into spraying him, my dad slowly retreated toward the fence line, walking backwards and keeping the light trained on the skunk.');
+            scene.text('Suddenly, he felt something brush across his shoulders and back and quickly swung the flashlight around and shone it directly into the face of a scarecrow!');
           } else {
-            scene.text('"As I\'m getting out of the house I see something resembling an eagle standing on the telephone pole."');
-            scene.text('"I run into the house and get my rifle, aim. Bang, Bang, Bang."');
-            scene.text('"I hit the eagle and it falls down to the ground. As I look at the telephone pole I see pole spurs on both sides…"');
-            if (((s as any).temp ?? 0) === 11) {
-              scene.text('If nothing comes by while you\'re hunting, that means the you\'ve become one with the forest.');
+            if (((s as any).temp ?? 0) === 6) {
+              scene.text('There once was politician that was going hunting. He drove out in his fancy jeep, dressed in camouflage and had a super fancy rifle with optical sight night vision… He walks into the forest, and met a man in sandals, a simple hat and a torn jacket, he looked like a typical village guy.');
+              scene.text('Man: "Where are you heading?"');
+              scene.text('Politician: "I\'m gonna shoot a bear!"');
+              scene.text('Man: "Yes, you seem well prepared…"');
+              scene.text('Politician: "Yes, you see! This rifle can shoot down an elephant…"');
+              scene.text('He continues on walking into the woods.');
+              scene.text('Sighing deeply the man says: "Too bad you\'re going deeper into the forest… There haven\'t been any bears here for quite a while now…"');
             } else {
-              (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-              scene.text('You hear the hunter discuss their dogs:');
-              scene.text('First one:');
-              scene.text('"I once went hunting. I brought my rifle but forgot the cartridges. I let the dog sniff the rifle and she retrieved the ammo!"');
-              scene.text('Second one:');
-              scene.text('"I once went hunting. I brought the bullets with me but forgot the rifle. I let the dog sniff the ammo and she retrieved the rifle!"');
-              scene.text('Third one:');
-              scene.text('I went to swim with my wife but she forgot the swimsuit. I let the dog sniff my wife between her legs and she retrieved the neighbor by his balls!!!"');
-              if (((s as any).temp ?? 0) === 13) {
-                scene.text('A man returned happy from hunting. The wife asks him:');
-                scene.text('"Did you get something good?"');
-                scene.text('"I sure did! I shot many hedgehogs!"');
-                scene.text('"Are you out of your fucking mind? Why the fuck did you do that!"');
-                scene.text('"Well, my dear. I was thinking you could wear it as a collar or your mother could use it as an insole."');
+              if (((s as any).temp ?? 0) === 7) {
+                scene.text('After a shot a hunter asks his partner:');
+                scene.text('"Can you take a look what beast I\'ve put down?"');
+                scene.text('He comes back after a while:');
+                scene.text('"Judging by the beasts passport, his last name was Ivanov."');
               } else {
-                scene.text('Met two birds. One of them asks:');
-                scene.text('"What are you hunting?"');
-                scene.text('"Are you even a hunter?"');
-                scene.text('"Oh, I\'m a hunter."');
-                scene.text('"So what are you hunting?!"');
-                scene.text('"Nothing special… I was just cleaning my rifle."');
-                if (((s as any).temp ?? 0) === 15) {
-                  scene.text('The man returns home being out hunting for a month. A friend asks him:');
-                  scene.text('"Well, I guess you\'ve made quite a fortune. You\'ve been away for a month. Your wife will be able buy lots of things!"');
-                  scene.text('"So much did you earn?"');
-                  scene.text('"Nothing, I drank it all up."');
+                if (((s as any).temp ?? 0) === 8) {
+                  scene.text('There are two types of trips you can get from the mushrooms in the forest.');
+                  scene.text('The first can lead you to an extremely thoughtful introspection.');
+                  scene.text('While the second can make you feel paranoid as if you were being chased by a guy with a chainsaw in a maze.');
                 } else {
-                  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                  scene.text('A hunter was chasing a bear. The bear was though and healthy and ran quickly, leaving the hunter behind. While looking backwards the bear got stuck between two trees. A rabbit runs by and asks the bear:');
-                  scene.text('"How did you get stuck there?"');
-                  scene.text('"Well…" the bear began its story but the rabbit jumps on the bear and starts fucking it in the ass. The bear got upset but could not get out.');
-                  scene.text('Then he saw a fox running by and called it over:');
-                  scene.text('"Hey fox, come over here and help me out!"');
-                  scene.text('The fox thought about it and like the rabbit it started fucking the bear. The bear was now getting desperate, when he saw the wolf. The wolf comes over and asks:');
-                  scene.text('"What happened to you?"');
-                  scene.text('The bear answers: "Well, wolf, you might as well fuck me over first then I\'ll tell you!!"');
-                  if (((s as any).temp ?? 0) === 17) {
-                    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                    scene.text('I went out with some men hunting and as usual we got drunk. One of the men grabs his rifle and goes to hunt. All of a sudden a bear appears, and he starts climbing a tree. He shouts:');
-                    scene.text('"Guys, save me! Kill the bear."');
-                    scene.text('Since we\'re all drunk, we take aim, shoot and the shots fly by the bear. The bear continues on, not caring about the shots. Guy yells again:');
-                    scene.text('"Come on guys! Kill this fucking bear."');
-                    scene.text('We take aim again, shoot and miss. The man now desperate shouts:');
-                    scene.text('"What are you bastards doing! Are you trying to kill me or the bear!"');
+                  if (((s as any).temp ?? 0) === 9) {
+                    scene.text('The three hunters are talking:');
+                    scene.text('"I once killed a whale with one shot."');
+                    scene.text('"I strangled a bear with my bare hands."');
+                    scene.text('"Have you ever heard of the Dead Sea?"');
+                    scene.text('"Who hasn\'t heard of it?"');
+                    scene.text('"So I…"');
                   } else {
-                    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                    scene.text('"Every year we do our annual cleaning of the hut, throwing away old canned food and stuff. Well, one guy threw a family size can of baked beans in the burn barrel instead of in the trash can.');
-                    scene.text('"That night, as we were all telling stories and drinking around the burn barrel, the can exploded! Hot baked beans covered everything within a 10 meter radius, including us.');
-                    if (((s as any).temp ?? 0) === 19) {
-                      scene.text('One the hunters tells the other: "I once had a woodcock try to fly over my head so I whacked it with my shotgun barrel, killing it."');
+                    if (((s as any).temp ?? 0) === 10) {
+                      scene.text('"As I\'m getting out of the house I see something resembling an eagle standing on the telephone pole."');
+                      scene.text('"I run into the house and get my rifle, aim. Bang, Bang, Bang."');
+                      scene.text('"I hit the eagle and it falls down to the ground. As I look at the telephone pole I see pole spurs on both sides…"');
                     } else {
-                      scene.text('The hunters are all huddled up and one of the hunters puts the rifle on his knees, pointing it at his neighbor.');
-                      scene.text('"Sorry I\'ll be more careful next time so I don\'t accidentally gun you down!"');
-                      scene.text('"Just finish me off already…" the other hunter replies.');
-                      if (((s as any).temp ?? 0) === 21) {
-                        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                        scene.text('"So I got lost in the forest one night and was trying to get back to the hut. I stumbled around in the darkness for hours until I hear someone yelling "MARK! MARK! MARK!" So I say to myself "This guy knows where he is so go find him."');
-                        scene.text('"I walk all the way there in the dark and when I got there all I found was an ol\' hair lipped dog…"');
+                      if (((s as any).temp ?? 0) === 11) {
+                        scene.text('If nothing comes by while you\'re hunting, that means the you\'ve become one with the forest.');
                       } else {
-                        scene.text('"You know, when I went on a business trip last time I hid a surprise in the closet for my special one when I return home. So imagine, I came home, immediately going to the closet and giving the gift."');
-                        scene.text('"To whom? Your wife?"');
-                        scene.text('"No, a bear!"');
-                        if (((s as any).temp ?? 0) === 23) {
-                          scene.text('Two hunters meet each other, one of them starts bragging.');
-                          scene.text('"I have a dog, that can locate a wounded duck and bring it to me."');
-                          scene.text('The second hunter responds:');
-                          scene.text('"My dog is way cooler. If I see a flying flock of ducks I put the dog in my man-made catapult. Aim it in the direction of the pack, fire off, the dog flies towards them and brings me some ducks back…"');
-                          scene.text('In the meadow there is a grazing cow with its calf. The calf raises its head and sees the dog flying and says:');
-                          scene.text('"Look at that dog chasing those flying ducks."');
-                          scene.text('The cow responds: "I told you we\'re better of eating grass."');
+                        if (((s as any).temp ?? 0) === 12) {
+                          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                          scene.text('You hear the hunter discuss their dogs:');
+                          scene.text('First one:');
+                          scene.text('"I once went hunting. I brought my rifle but forgot the cartridges. I let the dog sniff the rifle and she retrieved the ammo!"');
+                          scene.text('Second one:');
+                          scene.text('"I once went hunting. I brought the bullets with me but forgot the rifle. I let the dog sniff the ammo and she retrieved the rifle!"');
+                          scene.text('Third one:');
+                          scene.text('I went to swim with my wife but she forgot the swimsuit. I let the dog sniff my wife between her legs and she retrieved the neighbor by his balls!!!"');
                         } else {
-                          scene.text('An avid hunter stands in the doorway to the tavern when the local doctor opens the door:');
-                          scene.text('"Doctor, doctor, did you know that I got shot today?"');
-                          scene.text('"I know, I already pulled the bullet out of you."');
-                          if (((s as any).temp ?? 0) === 25) {
-                            scene.text('"Yesterday I shot two geese…"');
-                            scene.text('"Were they wild?"');
-                            scene.text('"They were not, but their owner got pretty wild!"');
+                          if (((s as any).temp ?? 0) === 13) {
+                            scene.text('A man returned happy from hunting. The wife asks him:');
+                            scene.text('"Did you get something good?"');
+                            scene.text('"I sure did! I shot many hedgehogs!"');
+                            scene.text('"Are you out of your fucking mind? Why the fuck did you do that!"');
+                            scene.text('"Well, my dear. I was thinking you could wear it as a collar or your mother could use it as an insole."');
                           } else {
-                            (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                            scene.text('A depressed man goes hunting. He finds a bear den, starts firing his rifle, shots towards the bear and says:');
-                            scene.text('"Listen here, either I kill you or we fuck, your choice! If you wanna survive I suggest you pick the second option… Not feeling satisfied, the hunter goes home, picks up more ammunition, returns to the den, empties his clip. He forces the bear out, saying:');
-                            scene.text('"Listen, either we fuck again, or I\'ll kill you, take your pick! The man survives even this time, wondering how he\'s able to still be alive. He goes home and returns with dynamite wanting to blow up den. He sets up the dynamite, hides behind a rock and blows up the entrance to the den.');
-                            scene.text('Behind him he hears the voice of the bear: "Man, I do not understand, are you a hunter or a faggot?"');
-                            if (((s as any).temp ?? 0) === 27) {
-                              scene.text('A hunter comes home from the hunt.');
-                              scene.text('"Is that you smelling?"');
-                              scene.text('"Yes, I went out to hunt down a bear, but I forgot the food. So I started to run home. I was close to home when I hear someone behind me, putting their paws on my shoulders. I turn and see a bear. Well I\'m sure you can probably figure out what happened next."');
+                            if (((s as any).temp ?? 0) === 14) {
+                              scene.text('Met two birds. One of them asks:');
+                              scene.text('"What are you hunting?"');
+                              scene.text('"Are you even a hunter?"');
+                              scene.text('"Oh, I\'m a hunter."');
+                              scene.text('"So what are you hunting?!"');
+                              scene.text('"Nothing special… I was just cleaning my rifle."');
                             } else {
-                              (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                              scene.text('It\'s hunting season and everybody are hunting geese. A hunter, tired off staying hidden, finally sees an opportunity, a lone goose. The hunter sneaks up to the goose, trying to near it as close as possible.');
-                              scene.text('When he\'s finally close enough, he lets off a shot but misses the goose. It turns around and hisses towards the hunter.');
-                              scene.text('"Shit! Do they bite?" asked the hunter. "What did you expect? That they suck?" answered his friend.');
-                              if (((s as any).temp ?? 0) === 29) {
-                                scene.text('An experienced hunter shares his experience with the beginners:');
-                                scene.text('"Remember, it is best to hunt with dogs. If you get lost and want to return home, they will always find back. But keep them on a short leesh and don\'t let go of them no matter what way they take!"');
+                              if (((s as any).temp ?? 0) === 15) {
+                                scene.text('The man returns home being out hunting for a month. A friend asks him:');
+                                scene.text('"Well, I guess you\'ve made quite a fortune. You\'ve been away for a month. Your wife will be able buy lots of things!"');
+                                scene.text('"So much did you earn?"');
+                                scene.text('"Nothing, I drank it all up."');
                               } else {
-                                scene.text('"Some investments were made in this area, and a certain Minister was invited to hunt rabbits. At the end he was unanimously proclaimed hunting king. The Minister managed to shoot thirty rabbits."');
-                                scene.text('Yes, it was a great result, the Minister commented modestly, especially considering that I only took ten shots…"');
-                                if (((s as any).temp ?? 0) === 31) {
+                                if (((s as any).temp ?? 0) === 16) {
                                   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                                  scene.text('Two hunters are discussing:');
-                                  scene.text('"I heard you beat down a snake last week?"');
-                                  scene.text('"The stories are true my friend."');
-                                  scene.text('"So tell me, how did you manage that?"');
-                                  scene.text('"As usual, with wine, soft music, erotic magazines…"');
+                                  scene.text('A hunter was chasing a bear. The bear was though and healthy and ran quickly, leaving the hunter behind. While looking backwards the bear got stuck between two trees. A rabbit runs by and asks the bear:');
+                                  scene.text('"How did you get stuck there?"');
+                                  scene.text('"Well…" the bear began its story but the rabbit jumps on the bear and starts fucking it in the ass. The bear got upset but could not get out.');
+                                  scene.text('Then he saw a fox running by and called it over:');
+                                  scene.text('"Hey fox, come over here and help me out!"');
+                                  scene.text('The fox thought about it and like the rabbit it started fucking the bear. The bear was now getting desperate, when he saw the wolf. The wolf comes over and asks:');
+                                  scene.text('"What happened to you?"');
+                                  scene.text('The bear answers: "Well, wolf, you might as well fuck me over first then I\'ll tell you!!"');
                                 } else {
-                                  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
-                                  scene.text('Two hunters are hunting in the woods. They notice a woman in front of them with bare legs lying down. One of the hunters looks at her and says:');
-                                  scene.text('"Now this is a beast I could chase forever!"');
-                                  scene.text('The other hunter looks at the womans\' ass and says:');
-                                  scene.text('"I wouldn\'t chase that if they even gave me a million rubles."');
-                                  if (((s as any).temp ?? 0) === 33) {
-                                    scene.text('The three hunters are telling each other stories. The first one:');
-                                    scene.text('"I went out hunting once and saw this huge wild boar killing one deer…"');
-                                    scene.text('The second one:');
-                                    scene.text('Yeah right, and I\'m a moose…"');
-                                    scene.text('The third one cuts in:');
-                                    scene.text('"I once went on a hunt, with only one bullet in the barrel… I ended up meeting a pack of wolves… I took a shot and missed. The wolves started running towards me so I climbed up a tree…');
-                                    scene.text('"How did you survive?"');
-                                    scene.text('"I ate leaves…"');
+                                  if (((s as any).temp ?? 0) === 17) {
+                                    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                                    scene.text('I went out with some men hunting and as usual we got drunk. One of the men grabs his rifle and goes to hunt. All of a sudden a bear appears, and he starts climbing a tree. He shouts:');
+                                    scene.text('"Guys, save me! Kill the bear."');
+                                    scene.text('Since we\'re all drunk, we take aim, shoot and the shots fly by the bear. The bear continues on, not caring about the shots. Guy yells again:');
+                                    scene.text('"Come on guys! Kill this fucking bear."');
+                                    scene.text('We take aim again, shoot and miss. The man now desperate shouts:');
+                                    scene.text('"What are you bastards doing! Are you trying to kill me or the bear!"');
                                   } else {
-                                    scene.text('A hunter walks through the woods and meets a boar. He quickly picks up his rifle and shoots.');
-                                    scene.text('While the smoke is clearing, the hunter starts wondering: Did I hit the boar or not?');
-                                    scene.text('The smoke clears, the boar is unharmed, and comments:');
-                                    scene.text('Man, you really need some…');
-                                    if (((s as any).temp ?? 0) === 35) {
-                                      scene.text('Two hunters are talking:');
-                                      scene.text('"Can you imagine that I came across a couple of beautiful birds yesterday, my heart pounded with excitement when I saw them!"');
-                                      scene.text('"Did you shoot them?"');
-                                      scene.text('"No, they were too expensive."');
+                                    if (((s as any).temp ?? 0) === 18) {
+                                      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                                      scene.text('"Every year we do our annual cleaning of the hut, throwing away old canned food and stuff. Well, one guy threw a family size can of baked beans in the burn barrel instead of in the trash can.');
+                                      scene.text('"That night, as we were all telling stories and drinking around the burn barrel, the can exploded! Hot baked beans covered everything within a 10 meter radius, including us.');
+                                    } else {
+                                      if (((s as any).temp ?? 0) === 19) {
+                                        scene.text('One the hunters tells the other: "I once had a woodcock try to fly over my head so I whacked it with my shotgun barrel, killing it."');
+                                      } else {
+                                        if (((s as any).temp ?? 0) === 20) {
+                                          scene.text('The hunters are all huddled up and one of the hunters puts the rifle on his knees, pointing it at his neighbor.');
+                                          scene.text('"Sorry I\'ll be more careful next time so I don\'t accidentally gun you down!"');
+                                          scene.text('"Just finish me off already…" the other hunter replies.');
+                                        } else {
+                                          if (((s as any).temp ?? 0) === 21) {
+                                            (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                                            scene.text('"So I got lost in the forest one night and was trying to get back to the hut. I stumbled around in the darkness for hours until I hear someone yelling "MARK! MARK! MARK!" So I say to myself "This guy knows where he is so go find him."');
+                                            scene.text('"I walk all the way there in the dark and when I got there all I found was an ol\' hair lipped dog…"');
+                                          } else {
+                                            if (((s as any).temp ?? 0) === 22) {
+                                              scene.text('"You know, when I went on a business trip last time I hid a surprise in the closet for my special one when I return home. So imagine, I came home, immediately going to the closet and giving the gift."');
+                                              scene.text('"To whom? Your wife?"');
+                                              scene.text('"No, a bear!"');
+                                            } else {
+                                              if (((s as any).temp ?? 0) === 23) {
+                                                scene.text('Two hunters meet each other, one of them starts bragging.');
+                                                scene.text('"I have a dog, that can locate a wounded duck and bring it to me."');
+                                                scene.text('The second hunter responds:');
+                                                scene.text('"My dog is way cooler. If I see a flying flock of ducks I put the dog in my man-made catapult. Aim it in the direction of the pack, fire off, the dog flies towards them and brings me some ducks back…"');
+                                                scene.text('In the meadow there is a grazing cow with its calf. The calf raises its head and sees the dog flying and says:');
+                                                scene.text('"Look at that dog chasing those flying ducks."');
+                                                scene.text('The cow responds: "I told you we\'re better of eating grass."');
+                                              } else {
+                                                if (((s as any).temp ?? 0) === 24) {
+                                                  scene.text('An avid hunter stands in the doorway to the tavern when the local doctor opens the door:');
+                                                  scene.text('"Doctor, doctor, did you know that I got shot today?"');
+                                                  scene.text('"I know, I already pulled the bullet out of you."');
+                                                } else {
+                                                  if (((s as any).temp ?? 0) === 25) {
+                                                    scene.text('"Yesterday I shot two geese…"');
+                                                    scene.text('"Were they wild?"');
+                                                    scene.text('"They were not, but their owner got pretty wild!"');
+                                                  } else {
+                                                    if (((s as any).temp ?? 0) === 26) {
+                                                      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                                                      scene.text('A depressed man goes hunting. He finds a bear den, starts firing his rifle, shots towards the bear and says:');
+                                                      scene.text('"Listen here, either I kill you or we fuck, your choice! If you wanna survive I suggest you pick the second option… Not feeling satisfied, the hunter goes home, picks up more ammunition, returns to the den, empties his clip. He forces the bear out, saying:');
+                                                      scene.text('"Listen, either we fuck again, or I\'ll kill you, take your pick! The man survives even this time, wondering how he\'s able to still be alive. He goes home and returns with dynamite wanting to blow up den. He sets up the dynamite, hides behind a rock and blows up the entrance to the den.');
+                                                      scene.text('Behind him he hears the voice of the bear: "Man, I do not understand, are you a hunter or a faggot?"');
+                                                    } else {
+                                                      if (((s as any).temp ?? 0) === 27) {
+                                                        scene.text('A hunter comes home from the hunt.');
+                                                        scene.text('"Is that you smelling?"');
+                                                        scene.text('"Yes, I went out to hunt down a bear, but I forgot the food. So I started to run home. I was close to home when I hear someone behind me, putting their paws on my shoulders. I turn and see a bear. Well I\'m sure you can probably figure out what happened next."');
+                                                      } else {
+                                                        if (((s as any).temp ?? 0) === 28) {
+                                                          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                                                          scene.text('It\'s hunting season and everybody are hunting geese. A hunter, tired off staying hidden, finally sees an opportunity, a lone goose. The hunter sneaks up to the goose, trying to near it as close as possible.');
+                                                          scene.text('When he\'s finally close enough, he lets off a shot but misses the goose. It turns around and hisses towards the hunter.');
+                                                          scene.text('"Shit! Do they bite?" asked the hunter. "What did you expect? That they suck?" answered his friend.');
+                                                        } else {
+                                                          if (((s as any).temp ?? 0) === 29) {
+                                                            scene.text('An experienced hunter shares his experience with the beginners:');
+                                                            scene.text('"Remember, it is best to hunt with dogs. If you get lost and want to return home, they will always find back. But keep them on a short leesh and don\'t let go of them no matter what way they take!"');
+                                                          } else {
+                                                            if (((s as any).temp ?? 0) === 30) {
+                                                              scene.text('"Some investments were made in this area, and a certain Minister was invited to hunt rabbits. At the end he was unanimously proclaimed hunting king. The Minister managed to shoot thirty rabbits."');
+                                                              scene.text('Yes, it was a great result, the Minister commented modestly, especially considering that I only took ten shots…"');
+                                                            } else {
+                                                              if (((s as any).temp ?? 0) === 31) {
+                                                                (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                                                                scene.text('Two hunters are discussing:');
+                                                                scene.text('"I heard you beat down a snake last week?"');
+                                                                scene.text('"The stories are true my friend."');
+                                                                scene.text('"So tell me, how did you manage that?"');
+                                                                scene.text('"As usual, with wine, soft music, erotic magazines…"');
+                                                              } else {
+                                                                if (((s as any).temp ?? 0) === 32) {
+                                                                  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 16) + 5);
+                                                                  scene.text('Two hunters are hunting in the woods. They notice a woman in front of them with bare legs lying down. One of the hunters looks at her and says:');
+                                                                  scene.text('"Now this is a beast I could chase forever!"');
+                                                                  scene.text('The other hunter looks at the womans\' ass and says:');
+                                                                  scene.text('"I wouldn\'t chase that if they even gave me a million rubles."');
+                                                                } else {
+                                                                  if (((s as any).temp ?? 0) === 33) {
+                                                                    scene.text('The three hunters are telling each other stories. The first one:');
+                                                                    scene.text('"I went out hunting once and saw this huge wild boar killing one deer…"');
+                                                                    scene.text('The second one:');
+                                                                    scene.text('Yeah right, and I\'m a moose…"');
+                                                                    scene.text('The third one cuts in:');
+                                                                    scene.text('"I once went on a hunt, with only one bullet in the barrel… I ended up meeting a pack of wolves… I took a shot and missed. The wolves started running towards me so I climbed up a tree…');
+                                                                    scene.text('"How did you survive?"');
+                                                                    scene.text('"I ate leaves…"');
+                                                                  } else {
+                                                                    if (((s as any).temp ?? 0) === 34) {
+                                                                      scene.text('A hunter walks through the woods and meets a boar. He quickly picks up his rifle and shoots.');
+                                                                      scene.text('While the smoke is clearing, the hunter starts wondering: Did I hit the boar or not?');
+                                                                      scene.text('The smoke clears, the boar is unharmed, and comments:');
+                                                                      scene.text('Man, you really need some…');
+                                                                    } else {
+                                                                      if (((s as any).temp ?? 0) === 35) {
+                                                                        scene.text('Two hunters are talking:');
+                                                                        scene.text('"Can you imagine that I came across a couple of beautiful birds yesterday, my heart pounded with excitement when I saw them!"');
+                                                                        scene.text('"Did you shoot them?"');
+                                                                        scene.text('"No, they were too expensive."');
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -4156,6 +4218,390 @@ function enterHuntersTalk(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+  }
+  scene.build();
+}
+
+function enterHuntersgroupfaint(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 6) + 5);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/gadukino/hunters/hantersgroupfaint.jpg');
+  if (((s as any).shootingfaint ?? 0) === 1) {
+    (s as any).shooting = 2;
+    scene.text('You feel a pain and everything before you begins to darken, the world starts spinning and you collapse…');
+  } else {
+    scene.text('You suddenly feel an unbearable pain. Your sight begins to darken, the world starts spinning and you collapse…');
+  }
+  if (((s as any).hunterVars ?? 0)?.['Rape'] === 4  ||  ((s as any).huntdanceslut ?? 0) === 4  ||  ((s as any).forest_gopsex ?? 0) === 1) {
+    scene.actions([
+      { label: 'Wake up', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (100);
+    (s as any).hunterVars['sexnude'] = 0;
+    (s as any).forest_gopsex = 0;
+    (s as any).slutgosex = 0;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/gadukino/hunters/hantersgroupfaint1.jpg');
+    scene.text('Someone\'s pouring water on you making you to wake up…');
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, are you still alive?" You hear <<$boydesc>> asking while mak...
+    scene.text(`"${((s as any).pcs_nickname ?? 0)}, are you still alive?" You hear ${((s as any).boydesc ?? 0)} asking while making sure that you've come around.`);
+    scene.text('You weakly nod your head.');
+    scene.text('"Good, I\'m glad you aren\'t hurt." he says');
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Wake up', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (100);
+    (s as any).shootingfaint = 0;
+    (s as any).hunterVars['sexnude'] = 0;
+    (s as any).forest_gopsex = 0;
+    (s as any).slutgosex = 0;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/gadukino/hunters/hantersgroupfaint2.jpg');
+    scene.text('You wake up by someone\'s lightly pats on the cheek…');
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, are you still alive?" You hear <<$boydesc>> asking while mak...
+    scene.text(`"${((s as any).pcs_nickname ?? 0)}, are you still alive?" You hear ${((s as any).boydesc ?? 0)} asking while making sure that you've come around.`);
+    scene.text('You weakly nod your head.');
+    scene.text('"You really scared us, and to be frank, you really fucked up. Go to the hut and rest."');
+    scene.actions([
+      { label: 'Further', goto: ['gad_swamphouse', 'start'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterRng_1(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) < 6) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALsi1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALs'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 7) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 8) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALend1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) <= 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVis1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVi1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVs1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 5) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVOi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsO'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPis'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOis'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) <= 4) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALs1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) > 4) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALs1end'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAs'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsEnd1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsEnd2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVs2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVs2end'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOsend'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_3(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALi1end'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAiEnd1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAiEnd2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVi3'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVi3end'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOiend'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_4(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) <= 6) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALai1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALi1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 6) {
+    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVia1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVi2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVa1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 6) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupViOa'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupViO'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPia'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOia'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_5(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) < 6) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVas1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVa'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVs'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 6) {
+    // TODO-QSP: act 'Lie on your stomach': gt 'hunters', 'huntersgroupVaOs'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Lie on your stomach': gt 'hunters', 'huntersgroupVOs'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Lie on your stomach': gt 'hunters', 'huntersgroupVaO'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) < 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsOa'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsO'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAOa'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOsa'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_6(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALasi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVias'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVia'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 4) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVis'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVas'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 5) {
+    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVaOsHi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVaOHi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) < 5) {
+    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVOsHi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) < 5) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPasi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPas'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPsi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPai'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5  &&  ((s as any).huntsexb ?? 0) > 5) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOaHi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOHi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5  &&  ((s as any).huntsexb ?? 0) < 5) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVOaHi'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_7(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALa1end'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAa'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAaEnd1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAaEnd2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVa2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 3) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVa2end'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Kneel down': gt 'hunters', 'huntersgroupOaend'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_8(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) <= 5) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVis1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVi1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVs1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 5) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 6) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVOi'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 6) {
+    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsO'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPis'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
+    // TODO-QSP: act 'Kneel down': gt 'hunters', 'huntersgroupOis'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterRng_9(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
+    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'hunterslutORAL'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2) {
+    // TODO-QSP: act 'Straddle': gt 'hunters', 'hunterslutCOW'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3) {
+    // TODO-QSP: act 'Jump on the hands': gt 'hunters', 'hunterslutHANDS'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
+    // TODO-QSP: act 'Lean on a tree': gt 'hunters', 'hunterslutTREE'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
+    // TODO-QSP: act 'Lean on a tree and lift your leg': gt 'hunters', 'hunterslutTREELEG'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 6) {
+    // TODO-QSP: act 'Turn your back': gt 'hunters', 'hunterslutLEG1'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 7) {
+    // TODO-QSP: act 'Face him': gt 'hunters', 'hunterslutLEG2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) > 7) {
+    // TODO-QSP: act 'Kneel down': gt 'hunters', 'hunterslutEND'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
   scene.build();
 }
@@ -4411,6 +4857,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'hunters_talk':
       enterHuntersTalk(s, scene);
+      break;
+    case 'huntersgroupfaint':
+      enterHuntersgroupfaint(s, scene);
+      break;
+    case 'rng_1':
+      enterRng_1(s, scene);
+      break;
+    case 'rng_2':
+      enterRng_2(s, scene);
+      break;
+    case 'rng_3':
+      enterRng_3(s, scene);
+      break;
+    case 'rng_4':
+      enterRng_4(s, scene);
+      break;
+    case 'rng_5':
+      enterRng_5(s, scene);
+      break;
+    case 'rng_6':
+      enterRng_6(s, scene);
+      break;
+    case 'rng_7':
+      enterRng_7(s, scene);
+      break;
+    case 'rng_8':
+      enterRng_8(s, scene);
+      break;
+    case 'rng_9':
+      enterRng_9(s, scene);
       break;
     default:
       enterStart(s, scene);

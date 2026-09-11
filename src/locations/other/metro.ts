@@ -21,10 +21,12 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk to the man', goto: ['metro', 'dealer'] },
     ]);
   } else {
-    scene.text('You see the dealer lurking around the station.');
-    scene.actions([
-      { label: 'Buy drugs', goto: ['metro', 'shop'] },
-    ]);
+    if (((s as any).dealer ?? 0) !== 0) {
+      scene.text('You see the dealer lurking around the station.');
+      scene.actions([
+        { label: 'Buy drugs', goto: ['metro', 'shop'] },
+      ]);
+    }
   }
   scene.build();
 }
@@ -42,7 +44,7 @@ function enterIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'transport_functions', 'set_metro_wait_time', 'island');
   if (((s as any).transportVars ?? 0)?.['metro_wait_suburbs'] > 60) {
     // TODO-QSP: dynamic text: It's too late to take the metro. The next one arrives in <<transportVars['metro_...
-    scene.text(`It's too late to take the metro. The next one arrives in ${((s as any).transportVars ?? 0)?.['metro_wait_suburbs']/60} hours`);
+    scene.text(`It's too late to take the metro. The next one arrives in ${((s as any).transportVars ?? {})?.['metro_wait_suburbs']/60} hours`);
   } else {
     // TODO-QSP: 'The next metro in the direction of the Suburbs ' + iif(transportVars['metro_wait_suburbs'] = 0, 'is...
     if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['metropass_day']) {

@@ -46,7 +46,7 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Tell him to stop', handler: (st: GameState) => {
+        { label: 'Tell him to stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/city/citycenter/photo/photoshoot/f0.jpg');
@@ -80,7 +80,7 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave', handler: (st: GameState) => {
+        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.text('You smile at the photographer confidently. "Thanks, but no thanks. That was nice, but I have other places to be."');
@@ -118,7 +118,7 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave', handler: (st: GameState) => {
+        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"What!? I\'m not here to do porn! What kind of girl do you think I am!?" you ask indignantly before quickly walking back to the dressing room. The photographer tries to convince you through the door as you put your clothes back on, but you storm out of the building without saying another word.');
@@ -201,7 +201,7 @@ function enterVar2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Respectfully decline', handler: (st: GameState) => {
+      { label: 'Respectfully decline [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'money', 'earn', 2500);
@@ -256,7 +256,7 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Angrily refuse', handler: (st: GameState) => {
+        { label: 'Angrily refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"You made me come all the way down here because you want a whore?! Why not just get a whore?!" you snark at him, barely stopping yourself from spitting in his face in anger.');
@@ -291,41 +291,64 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + 180;
-    qspCall(s, 'money', 'earn', 1000);
-    scene.img('images/locations/city/citycenter/photo/photoshoot/n2.jpg');
-    scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an estate instead of a studio.');
-    scene.text('A young man opens the door when you ring the doorbell and ushers you to his living room. He beams with confidence, and his eyes devour your body. Nevertheless, he smiles at you. "For this project, I only need your face. I need a scream of pleasure. Can you do that for me?"');
-    scene.text('You hesitantly open your mouth and make your face look like you\'re in ecstasy. The artist grins. "Perfect! That\'s perfect! Very genuine. I do need you to hold that expression for a long time. Just sit down over there."');
-    scene.text('Nearly two hours later, the man finally nods that you can stop. Your jaw aches as you walk forward to see what he was working on. It\'s an anime style portrait of a girl who looks just like you! She\'s completely naked, too…');
-    scene.text('The painter stands behind you as he explains his vision to you and you soon feel his breath on your bare neck. He suddenly embraces you in a bear grip and grasps your body. "It\'s such a shame that real women can never be as passionate as their copies on the canvas…"');
-    if (((s as any).var ?? 0) === 2) {
+    if (((s as any).var ?? 0) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 180;
-      qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 0);
       qspCall(s, 'money', 'earn', 1000);
-      scene.img('images/locations/city/citycenter/photo/photoshoot/n3.jpg');
+      scene.img('images/locations/city/citycenter/photo/photoshoot/n2.jpg');
       scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an estate instead of a studio.');
-      scene.text('When you ring the doorbell, a man answers the door almost immediately and invites you in. He seems very confident with himself, and talks in a matter-of-fact tone when he explains what he wants from you. "I\'m working on some Roman style art pieces and need a girl dressed in a toga as reference."');
-      scene.text('He leaves you alone for a minute to change before he motions for you to go stand on a table. "Actually… How about you hold this? I think it\'ll really bring the piece together!" he smiles and has you hold an ancient looking urn. It\'s fairly heavy, and your arms grow tired as you pose with it for nearly three hours.');
-      if (((s as any).qjobpristrand ?? 0) !== 0) {
-        // TODO-QSP: dynamic text: Finally, the man is finished with his painting. He doesn't even allow you to loo...
-        scene.text(`Finally, the man is finished with his painting. He doesn't even allow you to look at it, but quickly ushers you to the hallway where he pays you the ${qspFunc(s, 'money', 'string_profit', 1000)} he promised.`);
-        scene.actions([
-          { label: 'Leave the estate', goto: ['city_center', ''] },
-        ]);
-      } else {
-        scene.text('As you stand posing, the artist occasionally walks up to you and adjusts the sheet. His hands always linger on your body a little longer than they need to, and he becomes more and more bold.');
-        scene.text('Eventually, he walks up to you once more and starts pawing at your body greedily, squeezing your exposed breast and gliding his hand further down your chest.');
-        qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+      scene.text('A young man opens the door when you ring the doorbell and ushers you to his living room. He beams with confidence, and his eyes devour your body. Nevertheless, he smiles at you. "For this project, I only need your face. I need a scream of pleasure. Can you do that for me?"');
+      scene.text('You hesitantly open your mouth and make your face look like you\'re in ecstasy. The artist grins. "Perfect! That\'s perfect! Very genuine. I do need you to hold that expression for a long time. Just sit down over there."');
+      scene.text('Nearly two hours later, the man finally nods that you can stop. Your jaw aches as you walk forward to see what he was working on. It\'s an anime style portrait of a girl who looks just like you! She\'s completely naked, too…');
+      scene.text('The painter stands behind you as he explains his vision to you and you soon feel his breath on your bare neck. He suddenly embraces you in a bear grip and grasps your body. "It\'s such a shame that real women can never be as passionate as their copies on the canvas…"');
+      scene.actions([
+        { label: 'Squirm free and leave', handler: (st: GameState) => {
+    scene.text('"Erm, okay! I have to go!" you quickly say as you squirm out of his grip and quickly leave his apartment before he can stop you. He can admire his erotic work of art by himself!');
+    scene.actions([
+      { label: 'Leave his apartment', goto: ['city_center', ''] },
+    ]);
   } },
+        { label: 'Seduce him to make him feel better', handler: (st: GameState) => {
+    scene.text('"I don\'t know about that!" you say. "Maybe they\'re just too shy to show it! The image displays their true level of passion, you just have to get it out of them…"');
+    scene.text('He shakes his head decisively. "No, I don\'t think so. I\'ve had a lot of women in here before, and none of them got anywhere near the level of passion that the painting displayed."');
+    scene.text('"Is that a challenge?" you smile sweetly as you start to undo your clothes. "I\'ll just have to show you then!"');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).picrand = 82;
+    qspCall(s, 'npcgeneratec', '', 0, 'Dejected Painter', Math.floor(Math.random() * 28) + 18);
+    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    // TODO-QSP: xgt 'sex', 'var'
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).var ?? 0) === 2) {
+        (s as any).minut = ((s as any).minut ?? 0) + 180;
+        qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 0);
+        qspCall(s, 'money', 'earn', 1000);
+        scene.img('images/locations/city/citycenter/photo/photoshoot/n3.jpg');
+        scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an estate instead of a studio.');
+        scene.text('When you ring the doorbell, a man answers the door almost immediately and invites you in. He seems very confident with himself, and talks in a matter-of-fact tone when he explains what he wants from you. "I\'m working on some Roman style art pieces and need a girl dressed in a toga as reference."');
+        scene.text('He leaves you alone for a minute to change before he motions for you to go stand on a table. "Actually… How about you hold this? I think it\'ll really bring the piece together!" he smiles and has you hold an ancient looking urn. It\'s fairly heavy, and your arms grow tired as you pose with it for nearly three hours.');
+        if (((s as any).qjobpristrand ?? 0) !== 0) {
+          // TODO-QSP: dynamic text: Finally, the man is finished with his painting. He doesn't even allow you to loo...
+          scene.text(`Finally, the man is finished with his painting. He doesn't even allow you to look at it, but quickly ushers you to the hallway where he pays you the ${qspFunc(s, 'money', 'string_profit', 1000)} he promised.`);
+          scene.actions([
+            { label: 'Leave the estate', goto: ['city_center', ''] },
           ]);
         } else {
-          scene.actions([
-            { label: 'Stop him', handler: (st: GameState) => {
+          scene.text('As you stand posing, the artist occasionally walks up to you and adjusts the sheet. His hands always linger on your body a little longer than they need to, and he becomes more and more bold.');
+          scene.text('Eventually, he walks up to you once more and starts pawing at your body greedily, squeezing your exposed breast and gliding his hand further down your chest.');
+          qspCall(s, 'willpower', 'sex', 'resist', 'medium');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"Could you please stop that?" you ask him intently.');
@@ -336,38 +359,39 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
   } },
-          ]);
-        }
-        scene.actions([
-          { label: 'Let it happen', handler: (st: GameState) => {
+            ]);
+          }
+          scene.actions([
+            { label: 'Let it happen', handler: (st: GameState) => {
     (s as any).picrand = 85;
     qspCall(s, 'npcgeneratec', '', 0, 'Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   }, goto: ['sex', 'kuni'] },
-        ]);
-      }
-    } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 180;
-      qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 0);
-      qspCall(s, 'money', 'earn', 1000);
-      scene.img('images/locations/city/citycenter/photo/photoshoot/n4.jpg');
-      scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an apartment building instead of a studio.');
-      scene.text('A man invites you to his home, and tells you to have a seat on the couch. Another girl is already sitting there. You give her a nervous smile as you sit next to her, expecting instructions on what he wants you to do.');
-      scene.text('"Relax, darling!" the other girl smiles when she sees how nervous you are. "He just needs you to be around so he can look at you from time to time. You don\'t have to freeze into one pose for hours!"');
-      scene.text('You spend a few hours chatting with the girl. She\'s very friendly and chatty, and tells you about herself. She\'s been doing these modeling jobs for a while, and has lots of interesting stories to share. You almost completely forget about the artist still being in the room, working quietly in the background.');
-      if (((s as any).qjobpristrand ?? 0) !== 0) {
-        scene.text('After about three hours, the man comes from behind the canvas and smiles. "I have all I need from you. Thank you for your time!"');
-        // TODO-QSP: dynamic text: He tells the other girl to stay a while longer while he walks you out, giving yo...
-        scene.text(`He tells the other girl to stay a while longer while he walks you out, giving you the ${qspFunc(s, 'money', 'string_profit', 1000)} you were promised.`);
-        scene.actions([
-          { label: 'Leave the apartment', goto: ['city_center', ''] },
-        ]);
+          ]);
+        }
       } else {
-        scene.text('The girl becomes flirtier as you chat and inches ever closer to you. She makes you lean back against the couch and pulls your clothes aside, baring your breasts. She moves her head closer to your chest, but stops a few inches before touching you. You can feel her warm breath tingling on your skin, and she looks at you with a confident smile on her lips.');
-        qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
-        qspCall(s, 'stat', '');
-        scene.actions([
-          { label: 'Straighten your clothes', handler: (st: GameState) => {
+        if (((s as any).var ?? 0) === 3) {
+          (s as any).minut = ((s as any).minut ?? 0) + 180;
+          qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 0);
+          qspCall(s, 'money', 'earn', 1000);
+          scene.img('images/locations/city/citycenter/photo/photoshoot/n4.jpg');
+          scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an apartment building instead of a studio.');
+          scene.text('A man invites you to his home, and tells you to have a seat on the couch. Another girl is already sitting there. You give her a nervous smile as you sit next to her, expecting instructions on what he wants you to do.');
+          scene.text('"Relax, darling!" the other girl smiles when she sees how nervous you are. "He just needs you to be around so he can look at you from time to time. You don\'t have to freeze into one pose for hours!"');
+          scene.text('You spend a few hours chatting with the girl. She\'s very friendly and chatty, and tells you about herself. She\'s been doing these modeling jobs for a while, and has lots of interesting stories to share. You almost completely forget about the artist still being in the room, working quietly in the background.');
+          if (((s as any).qjobpristrand ?? 0) !== 0) {
+            scene.text('After about three hours, the man comes from behind the canvas and smiles. "I have all I need from you. Thank you for your time!"');
+            // TODO-QSP: dynamic text: He tells the other girl to stay a while longer while he walks you out, giving yo...
+            scene.text(`He tells the other girl to stay a while longer while he walks you out, giving you the ${qspFunc(s, 'money', 'string_profit', 1000)} you were promised.`);
+            scene.actions([
+              { label: 'Leave the apartment', goto: ['city_center', ''] },
+            ]);
+          } else {
+            scene.text('The girl becomes flirtier as you chat and inches ever closer to you. She makes you lean back against the couch and pulls your clothes aside, baring your breasts. She moves her head closer to your chest, but stops a few inches before touching you. You can feel her warm breath tingling on your skin, and she looks at you with a confident smile on her lips.');
+            qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
+            qspCall(s, 'stat', '');
+            scene.actions([
+              { label: 'Straighten your clothes', handler: (st: GameState) => {
     scene.text('When you cough nervously and straighten your clothes, the girl moves away and starts chatting again, as if nothing happened. She doesn\'t appear to be upset with you, or is doing a very good job of hiding it.');
     scene.text('The artist is soon finished and the girl smiles as he guides you to the door and gives you your money. "Bye! Maybe I\'ll see you again some time?"');
     qspCall(s, 'arousal', 'end');
@@ -375,7 +399,7 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the apartment', goto: ['city_center', ''] },
     ]);
   } },
-          { label: 'Smile at her', handler: (st: GameState) => {
+              { label: 'Smile at her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/photoshoot/n5.jpg');
     scene.text('You smile at her and she immediately takes a nipple between her lips and start sucking on it sensually. Within minutes, you\'re both naked on the couch as the girl eagerly licks your wet pussy and her hands explore your body while you lie back with your eyes closed.');
     scene.text('You suddenly feel something pressing against your lips, and notice a very masculine smell filling your nostrils. When you open your eyes, you find yourself looking straight at the artist\'s hard cock!');
@@ -391,28 +415,29 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
   }, goto: ['podrsex', 'suck'] },
     ]);
   } },
-        ]);
-      }
-      if (((s as any).var ?? 0) === 4) {
-        (s as any).minut = ((s as any).minut ?? 0) + 180;
-        scene.img('images/locations/city/citycenter/photo/photoshoot/n6.jpg');
-        scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an apartment building instead of a studio.');
-        scene.text('A woman opens the door and guides you to the living room where a man is already sitting, wearing a toga of some sort.');
-        scene.text('"This is my husband," she nods at the man as she enters the room after you. "This might sound a little bit weird, but we\'re only going to need your buttocks today."');
-        scene.text('You stand near the man, who pulls your clothes aside and puts his hand on your bare ass. The two of you freeze while the girl makes some sketches and grabs some brushes. His hand is quite warm to the touch, and you can sometimes feel him squeezing it lightly.');
-        if (((s as any).qjobpristrand ?? 0) !== 0) {
-          qspCall(s, 'money', 'earn', 1000);
-          // TODO-QSP: dynamic text: A few hours later, the girl smiles at you. "Thank you, you were a pleasure to wo...
-          scene.text(`A few hours later, the girl smiles at you. "Thank you, you were a pleasure to work with! I'll be sure to leave you a good review online," she says as the walks you to the door. She gives you the ${qspFunc(s, 'money', 'string_profit', 1000)} she owes you and you thank her on your way out.`);
-          scene.actions([
-            { label: 'Leave the apartment', goto: ['city_center', ''] },
-          ]);
+            ]);
+          }
         } else {
-          scene.text('You stand like this for quite some time, and the squeezing and kneading from the man becomes more and more insistent. By the end, he\'s eagerly pawing your ass, right in front of his wife! When you look at her questioningly, she pretends that nothing\'s happening and continues to paint without paying any attention to you. The man then snakes his hand between your legs and gently caresses your pussy.');
-          qspCall(s, 'arousal', 'foreplay', 15);
-          qspCall(s, 'stat', '');
-          scene.actions([
-            { label: 'Slap his hand away', handler: (st: GameState) => {
+          if (((s as any).var ?? 0) === 4) {
+            (s as any).minut = ((s as any).minut ?? 0) + 180;
+            scene.img('images/locations/city/citycenter/photo/photoshoot/n6.jpg');
+            scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an apartment building instead of a studio.');
+            scene.text('A woman opens the door and guides you to the living room where a man is already sitting, wearing a toga of some sort.');
+            scene.text('"This is my husband," she nods at the man as she enters the room after you. "This might sound a little bit weird, but we\'re only going to need your buttocks today."');
+            scene.text('You stand near the man, who pulls your clothes aside and puts his hand on your bare ass. The two of you freeze while the girl makes some sketches and grabs some brushes. His hand is quite warm to the touch, and you can sometimes feel him squeezing it lightly.');
+            if (((s as any).qjobpristrand ?? 0) !== 0) {
+              qspCall(s, 'money', 'earn', 1000);
+              // TODO-QSP: dynamic text: A few hours later, the girl smiles at you. "Thank you, you were a pleasure to wo...
+              scene.text(`A few hours later, the girl smiles at you. "Thank you, you were a pleasure to work with! I'll be sure to leave you a good review online," she says as the walks you to the door. She gives you the ${qspFunc(s, 'money', 'string_profit', 1000)} she owes you and you thank her on your way out.`);
+              scene.actions([
+                { label: 'Leave the apartment', goto: ['city_center', ''] },
+              ]);
+            } else {
+              scene.text('You stand like this for quite some time, and the squeezing and kneading from the man becomes more and more insistent. By the end, he\'s eagerly pawing your ass, right in front of his wife! When you look at her questioningly, she pretends that nothing\'s happening and continues to paint without paying any attention to you. The man then snakes his hand between your legs and gently caresses your pussy.');
+              qspCall(s, 'arousal', 'foreplay', 15);
+              qspCall(s, 'stat', '');
+              scene.actions([
+                { label: 'Slap his hand away', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 1200);
     scene.text('"Stop it!" you say as you slap his hand away. The girl lets out a soft chuckle while her husband apologizes and rests his hand on your ass again.');
     // TODO-QSP: dynamic text: A few hours later, the girl smiles at you. "Thank you, you were a pleasure to wo...
@@ -422,7 +447,7 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the apartment', goto: ['city_center', ''] },
     ]);
   } },
-            { label: 'Just keep posing', handler: (st: GameState) => {
+                { label: 'Just keep posing', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/photoshoot/n7.jpg');
     scene.text('You spread your legs a little to give him some room to maneuver and he immediately takes advantage. He eagerly rubs his fingers over your pussy and brushes his fingers over your clit, making you very horny. His wife smiles at you and continues to paint, ignoring your soft moans.');
     scene.text('When he thrusts two fingers inside you and starts fucking your pussy, you close your eyes and moan unashamedly, fully giving in to the pleasure he\'s giving you. A few seconds later, you hear footsteps coming towards you and open your eyes to see her on her knees in front of her husband, obediently sucking his cock.');
@@ -438,48 +463,31 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
   }, goto: ['podrsex', 'suck'] },
     ]);
   } },
-          ]);
-        }
-      } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 180;
-        qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 0);
-        qspCall(s, 'money', 'earn', 1000);
-        scene.img('images/locations/city/citycenter/photo/photoshoot/n8.jpg');
-        scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an apartment building instead of a studio.');
-        scene.text('A man answers the door and guides you to the living room, where he tells you to put on a bright red dress. He expects you to change right in front of him.');
-        scene.text('You shrug and take off your clothes. The man doesn\'t seem to be impressed and tells you to strike a pose once you\'ve put the dress on. He grabs a few brushes and starts painting, occasionally telling you to stop moving so much.');
-        scene.text('Your muscles are starting to feel sore when he finishes. "Alright, done. You can go now," he says as he hands you the money owed.');
-        scene.actions([
-          { label: 'Leave the apartment', goto: ['city_center', ''] },
-          { label: 'Seduce him', handler: (st: GameState) => {
+              ]);
+            }
+          } else {
+            if (((s as any).var ?? 0) === 5) {
+              (s as any).minut = ((s as any).minut ?? 0) + 180;
+              qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 0);
+              qspCall(s, 'money', 'earn', 1000);
+              scene.img('images/locations/city/citycenter/photo/photoshoot/n8.jpg');
+              scene.text('You double-check the address. This is the place you\'re supposed to go to, but you\'re in front of an apartment building instead of a studio.');
+              scene.text('A man answers the door and guides you to the living room, where he tells you to put on a bright red dress. He expects you to change right in front of him.');
+              scene.text('You shrug and take off your clothes. The man doesn\'t seem to be impressed and tells you to strike a pose once you\'ve put the dress on. He grabs a few brushes and starts painting, occasionally telling you to stop moving so much.');
+              scene.text('Your muscles are starting to feel sore when he finishes. "Alright, done. You can go now," he says as he hands you the money owed.');
+              scene.actions([
+                { label: 'Leave the apartment', goto: ['city_center', ''] },
+                { label: 'Seduce him', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).picrand = 86;
   }, goto: ['sex', 'minet'] },
-        ]);
+              ]);
+            }
+          }
+        }
       }
     }
-    scene.actions([
-      { label: 'Squirm free and leave', handler: (st: GameState) => {
-    scene.text('"Erm, okay! I have to go!" you quickly say as you squirm out of his grip and quickly leave his apartment before he can stop you. He can admire his erotic work of art by himself!');
-    scene.actions([
-      { label: 'Leave his apartment', goto: ['city_center', ''] },
-    ]);
-  } },
-      { label: 'Seduce him to make him feel better', handler: (st: GameState) => {
-    scene.text('"I don\'t know about that!" you say. "Maybe they\'re just too shy to show it! The image displays their true level of passion, you just have to get it out of them…"');
-    scene.text('He shakes his head decisively. "No, I don\'t think so. I\'ve had a lot of women in here before, and none of them got anywhere near the level of passion that the painting displayed."');
-    scene.text('"Is that a challenge?" you smile sweetly as you start to undo your clothes. "I\'ll just have to show you then!"');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    (s as any).picrand = 82;
-    qspCall(s, 'npcgeneratec', '', 0, 'Dejected Painter', Math.floor(Math.random() * 28) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
-    ]);
-  } },
-    ]);
   }
   scene.build();
 }

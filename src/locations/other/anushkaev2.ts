@@ -128,7 +128,7 @@ function enterWatchNushradMaksimBlackmail(s: GameState, scene: SceneBuilder): vo
     ]);
   } else {
     scene.actions([
-      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -284,7 +284,7 @@ function enterRad3some(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Push him off', handler: (st: GameState) => {
+        { label: 'Push him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A154', 'hate');
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -622,7 +622,7 @@ function enterWatchNushvalMaksimBlackmail(s: GameState, scene: SceneBuilder): vo
     ]);
   } else {
     scene.actions([
-      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -1027,7 +1027,7 @@ function enterWatchNushmarMaksimBlackmail(s: GameState, scene: SceneBuilder): vo
     ]);
   } else {
     scene.actions([
-      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 1;

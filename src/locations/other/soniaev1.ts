@@ -349,7 +349,7 @@ function enterStraponFucking(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Ass', handler: (st: GameState) => {
+        { label: 'Ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'force');
   }, goto: ['soniaev1', 'strapon_anal'] },
       ]);
@@ -387,7 +387,7 @@ function enterStraponPussy(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Fuck her ass', handler: (st: GameState) => {
+        { label: 'Fuck her ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'force');
   }, goto: ['soniaev1', 'strapon_anal'] },
       ]);
@@ -431,7 +431,7 @@ function enterStraponAnal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Tear her ass up', handler: (st: GameState) => {
+        { label: 'Tear her ass up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).strapanal = 2;
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/straponrough.jpg');
@@ -515,14 +515,17 @@ function enterStraponEaten(s: GameState, scene: SceneBuilder): void {
       scene.text('She blushes deeply and nods. "Yeah, I even liked that. Even if my ass hurts a little, I still had fun."');
       scene.text('You give her a quick kiss. "I had fun too, but I should get going. It\'s late."');
     } else {
-      scene.text('She grins. "I feel amazing! That was great, I loved it." She then blushes a little as she realizes how much she\'s gushing about how much she enjoyed it.');
-      scene.text('You smile at her. "Even having your butt fucked?"');
-      scene.text('She blushes and purses her lips. "Yeah, even that at first. It hurt a little, but then started to feel good until you got rougher. My ass feels like it\'s on fire now!" she says a little sourly.');
-      scene.text('You give her a quick kiss. "Sorry, I just got carried away. But as you get used to it, it won\'t hurt anymore and just feel good," you assure her.');
-      scene.text('She gives a slightly dubious look, clearly not convinced, but isn\'t willing to argue, so she just settles on a nod.');
-      scene.text('You give her another kiss. "Trust me, but I need to get going. It\'s late."');
-      scene.text('She grins. "I feel amazing! That was great, I loved it." She blushes a little as she realizes how much she\'s gushing about how much she enjoyed it.');
-      scene.text('You give her a quick kiss. "I had fun too, but I should get going. It\'s late."');
+      if (((s as any).strapanal ?? 0) === 2) {
+        scene.text('She grins. "I feel amazing! That was great, I loved it." She then blushes a little as she realizes how much she\'s gushing about how much she enjoyed it.');
+        scene.text('You smile at her. "Even having your butt fucked?"');
+        scene.text('She blushes and purses her lips. "Yeah, even that at first. It hurt a little, but then started to feel good until you got rougher. My ass feels like it\'s on fire now!" she says a little sourly.');
+        scene.text('You give her a quick kiss. "Sorry, I just got carried away. But as you get used to it, it won\'t hurt anymore and just feel good," you assure her.');
+        scene.text('She gives a slightly dubious look, clearly not convinced, but isn\'t willing to argue, so she just settles on a nod.');
+        scene.text('You give her another kiss. "Trust me, but I need to get going. It\'s late."');
+      } else {
+        scene.text('She grins. "I feel amazing! That was great, I loved it." She blushes a little as she realizes how much she\'s gushing about how much she enjoyed it.');
+        scene.text('You give her a quick kiss. "I had fun too, but I should get going. It\'s late."');
+      }
     }
     // TODO-QSP: dynamic text: Once you're both dressed and cleaned up, she walks you to her front door. "Goodn...
     scene.text(`Once you're both dressed and cleaned up, she walks you to her front door. "Goodnight, ${((s as any).pcs_nickname ?? 0)}."`);
@@ -744,7 +747,7 @@ function enterStraponMagicBedroom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Fuck her ass', handler: (st: GameState) => {
+        { label: 'Fuck her ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'force');
   }, goto: ['soniaev1', 'strapon_magic_bedroom_anal'] },
       ]);

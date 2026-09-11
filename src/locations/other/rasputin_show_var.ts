@@ -156,7 +156,9 @@ function enterSecondHalfStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_inhib ?? 0) >= 80) {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 5) + 2);
     } else {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      if (((s as any).pcs_inhib ?? 0) >= 50  &&  ((s as any).pcs_inhib ?? 0) < 80) {
+        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      }
     }
     qspCall(s, 'arousal', 'erotic', 15);
     qspCall(s, 'arousal', 'end');

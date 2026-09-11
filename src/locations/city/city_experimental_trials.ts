@@ -13,10 +13,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.img('images\\locations\\city\\residential\\clinic\\experiments\\desk1.jpg');
       scene.text('A young woman, dressed in office clothes and wearing glasses, is sitting behind a desk.');
     } else {
-      scene.img('images\\locations\\city\\residential\\clinic\\experiments\\nurse1.jpg');
-      scene.text('A young nurse is sitting behind a desk.');
-      scene.img('images\\locations\\city\\residential\\clinic\\experiments\\nurse2.jpg');
-      scene.text('An elderly nurse is sitting behind a desk.');
+      if (((s as any).temp_rand ?? 0) <= 2) {
+        scene.img('images\\locations\\city\\residential\\clinic\\experiments\\nurse1.jpg');
+        scene.text('A young nurse is sitting behind a desk.');
+      } else {
+        scene.img('images\\locations\\city\\residential\\clinic\\experiments\\nurse2.jpg');
+        scene.text('An elderly nurse is sitting behind a desk.');
+      }
     }
     if (((s as any).experimentQW ?? 0)?.['signed'] !== 0) {
       // TODO-QSP: dynamic text: She looks up as you walk in and warmly welcomes you inside. "Hello Miss <<$pcs_l...
@@ -69,21 +72,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_intel ?? 0) < 10) {
         scene.text('The form is filled with legal jargon, but you\'re pretty sure that you\'ll be paid to be experimented on and that these trials won\'t harm your health.');
       } else {
-        scene.text('The form is filled with a lot of legal jargon, but you manage to grasp the important parts.');
-        scene.text('The clinic will pay you to take an experimental treatment and any consequences are yours to bear, but they do guarantee your safety.');
-        if (((s as any).pcs_intel ?? 0) < 90) {
-          scene.text('The form explains that you\'ll get paid to take part in testing experimental treatments.');
-          scene.text('The clinic is not liable for any of the consequences, but they will not jeopardize your general health.');
-          scene.text('Finally you are prohibited from disclosing the methods and results of the treatments to anybody not affiliated with the clinic.');
+        if (((s as any).pcs_intel ?? 0) < 50) {
+          scene.text('The form is filled with a lot of legal jargon, but you manage to grasp the important parts.');
+          scene.text('The clinic will pay you to take an experimental treatment and any consequences are yours to bear, but they do guarantee your safety.');
         } else {
-          scene.text('The form is filled with complicated legal jargon intended to confuse the reader, but your sharp mind pierces the veil.');
-          scene.text('You will get paid when you take part in testing experimental treatments which can result in permanent changes to your body and mind.');
-          scene.text('You are solely responsible in dealing with those consequences and you may not reveal the contents nor results of the treatments. If you do so, then you can be sued for an exorbitant amount of money.');
-          scene.text('Finally, reading between the lines, you also manage to grasp that some of these experiments aren\'t fully ethical.');
+          if (((s as any).pcs_intel ?? 0) < 90) {
+            scene.text('The form explains that you\'ll get paid to take part in testing experimental treatments.');
+            scene.text('The clinic is not liable for any of the consequences, but they will not jeopardize your general health.');
+            scene.text('Finally you are prohibited from disclosing the methods and results of the treatments to anybody not affiliated with the clinic.');
+          } else {
+            scene.text('The form is filled with complicated legal jargon intended to confuse the reader, but your sharp mind pierces the veil.');
+            scene.text('You will get paid when you take part in testing experimental treatments which can result in permanent changes to your body and mind.');
+            scene.text('You are solely responsible in dealing with those consequences and you may not reveal the contents nor results of the treatments. If you do so, then you can be sued for an exorbitant amount of money.');
+            scene.text('Finally, reading between the lines, you also manage to grasp that some of these experiments aren\'t fully ethical.');
+          }
         }
-        scene.text('At the bottom of the document is an area where you need to write down your full name, age and add your signature.');
-        scene.actions([
-          { label: 'Sign the document', handler: (st: GameState) => {
+      }
+      scene.text('At the bottom of the document is an area where you need to write down your full name, age and add your signature.');
+      scene.actions([
+        { label: 'Sign the document', handler: (st: GameState) => {
     (s as any).experimentQW['signed'] = 1;
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\desk1.jpg');
     scene.text('You hand the signed document back to the woman.');
@@ -94,9 +101,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the front desk', goto: ['city_experimental_trials', 'front_desk'] },
     ]);
   } },
-          { label: 'Put the contract down and leave', goto: ['city_clinic', 'start'] },
-        ]);
-      }
+        { label: 'Put the contract down and leave', goto: ['city_clinic', 'start'] },
+      ]);
     }
   }
   scene.build();

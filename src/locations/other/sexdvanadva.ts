@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -33,41 +33,76 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you suck their cocks.');
     qspCall(s, 'arousal', 'bj', 10, 'sub');
   } else {
-    scene.img(`images/locations/shared/sex/sexdvanadva/vag${((s as any).picrand ?? 0)}.jpg`);
-    scene.text('While she enjoys a stiff cock in her pussy, you are not left wanting for attention.');
-    qspCall(s, 'arousal', 'erotic', 10, 'sub');
-    if (((s as any).sexdvarand ?? 0) === 2) {
-      scene.img(`images/locations/shared/sex/sexdvanadva/uvag${((s as any).picrand ?? 0)}.jpg`);
-      scene.text('He thrusts into you. His cock sends waves of pleasure over your body.');
-      qspCall(s, 'arousal', 'vaginal', 10, 'sub');
+    if (((s as any).sexdvarand ?? 0) === 1) {
+      scene.img(`images/locations/shared/sex/sexdvanadva/vag${((s as any).picrand ?? 0)}.jpg`);
+      scene.text('While she enjoys a stiff cock in her pussy, you are not left wanting for attention.');
+      qspCall(s, 'arousal', 'erotic', 10, 'sub');
     } else {
-      scene.img(`images/locations/shared/sex/sexdvanadva/anal${((s as any).picrand ?? 0)}.jpg`);
-      scene.text('You enjoy the sight of a cock in her ass, but you are mostly too distracted by the cock in your mouth.');
-      qspCall(s, 'arousal', 'bj', 10, 'sub');
-      if (((s as any).sexdvarand ?? 0) === 4) {
-        scene.img(`images/locations/shared/sex/sexdvanadva/uanal${((s as any).picrand ?? 0)}.jpg`);
-        scene.text('When he enters your backdoor, it hurts a little, but soon, the pain goes away. Pleasure takes its place, as he slowly moves back and forth, stretching your hole.');
-        qspCall(s, 'arousal', 'anal', 10, 'sub');
-      } else {
-        scene.img(`images/locations/shared/sex/sexdvanadva/udp${((s as any).picrand ?? 0)}.jpg`);
-        scene.text('Both men enter you at the same time. The feeling is almost too intense. Your moans of pleasure urge them on.');
+      if (((s as any).sexdvarand ?? 0) === 2) {
+        scene.img(`images/locations/shared/sex/sexdvanadva/uvag${((s as any).picrand ?? 0)}.jpg`);
+        scene.text('He thrusts into you. His cock sends waves of pleasure over your body.');
         qspCall(s, 'arousal', 'vaginal', 10, 'sub');
-        qspCall(s, 'arousal', 'anal', (-10), 'sub');
-        if (((s as any).sexdvarand ?? 0) === 6) {
-          scene.img(`images/locations/shared/sex/sexdvanadva/dp${((s as any).picrand ?? 0)}.jpg`);
-          scene.text('She has both men fucking her. It makes you feel a little envious as you watch, playing with yourself.');
-          qspCall(s, 'arousal', 'clit_finger', 10, 'sub', 'masturbate');
-        }
-        qspCall(s, 'stat', '');
-        if (((s as any).sexvar ?? 0) < 3) {
-          // TODO-QSP: act 'More': xgt 'sexdvanadva', 'var'
-        }
-        if (((s as any).sexvar ?? 0) >= 3) {
-          // TODO-QSP: act 'Finish': gt 'sexdvanadva', 'end'
+      } else {
+        if (((s as any).sexdvarand ?? 0) === 3) {
+          scene.img(`images/locations/shared/sex/sexdvanadva/anal${((s as any).picrand ?? 0)}.jpg`);
+          scene.text('You enjoy the sight of a cock in her ass, but you are mostly too distracted by the cock in your mouth.');
+          qspCall(s, 'arousal', 'bj', 10, 'sub');
+        } else {
+          if (((s as any).sexdvarand ?? 0) === 4) {
+            scene.img(`images/locations/shared/sex/sexdvanadva/uanal${((s as any).picrand ?? 0)}.jpg`);
+            scene.text('When he enters your backdoor, it hurts a little, but soon, the pain goes away. Pleasure takes its place, as he slowly moves back and forth, stretching your hole.');
+            qspCall(s, 'arousal', 'anal', 10, 'sub');
+          } else {
+            if (((s as any).sexdvarand ?? 0) === 5) {
+              scene.img(`images/locations/shared/sex/sexdvanadva/udp${((s as any).picrand ?? 0)}.jpg`);
+              scene.text('Both men enter you at the same time. The feeling is almost too intense. Your moans of pleasure urge them on.');
+              qspCall(s, 'arousal', 'vaginal', 10, 'sub');
+              qspCall(s, 'arousal', 'anal', (-10), 'sub');
+            } else {
+              if (((s as any).sexdvarand ?? 0) === 6) {
+                scene.img(`images/locations/shared/sex/sexdvanadva/dp${((s as any).picrand ?? 0)}.jpg`);
+                scene.text('She has both men fucking her. It makes you feel a little envious as you watch, playing with yourself.');
+                qspCall(s, 'arousal', 'clit_finger', 10, 'sub', 'masturbate');
+              }
+            }
+          }
         }
       }
     }
   }
+  qspCall(s, 'stat', '');
+  if (((s as any).sexvar ?? 0) < 3) {
+    // TODO-QSP: act 'More': xgt 'sexdvanadva', 'var'
+  }
+  if (((s as any).sexvar ?? 0) >= 3) {
+    // TODO-QSP: act 'Finish': gt 'sexdvanadva', 'end'
+  }
+  scene.build();
+}
+
+function enterEnd(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'npcgeneratec', '', 0, 'Random Guy', Math.floor(Math.random() * 28) + 18);
+  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  qspCall(s, 'cum_call', 'mouth_swallow', 'Random Guy');
+  if (((s as any).pcs_horny ?? 0) >= 80) {
+  }
+  scene.img(`images/locations/shared/sex/sexdvanadva/cum${((s as any).picrand ?? 0)}.jpg`);
+  scene.text('They spill semen all over both of you. You lick it off each other and share a deep kiss before you both swallow.');
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    if (((s as any).kafesexrand ?? 0) === 1) {
+      (s as any).kafesexrand = 0;
+      scene.actions([{ label: 'Continue', goto: ['city_kafe', 'workPred'] }]);
+    }
+    if (((s as any).kazsexdva ?? 0) === 1) {
+      (s as any).kazsexdva = 0;
+      scene.actions([{ label: 'Continue', goto: ['kazinosvid', '3'] }]);
+    }
+    dynamicGoto(st, 'sexloc');
+  } },
+  ]);
   scene.build();
 }
 
@@ -79,6 +114,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'var':
       enterVar(s, scene);
+      break;
+    case 'end':
+      enterEnd(s, scene);
       break;
     default:
       enterStart(s, scene);

@@ -58,8 +58,11 @@ function enterNavConstruct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :jmp_navigation_gen
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).array_tab ?? 0)?.[String((s as any).i ?? 0)] === 'Magic') {
   } else {
-    // TODO-QSP: $tablebody += '<th><a href="exec:gs ''<<$array_link[i]>>'', ''init''"><<$array_tab[i]>></a></th>'
-    // TODO-QSP: $tablebody += '<th><<$array_tab[i]>></th>'
+    if (((s as any).hot_link ?? 0) !== ((s as any).array_link ?? 0)?.[String((s as any).i ?? 0)]) {
+      // TODO-QSP: $tablebody += '<th><a href="exec:gs ''<<$array_link[i]>>'', ''init''"><<$array_tab[i]>></a></th>'
+    } else {
+      // TODO-QSP: $tablebody += '<th><<$array_tab[i]>></th>'
+    }
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) < ((s as any).nav_i ?? 0)) {
@@ -81,7 +84,7 @@ function enterGameEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterGametips(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs $loc_id, 'tips_init'
-  (s as any).rnd_tip = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).tip_body ?? 0)')-1);
+  (s as any).rnd_tip = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('tip_body')-1);
   scene.text('<center><h3>Girl Life Random Tips</h3>');
   // TODO-QSP: $tip_body[rnd_tip]
   scene.text('</center>');
@@ -106,7 +109,7 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   (s as any).entry_counter_i = 1;
   (s as any).entry_counter_j = 1;
   (s as any).table_counter = 0;
-  if (((s as any).ARGS ?? 0)[1] === 0) {
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).table_columns = 3;
   } else {
     (s as any).table_columns = qspUntranslated(s, "ARGS[1]", { location: "beta_journal" });
@@ -162,14 +165,19 @@ function enterFailure(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'id') {
     (s as any).debug['journal'] = 'NPC ID not set, vcard not generated.';
   } else {
-    (s as any).debug['journal'] = 'Quest body not set, quests details was not set.';
-    if (((s as any).locArgs?.[1] ?? 0) === 'nav_forward') {
-      (s as any).debug['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
+    if (((s as any).locArgs?.[1] ?? 0) === 'quest_body') {
+      (s as any).debug['journal'] = 'Quest body not set, quests details was not set.';
     } else {
-      (s as any).debug['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
+      if (((s as any).locArgs?.[1] ?? 0) === 'nav_forward') {
+        (s as any).debug['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
+      } else {
+        if (((s as any).locArgs?.[1] ?? 0) === 'nav_back') {
+          (s as any).debug['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
+        }
+      }
     }
-    // TODO-QSP: 'vcard failed to initialise: ' + $debug['journal']
   }
+  // TODO-QSP: 'vcard failed to initialise: ' + $debug['journal']
   scene.build();
 }
 

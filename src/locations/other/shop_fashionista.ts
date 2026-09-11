@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'changingroom');
   qspCall(s, 'stat', '');
-  if (((s as any).ARGS ?? 0)[1] === 1) {
+  if (((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.text('As you walk through the store, you notice that there\'s nobody in the changing rooms. Feeling a bit bored, you look at some clothes and grab several items to try on before heading into one of the changing rooms.');
   } else {
     scene.img('images/locations/city/citycenter/mall/fashionista/changingroom.jpg');

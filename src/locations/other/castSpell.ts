@@ -24,30 +24,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).spellSuccess = 2;
       qspCall(s, 'exp_gain', 'splcstng', ((s as any).rand ?? 0)(1, ((s as any).spellDiff ?? 0)?.[String((s as any).SpellID ?? 0)]) + ((s as any).rand ?? 0)(0, 5));
     } else {
-      (s as any).spellSuccess = 1;
-      qspCall(s, 'exp_gain', 'splcstng', 0);
-      if (((s as any).spellRoll ?? 0) > -20) {
-        (s as any).spellSuccess = 0;
-        // TODO-QSP: gs 'exp_gain', 'splcstng', rand(1, spellDiff[$SpellID]) / 2
+      if (((s as any).spellRoll ?? 0) > 10) {
+        (s as any).spellSuccess = 1;
+        qspCall(s, 'exp_gain', 'splcstng', 0);
       } else {
-        (s as any).spellSuccess = (-1);
-        // TODO-QSP: gs 'exp_gain', 'splcstng', rand(1, spellDiff[$SpellID]) / 2
+        if (((s as any).spellRoll ?? 0) > -20) {
+          (s as any).spellSuccess = 0;
+          // TODO-QSP: gs 'exp_gain', 'splcstng', rand(1, spellDiff[$SpellID]) / 2
+        } else {
+          (s as any).spellSuccess = (-1);
+          // TODO-QSP: gs 'exp_gain', 'splcstng', rand(1, spellDiff[$SpellID]) / 2
+        }
       }
-      if (((s as any).spellSuccess ?? 0) === 2) {
-        (s as any).manaCost = ((s as any).spellMana ?? 0)?.[String((s as any).SpellID ?? 0)] / 2;
-      } else {
+    }
+    if (((s as any).spellSuccess ?? 0) === 2) {
+      (s as any).manaCost = ((s as any).spellMana ?? 0)?.[String((s as any).SpellID ?? 0)] / 2;
+    } else {
+      if (((s as any).spellSuccess ?? 0) === -1) {
         (s as any).manaCost = ((s as any).spellMana ?? 0)?.[String((s as any).SpellID ?? 0)] * 2;
+      } else {
         (s as any).manaCost = ((s as any).spellMana ?? 0)?.[String((s as any).SpellID ?? 0)];
       }
-      if (((s as any).pcs_mana ?? 0) < ((s as any).manaCost ?? 0)) {
-      } else {
-        (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (((s as any).manaCost ?? 0));
-        (s as any).arouseVal = ((s as any).manaCost ?? 0) / 50;
-        qspCall(s, 'arousal', 'voyeur', ((s as any).min ?? 0)(-1, -((s as any).arouseVal ?? 0)));
-        (s as any).minut = ((s as any).minut ?? 0) + (((s as any).spellTime ?? 0)?.[String((s as any).SpellID ?? 0)]);
-        qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic "gs 'spell', '<<$SpellID>>', '<<spellSuccess>>'<<$SpellArgs>>"
-      }
+    }
+    if (((s as any).pcs_mana ?? 0) < ((s as any).manaCost ?? 0)) {
+    } else {
+      (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (((s as any).manaCost ?? 0));
+      (s as any).arouseVal = ((s as any).manaCost ?? 0) / 50;
+      qspCall(s, 'arousal', 'voyeur', Math.min((-1), -((s as any).arouseVal ?? 0)));
+      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).spellTime ?? 0)?.[String((s as any).SpellID ?? 0)]);
+      qspCall(s, 'stat', '');
+      // TODO-QSP: dynamic "gs 'spell', '<<$SpellID>>', '<<spellSuccess>>'<<$SpellArgs>>"
     }
   }
   scene.build();

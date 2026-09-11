@@ -103,7 +103,9 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
     if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle_experience'] === 0) {
       scene.text('Some time flies by while waiting for the locals to finish bringing their cows to the field.');
     } else {
-      scene.text('Some time flies by while waiting for the locals and their children to finish bringing their cows to the field.');
+      if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle_experience'] === 1) {
+        scene.text('Some time flies by while waiting for the locals and their children to finish bringing their cows to the field.');
+      }
     }
     scene.actions([
       { label: 'Continue', goto: ['gad_field', 'cow'] },
@@ -111,24 +113,10 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'gad_field', 'set_nomira_acts', 1);
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      if (((s as any).temper ?? 0) >= 25  &&  ((s as any).sunWeather ?? 0) === 1) {
-        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (12);
-        (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (8);
-        qspCall(s, 'sweat', 'add', 10);
-      } else {
-        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (6);
-        (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
-        qspCall(s, 'sweat', 'add', 5);
-      }
-      (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
-      qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
-      qspCall(s, 'stat', '');
-      scene.img('images/locations/gadukino/village/cow_go.jpg');
-      scene.text('Looking at his watch, Grandpa turns to you and says, "It\'s about lunchtime, which means it\'s time to take the herd to the watering hole." So you begin to gather the cows and lead them to the river.');
-      scene.actions([
-        { label: 'Herd cows with your grandfather (1:00)', handler: (st: GameState) => {
+      if (((s as any).hour ?? 0) < 13) {
+        qspCall(s, 'gad_field', 'set_nomira_acts', 1);
+        scene.actions([
+          { label: 'Herd cows with your grandfather (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     if (((s as any).temper ?? 0) >= 25  &&  ((s as any).sunWeather ?? 0) === 1) {
       (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (12);
@@ -149,10 +137,29 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gad_field', 'cow'] },
     ]);
   } },
-        { label: 'Herd the cows nearer to the river (0:15)', handler: (st: GameState) => {
+        ]);
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 60;
+        if (((s as any).temper ?? 0) >= 25  &&  ((s as any).sunWeather ?? 0) === 1) {
+          (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (12);
+          (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (8);
+          qspCall(s, 'sweat', 'add', 10);
+        } else {
+          (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (6);
+          (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
+          qspCall(s, 'sweat', 'add', 5);
+        }
+        (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
+        qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
+        qspCall(s, 'stat', '');
+        scene.img('images/locations/gadukino/village/cow_go.jpg');
+        scene.text('Looking at his watch, Grandpa turns to you and says, "It\'s about lunchtime, which means it\'s time to take the herd to the watering hole." So you begin to gather the cows and lead them to the river.');
+        scene.actions([
+          { label: 'Herd the cows nearer to the river (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
   }, goto: ['gad_field', 'cow2'] },
-      ]);
+        ]);
+      }
     }
   }
   scene.build();
@@ -291,7 +298,7 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
 
 function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A60_loc'] !== 'gad_field') {
-    if (((s as any).ARGS ?? 0)[1] === 1) {
+    if (((s as any).locArgs?.[1] ?? 0) === 1) {
       if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
         if (((s as any).pcs_sleep ?? 0) < 40) {
           scene.actions([
@@ -352,10 +359,11 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
-        if (((s as any).pcs_stam ?? 0) >= (5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
-          scene.actions([
-            { label: 'Undress and Swim (0:15)', handler: (st: GameState) => {
+      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+        if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
+          if (((s as any).pcs_stam ?? 0) >= (5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
+            scene.actions([
+              { label: 'Undress and Swim (0:15)', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/village/graze_cow_river.jpg');
     scene.text('You quickly undress and spend a few minutes splashing around in the river, which feels cool and refreshing.');
     if (((s as any).deodorant_on ?? 0) === 1) {
@@ -376,7 +384,8 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gad_field', 'cow2'] },
     ]);
   } },
-          ]);
+            ]);
+          }
         }
       }
     }

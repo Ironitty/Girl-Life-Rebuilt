@@ -19,7 +19,7 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 1;

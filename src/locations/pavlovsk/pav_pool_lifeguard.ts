@@ -511,81 +511,65 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/community/swim/kidsplash.jpg');
       scene.text('You watch a kid splashing water in the corner of the pool. Since he isn\'t bothering anyone, you leave him be and return your focus to other parts of the pool.');
     } else {
-      scene.img('images/locations/pavlovsk/community/swim/kidsplashgroup.jpg');
-      scene.text('You see a group of boys splashing water at each other. While they\'re just having fun, they\'re also hitting other nearby swimmers.');
-      if (((s as any).temp_rand ?? 0) === 2) {
-        scene.img('images/locations/pavlovsk/community/swim/diving.jpg');
-        scene.text('You watch a girl diving into the pool. She has an elegant form and gracefully slides into the pool with barely a ripple.');
-      } else {
-        scene.img('images/locations/pavlovsk/community/swim/exitloosebra.jpg');
-        scene.text('You watch a girl exiting the pool who is unaware that the string of her bikini top has loosened. As she pulls her hair back, her top suddenly falls off, exposing her breasts to anyone who\'s watching. She gets a few whistles and cheers from both men and boys in the pool.');
-        if ((!(Math.floor(Math.random() * 2) + 0))) {
-          scene.text('She blushes as she quickly grabs her top and fixes it back in place before retying the knot on the string. She then hurries away as you hear some of the boys complaining.');
-        } else {
-          scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed breasts on show for a few seconds before she slowly fixes her bikini top. She winks at everyone in the pool before walking away, much to the joy of some of the boys.');
-        }
-        qspCall(s, 'arousal_oneline', 'voyeur', (-1));
-        qspCall(s, 'stat', '');
-        if (((s as any).temp_rand ?? 0) === 4) {
-          scene.img('images/locations/pavlovsk/community/swim/exitloosepanties.jpg');
-          scene.text('You watch a girl exiting the pool who is unaware that her bikini bottom has loosened. As she pulls herself out of the water, her bottom slides down and exposes her ass to anyone watching. She gets a few whistles and cheers from both men and boys in the pool.');
-          if ((!(Math.floor(Math.random() * 2) + 0))) {
-            scene.text('She blushes as she quickly climbs out of the pool and grabs her bottom before pulling it up. She then hurries away as you hear some of the boys complaining.');
-          } else {
-            scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed ass on show while climbing out of the water. She then slowly pulls her bikini bottom back up and winks at everyone in the pool before walking away, much to the joy of some of the boys.');
-          }
-          qspCall(s, 'arousal_oneline', 'voyeur', (-1));
-          qspCall(s, 'stat', '');
-        } else {
-          scene.img('images/locations/pavlovsk/community/swim/kisswater.jpg');
-          scene.text('You catch a glimpse of a couple making out at the edge of the pool, gaining a small audience who either watch in intrigue or disgust. They soon break their kiss and leave the pool. You have no doubt in your mind about what they\'re running off to do.');
-          if (((s as any).temp_rand ?? 0) === 6) {
-            scene.img('images/locations/pavlovsk/community/swim/exerciseswim.jpg');
-            scene.text('There\'s nothing interesting happening in the pool right now, so you just watch a woman trying to swim laps in the crowded pool.');
-          } else {
-            scene.img('images/locations/pavlovsk/community/swim/ladder1.jpg');
-            scene.text('From your elevated vantage point, you get a good view at a girl in a bikini as she climbs down the ladder into the pool to join her friends.');
-            if (((s as any).temp_rand ?? 0) === 8) {
-              scene.img('images/locations/pavlovsk/community/swim/sitwater.jpg');
-              scene.text('You spot a woman sitting at the edge of the pool with her feet in the water, watching everyone else in the pool. You wonder if she\'s a parent watching her kid or is just someone choosing to relax away from the bustle of the busy pool.');
-            } else {
-              scene.img('images/locations/pavlovsk/community/swim/bratkid.jpg');
-              scene.text('As you watch everyone swimming in the pool, you suddenly see and hear an annoying kid running along the edge of the pool.');
-              if (((s as any).temp_rand ?? 0) === 10  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
-                scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
-                scene.text('As you monitor the pool from your vantage point, you suddenly catch sight of a boy who looks like he\'s struggling to stay afloat.');
-                scene.actions([
-                  { label: 'Dive into the water', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/community/swim/exerciseswim.jpg');
-    scene.text('Remembering your training, you dive into the water and swim over to the boy. Taking hold of him and pulling him close, you swim back over into the shallows and prop him up against the edge of the pool.');
-    scene.text('"Are you okay?!" you ask, your heart racing.');
-    if (((s as any).tits ?? 0) >= 5) {
-      scene.text('"Fine now that I got to motorboat those bad boys! They make great life rafts and an even better cushion!" he grins.');
-      scene.text('Glancing around, you see his friends snickering not far away and realize this was a ploy.');
-      scene.text('"Of course this is all a joke to you!" you say, instinctively adjusting your swimsuit as it strains against your breasts. "What if your little game distracted me from helping someone who was actually drowning? What if I ignore you next time when you\'re actually in distress? Don\'t let me catch you doing something like this again!"');
-      scene.text('"Calm down! It was just a joke!" he scowls and takes one last peek at your breasts before he and his friends swim away.');
-      scene.text('Annoyed, you climb out of the pool and return to your chair, being extra vigilant for anything amiss.');
-    } else {
-      scene.text('"Wow, a pretty girl actually saved my life!" he grins.');
-      scene.text('Hearing some snickering, you glance around and spot his friends watching you, betraying the boy\'s true intentions.');
-      scene.text('"Really?" you scowl. "You wasted my time and possibly distracted me from an actual emergency just so you could show off in front of your friends? What if I ignore you when you actually need my help because I think you\'re messing around again? Don\'t let me catch you doing something like this again!"');
-      scene.text('"Calm down, sweet cheeks. It was just a joke!" he scowls back before he and his friends swim away.');
-      scene.text('Annoyed, you climb out of the pool and return to your chair, being extra vigilant for anything amiss.');
-    }
+      if (((s as any).temp_rand ?? 0) === 1) {
+        scene.img('images/locations/pavlovsk/community/swim/kidsplashgroup.jpg');
+        scene.text('You see a group of boys splashing water at each other. While they\'re just having fun, they\'re also hitting other nearby swimmers.');
+        scene.actions([
+          { label: 'Blow your whistle', handler: (st: GameState) => {
+    scene.text('You blow your whistle and get their attention before shaking your head, silently telling them off. The boys just scowl at you before swimming off to another part of the pool.');
     scene.actions([
       { label: 'Go for your break', goto: ['pav_pool_lifeguard', 'break'] },
     ]);
   } },
-                ]);
+        ]);
+      } else {
+        if (((s as any).temp_rand ?? 0) === 2) {
+          scene.img('images/locations/pavlovsk/community/swim/diving.jpg');
+          scene.text('You watch a girl diving into the pool. She has an elegant form and gracefully slides into the pool with barely a ripple.');
+        } else {
+          if (((s as any).temp_rand ?? 0) === 3) {
+            scene.img('images/locations/pavlovsk/community/swim/exitloosebra.jpg');
+            scene.text('You watch a girl exiting the pool who is unaware that the string of her bikini top has loosened. As she pulls her hair back, her top suddenly falls off, exposing her breasts to anyone who\'s watching. She gets a few whistles and cheers from both men and boys in the pool.');
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
+              scene.text('She blushes as she quickly grabs her top and fixes it back in place before retying the knot on the string. She then hurries away as you hear some of the boys complaining.');
+            } else {
+              scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed breasts on show for a few seconds before she slowly fixes her bikini top. She winks at everyone in the pool before walking away, much to the joy of some of the boys.');
+            }
+            qspCall(s, 'arousal_oneline', 'voyeur', (-1));
+            qspCall(s, 'stat', '');
+          } else {
+            if (((s as any).temp_rand ?? 0) === 4) {
+              scene.img('images/locations/pavlovsk/community/swim/exitloosepanties.jpg');
+              scene.text('You watch a girl exiting the pool who is unaware that her bikini bottom has loosened. As she pulls herself out of the water, her bottom slides down and exposes her ass to anyone watching. She gets a few whistles and cheers from both men and boys in the pool.');
+              if ((!(Math.floor(Math.random() * 2) + 0))) {
+                scene.text('She blushes as she quickly climbs out of the pool and grabs her bottom before pulling it up. She then hurries away as you hear some of the boys complaining.');
               } else {
-                scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
-                scene.text('As you scan the pool for anything amiss, you spot Vadim flirting with a girl in a skimpy bikini that leaves very little to the imagination.');
-                scene.text('You just shake your head before returning your focus to the pool.');
-                scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
-                scene.text('Despite the large crowds in the pool, nothing interesting happens and you just watch everyone enjoying themselves in the water.');
+                scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed ass on show while climbing out of the water. She then slowly pulls her bikini bottom back up and winks at everyone in the pool before walking away, much to the joy of some of the boys.');
               }
-              scene.actions([
-                { label: 'Blow your whistle', handler: (st: GameState) => {
+              qspCall(s, 'arousal_oneline', 'voyeur', (-1));
+              qspCall(s, 'stat', '');
+            } else {
+              if (((s as any).temp_rand ?? 0) === 5) {
+                scene.img('images/locations/pavlovsk/community/swim/kisswater.jpg');
+                scene.text('You catch a glimpse of a couple making out at the edge of the pool, gaining a small audience who either watch in intrigue or disgust. They soon break their kiss and leave the pool. You have no doubt in your mind about what they\'re running off to do.');
+              } else {
+                if (((s as any).temp_rand ?? 0) === 6) {
+                  scene.img('images/locations/pavlovsk/community/swim/exerciseswim.jpg');
+                  scene.text('There\'s nothing interesting happening in the pool right now, so you just watch a woman trying to swim laps in the crowded pool.');
+                } else {
+                  if (((s as any).temp_rand ?? 0) === 7) {
+                    scene.img('images/locations/pavlovsk/community/swim/ladder1.jpg');
+                    scene.text('From your elevated vantage point, you get a good view at a girl in a bikini as she climbs down the ladder into the pool to join her friends.');
+                  } else {
+                    if (((s as any).temp_rand ?? 0) === 8) {
+                      scene.img('images/locations/pavlovsk/community/swim/sitwater.jpg');
+                      scene.text('You spot a woman sitting at the edge of the pool with her feet in the water, watching everyone else in the pool. You wonder if she\'s a parent watching her kid or is just someone choosing to relax away from the bustle of the busy pool.');
+                    } else {
+                      if (((s as any).temp_rand ?? 0) === 9) {
+                        scene.img('images/locations/pavlovsk/community/swim/bratkid.jpg');
+                        scene.text('As you watch everyone swimming in the pool, you suddenly see and hear an annoying kid running along the edge of the pool.');
+                        scene.actions([
+                          { label: 'Blow your whistle', handler: (st: GameState) => {
     scene.text('You blow your whistle and get his attention, causing him to stop in his tracks.');
     scene.text('"No running in the pool area!" you shout from your chair.');
     scene.text('He scowls up at you. "Whatever! I wasn\'t even doing anything wrong!"');
@@ -606,22 +590,715 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-              ]);
-            }
-          }
-        }
-      }
-      scene.actions([
-        { label: 'Blow your whistle', handler: (st: GameState) => {
-    scene.text('You blow your whistle and get their attention before shaking your head, silently telling them off. The boys just scowl at you before swimming off to another part of the pool.');
+                        ]);
+                      } else {
+                        if (((s as any).temp_rand ?? 0) === 10  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
+                          scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
+                          scene.text('As you monitor the pool from your vantage point, you suddenly catch sight of a boy who looks like he\'s struggling to stay afloat.');
+                          scene.actions([
+                            { label: 'Dive into the water', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/swim/exerciseswim.jpg');
+    scene.text('Remembering your training, you dive into the water and swim over to the boy. Taking hold of him and pulling him close, you swim back over into the shallows and prop him up against the edge of the pool.');
+    scene.text('"Are you okay?!" you ask, your heart racing.');
+    if (((s as any).tits ?? 0) >= 5) {
+      scene.text('"Fine now that I got to motorboat those bad boys! They make great life rafts and an even better cushion!" he grins.');
+      scene.text('Glancing around, you see his friends snickering not far away and realize this was a ploy.');
+      scene.text('"Of course this is all a joke to you!" you say, instinctively adjusting your swimsuit as it strains against your breasts. "What if your little game distracted me from helping someone who was actually drowning? What if I ignore you next time when you\'re actually in distress? Don\'t let me catch you doing something like this again!"');
+      scene.text('"Calm down! It was just a joke!" he scowls and takes one last peek at your breasts before he and his friends swim away.');
+      scene.text('Annoyed, you climb out of the pool and return to your chair, being extra vigilant for anything amiss.');
+    } else {
+      scene.text('"Wow, a pretty girl actually saved my life!" he grins.');
+      scene.text('Hearing some snickering, you glance around and spot his friends watching you, betraying the boy\'s true intentions.');
+      scene.text('"Really?" you scowl. "You wasted my time and possibly distracted me from an actual emergency just so you could show off in front of your friends? What if I ignore you when you actually need my help because I think you\'re messing around again? Don\'t let me catch you doing something like this again!"');
+      scene.text('"Calm down, sweet cheeks. It was just a joke!" he scowls back before he and his friends swim away.');
+      scene.text('Annoyed, you climb out of the pool and return to your chair, being extra vigilant for anything amiss.');
+    }
     scene.actions([
       { label: 'Go for your break', goto: ['pav_pool_lifeguard', 'break'] },
     ]);
   } },
-      ]);
+                          ]);
+                        } else {
+                          if (((s as any).temp_rand ?? 0) === 11) {
+                            scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
+                            scene.text('As you scan the pool for anything amiss, you spot Vadim flirting with a girl in a skimpy bikini that leaves very little to the imagination.');
+                            scene.text('You just shake your head before returning your focus to the pool.');
+                          } else {
+                            scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
+                            scene.text('Despite the large crowds in the pool, nothing interesting happens and you just watch everyone enjoying themselves in the water.');
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
     scene.actions([
       { label: 'Go for your break', goto: ['pav_pool_lifeguard', 'break'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterShiftPart2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
+  scene.text('You return to the pool area, which is just as noisy and crowded as when you left it. You climb back up into the chair and take a seat to resume your duties.');
+  scene.actions([
+    { label: 'Continue your shift', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.text('From atop your raised vantage point, you look down into the pool at the crowds of people who are either swimming or playing games in the water.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
+    if ((!((s as any).temp_rand ?? 0))) {
+      scene.img('images/locations/pavlovsk/community/swim/kidsplash.jpg');
+      scene.text('You watch a kid splashing water in the corner of the pool. Since he isn\'t bothering anyone, you leave him be and return your focus to other parts of the pool.');
+    } else {
+      if (((s as any).temp_rand ?? 0) === 1) {
+        scene.img('images/locations/pavlovsk/community/swim/kidsplashgroup.jpg');
+        scene.text('You see a group of boys splashing water at each other. While they\'re just having fun, they\'re also hitting other nearby swimmers.');
+        scene.actions([
+          { label: 'Blow your whistle', handler: (st: GameState) => {
+    scene.text('You blow your whistle and get their attention before shaking your head, silently telling them off. The boys just scowl at you before swimming off to another part of the pool.');
+    scene.actions([
+      { label: 'End your shift', goto: ['pav_pool_lifeguard', 'end_shift'] },
+    ]);
+  } },
+        ]);
+      } else {
+        if (((s as any).temp_rand ?? 0) === 2) {
+          scene.img('images/locations/pavlovsk/community/swim/diving.jpg');
+          scene.text('You watch a girl diving into the pool. She has an elegant form and gracefully slides into the pool with barely a ripple.');
+        } else {
+          if (((s as any).temp_rand ?? 0) === 3) {
+            scene.img('images/locations/pavlovsk/community/swim/exitloosebra.jpg');
+            scene.text('You watch a girl exiting the pool who is unaware that the string of her bikini top has loosened. As she pulls her hair back, her top suddenly falls off, exposing her breasts to anyone who\'s watching. She gets a few whistles and cheers from both men and boys in the pool.');
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
+              scene.text('She blushes as she quickly grabs her top and fixes it back in place before retying the knot on the string. She then hurries away as you hear some of the boys complaining.');
+            } else {
+              scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed breasts on show for a few seconds before she slowly fixes her bikini top. She winks at everyone in the pool before walking away, much to the joy of some of the boys.');
+            }
+            qspCall(s, 'arousal_oneline', 'voyeur', (-1));
+            qspCall(s, 'stat', '');
+          } else {
+            if (((s as any).temp_rand ?? 0) === 4) {
+              scene.img('images/locations/pavlovsk/community/swim/exitloosepanties.jpg');
+              scene.text('You watch a girl exiting the pool who is unaware that her bikini bottom has loosened. As she pulls herself out of the water, her bottom slides down and exposes her ass to anyone watching. She gets a few whistles and cheers from both men and boys in the pool.');
+              if ((!(Math.floor(Math.random() * 2) + 0))) {
+                scene.text('She blushes as she quickly climbs out of the pool and grabs her bottom before pulling it up. She then hurries away as you hear some of the boys complaining.');
+              } else {
+                scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed ass on show while climbing out of the water. She then slowly pulls her bikini bottom back up and winks at everyone in the pool before walking away, much to the joy of some of the boys.');
+              }
+              qspCall(s, 'arousal_oneline', 'voyeur', (-1));
+              qspCall(s, 'stat', '');
+            } else {
+              if (((s as any).temp_rand ?? 0) === 5) {
+                scene.img('images/locations/pavlovsk/community/swim/kisswater.jpg');
+                scene.text('You catch a glimpse of a couple making out at the edge of the pool, gaining a small audience who either watch in intrigue or disgust. They soon break their kiss and leave the pool. You have no doubt in your mind about what they\'re running off to do.');
+              } else {
+                if (((s as any).temp_rand ?? 0) === 6) {
+                  scene.img('images/locations/pavlovsk/community/swim/exerciseswim.jpg');
+                  scene.text('There\'s nothing interesting happening in the pool right now, so you just watch a woman trying to swim laps in the crowded pool.');
+                } else {
+                  if (((s as any).temp_rand ?? 0) === 7) {
+                    scene.img('images/locations/pavlovsk/community/swim/ladder1.jpg');
+                    scene.text('From your elevated vantage point, you get a good view at a girl in a bikini as she climbs down the ladder into the pool to join her friends.');
+                  } else {
+                    if (((s as any).temp_rand ?? 0) === 8) {
+                      scene.img('images/locations/pavlovsk/community/swim/sitwater.jpg');
+                      scene.text('You spot a woman sitting at the edge of the pool with her feet in the water, watching everyone else in the pool. You wonder if she\'s a parent watching her kid or is just someone choosing to relax away from the bustle of the busy pool.');
+                    } else {
+                      if (((s as any).temp_rand ?? 0) === 9) {
+                        scene.img('images/locations/pavlovsk/community/swim/bratkid.jpg');
+                        scene.text('As you watch everyone swimming in the pool, you suddenly see and hear an annoying kid running along the edge of the pool.');
+                        scene.actions([
+                          { label: 'Blow your whistle', handler: (st: GameState) => {
+    scene.text('You blow your whistle and get his attention, causing him to stop in his tracks.');
+    scene.text('"No running in the pool area!" you shout from your chair.');
+    scene.text('He scowls up at you. "Whatever! I wasn\'t even doing anything wrong!"');
+    scene.actions([
+      { label: 'Tell him off', handler: (st: GameState) => {
+    scene.text('"Follow the rules and behave or I\'ll kick you out!" you retort.');
+    scene.text('Clearly annoyed, he makes a face at you before climbing into the water and joining his friends, who mock him for getting told off by a girl.');
+    scene.actions([
+      { label: 'End your shift', goto: ['pav_pool_lifeguard', 'end_shift'] },
+    ]);
+  } },
+      { label: 'Let him go', handler: (st: GameState) => {
+    scene.text('"Don\'t do it again," you tell him before sending him on his way.');
+    scene.text('He just ignores you and immediately does a cannonball into the pool, splashing multiple people as his friends laugh at his antics.');
+    scene.actions([
+      { label: 'End your shift', goto: ['pav_pool_lifeguard', 'end_shift'] },
+    ]);
+  } },
+    ]);
+  } },
+                        ]);
+                      } else {
+                        if (((s as any).temp_rand ?? 0) === 10  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
+                          scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
+                          scene.text('As you monitor the crowded pool from your vantage point, you suddenly catch sight of a boy who looks like he\'s struggling to stay afloat.');
+                          scene.actions([
+                            { label: 'Dive into the water', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/swim/exerciseswim.jpg');
+    scene.text('Remembering your training, you dive into the water and swim over to the boy. Taking hold of him and pulling him close, you swim back over into the shallows and prop him up against the edge of the pool.');
+    scene.text('"Are you okay?!" you ask, your heart racing.');
+    if (((s as any).tits ?? 0) >= 5) {
+      scene.text('"Fine now that I got to motorboat those bad boys! They make great life rafts and an even better cushion!" he grins.');
+      scene.text('Glancing around, you see his friends snickering not far away and realize this was a ploy.');
+      scene.text('"Of course this is all a joke to you!" you say, instinctively adjusting your swimsuit as it strains against your breasts. "What if your little game distracted me from helping someone who was actually drowning? What if I ignore you next time when you\'re actually in distress? Don\'t let me catch you doing something like this again!"');
+      scene.text('"Calm down! It was just a joke!" he scowls and takes one last peek at your breasts before he and his friends swim away.');
+      scene.text('Annoyed, you climb out of the pool and return to your chair, being extra vigilant for anything amiss.');
+    } else {
+      scene.text('"Wow, a pretty girl actually saved my life!" he grins.');
+      scene.text('Hearing some snickering, you glance around and spot his friends watching you, betraying the boy\'s true intentions.');
+      scene.text('"Really?" you scowl. "You wasted my time and possibly distracted me from an actual emergency just so you could show off in front of your friends? What if I ignore you when you actually need my help because I think you\'re messing around again? Don\'t let me catch you doing something like this again!"');
+      scene.text('"Calm down, sweet cheeks. It was just a joke!" he scowls back before he and his friends swim away.');
+      scene.text('Annoyed, you climb out of the pool and return to your chair, being extra vigilant for anything amiss.');
+    }
+    scene.actions([
+      { label: 'End your shift', goto: ['pav_pool_lifeguard', 'end_shift'] },
+    ]);
+  } },
+                          ]);
+                        } else {
+                          if (((s as any).temp_rand ?? 0) === 11) {
+                            scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
+                            scene.text('As you scan the pool for anything amiss, you spot Vadim flirting with a girl in a skimpy bikini that leaves very little to the imagination.');
+                            scene.text('You just shake your head before returning your focus to the pool.');
+                          } else {
+                            scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
+                            scene.text('Despite the large crowds in the pool, nothing interesting happens and you just watch everyone enjoying themselves in the water.');
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    scene.actions([
+      { label: 'End your shift', goto: ['pav_pool_lifeguard', 'end_shift'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBreak(s: GameState, scene: SceneBuilder): void {
+  (s as any).hour = 15;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/community/swim/cafeteria2.jpg');
+  scene.text('The clock soon reaches 3 and you climb down from the chair to take your break, heading to the cafeteria to grab something to eat.');
+  scene.text('When you arrive, your options are limited to the snacks on display, so you grab one and take a seat.');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'food', 'small_meal_stats');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/food/food.jpg');
+    scene.text('You enjoy a small tasty, but somewhat fattening, snack while watching the people around you do the same thing.');
+    scene.actions([
+      { label: 'Grab a drink', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/community/swim/cafeteria2.jpg');
+    scene.text('You decide to grab a drink to finish things off. The question is… Which one?');
+    scene.actions([
+      { label: 'Grab a juice', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'beverage', 'juice_stats');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/drinks/juice.jpg');
+    scene.text('You grab a refreshing juice and use it to wash down your snack before relaxing in the cafeteria until it\'s time for you to return to the pool.');
+    scene.actions([
+      { label: 'Get back to work', goto: ['pav_pool_lifeguard', 'shift_part2'] },
+    ]);
+  } },
+      { label: 'Grab a coffee', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'beverage', 'coffee_stats');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/drinks/coffee.jpg');
+    scene.text('You enjoy a hot coffee while watching the crowds passing through the cafeteria. It\'s soon time for you to return to work.');
+    scene.actions([
+      { label: 'Get back to work', goto: ['pav_pool_lifeguard', 'shift_part2'] },
+    ]);
+  } },
+      { label: 'Grab a tea', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'beverage', 'tea_stats');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/drinks/tea.jpg');
+    scene.text('You enjoy a relaxing tea while watching the crowds passing through the cafeteria. It\'s soon time for you to return to work.');
+    scene.actions([
+      { label: 'Get back to work', goto: ['pav_pool_lifeguard', 'shift_part2'] },
+    ]);
+  } },
+      { label: 'Grab an energy drink', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'beverage', 'energy_drink_stats');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/drinks/energy_drink.jpg');
+    scene.text('You grab an energy drink and use it to wash down your snack before relaxing in the cafeteria until it\'s time for you to return to the pool.');
+    scene.actions([
+      { label: 'Get back to work', goto: ['pav_pool_lifeguard', 'shift_part2'] },
+    ]);
+  } },
+      { label: 'Have some water', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'beverage', 'water_stats');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/shared/brothel/barorderwater.jpg');
+    scene.text('You enjoy a glass of water while watching the crowds passing through the cafeteria. It\'s soon time for you to return to the pool.');
+    scene.actions([
+      { label: 'Get back to work', goto: ['pav_pool_lifeguard', 'shift_part2'] },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Just relax', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/community/swim/cafeteria2.jpg');
+    scene.text('You decide to just relax in the cafeteria, watching the crowds passing through until it\'s time for you to return to the pool.');
+    scene.actions([
+      { label: 'Get back to work', goto: ['pav_pool_lifeguard', 'shift_part2'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A294');
+  qspCall(s, 'stat', '');
+  if (((s as any).pav_swimpool ?? 0)?.['vadim_sex'] === 0) {
+    qspCall(s, 'arousal', 'massage', 3);
+    qspCall(s, 'arousal', 'clit_finger', (-3));
+    qspCall(s, 'arousal', 'hj', (-3));
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/grope1.mp4');
+    scene.text('You and Vadim embrace each other under the shower and he starts eagerly groping at your breasts before you guide his hand down to your clit. He smiles and starts teasing you as you in turn reach down and start jerking his cock in your hand.');
+    // TODO-QSP: dynamic text: To your disappointment, it doesn't grow that much bigger as he gets hard and you...
+    scene.text(`To your disappointment, it doesn't grow that much bigger as he gets hard and you glance down to see that he's sporting a rather average ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock.`);
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'bj', 3);
+    (s as any).pav_swimpool['vadim_sex'] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/bj3.mp4');
+    scene.text('You spin around and get down on your knees, looking up to see him smiling down at you.');
+    scene.text('"I don\'t have all day! Hurry up and suck my dick!"');
+    scene.text('You just frown before taking his cock into your mouth, causing him to groan loudly as you start sucking.');
+    scene.text('After a few minutes, you take his entire length into your mouth without much difficulty, causing him to grunt as you deepthroat him before popping his dick out of your mouth and licking the shaft a few times.');
+    scene.text('Vadim scans the room before looking down at you. "We don\'t have much time. Hurry up and bend over so I can fuck your pussy!"');
+    scene.actions([
+      { label: 'Okay', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'vaginal', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/doggy4.mp4');
+    scene.text('You nod and quickly get up off your knees before spinning around. Spacing your legs apart, you lean against the shower wall before pushing your ass out, presenting your pussy to Vadim.');
+    scene.text('You feel him rubbing the tip of his cock against your slit before he presses it against your hole and it slowly slides inside you, causing him to moan softly.');
+    scene.text('"Warm and wet. Just the way I like it," he laughs.');
+    scene.text('He starts thrusting, but you can barely feel it inside you as his hips slap against your ass, telling you that this is all he\'s got.');
+    scene.actions([
+      { label: 'Fake it', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'vaginal', 3);
+    qspCall(s, 'stat', '');
+    scene.text('You don\'t want to feel like you\'re insulting him by being silent though, so you decide to fake it.');
+    scene.text('"Ugghh! Mmmhhmm! Your cock feels so good in my pussy!" you cry out with fake moans of pleasure as the sound of his hips slapping against your ass are muffled by the sound of running water.');
+    scene.text('He seems oblivious to your lack of enjoyment and just keeps pounding you as hard as he can with his small cock, forcing you to continue faking it as much as he\'s enjoying it.');
+    scene.text('Despite his small size, he seems to have an endless amount of stamina.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'vaginal', 3);
+    qspCall(s, 'arousal', 'kiss', (-3));
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/leg_up2.mp4');
+    scene.text('After a few minutes, he suddenly pulls out and spins you around before pushing you up against the shower wall.');
+    scene.text('Lifting your leg up, he quickly slides his cock back inside you and resumes fucking you, eagerly thrusting his small cock into your pussy, which is eager for more than he can provide.');
+    scene.text('He\'s once again oblivious to your lack of pleasure and passionately starts kissing you.');
+    scene.text('After a few more minutes of this, he finally starts grunting. "Fuck, I\'m gonna cum!');
+    scene.actions([
+      { label: 'Creampie', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'cum_call', '', '', 'A294');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/creampie1.mp4');
+    scene.text('You\'re too bored to really care anymore. "You can finish inside me," you shrug.');
+    scene.text('He grins at you in surprise, but keeps eagerly fucking you until he grunts loudly and you feel his cum spurting into your pussy.');
+    scene.text('Once he finishes and pulls out of you, you feel his cum trickle out of your pussy and run down the inside of your leg.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+      { label: 'Pull out', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'cum_call', 'face', 'A294');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/facial1.jpg');
+    scene.text('"Pull out!" you reply. "I don\'t want your cum inside me!"');
+    scene.text('He nods and quickly pulls out of you before you get down on your knees in front of him. A few seconds later, spurts of cum splatter across your face as Vadim groans loudly.');
+    scene.text('Once he\'s finished, you open your eyes and look up to see him grinning down at you as he sighs in satisfaction.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Bored', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'vaginal', 3);
+    qspCall(s, 'stat', '');
+    scene.text('His small cock isn\'t giving you much pleasure and you quickly grow bored as you lean against the shower wall, hoping he\'ll finish soon.');
+    scene.text('Despite his small size, he has plenty of stamina and keeps fucking you for what feels like an eternity before he suddenly pulls out.');
+    scene.text('Thinking he\'s finally done, you eagerly turn around to get on your knees, but find his rock hard cock still standing stiffly to attention.');
+    scene.text('He pushes you up against the shower wall and lifts your leg up before sliding his cock back into your pussy.');
+    scene.text('He\'s once again oblivious to your lack of pleasure as he eagerly thrusts his small cock into your pussy, which is eager for more than he can provide.');
+    scene.text('After a few more minutes of this, he finally starts grunting. "Fuck, I\'m gonna cum!');
+    scene.actions([
+      { label: 'Creampie', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'cum_call', '', '', 'A294');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/creampie1.mp4');
+    scene.text('You\'re too bored to really care anymore. "You can finish inside me," you shrug.');
+    scene.text('He grins at you in surprise, but keeps eagerly fucking you until he grunts loudly and you feel his cum spurting into your pussy.');
+    scene.text('Once he finishes and pulls out of you, you feel his cum trickle out of your pussy and run down the inside of your leg.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+      { label: 'Pull out', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'cum_call', 'stomach', 'A294');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/cum_jerkoff1.mp4');
+    scene.text('"Pull out then!" you reply. "I don\'t want your cum inside me!"');
+    scene.text('He nods and quickly pulls out of you before you grab his dick and start jerking it. A few seconds later, spurts of cum splatter across your stomach as Vadim groans loudly.');
+    scene.text('Once he\'s finished, you glance up and see him grinning at you as he sighs in satisfaction.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Fuck my ass instead', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'anal', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/anal/shower9.mp4');
+    scene.text('"How about you fuck my ass instead?" you ask with a flirty smile.');
+    scene.text('He looks surprised. "Oh. Uh… I\'ve never fucked a girl in the ass before."');
+    scene.text('"There\'s a first time for everything," you reply as you space your legs apart and bend over before pushing your ass out and spreading your cheeks, exposing your asshole.');
+    // TODO-QSP: dynamic text: You feel him fumble around a little before he presses the tip of his <<dick>>cm ...
+    scene.text(`You feel him fumble around a little before he presses the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your asshole and slowly pushes forward.`);
+    scene.text('You wince a little in pain as your asshole stretches, but his cock is small enough for you to comfortably take it without lube.');
+    scene.text('He starts slowly fucking you, but gradually picks up the pace as time goes on.');
+    scene.text('"Fuck, I never knew an asshole could be so tight!"');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'cum_call', 'anus', 'A294');
+    qspCall(s, 'stat', '');
+    scene.text('Vadim eagerly continues fucking your ass, but doesn\'t last very long. You soon feel his cock twitching as his cum spurts into your ass.');
+    scene.text('When he pulls out, you feel his cum dribble out of your ass and run down the inside of your leg as you continue leaning against the shower wall.');
+    scene.text('"That… That was amazing!" he pants. "I need to start fucking girls in the ass more often!"');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    qspCall(s, 'arousal', 'bj', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/bj4.mp4');
+    // TODO-QSP: dynamic text: He doesn't waste any time and immediately pushes you down onto your knees with h...
+    scene.text(`He doesn't waste any time and immediately pushes you down onto your knees with his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock in your face.`);
+    // TODO-QSP: dynamic text: You take it into your mouth and start sucking, occasionally popping it out of yo...
+    scene.text(`You take it into your mouth and start sucking, occasionally popping it out of your mouth and licking the shaft. Vadim just groan loudly in pleasure as you suck on his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock.`);
+    scene.text('After a few minutes, he pulls his dick out of your mouth and pulls you to your feet.');
+    scene.text('"So which hole will it be today?" he asks with a knowing grin.');
+    scene.actions([
+      { label: 'Eat my pussy first', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'cuni', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/cuni2.mp4');
+    scene.text('Knowing his small cock won\'t be giving you much pleasure, you decide that he should return the favour to make it up to you.');
+    scene.text('"None. I want you to get down on your knees and eat my pussy," you smirk.');
+    scene.text('He frowns, as if he\'s never been told to do this before, but reluctantly gets down on his knees and starts licking your pussy.');
+    scene.text('You\'re not sure if he\'s entirely inexperienced at it or is just rushing, but his attempts at eating you out don\'t go as well as you hoped.');
+    scene.text('"Slow down! It isn\'t a race," you tell him as you grab his head.');
+    scene.text('While he does slow down, his lack of technique frustrates you and you soon give up.');
+    scene.actions([
+      { label: 'Fuck my pussy', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'vaginal', 6);
+    qspCall(s, 'arousal', 'clit_finger', (-3));
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/doggy4.mp4');
+    scene.text('"Hurry up and fuck my pussy!" you tell him, barely able to hide your frustration.');
+    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your slit before sliding it inside you.`);
+    scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
+    scene.text('"That\'s right, slut! Tease your pussy as I fuck it!"');
+    scene.text('You just roll your eyes and soon grow bored, despite Vadim\'s eagerness and the arousal of teasing your clit.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      qspCall(s, 'cum_call', 'butt', 'A294');
+      (s as any).minut = ((s as any).minut ?? 0) + 2;
+      qspCall(s, 'stat', '');
+      scene.text('Your thoughts are soon interrupted when Vadim starts thrusting even harder and starts grunting.');
+      scene.text('"Are you about to cum already?" you ask, barely able to mask your disappointment.');
+      scene.text('"Sorry!" he grunts. "I just remembered this smoking hot babe in a little bikini who was in the pool earlier!"');
+      scene.text('He quickly pulls out of you and you feel spurts of cum splattering over your ass as he grunts loudly.');
+      scene.text('Once he finishes, you glance back and see him sporting a toothy grin as he pants softly.');
+      scene.actions([
+        { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+      ]);
+    } else {
+      scene.text('His stamina seems to last forever before he starts grunting. "Fuck! Gonna cum!"');
+      scene.text('You\'re just thankful that it\'s finally over.');
+      scene.actions([
+        { label: 'Creampie', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', '', '', 'A294');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/creampie1.mp4');
+    scene.text('You\'re too bored to care. "You can cum inside me…" you mumble.');
+    scene.text('A clearly happy Vadim fucks you even harder, the sound of his hips slapping against your ass audible even over the sound of the running water before you suddenly feel his warm cum spurting into your pussy.');
+    scene.text('Once he finishes and pulls out of you, you feel his cum trickle out of your pussy and run down the inside of your leg as you continue leaning against the shower wall.');
+    scene.text('"Fuck, that was amazing!" he pants as you just roll your eyes.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+        { label: 'Pull out', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'cum_call', 'stomach', 'A294');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/cum_jerkoff1.mp4');
+    scene.text('"Pull out!" you reply. "I don\'t want your cum inside me!"');
+    scene.text('He nods and quickly pulls out of you before you spin around and grab his dick. Jerking it in your hand, spurts of cum soon splatter across your stomach as Vadim groans loudly.');
+    scene.text('Once he\'s finished, you glance up and see him grinning at you as he sighs in satisfaction.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+      { label: 'Fuck my ass', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'anal', 3);
+    qspCall(s, 'arousal', 'clit_finger', (-3));
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/anal/shower9.mp4');
+    scene.text('"Hurry up and fuck my ass!" you tell him, barely able to hide your frustration.');
+    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your asshole before sliding it inside you.`);
+    scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
+    scene.text('"That\'s right, slut! Tease your pussy as I fuck your slutty ass!"');
+    scene.text('You just roll your eyes and soon grow bored, despite Vadim\'s eagerness and the arousal of teasing your clit.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'anus', 'A294');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.text('Barely a few minutes pass before Vadim starts fucking you even harder as he grunts loudly.');
+    scene.text('"Are you about to cum already?" you ask, barely able to mask your disappointment.');
+    scene.text('"Sorry!" he grunts. "Your ass is just so tight that I can\'t hold it any longer!"');
+    scene.text('The words barely escape his lips before you feel his warm cum spurting into your ass as he moans softly.');
+    scene.text('Once he finishes, he pulls out and you feel his cum dribble out of your ass and run down the inside of your leg as you continue leaning against the shower wall.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Fuck my pussy', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'vaginal', 6);
+    qspCall(s, 'arousal', 'clit_finger', (-3));
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/doggy4.mp4');
+    scene.text('"Hurry up and fuck my pussy!" you tell him, barely able to hide your frustration.');
+    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your slit before sliding it inside you.`);
+    scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
+    scene.text('"That\'s right, slut! Tease your pussy as I fuck it!"');
+    scene.text('You just roll your eyes and soon grow bored, despite Vadim\'s eagerness and the arousal of teasing your clit.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      qspCall(s, 'cum_call', 'butt', 'A294');
+      (s as any).minut = ((s as any).minut ?? 0) + 2;
+      qspCall(s, 'stat', '');
+      scene.text('Your thoughts are soon interrupted when Vadim starts thrusting even harder and starts grunting.');
+      scene.text('"Are you about to cum already?" you ask, barely able to mask your disappointment.');
+      scene.text('"Sorry!" he grunts. "I just remembered this smoking hot babe in a little bikini who was in the pool earlier!"');
+      scene.text('He quickly pulls out of you and you feel spurts of cum splattering over your ass as he grunts loudly.');
+      scene.text('Once he finishes, you glance back and see him sporting a toothy grin as he pants softly.');
+      scene.actions([
+        { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+      ]);
+    } else {
+      scene.text('His stamina seems to last forever before he starts grunting. "Fuck! Gonna cum!"');
+      scene.text('You\'re just thankful that it\'s finally over.');
+      scene.actions([
+        { label: 'Creampie', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', '', '', 'A294');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/creampie1.mp4');
+    scene.text('You\'re too bored to care. "You can cum inside me…" you mumble.');
+    scene.text('A clearly happy Vadim fucks you even harder, the sound of his hips slapping against your ass audible even over the sound of the running water before you suddenly feel his warm cum spurting into your pussy.');
+    scene.text('Once he finishes and pulls out of you, you feel his cum trickle out of your pussy and run down the inside of your leg as you continue leaning against the shower wall.');
+    scene.text('"Fuck, that was amazing!" he pants as you just roll your eyes.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+        { label: 'Pull out', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'cum_call', 'stomach', 'A294');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/shower/cum_jerkoff1.mp4');
+    scene.text('"Pull out!" you reply. "I don\'t want your cum inside me!"');
+    scene.text('He nods and quickly pulls out of you before you spin around and grab his dick. Jerking it in your hand, spurts of cum soon splatter across your stomach as Vadim groans loudly.');
+    scene.text('Once he\'s finished, you glance up and see him grinning at you as he sighs in satisfaction.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    { label: 'Fuck my ass', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'anal', 3);
+    qspCall(s, 'arousal', 'clit_finger', (-3));
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/anal/shower9.mp4');
+    scene.text('"Hurry up and fuck my ass!" you tell him, barely able to hide your frustration.');
+    // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your asshole before sliding it inside you.`);
+    scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
+    scene.text('"That\'s right, slut! Tease your pussy as I fuck your slutty ass!"');
+    scene.text('You just roll your eyes and soon grow bored despite Vadim\'s eagerness and the arousal of teasing your clit.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'anus', 'A294');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.text('Barely a few minutes pass before Vadim starts fucking you even harder as he grunts loudly.');
+    scene.text('"Are you about to cum already?" you ask, barely able to mask your disappointment.');
+    scene.text('"Sorry!" he grunts. "Your ass is just so tight that I can\'t hold it any longer!"');
+    scene.text('The words barely escape his lips before you feel his warm cum spurting into your ass as he moans softly.');
+    scene.text('Once he finishes, he pulls out and you feel his cum dribble out of your ass and run down the inside of your leg as you continue leaning against the shower wall.');
+    scene.actions([
+      { label: 'Finish up', goto: ['pav_pool_lifeguard', 'vadim_shower_postsex'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterVadimShowerPostsex(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/shared/sex/shower/after2.mp4');
+  scene.text('Vadim pants loudly as he runs his hands over your wet body. "That was pretty good, hot stuff. Fancy doing it again sometime?"');
+  scene.actions([
+    { label: 'Maybe', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'din_van', 'showerdin');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
+    scene.text('"Maybe," you shrug. "I\'ll see how I feel."');
+    scene.text('"I look forward to it already!" he grins before he pulls his trunks back on and leaves the room.');
+    scene.text('Alone again, you quickly wash up under the shower before grabbing a towel and heading to your locker to get dressed.');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    qspCall(s, 'outfit', 'restore', 'lifeguard');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    ]);
+  } },
+    { label: 'No', handler: (st: GameState) => {
+    scene.text('You shake your head and he looks surprised.');
+    scene.text('"Oh? And why not?" he asks, clearly surprised at your answer, but trying to act smooth.');
+    scene.actions([
+      { label: 'Be polite', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).pav_swimpool['vadim_shower_reject'] = 1;
+    qspCall(s, 'din_van', 'showerdin');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
+    scene.text('"I don\'t want to be rude, but you\'re not exactly… big…" you reply.');
+    scene.text('He frowns. "So? You still fucked me, didn\'t you?"');
+    scene.text('You blush a little. "Yes, but I… I didn\'t actually… enjoy it…"');
+    scene.text('Oh…" he replies, looking more than a little crestfallen. "If that\'s how you feel, then I won\'t bother you again…"');
+    scene.text('He grabs his trunks and puts them back on before leaving the room with his head hung low.');
+    scene.text('Feeling a little guilty, you wash up under the shower before you grab a towel and head to your locker to get dressed. You hope this won\'t make your job awkward…');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    qspCall(s, 'outfit', 'restore', 'lifeguard');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    ]);
+  } },
+      { label: 'Be blunt', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).pav_swimpool['vadim_shower_reject'] = 1;
+    qspCall(s, 'din_van', 'showerdin');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
+    scene.text('"Maybe because you have a tiny dick and suck at sex? I barely felt you inside me!"');
+    scene.text('He recoils in shock. "What?! You fucking bitch! You still fucked me, didn\'t you?!"');
+    scene.text('"And I wish I hadn\'t because it was some of the worst sex I\'ve ever had! Maybe I\'ll let all those pretty girls you like flirting with know all about your… little secret?"');
+    scene.text('He looks furious. "Do that and you\'ll regret ever getting a job here, you fucking cunt!"');
+    scene.text('He pulls his trunks back on and storms out of the room, leaving you in peace to clean up under the shower before you grab a towel and head to your locker to get dressed.');
+    scene.text('You don\'t think you\'ll ever be seeing him in here again, but you get the sense that you should tread carefully when it comes to your job…');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    qspCall(s, 'outfit', 'restore', 'lifeguard');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+  }, goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
+    ]);
+  } },
     ]);
   } },
   ]);
@@ -660,6 +1337,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'shift_part11':
       enterShiftPart11(s, scene);
+      break;
+    case 'shift_part2':
+      enterShiftPart2(s, scene);
+      break;
+    case 'break':
+      enterBreak(s, scene);
+      break;
+    case 'vadim_shower_sex':
+      enterVadimShowerSex(s, scene);
+      break;
+    case 'vadim_shower_postsex':
+      enterVadimShowerPostsex(s, scene);
       break;
     default:
       enterLeave(s, scene);

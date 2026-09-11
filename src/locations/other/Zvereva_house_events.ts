@@ -127,8 +127,11 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well, it is a nice dick, Mistress."');
       scene.text('She bites her lip a bit, before nodding.');
     } else {
-      scene.text('"Unlike Lariska, she actually needs someone to be in charge. Without me she would be completely fucking lost. She pretty addicted to Sly\'s dick too. You would be too, if you actually did what I told you to and go find him."');
-      scene.text('"Unlike Lariska, she actually needs someone to be in charge. Without me she would be completely fucking lost. She pretty addicted to Sly\'s dick too. You will be too," she says with a smirk on her face.');
+      if (((s as any).slyQW ?? 0)?.['met'] === 1) {
+        scene.text('"Unlike Lariska, she actually needs someone to be in charge. Without me she would be completely fucking lost. She pretty addicted to Sly\'s dick too. You would be too, if you actually did what I told you to and go find him."');
+      } else {
+        scene.text('"Unlike Lariska, she actually needs someone to be in charge. Without me she would be completely fucking lost. She pretty addicted to Sly\'s dick too. You will be too," she says with a smirk on her face.');
+      }
     }
     scene.actions([
       { label: 'Continue', goto: ['Zvereva_house_events', 'bed_chat'] },

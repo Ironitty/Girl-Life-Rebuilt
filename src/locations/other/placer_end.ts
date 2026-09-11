@@ -14,24 +14,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).katjaQW ?? 0)?.['sex_in_the_park_comment'] === 1) {
         scene.text('She is silent the whole way, then suddenly mutters, "Damn, I just fucked a stranger."');
       } else {
-        scene.text('She is silent the whole way, then suddenly mutters, "Damn, I just fucked two complete strangers."');
-        if (((s as any).katjaQW ?? 0)?.['sex_in_the_park_comment'] === 3) {
-          scene.text('She is silent the whole way, then suddenly mutters, "Holy shit, we just fucked a whole pack of Gopnik."');
+        if (((s as any).katjaQW ?? 0)?.['sex_in_the_park_comment'] === 2) {
+          scene.text('She is silent the whole way, then suddenly mutters, "Damn, I just fucked two complete strangers."');
         } else {
-          scene.text('She is silent the whole way, then suddenly mutters, "Oh shit, we just fucked those strangers like a pair of complete sluts."');
-          if (((s as any).katjaQW ?? 0)?.['sex_in_the_park_comment'] === 5) {
-            scene.text('She is silent the whole way, then suddenly mutters, "Shit, we just had a threesome with a stranger."');
+          if (((s as any).katjaQW ?? 0)?.['sex_in_the_park_comment'] === 3) {
+            scene.text('She is silent the whole way, then suddenly mutters, "Holy shit, we just fucked a whole pack of Gopnik."');
+          } else {
+            if (((s as any).katjaQW ?? 0)?.['sex_in_the_park_comment'] === 4) {
+              scene.text('She is silent the whole way, then suddenly mutters, "Oh shit, we just fucked those strangers like a pair of complete sluts."');
+            } else {
+              if (((s as any).katjaQW ?? 0)?.['sex_in_the_park_comment'] === 5) {
+                scene.text('She is silent the whole way, then suddenly mutters, "Shit, we just had a threesome with a stranger."');
+              }
+            }
           }
-          (s as any).katjaQW['sex_in_the_park_comment'] = 0;
         }
-        scene.text('You say goodbye and Katja disappears into her house.');
-        scene.actions([
-          { label: 'Leave', handler: (st: GameState) => {
+      }
+      (s as any).katjaQW['sex_in_the_park_comment'] = 0;
+    }
+    scene.text('You say goodbye and Katja disappears into her house.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
     (s as any).placerParameter['friend_index'] = 0;
   }, goto: ['pav_residential', ''] },
-        ]);
-      }
-    }
+    ]);
   }
   scene.build();
 }

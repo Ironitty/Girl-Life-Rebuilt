@@ -526,7 +526,7 @@ function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
 function enterSetWashClothesAct(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'check_total_items');
   if (((s as any).washer_total_wash_count ?? 0) > 0) {
-    (s as any).wash_time = ((s as any).min ?? 0)(30 + 5 * (((s as any).washer_total_wash_count ?? 0) / 5), 120);
+    (s as any).wash_time = Math.min(30 + 5 * (((s as any).washer_total_wash_count ?? 0) / 5), 120);
     // TODO-QSP: dynamic "
     // TODO-QSP: "
     scene.actions([
@@ -567,7 +567,7 @@ function enterGoHomeNakedPre(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Run for it', handler: (st: GameState) => {
+      { label: 'Run for it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 7;
     qspCall(s, 'fame', 'pav', 'sex', 5);
@@ -630,7 +630,9 @@ function enterGoHomeNaked(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nakedrand ?? 0) === 1) {
       scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'two_boys'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'misha'] }]);
+      if (((s as any).nakedrand ?? 0) === 2) {
+        scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'misha'] }]);
+      }
     }
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/events/nakedhall2.jpg');

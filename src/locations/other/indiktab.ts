@@ -3,13 +3,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     return;
   }
-  if (((s as any).ARGS ?? 0)[0] === 2) {
+  if (((s as any).locArgs?.[0] ?? 0) === 2) {
     return;
   }
-  if (((s as any).ARGS ?? 0)[0] === 3) {
+  if (((s as any).locArgs?.[0] ?? 0) === 3) {
     return;
   }
   return;

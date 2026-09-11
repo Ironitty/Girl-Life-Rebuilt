@@ -70,21 +70,12 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).spafinloc = 12;
-    qspCall(s, 'cum_manage', '');
-    scene.img('images/characters/city/university/boy/gosha/sex/gosh3.jpg');
-    scene.text('Seeing that you\'re not resisting, Gosha quickly strips you naked and then removes his pants, revealing his cock. Gosha then pushes you down on your knees, and sticks his cock in your mouth. As you start sucking his dick, he starts fucking your mouth, forcing his dick down your throat, making you gag and your eyes water as you choke on his cock. It doesn\'t take long before his cock starts twitching and he quickly pulls out and cums all over your face.');
-    qspCall(s, 'arousal', 'bj', 10, 'deepthroat', 'rough');
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).srand ?? 0) === 3) {
-      (s as any).anal = ((s as any).anal ?? 0) + (1);
-      (s as any).spafinloc = 3;
+    if (((s as any).srand ?? 0) === 2) {
+      (s as any).spafinloc = 12;
       qspCall(s, 'cum_manage', '');
-      qspCall(s, 'stat', '');
-      scene.img('images/characters/city/university/boy/gosha/sex/gosh12.jpg');
-      scene.text('Seeing that you\'re not resisting, Gosha quickly strips you naked and then removes his pants, revealing his cock. Gosha then grabs a bottle of lube and starts lubricating your asshole. Once he has your butthole nice and lubed up, he squirts some lube on his dick as well. After a moment he lines his cock up against your asshole and thrusts it deeply into your ass, causing your to cry out. He then starts fucking your ass hard and deep for some time, before he ends by cumming inside of your ass.');
-      (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
-      qspCall(s, 'arousal', 'anal', 10, 'rough');
+      scene.img('images/characters/city/university/boy/gosha/sex/gosh3.jpg');
+      scene.text('Seeing that you\'re not resisting, Gosha quickly strips you naked and then removes his pants, revealing his cock. Gosha then pushes you down on your knees, and sticks his cock in your mouth. As you start sucking his dick, he starts fucking your mouth, forcing his dick down your throat, making you gag and your eyes water as you choke on his cock. It doesn\'t take long before his cock starts twitching and he quickly pulls out and cums all over your face.');
+      qspCall(s, 'arousal', 'bj', 10, 'deepthroat', 'rough');
       qspCall(s, 'arousal', 'end');
       scene.actions([
         { label: 'Clean up', handler: (st: GameState) => {
@@ -96,9 +87,19 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       ]);
-    }
-    scene.actions([
-      { label: 'Clean up', handler: (st: GameState) => {
+    } else {
+      if (((s as any).srand ?? 0) === 3) {
+        (s as any).anal = ((s as any).anal ?? 0) + (1);
+        (s as any).spafinloc = 3;
+        qspCall(s, 'cum_manage', '');
+        qspCall(s, 'stat', '');
+        scene.img('images/characters/city/university/boy/gosha/sex/gosh12.jpg');
+        scene.text('Seeing that you\'re not resisting, Gosha quickly strips you naked and then removes his pants, revealing his cock. Gosha then grabs a bottle of lube and starts lubricating your asshole. Once he has your butthole nice and lubed up, he squirts some lube on his dick as well. After a moment he lines his cock up against your asshole and thrusts it deeply into your ass, causing your to cry out. He then starts fucking your ass hard and deep for some time, before he ends by cumming inside of your ass.');
+        (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
+        qspCall(s, 'arousal', 'anal', 10, 'rough');
+        qspCall(s, 'arousal', 'end');
+        scene.actions([
+          { label: 'Clean up', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('Once he cums he quickly gets dressed and then sits down at his desk. It takes you a little bit longer to get dressed but once you are, he glances over at you. "It was great you stopping by, but I got some class work I need to do if you don\'t mind." He says as he indicates the door, as you walk over to it he adds. "I hope you stop by again, see you later." With that you leave.');
@@ -106,7 +107,9 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to sixth floor', goto: ['uni_dorm', 'sixth_floor'] },
     ]);
   } },
-    ]);
+        ]);
+      }
+    }
   }
   scene.build();
 }

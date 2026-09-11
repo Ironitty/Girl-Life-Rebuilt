@@ -31,8 +31,11 @@ function enterSpyingSexIntrodesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sexpartner ?? 0) === 'the boy') {
     scene.text('You open the door carefully as quietly as you can, just far enough for you to see Sofia and a boy on her bed.');
   } else {
-    scene.text('You open the door carefully as quietly as you can, just far enough for you to see Sofia and the same boy as last time, presumably her boyfriend, on her bed.');
-    scene.text('You open the door carefully as quietly as you can, just far enough for you to see Sofia and Maxim on her bed.');
+    if (((s as any).sexpartner ?? 0) === 'her boyfriend') {
+      scene.text('You open the door carefully as quietly as you can, just far enough for you to see Sofia and the same boy as last time, presumably her boyfriend, on her bed.');
+    } else {
+      scene.text('You open the door carefully as quietly as you can, just far enough for you to see Sofia and Maxim on her bed.');
+    }
   }
   scene.build();
 }

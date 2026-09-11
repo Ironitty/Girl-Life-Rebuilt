@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 5: 1650
   // TODO-QSP: 6: 1700
   // TODO-QSP: ShoQuality ranges from 4 to 6 but please avoid adding too many 6s
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).ShoStyle = 0;
     (s as any).ShoQuality = 5;
     (s as any).ShoStrength = 400000;
@@ -18,13 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).ShoHeels = 1;
     (s as any).ShoPrice = 1650;
   } else {
-    (s as any).ShoStyle = 0;
-    (s as any).ShoQuality = 5;
-    (s as any).ShoStrength = 400000;
-    (s as any).ShoCut = 1;
-    (s as any).ShoHeels = 1;
-    (s as any).ShoPrice = 1650;
-    if (((s as any).ARGS ?? 0)[0] === 3) {
+    if (((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).ShoStyle = 0;
       (s as any).ShoQuality = 5;
       (s as any).ShoStrength = 400000;
@@ -32,13 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).ShoHeels = 1;
       (s as any).ShoPrice = 1650;
     } else {
-      (s as any).ShoStyle = 0;
-      (s as any).ShoQuality = 5;
-      (s as any).ShoStrength = 400000;
-      (s as any).ShoCut = 1;
-      (s as any).ShoHeels = 1;
-      (s as any).ShoPrice = 1650;
-      if (((s as any).ARGS ?? 0)[0] === 5) {
+      if (((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).ShoStyle = 0;
         (s as any).ShoQuality = 5;
         (s as any).ShoStrength = 400000;
@@ -46,13 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).ShoHeels = 1;
         (s as any).ShoPrice = 1650;
       } else {
-        (s as any).ShoStyle = 0;
-        (s as any).ShoQuality = 5;
-        (s as any).ShoStrength = 400000;
-        (s as any).ShoCut = 1;
-        (s as any).ShoHeels = 1;
-        (s as any).ShoPrice = 1650;
-        if (((s as any).ARGS ?? 0)[0] === 7) {
+        if (((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).ShoStyle = 0;
           (s as any).ShoQuality = 5;
           (s as any).ShoStrength = 400000;
@@ -60,127 +42,71 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).ShoHeels = 1;
           (s as any).ShoPrice = 1650;
         } else {
-          (s as any).ShoStyle = 0;
-          (s as any).ShoQuality = 5;
-          (s as any).ShoStrength = 400000;
-          (s as any).ShoCut = 1;
-          (s as any).ShoHeels = 1;
-          (s as any).ShoPrice = 1650;
-          if (((s as any).ARGS ?? 0)[0] === 9) {
+          if (((s as any).locArgs?.[0] ?? 0) === 5) {
             (s as any).ShoStyle = 0;
-            (s as any).ShoQuality = 6;
-            (s as any).ShoStrength = 450000;
+            (s as any).ShoQuality = 5;
+            (s as any).ShoStrength = 400000;
             (s as any).ShoCut = 1;
             (s as any).ShoHeels = 1;
-            (s as any).ShoPrice = 1700;
+            (s as any).ShoPrice = 1650;
           } else {
-            (s as any).ShoStyle = 0;
-            (s as any).ShoQuality = 6;
-            (s as any).ShoStrength = 450000;
-            (s as any).ShoCut = 1;
-            (s as any).ShoHeels = 1;
-            (s as any).ShoPrice = 1700;
-            if (((s as any).ARGS ?? 0)[0] === 11) {
+            if (((s as any).locArgs?.[0] ?? 0) === 6) {
               (s as any).ShoStyle = 0;
-              (s as any).ShoQuality = 6;
-              (s as any).ShoStrength = 450000;
+              (s as any).ShoQuality = 5;
+              (s as any).ShoStrength = 400000;
               (s as any).ShoCut = 1;
               (s as any).ShoHeels = 1;
-              (s as any).ShoPrice = 1700;
+              (s as any).ShoPrice = 1650;
             } else {
-              (s as any).ShoStyle = 0;
-              (s as any).ShoQuality = 6;
-              (s as any).ShoStrength = 450000;
-              (s as any).ShoCut = 1;
-              (s as any).ShoHeels = 1;
-              (s as any).ShoPrice = 1700;
-              if (((s as any).ARGS ?? 0)[0] === 13) {
+              if (((s as any).locArgs?.[0] ?? 0) === 7) {
                 (s as any).ShoStyle = 0;
-                (s as any).ShoQuality = 4;
-                (s as any).ShoStrength = 350000;
+                (s as any).ShoQuality = 5;
+                (s as any).ShoStrength = 400000;
                 (s as any).ShoCut = 1;
                 (s as any).ShoHeels = 1;
-                (s as any).ShoPrice = 1600;
+                (s as any).ShoPrice = 1650;
               } else {
-                (s as any).ShoStyle = 0;
-                (s as any).ShoQuality = 4;
-                (s as any).ShoStrength = 350000;
-                (s as any).ShoCut = 1;
-                (s as any).ShoHeels = 1;
-                (s as any).ShoBimbo = 1;
-                (s as any).ShoPrice = 1600;
-                if (((s as any).ARGS ?? 0)[0] === 15) {
+                if (((s as any).locArgs?.[0] ?? 0) === 8) {
                   (s as any).ShoStyle = 0;
-                  (s as any).ShoQuality = 4;
-                  (s as any).ShoStrength = 350000;
+                  (s as any).ShoQuality = 5;
+                  (s as any).ShoStrength = 400000;
                   (s as any).ShoCut = 1;
                   (s as any).ShoHeels = 1;
-                  (s as any).ShoPrice = 1600;
+                  (s as any).ShoPrice = 1650;
                 } else {
-                  (s as any).ShoStyle = 0;
-                  (s as any).ShoQuality = 4;
-                  (s as any).ShoStrength = 350000;
-                  (s as any).ShoCut = 1;
-                  (s as any).ShoHeels = 1;
-                  (s as any).ShoBimbo = 1;
-                  (s as any).ShoPrice = 1600;
-                  if (((s as any).ARGS ?? 0)[0] === 17) {
+                  if (((s as any).locArgs?.[0] ?? 0) === 9) {
                     (s as any).ShoStyle = 0;
-                    (s as any).ShoQuality = 4;
-                    (s as any).ShoStrength = 350000;
+                    (s as any).ShoQuality = 6;
+                    (s as any).ShoStrength = 450000;
                     (s as any).ShoCut = 1;
                     (s as any).ShoHeels = 1;
-                    (s as any).ShoPrice = 1600;
+                    (s as any).ShoPrice = 1700;
                   } else {
-                    (s as any).ShoStyle = 0;
-                    (s as any).ShoQuality = 4;
-                    (s as any).ShoStrength = 350000;
-                    (s as any).ShoCut = 1;
-                    (s as any).ShoHeels = 1;
-                    (s as any).ShoPrice = 1600;
-                    if (((s as any).ARGS ?? 0)[0] === 19) {
+                    if (((s as any).locArgs?.[0] ?? 0) === 10) {
                       (s as any).ShoStyle = 0;
-                      (s as any).ShoQuality = 4;
-                      (s as any).ShoStrength = 350000;
+                      (s as any).ShoQuality = 6;
+                      (s as any).ShoStrength = 450000;
                       (s as any).ShoCut = 1;
                       (s as any).ShoHeels = 1;
-                      (s as any).ShoPrice = 1600;
+                      (s as any).ShoPrice = 1700;
                     } else {
-                      (s as any).ShoStyle = 0;
-                      (s as any).ShoQuality = 4;
-                      (s as any).ShoStrength = 350000;
-                      (s as any).ShoCut = 1;
-                      (s as any).ShoHeels = 1;
-                      (s as any).ShoPrice = 1600;
-                      if (((s as any).ARGS ?? 0)[0] === 21) {
+                      if (((s as any).locArgs?.[0] ?? 0) === 11) {
                         (s as any).ShoStyle = 0;
-                        (s as any).ShoQuality = 4;
-                        (s as any).ShoStrength = 350000;
+                        (s as any).ShoQuality = 6;
+                        (s as any).ShoStrength = 450000;
                         (s as any).ShoCut = 1;
                         (s as any).ShoHeels = 1;
-                        (s as any).ShoPrice = 1600;
+                        (s as any).ShoPrice = 1700;
                       } else {
-                        (s as any).ShoStyle = 0;
-                        (s as any).ShoQuality = 4;
-                        (s as any).ShoStrength = 350000;
-                        (s as any).ShoCut = 1;
-                        (s as any).ShoHeels = 1;
-                        (s as any).ShoPrice = 1600;
-                        if (((s as any).ARGS ?? 0)[0] === 23) {
+                        if (((s as any).locArgs?.[0] ?? 0) === 12) {
                           (s as any).ShoStyle = 0;
-                          (s as any).ShoQuality = 4;
-                          (s as any).ShoStrength = 350000;
+                          (s as any).ShoQuality = 6;
+                          (s as any).ShoStrength = 450000;
                           (s as any).ShoCut = 1;
                           (s as any).ShoHeels = 1;
-                          (s as any).ShoPrice = 1600;
+                          (s as any).ShoPrice = 1700;
                         } else {
-                          (s as any).ShoStyle = 0;
-                          (s as any).ShoQuality = 4;
-                          (s as any).ShoStrength = 350000;
-                          (s as any).ShoCut = 1;
-                          (s as any).ShoHeels = 1;
-                          (s as any).ShoPrice = 1600;
-                          if (((s as any).ARGS ?? 0)[0] === 25) {
+                          if (((s as any).locArgs?.[0] ?? 0) === 13) {
                             (s as any).ShoStyle = 0;
                             (s as any).ShoQuality = 4;
                             (s as any).ShoStrength = 350000;
@@ -188,27 +114,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             (s as any).ShoHeels = 1;
                             (s as any).ShoPrice = 1600;
                           } else {
-                            (s as any).ShoStyle = 0;
-                            (s as any).ShoQuality = 4;
-                            (s as any).ShoStrength = 350000;
-                            (s as any).ShoCut = 1;
-                            (s as any).ShoHeels = 1;
-                            (s as any).ShoPrice = 1600;
-                            if (((s as any).ARGS ?? 0)[0] === 27) {
+                            if (((s as any).locArgs?.[0] ?? 0) === 14) {
                               (s as any).ShoStyle = 0;
                               (s as any).ShoQuality = 4;
                               (s as any).ShoStrength = 350000;
                               (s as any).ShoCut = 1;
                               (s as any).ShoHeels = 1;
+                              (s as any).ShoBimbo = 1;
                               (s as any).ShoPrice = 1600;
                             } else {
-                              (s as any).ShoStyle = 0;
-                              (s as any).ShoQuality = 4;
-                              (s as any).ShoStrength = 350000;
-                              (s as any).ShoCut = 1;
-                              (s as any).ShoHeels = 1;
-                              (s as any).ShoPrice = 1600;
-                              if (((s as any).ARGS ?? 0)[0] === 29) {
+                              if (((s as any).locArgs?.[0] ?? 0) === 15) {
                                 (s as any).ShoStyle = 0;
                                 (s as any).ShoQuality = 4;
                                 (s as any).ShoStrength = 350000;
@@ -216,83 +131,227 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 (s as any).ShoHeels = 1;
                                 (s as any).ShoPrice = 1600;
                               } else {
-                                (s as any).ShoStyle = 0;
-                                (s as any).ShoQuality = 5;
-                                (s as any).ShoStrength = 400000;
-                                (s as any).ShoCut = 1;
-                                (s as any).ShoHeels = 1;
-                                (s as any).ShoPrice = 1650;
-                                if (((s as any).ARGS ?? 0)[0] === 31) {
+                                if (((s as any).locArgs?.[0] ?? 0) === 16) {
                                   (s as any).ShoStyle = 0;
                                   (s as any).ShoQuality = 4;
                                   (s as any).ShoStrength = 350000;
                                   (s as any).ShoCut = 1;
                                   (s as any).ShoHeels = 1;
+                                  (s as any).ShoBimbo = 1;
                                   (s as any).ShoPrice = 1600;
                                 } else {
-                                  (s as any).ShoStyle = 0;
-                                  (s as any).ShoQuality = 5;
-                                  (s as any).ShoStrength = 400000;
-                                  (s as any).ShoCut = 1;
-                                  (s as any).ShoHeels = 1;
-                                  (s as any).ShoPrice = 1650;
-                                  if (((s as any).ARGS ?? 0)[0] === 33) {
+                                  if (((s as any).locArgs?.[0] ?? 0) === 17) {
                                     (s as any).ShoStyle = 0;
-                                    (s as any).ShoQuality = 5;
-                                    (s as any).ShoStrength = 400000;
+                                    (s as any).ShoQuality = 4;
+                                    (s as any).ShoStrength = 350000;
                                     (s as any).ShoCut = 1;
                                     (s as any).ShoHeels = 1;
-                                    (s as any).ShoPrice = 1650;
+                                    (s as any).ShoPrice = 1600;
                                   } else {
-                                    (s as any).ShoStyle = 0;
-                                    (s as any).ShoQuality = 5;
-                                    (s as any).ShoStrength = 400000;
-                                    (s as any).ShoCut = 1;
-                                    (s as any).ShoHeels = 1;
-                                    (s as any).ShoPrice = 1650;
-                                    if (((s as any).ARGS ?? 0)[0] === 35) {
+                                    if (((s as any).locArgs?.[0] ?? 0) === 18) {
                                       (s as any).ShoStyle = 0;
-                                      (s as any).ShoQuality = 5;
-                                      (s as any).ShoStrength = 400000;
+                                      (s as any).ShoQuality = 4;
+                                      (s as any).ShoStrength = 350000;
                                       (s as any).ShoCut = 1;
                                       (s as any).ShoHeels = 1;
-                                      (s as any).ShoPrice = 1650;
+                                      (s as any).ShoPrice = 1600;
                                     } else {
-                                      (s as any).ShoStyle = 0;
-                                      (s as any).ShoQuality = 5;
-                                      (s as any).ShoStrength = 400000;
-                                      (s as any).ShoCut = 1;
-                                      (s as any).ShoHeels = 1;
-                                      (s as any).ShoBimbo = 1;
-                                      (s as any).ShoPrice = 1650;
-                                      if (((s as any).ARGS ?? 0)[0] === 37) {
+                                      if (((s as any).locArgs?.[0] ?? 0) === 19) {
                                         (s as any).ShoStyle = 0;
-                                        (s as any).ShoQuality = 5;
-                                        (s as any).ShoStrength = 400000;
+                                        (s as any).ShoQuality = 4;
+                                        (s as any).ShoStrength = 350000;
                                         (s as any).ShoCut = 1;
                                         (s as any).ShoHeels = 1;
-                                        (s as any).ShoPrice = 1650;
+                                        (s as any).ShoPrice = 1600;
                                       } else {
-                                        (s as any).ShoStyle = 0;
-                                        (s as any).ShoQuality = 5;
-                                        (s as any).ShoStrength = 400000;
-                                        (s as any).ShoCut = 1;
-                                        (s as any).ShoHeels = 1;
-                                        (s as any).ShoPrice = 1650;
-                                        if (((s as any).ARGS ?? 0)[0] === 39) {
+                                        if (((s as any).locArgs?.[0] ?? 0) === 20) {
                                           (s as any).ShoStyle = 0;
-                                          (s as any).ShoQuality = 5;
-                                          (s as any).ShoStrength = 400000;
+                                          (s as any).ShoQuality = 4;
+                                          (s as any).ShoStrength = 350000;
                                           (s as any).ShoCut = 1;
                                           (s as any).ShoHeels = 1;
-                                          (s as any).ShoPrice = 1650;
+                                          (s as any).ShoPrice = 1600;
                                         } else {
-                                          (s as any).ShoStyle = 0;
-                                          (s as any).ShoQuality = 5;
-                                          (s as any).ShoStrength = 400000;
-                                          (s as any).ShoCut = 1;
-                                          (s as any).ShoHeels = 1;
-                                          (s as any).ShoPrice = 1650;
+                                          if (((s as any).locArgs?.[0] ?? 0) === 21) {
+                                            (s as any).ShoStyle = 0;
+                                            (s as any).ShoQuality = 4;
+                                            (s as any).ShoStrength = 350000;
+                                            (s as any).ShoCut = 1;
+                                            (s as any).ShoHeels = 1;
+                                            (s as any).ShoPrice = 1600;
+                                          } else {
+                                            if (((s as any).locArgs?.[0] ?? 0) === 22) {
+                                              (s as any).ShoStyle = 0;
+                                              (s as any).ShoQuality = 4;
+                                              (s as any).ShoStrength = 350000;
+                                              (s as any).ShoCut = 1;
+                                              (s as any).ShoHeels = 1;
+                                              (s as any).ShoPrice = 1600;
+                                            } else {
+                                              if (((s as any).locArgs?.[0] ?? 0) === 23) {
+                                                (s as any).ShoStyle = 0;
+                                                (s as any).ShoQuality = 4;
+                                                (s as any).ShoStrength = 350000;
+                                                (s as any).ShoCut = 1;
+                                                (s as any).ShoHeels = 1;
+                                                (s as any).ShoPrice = 1600;
+                                              } else {
+                                                if (((s as any).locArgs?.[0] ?? 0) === 24) {
+                                                  (s as any).ShoStyle = 0;
+                                                  (s as any).ShoQuality = 4;
+                                                  (s as any).ShoStrength = 350000;
+                                                  (s as any).ShoCut = 1;
+                                                  (s as any).ShoHeels = 1;
+                                                  (s as any).ShoPrice = 1600;
+                                                } else {
+                                                  if (((s as any).locArgs?.[0] ?? 0) === 25) {
+                                                    (s as any).ShoStyle = 0;
+                                                    (s as any).ShoQuality = 4;
+                                                    (s as any).ShoStrength = 350000;
+                                                    (s as any).ShoCut = 1;
+                                                    (s as any).ShoHeels = 1;
+                                                    (s as any).ShoPrice = 1600;
+                                                  } else {
+                                                    if (((s as any).locArgs?.[0] ?? 0) === 26) {
+                                                      (s as any).ShoStyle = 0;
+                                                      (s as any).ShoQuality = 4;
+                                                      (s as any).ShoStrength = 350000;
+                                                      (s as any).ShoCut = 1;
+                                                      (s as any).ShoHeels = 1;
+                                                      (s as any).ShoPrice = 1600;
+                                                    } else {
+                                                      if (((s as any).locArgs?.[0] ?? 0) === 27) {
+                                                        (s as any).ShoStyle = 0;
+                                                        (s as any).ShoQuality = 4;
+                                                        (s as any).ShoStrength = 350000;
+                                                        (s as any).ShoCut = 1;
+                                                        (s as any).ShoHeels = 1;
+                                                        (s as any).ShoPrice = 1600;
+                                                      } else {
+                                                        if (((s as any).locArgs?.[0] ?? 0) === 28) {
+                                                          (s as any).ShoStyle = 0;
+                                                          (s as any).ShoQuality = 4;
+                                                          (s as any).ShoStrength = 350000;
+                                                          (s as any).ShoCut = 1;
+                                                          (s as any).ShoHeels = 1;
+                                                          (s as any).ShoPrice = 1600;
+                                                        } else {
+                                                          if (((s as any).locArgs?.[0] ?? 0) === 29) {
+                                                            (s as any).ShoStyle = 0;
+                                                            (s as any).ShoQuality = 4;
+                                                            (s as any).ShoStrength = 350000;
+                                                            (s as any).ShoCut = 1;
+                                                            (s as any).ShoHeels = 1;
+                                                            (s as any).ShoPrice = 1600;
+                                                          } else {
+                                                            if (((s as any).locArgs?.[0] ?? 0) === 30) {
+                                                              (s as any).ShoStyle = 0;
+                                                              (s as any).ShoQuality = 5;
+                                                              (s as any).ShoStrength = 400000;
+                                                              (s as any).ShoCut = 1;
+                                                              (s as any).ShoHeels = 1;
+                                                              (s as any).ShoPrice = 1650;
+                                                            } else {
+                                                              if (((s as any).locArgs?.[0] ?? 0) === 31) {
+                                                                (s as any).ShoStyle = 0;
+                                                                (s as any).ShoQuality = 4;
+                                                                (s as any).ShoStrength = 350000;
+                                                                (s as any).ShoCut = 1;
+                                                                (s as any).ShoHeels = 1;
+                                                                (s as any).ShoPrice = 1600;
+                                                              } else {
+                                                                if (((s as any).locArgs?.[0] ?? 0) === 32) {
+                                                                  (s as any).ShoStyle = 0;
+                                                                  (s as any).ShoQuality = 5;
+                                                                  (s as any).ShoStrength = 400000;
+                                                                  (s as any).ShoCut = 1;
+                                                                  (s as any).ShoHeels = 1;
+                                                                  (s as any).ShoPrice = 1650;
+                                                                } else {
+                                                                  if (((s as any).locArgs?.[0] ?? 0) === 33) {
+                                                                    (s as any).ShoStyle = 0;
+                                                                    (s as any).ShoQuality = 5;
+                                                                    (s as any).ShoStrength = 400000;
+                                                                    (s as any).ShoCut = 1;
+                                                                    (s as any).ShoHeels = 1;
+                                                                    (s as any).ShoPrice = 1650;
+                                                                  } else {
+                                                                    if (((s as any).locArgs?.[0] ?? 0) === 34) {
+                                                                      (s as any).ShoStyle = 0;
+                                                                      (s as any).ShoQuality = 5;
+                                                                      (s as any).ShoStrength = 400000;
+                                                                      (s as any).ShoCut = 1;
+                                                                      (s as any).ShoHeels = 1;
+                                                                      (s as any).ShoPrice = 1650;
+                                                                    } else {
+                                                                      if (((s as any).locArgs?.[0] ?? 0) === 35) {
+                                                                        (s as any).ShoStyle = 0;
+                                                                        (s as any).ShoQuality = 5;
+                                                                        (s as any).ShoStrength = 400000;
+                                                                        (s as any).ShoCut = 1;
+                                                                        (s as any).ShoHeels = 1;
+                                                                        (s as any).ShoPrice = 1650;
+                                                                      } else {
+                                                                        if (((s as any).locArgs?.[0] ?? 0) === 36) {
+                                                                          (s as any).ShoStyle = 0;
+                                                                          (s as any).ShoQuality = 5;
+                                                                          (s as any).ShoStrength = 400000;
+                                                                          (s as any).ShoCut = 1;
+                                                                          (s as any).ShoHeels = 1;
+                                                                          (s as any).ShoBimbo = 1;
+                                                                          (s as any).ShoPrice = 1650;
+                                                                        } else {
+                                                                          if (((s as any).locArgs?.[0] ?? 0) === 37) {
+                                                                            (s as any).ShoStyle = 0;
+                                                                            (s as any).ShoQuality = 5;
+                                                                            (s as any).ShoStrength = 400000;
+                                                                            (s as any).ShoCut = 1;
+                                                                            (s as any).ShoHeels = 1;
+                                                                            (s as any).ShoPrice = 1650;
+                                                                          } else {
+                                                                            if (((s as any).locArgs?.[0] ?? 0) === 38) {
+                                                                              (s as any).ShoStyle = 0;
+                                                                              (s as any).ShoQuality = 5;
+                                                                              (s as any).ShoStrength = 400000;
+                                                                              (s as any).ShoCut = 1;
+                                                                              (s as any).ShoHeels = 1;
+                                                                              (s as any).ShoPrice = 1650;
+                                                                            } else {
+                                                                              if (((s as any).locArgs?.[0] ?? 0) === 39) {
+                                                                                (s as any).ShoStyle = 0;
+                                                                                (s as any).ShoQuality = 5;
+                                                                                (s as any).ShoStrength = 400000;
+                                                                                (s as any).ShoCut = 1;
+                                                                                (s as any).ShoHeels = 1;
+                                                                                (s as any).ShoPrice = 1650;
+                                                                              } else {
+                                                                                if (((s as any).locArgs?.[0] ?? 0) === 40) {
+                                                                                  (s as any).ShoStyle = 0;
+                                                                                  (s as any).ShoQuality = 5;
+                                                                                  (s as any).ShoStrength = 400000;
+                                                                                  (s as any).ShoCut = 1;
+                                                                                  (s as any).ShoHeels = 1;
+                                                                                  (s as any).ShoPrice = 1650;
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
                                         }
                                       }
                                     }

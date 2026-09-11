@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -14,15 +16,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['intro_end', 'sg_shared'] }]);
     }
   } else {
-    if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-      scene.actions([{ label: 'Continue', goto: ['intro_end', 'uni_tg'] }]);
+    if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
+      if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
+        scene.actions([{ label: 'Continue', goto: ['intro_end', 'uni_tg'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['intro_end', 'uni_shared'] }]);
+      }
     } else {
-      scene.actions([{ label: 'Continue', goto: ['intro_end', 'uni_shared'] }]);
-    }
-    if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-      scene.actions([{ label: 'Continue', goto: ['intro_end', 'city_tg'] }]);
-    } else {
-      scene.actions([{ label: 'Continue', goto: ['intro_end', 'city_shared'] }]);
+      if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
+        scene.actions([{ label: 'Continue', goto: ['intro_end', 'city_tg'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['intro_end', 'city_shared'] }]);
+      }
     }
   }
   scene.build();
@@ -32,10 +37,13 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hairbsh = 0;
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
   } else {
-    qspCall(s, 'intro_end', 'set_random_uni_course');
-    qspCall(s, 'intro_end', 'set_random_uni_electives');
-    // TODO-QSP: gs 'npc_relationship', 'set', 'A29', 30 + 20 * rand(0, 2)
-    // TODO-QSP: gs 'npc_relationship', 'set', 'A29', 30 + 20 * rand(0, 2)
+    if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
+      qspCall(s, 'intro_end', 'set_random_uni_course');
+      qspCall(s, 'intro_end', 'set_random_uni_electives');
+      // TODO-QSP: gs 'npc_relationship', 'set', 'A29', 30 + 20 * rand(0, 2)
+    } else {
+      // TODO-QSP: gs 'npc_relationship', 'set', 'A29', 30 + 20 * rand(0, 2)
+    }
   }
   scene.actions([{ label: 'Continue', goto: ['intro_game_start', 'quick_start'] }]);
   scene.build();
@@ -57,7 +65,9 @@ function enterSetRandomUniElectives(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) < 2) {
     qspCall(s, 'uni_admin', 'courses', 'enroll_elective_asian', 1);
   } else {
-    qspCall(s, 'uni_admin', 'courses', 'enroll_elective_computer', 1);
+    if (((s as any).temp_rand ?? 0) < 4) {
+      qspCall(s, 'uni_admin', 'courses', 'enroll_elective_computer', 1);
+    }
   }
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
   if (((s as any).temp_rand ?? 0) < 2) {
@@ -67,15 +77,17 @@ function enterSetRandomUniElectives(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) < 2) {
     qspCall(s, 'uni_admin', 'courses', 'enroll_elective_african', 1);
   } else {
-    qspCall(s, 'uni_admin', 'courses', 'enroll_elective_psychology', 1);
+    if (((s as any).temp_rand ?? 0) < 4) {
+      qspCall(s, 'uni_admin', 'courses', 'enroll_elective_psychology', 1);
+    }
   }
   return;
   scene.build();
 }
 
 function enterSgTg(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[1] === 0) {
-    scene.img(`${qspFunc(s, '\'$face_image\'', '')}`);
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
+    scene.img(`${qspFunc(s, '$face_image', '')}`);
     scene.text('You couldn\'t tell from her photo, but although shorter than you, she is rather tall for a girl.');
     scene.text('She looks like she\'s spent some time in front of the mirror trying to pretty herself up, and her clothes are very clean. Nevertheless, she still looks blurry in the mirror. Like she is the type of girl that would be a background character in another person\'s life.');
     scene.actions([
@@ -152,50 +164,20 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).music_loop = 0;
-    (s as any).bcolor = 0;
-    (s as any).lcolor = 0;
-    (s as any).fcolor = 0;
-    scene.img('images/system/1_openings/4_csb/11.jpg');
-    scene.text('<center>…</center>');
-    scene.text('<center>…</center>');
-    scene.text('<center>…</center>');
-    scene.text('<center>…</center>');
-    scene.text('Darkness consumes your thoughts for some time. Eventually, images begin to form in your mind and you soon find yourself in the middle of a dream. The strange amulet stands before you and out of it comes a ghost of some sort. Before you even realize what you are doing, you find yourself staring deep into the ghost\'s eyes, which turn into two Earths.');
-    scene.text('"Most who look at the world see only the mundane, but there is more to it. Much more. Now you see that too. You have the potential to shape it all, but first, you have company."');
-    if (((s as any).ARGS ?? 0)[1] === 2) {
-      scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
-      // TODO-QSP: dynamic text: Shortly after Tatiana left, <<$pcs_nickname>>'s new mother showed up to take her...
-      scene.text(`Shortly after Tatiana left, ${((s as any).pcs_nickname ?? 0)}'s new mother showed up to take her to her new home. ${((s as any).pcs_nickname ?? 0)} met her new family and did the best she could to fit in, afraid of them figuring out that she isn't really ${((s as any).pcs_firstname ?? 0)}. They seem to have bought Tatiana's explanation of amnesia and mental trauma, going out of their way to reintroduce her to her new life.`);
+    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+      (s as any).music_loop = 0;
+      (s as any).bcolor = 0;
+      (s as any).lcolor = 0;
+      (s as any).fcolor = 0;
+      scene.img('images/system/1_openings/4_csb/11.jpg');
+      scene.text('<center>…</center>');
+      scene.text('<center>…</center>');
+      scene.text('<center>…</center>');
+      scene.text('<center>…</center>');
+      scene.text('Darkness consumes your thoughts for some time. Eventually, images begin to form in your mind and you soon find yourself in the middle of a dream. The strange amulet stands before you and out of it comes a ghost of some sort. Before you even realize what you are doing, you find yourself staring deep into the ghost\'s eyes, which turn into two Earths.');
+      scene.text('"Most who look at the world see only the mundane, but there is more to it. Much more. Now you see that too. You have the potential to shape it all, but first, you have company."');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    scene.img('images/system/1_openings/4_csb/15.jpg');
-    // TODO-QSP: dynamic text: Over the next week, <<$pcs_nickname>> slowly became accustomed to her new life. ...
-    scene.text(`Over the next week, ${((s as any).pcs_nickname ?? 0)} slowly became accustomed to her new life. She isn't used to being a girl just yet, but she's come to think of herself as ${((s as any).pcs_nickname ?? 0)} instead of Mikhail, and ${((s as any).pcs_nickname ?? 0)}'s family as her own.`);
-    scene.text('There were a few incidents where she acted in some decidedly non-feminine ways. Luckily Tatiana\'s alibi has proved helpful here as well, covering her mistakes.');
-    // TODO-QSP: dynamic text: Some other mental changes have emerged apart from just thinking of herself as <<...
-    scene.text(`Some other mental changes have emerged apart from just thinking of herself as ${((s as any).pcs_firstname ?? 0)}. Perhaps it's a result of her new gender, but with her new body has come an attraction towards men. She's a little unsettled by these changes, but she can't feel repulsed by these new desires any more than she could have been repulsed for finding girls attractive before.`);
-    scene.text('The first time she saw a man\'s penis was a mind-opening experience, awakening unfamiliar feelings. Luckily it seems that she\'s retained her attraction towards women, making her changing sexuality easier to deal with. So far, she hasn\'t had the time to really explore a woman\'s pleasure.');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    if ((!((s as any).start_location ?? 0))) {
-      scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
-    } else {
-      scene.img('images/system/1_openings/shared/site_gadukino.jpg');
-    }
-    // TODO-QSP: dynamic text: It will take some more time for <<$pcs_nickname>> to get completely used to her ...
-    scene.text(`It will take some more time for ${((s as any).pcs_nickname ?? 0)} to get completely used to her new body and life as ${((s as any).pcs_firstname ?? 0)}. For now, she should just focus on getting out of bed.`);
-    scene.actions([
-      { label: 'Continue', goto: ['intro_end', 'sg_shared'] },
-    ]);
-  } },
-    ]);
-  } },
-      ]);
-    }
-    return;
-    scene.actions([
-      { label: 'Wake up', handler: (st: GameState) => {
+        { label: 'Wake up', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
     }
     (s as any).bcolor = 0;
@@ -325,8 +307,596 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
+      ]);
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+        scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
+        // TODO-QSP: dynamic text: Shortly after Tatiana left, <<$pcs_nickname>>'s new mother showed up to take her...
+        scene.text(`Shortly after Tatiana left, ${((s as any).pcs_nickname ?? 0)}'s new mother showed up to take her to her new home. ${((s as any).pcs_nickname ?? 0)} met her new family and did the best she could to fit in, afraid of them figuring out that she isn't really ${((s as any).pcs_firstname ?? 0)}. They seem to have bought Tatiana's explanation of amnesia and mental trauma, going out of their way to reintroduce her to her new life.`);
+        scene.actions([
+          { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/4_csb/15.jpg');
+    // TODO-QSP: dynamic text: Over the next week, <<$pcs_nickname>> slowly became accustomed to her new life. ...
+    scene.text(`Over the next week, ${((s as any).pcs_nickname ?? 0)} slowly became accustomed to her new life. She isn't used to being a girl just yet, but she's come to think of herself as ${((s as any).pcs_nickname ?? 0)} instead of Mikhail, and ${((s as any).pcs_nickname ?? 0)}'s family as her own.`);
+    scene.text('There were a few incidents where she acted in some decidedly non-feminine ways. Luckily Tatiana\'s alibi has proved helpful here as well, covering her mistakes.');
+    // TODO-QSP: dynamic text: Some other mental changes have emerged apart from just thinking of herself as <<...
+    scene.text(`Some other mental changes have emerged apart from just thinking of herself as ${((s as any).pcs_firstname ?? 0)}. Perhaps it's a result of her new gender, but with her new body has come an attraction towards men. She's a little unsettled by these changes, but she can't feel repulsed by these new desires any more than she could have been repulsed for finding girls attractive before.`);
+    scene.text('The first time she saw a man\'s penis was a mind-opening experience, awakening unfamiliar feelings. Luckily it seems that she\'s retained her attraction towards women, making her changing sexuality easier to deal with. So far, she hasn\'t had the time to really explore a woman\'s pleasure.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if ((!((s as any).start_location ?? 0))) {
+      scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
+    } else {
+      scene.img('images/system/1_openings/shared/site_gadukino.jpg');
+    }
+    // TODO-QSP: dynamic text: It will take some more time for <<$pcs_nickname>> to get completely used to her ...
+    scene.text(`It will take some more time for ${((s as any).pcs_nickname ?? 0)} to get completely used to her new body and life as ${((s as any).pcs_firstname ?? 0)}. For now, she should just focus on getting out of bed.`);
+    scene.actions([
+      { label: 'Continue', goto: ['intro_end', 'sg_shared'] },
     ]);
+  } },
+    ]);
+  } },
+        ]);
+      }
+    }
   }
+  return;
+  scene.build();
+}
+
+function enterSgShared(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_game_start', 'start'] }]);
+  scene.build();
+}
+
+function enterUniTg(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
+  scene.text('"You\'re awake!" Tatiana says while looking into your eyes.');
+  return;
+  scene.actions([
+    { label: 'Look at yourself', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/1_tf/8.jpg');
+    scene.text('"Fuck," you say and immediately shut your mouth again. Your voice… It\'s so feminine! Tatiana giggles.');
+    scene.text('"This is the first time I\'ve changed the gender of a person, therefore I just <i>had</i> to see your reaction. Totally worth it. But you turned out exactly like her."');
+    scene.text('"Like who?" you ask.');
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, of course. I found her in the morgue, era...
+    scene.text(`"${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, of course. I found her in the morgue, erased evidence of her death, made her look like you, and you like her. You needed an alibi, and I needed to throw Reinhold off your trail. Today, Mikhail crashed his car into the pit and died, it's on the news." She picks up the remote and turns the TV on.`);
+    scene.actions([
+      { label: 'Watch TV', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/1_tf/9.jpg');
+    scene.text('There is a news report about a businessman who drove his car into a hole at a construction site. He died in hospital without regaining consciousness.');
+    scene.text('You look at Tatiana, bewildered. She has an enigmatic smile on her face. "I\'m a magician and that\'s something I can do. Reinhold has definitely lost the trail. The body in that car was a perfect copy of your old self, from your absorbed amulet energy down to the placement of every single hair."');
+    // TODO-QSP: dynamic text: "Anyway, here are your new legal documents, including a new passport and student...
+    scene.text(`"Anyway, here are your new legal documents, including a new passport and student ID. Starting today, you are ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, an 18 year old girl who is attending the Saint Petersburg University. She grew up in Pavlovsk with her mother, stepfather, sister and half brother, who are helping her move to the dorms tomorrow."`);
+    scene.text('She hands you a notebook. "Luckily for us, she kept a journal about her life, notes about her family and friends, as well as many other things. I suggest you study and memorize it, but to help you out, I\'ve fabricated a story that she was admitted to the hospital with a head injury and has some memory issues. This should help with you fitting in and acting different than she did, but learn to act like her as quickly as you can so you don\'t bring unwanted attention to yourself."');
+    // TODO-QSP: dynamic text: This is a lot for you to take in and it takes a moment for you to grasp it all. ...
+    scene.text(`This is a lot for you to take in and it takes a moment for you to grasp it all. "Wait, what about the real ${((s as any).pcs_firstname ?? 0)}?"`);
+    scene.text('She gives you a sad smile. "She was killed. No one knows she died, and nobody will know, giving you a new life to hide in. I know it\'s not ideal and whenever we can fix this and change you back, we can let her rest. Just think of it this way; you\'re giving her family extra time with her."');
+    scene.text('You sigh and shake your head. You don\'t even know what to say. "Here are the keys to her apartment. Study her journal and memorize it like your life depends on it, because in a way it does. Now get up, you\'ve got to go to your new home and start a new life."');
+    scene.text('Gustav enters the room and looks at you. "Come on, I\'ll take you."');
+    scene.actions([
+      { label: 'Go with Gustav', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/shared/npc_gustav.jpg');
+    scene.text('Gustav silently takes you to the garage and you enter his black jeep. Gustav gets behind the wheel and drives you into the city as you silently speculate about what to do now.');
+    scene.text('After a few minutes, while keeping his eyes on the road, Gustav speaks. "I\'m sorry I beat you up. I have trouble controlling myself during a fight. You had a large build and for a second I thought you might be dangerous, so I ended up hitting you with my full force."');
+    scene.text('You look at him. "Forget about it. What do I do now?"');
+    scene.text('Gustav nods. "Well, I would advise you to buy what you\'ll need and see about getting a part time job to help out with the expenses. Her family is fairly poor, so I\'m not sure how much they\'ll be able to help you. Also your mind is very weak. If you don\'t take care of yourself, you\'ll go crazy. You need to eat well, sleep regularly and have fun. Don\'t become depressed or else you\'ll end up in a madhouse. Don\'t go looking for Tatiana; you won\'t find her. Lastly, if we need to contact you, we will find you."');
+    scene.text('You arrive at some old Soviet era buildings. Gustav stops the car and points a finger at the entrance. "You\'re in apartment 7 on the second floor. Tatiana already gave you the key, so go. Don\'t give up. Not everyone gets an entirely new chance at life."');
+    scene.text('"Also study that journal and try to fit in and make the best of your new life." You just nod, not knowing what to say as you open the car door and get out.');
+    scene.actions([
+      { label: 'Go to the apartment', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/uni_day.jpg');
+    scene.text('You\'re exhausted and are still struggling to take in all the strange things you\'ve learnt, so decide to get an early night\'s sleep.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/uni_day.jpg');
+    scene.text('The big day has finally arrived! Your family piled into your stepfather\'s Gazelle pickup and you all traveled from your hometown, Pavlovsk, to St. Petersburg. Today is the day you move into the university dorms to start this new phase of your life.');
+    scene.actions([
+      { label: 'Continue', goto: ['intro_end', 'uni_shared'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterUniShared(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
+    scene.img('images/characters/shared/headshots_main/big28.jpg');
+    scene.text('Having spent almost an hour in the cramped truck, you jump out as soon as you arrive. Vladimir gets out and stretches before telling you to take your sister and find out where you\'re staying while the rest of the family unloads your stuff.');
+    scene.text('Looking around, you see many people doing the same.');
+    scene.actions([
+      { label: 'Check Kolka', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big34.jpg');
+    scene.text('Your brother, caught up in the excitement of opening day, tries to slide past Vlad unnoticed but is called back to help unload. He sighs and shuffles his feet before turning around to help. You feel bad for him, but he\'ll be able to get a better look around next year when he graduates secondary school and starts here.');
+    scene.actions([
+      { label: 'Head inside', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big33.jpg');
+    // TODO-QSP: dynamic text: Your sister comes up to you, links her arm with yours, and pulls you forward. "C...
+    scene.text(`Your sister comes up to you, links her arm with yours, and pulls you forward. "Come on, ${((s as any).pcs_nickname ?? 0)}! I want to see this place."`);
+    scene.text('Already knowing the answer, you ask anyway. "Why aren\'t you enrolled then?"');
+    scene.text('"I\'m comfortable where I am right now. When I\'m ready, maybe I will."');
+    scene.text('Rolling your eyes, you let her keep pulling on your arm.');
+    scene.actions([
+      { label: 'Enter the university', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big253.jpg');
+    scene.text('Joining the crowd heading inside, you head into the main courtyard where the new students are being greeted by the older students.');
+    scene.text('A (color undecided)-haired girl comes up and introduces herself. "Welcome, I\'m Diane Borisyuk… Anya?!"');
+    // TODO-QSP: dynamic text: Anya squeals with joy before running to her and giving her a hug. "Diane! I have...
+    scene.text(`Anya squeals with joy before running to her and giving her a hug. "Diane! I haven't seen you in a long time. ${((s as any).pcs_nickname ?? 0)}, this is Diane, Rex's sister. She used to buy us booze for our parties when we were younger."`);
+    scene.text('Diane laughs. "That <b>was</b> a long time ago. So this is your sister? Nice to meet you. You\'re going to have a lot of fun here. Let\'s get you your dorm keys and get you set up!"');
+    scene.text('"By the way, what are you studying?"');
+    scene.actions([
+      { label: 'Get your key', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 1
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+      qspCall(s, 'homes_properties', 'give_access', 'parents_home');
+      (s as any).gschoolVars['school_diploma'] = 1;
+      qspCall(s, 'homes_properties', 'set_home', 'university_dorm');
+      qspCall(s, 'npc_relationship', 'default_family_friends');
+      scene.img('images/system/1_openings/6_uni/degree_choice.jpg');
+      scene.text('This is where you decide what degree you wish to study. For now, Teaching and Nursing are the only options, but more will be added in the future.');
+      scene.actions([
+        { label: 'Teaching', handler: (st: GameState) => {
+    qspCall(s, 'uni_admin', 'courses', 'enroll_teaching', 1);
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+        { label: 'Nursing', handler: (st: GameState) => {
+    qspCall(s, 'uni_admin', 'courses', 'enroll_nursing', 1);
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+      ]);
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+        scene.img('images/system/1_openings/6_uni/degree_choice.jpg');
+        scene.text('It\'s possible to enroll in up to 3 elective classes, which have to be chosen now.');
+        scene.text('Computer Class and Asian Studies are in the same timeslot Monday afternoon, Art class on Tuesday afternoon, Psychology and African Studies in the same timeslot Thursday afternoon.');
+        if (((s as any).university ?? 0)?.['elective_semester_1_1'] === '') {
+          scene.actions([
+            { label: 'Read about the computer class', handler: (st: GameState) => {
+    scene.text('<center><b>Enrollment Office</b></center>');
+    scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
+    scene.text('You read about the computer class, which seems to be a basic class that teaches you how to use a computer, the functions of some of the more basic programs and how to troubleshoot the OS if something goes wrong. It seems like a fairly useful class.');
+    scene.actions([
+      { label: 'Enroll in the computer class', handler: (st: GameState) => {
+    qspCall(s, 'uni_admin', 'courses', 'enroll_elective_computer', 1);
+    scene.text('You decide to enroll in the computer class for the first and second semester of this year.');
+    scene.actions([
+      { label: 'Consider other elective classes', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+      { label: 'Don\'t enroll in the computer class', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+          ]);
+        }
+        if (((s as any).university ?? 0)?.['elective_semester_1_2'] === '') {
+          scene.actions([
+            { label: 'Read about the art class', handler: (st: GameState) => {
+    scene.text('<center><b>Enrollment Office</b></center>');
+    scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
+    scene.text('This class is about learning how to draw. It will start off with the basics before moving onto the more advanced art studies by the end of the second semester. It might be fun to take part in such a relaxed class.');
+    scene.actions([
+      { label: 'Enroll in the art class', handler: (st: GameState) => {
+    qspCall(s, 'uni_admin', 'courses', 'enroll_elective_art', 1);
+    scene.text('You decide to enroll in the art class for the first and second semester of this year.');
+    scene.actions([
+      { label: 'Consider other elective classes', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+      { label: 'Don\'t enroll in the art class', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+          ]);
+        }
+        if (((s as any).university ?? 0)?.['elective_semester_1_3'] === '') {
+          scene.actions([
+            { label: 'Read about the psychology class', handler: (st: GameState) => {
+    scene.text('<center><b>Enrollment Office</b></center>');
+    scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
+    scene.text('This class is about learning psychology to better understand how and why people think they way they do. It will start off with the basics before moving onto the more advanced behavior studies by the end of the second semester. It might be fun to take part in such a relaxed class.');
+    scene.actions([
+      { label: 'Enroll in the psychology class', handler: (st: GameState) => {
+    qspCall(s, 'uni_admin', 'courses', 'enroll_elective_psychology', 1);
+    scene.text('You decide to enroll in the psychology class for the first and second semester of this year.');
+    scene.actions([
+      { label: 'Consider other elective classes', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+      { label: 'Don\'t enroll in the psychology class', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+          ]);
+        }
+        if (((s as any).university ?? 0)?.['elective_semester_1_3'] === '') {
+          scene.actions([
+            { label: 'Read about the African studies class', handler: (st: GameState) => {
+    scene.text('<center><b>Enrollment Office</b></center>');
+    scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
+    scene.text('This class is about learning the history and culture of Africa and its people. It will start off with the history of the continent before moving on to modern day Africa by the end of the second semester. It might be fun to take part in such a relaxed class.');
+    scene.actions([
+      { label: 'Enroll in the African studies class', handler: (st: GameState) => {
+    qspCall(s, 'uni_admin', 'courses', 'enroll_elective_african', 1);
+    scene.text('You decide to enroll in the African studies class for the first and second semester of this year.');
+    scene.actions([
+      { label: 'Consider other elective classes', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+      { label: 'Don\'t enroll in the African studies class', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+          ]);
+        }
+        if (((s as any).university ?? 0)?.['elective_semester_1_1'] === '') {
+          scene.actions([
+            { label: 'Read about the Asian studies class', handler: (st: GameState) => {
+    scene.text('<center><b>Enrollment Office</b></center>');
+    scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
+    scene.text('This class is about learning the history and culture of Asia and its people. It will start off with the history of the continent before moving on to modern day Asia by the end of the second semester. It might be fun to take part in such a relaxed class.');
+    scene.actions([
+      { label: 'Enroll in the Asian studies class', handler: (st: GameState) => {
+    qspCall(s, 'uni_admin', 'courses', 'enroll_elective_asian', 1);
+    scene.text('You decide to enroll in the Asian studies class for the first and second semester of this year.');
+    scene.actions([
+      { label: 'Consider other elective classes', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+      { label: 'Don\'t enroll in the Asian studies class', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
+  } },
+    ]);
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Don\'t enroll in any more elective classes', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 3
+  } },
+        ]);
+      } else {
+        if (((s as any).locArgs?.[1] ?? 0) === 3) {
+          scene.img('images/locations/city/island/university/dorm/dorm.jpg');
+          scene.text('You follow Diane into the dorm building where an older woman with a very unpleasant and judgmental look on her face sits in a room just off the main hallway.');
+          // TODO-QSP: dynamic text: Diane walks up to her. "I need <<$pcs_firstname>> <<$pcs_lastname>>'s room key, ...
+          scene.text(`Diane walks up to her. "I need ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}'s room key, please."`);
+          scene.text('The woman looks your name up on her computer before finding your dorm key and handing it to you.');
+          // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>, I want to see your room." Anya drags you towards the...
+          scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}, I want to see your room." Anya drags you towards the elevators, with a smiling Diane following you.`);
+          scene.actions([
+            { label: 'Check out your room', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big220.jpg');
+    scene.text('Arriving on the tenth floor, you check the number on your key and approach the matching door. You find a blonde haired girl inside sitting on one of the two beds in the room. Looking around, you see there is a desk for each of you and a large wardrobe for your clothes.');
+    scene.text('The girl gets up and comes to greet you. "Hi, I\'m Vika. I guess one of you is my new roommate?" She looks between you and Anya, not sure who it is.');
+    // TODO-QSP: dynamic text: "That would be me," you reply. "I'm <<$pcs_firstname>>, but you can call just ca...
+    scene.text(`"That would be me," you reply. "I'm ${((s as any).pcs_firstname ?? 0)}, but you can call just call me ${((s as any).pcs_nickname ?? 0)}. This is my sister, Anya."`);
+    scene.text('Anya gives her a smile, but is mostly occupied with checking out your room.');
+    scene.text('Diane stays in the doorway, though you do notice the strange look she gives Vika. "We should let your parents know which room you\'re in so they can drop your stuff off while I show you around the campus."');
+    scene.text('Once you get back out into the hallway, you ask why she doesn\'t like your roommate. "There are a lot of nasty rumors about her. I\'m not exactly a prude or anything, but if even <i>one</i> of those rumors is true, then she makes me look like a virgin that\'s been living under a rock my whole life."');
+    if (((s as any).temp ?? 0) !== '') {
+      (s as any).npc_nickname['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
+    }
+    scene.actions([
+      { label: 'Find your parents', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big29.jpg');
+    // TODO-QSP: dynamic text: Once you get back outside, you find your family standing around the piles of box...
+    scene.text(`Once you get back outside, you find your family standing around the piles of boxes with your stuff, surrounded by people coming and going. You tell your father which room you're in and give him the key before your ${((s as any).npc_nickname ?? 0)?.['A29']} pulls you to one side. Anya and Diane step away to catch up and give you some privacy.`);
+    scene.text('"Big day! Are you excited? I know I am." She gives you a proud look.');
+    // TODO-QSP: dynamic text: "Yeah, <<$npc_nickname['A29']>>! There's so much to do and see here."
+    scene.text(`"Yeah, ${((s as any).npc_nickname ?? 0)?.['A29']}! There's so much to do and see here."`);
+    scene.text('"Well don\'t forget to stay focused on your studies, and stay away from boys for now. There will be plenty of time after you\'ve finished studying to think about that stuff."');
+    if (((s as any).start_type ?? 0)?.['magic'] !== 'tg') {
+      scene.actions([
+        { label: 'Tell her what she wants to hear', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'set', 'A29', 50);
+    scene.img('images/characters/shared/headshots_main/big29.jpg');
+    // TODO-QSP: dynamic text: "Everything will be fine, <<$npc_nickname['A29']>>. You got me here, but I'll do...
+    scene.text(`"Everything will be fine, ${((s as any).npc_nickname ?? 0)?.['A29']}. You got me here, but I'll do the rest."`);
+    scene.text('She gives you a hug before going to stand over at your pile of stuff to keep an eye on it.');
+    scene.actions([
+      { label: 'Go on tour', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 4
+  } },
+    ]);
+  } },
+        { label: 'Snap at her', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'set', 'A29', 30);
+    scene.img('images/characters/shared/headshots_main/big29.jpg');
+    // TODO-QSP: dynamic text: "Just stop, <<$npc_nickname['A29']>>! I'm an adult now, and I'll do whatever I w...
+    scene.text(`"Just stop, ${((s as any).npc_nickname ?? 0)?.['A29']}! I'm an adult now, and I'll do whatever I want with whoever I want!"`);
+    scene.text('Her eyes flash in anger, but she doesn\'t say anything. She goes and stands next to your pile to keep an eye on it.');
+    scene.actions([
+      { label: 'Go on tour', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 4
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Appreciate her concern', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'set', 'A29', 70);
+    scene.img('images/characters/shared/headshots_main/big29.jpg');
+    // TODO-QSP: dynamic text: "I know, I know. Don't worry so much, <<$npc_nickname['A29']>>! You got me here....
+    scene.text(`"I know, I know. Don't worry so much, ${((s as any).npc_nickname ?? 0)?.['A29']}! You got me here. I'll do the rest."`);
+    scene.text('She gives you a hug before going to stand over your pile of stuff to keep an eye on it.');
+    scene.actions([
+      { label: 'Go on a tour', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'uni_shared', 4
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+          ]);
+        } else {
+          if (((s as any).locArgs?.[1] ?? 0) === 4) {
+            scene.img('images/locations/city/island/university/uni_day.jpg');
+            scene.text('You rejoin Anya and Diane, who begins to point out the main areas of the university.');
+            scene.text('"Right now you\'re in the main courtyard. It\'s basically the main hub of the university. You already know where the dorms are, and I imagine you\'ve been to the admin building already. It has all the main offices, so any paperwork or trouble you get into will be handled there."');
+            scene.text('She takes you to the front of what must be the largest building on campus. "This is the main building, where most of your classes will be held. Finding your way around inside is pretty easy despite its size. It\'s signposted like crazy in there."');
+            scene.text('She takes you up to another large building. "This is the library. Most students without a computer come here to study. You can find me here almost all the time and I\'m always willing to help if you need it. I\'m studying to be a teacher, so offering you assistance would help me as much as it helps you."');
+            scene.text('"Well, that\'s the basic tour. The rest you will learn as you go."');
+            scene.actions([
+              { label: 'End the tour', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big253.jpg');
+    scene.text('The three of you walk back to the dorms. You take in the sights while Anya and Diane chat about Rex and the old days.');
+    scene.text('Once you get there, Diane reminds you to look for her in the library if you need anything before hugging Anya goodbye and heading back into the crowd of new students.');
+    // TODO-QSP: dynamic text: Not seeing your <<$npc_nickname['A29']>> or your pile of stuff, you head up to y...
+    scene.text(`Not seeing your ${((s as any).npc_nickname ?? 0)?.['A29']} or your pile of stuff, you head up to your room.`);
+    scene.actions([
+      { label: 'Say goodbye to your family', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/dorm/dorm_room/room.jpg');
+    // TODO-QSP: dynamic text: Returning to your room, you find your stuff piled on your bed and your <<$npc_ni...
+    scene.text(`Returning to your room, you find your stuff piled on your bed and your ${((s as any).npc_nickname ?? 0)?.['A29']} putting the last of your clothes into the wardrobe. You don't see Vika, and assume she left to give you privacy or to avoid meeting your family.`);
+    scene.text('Anya gives a hug and congratulates you on starting university while your brother gives you an awkward hug and whispers to text him what it\'s like.');
+    scene.text('Vladimir comes over and hugs you too, telling you how proud he is to be your stepfather and to call if you need anything.');
+    if (((s as any).npc_rel ?? 0)?.['A29'] >= 60) {
+      // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> finishes what she's doing and comes over, tears in...
+      scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} finishes what she's doing and comes over, tears in her eyes. Wrapping you in a tight hug, she tells you how proud she is of you for enrolling in university and again reminds you to stay away from boys before joining the rest of the family by the door.`);
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A29'] <= 30) {
+        // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> finishes what she's doing and gives you an awkward...
+        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} finishes what she's doing and gives you an awkward hug, apologising for fighting with you on your big day before joining the rest of the family by the door.`);
+      } else {
+        // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> finishes what she's doing and comes over and gives...
+        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} finishes what she's doing and comes over and gives you a hug, telling how happy she is that you enrolled before joining the rest of the family by the door.`);
+      }
+    }
+    scene.text('They all wave at you before leaving. You spend some time putting the rest of your stuff away or stashing it under your bed before deciding to explore the grounds.');
+    scene.actions([
+      { label: 'Head outside', goto: ['intro_game_start', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+            ]);
+          }
+        }
+      }
+    }
+  }
+  return;
+  scene.build();
+}
+
+function enterCityTg(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
+  scene.text('"You\'re awake!" Tatiana says while looking into your eyes.');
+  return;
+  scene.actions([
+    { label: 'Look at yourself', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/1_tf/8.jpg');
+    scene.text('"Fuck," you say and immediately shut your mouth again. Your voice… It\'s so feminine! Tatiana giggles.');
+    scene.text('"This is the first time I\'ve changed someone\'s gender, therefore I just <i>had</i> to see your reaction. Totally worth it, but you turned out beautiful. For a first try anyway. I should tell you that your body will change much faster than one of a natural born woman for a while until it regulates itself to your new reality. That means it will be easier to gain and lose weight, muscle, stuff like that. All in all, you turned out quite well. You look pretty much exactly like her."');
+    scene.text('"By the way, your new… \'equipment\' down there is fully functional, so if you don\'t want to be a mother, you should think about using contraceptives."');
+    scene.text('You glare at Tatiana. "So that makes me a woman now?! On the outside maybe, but guess what? I\'m still a 34 year old man on the inside!"');
+    scene.text('"Well, yes. I won\'t argue about that," she agrees. "It\'s your life and you decide what you do with it, but for the time being, you can\'t go back to your old life, so deal with it. On a side note, I already took care of an alibi. Mikhail crashed his car into the pit and died, it\'s on the news." She picks up a remote and turns the TV on.');
+    scene.actions([
+      { label: 'Watch TV', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/1_tf/9.jpg');
+    scene.text('There is a news report about a businessman who drove his car into a hole at a construction site. He died in hospital without regaining consciousness.');
+    scene.text('You look at Tatiana, bewildered. She has an enigmatic smile on her face. "I\'m a magician and that\'s something I can do. Reinhold has definitely lost the trail. The body in that car was a perfect copy of your old self, from your absorbed amulet energy down to the placement of every single hair."');
+    // TODO-QSP: dynamic text: "Anyway, here are your new legal documents, including a new passport. Starting t...
+    scene.text(`"Anyway, here are your new legal documents, including a new passport. Starting today, you are ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, an 18 year old girl who lives in the city. She grew up in Pavlovsk with her mother, stepfather, sister and half brother. She just recently rented an apartment in the city after graduating from school and tomorrow is moving day."`);
+    scene.text('She hands you a notebook. "Luckily for us, she kept a journal about her life, notes about her family and friends, as well as many other things. I suggest you study and memorize it, but to help you out, I\'ve fabricated a story that she was admitted to the hospital with a head injury and has some memory issues. This should help with you fitting in and acting different than she did, but learn to act like her as quickly as you can so you don\'t bring unwanted attention to yourself."');
+    // TODO-QSP: dynamic text: This is a lot for you to take in and it takes a moment for you to grasp it all. ...
+    scene.text(`This is a lot for you to take in and it takes a moment for you to grasp it all. "Wait, what about the real ${((s as any).pcs_firstname ?? 0)}?"`);
+    scene.text('She gives you a sad smile. "She was killed. No one knows she died, and nobody will know, giving you a new life to hide in. I know it\'s not ideal and whenever we can fix this and change you back, we can let her rest. Just think of it this way; you\'re giving her family extra time with her."');
+    scene.text('You sigh and shake your head. You don\'t even know what to say. "Here are the keys to her apartment. Study her journal and memorize it like your life depends on it, because in a way it does. Now get up, you\'ve got to go to your new home and start a new life."');
+    scene.text('Gustav enters the room and looks at you. "Come on, I\'ll take you."');
+    scene.actions([
+      { label: 'Go with Gustav', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/shared/npc_gustav.jpg');
+    scene.text('Gustav silently takes you to the garage and you enter his black jeep. Gustav gets behind the wheel and drives you into the city as you silently speculate about what to do now.');
+    scene.text('After a few minutes, while keeping his eyes on the road, Gustav speaks. "I\'m sorry I beat you up. I have trouble controlling myself during a fight. You had a large build and for a second I thought you might be dangerous, so I ended up hitting you with my full force."');
+    scene.text('You look at him. "Forget about it. What do I do now?"');
+    scene.text('Gustav nods. "Well, I would advise you to start by buying food, all sorts of washing powders, laundry detergent and dishes. There are a few supplies already in the apartment, but they\'ll only last you a day or two, so get a job. If I remember correctly, there was a vacant waitress position at a nearby cafe not too long ago."');
+    scene.text('"Also, your mind is very weak. If you don\'t take care of yourself, you\'ll go crazy. You need to eat well, sleep regularly and have fun. Don\'t become depressed or else you\'ll end up in a madhouse. Don\'t go looking for Tatiana; you won\'t find her. Secondly, if we need to contact you, we will find you."');
+    scene.text('You arrive at some old Soviet era buildings. Gustav stops the car and points a finger at the entrance. "You\'re in apartment 7 on the second floor. Tatiana already gave you the key, so go. Don\'t give up. Not everyone gets an entirely new chance at life."');
+    scene.text('"Also study that journal and try to fit in and make the best of your new life." You just nod, not knowing what to say as you open the car door and get out.');
+    scene.actions([
+      { label: 'Get out of the car', handler: (st: GameState) => {
+    scene.img('images/system/1_openings/1_tf/start_tf.jpg');
+    scene.text('You\'re exhausted and are still struggling to take in all the strange things you\'ve learnt, so decide to get an early night\'s sleep.');
+    scene.actions([
+      { label: 'Sleep', goto: ['intro_end', 'city_shared'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterCityShared(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
+    scene.img('images/characters/shared/headshots_main/big28.jpg');
+    scene.text('Having spent almost an hour in the cramped truck, you jump out as soon as you arrive. Vladimir gets out and stretches before heading to the back of the Gazelle to start unloading your stuff.');
+    scene.actions([
+      { label: 'Check Kolka', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big34.jpg');
+    scene.text('Your brother, caught up in the excitement of seeing the city, tries to slide past Vladimir unnoticed, but is called back to help unload. He sighs and shuffles his feet before turning around to help.');
+    scene.text('Giving him an encouraging smile, you thank him for helping. Your effort pays off, his chest puffing out as he starts to help his father.');
+    scene.actions([
+      { label: 'Head inside', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big33.jpg');
+    // TODO-QSP: dynamic text: Your sister comes up to you, links her arm with yours, and pulls you forward. "C...
+    scene.text(`Your sister comes up to you, links her arm with yours, and pulls you forward. "Come on, ${((s as any).pcs_nickname ?? 0)}! I want to see this place."`);
+    scene.text('Already knowing the answer, you ask anyway. "Why don\'t you have your own apartment then?"');
+    scene.text('"I\'m comfortable where I am right now. When I\'m ready, maybe I will."');
+    scene.text('Rolling your eyes, you let her keep pulling on your arm.');
+    if (((s as any).temp ?? 0) !== '') {
+      (s as any).npc_nickname['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
+    }
+    scene.actions([
+      { label: 'Enter the apartment', handler: (st: GameState) => {
+    scene.img('images/locations/city/residential/apartment/home/korr.jpg');
+    scene.text('Once inside you look around, already trying to decide where things should go. Anya sees this, and laughing, drags you through each room to check them out.');
+    // TODO-QSP: dynamic text: By the time you're done, Kolka and Vladimir have started bringing boxes in. "You...
+    scene.text(`By the time you're done, Kolka and Vladimir have started bringing boxes in. "Your ${((s as any).npc_nickname ?? 0)?.['A29']} is staying outside to keep an eye on your stuff. I don't think she likes the neighborhood much," he says with a shrug.`);
+    scene.text('You and Anya pick up the boxes they set down and take them to the rooms they were labeled for while your brother and stepfather bring it all inside.');
+    scene.actions([
+      { label: 'Greet your <<$npc_nickname[\'A29\']>>', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'city_shared', 1
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+      scene.img('images/characters/shared/headshots_main/big29.jpg');
+      // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> finally comes inside, carrying food she made ahead...
+      scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} finally comes inside, carrying food she made ahead of time for everyone.`);
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, this is a pretty rough neighborhood. You need to be really c...
+      scene.text(`"${((s as any).pcs_nickname ?? 0)}, this is a pretty rough neighborhood. You need to be really careful of those boys outside. The sooner university starts and you can get out of here, the better. I don't know why you couldn't just wait until summer ended to move to the city."`);
+      scene.actions([
+        { label: 'Tell her what she wants to hear', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'set', 'A29', 50);
+    scene.img('images/characters/shared/headshots_main/big29.jpg');
+    // TODO-QSP: dynamic text: "Everything will be fine, <<$npc_nickname['A29']>>. I'll look into university pr...
+    scene.text(`"Everything will be fine, ${((s as any).npc_nickname ?? 0)?.['A29']}. I'll look into university prices and decide then."`);
+    scene.text('She gives you a hug before going to the kitchen to start preparing lunch.');
+    scene.actions([
+      { label: 'Have lunch', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'city_shared', 2
+  } },
+    ]);
+  } },
+        { label: 'Snap at her', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'set', 'A29', 30);
+    scene.img('images/characters/shared/headshots_main/big29.jpg');
+    // TODO-QSP: dynamic text: "Just stop, <<$npc_nickname['A29']>>! I'm an adult now, and I'll do whatever I w...
+    scene.text(`"Just stop, ${((s as any).npc_nickname ?? 0)?.['A29']}! I'm an adult now, and I'll do whatever I want with whoever I want!"`);
+    scene.text('Her eyes flash in anger, but she doesn\'t say anything. She then heads into the kitchen to prepare lunch.');
+    scene.actions([
+      { label: 'Have lunch', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'city_shared', 2
+  } },
+    ]);
+  } },
+        { label: 'Appreciate her concern', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'set', 'A29', 70);
+    scene.img('images/characters/shared/headshots_main/big29.jpg');
+    // TODO-QSP: dynamic text: "I know, but don't worry so much, <<$npc_nickname['A29']>>. I'll be very careful...
+    scene.text(`"I know, but don't worry so much, ${((s as any).npc_nickname ?? 0)?.['A29']}. I'll be very careful, I promise. It's only for a few months."`);
+    scene.text('She gives you a hug before going to the kitchen to prepare lunch.');
+    scene.actions([
+      { label: 'Have lunch', handler: (st: GameState) => {
+    // TODO-QSP: gt 'intro_end', 'city_shared', 2
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+        scene.img('images/locations/pavlovsk/resident/apartment/home/dinnerhome.jpg');
+        if (((s as any).npc_rel ?? 0)?.['A29'] >= 60) {
+          // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> hands you a plate with a big smile as you all sit ...
+          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} hands you a plate with a big smile as you all sit down at your kitchen table.`);
+        } else {
+          if (((s as any).npc_rel ?? 0)?.['A29'] <= 30) {
+            // TODO-QSP: dynamic text: Lunch is a little tense at first, but everyone is used to you and your <<$npc_ni...
+            scene.text(`Lunch is a little tense at first, but everyone is used to you and your ${((s as any).npc_nickname ?? 0)?.['A29']} fighting.`);
+          } else {
+            // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> hands out plates of food as you all sit down at yo...
+            scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} hands out plates of food as you all sit down at your kitchen table.`);
+          }
+        }
+        scene.text('Before long, you\'re all laughing and joking with each other as you eat. You\'re still looking forward to being on your own, but you know times like this will become pretty rare once they head home.');
+        // TODO-QSP: dynamic text: Once everyone is finished and your <<$npc_nickname['A29']>> has cleared up, they...
+        scene.text(`Once everyone is finished and your ${((s as any).npc_nickname ?? 0)?.['A29']} has cleared up, they all prepare to say goodbye.`);
+        scene.actions([
+          { label: 'Say goodbye to your family', handler: (st: GameState) => {
+    scene.img('images/locations/city/residential/apartment/home/korr.jpg');
+    scene.text('Anya gives a hug and congratulates you on getting your own place. Your brother gives you an awkward hug and whispers to text him what it\'s like living on your own.');
+    scene.text('Vladimir then comes over and hugs you too, telling you how proud he is to be your stepfather and to call if you need anything.');
+    if (((s as any).npc_rel ?? 0)?.['A29'] >= 60) {
+      // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> finishes what she's doing and comes over, tears in...
+      scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} finishes what she's doing and comes over, tears in her eyes. Wrapping you in a hug, she again reminds you to stay away from the boys outside before joining the rest of the family by the door.`);
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A29'] <= 30) {
+        // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> finishes what she's doing and gives you an awkward...
+        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} finishes what she's doing and gives you an awkward hug, apologising for fighting with you before joining the rest of the family by the door.`);
+      } else {
+        // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> finishes what she's doing and comes over and gives...
+        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} finishes what she's doing and comes over and gives you a hug, again reminding you to stay away from the boys outside before joining the rest of the family by the door.`);
+      }
+    }
+    scene.text('They all wave and head out, leaving you alone for the first time. You spend some time unpacking your stuff before you stop and stretch, deciding you can finish later.');
+    scene.actions([
+      { label: 'Continue', goto: ['intro_game_start', 'start'] },
+    ]);
+  } },
+        ]);
+      }
+    }
+  }
+  return;
   scene.build();
 }
 
@@ -347,6 +917,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'sg_tg':
       enterSgTg(s, scene);
+      break;
+    case 'sg_shared':
+      enterSgShared(s, scene);
+      break;
+    case 'uni_tg':
+      enterUniTg(s, scene);
+      break;
+    case 'uni_shared':
+      enterUniShared(s, scene);
+      break;
+    case 'city_tg':
+      enterCityTg(s, scene);
+      break;
+    case 'city_shared':
+      enterCityShared(s, scene);
       break;
     default:
       enterStart(s, scene);

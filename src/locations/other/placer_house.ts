@@ -51,14 +51,55 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
-    // TODO-QSP: dynamic text: The guys seem to each have picked their favorite girl, and <<$boydesc>> is all o...
-    scene.text(`The guys seem to each have picked their favorite girl, and ${((s as any).boydesc ?? 0)} is all over you. While he kisses and gropes you greedily, his friend is doing the same to ${((s as any).ev_name ?? 0)}. She seems to be quite into him, and happily returns him kiss and lets him touch her wherever and however he wants. Within minutes, she lowered her body and is vigorously sucking her guy's cock. Meanwhile, ${((s as any).boydesc ?? 0)} looks at you expectantly as he exposes his hard dick to you, expecting you to do the same.`);
-    if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 3) {
-      // TODO-QSP: dynamic text: One of the guys suggests you and him could stay in this room, while <<$ev_name>>...
-      scene.text(`One of the guys suggests you and him could stay in this room, while ${((s as any).ev_name ?? 0)} goes to the other room with whom she likes.`);
+    if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 2) {
+      (s as any).guy = ((s as any).guy ?? 0) + (1);
+      // TODO-QSP: dynamic text: The guys seem to each have picked their favorite girl, and <<$boydesc>> is all o...
+      scene.text(`The guys seem to each have picked their favorite girl, and ${((s as any).boydesc ?? 0)} is all over you. While he kisses and gropes you greedily, his friend is doing the same to ${((s as any).ev_name ?? 0)}. She seems to be quite into him, and happily returns him kiss and lets him touch her wherever and however he wants. Within minutes, she lowered her body and is vigorously sucking her guy's cock. Meanwhile, ${((s as any).boydesc ?? 0)} looks at you expectantly as he exposes his hard dick to you, expecting you to do the same.`);
       scene.actions([
-        { label: 'Wait for your friend', handler: (st: GameState) => {
+        { label: 'Suck off your guy', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/park/event/katja/foursomebj.mp4');
+    // TODO-QSP: dynamic text: You're not about to let her show you up! You quickly scoot down on the bed until...
+    scene.text(`You're not about to let her show you up! You quickly scoot down on the bed until your mouth is near his erection. The musky and manly smell of it is impossible to ignore, and actually arouses you a quite a bit. You eagerly take his cock in your mouth and suck on the head, trying to compete with ${((s as any).ev_name ?? 0)}. However, she is one step ahead of you and already has her guy's cock all the way down her throat. The guy has his hand behind her head but realizes he doesn't need to do anything, ${((s as any).ev_name ?? 0)} is giving him the blowjob of a lifetime! You try to smile with ${((s as any).boydesc ?? 0)}'s cock still in your mouth… guess she wins this one. Then you decide to focus solely on making ${((s as any).boydesc ?? 0)} feel good instead, and forget about ${((s as any).ev_name ?? 0)} and the other guy.`);
+    qspCall(s, 'arousal', 'bj', 4, 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck him', handler: (st: GameState) => {
+    if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
+      (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+      (s as any).katjaQW['horny'] = 0;
+      if (((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
+        (s as any).katjaQW['park_sex'] = 1;
+      }
+      if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
+        (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
+      }
+      if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
+        (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      }
+      if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
+        (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
+      }
+      (s as any).katjaQW['sex_in_the_park_comment'] = 4;
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/park/event/katja/foursome.jpg');
+    qspCall(s, 'arousal', 'vaginal', 15, 'group');
+    qspCall(s, 'arousal', 'cuni_give', (-15), 'group', 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['placer_end', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 3) {
+        // TODO-QSP: dynamic text: One of the guys suggests you and him could stay in this room, while <<$ev_name>>...
+        scene.text(`One of the guys suggests you and him could stay in this room, while ${((s as any).ev_name ?? 0)} goes to the other room with whom she likes.`);
+        scene.actions([
+          { label: 'Wait for your friend', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     (s as any).cumface = 0;
@@ -72,7 +113,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['placer_end', ''] },
     ]);
   } },
-        { label: 'Continue', handler: (st: GameState) => {
+          { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
       qspCall(s, 'npcgeneratec', '', 0, 'Guy', Math.floor(Math.random() * 18) + 18);
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -107,7 +148,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        { label: 'Continue', handler: (st: GameState) => {
+          { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
       qspCall(s, 'npcgeneratec', '', 0, 'Guy', Math.floor(Math.random() * 18) + 18);
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -145,7 +186,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        { label: 'Make out with the guy', handler: (st: GameState) => {
+          { label: 'Make out with the guy', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
     // TODO-QSP: dynamic text: You sheepishly smile at the guy as <<$ev_name>> takes the other two guys by the ...
@@ -173,11 +214,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'bj', 5, 'sub');
       qspCall(s, 'arousal', 'end');
     } else {
-      scene.img('images/locations/pavlovsk/park/sex/bj.jpg');
-      // TODO-QSP: dynamic text: The guy whispers: "<<$pcs_nickname>>, I want you…"
-      scene.text(`The guy whispers: "${((s as any).pcs_nickname ?? 0)}, I want you…"`);
-      scene.actions([
-        { label: 'Redouble your efforts', handler: (st: GameState) => {
+      if (((s as any).tipsexrand ?? 0) === 1) {
+        scene.img('images/locations/pavlovsk/park/sex/bj.jpg');
+        // TODO-QSP: dynamic text: The guy whispers: "<<$pcs_nickname>>, I want you…"
+        scene.text(`The guy whispers: "${((s as any).pcs_nickname ?? 0)}, I want you…"`);
+        scene.actions([
+          { label: 'Redouble your efforts', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/swallow2.jpg');
@@ -185,14 +227,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'arousal', 'end');
   } },
-        { label: 'Lie on your back', handler: (st: GameState) => {
+          { label: 'Lie on your back', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/sex/mitka/mitkasex1.jpg');
     scene.text('You lie down on your back and the guy quickly spreads your legs, and slams his cock inside your snatch before you can change your mind. While he fucks you vigorously, a second comes up out of nowhere and puts his cock in front of your mouth. Not giving it another thought, you open your mouth and close your lips around it.');
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'arousal', 'end');
   } },
-        { label: 'Offer him your ass', handler: (st: GameState) => {
+          { label: 'Offer him your ass', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/anal2.jpg');
     scene.text('You tease him and whisper back: "Do you want my ass, baby? Just say the word and it\'s all yours…"');
@@ -202,14 +244,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'arousal', 'end');
   } },
-      ]);
+        ]);
+      }
     }
   } },
     ]);
   } },
     ]);
   } },
-        { label: 'Stay in the room', handler: (st: GameState) => {
+          { label: 'Stay in the room', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/swing.jpg');
     // TODO-QSP: dynamic text: <<$ev_name>> comes up to you and whispers: "<<$boydesc>> said he had something r...
@@ -254,9 +297,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'group');
       qspCall(s, 'stat', '');
     } else {
-      scene.text('Suddenly, the guys decide to change places.');
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
+      if (((s as any).sexrand ?? 0) === 1) {
+        scene.text('Suddenly, the guys decide to change places.');
+        scene.actions([
+          { label: 'Continue', handler: (st: GameState) => {
     (s as any).spafinloc = 12;
     qspCall(s, 'cum_manage', '');
     (s as any).spafinloc = 11;
@@ -269,7 +313,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'group');
     qspCall(s, 'arousal', 'end');
   } },
-      ]);
+        ]);
+      }
     }
   } },
       { label: 'Get on your hands and knees', handler: (st: GameState) => {
@@ -299,8 +344,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
       qspCall(s, 'stat', '');
     } else {
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
+      if (((s as any).sexrand ?? 0) === 1) {
+        scene.actions([
+          { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/anal.jpg');
     scene.text('The first guy pulls his limp cock out of your asshole, truly spent. The guy who you were sucking off earlier is more than happy to take his place; he didn\'t think he would get to fuck your ass today, and quickly makes his move before you can change your mind. He immediately pulls away from your mouth and gets behind you, pushing his cock into your already prepared butthole in one fluent motion.');
@@ -311,7 +357,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
     qspCall(s, 'arousal', 'end');
   } },
-      ]);
+        ]);
+      }
     }
   } },
       { label: 'In your pussy', handler: (st: GameState) => {
@@ -339,13 +386,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    } else {
-      (s as any).guy = ((s as any).guy ?? 0) + (2);
-      // TODO-QSP: dynamic text: The boys begin to embrace you and your girlfriend, feeling emboldened by the liq...
-      scene.text(`The boys begin to embrace you and your girlfriend, feeling emboldened by the liquor they have been drinking. Their touches soon make you want more, and you and ${((s as any).ev_name ?? 0)} make out with the boys while they impatiently tug at your clothes. Two of them seem to have taken a liking to you, while the two others are focusing their efforts on ${((s as any).ev_name ?? 0)}.`);
-      scene.actions([
-        { label: 'Have sex with two of them', handler: (st: GameState) => {
+        ]);
+      } else {
+        if (((s as any).placerParameter ?? 0)?.['number_of_man'] >= 4) {
+          (s as any).guy = ((s as any).guy ?? 0) + (2);
+          // TODO-QSP: dynamic text: The boys begin to embrace you and your girlfriend, feeling emboldened by the liq...
+          scene.text(`The boys begin to embrace you and your girlfriend, feeling emboldened by the liquor they have been drinking. Their touches soon make you want more, and you and ${((s as any).ev_name ?? 0)} make out with the boys while they impatiently tug at your clothes. Two of them seem to have taken a liking to you, while the two others are focusing their efforts on ${((s as any).ev_name ?? 0)}.`);
+          scene.actions([
+            { label: 'Have sex with two of them', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Guy', Math.floor(Math.random() * 18) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'b');
     qspCall(s, 'boyStat', '', ((s as any).boy ?? 0), 'a');
@@ -383,47 +431,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['placer_end', ''] },
     ]);
   } },
-      ]);
+          ]);
+        }
+      }
     }
-    scene.actions([
-      { label: 'Suck off your guy', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/event/katja/foursomebj.mp4');
-    // TODO-QSP: dynamic text: You're not about to let her show you up! You quickly scoot down on the bed until...
-    scene.text(`You're not about to let her show you up! You quickly scoot down on the bed until your mouth is near his erection. The musky and manly smell of it is impossible to ignore, and actually arouses you a quite a bit. You eagerly take his cock in your mouth and suck on the head, trying to compete with ${((s as any).ev_name ?? 0)}. However, she is one step ahead of you and already has her guy's cock all the way down her throat. The guy has his hand behind her head but realizes he doesn't need to do anything, ${((s as any).ev_name ?? 0)} is giving him the blowjob of a lifetime! You try to smile with ${((s as any).boydesc ?? 0)}'s cock still in your mouth… guess she wins this one. Then you decide to focus solely on making ${((s as any).boydesc ?? 0)} feel good instead, and forget about ${((s as any).ev_name ?? 0)} and the other guy.`);
-    qspCall(s, 'arousal', 'bj', 4, 'group');
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Fuck him', handler: (st: GameState) => {
-    if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-      (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
-      (s as any).katjaQW['horny'] = 0;
-      if (((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
-        (s as any).katjaQW['park_sex'] = 1;
-      }
-      if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-        (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
-      }
-      if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-        (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
-      }
-      if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-        (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
-      }
-      (s as any).katjaQW['sex_in_the_park_comment'] = 4;
-    }
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/event/katja/foursome.jpg');
-    qspCall(s, 'arousal', 'vaginal', 15, 'group');
-    qspCall(s, 'arousal', 'cuni_give', (-15), 'group', 'lesbian');
-    qspCall(s, 'arousal', 'end');
-    scene.actions([
-      { label: 'Leave', goto: ['placer_end', ''] },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
   }
   scene.build();
 }

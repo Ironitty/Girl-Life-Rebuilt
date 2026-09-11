@@ -136,7 +136,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -166,7 +166,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -197,7 +197,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -285,7 +285,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -315,7 +315,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -346,7 +346,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -434,7 +434,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -465,7 +465,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -496,7 +496,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -616,7 +616,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'medium');
@@ -648,7 +648,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'medium');
@@ -684,7 +684,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'medium');
@@ -765,7 +765,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'small');
@@ -797,7 +797,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'small');
@@ -833,7 +833,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'small');
@@ -914,7 +914,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'medium');
@@ -946,7 +946,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).temp = Math.floor(Math.random() * 101) + 0;
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
@@ -983,7 +983,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
     qspCall(s, 'mood', 'raise', 'medium');
@@ -1077,7 +1077,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1107,7 +1107,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1137,7 +1137,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1214,7 +1214,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1244,7 +1244,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1274,7 +1274,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1351,7 +1351,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1381,7 +1381,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1411,7 +1411,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1506,7 +1506,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1538,7 +1538,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1569,7 +1569,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1649,7 +1649,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1681,7 +1681,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1712,7 +1712,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1792,7 +1792,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Drive in', handler: (st: GameState) => {
+        { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1824,7 +1824,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Pass', handler: (st: GameState) => {
+        { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
@@ -1854,7 +1854,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Shoot', handler: (st: GameState) => {
+        { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);

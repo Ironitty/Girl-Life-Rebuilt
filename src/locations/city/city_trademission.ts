@@ -144,7 +144,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Tell him no', handler: (st: GameState) => {
+          { label: 'Tell him no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).TPmainQW = 2;
     qspCall(s, 'stat', '');

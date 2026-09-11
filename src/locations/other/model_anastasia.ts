@@ -530,7 +530,9 @@ function enterAnastasiasextalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['men_fucked'] < 5) {
       scene.text('You blush at the inquiry.');
     } else {
-      scene.text('You grin back.');
+      if (((s as any).stat ?? 0)?.['men_fucked'] > 20) {
+        scene.text('You grin back.');
+      }
     }
     scene.text('"Is there anything else you wanted to ask about?"');
   } },

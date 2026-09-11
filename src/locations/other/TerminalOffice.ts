@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -109,7 +107,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
     // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. You...
     scene.text(`You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. You're only able to store ${((s as any).TovarLimitHomeRepository ?? 0)} trinkets.`);
-    (s as any).MaxQuantityHome = ((s as any).TovarLimitHomeRepository ?? 0) - ((s as any).mc_inventory ?? 0)?.['trinkets_home'];
+    (s as any).MaxQuantityHome = ((s as any).TovarLimitHomeRepository ?? 0) - ((s as any).mc_inventory ?? {})?.['trinkets_home'];
   }
   if (((s as any).YouCanGar ?? 0) > 0) {
     if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= ((s as any).TovarLimitGarageRepository ?? 0)) {
@@ -118,7 +116,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
       (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
       // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage. ...
       scene.text(`You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage. You're only able to store ${((s as any).TovarLimitGarageRepository ?? 0)} trinkets.`);
-      (s as any).MaxQuantityGarage = ((s as any).TovarLimitGarageRepository ?? 0) - ((s as any).mc_inventory ?? 0)?.['trinkets_garage'];
+      (s as any).MaxQuantityGarage = ((s as any).TovarLimitGarageRepository ?? 0) - ((s as any).mc_inventory ?? {})?.['trinkets_garage'];
     }
   }
   if (((s as any).DoNotBuy ?? 0) === 2) {
@@ -127,7 +125,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'The small trinkets cost <<$func(\'money\', \'string_price\', 100)>>. Please put in how many trinkets you want to purchase.', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 13;
-    (s as any).BuyQuantity = qspUntranslated(s, "input(\"How many trinkets do you want to buy for <<func('money', 'string_price', 100)>> apiece?\")", { location: "TerminalOffice" });
+    (s as any).BuyQuantity = 0;
     if (((s as any).BuyQuantity ?? 0) > (((s as any).MaxQuantityHome ?? 0) + ((s as any).MaxQuantityGarage ?? 0))) {
       // TODO-QSP: dynamic text: <b><font color=red>You have nowhere to store the surplus <<BuyQuantity-(MaxQuant...
       scene.text(`<b><font color=red>You have nowhere to store the surplus ${((s as any).BuyQuantity ?? 0)-(((s as any).MaxQuantityHome ?? 0) + ((s as any).MaxQuantityGarage ?? 0))} ' + iif(BuyQuantity - (MaxQuantityHome + MaxQuantityGarage) = 1, 'trinket', 'trinkets') + '.</front></b>`);
@@ -150,7 +148,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You've purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
       scene.text(`You've purchased ${((s as any).BuyQuantity ?? 0)} trinkets, worth ${((s as any).MaxCost ?? 0)}.`);
       if (((s as any).BuyQuantity ?? 0) >= ((s as any).MaxQuantityHome ?? 0)) {
-        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? 0)?.['trinkets_home'] + ((s as any).MaxQuantityHome ?? 0);
+        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? {})?.['trinkets_home'] + ((s as any).MaxQuantityHome ?? 0);
         (s as any).BuyQuantity = ((s as any).BuyQuantity ?? 0) - (((s as any).MaxQuantityHome ?? 0));
         if (((s as any).YouCanGar ?? 0) > 0) {
           // TODO-QSP: *PL 'You''ll store <<MaxQuantityHome>> trickets at home.'
@@ -159,11 +157,11 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
         if (((s as any).YouCanGar ?? 0) > 0) {
           // TODO-QSP: *PL 'You''ll store <<BuyQuantity>> trinkets at home.'
         }
-        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? 0)?.['trinkets_home'] + ((s as any).BuyQuantity ?? 0);
+        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? {})?.['trinkets_home'] + ((s as any).BuyQuantity ?? 0);
         (s as any).BuyQuantity = 0;
       }
       if (((s as any).BuyQuantity ?? 0) > 0) {
-        (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory ?? 0)?.['trinkets_garage'] + ((s as any).BuyQuantity ?? 0);
+        (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory ?? {})?.['trinkets_garage'] + ((s as any).BuyQuantity ?? 0);
         // TODO-QSP: dynamic text: You'll store <<BuyQuantity>> trinkets in the garage.
         scene.text(`You'll store ${((s as any).BuyQuantity ?? 0)} trinkets in the garage.`);
       }
@@ -193,7 +191,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You've purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
       scene.text(`You've purchased ${((s as any).BuyQuantity ?? 0)} trinkets, worth ${((s as any).MaxCost ?? 0)}.`);
       if (((s as any).BuyQuantity ?? 0) >= ((s as any).MaxQuantityHome ?? 0)) {
-        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? 0)?.['trinkets_home'] + ((s as any).MaxQuantityHome ?? 0);
+        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? {})?.['trinkets_home'] + ((s as any).MaxQuantityHome ?? 0);
         (s as any).BuyQuantity = ((s as any).BuyQuantity ?? 0) - (((s as any).MaxQuantityHome ?? 0));
         if (((s as any).YouCanGar ?? 0) > 0) {
           // TODO-QSP: dynamic text: You'll store <<MaxQuantityHome>> trickets at home.
@@ -204,11 +202,11 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: You'll store <<BuyQuantity>> trickets at home.
           scene.text(`You'll store ${((s as any).BuyQuantity ?? 0)} trickets at home.`);
         }
-        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? 0)?.['trinkets_home'] + ((s as any).BuyQuantity ?? 0);
+        (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory ?? {})?.['trinkets_home'] + ((s as any).BuyQuantity ?? 0);
         (s as any).BuyQuantity = 0;
       }
       if (((s as any).BuyQuantity ?? 0) > 0) {
-        (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory ?? 0)?.['trinkets_garage'] + ((s as any).BuyQuantity ?? 0);
+        (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory ?? {})?.['trinkets_garage'] + ((s as any).BuyQuantity ?? 0);
         // TODO-QSP: dynamic text: You'll store <<BuyQuantity>> trinkets in the garage.
         scene.text(`You'll store ${((s as any).BuyQuantity ?? 0)} trinkets in the garage.`);
       }

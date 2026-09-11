@@ -27,8 +27,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <a href="exec: minut += 5 & gt 'city_clinic', 'milk_reception'">Ask</a> at the r...
     scene.text('<a href="exec: minut += 5 & gt \'city_clinic\', \'milk_reception\'">Ask</a> at the reception if there is the possibility for breast milk donation');
   } else {
-    // TODO-QSP: dynamic text: A small <a href="exec: minut += 5 & gt 'city_clinic', 'milk_advertisement'">adve...
-    scene.text('A small <a href="exec: minut += 5 & gt \'city_clinic\', \'milk_advertisement\'">advertisement</a> at reception catches your eye.');
+    if (((s as any).pcs_gpolimilkdonation ?? 0) < 2  &&  ((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lact_ev ?? 0)?.['pcs_knows_milkbank'] < 1  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
+      // TODO-QSP: dynamic text: A small <a href="exec: minut += 5 & gt 'city_clinic', 'milk_advertisement'">adve...
+      scene.text('A small <a href="exec: minut += 5 & gt \'city_clinic\', \'milk_advertisement\'">advertisement</a> at reception catches your eye.');
+    }
   }
   if (((s as any).job_status ?? 0)?.['city_hospital_nurse'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_hospital_nurse') === 1) {
     scene.actions([

@@ -491,8 +491,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('Resigned to the fact that this is just going to be part of the deal you give him a thorough tongue bath to clean off your slick pussy juices before finishing with another blowjob, sucking hard to draw the last remnants of semen from his sperm duct. Looking around you don\'t see any tissues or anything else to do with what\'s in your mouth so you swallow, tasting the strange combination of your juices and his sperm.');
     scene.text('"Oooooohhh… There\'s nothing better than a girl who knows how to suck cum to the last drop. Always much better than when it seeps out into your underwear later. Nice to see good etiquette runs in the family," he says with a cheeky grin.');
     if (((s as any).pcafejob ?? 0) === 2) {
-      // TODO-QSP: '"Anyways, you''ll need to get a uniform if you want to work here. You can pick one up from the G
-      // TODO-QSP: M store. Your available hours are any time your mother isn''t working here."'
+      scene.text('"Anyways, you\'ll need to get a uniform if you want to work here. You can pick one up from the G&M store. Your available hours are any time your mother isn\'t working here."');
     }
     if (((s as any).pcafejob ?? 0) === 1) {
       scene.text('"Anyways, if you ever change your mind about that job, let me know. The offer still stands. As much as I enjoy getting you as a fucktoy for free, I could honestly use another part time waitress. Come see me if you change your mind."');
@@ -541,8 +540,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('Your mouth briefly hangs agape in awe of his audacity. Only for the sake of your mother do you hold your tongue (or rather your teeth). In an act of malicious compliance, you glare at Borislav and give him a thorough tongue bath to clean your slick pussy juices off his still-hard cock. With every lick and every taste of his cock, you continue to stare at him, never breaking eye contact, doing your best to know how much you hate this. Finally, you wrap him in your mouth and suck as hard as you can to draw the last remnants of semen from his sperm duct, hoping you can turn intense pleasure into pain.');
     scene.text('Your hopes are shattered when he says, "Oooooohhh… There\'s nothing better than a girl who knows how to suck cum to the last drop. Always much better than when it seeps out into your underwear later. Nice to see good etiquette runs in the family," he says with a cheeky grin. You say nothing in response but feeling the mixture of cum and pussy juice in your mouth, you viscous spit it onto the floor where it lands with a satisfying splat.');
     if (((s as any).pcafejob ?? 0) === 2) {
-      // TODO-QSP: '"Hey, I''d be careful of doing that if I were you. You''re about to work for me, it might be more w...
-      // TODO-QSP: M store. Your available hours are any time your mother isn''t working here."'
+      scene.text('"Hey, I\'d be careful of doing that if I were you. You\'re about to work for me, it might be more work for you if you\'re the one cleaning it up in the end. Anyways, you\'ll need to get a uniform if you want to work here. You can pick one up from the G&M store. Your available hours are any time your mother isn\'t working here."');
     }
     if (((s as any).pcafejob ?? 0) === 1) {
       scene.text('"Anyways, if you ever change your mind about that job, let me know. The offer still stands. As much as I enjoy getting you as a fucktoy for free, I could honestly use another part time waitress. Come see me if you change your mind."');
@@ -648,8 +646,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('Your thoughts still on your mother, you give him a thorough tongue bath to clean off your slick pussy juices. As much as you try not to think about it, you can\'t help but notice the taste of blood from your torn hymen mixed in with his cum and your pussy juice. You try to distract yourself from these thoughts by sucking hard on Slava\'s dick to draw the last remnants of semen from his sperm duct. Pulling your lips from his head, you look around but don\'t see any tissues or anything else to do with what\'s in your mouth. Unable to come up with an alternative solution, you swallow, once again trying to focus on the taste of his sperm rather than your blood.');
     scene.text('"Oooooohhh… There\'s nothing better than a girl who knows how to suck to the last drop. Always much better than when it seeps out into your underwear later. Nice to see good etiquette runs in the family," he says with a cheeky grin.');
     if (((s as any).pcafejob ?? 0) === 2) {
-      // TODO-QSP: '"Anyways, you''ll need to get a uniform if you want to work here. You can pick one up from the G
-      // TODO-QSP: M store. Your available hours are any time your mother isn''t working here."'
+      scene.text('"Anyways, you\'ll need to get a uniform if you want to work here. You can pick one up from the G&M store. Your available hours are any time your mother isn\'t working here."');
     }
     if (((s as any).pcafejob ?? 0) === 1) {
       scene.text('"Anyways, if you ever change your mind about that job, let me know. The offer still stands. As much as I enjoy getting you as a fucktoy for free, I could honestly use another part time waitress. Come see me if you change your mind."');
@@ -703,8 +700,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('Your mouth hangs agape in awe of his audacity. "Come on, get to it. This isn\'t going to clean itself. Or would you rather it fuck your mother dirty?" You glare daggers at Borislav and give him a thorough tongue bath to clean your slick pussy juices off his still-hard cock. With every lick and every taste of his cock, you continue to stare him right in the eyes, doing your best to know how much you hate this. The only time you break eye contact is when you taste the blood of your virginity, involuntarily grimacing. Finally, you wrap him in your mouth and suck as hard as you can to draw the last remnants of semen from his sperm duct, hoping you can turn intense pleasure into pain.');
     scene.text('Your hopes are shattered when he bites his lip in pleasure saying, "Oooooohhh… There\'s nothing better than a girl who knows how to suck cum to the last drop. Always much better than when it seeps out into your underwear later. Nice to see good etiquette runs in the family," he says with a cheeky grin. You say nothing in response but feeling the strange mixture of cum, blood, and pussy juice in your mouth, you viscous spit it onto the floor where it lands with a satisfying splat.');
     if (((s as any).pcafejob ?? 0) === 2) {
-      // TODO-QSP: '"Hey, I''d be careful of doing that if I were you. You''re about to work for me, it might be more w...
-      // TODO-QSP: M store. Your available hours are any time your mother isn''t working here."'
+      scene.text('"Hey, I\'d be careful of doing that if I were you. You\'re about to work for me, it might be more work for you if you\'re the one cleaning it up in the end. Anyways, you\'ll need to get a uniform if you want to work here. You can pick one up from the G&M store. Your available hours are any time your mother isn\'t working here."');
     }
     if (((s as any).pcafejob ?? 0) === 1) {
       scene.text('"Anyways, if you ever change your mind about that job, let me know. The offer still stands. As much as I enjoy getting you as a fucktoy for free, I could honestly use another part time waitress. Come see me if you change your mind."');
@@ -752,18 +748,9 @@ function enterSlavaDeal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).slavafuck ?? 0) < 6) {
+    if (((s as any).mesec ?? 0) > 0) {
       scene.actions([
-        { label: 'Reluctantly let him use you', goto: ['motherkafeboss', 'duty'] },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Dutifully fuck him', goto: ['motherkafeboss', 'duty'] },
-        { label: 'Happily fuck him', goto: ['motherkafeboss', 'duty'] },
-      ]);
-    }
-    scene.actions([
-      { label: 'Ask to give a blowjob since you\'re on your period', handler: (st: GameState) => {
+        { label: 'Ask to give a blowjob since you\'re on your period', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/cafe/backroom.jpg');
     scene.text('"Slava, I\'m on my period. Can I just blow you today?"');
     scene.text('"Well, there\'s nothing we can do about that I suppose," he says and you sigh in relief.');
@@ -772,7 +759,531 @@ function enterSlavaDeal(s: GameState, scene: SceneBuilder): void {
       { label: 'Don\'t undress, just blow him', goto: ['motherkafeboss', 'cloth_bj'] },
     ]);
   } },
+      ]);
+    } else {
+      if (((s as any).slavafuck ?? 0) < 6) {
+        scene.actions([
+          { label: 'Reluctantly let him use you', goto: ['motherkafeboss', 'duty'] },
+        ]);
+      } else {
+        if (((s as any).slavafuck ?? 0) < 9) {
+          scene.actions([
+            { label: 'Dutifully fuck him', goto: ['motherkafeboss', 'duty'] },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Happily fuck him', goto: ['motherkafeboss', 'duty'] },
+          ]);
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterDuty(s: GameState, scene: SceneBuilder): void {
+  (s as any).slava_fuck_pick = Math.floor(Math.random() * 1) + 4;
+  if (((s as any).slava_fuck_pick ?? 0) === 1) {
+    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_pre_fuck'] }]);
+  }
+  if (((s as any).slava_fuck_pick ?? 0) === 2) {
+    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_bj'] }]);
+  }
+  if (((s as any).slava_fuck_pick ?? 0) === 3) {
+    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_pre_fuck'] }]);
+  }
+  if (((s as any).slava_fuck_pick ?? 0) === 4) {
+    scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_bj'] }]);
+  }
+  scene.build();
+}
+
+function enterClothBj(s: GameState, scene: SceneBuilder): void {
+  (s as any).slava_bj = ((s as any).slava_bj ?? 0) + (1);
+  (s as any).slava_cumming = Math.floor(Math.random() * 2) + 1;
+  qspCall(s, 'arousal', 'bj', 3);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/cafe/cloth_bj.mp4');
+  scene.text('Slava sits in his chair with his cock hanging out and you kneel in front of him. You dutifully suck his cock, using your tongue and everything at your disposal to make him feel good. You do this partially to honor the deal but also out of worry that if you\'re a bad lay he might go back to extorting your mother.');
+  if (((s as any).slava_cumming ?? 0) === 1) {
+    scene.text('"Oh shit!" Slava suddenly exclaims. "It\'s too much! I\'m cumming!"');
+    scene.actions([
+      { label: 'Take it in your mouth', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    scene.img('images/locations/pavlovsk/cafe/clothed_bj_shot.mp4');
+    scene.text('Your real effort paid off today. Since he\'s cumming now, he probably won\'t fuck you afterwards. You pull off his cock and when he makes no move to blow his load on your face, you open your mouth. You figure that if he\'s going to make you clean his cock anyways you would swallow rather than leave with a facial.');
+    scene.text('Slava starts to cum and you catch as much of it as you can on your tongue until you don\'t feel anymore come out. You swallow and clean him off by licking up the rest.');
+    // TODO-QSP: dynamic text: "Ahh, that was satisfying," he says while zipping up his trousers. "Keep up the ...
+    scene.text(`"Ahh, that was satisfying," he says while zipping up his trousers. "Keep up the good work ${((s as any).pcs_nickname ?? 0)}," and with that he leaves the room.`);
+    scene.text('It was all over so quickly that you think there\'s something you\'re forgetting to do but since you never took off your clothes and don\'t have anything to clean off your face, you shrug and leave behind him.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
     ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).slava_cumming ?? 0) === 2) {
+      scene.text('After a couple minutes of blowing him he pulls you back and says, "Alright, time for the main course," and bends you over the table.');
+      // TODO-QSP: !{ elseif slava_cumming = 3:
+      scene.text('After a couple minutes of blowing him he pulls you back and says, "Alright, time for the main course," and begins to undress.');
+      scene.actions([
+        { label: 'Undress', goto: ['motherkafeboss', 'cloth_pre_fuck'] },
+        { label: 'Undress', handler: (st: GameState) => {
+    // TODO-QSP: gt 'motherkafeboss', 'table_fuck' !}
+  } },
+      ]);
+    }
+  }
+  scene.build();
+}
+
+function enterClothPreFuck(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+  if (((s as any).pantyworntype ?? 0) !== 'none') {
+    qspCall(s, 'underwear', 'remove');
+    if (((s as any).slavafuck ?? 0) < 4) {
+      scene.text('"I feel like fucking you in your uniform today," he says, pulling down your panties and in one quick thrust plunges balls deep inside you. You grunt at the unexpected sensation of his entire cock filling you so suddenly and he sighs. "Ahh… Even after over a dozen years of owning a cafe, there novelty of fucking a waitress never wears off."');
+    } else {
+      if (((s as any).slavafuck ?? 0) < 10) {
+        scene.text('"I feel like fucking you in your uniform today," he says, pulling down your panties. You hold your breath as Slava thrusts hard, plunging the full length of his cock into you. The sensation causes you to exhale with force almost like you\'ve been winded. You\'re getting used to his antics but it doesn\'t make it any more comfortable that he insists on going balls deep on the first thrust every time. He sighs saying, "Maybe it\'s just me being spoiled by your youth but it always feels like you\'re tighter when you\'re still in uniform," before beginning to fuck you.');
+      } else {
+        scene.text('"I feel like fucking you in your uniform today," he says, pulling down your panties. You barely even flinch when Slava thrusts the entirety of his manhood into you in one go. Whether you like it or not, it seems your body has gotten used to having his large cock rammed balls deep into you. "Just as enjoyable as the first time," he says, pausing to appreciate the tightness of your pussy. He begins to fuck you saying, "Good coochie must run in the family."');
+      }
+    }
+  } else {
+    if (((s as any).slavafuck ?? 0) < 4) {
+      scene.text('"I feel like fucking you in your uniform today," he says, reaching for your panties only to find your bare pussy. "Oooh," You can feel his grin even from behind you. "I hope you got some nice tips today," he says, causing you to blush. Without warning he plunges balls deep into you with one quick thrust. You grunt at the unexpected sensation of his entire cock filling you so suddenly and he sighs. "Ahh… Even after over a dozen years of owning a cafe, the novelty of fucking a waitress never wears off."');
+    } else {
+      if (((s as any).slavafuck ?? 0) < 10) {
+        scene.text('"I feel like fucking you in your uniform today," he says, reaching for your panties only to find your bare pussy. "Oooh," You can feel his grin even from behind you. "I hope you got some nice tips today," he says, causing you to blush. You hold your breath as Slava thrusts hard, plunging the full length of his cock into you. The sensation causes you to exhale with force almost like you\'ve been winded. You\'re getting used to his antics but it doesn\'t make it any more comfortable that he insists on going balls deep on the first thrust every time. He sighs saying, "Maybe it\'s just me being spoiled by your youth but it always feels like you\'re tighter when you\'re still in uniform," before beginning to fuck you.');
+      } else {
+        scene.text('"I feel like fucking you in your uniform today," he says, reaching for your panties only to find your bare pussy. "Oooh! Good girl…" You can feel his grin even from behind you. "You keep this up, I\'ll have the most popular cafe in Pavlovsky. Or are you doing it just for me?" he says, causing you to blush. You barely even flinch when Slava thrusts the entirety of his manhood into you in one go. Whether you like it or not, it seems your body has gotten used to having his large cock rammed balls deep into you. "Just as enjoyable as the first time," he says, pausing to appreciate the tightness of your pussy. He begins to fuck you saying, "Good coochie must run in the family."');
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Continue', goto: ['motherkafeboss', 'cloth_fuck'] },
+  ]);
+  scene.build();
+}
+
+function enterClothFuck(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'vaginal', 5);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+  scene.text('As usual, he wastes no time, not bothering to build up the tempo slowly but instead preferring to go straight to full fuck speed. The table rocks underneath you and creates a strange melody of squeaking wood, slapping flesh, and moans and grunts. In the middle of this hypnotic rhythm, you find your mind thinking of…');
+  (s as any).slavafuck = ((s as any).slavafuck ?? 0) + (1);
+  if (((s as any).slavafuck ?? 0) < 4) {
+    scene.actions([
+      { label: 'Nothing in particular', handler: (st: GameState) => {
+    scene.text('Your mind wanders but doesn\'t focus on any one thought in particular. Mostly you just get lost in the rhythmic sounds and Slava\'s cock pounding in and out of your pussy.');
+    scene.text('Eventually Slava pulls out and tells you to get on your knees.');
+    scene.actions([
+      { label: 'Get on your knees', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('You do as he commands as he starts jacking off. He doesn\'t cum immediately but you patiently wait and as you see his face begin to contort you position yourself under his cock and close your eyes, feeling his hot sperm dribble all over your face.');
+    scene.text('Afterwards, you dutifully clean his cock, licking off your pussy juice and sucking out the remnants as you did before. He pulls up his trousers and leaves you wishing that he had a sink or at least would bring a tissue box back here to clean up your face afterwards.');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Your mother', handler: (st: GameState) => {
+    scene.text('Once again, your thoughts become centered on your mother. This experience isn\'t very enjoyable for you but if your mother could endure it for you, you can endure it for her.');
+    scene.text('Your thoughts are interrupted when Slava pulls out and tells you to get on your knees.');
+    scene.actions([
+      { label: 'Get on your knees', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('You do as he commands as he starts jacking off. He doesn\'t cum immediately but you patiently wait and as you see his face begin to contort you position yourself under his cock and close your eyes, feeling his hot sperm dribble all over your face.');
+    scene.text('Afterwards, you dutifully clean his cock, licking off your pussy juice and sucking out the remnants as you did before. He pulls up his trousers and leaves you wishing that he had a sink or at least would bring a tissue box back here to clean up your face afterwards.');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Am I… enjoying this?', handler: (st: GameState) => {
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (25);
+    qspCall(s, 'stat', '');
+    if (((s as any).pcs_horny ?? 0) >= 100) {
+      scene.text('You notice a feeling between your legs. Something building up inside you. With every thrust of Slava\'s cock it builds more and more. You squirm, unable to figure out what\'s going on. You wonder if you\'re having a panic attack when it suddenly hits you.');
+      scene.text('You\'re about to cum.');
+      scene.text('The very thought that you could be enjoying this on any level bewilders you. You\'re being blackmailed right? You can\'t be enjoying this! You can\'t be about to cum from this large well shaped cock, pounding in and out of you, hard and… filling you up… just right…');
+      scene.actions([
+        { label: 'Try to resist', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('You lose your balance on the table and fall down to one shoulder, your face pressed against the desk. Your teeth are clenched together and your eyes squeezed shut, thinking to yourself, <i>Please don\'t cum! Please don\'t cum! Please don\'t cum!</i> over and over in some kind of mantra.');
+    scene.text('But despite your best efforts you can\'t hold back what\'s about to happen. You clamp your hand over your mouth to stop yourself from screaming as you explosively climax. Your whole body spasms and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
+    scene.text('You release your mouth from your hand, breathing hard, drooling onto the table a little bit. In a twist of terrible irony, it seems your efforts to hold yourself back only resulted in an even more powerful climax. You feel exhausted.');
+    // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
+    scene.text(`"Did you just cum ${((s as any).pcs_nickname ?? 0)}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Slava pulls out of you and you turn around, kneeling down. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. With great shame, you realize having his cock so close in front of your face is causing your juices to flow even more, practically on the edge of a secondary orgasm when his hot sticky cum spatters onto your face.');
+    scene.text('As per usual, he pushes his dick towards your mouth afterwards and you obediently clean it despite your exhaustion, subconsciously trying to savour the thickness of him and every last drop of his cum.');
+    scene.text('Afterwards, he pulls up his trousers saying, "I\'ll just leave you here a while to collect yourself. Don\'t want you going back outside and collapsing do we?" He smirks at you and closes the door behind him.');
+    scene.text('Still sitting on the ground, his cum plastering your face and your juices sticking to your legs, you think to yourself…');
+    scene.text('<i>How could this happen…</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+        { label: 'Give into the pleasure', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('You can\'t hold back and scream in orgasm, gripping the edge of the table until your knuckles turn white.');
+    scene.text('Your whole body shudders and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
+    scene.text('As your orgasm winds down, you lean forward onto the table, breathing hard.');
+    // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
+    scene.text(`"Did you just cum ${((s as any).pcs_nickname ?? 0)}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Slava pulls out of you and you turn around, kneeling down. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. You undeniably want more and having his cock so close in front of your face makes you squirm, wishing it was still inside you. You\'re practically on the edge of a second orgasm when his hot sticky cum spatters onto your face.');
+    scene.text('As per usual, he pushes his dick towards your mouth afterwards and you jump at the chance to wrap something of yourself around it. Your lips and tongue explore every centimeter of his cock, trying to savour the feeling and every last drop of his cum.');
+    scene.text('Much to your regret, he eventually pulls away from you like a mother pulls away her nipple from her baby. His cock disappears back inside his trousers and he says, "I\'ll just leave you here a while to collect yourself. Don\'t want you going back outside and collapsing do we?" He smirks at you and closes the door behind him.');
+    scene.text('You continue to sit on the ground awhile thinking about what just happened with mixed feelings and his cum still plastering your face, your juices sticking to your legs.');
+    scene.text('<i>Is this okay? Am I allowed to be enjoying this…?</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.text('You notice a feeling between your legs. Something is different today. Something about Slava\'s cock. Is it smoother today? Is it not as big? There\'s something about this that-- And suddenly it hits you.');
+      scene.text('You\'re wet.');
+      scene.text('His cock is so slick with your juices that his furious fucking feels smoother. And it\'s not just your natural wetness, you can feel your pussy leaking noticeably more than before, so much that it\'s starting to drip down your thighs.');
+      scene.actions([
+        { label: 'Panic', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('You start to go into a panic, your mind racing.');
+    scene.text('<i>How can I be getting wet? Am I enjoying this? How can I be enjoying this? I\'m being blackmailed into letting him fuck me, I can\'t be enjoying his cock! His big… hard… cock… that fills me just righ-! No!! This can\'t be happening!</i>');
+    scene.text('You\'re so absorbed in your anxiety that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused for a moment before you realize what happened. You were so caught up in it that you didn\'t notice him pull out. Your eyes go wide with a worse realization. You were moving your hips on your own. You were fucking him as much as he was fucking you. You slowly turn your head around to look at him in horror.');
+    // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_nickname ?? 0)}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Still in your state of shock, Slava pulls you down to your knees in front of him. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. With great shame, you realize having his cock so close in front of your face is causing your juices to flow even more. With even greater shame you realize it\'s because you want him back inside you.');
+    scene.text('His hot cum spatters across your face and you hear him whisper, "There you go. A nice treat for a nice girl." As per usual, after he finishes cumming he pushes his dick towards your mouth for cleaning. You obediently clean it, subconsciously moving with eagerness to have his cock back inside you, even if only your mouth.');
+    // TODO-QSP: dynamic text: He pulls his trousers back up and grins at you again. "Oh, cheer up <<$pcs_first...
+    scene.text(`He pulls his trousers back up and grins at you again. "Oh, cheer up ${((s as any).pcs_firstname ?? 0)}. You can always come back again tomorrow if you want to fuck some more," and closes the door behind him.`);
+    scene.text('After he leaves you sink to the ground, his cum plastering your face and your juices sticking to your legs. You think to yourself…');
+    scene.text('<i>Am I really enjoying this…? How could this happen…</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+        { label: 'Enjoy yourself', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('Now that you notice how good it feels, you can\'t help but sink into the feeling. You press your hands into the table, leaning your ass back into Slava and his hard cock. Your moaning becomes louder and more natural, flowing out of your mouth like juices out of your pussy.');
+    scene.text('<i>Uh! Uhh! Ahh! Aah!</i>');
+    scene.text('You\'re so absorbed in your pleasure that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused, almost frustrated, for a moment wondering what happened to that good feeling. You slowly turn your head around to see what happened and see Slava slowly jacking himself. You were so caught up in it that you didn\'t notice him pull out. He pulled out when your body wanted to keep going and missing his cock, your hips kept thrusting anyways. You were fucking him as much as he was fucking you. ');
+    // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_firstname ?? 0)}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Slava pulls you down to your knees in front of him and speeds up his masturbation. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. You realize having his cock so close in front of your face is causing your juices to flow even more. You lick your lips and realize even more, it\'s because you want him back inside you.');
+    scene.text('His hot cum spatters across your face and you hear him whisper, "There you go. A nice treat for a nice girl." As per usual, after he finishes cumming he pushes his dick towards your mouth for cleaning. You obediently clean it, moving with eagerness to have his cock back inside you, even if only your mouth. You lick every centimeter of his cock and balls and suck hard, savouring him to the last drop before he pulls away, your lips trailing behind like your hips did earlier.');
+    scene.text('He pulls his trousers back up and grins at you again. "I\'m glad to see you\'re getting as much out of this deal as I am," he says and closes the door behind him.');
+    scene.text('After he leaves you sink to the ground, his cum plastering your face and your juices sticking to your legs. You think to yourself…');
+    scene.text('<i>Is it okay? Is it bad to be enjoying this?</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    if (((s as any).motherthoughts ?? 0) === 0  &&  ((s as any).gaveIntoSlavaPleasure ?? 0) < 3) {
+      scene.actions([
+        { label: 'Your mother', handler: (st: GameState) => {
+    (s as any).motherthoughts = 1;
+    scene.text('You try to think of your mother as you did before but you find it impossible to focus. After all these times with Slava you don\'t feel sympathy for your mother in the way that you used to. For whatever reason, you find that thoughts of her no longer help you to endure this and can only suffer in moans and groans as Slava\'s cock roughly pumps in and out of you ');
+    scene.text('These troubling thoughts swirling through your head, this fucking feels like it drags on forever, even though it\'s probably only been a few minutes. Eventually, Slava pulls out and tells you to get on your knees.');
+    scene.actions([
+      { label: 'Get on your knees', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('You do as he commands as he starts jacking off. He doesn\'t cum immediately but you patiently wait and as you see his face begin to contort you position yourself under his cock and close your eyes, feeling his hot sperm dribble all over your face.');
+    scene.text('Afterwards, you dutifully clean his cock, licking off your pussy juice and sucking out the remnants as you did before. He pulls up his trousers and leaves you.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.text('Once you\'re alone, your thoughts go back to when Slava was fucking you. Up until now, you used thoughts of your mother to keep yourself going during this time. You tried to remember that you were doing it for her so she wouldn\'t have to but it didn\'t help. You feel empty inside as you realize that thoughts of your mother no longer drive you.');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    if (((s as any).gaveIntoSlavaPleasure ?? 0) < 3) {
+      scene.actions([
+        { label: 'This isn\'t so bad', handler: (st: GameState) => {
+    scene.text('It\'s been a while since you made this deal with Slava and you notice that your body seems to accept Slava\'s cock more easily. Your pussy audably squelches as he thrusts into you. You find yourself unable to stop yourself from moaning loudly each time his cock reaches deep inside.');
+    scene.text('The pleasure you feel from his large cock builds more and more. The rough fucking you\'re receiving isn\'t so bad, you think to yourself.');
+    scene.text('Then he suddennly pulls his cock out of you and you feel empty. He tells you to get to your knees.');
+    scene.actions([
+      { label: 'Get on your knees', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('You do as he commands as he starts jacking off. He doesn\'t cum immediately but you patiently wait and as you see his face begin to contort you position yourself under his cock and close your eyes, feeling his hot sperm dribble all over your face.');
+    scene.text('Afterwards, you dutifully clean his cock, licking off your pussy juice and sucking out the remnants as you did before. He pulls up his trousers and leaves you.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.text('You sit alone in the room with Slava\'s cum plastered across your face. Your thoughts drift back to how Slava\'s cock felt inside of you. How big he was. How full you felt. Your pussy leaks onto the floor as you become lost in your thoughts, but you push these intrusive feelings away.');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    if (((s as any).gaveIntoSlavaPleasure ?? 0) < 3) {
+      scene.actions([
+        { label: 'Am I… enjoying this?', handler: (st: GameState) => {
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (25);
+    qspCall(s, 'stat', '');
+    if (((s as any).pcs_horny ?? 0) >= 100) {
+      scene.text('You notice a feeling between your legs. Something building up inside you. With every thrust of Slava\'s cock it builds more and more. You squirm, unable to figure out what\'s going on. You wonder if you\'re having a panic attack when it suddenly hits you.');
+      scene.text('You\'re about to cum.');
+      scene.text('The very thought that you could be enjoying this on any level bewilders you. You\'re being blackmailed right? You can\'t be enjoying this! You can\'t be about to cum from this large well shaped cock, pounding in and out of you, hard and… filling you up… just right…');
+      scene.actions([
+        { label: 'Try to resist', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('You lose your balance on the table and fall down to one shoulder, your face pressed against the desk. Your teeth are clenched together and your eyes squeezed shut, thinking to yourself, <i>Please don\'t cum! Please don\'t cum! Please don\'t cum!</i> over and over in some kind of mantra.');
+    scene.text('But despite your best efforts you can\'t hold back what\'s about to happen. You clamp your hand over your mouth to stop yourself from screaming as you explosively climax. Your whole body spasms and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
+    scene.text('You release your mouth from your hand, breathing hard, drooling onto the table a little bit. In a twist of terrible irony, it seems your efforts to hold yourself back only resulted in an even more powerful climax. You feel exhausted.');
+    // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
+    scene.text(`"Did you just cum ${((s as any).pcs_nickname ?? 0)}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Slava pulls out of you and you turn around, kneeling down. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. With great shame, you realize having his cock so close in front of your face is causing your juices to flow even more, practically on the edge of a secondary orgasm when his hot sticky cum spatters onto your face.');
+    scene.text('As per usual, he pushes his dick towards your mouth afterwards and you obediently clean it despite your exhaustion, subconsciously trying to savour the thickness of him and every last drop of his cum.');
+    scene.text('Afterwards, he pulls up his trousers saying, "I\'ll just leave you here a while to collect yourself. Don\'t want you going back outside and collapsing do we?" He smirks at you and closes the door behind him.');
+    scene.text('Still sitting on the ground, his cum plastering your face and your juices sticking to your legs, you think to yourself…');
+    scene.text('<i>How could this happen…</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+        { label: 'Give into the pleasure', handler: (st: GameState) => {
+    (s as any).gaveIntoSlavaPleasure = ((s as any).gaveIntoSlavaPleasure ?? 0) + (1);
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('You can\'t hold back and scream in orgasm, gripping the edge of the table until your knuckles turn white.');
+    scene.text('Your whole body shudders and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
+    scene.text('As your orgasm winds down, you lean forward onto the table, breathing hard.');
+    // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can't turn around right no...
+    scene.text(`"Did you just cum ${((s as any).pcs_nickname ?? 0)}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Slava pulls out of you and you turn around, kneeling down. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. You undeniably want more and having his cock so close in front of your face makes you squirm, wishing it was still inside you. You\'re practically on the edge of a second orgasm when his hot sticky cum spatters onto your face.');
+    scene.text('As per usual, he pushes his dick towards your mouth afterwards and you jump at the chance to wrap something of yourself around it. Your lips and tongue explore every centimeter of his cock, trying to savour the feeling and every last drop of his cum.');
+    scene.text('Much to your regret, he eventually pulls away from you like a mother pulls away her nipple from her baby. His cock disappears back inside his trousers and he says, "I\'ll just leave you here a while to collect yourself. Don\'t want you going back outside and collapsing do we?" He smirks at you and closes the door behind him.');
+    scene.text('You continue to sit on the ground awhile thinking about what just happened with mixed feelings and his cum still plastering your face, your juices sticking to your legs.');
+    scene.text('<i>Is this okay? Am I allowed to be enjoying this…?</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.text('You notice a feeling between your legs. Something is different today. Something about Slava\'s cock. Is it smoother today? Is it not as big? There\'s something about this that-- And suddenly it hits you.');
+      scene.text('You\'re wet.');
+      scene.text('His cock is so slick with your juices that his furious fucking feels smoother. And it\'s not just your natural wetness, you can feel your pussy leaking noticeably more than before, so much that it\'s starting to drip down your thighs.');
+      scene.actions([
+        { label: 'Panic', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('You start to go into a panic, your mind racing.');
+    scene.text('<i>How can I be getting wet? Am I enjoying this? How can I be enjoying this? I\'m being blackmailed into letting him fuck me, I can\'t be enjoying his cock! His big… hard… cock… that fills me just righ-! No!! This can\'t be happening!</i>');
+    scene.text('You\'re so absorbed in your anxiety that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused for a moment before you realize what happened. You were so caught up in it that you didn\'t notice him pull out. Your eyes go wide with a worse realization. You were moving your hips on your own. You were fucking him as much as he was fucking you. You slowly turn your head around to look at him in horror.');
+    // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_nickname ?? 0)}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Still in your state of shock, Slava pulls you down to your knees in front of him. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. With great shame, you realize having his cock so close in front of your face is causing your juices to flow even more. With even greater shame you realize it\'s because you want him back inside you.');
+    scene.text('His hot cum spatters across your face and you hear him whisper, "There you go. A nice treat for a nice girl." As per usual, after he finishes cumming he pushes his dick towards your mouth for cleaning. You obediently clean it, subconsciously moving with eagerness to have his cock back inside you, even if only your mouth.');
+    // TODO-QSP: dynamic text: He pulls his trousers back up and grins at you again. "Oh, cheer up <<$pcs_first...
+    scene.text(`He pulls his trousers back up and grins at you again. "Oh, cheer up ${((s as any).pcs_firstname ?? 0)}. You can always come back again tomorrow if you want to fuck some more," and closes the door behind him.`);
+    scene.text('After he leaves you sink to the ground, his cum plastering your face and your juices sticking to your legs. You think to yourself…');
+    scene.text('<i>Am I really enjoying this…? How could this happen…</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+        { label: 'Enjoy yourself', handler: (st: GameState) => {
+    (s as any).gaveIntoSlavaPleasure = ((s as any).gaveIntoSlavaPleasure ?? 0) + (1);
+    scene.img('images/locations/pavlovsk/cafe/wait_fuck.mp4');
+    scene.text('Now that you notice how good it feels, you can\'t help but sink into the feeling. You press your hands into the table, leaning your ass back into Slava and his hard cock. Your moaning becomes louder and more natural, flowing out of your mouth like juices out of your pussy.');
+    scene.text('<i>Uh! Uhh! Ahh! Aah!</i>');
+    scene.text('You\'re so absorbed in your pleasure that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused, almost frustrated, for a moment wondering what happened to that good feeling. You slowly turn your head around to see what happened and see Slava slowly jacking himself. You were so caught up in it that you didn\'t notice him pull out. He pulled out when your body wanted to keep going and missing his cock, your hips kept thrusting anyways. You were fucking him as much as he was fucking you. ');
+    // TODO-QSP: dynamic text: "Glad to see you're enjoying this deal as much as I am," Slava says, grinning. N...
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((s as any).pcs_firstname ?? 0)}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('Slava pulls you down to your knees in front of him and speeds up his masturbation. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. You realize having his cock so close in front of your face is causing your juices to flow even more. You lick your lips and realize even more, it\'s because you want him back inside you.');
+    scene.text('His hot cum spatters across your face and you hear him whisper, "There you go. A nice treat for a nice girl." As per usual, after he finishes cumming he pushes his dick towards your mouth for cleaning. You obediently clean it, moving with eagerness to have his cock back inside you, even if only your mouth. You lick every centimeter of his cock and balls and suck hard, savouring him to the last drop before he pulls away, your lips trailing behind like your hips did earlier.');
+    scene.text('He pulls his trousers back up and grins at you again. "I\'m glad to see you\'re getting as much out of this deal as I am," he says and closes the door behind him.');
+    scene.text('After he leaves you sink to the ground, his cum plastering your face and your juices sticking to your legs. You think to yourself…');
+    scene.text('<i>Is it okay? Is it bad to be enjoying this?</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    if (((s as any).gaveIntoSlavaPleasure ?? 0) > 2) {
+      scene.actions([
+        { label: 'Finally… His Cock…', handler: (st: GameState) => {
+    scene.text('You buck your hips into Slava\'s thrusts, matching his pace as his wonderful cock pounds into you. Your cunt squelches loudly with each thrust and your juices drool down your thighs. You moan loudly, savouring the girth and shape of his cock. ');
+    scene.text('<i>Uh! Uhh! Ahh! Aah! Slava! Ah! Yes!</i>');
+    // TODO-QSP: dynamic text: Slava suddenly pulls his cock out of your pussy and you squeel in protest. "Put ...
+    scene.text(`Slava suddenly pulls his cock out of your pussy and you squeel in protest. "Put it in! Please!" You buck your hips at him, But Slava responds by giving your ass a hard swat. "On your knees, ${((s as any).pcs_firstname ?? 0)}. I'll fuck you again tomorrow."`);
+    qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/cafe/facial.mp4');
+    scene.text('You obediently kneel in front of Slava, opening your mouth for his incoming load. You stick your tongue out and try to be as enticing as possible for him. Slava masturbates his dick until he begins to groan.');
+    scene.text('His hot cum spatters across your face and you hear him whisper, "Ahhhh. Another face full of cum. Looks good on you." As per usual, after he finishes cumming he pushes his dick towards your mouth for cleaning. You obediently clean it, moving with eagerness to have his cock back inside you, even if only your mouth. You lick every centimeter of his cock and balls and suck hard, savouring him to the last drop before he pulls away, your lips trailing behind like your hips did earlier.');
+    scene.text('He pulls his trousers back up and grins at you again. "I\'m glad to see you\'re getting as much out of this deal as I am," he says and closes the door behind him.');
+    scene.text('After he leaves you sink to the ground, his cum plastering your face and your juices sticking to your legs. You think to yourself…');
+    scene.text('<i>I need more…</i>');
+    scene.actions([
+      { label: 'Find your panties and leave', handler: (st: GameState) => {
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+  }, goto: ['gkafe', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
   }
   scene.build();
 }
@@ -800,6 +1311,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'slava_deal':
       enterSlavaDeal(s, scene);
+      break;
+    case 'duty':
+      enterDuty(s, scene);
+      break;
+    case 'cloth_bj':
+      enterClothBj(s, scene);
+      break;
+    case 'cloth_pre_fuck':
+      enterClothPreFuck(s, scene);
+      break;
+    case 'cloth_fuck':
+      enterClothFuck(s, scene);
       break;
     default:
       enterConfrontation(s, scene);

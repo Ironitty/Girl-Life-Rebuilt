@@ -1,4 +1,6 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -60,7 +62,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Flash your tits to skip the line', handler: (st: GameState) => {
+      { label: 'Flash your tits to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'flash', 'tits', 'inside', 1);
@@ -81,7 +83,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Flash your pussy to skip the line', handler: (st: GameState) => {
+        { label: 'Flash your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'flash', 'pussy', 'inside', 1);
@@ -103,7 +105,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Flash both your tits and your pussy to skip the line', handler: (st: GameState) => {
+        { label: 'Flash both your tits and your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'flash', 'full', 'inside', 1);
@@ -125,7 +127,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Offer a blowjob in exchange for jumping the queue', handler: (st: GameState) => {
+        { label: 'Offer a blowjob in exchange for jumping the queue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     if (((s as any).cumloc ?? 0)[11] > 0) {
@@ -150,18 +152,24 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
         { label: 'Cum on your face', handler: (st: GameState) => {
     if ((!((s as any).pcs_haircol ?? 0))) {
     } else {
-      if (((s as any).pcs_haircol ?? 0) === 2) {
+      if (((s as any).pcs_haircol ?? 0) === 1) {
+      } else {
+        if (((s as any).pcs_haircol ?? 0) === 2) {
+        } else {
+          if (((s as any).pcs_haircol ?? 0) === 3) {
+          }
+        }
       }
-      scene.img(`images/pc/body/cum/cumface/${((s as any).cum_face_image ?? 0)}.jpg`);
-      scene.text('The man cums on your face.');
-      qspCall(s, 'cum_call', 'face', 'stranger');
-      qspCall(s, 'arousal', 'end');
-      scene.actions([
-        { label: 'Go to the counter', goto: ['post_office', 'counter'] },
-      ]);
     }
+    scene.img(`images/pc/body/cum/cumface/${((s as any).cum_face_image ?? 0)}.jpg`);
+    scene.text('The man cums on your face.');
+    qspCall(s, 'cum_call', 'face', 'stranger');
+    qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Cum in your mouth', handler: (st: GameState) => {
+      { label: 'Go to the counter', goto: ['post_office', 'counter'] },
+    ]);
+  } },
+        { label: 'Cum in your mouth', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/cumlip.jpg');
     scene.text('The man cums inside your mouth.');
     qspCall(s, 'cum_call', 'mouth', 'stranger');
@@ -170,13 +178,104 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the counter', goto: ['post_office', 'counter'] },
     ]);
   } },
+      ]);
+    }
+  } },
+      ]);
+    }
+  }
+  scene.build();
+}
+
+function enterCounter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'post_office', 'counter');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Counter</b></center>');
+  scene.img('images/locations/shared/postoffice/counter.jpg');
+  scene.text('There\'s nothing interesting happening. It\'s rather boring here.');
+  if (((s as any).bankAccount ?? 0) === 1  &&  ((s as any).money ?? 0) > 0) {
+    scene.actions([
+      { label: 'Deposit money into your bank account', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    qspCall(s, 'bank', 'deposit_cash');
+    scene.text('"Is there anything else I can do for you?"');
+    scene.actions([
+      { label: 'Leave the post office', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['post_office', 'leave'] },
+      { label: 'Yes', goto: ['post_office', 'counter'] },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
+    if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).policeQW ?? 0)?.['legal_fine'])) {
+      scene.actions([
+        { label: 'Pay off your fine(s)', handler: (st: GameState) => {
+    qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']');
+    (s as any).policeQW['legal_fine'] = 0;
+    (s as any).policeQW['missed_fine_deadlines'] = 0;
+    (s as any).policeQW['fine_deadline'] = 0;
+    (s as any).policeQW['arrest_gameover_flag'] = 0;
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Counter</b></center>');
+    scene.img('images/locations/shared/postoffice/counter.jpg');
+    scene.text('You pay the full amount of your outstanding fine(s) to the cashier and they print out a receipt to say that it\'s paid off.');
+    scene.actions([
+      { label: 'Done', goto: ['post_office', 'counter'] },
     ]);
   } },
       ]);
     }
-  } },
-      ]);
+    scene.actions([
+      { label: 'Pay your fine(s)', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: You have an outstanding fine of ' + $func('money', 'string_debt', policeQW['lega...
+    scene.text('You have an outstanding fine of \' + $func(\'money\', \'string_debt\', policeQW[\'legal_fine\']) + \'.');
+    (s as any).fineIN = 0;
+    if (((s as any).fineIN ?? 0) <= 0) {
+      scene.text('Invalid operation.');
+    } else {
+      if (((s as any).fineIN ?? 0) >= ((s as any).policeQW ?? 0)?.['legal_fine']) {
+        if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).policeQW ?? 0)?.['legal_fine'])) {
+          qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']');
+          (s as any).policeQW['legal_fine'] = 0;
+          (s as any).policeQW['missed_fine_deadlines'] = 0;
+          (s as any).policeQW['fine_deadline'] = 0;
+          (s as any).policeQW['arrest_gameover_flag'] = 0;
+          scene.text('<br>You pay the full amount of your outstanding fine(s) to the cashier and they print out a receipt to say that it\'s paid off.');
+        } else {
+          scene.text('<br>You don\'t have enough money to pay that amount.');
+        }
+      } else {
+        if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).fineIN ?? 0))) {
+          (s as any).temp_paid = qspFunc(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', ((s as any).fineIN ?? 0));
+          // TODO-QSP: dynamic text: <br>You pay ' + $func('money', 'string_debt_reduction', temp_paid) + ' towards y...
+          scene.text('<br>You pay \' + $func(\'money\', \'string_debt_reduction\', temp_paid) + \' towards your legal fine(s). You have \' + $func(\'money\', \'string_debt\', policeQW[\'legal_fine\']) + \' still outstanding.');
+        } else {
+          scene.text('<br>You don\'t have enough money to pay that amount.');
+        }
+      }
     }
+  } },
+    ]);
+  }
+  if (((s as any).used_pattest ?? 0) > 0) {
+    scene.actions([
+      { label: 'Send paternity test ( [+$func(\'money\', \'string_price\', 20000) + ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 20000) === 1) {
+      qspCall(s, 'money', 'pay', 20000);
+      qspCall(s, 'stat', '');
+      scene.text('You pay the fee for the testing, then mail your used paternity test to the lab in Saint Petersburg with the copy of your receipt of payment. You will get answer by SMS within a week.');
+    } else {
+      scene.text('Unfortunately, you don\'t have enough money to submit the test. They would just throw it out without the receipt of payment.');
+    }
+    scene.actions([
+      { label: 'Done', goto: ['post_office', 'counter'] },
+    ]);
+  } },
+    ]);
   }
   (s as any).i = 0;
   // TODO-QSP: :loopcard
@@ -184,27 +283,33 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     (s as any).n = 5;
     (s as any).price = 60;
   } else {
-    (s as any).n = 10;
-    (s as any).price = 115;
-    if (((s as any).i ?? 0) === 2) {
-      (s as any).n = 20;
-      (s as any).price = 220;
+    if (((s as any).i ?? 0) === 1) {
+      (s as any).n = 10;
+      (s as any).price = 115;
     } else {
-      (s as any).n = 50;
-      (s as any).price = 520;
+      if (((s as any).i ?? 0) === 2) {
+        (s as any).n = 20;
+        (s as any).price = 220;
+      } else {
+        if (((s as any).i ?? 0) === 3) {
+          (s as any).n = 50;
+          (s as any).price = 520;
+        }
+      }
     }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    // TODO-QSP: dynamic text: <tr><td align="center"><<n>> hour internet card </td><td align="right">(you have...
-    scene.text(`<tr><td align="center">${((s as any).n ?? 0)} hour internet card </td><td align="right">(you have ${((s as any).internet ?? 0)} hours of internet access) </td><td align="right">${((s as any).buy_link ?? 0)} </td><td align="left">for ${((s as any).price ?? 0)} <b>₽</b></td></tr>`);
-    if (((s as any).i ?? 0) < 4) {
-      // TODO-QSP: jump 'loopcard'
-    }
-    scene.text('</table></center>');
-    if (((s as any).money ?? 0) > 0) {
-      scene.actions([
-        { label: 'Put the money on the phone', handler: (st: GameState) => {
+  }
+  (s as any).i = ((s as any).i ?? 0) + (1);
+  // TODO-QSP: dynamic text: <tr><td align="center"><<n>> hour internet card </td><td align="right">(you have...
+  scene.text(`<tr><td align="center">${((s as any).n ?? 0)} hour internet card </td><td align="right">(you have ${((s as any).internet ?? 0)} hours of internet access) </td><td align="right">${((s as any).buy_link ?? 0)} </td><td align="left">for ${((s as any).price ?? 0)} <b>₽</b></td></tr>`);
+  if (((s as any).i ?? 0) < 4) {
+    // TODO-QSP: jump 'loopcard'
+  }
+  scene.text('</table></center>');
+  if (((s as any).money ?? 0) > 0) {
+    scene.actions([
+      { label: 'Put the money on the phone', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).obmennik = ((s as any).input ?? 0) ("((s as any).How ?? 0) ((s as any).much ?? 0) <((s as any).b ?? 0)>₽</((s as any).b ?? 0)> ((s as any).do ?? 0) ((s as any).you ?? 0) ((s as any).want ?? 0) ((s as any).to ?? 0) ((s as any).deposit ?? 0)?");
+    (s as any).obmennik = 0;
     if (((s as any).obmennik ?? 0) <= 0) {
       scene.text('<center><br><b>Invalid operation.</b></center>');
       scene.actions([
@@ -232,11 +337,11 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       }
     }
   } },
-      ]);
-    }
-    if (((s as any).askWork ?? 0) === 0  &&  ((s as any).region ?? 0) === 'pav') {
-      scene.actions([
-        { label: 'Ask for work', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).askWork ?? 0) === 0  &&  ((s as any).region ?? 0) === 'pav') {
+    scene.actions([
+      { label: 'Ask for work', handler: (st: GameState) => {
     (s as any).askWork = ((s as any).askWork ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -247,10 +352,12 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Step away from the counter', goto: ['post_office', 'start'] },
     ]);
   } },
-      ]);
-    }
+    ]);
   }
   scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['post_office', 'leave'] },
     { label: 'Check received mail', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -274,6 +381,99 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterPickupMail(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/shared/postoffice/worker.jpg');
+  (s as any).temp_mail_counter = 0;
+  // TODO-QSP: copyarr('$temp_mail_region',  '$mail_region')
+  // TODO-QSP: copyarr('$temp_mail_code',    '$mail_code')
+  // TODO-QSP: copyarr('temp_mail_time',    '$mail_time')
+  (s as any).po_i = 0;
+  // TODO-QSP: :mail_loop
+  if (((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === ((s as any).region ?? 0)  ||  ((s as any).temp_mail_region ?? 0)?.[String((s as any).po_i ?? 0)] === 'all') {
+    if (((s as any).totminut ?? 0) >= ((s as any).temp_mail_time ?? 0)?.[String((s as any).po_i ?? 0)]) {
+      (s as any).temp_mail_counter = ((s as any).temp_mail_counter ?? 0) + (1);
+    }
+  }
+  (s as any).po_i = ((s as any).po_i ?? 0) + (1);
+  if (((s as any).po_i ?? 0) < Object.keys((s as any).temp_mail_region ?? {}).length) {
+    // TODO-QSP: jump 'mail_loop'
+  }
+  if (((s as any).temp_mail_counter ?? 0) > 0) {
+    // TODO-QSP: dynamic text: You have <<temp_mail_counter>> pieces of mail left to pickup.
+    scene.text(`You have ${((s as any).temp_mail_counter ?? 0)} pieces of mail left to pickup.`);
+  } else {
+    scene.text('You have collected all your mail.');
+  }
+  scene.actions([
+    { label: 'Go back', goto: ['post_office', 'counter'] },
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['post_office', 'leave'] },
+  ]);
+  scene.build();
+}
+
+function enterAddMail(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).ARGS[2] = 'all';
+  }
+  // TODO-QSP: $mail_region[] = $ARGS[1]
+  // TODO-QSP: $mail_code[] = $ARGS[2]
+  // TODO-QSP: mail_time[] = ARGS[3]
+  scene.build();
+}
+
+function enterRemoveMail(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_mail_index = qspUntranslated(s, "arrpos('mail_code', ARGS[1])", { location: "post_office" });
+  if (((s as any).temp_mail_index ?? 0) >= 0) {
+  }
+  scene.build();
+}
+
+function enterPostOff(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 30;
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Postmaster Office</b></center>');
+  scene.text('An older man sits behind a desk, busy with some paperwork. He\'s dressed quite sharply for his position.');
+  if ((!((s as any).post_wrk ?? 0))) {
+    scene.actions([
+      { label: 'Ask for work', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.text('You approach the man\'s desk, but he doesn\'t look up from his work. With a soft voice, you carefully try to get his attention. "Umm… Excuse me?"');
+    scene.text('He looks up at you. "Oh I\'m sorry, I didn\'t hear you come in. Hello, I\'m Oleg Koltsov, postmaster at this post office. Is there a problem?"');
+    scene.text('You smile and shake your head. "No, no problem. I\'m actually looking for a job. I hear you\'re looking for workers?"');
+    scene.text('You can feel his eyes exploring your body for a second before he responds. "Yes, we are! We currently only have a part-time vacancy, for sorting the mail. You would be working between these and these hours, give or take. Does that sound good to you?"');
+    scene.actions([
+      { label: '"Sorry, not interested"', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.text('"I need to think about it if it\'s okay?" you reply.');
+    scene.text('"Sure. Come back when you\'ve made up your mind."');
+    scene.actions([
+      { label: 'Exit office', goto: ['post_office', 'start'] },
+    ]);
+  } },
+      { label: '"That sounds great!"', handler: (st: GameState) => {
+    (s as any).post_wrk = ((s as any).post_wrk ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.text('You beam. "That sounds fantastic, thank you so much!"');
+    scene.text('Oleg gives you a friendly smile, happy to have found another potential worker. He quickly writes some of your personal data down.');
+    scene.text('"If you want to work a shift, you need to be here between this time. There\'s no point in you getting changed just for 20 minutes of work."');
+    scene.text('You give him a handshake as you get ready to leave. "Okay. Thank you sir!"');
+    scene.actions([
+      { label: 'Exit office', goto: ['post_office', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Exit office', goto: ['post_office', 'start'] },
+  ]);
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -285,6 +485,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'set_skipline_acts':
       enterSetSkiplineActs(s, scene);
+      break;
+    case 'counter':
+      enterCounter(s, scene);
+      break;
+    case 'pickup_mail':
+      enterPickupMail(s, scene);
+      break;
+    case 'add_mail':
+      enterAddMail(s, scene);
+      break;
+    case 'remove_mail':
+      enterRemoveMail(s, scene);
+      break;
+    case 'post_off':
+      enterPostOff(s, scene);
       break;
     default:
       enterLeave(s, scene);

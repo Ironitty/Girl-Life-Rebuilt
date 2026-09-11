@@ -178,49 +178,74 @@ function enterBVikaPresentSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 10, 'gangbang');
     qspCall(s, 'arousal', 'hj', (-10), 'gangbang');
   } else {
-    scene.text('As you lie down on one of the men, he quickly grabs his cock and thrusts into your ass. The others all stand and observe for a while until another one decides to step up and penetrate your pussy. Thanks to their fine pacing, it doesn\'t take long before you start moaning loudly from the pleasure you\'re feeling.');
-    scene.text('Some of the men tell you how they love hearing you scream with pleasure while two of them grab your hands and place them on their rock-hard cocks so you can keep them prepared.');
-    scene.text('The guys treat you like a fuck doll, drilling your holes so hard that they often need a rest and switch positions. Not wanting to let their cocks go limp, you help them out by jerking them off.');
-    qspCall(s, 'arousal', 'anal', 10, 'gangbang');
-    qspCall(s, 'arousal', 'hj', 10, 'gangbang');
-    qspCall(s, 'arousal', 'vaginal', (-10), 'gangbang');
-    if (((s as any).picrand ?? 0) === 5) {
-      scene.text('They have you get down on all fours before two of the men step up behind you, one penetrating your ass while the other penetrates your pussy. They\'re thrusting pretty furiously, stretching your holes out and making you moan loudly from the pleasure.');
-      scene.text('They don\'t let you moan too long as a third guy steps in front of you and shoves his cock deep into your throat. Your sounds are muffled thanks to his constant thrusting, and you do your best to focus on pleasing him.');
-      scene.text('The guys treat you like a fuck doll, drilling you hard in all the available holes. They often change positions, giving you plenty of opportunities to taste your own juices.');
+    if (((s as any).picrand ?? 0) < 5) {
+      scene.text('As you lie down on one of the men, he quickly grabs his cock and thrusts into your ass. The others all stand and observe for a while until another one decides to step up and penetrate your pussy. Thanks to their fine pacing, it doesn\'t take long before you start moaning loudly from the pleasure you\'re feeling.');
+      scene.text('Some of the men tell you how they love hearing you scream with pleasure while two of them grab your hands and place them on their rock-hard cocks so you can keep them prepared.');
+      scene.text('The guys treat you like a fuck doll, drilling your holes so hard that they often need a rest and switch positions. Not wanting to let their cocks go limp, you help them out by jerking them off.');
       qspCall(s, 'arousal', 'anal', 10, 'gangbang');
-      qspCall(s, 'arousal', 'bj', 10, 'gangbang');
+      qspCall(s, 'arousal', 'hj', 10, 'gangbang');
       qspCall(s, 'arousal', 'vaginal', (-10), 'gangbang');
     } else {
-      scene.text('The guy fucking you in the ass suddenly grabs you by the thighs and lifts you up before he continues to pound you. Another guy steps in front of you and shoves his cock in your pussy. The sensation is phenomenal, and it doesn\'t take long before you start moaning loudly.');
-      scene.text('The pleasant feeling is driving you crazy, and you lose control of yourself. Instead of slowing down, the guys instead pick up the pace and continue fucking you.');
-      scene.text('Just when you\'re about to orgasm, though, they stop and let two others take over, who proceed to fuck you in the same position.');
-      qspCall(s, 'arousal', 'anal', 10, 'gangbang');
-      qspCall(s, 'arousal', 'vaginal', (-10), 'gangbang');
-    }
-    (s as any).b_present_cum = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).b_present_cum ?? 0) === 1) {
-      (s as any).b_present_ass_or_vag = Math.floor(Math.random() * 2) + 1;
-      if (((s as any).b_present_ass_or_vag ?? 0) === 1) {
-        (s as any).b_present_guys = ((s as any).b_present_guys ?? 0) - (1);
-        qspCall(s, 'cum_manage', '');
-        scene.text('One of them grunts loudly as you feel him filling your pussy with his warm cum.');
+      if (((s as any).picrand ?? 0) === 5) {
+        scene.text('They have you get down on all fours before two of the men step up behind you, one penetrating your ass while the other penetrates your pussy. They\'re thrusting pretty furiously, stretching your holes out and making you moan loudly from the pleasure.');
+        scene.text('They don\'t let you moan too long as a third guy steps in front of you and shoves his cock deep into your throat. Your sounds are muffled thanks to his constant thrusting, and you do your best to focus on pleasing him.');
+        scene.text('The guys treat you like a fuck doll, drilling you hard in all the available holes. They often change positions, giving you plenty of opportunities to taste your own juices.');
+        qspCall(s, 'arousal', 'anal', 10, 'gangbang');
+        qspCall(s, 'arousal', 'bj', 10, 'gangbang');
+        qspCall(s, 'arousal', 'vaginal', (-10), 'gangbang');
       } else {
+        scene.text('The guy fucking you in the ass suddenly grabs you by the thighs and lifts you up before he continues to pound you. Another guy steps in front of you and shoves his cock in your pussy. The sensation is phenomenal, and it doesn\'t take long before you start moaning loudly.');
+        scene.text('The pleasant feeling is driving you crazy, and you lose control of yourself. Instead of slowing down, the guys instead pick up the pace and continue fucking you.');
+        scene.text('Just when you\'re about to orgasm, though, they stop and let two others take over, who proceed to fuck you in the same position.');
+        qspCall(s, 'arousal', 'anal', 10, 'gangbang');
+        qspCall(s, 'arousal', 'vaginal', (-10), 'gangbang');
+      }
+    }
+  }
+  (s as any).b_present_cum = Math.floor(Math.random() * 2) + 0;
+  if (((s as any).b_present_cum ?? 0) === 1) {
+    (s as any).b_present_ass_or_vag = Math.floor(Math.random() * 2) + 1;
+    if (((s as any).b_present_ass_or_vag ?? 0) === 1) {
+      (s as any).b_present_guys = ((s as any).b_present_guys ?? 0) - (1);
+      qspCall(s, 'cum_manage', '');
+      scene.text('One of them grunts loudly as you feel him filling your pussy with his warm cum.');
+    } else {
+      if (((s as any).b_present_ass_or_vag ?? 0) === 2) {
         (s as any).b_present_guys = ((s as any).b_present_guys ?? 0) - (1);
         (s as any).spafinloc = 3;
         qspCall(s, 'cum_manage', '');
         scene.text('One of the guys lets out a loud roar as you feel him filling your ass with his warm cum.');
       }
     }
-    if (((s as any).b_present_guys ?? 0) === 2) {
-      scene.text('You\'re a bit surprised that there are only two guys remaining. You expected a bit more from them…');
-      scene.actions([
-        { label: 'Tell them to cum on your face', goto: ['vikaev1', 'b_vika_present_cum'] },
-      ]);
-    }
+  }
+  if (((s as any).b_present_guys ?? 0) === 2) {
+    scene.text('You\'re a bit surprised that there are only two guys remaining. You expected a bit more from them…');
+    scene.actions([
+      { label: 'Tell them to cum on your face', goto: ['vikaev1', 'b_vika_present_cum'] },
+    ]);
   }
   scene.actions([
     { label: 'Further', goto: ['vikaev1', 'b_vika_present_sex2'] },
+  ]);
+  scene.build();
+}
+
+function enterBVikaPresentCum(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'mood', 'raise', 'large');
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'arousal', 'end');
+  (s as any).spafinloc = 12;
+  qspCall(s, 'cum_manage', '');
+  (s as any).spafinloc = 11;
+  qspCall(s, 'cum_manage', '');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/university/girl/vika/sex/b_present_cum.jpg');
+  scene.text('"I want you to completely cover my face," you say as you dismount the cock inside you and position yourself on the floor, ready to get coated…');
+  scene.text('No one says a word as they energetically jerk off while you keep touching your clit.');
+  scene.text('It doesn\'t take long before they start grunting and groaning as your face is covered by their warm cum.');
+  scene.text('You sit with a satisfied grin on your face, cum slowly trickling from your holes as you use your fingers to scoop up the cum on your face before sucking on them.');
+  scene.actions([
+    { label: 'Leave', goto: ['uni_dorm', 'dorm_room'] },
   ]);
   scene.build();
 }
@@ -254,6 +279,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'b_vika_present_sex2':
       enterBVikaPresentSex2(s, scene);
+      break;
+    case 'b_vika_present_cum':
+      enterBVikaPresentCum(s, scene);
       break;
     default:
       enterBVikaPresentStart(s, scene);

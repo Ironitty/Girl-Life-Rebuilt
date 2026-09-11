@@ -28,7 +28,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 
 function enterTickets(s: GameState, scene: SceneBuilder): void {
   (s as any).setloc['StageTitle'] = 'Mariinsky Tickets';
-  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_tickets ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_tickets';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('fluff text for purchasing tickets');
   scene.build();
@@ -36,7 +36,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   (s as any).setloc['StageTitle'] = 'Mariinsky Main Stage';
-  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_stage ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_stage';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('For over two centuries, the grand stage of St. Petersburgs\' has been the most prestigious of all Russia\'s ballet and opera theatres and, each year, hosts the Vaganova Ballet Academy\'s performances for their students. You gaze in wonder as you take your seat at the rich facade and feel the presence of all those illustrious performers who have tread those boards.');
   scene.actions([
@@ -92,7 +92,7 @@ function enterStageDoor(s: GameState, scene: SceneBuilder): void {
 
 function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).setloc['StageTitle'] = 'Changing Room';
-  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).changing_room ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'changing_room';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   if (((s as any).balletqw ?? 0)?.['rehearsals'] === 1) {
     scene.text('You enter the changing room and see the other dancers getting for today\'s rehearsals. You quickly change into your dance outfit and head out onto the stage.');
@@ -100,12 +100,15 @@ function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Head to the stage', goto: ['city_mariinsky', 'rehearsals'] },
     ]);
   } else {
-    (s as any).balletqw['performance_night'] = ((s as any).balletqw['performance_night'] ?? 0) - (1);
-    scene.text('You enter the changing room and see the other dancers getting ready for the performance. You quickly change into your costume and prepare for the performance.');
-    scene.text('Null - no content. Please see a bug report.');
-    scene.actions([
-      { label: 'Head to the stage', goto: ['city_mariinsky', 'performance_evening'] },
-    ]);
+    if (((s as any).balletqw ?? 0)?.['performance_night'] >= 1) {
+      (s as any).balletqw['performance_night'] = ((s as any).balletqw['performance_night'] ?? 0) - (1);
+      scene.text('You enter the changing room and see the other dancers getting ready for the performance. You quickly change into your costume and prepare for the performance.');
+      scene.actions([
+        { label: 'Head to the stage', goto: ['city_mariinsky', 'performance_evening'] },
+      ]);
+    } else {
+      scene.text('Null - no content. Please see a bug report.');
+    }
   }
   qspCall(s, 'core_library', 'bathroom');
   scene.actions([
@@ -119,7 +122,9 @@ function enterProduction(s: GameState, scene: SceneBuilder): void {
     if (((s as any).balletqw ?? 0)?.['current_stage'] === 'rehearsals') {
       qspCall(s, 'city_mariinsky_rehearsals', 'init');
     } else {
-      qspCall(s, 'city_mariinsky_performances', 'init');
+      if (((s as any).balletqw ?? 0)?.['current_stage'] === 'performance') {
+        qspCall(s, 'city_mariinsky_performances', 'init');
+      }
     }
   } else {
     scene.text('Error - balletqw[rank] not set - Please send a bug report.');

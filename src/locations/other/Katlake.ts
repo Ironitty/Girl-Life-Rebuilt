@@ -18,7 +18,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Approach her', handler: (st: GameState) => {
+      { label: 'Approach her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.text('You decide to walk up to the girl, and try to start a conversation with her.');

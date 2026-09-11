@@ -301,7 +301,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Close the door', handler: (st: GameState) => {
+      { label: 'Close the door [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['masharoom', 'start'] },

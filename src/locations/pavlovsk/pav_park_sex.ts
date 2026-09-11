@@ -410,7 +410,7 @@ function enterPressuredForBra(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
@@ -452,6 +452,9 @@ function enterPressuredForBra(s: GameState, scene: SceneBuilder): void {
     scene.text('You grin, get up in front of everyone and expose your bra for everyone to see. The boys hoot and holler while Pauline records the whole thing on her phone.');
     scene.text('You stand with your bra for several minutes for them, and you can\'t help but smile at how happy it makes them all. Arkadi then speaks up.');
     if (((s as any).grupTipe ?? 0) === 1) {
+    } else {
+      if (((s as any).grupTipe ?? 0) === 2) {
+      }
     }
     // TODO-QSP: dynamic text: "<<$grp_msg>> Not to mention a hell of a lot more fun."
     scene.text(`"${((s as any).grp_msg ?? 0)} Not to mention a hell of a lot more fun."`);
@@ -485,7 +488,7 @@ function enterPressuredForPanties(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
@@ -527,6 +530,9 @@ function enterPressuredForPanties(s: GameState, scene: SceneBuilder): void {
     scene.text('You grin and get up in front of everyone and expose your panties for all to see, turning around to give them a complete view. The boys hoot and holler while Pauline records the whole thing on her phone.');
     scene.text('You stand with your panties exposed for several minutes for them, and you can\'t help but smile at how happy it makes them all. Arkadi then speaks up.');
     if (((s as any).grupTipe ?? 0) === 1) {
+    } else {
+      if (((s as any).grupTipe ?? 0) === 2) {
+      }
     }
     // TODO-QSP: dynamic text: "<<$grp_msg>> Not to mention a hell of a lot more fun."
     scene.text(`"${((s as any).grp_msg ?? 0)} Not to mention a hell of a lot more fun."`);
@@ -560,7 +566,7 @@ function enterPressuredForTits(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
@@ -602,6 +608,9 @@ function enterPressuredForTits(s: GameState, scene: SceneBuilder): void {
     scene.text('You grin, get up in front of everyone and expose your breasts for all to see. The boys hoot and holler while Pauline records the whole thing on her phone.');
     scene.text('You kneel with your breasts out for several minutes for them, and you can\'t help but smile at how happy it makes them all. Arkadi then speaks up.');
     if (((s as any).grupTipe ?? 0) === 1) {
+    } else {
+      if (((s as any).grupTipe ?? 0) === 2) {
+      }
     }
     // TODO-QSP: dynamic text: "<<$grp_msg>> Not to mention a hell of a lot more fun."
     scene.text(`"${((s as any).grp_msg ?? 0)} Not to mention a hell of a lot more fun."`);
@@ -635,7 +644,7 @@ function enterPressuredForPussy(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
@@ -677,6 +686,9 @@ function enterPressuredForPussy(s: GameState, scene: SceneBuilder): void {
     scene.text('You grin and get up before everyone, stripping down and exposing your pussy for all to see. The boys hoot and holler while Pauline records the whole thing on her phone.');
     scene.text('You stand with your pussy exposed for several minutes for them, and you can\'t help but smile at how happy it makes them all. Arkadi then speaks up.');
     if (((s as any).grupTipe ?? 0) === 1) {
+    } else {
+      if (((s as any).grupTipe ?? 0) === 2) {
+      }
     }
     // TODO-QSP: dynamic text: "You have a real fuckable looking pussy. <<$grp_msg>> Not to mention a hell of a...
     scene.text(`"You have a real fuckable looking pussy. ${((s as any).grp_msg ?? 0)} Not to mention a hell of a lot more fun."`);
@@ -713,7 +725,7 @@ function enterPressuredForBlowjob(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
@@ -810,7 +822,7 @@ function enterPressuredForOralGb(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
@@ -959,7 +971,7 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
@@ -1211,7 +1223,7 @@ function enterRadomirWalk(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A154', (-5));
     qspCall(s, 'stat', '');
@@ -1352,7 +1364,7 @@ function enterValNushWalk(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Don\'t kiss him', handler: (st: GameState) => {
+        { label: 'Don\'t kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A158', (-1));
@@ -1384,7 +1396,7 @@ function enterValNushWalk(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Don\'t kiss her', handler: (st: GameState) => {
+        { label: 'Don\'t kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A158', (-1));
@@ -1417,7 +1429,7 @@ function enterValNushWalk(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A144', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A158', (-1));
@@ -1524,7 +1536,7 @@ function enterNushFucked(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A158', (-1));
     qspCall(s, 'stat', '');
@@ -1632,7 +1644,7 @@ function enterNushAnalFucked(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A158', (-1));
     qspCall(s, 'stat', '');

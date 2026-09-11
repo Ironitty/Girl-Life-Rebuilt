@@ -169,7 +169,7 @@ function enterMinorOlderWomenShaming(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
   }
   if (((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] >= 30) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).trait_vars ?? 0)?.['exhibitionist_exp']/5);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).trait_vars ?? {})?.['exhibitionist_exp']/5);
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: $streetev_title
@@ -183,7 +183,9 @@ function enterMinorOlderWomenShaming(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) >= 50) {
     scene.text('<i>What? So now it\'s a crime to prefer going commando?</i> you think to yourself in annoyance as you continue passing by.');
   } else {
-    scene.text('You blush in shame from the old ladies\' caustic remarks and hurry on your way.');
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
+      scene.text('You blush in shame from the old ladies\' caustic remarks and hurry on your way.');
+    }
   }
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {

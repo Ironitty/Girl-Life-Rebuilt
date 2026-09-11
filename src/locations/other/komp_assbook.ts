@@ -10,9 +10,9 @@ function enterSignup(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Assbook</b></center>');
   scene.img('images/system/image_needed.png');
   scene.text('You consider which name you\'d like to register under.');
-  (s as any).assbook['account_name'] = qspUntranslated(s, "input('Which name would you like to use? (Leave blank for <<pcs_nickname>>)')", { location: "komp_assbook" });
+  (s as any).assbook['account_name'] = 0;
   if (((s as any).assbook ?? 0)?.['account_name'] === '') {
-    (s as any).assbook['account_name'] = '<<$pcs_nickname>>';
+    (s as any).assbook['account_name'] = '' + qspUntranslated(s, "pcs_nickname>", { location: "komp_assbook" }) + '';
   }
   scene.text('You fill in your personal details and within a few moments you\'ve created an account. You can even upload photos to your own page.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -78,7 +78,7 @@ function enterListretrieve(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieClotot ?? 0)[((s as any).ARGS ?? 0)[1]] > 0) {
+  if (((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
@@ -93,7 +93,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + (1);
-    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[((s as any).ARGS ?? 0)[1]]) {
+    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'retr_clothed_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -106,7 +106,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieSwimtot ?? 0)[((s as any).ARGS ?? 0)[1]] > 0) {
+  if (((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
@@ -121,7 +121,7 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
-    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[((s as any).ARGS ?? 0)[1]]) {
+    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'retr_swim_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -175,7 +175,7 @@ function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieClotot ?? 0)[((s as any).ARGS ?? 0)[1]] > 0) {
+  if (((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
@@ -191,7 +191,7 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + (1);
-    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[((s as any).ARGS ?? 0)[1]]) {
+    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'upl_clothed_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -204,7 +204,7 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieSwimtot ?? 0)[((s as any).ARGS ?? 0)[1]] > 0) {
+  if (((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
@@ -220,7 +220,7 @@ function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
-    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[((s as any).ARGS ?? 0)[1]]) {
+    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'upl_swim_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -283,19 +283,24 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
           { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
         ]);
       } else {
-        (s as any).shantsr = ((s as any).shantsr ?? 0) + (1);
-        scene.text('When you click through her profile, you estimate she\'s an unknown middle-class girl. Still, she has a lot of friends and the outfits she\'s wearing in her photos look stylish… she has money to spend.');
-        scene.text('"Why not make her spend some of it on me?" you laugh to yourself, and begin to write a private message.');
-        // TODO-QSP: dynamic text: You send her a copy of the photo with the private message and tell her to transf...
-        scene.text(`You send her a copy of the photo with the private message and tell her to transfer a very modest amount of ${qspFunc(s, 'money', 'string_profit', 5000)} to your bank account. If she doesn't want that photo to be sent to her entire friends list (which you secured before sending the message), the money needs to be on your bank account within 48 hours.`);
-        (s as any).shantbog = ((s as any).shantbog ?? 0) + (1);
-        scene.text('You can barely believe it when you read her profile, this girl is a celebrity! It would be a major scandal if this photo got published!');
-        // TODO-QSP: dynamic text: You send her a copy of the photo with a private message, telling her to transfer...
-        scene.text(`You send her a copy of the photo with a private message, telling her to transfer ${qspFunc(s, 'money', 'string_profit', 30000)} to your bank account. If she doesn't want that photo to be sent to the press, the money needs to be on your bank account within 48 hours.`);
-        scene.actions([
-          { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
-          { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
-        ]);
+        if (((s as any).temp_randB ?? 0) < 95) {
+          (s as any).shantsr = ((s as any).shantsr ?? 0) + (1);
+          scene.text('When you click through her profile, you estimate she\'s an unknown middle-class girl. Still, she has a lot of friends and the outfits she\'s wearing in her photos look stylish… she has money to spend.');
+          scene.text('"Why not make her spend some of it on me?" you laugh to yourself, and begin to write a private message.');
+          // TODO-QSP: dynamic text: You send her a copy of the photo with the private message and tell her to transf...
+          scene.text(`You send her a copy of the photo with the private message and tell her to transfer a very modest amount of ${qspFunc(s, 'money', 'string_profit', 5000)} to your bank account. If she doesn't want that photo to be sent to her entire friends list (which you secured before sending the message), the money needs to be on your bank account within 48 hours.`);
+          scene.actions([
+            { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
+          ]);
+        } else {
+          (s as any).shantbog = ((s as any).shantbog ?? 0) + (1);
+          scene.text('You can barely believe it when you read her profile, this girl is a celebrity! It would be a major scandal if this photo got published!');
+          // TODO-QSP: dynamic text: You send her a copy of the photo with a private message, telling her to transfer...
+          scene.text(`You send her a copy of the photo with a private message, telling her to transfer ${qspFunc(s, 'money', 'string_profit', 30000)} to your bank account. If she doesn't want that photo to be sent to the press, the money needs to be on your bank account within 48 hours.`);
+          scene.actions([
+            { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
+          ]);
+        }
       }
     }
   } },

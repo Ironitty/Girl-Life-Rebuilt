@@ -35,7 +35,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
     scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot ?? 0)}`);
   } else {
-    scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');
+    if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
+      scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');
+    }
   }
   qspCall(s, 'kit_din', 'edahota');
   qspCall(s, 'lover_living', 'kitchen');

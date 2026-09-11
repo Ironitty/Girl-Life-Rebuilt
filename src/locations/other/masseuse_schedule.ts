@@ -1,5 +1,7 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
+import { qspCall } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -12,7 +14,7 @@ function enterScheduleReset(s: GameState, scene: SceneBuilder): void {
     (s as any).ms_j = 1;
     // TODO-QSP: :loop_masseuse_sched_inner
     (s as any).masseuse['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = ((s as any).masseuse ?? 0)?.['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'];
-    if (((s as any).masseuse ?? 0)?.[String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'] !== 1) {
+    if (((s as any).masseuse ?? 0)[((s as any).ms_i ?? 0) + '_shift_' + ((s as any).ms_j ?? 0) + '_taken'] !== 1) {
       (s as any).masseuse['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
     }
     (s as any).masseuse['next_' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
@@ -36,35 +38,43 @@ function enterExitSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[3] === 0) {
+  if ((!((s as any).locArgs?.[3] ?? 0))) {
     (s as any).ms_target_day = ((s as any).daystart ?? 0) - (((s as any).week ?? 0) - 1) + (((s as any).ARGS ?? 0)[1] - 1);
   } else {
-    (s as any).ms_target_day = ((s as any).daystart ?? 0) - (((s as any).week ?? 0) - 1) + 7 + (((s as any).ARGS ?? 0)[1] - 1);
+    if (((s as any).locArgs?.[3] ?? 0) === 1) {
+      (s as any).ms_target_day = ((s as any).daystart ?? 0) - (((s as any).week ?? 0) - 1) + 7 + (((s as any).ARGS ?? 0)[1] - 1);
+    }
   }
-  if (((s as any).ARGS ?? 0)[2] === 1) {
+  if (((s as any).locArgs?.[2] ?? 0) === 1) {
     (s as any).ms_hour1 = 9;
     (s as any).ms_hour2 = 13;
   } else {
-    (s as any).ms_hour1 = 13;
-    (s as any).ms_hour2 = 17;
-    if (((s as any).ARGS ?? 0)[2] === 3) {
-      (s as any).ms_hour1 = 17;
-      (s as any).ms_hour2 = 21;
-    }
-    (s as any).ms_slot = ((s as any).ARGS ?? 0)[2] - 1;
-    (s as any).ms_booked = ((((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).ms_target_day ?? 0)) + ', ' + String(((s as any).ms_slot ?? 0))] !== '') ? (1) : (0));
-    (s as any).ms_worked = ((s as any).masseuse ?? 0)?.['worked_' + String(((s as any).ms_target_day ?? 0)) + '_' + String(qspUntranslated(s, "ARGS[2]", { location: "masseuse_schedule" }))];
-    (s as any).ms_taken = ((s as any).masseuse ?? 0)?.[String((s as any).ms_taken_key ?? 0)];
-    (s as any).ms_past = ((((s as any).ms_target_day ?? 0) < ((s as any).daystart ?? 0)) ? (1) : (0));
-    // TODO-QSP: $result += '<tr><td>'
-    if (((s as any).ms_taken ?? 0) === 1  ||  ((s as any).ms_past ?? 0) === 1  ||  (((s as any).week ?? 0) === ((s as any).ARGS ?? 0)[1]  &&  ((s as any).hour ?? 0) >= ((s as any).ms_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).ms_hour2 ?? 0))) {
-      // TODO-QSP: $result += '<<$ms_time_string>> shift'
-      // TODO-QSP: $result += '</td></tr><tr><td>'
-      // TODO-QSP: $result += '<i>not available</i>'
+    if (((s as any).locArgs?.[2] ?? 0) === 2) {
+      (s as any).ms_hour1 = 13;
+      (s as any).ms_hour2 = 17;
     } else {
+      if (((s as any).locArgs?.[2] ?? 0) === 3) {
+        (s as any).ms_hour1 = 17;
+        (s as any).ms_hour2 = 21;
+      }
+    }
+  }
+  (s as any).ms_slot = ((s as any).ARGS ?? 0)[2] - 1;
+  (s as any).ms_booked = ((((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).ms_target_day ?? 0)) + ', ' + String(((s as any).ms_slot ?? 0))] !== '') ? (1) : (0));
+  (s as any).ms_worked = ((s as any).masseuse ?? 0)?.['worked_' + String(((s as any).ms_target_day ?? 0)) + '_' + String(qspUntranslated(s, "ARGS[2]", { location: "masseuse_schedule" }))];
+  (s as any).ms_taken = ((s as any).masseuse ?? 0)?.[String((s as any).ms_taken_key ?? 0)];
+  (s as any).ms_past = ((((s as any).ms_target_day ?? 0) < ((s as any).daystart ?? 0)) ? (1) : (0));
+  // TODO-QSP: $result += '<tr><td>'
+  if (((s as any).ms_taken ?? 0) === 1  ||  ((s as any).ms_past ?? 0) === 1  ||  (((s as any).week ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).hour ?? 0) >= ((s as any).ms_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).ms_hour2 ?? 0))) {
+    // TODO-QSP: $result += '<<$ms_time_string>> shift'
+    // TODO-QSP: $result += '</td></tr><tr><td>'
+    // TODO-QSP: $result += '<i>not available</i>'
+  } else {
+    if (((s as any).ms_worked ?? 0) === 1) {
       // TODO-QSP: $result += '<<$ms_time_string>> shift'
       // TODO-QSP: $result += '</td></tr><tr><td>'
       // TODO-QSP: $result += '<i>already worked</i>'
+    } else {
       if (((s as any).ms_booked ?? 0) === 1) {
         // TODO-QSP: $result += '<<$ms_time_string>> shift'
         // TODO-QSP: $result += '</td></tr><tr><td>'
@@ -72,9 +82,179 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
       } else {
         // TODO-QSP: $result += '<a href="exec:gs ''jobs'', ''book_slot'', ''city_salon_masseuse'', <<ms_target_day>>, <<...
       }
-      // TODO-QSP: $result += '</td></tr>'
     }
   }
+  // TODO-QSP: $result += '</td></tr>'
+  scene.build();
+}
+
+function enterRandomMasseuseName(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
+  if ((!((s as any).temp_rand ?? 0))) {
+  } else {
+    if (((s as any).temp_rand ?? 0) === 1) {
+    } else {
+      if (((s as any).temp_rand ?? 0) === 2) {
+      } else {
+        if (((s as any).temp_rand ?? 0) === 3) {
+        } else {
+          if (((s as any).temp_rand ?? 0) === 4) {
+          } else {
+            if (((s as any).temp_rand ?? 0) === 5) {
+            } else {
+              if (((s as any).temp_rand ?? 0) === 6) {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterSetScheduleBase(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).masseuse ?? 0)?.['schedule_update'] === 0) {
+    qspCall(s, 'masseuse_schedule', 'schedule_reset');
+  }
+  qspCall(s, 'stat', '');
+  // TODO-QSP: $temp_table +=    '<tr>'
+  // TODO-QSP: $temp_table +=      '<th></th>'
+  // TODO-QSP: $temp_table +=      '<th>Sunday</th>'
+  // TODO-QSP: $temp_table +=      '<th>Monday</th>'
+  // TODO-QSP: $temp_table +=      '<th>Tuesday</th>'
+  // TODO-QSP: $temp_table +=      '<th>Wednesday</th>'
+  // TODO-QSP: $temp_table +=      '<th>Thursday</th>'
+  // TODO-QSP: $temp_table +=      '<th>Friday</th>'
+  // TODO-QSP: $temp_table +=      '<th>Saturday</th>'
+  // TODO-QSP: $temp_table +=    '</tr>'
+  // TODO-QSP: $temp_table +=    '<tr>'
+  // TODO-QSP: $temp_table +=      '<th>First shift</th>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 7, 1, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 1, 1, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 2, 1, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 3, 1, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 4, 1, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 5, 1, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 6, 1, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=    '</tr>'
+  // TODO-QSP: $temp_table +=    '<tr>'
+  // TODO-QSP: $temp_table +=      '<th>Second shift</th>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 7, 2, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 1, 2, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 2, 2, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 3, 2, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 4, 2, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 5, 2, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 6, 2, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=    '</tr>'
+  // TODO-QSP: $temp_table +=    '<tr>'
+  // TODO-QSP: $temp_table +=      '<th>Third shift</th>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 7, 3, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 1, 3, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 2, 3, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 3, 3, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 4, 3, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 5, 3, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=      '<td>'
+  // TODO-QSP: $temp_table +=        '<table>'
+  // TODO-QSP: $temp_table +=          func('masseuse_schedule', 'display_single_shift', 6, 3, ARGS[1])
+  // TODO-QSP: $temp_table +=        '</table>'
+  // TODO-QSP: $temp_table +=      '</td>'
+  // TODO-QSP: $temp_table +=    '</tr>'
+  // TODO-QSP: $temp_table +=  '</table>'
+  // TODO-QSP: dynamic text: <<$temp_table>>
+  scene.text(`${((s as any).temp_table ?? 0)}`);
+  scene.build();
+}
+
+function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'masseuse_schedule', 'set_schedule_base', 0);
+  scene.build();
+}
+
+function enterNextWeekSetSchedule(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'masseuse_schedule', 'set_schedule_base', 1);
   scene.build();
 }
 
@@ -89,6 +269,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'display_single_shift':
       enterDisplaySingleShift(s, scene);
+      break;
+    case 'random_masseuse_name':
+      enterRandomMasseuseName(s, scene);
+      break;
+    case 'set_schedule_base':
+      enterSetScheduleBase(s, scene);
+      break;
+    case 'set_schedule':
+      enterSetSchedule(s, scene);
+      break;
+    case 'next_week_set_schedule':
+      enterNextWeekSetSchedule(s, scene);
       break;
     default:
       enterScheduleReset(s, scene);

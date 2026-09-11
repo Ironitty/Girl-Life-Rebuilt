@@ -15,7 +15,9 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -25,7 +27,7 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Kovalyov', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Kovalyov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -70,15 +72,21 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
-        scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
+          scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
+        } else {
+          scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Igor and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
+          scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -107,15 +115,21 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A165'] >= 60) {
         scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
-        scene.text('You sit next to Vanya and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A165'] <= 20) {
+          scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
+        } else {
+          scene.text('You sit next to Vanya and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A165'] >= 60) {
         scene.text('You sit next to Vanya and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A165'] <= 20) {
+          scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -131,15 +145,21 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
         scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Katja and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
+          scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Katja and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
         scene.text('You sit next to Katya and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
+          scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -155,15 +175,21 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A84'] >= 60) {
         scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Kendra and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A84'] <= 20) {
+          scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Kendra and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A84'] >= 60) {
         scene.text('You sit next to Kendra and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A84'] <= 20) {
+          scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -179,15 +205,21 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 60) {
         scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Lesco. He looks at you, but doesn\'t speak for the duration of the lesson.');
-        scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        if (((s as any).npc_rel ?? 0)?.['A7'] <= 20) {
+          scene.text('You sit next to Lesco. He looks at you, but doesn\'t speak for the duration of the lesson.');
+        } else {
+          scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 60) {
         scene.text('You sit next to Lesco and spend most of the class quietly talking with each other. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
-        scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A7'] <= 20) {
+          scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        } else {
+          scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -203,15 +235,21 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A242'] >= 60) {
         scene.text('You sit next to Lebogang and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lebogang and he gives you a look of disgust before turning and ignoring you. Despite your efforts, he keeps ignoring you until you give up.');
-        scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        if (((s as any).npc_rel ?? 0)?.['A242'] <= 20) {
+          scene.text('You sit next to Lebogang and he gives you a look of disgust before turning and ignoring you. Despite your efforts, he keeps ignoring you until you give up.');
+        } else {
+          scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A242'] >= 60) {
         scene.text('You sit next to Lebogang and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lebogang, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
-        scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        if (((s as any).npc_rel ?? 0)?.['A242'] <= 20) {
+          scene.text('You sit next to Lebogang, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
+        } else {
+          scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -240,7 +278,7 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Keep using your phone', handler: (st: GameState) => {
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
@@ -277,7 +315,9 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -287,7 +327,7 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Pasternak', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Pasternak [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -350,15 +390,21 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
-        scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
+          scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
+        } else {
+          scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Igor and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
+          scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -387,15 +433,21 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A165'] >= 60) {
         scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
-        scene.text('You sit next to Vanya and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A165'] <= 20) {
+          scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
+        } else {
+          scene.text('You sit next to Vanya and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Vanya and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A165'] <= 20) {
+          scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -411,15 +463,21 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
         scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Katja and you try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
+          scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Katja and you try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
         scene.text('You sit next to Katya and spend most of the class quietly talking with each other. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
+          scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -435,15 +493,21 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A84'] >= 60) {
         scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Kendra and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A84'] <= 20) {
+          scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Kendra and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A84'] >= 60) {
         scene.text('You sit next to Kendra and spend most of the class quietly talking with each other. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A84'] <= 20) {
+          scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -459,15 +523,21 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 60) {
         scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Lesco. He looks at you, but doesn\'t speak for the duration of the lesson.');
-        scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        if (((s as any).npc_rel ?? 0)?.['A7'] <= 20) {
+          scene.text('You sit next to Lesco. He looks at you, but doesn\'t speak for the duration of the lesson.');
+        } else {
+          scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 60) {
         scene.text('You sit next to Lesco and spend most of the class quietly talking with each other. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
-        scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A7'] <= 20) {
+          scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        } else {
+          scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -483,15 +553,21 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A242'] >= 60) {
         scene.text('You sit next to Lebogang and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lebogang, who gives you a look of disgust and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
-        scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        if (((s as any).npc_rel ?? 0)?.['A242'] <= 20) {
+          scene.text('You sit next to Lebogang, who gives you a look of disgust and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
+        } else {
+          scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A242'] >= 60) {
         scene.text('You sit next to Lebogang and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lebogang, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
-        scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        if (((s as any).npc_rel ?? 0)?.['A242'] <= 20) {
+          scene.text('You sit next to Lebogang, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
+        } else {
+          scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -520,7 +596,7 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Keep using your phone', handler: (st: GameState) => {
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
     scene.text('You ignore him and continue using your phone. Professor Pasternak shakes his head disapprovingly and continues the lesson.');
@@ -555,7 +631,9 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -565,7 +643,7 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Kovalchuk', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Kovalchuk [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -617,15 +695,21 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
-        scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
+          scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
+        } else {
+          scene.text('You sit next to Igor and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Igor and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A4'] <= 20) {
+          scene.text('You sit next to Igor, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Igor. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -654,15 +738,21 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A165'] >= 60) {
         scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
-        scene.text('You sit next to Vanya and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A165'] <= 20) {
+          scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him until he tells you to leave him alone.');
+        } else {
+          scene.text('You sit next to Vanya and try to talk to him, but he asks you to be quiet so he can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A4'] >= 60) {
         scene.text('You sit next to Vanya and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A165'] <= 20) {
+          scene.text('You sit next to Vanya, but he dismisses all of your attempts to speak with him and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Vanya. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -678,15 +768,21 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
         scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Katja and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
+          scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Katja and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
         scene.text('You sit next to Katya and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
+          scene.text('You sit next to Katja, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -702,15 +798,21 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A84'] >= 60) {
         scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Kendra and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A84'] <= 20) {
+          scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Kendra and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A84'] >= 60) {
         scene.text('You sit next to Kendra and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A84'] <= 20) {
+          scene.text('You sit next to Kendra, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Kendra. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -726,15 +828,21 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 60) {
         scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Lesco. He looks at you, but doesn\'t speak for the duration of the lesson.');
-        scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        if (((s as any).npc_rel ?? 0)?.['A7'] <= 20) {
+          scene.text('You sit next to Lesco. He looks at you, but doesn\'t speak for the duration of the lesson.');
+        } else {
+          scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 60) {
         scene.text('You sit next to Lesco and spend most of the class quietly talking with each other. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
-        scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A7'] <= 20) {
+          scene.text('You sit next to Lesco, who awkwardly puts his head down. You decide to focus on the lecture instead.');
+        } else {
+          scene.text('You sit next to Lesco. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -750,15 +858,21 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A242'] >= 60) {
         scene.text('You sit next to Lebogang and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lebogang, who gives you a look of disgust and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
-        scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        if (((s as any).npc_rel ?? 0)?.['A242'] <= 20) {
+          scene.text('You sit next to Lebogang, who gives you a look of disgust and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
+        } else {
+          scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A242'] >= 60) {
         scene.text('You sit next to Lebogang and you spend most of the class talking quietly with each other.');
       } else {
-        scene.text('You sit next to Lebogang, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
-        scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        if (((s as any).npc_rel ?? 0)?.['A242'] <= 20) {
+          scene.text('You sit next to Lebogang, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
+        } else {
+          scene.text('You sit next to Lebogang and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -787,7 +901,7 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Keep using your phone', handler: (st: GameState) => {
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
     scene.text('You ignore her and continue using your phone as she shakes her head and continues her lecture.');
@@ -824,7 +938,9 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -834,7 +950,7 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Kudelina', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Kudelina [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -879,15 +995,21 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
         scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You\'re about to sit next to Albina when she glares up at you. "Don\'t even think about it, you fucking cum rag."');
-        scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
+        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          scene.text('You\'re about to sit next to Albina when she glares up at you. "Don\'t even think about it, you fucking cum rag."');
+        } else {
+          scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A23'] >= 60) {
         scene.text('You sit next to Albina and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Albina, but she ignores all of your attempts to speak with her and pays attention to the class instead.');
-        scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          scene.text('You sit next to Albina, but she ignores all of your attempts to speak with her and pays attention to the class instead.');
+        } else {
+          scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -903,15 +1025,21 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A13'] >= 60) {
         scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+          scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A13'] >= 60) {
         scene.text('You sit next to Lariska and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+          scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -927,15 +1055,21 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
         scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Vicky and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
+          scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Vicky and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
       }
     } else {
       if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
         scene.text('You sit next to Vicky and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
-        scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
+          scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
       }
     }
     qspCall(s, 'stat', '');
@@ -952,42 +1086,26 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A267'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A268'] >= 60) {
         scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with them before a fellow student asks you to be quiet.');
       } else {
-        scene.text('You approach the twins, who immediately glare at you in disgust. "Ugh, what could this filthy slut want with us?" one of them asks in an annoyed tone.');
-        scene.text('"I don\'t know, but I bet she still has cum from her last fuck dripping out of her dirty pussy," the other replies and they both burst into laughter.');
-        if ((((s as any).npc_rel ?? 0)?.['A267'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A267'] < 60)  &&  (((s as any).npc_rel ?? 0)?.['A268'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] < 60)) {
-          scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
-        }
-        if (((s as any).npc_rel ?? 0)?.['A267'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A268'] >= 60) {
-          scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+        if (((s as any).npc_rel ?? 0)?.['A267'] <= 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] <= 20) {
+          scene.text('You approach the twins, who immediately glare at you in disgust. "Ugh, what could this filthy slut want with us?" one of them asks in an annoyed tone.');
+          scene.text('"I don\'t know, but I bet she still has cum from her last fuck dripping out of her dirty pussy," the other replies and they both burst into laughter.');
         } else {
+          if ((((s as any).npc_rel ?? 0)?.['A267'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A267'] < 60)  &&  (((s as any).npc_rel ?? 0)?.['A268'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] < 60)) {
+            scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
+          }
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A267'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A268'] >= 60) {
+        scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A267'] <= 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] <= 20) {
           scene.text('You sit next to Mia and Yana and try to talk to them, but they just ignore you and chat and giggle amongst themselves, trying to think of a prank they can pull on Professor Kudelina instead.');
+        } else {
           if ((((s as any).npc_rel ?? 0)?.['A267'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A267'] < 60)  &&  (((s as any).npc_rel ?? 0)?.['A268'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] < 60)) {
             scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with them before a fellow student asks you to be quiet.');
           }
         }
-        qspCall(s, 'stat', '');
-        scene.actions([
-          { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'patient_care'] },
-        ]);
-      }
-      scene.actions([
-        { label: 'Sofia', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A260', 'like');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    scene.img('images/locations/city/island/university/classroom/talk.jpg');
-    if (((s as any).fame ?? 0)?.['city_slut'] >= 150) {
-      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
-        scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
-      } else {
-        scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
-        scene.text('You sit next to Sofia and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
-      }
-    } else {
-      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
-        scene.text('You sit next to Sofia and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
-      } else {
-        scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
-        scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
       }
     }
     qspCall(s, 'stat', '');
@@ -995,10 +1113,39 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'patient_care'] },
     ]);
   } },
-      ]);
+      { label: 'Sofia', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A260', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 150) {
+      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
+        scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A260'] <= 20) {
+          scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Sofia and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
+        scene.text('You sit next to Sofia and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A260'] <= 20) {
+          scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
     }
+    qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Play with your phone', handler: (st: GameState) => {
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'patient_care'] },
+    ]);
+  } },
+    ]);
+  } },
+    { label: 'Play with your phone', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
     scene.text('You take out your phone and start playing a game, hoping that the boring lesson will be over soon.');
     if ((Math.floor(Math.random() * 2) + 0) > 0) {
@@ -1017,7 +1164,7 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Keep using your phone', handler: (st: GameState) => {
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
@@ -1039,9 +1186,532 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
+  ]);
+  scene.build();
+}
+
+function enterAnatomyAndPhysiology_101(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'grades', 'attend_class', 'uni_nursing_semester_1', 'anatomy and physiology 101');
+  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'medcn', 5);
+  qspCall(s, 'stat', '');
+  scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+  scene.text('You walk into the classroom and see Professor Marinova sitting behind her desk. The rest of your classmates walk in one by one and she smiles at each one as they enter.');
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
+  if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
+    (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
+  } else {
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
+  }
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Listen attentively to Professor Marinova [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Listen attentively to Professor Marinova [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if (((s as any).will_cost ?? 0) > 0) {
+      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    }
+    qspCall(s, 'grades', 'class_activity_attributes', 'uni_nursing_semester_1', 'anatomy and physiology 101', ((s as any).pcs_intel ?? 0));
+    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+    (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+    scene.text('You listen attentively to Professor Marinova for the duration of the class. She manages to make today\'s lesson very interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
+    scene.actions([
+      { label: 'Ask a question about the lesson', handler: (st: GameState) => {
+    qspCall(s, 'grades', 'class_activity_attributes', 'uni_nursing_semester_1', 'anatomy and physiology 101', ((s as any).pcs_chrsm ?? 0));
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/question1.jpg');
+    scene.text('Professor Marinova nods approvingly, happy to see her students engaged and trying their best. She happily spends some extra time explaining the topic again, and answers any extra questions you might have. You feel smarter, thoroughly understanding today\'s lesson now.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
     ]);
   } },
     ]);
+  }
+  scene.actions([
+    { label: 'Don\'t pay attention', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/bored.jpg');
+    scene.text('Despite her best efforts to make it interesting, Professor Marinova\'s lecture is very dry and boring. You\'re having a hard time paying attention.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+    { label: 'Talk to a classmate', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    scene.text('As you arrive in class, you look around and decide to sit next to…');
+    scene.actions([
+      { label: 'Albina', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A23', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 250  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      if (((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
+        scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          scene.text('You\'re about to sit next to Albina when she glares up at you. "Don\'t even think about it, you fucking cum rag."');
+        } else {
+          scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A23'] >= 60) {
+        scene.text('You sit next to Albina and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          scene.text('You sit next to Albina, but she ignores all of your attempts to speak with her and pays attention to the class instead.');
+        } else {
+          scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+      { label: 'Lariska', handler: (st: GameState) => {
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 200  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
+      if (((s as any).npc_rel ?? 0)?.['A13'] >= 60) {
+        scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+          scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A13'] >= 60) {
+        scene.text('You sit next to Lariska and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+          scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+      { label: 'Vicky', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A15', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 150  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+      if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
+        scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
+          scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Vicky and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
+        scene.text('You sit next to Vicky and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
+          scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+      { label: 'Mia and Yana', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A267', 'like');
+    qspCall(s, 'npc_relationship', 'modify', 'A268', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 150) {
+      if (((s as any).npc_rel ?? 0)?.['A267'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A268'] >= 60) {
+        scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with them before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A267'] <= 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] <= 20) {
+          scene.text('You approach the twins, who immediately glare at you in disgust. "Ugh, what could this filthy slut want with us?" one of them asks in an annoyed tone.');
+          scene.text('"I don\'t know, but I bet she still has cum from her last fuck dripping out of her dirty pussy," the other replies and they both burst into laughter.');
+        } else {
+          if ((((s as any).npc_rel ?? 0)?.['A267'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A267'] < 60)  &&  (((s as any).npc_rel ?? 0)?.['A268'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] < 60)) {
+            scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
+          }
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A267'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A268'] >= 60) {
+        scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A267'] <= 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] <= 20) {
+          scene.text('You sit next to Mia and Yana and try to talk to them, but they just ignore you and chat and giggle amongst themselves, trying to think of a prank they can pull on Professor Marinova instead.');
+        } else {
+          if ((((s as any).npc_rel ?? 0)?.['A267'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A267'] < 60)  &&  (((s as any).npc_rel ?? 0)?.['A268'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] < 60)) {
+            scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with them before a fellow student asks you to be quiet.');
+          }
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+      { label: 'Sofia', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A260', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 150) {
+      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
+        scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A260'] <= 20) {
+          scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Sofia and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
+        scene.text('You sit next to Sofia and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A260'] <= 20) {
+          scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+    ]);
+  } },
+    { label: 'Play with your phone', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/phone.jpg');
+    scene.text('You take out your phone and start playing a game, hoping that the boring lesson will be over soon.');
+    if ((Math.floor(Math.random() * 2) + 0) > 0) {
+      scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Professor Marinova\'s oblivious nose.');
+      scene.actions([
+        { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+      ]);
+    } else {
+      scene.text('You hear Professor Marinova clear her throat and glance up to see her sternly looking at you.');
+      qspCall(s, 'willpower', 'misc', 'self', 'medium');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/island/university/classroom/phone.jpg');
+    scene.text('You ignore her and keep using your phone as she shakes her head and goes back to her lecture.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Put your phone away', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/bored.jpg');
+    scene.text('You decide not to aggravate the situation and put your phone away. Professor Marinova then continues the lesson.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'anatomy_and_physiology'] },
+    ]);
+  } },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterExaminationAndTreatment_101(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'grades', 'attend_class', 'uni_nursing_semester_1', 'examination and treatment 101');
+  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'medcn', 5);
+  qspCall(s, 'stat', '');
+  scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+  scene.text('You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Borisov enters the classroom and closes the door.');
+  scene.text('He then turns to the class and begins today\'s lecture.');
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
+  if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
+    (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
+  } else {
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
+  }
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Listen attentively to Professor Borisov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Listen attentively to Professor Borisov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if (((s as any).will_cost ?? 0) > 0) {
+      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    }
+    qspCall(s, 'grades', 'class_activity_attributes', 'uni_nursing_semester_1', 'examination and treatment 101', ((s as any).pcs_intel ?? 0));
+    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+    (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+    scene.text('You listen attentively to Professor Borisov for the duration of the class. He somehow manages to make today\'s lesson very interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
+    scene.actions([
+      { label: 'Ask a question about the lesson', handler: (st: GameState) => {
+    qspCall(s, 'grades', 'class_activity_attributes', 'uni_nursing_semester_1', 'examination and treatment 101', ((s as any).pcs_chrsm ?? 0));
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/question1.jpg');
+    scene.text('Professor Borisov spends some extra time explaining the topic again, and answers any extra questions you might have. You feel smarter, thoroughly understanding today\'s lesson now.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Don\'t pay attention', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/bored.jpg');
+    scene.text('As per usual, Professor Borisov\'s lecture is very dry and boring. You\'re having a hard time paying attention as he slowly describes things in painfully excessive detail.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+    { label: 'Talk to a classmate', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    scene.text('As you arrive in class, you look around and decide to sit next to…');
+    scene.actions([
+      { label: 'Albina', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A23', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 250  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      if (((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
+        scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          scene.text('You\'re about to sit next to Albina when she glares up at you. "Don\'t even think about it, you fucking cum rag."');
+        } else {
+          scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A23'] >= 60) {
+        scene.text('You sit next to Albina and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          scene.text('You sit next to Albina, but she ignores all of your attempts to speak with her and pays attention to the class instead.');
+        } else {
+          scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+      { label: 'Lariska', handler: (st: GameState) => {
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 200  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
+      if (((s as any).npc_rel ?? 0)?.['A13'] >= 60) {
+        scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+          scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Lariska and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A13'] >= 60) {
+        scene.text('You sit next to Lariska and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+          scene.text('You sit next to Lariska, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+      { label: 'Vicky', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A15', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 150  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+      if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
+        scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
+          scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Vicky and try to talk to her, but she asks you to be quiet so she can focus on the lecture.');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A15'] >= 60) {
+        scene.text('You sit next to Vicky and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
+          scene.text('You sit next to Vicky, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+      { label: 'Mia and Yana', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A267', 'like');
+    qspCall(s, 'npc_relationship', 'modify', 'A268', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 150) {
+      if (((s as any).npc_rel ?? 0)?.['A267'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A268'] >= 60) {
+        scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with them before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A267'] <= 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] <= 20) {
+          scene.text('You approach the twins, who immediately glare at you in disgust. "Ugh, what could this filthy slut want with us?" one of them asks in an annoyed tone.');
+          scene.text('"I don\'t know, but I bet she still has cum from her last fuck dripping out of her dirty pussy," the other replies and they both burst into laughter.');
+        } else {
+          if ((((s as any).npc_rel ?? 0)?.['A267'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A267'] < 60)  &&  (((s as any).npc_rel ?? 0)?.['A268'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] < 60)) {
+            scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
+          }
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A267'] >= 60  &&  ((s as any).npc_rel ?? 0)?.['A268'] >= 60) {
+        scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A267'] <= 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] <= 20) {
+          scene.text('You sit next to Mia and Yana and try to talk to them, but they just ignore you and chat and giggle amongst themselves, trying to think of a prank they can pull on Professor Borisov instead.');
+        } else {
+          if ((((s as any).npc_rel ?? 0)?.['A267'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A267'] < 60)  &&  (((s as any).npc_rel ?? 0)?.['A268'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A268'] < 60)) {
+            scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with them before a fellow student asks you to be quiet.');
+          }
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+      { label: 'Sofia', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A260', 'like');
+    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+    scene.img('images/locations/city/island/university/classroom/talk.jpg');
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 150) {
+      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
+        scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A260'] <= 20) {
+          scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
+        } else {
+          scene.text('You sit next to Sofia and try to talk to her, but she asks you to be quiet so she can focus on the lecture');
+        }
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A260'] >= 60) {
+        scene.text('You sit next to Sofia and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A260'] <= 20) {
+          scene.text('You sit next to Sofia, but she dismisses all of your attempts to speak with her and spends the lesson ignoring you and paying attention to the class instead.');
+        } else {
+          scene.text('You sit next to Sofia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+    ]);
+  } },
+    { label: 'Play with your phone', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/phone.jpg');
+    scene.text('You take out your phone and start playing a game, hoping that the boring lesson will be over soon.');
+    if ((Math.floor(Math.random() * 2) + 0) > 0) {
+      scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Professor Borisov\'s oblivious nose.');
+      scene.actions([
+        { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+      ]);
+    } else {
+      scene.text('You hear Professor Borisov quietly clear his throat and glance up to see him looking at you with his best attempt to look stern.');
+      qspCall(s, 'willpower', 'misc', 'self', 'medium');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/island/university/classroom/phone.jpg');
+    scene.text('You ignore him and keep using your phone. He watches you in defeat before going back to his lecture.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Put your phone away', handler: (st: GameState) => {
+    scene.img('images/locations/city/island/university/classroom/bored.jpg');
+    scene.text('You decide not to aggravate the situation and put your phone away. Professor Borisov then continues the lesson.');
+    scene.actions([
+      { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev1', 'examination_and_treatment'] },
+    ]);
+  } },
+      ]);
+    }
   } },
   ]);
   scene.build();
@@ -1061,6 +1731,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'patient_care_101':
       enterPatientCare_101(s, scene);
+      break;
+    case 'anatomy_and_physiology_101':
+      enterAnatomyAndPhysiology_101(s, scene);
+      break;
+    case 'examination_and_treatment_101':
+      enterExaminationAndTreatment_101(s, scene);
       break;
     default:
       enterGeneralEducation_101(s, scene);

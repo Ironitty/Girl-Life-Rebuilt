@@ -45,12 +45,15 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
     scene.text('A cozy bar made of fine hard wood. There are a few patrons here, but no one you can recognize. Probably travelling guests.');
     scene.text('The barman is cleaning some glasses, occasionally looking your way, probably checking if you want to order something.');
   } else {
-    scene.img('images/locations/shared/brothel/bardrunk.jpg');
-    scene.text('A cozy bar made of fine hard wood. There are a few patrons here, but no one you can recognize. Probably travelling guests.');
-    scene.text('You are drunk and the barman is obviously enjoying the presence of a nice girl in such a state, often flirting with you and enjoying your looks.');
-    scene.img('images/locations/shared/brothel/barwasted.jpg');
-    scene.text('A cozy bar made of fine hard wood. There are a few patrons here, but no one you can recognize. Probably travelling guests.');
-    scene.text('You are wasted, lying with your head on the bar, barely keeping awake. The barman starts to be nervous, probably afraid of scaring away the regular guests.');
+    if (((s as any).alko ?? 0) < 6) {
+      scene.img('images/locations/shared/brothel/bardrunk.jpg');
+      scene.text('A cozy bar made of fine hard wood. There are a few patrons here, but no one you can recognize. Probably travelling guests.');
+      scene.text('You are drunk and the barman is obviously enjoying the presence of a nice girl in such a state, often flirting with you and enjoying your looks.');
+    } else {
+      scene.img('images/locations/shared/brothel/barwasted.jpg');
+      scene.text('A cozy bar made of fine hard wood. There are a few patrons here, but no one you can recognize. Probably travelling guests.');
+      scene.text('You are wasted, lying with your head on the bar, barely keeping awake. The barman starts to be nervous, probably afraid of scaring away the regular guests.');
+    }
   }
   scene.actions([
     { label: 'Leave the bar', goto: ['brothel', 'lobby'] },
@@ -85,8 +88,11 @@ function enterOrder(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0) <= 3) {
     scene.img('images/locations/shared/brothel/barorder.jpg');
   } else {
-    scene.img('images/locations/shared/brothel/bardrunk.jpg');
-    scene.img('images/locations/shared/brothel/barwasted.jpg');
+    if (((s as any).alko ?? 0) < 6) {
+      scene.img('images/locations/shared/brothel/bardrunk.jpg');
+    } else {
+      scene.img('images/locations/shared/brothel/barwasted.jpg');
+    }
   }
   scene.text('You signal to the barman that you want something.');
   scene.text('"What would you like miss?"');
@@ -276,7 +282,7 @@ function enterAbducted7(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Admit that you somehow liked it as you fancy to be dominated', handler: (st: GameState) => {
+      { label: 'Admit that you somehow liked it as you fancy to be dominated [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');

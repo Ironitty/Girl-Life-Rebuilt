@@ -73,7 +73,7 @@ function enterTourran2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Slip away to the beach', handler: (st: GameState) => {
+        { label: 'Slip away to the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'exp_gain', 'persuas', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'stat', '');
@@ -145,7 +145,7 @@ function enterTourran5(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Peek', handler: (st: GameState) => {
+      { label: 'Peek [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'voyeur_sex', 10);
     qspCall(s, 'arousal', 'end');
@@ -355,6 +355,9 @@ function enterRiverseduce2(s: GameState, scene: SceneBuilder): void {
 function enterRiverclean(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/palace/river/river${Math.floor(Math.random() * 3) + 1}.jpg`);
   if (((s as any).riverbusted ?? 0) === 2) {
+  } else {
+    if (((s as any).riverbusted ?? 0) === 1) {
+    }
   }
   scene.text('You go back into the water again to wash off the cum, feeling guilty, certain if you don\'t hurry someone will decide to come looking for you.');
   // TODO-QSP: dynamic text: The palace grounds are big, but you would rather avoid that situation entirely. ...
@@ -386,24 +389,157 @@ function enterToursdone(s: GameState, scene: SceneBuilder): void {
       { label: 'Follow him', goto: ['tour_guide', 'backroom'] },
     ]);
   } else {
-    // TODO-QSP: dynamic text: Walking into the tour office, you find your boss waiting for you. "Follow me, <<...
-    scene.text(`Walking into the tour office, you find your boss waiting for you. "Follow me, ${((s as any).pcs_firstname ?? 0)}," he says with an unpleasant look on his face, and heads to a room way in the back.`);
-    if (((s as any).rivermissed ?? 0) >= 8  &&  ((s as any).riverbusted ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 100) {
+    if (((s as any).rivermissed ?? 0) >= 6  &&  ((s as any).riverbusted ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 100) {
       // TODO-QSP: dynamic text: Walking into the tour office, you find your boss waiting for you. "Follow me, <<...
       scene.text(`Walking into the tour office, you find your boss waiting for you. "Follow me, ${((s as any).pcs_firstname ?? 0)}," he says with an unpleasant look on his face, and heads to a room way in the back.`);
       scene.actions([
         { label: 'Follow him', goto: ['tour_guide', 'backroom'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Done for the day', goto: ['pav_park', 'start'] },
-        { label: 'Resign from your job', goto: ['tour_guide', 'resign'] },
-      ]);
+      if (((s as any).rivermissed ?? 0) >= 8  &&  ((s as any).riverbusted ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 100) {
+        // TODO-QSP: dynamic text: Walking into the tour office, you find your boss waiting for you. "Follow me, <<...
+        scene.text(`Walking into the tour office, you find your boss waiting for you. "Follow me, ${((s as any).pcs_firstname ?? 0)}," he says with an unpleasant look on his face, and heads to a room way in the back.`);
+        scene.actions([
+          { label: 'Follow him', goto: ['tour_guide', 'backroom'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Done for the day', goto: ['pav_park', 'start'] },
+          { label: 'Resign from your job', goto: ['tour_guide', 'resign'] },
+        ]);
+      }
     }
-    scene.actions([
-      { label: 'Follow him', goto: ['tour_guide', 'backroom'] },
-    ]);
   }
+  scene.build();
+}
+
+function enterResign(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/palace/office/angry_boss.jpg');
+  scene.text('You let your boss know you have decided to quit your job for the rest of the summer. He is not pleased about you quitting, but manages to keep his temper and lets you know if you want to come back next summer he will at least consider it.');
+  scene.actions([
+    { label: 'Resign', handler: (st: GameState) => {
+    qspCall(s, 'jobs', 'set_terminated', 'pav_tour_guide');
+  }, goto: ['pav_park', 'start'] },
+    { label: 'Change your mind', goto: ['pav_park', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterBackroom(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/palace/office/angry_boss.jpg');
+  scene.text('You enter a small office, far enough from the front desk that you know anything could happen back here and nobody would even notice.');
+  if (((s as any).riverbusted ?? 0) === 2) {
+    // TODO-QSP: dynamic text: "As usual, you were missing again, <<$pcs_firstname>>. I guess you don't learn e...
+    scene.text(`"As usual, you were missing again, ${((s as any).pcs_firstname ?? 0)}. I guess you don't learn easily. You know your options, get naked and in the position, or get out."`);
+  } else {
+    if (((s as any).riverbusted ?? 0) === 1) {
+      // TODO-QSP: dynamic text: "I went to check up on you today, and you were missing, again, <<$pcs_firstname>...
+      scene.text(`"I went to check up on you today, and you were missing, again, ${((s as any).pcs_firstname ?? 0)}. I thought you would be smarter about this. I told you last time if it happened again, your punishment would be a lot worse."`);
+      scene.text('"But, sir, I…" is all you manage before he makes a cutting motion with his hand.');
+      scene.text('"This time you will get the strap, entirely nude, and it will hurt for a long time. If you cannot handle that, then get out and don\'t come back. It\'s that simple."');
+    } else {
+      if (((s as any).riverbusted ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 100) {
+        scene.text('"You were gone a long time today, several tours were delayed as we had to scramble to get things back on track. Where did you disappear to?"');
+        scene.text('"I had to use the restroom," you try to lie. "I\'m sorry, it is just that time of the month, I had a lot to clean up!"');
+        // TODO-QSP: dynamic text: He stares at you a moment before saying, "Lying and slacking off at work, I can ...
+        scene.text(`He stares at you a moment before saying, "Lying and slacking off at work, I can believe it, after the things I have heard about you around town, ${((s as any).pcs_firstname ?? 0)}. Do you think I'm stupid? I had somebody check the bathrooms, you were not in any of them."`);
+        scene.text('You open your mouth to respond but he cuts you off. "You have two choices. Either you don\'t work here anymore, or you take your punishment, and I keep a closer eye on you."');
+        scene.text('"What punishment, Sir?" You ask nervously, afraid to hear the answer.');
+        // TODO-QSP: dynamic text: "Corporal Punishment, <<$pcs_firstname>>. Either you bare your butt and bend ove...
+        scene.text(`"Corporal Punishment, ${((s as any).pcs_firstname ?? 0)}. Either you bare your butt and bend over this desk, or you turn in your uniform, and never come back. If you let me, I can make a decent person out of you, now decide."`);
+      } else {
+        scene.text('"You were gone a long time today, several tours were delayed as we had to scramble to get things back on track. Where did you disappear to?"');
+        scene.text('"I had to use the restroom," you try to lie. "I\'m sorry, it is just that time of the month, I had a lot to clean up!"');
+        // TODO-QSP: dynamic text: He stares at you a moment before saying, "Lying and slacking off at work, I cann...
+        scene.text(`He stares at you a moment before saying, "Lying and slacking off at work, I cannot believe you, ${((s as any).pcs_firstname ?? 0)}. Do you think I'm stupid? I had somebody check the bathrooms, you were not in any of them."`);
+        scene.text('You open your mouth to respond but he cuts you off. "You have two choices. Either you don\'t work here anymore, or you take your punishment, and I keep a closer eye on you, from now on."');
+        scene.text('"What punishment, Sir?" You ask nervously, afraid to hear the answer.');
+        // TODO-QSP: dynamic text: "Corporal Punishment, <<$pcs_firstname>>. Either you bare your butt and bend ove...
+        scene.text(`"Corporal Punishment, ${((s as any).pcs_firstname ?? 0)}. Either you bare your butt and bend over this desk, or you turn in your uniform, and never come back. Decide."`);
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Take your punishment', goto: ['tour_guide', 'spank'] },
+    { label: 'Quit your job', handler: (st: GameState) => {
+    qspCall(s, 'jobs', 'set_fired', 'pav_tour_guide');
+    qspCall(s, 'mood', 'lower', 'large');
+    qspCall(s, 'stat', '');
+  }, goto: ['pav_park', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterSpank(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).riverbusted ?? 0) === 2) {
+    scene.img('images/locations/pavlovsk/palace/office/office_spank2.mp4');
+    scene.text('You strip out of your clothes quickly, wanting this to be over as soon as possible. He orders you into position and starts swinging as soon as your ass is in the air. He really puts his all into this, determined to break you.');
+    scene.text('Unlike the first two punishments, however, there is a secret part of you that enjoys this now. Each hit still makes you scream, tears still fall from your face, but your pussy gets wetter and wetter with each slap of the leather strap against your cheeks.');
+    scene.text('When a moan slips out, he pauses, a bit confused, before finding the strength to hit even harder than before! Each hit comes through equal parts pain and pleasure. Before long you are waiting for the next smack, in the same way a junkie looks forward to his next high.');
+    scene.text('Finally realizing he didn\'t manage to break you, his arms drop, and he just says tiredly, "Get out." You gather up your clothes and start to get dressed, but he stops you. "Just leave," he says. Shrugging, you head to the changing room naked to check out your new color.');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+    qspCall(s, 'arousal', 'BDSM', 10, 'maso', 'exhibitionism', 'rough', 'sub');
+    qspCall(s, 'mood', 'raise', 'medium');
+    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(s, 'stat', '');
+  } else {
+    if (((s as any).riverbusted ?? 0) === 1) {
+      scene.img('images/locations/pavlovsk/palace/office/office_spank2.mp4');
+      scene.text('You strip out of your clothes slowly, not wanting to face this, but he starts getting annoyed and snaps at you to hurry up. Once you\'re naked, he instructs you to assume the lunge position, hands and feet out wide, ass in the air.');
+      scene.text('He pulls out a long leather strap, lines himself up, and starts swinging. Since it is your second offense, he doesn\'t hold back at all; each hit literally forces a scream from your mouth and tears from your eyes.');
+      scene.text('It seems to go on forever, you have long since lost count, and you suspect he has too. Every time you flinch away from a hit just before he lands it, he pulls back, orders you back into position, and informs you, you get one extra for doing it.');
+      scene.text('When it does finally end, you collapse to the ground and just cry, you never expected a spanking could hurt this bad. He gives you a moment to collect yourself, then tells you to get dressed and get out.');
+      qspCall(s, 'mood', 'lower', 'medium');
+      qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
+      qspCall(s, 'stat', '');
+    } else {
+      scene.img('images/locations/pavlovsk/palace/office/office_spank1.jpg');
+      scene.text('You drop your shorts, pull down your underwear, and bend over the desk. He pulls out a long, bendy looking cane and tells you if you move you will get extra lashes.');
+      scene.text('You resolve to hold your position as best you can, though the thought of what\'s coming is terrifying. You grip the edges of the desk to help keep yourself in one place.');
+      scene.text('The first hit still catches you off-guard, making you cry out, though it doesn\'t sting as badly as you expected. At least not right away.');
+      scene.text('By the fourth smack you can feel each mark on your butt, and tears are definitely in your eyes. By the tenth you are bawling like a child and screaming with each swat he lands.');
+      // TODO-QSP: dynamic text: After your 15th, he says he is done. "Let that be a lesson, <<$pcs_firstname>>. ...
+      scene.text(`After your 15th, he says he is done. "Let that be a lesson, ${((s as any).pcs_firstname ?? 0)}. If this has to happen again, it will be a lot worse." You can barely imagine worse, as you try and pull your underwear back up, fingers trembling.`);
+      qspCall(s, 'mood', 'lower', 'medium');
+      qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
+      qspCall(s, 'stat', '');
+    }
+  }
+  scene.actions([
+    { label: 'Go change', goto: ['tour_guide', 'after_spank'] },
+  ]);
+  scene.build();
+}
+
+function enterAfterSpank(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).riverbusted ?? 0) === 2) {
+    scene.img(`images/locations/pavlovsk/palace/office/after_spank${Math.floor(Math.random() * 2) + 2}.jpg`);
+    scene.text('You carefully check out your reddened butt in the mirror, before you start to get dressed, wishing you could put some lotion on it and masturbate while you wait for the stinging to subside.');
+    if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+      (s as any).pcs_makeup = 0;
+    }
+    qspCall(s, 'arousal', 'end');
+  } else {
+    if (((s as any).riverbusted ?? 0) === 1) {
+      scene.img(`images/locations/pavlovsk/palace/office/after_spank${Math.floor(Math.random() * 2) + 2}.jpg`);
+      scene.text('Your hands are shaking so bad that you can barely get undressed again. Your entire ass is bright red from the paddle, and you swear to yourself you will never get caught slacking off again!');
+      scene.text('A little voice in the back of your mind tells you this will probably happen more, though you try and ignore it. Once you finish getting your everyday clothes back on, you put your uniform in the basket and leave.');
+      (s as any).riverbusted = 2;
+      if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+        (s as any).pcs_makeup = 0;
+      }
+    } else {
+      scene.img('images/locations/pavlovsk/palace/office/after_spank1.jpg');
+      scene.text('You go into the changing room and check the marks on your butt while taking off your uniform. They sting pretty badly, and you hope you won\'t find out how much worse it can get.');
+      (s as any).riverbusted = 1;
+      if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+        (s as any).pcs_makeup = 0;
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Leave the office', goto: ['pav_park', 'start'] },
+  ]);
   scene.build();
 }
 
@@ -457,6 +593,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'toursdone':
       enterToursdone(s, scene);
+      break;
+    case 'resign':
+      enterResign(s, scene);
+      break;
+    case 'backroom':
+      enterBackroom(s, scene);
+      break;
+    case 'spank':
+      enterSpank(s, scene);
+      break;
+    case 'after_spank':
+      enterAfterSpank(s, scene);
       break;
     default:
       enterApplyForJob(s, scene);

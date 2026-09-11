@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 2+: To be added later
   // TODO-QSP: PursePrice: The full price of the purse
   qspCall(s, 'purses', 'reset_PurseVars');
-  if (((s as any).loc ?? 0)('attributes_\'0\'_purses')) {
+  if (((s as any).loc ?? 0)('$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_purses')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_purses', ARGS[1]
   }
   if ((!((s as any).PurseQuality ?? 0))) {

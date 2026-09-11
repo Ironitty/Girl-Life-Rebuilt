@@ -72,7 +72,7 @@ function enterSan0(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Drive him away', handler: (st: GameState) => {
+      { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -103,7 +103,7 @@ function enterSan1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Drive him away', handler: (st: GameState) => {
+      { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -131,7 +131,7 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'gangbang', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -172,7 +172,7 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Run away', handler: (st: GameState) => {
+      { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'rape', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -180,44 +180,111 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_run ?? 0) < 10) {
       (s as any).peshimraperand = Math.floor(Math.random() * 12) + 0;
     } else {
-      (s as any).peshimraperand = Math.floor(Math.random() * 21) + 0;
-      if (((s as any).pcs_run ?? 0) < 30) {
-        (s as any).peshimraperand = Math.floor(Math.random() * 31) + 0;
+      if (((s as any).pcs_run ?? 0) < 20) {
+        (s as any).peshimraperand = Math.floor(Math.random() * 21) + 0;
       } else {
-        (s as any).peshimraperand = Math.floor(Math.random() * 41) + 0;
-        if (((s as any).pcs_run ?? 0) < 50) {
-          (s as any).peshimraperand = Math.floor(Math.random() * 51) + 0;
+        if (((s as any).pcs_run ?? 0) < 30) {
+          (s as any).peshimraperand = Math.floor(Math.random() * 31) + 0;
         } else {
-          (s as any).peshimraperand = Math.floor(Math.random() * 61) + 0;
-          if (((s as any).pcs_run ?? 0) < 70) {
-            (s as any).peshimraperand = Math.floor(Math.random() * 71) + 0;
+          if (((s as any).pcs_run ?? 0) < 40) {
+            (s as any).peshimraperand = Math.floor(Math.random() * 41) + 0;
           } else {
-            (s as any).peshimraperand = Math.floor(Math.random() * 81) + 0;
-            if (((s as any).pcs_run ?? 0) < 90) {
-              (s as any).peshimraperand = Math.floor(Math.random() * 91) + 0;
+            if (((s as any).pcs_run ?? 0) < 50) {
+              (s as any).peshimraperand = Math.floor(Math.random() * 51) + 0;
             } else {
-              (s as any).peshimraperand = Math.floor(Math.random() * 90) + 11;
-            }
-            if (((s as any).peshimraperand ?? 0) < 11) {
-              scene.text('You tried to run away but the guy caught you.');
-              scene.actions([
-                { label: 'Continue', goto: ['military', 'rape'] },
-              ]);
-            } else {
-              scene.text('You are rushing headlong, crashing through the bushes. Finally you ran back to the camp.');
-              scene.actions([
-                { label: 'Continue', goto: ['military', 'start'] },
-              ]);
+              if (((s as any).pcs_run ?? 0) < 60) {
+                (s as any).peshimraperand = Math.floor(Math.random() * 61) + 0;
+              } else {
+                if (((s as any).pcs_run ?? 0) < 70) {
+                  (s as any).peshimraperand = Math.floor(Math.random() * 71) + 0;
+                } else {
+                  if (((s as any).pcs_run ?? 0) < 80) {
+                    (s as any).peshimraperand = Math.floor(Math.random() * 81) + 0;
+                  } else {
+                    if (((s as any).pcs_run ?? 0) < 90) {
+                      (s as any).peshimraperand = Math.floor(Math.random() * 91) + 0;
+                    } else {
+                      (s as any).peshimraperand = Math.floor(Math.random() * 90) + 11;
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
+    }
+    if (((s as any).peshimraperand ?? 0) < 11) {
+      scene.text('You tried to run away but the guy caught you.');
+      scene.actions([
+        { label: 'Continue', goto: ['military', 'rape'] },
+      ]);
+    } else {
+      scene.text('You are rushing headlong, crashing through the bushes. Finally you ran back to the camp.');
+      scene.actions([
+        { label: 'Continue', goto: ['military', 'start'] },
+      ]);
     }
   } },
     ]);
   }
   scene.actions([
     { label: 'Ignore it', goto: ['military', 'rape'] },
+  ]);
+  scene.build();
+}
+
+function enterRape(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcgeneratec', '', 0, 'rapist', Math.floor(Math.random() * 13) + 18);
+  qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+  (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  (s as any).guy = ((s as any).guy ?? 0) + (1);
+  scene.text('You suddenly feel a blow on the back of your head, and lose consciousness.');
+  scene.text('…');
+  scene.img('images/locations/city/shared/military/sex/rape1.jpg');
+  scene.text('…');
+  scene.text('You woke up in a barn with a bag on your head, so you can\'t see anything. You also have a headache from the impact to your head, and a leash around your neck.');
+  scene.actions([
+    { label: 'Shout', handler: (st: GameState) => {
+    scene.img('images/locations/city/shared/military/sex/rape2.jpg');
+    scene.text('You began to cry for help, when a dick is stuffed in your mouth.');
+    scene.text('"Here\'s something to shut your mouth", came the voice of a rapist.');
+    scene.text('You tried to spit it out, but it\'s getting worse as he thrust it down your throat, and began to throatfuck you.');
+    qspCall(s, 'arousal', 'bj', 5, 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).cumprecheck = 1;
+    qspCall(s, 'cum_manage', '');
+    scene.img('images/locations/city/shared/military/sex/rape3.jpg');
+    scene.text('When you are starting to lose consciousness choking on his cock, he takes it out of your mouth, pulls the baf from your head and throws you on a crate. He steps to you, forcing his dick into your vagina quite forcefully. Although you can see now, you still tied up to do effectively anything.');
+    qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/city/shared/military/sex/rape4.jpg');
+    scene.text('When your pussy bored him, he turned you around and drove his cock into your ass. You cry out in pain, but he does not care and continues to fuck your ass as hard as he could. You cry and beg him to at least use some lubrication, but he just scowls in response. You pass out from the pain and shock.');
+    qspCall(s, 'arousal', 'anal', 10, 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).pcs_makeup = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 240;
+    scene.img('images/locations/city/shared/military/sex/rape5.jpg');
+    scene.text('You do not know how much time passed since you fainted, but when you regain your concoiusness he\'s pulling out of you. He pulls you to your knees and stuck his dick in your mouth, saying only a word, "Suck". You dutifully start to suck him off with your ass is brutally raped and in pain, wondering whether to bite it off, but before you could give it a second thought your rapist suddenly comes in your mouth. After this you are immediately knocked out again with a blow to your head.');
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'cum_call', 'mouth', 'rapist');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', goto: ['military', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
   ]);
   scene.build();
 }
@@ -239,6 +306,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'pro1':
       enterPro1(s, scene);
+      break;
+    case 'rape':
+      enterRape(s, scene);
       break;
     default:
       enterStart(s, scene);

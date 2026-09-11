@@ -62,20 +62,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 0) {
         scene.text('You and him have a bad relationship, because you offended him in the past.');
       } else {
-        scene.text('You have a normal relationship with him.');
-        if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 15) {
-          scene.text('You have friendly relations with him.');
+        if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 10) {
+          scene.text('You have a normal relationship with him.');
         } else {
-          scene.text('You\'re good friends.');
-          if (((s as any).hunterVars ?? 0)?.['AndreiLove'] === 1) {
-            scene.text('You love each other.\' else \'You love him.');
+          if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 15) {
+            scene.text('You have friendly relations with him.');
+          } else {
+            if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 25) {
+              scene.text('You\'re good friends.');
+            } else {
+              if (((s as any).hunterVars ?? 0)?.['AndreiLove'] === 1) {
+                scene.text('You love each other.\' else \'You love him.');
+              }
+            }
           }
         }
-        qspCall(s, 'stat', '');
-        if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10) {
-          if (((s as any).hunterVars ?? 0)?.['AndreiLove'] === 0) {
-            scene.actions([
-              { label: 'Flirt', handler: (st: GameState) => {
+      }
+      qspCall(s, 'stat', '');
+      if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10) {
+        if (((s as any).hunterVars ?? 0)?.['AndreiLove'] === 0) {
+          scene.actions([
+            { label: 'Flirt', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterflirt1.\'+rand(1, 3)+\'.jpg');
     if (((s as any).hunterVars ?? 0)?.['AndreiQw'] <= 35  &&  ((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
       (s as any).hunterVars['AndreiQw'] = ((s as any).hunterVars['AndreiQw'] ?? 0) + (1);
@@ -151,11 +158,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
-          } else {
-            if (((s as any).pcs_horny ?? 0) >= 60) {
-              scene.actions([
-                { label: 'Have sex', handler: (st: GameState) => {
+          ]);
+        } else {
+          if (((s as any).pcs_horny ?? 0) >= 60) {
+            scene.actions([
+              { label: 'Have sex', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterflirt2.\'+rand(1, 6)+\'.jpg');
     (s as any).hunterVars['AndreiQw'] = ((s as any).hunterVars['AndreiQw'] ?? 0) + (1);
     (s as any).hunterVars['Andreisex'] = ((s as any).hunterVars['Andreisex'] ?? 0) + (Math.floor(Math.random() * 19) + 6);
@@ -165,11 +172,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Go', goto: ['hunterLoveSex', 'Andrei'] },
     ]);
   } },
-              ]);
-            }
-            if ((!(Math.floor(Math.random() * 10) + 0))) {
-              scene.actions([
-                { label: 'Break up with Andrei', handler: (st: GameState) => {
+            ]);
+          }
+          if ((!(Math.floor(Math.random() * 10) + 0))) {
+            scene.actions([
+              { label: 'Break up with Andrei', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/brosila.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).hunterVars['AndreiLove'] = 0;
@@ -181,10 +188,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-              ]);
-            }
-            scene.actions([
-              { label: 'Spend time together', handler: (st: GameState) => {
+            ]);
+          }
+          scene.actions([
+            { label: 'Spend time together', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterlove1.\'+rand(1, 4)+\'.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -203,11 +210,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
-          }
+          ]);
         }
-        scene.actions([
-          { label: 'Chat (0:30)', handler: (st: GameState) => {
+      }
+      scene.actions([
+        { label: 'Chat (0:30)', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/talk1.\'+rand(1, 3)+\'.jpg');
     if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 0) {
     }
@@ -222,11 +229,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-          { label: 'Leave', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-        ]);
-      }
+      ]);
     }
   }
   scene.build();

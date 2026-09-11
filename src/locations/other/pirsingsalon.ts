@@ -337,7 +337,7 @@ function enterTattooAnkle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_ankle');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['ankle'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'ankle_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'ankle_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -359,7 +359,7 @@ function enterTattooArm(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_arm');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['arm'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'arm_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'arm_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -381,7 +381,7 @@ function enterTattooAss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_ass');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['ass'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'ass_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'ass_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -403,7 +403,7 @@ function enterTattooBack(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_back');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['back'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'back_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'back_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -425,7 +425,7 @@ function enterTattooBelly(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_belly');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['belly'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'belly_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'belly_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -447,7 +447,7 @@ function enterTattooBreast(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_breast');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['breast'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'breast_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'breast_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -469,7 +469,7 @@ function enterTattooChest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_chest');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['chest'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'chest_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'chest_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -491,7 +491,7 @@ function enterTattooFace(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_face');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['face'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'face_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'face_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -513,7 +513,7 @@ function enterTattooHand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_hand');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['hand'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'hand_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'hand_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -535,7 +535,7 @@ function enterTattooLeg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_leg');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['leg'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'leg_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'leg_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -557,7 +557,7 @@ function enterTattooLip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_lip');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['lip'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'lip_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'lip_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -579,7 +579,7 @@ function enterTattooNeck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_neck');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['neck'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'neck_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'neck_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -601,7 +601,7 @@ function enterTattooPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_pussy');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['pussy'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'pussy_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'pussy_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -623,7 +623,7 @@ function enterTattooShoulder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_shoulder');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'shoulder_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'shoulder_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -645,7 +645,7 @@ function enterTattooSide(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_side');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['side'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'side_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'side_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -667,7 +667,7 @@ function enterTattooTramp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_tramp');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'tramp_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'tramp_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -689,7 +689,7 @@ function enterTattooUnder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_under');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['under'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'under_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'under_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
@@ -711,7 +711,7 @@ function enterTattooWrist(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'tattoo_wrist');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_tattoos ?? 0)?.['wrist'] > 0) {
-    scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'wrist_image\'')}`);
+    scene.img(`${qspFunc(s, 'tattoo_management', 'wrist_image')}`);
     scene.text('You already have this tattoo here.');
   } else {
     if (qspFunc(s, 'shop_utils', 'is_init') === 0) {

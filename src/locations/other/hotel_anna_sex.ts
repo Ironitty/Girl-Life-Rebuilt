@@ -604,45 +604,12 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg');
-    scene.text('"Anna…"');
-    if (((s as any).IgorevnaBDSM_session_librarian ?? 0) === 3) {
+    if (((s as any).IgorevnaBDSM_session_librarian ?? 0) === 2) {
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg');
-      // TODO-QSP: 'You spoke about an hour with Anna, but you made no progress with her. At the end she lead you to th...
+      scene.text('"Anna…"');
       scene.actions([
-        { label: 'I understand, and your frienship has a great value for me. I\'m ready to start if you agree.', goto: ['hotel_anna', 'Anna_sub_hurt'] },
-        { label: 'Sorry Anna, i\'m not ready for this.', goto: ['pav_hotel', ''] },
-      ]);
-    } else {
-      qspCall(s, 'stat', '');
-      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0n.jpg');
-      scene.text('<center><b> "Choices choices…!" </b></center>');
-      scene.actions([
-        { label: 'Ehmm… Anna… go easy on me…', goto: ['hotel_anna', 'Anna_sub_session'] },
-        { label: 'Oh… you will love it…', goto: ['hotel_anna_sex', 'Anna_dom_session'] },
-        { label: 'Mmmmm… mmmm… i\'m not sure… what do you suggest me?', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0na.jpg');
-    scene.text(`<center><b> "Hehehe…${((s as any).pcs_nickname ?? 0)}, it's not the we are on the cafe'…" </b></center>`);
-    scene.actions([
-      { label: 'Well… how could the flog be "soft"?…', goto: ['hotel_anna', 'Anna_sub_session'] },
-      { label: 'Well… you really have a great bum…', goto: ['hotel_anna_sex', 'Anna_dom_session'] },
-    ]);
-  } },
-        { label: 'Sorry Anna, i\'m not ready for this…', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0a.jpg');
-    scene.text('<center><b> "Well in that case we can only talk about how things are going in the world…" </b></center>');
-    scene.actions([
-      { label: 'Thanks Anna, see you…', goto: ['pav_hotel', ''] },
-    ]);
-  } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Wait Anna…(penitent)', handler: (st: GameState) => {
+        { label: 'Wait Anna…(penitent)', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg');
@@ -661,7 +628,7 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: '…', handler: (st: GameState) => {
+        { label: '…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     (s as any).IgorevnaBDSM_session_librarian = 3;
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg');
@@ -671,8 +638,967 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
       { label: '…', goto: ['pav_hotel', ''] },
     ]);
   } },
+      ]);
+    } else {
+      if (((s as any).IgorevnaBDSM_session_librarian ?? 0) === 3) {
+        qspCall(s, 'stat', '');
+        scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg');
+        // TODO-QSP: 'You spoke about an hour with Anna, but you made no progress with her. At the end she lead you to th...
+        scene.actions([
+          { label: 'I understand, and your frienship has a great value for me. I\'m ready to start if you agree.', goto: ['hotel_anna', 'Anna_sub_hurt'] },
+          { label: 'Sorry Anna, i\'m not ready for this.', goto: ['pav_hotel', ''] },
+        ]);
+      } else {
+        qspCall(s, 'stat', '');
+        scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0n.jpg');
+        scene.text('<center><b> "Choices choices…!" </b></center>');
+        scene.actions([
+          { label: 'Ehmm… Anna… go easy on me…', goto: ['hotel_anna', 'Anna_sub_session'] },
+          { label: 'Oh… you will love it…', goto: ['hotel_anna_sex', 'Anna_dom_session'] },
+          { label: 'Mmmmm… mmmm… i\'m not sure… what do you suggest me?', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0na.jpg');
+    scene.text(`<center><b> "Hehehe…${((s as any).pcs_nickname ?? 0)}, it's not the we are on the cafe'…" </b></center>`);
+    scene.actions([
+      { label: 'Well… how could the flog be "soft"?…', goto: ['hotel_anna', 'Anna_sub_session'] },
+      { label: 'Well… you really have a great bum…', goto: ['hotel_anna_sex', 'Anna_dom_session'] },
+    ]);
+  } },
+          { label: 'Sorry Anna, i\'m not ready for this…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0a.jpg');
+    scene.text('<center><b> "Well in that case we can only talk about how things are going in the world…" </b></center>');
+    scene.actions([
+      { label: 'Thanks Anna, see you…', goto: ['pav_hotel', ''] },
+    ]);
+  } },
+        ]);
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterLibrarian(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
+  (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+  (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
+  (s as any).Anna_librarian_brat = 0;
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian0.jpg');
+  scene.text('<center><b> "…That\'s the dress… see… you are not naked… "</b></center>');
+  scene.actions([
+    { label: '…What does she wants?…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_librarian_brat = ((s as any).Anna_librarian_brat ?? 0) + (1);
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian1.jpg');
+    scene.text('<center><b> "…Well? What are you waiting for? Didn\'t I gave you an order?"</b></center>');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian1'] },
+    ]);
+  } },
+    { label: 'Better move…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian1a.jpg');
+    scene.text('…\' …i should go… the contract spoke about punishment… and I don\'t want to discover what Anna has planned…\'…');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian1'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLibrarian1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).Anna_librarian_brat ?? 0) === 1) {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian2a.jpg');
+    // TODO-QSP: 'You move toward a big pile of books; it doesn''t seem the only one and some other book stand both o...
+  } else {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian2.jpg');
+    // TODO-QSP: dynamic text: You return to Anna with your pile between your chin and your hands… it's like tr...
+    scene.text('You return to Anna with your pile between your chin and your hands… it\'s like trying to walk on a rope between two trees… but you managed to do your task at the end. \' + $func(\'wrap\', \'accent\', \' "…Move them on the desk. Now bring me all you can find about "Adult Babies Roleplay" and "Age Play". " Move.\') + \' Again you move toward the big pile and collect what Anna is looking for…');
+  }
+  scene.actions([
+    { label: 'If I run I could finish earlier', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_librarian_brat = ((s as any).Anna_librarian_brat ?? 0) + (1);
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian3.jpg');
+    // TODO-QSP: 'RUUMBLE!!! ' + $func('wrap', 'accent', '"<<$pcs_nickname>>!"') + '<br>' + $func('wrap', 'v_neg', '…...
+    if (((s as any).Anna_librarian_brat ?? 0) === 2) {
+      scene.text(`<center><b>"${((s as any).pcs_nickname ?? 0)}! What are you doing? Are you trying to be the "brat" of the year?"</b></center>`);
+    } else {
+      scene.text(`<center><b>"${((s as any).pcs_nickname ?? 0)}! Do you mind to pay attention on what you are doing?"</b></center>`);
+    }
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian2'] },
+    ]);
+  } },
+    { label: 'Better be careful…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian3a.jpg');
+    if (((s as any).Anna_librarian_brat ?? 0) === 1) {
+      scene.text('<center><b>"Leave them on the desk and go sit and study or read or whatever… I don\'t need you right now."</b></center>');
+    } else {
+      scene.text('<center><b>"Good girl. Now go sit and study or read or whatever… I don\'t need your help right now."</b></center>');
+    }
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian2'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLibrarian2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian4.jpg');
+  scene.text('You go sit on the desk with your gear on; there\'s nothing interesting to do and you have to spend your time. You could follow Anna\'s advice or try to forget for a moment why you are locked and gagged sitting on a desk…');
+  scene.actions([
+    { label: '…\'…I didn\'t come here to study!…\'…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_librarian_brat = ((s as any).Anna_librarian_brat ?? 0) + (1);
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (2);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian5.jpg');
+    scene.text('…\' …no way i\'m study… how could I be able to do some work with the gear on… it\'s all Anna\'s fault!…\'…');
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian5a.jpg');
+    if (((s as any).Anna_librarian_brat ?? 0) === 3) {
+      scene.text('<center><b>"Let me see what are you doing… OH!"</b></center>');
+    } else {
+      scene.text('<center><b>"Let me see what are you doing… OH!"</b></center>');
+    }
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian3'] },
+    ]);
+  } },
+    ]);
+  } },
+    { label: '…\'…Well… it doesn\'t hurt…\'…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian5.jpg');
+    // TODO-QSP: 'You spend some time doing some math exercise…' + $func('wrap', 'accent', ' "…<<$pcs_nickname>>! Com...
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian5b.jpg');
+    scene.text('<center><b>"Let me see what are you doing… uh? What\'s that? Nah… listen: The hyperbola: x^2/a^2-y^2/b^2=1 has the two asymptotes y= +/-(b/a)x The equation for the union of these two lines is x^2/a^2-y^2/b^2=0. Similarly, the hyperboloid x^2/a^2-y^2/b^2-z^2/c^2=1 is said to have the asymptotic cone x^2/a^2-y^2/b^2-z^2/c^2=1. The distance between the hyperboloid and cone approaches 0 as the distance from the origin approaches infinity. More generally, let us consider a surface that has an implicit equation P_d(x,y,z)+P_{d-2}(x,y,z)+…P_{0}=0, where the P_{i} are homogeneous polynomials of degree I and P_{d-1}=0. Then the equation P_{d}(x,y,z)=0 defines a cone which is centered at the origin. It is called an asymptotic cone, because the distance to the cone of a point of the surface tends to zero when the point on the surface tends to infinity. So…"</b></center>');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian3'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLibrarian3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian6.jpg');
+  if ((!((s as any).Anna_librarian_brat ?? 0))) {
+    scene.text('<center><b> "…Now, i\'m going to change you to pose you for the night. You will not stay here of course, it\'s to show you how to pose subs when their service are not needed. Then, i\'ll give you a little spank: pay attention it\'s not caused by your bad behaviour, it\'s a reminder spank for what the Dominat could miss when not spending the time with the sub… " </b></center>');
+  } else {
+    if (((s as any).Anna_librarian_brat ?? 0) === 3) {
+      // TODO-QSP: 'Anna free your hands to let you execute her order.' + $func('wrap', 'accent', ' "Strip to the under...
+    } else {
+      // TODO-QSP: 'Anna free your hands to let you execute her order.' + $func('wrap', 'accent', ' "Strip to the under...
+    }
+  }
+  scene.actions([
+    { label: 'Run!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_librarian_brat = ((s as any).Anna_librarian_brat ?? 0) + (2);
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (5);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian7a.jpg');
+    // TODO-QSP: '</font><br>' + $func('wrap', 'v_neg', '…'' …now or never!…''…') + '<br>' + $func('wrap', 'accent', ...
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian10.jpg');
+    // TODO-QSP: 'Anna is upset and she bind you to the chair…' + $func('wrap', 'accent', ' "…NOW IT''S A CHALLENGE! ...
+    scene.actions([
+      { label: '…\'…shit! it\'s in my crotch!… \'…', goto: ['hotel_anna_sex', 'librarian5'] },
+    ]);
+  } },
+    ]);
+  } },
+    { label: 'I\'m a good girl.', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian7.jpg');
+    // TODO-QSP: 'You sit on the floor bounded with ropes trying to find a comfortable position; it''s not easy but y...
+    if ((!((s as any).Anna_librarian_brat ?? 0))) {
+      scene.actions([
+        { label: 'After some time…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrariangg0.jpg');
+    // TODO-QSP: 'You wait patiently on the floor; when Anna arrives she free you from the gear and left you in your ...
+    scene.actions([
+      { label: '???', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/AnnalibrarianGG1.jpg');
+    // TODO-QSP: 'With these words you suddenly feel Anna''s hand on your butt…' + $func('wrap', 'accent', ' "…Uhhmmm...
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Finally', goto: ['hotel_anna_sex', 'librarian5'] },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLibrarian5(s: GameState, scene: SceneBuilder): void {
+  (s as any).Anna_librarian_redemption = 0;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian0.jpg');
+  if (((s as any).Anna_librarian_brat ?? 0) === 5) {
+    // TODO-QSP: dynamic text: Anna doesn't say a word… She approach you and put a plate on the floor, the she ...
+    scene.text('Anna doesn\'t say a word… She approach you and put a plate on the floor, the she start to free you. She only breath while she\'s removing piece by piece the gears; \' + $func(\'wrap\', \'accent\', \' "…" \') + \'<br>\' + $func(\'wrap\', \'v_neg\', \'…\'…she\'s mad, I can feel it… shit!…maybe…\'…\') + \' It\'s clear even without words what she\'s expecting from you…');
+  } else {
+    if (((s as any).Anna_librarian_brat ?? 0) === 2  ||  ((s as any).Anna_librarian_brat ?? 0) === 3) {
+      // TODO-QSP: 'Anna approach you and start removing the gear from you piece by piece…' + $func('wrap', 'accent', '...
+    } else {
+      if (((s as any).Anna_librarian_brat ?? 0) === 1) {
+        // TODO-QSP: 'Anna approach you and start removing the gear from you piece by piece…' + $func('wrap', 'accent', '...
+      } else {
+        scene.text('');
+      }
+    }
+  }
+  if (((s as any).Anna_librarian_brat ?? 0) === 5) {
+    scene.actions([
+      { label: 'Run!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_librarian_brat = ((s as any).Anna_librarian_brat ?? 0) + (1);
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8a.jpg');
+    scene.text('<center><b> "You are not smart… are you?" </b></center>');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_brat_end'] },
+    ]);
+  } },
     ]);
   }
+  scene.actions([
+    { label: 'Eat…', handler: (st: GameState) => {
+    if (((s as any).Anna_librarian_brat ?? 0) >= 1) {
+      (s as any).Anna_librarian_brat = ((s as any).Anna_librarian_brat ?? 0) - (1);
+    } else {
+      (s as any).Anna_librarian_brat = 0;
+    }
+    (s as any).Anna_librarian_redemption = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8.jpg');
+    scene.text('<center><b> "…" </b></center>');
+    if (((s as any).Anna_librarian_brat ?? 0) >= 1) {
+      scene.actions([
+        { label: 'Lick her boots', handler: (st: GameState) => {
+    (s as any).Anna_librarian_brat = ((s as any).Anna_librarian_brat ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8b.jpg');
+    scene.text('"…"');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_brat_end'] },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Oh! Sorry Anna…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8b.jpg');
+    scene.text('"…"');
+    scene.actions([
+      { label: '…Sorry Ma\'am…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8b.jpg');
+    // TODO-QSP: 'You do your best to not disappoint Anna and eagerly clean her boots till they are shiny…' + $func('...
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_brat_end'] },
+    ]);
+  } },
+      { label: 'Stop humiliating yourself.', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8a.jpg');
+    // TODO-QSP: 'You accomplished your task at the end but you weren''t disposed to humilate yourself more than what...
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_brat_end'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'refuse', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8a.jpg');
+    scene.text('<center><b> "No? Ok, I won\'t force you… Now follow me." </b></center>');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_brat_end'] },
+    ]);
+  } },
+    ]);
+  } },
+    { label: 'Refuse', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8a.jpg');
+    scene.text('<center><b> "I see. You are ready, come with me." </b></center>');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_brat_end'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLibrarianEnd(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian11.jpg');
+  if (((s as any).Anna_librarian_redemption ?? 0) !== 1) {
+    if ((!((s as any).Anna_librarian_brat ?? 0))) {
+      scene.text('<center><b> "…Let me say: great performance, you\'ve done your work. See… it wasn\'t difficult after all." </b></center>');
+    } else {
+      if (((s as any).Anna_librarian_brat ?? 0) === 1) {
+        scene.text('<center><b> "See… it wasn\'t difficult after all." </b></center>');
+      } else {
+        if (((s as any).Anna_librarian_brat ?? 0) === 2  ||  ((s as any).Anna_librarian_brat ?? 0) === 3) {
+          scene.text(`<center><b> "Well ${((s as any).pcs_nickname ?? 0)}…impression?"</b></center>`);
+        } else {
+          if (((s as any).Anna_librarian_brat ?? 0) === 4  ||  ((s as any).Anna_librarian_brat ?? 0) === 5) {
+            scene.text(`<center><b> "Well ${((s as any).pcs_nickname ?? 0)}…impression?"</b></center>`);
+          } else {
+            if (((s as any).Anna_librarian_brat ?? 0) === 6) {
+              scene.text(`<center><b> "How are you, ${((s as any).pcs_nickname ?? 0)}?" </b></center>`);
+            } else {
+              scene.text('');
+            }
+          }
+        }
+      }
+    }
+  } else {
+    if ((!((s as any).Anna_librarian_brat ?? 0))) {
+      scene.text('<center><b> "…Let me say: great performance, you\'ve done your work. See… it wasn\'t difficult after all." </b></center>');
+    } else {
+      if (((s as any).Anna_librarian_brat ?? 0) === 1) {
+        scene.text('<center><b> "See… it wasn\'t difficult after all." </b></center>');
+      } else {
+        if (((s as any).Anna_librarian_brat ?? 0) === 2  ||  ((s as any).Anna_librarian_brat ?? 0) === 3) {
+          scene.text('<center><b> "…I cannot say i\'m pleased with your work, but you managed to improve your performance… and that means you understand something before the discipline. It\'s a point by your side…" </b></center>');
+        } else {
+          if (((s as any).Anna_librarian_brat ?? 0) === 4) {
+            scene.text(`<center><b> "${((s as any).pcs_nickname ?? 0)}…"</b></center>`);
+          } else {
+            scene.text('');
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).Anna_librarian_brat ?? 0) <= 1) {
+    scene.actions([
+      { label: 'Leave', goto: ['pav_hotel', ''] },
+    ]);
+  } else {
+    if (((s as any).Anna_librarian_brat ?? 0) === 6) {
+      scene.actions([
+        { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian2.jpg');
+    // TODO-QSP: dynamic text: She carefully move toward you, and give you a quick hug… just the time to whispe...
+    scene.text(`She carefully move toward you, and give you a quick hug… just the time to whisper in your hear:' + $func('wrap', 'accent', ' "Let it flow." ') + 'After that she return to sit… Now she's looking at you, you got her attention but she doesn't add a single word; while all you want is to shout at her all your pain, you lost your barrier and tears start to flow…<br>' + $func('wrap', 'v_neg', '"…why?…how could you do that to me?…"') + '<br>' + $func('wrap', 'accent', ' "…Did you lost your trust in me ${((s as any).pcs_nickname ?? 0)}?" ') + ' Anna knows the answer, but she want to hear that from you<br>' + $func('wrap', 'v_neg', '"…how could I trust you?…after… after…"') + 'You are hiding the truth from yourself… it comes to your mind that she stop, she didn't finished your punishment… was that only mercy? You wonder ' + $func('wrap', 'v_neg', '"……"') + '<br>' + $func('wrap', 'accent', ' "Follow me ${((s as any).pcs_nickname ?? 0)}, it's time to stop your pain." ') + 'Again Anna stand up, she give you another hug and both move in the main room…`);
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian12.jpg');
+    // TODO-QSP: dynamic text: Anna help you lay on the sofa with your belly down… ' + $func('wrap', 'accent', ...
+    scene.text(`Anna help you lay on the sofa with your belly down… ' + $func('wrap', 'accent', ' "I'll be gentle ${((s as any).pcs_nickname ?? 0)}…you aren't the only one with a thin skin, you know?"') + '<br>' + $func('wrap', 'v_neg', '"N-no?…and… who?…AHHHHHAAAAHHHNNNNA!…"') + '<br>' + $func('wrap', 'accent', '"…I'm sorry ${((s as any).pcs_nickname ?? 0)}…i had to expose your butt…"') + ' Anna distract your attention to expose your butt, knowing it could be really sensible…' + $func('wrap', 'accent', '"It's cold at the beginning… it will end soon…" ') + '<br>You feel something slowly falling along your skin…' + $func('wrap', 'v_neg', '"…SSSSHHH… AAHHH… AHHH… AAHH… Aah… aa…"') + '<br>' + $func('wrap', 'accent', '"I'm sure you feel better soon… it's a good cream, that help a little with the pain."') + '<br>' + $func('wrap', 'v_neg', '"…I-i…"') + 'The cold change to heat… but it's not pain… it's similar to pleasure; you wonder how's that possible, but you are mainly focused on Anna's hands…' + $func('wrap', 'v_neg', '"…A-anna…"') + '<br>' + $func('wrap', 'accent', '"Ssssh… You make your part in that too, but it's not the time to speak about it."') + ' Once your butt finish to catch the cream Anna help you to dress and lead you to the exit.`);
+    scene.actions([
+      { label: 'Leave', goto: ['pav_hotel', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian12.jpg');
+    if (((s as any).Anna_librarian_brat ?? 0) === 2  ||  ((s as any).Anna_librarian_brat ?? 0) === 3) {
+      // TODO-QSP: dynamic text: You lay on the sofa as suggested and Anna arrived almost the same time as you… S...
+      scene.text('You lay on the sofa as suggested and Anna arrived almost the same time as you… She pull out a tube of cream, then she expose your butt leaving the underwear on place. \' + $func(\'wrap\', \'accent\', \'"…it\'s not really necessary, but it\'s easier to understand that way what "we care of each other" means. It start cold, but you\'ll feel a pleasurable hot sensation after a little. There we are…" \') + \'<br>You feel the cream slowly falling along your skin…\' + $func(\'wrap\', \'v_neg\', \'"…Sshhh aaahh… aahh… aah?…"\') + \'…Anna\'s hands catch the drops falling and start spreading the cream on your butt; you don\'t know how but you don\'t feel pain anymore.\' + $func(\'wrap\', \'v_neg\', \'"…how is that possible?…"\') + \'<br>\' + $func(\'wrap\', \'accent\', \' "Big secret! Hehehe… it\'s a good cream, that help a little with the pain. You make your part in that too, but it\'s not the time to speak about it."\') + \' Once your butt finish to catch the cream Anna help you to dress and lead you to the exit.');
+    } else {
+      if (((s as any).Anna_librarian_brat ?? 0) === 4  ||  ((s as any).Anna_librarian_brat ?? 0) === 5) {
+        // TODO-QSP: dynamic text: You lay on the sofa as suggested and Anna arrived almost the same time as you… S...
+        scene.text('You lay on the sofa as suggested and Anna arrived almost the same time as you… She pull out a tube of cream, then she expose your butt leaving the underwear on place. \' + $func(\'wrap\', \'accent\', \'"…it\'s not really necessary, but it\'s easier to understand that way what "we care of each other" means. It start cold, but you\'ll feel a pleasurable hot sensation after a little. There we are…" \') + \'<br>You feel the cream slowly falling along your skin…\' + $func(\'wrap\', \'v_neg\', \'"…SSSSHHH… AAHHH… AHHH… Auh?…"\') + \'…Anna\'s hands catch the drops falling and start spreading the cream on your butt; you don\'t know how but you don\'t feel pain anymore.\' + $func(\'wrap\', \'v_neg\', \'"…What?…How…?"\') + \'<br>\' + $func(\'wrap\', \'accent\', \' "Big secret! Hehehe… it\'s a good cream, that help a little with the pain. You make your part in that too, but it\'s not the time to speak about it."\') + \' Once your butt finish to catch the cream Anna help you to dress and lead you to the exit.');
+      } else {
+        scene.text('');
+      }
+    }
+    scene.actions([
+      { label: 'Leave', goto: ['pav_hotel', ''] },
+    ]);
+  } },
+      ]);
+    }
+  }
+  scene.build();
+}
+
+function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  if (((s as any).Anna_librarian_brat ?? 0) !== 6) {
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9a.jpg');
+  } else {
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarianbg0.jpg');
+  }
+  if ((!((s as any).Anna_librarian_brat ?? 0))) {
+    scene.text('<center><b> "Let\'s see… you were a good girl, you earned a simple reminding spanking." </b></center>');
+  } else {
+    if (((s as any).Anna_librarian_brat ?? 0) === 1) {
+      scene.text(`<center><b> "Almost perfect ${((s as any).pcs_nickname ?? 0)}, few slap shouldn't be a problem…" </b></center>`);
+    } else {
+      if (((s as any).Anna_librarian_brat ?? 0) === 2) {
+        scene.text(`<center><b> "…There's something I cannot let it pass ${((s as any).pcs_nickname ?? 0)}…" </b></center>`);
+      } else {
+        if (((s as any).Anna_librarian_brat ?? 0) === 3) {
+          scene.text('<center><b> "…I\'ll consider that it\'s your first time… but everything has its limits…" </b></center>');
+        } else {
+          if (((s as any).Anna_librarian_brat ?? 0) === 4) {
+            scene.text('<center><b> "Here start the Discipline." </b></center>');
+          } else {
+            if (((s as any).Anna_librarian_brat ?? 0) === 5) {
+              scene.text(`<center><b> "Really bad ${((s as any).pcs_nickname ?? 0)}, really bad…" </b></center>`);
+            } else {
+              if (((s as any).Anna_librarian_brat ?? 0) === 6) {
+                // TODO-QSP: 'There''s silence, and you start to feel worried… suddenly…' + $func('wrap', 'accent', ' "Fifteen st...
+              } else {
+                scene.text('');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if ((!((s as any).Anna_librarian_brat ?? 0))) {
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((s as any).pcs_nickname ?? 0)}, we practically finished." </b></center>`);
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).Anna_librarian_brat ?? 0) === 1) {
+      scene.actions([
+        { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((s as any).pcs_nickname ?? 0)}." </b></center>`);
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).Anna_librarian_brat ?? 0) === 2  ||  ((s as any).Anna_librarian_brat ?? 0) === 3) {
+        scene.actions([
+          { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((s as any).pcs_nickname ?? 0)}." </b></center>`);
+    scene.actions([
+      { label: 'Bend over', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9b.jpg');
+    scene.text('"…A-anna… go easy…"');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
+    ]);
+  } },
+    ]);
+  } },
+        ]);
+      } else {
+        if (((s as any).Anna_librarian_brat ?? 0) === 4  ||  ((s as any).Anna_librarian_brat ?? 0) === 5) {
+          scene.actions([
+            { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((s as any).pcs_nickname ?? 0)}." </b></center>`);
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9b.jpg');
+    scene.text('"…A-anna… go easy…"');
+    scene.actions([
+      { label: 'AAAHHHH! SHIIIIT!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9c.jpg');
+    scene.text('<center><b> "…Language young lady… four!"</b></center>');
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+          ]);
+        } else {
+          if (((s as any).Anna_librarian_brat ?? 0) === 6) {
+            scene.actions([
+              { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
+    scene.text('<center><b> "…OTK: over the knee… Put your belly on my knees, move." </b></center>');
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9b.jpg');
+    // TODO-QSP: dynamic text: You can't do nothing else than obey…' + $func('wrap', 'v_neg', '"…"') + '<br>' +...
+    scene.text('You can\'t do nothing else than obey…\' + $func(\'wrap\', \'v_neg\', \'"…"\') + \'<br>\' + $func(\'wrap\', \'accent\', \'"This is the first, you have to take care of the others… One!"\') + \'Slap!<br>\' + $func(\'wrap\', \'v_neg\', \'"…Aaaaahhh!…"\') + \'<br>\' + $func(\'wrap\', \'accent\', \' "Count."\') + \'Slap!<br>\' + $func(\'wrap\', \'v_neg\', \'"…Aaaaahhh!…twoooo! i\'ve learned! i\'ve learned!…please!…"\') + \' Slap!');
+    scene.actions([
+      { label: 'AAAHHHH! THREEE!!! SHIIIIT!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9c.jpg');
+    scene.text('<center><b> "…Language young lady…"</b></center>');
+    scene.actions([
+      { label: '…endure…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarianbg1.jpg');
+    // TODO-QSP: 'Slap!' + $func('wrap', 'v_neg', '"…AAAAAHHHH!!!! Five!…p-please Anna!…p-please I beg you!…"') + '<b...
+    scene.actions([
+      { label: '…R-r… r-e… r-re…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarianbg2.jpg');
+    scene.text(`<center><b> "Ssshh… Don't say it ${((s as any).pcs_nickname ?? 0)}, there's no need; we finished. Stay silent, I need silence right now…"</b></center>`);
+    scene.actions([
+      { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+            ]);
+          } else {
+            scene.text('');
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterAnnaDomSession(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+  (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+  (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom0.jpg');
+  // TODO-QSP: 'You follow Anna to her room, and she quickly change into a "normal" dress… if you exclude that now ...
+  scene.actions([
+    { label: 'Ok. Let me see…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom2.jpg');
+    scene.text('<center><b> "…Does Ma\'am see something interesting?"</b></center>');
+    scene.actions([
+      { label: 'Look for Anna', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom3.jpg');
+    scene.text('<center><b>"Maid on request Ma\'am."</b></center>');
+    scene.actions([
+      { label: 'Bring Anna her uniform', goto: ['hotel_anna_sex', 'Anna_dom_session1'] },
+    ]);
+  } },
+    ]);
+  } },
+    { label: 'Strip now! And spread your legs!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom1.jpg');
+    scene.text(`<center><b> "${((s as any).pcs_nickname ?? 0)}…"</b></center>`);
+    scene.actions([
+      { label: 'Ok… ok… now go change…(ufffff!)', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom2.jpg');
+    // TODO-QSP: dynamic text: You look at the memo… it show some command that can be given to subs…' + $func('...
+    scene.text('You look at the memo… it show some command that can be given to subs…\' + $func(\'wrap\', \'v_neg\', \'"Interesting… i\'ll keep that in mind."\') + \' It doesn\'t seems difficult to understand… maybe you could strip her that way…\' + $func(\'wrap\', \'v_neg\', \'…\' …hehehe… \'…"Uhmmm… better see if she\'s ready."\') + \' ');
+    scene.actions([
+      { label: 'Look for Anna', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom3a.jpg');
+    scene.text('<center><b>"Maid on request Ma\'am."</b></center>');
+    scene.actions([
+      { label: 'Bring Anna her uniform', goto: ['hotel_anna_sex', 'Anna_dom_session1'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterAnnaDomSession1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom4.jpg');
+  scene.text('<center><b> "Well… it\'s not what I had in mind… but we can arrange something… Anayway wasn\'t better to start with a simple spanking?"</b></center>');
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 1 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 2 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 3 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 4 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 5 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 6 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 7 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 8 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 9 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 10 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="image...
+  // TODO-QSP: *p '   '
+  scene.actions([
+    { label: '…', goto: ['hotel_anna_sex', 'Anna_dom_session2'] },
+  ]);
+  scene.build();
+}
+
+function enterAnnaDomSession2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  if (((s as any).Anna_tame_maid ?? 0) === 8) {
+    (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom5b.jpg');
+    scene.text('<center><b> "…"</b></center>');
+  } else {
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom5a.jpg');
+    if (((s as any).Anna_tame_maid ?? 0) === 10) {
+      scene.text('<center><b> "I hope you know what does that means…"</b></center>');
+    } else {
+      if (((s as any).Anna_tame_maid ?? 0) === 9) {
+        scene.text('<center><b> "Uh? You need to call?…"</b></center>');
+      } else {
+        if (((s as any).Anna_tame_maid ?? 0) === 7) {
+          scene.text('<center><b> "Am I doing right?"</b></center>');
+        } else {
+          if (((s as any).Anna_tame_maid ?? 0) === 6) {
+            scene.text('<center><b> "Do you want me leave?…"</b></center>');
+          } else {
+            if (((s as any).Anna_tame_maid ?? 0) === 5) {
+              scene.text('<center><b> "Do you know I cannot clean properly that way?…"</b></center>');
+            } else {
+              if (((s as any).Anna_tame_maid ?? 0) === 4) {
+                scene.text('<center><b> "Do you know I cannot clean properly that way?…"</b></center>');
+              } else {
+                if (((s as any).Anna_tame_maid ?? 0) === 3) {
+                  scene.text('<center><b> "Do you know I cannot clean properly that way?…"</b></center>');
+                } else {
+                  if (((s as any).Anna_tame_maid ?? 0) === 2) {
+                    scene.text('<center><b> "Yo\' sis\' yo\'…"</b></center>');
+                  } else {
+                    if (((s as any).Anna_tame_maid ?? 0) === 1) {
+                      scene.text('<center><b> "Do you know I cannot clean properly that way?…"</b></center>');
+                    } else {
+                      scene.text('<center><b>"Well?…"</b></center>');
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 1 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 2 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 3 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 4 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 5 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 6 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 7 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 8 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 9 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
+  // TODO-QSP: *p '   '
+  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 11 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="image...
+  // TODO-QSP: *p '   '
+  scene.actions([
+    { label: 'Shit! I don\'t remember…', goto: ['hotel_anna_sex', 'Anna_dom_session3'] },
+  ]);
+  scene.build();
+}
+
+function enterAnnaDomSession3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  if (((s as any).Anna_tame_maid ?? 0) === 11) {
+    (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom6.jpg');
+    scene.text('<center><b> "…uffff…"</b></center>');
+  } else {
+    if (((s as any).Anna_tame_maid ?? 0) === 1) {
+      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom5c.jpg');
+      scene.text(`<center><b> "${((s as any).pcs_nickname ?? 0)}!!!"</b></center>`);
+    } else {
+      scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom5a.jpg');
+      if (((s as any).Anna_tame_maid ?? 0) === 9) {
+        scene.text('<center><b> "Not conventional… but ok, i\'ll stop."</b></center>');
+      } else {
+        if (((s as any).Anna_tame_maid ?? 0) === 8) {
+          scene.text('<center><b> "Uh? Is this ok?…"</b></center>');
+        } else {
+          if (((s as any).Anna_tame_maid ?? 0) === 7) {
+            scene.text('<center><b> "I hope you know what does that means…"</b></center>');
+          } else {
+            if (((s as any).Anna_tame_maid ?? 0) === 6) {
+              scene.text('<center><b> "Do you need a ride?…"</b></center>');
+            } else {
+              if (((s as any).Anna_tame_maid ?? 0) === 5) {
+                scene.text('<center><b> "Do you know I cannot do it properly that way?…"</b></center>');
+              } else {
+                if (((s as any).Anna_tame_maid ?? 0) === 4) {
+                  scene.text('<center><b> "Do you know I cannot do it properly that way?…"</b></center>');
+                } else {
+                  if (((s as any).Anna_tame_maid ?? 0) === 3) {
+                    scene.text('<center><b> "Here?…"</b></center>');
+                  } else {
+                    if (((s as any).Anna_tame_maid ?? 0) === 2) {
+                      scene.text('<center><b> "…"</b></center>');
+                    } else {
+                      scene.text('<center><b>"Well?…"</b></center>');
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.actions([
+    { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom7a.jpg');
+    scene.text('<center><b>"Maid to tame ready, Ma\'am…"</b></center>');
+    scene.actions([
+      { label: 'stare…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom7a.jpg');
+    scene.text('…\'…well… I can do what I want, I can stare at her for some time…\' …');
+    scene.actions([
+      { label: 'Look for Anna', goto: ['hotel_anna_sex', 'Anna_dom_session4'] },
+    ]);
+  } },
+      { label: 'Take this!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom7b.jpg');
+    scene.text('<center><b> "…"</b></center>');
+    scene.actions([
+      { label: 'Look for Anna', goto: ['hotel_anna_sex', 'Anna_dom_session4'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterAnnaDomSession4(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch0.jpg');
+  scene.text('<center><b> "Latch!"</b></center>');
+  scene.actions([
+    { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch1.jpg');
+    // TODO-QSP: 'Anna made most of the work; she lock herself till the middle of her arm then she require you to pul...
+    scene.actions([
+      { label: 'Listen to Anna\'s words…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch1a.jpg');
+    // TODO-QSP: 'You wonder what could be happened if you didn''t followed Anna''s advice, but you think it could be...
+    scene.actions([
+      { label: '…Oh! Sure!…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch2.jpg');
+    // TODO-QSP: dynamic text: You didn't expect Anna to let you "work" on her boobs… you blush a little when y...
+    scene.text(`You didn't expect Anna to let you "work" on her boobs… you blush a little when you approach them, but you try to focus on the task. They are soft and tender at the touch and stay perfectly in place; when it comes to tight the latches the boobs squeeze out and you stare at them for a while. You don't want to hurt Anna, and try to be gentle; Anna catches your reluctancy to tight them a little more she give you a nod to understand you have the last word on the tightness. She doesn't complain, even gagged she could make some noise to let you understand if something is going wrong, but she let you "do the work" in peace. Some time pass with your eyes glued on her…' + $func('wrap', 'accent', '"Mmwe… fffhhpp… mmmooofffne…"') + ' You free Anna's mouth…' + $func('wrap', 'accent', '"Mmmmmm… thank you ${((s as any).pcs_nickname ?? 0)}, we've done for today. Let me free so I can lead you to the exit."') + 'The session end and you are free to go home… and you go home with a nice image impressed on your mind…`);
+    scene.actions([
+      { label: 'Free Anna and go home', goto: ['pav_hotel', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'You asked for it!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (3);
+    if (((s as any).Anna_see_adom ?? 0) >= 5) {
+      (s as any).Anna_see_adom = ((s as any).Anna_see_adom ?? 0) - (5);
+    } else {
+      (s as any).Anna_see_adom = 0;
+    }
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch1b.jpg');
+    scene.text(`<center><b> "${((s as any).pcs_nickname ?? 0)}! What did I told you!"</b></center>`);
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch2a.jpg');
+    // TODO-QSP: 'Immediately Anna rise up and sit…' + $func('wrap', 'accent', ' "You are on time yet!"')
+    scene.actions([
+      { label: 'Sorry Anna…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch4.jpg');
+    scene.text('<center><b> "Uhmmmmpphh! You were a bad girl! Free me immediately! "</b></center>');
+    scene.actions([
+      { label: 'Go home', goto: ['pav_hotel', ''] },
+    ]);
+  } },
+      { label: 'Naaahhhh… Shut up!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (2);
+    (s as any).Anna_see_adom = 0;
+    if (((s as any).Anna_trust ?? 0) >= 8) {
+      (s as any).Anna_trust = ((s as any).Anna_trust ?? 0) - (5);
+    } else {
+      (s as any).Anna_trust = 2;
+    }
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch4a.jpg');
+    scene.text('"…Hehehe…"');
+    scene.actions([
+      { label: 'Nice sight… hehehe. Is that comfortable? Because i\'m going for a walk, i\'ll pass to free you in fifteen minutes. Bye bye!', goto: ['hotel_anna_sex', 'Anna_dom_brat'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterAnnaDomBrat(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat0.mp4');
+  // TODO-QSP: dynamic text: You didn't reach the door that…' + $func('wrap', 'accent', '"Where do you think ...
+  scene.text('You didn\'t reach the door that…\' + $func(\'wrap\', \'accent\', \'"Where do you think you are going young lady?"\') + \' Anna free herself before you were able to exit the room.<br>\' + $func(\'wrap\', \'v_neg\', \'"…Ahhh my hair!…"\') + \'<br>\' + $func(\'wrap\', \'accent\', \' "Surrender! You need to learn some manners!"\') + \' Anna drag you back and forth the room pulling your hair… you didn\'t had a good idea…');
+  scene.actions([
+    { label: 'Haaaah! Anna… Anna… I surrender! I surrender!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) - (1);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat0.jpg');
+    scene.text('<center><b> "How\'s your own medicine? I hope you like it."</b></center>');
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat1.jpg');
+    // TODO-QSP: '…SLAP!' + $func('wrap', 'v_neg', '"OUCH!"') + '<br>' + $func('wrap', 'accent', '"What?"') + '…SLAP!...
+    scene.actions([
+      { label: '…\'…ow ow ow…\' …', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat4.jpg');
+    // TODO-QSP: 'You are recovering from the spanking that Anna slip the dress out of you leaving your body complete...
+    scene.actions([
+      { label: '…\'…shit!… \' …', goto: ['pav_hotel', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    { label: 'Never!', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    (s as any).Anna_see_abrat = ((s as any).Anna_see_abrat ?? 0) + (2);
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat1.mp4');
+    scene.text('<center><b> "No?"</b></center>');
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat0.jpg');
+    // TODO-QSP: 'It seems you lost consciousness for a moment when suddenly you feel something pinching your nipples...
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat2.jpg');
+    // TODO-QSP: '…SLAP!' + $func('wrap', 'v_neg', '"OUCH!"') + 'You wasn''t able to fight back her order, and you ar...
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat3.jpg');
+    // TODO-QSP: '…SSSSLAP!!!!!' + $func('wrap', 'v_neg', '"…AAAHH… ANNA… PLEASEPLEASEPLEASE!!!!…"') + '<br>' + $func...
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat4.jpg');
+    // TODO-QSP: 'The last beat was a false one, but it was enough to let you say what really Anna wanted from you. Y...
+    scene.actions([
+      { label: '…', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian12.jpg');
+    // TODO-QSP: 'You lay on the sofa as Anna told you, she arrived almost the same time as you… ' + $func('wrap', 'a...
+    scene.actions([
+      { label: 'Leave', goto: ['pav_hotel', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -708,6 +1634,45 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'Anna_path_choice':
       enterAnnaPathChoice(s, scene);
+      break;
+    case 'librarian':
+      enterLibrarian(s, scene);
+      break;
+    case 'librarian1':
+      enterLibrarian1(s, scene);
+      break;
+    case 'librarian2':
+      enterLibrarian2(s, scene);
+      break;
+    case 'librarian3':
+      enterLibrarian3(s, scene);
+      break;
+    case 'librarian5':
+      enterLibrarian5(s, scene);
+      break;
+    case 'librarian_end':
+      enterLibrarianEnd(s, scene);
+      break;
+    case 'librarian_brat_end':
+      enterLibrarianBratEnd(s, scene);
+      break;
+    case 'Anna_dom_session':
+      enterAnnaDomSession(s, scene);
+      break;
+    case 'Anna_dom_session1':
+      enterAnnaDomSession1(s, scene);
+      break;
+    case 'Anna_dom_session2':
+      enterAnnaDomSession2(s, scene);
+      break;
+    case 'Anna_dom_session3':
+      enterAnnaDomSession3(s, scene);
+      break;
+    case 'Anna_dom_session4':
+      enterAnnaDomSession4(s, scene);
+      break;
+    case 'Anna_dom_brat':
+      enterAnnaDomBrat(s, scene);
       break;
     default:
       enterLesSex(s, scene);

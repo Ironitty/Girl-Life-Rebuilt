@@ -58,13 +58,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).petersexday = ((s as any).petersexday ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    scene.img('images/characters/city/peter/1.jpg');
-    scene.text('As you start to undress, Peter walks into the room with a multi-tailed whip in one hand and a collar in the other.');
-    scene.text('He puts the collar down in front of you. It\'s a broad strip of leather with a ring at the front where a leash can be attached.');
-    scene.actions([
-      { label: 'Put it on', handler: (st: GameState) => {
+    if (((s as any).peter ?? 0) < 1) {
+      (s as any).petersexday = ((s as any).petersexday ?? 0) + (1);
+      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      scene.img('images/characters/city/peter/1.jpg');
+      scene.text('As you start to undress, Peter walks into the room with a multi-tailed whip in one hand and a collar in the other.');
+      scene.text('He puts the collar down in front of you. It\'s a broad strip of leather with a ring at the front where a leash can be attached.');
+      scene.actions([
+        { label: 'Put it on', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/2.jpg');
     scene.text('You eagerly put the collar on and Peter strokes you gently on the cheek, but then suddenly pulls his hand back and slaps you.');
     scene.text('"Lustful girl! Stand up and turn around, hands behind your back!"');
@@ -88,7 +89,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 8, 'asscheeks', 'spank');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -127,8 +128,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'Leave', goto: ['city_center', ''] },
-    ]);
+        { label: 'Leave', goto: ['city_center', ''] },
+      ]);
+    }
   }
   scene.build();
 }
@@ -243,7 +245,9 @@ function enterD1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'anal', (-10), 'sub');
       scene.text('He continues to fuck you hard and fast and you soon feel an intense orgasm washing over you, juices squirting from your pussy as his warm cum fills your ass.');
     } else {
-      scene.text('He suddenly slows the rhythm, finishing with several sharp uneven thrusts that fill your ass with a hot load of cum.');
+      if (((s as any).pcs_horny ?? 0) < 100) {
+        scene.text('He suddenly slows the rhythm, finishing with several sharp uneven thrusts that fill your ass with a hot load of cum.');
+      }
     }
     scene.text('Your ass makes a loud squelching noise when he pulls his dick out. Peter sits on the bed, breathing heavily while you remain kneeling with your ass in the air, his cum trickling down your leg.');
     scene.actions([

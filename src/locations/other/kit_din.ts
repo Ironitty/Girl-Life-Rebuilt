@@ -66,9 +66,11 @@ function enterSantehnikend(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).picrand = 90;
-      (s as any).textrand = Math.floor(Math.random() * 4) + 1;
-      scene.actions([{ label: 'Continue', goto: ['sex', 'minet'] }]);
+      if (((s as any).pcs_apprnc ?? 0) >= 60) {
+        (s as any).picrand = 90;
+        (s as any).textrand = Math.floor(Math.random() * 4) + 1;
+        scene.actions([{ label: 'Continue', goto: ['sex', 'minet'] }]);
+      }
     }
   } },
     ]);
@@ -203,8 +205,11 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).week ?? 0) >= 6  &&  (((s as any).hour ?? 0) <= 6  ||  ((s as any).hour ?? 0) >= 17)) {
     scene.actions([{ label: 'Continue', goto: ['lover_living', 'santehnik'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['lover_living', 'santehnik_wife'] }]);
-    scene.actions([{ label: 'Continue', goto: ['kit_din', 'santehnik1'] }]);
+    if (((s as any).wifID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).week ?? 0) >= 6  &&  (((s as any).hour ?? 0) <= 6  ||  ((s as any).hour ?? 0) >= 17)) {
+      scene.actions([{ label: 'Continue', goto: ['lover_living', 'santehnik_wife'] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['kit_din', 'santehnik1'] }]);
+    }
   }
   scene.build();
 }
@@ -272,16 +277,21 @@ function enterEdagotpk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).minut = ((s as any).minut ?? 0) + 25;
-    scene.actions([
-      { label: 'Eat cooked food (0:10)', handler: (st: GameState) => {
+    if (((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+      (s as any).minut = ((s as any).minut ?? 0) + 20;
+      scene.actions([
+        { label: 'Eat cooked food (0:10)', handler: (st: GameState) => {
     // TODO-QSP: gt 'kit_din', 'edahotd', 'small_meal'
   } },
-      { label: 'Eat cooked food (0:15)', handler: (st: GameState) => {
+      ]);
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 25;
+      scene.actions([
+        { label: 'Eat cooked food (0:15)', handler: (st: GameState) => {
     // TODO-QSP: gt 'kit_din', 'edahotd', 'medium_meal'
   } },
-    ]);
+      ]);
+    }
   }
   qspCall(s, 'stat', '');
   scene.actions([
@@ -326,7 +336,9 @@ function enterPosudomashina(s: GameState, scene: SceneBuilder): void {
     (s as any).dirttarelka = 0;
     scene.text('Your dishwasher has washed the dirty dishes.');
   } else {
-    scene.text('You have run out of dishwashing liquid.');
+    if (((s as any).mc_inventory ?? 0)?.['dish_soap'] < ((s as any).dirttarelka ?? 0)) {
+      scene.text('You have run out of dishwashing liquid.');
+    }
   }
   scene.build();
 }
@@ -395,10 +407,13 @@ function enterEdaD(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_energy ?? 0) >= 100) {
       scene.text('You prepare a diet meal and try to eat it, but you\'re really not hungry at all. You can\'t finish the meal.');
     } else {
-      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
-      scene.text('You try to enjoy the diet meal, but half-way in you realize you weren\'t all that hungry yet. You manage to finish the meal, but feel like it was kind of wasted.');
-      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (80);
-      scene.text('The diet meal is tasty, and you enjoy eating it.');
+      if (((s as any).pcs_energy ?? 0) >= 80) {
+        (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
+        scene.text('You try to enjoy the diet meal, but half-way in you realize you weren\'t all that hungry yet. You manage to finish the meal, but feel like it was kind of wasted.');
+      } else {
+        (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (80);
+        scene.text('The diet meal is tasty, and you enjoy eating it.');
+      }
     }
     qspCall(s, 'stat', '');
     scene.actions([
@@ -572,10 +587,13 @@ function enterEdaDDo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_energy ?? 0) >= 100) {
     scene.text('You prepare a diet meal and try to eat it, but you\'re really not hungry at all. You can\'t finish the meal.');
   } else {
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
-    scene.text('You try to enjoy the diet meal, but half-way in you realize you weren\'t all that hungry yet. You manage to finish the meal, but feel like it was kind of wasted.');
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (80);
-    scene.text('The diet meal is tasty, and you enjoy eating it.');
+    if (((s as any).pcs_energy ?? 0) >= 80) {
+      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
+      scene.text('You try to enjoy the diet meal, but half-way in you realize you weren\'t all that hungry yet. You manage to finish the meal, but feel like it was kind of wasted.');
+    } else {
+      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (80);
+      scene.text('The diet meal is tasty, and you enjoy eating it.');
+    }
   }
   qspCall(s, 'stat', '');
   qspCall(s, 'daily_routine', 'visit_item_done', 'edaD');
@@ -660,28 +678,471 @@ function enterCookMealDo(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.text('There is already a warm meal on the table - no need to cook again.');
-    if (((s as any).mc_inventory ?? 0)?.['dish_plates'] <= 0) {
-      scene.text('You have no clean plates to cook with. Wash the dishes first.');
+    if (((s as any).edahot ?? 0) > 0) {
+      scene.text('There is already a warm meal on the table - no need to cook again.');
       scene.actions([
         { label: 'Nevermind', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
   } },
       ]);
     } else {
-      scene.text('There is no food in the refrigerator to cook with.');
-      scene.actions([
-        { label: 'Nevermind', handler: (st: GameState) => {
+      if (((s as any).mc_inventory ?? 0)?.['dish_plates'] <= 0) {
+        scene.text('You have no clean plates to cook with. Wash the dishes first.');
+        scene.actions([
+          { label: 'Nevermind', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+  } },
+        ]);
+      } else {
+        scene.text('There is no food in the refrigerator to cook with.');
+        scene.actions([
+          { label: 'Nevermind', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+  } },
+        ]);
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterCookMealPk(s: GameState, scene: SceneBuilder): void {
+  (s as any).edahot = ((s as any).edahot ?? 0) + (1);
+  (s as any).mc_inventory['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
+  (s as any).musor = ((s as any).musor ?? 0) + (1);
+  if (((s as any).loc ?? 0) !== 'uni_dorm') {
+    (s as any).mc_inventory['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
+  }
+  qspCall(s, 'mood', 'lower', 'tiny');
+  if (((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+      (s as any).minut = ((s as any).minut ?? 0) + 20;
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 25;
+    }
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/shared/home/kitchen/cook.jpg');
+  scene.text('You prepare the meal and leave it on the table, still warm.');
+  scene.actions([
+    { label: 'Finish', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEatMealDo(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/shared/home/kitchen/cook.jpg');
+  if (((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] === 'parents_home') {
+    qspCall(s, 'kit_din', 'parents_meal_options');
+  } else {
+    (s as any).eat_opt_count = 0;
+    scene.text('What would you like to eat?');
+    if (((s as any).edahot ?? 0) > 0) {
+      (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
+      scene.actions([
+        { label: 'Eat the warm meal - light portion (0:10)', handler: (st: GameState) => {
+    // TODO-QSP: gt 'kit_din', 'eat_warm_pk', 'small_meal'
+  } },
+        { label: 'Eat the warm meal - normal portion (0:15)', handler: (st: GameState) => {
+    // TODO-QSP: gt 'kit_din', 'eat_warm_pk', 'medium_meal'
+  } },
+        { label: 'Eat the warm meal - hearty portion (0:20)', handler: (st: GameState) => {
+    // TODO-QSP: gt 'kit_din', 'eat_warm_pk', 'large_meal'
   } },
       ]);
     }
+    if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  ||  ((s as any).loc ?? 0) === 'uni_dorm')) {
+      (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
+      scene.actions([
+        { label: 'Cook and eat - light (0:30)', handler: (st: GameState) => {
+    // TODO-QSP: gt 'kit_din', 'eat_cooked_pk', 'small_meal'
+  } },
+        { label: 'Cook and eat - normal (0:40)', handler: (st: GameState) => {
+    // TODO-QSP: gt 'kit_din', 'eat_cooked_pk', 'medium_meal'
+  } },
+        { label: 'Cook and eat - hearty (0:50)', handler: (st: GameState) => {
+    // TODO-QSP: gt 'kit_din', 'eat_cooked_pk', 'large_meal'
+  } },
+      ]);
+    }
+    if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {
+      (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
+      scene.actions([
+        { label: 'Eat diet food (0:20)', goto: ['kit_din', 'eat_diet_pk'] },
+      ]);
+    }
+    if (qspFunc(s, 'daily_routine', 'home_has_food')) {
+      (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
+      scene.actions([
+        { label: 'Eat a light meal (0:10)', handler: (st: GameState) => {
+    qspCall(st, 'food', 'small_meal');
+  } },
+        { label: 'Eat a normal meal (0:15)', handler: (st: GameState) => {
+    qspCall(st, 'food', 'medium_meal');
+  } },
+        { label: 'Eat a hearty meal (0:20)', handler: (st: GameState) => {
+    qspCall(st, 'food', 'large_meal');
+  } },
+      ]);
+    }
+    if ((!((s as any).eat_opt_count ?? 0))) {
+      scene.text('There is nothing available to eat right now. You will need to go shopping.');
+    }
+  }
+  scene.actions([
+    { label: 'Nevermind', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).breakfast_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 45)  ||  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 15))) {
+    if (((s as any).cumloc ?? 0)[11] === 1  ||  ((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1) {
+      scene.actions([
+        { label: 'Eat breakfast with your family', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/mom/prost6.jpg');
+    // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> glares at you as you sit down and you realize you ...
+    scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} glares at you as you sit down and you realize you still have cum on you!`);
+    scene.text('"How disgusting! And at the breakfast table! Have you no shame?! Get out of my sight, whore!"');
+    scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
     scene.actions([
-      { label: 'Nevermind', handler: (st: GameState) => {
-    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'cook_meal_do');
+      { label: 'Go to the bathroom', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'abort');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['vanrPar', ''] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).PSwim ?? 0) !== 1  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
+        scene.actions([
+          { label: 'Eat breakfast with your family (0:20)', handler: (st: GameState) => {
+    qspCall(s, 'food', 'family_meals', 'breakfast');
+    qspCall(s, 'npc_relationship', 'modify', 'A29', 1);
+    (s as any).breakfast_day = ((s as any).daystart ?? 0);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/home/breakfasthome.jpg');
+    scene.text('As you sit down and join your family for breakfast, your stepfather engages you in conversation.');
+    if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).home ?? 0)?.['current'] === 'parents_home'  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
+      if (((s as any).class ?? 0)?.['school_grade_average'] >= 80) {
+        // TODO-QSP: dynamic text: "So how are you doing in school, <<$pcs_nickname>>?" he asks.
+        scene.text(`"So how are you doing in school, ${((s as any).pcs_nickname ?? 0)}?" he asks.`);
+        scene.text('You smile at him. "Really great. We were just learning something interesting the other day."');
+        if ((((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
+          scene.text('You go on to talk about some of the stuff you\'ve learned recently in school. He nods, while your mother just listens in frosty silence.');
+          scene.text('"I\'m surprised you found time to study inbetween all the sleeping around you\'re doing," she scoffs.');
+          scene.text('"Not at the breakfast table, dear," your stepfather says and tries continuing the conversation, but the tense awkwardness between you and your mother causes the conversation to fizzle out.');
+          scene.text('While the food was good, the company could have been a lot better.');
+        } else {
+          scene.text('You go on to talk about some of the stuff you\'ve learned recently in school. He nods in approval, while your mother gives you a proud smile and Kolka rolls his eyes.');
+          scene.text('The rest of breakfast is taken up with some small talk about what everyone has been up to of late. You thoroughly enjoy your breakfast with your family.');
+        }
+      } else {
+        // TODO-QSP: dynamic text: "So how are you doing in school, <<$pcs_nickname>>?" he asks.
+        scene.text(`"So how are you doing in school, ${((s as any).pcs_nickname ?? 0)}?" he asks.`);
+        scene.text('You glance at him. "Um… Okay, I guess…"');
+        if ((((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
+          scene.text('You notice your mother frowning at you, so you quickly try to change the subject, but she won\'t let you.');
+          scene.text('"Maybe if you bothered to spend time studying instead of sleeping around, your grades would be as good as your brother\'s," she scoffs.');
+          scene.text('"Not at the breakfast table, dear," your stepfather says and tries continuing the conversation, but the tense awkwardness between you and your mother causes the conversation to fizzle out.');
+          scene.text('While the food was good, the company could have been a lot better.');
+        } else {
+          scene.text('You notice your mother frowning at you and quickly try to change the subject, but they won\'t let you. You do your best to make them think you\'re doing better than you are, but they don\'t buy it. Kolka snickers at you getting grilled.');
+          scene.text('The rest of breakfast is taken up talking about how Kolka is doing in school. He seems to be doing better than you and is showered with praise from your mother and stepfather. The food was good, even if the conversation wasn\'t the best.');
+        }
+      }
+    } else {
+      if (((s as any).kanikuli ?? 0) !== 0) {
+        scene.text('You smile at him. "I\'m enjoying some time away from school hanging out with my friends. It\'s nice to just relax for a change."');
+        if ((((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
+          scene.text('Your mother speaks up. "Maybe use this time to catch up on your studying instead of sleeping around. You can still make it into university even if you are-"');
+          scene.text('You roll your eyes, but before either of you can say something, your stepfather lays his hand on your mother\'s. "Not at the breakfast table, dear."');
+          scene.text('She just glares at you both before sighing.');
+        } else {
+          scene.text('Your mother speaks up. "It wouldn\'t hurt to study your school books and get ahead of your courses to get better grades."');
+          scene.text('You roll your eyes, but before you can respond, your stepfather lays his hand on your mother\'s. "Let her enjoy herself, dear. This is her last year before she goes to university after all," he says with a little emphasis.');
+          scene.text('You just sigh and nod as you both know that\'s what your mother wants.');
+        }
+      } else {
+        scene.text('"So have you found a cute boy who\'s head over heels in love with you and wants to take you out on dates?" he asks in a slightly teasing tone.');
+        if ((((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
+          scene.text('You\'re about to answer when your mother scoffs. "I\'m sure she\'s found herself <i>plenty</i> of boys by now."');
+          scene.text('"Natasha!" your stepfather yells. "I know you have your... opinion on the matter, but that\'s hardly an appropriate reponse!"');
+          scene.text('Kolka just snickers outside of your stepfather\'s view as your mother gives you a disapproving glare.');
+        } else {
+          scene.text('Your mother smacks his arm. "She\'s too young for that! She needs to focus on school!"');
+          scene.text('You\'re about to answer when Kolka chimes in. "Like any boy would want to be seen with her!"');
+          scene.text('This earns him a playful punch on the arm from you and before long, you\'re all bantering at the table.');
+        }
+      }
+    }
+    scene.actions([
+      { label: 'Get up from the table', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
   } },
     ]);
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Eat breakfast with your family', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A29', (-10));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/home/breakfasthome.jpg');
+    scene.text('Everyone stares at you as you sit down for breakfast.');
+    scene.text('"What?" you exclaim.');
+    if ((((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
+      scene.text('"Of course my whore of a so called daughter thinks <i>this</i> is appropriate at the breakfast table! Go and put some clothes on, you shameless slut!" she growls before throwing you out of the room.');
+    } else {
+      // TODO-QSP: dynamic text: Your mother stands up from her seat, nearly knocking the chair over in the proce...
+      scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((s as any).pcs_nickname ?? 0)}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
+    }
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(s, 'daily_routine', 'abort');
+    (s as any).minut = ((s as any).minut ?? 0) + (1);
+  } },
+    ]);
+  } },
+        ]);
+      }
+    }
+  } else {
+    if (((s as any).breakfast_day ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 45  ||  ((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 8)) {
+      scene.actions([
+        { label: 'Eat breakfast alone (0:20)', handler: (st: GameState) => {
+    (s as any).breakfast_day = ((s as any).daystart ?? 0);
+    qspCall(s, 'food', 'family_meals', 'breakfast');
+    qspCall(s, 'food', 'aftermeal');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/food/breakfast_\'+rand(0, 1)+\'.jpg');
+    // TODO-QSP: dynamic text: You enjoy a quiet breakfast by yourself. The portions were moderate and<<$mtxt>>...
+    scene.text(`You enjoy a quiet breakfast by yourself. The portions were moderate and${((s as any).mtxt ?? 0)} You accompany it with a mug of tea.`);
+    scene.actions([
+      { label: 'Get up from the table', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).dinner_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) <= 30) {
+        if (((s as any).cumloc ?? 0)[11] === 1  ||  ((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1) {
+          scene.actions([
+            { label: 'Eat dinner with your family', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/mom/prost6.jpg');
+    // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> glares at you as you sit down and you realize you ...
+    scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} glares at you as you sit down and you realize you still have cum on you!`);
+    scene.text('"How disgusting! And at the dinner table! Have you no shame?! Get out of my sight, whore!"');
+    scene.text('Knowing there\'s nothing you can say, you simply mumble an apology and quickly head to the bathroom.');
+    scene.actions([
+      { label: 'Go to the bathroom', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'abort');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['vanrPar', ''] },
+    ]);
+  } },
+          ]);
+        } else {
+          if (((s as any).PSwim ?? 0) !== 1  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
+            scene.actions([
+              { label: 'Eat dinner with your family (0:20)', handler: (st: GameState) => {
+    qspCall(s, 'food', 'family_meals', 'dinner');
+    qspCall(s, 'npc_relationship', 'modify', 'A29', 1);
+    (s as any).dinner_day = ((s as any).daystart ?? 0);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/home/dinnerhome.jpg');
+    // TODO-QSP: dynamic text: You sit down and join your family for dinner and your stepfather starts teasing ...
+    scene.text(`You sit down and join your family for dinner and your stepfather starts teasing you. "So. Do you have a boyfriend yet, ${((s as any).pcs_nickname ?? 0)}?"`);
+    if ((((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
+      scene.text('You\'re about to answer when your mother scoffs. "I\'m sure she\'s found herself <i>plenty</i> of boys by now."');
+      scene.text('"Natasha!" your stepfather yells. "I know you have your... opinion on the matter, but that\'s hardly an appropriate reponse!"');
+      if (((s as any).locat ?? 0)?.['Anya'] === 12) {
+        scene.text('Anya rolls her eyes and Kolka snickers as your mother gives you a disapproving glare.');
+      } else {
+        scene.text('Kolka just snickers outside of your stepfather\'s view as your mother gives you a disapproving glare.');
+      }
+    } else {
+      if (((s as any).fame ?? 0)?.['pav_slut'] > 150  &&  (!((s as any).motherKnowSpravka ?? 0))) {
+        scene.text('You\'re about to respond when your mother interrupts you. "Of course not! She\'s still too young to be thinking about boys!"');
+        scene.text('Kolka then chimes in. "Like any boy would date her when she sucks them all off anyway."');
+        scene.text('She turns towards him. "That\'s not funny! Apologize to your sister right now! Right now!"');
+        if (((s as any).locat ?? 0)?.['Anya'] === 12) {
+          scene.text('Anya smirks as Kolka freezes in place and decides he doesn\'t want to be the one to tell her about your reputation. He quickly apologizes to you.');
+        } else {
+          scene.text('Kolka freezes in place and decides he doesn\'t want to be the one to tell her about your reputation. He quickly apologizes to you.');
+        }
+        scene.text('Your stepfather clears his throat and quickly changes the subject, talking about how his work went. After that, you have a fairly enjoyable dinner.');
+      } else {
+        if (((s as any).fame ?? 0)?.['pav_slut'] > 150) {
+          scene.text('You\'re about to respond when your mother interrupts you. "She\'s too young to worry about that and… we talked about it." She gives you a meaningful glance and you shut your mouth.');
+          scene.text('Kolka then chimes in. "Like any boy would date her when she sucks them all off anyway."');
+          scene.text('She turns towards Kolka. "That\'s not funny!" She then glances at you. "She might have made some mistakes, but she\'s trying to be a better girl now. Now apologize to your sister right now!"');
+          if (((s as any).locat ?? 0)?.['Anya'] === 12) {
+            scene.text('Anya just smirks as Kolka freezes in place and apologizes to you.');
+          } else {
+            scene.text('Startled, Kolka freezes in place and apologizes to you.');
+          }
+          scene.text('Your stepfather clears his throat and quickly changes the subject, talking about how his work went. After that, you have a fairly enjoyable dinner.');
+        } else {
+          if (((s as any).npc_QW ?? 0)?.['A29'] === 2) {
+            scene.text('You\'re about to respond when your mother interrupts you. "We\'ve spoken about this. It\'s okay if she starts dating so long as she\'s careful, but I\'d prefer if she focused on university first. She has plenty of time to settle down after that."');
+            // TODO-QSP: dynamic text: "Is that what <<$pcs_nickname>> wants?" he asks. "Maybe she wants to settle down...
+            scene.text(`"Is that what ${((s as any).pcs_nickname ?? 0)} wants?" he asks. "Maybe she wants to settle down and start a family of her own without worrying about university?"`);
+            scene.text('Your mother gives him a hard stare and he drops it before he starts talking about some of the stuff that happened at his work. All and all, you have a fairly enjoyable dinner.');
+          } else {
+            scene.text('You\'re about to respond when your mother interrupts you. "Of course not! She\'s still too young to be thinking about boys!"');
+            scene.text('Your stepfather sighs. "She\'s old enough to start dating, dear."');
+            scene.text('Your mother gives him a hard stare. "No, she isn\'t. She needs to focus on school and then university before she can start thinking about boys."');
+            scene.text('Your stepfather decides to drop it and start talking about some of the stuff that happened at his work. All and all, you have a fairly enjoyable dinner.');
+          }
+        }
+      }
+    }
+    scene.actions([
+      { label: 'Get up from the table', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+  } },
+    ]);
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Eat dinner with your family', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A29', (-10));
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/home/dinnerhome.jpg');
+    scene.text('Everyone stares at you as you sit down for dinner.');
+    scene.text('"What?" you exclaim.');
+    if ((((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
+      scene.text('"Of course my whore of a so called daughter thinks <i>this</i> is appropriate at the dinner table! Go and put some clothes on, you shameless slut!" she growls before throwing you out of the room.');
+    } else {
+      // TODO-QSP: dynamic text: Your mother stands up from her seat, nearly knocking the chair over in the proce...
+      scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((s as any).pcs_nickname ?? 0)}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
+    }
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(s, 'daily_routine', 'abort');
+    (s as any).minut = ((s as any).minut ?? 0) + (1);
+  } },
+    ]);
+  } },
+            ]);
+          }
+        }
+      } else {
+        scene.actions([
+          { label: 'Eat a hearty meal (0:20)', handler: (st: GameState) => {
+    qspCall(st, 'food', 'large_meal');
+  } },
+          { label: 'Eat a normal meal (0:15)', handler: (st: GameState) => {
+    qspCall(st, 'food', 'medium_meal');
+  } },
+          { label: 'Eat a light meal (0:10)', handler: (st: GameState) => {
+    qspCall(st, 'food', 'small_meal');
+  } },
+        ]);
+      }
+    }
   }
+  scene.build();
+}
+
+function enterEatWarmPk(s: GameState, scene: SceneBuilder): void {
+  (s as any).edahot = 0;
+  qspCall(s, 'mood', 'raise', 'small');
+  if (((s as any).loc ?? 0) !== 'uni_dorm') {
+    (s as any).dirttarelka = ((s as any).dirttarelka ?? 0) + (1);
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'food', 'small_meal_stats');
+    qspCall(s, 'food', 'small_meal_text');
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
+      (s as any).minut = ((s as any).minut ?? 0) + 20;
+      qspCall(s, 'food', 'large_meal_stats');
+      qspCall(s, 'food', 'large_meal_text');
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 15;
+      qspCall(s, 'food', 'medium_meal_stats');
+      qspCall(s, 'food', 'medium_meal_text');
+    }
+  }
+  scene.actions([
+    { label: 'Finish', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEatCookedPk(s: GameState, scene: SceneBuilder): void {
+  (s as any).mc_inventory['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (1);
+  (s as any).musor = ((s as any).musor ?? 0) + (1);
+  if (((s as any).loc ?? 0) !== 'uni_dorm') {
+    (s as any).mc_inventory['dish_plates'] = ((s as any).mc_inventory['dish_plates'] ?? 0) - (1);
+  }
+  qspCall(s, 'mood', 'lower', 'tiny');
+  qspCall(s, 'mood', 'raise', 'small');
+  if (((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    qspCall(s, 'food', 'small_meal_stats');
+    qspCall(s, 'food', 'small_meal_text');
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
+      (s as any).minut = ((s as any).minut ?? 0) + 50;
+      qspCall(s, 'food', 'large_meal_stats');
+      qspCall(s, 'food', 'large_meal_text');
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 40;
+      qspCall(s, 'food', 'medium_meal_stats');
+      qspCall(s, 'food', 'medium_meal_text');
+    }
+  }
+  scene.actions([
+    { label: 'Finish', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEatDietPk(s: GameState, scene: SceneBuilder): void {
+  (s as any).frost = 0;
+  (s as any).minut = ((s as any).minut ?? 0) + 20;
+  (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
+  qspCall(s, 'mood', 'raise', 'small');
+  (s as any).mc_inventory['food_diet'] = ((s as any).mc_inventory['food_diet'] ?? 0) - (1);
+  scene.img('images/shared/food/food.jpg');
+  if (((s as any).pcs_energy ?? 0) >= 100) {
+    scene.text('You prepare a diet meal and try to eat it, but you\'re really not hungry at all. You can\'t finish the meal.');
+  } else {
+    if (((s as any).pcs_energy ?? 0) >= 80) {
+      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
+      scene.text('You try to enjoy the diet meal, but half-way in you realise you weren\'t all that hungry yet. You manage to finish the meal, but it feels like it was somewhat wasted.');
+    } else {
+      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (80);
+      scene.text('The diet meal is tasty, and you enjoy eating it.');
+    }
+  }
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Finish', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'kit_din', 'eat_meal_do');
+  } },
+  ]);
   scene.build();
 }
 
@@ -789,6 +1250,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'cook_meal_do':
       enterCookMealDo(s, scene);
+      break;
+    case 'cook_meal_pk':
+      enterCookMealPk(s, scene);
+      break;
+    case 'eat_meal_do':
+      enterEatMealDo(s, scene);
+      break;
+    case 'parents_meal_options':
+      enterParentsMealOptions(s, scene);
+      break;
+    case 'eat_warm_pk':
+      enterEatWarmPk(s, scene);
+      break;
+    case 'eat_cooked_pk':
+      enterEatCookedPk(s, scene);
+      break;
+    case 'eat_diet_pk':
+      enterEatDietPk(s, scene);
       break;
     default:
       enterKitchenActs(s, scene);

@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -57,7 +57,7 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -118,7 +118,7 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -166,7 +166,7 @@ function enterEnd7(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave him blueballed', handler: (st: GameState) => {
+      { label: 'Leave him blueballed [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
   }, goto: ['uni_dorm', 'tenth_floor'] },
@@ -225,7 +225,7 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -306,7 +306,7 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'korr'] },
     ]);

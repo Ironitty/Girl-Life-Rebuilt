@@ -15,7 +15,7 @@ function enterShowAsshole(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Ignore him', handler: (st: GameState) => {
+      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -73,7 +73,7 @@ function enterShowPussy(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse to take off your panties', handler: (st: GameState) => {
+      { label: 'Refuse to take off your panties [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -147,7 +147,7 @@ function enterShowTits(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse to take off your bra', handler: (st: GameState) => {
+      { label: 'Refuse to take off your bra [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -213,7 +213,7 @@ function enterPlayTits(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse to play with your boobs', handler: (st: GameState) => {
+      { label: 'Refuse to play with your boobs [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -253,7 +253,7 @@ function enterShowCunt(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Ignore him', handler: (st: GameState) => {
+      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -281,6 +281,21 @@ function enterShowCunt(s: GameState, scene: SceneBuilder): void {
 
 function enterShowVagina(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the viewers asks very politely: "Uh, hi! Could you please show me your vagina up close?"');
+  qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
+  }
   scene.actions([
     { label: 'Show him your vagina', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic', 'request');
@@ -291,42 +306,33 @@ function enterShowVagina(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
         (s as any).img_source = 18;
       } else {
-        (s as any).img_source = 13;
-        if (((s as any).pcs_vag ?? 0) <= 15) {
-          (s as any).img_source = 14;
+        if (((s as any).pcs_vag ?? 0) <= 10) {
+          (s as any).img_source = 13;
         } else {
-          (s as any).img_source = 15;
-          if (((s as any).pcs_vag ?? 0) <= 35) {
-            (s as any).img_source = 16;
+          if (((s as any).pcs_vag ?? 0) <= 15) {
+            (s as any).img_source = 14;
+          } else {
+            if (((s as any).pcs_vag ?? 0) <= 25) {
+              (s as any).img_source = 15;
+            } else {
+              if (((s as any).pcs_vag ?? 0) <= 35) {
+                (s as any).img_source = 16;
+              }
+            }
           }
-          scene.img('images/pc/items/accessories/computer/camwhore\' + img_source + \'.jpg');
         }
-        scene.text('Aww, what a sweetheart! You smile at the camera and do what your client wants. He delivers on his promise as well, sending some tokens your way. The rest of the chat is thanking him too, everyone wanted to see that!');
-        qspCall(s, 'arousal', 'porn', (-5));
-        qspCall(s, 'stat', '');
-        if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-          // TODO-QSP: $camGirl['MFC_donate_message']
-        }
-        scene.actions([
-          { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
-        ]);
       }
-      qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Ignore him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
-        ]);
-      }
+      scene.img('images/pc/items/accessories/computer/camwhore\' + img_source + \'.jpg');
     }
+    scene.text('Aww, what a sweetheart! You smile at the camera and do what your client wants. He delivers on his promise as well, sending some tokens your way. The rest of the chat is thanking him too, everyone wanted to see that!');
+    qspCall(s, 'arousal', 'porn', (-5));
+    qspCall(s, 'stat', '');
+    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+      // TODO-QSP: $camGirl['MFC_donate_message']
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
   } },
   ]);
   scene.build();

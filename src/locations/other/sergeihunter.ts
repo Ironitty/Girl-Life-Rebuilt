@@ -46,24 +46,35 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 0) {
         scene.text('You and he have a bad relationship because you offended him in the past.');
       } else {
-        scene.text('You have a normal relationship with him.');
-        if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 20) {
-          scene.text('You have friendly relations with him.');
+        if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 10) {
+          scene.text('You have a normal relationship with him.');
         } else {
-          scene.text('You\'re good friends.');
-          if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 30) {
-            scene.text('It seems he has a crush on you.');
+          if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 20) {
+            scene.text('You have friendly relations with him.');
           } else {
-            scene.text('You have a mutual crush on each other.');
-            if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 1) {
-              scene.text('You two love each other.\' else \'You have an unrequited love for him.');
+            if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 25) {
+              scene.text('You\'re good friends.');
+            } else {
+              if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 30) {
+                scene.text('It seems he has a crush on you.');
+              } else {
+                if (((s as any).hunterVars ?? 0)?.['SergeiQw'] <= 35) {
+                  scene.text('You have a mutual crush on each other.');
+                } else {
+                  if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 1) {
+                    scene.text('You two love each other.\' else \'You have an unrequited love for him.');
+                  }
+                }
+              }
             }
           }
-          qspCall(s, 'stat', '');
-          if (((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 10) {
-            if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 0) {
-              scene.actions([
-                { label: 'Flirt', handler: (st: GameState) => {
+        }
+      }
+      qspCall(s, 'stat', '');
+      if (((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 10) {
+        if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 0) {
+          scene.actions([
+            { label: 'Flirt', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterflirt1.\'+rand(1, 3)+\'.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -138,11 +149,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-              ]);
-            } else {
-              if (((s as any).pcs_horny ?? 0) >= 60) {
-                scene.actions([
-                  { label: 'Have sex', handler: (st: GameState) => {
+          ]);
+        } else {
+          if (((s as any).pcs_horny ?? 0) >= 60) {
+            scene.actions([
+              { label: 'Have sex', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterflirt2.\'+rand(1, 6)+\'.jpg');
     (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) + (1);
     (s as any).hunterVars['Sergeisex'] = ((s as any).hunterVars['Sergeisex'] ?? 0) + (Math.floor(Math.random() * 22) + 9);
@@ -152,11 +163,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Go', goto: ['hunterLoveSex', 'Sergei'] },
     ]);
   } },
-                ]);
-              }
-              if ((!(Math.floor(Math.random() * 7) + 0))) {
-                scene.actions([
-                  { label: 'Break up with Sergei', handler: (st: GameState) => {
+            ]);
+          }
+          if ((!(Math.floor(Math.random() * 7) + 0))) {
+            scene.actions([
+              { label: 'Break up with Sergei', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/brosila.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).hunterVars['SergeiLove'] = 0;
@@ -168,10 +179,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-                ]);
-              }
-              scene.actions([
-                { label: 'Spend time together', handler: (st: GameState) => {
+            ]);
+          }
+          scene.actions([
+            { label: 'Spend time together', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterlove1.\'+rand(1, 4)+\'.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -190,11 +201,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-              ]);
-            }
-          }
-          scene.actions([
-            { label: 'Chat (0:30)', handler: (st: GameState) => {
+          ]);
+        }
+      }
+      scene.actions([
+        { label: 'Chat (0:30)', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/talk1.\'+rand(1, 3)+\'.jpg');
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 0) {
       scene.text('You spend some time chatting with Sergei, listening to exciting stories from his life and telling some stories of your own.');
@@ -213,35 +224,34 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            { label: 'Depart', handler: (st: GameState) => {
+        { label: 'Depart', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-          ]);
-        }
-        scene.img('images/locations/gadukino/hunters/brosil.jpg');
-        if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 10) {
-          scene.text('You want to talk to Sergei, but he beats you to it and starts speaking before you can get a word in.');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I realized that our relationship has no future, and we need ...
-          scene.text(`"${((s as any).pcs_nickname ?? 0)}, I realized that our relationship has no future, and we need to stop seeing each other, " he says, trying not to look in your direction, and resolutely walks away.`);
-          scene.text('"Well, maybe it\'s for the best," you think as you leave in the other direction.');
-          (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (10);
-        } else {
-          scene.text('You want to talk to Sergei, but before you say anything, he speaks instead.');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I realized that our relationship has no future. Your passion...
-          scene.text(`"${((s as any).pcs_nickname ?? 0)}, I realized that our relationship has no future. Your passion is unmatched, but I really love my family. I can't risk that for you," he says. He turns and walks away without saying another word or giving you time to say anything.`);
-          scene.text('"Well, that\'s how you feel, is it?" you think as you stand there stunned. "Although, this is probably for the best since he is married," you conclude before walking away.');
-          (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (50);
-        }
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        (s as any).hunterVars['SergeiLove'] = 0;
-        qspCall(s, 'stat', '');
-        scene.actions([
-          { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
-        ]);
-      }
+      ]);
     }
+  } else {
+    scene.img('images/locations/gadukino/hunters/brosil.jpg');
+    if (((s as any).hunterVars ?? 0)?.['SergeiQw'] < 10) {
+      scene.text('You want to talk to Sergei, but he beats you to it and starts speaking before you can get a word in.');
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I realized that our relationship has no future, and we need ...
+      scene.text(`"${((s as any).pcs_nickname ?? 0)}, I realized that our relationship has no future, and we need to stop seeing each other, " he says, trying not to look in your direction, and resolutely walks away.`);
+      scene.text('"Well, maybe it\'s for the best," you think as you leave in the other direction.');
+      (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (10);
+    } else {
+      scene.text('You want to talk to Sergei, but before you say anything, he speaks instead.');
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I realized that our relationship has no future. Your passion...
+      scene.text(`"${((s as any).pcs_nickname ?? 0)}, I realized that our relationship has no future. Your passion is unmatched, but I really love my family. I can't risk that for you," he says. He turns and walks away without saying another word or giving you time to say anything.`);
+      scene.text('"Well, that\'s how you feel, is it?" you think as you stand there stunned. "Although, this is probably for the best since he is married," you conclude before walking away.');
+      (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (50);
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).hunterVars['SergeiLove'] = 0;
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
   }
   scene.build();
 }

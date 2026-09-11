@@ -9,12 +9,37 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 function enterGeoPavlovsk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '58_estate') {
   } else {
-    if (((s as any).locArgs?.[1] ?? 0)=== 'industrial') {
+    if (((s as any).locArgs?.[1] ?? 0)=== 'commercial') {
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'park') {
+      if (((s as any).locArgs?.[1] ?? 0)=== 'industrial') {
+      } else {
+        if (((s as any).locArgs?.[1] ?? 0) === 'market') {
+        } else {
+          if (((s as any).locArgs?.[1] ?? 0) === 'park') {
+          } else {
+            if (((s as any).locArgs?.[1] ?? 0) === 'train_station') {
+            }
+          }
+        }
       }
     }
   }
+  scene.build();
+}
+
+function enterGeoCity(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterGeoPushkin(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterGeoGad(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterGeoVillage(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
@@ -26,6 +51,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'geo_pavlovsk':
       enterGeoPavlovsk(s, scene);
+      break;
+    case 'geo_city':
+      enterGeoCity(s, scene);
+      break;
+    case 'geo_pushkin':
+      enterGeoPushkin(s, scene);
+      break;
+    case 'geo_gad':
+      enterGeoGad(s, scene);
+      break;
+    case 'geo_village':
+      enterGeoVillage(s, scene);
       break;
     default:
       enterInit(s, scene);

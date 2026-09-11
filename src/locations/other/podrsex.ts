@@ -171,40 +171,50 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
     qspCall(s, 'arousal', 'end');
   } else {
-    scene.text('The man groans, pumping his seed deep inside your pussy.');
-    (s as any).tmp = qspFunc(s, 'pregriskeval', '');
-    if ((!((s as any).tmp ?? 0))) {
-      scene.text('<br>"Oh, shit!" you think, when you feel his cock pumping his load deep inside you. Hopefully you won\'t end up pregnant…');
-      qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
-      qspCall(s, 'arousal', 'end');
-    } else {
-      scene.text('<br>You push against him when you feel his cock pumping his load deep inside you. Maybe you\'ll end up pregnant…');
-      qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
-      qspCall(s, 'arousal', 'end');
-    }
-    if (((s as any).pos ?? 0) === 3) {
-      (s as any).spafinloc = 3;
-      scene.text('The man groans as he pumps his load deep inside your ass.');
-      qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
-      qspCall(s, 'arousal', 'end');
-    } else {
-      scene.text('He groans as he fills her pussy with his cum.');
+    if (((s as any).pos ?? 0) === 2) {
+      scene.text('The man groans, pumping his seed deep inside your pussy.');
       (s as any).tmp = qspFunc(s, 'pregriskeval', '');
-      if (((s as any).tmp ?? 0) > 0) {
-        scene.text('<br>It\'s exciting to watch another woman being filled with cum. Maybe\'ll she end up pregnant…');
+      if ((!((s as any).tmp ?? 0))) {
+        scene.text('<br>"Oh, shit!" you think, when you feel his cock pumping his load deep inside you. Hopefully you won\'t end up pregnant…');
+        qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
         qspCall(s, 'arousal', 'end');
       } else {
-        scene.text('<br>It\'s hot to see another woman being filled with cum. You just hope she\'s on the pill…');
-        qspCall(s, 'arousal', 'end');
+        if (((s as any).tmp ?? 0) > 0) {
+          scene.text('<br>You push against him when you feel his cock pumping his load deep inside you. Maybe you\'ll end up pregnant…');
+          qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+          qspCall(s, 'arousal', 'end');
+        }
       }
-      if (((s as any).pos ?? 0) === 5) {
-        scene.text('He groans as he pumps her ass full of cum.');
+    } else {
+      if (((s as any).pos ?? 0) === 3) {
+        (s as any).spafinloc = 3;
+        scene.text('The man groans as he pumps his load deep inside your ass.');
+        qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
         qspCall(s, 'arousal', 'end');
+      } else {
+        if (((s as any).pos ?? 0) === 4) {
+          scene.text('He groans as he fills her pussy with his cum.');
+          (s as any).tmp = qspFunc(s, 'pregriskeval', '');
+          if (((s as any).tmp ?? 0) > 0) {
+            scene.text('<br>It\'s exciting to watch another woman being filled with cum. Maybe\'ll she end up pregnant…');
+            qspCall(s, 'arousal', 'end');
+          } else {
+            scene.text('<br>It\'s hot to see another woman being filled with cum. You just hope she\'s on the pill…');
+            qspCall(s, 'arousal', 'end');
+          }
+        } else {
+          if (((s as any).pos ?? 0) === 5) {
+            scene.text('He groans as he pumps her ass full of cum.');
+            qspCall(s, 'arousal', 'end');
+          }
+        }
       }
-      (s as any).pos = 0;
-      qspCall(s, 'stat', '');
-      scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
+    }
+  }
+  (s as any).pos = 0;
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).picrand ?? 0) === 26  ||  ((s as any).picrand ?? 0) === 27  ||  ((s as any).picrand ?? 0) === 29) {
       scene.actions([{ label: 'Continue', goto: ['office', 'work'] }]);
     }
@@ -220,9 +230,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     }
     dynamicGoto(st, 'sexloc');
   } },
-      ]);
-    }
-  }
+  ]);
   scene.build();
 }
 

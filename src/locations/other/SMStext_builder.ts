@@ -10,8 +10,11 @@ function enterGetSmsId(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length > 1) {
     (s as any).result = qspUntranslated(s, "SMSIdentifier[ARGS[1]]", { location: "SMStext_builder" });
   } else {
-    (s as any).result = ((s as any).SMSBuilderVars ?? 0)?.['SMSIdentifier'];
-    (s as any).result = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
+    if (Object.keys((s as any).SMSBuilderVars ?? {}).length > 0) {
+      (s as any).result = ((s as any).SMSBuilderVars ?? 0)?.['SMSIdentifier'];
+    } else {
+      (s as any).result = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
+    }
   }
   return;
   scene.build();
@@ -36,7 +39,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoesIndexExist(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).ARGS ?? 0)[1] >= 0  &&  ((s as any).ARGS ?? 0)[1] < ((s as any).telefon ?? 0)?.['SMSCount']);
+  (s as any).result = (((s as any).locArgs?.[1] ?? 0) >= 0  &&  ((s as any).locArgs?.[1] ?? 0) < ((s as any).telefon ?? 0)?.['SMSCount']);
   return;
   scene.build();
 }

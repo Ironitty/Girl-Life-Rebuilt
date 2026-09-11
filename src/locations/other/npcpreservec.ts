@@ -26,8 +26,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).barraynumber = ((s as any).barraynumber ?? 0) - (1);
       // TODO-QSP: jump 'npcsavebsanityloop'
     } else {
-      (s as any).barraynumber = ((s as any).barraynumber ?? 0) + (1);
-      // TODO-QSP: jump 'npcsavebsanityloop'
+      if (((s as any).npc_perstype ?? 0)?.[String((s as any).npclastsaved ?? 0)] !== '') {
+        (s as any).barraynumber = ((s as any).barraynumber ?? 0) + (1);
+        // TODO-QSP: jump 'npcsavebsanityloop'
+      }
     }
     (s as any).npclastsavedn = ((s as any).barraynumber ?? 0);
     (s as any).barraynumber = ((s as any).barraynumber ?? 0) + (1);

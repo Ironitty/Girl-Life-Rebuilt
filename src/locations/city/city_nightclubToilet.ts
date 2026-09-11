@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
+      { label: 'Enter the men\'s restroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');

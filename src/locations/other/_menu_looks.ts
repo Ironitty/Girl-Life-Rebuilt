@@ -261,109 +261,109 @@ function enterTattoos(s: GameState, scene: SceneBuilder): void {
 
 function enterTattooankle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'ankle_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'ankle_image')}`);
   scene.build();
 }
 
 function enterTattooarm(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'arm_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'arm_image')}`);
   scene.build();
 }
 
 function enterTattooass(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'ass_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'ass_image')}`);
   scene.build();
 }
 
 function enterTattooback(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'back_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'back_image')}`);
   scene.build();
 }
 
 function enterTattoobelly(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'belly_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'belly_image')}`);
   scene.build();
 }
 
 function enterTattoobreast(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'breast_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'breast_image')}`);
   scene.build();
 }
 
 function enterTattoochest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'chest_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'chest_image')}`);
   scene.build();
 }
 
 function enterTattooface(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'face_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'face_image')}`);
   scene.build();
 }
 
 function enterTattoohand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'hand_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'hand_image')}`);
   scene.build();
 }
 
 function enterTattooleg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'leg_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'leg_image')}`);
   scene.build();
 }
 
 function enterTattoolip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'lip_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'lip_image')}`);
   scene.build();
 }
 
 function enterTattooneck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'neck_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'neck_image')}`);
   scene.build();
 }
 
 function enterTattoovag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'pussy_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'pussy_image')}`);
   scene.build();
 }
 
 function enterTattooshoulder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'shoulder_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'shoulder_image')}`);
   scene.build();
 }
 
 function enterTattooside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'side_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'side_image')}`);
   scene.build();
 }
 
 function enterTattootramp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'tramp_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'tramp_image')}`);
   scene.build();
 }
 
 function enterTattoounder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'under_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'under_image')}`);
   scene.build();
 }
 
 function enterTattoowrist(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'tattoos');
-  scene.img(`${qspFunc(s, '\'tattoo_management\'', '\'wrist_image\'')}`);
+  scene.img(`${qspFunc(s, 'tattoo_management', 'wrist_image')}`);
   scene.build();
 }
 
@@ -376,9 +376,11 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $settings['table_end']
     return;
   } else {
-    scene.text('You are not wearing any piercings');
-    // TODO-QSP: $settings['table_end']
-    return;
+    if (((s as any).pcs_piercings ?? 0)?.['wearing'] === 0) {
+      scene.text('You are not wearing any piercings');
+      // TODO-QSP: $settings['table_end']
+      return;
+    }
   }
   if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0) {
     // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_ears''">Ears</a> | '
@@ -426,49 +428,49 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
 
 function enterPiercingEars(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/c${((s as any).pcs_piercings ?? 0)?.['\'ears\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/c${((s as any).pcs_piercings ?? 0)?.['ears']}.jpg`);
   scene.build();
 }
 
 function enterPiercingNose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/d${((s as any).pcs_piercings ?? 0)?.['\'nose\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/d${((s as any).pcs_piercings ?? 0)?.['nose']}.jpg`);
   scene.build();
 }
 
 function enterPiercingBrow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/e${((s as any).pcs_piercings ?? 0)?.['\'brow\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/e${((s as any).pcs_piercings ?? 0)?.['brow']}.jpg`);
   scene.build();
 }
 
 function enterPiercingLip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/b${((s as any).pcs_piercings ?? 0)?.['\'lip\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/b${((s as any).pcs_piercings ?? 0)?.['lip']}.jpg`);
   scene.build();
 }
 
 function enterPiercingTongue(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/a${((s as any).pcs_piercings ?? 0)?.['\'tongue\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/a${((s as any).pcs_piercings ?? 0)?.['tongue']}.jpg`);
   scene.build();
 }
 
 function enterPiercingNavel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/n${((s as any).pcs_piercings ?? 0)?.['\'navel\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/n${((s as any).pcs_piercings ?? 0)?.['navel']}.jpg`);
   scene.build();
 }
 
 function enterPiercingNipples(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/f${((s as any).pcs_piercings ?? 0)?.['\'nipples\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/f${((s as any).pcs_piercings ?? 0)?.['nipples']}.jpg`);
   scene.build();
 }
 
 function enterPiercingPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'piercing');
-  scene.img(`images/pc/body/piercings/g${((s as any).pcs_piercings ?? 0)?.['\'pussy\'']}.jpg`);
+  scene.img(`images/pc/body/piercings/g${((s as any).pcs_piercings ?? 0)?.['pussy']}.jpg`);
   scene.build();
 }
 

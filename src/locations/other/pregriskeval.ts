@@ -9,19 +9,28 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowpreg ?? 0) === 1  ||  ((s as any).thinkpreg ?? 0) === 1) {
     (s as any).RESULT = (-4);
   } else {
-    (s as any).RESULT = (-1);
-    if (((s as any).tabletkishot ?? 0) !== 0) {
-      (s as any).RESULT = (-2);
+    if (((s as any).eff_contra ?? 0) === 2  ||  ((s as any).pilldays ?? 0) > 14) {
+      (s as any).RESULT = (-1);
     } else {
-      (s as any).RESULT = (-3);
-      if (((s as any).eff_contra ?? 0) === 0  ||  ((s as any).eff_contra ?? 0) === 4  ||  ((s as any).eff_contra ?? 0) === 5) {
-        if (((((s as any).preziktype ?? 0) === 1  &&  ((((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms']) > 0))  ||  ((s as any).preziktype ?? 0) === 2)  &&  ((s as any).tabletkicheck ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
-          (s as any).RESULT = 1;
-        } else {
-          (s as any).RESULT = 0;
-        }
+      if (((s as any).tabletkishot ?? 0) !== 0) {
+        (s as any).RESULT = (-2);
       } else {
-        (s as any).RESULT = 2;
+        if (((s as any).mesec ?? 0) > 0) {
+          (s as any).RESULT = (-3);
+        } else {
+          if (((s as any).eff_contra ?? 0) === 0  ||  ((s as any).eff_contra ?? 0) === 4  ||  ((s as any).eff_contra ?? 0) === 5) {
+            if (((((s as any).preziktype ?? 0) === 1  &&  ((((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms']) > 0))  ||  ((s as any).preziktype ?? 0) === 2)  &&  ((s as any).tabletkicheck ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
+              (s as any).RESULT = 1;
+            } else {
+              (s as any).RESULT = 0;
+            }
+          } else {
+            if (((s as any).eff_contra ?? 0) === 1  ||  ((s as any).eff_contra ?? 0) === 7) {
+              // TODO-QSP: !{Definitely delibarately trying to get pregnant. !}
+              (s as any).RESULT = 2;
+            }
+          }
+        }
       }
     }
   }

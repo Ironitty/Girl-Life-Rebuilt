@@ -88,7 +88,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'wife'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'boyfriend'  ||   ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'girlfriend'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
     // TODO-QSP: $npc_rel_type[$ARGS[1]] = 'ex-' + $npc_rel_type[$ARGS[1]]
   }
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  ((((s as any).locArgs?.[1] ?? 0)).length) > 1  &&  ((s as any).isnum ?? 0)(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)))) {
+  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  ((((s as any).locArgs?.[1] ?? 0)).length) > 1  &&  !isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
     qspCall(s, 'telefon', 'ClearCallSchedule', ((s as any).locArgs?.[1] ?? 0));
     qspCall(s, 'telefon', 'ClearSMSSchedule', ((s as any).locArgs?.[1] ?? 0));
     (s as any).telefon_index = qspUntranslated(s, "arrpos('contact', ARGS[1])", { location: "lover" });
@@ -127,68 +127,76 @@ function enterAddDating(s: GameState, scene: SceneBuilder): void {
     (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
     return;
   } else {
-    qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
-    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'girlfriend') {
-      // TODO-QSP: exit
-    }
-    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
-    }
-    qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
-    // TODO-QSP: $npc_rel_type[$npcID] = 'girlfriend'
-    (s as any).stat['girlfriends_current'] = ((s as any).stat['girlfriends_current'] ?? 0) + (1);
-    (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
-    return;
-    if (((s as any).locArgs?.[0] ?? 0) === 'add_fuckbuddy') {
+    if (((s as any).locArgs?.[0] ?? 0) === 'add_girlfriend') {
       qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
-      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'fuckbuddy') {
+      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'girlfriend') {
         // TODO-QSP: exit
       }
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
         qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
       }
-      // TODO-QSP: $npc_rel_type[$npcID] = 'fuckbuddy'
-      (s as any).stat['fuckbuddies_current'] = ((s as any).stat['fuckbuddies_current'] ?? 0) + (1);
+      qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
+      // TODO-QSP: $npc_rel_type[$npcID] = 'girlfriend'
+      (s as any).stat['girlfriends_current'] = ((s as any).stat['girlfriends_current'] ?? 0) + (1);
       (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
       return;
     } else {
-      qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
-      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
-        // TODO-QSP: exit
-      }
-      if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-        qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
-      }
-      // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
-      (s as any).stat['sugardaddies_current'] = ((s as any).stat['sugardaddies_current'] ?? 0) + (1);
-      (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
-      return;
-      if (((s as any).locArgs?.[0] ?? 0) === 'add_husband') {
+      if (((s as any).locArgs?.[0] ?? 0) === 'add_fuckbuddy') {
         qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
-        if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'husband') {
+        if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'fuckbuddy') {
           // TODO-QSP: exit
         }
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
           qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
         }
-        // TODO-QSP: $npc_rel_type[$husID] = 'husband'
-        qspCall(s, 'npc_relationship', 'set', ((s as any).husID ?? 0), 100);
-        (s as any).stat['husbands_current'] = ((s as any).stat['husbands_current'] ?? 0) + (1);
+        // TODO-QSP: $npc_rel_type[$npcID] = 'fuckbuddy'
+        (s as any).stat['fuckbuddies_current'] = ((s as any).stat['fuckbuddies_current'] ?? 0) + (1);
         (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
         return;
       } else {
-        qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
-        if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'wife') {
-          // TODO-QSP: exit
+        if (((s as any).locArgs?.[0] ?? 0) === 'add_sugar_daddy') {
+          qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
+          if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
+            // TODO-QSP: exit
+          }
+          if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
+            qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
+          }
+          // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
+          (s as any).stat['sugardaddies_current'] = ((s as any).stat['sugardaddies_current'] ?? 0) + (1);
+          (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
+          return;
+        } else {
+          if (((s as any).locArgs?.[0] ?? 0) === 'add_husband') {
+            qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
+            if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'husband') {
+              // TODO-QSP: exit
+            }
+            if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
+              qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
+            }
+            // TODO-QSP: $npc_rel_type[$husID] = 'husband'
+            qspCall(s, 'npc_relationship', 'set', ((s as any).husID ?? 0), 100);
+            (s as any).stat['husbands_current'] = ((s as any).stat['husbands_current'] ?? 0) + (1);
+            (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
+            return;
+          } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 'add_wife') {
+              qspCall(s, 'lover', 'add', ((s as any).locArgs?.[1] ?? 0));
+              if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'wife') {
+                // TODO-QSP: exit
+              }
+              if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
+                qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
+              }
+              // TODO-QSP: $npc_rel_type[$wifID] = 'wife'
+              qspCall(s, 'npc_relationship', 'set', ((s as any).wifID ?? 0), 100);
+              (s as any).stat['wifes_current'] = ((s as any).stat['wifes_current'] ?? 0) + (1);
+              (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
+              return;
+            }
+          }
         }
-        if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-          qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
-        }
-        // TODO-QSP: $npc_rel_type[$wifID] = 'wife'
-        qspCall(s, 'npc_relationship', 'set', ((s as any).wifID ?? 0), 100);
-        (s as any).stat['wifes_current'] = ((s as any).stat['wifes_current'] ?? 0) + (1);
-        (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
-        return;
       }
     }
   }

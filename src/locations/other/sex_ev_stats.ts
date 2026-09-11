@@ -82,24 +82,38 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'unhappy') {
     (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 0;
   } else {
-    (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 1 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
-    if (((s as any).locArgs?.[1] ?? 0) === 'okay') {
-      (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 2 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
+    if (((s as any).locArgs?.[1] ?? 0) === 'unsatisfied') {
+      (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 1 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
     } else {
-      (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 3 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
-      if (((s as any).locArgs?.[1] ?? 0) === 'great') {
-        (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 4 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
+      if (((s as any).locArgs?.[1] ?? 0) === 'okay') {
+        (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 2 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
       } else {
-        (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 5 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
-      }
-      if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 0) {
-        // TODO-QSP: $npc_last_sex_quality[$npcID] = 'unhappy'
-      } else {
-        // TODO-QSP: $npc_last_sex_quality[$npcID] = 'unsatisfied'
-        if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 2) {
-          // TODO-QSP: $npc_last_sex_quality[$npcID] = 'okay'
+        if (((s as any).locArgs?.[1] ?? 0) === 'good') {
+          (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 3 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
         } else {
+          if (((s as any).locArgs?.[1] ?? 0) === 'great') {
+            (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 4 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
+          } else {
+            if (((s as any).locArgs?.[1] ?? 0) === 'fucked_dry') {
+              (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 5 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 0) {
+    // TODO-QSP: $npc_last_sex_quality[$npcID] = 'unhappy'
+  } else {
+    if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 1) {
+      // TODO-QSP: $npc_last_sex_quality[$npcID] = 'unsatisfied'
+    } else {
+      if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 2) {
+        // TODO-QSP: $npc_last_sex_quality[$npcID] = 'okay'
+      } else {
+        if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 3) {
           // TODO-QSP: $npc_last_sex_quality[$npcID] = 'good'
+        } else {
           if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 4  &&  ((s as any).locArgs?.[1] ?? 0) !== 'fucked_dry') {
             // TODO-QSP: $npc_last_sex_quality[$npcID] = 'great'
           } else {
@@ -108,6 +122,38 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+  }
+  scene.build();
+}
+
+function enterStartingMood(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'reluctant') {
+    (s as any).sex_ev['starting_mood'] = 'reluctant';
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 'consensual') {
+      (s as any).sex_ev['starting_mood'] = 'consensual';
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === 'excited') {
+        (s as any).sex_ev['starting_mood'] = 'excited';
+      } else {
+        (s as any).sex_ev['starting_mood'] = 'consensual';
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterSaveStats(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['loc'] === 'pc_home') {
+    if (((s as any).sex_ev ?? 0)?.['bed_choice'] !== 'anya_bed') {
+      (s as any).stat['bed_cum'] = ((s as any).totminut ?? 0);
+      // TODO-QSP: $cum_sheets[] = $npcID
+    } else {
+      (s as any).stat['anya_bed_cum'] = ((s as any).daystart ?? 0);
+    }
+  }
+  if ((Array.isArray((s as any).body_count) ? ((s as any).body_count as any[]).indexOf(((s as any).npcID ?? 0)) : -1) < 0) {
+    // TODO-QSP: $body_count[] = $npcID
   }
   scene.build();
 }
@@ -123,6 +169,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'sex_end_stats':
       enterSexEndStats(s, scene);
+      break;
+    case 'starting_mood':
+      enterStartingMood(s, scene);
+      break;
+    case 'save_stats':
+      enterSaveStats(s, scene);
       break;
     default:
       enterNpcUpdate(s, scene);

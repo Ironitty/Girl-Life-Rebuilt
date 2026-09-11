@@ -18,12 +18,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([
-      { label: 'Throw away your deck of new porn cards', handler: (st: GameState) => {
+    if (((s as any).card_deck ?? 0) === 1) {
+      scene.actions([
+        { label: 'Throw away your deck of new porn cards', handler: (st: GameState) => {
     (s as any).mc_inventory['card'] = 0;
     dynamicGoto(st, 'loc');
   } },
-    ]);
+      ]);
+    }
   }
   scene.actions([
     { label: 'Put the cards away', handler: (st: GameState) => {
@@ -34,7 +36,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).you_slut ?? 0) >= 10  &&  ((s as any).you_slut ?? 0) <= 100) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).you_slut ?? 0)/10));
     } else {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      if (((s as any).you_slut ?? 0) >= 100) {
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      }
     }
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
@@ -64,7 +68,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).card_deck ?? 0))) {
       scene.img(`images/pc/items/accessories/cards/card/${((s as any).papkacard ?? 0)}/${((s as any).papkacard ?? 0)}${((s as any).numcard ?? 0)}.jpg`);
     } else {
-      scene.img(`images/pc/items/accessories/cards/card2/${((s as any).papkacard ?? 0)}/${((s as any).papkacard ?? 0)}${((s as any).numcard ?? 0)}.jpg`);
+      if (((s as any).card_deck ?? 0) === 1) {
+        scene.img(`images/pc/items/accessories/cards/card2/${((s as any).papkacard ?? 0)}/${((s as any).papkacard ?? 0)}${((s as any).numcard ?? 0)}.jpg`);
+      }
     }
     // TODO-QSP: dynamic text: Denomination card <<nomcard>>
     scene.text(`Denomination card ${((s as any).nomcard ?? 0)}`);

@@ -23,7 +23,9 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ruletext ?? 0) !== ''  &&  ((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 0) {
       // TODO-QSP: $ruletext += 'and don''t be high'
     } else {
-      // TODO-QSP: $ruletext += ', don''t be high'
+      if (((s as any).ruletext ?? 0) !== ''  &&  ((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 1) {
+        // TODO-QSP: $ruletext += ', don''t be high'
+      }
     }
     (s as any).rules = 1;
   }
@@ -66,12 +68,17 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Accept', goto: ['music_gigstarts', 'delparco_accept'] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Accept', goto: ['music_gigstarts', 'delparco_accept'] },
-        { label: 'Accept', handler: (st: GameState) => {
+      if (((s as any).will_cost ?? 0) <= ((s as any).pcs_willpwr ?? 0)) {
+        scene.actions([
+          { label: 'Accept [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['music_gigstarts', 'delparco_accept'] },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Accept [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-      ]);
+        ]);
+      }
     }
     scene.actions([
       { label: 'Decline', goto: ['music_gigstarts', 'delparco_decline'] },

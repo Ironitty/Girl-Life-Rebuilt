@@ -38,7 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Reassure Vitek', handler: (st: GameState) => {
+        { label: 'Reassure Vitek [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'chrsm', 0);
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).artemVitokQW = 1;
@@ -77,22 +77,29 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).FedorArtemTalk = 1;
-    // TODO-QSP: dynamic text: As you leave the school courtyard with Artem, Fedor stops you. He looks question...
-    scene.text(`As you leave the school courtyard with Artem, Fedor stops you. He looks questioningly at Artem. "Artem, what's going on? Are you taking ${((s as any).pcs_nickname ?? 0)} somewhere? She's with me, you know…"`);
-    // TODO-QSP: dynamic text: Artem blushes. "I know she is, Fedor. We're just going to do our homework togeth...
-    scene.text(`Artem blushes. "I know she is, Fedor. We're just going to do our homework together. I'm tutoring ${((s as any).pcs_nickname ?? 0)} to help her school performance a little. She asked me to help her, by the way!"`);
-    scene.text('You smile at Fedor. "I did ask him, Fedor. I really need the help for school, and Artem was friendly enough to help me out. We\'re just studying together, nothing more."');
-    // TODO-QSP: dynamic text: Fedor sighs, but concedes. "Well… alright, <<$pcs_nickname>>. I don't like you g...
-    scene.text(`Fedor sighs, but concedes. "Well… alright, ${((s as any).pcs_nickname ?? 0)}. I don't like you going with <i>him</i>, but I trust you."`);
-    scene.text('After that he walks away, and you and Artem leave the schoolyard.');
-    qspCall(s, 'stat', '');
-    scene.text('You walk across the school courtyard to meet up with Artem. He gives you a friendly nod as you approach. "You ready to go?"');
-    qspCall(s, 'stat', '');
-    if (((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
+    if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  (!((s as any).FedorArtemTalk ?? 0))) {
+      (s as any).FedorArtemTalk = 1;
+      // TODO-QSP: dynamic text: As you leave the school courtyard with Artem, Fedor stops you. He looks question...
+      scene.text(`As you leave the school courtyard with Artem, Fedor stops you. He looks questioningly at Artem. "Artem, what's going on? Are you taking ${((s as any).pcs_nickname ?? 0)} somewhere? She's with me, you know…"`);
+      // TODO-QSP: dynamic text: Artem blushes. "I know she is, Fedor. We're just going to do our homework togeth...
+      scene.text(`Artem blushes. "I know she is, Fedor. We're just going to do our homework together. I'm tutoring ${((s as any).pcs_nickname ?? 0)} to help her school performance a little. She asked me to help her, by the way!"`);
+      scene.text('You smile at Fedor. "I did ask him, Fedor. I really need the help for school, and Artem was friendly enough to help me out. We\'re just studying together, nothing more."');
+      // TODO-QSP: dynamic text: Fedor sighs, but concedes. "Well… alright, <<$pcs_nickname>>. I don't like you g...
+      scene.text(`Fedor sighs, but concedes. "Well… alright, ${((s as any).pcs_nickname ?? 0)}. I don't like you going with <i>him</i>, but I trust you."`);
+      scene.text('After that he walks away, and you and Artem leave the schoolyard.');
+      qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Suggest you do your homework together with Katja', goto: ['artem_katja_sex', 'home_work_ask_player'] },
-        { label: 'Say you are ready', handler: (st: GameState) => {
+        { label: 'Go with Artem', handler: (st: GameState) => {
+    qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
+  }, goto: ['artemhome', 'artemroom'] },
+      ]);
+    } else {
+      scene.text('You walk across the school courtyard to meet up with Artem. He gives you a friendly nod as you approach. "You ready to go?"');
+      qspCall(s, 'stat', '');
+      if (((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
+        scene.actions([
+          { label: 'Suggest you do your homework together with Katja', goto: ['artem_katja_sex', 'home_work_ask_player'] },
+          { label: 'Say you are ready', handler: (st: GameState) => {
     scene.text('You smile. "Let\'s go study!"');
     scene.text('The two of you don\'t have much to talk about on the way there, and after a few minutes just decide to walk in silence.');
     scene.actions([
@@ -101,21 +108,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['artemhome', 'artemroom'] },
     ]);
   } },
-      ]);
-    } else {
-      scene.text('You smile. "Let\'s go study!"');
-      scene.text('The two of you don\'t have much to talk about on the way there, and after a few minutes just decide to walk in silence.');
-      scene.actions([
-        { label: 'Go to Artem\'s home', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.text('You smile. "Let\'s go study!"');
+        scene.text('The two of you don\'t have much to talk about on the way there, and after a few minutes just decide to walk in silence.');
+        scene.actions([
+          { label: 'Go to Artem\'s home', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
   }, goto: ['artemhome', 'artemroom'] },
-      ]);
+        ]);
+      }
     }
-    scene.actions([
-      { label: 'Go with Artem', handler: (st: GameState) => {
-    qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
-  }, goto: ['artemhome', 'artemroom'] },
-    ]);
   }
   scene.build();
 }
@@ -154,7 +157,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.actions([
-            { label: '"No way!"', handler: (st: GameState) => {
+            { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(s, 'stat', '');
@@ -174,18 +177,19 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
           { label: 'Suck him off', goto: ['artem_sex', 'slut_bj'] },
         ]);
       } else {
-        scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
-        scene.text('He looks at you expectantly. "If you still want my help, I want more. I want to fuck you."');
-        qspCall(s, 'willpower', 'exhib', 'resist');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        if (((s as any).artemslut ?? 0) <= 4) {
+          scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
+          scene.text('He looks at you expectantly. "If you still want my help, I want more. I want to fuck you."');
+          qspCall(s, 'willpower', 'exhib', 'resist');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: '"No way!"', handler: (st: GameState) => {
+            ]);
+          } else {
+            scene.actions([
+              { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(s, 'stat', '');
@@ -199,20 +203,24 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him fuck you', goto: ['artem_sex', 'slut_fuck'] },
     ]);
   } },
-          ]);
-        }
-        scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
-        scene.text('He looks at you expectantly. "I seen something in a porno I want to try. I want to stick it in your ass now."');
-        qspCall(s, 'willpower', 'exhib', 'resist');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            ]);
+          }
           scene.actions([
-            { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
+            { label: 'Let him fuck you', goto: ['artem_sex', 'slut_fuck'] },
           ]);
         } else {
-          scene.actions([
-            { label: '"No way!"', handler: (st: GameState) => {
+          scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
+          scene.text('He looks at you expectantly. "I seen something in a porno I want to try. I want to stick it in your ass now."');
+          qspCall(s, 'willpower', 'exhib', 'resist');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(s, 'stat', '');
@@ -226,27 +234,28 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him fuck your ass', goto: ['artem_sex', 'slut_anal'] },
     ]);
   } },
+            ]);
+          }
+          scene.actions([
+            { label: 'Let him fuck your ass', goto: ['artem_sex', 'slut_anal'] },
           ]);
         }
-        scene.actions([
-          { label: 'Let him fuck you', goto: ['artem_sex', 'slut_fuck'] },
-          { label: 'Let him fuck your ass', goto: ['artem_sex', 'slut_anal'] },
-        ]);
       }
     } else {
-      scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-      scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
-      scene.text('He looks at you expectantly. "I seen something in a porno I want to try. I want to stick it in your ass now."');
-      qspCall(s, 'willpower', 'exhib', 'resist');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      if (((s as any).artemQW ?? 0)?.['sex'] >= 5) {
+        scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
+        scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
+        scene.text('He looks at you expectantly. "I seen something in a porno I want to try. I want to stick it in your ass now."');
+        qspCall(s, 'willpower', 'exhib', 'resist');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: '"No way!"', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(s, 'stat', '');
@@ -259,26 +268,30 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him fuck your ass', goto: ['artem_sex', 'slut_anal'] },
     ]);
   } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Let him fuck your ass', goto: ['artem_sex', 'slut_anal'] },
         ]);
-      }
-      if (((s as any).artemQW ?? 0)?.['bj'] >= 5) {
-        scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-        scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
-        scene.text('He looks at you expectantly. "If you still want my help, I want more. I want to fuck you."');
-        if (((s as any).mesec ?? 0) > 0) {
-          scene.text('You shake your head. "Sorry Artem… It\'s that time of the month, we can\'t."');
-          scene.text('He blushes, then smiles. "That\'s okay. I can just fuck your ass then."');
-          qspCall(s, 'stat', '');
-          qspCall(s, 'willpower', 'exhib', 'resist');
-          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-            scene.actions([
-              { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      } else {
+        if (((s as any).artemQW ?? 0)?.['bj'] >= 5) {
+          scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
+          scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
+          scene.text('He looks at you expectantly. "If you still want my help, I want more. I want to fuck you."');
+          if (((s as any).mesec ?? 0) > 0) {
+            scene.text('You shake your head. "Sorry Artem… It\'s that time of the month, we can\'t."');
+            scene.text('He blushes, then smiles. "That\'s okay. I can just fuck your ass then."');
+            qspCall(s, 'stat', '');
+            qspCall(s, 'willpower', 'exhib', 'resist');
+            if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-            ]);
-          } else {
-            scene.actions([
-              { label: '"No way!"', handler: (st: GameState) => {
+              ]);
+            } else {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(s, 'stat', '');
@@ -291,22 +304,22 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him butt fuck you', goto: ['artem_sex', 'slut_anal'] },
     ]);
   } },
-            ]);
-          }
-          scene.actions([
-            { label: 'Agree to have anal sex instead', goto: ['artem_sex', 'slut_anal'] },
-          ]);
-        } else {
-          qspCall(s, 'willpower', 'exhib', 'resist');
-          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+              ]);
+            }
             scene.actions([
-              { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
+              { label: 'Agree to have anal sex instead', goto: ['artem_sex', 'slut_anal'] },
             ]);
           } else {
-            scene.actions([
-              { label: '"No way!"', handler: (st: GameState) => {
+            qspCall(s, 'willpower', 'exhib', 'resist');
+            if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+              ]);
+            } else {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(s, 'stat', '');
@@ -319,28 +332,29 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him fuck you', goto: ['artem_sex', 'slut_fuck'] },
     ]);
   } },
+              ]);
+            }
+            scene.actions([
+              { label: 'Let him fuck you', goto: ['artem_sex', 'slut_fuck'] },
             ]);
           }
-          scene.actions([
-            { label: 'Let him fuck you', goto: ['artem_sex', 'slut_fuck'] },
-          ]);
-        }
-      } else {
-        if (((s as any).artemQW ?? 0)?.['stripsee'] === 0) {
-          scene.text('"You know… I\'ve never seen a girl naked before. Only on pictures. Maybe you could…" he asks shyly.');
         } else {
-          scene.text('"I enjoyed seeing you naked last time. I want you to strip for me again, but can you make a bit more of a show of it this time?" he asks shyly.');
-        }
-        qspCall(s, 'willpower', 'exhib', 'resist');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          if (((s as any).artemQW ?? 0)?.['stripsee'] < 3) {
+            if (((s as any).artemQW ?? 0)?.['stripsee'] === 0) {
+              scene.text('"You know… I\'ve never seen a girl naked before. Only on pictures. Maybe you could…" he asks shyly.');
+            } else {
+              scene.text('"I enjoyed seeing you naked last time. I want you to strip for me again, but can you make a bit more of a show of it this time?" he asks shyly.');
+            }
+            qspCall(s, 'willpower', 'exhib', 'resist');
+            if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: '"No way!"', handler: (st: GameState) => {
+              ]);
+            } else {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
     qspCall(s, 'stat', '');
@@ -366,37 +380,10 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-          ]);
-        }
-        scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-        scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
-        scene.text('He looks at you expectantly. "If you want my help, I want your mouth."');
-        qspCall(s, 'willpower', 'exhib', 'resist');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-          ]);
-        } else {
-          scene.actions([
-            { label: '"No way!"', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
-    // TODO-QSP: dynamic text: You decline, and he's very offended by that. "Look <<$pcs_nickname>>, I spent a ...
-    scene.text(`You decline, and he's very offended by that. "Look ${((s as any).pcs_nickname ?? 0)}, I spent a lot of time and effort helping you out. Meanwhile, you… you suck off or fuck pretty much everyone who asks! But you won't touch me? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
-    scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
-    scene.actions([
-      { label: 'Refuse', goto: ['artem_events', 'finalrefuse'] },
-      { label: 'Agree to suck him off', goto: ['artem_sex', 'slut_bj'] },
-    ]);
-  } },
-          ]);
-        }
-        scene.actions([
-          { label: 'Agree to strip', handler: (st: GameState) => {
+              ]);
+            }
+            scene.actions([
+              { label: 'Agree to strip', handler: (st: GameState) => {
     (s as any).artemQW['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -409,22 +396,176 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Start stripping', goto: ['artem_events', 'striptease'] },
     ]);
   } },
-          { label: 'Suck him off', goto: ['artem_sex', 'slut_bj'] },
-        ]);
+            ]);
+          } else {
+            scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
+            scene.text('Artem stands and unbuttons his pants, pulling his stiff erection from his pants.');
+            scene.text('He looks at you expectantly. "If you want my help, I want your mouth."');
+            qspCall(s, 'willpower', 'exhib', 'resist');
+            if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+              ]);
+            } else {
+              scene.actions([
+                { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj1.jpg');
+    // TODO-QSP: dynamic text: You decline, and he's very offended by that. "Look <<$pcs_nickname>>, I spent a ...
+    scene.text(`You decline, and he's very offended by that. "Look ${((s as any).pcs_nickname ?? 0)}, I spent a lot of time and effort helping you out. Meanwhile, you… you suck off or fuck pretty much everyone who asks! But you won't touch me? That's so not fair! We're done… Find someone else to help you. Good luck with that attitude."`);
+    scene.text('You can tell Artem is seriously offended by your refusal, and won\'t help you any further. Hopefully someone else can help you with your homework.');
+    scene.actions([
+      { label: 'Refuse', goto: ['artem_events', 'finalrefuse'] },
+      { label: 'Agree to suck him off', goto: ['artem_sex', 'slut_bj'] },
+    ]);
+  } },
+              ]);
+            }
+            scene.actions([
+              { label: 'Suck him off', goto: ['artem_sex', 'slut_bj'] },
+            ]);
+          }
+        }
       }
-      scene.actions([
-        { label: 'Let him fuck your ass', goto: ['artem_sex', 'slut_anal'] },
-      ]);
     }
+  } },
+    ]);
+  } else {
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
     scene.text('After you finish doing your homework with Artem, you put your books aside and relax for a few minutes on his bed.');
     scene.actions([
       { label: 'Talk', goto: ['artem_chat', 'chat'] },
       { label: 'Explore his room', goto: ['artemhome', 'artemroom'] },
     ]);
+  }
+  scene.build();
+}
+
+function enterFinalrefuse(s: GameState, scene: SceneBuilder): void {
+  (s as any).artemQW['artemblok'] = 1;
+  scene.img('images/characters/pavlovsk/school/boy/artem/talk3.jpg');
+  scene.text('You shake your head. "Fine, if that\'s the way you want it to be."');
+  scene.text('You get up and grab your stuff before heading for the door. "I never want to see you again!" he says as you head out.');
+  scene.text('You walk out of his room and down the hall to the front door.');
+  scene.actions([
+    { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
+  ]);
+  scene.build();
+}
+
+function enterStriptease(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/boy/artem/strip2.jpg');
+  scene.text('You do a little dance on your knees as you slowly undress, teasing him without showing him anything but the hint of your panties. You then slowly remove your bottoms, leaving you with only your top and panties on.');
+  qspCall(s, 'arousal', 'striptease', 2);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Remove your top', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/strip3.jpg');
+    scene.text('Next, you start to slowly undo your top, turning your back before he can see your breasts. With your top still partially obscuring your breasts, you turn back round, giving him glimpses of your nipples until you finally remove your top, showing off your breasts in all their glory.');
+    qspCall(s, 'arousal', 'striptease', 2);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/strip4.jpg');
+    scene.text('Next, you start to slowly pull your panties down, almost to the point your clit is visible before you pull them up a little, teasing him as your panties just barely obscure your pussy. You then pull your panties down to your mid thighs, showing off your pussy.');
+    qspCall(s, 'arousal', 'striptease', 2);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get naked', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/strip5.jpg');
+    scene.text('You pull your panties all the way off and dance around naked before you finally face away from him on your knees. You then slowly bend over with your legs spread apart, getting down on all fours and giving him a perfect look at your pussy.');
+    scene.text('He looks like he\'s about to start drooling as he stares at your pussy. You give him a few more seconds before you get up and start getting dressed again.');
+    scene.text('"Thank you, but I need to do a few things, so perhaps you should go," he says. You just smile as you can likely guess what he needs to do, but you respect his wishes and leave.');
+    qspCall(s, 'arousal', 'striptease', 2);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
+    ]);
   } },
     ]);
-  }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterArtemdryhump(s: GameState, scene: SceneBuilder): void {
+  (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobc.jpg');
+  scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks, and you can feel him hesitating for a second before he starts squeezing your ass and rubbing it with his hands. After a few minutes of this, he places one of his hands on your shoulder and pushes you forward, bending you over. He then grabs onto you and you feel something hard pressing between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock against your clothes.');
+  qspCall(s, 'arousal', 'foreplay', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcumc.jpg');
+    // TODO-QSP: dynamic text: Mere moments later, you see him cum over your ass, on your clothes! Once he fini...
+    scene.text(`Mere moments later, you see him cum over your ass, on your clothes! Once he finishes, you can tell he's embarrassed. "I'm sorry ${((s as any).pcs_nickname ?? 0)}, I didn't mean to soil your clothes. It felt so good, I just couldn't stop!" He blushes so hard that he turns red.`);
+    scene.text('You then hear his mother\'s voice out in the hall, just outside his door. "Artem, I need you to run an errand into town for me."');
+    scene.text('Artem freaks out and starts to panic. "Um yes mom, I will!" He looks at you with a panicked stare, his mother having almost caught him dry humping a girl in his room. "I should really go do what my mom wants. See you tomorrow?"');
+    scene.text('You smile at him. "Maybe. I\'ll have to see what\'s going on." With that, you gather up your stuff and leave.');
+    qspCall(s, 'arousal', 'foreplay', 2);
+    qspCall(s, 'cum_call', 'clothes', 'A2', 1);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterArtemdryhump1(s: GameState, scene: SceneBuilder): void {
+  (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobp.jpg');
+  scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re wearing only your panties from the waist down. You bend over for him and feel his hard cock pressed against your ass. When you glance back over your shoulder, you see him rubbing his erect cock against your panties.');
+  qspCall(s, 'arousal', 'foreplay', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcump.jpg');
+    // TODO-QSP: dynamic text: Mere moments later, you see him cum over your panties; you can feel the sticky w...
+    scene.text(`Mere moments later, you see him cum over your panties; you can feel the sticky wetness through them as his cum soaks into them. He seems pleased once he finishes. "That was great ${((s as any).pcs_nickname ?? 0)}, it felt so good!"`);
+    scene.text('You then hear his mother\'s voice out in the hall, just outside his door. "Artem, I need you to run an errand into town for me."');
+    scene.text('Artem freaks out and starts to panic. "Um yes mom, I will!" He looks at you with a panicked stare, his mother having almost caught him dry humping a girl in his room. "I should really go do what my mom wants. See you tomorrow?"');
+    scene.text('You smile at him. "Maybe. I\'ll have to see what\'s going on." With that, you gather up your stuff and leave.');
+    qspCall(s, 'arousal', 'foreplay', 2);
+    qspCall(s, 'cum_call', 'pantyrear', 'A2', 1);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterArtemdryhump2(s: GameState, scene: SceneBuilder): void {
+  (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobn.jpg');
+  scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re naked from the waist down. You bend over for him and feel his hard cock pressed between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock between your ass cheeks as he pushes them together.');
+  qspCall(s, 'arousal', 'foreplay', 3);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcumn.jpg');
+    // TODO-QSP: dynamic text: Mere moments later, you see him cum over your naked ass and lower back. He seems...
+    scene.text(`Mere moments later, you see him cum over your naked ass and lower back. He seems pleased once he finishes. "That was great ${((s as any).pcs_nickname ?? 0)}, it felt so good!"`);
+    scene.text('You then hear his mother\'s voice out in the hall, just outside his door. "Artem, I need you to run an errand into town for me."');
+    scene.text('Artem freaks out and starts to panic. "Um yes mom, I will!" He looks at you with a panicked stare, his mother having almost caught him dry humping a half naked girl in his room. "I should really go do what my mom wants. See you tomorrow?"');
+    scene.text('You smile at him. "Maybe. I\'ll have to see what\'s going on." With that, you gather up your stuff and leave.');
+    qspCall(s, 'arousal', 'foreplay', 2);
+    qspCall(s, 'cum_call', 'butt', 'A2', 1);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -436,6 +577,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'learn':
       enterLearn(s, scene);
+      break;
+    case 'finalrefuse':
+      enterFinalrefuse(s, scene);
+      break;
+    case 'striptease':
+      enterStriptease(s, scene);
+      break;
+    case 'artemdryhump':
+      enterArtemdryhump(s, scene);
+      break;
+    case 'artemdryhump1':
+      enterArtemdryhump1(s, scene);
+      break;
+    case 'artemdryhump2':
+      enterArtemdryhump2(s, scene);
       break;
     default:
       enterStart(s, scene);

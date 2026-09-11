@@ -4,7 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A216');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'npc_relationship', 'modify', 'A216', Math.floor(Math.random() * 2) + 0);
@@ -162,54 +162,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    scene.text('You approach Martin from behind, but you aren\'t sure he has noticed you yet. He said you were too young to know better, that you were seeing something in him that wasn\'t there - he was basically saying that you were stupid, wasn\'t he?');
-    scene.text('But instead of forgetting about him or wallowing in self-pity, you are now standing here, and feeling indecisive at that. What are you gonna do, apologize to him for not letting yourself be patronized? It\'s not like he was right… right?');
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
-      scene.text('Maybe he just needs a little push. Maybe, all you have to do is show him that you aren\'t too young, show him what he is missing out on.');
-      if ((!((s as any).cycle ?? 0))) {
-        scene.text('But, damn, since you are currently on your period, that isn\'t an option today. You will have to think of something else or come back some other time.');
-      }
-      if (((s as any).stat ?? 0)?.['bj'] > 20) {
-        if ((!((s as any).cycle ?? 0))) {
-          scene.text('A good blowjob would probably set him straight right quick, no matter what time of the month it is.');
-        } else {
-          scene.text('And if all else fails, you can just go down on Martin - what man\'s going to argue with a woman who her lips wrapped around his cock?');
-        }
-      }
-    }
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
-      if (((s as any).cycle ?? 0) !== 0) {
-        scene.actions([
-          { label: 'Go on the offensive - Strip', handler: (st: GameState) => {
-    (st as any).MartinStripVar = 1;
-  }, goto: ['MartinSex', 'MartinTease'] },
-        ]);
-      }
-      if (((s as any).stat ?? 0)?.['bj'] > 20) {
-        scene.actions([
-          { label: 'Be even more aggressive - Give Martin a blowjob', handler: (st: GameState) => {
-    (st as any).MartinConvinceBJ = 1;
-  }, goto: ['MartinSex3', 'MartinBlowTease'] },
-        ]);
-      }
-    }
-    if (((s as any).MartinSexTalk ?? 0) === 2  &&  (!((s as any).MartinSex ?? 0))) {
-      scene.text('You approach Martin as he\'s cleaning the floor. The bartender raises his head when he notices you.');
-      // TODO-QSP: dynamic text: "Oh, I didn't think you were still here, <<$pcs_firstname>>."
-      scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname ?? 0)}."`);
-      // TODO-QSP: dynamic text: You pout your <<$pc_desc['lip size']>> lips. "If you are that unhappy about it, ...
-      scene.text(`You pout your ${((s as any).pc_desc ?? 0)?.['lip size']} lips. "If you are that unhappy about it, maybe you want me to leave?"`);
-      scene.text('He gives you a half-smile. "No, of course not."');
-      scene.text('"Thought so," you say, smiling back.');
-      scene.text('Martin rejected you, but you can tell that he is attracted to you, no matter what he said about age. You told him that you understand, but that doesn\'t mean it has to be the final word in the matter…');
+    if (((s as any).MartinSexTalk ?? 0) === 1  &&  (!((s as any).MartinSex ?? 0))) {
+      scene.text('You approach Martin from behind, but you aren\'t sure he has noticed you yet. He said you were too young to know better, that you were seeing something in him that wasn\'t there - he was basically saying that you were stupid, wasn\'t he?');
+      scene.text('But instead of forgetting about him or wallowing in self-pity, you are now standing here, and feeling indecisive at that. What are you gonna do, apologize to him for not letting yourself be patronized? It\'s not like he was right… right?');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
+        scene.text('Maybe he just needs a little push. Maybe, all you have to do is show him that you aren\'t too young, show him what he is missing out on.');
         if ((!((s as any).cycle ?? 0))) {
-          scene.text('You are half-tempted to go on the offensive, show him what he\'s missing out on by acting like a knight in shining armor and see if that won\'t change his mind, but then you remember that you are on your period, so stripping isn\'t really a sexy option right now.');
-          scene.text('Or you could just pull his pants off and blow him - you\'ve done it enough times to know how convincing that can be, and your period certainly isn\'t going to stand in the way of <i>that</i>.');
-        } else {
-          scene.text('You are half-tempted to go on the offensive, show him what he\'s missing out on by acting like a knight in shining armor and see if that won\'t change his mind.');
-          if (((s as any).stat ?? 0)?.['bj'] > 20) {
-            scene.text('Or you could just pull his pants off and blow him - you\'ve done it enough times to know how convincing that can be.');
+          scene.text('But, damn, since you are currently on your period, that isn\'t an option today. You will have to think of something else or come back some other time.');
+        }
+        if (((s as any).stat ?? 0)?.['bj'] > 20) {
+          if ((!((s as any).cycle ?? 0))) {
+            scene.text('A good blowjob would probably set him straight right quick, no matter what time of the month it is.');
+          } else {
+            scene.text('And if all else fails, you can just go down on Martin - what man\'s going to argue with a woman who her lips wrapped around his cock?');
           }
         }
       }
@@ -230,7 +195,80 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Leave the bar', handler: (st: GameState) => {
+        { label: 'Reconcile with Martin', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/martinreconcile.jpg');
+    (s as any).MartinSexTalk = 2;
+    qspCall(s, 'npc_relationship', 'modify', 'A216', 2);
+    qspCall(s, 'mood', 'raise', 'tiny');
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    scene.text('No matter how you look at it, things didn\'t go well last time. You hate the way he decided for you without actually listening to you, but are you happy about how you basically told him to go fuck himself?');
+    scene.text('No, not really. And the way things look, your only options are to either be the bigger woman or to have awkward conversations with him, if any, from hereon out.');
+    scene.text('With an inward sigh, you decide that it is time to restore your friendship with Martin… or whatever it is that\'s going on between you.');
+    scene.text('"Martin?"');
+    scene.text('Martin doesn\'t seem startled when you call out to him - on the contrary, it seems like he was just waiting for you to address him, and now that you have, he turns to face you, looking friendly as ever - well, maybe he seems a little more on edge than usual.');
+    // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>. Still here?"
+    scene.text(`"Hello ${((s as any).pcs_firstname ?? 0)}. Still here?"`);
+    scene.text('"Yeah, I waited for you to close the bar so we could talk. I…" You don\'t really know what you want to tell him. Part of you feels that apologizing may not be the worst thing to do, but another insists that you have nothing to apologize for. "I wanted to tell you that I understand… I guess. Or, well, no, I don\'t, but at least I\'m trying to understand what you meant last time."');
+    // TODO-QSP: dynamic text: "Good," Martin gives a sigh of relief. You could tell that he was a little on ed...
+    scene.text(`"Good," Martin gives a sigh of relief. You could tell that he was a little on edge, but the sigh gave away how uncertain he was about what you were gonna do or say. "I'm sorry too, ${((s as any).pcs_firstname ?? 0)}, if I offended you. I probably chose my words poorly and I don't want this to stand between us, I just don't want you to do something you'll regret."`);
+    scene.text('"I get it," you hear yourself say. Do you really, though?');
+    scene.text('Neither of you has anything more to say, it seems. You spend a few minutes in silence, looking at each other. No, it sure isn\'t the same it was before. You can definitely sense that tension that lead to this mess in the first place.');
+    scene.text('But the silence isn\'t nearly as bad as it could be, or maybe should be. Clearing the air was cathartic, and while you cannot just launch into one of your casual banters, you\'ll be fine, given a little time.');
+    scene.text('It\'s you who eventually breaks the silence. "I, uh… I guess I better get going."');
+    scene.text('"Yeah, I should finish this up anyway," he agrees awkwardly, nodding to the mop in his hand. "See you soon?"');
+    scene.text('"Sure, I\'ll be around."');
+    scene.text('You give him as much of a smile as you can manage, turn around and leave the bar, relieved at your reconciliation but also unsure as to whether the restored friendship is enough for you.');
+    scene.actions([
+      { label: 'Leave the bar', goto: ['city_industrial', ''] },
+    ]);
+  } },
+        { label: 'You are still too angry to talk to him - Just leave the bar', handler: (st: GameState) => {
+    scene.text('But as much as you try to bring yourself to, you just can\'t properly face him yet.');
+    scene.text('You turn and go towards the exit. You can hear something behind you, feel his look on your back, but you ignore it as best you can and go outside, the matter between you unresolved.');
+    scene.actions([
+      { label: 'Leave', goto: ['city_industrial', ''] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).MartinSexTalk ?? 0) === 2  &&  (!((s as any).MartinSex ?? 0))) {
+        scene.text('You approach Martin as he\'s cleaning the floor. The bartender raises his head when he notices you.');
+        // TODO-QSP: dynamic text: "Oh, I didn't think you were still here, <<$pcs_firstname>>."
+        scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname ?? 0)}."`);
+        // TODO-QSP: dynamic text: You pout your <<$pc_desc['lip size']>> lips. "If you are that unhappy about it, ...
+        scene.text(`You pout your ${((s as any).pc_desc ?? 0)?.['lip size']} lips. "If you are that unhappy about it, maybe you want me to leave?"`);
+        scene.text('He gives you a half-smile. "No, of course not."');
+        scene.text('"Thought so," you say, smiling back.');
+        scene.text('Martin rejected you, but you can tell that he is attracted to you, no matter what he said about age. You told him that you understand, but that doesn\'t mean it has to be the final word in the matter…');
+        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
+          if ((!((s as any).cycle ?? 0))) {
+            scene.text('You are half-tempted to go on the offensive, show him what he\'s missing out on by acting like a knight in shining armor and see if that won\'t change his mind, but then you remember that you are on your period, so stripping isn\'t really a sexy option right now.');
+            scene.text('Or you could just pull his pants off and blow him - you\'ve done it enough times to know how convincing that can be, and your period certainly isn\'t going to stand in the way of <i>that</i>.');
+          } else {
+            scene.text('You are half-tempted to go on the offensive, show him what he\'s missing out on by acting like a knight in shining armor and see if that won\'t change his mind.');
+            if (((s as any).stat ?? 0)?.['bj'] > 20) {
+              scene.text('Or you could just pull his pants off and blow him - you\'ve done it enough times to know how convincing that can be.');
+            }
+          }
+        }
+        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
+          if (((s as any).cycle ?? 0) !== 0) {
+            scene.actions([
+              { label: 'Go on the offensive - Strip', handler: (st: GameState) => {
+    (st as any).MartinStripVar = 1;
+  }, goto: ['MartinSex', 'MartinTease'] },
+            ]);
+          }
+          if (((s as any).stat ?? 0)?.['bj'] > 20) {
+            scene.actions([
+              { label: 'Be even more aggressive - Give Martin a blowjob', handler: (st: GameState) => {
+    (st as any).MartinConvinceBJ = 1;
+  }, goto: ['MartinSex3', 'MartinBlowTease'] },
+            ]);
+          }
+        }
+        scene.actions([
+          { label: 'Leave the bar', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'mood', 'lower', Math.floor(Math.random() * 2) + 0);
     scene.text('"Just wanted to say goodnight before I leave," you say, feeling a little tense and unhappy with yourself for running away instead of dealing with whatever emotional dilemma you are facing.');
@@ -243,7 +281,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_industrial', ''] },
     ]);
   } },
-        { label: 'Avoid the topic - Chat with Martin', handler: (st: GameState) => {
+          { label: 'Avoid the topic - Chat with Martin', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'npc_relationship', 'modify', 'A216', Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'mood', 'lower', 'tiny');
@@ -257,7 +295,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the bar', goto: ['city_industrial', ''] },
     ]);
   } },
-        { label: 'Talk about "getting involved"', handler: (st: GameState) => {
+          { label: 'Talk about "getting involved"', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/martinreconcile.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     scene.text('As far as you\'re concerned, it\'s time to address the elephant in the room.');
@@ -324,20 +362,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    } else {
-      // TODO-QSP: dynamic text: "Still here, <<$pcs_firstname>>?"
-      scene.text(`"Still here, ${((s as any).pcs_firstname ?? 0)}?"`);
-      scene.text('"So it would seem," you smile and approach him. "Would you like me to leave?"');
-      scene.text('"No." In the blink of an eye, Martin has pulled you close and gives you a kiss. "Can\'t you tell?"');
-      scene.text('You laugh in surprise, but also because you <b>can</b> tell that he has a bulge in his pants.');
-      if (((s as any).cycle ?? 0) !== 0) {
-        scene.actions([
-          { label: 'Tease him', goto: ['MartinSex', 'MartinTease'] },
         ]);
-      }
-      scene.actions([
-        { label: 'Leave the bar', handler: (st: GameState) => {
+      } else {
+        // TODO-QSP: dynamic text: "Still here, <<$pcs_firstname>>?"
+        scene.text(`"Still here, ${((s as any).pcs_firstname ?? 0)}?"`);
+        scene.text('"So it would seem," you smile and approach him. "Would you like me to leave?"');
+        scene.text('"No." In the blink of an eye, Martin has pulled you close and gives you a kiss. "Can\'t you tell?"');
+        scene.text('You laugh in surprise, but also because you <b>can</b> tell that he has a bulge in his pants.');
+        if (((s as any).cycle ?? 0) !== 0) {
+          scene.actions([
+            { label: 'Tease him', goto: ['MartinSex', 'MartinTease'] },
+          ]);
+        }
+        scene.actions([
+          { label: 'Leave the bar', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 2) + 0);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 2) + 0);
@@ -354,7 +392,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_industrial', ''] },
     ]);
   } },
-        { label: 'Talk to Martin', handler: (st: GameState) => {
+          { label: 'Talk to Martin', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'npc_relationship', 'modify', 'A216', Math.floor(Math.random() * 2) + 1);
     scene.text('But you decide not to indulge him today. After all, you are a respectable woman who would <b>never</b> have sex in a public place, right?');
@@ -369,47 +407,613 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_industrial', ''] },
     ]);
   } },
-        { label: 'Blow him', goto: ['MartinSex3', 'MartinBlowTease'] },
+          { label: 'Blow him', goto: ['MartinSex3', 'MartinBlowTease'] },
+        ]);
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterMartinTease(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A216');
+  if (((s as any).MartinStripVar ?? 0) === 1) {
+    (s as any).MartinSex = 1;
+    (s as any).MartinSexTalk = 2;
+    if (((s as any).pcs_dancero ?? 0) <= 50) {
+      qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 4) + 2);
+    }
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    if (((s as any).pantyworntype ?? 0) !== 'none') {
+      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease1'] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease2'] }]);
+    }
+  } else {
+    if (((s as any).pantyworntype ?? 0) !== 'none') {
+      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease3'] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease4'] }]);
+    }
+  }
+  scene.build();
+}
+
+function enterMartinTease1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease1.jpg');
+  scene.text('You are not in the mood to play hard-to-get; in fact, now that you think about it, maybe the easiest way to get Martin to drop this "you deserve better" spiel is to be <i>easy</i>.');
+  scene.text('You bend over and take off your lower garment.');
+  // TODO-QSP: dynamic text: Martin is utterly perplexed by that. "<<$pcs_firstname>>, what are you-"
+  scene.text(`Martin is utterly perplexed by that. "${((s as any).pcs_firstname ?? 0)}, what are you-"`);
+  scene.text('"Oops, I seem to have accidentally pulled my panties down," you say innocently, giving him a broad smile.');
+  // TODO-QSP: dynamic text: Most of your crotch is revealed to him, but your <<$pc_desc['pussy']>> pussy is ...
+  scene.text(`Most of your crotch is revealed to him, but your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy is only vaguely perceptible. Still, you can already tell that the situation is entirely different from how it was a minute ago - the suave barkeeper is on the defensive. And you are just getting started…`);
+  qspCall(s, 'clothing', 'strip');
+  qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Turn around', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease2.jpg');
+    scene.text('You pull your panties all the way down to your knees and spin around for a moment to let him look at you from all sides. Spotting a growing bulge in his pants, you turn your back to Martin and bend over a nearby table.');
+    scene.text('"Well?" You ask flirtatiously over your shoulder, your pussy and asshole completely revealed to him. "Do I still look too young to you? Or… just old enough?"');
+    scene.text('His speechlessness is all the answer you need.');
+    scene.text('And you can\'t blame him for this reaction - you went from being a friendly flirt to showing him your pussy in under a minute, so most men would need a second to catch up with a reality that has gone utterly mad.');
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/buttplug.jpg');
+      scene.text('But it seems that something particular, in your ass, has caught his attention.');
+      scene.text('"Oh." You realize that you are still wearing your anal plug. "Do you like my buttplug?" You ask Martin coyly.');
+      scene.text('He still seems a little dumbfounded, but has regained enough control over himself to nod.');
+      scene.text('Smiling to yourself, you slowly remove the toy from your ass. You have a feeling that he is already at his limit coping with your stripping, so your buttplug may be a little more than he can handle right now.');
+    }
+    qspCall(s, 'underwear', 'remove');
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Climb on the table', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease3.jpg');
+    // TODO-QSP: dynamic text: Deciding to make full use of the table being there, you climb on top of it and s...
+    scene.text(`Deciding to make full use of the table being there, you climb on top of it and sit down, spreading your legs to give Martin a good view of your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy.`);
+    scene.text('"You could do more than just look, you know." The flirtatious tone is gone now - anything but being openly sultry just wouldn\'t do this porno-esque situation justice.');
+    // TODO-QSP: dynamic text: Plus, Martin isn't the only one getting turned on by this, and both of you can s...
+    scene.text(`Plus, Martin isn't the only one getting turned on by this, and both of you can see it. "This ${((s as any).pc_desc ?? 0)?.['pubes']} ${((s as any).pc_desc ?? 0)?.['pussy']} pussy could be yours."`);
+    scene.text('Maybe something you said shook him out of his reverie, or maybe enough time has passed for him to snap out of it, but Martin seems to have regained the ability to speak. But he just loves saying things you don\'t want to hear, doesn\'t he?');
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>>, I'm trying to be <b>sensible</b> here. This is not a good i...
+    scene.text(`"${((s as any).pcs_firstname ?? 0)}, I'm trying to be <b>sensible</b> here. This is not a good idea. You should cover yourself and go."`);
+    scene.text('It\'s telling that his mouth says one thing while his eyes are transfixed with your glistening pussy.');
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Sensibly take off your shirt', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease4.jpg');
+    scene.text('"I don\'t know what gave you the idea that I wanted \'sensible\'."');
+    scene.text('As you say that, you pull your shirt over your head, revealing your breasts to him. "A man should be able to tell when a woman wants to fuck. Can\'t you?"');
+    scene.text('Pride - it is most men\'s sore spot and your final remarks were squarely aimed at Martin\'s sense of pride. You might as well have asked him if he couldn\'t get it up. It was a dangerous game to play.');
+    scene.text('But it worked: Before you know it, Martin has closed the gap between you and is kissing you, hard.');
+    // TODO-QSP: dynamic text: His hands are roaming your body, pawing at your breasts, brushing against your a...
+    scene.text(`His hands are roaming your body, pawing at your breasts, brushing against your ass and pussy. Then, all of a sudden, Martin pulls you closer to the edge, his pants miraculously already undone, his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick revealed in all its glory.`);
+    scene.text('"Alright, niña," he growls, "you asked for a fuck, you\'ll get a fuck."');
+    qspCall(s, 'arousal', 'foreplay', 2, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Let Martin fuck you', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'missionary'
+  }, goto: ['MartinSex2', 'MartinSexDyn'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMartinTease2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'drugs', 'alcohol', 'wine');
+  scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopant_tease1.jpg');
+  scene.text('You are not in the mood to play hard-to-get; in fact, now that you think about it, maybe the easiest way to get Martin to drop this "you deserve better" spiel is to be <i>easy</i>.');
+  scene.text('"You know what?" You slip out of your shoes first. "I think I\'ll have something to drink. Do you have wine somewhere behind… Ah, I see it."');
+  scene.text('Without waiting for Martin\'s reply, you stretch and bend over the counter slightly, reaching for a glass and an open bottle of white wine. You didn\'t even know Martin had wine.');
+  scene.text('The trick in all this was to make it look natural while carefully shifting around just enough so he could…');
+  // TODO-QSP: dynamic text: "<<$pcs_firstname>>," you can hear him swallow from across the room, "are you we...
+  scene.text(`"${((s as any).pcs_firstname ?? 0)}," you can hear him swallow from across the room, "are you wearing underwear?"`);
+  scene.text('Bingo.');
+  scene.text('You look at him, glass of wine in hand and standing on your tiptoes, your pantiless crotch just barely visible to him, and take a sip.');
+  scene.text('"I must have forgotten to put it on," you note innocently.');
+  qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Time for a good look', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease2.jpg');
+    scene.text('It wouldn\'t be nice to tease Martin with a sight like that and keep him guessing if the carpets do indeed match the drapes.');
+    // TODO-QSP: dynamic text: Without putting the glass down, you turn your side to Martin and bare your lower...
+    scene.text(`Without putting the glass down, you turn your side to Martin and bare your lower half with your free hand. You can feel Martin's eyes linger on your ${((s as any).pc_desc ?? 0)?.['legs']} legs, but you know what he really wants to see, as much as he'd deny it.`);
+    // TODO-QSP: dynamic text: Feeling ready to burn whatever bridge there's left behind you, you face Martin, ...
+    scene.text(`Feeling ready to burn whatever bridge there's left behind you, you face Martin, revealing your ${((s as any).pc_desc ?? 0)?.['pubes']} pussy to him. He seems shocked by your boldness; not just by you stripping for him, right here in the empty bar - although that must be a big part of it - but also by the fact that you had been walking around commando like there was nothing to it.`);
+    scene.text('"Like what you see?"');
+    scene.text('You don\'t know if he was even physically capable of saying no, given that he just barely managed to croak a "yes" - still, it was nice that he was being honest with you and himself.');
+    qspCall(s, 'clothing', 'strip');
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Then he\'s gonna like what\'s next', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease3.jpg');
+    scene.text('With an audience as appreciative as this, how could you possibly stop now?');
+    // TODO-QSP: dynamic text: Setting the glass, your trusty prop, aside, you pull down what little covers you...
+    scene.text(`Setting the glass, your trusty prop, aside, you pull down what little covers your ${((s as any).pc_desc ?? 0)?.['chest']} chest and ${((s as any).pc_desc ?? 0)?.['belly']} belly, giving Martin a good look at your ${((s as any).pc_desc ?? 0)?.['breast']} tits, your ${((s as any).pc_desc ?? 0)?.['nipples']} nipples standing hard thanks to the chilly, smoky air… and maybe also due to his intense stares.`);
+    // TODO-QSP: dynamic text: You lift your arms a little, playing with your <<$pc_descWordy['hair length']>> ...
+    scene.text(`You lift your arms a little, playing with your ${((s as any).pc_descWordy ?? 0)?.['hair length']} and sticking out your breasts even more.`);
+    scene.text('No, you <b>really</b> aren\'t making it easy for Martin to adhere to his principles regarding celibacy and sexy young women, or whatever it is that\'s holding him back from bending you over and nailing you into the fucking counter.');
+    scene.text('He\'s not frozen solid anymore, though. He seems to be struggling with his lust, and you don\'t think his \'reason\' is winning.');
+    qspCall(s, 'underwear', 'remove');
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Go Lust!', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease4.jpg');
+    scene.text('He\'s staggering, but he isn\'t out yet. You have to keep at it.');
+    scene.text('"I\'m flexible, too. See?"');
+    // TODO-QSP: dynamic text: You don't wait for a reply. You simply lift your <<$pc_desc['legs']>> leg up ove...
+    scene.text(`You don't wait for a reply. You simply lift your ${((s as any).pc_desc ?? 0)?.['legs']} leg up over the stool next to you, giving him a spectacular view at your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy.`);
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>>, stop." Martin has found his voice again, it seems - not tha...
+    scene.text(`"${((s as any).pcs_firstname ?? 0)}, stop." Martin has found his voice again, it seems - not that he's using it to say something helpful. "This is wrong."`);
+    scene.text('"Really?" You look at your leg, confused. "Yeah, I guess you\'re right."');
+    scene.text('You momentarily see something like hope or relief flare up in his eyes. You are not feeling very merciful tonight, though:');
+    // TODO-QSP: dynamic text: You put one of your hands on your ass and pull slightly, completely revealing wh...
+    scene.text(`You put one of your hands on your ass and pull slightly, completely revealing what little of your pussy and ${((s as any).pc_desc ?? 0)?.['anus']} asshole wasn't already visible to him.`);
+    scene.text('"There, better now?"');
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/buttplug.jpg');
+      scene.text('But it seems that something particular, in your ass, has caught his attention, rendering him silent once more.');
+      scene.text('"Oh." You realize that you are still wearing your anal plug. "Don\'t mind my buttplug."');
+      scene.text('If he does mind, he\'s unable to say it.');
+      scene.text('Smiling to yourself, you slowly remove the toy from your ass. You have a feeling that he is already at his limit, coping with your stripping and lack of panties, so your buttplug may be a little more than he can handle right now.');
+    }
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Just one last push…', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease5.jpg');
+    scene.text('Ridding yourself of what little items you have still left on you, you put your leg up on the bar and bend over. Your ass and pussy aren\'t just visible to Martin - they are also very much accessible.');
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>>-" But you cut him off.
+    scene.text(`"${((s as any).pcs_firstname ?? 0)}-" But you cut him off.`);
+    scene.text('"If you are gonna say anything but \'I want to fuck you so bad right now\', I\'m going to scream." You\'re not sound very playful now, to be honest. All the cards are on the table, and you went about a million extra miles to show Martin just how much you want him. If he doesn\'t finally take a hint, you\'re going to-');
+    scene.text('But before you can even finish the thought, Martin kissing you, hard, his hands are roaming your body and exploring every mound and every crevice.');
+    scene.text('"Alright, you asked for it," he growls, "but I\'m not gonna play nice."');
+    scene.text('"I never wanted you to," you moan, his fingers stroking your pussy and clit.');
+    // TODO-QSP: dynamic text: You don't know if his zipper exploded at your last words or if he was just that ...
+    scene.text(`You don't know if his zipper exploded at your last words or if he was just that damn good with his hands that you didn't even notice when he opened it to reveal his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick, but you cannot wait to feel him inside you and, judging by how he's now taking position behind you, neither can he.`);
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'arousal', 'kiss', 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Let Martin fuck you', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'doggystyle'
+  }, goto: ['MartinSex2', 'MartinSexDyn'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMartinTease3(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).pcs_dancero ?? 0) <= 50) {
+    qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 4) + 2);
+  }
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+  scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease1.jpg');
+  scene.text('Feeling in the mood to give Martin a bit of a show today, you give him a soft push, just strong enough to make him get the hint and sit down on the chair behind him.');
+  // TODO-QSP: dynamic text: You then take a few steps back and slowly bend forward, giving him a generous lo...
+  scene.text(`You then take a few steps back and slowly bend forward, giving him a generous look at your ${((s as any).pc_desc ?? 0)?.['breast']} cleavage and ${((s as any).pc_desc ?? 0)?.['legs']} legs as you take off your lower garment.`);
+  scene.text('Martin certainly looks like he likes where this is going, and you have no intention of changing course.');
+  scene.text('Without much ado, you smile and pull down your panties as well. Most of your crotch is revealed to him, but your sex is only vaguely perceptible. But taking the initiative like this is fun, and it adds to the thrill to know that you\'re standing in the middle of a bar, even if nobody\'s gonna enter.');
+  qspCall(s, 'clothing', 'strip');
+  qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Turn around', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease2.jpg');
+    scene.text('You pull your panties all the way down to your knees and spin around for a moment, to let him look at you from all sides… and to bar him from seeing your exposed crotch right away. Still, you quickly spot the growing bulge in his pants - knowing that you are half-naked and seeing you in glorious, pantiless profile seems to be enough to get his engine going.');
+    scene.text('You ever so slowly turn your back to Martin and lasciviously bend over a nearby table.');
+    // TODO-QSP: dynamic text: "Well?" You ask flirtatiously over your shoulder, your <<$pc_desc['pubes']>> pus...
+    scene.text(`"Well?" You ask flirtatiously over your shoulder, your ${((s as any).pc_desc ?? 0)?.['pubes']} pussy and asshole completely revealed to him. "Enjoying the view?"`);
+    scene.text('"You have no idea," he breathes, a lustful glint in his eyes.');
+    if ((!((s as any).analPlugIn ?? 0))) {
+      // TODO-QSP: dynamic text: Considering how reluctant he was to let you "settle for an old man", he seems to...
+      scene.text(`Considering how reluctant he was to let you "settle for an old man", he seems to be awfully happy about that same young ${((s as any).bodyVars ?? 0)?.['desc']} woman stripping and exposing her privates to him.`);
+    } else {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/buttplug.jpg');
+      scene.text('Your ass in particular seems to have caught your attention, and it doesn\'t take you long to realize that he\'s staring at your anal plug with utter fascination.');
+      scene.text('"My my, it\'s almost like you enjoy it when women take something up their ass," you comment playfully.');
+      scene.text('"Pull it out." His voice is low but the order unmistakeable. "Slowly."');
+      scene.text('"Why should I?" You ask, a hint of defiance in your response.');
+      scene.text('"Because if I have to look at it a moment longer, I\'ll come over there, pull it out and fuck your ass right now."');
+      scene.text('Even though you two share a laugh over his \'threat\', the thought that the plug might excite him that much makes your pussy tingle.');
+      // TODO-QSP: dynamic text: Taking all the time in the world, you comply, reach down and slooooowly remove t...
+      scene.text(`Taking all the time in the world, you comply, reach down and slooooowly remove the toy from your ass, moaning softly as your ${((s as any).pc_desc ?? 0)?.['anus']} ass releases its intruder.`);
+      scene.text('The glint you saw earlier is now a full-blown fire, fueled by the sight of your gaping and ready asshole.');
+    }
+    qspCall(s, 'underwear', 'remove');
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Climb on the table', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease3.jpg');
+    // TODO-QSP: dynamic text: Making full use of the table being there, you climb on top and sit down on it, g...
+    scene.text(`Making full use of the table being there, you climb on top and sit down on it, giving Martin an alluring smile and spreading your ${((s as any).pc_desc ?? 0)?.['legs']} legs, giving the lucky guy in the front row an exclusive look at your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy.`);
+    scene.text('"The way you look at me really turns me on, you know," you sigh. The flirtatious tone is gone now - the wetness you feel between your legs makes anything but \'sultry\' feel inadequate.');
+    scene.text('Your body\'s display of excitement cannot possibly have escaped Martin, because is looking at you intently, feasting on the sight of you like he\'d never get to do it again. "You and me both, mi amor."');
+    scene.text('Feeling it would be cruel to continue too quickly - and enjoying his stare immensely - you give him a moment to bask in the nubile display before you…');
+    qspCall(s, 'arousal', 'foreplay', 2, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Take off your shirt', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease4.jpg');
+    // TODO-QSP: dynamic text: … pull your shirt over your head, revealing your <<$pc_desc['breast']>> breasts ...
+    scene.text(`… pull your shirt over your head, revealing your ${((s as any).pc_desc ?? 0)?.['breast']} breasts to Martin. "And what do you think of my tits?"`);
+    scene.text('Martin leans back, smiling ear to ear, and shows you his crotch in response, and the sight before you adds fuel to the fire in your loins: He is pitching a perfect tent, his pants barely able to contain the cock underneath, and Martin seems very pleased with himself and the world. And why wouldn\'t he be? What man his age would be anything but ecstatic to have a pretty young woman strip for him, and only him, and to have her stare at his hard-on in curiosity?');
+    scene.text('You could certainly make him, and yourself, even happier, if you wanted to.');
+    scene.text('But at least part of the excitement you are feeling right now came from teasing Martin, from having control over the situation and over him. And, as cruel as that may be, what could possibly emphasize your power over him more than leaving him with blue balls?');
+    if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 1  &&  ((s as any).bag ?? 0) > 0) {
+      scene.text('Or… well, you could take your \'little friend\' out of your purse and take care of your own needs before deciding anything…');
+    }
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    (s as any).temp = Math.floor(Math.random() * 3) + 1;
+    if (((s as any).cycle ?? 0) !== 0) {
+      scene.actions([
+        { label: 'Tell Martin to go down on you', goto: ['MartinSex3', 'MartinPussyLick'] },
+      ]);
+    } else {
+      if (((s as any).temp ?? 0) === 1  &&  ((s as any).cycle ?? 0) !== 0) {
+        scene.actions([
+          { label: 'Martin wants to go down on you', goto: ['MartinSex3', 'MartinPussyLick'] },
+        ]);
+      }
+    }
+    if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 1  &&  ((s as any).bag ?? 0) > 0) {
+      scene.actions([
+        { label: 'Masturbate with your dildo', goto: ['MartinSex', 'MartinTeaseDildo'] },
       ]);
     }
     scene.actions([
-      { label: 'Reconcile with Martin', handler: (st: GameState) => {
-    scene.img('images/locations/city/industrial/bar/martinreconcile.jpg');
-    (s as any).MartinSexTalk = 2;
-    qspCall(s, 'npc_relationship', 'modify', 'A216', 2);
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    scene.text('No matter how you look at it, things didn\'t go well last time. You hate the way he decided for you without actually listening to you, but are you happy about how you basically told him to go fuck himself?');
-    scene.text('No, not really. And the way things look, your only options are to either be the bigger woman or to have awkward conversations with him, if any, from hereon out.');
-    scene.text('With an inward sigh, you decide that it is time to restore your friendship with Martin… or whatever it is that\'s going on between you.');
-    scene.text('"Martin?"');
-    scene.text('Martin doesn\'t seem startled when you call out to him - on the contrary, it seems like he was just waiting for you to address him, and now that you have, he turns to face you, looking friendly as ever - well, maybe he seems a little more on edge than usual.');
-    // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>. Still here?"
-    scene.text(`"Hello ${((s as any).pcs_firstname ?? 0)}. Still here?"`);
-    scene.text('"Yeah, I waited for you to close the bar so we could talk. I…" You don\'t really know what you want to tell him. Part of you feels that apologizing may not be the worst thing to do, but another insists that you have nothing to apologize for. "I wanted to tell you that I understand… I guess. Or, well, no, I don\'t, but at least I\'m trying to understand what you meant last time."');
-    // TODO-QSP: dynamic text: "Good," Martin gives a sigh of relief. You could tell that he was a little on ed...
-    scene.text(`"Good," Martin gives a sigh of relief. You could tell that he was a little on edge, but the sigh gave away how uncertain he was about what you were gonna do or say. "I'm sorry too, ${((s as any).pcs_firstname ?? 0)}, if I offended you. I probably chose my words poorly and I don't want this to stand between us, I just don't want you to do something you'll regret."`);
-    scene.text('"I get it," you hear yourself say. Do you really, though?');
-    scene.text('Neither of you has anything more to say, it seems. You spend a few minutes in silence, looking at each other. No, it sure isn\'t the same it was before. You can definitely sense that tension that lead to this mess in the first place.');
-    scene.text('But the silence isn\'t nearly as bad as it could be, or maybe should be. Clearing the air was cathartic, and while you cannot just launch into one of your casual banters, you\'ll be fine, given a little time.');
-    scene.text('It\'s you who eventually breaks the silence. "I, uh… I guess I better get going."');
-    scene.text('"Yeah, I should finish this up anyway," he agrees awkwardly, nodding to the mop in his hand. "See you soon?"');
-    scene.text('"Sure, I\'ll be around."');
-    scene.text('You give him as much of a smile as you can manage, turn around and leave the bar, relieved at your reconciliation but also unsure as to whether the restored friendship is enough for you.');
+      { label: 'Take care of Martin (Blowjob)', goto: ['MartinSex3', 'MartinBlowTease'] },
+      { label: 'Beckon Martin to fuck you like this (On your back)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'missionary'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and bend over for Martin (From behind)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'doggystyle'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Roll on your side (Sideways)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'sideways'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and tell Martin you wanna ride him (Cowgirl)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'cowgirl'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and tell Martin you wanna ride him (<b>Reverse</b> Cowgirl)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'rev_cowgirl'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Blueball him. Get dressed and leave', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'npc_relationship', 'modify', 'A216', (-1));
+    scene.img('images/locations/city/industrial/bar/gettingdressed.mp4');
+    scene.text('"I\'m glad you like it," you say, swinging your legs off the table as you put your shirt back on, "because that\'s all you\'ll be getting today."');
+    scene.text('At first, Martin probably thinks you\'re joking, but seeing as you\'re putting your other clothes back on as well, he gets up, frowning.');
+    scene.text('"You\'d leave me here, alone, in this state?" He points towards his crotch where his dick is straining against the fabric of his pants. "You couldn\'t possibly be this cruel."');
+    // TODO-QSP: dynamic text: You walk up to Martin, put your <<$pc_desc['arms']>> arms around his neck and gi...
+    scene.text(`You walk up to Martin, put your ${((s as any).pc_desc ?? 0)?.['arms']} arms around his neck and give him a soft kiss. When you break it, you whisper: "If I wasn't cruel at least once in a while, you wouldn't appreciate it when I'm not."`);
+    scene.text('With that, you quickly move out of his range, towards the door, blow the perplexed barkeeper a final kiss and make off like a bandit.');
+    scene.text('… A horny bandit.');
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'clothing', 'wear_last_worn');
+    qspCall(s, 'shoes', 'wear', 'last_worn');
+    qspCall(s, 'purses', 'wear', 'last_worn');
+    qspCall(s, 'coats', 'wear', 'last_worn');
+    qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the bar', goto: ['city_industrial', ''] },
     ]);
   } },
-      { label: 'You are still too angry to talk to him - Just leave the bar', handler: (st: GameState) => {
-    scene.text('But as much as you try to bring yourself to, you just can\'t properly face him yet.');
-    scene.text('You turn and go towards the exit. You can hear something behind you, feel his look on your back, but you ignore it as best you can and go outside, the matter between you unresolved.');
-    scene.actions([
-      { label: 'Leave', goto: ['city_industrial', ''] },
     ]);
   } },
     ]);
-  }
+  } },
+    ]);
+  } },
+  ]);
   scene.build();
+}
+
+function enterMartinTease4(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'drugs', 'alcohol', 'wine');
+  scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopant_tease1.jpg');
+  scene.text('Feeling in the mood to give Martin a bit of a show today, you give him a soft push, just strong enough to make him get the hint and sit down on the chair behind him.');
+  scene.text('You slip out of your shoes first. "You know, I think I\'ll have something to drink. Do you mind if I help myself?"');
+  scene.text('Without waiting for Martin\'s reply, you stretch and bend over the counter slightly. Spotting a glass that\'s within reach and an open bottle of white wine, you fill it with a thumb or two of the cool liquid. You don\'t think you\'ve ever seen Martin serve wine to anyone - it would seem he likes to have a little while he closes up shop.');
+  scene.text('But while you are having a taste, you aren\'t standing idle. The trick in all this is to look careless, naturally moving and accidentally shifting around until…');
+  scene.text('… well, until you can hear Martin swallow from across the room. "What underwear are you wearing tonight?"');
+  scene.text('You smile to yourself as you look over your shoulder, your voice an enticing whisper "None at all. Why do you ask?" Glass of wine in hand and standing on your tiptoes, your pantiless crotch just barely visible to him, and take a sip.');
+  scene.text('Martin chuckles softly at your nonchalance, but with his eyes glued to your crotch, he replies: "Just curious."');
+  qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'A little curiosity doesn\'t hurt', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease2.jpg');
+    // TODO-QSP: dynamic text: Without putting the glass down, you turn your side to Martin and bare your lower...
+    scene.text(`Without putting the glass down, you turn your side to Martin and bare your lower half with your free hand, making it blatantly obvious that you were indeed going commando. You can feel Martin's eyes linger on your ${((s as any).pc_desc ?? 0)?.['legs']} legs, but you know what he really wants to see - he wants you to confirm what he already knows.`);
+    // TODO-QSP: dynamic text: You slowly turn to face Martin, revealing your <<$pc_desc['pubes']>> pussy to hi...
+    scene.text(`You slowly turn to face Martin, revealing your ${((s as any).pc_desc ?? 0)?.['pubes']} pussy to him. Your boldness to strip for him, right here in the empty bar, and to walk around without underwear seem to turn him on immensely, if the bulge in his pants is any indication.`);
+    scene.text('"Like what you see?" You ask, taking another small sip of wine.');
+    scene.text('"You little minx", is all he says, sounding as incredulous as he does admiring - not to mention horny.');
+    qspCall(s, 'clothing', 'strip');
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'He\'s gonna like what\'s next', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease3.jpg');
+    scene.text('With an audience as appreciative as this, how could you possibly stop now?');
+    // TODO-QSP: dynamic text: Setting the glass aside, you pull down what little covers your <<$pc_desc['chest...
+    scene.text(`Setting the glass aside, you pull down what little covers your ${((s as any).pc_desc ?? 0)?.['chest']} chest and ${((s as any).pc_desc ?? 0)?.['belly']} belly, giving Martin a good look at your ${((s as any).pc_desc ?? 0)?.['breast']} tits, your ${((s as any).pc_desc ?? 0)?.['nipples']} nipples standing hard thanks to the chilly, smoky air… and maybe also due to his intense stares.`);
+    // TODO-QSP: dynamic text: You lift your arms a little, playing with your <<$pc_descWordy['hair length']>> ...
+    scene.text(`You lift your arms a little, playing with your ${((s as any).pc_descWordy ?? 0)?.['hair length']} and sticking out your breasts even more.`);
+    scene.text('Honestly, it wouldn\'t have surprised you if he had just bent you over and nailed you into the fucking counter then and there - his eyes are certainly burning with desire enough to tell you that he wants to.');
+    scene.text('But he doesn\'t jump up and fuck you. He sits there, patiently, waiting to see what else you have in store for him, how else you want to tease and torture him.');
+    scene.text('He enjoys that a pretty young woman like you is putting on a show for him, and him alone, and he doesn\'t want to interrupt it.');
+    qspCall(s, 'underwear', 'remove');
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'The show must go on', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease4.jpg');
+    scene.text('Well, if it\'s a sexy torture he wants, you are happy to deliver.');
+    scene.text('"Want to see how flexible I am?"');
+    // TODO-QSP: dynamic text: You don't wait for a reply. You simply lift your <<$pc_desc['legs']>> leg up ove...
+    scene.text(`You don't wait for a reply. You simply lift your ${((s as any).pc_desc ?? 0)?.['legs']} leg up over the stool next to you, giving him a spectacular view at your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy.`);
+    scene.text('When you look up from the stool, you are stunned to see Martin give you a look of indifference. "That\'s okay, I guess."');
+    scene.text('You almost burst into laughter after your brain has caught up with his challenge, but you are only too happy to indulge him, if it\'s an even sexier display he wants.');
+    // TODO-QSP: dynamic text: You put one of your hands on your ass and pull slightly, completely revealing wh...
+    scene.text(`You put one of your hands on your ass and pull slightly, completely revealing what little of your pussy and ${((s as any).pc_desc ?? 0)?.['anus']} asshole wasn't already visible to him.`);
+    scene.text('"Just okay, huh?"');
+    if ((!((s as any).analPlugIn ?? 0))) {
+      scene.text('"Maybe a little better than okay," he smirks.');
+      // TODO-QSP: dynamic text: Considering how reluctant he was to let you "settle for an old man", he seems to...
+      scene.text(`Considering how reluctant he was to let you "settle for an old man", he seems to be awfully happy about teasing that same young ${((s as any).bodyVars ?? 0)?.['desc']} woman while she's stripping and exposing her privates to him.`);
+    } else {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/buttplug.jpg');
+      scene.text('But something on your ass seems to distract him from your question, and it doesn\'t take you long to realize that he\'s staring at your anal plug with utter fascination.');
+      scene.text('"My my, it\'s almost like you enjoy it when women take something up their ass," you comment playfully.');
+      scene.text('"Pull it out." His voice is low but the order unmistakeable. "Slowly."');
+      scene.text('"Why should I?" You ask, a hint of defiance in your response.');
+      scene.text('"Because if I have to look at it a moment longer, I\'ll come over there, pull it out and fuck your ass right now."');
+      scene.text('Even though you two share a laugh over his \'threat\', the thought that the plug might excite him that much makes your pussy tingle.');
+      // TODO-QSP: dynamic text: Taking all the time in the world, you comply, reach down and slooooowly remove t...
+      scene.text(`Taking all the time in the world, you comply, reach down and slooooowly remove the toy from your ass, moaning softly as your ${((s as any).pc_desc ?? 0)?.['anus']} ass releases its intruder.`);
+      scene.text('The glint you saw earlier is now a full-blown fire, fueled by the sight of your gaping and ready asshole.');
+    }
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Better than okay', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease5.jpg');
+    scene.text('Ridding yourself of what little items you have still left on you, you put your leg up on the bar and bend over. Your ass and pussy aren\'t just visible to Martin - they are also very much accessible.');
+    scene.text('"So…" Your tone is about as casual as you can muster, but your glistening pussy gives away your true feelings. "What do you think of my body?"');
+    scene.text('Martin leans back, smiling ear to ear, and shows you his crotch in response, and the sight before you adds fuel to the fire in your loins: He is pitching a perfect tent, his pants barely able to contain the cock underneath, and Martin seems very pleased with himself and the world. And why wouldn\'t he be? What man his age would be anything but ecstatic to have a pretty young woman strip for him, and only him, and to have her stare at his hard-on in curiosity?');
+    scene.text('You could certainly make him, and yourself, even happier, if you wanted to.');
+    scene.text('But at least part of the excitement you are feeling right now came from teasing Martin, from having control over the situation and over him. And, as cruel as that may be, what could possibly emphasize your power over him more than leaving him with blue balls?');
+    if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 1  &&  ((s as any).bag ?? 0) > 0) {
+      scene.text('Or… well, you could take your \'little friend\' out of your purse and take care of your own needs before deciding anything…');
+    }
+    qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    (s as any).temp = Math.floor(Math.random() * 3) + 1;
+    if (((s as any).cycle ?? 0) !== 0) {
+      scene.actions([
+        { label: 'Tell Martin to go down on you', goto: ['MartinSex3', 'MartinPussyLick'] },
+      ]);
+    } else {
+      if (((s as any).temp ?? 0) === 1  &&  ((s as any).cycle ?? 0) !== 0) {
+        scene.actions([
+          { label: 'Martin wants to go down on you', goto: ['MartinSex3', 'MartinPussyLick'] },
+        ]);
+      }
+    }
+    if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 1  &&  ((s as any).bag ?? 0) > 0) {
+      scene.actions([
+        { label: 'Masturbate with your dildo', goto: ['MartinSex', 'MartinTeaseDildo'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Take care of Martin (Blowjob)', goto: ['MartinSex3', 'MartinBlowTease'] },
+      { label: 'Beckon Martin to fuck you like this (On your back)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'missionary'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and bend over for Martin (From behind)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'doggystyle'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Roll on your side (Sideways)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'sideways'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and tell Martin you wanna ride him (Cowgirl)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'cowgirl'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and tell Martin you wanna ride him (<b>Reverse</b> Cowgirl)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'rev_cowgirl'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Blueball him. Get dressed and leave', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'npc_relationship', 'modify', 'A216', (-1));
+    scene.img('images/locations/city/industrial/bar/gettingdressed.mp4');
+    scene.text('"I\'m glad you like it," you say, swinging your legs off the table as you put your shirt back on, "because that\'s all you\'ll be getting today."');
+    scene.text('At first, Martin probably thinks you\'re joking, but seeing as you\'re putting your other clothes back on as well, he gets up, frowning.');
+    scene.text('"You\'d leave me here, alone, in this state?" He points towards his crotch where his dick is straining against the fabric of his pants. "You couldn\'t possibly be this cruel."');
+    scene.text('You walk up to Martin, put your arms around his neck and give him a soft kiss. When you break it, you whisper:');
+    scene.text('"If I wasn\'t cruel at least once in a while, you wouldn\'t appreciate it when I\'m not. Besides, I think you\'ll cum immediately when I\'m out that door once you realize that I\'m going commando again."');
+    scene.text('With that, you quickly move out of his range, towards the door, blow the perplexed barkeeper a final kiss and make off like a bandit.');
+    scene.text('… A horny, pantiless bandit.');
+    qspCall(s, 'underwear', 'wear');
+    qspCall(s, 'clothing', 'wear_last_worn');
+    qspCall(s, 'shoes', 'wear', 'last_worn');
+    qspCall(s, 'purses', 'wear', 'last_worn');
+    qspCall(s, 'coats', 'wear', 'last_worn');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave the bar', goto: ['city_industrial', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterMartinTeaseDildo(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A216');
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+  scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/teasedildo1.jpg');
+  // TODO-QSP: dynamic text: You roll to your <<$pc_desc['side']>> side. Grinning like a Cheshire cat, you ru...
+  scene.text(`You roll to your ${((s as any).pc_desc ?? 0)?.['side']} side. Grinning like a Cheshire cat, you rummage through your purse and, under the curious looks of Martin, pull out your ' + iif(dildo = 1, '10cm', '15cm') + ' dildo.`);
+  scene.text('"Whatever am I going to do with this?" you wonder out loud, locking eyes with Martin as you give the tip of the dildo a lick or three.');
+  scene.text('"Yes, whatever indeed," he muses, his pants stretched to their limit around his crotch.');
+  scene.text('With the dildo sufficiently licked and your audience on the verge of exploding, you decide to stop torturing him and rub the dildo against your pussy lips, enjoying the damped tip against your orifice, the prospect of penetrating yourself in front of Martin arousing you to no end.');
+  // TODO-QSP: dynamic text: Tired of teasing yourself, you put the ' + iif(dildo = 1, '10cm', '15cm') + ' ru...
+  scene.text('Tired of teasing yourself, you put the \' + iif(dildo = 1, \'10cm\', \'15cm\') + \' rubber dick inside your wet slit. The sensation is incredible - you knew that stripping for Martin had aroused you but it is only now that you realize how aroused and longing for something hard inside you really were.');
+  scene.text('You smile at Martin as you slowly push it deeper inside, but involuntary moans are escaping you now.');
+  qspCall(s, 'arousal', 'vaginal_dildo', 5, 'exhibitionism');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Fuck yourself with your dildo', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/teasedildo2.jpg');
+    scene.text('Your smile fades fast as lust overtakes you.');
+    scene.text('Time moves different when you are aroused like this, when every sensation is like a shockwave in your head and every nerve of your body is on edge. A giant crowd could have been watching you right now and you wouldn\'t even care - no, actually, at this point it would probably only make this more intense.');
+    // TODO-QSP: dynamic text: You can sense every tiny movement of the dildo inside your <<$pc_desc['pussy']>>...
+    scene.text(`You can sense every tiny movement of the dildo inside your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy as you shift around, move it in and out, rubbing it against this wall and that and making sure to brush against your clit every now and then.`);
+    scene.text('There are plenty of instances when you wouldn\'t be able to cum without rubbing your sensitive nub, but this situation is so hot that you have no trouble at all getting yourself off.');
+    qspCall(s, 'arousal', 'vaginal_dildo', 5, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cum all over your dildo', handler: (st: GameState) => {
+    scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/teasedildo3.jpg');
+    scene.text('And off you get.');
+    scene.text('It starts slow, like the rumble of thunder in the distance, but before you know it, an explosion goes off in your head and your body starts shaking like a leaf in the wind. You can hear yourself moaning loudly, but you are barely even registering that, like it\'s happening in an adjacent room, to another person.');
+    scene.text('As you come down from your high, you regain awareness of your surroundings and open your eyes. Martin is still there, spellbound.');
+    scene.text('You give him an almost shy smile and, opting to give him a little tease-cherry on top, lick your dildo clean before you put it away.');
+    scene.text('The question of whether he enjoyed the show entirely superfluous. The question of whether you still want to leave him with blue (or, at this point, deep purple) balls, however, still stands.');
+    qspCall(s, 'arousal', 'vaginal_dildo', 5, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    (s as any).temp = Math.floor(Math.random() * 3) + 1;
+    if (((s as any).cycle ?? 0) !== 0) {
+      scene.actions([
+        { label: 'Tell Martin to go down on you', goto: ['MartinSex3', 'MartinPussyLick'] },
+      ]);
+    } else {
+      if (((s as any).temp ?? 0) === 1  &&  ((s as any).cycle ?? 0) !== 0) {
+        scene.actions([
+          { label: 'Martin wants to go down on you', goto: ['MartinSex3', 'MartinPussyLick'] },
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Take care of Martin (Blowjob)', goto: ['MartinSex3', 'MartinBlowTease'] },
+      { label: 'Roll on your back (On your back)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'missionary'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and bend over for Martin (From behind)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'doggystyle'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Beckon Martin to fuck you like this (Sideways)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'sideways'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and tell Martin you wanna ride him (Cowgirl)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'cowgirl'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Get up and tell Martin you wanna ride him (<b>Reverse</b> Cowgirl)', handler: (st: GameState) => {
+    // TODO-QSP: $martinpos = 'rev_cowgirl'
+  }, goto: ['MartinSex2', 'MartinSexPrep'] },
+      { label: 'Blueball him. Get dressed and leave', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'npc_relationship', 'modify', 'A216', (-1));
+    qspCall(s, 'underwear', 'wear');
+    scene.img('images/locations/city/industrial/bar/gettingdressed.mp4');
+    scene.text('"I\'m glad you liked the show," you say, swinging your legs off the table as you put your top back on, "because that\'s all you\'ll be getting today."');
+    scene.text('At first, Martin probably thinks you\'re joking, but seeing as you\'re putting your other clothes back on as well, he gets up, frowning.');
+    scene.text('"You\'d leave me here, alone, in this state?" He points towards his crotch where his dick is straining against the fabric of his pants. "You couldn\'t possibly be this cruel."');
+    // TODO-QSP: dynamic text: You walk up to Martin, put your arms around his neck and give him a soft kiss, t...
+    scene.text(`You walk up to Martin, put your arms around his neck and give him a soft kiss, the taste of your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy on your ${((s as any).pc_desc ?? 0)?.['lips']} lips and tongue. When you break it, you whisper: "If I wasn't cruel at least once in a while, you wouldn't appreciate it when I'm not."`);
+    if (((s as any).pantyworntype ?? 0) === 'none') {
+      scene.text('"Besides," you add with a naughty smile, "you just saw me cum really hard, so I think you\'ll cum immediately when I\'m out that door once you realize that I\'m going commando again."');
+      scene.text('With that, you quickly move out of his range, towards the door, blow the perplexed barkeeper a final kiss and make off like a bandit.');
+      scene.text('… A cruel, pantiless bandit.');
+    } else {
+      scene.text('"Besides," you add with a naughty smile, "you just saw me cum really hard, so you certainly have something to keep you warm tonight."');
+      scene.text('With that, you quickly move out of his range, towards the door, blow the perplexed barkeeper a final kiss and make off like a bandit.');
+      scene.text('… A cruel bandit.');
+    }
+    qspCall(s, 'clothing', 'wear_last_worn');
+    qspCall(s, 'shoes', 'wear', 'last_worn');
+    qspCall(s, 'purses', 'wear', 'last_worn');
+    qspCall(s, 'coats', 'wear', 'last_worn');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave the bar', goto: ['city_industrial', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'MartinTease':
+      enterMartinTease(s, scene);
+      break;
+    case 'MartinTease1':
+      enterMartinTease1(s, scene);
+      break;
+    case 'MartinTease2':
+      enterMartinTease2(s, scene);
+      break;
+    case 'MartinTease3':
+      enterMartinTease3(s, scene);
+      break;
+    case 'MartinTease4':
+      enterMartinTease4(s, scene);
+      break;
+    case 'MartinTeaseDildo':
+      enterMartinTeaseDildo(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const MartinSex: LocationDef = {

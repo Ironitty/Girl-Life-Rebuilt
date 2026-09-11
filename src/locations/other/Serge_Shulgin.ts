@@ -191,14 +191,19 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            scene.actions([
-              { label: 'Suggest you could make him feel good', handler: (st: GameState) => {
+            if (((s as any).pcs_horny ?? 0) < 75) {
+              scene.actions([
+                { label: 'Suggest you could make him feel good', handler: (st: GameState) => {
     // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'sleep_nameksex_rought'
   } },
-              { label: 'Beg him to make you feel good', handler: (st: GameState) => {
+              ]);
+            } else {
+              scene.actions([
+                { label: 'Beg him to make you feel good', handler: (st: GameState) => {
     // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'sleep_nameksex_lick'
   } },
-            ]);
+              ]);
+            }
           }
         }
       }

@@ -188,6 +188,8 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
     scene.text(`You served ${((s as any).ghnow ?? 0)} cocks on this visit.`);
   }
   if (((s as any).hour ?? 0) >= 11  ||  ((s as any).hour ?? 0) < 3) {
+    scene.actions([
+      { label: 'Watch porn [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -251,12 +253,551 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    scene.actions([
-      { label: 'Watch porn [+$func(\'money\', \'get_cost_string\', 50, \'c...]' }, // TODO-QSP: empty action body
+  } },
     ]);
   }
   scene.actions([
     { label: 'Leave the booth', goto: ['shop_erotomaniac', 'basement'] },
+  ]);
+  scene.build();
+}
+
+function enterKendra(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'stat', '');
+  if (((s as any).meet_kendra ?? 0) === 1) {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend0.jpg');
+    scene.text('As you browse the store, you see Kendra again. She\'s browsing through some of the sex toys when she notices you.');
+    scene.text('After a few minutes, she walks over and boldly caresses your hair. "Hello again. You change your mind about serving me?"');
+    scene.actions([
+      { label: 'No', handler: (st: GameState) => {
+    (s as any).kendrano = 1;
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'dislike');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend.jpg');
+    scene.text('You smile at her. "Sorry, no. I still don\'t belong to anyone."');
+    scene.text('She sighs softly. "Such a waste. Oh well, there\'s plenty of pretty little white Russian bitches that love being owned by an ebony Mistress. Perhaps we\'ll meet again and you\'ll change your mind. I go to the University, so you should stop by sometime."');
+    scene.text('She gives you directions to her dorm room before she returns to browsing.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_redlight', 'start'] },
+      { label: 'Go back to shopping', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['shop_erotomaniac', 'start'] },
+    ]);
+  } },
+      { label: 'Yes', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend.jpg');
+    scene.text('You look down a little to show your submission to her. "Yes, Mistress Kendra…"');
+    scene.text('She smiles widely. "I think you\'re going to make a great little slave. We\'re going to have a lot of fun together. Follow me, slave."');
+    scene.actions([
+      { label: 'Serve Kendra', handler: (st: GameState) => {
+    (s as any).kendraslave = ((s as any).kendraslave ?? 0) + (1);
+    qspCall(s, 'npcStat', 'A84');
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'like');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend1.jpg');
+    scene.text('You follow her down into the basement, where she sits on the edge of a table and pulls her fetish clothing aside, exposing her pussy. "Strip for me, bitch."');
+    scene.text('You do as you\'re told and begin to slowly strip out of your clothes until you\'re naked. "Good little slave. Now get over here and worship my pussy."');
+    scene.text('You kneel before her and start eagerly licking her pussy as Kendra squeals and moans in pleasure.');
+    scene.text('"Look at me!" she commands.');
+    scene.text('When you look up at her while still eating her out, she pulls her new toy out of her bag. "We\'re going to use this."');
+    qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      scene.actions([
+        { label: 'Use the dildo', goto: ['shop_erotomaniac', 'kendra1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Use the strap-on', goto: ['shop_erotomaniac', 'kendra2'] },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).kendraslave ?? 0) >= 1) {
+      scene.img('images/locations/city/redlight/erotomaniac/sex/shkend.jpg');
+      scene.text('As you browse the store, you see Kendra trying on latex clothes. She smiles when she notices you looking at her.');
+      scene.text('"Who do we have here? My favorite bitch. Come and service me. I just bought a new toy and I\'m eager to try it out," she laughs as she motions for you to follow her.');
+      qspCall(s, 'willpower', 'sex', 'resist', 'medium');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'dislike');
+    scene.text('You quickly leave while Kendra can\'t stop you.');
+  }, goto: ['city_redlight', 'start'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Serve Kendra', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A84');
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'like');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend1.jpg');
+    scene.text('You follow her down into the basement, where she sits on the edge of a table and pulls her fetish clothing aside, exposing her pussy. "Strip for me, bitch."');
+    scene.text('You do as you\'re told and begin to slowly strip out of your clothes until you\'re naked. "Good little slave. Now get over here and worship my pussy."');
+    scene.text('You kneel before her and start eagerly licking her pussy as Kendra squeals and moans in pleasure.');
+    scene.text('"Look at me!" she commands. When you look up at her while still eating her out, she pulls her new toy out of her bag. "We\'re going to use this."');
+    qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      scene.actions([
+        { label: 'Use the dildo', goto: ['shop_erotomaniac', 'kendra1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Use the dildo', goto: ['shop_erotomaniac', 'kendra2'] },
+      ]);
+    }
+  } },
+      ]);
+    } else {
+      if (((s as any).pcs_hotcat ?? 0) >= 5) {
+        scene.img('images/locations/city/redlight/erotomaniac/sex/shkend0.jpg');
+        scene.text('As you browse the store, you see a very attractive young black woman trying on latex clothes. She smiles when she notices you looking at her.');
+        scene.text('After a few minutes, she walks over and boldly caresses your hair. "You\'re a pretty little thing, what\'s your name?"');
+        // TODO-QSP: dynamic text: "<<$pcs_firstname>>, but most people call me <<$pcs_nickname>>. What's your name...
+        scene.text(`"${((s as any).pcs_firstname ?? 0)}, but most people call me ${((s as any).pcs_nickname ?? 0)}. What's your name?" you reply.`);
+        // TODO-QSP: dynamic text: She smiles. "<<$pcs_nickname>>, what a pretty name. I'm Kendra, but you can call...
+        scene.text(`She smiles. "${((s as any).pcs_nickname ?? 0)}, what a pretty name. I'm Kendra, but you can call me Mistress Kendra," she says with confidence.`);
+        scene.text('"Oh…" you reply. She\'s one of those people.');
+        scene.actions([
+          { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_redlight', 'start'] },
+          { label: 'Go back to shopping', goto: ['shop_erotomaniac', 'start'] },
+          { label: 'Talk to her', handler: (st: GameState) => {
+    (s as any).meet_kendra = 1;
+    qspCall(s, 'npc_relationship', 'set', 'A84', 45);
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend01.jpg');
+    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
+      scene.text('You ask her about her clothes and start talking with her. You tell her that you live in Pavlovsk and are in your final year of school and she replies by saying that she\'s a student from the Republic of Congo and is attending the local university on a student visa.');
+      // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
+      scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((s as any).pcs_nickname ?? 0)}, and become mine."`);
+      scene.text('You have no doubt where this will lead…');
+    } else {
+      scene.text('You ask her about her clothes and start talking with her. You tell her a bit about yourself and she replies by saying that she\'s a student from the Republic of Congo and is attending the local university on a student visa.');
+      // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
+      scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((s as any).pcs_nickname ?? 0)}, and become mine."`);
+      scene.text('You have no doubt where this will lead…');
+    }
+    scene.actions([
+      { label: 'Call her Kendra', handler: (st: GameState) => {
+    (s as any).kendrano = 1;
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'dislike');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend.jpg');
+    scene.text('You smile at her. "Sorry, but I don\'t belong to anyone."');
+    scene.text('She sighs softly. "Such a waste. Oh well, there\'s plenty of pretty little white Russian bitches that love being owned by an ebony Mistress. Perhaps we\'ll meet again and you\'ll change your mind?"');
+    scene.text('She gives you directions to her dorm room and you both return to shopping.');
+    scene.actions([
+      { label: 'Go back to shopping', goto: ['shop_erotomaniac', 'start'] },
+    ]);
+  } },
+      { label: 'Call her Mistress Kendra', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'like');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend.jpg');
+    scene.text('You look down to show your submission to her. "Yes, Mistress Kendra…"');
+    scene.text('She smiles. "I think you\'re going to make a great little slave. We\'re going to have a lot of fun together. Now follow me slave."');
+    scene.actions([
+      { label: 'Serve Kendra', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A84');
+    (s as any).kendraslave = ((s as any).kendraslave ?? 0) + (1);
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend1.jpg');
+    scene.text('You follow her down into the basement, where she sits on the edge of a table and pulls her fetish clothing aside, exposing her pussy. "Strip for me, bitch."');
+    scene.text('You do as you\'re told and begin to slowly strip out of your clothes until you\'re naked. "Good little slave. Now get over here and worship my pussy."');
+    scene.text('You kneel before her and start eagerly licking her pussy as Kendra squeals and moans in pleasure.');
+    scene.text('"Look at me!" she commands. When you look up at her while still eating her out, she pulls her new toy out of her bag. "We\'re going to use this."');
+    qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      scene.actions([
+        { label: 'She pulls out a dildo', goto: ['shop_erotomaniac', 'kendra1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'She pulls out a strap-on', goto: ['shop_erotomaniac', 'kendra2'] },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+        ]);
+      } else {
+        scene.img('images/locations/city/redlight/erotomaniac/sex/shkend0.jpg');
+        scene.text('As you browse the store, you see a very attractive young black woman trying on latex clothes. She notices you and gives you a quick once over before she goes back to what she was doing.');
+        scene.text('After a few minutes, she moves to another section of the store.');
+        scene.actions([
+          { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_redlight', 'start'] },
+          { label: 'Go back to shopping', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['shop_erotomaniac', 'start'] },
+        ]);
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterKendra1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/redlight/erotomaniac/sex/shkend2.jpg');
+  scene.text('You take the dildo from Kendra and insert it into her pussy. You use one hand to fuck her with the dildo while the other caresses her clit, Kendra moaning and writhing in pleasure as she leans back on the table.');
+  qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend3.jpg');
+    scene.text('You dutifully continue to thrust the dildo in and out of her while stroking her clit. Her juices begin dripping from the dildo onto your hand.');
+    scene.text('"That\'s right, slave. Just keep doing that!" she commands.');
+    qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend4.jpg');
+    scene.text('A few seconds later, she starts spasming as her whole body is overwhelmed by her orgasm. Her pussy squirts juices, covering your hand and her thighs. Some of it even ends up on your breasts and stomach.');
+    scene.text('Once her orgasm subsides, Kendra looks at you. "You\'re my beautiful little white bitch, totally committed to serving me. Now lick me clean!" she orders.');
+    qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lick', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend5.jpg');
+    scene.text('You pull the dildo out of her soaking wet pussy and dutifully move your head between her legs to begin slowly licking the juices from her thighs and pussy.');
+    scene.text('"Keep going, you slut!" she barks and you begin to lick faster, licking her thighs and pussy completely clean of her juices. Once you finish, she pushes you away.');
+    scene.text('"Good girl. Now it\'s time for your reward," she says as she pulls a strap-on out of her bag.');
+    qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Yes, Mistress', goto: ['shop_erotomaniac', 'kendra2'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterKendra2(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 3;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/redlight/erotomaniac/sex/shkend8.jpg');
+  scene.text('Kendra steps into the harness and slides it up over her hips before pulling the straps tight to hold it firmly in place.');
+  scene.text('She then pulls you in close and kisses you as her fingers slide down to your pussy and start rubbing it before she slides one finger inside you. She breaks the kiss a few seconds later.');
+  if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
+    scene.text('"I see you\'re still a virgin, so I won\'t pop your cherry. Luckily, you have other holes I can fuck. Now get on your knees and suck my cock!"');
+  } else {
+    scene.text('"I see you\'re already wet, slave. Eager for my cock, are you? Don\'t worry, you\'ll feel it soon enough. Now get on your knees and suck it first!"');
+  }
+  scene.actions([
+    { label: 'Suck her strap-on', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend7.jpg');
+    scene.text('You kneel down and take hold of the dildo with one hand while wrapping your lips around it. You start stroking it while sucking it.');
+    qspCall(s, 'arousal', 'bj', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Deepthroat', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend7.jpg');
+    scene.text('You suddenly feel Kendra grab you by the hair before she pushes your head forwards, forcing the dildo down your throat.');
+    scene.text('After making you gag for a few seconds, she lets you pull back to get a breath through your nose - only for her to force it down your throat again as she starts roughly fucking your mouth.');
+    qspCall(s, 'arousal', 'bj', 5, 'lesbian', 'sub', 'deepthroat');
+    qspCall(s, 'stat', '');
+    if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
+      scene.actions([
+        { label: 'Vaginal', goto: ['shop_erotomaniac', 'kendravag'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Anal', goto: ['shop_erotomaniac', 'kendraanal'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterKendravag(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/redlight/erotomaniac/sex/shkend10.jpg');
+  scene.text('"Ride my cock now, slave!" Kendra commands as she sits in a chair. You straddle her and lower yourself, moaning as the dildo slides into your pussy.');
+  scene.text('You start riding the strap-on as Kendra drives it up from under you, trying to shove it as deep into your pussy as possible. Several minutes pass, and each thrust increases your arousal.');
+  qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Rub clit', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend12.jpg');
+    scene.text('You start rubbing your clit as you ride her strap-on, but just as you\'re getting close to an orgasm, Kendra pushes you off.');
+    scene.text('"I\'m going to wreck your little ass now!"');
+    qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'arousal', 'masturbate', (-5), 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal', goto: ['shop_erotomaniac', 'kendraanal'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterKendraanal(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'D4');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/redlight/erotomaniac/sex/shkend9.jpg');
+  scene.text('You both stand up and she commands you to get on the table. You do as you\'re told and spread your legs before she steps between them and gently slides the dildo, slick with your pussy juices, into your asshole.');
+  scene.text('She stops to let you adjust before she starts to thrust, causing you to moan. Seeing that you\'re enjoying it, she starts to go faster.');
+  scene.text('"Tell me who your ass belongs to, slave!" she grunts.');
+  qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend13.jpg');
+    scene.text('You decide not to tell her what she wants to hear.');
+    scene.text('"It\'s my ass! I just <i>let</i> you fuck it sometimes!" you reply in defiance.');
+    scene.text('Just as you expected, she starts fucking you harder and faster.');
+    scene.text('"You\'ll learn your place, slave! You <i>will</i> submit to me, or I\'ll fuck your ass raw!" she barks and spends several minutes hammering your ass before asking again. "Tell me your ass belongs to me, slave!"');
+    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'humiliation', 'resist', 'hard');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend6.jpg');
+    scene.text('You continue to defiantly resist. "This is my ass, and I decide who fucks it!"');
+    scene.text('She starts fucking you even harder, pushing your legs closed so she can get a better grip on your hips.');
+    scene.text('"Learn your damn place, slave! You belong to me! You will submit to me <i>now</i> or else, no matter what you say, I\'ll fuck your ass raw!" she barks and spends several minutes hammering your ass before asking again. "Tell me your ass belongs to me, slave!"');
+    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'humiliation', 'resist', 'hard');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend14.jpg');
+    scene.text('Although unable to blurt out more than a simple "No!" against the pain of her endless thrusts, you refuse to submit and continue resisting.');
+    scene.text('She slams the strap-on balls deep into your ass and starts hammering you as hard and fast as she can. "You\'ll learn your place, right this instant, slave! You will submit to me <i>now</i>, or I\'ll stay here all day and fuck your ass until you weep and beg me to stop!"');
+    scene.text('She keeps fucking your ass for a few minutes before she asks again. "Tell me your ass belongs to me right now, slave!"');
+    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'pain', '', 1, 'asshole', 'tear');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Submit', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend15.jpg');
+    scene.text('Your ass is pulsing in pain by now and you finally give in and submit to her command. "My ass belongs to you, Mistress Kendra!"');
+    scene.text('She smiles at you as she continues to fuck your asshole. "That\'s right, slave. And what can I do with it?"');
+    scene.text('"Anything you want, Mistress Kendra! I belong to you!" you submissively reply.');
+    scene.text('Her smile gets bigger. "That\'s right, bitch! Your ass belongs to me, and I can fuck it any time I want. Tell me!"');
+    scene.text('Despite the pain, you moan in pleasure as she continues fucking your ass. "My ass belongs to you, and you can fuck it anytime you want, Mistress Kendra!" you scream.');
+    scene.text('She fucks your ass for a few more minutes, as if to make her point, before she pulls out of you. As she does, she pulls you off the table onto your feet.');
+    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'pain', '', 1, 'asshole', 'tear');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', goto: ['shop_erotomaniac', 'kendrafinish'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Submit', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend14.jpg');
+    scene.text('You give in and submit to her command. "My ass belongs to you, Mistress Kendra!"');
+    scene.text('She smiles at you, pushing your legs together as she continues to fuck your asshole. "That\'s right, slave. And what can I do with it?"');
+    scene.text('"Anything you want, Mistress Kendra! I belong to you!" you submissively reply.');
+    scene.text('Her smile gets bigger. "That\'s right, bitch! Your ass belongs to me, and I can fuck it any time I want. Tell me!"');
+    scene.text('Despite the pain, you moan in pleasure as she continues fucking your ass.');
+    scene.text('"My ass belongs to you, and you can fuck it anytime you want, Mistress Kendra!" you scream.');
+    scene.text('She fucks your ass for a few more minutes, as if to make her point, before she pulls out of you. As she does, she pulls you off the table onto your feet.');
+    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', goto: ['shop_erotomaniac', 'kendrafinish'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Submit', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend6.jpg');
+    scene.text('You give in and submit to her command. "My ass belongs to you, Mistress Kendra!"');
+    scene.text('She smiles at you, pushing your legs together as she continues to fuck your asshole. "That\'s right, slave. And what can I do with it?"');
+    scene.text('"Anything you want, Mistress Kendra! I belong to you!" you submissively reply.');
+    scene.text('Her smile gets bigger. "That\'s right, bitch! Your ass belongs to me, and I can fuck it any time I want. Tell me!"');
+    scene.text('Despite the pain, you moan in pleasure as she continues fucking your ass.');
+    scene.text('"My ass belongs to you, and you can fuck it anytime you want, Mistress Kendra!" you scream.');
+    scene.text('She fucks your ass for a few more minutes, as if to make her point, before she pulls out of you. As she does, she pulls you off the table onto your feet.');
+    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', goto: ['shop_erotomaniac', 'kendrafinish'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Submit', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/erotomaniac/sex/shkend13.jpg');
+    scene.text('"My ass belongs to you, Mistress Kendra!" you cry out.');
+    scene.text('She smiles at you as she continues fucking your ass. "That\'s right, slave. And what can I do with it?"');
+    scene.text('"Anything you want, Mistress Kendra! I belong to you!" you submissively reply.');
+    scene.text('Her smile gets bigger. "That\'s right, bitch! Your ass belongs to me, and I can fuck it any time I want. Tell me!"');
+    scene.text('Despite the pain, you moan in pleasure as she continues fucking your ass.');
+    scene.text('"My ass belongs to you, and you can fuck it any time you want, Mistress Kendra!" you scream.');
+    scene.text('She fucks your ass for a few more minutes, as if to make her point, before she pulls out of you. As she does, she pulls you off the table onto your feet.');
+    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', goto: ['shop_erotomaniac', 'kendrafinish'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterKendrafinish(s: GameState, scene: SceneBuilder): void {
+  (s as any).kendra[1] = ((s as any).daystart ?? 0) + 6;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/redlight/erotomaniac/sex/shkend16.jpg');
+  scene.text('As you stand up, she grabs you by the throat and pulls you in close. "Stick out your tongue."');
+  scene.text('You do as she says and the two of you make out for several minutes before she stops and roughly grabs your ass cheek, digging her nails into your backside. She then lets go, steps away and starts sliding the harness off. She cleans the dildo and puts it away before getting dressed.');
+  scene.text('Once she\'s finished, she turns to you again. "You may get dressed, slave."');
+  scene.text('"Thank you, Mistress…" you reply and start picking up your clothes and putting them on.');
+  scene.text('Once you\'re dressed, she gives you a smile. "You should come visit me. I live in the dorms at the university." She gives you directions to her dorm room. "I expect my little white slave to come and visit me… Often."');
+  scene.text('"Yes, Mistress Kendra…" you submissively reply before you both leave the basement and head back up to the store.');
+  qspCall(s, 'arousal', 'foreplay', 5, 'lesbian', 'sub');
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Return to the store', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['shop_erotomaniac', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterAlbina(s: GameState, scene: SceneBuilder): void {
+  (s as any).AlbinaQW['sex_shop'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/albina/event/browsing.jpg');
+  scene.text('You approach Albina with a smile as she examines a cheap, tacky looking thong.');
+  scene.text('Given that she\'s rather wealthy, you\'re curious as to why she\'s buying her underwear from here.');
+  if (((s as any).npc_rel ?? 0)?.['A23'] >= 60) {
+    if (((s as any).fame ?? 0)?.['city_slut'] >= 250  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+      scene.text('She grins when she sees you. "You here to suck some dicks down in the gloryholes?"');
+      scene.text('You blush at her jest and she smiles. "Don\'t worry, I won\'t tell anyone. Just stay safe, okay?"');
+      scene.text('You just nod and allow her to go back to browsing.');
+    } else {
+      // TODO-QSP: dynamic text: She smiles when she sees you. "<<$pcs_nickname>>? I didn't expect to ever see yo...
+      scene.text(`She smiles when she sees you. "${((s as any).pcs_nickname ?? 0)}? I didn't expect to ever see you in here."`);
+      scene.text('"I was just browsing," you reply.');
+      scene.text('"Same," she says. "I need some new cheap underwear that I don\'t mind losing, but I might see if they have any new toys in stock while I\'m here."');
+      scene.text('You chat for a few more minutes before she excuses herself.');
+    }
+  } else {
+    if (((s as any).npc_rel ?? 0)?.['A23'] > 20  &&  ((s as any).npc_rel ?? 0)?.['A23'] < 60) {
+      if (((s as any).fame ?? 0)?.['city_slut'] >= 250  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+        scene.text('She gives you an awkward smile in return before turning away from you.');
+        scene.text('It\'s obvious she doesn\'t want to be seen talking to you.');
+      } else {
+        scene.text('She gives you a small smile in return, but doesn\'t seem too interested in having a conversation with you.');
+        scene.text('You eventually give up and allow her to go back to her browsing.');
+      }
+    } else {
+      if (((s as any).fame ?? 0)?.['city_slut'] >= 250  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+        scene.text('She frowns when she sees you. "The gloryholes are down in the basement, slut. Go and find a cock to suck there."');
+        scene.text('She then turns away and proceeds to ignore you.');
+      } else {
+        scene.text('She frowns when she sees you. "I don\'t have time to talk to you."');
+        scene.text('She barges past you and walks over to another section of the store.');
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Return to the store', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['shop_erotomaniac', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterShprod(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  scene.img('images/locations/city/redlight/erotomaniac/shprod.jpg');
+  scene.text('The cashier stands in front of you, holding a miniskirt and offering to help you. "Girl, this is very you. Will you try it on?"');
+  scene.actions([
+    { label: 'Refuse', goto: ['shop_erotomaniac', 'start'] },
+    { label: 'Try it on', handler: (st: GameState) => {
+    (s as any).picrand = 47;
+    scene.img('images/locations/city/redlight/erotomaniac/shprod1.jpg');
+    scene.text('You put the skirt on and walk out of the booth to pose in the mirror. You don\'t have any panties on, and the skirt is so short that it looks more like a belt. It doesn\'t cover anything and your pussy is fully visible from all directions.');
+    scene.text('Approaching the mirror, you consider this so-called skirt. The cashier kneels behind you and starts praising how your ass looks in it, his hands wandering around your hips as he get his lips as close to your ass as he can.');
+    scene.text('He says that he wants to "kiss your skin" and words soon cease. Just the feeling of his lips against your skin remains, getting closer and closer to your pussy…');
+    qspCall(s, 'willpower', 'cuni', 'resist', 'medium');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Push him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Push him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['shop_erotomaniac', 'start'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Let him', handler: (st: GameState) => {
+    qspCall(st, 'boyStat', 'A181');
+  }, goto: ['sex', 'kuni'] },
+    ]);
+  } },
   ]);
   scene.build();
 }
@@ -290,6 +831,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'peepbooth':
       enterPeepbooth(s, scene);
+      break;
+    case 'kendra':
+      enterKendra(s, scene);
+      break;
+    case 'kendra1':
+      enterKendra1(s, scene);
+      break;
+    case 'kendra2':
+      enterKendra2(s, scene);
+      break;
+    case 'kendravag':
+      enterKendravag(s, scene);
+      break;
+    case 'kendraanal':
+      enterKendraanal(s, scene);
+      break;
+    case 'kendrafinish':
+      enterKendrafinish(s, scene);
+      break;
+    case 'albina':
+      enterAlbina(s, scene);
+      break;
+    case 'shprod':
+      enterShprod(s, scene);
       break;
     default:
       enterDress(s, scene);

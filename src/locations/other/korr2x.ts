@@ -41,11 +41,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).rex ?? 0)?.['status'] === 0) {
         scene.actions([{ label: 'Continue', goto: ['pet_dog', 'name'] }]);
       } else {
-        // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
-        scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name']}</a> is lying on the floor.<br>`);
-        if (((s as any).hour ?? 0) < 6) {
-          // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
-          scene.text(`<br>${((s as any).rex ?? 0)?.['name']} is sleeping in his dog basket.<br>`);
+        if (((s as any).hour ?? 0) > 5) {
+          // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
+          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name']}</a> is lying on the floor.<br>`);
+        } else {
+          if (((s as any).hour ?? 0) < 6) {
+            // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
+            scene.text(`<br>${((s as any).rex ?? 0)?.['name']} is sleeping in his dog basket.<br>`);
+          }
         }
       }
     }
@@ -67,8 +70,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed before going out.</b></center>');
     } else {
-      scene.text('<center><b>You\'re too sick to walk around in the streets.</b></center>');
-      scene.actions([{ label: 'Continue', goto: ['pushkin_sq', ''] }]);
+      if (((s as any).sick ?? 0) > 72) {
+        scene.text('<center><b>You\'re too sick to walk around in the streets.</b></center>');
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['pushkin_sq', ''] }]);
+      }
     }
   } },
   ]);

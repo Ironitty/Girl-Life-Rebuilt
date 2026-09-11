@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -13,17 +15,21 @@ function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
         (s as any).sex_ev['boy_shower'] = 0;
         (s as any).sex_ev['morning_event_go'] = 1;
       } else {
-        (s as any).sex_ev['room_service'] = 1;
-        (s as any).sex_ev['morning_event_go'] = 1;
+        if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room'  &&  ((s as any).npc_selfish ?? 0) < 1  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+          (s as any).sex_ev['room_service'] = 1;
+          (s as any).sex_ev['morning_event_go'] = 1;
+        }
       }
     }
   } else {
-    if (((s as any).sex_ev ?? 0)?.['wake_fuck'] !== 1) {
-      if ((Math.floor(Math.random() * 2) + 1) === 1) {
-        (s as any).sex_ev['boy_in_shower'] = 1;
-      } else {
-        (s as any).sex_ev['boy_shower'] = 1;
-        (s as any).sex_ev['npc_morning_shower'] = 1;
+    if (((s as any).npc_earlyriser ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      if (((s as any).sex_ev ?? 0)?.['wake_fuck'] !== 1) {
+        if ((Math.floor(Math.random() * 2) + 1) === 1) {
+          (s as any).sex_ev['boy_in_shower'] = 1;
+        } else {
+          (s as any).sex_ev['boy_shower'] = 1;
+          (s as any).sex_ev['npc_morning_shower'] = 1;
+        }
       }
     }
   }
@@ -59,13 +65,15 @@ function enterMorningEvents(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: xgt 'sex_ev_morning', 'boy_breakfast_offer'
     }
   } else {
-    if (((s as any).sex_ev ?? 0)?.['wake_fuck'] === 0) {
-      scene.text('"Hey," he smiles at you sleepily. "You feel like breakfast? We can order some room service."');
-    } else {
-      // TODO-QSP: dynamic text: "I could use some breakfast after such an energetic start to the day," <<$npcdes...
-      scene.text(`"I could use some breakfast after such an energetic start to the day," ${((s as any).npcdesc ?? 0)} grins at you. "Want to order room service with me?"`);
+    if (((s as any).sex_ev ?? 0)?.['room_service'] === 1) {
+      if (((s as any).sex_ev ?? 0)?.['wake_fuck'] === 0) {
+        scene.text('"Hey," he smiles at you sleepily. "You feel like breakfast? We can order some room service."');
+      } else {
+        // TODO-QSP: dynamic text: "I could use some breakfast after such an energetic start to the day," <<$npcdes...
+        scene.text(`"I could use some breakfast after such an energetic start to the day," ${((s as any).npcdesc ?? 0)} grins at you. "Want to order room service with me?"`);
+      }
+      // TODO-QSP: xgt 'sex_ev_morning', 'boy_breakfast_offer'
     }
-    // TODO-QSP: xgt 'sex_ev_morning', 'boy_breakfast_offer'
   }
   scene.build();
 }
@@ -75,10 +83,13 @@ function enterNpcMorningShowerDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2  ||  ((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
     scene.text('The bed next to you is empty and the bathroom door is closed. You can hear the water running behind it.');
   } else {
-    // TODO-QSP: dynamic text: The bed next to you is empty but you can hear water running through the wall. <<...
-    scene.text(`The bed next to you is empty but you can hear water running through the wall. ${((s as any).npcdesc ?? 0)} must be in the shower.`);
-    // TODO-QSP: dynamic text: The bed next to you is empty. <<$npcdesc>> is nowhere to be seen.
-    scene.text(`The bed next to you is empty. ${((s as any).npcdesc ?? 0)} is nowhere to be seen.`);
+    if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
+      // TODO-QSP: dynamic text: The bed next to you is empty but you can hear water running through the wall. <<...
+      scene.text(`The bed next to you is empty but you can hear water running through the wall. ${((s as any).npcdesc ?? 0)} must be in the shower.`);
+    } else {
+      // TODO-QSP: dynamic text: The bed next to you is empty. <<$npcdesc>> is nowhere to be seen.
+      scene.text(`The bed next to you is empty. ${((s as any).npcdesc ?? 0)} is nowhere to be seen.`);
+    }
   }
   scene.build();
 }
@@ -103,12 +114,15 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'husband') {
     scene.text('event ends in location');
   } else {
-    qspCall(s, 'sex_ev_leave', 'npc_leave');
-    scene.actions([
-      { label: 'Prepare to leave', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['loc'] === 'pc_home') {
+      qspCall(s, 'sex_ev_leave', 'npc_leave');
+    } else {
+      scene.actions([
+        { label: 'Prepare to leave', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_morning', 'head_out');
   } },
-    ]);
+      ]);
+    }
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
@@ -200,10 +214,13 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 11  &&  ((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  ((s as any).sex_ev ?? 0)?.['breakfast_finished'] === 0  &&  ((s as any).sex_ev ?? 0)?.['boy_in_shower'] !== 1) {
     qspCall(s, 'sex_ev_morning', 'want_breakfast');
   } else {
-    qspCall(s, 'sex_ev_leave', 'go_out_after');
-    scene.actions([
-      { label: 'Make breakfast', goto: ['sex_ev_morning', 'pc_make_breakfast'] },
-    ]);
+    if (((s as any).hour ?? 0) < 11  &&  ((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['breakfast_finished'] === 0  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room') {
+      scene.actions([
+        { label: 'Make breakfast', goto: ['sex_ev_morning', 'pc_make_breakfast'] },
+      ]);
+    } else {
+      qspCall(s, 'sex_ev_leave', 'go_out_after');
+    }
   }
   qspCall(s, 'sex_ev_pillow_talk2', 'forgot_bc_talk1');
   if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['morning_after_pill'] > 0  &&  ((s as any).sex_ev ?? 0)?.['ma_pill'] === 0  &&  ((s as any).birth_control ?? 0)?.['think_safe'] === 0) {
@@ -240,8 +257,10 @@ function enterMorningMenu2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You are in <<$npcdesc>>'s room.
     scene.text(`You are in ${((s as any).npcdesc ?? 0)}'s room.`);
   } else {
-    // TODO-QSP: dynamic text: You are in <<$npcdesc>>'s hotel room.
-    scene.text(`You are in ${((s as any).npcdesc ?? 0)}'s hotel room.`);
+    if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+      // TODO-QSP: dynamic text: You are in <<$npcdesc>>'s hotel room.
+      scene.text(`You are in ${((s as any).npcdesc ?? 0)}'s hotel room.`);
+    }
   }
   qspCall(s, 'sex_ev_morning', 'morning_menu1');
   scene.build();
@@ -312,14 +331,1194 @@ function enterShowerLeave(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/home/bathroom/towel_wet.jpg');
     scene.text('You leave the bathroom wrapped in a towel.');
   } else {
-    (s as any).sex_ev['towel'] = 0;
-    // TODO-QSP: $sex_ev['bed_room']
-    scene.text('You leave the bathroom naked.');
-    if (((s as any).sex_ev ?? 0)?.['morning_shower'] === 3) {
+    if (((s as any).sex_ev ?? 0)?.['morning_shower'] === 2) {
+      (s as any).sex_ev['towel'] = 0;
       // TODO-QSP: $sex_ev['bed_room']
-      scene.text('Hair still wet from the shower, you consider what to do next.');
+      scene.text('You leave the bathroom naked.');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['morning_shower'] === 3) {
+        // TODO-QSP: $sex_ev['bed_room']
+        scene.text('Hair still wet from the shower, you consider what to do next.');
+      }
     }
+  }
+  qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  scene.build();
+}
+
+function enterHeadOut(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).clothingworntype ?? 0) === 'nude') {
+    if (((s as any).sex_ev ?? 0)?.['type'] === 'hookup') {
+      qspCall(s, 'sex_ev_hookup_leave', 'gotta_go');
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'dressing1'] }]);
+    }
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1) {
+      qspCall(s, 'sex_ev_leave', 'sneak_out1');
+    } else {
+      qspCall(s, 'sex_ev_leave', 'leaving_dialogue');
+    }
+  }
+  scene.build();
+}
+
+function enterDressImage(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['CloDress'] === 1) {
+    scene.img('images/shared/romance/lovers/misc/bed_dress.jpg');
+  } else {
+    scene.img('images/pc/activities/misc/dress_1.mp4');
+  }
+  scene.build();
+}
+
+function enterEndMorning(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Finish getting dressed', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    // TODO-QSP: dynamic text: You finish <<$sex_ev['dress_describe']>>.
+    scene.text(`You finish ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
+    if (((s as any).sex_ev ?? 0)?.['sleepover'] === 1  &&  ((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 0  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
+      qspCall(s, 'sex_ev_leave', 'sneak_out1');
+    } else {
+      qspCall(s, 'sex_ev_after', 'after_sex_dressed');
+    }
+  } },
+    { label: 'Talk while you dress', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_dress_talking', 'dress_talk');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBoyBreakfastOffer(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room') {
+    scene.actions([
+      { label: 'Let me cook instead', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['get_up'] === 0) {
+      scene.text('"Please, allow me," you smile, moving to get out of bed. "It\'s the least I can do for letting me sleep over."');
+    } else {
+      scene.text('"Please, allow me," you smile. "It\'s the least I can do for letting me sleep over."');
+    }
+    scene.actions([
+      { label: 'Make breakfast', goto: ['sex_ev_morning', 'pc_make_breakfast'] },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).sex_ev ?? 0)?.['morning_fuck'] === 0) {
+    scene.actions([
+      { label: 'Different kind of breakfast (sex)', handler: (st: GameState) => {
+    // TODO-QSP: gs 'arousal', 'bj', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    scene.img('images/shared/sex/blowjob/bj47.mp4');
+    scene.text('"Yeah," you say crawling over to him. "I could really use some <i>meat</i> right now."');
+    scene.text('You slink down between his legs, wrapping your lips around his cock and slurp hard.');
+    // TODO-QSP: dynamic text: "Nngh, fuck..." <<$npcdesc>> grunts, getting harder by the second. "Not what I h...
+    scene.text(`"Nngh, fuck..." ${((s as any).npcdesc ?? 0)} grunts, getting harder by the second. "Not what I had in mind but..." You cut him off as you plunge your lips back down his shaft.`);
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_foreplay', 'bj_dom2'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'No thanks', handler: (st: GameState) => {
+    (s as any).sex_ev['breakfast_finished'] = (-1);
+    scene.actions([
+      { label: 'No time', handler: (st: GameState) => {
+    scene.text('"Sorry, I don\'t have time," you say. "I wish I could but I really need to get going."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } },
+      { label: 'Not hungry', handler: (st: GameState) => {
+    scene.text('"I\'ll pass," you say. "I\'m not all that hungry right now."');
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } },
+      { label: 'Don\'t eat breakfast', handler: (st: GameState) => {
+    scene.text('"I\'ll pass," you say. "I don\'t really eat breakfast."');
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } },
+      { label: 'On a diet', handler: (st: GameState) => {
+    scene.text('"I\'m on a diet," you say ruefully. "Gotta keep the calories down."');
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } },
+    ]);
+  } },
+    { label: 'Yes please (15 minutes)', handler: (st: GameState) => {
+    scene.text('"That sounds nice," you smile.');
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_morning', 'wait_for_breakfast1'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterWaitForBreakfast1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  qspCall(s, 'stat', '');
+  (s as any).sex_ev['find_boy'] = 1;
+  // TODO-QSP: $sex_ev[] = 'coffee_make'
+  if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+    (s as any).sex_ev['room_service_breakfast'] = 1;
+    // TODO-QSP: $sex_ev['bed_room']
+    // TODO-QSP: dynamic text: You wait patiently in bed as <<$npcdesc>> rings up the hotel staff and orders br...
+    scene.text(`You wait patiently in bed as ${((s as any).npcdesc ?? 0)} rings up the hotel staff and orders breakfast for two delivered to the room. Soon enough, there is a knock on the door with the announcement your meal has arrived and ${((s as any).npcdesc ?? 0)} retrieves it after donning a bathrobe.`);
+    scene.text('He smiles at you as he brings a tray back to the bed, laden with classic Russian breakfast items.');
+    scene.text('"So, where do you want to start?"');
+  } else {
+    // TODO-QSP: $sex_ev['kitchen_room']
+    if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] < 3) {
+      // TODO-QSP: dynamic text: You wait patiently in bed while <<$npcdesc>> whips up a full breakfast with coff...
+      scene.text(`You wait patiently in bed while ${((s as any).npcdesc ?? 0)} whips up a full breakfast with coffee to drink and brings the tray back to you.`);
+      scene.text('"What can I help you with first?" he asks.');
+    } else {
+      // TODO-QSP: dynamic text: You follow <<$npcdesc>> into the kitchen and wait patiently while he whips up a ...
+      scene.text(`You follow ${((s as any).npcdesc ?? 0)} into the kitchen and wait patiently while he whips up a full breakfast with coffee to drink, putting all the plates on his kitchen table.`);
+      scene.text('"So," he smiles. "Where do you want to start?"');
+    }
+  }
+  qspCall(s, 'sex_ev_morning', 'breakfast_in_bed_menu');
+  scene.build();
+}
+
+function enterBreakfastSearch(s: GameState, scene: SceneBuilder): void {
+  (s as any).sex_ev['find_boy'] = 1;
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/shared/romance/misc/nude_walk1.mp4');
+  // TODO-QSP: dynamic text: You climb out of bed and leave the bedroom, walking through the halls of <<$npcd...
+  scene.text(`You climb out of bed and leave the bedroom, walking through the halls of ${((s as any).npcdesc ?? 0)}'s apartment naked as you peek into various rooms searching for him.`);
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['kitchen_room']
+    scene.text('You follow the smell of food and find him in the kitchen cooking breakfast.');
+    scene.text('"Hey," he smiles. "I just finished. Was going to bring it to you in bed. Saves me a trip I guess. Go ahead, dig in."');
+    qspCall(s, 'sex_ev_morning', 'breakfast_in_bed_menu');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBreakfastInBed(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $sex_ev['bed_room']
+  (s as any).sex_ev['b_i_b'] = 1;
+  if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+    // TODO-QSP: dynamic text: "Hey sleepyhead," <<$npcdesc>> says as you finish rubbing the sleep from your ey...
+    scene.text(`"Hey sleepyhead," ${((s as any).npcdesc ?? 0)} says as you finish rubbing the sleep from your eyes. "I just finished making breakfast."`);
+  } else {
+    // TODO-QSP: dynamic text: As you finish rubbing the sleep from your eyes <<$npcdesc>> comes in through the...
+    scene.text(`As you finish rubbing the sleep from your eyes ${((s as any).npcdesc ?? 0)} comes in through the doorway carrying a tray.`);
+    scene.text('"Hey," he smiles. "I didn\'t want to wake you, so I thought I\'d make breakfast and bring it to you."');
+  }
+  scene.actions([
+    { label: 'How sweet', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+    scene.text('"That\'s sweet of you," you smile back, genuinely a little touched that he would do this for you.');
+    scene.text('"It\'s no big deal," he shrugs. "Anything I can help you with first?"');
+    scene.text('He shows you the tray which is filled with quite a spread.');
+    qspCall(s, 'sex_ev_morning', 'breakfast_in_bed_menu');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBreakfastImage(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['b_i_b'] === 1  ||  ((s as any).npc_apt_type ?? 0) < 3  ||  ((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+    scene.img('images/shared/romance/activities/apartment/breakfast/nude_bedroom1.jpg');
+  } else {
+    scene.img('images/shared/romance/activities/apartment/breakfast/nude_kitchen1.jpg');
+  }
+  scene.build();
+}
+
+function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Coffee', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Coffee first', handler: (st: GameState) => {
+    scene.text('"Coffee first," you say. "Definitely the coffee first."');
+    qspCall(s, 'sex_ev_morning', 'coffee_menu');
+  } },
+      { label: 'Just coffee (no food)', handler: (st: GameState) => {
+    scene.text('"Coffee," you say. "Give me coffee."');
+    qspCall(s, 'sex_ev_morning', 'coffee_menu');
+  } },
+    ]);
+  } },
+    { label: 'Toast', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "That toast looks good," you smile and <<$npcdesc>> hands it over.
+    scene.text(`"That toast looks good," you smile and ${((s as any).npcdesc ?? 0)} hands it over.`);
+    scene.actions([
+      { label: 'Plain', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    scene.text('You grab the toast not bothering to put on any additional spreads or condiments and bite in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth.');
+    scene.text('"Mmmm," you smile with a full mouth. "That\'s good toast."');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      { label: 'Butter', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    scene.text('You grab the toast and spread a pat of butter across it before biting in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth, the butter providing a salty sweetness to it.');
+    scene.text('"Mmmm," you smile with a full mouth. "That\'s good toast."');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      { label: 'Jam', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    scene.text('You grab the toast and slather raspberry jam across it before biting in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth, the jam providing a sour sweetness to it.');
+    scene.text('"Mmmm," you smile with a full mouth. "That\'s good toast."');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      { label: 'Sour cream', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    scene.text('You grab the toast and slather sour cream across its surface before biting in. The crispy crust crunches under your teeth, the nice cooked but not burnt flavour fills your mouth, supplemented by the creaminess of your chosen condiment.');
+    // TODO-QSP: dynamic text: "Isn't sour cream normally for the pancakes?" <<$npcdesc>> asks amused.
+    scene.text(`"Isn't sour cream normally for the pancakes?" ${((s as any).npcdesc ?? 0)} asks amused.`);
+    scene.text('"Isn\'t toast just a crispy pancake?" you shrug back, grinning at him with a full mouth.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+    ]);
+  } },
+    { label: 'Eggs', handler: (st: GameState) => {
+    scene.text('"A bit of protein sounds good right now," you smile, reaching for the plate with fried eggs on it.');
+    if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted') {
+      // TODO-QSP: dynamic text: <<$npcdesc>> snickers, giving you a dirty smirk, saying, "I got some protein for...
+      scene.text(`${((s as any).npcdesc ?? 0)} snickers, giving you a dirty smirk, saying, "I got some protein for you to swallow if you really want some."`);
+      scene.actions([
+        { label: 'Roll your eyes', handler: (st: GameState) => {
+    scene.text('You sigh deeply, rolling your eyes to the heavens as you ignore his vulgar remarks and take your first bite of egg. It\'s perfectly fried, the edges crispy but the yolk is runny and delicious.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+        { label: 'Giggle', handler: (st: GameState) => {
+    scene.text('You giggle at the dirty joke, struggling to fit the fork into your mouth as you take your first bite of egg. It\'s perfectly fried, the edges crispy but the yolk is runny and delicious.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+        { label: 'Maybe later', handler: (st: GameState) => {
+    (s as any).sex_ev['sex_after_breakfast'] = 1;
+    scene.text('"Maybe after breakfast," you say, twisting your mouth in a smirk before taking your first bite of egg. It\'s perfectly fried, the edges crispy but the yolk is runny and delicious.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      ]);
+    } else {
+      // TODO-QSP: dynamic text: <<$npcdesc>> provides you with a plate and you eagerly cut it up and stab it wit...
+      scene.text(`${((s as any).npcdesc ?? 0)} provides you with a plate and you eagerly cut it up and stab it with your fork to take your first bite of egg. It's perfectly fried, the edges crispy but the the yolk is runny and delicious.`);
+      qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+    }
+  } },
+    { label: 'Kolbasa', handler: (st: GameState) => {
+    scene.text('"A bit of protein sounds good right now," you smile, reaching for the sandwiches, the slice of bread with cheese and kolbasa.');
+    if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted') {
+      // TODO-QSP: dynamic text: "If it's protein you want, I got some for you..." <<$npcdesc>> snickers.
+      scene.text(`"If it's protein you want, I got some for you..." ${((s as any).npcdesc ?? 0)} snickers.`);
+      scene.actions([
+        { label: 'Roll your eyes', handler: (st: GameState) => {
+    scene.text('You sigh deeply, rolling your eyes to the heavens as you ignore his vulgar euphemisms and bite into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+        { label: 'Giggle', handler: (st: GameState) => {
+    scene.text('You giggle at the dirty joke, struggling to fit the fork into your mouth as you bite into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+        { label: 'Maybe later', handler: (st: GameState) => {
+    (s as any).sex_ev['sex_after_breakfast'] = 1;
+    scene.text('"Maybe after breakfast," you say, twisting your mouth in a smirk before biting into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      ]);
+    } else {
+      // TODO-QSP: dynamic text: <<$npcdesc>> provides you with a plate and you eagerly bite into the sandwich. T...
+      scene.text(`${((s as any).npcdesc ?? 0)} provides you with a plate and you eagerly bite into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.`);
+      qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+    }
+  } },
+    { label: 'Pancakes', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "Those <i>blini</i> look good," you smile. <<$npcdesc>> hands you a plate stacke...
+    scene.text(`"Those <i>blini</i> look good," you smile. ${((s as any).npcdesc ?? 0)} hands you a plate stacked with millimeter thin pancakes and you spread raspberry jam and sour cream across them before folding them up for consumption. You take your first bite and close your eyes, savouring the sweet, sour, creamy deliciousness before opening them to grin at ${((s as any).npcdesc ?? 0)}.`);
+    scene.text('"Taste good too," you say with your mouth full.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterWantBreakfast(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['breakfast_finished'] === 0  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room'  &&  ((s as any).sex_ev ?? 0)?.['late_for_school'] === 0) {
+    scene.actions([
+      { label: 'Breakfast?', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Offer to cook', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
+    if (((s as any).sex_ev ?? 0)?.['get_up'] === 0) {
+      scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    } else {
+      // TODO-QSP: $sex_ev['bed_room']
+    }
+    scene.text('"Hungry?" you ask. "How about I make us some breakfast?"');
+    if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      // TODO-QSP: dynamic text: "You don't have to do that," <<$npcdesc>> says.
+      scene.text(`"You don't have to do that," ${((s as any).npcdesc ?? 0)} says.`);
+      scene.text('"I want to," you smile back and haul yourself out of bed.');
+    } else {
+      // TODO-QSP: dynamic text: "That'd be great," <<$npcdesc>> smiles. You smile back and haul yourself out of ...
+      scene.text(`"That'd be great," ${((s as any).npcdesc ?? 0)} smiles. You smile back and haul yourself out of bed.`);
+    }
+    scene.actions([
+      { label: 'Make breakfast', goto: ['sex_ev_morning', 'pc_make_breakfast'] },
+    ]);
+  } },
+      { label: 'You want coffee', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Got any coffee?', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "Any chance I could get some coffee?" you ask <<$npcdesc>>.
+    scene.text(`"Any chance I could get some coffee?" you ask ${((s as any).npcdesc ?? 0)}.`);
+    qspCall(s, 'sex_ev_morning', 'want_coffee_response');
+  } },
+      { label: 'Would kill for some coffee', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "I would <i>kill</i> for a cup of coffee right now," you say, looking suggestive...
+    scene.text(`"I would <i>kill</i> for a cup of coffee right now," you say, looking suggestively at ${((s as any).npcdesc ?? 0)}.`);
+    qspCall(s, 'sex_ev_morning', 'want_coffee_response');
+  } },
+      { label: 'Would suck cock for some coffee', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "I would suck your cock for a cup of coffee right now," you say, smirking sugges...
+    scene.text(`"I would suck your cock for a cup of coffee right now," you say, smirking suggestively at ${((s as any).npcdesc ?? 0)}.`);
+    qspCall(s, 'sex_ev_morning', 'want_coffee_response');
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterWantCoffeeResponse(s: GameState, scene: SceneBuilder): void {
+  scene.text('He glances over at the clock.');
+  if (((s as any).npc_end_free_time ?? 0) <= ((s as any).hour ?? 0) + 2) {
+    (s as any).sex_ev['npc_late_work'] = 1;
+    // TODO-QSP: dynamic text: "I don't have time," <<$npcdesc>> says, shaking his head. "I gotta get to work."
+    scene.text(`"I don't have time," ${((s as any).npcdesc ?? 0)} says, shaking his head. "I gotta get to work."`);
+    scene.text('You sigh in disappointment.');
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } else {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
+      // TODO-QSP: dynamic text: "Sure, I wouldn't mind some coffee," <<$npcdesc>> says and gets up to make some.
+      scene.text(`"Sure, I wouldn't mind some coffee," ${((s as any).npcdesc ?? 0)} says and gets up to make some.`);
+      qspCall(s, 'sex_ev_morning', 'npc_coffe_make');
+    } else {
+      // TODO-QSP: dynamic text: "I've got some time," <<$npcdesc>> says. "How about breakfast instead?"
+      scene.text(`"I've got some time," ${((s as any).npcdesc ?? 0)} says. "How about breakfast instead?"`);
+      qspCall(s, 'sex_ev_morning', 'boy_breakfast_offer');
+    }
+  }
+  scene.build();
+}
+
+function enterPcMakeBreakfast(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/pc/activities/cooking/nude_fridge1.jpg');
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'stat', '');
+  if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+    // TODO-QSP: dynamic text: You head over to <<$npcdesc>>'s kitchen area and look through his fridge. Openin...
+    scene.text(`You head over to ${((s as any).npcdesc ?? 0)}'s kitchen area and look through his fridge. Opening it, you take a look inside, mulling over what you can make with what he's got...`);
+  } else {
+    // TODO-QSP: dynamic text: You head over to the kitchen and look through <<$npcdesc>> fridge. Opening it, y...
+    scene.text(`You head over to the kitchen and look through ${((s as any).npcdesc ?? 0)} fridge. Opening it, you take a look inside, mulling over what you can make with what he's got...`);
+  }
+  qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  scene.build();
+}
+
+function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
+  (s as any).sex_ev['out_of_bed'] = 1;
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) < 0) {
+    scene.actions([
+      { label: 'Coffee', handler: (st: GameState) => {
+    scene.img('images/pc/activities/cooking/nude_fridge1.jpg');
+    scene.text('He\'s got a coffee pot.');
+    scene.actions([
+      { label: 'Nah', handler: (st: GameState) => {
+    scene.text('A little too basic. Maybe not.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+      { label: 'Yes (2 minutes)', handler: (st: GameState) => {
+    (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (2);
+    // TODO-QSP: $sex_ev[] = 'coffee_make'
+    (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
+    scene.text('It\'s as simple as throwing it in a toaster. Might as well.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('toast_make') : -1) < 0) {
+    scene.actions([
+      { label: 'Toast', handler: (st: GameState) => {
+    scene.img('images/pc/activities/cooking/nude_fridge1.jpg');
+    scene.text('He\'s got bread. You could make toast?');
+    scene.actions([
+      { label: 'Nah', handler: (st: GameState) => {
+    scene.text('A little too basic. Maybe not.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+      { label: 'Yes (2 minutes)', handler: (st: GameState) => {
+    (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (2);
+    // TODO-QSP: $sex_ev[] = 'toast_make'
+    (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
+    scene.text('It\'s as simple as throwing it in a toaster. Might as well.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('eggs_make') : -1) < 0) {
+    scene.actions([
+      { label: 'Fried eggs', handler: (st: GameState) => {
+    scene.img('images/pc/activities/cooking/nude_fridge1.jpg');
+    scene.text('He\'s got eggs. Fried eggs?');
+    scene.actions([
+      { label: 'Nah', handler: (st: GameState) => {
+    scene.text('Not really in the mood. Maybe skip the eggs.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+      { label: 'Yes (5 minutes)', handler: (st: GameState) => {
+    (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (5);
+    // TODO-QSP: $sex_ev[] = 'eggs_make'
+    (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
+    scene.text('Eggs are basic. Easy as throwing them into a pan. You\'ll do it.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('kolbasa_make') : -1) < 0) {
+    scene.actions([
+      { label: 'Kolbasa', handler: (st: GameState) => {
+    scene.img('images/pc/activities/cooking/nude_fridge1.jpg');
+    scene.text('He\'s got some kolbasa sausage.');
+    scene.actions([
+      { label: 'Nah', handler: (st: GameState) => {
+    scene.text('A little simple. A little boring.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+      { label: 'Yes (10 minutes)', handler: (st: GameState) => {
+    (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (10);
+    // TODO-QSP: $sex_ev[] = 'kolbasa_make'
+    (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
+    scene.text('It\'s quick and simple. Might as well.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('pancakes_make') : -1) < 0) {
+    scene.actions([
+      { label: 'Pancakes', handler: (st: GameState) => {
+    scene.img('images/pc/activities/cooking/nude_fridge1.jpg');
+    scene.text('Flour? Eggs? Milk? Butter That\'s everything you need to whip up some pancakes.');
+    scene.actions([
+      { label: 'Nah', handler: (st: GameState) => {
+    scene.text('Too much work. Better do something else.');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+      { label: 'Yes (15 minutes)', handler: (st: GameState) => {
+    (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (15);
+    // TODO-QSP: $sex_ev[] = 'pancakes_make'
+    (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
+    scene.text('Who doesn\'t love pancakes in the morning? You <i>have</i> to make them!');
+    qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Start cooking', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 0) {
+      // TODO-QSP: msg'You haven''t chosen anything to cook!'
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'pc_make_breakfast_cooking'] }]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterPcMakeBreakfastCooking(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + (((s as any).sex_ev ?? 0)?.['cooking_time']);
+  qspCall(s, 'stat', '');
+  if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 1) {
+    if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+      scene.img('images/pc/activities/drinking/nude_coffee2.jpg');
+      scene.text('You put the coffee into the machine and wait, drumming your fingers on the counter until the dark liquid is brewed.');
+    } else {
+      if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('toast_make') : -1) >= 0) {
+        scene.img('images/pc/activities/cooking/nude_misc1.jpg');
+        // TODO-QSP: dynamic text: You grab a couple slices of bread and toss them in the toaster. While the bread ...
+        scene.text(`You grab a couple slices of bread and toss them in the toaster. While the bread browns, you rifle through ${((s as any).npcdesc ?? 0)}'s fridge and pantry, pulling out plates and butter and raspberry jam to spread.`);
+      } else {
+        if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('eggs_make') : -1) >= 0) {
+          scene.img(`images/pc/activities/cooking/nude_stove${Math.floor(Math.random() * 3) + 1}.jpg`);
+          scene.text('You crack eggs into the pan, sending sputters and sizzles the moment it makes contact with the hot metal. A couple minutes later, they\'re plated and ready to eat.');
+        } else {
+          if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('kolbasa_make') : -1) >= 0) {
+            scene.img('images/pc/activities/cooking/nude_misc2.jpg');
+            scene.text('You set out some pieces of bread and take a knife to the kolbasa, cutting some decent slices');
+          } else {
+            if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('pancakes_make') : -1) >= 0) {
+              scene.img('images/pc/activities/cooking/nude_pancakes1.jpg');
+              scene.text('You start mixing batter while the pan heats up. Once hot, you spread thin layers across its surface, flipping to the other side once browned. After a short while, you have a nice stack of perfectly thin pancakes with crispy edges, taking one last stop at the fridge to pull out some butter, raspberry jam, and of course, sour cream.');
+            }
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 5) {
+      if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('pancakes_make') : -1) >= 0) {
+        scene.img('images/pc/activities/cooking/nude_pancakes1.jpg');
+      } else {
+        scene.img('images/pc/activities/cooking/nude_misc1.jpg');
+      }
+      scene.text('With a lot to do, you start quickly, spending the next half hour or so preparing your bonanza of breakfast goodies.');
+    } else {
+      if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('pancakes_make') : -1) >= 0) {
+        scene.img('images/pc/activities/cooking/nude_pancakes1.jpg');
+      } else {
+        scene.img(`images/pc/activities/cooking/nude_stove${Math.floor(Math.random() * 3) + 1}.jpg`);
+      }
+      scene.text('You get to work preparing all of the things you planned for breakfast and a short while later, you have a nice but simple variety of things to eat.');
+    }
+  }
+  scene.actions([
+    { label: 'Continue', goto: ['sex_ev_morning', 'pc_make_breakfast_done'] },
+  ]);
+  scene.build();
+}
+
+function enterPcMakeBreakfastDone(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+    // TODO-QSP: $sex_ev['bed_room']
+    if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 1  &&  (Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+      if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1) {
+        // TODO-QSP: dynamic text: <<$npcdesc>> begins to stir in bed, blearily blinking at you.
+        scene.text(`${((s as any).npcdesc ?? 0)} begins to stir in bed, blearily blinking at you.`);
+        scene.text('"Hey sleepyhead," you smile, turning to face him with two steaming mugs. "I made coffee."');
+      } else {
+        // TODO-QSP: dynamic text: "Coffee's ready," you say, turning around to walk two steaming mugs back to <<$n...
+        scene.text(`"Coffee's ready," you say, turning around to walk two steaming mugs back to ${((s as any).npcdesc ?? 0)}.`);
+      }
+      scene.actions([
+        { label: 'Drink your coffee', goto: ['sex_ev_morning', 'coffee_together'] },
+      ]);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1  &&  ((s as any).sex_ev ?? 0)?.['wake_fuck'] === 0  &&  ((s as any).sex_ev ?? 0)?.['morning_fuck'] === 0) {
+        // TODO-QSP: dynamic text: <<$npcdesc>> begins to stir in bed, blearily blinking at you.
+        scene.text(`${((s as any).npcdesc ?? 0)} begins to stir in bed, blearily blinking at you.`);
+        scene.text('"Hey sleepyhead," you say, turning to smile at him with plates in each hand. "I made breakfast."');
+      } else {
+        // TODO-QSP: dynamic text: "Food's done," you tell <<$npcdesc>>, carefully carrying a few plates over to hi...
+        scene.text(`"Food's done," you tell ${((s as any).npcdesc ?? 0)}, carefully carrying a few plates over to his table.`);
+      }
+      qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+    }
+  } else {
+    // TODO-QSP: $sex_ev['kitchen_room']
+    if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 1  &&  (Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+      if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['wake_fuck'] === 0  &&  ((s as any).sex_ev ?? 0)?.['morning_fuck'] === 0) {
+        // TODO-QSP: dynamic text: <<$npcdesc>> comes in right as you're pouring it out, letting out a mighty yawn.
+        scene.text(`${((s as any).npcdesc ?? 0)} comes in right as you're pouring it out, letting out a mighty yawn.`);
+        scene.text('"Hey sleepyhead," you smile. "I made coffee."');
+      } else {
+        // TODO-QSP: dynamic text: <<$npcdesc>> comes in right as you're pouring it out.
+        scene.text(`${((s as any).npcdesc ?? 0)} comes in right as you're pouring it out.`);
+        scene.text('"Hey. Just finished brewing," you smile, handing him a steaming mug.');
+      }
+      scene.actions([
+        { label: 'Drink your coffee', goto: ['sex_ev_morning', 'coffee_together'] },
+      ]);
+    } else {
+      if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+        // TODO-QSP: dynamic text: <<$npcdesc>> comes in right as you're pouring it out, letting out a mighty yawn.
+        scene.text(`${((s as any).npcdesc ?? 0)} comes in right as you're pouring it out, letting out a mighty yawn.`);
+        scene.text('"Hey sleepyhead," you smile. "I made breakfast."');
+      } else {
+        // TODO-QSP: dynamic text: <<$npcdesc>> comes in right as you start setting the table.
+        scene.text(`${((s as any).npcdesc ?? 0)} comes in right as you start setting the table.`);
+        scene.text('"Hey," you smile at him. "Just finished up. Help yourself."');
+      }
+      qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+    }
+  }
+  scene.build();
+}
+
+function enterNpcCoffeMake(s: GameState, scene: SceneBuilder): void {
+  (s as any).sex_ev['cooking_total'] = 1;
+  // TODO-QSP: $sex_ev[] = 'coffee_make'
+  if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+    // TODO-QSP: $sex_ev['bed_room']
+    // TODO-QSP: dynamic text: You wait patiently on the bed as <<$npcdesc>> turns on the kettle provided in th...
+    scene.text(`You wait patiently on the bed as ${((s as any).npcdesc ?? 0)} turns on the kettle provided in the hotel room. He dumps in some packets of instant coffee into the two mugs and waits for it to come to a boil before pouring the steaming water in.`);
+  } else {
+    if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+      // TODO-QSP: $sex_ev['bed_room']
+      scene.text('You wait patiently on the bed while he brews some coffee in the little kitchenette in the corner of his room before bringing back two steaming mugs.');
+    } else {
+      // TODO-QSP: $sex_ev['kitchen_room']
+      // TODO-QSP: dynamic text: You follow <<$npcdesc>> to his kitchen where he turns on the kettle and wait pat...
+      scene.text(`You follow ${((s as any).npcdesc ?? 0)} to his kitchen where he turns on the kettle and wait patiently for it to come to a boil to brew some coffee into two steaming mugs.`);
+    }
+  }
+  qspCall(s, 'sex_ev_morning', 'coffee_menu');
+  scene.build();
+}
+
+function enterCoffeeMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: dynamic text: "How do you take your coffee?" <<$npcdesc>> asks.
+  scene.text(`"How do you take your coffee?" ${((s as any).npcdesc ?? 0)} asks.`);
+  scene.actions([
+    { label: 'Black', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Coffee snob', handler: (st: GameState) => {
+    scene.text('"Black obviously," you sniff as he hands a mug to you. "Milk and sugar is a waste of good coffee."');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      { label: '... like my men (joke)', handler: (st: GameState) => {
+    scene.text('"Black," you say as he hands you the mug. "Like my men," you add, smirking as you take a sip.');
+    if (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] === 'movie_date') {
+      scene.text('"I love that movie," he chuckles.');
+      scene.actions([
+        { label: 'What movie?', handler: (st: GameState) => {
+    scene.text('"Huh?" You furrow your brow in confusion. "Movie? What movie?"');
+    // TODO-QSP: dynamic text: "Airplane?" <<$npcdesc>> asks, looking equally confused. "The movie that joke is...
+    scene.text(`"Airplane?" ${((s as any).npcdesc ?? 0)} asks, looking equally confused. "The movie that joke is from?"`);
+    scene.text('"Oh. I thought it was just a meme," you blink.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+        { label: 'He\'s seen it?', handler: (st: GameState) => {
+    scene.text('"You\'ve seen Airplane?" you ask excitedly.');
+    scene.text('"Of course! It\'s such a funny movie! Who hasn\'t seen it?"');
+    scene.text('"A lot of people my age haven\'t. Kids these days, right?" you grin.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+        { label: 'Knew he\'d like that reference', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+    scene.text('"I thought you\'d like that reference," you say, grinning into your mug of coffee. "You\'re such a nerd."');
+    scene.text('"It\'s a funny movie," he grins back. "What can I say?"');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      ]);
+    } else {
+      qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+    }
+  } },
+    ]);
+  } },
+    { label: 'With sugar', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Please', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "Sugar please," you smile and <<$npcdesc>> stirs some into a mug for you before ...
+    scene.text(`"Sugar please," you smile and ${((s as any).npcdesc ?? 0)} stirs some into a mug for you before handing it over. "Thanks."`);
+    scene.text('"No problem," he smiles back.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      { label: 'Like it sweet', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "With lots of sugar. I like it sweet," you say and <<$npcdesc>> stirs some into ...
+    scene.text(`"With lots of sugar. I like it sweet," you say and ${((s as any).npcdesc ?? 0)} stirs some into a mug for you. You can't help but smile as he hands it to you and you take your first sip.`);
+    scene.text('"No problem," he smiles back.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+      { label: '"Sweet like me"', handler: (st: GameState) => {
+    scene.text('"With sugar," you smile. "I like it sweet. Just like me."');
+    scene.text('You give him a cute wink as he hands the mug over to you.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+    ]);
+  } },
+    { label: 'With milk', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "Just milk please," you smile and <<$npcdesc>> stirs some into a mug for you bef...
+    scene.text(`"Just milk please," you smile and ${((s as any).npcdesc ?? 0)} stirs some into a mug for you before handing it over. "Thanks."`);
+    scene.text('"No problem," he smiles back.');
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+    { label: 'Milk and sugar', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "Milk and sugar please," you smile and <<$npcdesc>> stirs some into a mug for yo...
+    scene.text(`"Milk and sugar please," you smile and ${((s as any).npcdesc ?? 0)} stirs some into a mug for you obligingly before handing it over. "Thanks."`);
+    qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterCoffeeTogether(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'beverage', 'coffee_stats');
+  (s as any).sex_ev['breakfast_finished'] = 1;
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+  qspCall(s, 'sex_ev_morning', 'breakfast_image');
+  // TODO-QSP: dynamic text: The two of you settle down at <<$npcdesc>>'s table and sip away at your coffee, ...
+  scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table and sip away at your coffee, casually chit-chatting with each other until there's nothing but dregs left.`);
+  scene.actions([
+    { label: 'Wash your mugs', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+  ]);
+  scene.build();
+}
+
+function enterEatBreakfast1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 1  &&  (Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'coffee_together'] }]);
+  }
+  (s as any).sex_ev['breakfast_finished'] = 1;
+  if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1) {
+    (s as any).sex_ev['boy_asleep'] = 0;
+  }
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+  if (((s as any).sex_ev ?? 0)?.['cooking_total'] > 1  ||  ((s as any).sex_ev ?? 0)?.['room_service_breakfast'] === 1) {
+    if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+      scene.actions([
+        { label: 'Just drink coffee', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_morning', 'eat_breakfast_coffee');
+  } },
+      ]);
+    }
+  }
+  scene.actions([
+    { label: 'Eat a small portion', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_morning', 'eat_breakfast2');
+  } },
+    { label: 'Eat a medium portion', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_morning', 'eat_breakfast3');
+  } },
+    { label: 'Eat a lot', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_morning', 'eat_breakfast4');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEatBreakfast2(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).sex_ev['light_breakfast'] = 1;
+  qspCall(s, 'food', 'small_meal_stats');
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+    qspCall(s, 'beverage', 'coffee_stats');
+  }
+  qspCall(s, 'stat', '');
+  if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>'s bed while he pulls up a chair, nibbling on sma...
+    scene.text(`You settle down on ${((s as any).npcdesc ?? 0)}'s bed while he pulls up a chair, nibbling on small bits of food.`);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['boy_make_breakfast'] === 1  &&  ((s as any).sex_ev ?? 0)?.['find_boy'] === 0) {
+      qspCall(s, 'sex_ev_morning', 'breakfast_image');
+      // TODO-QSP: dynamic text: You sit up in <<$npcdesc>>'s bed and start taking small bites of food as <<$npcd...
+      scene.text(`You sit up in ${((s as any).npcdesc ?? 0)}'s bed and start taking small bites of food as ${((s as any).npcdesc ?? 0)} while he pulls up a chair.`);
+    } else {
+      qspCall(s, 'sex_ev_morning', 'breakfast_image');
+      // TODO-QSP: dynamic text: The two of you settle down at <<$npcdesc>>'s table. You nibble at small bits of ...
+      scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table. You nibble at small bits of food while he digs in.`);
+    }
+  }
+  scene.text('"Not hungry?" he asks curiously.');
+  scene.actions([
+    { label: 'Not really', handler: (st: GameState) => {
+    scene.text('"Not really," you shake your head. "Mornings I guess. But you go ahead. Don\'t hold back on account of me."');
+    scene.text('He nods, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+    { label: 'Keep it light', handler: (st: GameState) => {
+    scene.text('"I just like to keep my portions light," you smile. "But you go ahead. Don\'t hold back on account of me."');
+    scene.text('He nods, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+    { label: 'Not into breakfast', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['boy_make_breakfast'] === 1) {
+      scene.text('"I\'m not much into breakfast," you admit. "But I appreciate it. Don\'t hold back because of me."');
+      scene.text('He nods but seems to be a little disappointed despite what you said.');
+    } else {
+      scene.text('"I\'m not much into breakfast," you admit. "But this is for you more than me. Enjoy it."');
+      scene.text('He smiles, continuing to help himself as you casually chit chat over the food.');
+    }
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+    { label: 'Dieting', handler: (st: GameState) => {
+    scene.text('"I\'m on a diet so I\'m trying not to eat much," you reply. "But you go ahead. Don\'t hold back on account of me."');
+    scene.text('He nods, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEatBreakfast3(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).sex_ev['medium_breakfast'] = 1;
+  qspCall(s, 'food', 'medium_meal_stats');
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+    qspCall(s, 'beverage', 'coffee_stats');
+  }
+  qspCall(s, 'stat', '');
+  if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>'s bed while he pulls up a chair and you both dig...
+    scene.text(`You settle down on ${((s as any).npcdesc ?? 0)}'s bed while he pulls up a chair and you both dig in, casually chatting away until you've cleared your plates.`);
+  } else {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    // TODO-QSP: dynamic text: The two of you settle down at <<$npcdesc>>'s table and dig in, casually chatting...
+    scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table and dig in, casually chatting away until you've cleared your plates.`);
+  }
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+  ]);
+  scene.build();
+}
+
+function enterEatBreakfast4(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).sex_ev['big_breakfast'] = 1;
+  qspCall(s, 'food', 'large_meal_stats');
+  if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
+    qspCall(s, 'beverage', 'coffee_stats');
+  }
+  qspCall(s, 'stat', '');
+  if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>'s bed while he pulls up a chair and you both dig...
+    scene.text(`You settle down on ${((s as any).npcdesc ?? 0)}'s bed while he pulls up a chair and you both dig in, you especially, happily stuffing your face as the two of you casually chat away until you've cleared your plates.`);
+  } else {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    // TODO-QSP: dynamic text: The two of you settle down at <<$npcdesc>>'s table and dig in, you especially, h...
+    scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table and dig in, you especially, happily stuffing your face as the two of you casually chat away until you've cleared your plates.`);
+  }
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+  ]);
+  scene.build();
+}
+
+function enterEatBreakfastCoffee(s: GameState, scene: SceneBuilder): void {
+  (s as any).sex_ev['coffee_only'] = 1;
+  qspCall(s, 'beverage', 'coffee_stats');
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'stat', '');
+  if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    if (((s as any).sex_ev ?? 0)?.['boy_make_breakfast'] === 1  &&  ((s as any).sex_ev ?? 0)?.['find_boy'] === 0) {
+      // TODO-QSP: dynamic text: You sit up in <<$npcdesc>>'s bed while he pulls up a chair, sipping on your coff...
+      scene.text(`You sit up in ${((s as any).npcdesc ?? 0)}'s bed while he pulls up a chair, sipping on your coffee as he digs in.`);
+    } else {
+      // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>'s bed while he pulls up a chair, sipping on your...
+      scene.text(`You settle down on ${((s as any).npcdesc ?? 0)}'s bed while he pulls up a chair, sipping on your coffee as he digs in.`);
+    }
+  } else {
+    qspCall(s, 'sex_ev_morning', 'breakfast_image');
+    // TODO-QSP: dynamic text: The two of you settle down at <<$npcdesc>>'s table. You sip at your coffee while...
+    scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table. You sip at your coffee while he digs in.`);
+  }
+  scene.text('"Not going to eat?" he asks curiously.');
+  scene.actions([
+    { label: 'Coffee\'s all I need', handler: (st: GameState) => {
+    scene.text('"Coffee\'s all I need," you grin. "But you go ahead. Don\'t hold back on account of me."');
+    scene.text('He nods, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+    { label: 'Not that hungry', handler: (st: GameState) => {
+    scene.text('"I\'m just not very hungry right now," you reply. "But you go ahead. Don\'t hold back on account of me."');
+    scene.text('He nods, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+    { label: 'Not into breakfast', handler: (st: GameState) => {
+    scene.text('"I\'m not much into breakfast," you admit. "But this is for you more than me. Enjoy it."');
+    scene.text('He smiles, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+    { label: 'Dieting', handler: (st: GameState) => {
+    scene.text('"I\'m on a diet," you reply. "Caffeine is an appetite suppressant. But you go ahead. Don\'t hold back on account of me."');
+    scene.text('He nods, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+    { label: 'Can\'t eat in the morning', handler: (st: GameState) => {
+    scene.text('"My stomach can\'t really handle food in the morning," you reply. "I mostly just stick to coffee. But you go ahead. Don\'t hold back on account of me."');
+    scene.text('He nods, continuing to help himself as you casually chit chat over the food.');
+    scene.actions([
+      { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBreakfastDishes(s: GameState, scene: SceneBuilder): void {
+  (s as any).sex_ev['boy_asleep'] = 0;
+  (s as any).sex_ev['breakfast_finished'] = 1;
+  if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+    // TODO-QSP: $sex_ev['bed_room']
+    if (((s as any).sex_ev ?? 0)?.['coffee_only'] === 1) {
+      scene.text('"Just what I needed," you sigh, setting your mug aside on the room service tray.');
+      qspCall(s, 'sex_ev_morning', 'morning_menu1');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['light_breakfast'] === 1  ||  ((s as any).sex_ev ?? 0)?.['medium_breakfast'] === 1) {
+        scene.text('"That was nice," you hum happily, setting your dishes aside onto the room service tray.');
+        if (((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  &&  (((s as any).stat ?? 0)?.['think_virgin'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0))  ||  ((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
+          scene.text('"I can think of something nicer," he says, stepping up behind you, hands caressing your hips and something hard poking you in the back.');
+          qspCall(s, 'sex_ev_morning', 'after_breakfast_sex');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['cooking_total'] > 0) {
+            scene.text('"Thanks for breakfast," he smiles back, piling up the rest.');
+          } else {
+            scene.text('"Glad you enjoyed it," he smiles back, piling up the rest.');
+          }
+          qspCall(s, 'sex_ev_morning', 'morning_menu1');
+        }
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['big_breakfast'] === 1) {
+          scene.text('"I\'m stuffed," you sigh, setting your dishes aside onto the room service tray.');
+          if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)] - ((5 + ((s as any).sex_ev ?? 0)?.['extra_cum']) / 2)  &&  (((s as any).stat ?? 0)?.['think_virgin'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0)  ||  ((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
+            scene.text('"Not yet you\'re not," he says, stepping up behind you, hands caressing your hips and something hard poking you in the back.');
+            qspCall(s, 'sex_ev_morning', 'after_breakfast_sex');
+          } else {
+            if (((s as any).sex_ev ?? 0)?.['cooking_total'] > 0) {
+              scene.text('"Thanks for breakfast," he smiles back, piling up the rest.');
+            } else {
+              scene.text('"Glad you enjoyed it," he smiles back, piling up the rest.');
+            }
+            qspCall(s, 'sex_ev_morning', 'morning_menu1');
+          }
+        }
+      }
+    }
+  } else {
+    scene.img('images/pc/activities/cooking/nude_misc3.jpg');
+    if ((((s as any).sex_ev ?? 0)?.['cooking_total'] === 1  &&  (Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0)  ||  ((s as any).sex_ev ?? 0)?.['coffee_only'] === 1) {
+      scene.text('"Just what I needed," you sigh, taking your used mug over to the sink.');
+      if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)] - ((5 + ((s as any).sex_ev ?? 0)?.['extra_cum']) / 2)  &&  (((s as any).stat ?? 0)?.['think_virgin'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0)  ||  ((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
+        scene.text('"I could use something a little stronger than coffee," he says, stepping up behind you. His hands caress your hips and you can feel something hard hovering between your cheeks.');
+        qspCall(s, 'sex_ev_morning', 'after_breakfast_sex');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['cooking_total'] > 1) {
+          scene.text('"Thanks for breakfast," he smiles, piling up the rest.');
+        } else {
+          scene.text('"Me too," he agrees, tilting his head back to drain the last drops of his cup.');
+        }
+        qspCall(s, 'sex_ev_morning', 'morning_menu1');
+      }
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['light_breakfast'] === 1  ||  ((s as any).sex_ev ?? 0)?.['medium_breakfast'] === 1) {
+        scene.text('"That was nice," you hum happily, taking your dirty dishes over to the kitchen area.');
+        if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)] - ((5 + ((s as any).sex_ev ?? 0)?.['extra_cum']) / 2)  &&  (((s as any).stat ?? 0)?.['think_virgin'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0)  ||  ((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
+          scene.text('"I can think of something nicer," he says, stepping up behind you, hands caressing your hips and something hard poking you in the back.');
+          qspCall(s, 'sex_ev_morning', 'after_breakfast_sex');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['cooking_total'] > 0) {
+            scene.text('"Thanks for breakfast," he smiles back, piling up the rest.');
+          } else {
+            scene.text('"Glad you enjoyed it," he smiles back, piling up the rest.');
+          }
+          qspCall(s, 'sex_ev_morning', 'morning_menu1');
+        }
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['big_breakfast'] === 1) {
+          scene.text('"I\'m stuffed," you sigh, taking your dirty dishes over to the kitchen area.');
+          if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)] - ((5 + ((s as any).sex_ev ?? 0)?.['extra_cum']) / 2)  &&  (((s as any).stat ?? 0)?.['think_virgin'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0)  ||  ((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
+            scene.text('"Not yet you\'re not," he says, stepping up behind you, hands caressing your hips and something hard poking you in the back.');
+            qspCall(s, 'sex_ev_morning', 'after_breakfast_sex');
+          } else {
+            if (((s as any).sex_ev ?? 0)?.['cooking_total'] > 0) {
+              scene.text('"Thanks for breakfast," he smiles back, piling up the rest.');
+            } else {
+              scene.text('"Glad you enjoyed it," he smiles back, piling up the rest.');
+            }
+            qspCall(s, 'sex_ev_morning', 'morning_menu1');
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterAfterBreakfastSex(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['cooking_total'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['coffee_make'] !== 1) {
+    scene.actions([
+      { label: 'Not after eating', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
+    }
+    // TODO-QSP: dynamic text: "Ugh!" you groan, giving <<$npcdesc>> a look of disgust and forcibly pulling his...
+    scene.text(`"Ugh!" you groan, giving ${((s as any).npcdesc ?? 0)} a look of disgust and forcibly pulling his hands off your body. "Right when I feel all gross after eating? How can you even <i>think</i> about that right now?"`);
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: '"Down boy"', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
+    }
+    scene.actions([
+      { label: 'Don\'t have time', handler: (st: GameState) => {
+    scene.text('"Tsk! Down boy!" you chide, rolling your eyes and taking his hands to forcibly pull them off your body. "I don\'t have time for this."');
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } },
+      { label: 'Not in the mood', handler: (st: GameState) => {
+    scene.text('"Tsk! Down boy!" you chide, rolling your eyes and taking his hands to forcibly pull them off your body. "I had fun earlier but I\'m not in the mood right now."');
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  } },
+    ]);
+  } },
+    { label: 'Giggle', handler: (st: GameState) => {
+    // TODO-QSP: gs 'arousal', 'foreplay', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    if (((s as any).sex_ev ?? 0)?.['wake_fuck'] === 1) {
+      (s as any).sex_ev['extra_cum'] = ((s as any).sex_ev['extra_cum'] ?? 0) + (5);
+    } else {
+      (s as any).sex_ev['extra_cum'] = ((s as any).sex_ev['extra_cum'] ?? 0) + (5);
+    }
+    if (((s as any).sex_ev ?? 0)?.['wake_fuck'] === 1  ||  ((s as any).sex_ev ?? 0)?.['morning_fuck'] === 1) {
+      scene.actions([
+        { label: 'Again?!', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "Again?!" you giggle as <<$npcdesc>> begins groping your breast and fingering yo...
+    scene.text(`"Again?!" you giggle as ${((s as any).npcdesc ?? 0)} begins groping your breast and fingering your clit. "You're insatiable!"`);
+    // TODO-QSP: dynamic text: But you don't protest and let <<$npcdesc>> drag you back to the bed to do what h...
+    scene.text(`But you don't protest and let ${((s as any).npcdesc ?? 0)} drag you back to the bed to do what he wants to you.`);
+    qspCall(s, 'sex_ev_foreplay', 'bed_start');
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'You\'re gonna make me late', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "You're gonna make me late," you giggle uncontrollably as <<$npcdesc>> gets fris...
+    scene.text(`"You're gonna make me late," you giggle uncontrollably as ${((s as any).npcdesc ?? 0)} gets friskier, dragging you back to bed to do what he wants to you.`);
+    qspCall(s, 'sex_ev_foreplay', 'bed_start');
+  } },
+      { label: 'Let him do what he wants', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You giggle uncontrollably, giving <<$npcdesc>> the non-verbal go ahead and you l...
+    scene.text(`You giggle uncontrollably, giving ${((s as any).npcdesc ?? 0)} the non-verbal go ahead and you let him drag you back to the bed to do what he wants to you.`);
+    qspCall(s, 'sex_ev_foreplay', 'bed_start');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterGiveLift(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).region ?? 0) === 'city') {
+    (s as any).minut = ((s as any).minut ?? 0) + 45;
+  } else {
+    if (((s as any).region ?? 0) === 'pav') {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+    }
+  }
+  qspCall(s, 'stat', '');
+  if (((s as any).sex_ev ?? 0)?.['give_lift'] === 2) {
+    scene.text('<center><b>Outside School</b></center>');
+    if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
+      (s as any).sex_ev['drop_off_image'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "sex_ev_morning" }) + ' src="images/locations/pavlovsk/school/building/schoolwinter.jpg"></center>';
+    } else {
+      (s as any).sex_ev['drop_off_image'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "sex_ev_morning" }) + ' src="images/locations/pavlovsk/school/building/gschool.jpg"></center>';
+    }
+    // TODO-QSP: $sex_ev['drop_off_image']
+    if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      // TODO-QSP: dynamic text: <<$npcdesc>> drives you the short distance to school, stopping right outside the...
+      scene.text(`${((s as any).npcdesc ?? 0)} drives you the short distance to school, stopping right outside the gates. You probably could have just walked, but it's nice to spend a little more time with him.`);
+    } else {
+      // TODO-QSP: dynamic text: <<$npcdesc>> drives you from the city back to Pavlovsk, stopping right outside t...
+      scene.text(`${((s as any).npcdesc ?? 0)} drives you from the city back to Pavlovsk, stopping right outside the school gates.`);
+      if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+      } else {
+        if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
+        } else {
+          if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 4) {
+          }
+        }
+      }
+    }
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Thanks for the ride', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_after', 'ending');
+    // TODO-QSP: $sex_ev['drop_off_image']
+    scene.text('"Thanks for the ride," you say, giving him a quick smile and open up the passenger door.');
+    qspCall(s, 'sex_ev_morning', 'classmates_see');
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_grounds', 'main'] },
+    ]);
+  } },
+      { label: 'Kiss him goodbye (cheek)', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_after', 'ending');
+    // TODO-QSP: $sex_ev['drop_off_image']
+    scene.text('"Thanks for the ride," you say, leaning over and giving him a quick peck on the cheek before opening up the passenger door.');
+    qspCall(s, 'sex_ev_morning', 'classmates_see');
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_grounds', 'main'] },
+    ]);
+  } },
+      { label: 'Kiss him goodbye (mouth)', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_after', 'ending');
+    // TODO-QSP: $sex_ev['drop_off_image']
+    scene.text('"Thanks for the ride," you say, leaning over and giving him a quick peck on the lips before opening up the passenger door.');
+    qspCall(s, 'sex_ev_morning', 'classmates_see');
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_grounds', 'main'] },
+    ]);
+  } },
+      { label: 'Kiss him goodbye (tongue)', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['drop_off_image']
+    qspCall(s, 'arousal', 'kiss', (-5));
+    qspCall(s, 'sex_ev_after', 'ending');
+    scene.text('"Thanks for the ride," you say. You lean over and give him a deep kiss, forcing your tongue past his lips and enjoying the feeling of his tongue pushing past into yours. You hold the kiss for a good ten seconds before pulling away, saliva trailing with you. You wipe your mouth with a lusty grin before opening the passenger door.');
+    qspCall(s, 'sex_ev_morning', 'classmates_see');
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_grounds', 'main'] },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    } else {
+      if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+      } else {
+        if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
+        } else {
+          if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 4) {
+          }
+        }
+      }
+    }
+    scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+  }
+  scene.build();
+}
+
+function enterClassmatesSee(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).hour ?? 0) > 6  &&  (Math.floor(Math.random() * 20) + 1) > (Math.floor(Math.random() * 4) + 3)) {
+    // TODO-QSP: dynamic text: You step out of the car, looking around and don't see anybody who would recogniz...
+    scene.text(`You step out of the car, looking around and don't see anybody who would recognize you. ${((s as any).npcdesc ?? 0)} gives you a wave and you wave back as he drives off.`);
+  } else {
+    scene.text('As you exit the vehicle, some of your classmates are walking by and they glance at you stepping out of a stranger\'s car. Some of them immediately look away. Others wear a look of disgust. Judging by the reactions, they must have clocked you.');
+    // TODO-QSP: dynamic text: <<$npcdesc>> gives you a small wave and drives off.
+    scene.text(`${((s as any).npcdesc ?? 0)} gives you a small wave and drives off.`);
   }
   scene.build();
 }
@@ -356,6 +1555,87 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'shower_leave':
       enterShowerLeave(s, scene);
+      break;
+    case 'head_out':
+      enterHeadOut(s, scene);
+      break;
+    case 'dress_image':
+      enterDressImage(s, scene);
+      break;
+    case 'end_morning':
+      enterEndMorning(s, scene);
+      break;
+    case 'boy_breakfast_offer':
+      enterBoyBreakfastOffer(s, scene);
+      break;
+    case 'wait_for_breakfast1':
+      enterWaitForBreakfast1(s, scene);
+      break;
+    case 'breakfast_search':
+      enterBreakfastSearch(s, scene);
+      break;
+    case 'breakfast_in_bed':
+      enterBreakfastInBed(s, scene);
+      break;
+    case 'breakfast_image':
+      enterBreakfastImage(s, scene);
+      break;
+    case 'breakfast_in_bed_menu':
+      enterBreakfastInBedMenu(s, scene);
+      break;
+    case 'want_breakfast':
+      enterWantBreakfast(s, scene);
+      break;
+    case 'want_coffee_response':
+      enterWantCoffeeResponse(s, scene);
+      break;
+    case 'pc_make_breakfast':
+      enterPcMakeBreakfast(s, scene);
+      break;
+    case 'pc_make_breakfast_choices':
+      enterPcMakeBreakfastChoices(s, scene);
+      break;
+    case 'pc_make_breakfast_cooking':
+      enterPcMakeBreakfastCooking(s, scene);
+      break;
+    case 'pc_make_breakfast_done':
+      enterPcMakeBreakfastDone(s, scene);
+      break;
+    case 'npc_coffe_make':
+      enterNpcCoffeMake(s, scene);
+      break;
+    case 'coffee_menu':
+      enterCoffeeMenu(s, scene);
+      break;
+    case 'coffee_together':
+      enterCoffeeTogether(s, scene);
+      break;
+    case 'eat_breakfast1':
+      enterEatBreakfast1(s, scene);
+      break;
+    case 'eat_breakfast2':
+      enterEatBreakfast2(s, scene);
+      break;
+    case 'eat_breakfast3':
+      enterEatBreakfast3(s, scene);
+      break;
+    case 'eat_breakfast4':
+      enterEatBreakfast4(s, scene);
+      break;
+    case 'eat_breakfast_coffee':
+      enterEatBreakfastCoffee(s, scene);
+      break;
+    case 'breakfast_dishes':
+      enterBreakfastDishes(s, scene);
+      break;
+    case 'after_breakfast_sex':
+      enterAfterBreakfastSex(s, scene);
+      break;
+    case 'give_lift':
+      enterGiveLift(s, scene);
+      break;
+    case 'classmates_see':
+      enterClassmatesSee(s, scene);
       break;
     default:
       enterMorningEventCheck(s, scene);

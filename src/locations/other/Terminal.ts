@@ -19,8 +19,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Search for father', goto: ['Terminal', 'searchfather'] },
     ]);
   } else {
-    // TODO-QSP: act iif(trfatherQW = 3, 'Search for father', 'Approach the men'):
-    scene.actions([{ label: 'Continue', goto: ['Terminal', 'search_approach_men'] }]);
+    if ((((s as any).trfatherQW ?? 0) >= 3  ||  ((s as any).trfatherQW ?? 0) < 0)  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) === 12) {
+      // TODO-QSP: act iif(trfatherQW = 3, 'Search for father', 'Approach the men'):
+      scene.actions([{ label: 'Continue', goto: ['Terminal', 'search_approach_men'] }]);
+    }
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {

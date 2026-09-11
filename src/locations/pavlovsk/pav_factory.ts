@@ -95,10 +95,12 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I noticed you missed your shift. We all have our off days, b...
     scene.text(`"${((s as any).pcs_lastname ?? 0)}, I noticed you missed your shift. We all have our off days, but this is a factory — the machines don't wait. Try not to let it happen again."`);
   } else {
-    scene.text('The foreman is waiting for you as you walk in. His expression is stern, and he doesn\'t bother with pleasantries.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, this is the second time you've missed work. I warned you bef...
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}, this is the second time you've missed work. I warned you before. One more absence and I'll have no choice but to let you go. The factory can't run with unreliable workers."`);
-    scene.text('He taps his pen on the desk, staring at you intently. "Do I make myself clear?"');
+    if (((s as any).job_booking_debt ?? 0)?.['pav_factory'] === 2) {
+      scene.text('The foreman is waiting for you as you walk in. His expression is stern, and he doesn\'t bother with pleasantries.');
+      // TODO-QSP: dynamic text: "<<$pcs_lastname>>, this is the second time you've missed work. I warned you bef...
+      scene.text(`"${((s as any).pcs_lastname ?? 0)}, this is the second time you've missed work. I warned you before. One more absence and I'll have no choice but to let you go. The factory can't run with unreliable workers."`);
+      scene.text('He taps his pen on the desk, staring at you intently. "Do I make myself clear?"');
+    }
   }
   (s as any).job_miss_acknowledged['pav_factory'] = ((s as any).job_missed_total ?? 0)?.['pav_factory'];
   scene.actions([

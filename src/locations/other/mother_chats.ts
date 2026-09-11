@@ -161,9 +161,12 @@ function enterMiscarriageTalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A29'] > 80) {
     scene.text('"What is it, dear?" she asks, turning to smile at you.');
   } else {
-    // TODO-QSP: dynamic text: "Hmm? What is it, <<$pcs_nickname>>?" she asks distractedly.
-    scene.text(`"Hmm? What is it, ${((s as any).pcs_nickname ?? 0)}?" she asks distractedly.`);
-    scene.text('"What now?" she asks with a deep sigh while turning to frown at you. "You didn\'t somehow get your baby pregnant, did you?"');
+    if (((s as any).npc_rel ?? 0)?.['A29'] > 30) {
+      // TODO-QSP: dynamic text: "Hmm? What is it, <<$pcs_nickname>>?" she asks distractedly.
+      scene.text(`"Hmm? What is it, ${((s as any).pcs_nickname ?? 0)}?" she asks distractedly.`);
+    } else {
+      scene.text('"What now?" she asks with a deep sigh while turning to frown at you. "You didn\'t somehow get your baby pregnant, did you?"');
+    }
   }
   // TODO-QSP: dynamic text: "I lost the baby…" you say, suddenly bursting into tears. Your <<$npc_nickname['...
   scene.text(`"I lost the baby…" you say, suddenly bursting into tears. Your ${((s as any).npc_nickname ?? 0)?.['A29']} goes pale in shock, but only spends a single second frozen in place before striding across the room and wrapping you in her arms.`);
@@ -634,8 +637,9 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.actions([
-        { label: '<<$npc_nickname[\'A29\']>> reconciliation', handler: (st: GameState) => {
+      if (((s as any).NatbelQW ?? 0)?.['mother_talk'] === 1  &&  ((s as any).daystart ?? 0) > ((s as any).NatbelQW ?? 0)?.['mother_talkday']) {
+        scene.actions([
+          { label: '<<$npc_nickname[\'A29\']>> reconciliation', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).NatbelQW['mother_talk'] = 2;
     qspCall(s, 'stat', '');
@@ -668,7 +672,8 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   }
   scene.build();

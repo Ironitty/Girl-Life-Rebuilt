@@ -32,6 +32,8 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Okay, that will be ' + $func('money', 'string_price', 100) + ' please.
   scene.text('Okay, that will be \' + $func(\'money\', \'string_price\', 100) + \' please.');
   if ((!((s as any).smoketab ?? 0))) {
+    scene.actions([
+      { label: 'Pay for an hour and leave the counter [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -41,12 +43,30 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
       (s as any).smoketab = 1;
       scene.actions([{ label: 'Continue', goto: ['hookahlounge', 'start'] }]);
     }
+  } },
+    ]);
+  } else {
     scene.actions([
-      { label: 'Pay for an hour and leave the counter [+$func(\'money\', \'get_cost_string\', 100, \'...]' }, // TODO-QSP: empty action body
+      { label: 'Leave the counter', goto: ['hookahlounge', 'start'] },
     ]);
   }
+  scene.build();
+}
+
+function enterSmoke_Hookah(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/redlight/hookahlounge/HookahSit.jpg');
+  scene.text('You sit down at a booth');
   scene.actions([
-    { label: 'Leave the counter', goto: ['hookahlounge', 'start'] },
+    { label: 'Smoke using hookah', handler: (st: GameState) => {
+    (s as any).smoketab = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    qspCall(s, 'drugs', 'smoke', 1);
+    scene.img('images/locations/city/redlight/hookahlounge/HookahSmoke.jpg');
+    scene.text('You smoke using the hookah');
+    scene.actions([
+      { label: 'Stop using Hookah', goto: ['hookahlounge', 'start'] },
+    ]);
+  } },
   ]);
   scene.build();
 }
@@ -59,6 +79,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'Hookah_Aliyyah':
       enterHookah_Aliyyah(s, scene);
+      break;
+    case 'Smoke_Hookah':
+      enterSmoke_Hookah(s, scene);
       break;
     default:
       enterStart(s, scene);

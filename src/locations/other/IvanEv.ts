@@ -183,18 +183,14 @@ function enterBoxingLessons(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).ivanQW['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
-    qspCall(s, 'exercise', 'tier2', 30, 'stren', 'jab', 'punch', 'def');
-    scene.img('images/characters/pavlovsk/school/boy/ivan/training/train3.jpg');
-    scene.text('He finds a pair of boxing gloves that\'ll fit you, then helps you put them on. After that, he has you start punching the heavy bag while he gives you pointers on how you\'re swinging and standing, among other things.');
-    scene.text('After a few minutes, he slips the focus mitts on his hands and you smile as you bump your glove covered hand against the focus mitts. "Let\'s get started."');
-    (s as any).ivanQW['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
-    qspCall(s, 'exercise', 'tier3', 30, 'stren', 'jab', 'punch', 'def');
-    scene.img('images/characters/pavlovsk/school/boy/ivan/training/train3.jpg');
-    scene.text('He finds a pair of boxing gloves that\'ll fit you, then helps you put them on. After that, he has you start punching the heavy bag while he gives you pointers on how you\'re swinging and standing, among other things.');
-    scene.text('After a few minutes, he slips some boxing gloves on his hands and smiles at you. "We\'re going to spar today."');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).ivanQW ?? 0)?.['boxing_lessons'] < 8) {
+      (s as any).ivanQW['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
+      qspCall(s, 'exercise', 'tier2', 30, 'stren', 'jab', 'punch', 'def');
+      scene.img('images/characters/pavlovsk/school/boy/ivan/training/train3.jpg');
+      scene.text('He finds a pair of boxing gloves that\'ll fit you, then helps you put them on. After that, he has you start punching the heavy bag while he gives you pointers on how you\'re swinging and standing, among other things.');
+      scene.text('After a few minutes, he slips the focus mitts on his hands and you smile as you bump your glove covered hand against the focus mitts. "Let\'s get started."');
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier3', 30, 'stren', 'jab', 'punch', 'def');
     scene.img('images/characters/pavlovsk/school/boy/ivan/training/train5.jpg');
     scene.text('You spend a few minutes punching the focus mitts on Ivan\'s hands. "You\'re getting better, but you still need to punch harder. If it\'ll help, think of someone you\'d like to punch instead."');
@@ -205,7 +201,15 @@ function enterBoxingLessons(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the locker room', goto: ['IvanEv', 'locker_room'] },
     ]);
   } },
-      { label: 'Continue', handler: (st: GameState) => {
+      ]);
+    } else {
+      (s as any).ivanQW['boxing_lessons'] = ((s as any).ivanQW['boxing_lessons'] ?? 0) + (1);
+      qspCall(s, 'exercise', 'tier3', 30, 'stren', 'jab', 'punch', 'def');
+      scene.img('images/characters/pavlovsk/school/boy/ivan/training/train3.jpg');
+      scene.text('He finds a pair of boxing gloves that\'ll fit you, then helps you put them on. After that, he has you start punching the heavy bag while he gives you pointers on how you\'re swinging and standing, among other things.');
+      scene.text('After a few minutes, he slips some boxing gloves on his hands and smiles at you. "We\'re going to spar today."');
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier3', 15, 'stren', 'jab', 'punch', 'def');
     scene.img('images/characters/pavlovsk/school/boy/ivan/training/train6.jpg');
     scene.text('You spend a few minutes sparring with Ivan. "Keep your hands up! Guard your face!"');
@@ -225,7 +229,8 @@ function enterBoxingLessons(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -238,7 +243,6 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('After your workout with Ivan, you head into the girls locker room and strip down.');
   scene.text('You notice there\'s no one else here at this time of the evening as you head into the showers and take a quick shower to get all the sweat cleaned off your body.');
   scene.text('Once you\'re done with the shower, you turn the water off and head back to the locker room.');
-  scene.actions([{ label: 'Continue', goto: ['IvanEv', 'locker_room_dressed'] }]);
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     (s as any).temprand = Math.floor(Math.random() * 4) + 1;
@@ -257,18 +261,27 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'anal', 'resist', 'medium');
     if (((s as any).will_cost ?? 0) <= ((s as any).pcs_willpwr ?? 0)) {
-      qspCall(s, 'npc_relationship', 'modify', 'A3', 'dislike');
-      qspCall(s, 'willpower', 'pay', 'resist');
-      qspCall(s, 'stat', '');
-      scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/coverup_go.jpg');
-      scene.text('You smile at him, knowing how badly he wants you. "Not tonight, Ivan. Maybe some other time."');
-      scene.text('He sighs. "Alright... Maybe next time."');
-      scene.text('He backs out and very slowly closes the door, drinking in your naked body the whole time until he finally closes the door.');
-      qspCall(s, 'arousal', 'flash', 1, 'exhibitionism');
-      qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Tell him to go away [+$func(\'willpower\', \'get_willcost_string\'...]' }, // TODO-QSP: empty action body
-        { label: 'Get dressed', goto: ['IvanEv', 'locker_room_dressed'] },
+        { label: 'Tell him to go away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A3', 'dislike');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/coverup_go.jpg');
+    scene.text('You smile at him, knowing how badly he wants you. "Not tonight, Ivan. Maybe some other time."');
+    scene.text('He sighs. "Alright... Maybe next time."');
+    scene.text('He backs out and very slowly closes the door, drinking in your naked body the whole time until he finally closes the door.');
+    qspCall(s, 'arousal', 'flash', 1, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get dressed', goto: ['IvanEv', 'locker_room_dressed'] },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Tell him to go away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
       ]);
     }
     scene.actions([
@@ -283,15 +296,9 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for his next move', goto: ['IvanEv', 'locker_room_fuck'] },
     ]);
   } },
-      { label: 'Tell him to go away', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
     ]);
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Cover up', handler: (st: GameState) => {
+        { label: 'Cover up', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/coverup.jpg');
     scene.text('You stand still for a moment, like a deer in headlights, then quickly cover up yourself with your hands.');
     scene.text('"What the fuck, Ivan?!" you yell in shock and surprise.');
@@ -300,19 +307,28 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'anal', 'resist', 'medium');
     if (((s as any).will_cost ?? 0) <= ((s as any).pcs_willpwr ?? 0)) {
-      qspCall(s, 'npc_relationship', 'modify', 'A3', 'hate');
-      qspCall(s, 'willpower', 'pay', 'resist');
-      qspCall(s, 'stat', '');
-      scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/coverup_go.jpg');
-      scene.text('You turn to try and cover up using your legs as well. "NO! Please leave!"');
-      scene.text('You can\'t help but blush at the idea of showing off your body against your will.');
-      scene.text('He blushes, clearly not having expected to receive such a strong negative reaction from you. "Sorry! I\'ll go."');
-      scene.text('With that, he quickly leaves and closes the door behind him.');
-      qspCall(s, 'arousal', 'flash', 1, 'humiliation');
-      qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Tell him to go away [+$func(\'willpower\', \'get_willcost_string\'...]' }, // TODO-QSP: empty action body
-        { label: 'Get dressed', goto: ['IvanEv', 'locker_room_dressed'] },
+        { label: 'Tell him to go away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A3', 'hate');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/coverup_go.jpg');
+    scene.text('You turn to try and cover up using your legs as well. "NO! Please leave!"');
+    scene.text('You can\'t help but blush at the idea of showing off your body against your will.');
+    scene.text('He blushes, clearly not having expected to receive such a strong negative reaction from you. "Sorry! I\'ll go."');
+    scene.text('With that, he quickly leaves and closes the door behind him.');
+    qspCall(s, 'arousal', 'flash', 1, 'humiliation');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get dressed', goto: ['IvanEv', 'locker_room_dressed'] },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Tell him to go away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
       ]);
     }
     scene.actions([
@@ -328,13 +344,457 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for his next move', goto: ['IvanEv', 'locker_room_fuck'] },
     ]);
   } },
-      { label: 'Tell him to go away', handler: (st: GameState) => {
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['IvanEv', 'locker_room_dressed'] }]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLockerRoomFuck(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/dick_surprise.jpg');
+  scene.text('He grins as he pulls his shorts down and his already rock hard dick springs free. You can\'t help but stare at his dick, your mouth watering and your pussy getting wet just thinking about taking it inside you.');
+  scene.text('"Why don\'t you come over and suck it instead of staring at it?" he laughs.');
+  scene.actions([
+    { label: 'Suck his dick', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex1.jpg');
+    scene.text('You walk over and sit on the bench next to him before taking his dick in your hand. You stroke his shaft a few times before you open your mouth and start licking and sucking on the head.');
+    qspCall(s, 'arousal', 'bj', 2, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Keep sucking his dick', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex2.jpg');
+    scene.text('He places his hand on the back of your head and forces you to take more of his dick into your mouth.');
+    scene.text('"Fuck, that feels good!" he moans before he pulls his dick out of your mouth and pulls you up. You understand what he\'s trying to do and quickly get on all fours on the bench.');
+    scene.text('He pulls off his shirt and shorts before he straddles the bench just behind you.');
+    scene.text('"Now that\'s a sight you\'ve just got to love!" he says, followed by a slap on your ass.');
+    qspCall(s, 'arousal', 'bj', 2, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Present your ass to him', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A3');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex3.jpg');
+    scene.text('You feel him squirt some liquid onto your asshole before his fingers work it in. Once your ass is lubed up, you feel the tip of his dick press against your asshole.');
+    // TODO-QSP: dynamic text: Moments later, he pushes the head of his <<dick>>cm <<$dick_girth>> cock inside ...
+    scene.text(`Moments later, he pushes the head of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock inside you before he slowly slides most of the length of his shaft up your ass.`);
+    scene.text('He moans in pleasure and you groan slightly in pain while also moaning in pleasure. As he starts to slowly fuck your ass, your groans slowly turn into moans of pleasure.');
+    qspCall(s, 'arousal', 'anal', 2, 'lube', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get butt fucked', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex4.jpg');
+    scene.text('As the sensation turns to all pleasure, you start moaning louder.');
+    scene.text('"OH YES! Fuck, that feels good! Fuck me! Fuck me harder!" you cry out as you take his dick up your ass.');
+    scene.text('Hearing this, he grabs hold of your hips and starts to really pound your ass, his balls slapping off the wet slit of your pussy with each powerful thrust.');
+    qspCall(s, 'arousal', 'anal', 2, 'lube', 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get your ass pounded', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A3', 'like');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex5.jpg');
+    scene.text('His fingers dig into your hips as he hammers your ass hard and deep.');
+    scene.text('"Yes... Yes... YES!!!" you cry out in pleasure as your breasts bounce violently with each thrust of his cock.');
+    scene.text('He suddenly pulls out of you before he quickly moves up next to you. "Fuck, I\'m about to cum! Open your mouth!"');
+    qspCall(s, 'arousal', 'anal', 2, 'lube', 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Take his cum', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex6.jpg');
+    scene.text('You open your mouth just in time to feel the first spurt of cum hit the back of your throat, with the follow up shots filling your mouth.');
+    scene.actions([
+      { label: 'Spit', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big3.jpg');
+    scene.text('Once he\'s finished, you turn your head and spit his cum onto the floor.');
+    scene.text('"Not a fan of the taste, I take it?" he chuckles as he shakes his head slightly. "I don\'t blame you. I can\'t imagine that it tastes good."');
+    scene.text('"It\'s an acquired taste," you reply.');
+    scene.text('He nods and chuckles. "I can imagine."');
+    scene.text('He then starts getting dressed. As he does, you move back over to the locker you were using.');
+    scene.text('Once he\'s done getting dressed, he smiles at you. "I should get going. Need to check in on my brother and sister and make sure they went to bed on time."');
+    scene.text('He starts towards the door before turns his head. "Thanks for the fun. Maybe we can do it again some time?"');
+    scene.text('With that, he walks out and leaves.');
+    qspCall(s, 'arousal', 'foreplay', 1, 'sub');
+    qspCall(s, 'cum_call', 'mouth', 'A3', 1);
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get dressed', goto: ['IvanEv', 'locker_room_dressed'] },
+    ]);
+  } },
+      { label: 'Swallow', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big3.jpg');
+    scene.text('Once he\'s done, you tilt your head back and swallow his cum before you stick your tongue out to show him that you have swallowed it all.');
+    scene.text('"Fuck, that\'s hot," he chuckles as he shakes his head slightly. "I\'m almost ready to go again!"');
+    scene.text('"Swallowing cum is such a turn on for me..." you smile coyly.');
+    scene.text('He nods and chuckles. "Yeah, I know it was for me. Glad you enjoyed it too."');
+    scene.text('He then starts getting dressed. As he does, you move back over to the locker you were using.');
+    scene.text('Once he\'s done getting dressed, he smiles at you. "I should get going. Need to check in on my brother and sister and make sure they went to bed on time."');
+    scene.text('He starts towards the door before turns his head. "Thanks for the fun. Maybe we can do it again some time?"');
+    scene.text('With that, he walks out and leaves.');
+    qspCall(s, 'arousal', 'foreplay', 1, 'sub');
+    qspCall(s, 'cum_call', 'mouth_swallow', 'A3', 1);
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get dressed', goto: ['IvanEv', 'locker_room_dressed'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterIvanBored(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big3.jpg');
+  scene.text('You look at Ivan and bite your lower lip before whispering in his ear. "I\'m bored..."');
+  scene.text('He looks at you and smiles before taking you by the hand and leading you into one of the lesser used areas of the school. He stops at one of the boys restrooms, leaving you outside as he heads in to check if anyone is inside.');
+  scene.text('A few seconds later, two younger boys are sent packing by Ivan. Once they round the corner, he pulls you into the bathroom.');
+  qspCall(s, 'willpower', 'anal', 'resist');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
+  } else {
+    scene.actions([
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'anal', 'resist');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['gschool_lessons', 'short_break'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go into the bathroom', handler: (st: GameState) => {
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+    qspCall(s, 'boyStat', 'A3');
+    (s as any).ivanQW['sex'] = ((s as any).ivanQW['sex'] ?? 0) + (1);
+    qspCall(s, 'npc_relationship', 'modify', 'A3', 'like');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/bbivanbj.jpg');
+    scene.text('Once inside, Ivan starts to passionately kiss you while pulling your clothes off. You return his kiss and help remove your clothes as he backs up and pulls you into one of the stalls.');
+    // TODO-QSP: dynamic text: Once your clothes are removed, he gently pushes you down to your knees before he...
+    scene.text(`Once your clothes are removed, he gently pushes you down to your knees before he pulls his pants down and sits on the toilet. He then guides your head to his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock and you part your lips and take it into your mouth.`);
+    scene.text('You wrap your lips tightly around his shaft and start sucking while using your tongue to tease the head. He moans and grabs your hair, but restrains himself from forcing your head down.');
+    scene.text('After a few minutes, he stands up and pulls you up with him before he quickly turns you around.');
+    qspCall(s, 'arousal', 'kiss', 1, 'sub');
+    qspCall(s, 'arousal', 'bj', 3, 'sub', 'deepthroat');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Turn around', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/schoolanal1.jpg');
+    scene.text('You give him a good view at your naked ass.');
+    scene.text('"Like what you see?" you ask teasingly.');
+    if (((s as any).pcs_buttsize ?? 0) <= 21) {
+      scene.text('"You have such a tight little ass! I can\'t wait to pound the fuck out of it," he says excitedly as he steps closer and gives your ass a little smack.');
+    } else {
+      scene.text('"Fuck yeah, you have a nice fuckable ass!" he says as he steps closer and gives your ass a firm smack, causing it to jiggle a little.');
+    }
+    qspCall(s, 'arousal', 'foreplay', 1, 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get fucked', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/schoolanal2.jpg');
+    scene.text('He rubs the tip of his dick against your asshole before you feel a sharp pain as he pushes it in. With only your saliva as lubrication, it doesn\'t slide in very easily.');
+    scene.text('You bite your lip and cry out a little in pain, so he relaxes a little and rubs your back as he takes it slow, giving your ass time to stretch and adjust.');
+    // TODO-QSP: dynamic text: He then slowly thrusts his <<dick>>cm <<$dick_girth>> cock into your ass, pushin...
+    scene.text(`He then slowly thrusts his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock into your ass, pushing it just a little deeper each time as you start rubbing your clit until the pleasure overcomes the pain enough for you to enjoy it.`);
+    qspCall(s, 'arousal', 'anal', 2, 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Keep getting fucked', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/schoolanal3.jpg');
+    scene.text('As he fucks your ass, you spread your legs a little to give him easier access.');
+    scene.text('"Oh yeah, that\'s it! Spread those legs for me! Your ass feels so good squeezing my dick!" he says as you grit your teeth at the pain, but the pain slowly fades and is quickly replaced by intense pleasure.');
+    qspCall(s, 'arousal', 'anal', 2, 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get butt fucked some more', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/schoolanal4.jpg');
+    scene.text('He gives your ass cheek a smack as he keeps fucking your ass, slowly working himself deeper with each thrust.');
+    scene.text('"You\'re taking my cock like a champ!" he chuckles.');
+    scene.text('"Oh yeah! It\'s starting... To feel... Good!" you moan in response as he smacks your ass again.');
+    qspCall(s, 'arousal', 'anal', 2, 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get your ass hammered', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/schoolanal5.jpg');
+    scene.text('"Fuck, you have the tightest ass I\'ve ever fucked!" he says as he grabs your hips and drives himself balls deep into you, eliciting a squeak of pain from you, but the sensation of pain is quickly overwhelmed by pleasure.');
+    scene.text('You place your hands against the stall wall to brace yourself as he holds onto your hips with both hands and starts jackhammering his cock balls deep into your ass before he holds himself there as you feel his cock twitching and spurt after spurt of warm cum starts filling your ass as he grunts loudly.');
+    qspCall(s, 'arousal', 'anal', 2, 'sub', 'rough');
+    qspCall(s, 'cum_call', 'anus', 'A3', 1);
+    if (((s as any).agape ?? 0) < 3) {
+      (s as any).agape = 3;
+    }
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Clean up', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/schoolanal6.jpg');
+    scene.text('Once he\'s done, he takes a shuddering breath and pulls out of you, his cum immediately dribbling of your gaping asshole.');
+    scene.text('He gives your ass another smack and laughs. "I never get tired of that sight."');
+    scene.text('You both start to get dressed, him faster than you since you\'re still unsteady on your feet. Once he\'s done, he helps you gather the rest of your clothes from where he tossed them.');
+    scene.text('As you\'re seeing to the final adjustments, he goes to the bathroom door and looks out both ways down the hall before motioning you over just as the bell rings.');
+    // TODO-QSP: dynamic text: As you're about to leave, he suddenly squeezes your ass. "That was great, <<$pcs...
+    scene.text(`As you're about to leave, he suddenly squeezes your ass. "That was great, ${((s as any).pcs_nickname ?? 0)}. Maybe we can do it again sometime, or maybe I'll come see you in the shower at the community center one night..."`);
+    scene.text('He grins and winks at you before giving your ass a hard slap and rushing off to class. You only have time to nod in agreement, biting your lip as you watch him go. You then hurry to class yourself.');
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
+    ]);
   } },
     ]);
   } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  (s as any).discobloc['A3'] = ((s as any).daystart ?? 0);
+  qspCall(s, 'npc_relationship', 'modify', 'A3', 'like');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/disco1.jpg');
+  scene.text('You look at Ivan and bite your lower lip before whispering in his ear. "I\'m bored..."');
+  scene.text('He looks at you and smiles. "Okay, head to the old mens restroom they\'re remodeling. I\'ll make sure we won\'t be disturbed and meet you there."');
+  scene.text('You walk out of the disco and head for the old mens restroom. It looks like the remodeling was started, but never finished. Budget cuts, no doubt.');
+  scene.text('You suddenly hear footsteps behind you and turn to see Ivan following you in.');
+  scene.actions([
+    { label: 'Wait to see what he does', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/disco2.jpg');
+    // TODO-QSP: dynamic text: He walks up behind you and you feel his growing bulge pressed against your <<$pc...
+    scene.text(`He walks up behind you and you feel his growing bulge pressed against your ${((s as any).pc_desc ?? 0)?.['butt']} ass as he slowly pulls your top aside to expose your ${((s as any).pc_desc ?? 0)?.['breast']} breasts.`);
+    scene.text('He fondles them and kisses your neck before he whispers in your ear. "I want you to get down on your knees and suck my dick."');
+    qspCall(s, 'arousal', 'foreplay', 1, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get down on your knees', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A3');
+    (s as any).ivanQW['sex'] = ((s as any).ivanQW['sex'] ?? 0) + (1);
+    qspCall(s, 'arousal', 'bj', 2, 'sub');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj1.jpg');
+    scene.text('You turn around and slowly lower yourself to your knees before you unbutton his pants. Reaching inside, you pull his semi hard dick out and take it into your mouth.');
+    scene.text('It very quickly grows to full size in your mouth as you suck it.');
+    scene.actions([
+      { label: 'Suck his dick', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj2.jpg');
+    scene.text('As he moans, you pick up the pace a little and start bobbing your head back and forth as you keep your lips wrapped tightly around the shaft, steadily sucking his dick.');
+    // TODO-QSP: dynamic text: "Damn <<$pcs_nickname>>, that feels so good!" he grunts.
+    scene.text(`"Damn ${((s as any).pcs_nickname ?? 0)}, that feels so good!" he grunts.`);
+    qspCall(s, 'arousal', 'bj', 2, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck his dick some more', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj3.jpg');
+    scene.text('You slowly take him deeper into your mouth, causing him to moan louder as you do.');
+    scene.text('"Why don\'t you get on all fours?" he asks as he looks down at you. "I want to fuck that sweet little ass of yours now."');
+    qspCall(s, 'arousal', 'bj', 2, 'sub');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'anal', 'resist', 'medium');
+    if (((s as any).will_cost ?? 0) <= ((s as any).pcs_willpwr ?? 0)) {
+      scene.actions([
+        { label: 'Just suck him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj4.jpg');
+    scene.text('You pull his dick out of your mouth and start stroking it. "I\'d rather just suck you off."');
+    scene.text('You can tell he\'s a little disappointed, but he agrees. "If that\'s what you want, sure."');
+    scene.text('He then reaches down and forces your head forward, his dick sliding back into your mouth as he starts moving his hips and fucking your mouth.');
+    qspCall(s, 'arousal', 'bj', 2, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get throat fucked', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj5.jpg');
+    scene.text('He places his hand on the back of your head and starts fucking your mouth deeper, his dick sliding down your throat as his balls slap against your chin.');
+    scene.text('This causes you to gag and your eyes to water.');
+    qspCall(s, 'arousal', 'bj', 2, 'sub', 'rough', 'deepthroat');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get throat fucked some more', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj6.jpg');
+    scene.text('He keeps roughly fucking your throat and you can tell he\'s getting close as he starts losing his composure.');
+    scene.text('"Oh fuck..." he mutters as he suddenly picks up the pace.');
+    qspCall(s, 'arousal', 'bj', 2, 'sub', 'rough', 'deepthroat');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Take his cum', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discocum1.jpg');
+    scene.text('You suddenly feel the first spurt of warm, salty cum hit your throat, followed by several more as he fills your mouth.');
+    scene.text('Once he finishes, he pulls his now softening dick out of your mouth and slips it back into his pants as you stick out your cum-covered tongue for him.');
+    scene.actions([
+      { label: 'Spit', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big3.jpg');
+    scene.text('You then turn your head and spit his cum onto the floor.');
+    scene.text('"Not a fan of the taste, I take it?" he chuckles as he shakes his head slightly. "I don\'t blame you,. I can\'t imagine that it tastes good."');
+    scene.text('You stand up and fix your top so your breasts are no longer exposed. "It\'s an acquired taste."');
+    scene.text('He nods and chuckles. "I can imagine. Anyway, I should get going. Need to check in on my brother and sister and make sure they went to bed on time."');
+    scene.text('He starts towards the door before he turns his head. "Thanks for the fun."');
+    scene.text('With that, he walks out and leaves.');
+    qspCall(s, 'arousal', 'foreplay', 1, 'sub');
+    qspCall(s, 'cum_call', 'mouth', 'A3', 1);
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Swallow', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big3.jpg');
+    scene.text('You then tilt your head back and swallow his cum before you stick your tongue back out to show him that you\'ve swallowed it all.');
+    scene.text('"Fuck, that\'s hot," he chuckles as he shakes his head slightly. "I\'m almost ready to go again!"');
+    scene.text('You stand up and fix your top so your breasts are no longer exposed. "Swallowing cum is such a turn on for me..." you smile coyly.');
+    scene.text('He nods and chuckles. "Yeah, I know it was for me. Glad you enjoyed it too. Anyway, I should get going. Need to check in on my brother and sister and make sure they went to bed on time."');
+    scene.text('He starts towards the door before he turns his head. "Thanks for the fun."');
+    scene.text('With that, he walks out and leaves.');
+    qspCall(s, 'arousal', 'foreplay', 1, 'sub');
+    qspCall(s, 'cum_call', 'mouth_swallow', 'A3', 1);
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Just suck him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Get down on all fours', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discoanal1.jpg');
+    scene.text('You do as he asks and get down on all fours, putting your backside on full display for him to see. He quickly removes the rest of your clothes and gets down on his knees behind you before you feel him squirt some liquid on your asshole.');
+    scene.text('He quickly works the lube in before you feel the tip of his dick press against your asshole. He pushes until you feel the head slide into your ass, which causes you both to moan.');
+    qspCall(s, 'arousal', 'anal', 2, 'lube', 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get ass fucked', handler: (st: GameState) => {
+    qspCall(s, 'boyStat', 'A3');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discoanal2.jpg');
+    // TODO-QSP: dynamic text: He starts working his <<dick>>cm <<$dick_girth>> cock deeper into your ass, taki...
+    scene.text(`He starts working his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock deeper into your ass, taking it slow and giving you time to get used to the feeling of his dick in your ass.`);
+    scene.text('It quickly starts feeling really good for you and you start to moan louder as he slowly, but steadily fucks your ass.');
+    qspCall(s, 'arousal', 'anal', 2, 'lube', 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get ass fucked some more', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discoanal3.jpg');
+    scene.text('You hear him chuckle a liitle. "With how much you\'re moaning, you must really like this."');
+    scene.text('He gives your ass a hard smack and starts fucking you a little harder and faster, which elicits even louder moans of pleasure from you.');
+    scene.text('"At this rate, we\'ll turn you into a buttslut in no time!" he says as he starts fucking you even harder and deeper.');
+    qspCall(s, 'arousal', 'anal', 2, 'lube', 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Take him balls deep', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discoanal4.jpg');
+    scene.text('You feel his balls slapping against your wet pussy with each hard thrust, which feels so good you can hardly stand it.');
+    scene.text('"Fuck, you have the tightest ass I\'ve ever fucked!" he says before he drives himself deep into your ass and holds himself there as you feel spurt after spurt of warm cum filling your ass as he grunts loudly.');
+    qspCall(s, 'arousal', 'anal', 2, 'lube', 'sub', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Clean up', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/schoolanal6.jpg');
+    scene.text('Once he\'s done, he takes a shuddering breath and pulls out of you, his cum immediately dribbling of your gaping asshole.');
+    scene.text('He gives your ass another smack and laughs. "I never get tired of that sight."');
+    scene.text('He puts his dick back into his pants as you start getting dressed, his cum still leaking out of your asshole.');
+    // TODO-QSP: dynamic text: Once you're mostly dressed, he gives your ass a hard slap. "That was great, <<$p...
+    scene.text(`Once you're mostly dressed, he gives your ass a hard slap. "That was great, ${((s as any).pcs_nickname ?? 0)}. Maybe we can do this again sometime? Anyway, I should get going. Need to check in on my brother and sister and make sure they went to bed on time."`);
+    scene.text('He starts towards the door before he turns his head. "Thanks for the fun."');
+    scene.text('With that, he walks out and leaves.');
+    qspCall(s, 'arousal', 'anal', 1, 'lube', 'sub');
+    qspCall(s, 'cum_call', 'anus', 'A3', 1);
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLockerRoomDressed(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/get_dressed.jpg');
+  scene.text('You open your locker and pick out an outfit to wear.');
+  qspCall(s, 'wardrobe', 'default_clothing_options');
+  if (((s as any).clothingworntype ?? 0) !== 'nude') {
+    scene.actions([
+      { label: 'Leave', goto: ['gdksport', 'start'] },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Leave  [+$func(\'wrap\', \'neg\', \'(Get dressed first...]', handler: (st: GameState) => {
+    // TODO-QSP: msg $func('wrap', 'neg b', 'You need to get dressed before l...
+  } },
+    ]);
+  }
+  return;
+  scene.actions([
+    { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },
   ]);
   scene.build();
 }
@@ -353,6 +813,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'locker_room':
       enterLockerRoom(s, scene);
+      break;
+    case 'locker_room_fuck':
+      enterLockerRoomFuck(s, scene);
+      break;
+    case 'ivan_bored':
+      enterIvanBored(s, scene);
+      break;
+    case 'ivan_bored_disco':
+      enterIvanBoredDisco(s, scene);
+      break;
+    case 'locker_room_dressed':
+      enterLockerRoomDressed(s, scene);
       break;
     default:
       enterIvanVitekFight1(s, scene);

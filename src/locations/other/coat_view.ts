@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -154,38 +154,171 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   (s as any).shop_utils_view['number'] = qspUntranslated(s, "ARGS[3]", { location: "coat_view" });
   (s as any).shop_utils_view['discount'] = qspUntranslated(s, "ARGS[4]", { location: "coat_view" });
   qspCall(s, 'stat', '');
-  scene.img(`${qspFunc(s, '\'$coat_image\'', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['\'number\''])}`);
+  scene.img(`${qspFunc(s, '$coat_image', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number'])}`);
   // TODO-QSP: gs 'coat_attributes', $shop_utils_view['type'], shop_utils_view['number']
   if (((s as any).CoatWarm ?? 0) === 1) {
     scene.text('It\'ll keep you fairly warm down to -10C.');
   } else {
-    scene.text('It will handle temperatures down to -20C.');
-    if (((s as any).CoatWarm ?? 0) === 3) {
-      scene.text('You will be nice and warm even in the depths of winter.');
+    if (((s as any).CoatWarm ?? 0) === 2) {
+      scene.text('It will handle temperatures down to -20C.');
+    } else {
+      if (((s as any).CoatWarm ?? 0) === 3) {
+        scene.text('You will be nice and warm even in the depths of winter.');
+      }
     }
-    if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
-      // TODO-QSP: xgt 'coat_view', 'view_item_shop'
-    }
-    if (qspFunc(s, 'coats', 'is_wearing', qspUntranslated(s, "\u00000\u0000", { location: "coat_view" }), qspUntranslated(s, "\u00001\u0000", { location: "coat_view" }))) {
-      // TODO-QSP: xgt 'coat_view', 'view_item_wearing'
-    }
-    if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
-      // TODO-QSP: xgt 'coat_view', 'view_item_wardrobe'
-    }
-    if (((s as any).shop_utils_view ?? 0)?.['link'] === 'storage') {
-      // TODO-QSP: xgt 'coat_view', 'view_item_storage'
-    }
-    if (((s as any).shop_utils_view ?? 0)?.['link'] === 'unwanted') {
-      // TODO-QSP: xgt 'coat_view', 'view_item_unwanted'
-    }
-    return;
-    scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
+  }
+  if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
+    // TODO-QSP: xgt 'coat_view', 'view_item_shop'
+  }
+  if (qspFunc(s, 'coats', 'is_wearing', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
+    // TODO-QSP: xgt 'coat_view', 'view_item_wearing'
+  }
+  if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
+    // TODO-QSP: xgt 'coat_view', 'view_item_wardrobe'
+  }
+  if (((s as any).shop_utils_view ?? 0)?.['link'] === 'storage') {
+    // TODO-QSP: xgt 'coat_view', 'view_item_storage'
+  }
+  if (((s as any).shop_utils_view ?? 0)?.['link'] === 'unwanted') {
+    // TODO-QSP: xgt 'coat_view', 'view_item_unwanted'
+  }
+  return;
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'coat_view', 'view_grid', $shop_utils_view['link']
+  } },
+  ]);
+  scene.build();
+}
+
+function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
+  if (qspFunc(s, 'coats', 'is_owned', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
+    scene.text('You already own this item.');
+    return;
+  }
+  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? {})?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? {})?.['type'] + '_coats', ((s as any).shop_utils_view ?? 0)?.['number']);
+  (s as any).shop_utils_view['base_price'] = ((s as any).CoatPrice ?? 0);
+  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['base_price'] * Math.max(0, 100 - ((s as any).shop_utils_view ?? {})?.['discount_total']) / 100;
+  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
+  if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['base_price']) {
+    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
+  } else {
+    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
+    // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
+  }
+  // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
+  if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['price']) === 0) {
+    scene.text('You cannot afford this coat.');
+  } else {
+    scene.actions([
+      { label: 'Buy (<<$shop_utils_view[\'price_string\']>>)', handler: (st: GameState) => {
+    // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
+    // TODO-QSP: gs 'coats', 'add_item', $shop_utils_view['type'], shop_utils_view['number']
+    dynamicGoto(st, 'loc', 'loc_arg');
   } },
     ]);
   }
   return;
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
+  scene.text('You are wearing this coat.');
+  if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
+    scene.actions([
+      { label: 'Strip out of your coat', handler: (st: GameState) => {
+    qspCall(s, 'coats', 'strip');
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['wardrobe', 'main'] },
+    ]);
+  }
+  return;
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    // TODO-QSP: gt 'coat_view', 'view_grid', $shop_utils_view['link']
+  } },
+  ]);
+  scene.build();
+}
+
+function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'coat_view', 'storage_options');
+  return;
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    // TODO-QSP: gt 'coat_view', 'view_grid', $shop_utils_view['link']
+  } },
+    { label: 'Wear', handler: (st: GameState) => {
+    // TODO-QSP: gs 'coats', 'wear', $shop_utils_view['type'], shop_utils_view['number']
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['wardrobe', 'main'] },
+  ]);
+  scene.build();
+}
+
+function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
+  scene.text('This coat is in storage.');
+  qspCall(s, 'coat_view', 'storage_options');
+  return;
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    // TODO-QSP: gt 'coat_view', 'view_grid', $shop_utils_view['link']
+  } },
+  ]);
+  scene.build();
+}
+
+function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
+  scene.text('This coat is unwanted.');
+  qspCall(s, 'coat_view', 'storage_options');
+  return;
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    // TODO-QSP: gt 'coat_view', 'view_grid', $shop_utils_view['link']
+  } },
+  ]);
+  scene.build();
+}
+
+function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
+  if (qspFunc(s, 'coats', 'is_owned', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
+    // TODO-QSP: exit
+  }
+  if (qspFunc(s, 'coats', 'in_wardrobe', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
+    scene.actions([
+      { label: 'Move to wardrobe', handler: (st: GameState) => {
+    // TODO-QSP: gs 'coats', 'move_to_wardrobe', $shop_utils_view['type'], shop_utils_view['number']
+    // TODO-QSP: gt 'coat_view', 'view_item', $shop_utils_view['link'], $shop_utils_view['type'], shop_utils_view['nu...
+  } },
+    ]);
+  }
+  if (qspFunc(s, 'coats', 'is_immutable', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
+    // TODO-QSP: exit
+  }
+  if (qspFunc(s, 'coats', 'in_storage', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
+    scene.actions([
+      { label: 'Move to storage', handler: (st: GameState) => {
+    // TODO-QSP: gs 'coats', 'move_to_storage', $shop_utils_view['type'], shop_utils_view['number']
+    // TODO-QSP: gt 'coat_view', 'view_item', $shop_utils_view['link'], $shop_utils_view['type'], shop_utils_view['nu...
+  } },
+    ]);
+  }
+  if (qspFunc(s, 'coats', 'in_unwanted', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
+    scene.actions([
+      { label: 'Move to unwanted', handler: (st: GameState) => {
+    // TODO-QSP: gs 'coats', 'move_to_unwanted', $shop_utils_view['type'], shop_utils_view['number']
+    // TODO-QSP: gt 'coat_view', 'view_item', $shop_utils_view['link'], $shop_utils_view['type'], shop_utils_view['nu...
+  } },
+    ]);
+  }
+  // TODO-QSP: act $func('wrap', 'neg', 'Throw this coats away'):
+  // TODO-QSP: gs 'coats', 'remove_item', $shop_utils_view['type'], shop_utils_view['number']
+  // TODO-QSP: gt 'coat_view', 'view_grid', $shop_utils_view['link']
   scene.build();
 }
 
@@ -215,6 +348,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'view_item':
       enterViewItem(s, scene);
+      break;
+    case 'view_item_shop':
+      enterViewItemShop(s, scene);
+      break;
+    case 'view_item_wearing':
+      enterViewItemWearing(s, scene);
+      break;
+    case 'view_item_wardrobe':
+      enterViewItemWardrobe(s, scene);
+      break;
+    case 'view_item_storage':
+      enterViewItemStorage(s, scene);
+      break;
+    case 'view_item_unwanted':
+      enterViewItemUnwanted(s, scene);
+      break;
+    case 'storage_options':
+      enterStorageOptions(s, scene);
       break;
     default:
       enterFilterBuilder(s, scene);

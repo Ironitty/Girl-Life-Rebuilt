@@ -17,17 +17,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'boylove', 'figure');
     }
   } else {
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
-      qspCall(s, 'boylove', 'tits');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
-      qspCall(s, 'boylove', 'figure');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 15) {
-      qspCall(s, 'boylove', 'tits');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
-      qspCall(s, 'boylove', 'figure');
+    if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
+        qspCall(s, 'boylove', 'tits');
+      }
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
+        qspCall(s, 'boylove', 'figure');
+      }
+    } else {
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 15) {
+        qspCall(s, 'boylove', 'tits');
+      }
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
+        qspCall(s, 'boylove', 'figure');
+      }
     }
   }
   scene.actions([
@@ -77,7 +80,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
@@ -107,37 +110,42 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    // TODO-QSP: dynamic text: <<$npcdesc>> leads you confidently in the dance.
-    scene.text(`${((s as any).npcdesc ?? 0)} leads you confidently in the dance.`);
-    // TODO-QSP: dynamic text: <<$npcdesc>> grabs your ass while dancing and presses against you. You can feel ...
-    scene.text(`${((s as any).npcdesc ?? 0)} grabs your ass while dancing and presses against you. You can feel his hard cock against your stomach through the clothes.`);
-    scene.text('He whispers to you, Let\'s go to the toilet.');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      // TODO-QSP: dynamic text: <<$npcdesc>> leads you confidently in the dance.
+      scene.text(`${((s as any).npcdesc ?? 0)} leads you confidently in the dance.`);
       scene.actions([
-        { label: 'Finish the dance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+        { label: 'Finish the dance', handler: (st: GameState) => {
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    // TODO-QSP: xgt 'kafeM', 'end'
   } },
       ]);
     } else {
-      scene.actions([
-        { label: 'Finish the dance', handler: (st: GameState) => {
+      // TODO-QSP: dynamic text: <<$npcdesc>> grabs your ass while dancing and presses against you. You can feel ...
+      scene.text(`${((s as any).npcdesc ?? 0)} grabs your ass while dancing and presses against you. You can feel his hard cock against your stomach through the clothes.`);
+      scene.text('He whispers to you, Let\'s go to the toilet.');
+      qspCall(s, 'willpower', 'sex', 'resist', 'medium');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Finish the dance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Finish the dance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
     // TODO-QSP: xgt 'kafeM', 'end'
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Finish the dance', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
-    // TODO-QSP: xgt 'kafeM', 'end'
-  } },
-      { label: 'Go to the toilet', handler: (st: GameState) => {
+        ]);
+      }
+      scene.actions([
+        { label: 'Go to the toilet', handler: (st: GameState) => {
     // TODO-QSP: xgt 'kafeM', 'tualet'
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

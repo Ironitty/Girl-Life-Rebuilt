@@ -5,9 +5,18 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'lusso') {
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'fashionista') {
+    if (((s as any).locArgs?.[0] ?? 0) === 'salacious') {
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'eroto') {
+      if (((s as any).locArgs?.[0] ?? 0) === 'fashionista') {
+      } else {
+        if (((s as any).locArgs?.[0] ?? 0) === 'cats') {
+        } else {
+          if (((s as any).locArgs?.[0] ?? 0) === 'eroto') {
+          } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 'danilovich') {
+            }
+          }
+        }
       }
     }
   }

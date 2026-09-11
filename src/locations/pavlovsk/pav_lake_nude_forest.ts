@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Follow the girl', handler: (st: GameState) => {
+          { label: 'Follow the girl [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['pav_lake_nude_events', 'pav_lake_nude_forest_piss'] },
         ]);
@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Spy on nudists', handler: (st: GameState) => {
+          { label: 'Spy on nudists [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'pav_lake_nude_events', 'pav_lake_nude_nudist');
@@ -61,7 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Spy on girl going for a pee', handler: (st: GameState) => {
+          { label: 'Spy on girl going for a pee [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'voyeur', 10);

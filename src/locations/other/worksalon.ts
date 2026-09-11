@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -14,25 +16,27 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).salonjobrand ?? 0) === 2  &&  ((s as any).pcs_apprnc ?? 0) > 80  &&  (!((s as any).alla ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['worksalon', '2'] }]);
   } else {
-    scene.text('As you head over to your work station, your boss comes over and leans close to you. "Go into my office and take your clothes off, then bend over my desk. I will be there shortly." He says to you as he gives your ass a slap.');
-    qspCall(s, 'willpower', 'sex', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Tell him no and go to your work station [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    if (((s as any).salonjobrand ?? 0) === 3  &&  ((s as any).salonslut ?? 0) === 1) {
+      scene.text('As you head over to your work station, your boss comes over and leans close to you. "Go into my office and take your clothes off, then bend over my desk. I will be there shortly." He says to you as he gives your ass a slap.');
+      qspCall(s, 'willpower', 'sex', 'resist');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Tell him no and go to your work station [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Tell him no and go to your work station', handler: (st: GameState) => {
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Tell him no and go to your work station [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     (st as any).salonslut = 0;
   }, goto: ['worksalon', 'start'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Do as he says', goto: ['worksalon', '3'] },
       ]);
     }
-    scene.actions([
-      { label: 'Do as he says', goto: ['worksalon', '3'] },
-    ]);
   }
   if (((s as any).masha ?? 0) > 0) {
     if (((s as any).masharab ?? 0) === 1) {
@@ -45,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Tell Masha to give you a massage', handler: (st: GameState) => {
+          { label: 'Tell Masha to give you a massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'mood', 'raise', 'tiny');
     scene.img('images/characters/city/masha/sex/s7.jpg');
@@ -111,16 +115,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      qspCall(s, 'willpower', 'foreplay', 'force', 'easy');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Ask Masha to give you a massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      if (((s as any).masha ?? 0) > 5  &&  (!((s as any).masharab ?? 0))) {
+        qspCall(s, 'willpower', 'foreplay', 'force', 'easy');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Ask Masha to give you a massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Ask Masha to give you a massage', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Ask Masha to give you a massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     scene.text('After you eat your lunch, you walk over to Masha and ask her, "Masha I am so tired, can you give me a massage? Please." Masha gives you a mischievous smile. "Yes of course, I will give you anything you want." You frown a bit at her treating you like a client.');
     scene.text('"Was that sarcasm?" She looks down and bows her had slightly, looking more like a naughty child than anything. "Forgive me, that\'s not what I meant. Please go into the booth, and I\'ll do what you want."');
@@ -189,7 +194,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Order her to lick your pussy', handler: (st: GameState) => {
+        { label: 'Order her to lick your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cuni', 'force');
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/city/masha/sex/s3.jpg');
@@ -223,7 +228,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Order her to lick your ass', handler: (st: GameState) => {
+        { label: 'Order her to lick your ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cuni', 'rimming', 'hard');
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/city/masha/sex/s4.jpg');
@@ -269,7 +274,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        ]);
+          ]);
+        }
       }
     }
     scene.actions([
@@ -334,7 +340,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Finish the massage', handler: (st: GameState) => {
+      { label: 'Finish the massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['worksalon', 'start'] },
@@ -342,7 +348,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Suck him off', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at <<$monthName>> <<day>>, <<masstime>>h', Math.floor(Math.random() * 23) + 18);
+    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at ' + qspUntranslated(s, "monthName>", { location: "worksalon" }) + ' <<day>>, <<masstime>>h', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).sexstart = 1;
     (s as any).sexvar = 6;
@@ -362,7 +368,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'earn', 1000);
     scene.img('images/locations/city/citycenter/mall/salon/wmass5.jpg');
     scene.text('You think for a moment and then smile to him and nod. "Be right back." Then you leave and fetch Masha. Once you start to undress, she does as well, following your lead. You both crawl on him, rubbing your breasts against him all over while you take turns jerking him off.');
-    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at <<$monthName>> <<day>>, <<masstime>>h', Math.floor(Math.random() * 23) + 18);
+    qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at ' + qspUntranslated(s, "monthName>", { location: "worksalon" }) + ' <<day>>, <<masstime>>h', Math.floor(Math.random() * 23) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'willpower', 'bj', 'force');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -373,7 +379,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Use Masha', handler: (st: GameState) => {
+        { label: 'Use Masha [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     // TODO-QSP: dynamic text: You see that this could take a while, and you're eager to end this. You grab Mas...
     scene.text(`You see that this could take a while, and you're eager to end this. You grab Masha by the hair and force her mouth down on his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick. She happily starts sucking him off as you pull on her hair to make her head bob up and down. He begins to moan louder and before long blows his load in Masha's mouth. She swallows it down.`);
@@ -433,7 +439,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Tell him to fuck off and return to work', handler: (st: GameState) => {
+        { label: 'Tell him to fuck off and return to work [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     (st as any).salonslut = 0;
   }, goto: ['worksalon', 'start'] },

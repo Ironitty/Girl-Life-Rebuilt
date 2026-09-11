@@ -10,106 +10,135 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 2: 1600
   // TODO-QSP: 3: 1700
   // TODO-QSP: CoatQuality ranges from 1 to 3
-  if (((s as any).ARGS ?? 0)[0] === 1) {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).CoatQuality = 2;
     (s as any).CoatStrength = 250000;
     (s as any).CoatWarm = 2;
     (s as any).CoatPrice = 1600;
   } else {
-    (s as any).CoatQuality = 2;
-    (s as any).CoatStrength = 250000;
-    (s as any).CoatWarm = 1;
-    (s as any).CoatPrice = 1600;
-    if (((s as any).ARGS ?? 0)[0] === 3) {
+    if (((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).CoatQuality = 2;
       (s as any).CoatStrength = 250000;
       (s as any).CoatWarm = 1;
       (s as any).CoatPrice = 1600;
     } else {
-      (s as any).CoatQuality = 3;
-      (s as any).CoatStrength = 300000;
-      (s as any).CoatWarm = 1;
-      (s as any).CoatPrice = 1700;
-      if (((s as any).ARGS ?? 0)[0] === 5) {
-        (s as any).CoatQuality = 1;
-        (s as any).CoatStrength = 200000;
-        (s as any).CoatWarm = 1;
-        (s as any).CoatPrice = 1500;
-      } else {
+      if (((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).CoatQuality = 2;
         (s as any).CoatStrength = 250000;
         (s as any).CoatWarm = 1;
         (s as any).CoatPrice = 1600;
-        if (((s as any).ARGS ?? 0)[0] === 7) {
-          (s as any).CoatQuality = 1;
-          (s as any).CoatStrength = 200000;
+      } else {
+        if (((s as any).locArgs?.[0] ?? 0) === 4) {
+          (s as any).CoatQuality = 3;
+          (s as any).CoatStrength = 300000;
           (s as any).CoatWarm = 1;
-          (s as any).CoatPrice = 1500;
+          (s as any).CoatPrice = 1700;
         } else {
-          (s as any).CoatQuality = 2;
-          (s as any).CoatStrength = 250000;
-          (s as any).CoatWarm = 2;
-          (s as any).CoatPrice = 1600;
-          if (((s as any).ARGS ?? 0)[0] === 9) {
-            (s as any).CoatQuality = 2;
-            (s as any).CoatStrength = 250000;
-            (s as any).CoatWarm = 2;
-            (s as any).CoatPrice = 1600;
+          if (((s as any).locArgs?.[0] ?? 0) === 5) {
+            (s as any).CoatQuality = 1;
+            (s as any).CoatStrength = 200000;
+            (s as any).CoatWarm = 1;
+            (s as any).CoatPrice = 1500;
           } else {
-            (s as any).CoatQuality = 2;
-            (s as any).CoatStrength = 250000;
-            (s as any).CoatWarm = 2;
-            (s as any).CoatPrice = 1600;
-            if (((s as any).ARGS ?? 0)[0] === 11) {
-              (s as any).CoatQuality = 3;
-              (s as any).CoatStrength = 300000;
-              (s as any).CoatWarm = 2;
-              (s as any).CoatPrice = 1700;
-            } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 6) {
               (s as any).CoatQuality = 2;
               (s as any).CoatStrength = 250000;
               (s as any).CoatWarm = 1;
               (s as any).CoatPrice = 1600;
-              if (((s as any).ARGS ?? 0)[0] === 13) {
-                (s as any).CoatQuality = 2;
-                (s as any).CoatStrength = 250000;
+            } else {
+              if (((s as any).locArgs?.[0] ?? 0) === 7) {
+                (s as any).CoatQuality = 1;
+                (s as any).CoatStrength = 200000;
                 (s as any).CoatWarm = 1;
-                (s as any).CoatPrice = 1600;
+                (s as any).CoatPrice = 1500;
               } else {
-                (s as any).CoatQuality = 3;
-                (s as any).CoatStrength = 300000;
-                (s as any).CoatWarm = 1;
-                (s as any).CoatPrice = 1700;
-                if (((s as any).ARGS ?? 0)[0] === 15) {
-                  (s as any).CoatQuality = 2;
-                  (s as any).CoatStrength = 250000;
-                  (s as any).CoatWarm = 3;
-                  (s as any).CoatPrice = 1600;
-                } else {
+                if (((s as any).locArgs?.[0] ?? 0) === 8) {
                   (s as any).CoatQuality = 2;
                   (s as any).CoatStrength = 250000;
                   (s as any).CoatWarm = 2;
                   (s as any).CoatPrice = 1600;
-                  if (((s as any).ARGS ?? 0)[0] === 17) {
+                } else {
+                  if (((s as any).locArgs?.[0] ?? 0) === 9) {
                     (s as any).CoatQuality = 2;
                     (s as any).CoatStrength = 250000;
                     (s as any).CoatWarm = 2;
                     (s as any).CoatPrice = 1600;
                   } else {
-                    (s as any).CoatQuality = 2;
-                    (s as any).CoatStrength = 250000;
-                    (s as any).CoatWarm = 2;
-                    (s as any).CoatPrice = 1600;
-                    if (((s as any).ARGS ?? 0)[0] === 19) {
-                      (s as any).CoatQuality = 3;
-                      (s as any).CoatStrength = 300000;
-                      (s as any).CoatWarm = 3;
-                      (s as any).CoatPrice = 1700;
-                    } else {
+                    if (((s as any).locArgs?.[0] ?? 0) === 10) {
                       (s as any).CoatQuality = 2;
                       (s as any).CoatStrength = 250000;
-                      (s as any).CoatWarm = 1;
+                      (s as any).CoatWarm = 2;
                       (s as any).CoatPrice = 1600;
+                    } else {
+                      if (((s as any).locArgs?.[0] ?? 0) === 11) {
+                        (s as any).CoatQuality = 3;
+                        (s as any).CoatStrength = 300000;
+                        (s as any).CoatWarm = 2;
+                        (s as any).CoatPrice = 1700;
+                      } else {
+                        if (((s as any).locArgs?.[0] ?? 0) === 12) {
+                          (s as any).CoatQuality = 2;
+                          (s as any).CoatStrength = 250000;
+                          (s as any).CoatWarm = 1;
+                          (s as any).CoatPrice = 1600;
+                        } else {
+                          if (((s as any).locArgs?.[0] ?? 0) === 13) {
+                            (s as any).CoatQuality = 2;
+                            (s as any).CoatStrength = 250000;
+                            (s as any).CoatWarm = 1;
+                            (s as any).CoatPrice = 1600;
+                          } else {
+                            if (((s as any).locArgs?.[0] ?? 0) === 14) {
+                              (s as any).CoatQuality = 3;
+                              (s as any).CoatStrength = 300000;
+                              (s as any).CoatWarm = 1;
+                              (s as any).CoatPrice = 1700;
+                            } else {
+                              if (((s as any).locArgs?.[0] ?? 0) === 15) {
+                                (s as any).CoatQuality = 2;
+                                (s as any).CoatStrength = 250000;
+                                (s as any).CoatWarm = 3;
+                                (s as any).CoatPrice = 1600;
+                              } else {
+                                if (((s as any).locArgs?.[0] ?? 0) === 16) {
+                                  (s as any).CoatQuality = 2;
+                                  (s as any).CoatStrength = 250000;
+                                  (s as any).CoatWarm = 2;
+                                  (s as any).CoatPrice = 1600;
+                                } else {
+                                  if (((s as any).locArgs?.[0] ?? 0) === 17) {
+                                    (s as any).CoatQuality = 2;
+                                    (s as any).CoatStrength = 250000;
+                                    (s as any).CoatWarm = 2;
+                                    (s as any).CoatPrice = 1600;
+                                  } else {
+                                    if (((s as any).locArgs?.[0] ?? 0) === 18) {
+                                      (s as any).CoatQuality = 2;
+                                      (s as any).CoatStrength = 250000;
+                                      (s as any).CoatWarm = 2;
+                                      (s as any).CoatPrice = 1600;
+                                    } else {
+                                      if (((s as any).locArgs?.[0] ?? 0) === 19) {
+                                        (s as any).CoatQuality = 3;
+                                        (s as any).CoatStrength = 300000;
+                                        (s as any).CoatWarm = 3;
+                                        (s as any).CoatPrice = 1700;
+                                      } else {
+                                        if (((s as any).locArgs?.[0] ?? 0) === 20) {
+                                          (s as any).CoatQuality = 2;
+                                          (s as any).CoatStrength = 250000;
+                                          (s as any).CoatWarm = 1;
+                                          (s as any).CoatPrice = 1600;
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }

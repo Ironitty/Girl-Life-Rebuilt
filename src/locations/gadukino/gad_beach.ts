@@ -85,7 +85,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  qspFunc(s, 'miroslava_schedule', 'was_here')) {
     scene.actions([{ label: 'Continue', goto: ['gad_beach', 'Mira_leaves'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['gad_beach', 'arrive_Mira_already_there'] }]);
+    if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
+      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'arrive_Mira_already_there'] }]);
+    }
   }
   scene.actions([
     { label: 'Walk to the river (0:05)', handler: (st: GameState) => {
@@ -97,14 +99,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.text('You need to put some clothes on first.');
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
-      scene.actions([
-        { label: 'Return', handler: (st: GameState) => {
+      if (((s as any).clothingworntype ?? 0) === 'nude') {
+        scene.text('You need to put some clothes on first.');
+        scene.actions([
+          { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'gad_beach', 'start', 1
   } },
-      ]);
+        ]);
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 5;
+        scene.actions([{ label: 'Continue', goto: ['gad_river', 'start'] }]);
+      }
     }
   } },
   ]);
@@ -296,47 +301,31 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
-      if (((s as any).pcs_sweat ?? 0) < 35) {
-        qspCall(s, 'sweat', 'add', 5);
-      }
-      qspCall(s, 'mood', 'raise', 'tiny');
-      if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
-        scene.img('images/characters/gadukino/mira/beachtwogirlsnude.jpg');
-        scene.text('You lie next to Mira and gossip about the villagers, enjoying the sun.');
-      } else {
-        scene.img('images/locations/gadukino/river/gadrivernude.jpg');
-        scene.text('You lie down on your towel and start sunbathing.');
-      }
-      if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
-        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
-      } else {
-        (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
-        scene.text('You smear the suntan lotion all over your body to help prevent sunburn.');
-        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
-      }
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      if (((s as any).pcs_sweat ?? 0) < 35) {
-        qspCall(s, 'sweat', 'add', 5);
-      }
-      qspCall(s, 'mood', 'raise', 'tiny');
-      if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
-        scene.img('images/characters/gadukino/mira/beachtwogirls.jpg');
-        scene.text('You lie next to Mira and gossip about trivial things, enjoying the sun.');
-      } else {
-        scene.img('images/locations/gadukino/river/gadrivergirl.jpg');
-        scene.text('You sunbathe alone on the riverbank.');
-      }
-      if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
-        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
-      } else {
-        (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
-        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
-        scene.text('You smear suntan lotion all over your body to prevent sunburn. Then, you\'re all lathered up and sunbathing a few minutes later.');
-      }
-      scene.actions([
-        { label: 'Finish sunbathing', handler: (st: GameState) => {
+      if (((s as any).clothingworntype ?? 0) === 'nude') {
+        (s as any).minut = ((s as any).minut ?? 0) + 60;
+        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+        if (((s as any).pcs_sweat ?? 0) < 35) {
+          qspCall(s, 'sweat', 'add', 5);
+        }
+        qspCall(s, 'mood', 'raise', 'tiny');
+        if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
+          scene.img('images/characters/gadukino/mira/beachtwogirlsnude.jpg');
+          scene.text('You lie next to Mira and gossip about the villagers, enjoying the sun.');
+        } else {
+          scene.img('images/locations/gadukino/river/gadrivernude.jpg');
+          scene.text('You lie down on your towel and start sunbathing.');
+        }
+        if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
+          (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
+        } else {
+          if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
+            (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+            scene.text('You smear the suntan lotion all over your body to help prevent sunburn.');
+            (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
+          }
+        }
+        scene.actions([
+          { label: 'Finish sunbathing', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 0) === 0  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
       scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex14.jpg');
       scene.text('You hear several men\'s voices rapidly approaching. Suddenly, a couple of the village boys emerge in front of you. Noticing that you are nude, they brighten up considerably. In a few minutes, despite you protesting lively, they have you on all fours and are roughly fucking you…');
@@ -363,7 +352,31 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'gad_beach', 'start', 1
     }
   } },
-        { label: 'Finish', handler: (st: GameState) => {
+        ]);
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 60;
+        if (((s as any).pcs_sweat ?? 0) < 35) {
+          qspCall(s, 'sweat', 'add', 5);
+        }
+        qspCall(s, 'mood', 'raise', 'tiny');
+        if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
+          scene.img('images/characters/gadukino/mira/beachtwogirls.jpg');
+          scene.text('You lie next to Mira and gossip about trivial things, enjoying the sun.');
+        } else {
+          scene.img('images/locations/gadukino/river/gadrivergirl.jpg');
+          scene.text('You sunbathe alone on the riverbank.');
+        }
+        if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
+          (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
+        } else {
+          if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
+            (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+            (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
+            scene.text('You smear suntan lotion all over your body to prevent sunburn. Then, you\'re all lathered up and sunbathing a few minutes later.');
+          }
+        }
+        scene.actions([
+          { label: 'Finish', handler: (st: GameState) => {
     (s as any).temp_rand = Math.floor(Math.random() * 10) + 0;
     if (((s as any).temp_rand ?? 0) === 0  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
       scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex15.jpg');
@@ -390,19 +403,23 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex16.jpg');
-      scene.text('After a while, you hear voices rapidly approaching from the village. You see the village boys emerge from the bushes in a couple of minutes. Seeing Mira, they smile obscenely, and without hesitation, they quickly surround her as she lies on the sand. You sit up and watch as they fuck her in all her holes…');
-      qspCall(s, 'arousal', 'voyeur_sex', 30, 'gangbang', 'dom');
-      qspCall(s, 'arousal', 'end');
-      // TODO-QSP: gt 'gad_beach', 'start', 1
-      scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+      if (((s as any).temp_rand ?? 0) === 1  &&  qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 15  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
+        scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex16.jpg');
+        scene.text('After a while, you hear voices rapidly approaching from the village. You see the village boys emerge from the bushes in a couple of minutes. Seeing Mira, they smile obscenely, and without hesitation, they quickly surround her as she lies on the sand. You sit up and watch as they fuck her in all her holes…');
+        qspCall(s, 'arousal', 'voyeur_sex', 30, 'gangbang', 'dom');
+        qspCall(s, 'arousal', 'end');
+        scene.actions([
+          { label: 'Finish', handler: (st: GameState) => {
     // TODO-QSP: gt 'gad_beach', 'start', 1
   } },
-      ]);
+        ]);
+      } else {
+        // TODO-QSP: gt 'gad_beach', 'start', 1
+      }
     }
   } },
-      ]);
+        ]);
+      }
     }
   } },
       ]);
@@ -563,7 +580,7 @@ function enterSecondThoughts(s: GameState, scene: SceneBuilder): void {
 function enterMira(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  if (((s as any).ARGS ?? 0)[1] === 1) {
+  if (((s as any).locArgs?.[1] ?? 0) === 1) {
     if (((s as any).MiraVars ?? 0)?.['QW'] < 12) {
       scene.img('images/characters/gadukino/mira/mirabeach.jpg');
     } else {
@@ -588,30 +605,205 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('You and Mira are chatting about trivial things.');
     } else {
-      scene.text('You decide to speak with Mira, "So what is there to do here in the village?"');
-      scene.text('"It\'s a lot quieter than a town, but we have a shop, this lovely beach, and some beautiful walks. Other than that, there are only the Gopnik guys, but they are just after one thing, and I don\'t want that. Plus, dad would kill me."');
-      if (((s as any).MiraVars ?? 0)?.['QW'] === 8) {
-        scene.text('Mira breaks the silence, "What brings you here to the village?"');
-        scene.text('"My granma-ma and Pop-pop live here. My folks like to come here over the summer. They think the country air will be good for me."');
+      if (((s as any).MiraVars ?? 0)?.['QW'] === 7) {
+        scene.text('You decide to speak with Mira, "So what is there to do here in the village?"');
+        scene.text('"It\'s a lot quieter than a town, but we have a shop, this lovely beach, and some beautiful walks. Other than that, there are only the Gopnik guys, but they are just after one thing, and I don\'t want that. Plus, dad would kill me."');
       } else {
-        scene.text('You talk to Mira about what it is like living in the village.');
-        if (((s as any).MiraVars ?? 0)?.['QW'] <= 14) {
-          scene.text('Mira asks you about Pavlovsk, and you tell her all about it.');
+        if (((s as any).MiraVars ?? 0)?.['QW'] === 8) {
+          scene.text('Mira breaks the silence, "What brings you here to the village?"');
+          scene.text('"My granma-ma and Pop-pop live here. My folks like to come here over the summer. They think the country air will be good for me."');
         } else {
-          scene.text('You and Mira talk about clothes and shopping, she has a thing for shoes but can\'t wear pretty heels because of all the mud.');
-          if (((s as any).MiraVars ?? 0)?.['QW'] <= 29  ||  ((s as any).MiraVars ?? 0)?.['prostitute'] === 0) {
-            scene.text('It is always lovely to talk with Mira, and you gossip about boys.');
+          if (((s as any).MiraVars ?? 0)?.['QW'] <= 10) {
+            scene.text('You talk to Mira about what it is like living in the village.');
           } else {
-            scene.text('You and Mira talk about her being the village prostitute and how she can improve her performance.');
+            if (((s as any).MiraVars ?? 0)?.['QW'] <= 14) {
+              scene.text('Mira asks you about Pavlovsk, and you tell her all about it.');
+            } else {
+              if (((s as any).MiraVars ?? 0)?.['QW'] <= 19) {
+                scene.text('You and Mira talk about clothes and shopping, she has a thing for shoes but can\'t wear pretty heels because of all the mud.');
+              } else {
+                if (((s as any).MiraVars ?? 0)?.['QW'] <= 29  ||  ((s as any).MiraVars ?? 0)?.['prostitute'] === 0) {
+                  scene.text('It is always lovely to talk with Mira, and you gossip about boys.');
+                } else {
+                  if (((s as any).MiraVars ?? 0)?.['QW'] >= 30  &&  ((s as any).MiraVars ?? 0)?.['prostitute'] > 0) {
+                    scene.text('You and Mira talk about her being the village prostitute and how she can improve her performance.');
+                  }
+                }
+              }
+            }
           }
         }
-        scene.actions([
-          { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
-        ]);
       }
     }
+  } },
+    { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'gad_beach', 'start', 1
+  } },
+  ]);
+  scene.build();
+}
+
+function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/gadukino/river/mitkaguysriver.jpg');
+  // TODO-QSP: dynamic text: "Oh, hi, <<$pcs_nickname>>. So it's just you today?" Kolyamba grinned.
+  scene.text(`"Oh, hi, ${((s as any).pcs_nickname ?? 0)}. So it's just you today?" Kolyamba grinned.`);
+  (s as any).temp_randA = Math.floor(Math.random() * 11) + 0;
+  if (((s as any).temp_randA ?? 0) <= 4) {
+    scene.text('"There doesn\'t seem to be anyone else around, and all of us are as horny as bullfrogs. Do you want to have a little fun with us? Come on, spread your legs, show us your pussy and start playing with yourself…"');
+  } else {
+    if (((s as any).temp_randA ?? 0) <= 8) {
+      scene.text('"There doesn\'t seem to be anyone around, and we are as horny as bullfrogs. Do you want to have a little fun with us? How about you give us a blowjob? We\'ll be really grateful, ha-ha!"');
+    } else {
+      scene.text('"Ah, no, Mira, it\'s just our other hot babe. Come here, lovely. We have something exceptional for you."');
+    }
+  }
+  if (((s as any).temp_randA ?? 0) < 4) {
+    scene.actions([
+      { label: 'Pleasure Kolyamba', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A61');
+    qspCall(s, 'npcStat', 'A62', 'a');
+    (s as any).pose = 0;
+    scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex.jpg');
+    scene.text('You quickly take off your pants and climb onto Kolyamba, grabbing his cock, and leading it inside you.');
+    qspCall(s, 'arousal', 'vaginal', 10, ((s as any).npcID ?? 0), 'sub', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pleasure Vasyan', handler: (st: GameState) => {
+    (s as any).pose = 0;
+    (s as any).temp_randB = Math.floor(Math.random() * 3) + 0;
+    if ((!((s as any).temp_randB ?? 0))) {
+      scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex1.jpg');
+      scene.text('Vasyan rolls you onto your back, sticking his cock into your wet pussy.');
+      qspCall(s, 'arousal', 'vaginal', 10, ((s as any).npcID1 ?? 0), 'sub', 'group');
+    } else {
+      if (((s as any).temp_randB ?? 0) === 1) {
+        scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex2.jpg');
+        scene.text('Vasya steps up to you and slaps you in the face while pulling out his cock, forcing you on your knees so he can beat you with his dick.');
+        scene.text('He forcefully shoves the cock into your mouth and cums lavishly in your mouth…');
+        qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+        qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1);
+      } else {
+        qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+        scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex3.jpg');
+        scene.text('Vasyan forces you on all four and starts pumping his dick into your ass.');
+        qspCall(s, 'arousal', 'anal', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+        qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0), 1);
+      }
+    }
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'gad_beach', 'start', 1
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).temp_randA ?? 0) < 8) {
+      scene.actions([
+        { label: 'Pleasure Kolyamba', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A61');
+    qspCall(s, 'npcStat', 'A62', 'a');
+    scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex4.jpg');
+    scene.text('You get down on your knees and start licking Kolyamba\'s dick. Then, after a while, you start sucking it like a popsicle…');
+    scene.text('He only manages to hold out for a short time finishing in your mouth…');
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pleasure Vasyan', handler: (st: GameState) => {
+    (s as any).pose = 0;
+    (s as any).temp_randC = Math.floor(Math.random() * 3) + 0;
+    if ((!((s as any).temp_randC ?? 0))) {
+      scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex5.jpg');
+      scene.text('Vasyan lays you onto your back, using his fingers to stimulate your vaginal lips while sticking his cock into your wet pussy.');
+      qspCall(s, 'arousal', 'vaginal', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+      qspCall(s, 'arousal', 'end');
+    } else {
+      if (((s as any).temp_randC ?? 0) === 1) {
+        scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex6.jpg');
+        scene.text('Vasyan roughs you up with his hands and then takes out his dick, forcing you to suck him off.');
+        scene.text('He shoves the cock into your mouth and soon cums violently…');
+        qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+        qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1);
+      } else {
+        qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+        scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex7.jpg');
+        scene.text('Vasyan forces you on all fours, telling you that you will enjoy this. Then, he pulls out his dick and starts fucking you in the ass.');
+        qspCall(s, 'arousal', 'anal', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+        qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0), 1);
+      }
+    }
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'gad_beach', 'start', 1
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Pleasure Kolyamba', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A61');
+    qspCall(s, 'npcStat', 'A62', 'a');
+    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex8.jpg');
+    scene.text('Kolyamba looks you in the eyes and asks if you trust him. You gulp and reply, "Yes." He takes out a blindfold and places it over your eyes so you can\'t see what\'s happening next. Kolyamba then proceeds to take both of your clothes off. You stand in front of him, blindfolded, naked, and full of anticipation.');
+    scene.text('He orders you to get down on your knees. He grabs your head and tells you to open your mouth. While pleasuring him, he orders you to stop and moves the cock away from the mouth. He then lies down on the ground and tells you to mount him. You move on top of him while he grabs his cock and leads it inside your ass. He frantically starts thrusting his cock inside your ass, cumming after a short while.');
+    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
+    qspCall(s, 'arousal', 'anal', (-10), ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pleasure Vasyan', handler: (st: GameState) => {
+    (s as any).pose = 1;
+    (s as any).temp_randD = Math.floor(Math.random() * 3) + 0;
+    if ((!((s as any).temp_randD ?? 0))) {
+      scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex9.jpg');
+      scene.text('Vasyan tells you he heard about a sex position where both of you will reach ecstasy. Intrigued by this, you take your clothes off and start caressing his cock. He removes your hand from his cock and tells you to get down on your hands and knees. Vasya walks behind you, grabs his cock and enters you from behind. You gasp as he mounts you. Soon enough, you both cry out in ecstasy cumming at the same time.');
+      qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+      qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID1 ?? 0), 1);
+    } else {
+      if (((s as any).temp_randD ?? 0) === 1) {
+        scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex10.jpg');
+        scene.text('Vasyan steps closer to you and tells you he wants his cock sucked. You drop down on your knees and start sucking his glans.');
+        scene.text('Feeling dissatisfied by your performance, he grabs you by the head. He forces his cock deep down your throat, mumbling something about teaching you how to do it properly. Finally, he finishes inside your mouth…');
+        qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough', 'deepthroat');
+        qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1);
+      } else {
+        qspCall(s, 'boyStat', 'A62');
+        qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+        scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex11.jpg');
+        scene.text('Vasyan forces you to your hands and knees and starts thrusting his dick into your anus.');
+        qspCall(s, 'arousal', 'anal', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
+        qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0), 1);
+      }
+    }
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'gad_beach', 'start', 1
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  }
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'gad_beach', 'start', 1
   } },
   ]);
   scene.build();
@@ -643,6 +835,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'Mira':
       enterMira(s, scene);
+      break;
+    case 'GuysBeach':
+      enterGuysBeach(s, scene);
       break;
     default:
       enterStart(s, scene);

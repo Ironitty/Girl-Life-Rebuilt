@@ -18,17 +18,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'boylove', 'figure');
     }
   } else {
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
-      qspCall(s, 'boylove', 'tits');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
-      qspCall(s, 'boylove', 'figure');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 15) {
-      qspCall(s, 'boylove', 'tits');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
-      qspCall(s, 'boylove', 'figure');
+    if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
+        qspCall(s, 'boylove', 'tits');
+      }
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
+        qspCall(s, 'boylove', 'figure');
+      }
+    } else {
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 15) {
+        qspCall(s, 'boylove', 'tits');
+      }
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
+        qspCall(s, 'boylove', 'figure');
+      }
     }
   }
   scene.actions([
@@ -56,14 +59,18 @@ function enterA(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', goto: ['parkM', 'aa'] },
     ]);
   } else {
-    // TODO-QSP: dynamic text: <<$npcdesc>> to take you by the hand and leads you through the deserted paths of...
-    scene.text(`${((s as any).npcdesc ?? 0)} to take you by the hand and leads you through the deserted paths of the park.`);
-    // TODO-QSP: dynamic text: <<$npcdesc>> hugs your waist. "You're a cool girl." he said and leans in to kiss...
-    scene.text(`${((s as any).npcdesc ?? 0)} hugs your waist. "You're a cool girl." he said and leans in to kiss you on the lips.`);
-    scene.actions([
-      { label: 'Further', goto: ['parkM', 'aa'] },
-      { label: 'Kiss', goto: ['parkM', 'kiss'] },
-      { label: 'Step back', handler: (st: GameState) => {
+    if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      // TODO-QSP: dynamic text: <<$npcdesc>> to take you by the hand and leads you through the deserted paths of...
+      scene.text(`${((s as any).npcdesc ?? 0)} to take you by the hand and leads you through the deserted paths of the park.`);
+      scene.actions([
+        { label: 'Further', goto: ['parkM', 'aa'] },
+      ]);
+    } else {
+      // TODO-QSP: dynamic text: <<$npcdesc>> hugs your waist. "You're a cool girl." he said and leans in to kiss...
+      scene.text(`${((s as any).npcdesc ?? 0)} hugs your waist. "You're a cool girl." he said and leans in to kiss you on the lips.`);
+      scene.actions([
+        { label: 'Kiss', goto: ['parkM', 'kiss'] },
+        { label: 'Step back', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
     // TODO-QSP: dynamic text: <<$npcdesc>> does not look happy as you pull away from his kiss, "Okay, <<$pcs_n...
     scene.text(`${((s as any).npcdesc ?? 0)} does not look happy as you pull away from his kiss, "Okay, ${((s as any).pcs_nickname ?? 0)}, lets keep on trekking."`);
@@ -71,7 +78,8 @@ function enterA(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['parkM', 'aa'] },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }
@@ -176,8 +184,11 @@ function enterSexrand3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
       scene.actions([{ label: 'Continue', goto: ['pav_park', 'start'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pushkin_parks', 'start'] }]);
-      scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+      if (((s as any).home ?? 0)?.['town'] === 'oldtown') {
+        scene.actions([{ label: 'Continue', goto: ['pushkin_parks', 'start'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+      }
     }
   } },
   ]);
@@ -198,8 +209,11 @@ function enterSexrand4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
       scene.actions([{ label: 'Continue', goto: ['pav_park', 'start'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pushkin_parks', 'start'] }]);
-      scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+      if (((s as any).home ?? 0)?.['town'] === 'oldtown') {
+        scene.actions([{ label: 'Continue', goto: ['pushkin_parks', 'start'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
+      }
     }
   } },
   ]);
@@ -220,8 +234,11 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp ?? 0) === 1) {
       scene.img('images/locations/gadukino/hunters/hanterhands.jpg');
     } else {
-      scene.img('images/locations/pavlovsk/park/holding_hands_park_1.jpg');
-      scene.img('images/locations/shared/date/parkholding.jpg');
+      if (((s as any).temp ?? 0) === 2) {
+        scene.img('images/locations/pavlovsk/park/holding_hands_park_1.jpg');
+      } else {
+        scene.img('images/locations/shared/date/parkholding.jpg');
+      }
     }
     scene.text('<center>You hold his hand as you walk through the park.</center>');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -239,13 +256,36 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    // TODO-QSP: dynamic text: <center>While walking for an hour <<$npcdesc>> stops to give you a warm hug.</ce...
-    scene.text(`<center>While walking for an hour ${((s as any).npcdesc ?? 0)} stops to give you a warm hug.</center>`);
-    if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 75) {
-      // TODO-QSP: dynamic text: <center>While walking for an hour <<$npcdesc>> stops occasionally to give you a ...
-      scene.text(`<center>While walking for an hour ${((s as any).npcdesc ?? 0)} stops occasionally to give you a tender kiss.</center>`);
+    if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 65) {
+      // TODO-QSP: dynamic text: <center>While walking for an hour <<$npcdesc>> stops to give you a warm hug.</ce...
+      scene.text(`<center>While walking for an hour ${((s as any).npcdesc ?? 0)} stops to give you a warm hug.</center>`);
       scene.actions([
-        { label: 'Gladly accept with a warm smile', handler: (st: GameState) => {
+        { label: 'Hug him', handler: (st: GameState) => {
+    scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
+    (s as any).temp = Math.floor(Math.random() * 4) + 1;
+    scene.img(`images/locations/pavlovsk/park/hugging_park_${((s as any).temp ?? 0)}.jpg`);
+    // TODO-QSP: dynamic text: <center>You enjoy <<$npcdesc>>'s warm embrace.</center>
+    scene.text(`<center>You enjoy ${((s as any).npcdesc ?? 0)}'s warm embrace.</center>`);
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    scene.actions([
+      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+    ]);
+  } },
+        { label: 'Pull away', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: <center><<$npcdesc>> looks rather disappointed as you continue your walk through...
+    scene.text(`<center>${((s as any).npcdesc ?? 0)} looks rather disappointed as you continue your walk through the park.</center>`);
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    scene.actions([
+      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] < 75) {
+        // TODO-QSP: dynamic text: <center>While walking for an hour <<$npcdesc>> stops occasionally to give you a ...
+        scene.text(`<center>While walking for an hour ${((s as any).npcdesc ?? 0)} stops occasionally to give you a tender kiss.</center>`);
+        scene.actions([
+          { label: 'Gladly accept with a warm smile', handler: (st: GameState) => {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
     (s as any).temp = Math.floor(Math.random() * 5) + 1;
     scene.img(`images/locations/pavlovsk/park/kissing_park_${((s as any).temp ?? 0)}.jpg`);
@@ -256,7 +296,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
       { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
-        { label: 'Pull away', handler: (st: GameState) => {
+          { label: 'Pull away', handler: (st: GameState) => {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/rejectedkiss.jpg');
     // TODO-QSP: dynamic text: <center><<$npcdesc>> looks rather disappointed as you continue your walk through...
@@ -266,15 +306,18 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
       { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
-      ]);
-    } else {
-      (s as any).temploverrand = Math.floor(Math.random() * 3) + 1;
-      if (((s as any).temploverrand ?? 0) === 1) {
-      }
-      // TODO-QSP: dynamic text: <center><<$npcdesc>> takes you on a nice walk through the park…</center>
-      scene.text(`<center>${((s as any).npcdesc ?? 0)} takes you on a nice walk through the park…</center>`);
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
+        ]);
+      } else {
+        (s as any).temploverrand = Math.floor(Math.random() * 3) + 1;
+        if (((s as any).temploverrand ?? 0) === 1) {
+        } else {
+          if (((s as any).temploverrand ?? 0) === 2) {
+          }
+        }
+        // TODO-QSP: dynamic text: <center><<$npcdesc>> takes you on a nice walk through the park…</center>
+        scene.text(`<center>${((s as any).npcdesc ?? 0)} takes you on a nice walk through the park…</center>`);
+        scene.actions([
+          { label: 'Continue', handler: (st: GameState) => {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
     if (((s as any).temploverrand ?? 0) < 3) {
       (s as any).temp = Math.floor(Math.random() * 5) + 1;
@@ -290,29 +333,9 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
       { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
-    scene.actions([
-      { label: 'Hug him', handler: (st: GameState) => {
-    scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
-    (s as any).temp = Math.floor(Math.random() * 4) + 1;
-    scene.img(`images/locations/pavlovsk/park/hugging_park_${((s as any).temp ?? 0)}.jpg`);
-    // TODO-QSP: dynamic text: <center>You enjoy <<$npcdesc>>'s warm embrace.</center>
-    scene.text(`<center>You enjoy ${((s as any).npcdesc ?? 0)}'s warm embrace.</center>`);
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
-    scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
-    ]);
-  } },
-      { label: 'Pull away', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: <center><<$npcdesc>> looks rather disappointed as you continue your walk through...
-    scene.text(`<center>${((s as any).npcdesc ?? 0)} looks rather disappointed as you continue your walk through the park.</center>`);
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
-    scene.actions([
-      { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
-    ]);
-  } },
-    ]);
   }
   scene.build();
 }

@@ -8,7 +8,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['lesbian_count'] > 0) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   } else {
-    qspCall(s, 'mood', 'raise', 'tiny');
+    if (((s as any).stat ?? 0)?.['lesbian_count'] === 0) {
+      qspCall(s, 'mood', 'raise', 'tiny');
+    }
   }
   (s as any).danceevtimes = ((s as any).danceevtimes ?? 0) + (1);
   qspCall(s, 'stat', '');
@@ -26,21 +28,26 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
   } else {
-    scene.text('You see another girl in the class doing a handstand.');
-    if (((s as any).dancegevtipe ?? 0) === 2) {
-      scene.text('You watch another girl warming up before she starts practicing.');
+    if (((s as any).dancegevtipe ?? 0) === 1) {
+      scene.text('You see another girl in the class doing a handstand.');
     } else {
-      scene.text('You watch as a girl goes from doing a handstand to the splits, before noticing that she isn\'t wearing any panties and has both her holes on show.');
-      if (((s as any).stat ?? 0)?.['lesbian_count'] > 0) {
-        qspCall(s, 'arousal', 'voyeur', 5);
+      if (((s as any).dancegevtipe ?? 0) === 2) {
+        scene.text('You watch another girl warming up before she starts practicing.');
+      } else {
+        if (((s as any).dancegevtipe ?? 0) === 3) {
+          scene.text('You watch as a girl goes from doing a handstand to the splits, before noticing that she isn\'t wearing any panties and has both her holes on show.');
+          if (((s as any).stat ?? 0)?.['lesbian_count'] > 0) {
+            qspCall(s, 'arousal', 'voyeur', 5);
+          }
+          qspCall(s, 'stat', '');
+        }
       }
-      qspCall(s, 'stat', '');
     }
-    qspCall(s, 'arousal', 'end');
-    scene.actions([
-      { label: 'Start class', goto: ['gdksport', 'dance2'] },
-    ]);
   }
+  qspCall(s, 'arousal', 'end');
+  scene.actions([
+    { label: 'Start class', goto: ['gdksport', 'dance2'] },
+  ]);
   scene.build();
 }
 

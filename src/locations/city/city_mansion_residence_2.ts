@@ -12,8 +12,11 @@ function enterYliving(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[7] === 2) {
     scene.img('images/locations/city/suburb/mansion/y_living.jpg');
   } else {
-    scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
-    scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    if (((s as any).ymanrem ?? 0)[7] === 1) {
+      scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
+    } else {
+      scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    }
   }
   if (((s as any).ymanrem ?? 0)[7] === 2) {
     scene.text('A large room where you can watch <a href="exec:gt \'TV\',\'start\'">TV</a>, or relax on your luxury <a href="exec:gt \'divan\', \'start\'">leather sofa</a>.');
@@ -38,8 +41,11 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[8] === 2) {
     scene.img('images/locations/city/suburb/mansion/y_lounge.jpg');
   } else {
-    scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
-    scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    if (((s as any).ymanrem ?? 0)[8] === 1) {
+      scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
+    } else {
+      scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    }
   }
   if (((s as any).ymanrem ?? 0)[8] === 2) {
     scene.text('The lounge, where you can work on your tapestries and relax in front of the fireplace.');
@@ -54,11 +60,13 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
             { label: 'Start a new tapestry', goto: ['sewing', 'tapestry'] },
           ]);
         } else {
-          // TODO-QSP: dynamic text: Your tapestry is <<newgobelen/10>> percent finished.
-          scene.text(`Your tapestry is ${((s as any).newgobelen ?? 0)/10} percent finished.`);
-          scene.actions([
-            { label: 'Work on the tapestry', goto: ['sewing', 'tapestry'] },
-          ]);
+          if (((s as any).newgobelen ?? 0) >= 1) {
+            // TODO-QSP: dynamic text: Your tapestry is <<newgobelen/10>> percent finished.
+            scene.text(`Your tapestry is ${((s as any).newgobelen ?? 0)/10} percent finished.`);
+            scene.actions([
+              { label: 'Work on the tapestry', goto: ['sewing', 'tapestry'] },
+            ]);
+          }
         }
       }
       if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {
@@ -82,8 +90,11 @@ function enterYlibrary(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[10] === 2) {
     scene.img('images/locations/city/suburb/mansion/y_library.jpg');
   } else {
-    scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
-    scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    if (((s as any).ymanrem ?? 0)[10] === 1) {
+      scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
+    } else {
+      scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    }
   }
   if (((s as any).ymanrem ?? 0)[10] === 2) {
     scene.text('A huge collection of books are neatly placed on the bookshelves.');
@@ -105,8 +116,11 @@ function enterYoffice(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[12] === 2) {
     scene.img('images/locations/city/suburb/mansion/y_office.jpg');
   } else {
-    scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
-    scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    if (((s as any).ymanrem ?? 0)[12] === 1) {
+      scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
+    } else {
+      scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    }
   }
   if (((s as any).ymanrem ?? 0)[12] === 2) {
     scene.text('Your work room where you spend most of the time signing important papers and handling your business needs.');
@@ -130,8 +144,11 @@ function enterYnursery(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/suburb/mansion/y_nursery.jpg');
     scene.text('<center>The neatly designed nursery room, only the best for your children.</center>');
   } else {
-    scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
-    scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    if (((s as any).ymanrem ?? 0)[9] === 1) {
+      scene.img('images/locations/city/suburb/mansion/i_finished.jpg');
+    } else {
+      scene.img('images/locations/city/suburb/mansion/i_unfinished.jpg');
+    }
   }
   if (((s as any).ymanrem ?? 0)[9] === 2) {
     qspCall(s, 'subkid', '');

@@ -79,7 +79,7 @@ function enterTLazar(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'No', handler: (st: GameState) => {
+          { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big149.jpg');
@@ -119,7 +119,7 @@ function enterTLazar(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Just a blowjob', handler: (st: GameState) => {
+        { label: 'Just a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/characters/pavlovsk/school/boy/lazar/sex/school/sportsfield/bjtalk.jpg');
     scene.text('You pop his dick out of your mouth and slowly stroke it with your hand. "I said I would give you a blowjob, nothing else."');
@@ -136,7 +136,7 @@ function enterTLazar(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/characters/pavlovsk/school/boy/lazar/sex/school/sportsfield/bj2.jpg');
     scene.text('You\'re getting a little annoyed at the way he keeps pushing things. "I said no! We can just stop if you want?"');
@@ -607,32 +607,194 @@ function enterLariskaGm_1(s: GameState, scene: SceneBuilder): void {
         { label: 'Offer to try on clothes with Lariska', goto: ['gschool_socialchg1', 'lariska_gm_2'] },
       ]);
     } else {
-      scene.text('She sees you in the store behind her and frowns but doesn\'t say anything.');
-      scene.text('"Hey, Lariska. Doing some shopping?"');
-      scene.text('She just looks at you and doesn\'t respond at all. It\'s pretty obvious she wants nothing to do with you.');
-      if (((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
-        scene.text('She sees you coming into the store behind her and, with a disgusted look on her face, says, "What are <i>you</i> doing here? This place doesn\'t sell anything slutty enough for <i>you</i> to wear."');
-        scene.text('Your face turns red with anger, and you shoot back. "At least I can make my own decisions. Are you even allowed to be here without Christina keeping an eye on you?"');
-        scene.text('She just sneers at you. "Go fuck yourself, slut." With that, she leaves the store, obviously not wanting to shop anymore.');
+      if (((s as any).npc_rel ?? 0)?.['A13'] <= 20  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 200) {
+        scene.text('She sees you in the store behind her and frowns but doesn\'t say anything.');
+        scene.text('"Hey, Lariska. Doing some shopping?"');
+        scene.text('She just looks at you and doesn\'t respond at all. It\'s pretty obvious she wants nothing to do with you.');
         scene.actions([
           { label: 'Leave the store', goto: ['pav_commercial', ''] },
           { label: 'Stay and shop alone', goto: ['shop_coco_carmen', 'start'] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: She sees you coming into the store behind her and nods at you. "Hey, <<$pcs_nick...
-        scene.text(`She sees you coming into the store behind her and nods at you. "Hey, ${((s as any).pcs_nickname ?? 0)}. Doing some shopping?"`);
-        scene.actions([
-          { label: 'Leave the store', goto: ['pav_commercial', ''] },
-          { label: 'Stay and shop alone', goto: ['shop_coco_carmen', 'start'] },
-          { label: 'Offer to try on clothes with Lariska', goto: ['gschool_socialchg1', 'lariska_gm_2'] },
-        ]);
+        if (((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
+          scene.text('She sees you coming into the store behind her and, with a disgusted look on her face, says, "What are <i>you</i> doing here? This place doesn\'t sell anything slutty enough for <i>you</i> to wear."');
+          scene.text('Your face turns red with anger, and you shoot back. "At least I can make my own decisions. Are you even allowed to be here without Christina keeping an eye on you?"');
+          scene.text('She just sneers at you. "Go fuck yourself, slut." With that, she leaves the store, obviously not wanting to shop anymore.');
+          scene.actions([
+            { label: 'Leave the store', goto: ['pav_commercial', ''] },
+            { label: 'Stay and shop alone', goto: ['shop_coco_carmen', 'start'] },
+          ]);
+        } else {
+          // TODO-QSP: dynamic text: She sees you coming into the store behind her and nods at you. "Hey, <<$pcs_nick...
+          scene.text(`She sees you coming into the store behind her and nods at you. "Hey, ${((s as any).pcs_nickname ?? 0)}. Doing some shopping?"`);
+          scene.actions([
+            { label: 'Leave the store', goto: ['pav_commercial', ''] },
+            { label: 'Stay and shop alone', goto: ['shop_coco_carmen', 'start'] },
+            { label: 'Offer to try on clothes with Lariska', goto: ['gschool_socialchg1', 'lariska_gm_2'] },
+          ]);
+        }
       }
-      scene.actions([
-        { label: 'Leave the store', goto: ['pav_commercial', ''] },
-        { label: 'Stay and shop alone', goto: ['shop_coco_carmen', 'start'] },
-      ]);
     }
   }
+  scene.build();
+}
+
+function enterLariskaGm_2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
+  (s as any).minut = ((s as any).minut ?? 0) + 20;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_1.jpg');
+  scene.text('You and Lariska try on random clothes, emerging from your changing rooms like you\'re models walking down a catwalk.');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_2.jpg');
+    scene.text('Eventually, you start changing in the same room, laughing and giggling as you try on the various items you picked out for each other.');
+    scene.text('At one point, you catch her staring at you in the mirror while you are both topless. You notice her nipples are hard, and you feel yours getting hard checking her out too. Slipping an arm around her waist, you both stare at your reflections in the mirror, comparing yourselves to each other.');
+    if (((s as any).lariskalove ?? 0) < 7  &&  ((s as any).LariskaQW ?? 0)?.['story'] < 10) {
+      scene.text('She eventually gets embarrassed at the attention and turns away, her face turning bright red.');
+    } else {
+      scene.text('You smile at her through her reflection in the mirror with a suggestive look in your eyes.');
+    }
+    qspCall(s, 'arousal', 'erotic_nudity', 10, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    if (((s as any).lariskalove ?? 0) >= 7  &&  ((s as any).LariskaQW ?? 0)?.['story'] >= 10) {
+      scene.actions([
+        { label: 'Flirt with Lariska', goto: ['gschool_socialchg1', 'lariska_gm_3'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Leave the store', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'end');
+  }, goto: ['pav_commercial', ''] },
+      { label: 'Stay and shop alone', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'end');
+  }, goto: ['shop_coco_carmen', 'start'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLariskaGm_3(s: GameState, scene: SceneBuilder): void {
+  (s as any).lariskalove = ((s as any).lariskalove ?? 0) + (1);
+  qspCall(s, 'npcStat', 'A13');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_3.jpg');
+  scene.text('You maintain eye contact as you slide your hand down her back until you reach her panties. Softly hooking your finger over them, you slowly drag them down until her pink pussy is exposed. Dropping your panties, you gently push her against the mirror, enjoying the sight of her naked in the stand-up mirror before pulling her into your arms and kissing her.');
+  qspCall(s, 'arousal', 'erotic_nudity', 5);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Finger her', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_4.jpg');
+    scene.text('You push her up against the wall as you make out with her. Then, you reach between her legs to rub her pussy. Her breath quickens as lust takes over, and she starts exploring your body with her hands, keeping her lips locked on yours. Eventually, her fingers find their way between your legs, and you both finger each other.');
+    qspCall(s, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
+    qspCall(s, 'arousal', 'vaginal_finger', (-10), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Keep going', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_5.jpg');
+    scene.text('You sit on the bench in the changing room, pulling her onto your lap while you continue to explore her mouth with your tongue. Her hips start moving like she is riding an imaginary cock, grinding her pussy into yours.');
+    qspCall(s, 'arousal', 'trib', (-8));
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: '69', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_6.jpg');
+    scene.text('Face red with desire, Lariska stands up, pulling you off the bench and down to the floor on your back. Straddling your bare chest, she buries her face between your legs, licking and slurping wildly. You do the same, licking her clit while thrusting your fingers inside her pussy.');
+    scene.text('Exhausted, you let your head fall back while you catch your breath. You hear her panting and feel her breath on your now sensitive lower lips as you come down in post-orgasmic bliss.');
+    scene.text('Once you catch your breath, you stand up and share a long kiss while stroking her cheek with your hand. When you pull back from it, she seems to remember you\'re in a public place and gets nervous, her face red again.');
+    scene.actions([
+      { label: 'Clean up and leave the store', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'end');
+  }, goto: ['pav_commercial', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterTBella(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 20;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big22.jpg');
+  scene.text('You approach Bella and tap her on her shoulder. "Hey, Bella! You\'re heading into the city?"');
+  scene.text('Bella sighs loudly as she replies. "Yeah, I\'m meeting some of my friends in town. There\'s a new gym opening, and we thought we might check it out."');
+  scene.actions([
+    { label: 'Sounds amazing', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A22', 2);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big22.jpg');
+    scene.text('You start grinning but then turn serious. "That sounds great, but isn\'t there an age limit at those gyms?"');
+    scene.text('"Hanging around with older people does have its perks." she winks. "One of my friends can get me in, no questions asked."');
+    scene.text('You nod your head. "Must be great hanging around with older people…"');
+    scene.text('"Oh, the stories I\'ve got to tell…" Bella replies, but before she can continue, there\'s an announcement. She excuses herself, saying that\'s the train she needs to catch.');
+    scene.actions([
+      { label: 'Return to the train platform', goto: ['pav_train_hall', 'platform'] },
+    ]);
+  } },
+    { label: 'What\'s wrong with the gym in Pavlovsk?', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A22', (-2));
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big22.jpg');
+    scene.text('"Why not just train here instead? We have an excellent gym." you innocently ask.');
+    // TODO-QSP: dynamic text: Bella starts laughing loudly. "Poor little <<$pcs_nickname>>. You're so innocent...
+    scene.text(`Bella starts laughing loudly. "Poor little ${((s as any).pcs_nickname ?? 0)}. You're so innocent and still have a lot to learn…"`);
+    scene.text('"Like what?" you ask, a little offended.');
+    scene.text('Bella just smirks. "Well, first of all, there are fully grown men there, not little wimpy boys that think they\'re the shit. Real men who know how to treat women… And let\'s not talk about all the sexy women that work out."');
+    // TODO-QSP: dynamic text: As she's about to continue, you hear an announcement. "That's my train. Too bad,...
+    scene.text(`As she's about to continue, you hear an announcement. "That's my train. Too bad, ${((s as any).pcs_nickname ?? 0)}. I thought about inviting you, but you disappointed me. I had higher hopes about you…" she says before walking away from you.`);
+    scene.actions([
+      { label: 'Return to the train platform', goto: ['pav_train_hall', 'platform'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterTVeronika(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big141.jpg');
+  scene.text('Noticing it\'s Veronika, you start waving and trying to catch her attention. But, unfortunately, she barely bats an eye towards you as you try your hardest to get her attention.');
+  scene.text('After a while, she stops practicing and starts skating towards you.');
+  scene.actions([
+    { label: 'Greet her', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big141.jpg');
+    scene.text('"Hey Veronika!" you shout out. "Looking great out there!"');
+    scene.text('Ice cold with a blank expression, she stops in front of you. "What do you want? Can\'t you see that I\'m practicing?"');
+    scene.actions([
+      { label: 'Discourage her', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A141', (-2));
+    qspCall(s, 'mood', 'lower', 'medium');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big141.jpg');
+    scene.text('"Sheesh, why are you always such a bitch?" you reply, irritated by her nonchalant greeting.');
+    scene.text('Veronika rolls her eyes and lets out a sigh. "Do I really need to explain it to you?"');
+    scene.text('"You\'re such an ungrateful bitch!!!" you yell out. "I just wanted to encourage you, but since you\'re being a bitch about it, I hope you break your leg! Or your face."');
+    scene.text('Stone-cold Veronika shrugs her shoulders before turning and skating away like the conversation never happened.');
+    scene.actions([
+      { label: 'Walk away', goto: ['pav_lake', ''] },
+    ]);
+  } },
+      { label: 'Encourage her', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A141', 2);
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big141.jpg');
+    scene.text('"I just wanted to say that you\'re looking great out there." you smile. "I bet you\'ll have no issues getting on the Russian team."');
+    scene.text('Veronika, still stone-faced and rigid, replies a little reluctantly. "Thanks, I guess… I train a lot, so I can leave this god-forsaken hellhole behind."');
+    scene.text('You awkwardly smile. "I know what you mean. It really is a dump, isn\'t it?"');
+    scene.text('She just blankly stares at you. "If there\'s nothing more, I need to get back to my training…" Before you\'re able to reply, Veronika has already started skating away from you.');
+    scene.actions([
+      { label: 'Walk away', goto: ['pav_lake', ''] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -671,6 +833,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'lariska_gm_1':
       enterLariskaGm_1(s, scene);
+      break;
+    case 'lariska_gm_2':
+      enterLariskaGm_2(s, scene);
+      break;
+    case 'lariska_gm_3':
+      enterLariskaGm_3(s, scene);
+      break;
+    case 'tBella':
+      enterTBella(s, scene);
+      break;
+    case 'tVeronika':
+      enterTVeronika(s, scene);
       break;
     default:
       enterTLazar(s, scene);

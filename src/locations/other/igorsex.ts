@@ -327,7 +327,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Take it like a bitch', handler: (st: GameState) => {
+        { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -476,7 +476,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Take it like a bitch', handler: (st: GameState) => {
+        { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -943,7 +943,7 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Take it like a bitch', handler: (st: GameState) => {
+        { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -1132,7 +1132,7 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
       ]);
     } else {
       scene.actions([
-        { label: 'Take it like a bitch', handler: (st: GameState) => {
+        { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -1356,7 +1356,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
       ]);
     } else {
       scene.actions([
-        { label: 'Take it like a bitch', handler: (st: GameState) => {
+        { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -1547,7 +1547,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
       ]);
     } else {
       scene.actions([
-        { label: 'Take it like a bitch', handler: (st: GameState) => {
+        { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');

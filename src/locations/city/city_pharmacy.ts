@@ -4,7 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   (s as any).people = Math.floor(Math.random() * 15) + 1;
@@ -27,6 +27,57 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
   }
   scene.build();
+}
+
+function enterBuyAntifungal(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).Kandidoz ?? 0) >= 30) {
+    qspCall(s, 'money', 'pay', 1050);
+    (s as any).Kandidoz = 0;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_\'+pharma_picrand+\'.jpg');
+    scene.text('You bought 1 <b>Antifungal medication</b>.');
+    scene.text('You put the money on the counter before immediately opening the package and swallowing the tablet. A while later, you start feeling better.');
+    scene.actions([
+      { label: 'Return', goto: ['city_pharmacy', 'shop'] },
+    ]);
+  } else {
+    if (((s as any).Kandidoz ?? 0) < 30  &&  ((s as any).KandidozOnce ?? 0) > 0) {
+      scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
+    }
+  }
+  scene.build();
+}
+
+function enterCart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'item_cart', 'shopping_aisle', 'chemist');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Exit shopping cart', handler: (st: GameState) => {
+    qspCall(st, 'item_cart', 'shopping_var_clear');
+  }, goto: ['city_pharmacy', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'buy_antifungal':
+      enterBuyAntifungal(s, scene);
+      break;
+    case 'cart':
+      enterCart(s, scene);
+      break;
+    default:
+      enterStart(s, scene);
+      break;
+  }
 }
 
 export const city_pharmacy: LocationDef = {

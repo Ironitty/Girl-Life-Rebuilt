@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text(`You, ${((s as any).ev_name ?? 0)} and the guys enter what seems to be an otherwise abandoned apartment. The place barely has any furniture, and there is rubbish and dirt everywhere. Are you even allowed to be in here?`);
   // TODO-QSP: dynamic text: The boys don't pay any attention to their surroundings, and pour out some vodka ...
   scene.text(`The boys don't pay any attention to their surroundings, and pour out some vodka from a bottle into several cups they brought while they actively flirt with you and your friend. You soon forget about your surroundings as you're having fun with the guys, and undress alongside ${((s as any).ev_name ?? 0)}. The boys quickly clear an area of bottles and other debris, so you can lie down.`);
-  (s as any).ciklkm = (((s as any).placerParameter ?? 0)?.['number_of_man'] / 2) + 1;
+  (s as any).ciklkm = (((s as any).placerParameter ?? {})?.['number_of_man'] / 2) + 1;
   (s as any).guy = ((s as any).guy ?? 0) + (((s as any).ciklkm ?? 0));
   if ((!((s as any).goporgyeQW ?? 0))) {
     (s as any).goporgyeQW = 1;

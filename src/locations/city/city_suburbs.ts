@@ -18,8 +18,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'taxi', '');
   if (((s as any).AlexandriaQW ?? 0) > 6) {
     if (((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 20) {
-      // TODO-QSP: 'You can visit <a href="exec: minut += 5
-      // TODO-QSP: gt ''AlexandriaHome'', ''intercom''">Aleksei''s home</a> if you want to see the cranky wizard.'
+      // TODO-QSP: dynamic text: You can visit <a href="exec: minut += 5 & gt 'AlexandriaHome', 'intercom'">Aleks...
+      scene.text('You can visit <a href="exec: minut += 5 & gt \'AlexandriaHome\', \'intercom\'">Aleksei\'s home</a> if you want to see the cranky wizard.');
     }
   }
   if (((s as any).bdsmclub ?? 0)?.['unlocked'] === 1) {
@@ -35,20 +35,28 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_mansion_entrance', ''] },
     ]);
   } else {
-    (s as any).constructionstatus = qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion');
-    if ((!((s as any).constructionstatus ?? 0))) {
-      scene.text('Your vacant plot of land is near hear');
-    } else {
-      scene.text('You mansion is partially built near here.');
-      scene.text('Your mansion is not too far from here.');
-    }
-    scene.text('One of the most impressive buildings is your newly built mansion.');
-    scene.actions([
-      { label: 'Visit your mansion (0:10)', handler: (st: GameState) => {
+    if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'matryona_mansion')) {
+      (s as any).constructionstatus = qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion');
+      if ((!((s as any).constructionstatus ?? 0))) {
+        scene.text('Your vacant plot of land is near hear');
+      } else {
+        if (((s as any).constructionstatus ?? 0) === 1) {
+          scene.text('You mansion is partially built near here.');
+        } else {
+          scene.text('Your mansion is not too far from here.');
+        }
+      }
+      scene.actions([
+        { label: 'Visit your mansion (0:10)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
   }, goto: ['city_mansion_entrance', ''] },
-      { label: 'Visit Matryona Mansion', goto: ['city_mansion_entrance', ''] },
-    ]);
+      ]);
+    } else {
+      scene.text('One of the most impressive buildings is your newly built mansion.');
+      scene.actions([
+        { label: 'Visit Matryona Mansion', goto: ['city_mansion_entrance', ''] },
+      ]);
+    }
   }
   if (((s as any).AlexandriaQW ?? 0) === 6) {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
@@ -60,7 +68,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Look for Alexandria', handler: (st: GameState) => {
+        { label: 'Look for Alexandria [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'easy');
   }, goto: ['alexandriaEv', 'interview1'] },
       ]);

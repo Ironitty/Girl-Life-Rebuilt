@@ -1,3 +1,5 @@
+import { qspCall } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -148,37 +150,11 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/1.jpg');
-      scene.text('"What\'s the matter, slut? Jealous? Wish you had a pair like mine?"');
-      if (((s as any).tits ?? 0) >= 5) {
+      if (((s as any).tits ?? 0) === 4) {
         scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/1.jpg');
-        // TODO-QSP: dynamic text: "What's the matter, whore? Wish you didn't have such fat cow tits?" she says wit...
-        scene.text(`"What's the matter, whore? Wish you didn't have such fat cow tits?" she says with fake concern and pushing out her chest, obviously trying to talk down your larger ${((s as any).titsize ?? 0)} breasts.`);
+        scene.text('"What\'s the matter, slut? Jealous? Wish you had a pair like mine?"');
         scene.actions([
-          { label: '"What\'s wrong with having big breasts?"', handler: (st: GameState) => {
-    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/2.jpg');
-    scene.text('"What\'s wrong with having big breasts?!" you exclaim. "Yours are big too!"');
-    scene.text('"True," she says while walking up to you so you\'re shoulder to shoulder. "But mine are soft and perky and <i>just</i> the right size. Any bigger and they end up fat and saggy like yours where you have to worry about knocking someone out if you turn too fast." Paying no more attention to you, she strides off while your jaw hits the floor. By the time you recover from this offense, she\'s already long gone.');
-    scene.text('<i><b>This. Fucking. Bitch!</b></i>');
-    scene.actions([
-      { label: 'Leave', goto: ['foto', 'studio'] },
-    ]);
-  } },
-          { label: 'Try to resolve things', goto: ['model_emily1', 'emily_resolve'] },
-          { label: 'Insults are just the mark of a jealous bitch', handler: (st: GameState) => {
-    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
-    scene.text('"Are you saying that because you\'re jealous you don\'t have these instead of those mosquito bites you call breasts?"');
-    scene.text('"<i>Excuuuuuuuse me?!</i>" Your words seem to catch her off guard and she steps back as though she\'s genuinely offended. "How could you even say that?! My breasts are obviously-"');
-    scene.text('"Excuses, excuses!" you say, cutting her off. "You can say whatever you like, the only thing I know is that <i>my</i> milkshakes bring all the boys to the yard." You step up to her and whisper in her ear. "And damn right, <i>they\'re better than yours,</i>"');
-    scene.text('<i>Suck it bitch,</i> you think to yourself as you confidently walk away.');
-    scene.actions([
-      { label: 'Leave', goto: ['foto', 'studio'] },
-    ]);
-  } },
-        ]);
-      }
-      scene.actions([
-        { label: '"We\'re the same size!"', handler: (st: GameState) => {
+          { label: '"We\'re the same size!"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/4.jpg');
     scene.text('Your mouth drops open in disbelief and offense. "What are you talking about you stuck up bitch?! We\'re the same size!');
     scene.text('She continues smirking as she pretends to muse over what you said.');
@@ -189,8 +165,8 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
   } },
-        { label: 'Try to resolve things', goto: ['model_emily1', 'emily_resolve'] },
-        { label: '"Why? So they can distract from your ass ugly face?"', handler: (st: GameState) => {
+          { label: 'Try to resolve things', goto: ['model_emily1', 'emily_resolve'] },
+          { label: '"Why? So they can distract from your ass ugly face?"', handler: (st: GameState) => {
     (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
     scene.text('"Why would I? At least I don\'t need mine to distract people from an ass ugly face!"');
@@ -202,8 +178,40 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
   } },
-      ]);
+        ]);
+      } else {
+        if (((s as any).tits ?? 0) >= 5) {
+          scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/1.jpg');
+          // TODO-QSP: dynamic text: "What's the matter, whore? Wish you didn't have such fat cow tits?" she says wit...
+          scene.text(`"What's the matter, whore? Wish you didn't have such fat cow tits?" she says with fake concern and pushing out her chest, obviously trying to talk down your larger ${((s as any).titsize ?? 0)} breasts.`);
+          scene.actions([
+            { label: '"What\'s wrong with having big breasts?"', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/2.jpg');
+    scene.text('"What\'s wrong with having big breasts?!" you exclaim. "Yours are big too!"');
+    scene.text('"True," she says while walking up to you so you\'re shoulder to shoulder. "But mine are soft and perky and <i>just</i> the right size. Any bigger and they end up fat and saggy like yours where you have to worry about knocking someone out if you turn too fast." Paying no more attention to you, she strides off while your jaw hits the floor. By the time you recover from this offense, she\'s already long gone.');
+    scene.text('<i><b>This. Fucking. Bitch!</b></i>');
+    scene.actions([
+      { label: 'Leave', goto: ['foto', 'studio'] },
+    ]);
+  } },
+            { label: 'Try to resolve things', goto: ['model_emily1', 'emily_resolve'] },
+            { label: 'Insults are just the mark of a jealous bitch', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
+    scene.text('"Are you saying that because you\'re jealous you don\'t have these instead of those mosquito bites you call breasts?"');
+    scene.text('"<i>Excuuuuuuuse me?!</i>" Your words seem to catch her off guard and she steps back as though she\'s genuinely offended. "How could you even say that?! My breasts are obviously-"');
+    scene.text('"Excuses, excuses!" you say, cutting her off. "You can say whatever you like, the only thing I know is that <i>my</i> milkshakes bring all the boys to the yard." You step up to her and whisper in her ear. "And damn right, <i>they\'re better than yours,</i>"');
+    scene.text('<i>Suck it bitch,</i> you think to yourself as you confidently walk away.');
+    scene.actions([
+      { label: 'Leave', goto: ['foto', 'studio'] },
+    ]);
+  } },
+          ]);
+        }
+      }
     }
+  } },
+    ]);
+  } else {
     scene.text('Walking through the studio, you round the corner of a set and nearly bump into Emily.');
     scene.text('"Oh. It\'s you," she says flatly.');
     // TODO-QSP: dynamic text: "Uhh, yeah… I never introduced myself the last time we saw each other. I'm <<$mo...
@@ -251,9 +259,193 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     ]);
+  }
+  scene.build();
+}
+
+function enterEmilyResolve(s: GameState, scene: SceneBuilder): void {
+  (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) - (1);
+  scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
+  // TODO-QSP: dynamic text: You take a deep breath to calm down before saying, "Listen. Maybe we got off on ...
+  scene.text(`You take a deep breath to calm down before saying, "Listen. Maybe we got off on the wrong foot yesterday. I just started here and I don't want to be making enemies right out of the gate. I'm ${((s as any).model ?? 0)?.['firstname']} and I'm sorry for what happened yesterday. Can we just try to forget about it?"`);
+  scene.text('You hold out your hand as an apology.');
+  scene.text('She seems genuinely caught off guard by your actions and takes an actual step back. She quickly composes herself and grabs your hand saying, "Fine. Just… Pay more attention next time," before hurridly walking out of the room.');
+  scene.text('You release the breath you didn\'t realize you had been holding. You hope you made the right choice and have fixed things for the future.');
+  scene.actions([
+    { label: 'Leave', goto: ['foto', 'studio'] },
+  ]);
+  scene.build();
+}
+
+function enterEmilyModelling(s: GameState, scene: SceneBuilder): void {
+  (s as any).emily['status'] = Math.floor(Math.random() * 3) + 3;
+  (s as any).emily['model'] = Math.floor(Math.random() * 6) + 1;
+  if (((s as any).emily ?? 0)?.['model'] === 1) {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/modelling/nude1.mp4');
+    scene.text('Looking around for Emily, you find her on set in the middle of a nude shoot. She\'s completely concentrated on her task and doesn\'t even notice you. You spend a few minutes watching before walking away.');
+  } else {
+    if (((s as any).emily ?? 0)?.['model'] === 2) {
+      scene.img('images/locations/city/citycenter/photo/portraits/emily_r/modelling/nude2.mp4');
+      scene.text('Looking around for Emily, you find her on set in the middle of a nude shoot. She looks happy and completely different from any other time you\'ve interacted with her, but you can only assume it has something to do with the shoot as she blows on some kind of party toy. You watch for a few more minutes before walking away.');
+    } else {
+      if (((s as any).emily ?? 0)?.['model'] === 3) {
+        scene.img('images/locations/city/citycenter/photo/portraits/emily_r/modelling/sexy.mp4');
+        scene.text('Looking around for Emily, you find her on set in the middle of a shoot. She\'s wearing some kind of transparent lingerie and unzipped jeans, carefully and purposefully working her thin body to create a sexy atmosphere. You watch for a few more minutes before walking away.');
+      } else {
+        if (((s as any).emily ?? 0)?.['model'] === 4) {
+          scene.img('images/locations/city/citycenter/photo/portraits/emily_r/modelling/underwear.mp4');
+          scene.text('Looking around for Emily, you find her on set in the middle of an underwear shoot. As you watch, she moves through a bunch of different positions but never actually stops to pose. The expressions she puts on don\'t seem like a freeze frame of emotion, more like all of her movements are part of the expression together. Taking a look at the camera, you realize this is some kind of video they\'re filming, maybe a commercial. You watch for a little while longer before walking away.');
+        } else {
+          if (((s as any).emily ?? 0)?.['model'] === 5) {
+            scene.img('images/locations/city/citycenter/photo/portraits/emily_r/modelling/sponsor.mp4');
+            scene.text('Looking around for Emily, you find her on set in the middle of a shoot. She\'s dancing around and acting playful while intermittently stripping out of her clothing with big bold letters of what the brand is. Maybe this is some kind of sponsorship or commercial she\'s filming right now? Maybe both. You watch for a little while longer before walking away.');
+          } else {
+            if (((s as any).emily ?? 0)?.['model'] === 6) {
+              scene.img('images/locations/city/citycenter/photo/portraits/emily_r/modelling/ana.mp4');
+              if (((s as any).anastasia ?? 0)?.[String((s as any).status ?? 0)] > 0) {
+                scene.text('Looking around for Emily, you find her on set in the middle of a lingerie shoot with Anastasia. The two of them sit on the ground together taking cues from each other and the photographers as they go through poses. Anastasia doesn\'t seem to notice but something about Emily\'s face makes her seem bitter, like she\'s annoyed to be working with her. Maybe it has something to do with her rankings in the studio. You watch for a few more minutes before walking away.');
+              } else {
+                scene.text('Looking around for Emily, you find her on set in the middle of a lingerie shoot with another model you feel like you\'ve seen around. The two of them sit on the ground together taking cues from each other and the photographers as they go through poses. The other woman doesn\'t seem to notice but Emily seems really bitter, like she\'s annoyed to be working with her. You wonder what that\'s about as you watch for a few more minutes before walking away.');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['foto', 'studio'] },
+  ]);
+  scene.build();
+}
+
+function enterEmilyWarning(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/citycenter/photo/foto.jpg');
+  scene.text('As you walk through the studio, you hear your "name" ring out from behind you.');
+  scene.text('"Hey! Cunt!"');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
+    scene.text('You sigh deeply, turning around to see exactly what you expect: bitchy looking Emily walking towards you.');
+    if (((s as any).emily ?? 0)?.['hate'] <= 0) {
+      scene.text('"I thought we were past this Em-" you start before she cuts you off, stomping right up to your face, her glare reflecting an intensity of rage that you\'ve never seen before, even from her.');
+    } else {
+      scene.text('"What is it n-" you start before she cuts you off, stomping right up to your face, her glare reflecting an intensity of rage that you\'ve never seen before, even from her.');
+    }
+    scene.text('"You\'re really rising through the ranks around here." Her voice is completely calm, a strange contrast from the burning fury you see behind her eyes. "Made a name for yourself. Good for you!"');
+    scene.text('She gives you a chilling smile.');
+    scene.text('"But you\'re going to cash out here. You\'re going to go to the locker room, get your things, get <i>the fuck</i> out of the studio, and never come back."');
+    scene.actions([
+      { label: 'Gulp', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
+    scene.text('You reflexively swallow in fear and shyly back away from her.');
+    scene.text('"A good bitch knows her place," Emily regards you with a smirk, eyes still dead and lacking humor. "Do what I say and you won\'t have to learn yours."');
+    scene.text('She walks away without another word, leaving just as abruptly as she appeared.');
+    scene.actions([
+      { label: 'Leave', goto: ['foto', 'studio'] },
+    ]);
+  } },
+      { label: 'Why would I do that?', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/5.jpg');
+    scene.text('"And why would I do that?" you snort.');
+    scene.text('"Because you\'re a good bitch," Emily regards you with a smirk, eyes still dead and lacking humor. "Bitches know their place. And if they don\'t, they get put into their place, whether they like it or not. Consider this your final warning."');
+    scene.text('She walks away without another word, leaving just as abruptly as she appeared.');
+    scene.actions([
+      { label: 'Leave', goto: ['foto', 'studio'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEmilyChat(s: GameState, scene: SceneBuilder): void {
+  (s as any).emily['status'] = Math.floor(Math.random() * 3) + 3;
+  scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/5.jpg');
+  scene.text('Looking around for Emily, you find her standing around on an empty set, seemingly waiting between shoots for something.');
+  scene.text('"Oh. It\'s you. What do you want?"');
+  if (((s as any).emily ?? 0)?.['model_exp'] !== ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Ask for modelling advice', handler: (st: GameState) => {
+    (s as any).emily['model_exp'] = ((s as any).daystart ?? 0);
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
+    scene.text('"What? You\'re asking me for modelling advice? Why would I ever give advice to you? If you used it, it would only end up distracting the staff from me and my talents."');
+    scene.actions([
+      { label: '"Okay…"', handler: (st: GameState) => {
+    scene.text('"Okay…" you say, not sure what else to do about her rotten attitude.');
+    scene.actions([
+      { label: 'Keep chatting', goto: ['model_emily1', 'emily_chat'] },
+    ]);
+  } },
+      { label: 'Suck up to her', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/2.jpg');
+    qspCall(s, 'exp_gain', 'mdlng', 2);
+    scene.text('"Oh. I mean, I just thought I\'d ask you because you\'re the best model here. I thought you would have the best advice to give."');
+    scene.text('"Well, it\'s not like you\'re wrong." She shrugs and acts like what you said was just stating facts but you can tell she\'s secretly pleased by what you said. "I suppose I could give some advice to a poor unfortunate soul like you. At the very least maybe you\'d stop embarrassing yourself on set and making the studio look bad." You stomach the verbal abuse and keep yourself in check, recognizing that with Emily you\'re going to have to take her attitude if you want to get anywhere with her.');
+    scene.text('"The most important things about modelling is how to hold yourself. If you can\'t pull off the pose to make yourself or the clothes you\'re wearing look sexy then you\'ve failed. Practice the poses, spend time in front of the mirror testing looks. And when you\'re on set, keep changing it up. Taking direction from the photographers is important but if you want to act like a professional then you need to take initiative. Every time the camera flashes, alter your position, even if just a little bit. They\'re only looking for one perfect shot, either they have it or they don\'t. But help them search. And don\'t waste their time."');
+    scene.actions([
+      { label: 'Keep chatting', goto: ['model_emily1', 'emily_chat'] },
+    ]);
+  } },
+      { label: 'Taunt her into helping you', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/5.jpg');
+    qspCall(s, 'exp_gain', 'mdlng', 2);
+    scene.text('"What? You\'re so afraid of your position that if you give help to a silly amateur like me it\'ll knock you off your pedestal? Huh. Maybe you\'re not good enough for me to be asking after all…"');
+    scene.text('Emily\'s eyes narrow at your words before re-adjusting herself to respond. "I suppose I could give some advice to a poor unfortunate soul like you. At the very least maybe you\'d stop embarrassing yourself on set and making the studio look bad. I can\'t have you bringing down Aphrodite\'s name and my fame just by association."');
+    scene.text('You smirk inwardly, pleased with how easy it was to manipulate her into doing this and listen as she starts giving you real advice.');
+    scene.text('"The most important things about modelling is how to hold yourself. If you can\'t pull off the pose to make yourself or the clothes you\'re wearing look sexy then you\'ve failed. Practice the poses, spend time in front of the mirror testing looks. And when you\'re on set, keep changing it up. Taking direction from the photographers is important but if you want to act like a professional then you need to take initiative. Every time the camera flashes, alter your position, even if just a little bit. They\'re only looking for one perfect shot, either they have it or they don\'t. But help them search."');
+    scene.actions([
+      { label: 'Keep chatting', goto: ['model_emily1', 'emily_chat'] },
+    ]);
+  } },
+    ]);
   } },
     ]);
   }
+  scene.actions([
+    { label: 'Stop talking', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/turnback.jpg');
+    scene.text('"I\'m gonna go now," you say.');
+    if (((s as any).emily ?? 0)?.['hate'] > 0) {
+      scene.text('"Fuck off."');
+    } else {
+      scene.text('"Whatever."');
+    }
+    scene.text('With that lovely parting, you walk back towards the main floor of the studio.');
+    scene.actions([
+      { label: 'Leave', goto: ['foto', 'studio'] },
+    ]);
+  } },
+    { label: 'Ask why she wanted to become a model', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/1.jpg');
+    scene.text('"I was just curious. Why is it you wanted to become a model? I mean, you seem really serious about it and it sounds like you\'ve been working at it for all your life but… I guess I was just wondering why?"');
+    scene.text('"Are you blind?"');
+    scene.text('You blink. "What?"');
+    scene.text('"I asked if you\'re fucking blind. Come on, be serious. Okay, fine. Let\'s spell this out for retards. Look at my face. Now look at my tits. Now look at my stomach, my legs, my ass, my pussy. Do you notice something? It\'s that I\'m fucking gorgeous. Everything about my body is sexy and perfect. Men want me, women want to be me, and boys dream about me while jerking themselves off in their bedrooms. Now with all of that, why would I want to be anything other than a model? Huh? So, are you blind or are you just fucking stupid?"');
+    scene.actions([
+      { label: 'Keep chatting', goto: ['model_emily1', 'emily_chat'] },
+    ]);
+  } },
+    { label: 'Ask how she stays in shape', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/1.jpg');
+    scene.text('"I was wondering if you could give some advice about keeping a model\'s figure. Do you have any?"');
+    scene.text('"Yeah, don\'t live like a filthy pig. What? Do you want me to write out a diet plan for you that lets you keep stuffing your face with ice cream and chocolate? Cause that doesn\'t exist, stupid."');
+    scene.actions([
+      { label: 'Keep chatting', goto: ['model_emily1', 'emily_chat'] },
+    ]);
+  } },
+    { label: 'Talk about movies', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
+    scene.text('"See any good movies lately?"');
+    scene.text('"No."');
+    scene.text('"…"');
+    scene.text('You wait for her to say something else but it looks like she really isn\'t interested in talking to you.');
+    scene.actions([
+      { label: 'Keep chatting', goto: ['model_emily1', 'emily_chat'] },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -265,6 +457,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'emily_2':
       enterEmily_2(s, scene);
+      break;
+    case 'emily_resolve':
+      enterEmilyResolve(s, scene);
+      break;
+    case 'emily_modelling':
+      enterEmilyModelling(s, scene);
+      break;
+    case 'emily_warning':
+      enterEmilyWarning(s, scene);
+      break;
+    case 'emily_chat':
+      enterEmilyChat(s, scene);
       break;
     default:
       enterEmily_1(s, scene);

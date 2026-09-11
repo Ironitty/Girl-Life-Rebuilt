@@ -25,8 +25,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.text('The world is spinning and you don\'t think you should have another drink. You politely decline and decide to not get up for a while, trying to make the world become less wobbly.');
-    scene.text('You\'re not very successful. Despite your best attempts, the world is just as wobbly a few minutes later.');
+    if (((s as any).alko ?? 0) >= 6) {
+      scene.text('The world is spinning and you don\'t think you should have another drink. You politely decline and decide to not get up for a while, trying to make the world become less wobbly.');
+      scene.text('You\'re not very successful. Despite your best attempts, the world is just as wobbly a few minutes later.');
+    }
   }
   scene.actions([
     { label: 'Leave the police station', handler: (st: GameState) => {

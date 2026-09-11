@@ -16,7 +16,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'This seems wrong', handler: (st: GameState) => {
+      { label: 'This seems wrong [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).bomzQW = (-1);
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -43,10 +43,13 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
       scene.text('"I came here looking for work, but I was turned down," you tell the man.');
       scene.text('"Your pussy isn\'t the only way to earn money in this business," he replies with a smile.');
     } else {
-      scene.text('"I already earn money this way," you say with a laugh.');
-      scene.text('"I know, but your pussy isn\'t the only way to earn money in this business," he replies with a smile.');
-      scene.text('"This is no place for a girl to be working!" you say in shock.');
-      scene.text('"Calm down, your pussy isn\'t the only way to earn money in this business," he replies with a smile.');
+      if (((s as any).film ?? 0) > 0) {
+        scene.text('"I already earn money this way," you say with a laugh.');
+        scene.text('"I know, but your pussy isn\'t the only way to earn money in this business," he replies with a smile.');
+      } else {
+        scene.text('"This is no place for a girl to be working!" you say in shock.');
+        scene.text('"Calm down, your pussy isn\'t the only way to earn money in this business," he replies with a smile.');
+      }
     }
     scene.actions([
       { label: 'Speak to the manager', handler: (st: GameState) => {
@@ -80,7 +83,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave', handler: (st: GameState) => {
+        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).bomzQW = (-1);
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['city_industrial', ''] },
@@ -113,7 +116,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Leave', handler: (st: GameState) => {
+          { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['city_industrial', ''] },
         ]);
@@ -138,18 +141,21 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('"clean-shaven. Cute. Don\'t forget to come back here on Thursday."');
     } else {
-      if (((s as any).PCloSkirt ?? 0) > 0) {
-        scene.img('images/locations/city/residential/sauna/sex/sauna_pussy2.jpg');
+      if (((s as any).pcs_pubes ?? 0) <= 10) {
+        if (((s as any).PCloSkirt ?? 0) > 0) {
+          scene.img('images/locations/city/residential/sauna/sex/sauna_pussy2.jpg');
+        } else {
+          scene.img('images/locations/city/residential/sauna/sex/sauna_pussy3.jpg');
+        }
+        scene.text('"A well kept garden. Don\'t forget to come back here on Thursday."');
       } else {
-        scene.img('images/locations/city/residential/sauna/sex/sauna_pussy3.jpg');
+        if (((s as any).PCloSkirt ?? 0) > 0) {
+          scene.img('images/locations/city/residential/sauna/sex/sauna_pussy4.jpg');
+        } else {
+          scene.img('images/locations/city/residential/sauna/sex/sauna_pussy5.jpg');
+        }
+        scene.text('"You do realize a bird has made a nest in your panties? Might want to find it a new home. Don\'t forget to come back here on Thursday."');
       }
-      scene.text('"A well kept garden. Don\'t forget to come back here on Thursday."');
-      if (((s as any).PCloSkirt ?? 0) > 0) {
-        scene.img('images/locations/city/residential/sauna/sex/sauna_pussy4.jpg');
-      } else {
-        scene.img('images/locations/city/residential/sauna/sex/sauna_pussy5.jpg');
-      }
-      scene.text('"You do realize a bird has made a nest in your panties? Might want to find it a new home. Don\'t forget to come back here on Thursday."');
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -238,11 +244,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'See who spoke', goto: ['city_trashplaceevents', 'pos2'] },
       ]);
     } else {
-      scene.text('"Hey babe, come here and do an old man a favor!"');
-      scene.text('It\'s the old bum you saw last time.');
-      scene.actions([
-        { label: 'Listen to him', goto: ['city_trashplaceevents', 'pos3'] },
-      ]);
+      if (((s as any).bumtolik ?? 0) === 1) {
+        scene.text('"Hey babe, come here and do an old man a favor!"');
+        scene.text('It\'s the old bum you saw last time.');
+        scene.actions([
+          { label: 'Listen to him', goto: ['city_trashplaceevents', 'pos3'] },
+        ]);
+      }
     }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
@@ -258,6 +266,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('As you\'re about to leave, a drunk old man stumbles up to you. He looks and smells like he hasn\'t washed in weeks.');
     // TODO-QSP: dynamic text: "It's national give ' + $func('money', 'string_price', 300) + ' to a bum day, so...
     scene.text('"It\'s national give \' + $func(\'money\', \'string_price\', 300) + \' to a bum day, so come on then!" he drunkenly demands.');
+    return;
+    scene.actions([
+      { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 300, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -271,17 +282,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    scene.actions([
-      { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 300, \'...]' }, // TODO-QSP: empty action body
-    ]);
-  }
-  return;
-  scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 1;
-    dynamicGoto(st, 'loc', 'loc_arg');
   } },
-    { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
       if (((s as any).daystart ?? 0) < 10  ||  ((s as any).stat ?? 0)?.['vaginal'] <= 2) {
@@ -305,7 +307,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['city_trashplace', 'bomzstartqwestdi'] }]);
     }
   } },
-    { label: 'Chase him off', handler: (st: GameState) => {
+      { label: 'Chase him off', handler: (st: GameState) => {
     (s as any).bomzQW = (-10);
     qspCall(s, 'stat', '');
     scene.text('"Get lost, you drunk old freak!" you shout at him.');
@@ -316,6 +318,136 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     ]);
+  } },
+    ]);
+  }
+  if (((s as any).bomzQW ?? 0) === -10  &&  (!(Math.floor(Math.random() * 6) + 0))) {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/residential/street/drinkinghobos.jpg');
+    scene.text('On your way home, you decide to take a walk between the buildings of the residential area, only to find yourself face to face with a group of four hobos drinking beer.');
+    scene.text('You decide to ignore them and continue on your way, but suddenly feel a hand firmly gripping your arm.');
+    scene.text('"Hey, bitch! Nobody teach you to say hello?" one of them barks as you instinctively struggle to break free from his grip. He angrily frowns at you, clenching his fingers harder around your arm.');
+    scene.text('"I think this whore needs to learn some manners!" he says before turning towards his friends, who all drunkenly stand up to circle you.');
+    if (((s as any).pcs_agil ?? 0) >= 50) {
+      qspCall(s, 'willpower', 'humiliation', 'self');
+      if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
+        scene.actions([
+          { label: 'Try to slip away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Try to slip away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'humiliation', 'self');
+    qspCall(s, 'willpower', 'pay', 'self');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.text('You contort your limber body and manage to slip out of his grasp. Seizing the opportunity, you quickly run all the way to your apartment without looking back.');
+    scene.actions([
+      { label: 'Continue', goto: ['korr', ''] },
+    ]);
+  } },
+        ]);
+      }
+    }
+    if (((s as any).pcs_stren ?? 0) >= 60) {
+      qspCall(s, 'willpower', 'rape', 'resist');
+      if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
+        scene.actions([
+          { label: 'Elbow him in the face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Elbow him in the face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'rape', 'resist');
+    qspCall(s, 'willpower', 'pay', 'self');
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.text('Your elbow makes contact with his nose and he reels back in pain, letting you go. You hear him loudly cursing about how you\'ve broken his nose as you quickly run away, not stopping until you reach your apartment.');
+    scene.actions([
+      { label: 'Continue', goto: ['korr', ''] },
+    ]);
+  } },
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Beg', handler: (st: GameState) => {
+    qspCall(s, 'npcgeneratec', '', 0, 'hobo', Math.floor(Math.random() * 21) + 35, 3, 1);
+    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(s, 'npcgeneratec', '', 0, 'hobo', Math.floor(Math.random() * 21) + 35, 3, 1);
+    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+    qspCall(s, 'npcgeneratec', '', 0, 'hobo', Math.floor(Math.random() * 21) + 35, 3, 1);
+    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
+    scene.img('images/locations/city/residential/street/sex/hobosdeepthroat.jpg');
+    scene.text('"Please let me go! I\'m sorry!" you plead, your heart pounding as the dirty old men look at you with clear lust in their eyes.');
+    scene.text('"We have to make sure you understand your lesson, bitch!" the one holding your arm says as the men drag you in a dark back alley.');
+    scene.text('"Let\'s put this slut\'s mouth to proper use," one of them says and they all start laughing and forcefully undressing you.');
+    scene.text('"Let me go!" you protest as you struggle in vain before they force you on your knees.');
+    scene.text('One of the men grins devilishly as he steps forwards and brushes his disgusting cock against your lips. "No teeth bitch, or you\'ll truly be sorry!" he threatens. You reluctantly part your lips to let him into your mouth, the taste making you nauseous as you look up at him with pleading eyes, which only makes him smirk.');
+    scene.text('One of the hobos tightly grabs your hair in one hand and roughly pushes your head forwards, your eyes opening wide in shock as the man\'s cock is forced down your throat in one thrust. You do your best to overcome your gag reflex and relax your throat.');
+    scene.text('You hear them laughing at you. "This bitch isn\'t so snooty anymore!" one of them says as you\'re forced to suck the disgusting cock in your mouth. After a few minutes, you see two of the other hobos moving around you and dropping their pants to reveal their cocks. "Don\'t forget about the rest of us, bitch!"');
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Submit', handler: (st: GameState) => {
+    scene.img('images/locations/city/residential/street/sex/hobosbj.jpg');
+    scene.text('The hobo who has been fucking your throat pulls out of your mouth and grabs a can of beer before he sits against a wall and watches. The other two hobos move in front of you and insistently press their cocks against your lips, seemingly wanting you to suck them both at once. The man holding your head roughly spanks your bare ass and shoves his index finger in your anus. "Don\'t keep these gentlemen waiting, whore!" he crudely commands.');
+    scene.text('You groan and wince, but decide fighting back is useless and nod. You open your mouth as wide as you can and stick out your tongue, allowing the two hobos to shove their filthy cocks inside.');
+    scene.text('"Looks like this slut can\'t handle us two at once," one of them comments.');
+    scene.text('"Maybe we\'ll have more luck with her other holes?" the other replies with a chuckle.');
+    scene.text('"Guys, look what I found!" says the hobo who fucked your throat. You have no idea what it is, but you\'re pretty sure you won\'t like it…');
+    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'rough', 'group', 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/locations/city/residential/street/sex/hobosgb.jpg');
+    scene.text('"What a lucky find!" the hobo holding you in place says while the two others pull out of your mouth and you\'re suddenly lifted up. You then see what this big discovery is. A rope…');
+    scene.text('"I don\'t know if this cunt is into bondage, but I\'m getting tired of keeping her still," the one holding you says.');
+    scene.text('"Leave it to us. You can have her ass when we\'re done!" retorts the hobo holding the rope while his two friends start pawing at your breasts.');
+    scene.text('"You\'ll thank us after we\'re done with you, bitch!" one of them laughs, but you remain speechless as the three men start tying you up with the rope, locking your arms behind your back and painfully squeezing your breasts.');
+    scene.text('Once they\'re finished, they all admire your vulnerable form before one of them lays down on his back and the others lift you up, spread your legs and lower you on top of him. He playfully slaps your ass before reaching for his cock and rubs it against your labia before roughly thrusting upwards, hilting his cock balls deep in one go.');
+    scene.text('You wince at the sudden penetration as you feel a hand grabbing hold of your bonds. "I\'m going in dry, slut…" is the only warning you get before you feel a cock forcefully pushing against your anus and forcing its way into your ass. The pain quickly overwhelms you and you scream as tears form in your eyes.');
+    scene.text('"Shut the fuck up, bitch!" one of them shouts as he grabs your hair in one hand and roughly slaps your face with the other. "You\'re gonna be a good girl and make me feel good with that mouth." You obediently nod before leaning forward to take his cock into your mouth.');
+    qspCall(s, 'arousal', 'bj', 20, ((s as any).npcID ?? 0), 'rough', 'group', 'submissive', 'gangbang');
+    qspCall(s, 'arousal', 'anal', (-20), ((s as any).npcID1 ?? 0), 'rough', 'group', 'submissive', 'gangbang');
+    qspCall(s, 'arousal', 'vaginal', (-20), ((s as any).npcID2 ?? 0), 'rough', 'group', 'submissive', 'gangbang');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/locations/city/residential/street/sex/hobosfacial.jpg');
+    scene.text('"I think it\'s time to give our little bitch a reward!" one of them pants and they all pull out of your abused holes and force you onto your knees before removing your bonds. They then circle around you and start stroking their cocks.');
+    scene.text('Before long, the four hobos are all breathing heavily and you see their cocks twitching in their hands as they all start to cum. One of them aims for your mouth while the others shoot their disgusting loads all over your face.');
+    scene.text('"Holy shit, this bitch swallows!" one of them exclaims as you gulp down the disgusting sperm that ended in your mouth. As soon as they\'re done, they all return to their cans of beer. "We hope you\'ll show us more respect in the future, slut."');
+    scene.text('You quickly get dressed and stumble away towards the street without replying.');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0));
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0));
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID2 ?? 0));
+    (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    dynamicGoto(st, 'loc', 'loc_arg');
   } },
   ]);
   scene.build();

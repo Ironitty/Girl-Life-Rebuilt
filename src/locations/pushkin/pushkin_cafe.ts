@@ -16,9 +16,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).stallionQ = 2;
     }
   } else {
-    scene.text('The cafe is packed with people eating their evening meal.');
-    if (((s as any).stallionQ ?? 0) === 1) {
-      (s as any).stallionQ = 2;
+    if (((s as any).hour ?? 0) > 16  &&  ((s as any).hour ?? 0) < 18) {
+      scene.text('The cafe is packed with people eating their evening meal.');
+      if (((s as any).stallionQ ?? 0) === 1) {
+        (s as any).stallionQ = 2;
+      }
     }
   }
   scene.actions([
@@ -38,7 +40,9 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
       (s as any).focH = ((s as any).focH_max ?? 0);
       (s as any).EggRH = ((s as any).EggRH ?? 0) + (300);
     } else {
-      (s as any).stallionQ = 3;
+      if (((s as any).ovulate ?? 0) > 12) {
+        (s as any).stallionQ = 3;
+      }
     }
   }
   scene.text('The tiny cafe is wonderfully situated and you enjoy the beautiful scenery as you eat.');

@@ -225,19 +225,22 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ao_key ?? 0)] === ((s as any).help_page_key ?? 0)) {
       (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
     } else {
-      (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
-      // TODO-QSP: :rt_ao_gloop
-      if (((s as any).rt_ao_grem ?? 0) !== '') {
-        (s as any).rt_ao_gsp = qspUntranslated(s, "instr(rt_ao_grem, ' ')", { location: "help" });
-        if (((s as any).rt_ao_gsp ?? 0) > 0) {
-        }
-        if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ao_gk ?? 0)]) {
-          if (((' \' + $help_toc_children[$rt_ao_gk] + \' ').indexOf((' \' + $help_page_key + \' '))) + 1 > 0) {
-            (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
-            (s as any).help_toc_open[String((s as any).rt_ao_gk ?? 0)] = 1;
+      if (((' \' + $help_toc_children[$rt_ao_key] + \' ').indexOf((' \' + $help_page_key + \' '))) + 1 > 0) {
+        (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
+      } else {
+        // TODO-QSP: :rt_ao_gloop
+        if (((s as any).rt_ao_grem ?? 0) !== '') {
+          (s as any).rt_ao_gsp = qspUntranslated(s, "instr(rt_ao_grem, ' ')", { location: "help" });
+          if (((s as any).rt_ao_gsp ?? 0) > 0) {
           }
+          if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ao_gk ?? 0)]) {
+            if (((' \' + $help_toc_children[$rt_ao_gk] + \' ').indexOf((' \' + $help_page_key + \' '))) + 1 > 0) {
+              (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
+              (s as any).help_toc_open[String((s as any).rt_ao_gk ?? 0)] = 1;
+            }
+          }
+          // TODO-QSP: jump 'rt_ao_gloop'
         }
-        // TODO-QSP: jump 'rt_ao_gloop'
       }
     }
     (s as any).rt_ao_i = ((s as any).rt_ao_i ?? 0) + (1);
@@ -255,6 +258,9 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).rt_page ?? 0) !== '') {
         if (((s as any).rt_page ?? 0) === ((s as any).help_page_key ?? 0)) {
+        }
+      } else {
+        if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_key ?? 0)]) {
         }
       }
       // TODO-QSP: $rt_html += '<div style="margin:4px 0;font-weight:bold;font-size:0.95em">' + $rt_toggle + $rt_lnk + ...

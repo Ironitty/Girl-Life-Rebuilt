@@ -15,7 +15,9 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
       // TODO-QSP: xgt 'bed_get_out_events', 'event_handler2', 'priority'
     } else {
-      // TODO-QSP: xgt 'bed_get_out_events', 'event_handler2'
+      if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
+        // TODO-QSP: xgt 'bed_get_out_events', 'event_handler2'
+      }
     }
   }
   // TODO-QSP: xgt 'bed_get_out_events', 'continue'
@@ -25,9 +27,9 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).sleep_events_priority ?? 0)')-1);
+    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
   } else {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).sleep_events ?? 0)')-1);
+    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
   // TODO-QSP: xgt 'bed_get_out_events', 'event_end'
   scene.build();

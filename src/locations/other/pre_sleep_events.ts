@@ -15,7 +15,9 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
       // TODO-QSP: gt 'pre_sleep_events', 'event_handler2', 'priority'
     } else {
-      scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler2'] }]);
+      if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
+        scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler2'] }]);
+      }
     }
   }
   // TODO-QSP: xgt 'pre_sleep_events', 'continue'
@@ -25,9 +27,9 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).sleep_events_priority ?? 0)')-1);
+    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
   } else {
-    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).sleep_events ?? 0)')-1);
+    (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
   // TODO-QSP: xgt 'pre_sleep_events', 'event_end'
   scene.build();
@@ -63,11 +65,13 @@ function enterMagbEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ARGS ?? 0)[1] === 1) {
+  if (((s as any).locArgs?.[1] ?? 0) === 1) {
     // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 100
   } else {
-    qspCall(s, 'pre_sleep_events', 'exit');
-    // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 1000
+    if (((s as any).locArgs?.[1] ?? 0) === 2) {
+      qspCall(s, 'pre_sleep_events', 'exit');
+      // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 1000
+    }
   }
   scene.build();
 }

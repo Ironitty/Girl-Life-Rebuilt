@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -7,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((qspUntranslated(s, "\u00000\u0000", { location: "npccleanc" })).toUpperCase()) === 'C') {
+  if (((((((s as any).tempcclean ?? 0)).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) === 'C') {
     qspCall(s, 'array', 'remove_element', '$npc_index', ((s as any).tempcclean ?? 0));
     qspCall(s, 'array', 'remove_element', 'npc_dob', ((s as any).tempcclean ?? 0));
     qspCall(s, 'array', 'remove_element', 'npc_stren', ((s as any).tempcclean ?? 0));

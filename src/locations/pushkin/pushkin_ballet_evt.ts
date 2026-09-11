@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -181,7 +183,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).birthday_party['events'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-    scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A279\'']}/279.jpg`);
+    scene.img(`${((s as any).npc_img_path ?? 0)?.['A279']}/279.jpg`);
     // TODO-QSP: dynamic text: You step into the kitchen, looking for something to eat, and see <<$npc_firstnam...
     scene.text(`You step into the kitchen, looking for something to eat, and see ${((s as any).npc_firstname ?? 0)?.['A279']} organizing the food for the party. A delightful aroma wafts from the oven.`);
     // TODO-QSP: dynamic text: "Do you need any help, <<$npc_firstname['A279']>>?" you ask.
@@ -219,44 +221,42 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       scene.text(`You raise your eyebrow; ${((s as any).npc_firstname ?? 0)?.['A277']} would have been the last person you'd have thought would help, being so introverted and rarely saying anything. "Yes, she surprised me as well when I asked her. She's also looking forward to the surprise party planned."`);
       // TODO-QSP: dynamic text: <<$npc_firstname['A279']>> hands you the card and a pen to sign, and you quickly...
       scene.text(`${((s as any).npc_firstname ?? 0)?.['A279']} hands you the card and a pen to sign, and you quickly scribble your wishes and name into it. You briefly consider putting some cash in it as a present.`);
-      if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-      } else {
-        (s as any).birthday_party['events'] = 2;
-        scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A279\'']}/279.jpg`);
-        qspCall(s, 'money', 'pay', 500);
-        (s as any).minut = ((s as any).minut ?? 0) + 10;
-        qspCall(s, 'npc_relationship', 'modify', 'A279', 'like');
-        qspCall(s, 'npc_relationship', 'modify', 'A280', 'like');
-        qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: You dig out your purse and put ' + $func('money', 'string_price', 500) + ' insid...
-        scene.text(`You dig out your purse and put ' + $func('money', 'string_price', 500) + ' inside the card, and hand it back to ${((s as any).npc_firstname ?? 0)?.['A279']}. She notices you've put something inside and opens the card to find the money.`);
-        // TODO-QSP: dynamic text: "Why <<$pcs_nickname>>? I'm aware your parents are poor, and I didn't expect you...
-        scene.text(`"Why ${((s as any).pcs_nickname ?? 0)}? I'm aware your parents are poor, and I didn't expect you to give her a gift," she says with a surprised voice.`);
-        // TODO-QSP: dynamic text: "It's fine, <<$npc_firstname['A279']>>. Tell her to buy a treat to cheer herself...
-        scene.text(`"It's fine, ${((s as any).npc_firstname ?? 0)?.['A279']}. Tell her to buy a treat to cheer herself up. Just don't mention it's from me, please. How do you know I'm from a poor family?" you ask, frowning.`);
-        scene.text('"She\'ll love the gift, and I know because my mother is given a list of students to help out if they don\'t have the necessary items, whether it\'s tampons, makeup, or other essentials. She\'s here to support them."');
-        scene.text('"The school tries to think of everything, doesn\'t it?"');
-        scene.text('"It tries. It helped me adapt to the life here when my mother got the job. The first year was brutally tough at the local school with the kids bullying me for being a villager. The ballet school became my refuge."');
-        scene.text('"This is why you\'re organizing the party?"');
-        // TODO-QSP: dynamic text: "Yes, I want to cheer her up, and your present is going to go a long way toward ...
-        scene.text('"Yes, I want to cheer her up, and your present is going to go a long way toward showing how welcome she is here. I need to get on with preparing the food, but let me say thank you so much for this." With that, she gives you a quick hug and a warm smile, then hurries away to the kitchen. As she leaves, she shouts out, "Remember the communal room at \' + func(\'time\', \'get_time_string\', 18, 30) + \'. Don\'t miss it!", she shouts."');
-        scene.actions([
-          { label: 'Follow her into the kitchen', handler: (st: GameState) => {
+      scene.actions([
+        { label: 'Gift [+$func(\'money\', \'get_cost_string\', 500)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).birthday_party['events'] = 2;
+      scene.img(`${((s as any).npc_img_path ?? 0)?.['A279']}/279.jpg`);
+      qspCall(s, 'money', 'pay', 500);
+      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      qspCall(s, 'npc_relationship', 'modify', 'A279', 'like');
+      qspCall(s, 'npc_relationship', 'modify', 'A280', 'like');
+      qspCall(s, 'stat', '');
+      // TODO-QSP: dynamic text: You dig out your purse and put ' + $func('money', 'string_price', 500) + ' insid...
+      scene.text(`You dig out your purse and put ' + $func('money', 'string_price', 500) + ' inside the card, and hand it back to ${((s as any).npc_firstname ?? 0)?.['A279']}. She notices you've put something inside and opens the card to find the money.`);
+      // TODO-QSP: dynamic text: "Why <<$pcs_nickname>>? I'm aware your parents are poor, and I didn't expect you...
+      scene.text(`"Why ${((s as any).pcs_nickname ?? 0)}? I'm aware your parents are poor, and I didn't expect you to give her a gift," she says with a surprised voice.`);
+      // TODO-QSP: dynamic text: "It's fine, <<$npc_firstname['A279']>>. Tell her to buy a treat to cheer herself...
+      scene.text(`"It's fine, ${((s as any).npc_firstname ?? 0)?.['A279']}. Tell her to buy a treat to cheer herself up. Just don't mention it's from me, please. How do you know I'm from a poor family?" you ask, frowning.`);
+      scene.text('"She\'ll love the gift, and I know because my mother is given a list of students to help out if they don\'t have the necessary items, whether it\'s tampons, makeup, or other essentials. She\'s here to support them."');
+      scene.text('"The school tries to think of everything, doesn\'t it?"');
+      scene.text('"It tries. It helped me adapt to the life here when my mother got the job. The first year was brutally tough at the local school with the kids bullying me for being a villager. The ballet school became my refuge."');
+      scene.text('"This is why you\'re organizing the party?"');
+      // TODO-QSP: dynamic text: "Yes, I want to cheer her up, and your present is going to go a long way toward ...
+      scene.text('"Yes, I want to cheer her up, and your present is going to go a long way toward showing how welcome she is here. I need to get on with preparing the food, but let me say thank you so much for this." With that, she gives you a quick hug and a warm smile, then hurries away to the kitchen. As she leaves, she shouts out, "Remember the communal room at \' + func(\'time\', \'get_time_string\', 18, 30) + \'. Don\'t miss it!", she shouts."');
+      scene.actions([
+        { label: 'Follow her into the kitchen', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'kitchen_birthday'
   } },
-          { label: 'Return to the hallway', goto: ['pushkin_ballet_res', 'hallway'] },
-        ]);
-      }
-      scene.actions([
-        { label: 'Gift [+$func(\'money\', \'get_cost_string\', 500)]' }, // TODO-QSP: empty action body
+        { label: 'Return to the hallway', goto: ['pushkin_ballet_res', 'hallway'] },
       ]);
     }
-    scene.actions([
-      { label: 'Hand card back', handler: (st: GameState) => {
+  } },
+        { label: 'Hand card back', handler: (st: GameState) => {
     (s as any).birthday_party['events'] = 3;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A279\'']}/279.jpg`);
+    scene.img(`${((s as any).npc_img_path ?? 0)?.['A279']}/279.jpg`);
     // TODO-QSP: dynamic text: You hand the card back to <<$npc_firstname['A279']>> after signing it, and she l...
     scene.text(`You hand the card back to ${((s as any).npc_firstname ?? 0)?.['A279']} after signing it, and she looks at you. "Thank you, ${((s as any).pcs_nickname ?? 0)}, hopefully this helps her feel welcome here. She's been struggling to cope with being away from home for the first time."`);
     // TODO-QSP: dynamic text: "Think nothing of it, <<$npc_firstname['A279']>>. If it makes her feel better, t...
@@ -267,67 +267,71 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the hallway', goto: ['pushkin_ballet_res', 'hallway'] },
     ]);
   } },
-    ]);
-  } else {
-    (s as any).setloc['StageTitle'] = 'Communal Room';
-    (s as any).setloc['StageImage'] = '<<$setloc[\'imagepath\']>>/ballet_residence/communal.jpg';
-    qspCall(s, 'core_library', 'stage_title');
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: You help <<$npc_firstname['A279']>> with the plates and glasses in the common ro...
-    scene.text(`You help ${((s as any).npc_firstname ?? 0)?.['A279']} with the plates and glasses in the common room giving you a chance to gossip with her. "How was your village life when you grew up?"`);
-    // TODO-QSP: dynamic text: <<$npc_firstname['A279']>> looks at you for a moment pausing to gather her thoug...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.['A279']} looks at you for a moment pausing to gather her thoughts. "It was tough, our father never returned from the war and the Russian Government was supposed to help us but instead we got nothing. We was just a poor family in a small backwater village and whatever compensation we was due to probably stolen by a corrupt official."`);
-    // TODO-QSP: dynamic text: "Sorry hear that <<$npc_firstname['A279']>>", <<$npc_firstname['A279']>> holds u...
-    scene.text(`"Sorry hear that ${((s as any).npc_firstname ?? 0)?.['A279']}", ${((s as any).npc_firstname ?? 0)?.['A279']} holds up her hand up, "I don't need sympathy ${((s as any).pcs_nickname ?? 0)}, I learned to deal with this years ago, like many here dancing is our refuge and passion in our lives. I barely knew my father and mother never found anyone else even here in the city"`);
-    // TODO-QSP: dynamic text: "You sound wistful?", <<$npc_firstname['A279']>> looks at you sharply, and gives...
-    scene.text(`"You sound wistful?", ${((s as any).npc_firstname ?? 0)?.['A279']} looks at you sharply, and gives a small laugh, "Mother would kill me if I tried to be a matchmaker her, all the dancers come through here are her children. They more than make up for the lack of a husband in her life, and it allows her to guide and help them in whatever way she can." `);
-    // TODO-QSP: dynamic text: "She's our mother hen then?", <<$npc_firstname['A279']>> giggles, "Whatever you ...
-    scene.text(`"She's our mother hen then?", ${((s as any).npc_firstname ?? 0)?.['A279']} giggles, "Whatever you do ${((s as any).pcs_nickname ?? 0)}, never and I mean never say that in front of mother."`);
-    // TODO-QSP: dynamic text: <<$npc_firstname['A279']>> vanishes into the kitchen to get more food and items ...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.['A279']} vanishes into the kitchen to get more food and items for the upcoming party leaving you wondering what she meant but you shake your head as you follow her to continue setting out things for the upcoming party.`);
-    if (((s as any).locArgs?.[2] ?? 0) === 'party') {
-      (s as any).setloc['StageTitle'] = 'Communal Room';
-      (s as any).setloc['StageImage'] = '<<$setloc[\'imagepath\']>>/ballet_residence/gasha_birthday.jpg';
-      qspCall(s, 'core_library', 'stage_title');
-      (s as any).minut = ((s as any).minut ?? 0) + 90;
-      qspCall(s, 'stat', '');
-      // TODO-QSP: dynamic text: You enter the room, and you are grabbed by the arm by <<$npc_firstname['A279']>>...
-      scene.text(`You enter the room, and you are grabbed by the arm by ${((s as any).npc_firstname ?? 0)?.['A279']} and dragged to the side. She puts a finger to her lips to tell you stay quiet you look around see the girls for your own class with you as ${((s as any).npc_firstname ?? 0)?.['A279']} slips out of the room. A few minutes later she is leading ${((s as any).npc_firstname ?? 0)?.['A280']} with her hands covering her eyes.`);
-      // TODO-QSP: dynamic text: “What's going on <<$npc_firstname['A279']>>?” <<$npc_firstname['A280']>> sounds ...
-      scene.text(`“What's going on ${((s as any).npc_firstname ?? 0)?.['A279']}?” ${((s as any).npc_firstname ?? 0)?.['A280']} sounds nervous.`);
-      // TODO-QSP: dynamic text: “It's a little something for you podruzhka.”, she lifts her hands away from <<$n...
-      scene.text(`“It's a little something for you podruzhka.”, she lifts her hands away from ${((s as any).npc_firstname ?? 0)?.['A280']}'s eyes and ${((s as any).npc_firstname ?? 0)?.['A280']} lets out a gasp of surprise and tries to turn to escape out of the room. `);
-      // TODO-QSP: dynamic text: “Stay <<$npc_firstname['A280']>>, we're here to celebrate your birthday with you...
-      scene.text(`“Stay ${((s as any).npc_firstname ?? 0)?.['A280']}, we're here to celebrate your birthday with you.” You see tears forming around her eyes and ${((s as any).npc_firstname ?? 0)?.['A279']} gives her a hug to hide them from the rest of the girls.`);
-      // TODO-QSP: dynamic text: “Thank you…," you hear her murmur into <<$npc_firstname['A279']>>'s shoulder. Af...
-      scene.text(`“Thank you…," you hear her murmur into ${((s as any).npc_firstname ?? 0)?.['A279']}'s shoulder. After a few moments, she composes herself and turns to face her classmates. “Thank you all for coming,” she calls out, before coming around to give all the girls a hug as a thank you. `);
-      // TODO-QSP: dynamic text: “Thank you <<$pcs_nickname>> for being here”, <<$npc_firstname['A280']>> says as...
-      scene.text(`“Thank you ${((s as any).pcs_nickname ?? 0)} for being here”, ${((s as any).npc_firstname ?? 0)?.['A280']} says as she hugs you.`);
-      scene.text('“Can\'t miss the excuse for a party can we?”, you say jokingly.');
-      scene.text('“No, and this is amazing. Did you help?”');
-      // TODO-QSP: dynamic text: “A little but most of it's <<$npc_firstname['A279']>>'s handiwork, I think she's...
-      scene.text(`“A little but most of it's ${((s as any).npc_firstname ?? 0)?.['A279']}'s handiwork, I think she's been planning this for weeks to surprise you.”`);
-      // TODO-QSP: dynamic text: “She succeeded, she's even got some of my favourite snacks.” She blushes and loo...
-      scene.text(`“She succeeded, she's even got some of my favourite snacks.” She blushes and looks guilty as she mentions this, looking at the Medovik cake taking centre stage, “${((s as any).npc_firstname ?? 0)?.['A279']} is an amazing baker and confectionist. She's even made some zefir, some pryaniki from a family secret recipe, and if you're wanting to keep calories down, there's one of her favourites: postila.” `);
-      // TODO-QSP: dynamic text: You watch with amusement as you see <<$npc_firstname['A280']>> itching to try ea...
-      scene.text(`You watch with amusement as you see ${((s as any).npc_firstname ?? 0)?.['A280']} itching to try each of the treats. You guide her across, eager to try them all yourself. `);
-      // TODO-QSP: dynamic text: “See, I told you they were delicious!” <<$npc_firstname['A280']>> says with a gr...
-      scene.text(`“See, I told you they were delicious!” ${((s as any).npc_firstname ?? 0)?.['A280']} says with a grin, and you see the girls all gathering around the food.`);
-      // TODO-QSP: dynamic text: “Yes, and I suspect that <<$npc_firstname['A284']>> is going to burn all the cal...
-      scene.text(`“Yes, and I suspect that ${((s as any).npc_firstname ?? 0)?.['A284']} is going to burn all the calories off with her lessons this week,” you hear ${((s as any).npc_firstname ?? 0)?.['A278']} say as she tries some of ${((s as any).npc_firstname ?? 0)?.['A279']}'s baking. “Well I know who's got a career as a baker after this if she doesn't make it this week.” She ribs ${((s as any).npc_firstname ?? 0)?.['A279']}, who bursts out laughing in agreement. “Sure, and I'll get you to model for me.”`);
-      scene.text('“Anytime, as long you pay me in cakes!” The banter continues between them for a bit as you wander off to talk to the other girls.');
-      scene.actions([
-        { label: 'Leave party', handler: (st: GameState) => {
-    // TODO-QSP: birthday_party['events'] = 5
-  }, goto: ['pushkin_ballet_res', 'hallway'] },
       ]);
     } else {
-      scene.text('<center><b>Debug:</b></center>');
+      if (((s as any).locArgs?.[2] ?? 0) === 'prep') {
+        (s as any).setloc['StageTitle'] = 'Communal Room';
+        (s as any).setloc['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/communal.jpg';
+        qspCall(s, 'core_library', 'stage_title');
+        (s as any).minut = ((s as any).minut ?? 0) + 20;
+        qspCall(s, 'stat', '');
+        // TODO-QSP: dynamic text: You help <<$npc_firstname['A279']>> with the plates and glasses in the common ro...
+        scene.text(`You help ${((s as any).npc_firstname ?? 0)?.['A279']} with the plates and glasses in the common room giving you a chance to gossip with her. "How was your village life when you grew up?"`);
+        // TODO-QSP: dynamic text: <<$npc_firstname['A279']>> looks at you for a moment pausing to gather her thoug...
+        scene.text(`${((s as any).npc_firstname ?? 0)?.['A279']} looks at you for a moment pausing to gather her thoughts. "It was tough, our father never returned from the war and the Russian Government was supposed to help us but instead we got nothing. We was just a poor family in a small backwater village and whatever compensation we was due to probably stolen by a corrupt official."`);
+        // TODO-QSP: dynamic text: "Sorry hear that <<$npc_firstname['A279']>>", <<$npc_firstname['A279']>> holds u...
+        scene.text(`"Sorry hear that ${((s as any).npc_firstname ?? 0)?.['A279']}", ${((s as any).npc_firstname ?? 0)?.['A279']} holds up her hand up, "I don't need sympathy ${((s as any).pcs_nickname ?? 0)}, I learned to deal with this years ago, like many here dancing is our refuge and passion in our lives. I barely knew my father and mother never found anyone else even here in the city"`);
+        // TODO-QSP: dynamic text: "You sound wistful?", <<$npc_firstname['A279']>> looks at you sharply, and gives...
+        scene.text(`"You sound wistful?", ${((s as any).npc_firstname ?? 0)?.['A279']} looks at you sharply, and gives a small laugh, "Mother would kill me if I tried to be a matchmaker her, all the dancers come through here are her children. They more than make up for the lack of a husband in her life, and it allows her to guide and help them in whatever way she can." `);
+        // TODO-QSP: dynamic text: "She's our mother hen then?", <<$npc_firstname['A279']>> giggles, "Whatever you ...
+        scene.text(`"She's our mother hen then?", ${((s as any).npc_firstname ?? 0)?.['A279']} giggles, "Whatever you do ${((s as any).pcs_nickname ?? 0)}, never and I mean never say that in front of mother."`);
+        // TODO-QSP: dynamic text: <<$npc_firstname['A279']>> vanishes into the kitchen to get more food and items ...
+        scene.text(`${((s as any).npc_firstname ?? 0)?.['A279']} vanishes into the kitchen to get more food and items for the upcoming party leaving you wondering what she meant but you shake your head as you follow her to continue setting out things for the upcoming party.`);
+        scene.actions([
+          { label: 'Leave room', goto: ['pushkin_ballet_res', 'hallway'] },
+        ]);
+      } else {
+        if (((s as any).locArgs?.[2] ?? 0) === 'party') {
+          (s as any).setloc['StageTitle'] = 'Communal Room';
+          (s as any).setloc['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/gasha_birthday.jpg';
+          qspCall(s, 'core_library', 'stage_title');
+          (s as any).minut = ((s as any).minut ?? 0) + 90;
+          qspCall(s, 'stat', '');
+          // TODO-QSP: dynamic text: You enter the room, and you are grabbed by the arm by <<$npc_firstname['A279']>>...
+          scene.text(`You enter the room, and you are grabbed by the arm by ${((s as any).npc_firstname ?? 0)?.['A279']} and dragged to the side. She puts a finger to her lips to tell you stay quiet you look around see the girls for your own class with you as ${((s as any).npc_firstname ?? 0)?.['A279']} slips out of the room. A few minutes later she is leading ${((s as any).npc_firstname ?? 0)?.['A280']} with her hands covering her eyes.`);
+          // TODO-QSP: dynamic text: “What's going on <<$npc_firstname['A279']>>?” <<$npc_firstname['A280']>> sounds ...
+          scene.text(`“What's going on ${((s as any).npc_firstname ?? 0)?.['A279']}?” ${((s as any).npc_firstname ?? 0)?.['A280']} sounds nervous.`);
+          // TODO-QSP: dynamic text: “It's a little something for you podruzhka.”, she lifts her hands away from <<$n...
+          scene.text(`“It's a little something for you podruzhka.”, she lifts her hands away from ${((s as any).npc_firstname ?? 0)?.['A280']}'s eyes and ${((s as any).npc_firstname ?? 0)?.['A280']} lets out a gasp of surprise and tries to turn to escape out of the room. `);
+          // TODO-QSP: dynamic text: “Stay <<$npc_firstname['A280']>>, we're here to celebrate your birthday with you...
+          scene.text(`“Stay ${((s as any).npc_firstname ?? 0)?.['A280']}, we're here to celebrate your birthday with you.” You see tears forming around her eyes and ${((s as any).npc_firstname ?? 0)?.['A279']} gives her a hug to hide them from the rest of the girls.`);
+          // TODO-QSP: dynamic text: “Thank you…," you hear her murmur into <<$npc_firstname['A279']>>'s shoulder. Af...
+          scene.text(`“Thank you…," you hear her murmur into ${((s as any).npc_firstname ?? 0)?.['A279']}'s shoulder. After a few moments, she composes herself and turns to face her classmates. “Thank you all for coming,” she calls out, before coming around to give all the girls a hug as a thank you. `);
+          // TODO-QSP: dynamic text: “Thank you <<$pcs_nickname>> for being here”, <<$npc_firstname['A280']>> says as...
+          scene.text(`“Thank you ${((s as any).pcs_nickname ?? 0)} for being here”, ${((s as any).npc_firstname ?? 0)?.['A280']} says as she hugs you.`);
+          scene.text('“Can\'t miss the excuse for a party can we?”, you say jokingly.');
+          scene.text('“No, and this is amazing. Did you help?”');
+          // TODO-QSP: dynamic text: “A little but most of it's <<$npc_firstname['A279']>>'s handiwork, I think she's...
+          scene.text(`“A little but most of it's ${((s as any).npc_firstname ?? 0)?.['A279']}'s handiwork, I think she's been planning this for weeks to surprise you.”`);
+          // TODO-QSP: dynamic text: “She succeeded, she's even got some of my favourite snacks.” She blushes and loo...
+          scene.text(`“She succeeded, she's even got some of my favourite snacks.” She blushes and looks guilty as she mentions this, looking at the Medovik cake taking centre stage, “${((s as any).npc_firstname ?? 0)?.['A279']} is an amazing baker and confectionist. She's even made some zefir, some pryaniki from a family secret recipe, and if you're wanting to keep calories down, there's one of her favourites: postila.” `);
+          // TODO-QSP: dynamic text: You watch with amusement as you see <<$npc_firstname['A280']>> itching to try ea...
+          scene.text(`You watch with amusement as you see ${((s as any).npc_firstname ?? 0)?.['A280']} itching to try each of the treats. You guide her across, eager to try them all yourself. `);
+          // TODO-QSP: dynamic text: “See, I told you they were delicious!” <<$npc_firstname['A280']>> says with a gr...
+          scene.text(`“See, I told you they were delicious!” ${((s as any).npc_firstname ?? 0)?.['A280']} says with a grin, and you see the girls all gathering around the food.`);
+          // TODO-QSP: dynamic text: “Yes, and I suspect that <<$npc_firstname['A284']>> is going to burn all the cal...
+          scene.text(`“Yes, and I suspect that ${((s as any).npc_firstname ?? 0)?.['A284']} is going to burn all the calories off with her lessons this week,” you hear ${((s as any).npc_firstname ?? 0)?.['A278']} say as she tries some of ${((s as any).npc_firstname ?? 0)?.['A279']}'s baking. “Well I know who's got a career as a baker after this if she doesn't make it this week.” She ribs ${((s as any).npc_firstname ?? 0)?.['A279']}, who bursts out laughing in agreement. “Sure, and I'll get you to model for me.”`);
+          scene.text('“Anytime, as long you pay me in cakes!” The banter continues between them for a bit as you wander off to talk to the other girls.');
+          scene.actions([
+            { label: 'Leave party', handler: (st: GameState) => {
+    // TODO-QSP: birthday_party['events'] = 5
+  }, goto: ['pushkin_ballet_res', 'hallway'] },
+          ]);
+        } else {
+          scene.text('<center><b>Debug:</b></center>');
+        }
+      }
     }
-    scene.actions([
-      { label: 'Leave room', goto: ['pushkin_ballet_res', 'hallway'] },
-    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'homesick') {
     // TODO-QSP: dynamic text: You enter the communal area and see <<$npc_firstname['A280']>> holding a textboo...
@@ -380,7 +384,7 @@ function enterBarreExercise(s: GameState, scene: SceneBuilder): void {
 
 function enterIntro_274(s: GameState, scene: SceneBuilder): void {
   (s as any).mayaqw['path'] = 1;
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A274\'']}/274-1.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A274']}/274-1.jpg`);
   // TODO-QSP: dynamic text: You walk over to a tall willowly blonde girl, "Hi I'm <<$pcs_nickname>>". The gi...
   scene.text(`You walk over to a tall willowly blonde girl, "Hi I'm ${((s as any).pcs_nickname ?? 0)}". The girl gives you a warm smile, "I'm ${((s as any).npc_firstname ?? 0)?.['A274']} pleased to meet you. Where you from?" 'Pavlosk' you reply, 'Yourself?'`);
   // TODO-QSP: dynamic text: "I live Pushkin now but from Moscow originally.", <<$npc_firstname['A274']>> rep...
@@ -394,7 +398,7 @@ function enterIntro_274(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_275(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A275\'']}/275.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A275']}/275.jpg`);
   // TODO-QSP: dynamic text: You notice girl writing in a small book. She notices you looking at it, and make...
   scene.text(`You notice girl writing in a small book. She notices you looking at it, and makes a small attempt to try and avoid you. "Yes?", she asks, "I'm just introducing myself, ${((s as any).pcs_nickname ?? 0)}". "Ah you're the dancer from Pavlovsk." she said, looking at you critically. `);
   scene.text('"Yes, how did you know?", you ask puzzled but before she ignores you and goes back to writing in the book.');
@@ -407,7 +411,7 @@ function enterIntro_275(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_276(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A276\'']}/276.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A276']}/276.jpg`);
   // TODO-QSP: dynamic text: Glancing around the room you spot another girl and quickly approach her, "Hi I'm...
   scene.text(`Glancing around the room you spot another girl and quickly approach her, "Hi I'm ${((s as any).pcs_nickname ?? 0)}". The girl gives you a wary look, "Hello, I suppose I should introduce myself since it is obvious you don't know me. I'm ${((s as any).npc_firstname ?? 0)?.['A276']}. I am one of the best dancers in Russia.", she looks at you coldly, expecting you to know her. Seeing your blank look, she looks disdainfully at you before walking off.`);
   scene.actions([
@@ -419,7 +423,7 @@ function enterIntro_276(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_277(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A277\'']}/277.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A277']}/277.jpg`);
   scene.text('As you turn from your last conversation you glance toward the entrance to the communal room and notice a young girl nervously watching girls having fun. ');
   scene.text('As you approach you notice she starts to look at the door more frequently and you think she is about to bolt from the room. You hold up your hands to try and calm her and give what you hope is a warm smile.');
   // TODO-QSP: dynamic text: "I'm <<$pcs_nickname>>, are you alright?", you ask concerned about her behaviour...
@@ -440,7 +444,7 @@ function enterIntro_277(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_278(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A278\'']}/278.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A278']}/278.jpg`);
   scene.text('A gap appears in the crowd of girls and you spot a tall, stunningly beautiful girl at the drinks table and you make your way over to her.');
   // TODO-QSP: dynamic text: "Hi!", you call out as you approach her, "I'm <<$pcs_nickname>>"
   scene.text(`"Hi!", you call out as you approach her, "I'm ${((s as any).pcs_nickname ?? 0)}"`);
@@ -471,7 +475,7 @@ function enterIntro_278(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_279(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A279\'']}/279.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A279']}/279.jpg`);
   // TODO-QSP: dynamic text: You see a girl talking animatedly to Madam <<$npc_lastname['A284']>> as you appr...
   scene.text(`You see a girl talking animatedly to Madam ${((s as any).npc_lastname ?? 0)?.['A284']} as you approach them, Madam ${((s as any).npc_lastname ?? 0)?.['A284']} looks at you sharply before she leaves the girl with a glare.`);
   // TODO-QSP: dynamic text: "Hello, you must be <<$pcs_nickname>>", she says with a cheeky grin."
@@ -496,7 +500,7 @@ function enterIntro_279(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_280(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A280\'']}/280.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A280']}/280.jpg`);
   // TODO-QSP: dynamic text: You see a young girl sitting alone in the corner and make your way through the c...
   scene.text(`You see a young girl sitting alone in the corner and make your way through the crowd to where she is sitting. She looks up at you, surprised that you approached her and looks at you quizzically. "Did ${((s as any).npc_firstname ?? 0)?.['A279']} ask you to talk to me?"`);
   // TODO-QSP: dynamic text: "No", you reply, "just saw you alone and wanted to meet you. I'm <<$pcs_nickname...
@@ -523,7 +527,7 @@ function enterIntro_280(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_281(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A281\'']}/281.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A281']}/281.jpg`);
   // TODO-QSP: dynamic text: In the corner of the room you see a pair of twins bickering with each other. Ove...
   scene.text(`In the corner of the room you see a pair of twins bickering with each other. Over the clamour of the room you can't hear what is being said. As you start to move closer to see what the commotion is, a voice says "I wouldn't interfere with the ${((s as any).npc_lastname ?? 0)?.['A281']} twins". You turn around to see who spoke, but then you notice Madam ${((s as any).npc_lastname ?? 0)?.['A284']} walking over to them and you decide to stay away. `);
   scene.actions([
@@ -535,7 +539,7 @@ function enterIntro_281(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_282(s: GameState, scene: SceneBuilder): void {
-  scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A282\'']}/282.jpg`);
+  scene.img(`${((s as any).npc_img_path ?? 0)?.['A282']}/282.jpg`);
   // TODO-QSP: dynamic text: In the corner of the room you see a pair of twins bickering with each other. Ove...
   scene.text(`In the corner of the room you see a pair of twins bickering with each other. Over the clamour of the room you can't hear what is being said. As you start to move closer to see what the commotion is, a voice says "I wouldn't interfere with the ${((s as any).npc_lastname ?? 0)?.['A281']} twins". You turn round to see who spoke, but then you notice Madam ${((s as any).npc_lastname ?? 0)?.['A284']} walking over to them and you decide to stay away. `);
   scene.actions([
@@ -565,7 +569,7 @@ function enterRudolphqw(s: GameState, scene: SceneBuilder): void {
 function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '0') {
     (s as any).setloc['StageTitle'] = 'The Chess Match';
-    (s as any).setloc['StageImage'] = '<<$setloc[\'imagepath\']>>ballet_events/chess.jpg';
+    (s as any).setloc['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg';
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You enter the communal room you see the twins <<$npc_firstname['A281']>> and <<$...
     scene.text(`You enter the communal room you see the twins ${((s as any).npc_firstname ?? 0)?.['A281']} and ${((s as any).npc_firstname ?? 0)?.['A282']} sitting in the corner intently staring at a chess board. You notice the game has just started and a few of the other residents had settled down to watch them.`);
@@ -573,16 +577,18 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave room', goto: ['pushkin_ballet_res', 'communal_area'] },
     ]);
   } else {
-    (s as any).setloc['StageTitle'] = 'TV Night';
-    (s as any).setloc['StageImage'] = '<<$setloc[\'imagepath\']>>ballet_events/chess.jpg';
-    // TODO-QSP: dynamic text: You enter the common room and see <<$npc_firstname['A280']>> relaxing in front o...
-    scene.text(`You enter the common room and see ${((s as any).npc_firstname ?? 0)?.['A280']} relaxing in front of the TV watching a ballet rehearsal. She is nibbling a small plate of fruit pieces and looks towards you as you enter.`);
-    if (((s as any).locArgs?.[1] ?? 0) === '2') {
-      scene.text('You enter the Conservatory and see some girls practicing the various ballet forms and stretches. At the back is a pair of girls from another class performing barre exercises.');
-      // TODO-QSP: dynamic text: Hi, you come to join us?", one of the girls asks, whilst the other girl says, "S...
-      scene.text(`Hi, you come to join us?", one of the girls asks, whilst the other girl says, "She's in ${((s as any).npc_firstname ?? 0)?.['A286']}'s class", her eyes light up, "can you help teach us? We'd love to learn from you!"`);
-      scene.actions([
-        { label: 'Practice with the girls', handler: (st: GameState) => {
+    if (((s as any).locArgs?.[1] ?? 0) === '1') {
+      (s as any).setloc['StageTitle'] = 'TV Night';
+      (s as any).setloc['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg';
+      // TODO-QSP: dynamic text: You enter the common room and see <<$npc_firstname['A280']>> relaxing in front o...
+      scene.text(`You enter the common room and see ${((s as any).npc_firstname ?? 0)?.['A280']} relaxing in front of the TV watching a ballet rehearsal. She is nibbling a small plate of fruit pieces and looks towards you as you enter.`);
+    } else {
+      if (((s as any).locArgs?.[1] ?? 0) === '2') {
+        scene.text('You enter the Conservatory and see some girls practicing the various ballet forms and stretches. At the back is a pair of girls from another class performing barre exercises.');
+        // TODO-QSP: dynamic text: Hi, you come to join us?", one of the girls asks, whilst the other girl says, "S...
+        scene.text(`Hi, you come to join us?", one of the girls asks, whilst the other girl says, "She's in ${((s as any).npc_firstname ?? 0)?.['A286']}'s class", her eyes light up, "can you help teach us? We'd love to learn from you!"`);
+        scene.actions([
+          { label: 'Practice with the girls', handler: (st: GameState) => {
     (s as any).ballet_homework[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
     (s as any).ballet_grade_score['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
     qspCall(s, 'exercise', 'tier1', 60, 'agil', 'stren');
@@ -593,31 +599,33 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave room', goto: ['pushkin_ballet_res', 'communal_area'] },
     ]);
   } },
-        { label: 'Decline to help', handler: (st: GameState) => {
+          { label: 'Decline to help', handler: (st: GameState) => {
     scene.text('Sorry, I was looking for someone do you know where <random name> is?');
     scene.text('The girls shake their heads disappointed that you couldn\'t help them.');
     scene.actions([
       { label: 'Leave room', goto: ['pushkin_ballet_res', 'communal_area'] },
     ]);
   } },
-      ]);
-    } else {
-      scene.text('WIP - tbc');
-      if (((s as any).locArgs?.[1] ?? 0) === '4') {
-        (s as any).setloc['StageTitle'] = 'TV Night';
-        // TODO-QSP: dynamic text: You enter the communal room and see <<$npc_firstname['A280']>> at her favorite p...
-        scene.text(`You enter the communal room and see ${((s as any).npc_firstname ?? 0)?.['A280']} at her favorite place watching TV. She looks at you nervously as you enter and you ask if you could join her.`);
-        scene.text('"Are you going to bully me too?", she asks, her voice trembling..');
-        // TODO-QSP: dynamic text: "No why?", you ask. <<$npc_firstname['A280']>> looks nervously at the door, "She...
-        scene.text(`"No why?", you ask. ${((s as any).npc_firstname ?? 0)?.['A280']} looks nervously at the door, "She was here, calling me a fat hippo that can't dance.", ${((s as any).npc_firstname ?? 0)?.['A280']} looks as if she's about to break down in tears.`);
-        // TODO-QSP: dynamic text: "Let me guess, <<$npc_firstname['A276']>>?", <<$npc_firstname['A280']>> nods fea...
-        scene.text(`"Let me guess, ${((s as any).npc_firstname ?? 0)?.['A276']}?", ${((s as any).npc_firstname ?? 0)?.['A280']} nods fearful to name her in case she summons her back. "Why don't you go to ${((s as any).npc_firstname ?? 0)?.['A286']}? She'll help."`);
-        // TODO-QSP: dynamic text: <<$npc_firstname['A280']>>'s eyes open even wider, "Are you crazy? She'll just m...
-        scene.text(`${((s as any).npc_firstname ?? 0)?.['A280']}'s eyes open even wider, "Are you crazy? She'll just make my life a living hell. I just want to pass this course and get out of here."`);
-        // TODO-QSP: dynamic text: "You can't let her get away with this, She'll just get worse and bully someone e...
-        scene.text(`"You can't let her get away with this, She'll just get worse and bully someone else", you say, "Please ${((s as any).pcs_nickname ?? 0)}, don't make this worse for me."`);
-        scene.actions([
-          { label: 'Support <<$npc_firstname[\'A280\']>>', handler: (st: GameState) => {
+        ]);
+      } else {
+        if (((s as any).locArgs?.[1] ?? 0) === '3') {
+          scene.text('WIP - tbc');
+        } else {
+          if (((s as any).locArgs?.[1] ?? 0) === '4') {
+            (s as any).setloc['StageTitle'] = 'TV Night';
+            // TODO-QSP: dynamic text: You enter the communal room and see <<$npc_firstname['A280']>> at her favorite p...
+            scene.text(`You enter the communal room and see ${((s as any).npc_firstname ?? 0)?.['A280']} at her favorite place watching TV. She looks at you nervously as you enter and you ask if you could join her.`);
+            scene.text('"Are you going to bully me too?", she asks, her voice trembling..');
+            // TODO-QSP: dynamic text: "No why?", you ask. <<$npc_firstname['A280']>> looks nervously at the door, "She...
+            scene.text(`"No why?", you ask. ${((s as any).npc_firstname ?? 0)?.['A280']} looks nervously at the door, "She was here, calling me a fat hippo that can't dance.", ${((s as any).npc_firstname ?? 0)?.['A280']} looks as if she's about to break down in tears.`);
+            // TODO-QSP: dynamic text: "Let me guess, <<$npc_firstname['A276']>>?", <<$npc_firstname['A280']>> nods fea...
+            scene.text(`"Let me guess, ${((s as any).npc_firstname ?? 0)?.['A276']}?", ${((s as any).npc_firstname ?? 0)?.['A280']} nods fearful to name her in case she summons her back. "Why don't you go to ${((s as any).npc_firstname ?? 0)?.['A286']}? She'll help."`);
+            // TODO-QSP: dynamic text: <<$npc_firstname['A280']>>'s eyes open even wider, "Are you crazy? She'll just m...
+            scene.text(`${((s as any).npc_firstname ?? 0)?.['A280']}'s eyes open even wider, "Are you crazy? She'll just make my life a living hell. I just want to pass this course and get out of here."`);
+            // TODO-QSP: dynamic text: "You can't let her get away with this, She'll just get worse and bully someone e...
+            scene.text(`"You can't let her get away with this, She'll just get worse and bully someone else", you say, "Please ${((s as any).pcs_nickname ?? 0)}, don't make this worse for me."`);
+            scene.actions([
+              { label: 'Support <<$npc_firstname[\'A280\']>>', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A280', 'like');
     (s as any).npc_trust['A280'] = ((s as any).npc_trust['A280'] ?? 0) + (2);
     qspCall(s, 'stat', '');
@@ -630,7 +638,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave room', goto: ['pushkin_ballet_res', 'communal_area'] },
     ]);
   } },
-          { label: 'Let <<$npc_firstname[\'A280\']>> handle it', handler: (st: GameState) => {
+              { label: 'Let <<$npc_firstname[\'A280\']>> handle it', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A280', 'dislike');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "If you're sure, but promise me that'll you talk to <<$npc_firstname['A286']>> i...
@@ -641,17 +649,66 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave room', goto: ['pushkin_ballet_res', 'communal_area'] },
     ]);
   } },
-        ]);
-      } else {
-        scene.text('WIP - tbc');
-        if (((s as any).locArgs?.[1] ?? 0) === '6') {
-          scene.text('WIP - tbc');
-        } else {
-          scene.text('WIP - tbc');
-          if (((s as any).locArgs?.[1] ?? 0) === '8') {
-            scene.text('WIP - tbc');
+            ]);
           } else {
-            scene.text('WIP - tbc');
+            if (((s as any).locArgs?.[1] ?? 0) === '5') {
+              scene.text('WIP - tbc');
+            } else {
+              if (((s as any).locArgs?.[1] ?? 0) === '6') {
+                scene.text('WIP - tbc');
+              } else {
+                if (((s as any).locArgs?.[1] ?? 0) === '7') {
+                  scene.text('WIP - tbc');
+                } else {
+                  if (((s as any).locArgs?.[1] ?? 0) === '8') {
+                    scene.text('WIP - tbc');
+                  } else {
+                    if (((s as any).locArgs?.[1] ?? 0) === '9') {
+                      scene.text('WIP - tbc');
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterJournal(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><h4>Introit</h4></center>');
+  if (((s as any).balletqw ?? 0)?.['letter'] !== 1  &&  ((s as any).balletqw ?? 0)?.['school'] < 1) {
+    scene.text('You have been a ballerina since a child and you have excelled in your dance class. Your name was put forward by your dance teacher to the yearly entrance assessments for the Pushkin Ballet School which are being held during the summer and you are hoping for an invitation to the prestigious Pushkin Ballet Academy to fulfil your dream of being a ballerina.');
+  }
+  if (((s as any).balletqw ?? 0)?.['letter'] === 1  &&  ((s as any).balletqw ?? 0)?.['school'] < 1  &&  ((s as any).balletqw ?? 0)?.['final_report'] === '') {
+    scene.text('You have accepted the invitation to the Pushkin Ballet Academy. Transport is provided to all students to the week-long course from the Pavlosk Community Center. ');
+    scene.text('Departure: Sunday, 3rd July between 1600 and 1700.');
+    scene.text('Ensure you have sufficient toiletries, make up and to work on your appearance, physical and dance skills prior to attending as these will be graded. Note this is a residential school in Pushkin and has strict rules about your conduct and attendance. Please ensure you have concluded any unfinished business before departing.');
+  }
+  if (((s as any).balletqw ?? 0)?.['school'] >= 1  ||  ((s as any).balletqw ?? 0)?.['final_report'] !== '') {
+    scene.text('<center><h4>Act 1: Dreaming of stars.</h4></center>');
+  }
+  if (((s as any).balletqw ?? 0)?.['school'] === 0  &&  ((s as any).balletqw ?? 0)?.['final_report'] !== '') {
+    scene.text('You failed to make the grade at the Pushkin Ballet Academy. There may be other opportunities if you want to achieve your ambition of being a ballerina, but not this year. <b>This is the end of the Pushkin Ballet questline for now.</b>');
+  } else {
+    if (((s as any).balletqw ?? 0)?.['school'] === 1) {
+      scene.text('Your performance and discipline at the Pushkin Ballet Academy were a disgrace. You have not been granted a place, nor will you be invited back. <b>This is the end of the Pushkin Ballet questline for now.</b>');
+    } else {
+      if (((s as any).balletqw ?? 0)?.['school'] === 2) {
+        scene.text('You were accepted into the school without any noticeable distinction. <b>This is the end of the Pushkin Ballet questline for now.</b>');
+      } else {
+        if (((s as any).balletqw ?? 0)?.['school'] === 3) {
+          scene.text('You brokered a deal with Randolph to get accepted into the school. <b>This is the end of the Pushkin Ballet questline for now.</b>');
+        } else {
+          if (((s as any).balletqw ?? 0)?.['school'] === 4) {
+            scene.text('Maya helped you get into the Pushkin Ballet School by pulling some strings. <b>This is the end of the Pushkin Ballet questline for now.</b>');
+          } else {
+            if (((s as any).balletqw ?? 0)?.['school'] === 5) {
+              scene.text('Congratulations, you excelled in the examination, you were one of the best ballerinas of this year\'s intake. <b>This is the end of the Pushkin Ballet questline for now.</b>');
+            }
           }
         }
       }
@@ -725,6 +782,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'res_events_array':
       enterResEventsArray(s, scene);
+      break;
+    case 'journal':
+      enterJournal(s, scene);
       break;
     default:
       enterLetter(s, scene);

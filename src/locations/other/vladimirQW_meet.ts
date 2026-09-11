@@ -4,7 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).vladimirQW['stage'] = 25;
   (s as any).vladimirQW['day'] = ((s as any).daystart ?? 0);
@@ -31,10 +31,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`You make the order and the waiter whisks the menu away. At the table, an awkward silence descends. Vladimir pauses for a moment and asks. "So ${((s as any).pcs_nickname ?? 0)} who do you work for?"`);
     if (((s as any).job_status ?? 0)?.['city_market_saleswoman'] === 'employed') {
     } else {
-      if (((s as any).job_status ?? 0)?.['city_cafe_waitress'] === 'employed') {
+      if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed') {
+      } else {
+        if (((s as any).job_status ?? 0)?.['city_cafe_waitress'] === 'employed') {
+        }
       }
-      scene.actions([
-        { label: '<<$qwvladwork>>', handler: (st: GameState) => {
+    }
+    scene.actions([
+      { label: '<<$qwvladwork>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "<<$qwvladwork>>" You tell him.
@@ -84,8 +88,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
+    ]);
   } },
     ]);
   } },
@@ -93,6 +96,41 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
   ]);
   scene.build();
+}
+
+function enterQwmeetdy(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/city/vladimir/car.jpg');
+  scene.text('The door opens and the driver offers to take your hand.');
+  // TODO-QSP: end & !! --- qwmeetdy ---
+  scene.actions([
+    { label: 'Climb out of the car with the driver\'s assistance', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/glory/001.jpg');
+    scene.text('Stepping out of the car you just now get a good look at the driver. He appears to be a young man of Asian origin. Apparently confident he smiles at you with a hint of impudence.');
+    // TODO-QSP: dynamic text: Vladimir looks out of the car "This is my driver, Glory. He may be a little scar...
+    scene.text(`Vladimir looks out of the car "This is my driver, Glory. He may be a little scary. I'll call you ${((s as any).pcs_nickname ?? 0)}"`);
+    scene.text('The Asian man smiles again and you shut the back door. Leaping into the driver\'s seat, he again looks at you greedily, undressing you with his eyes, and slams his door with a smirk. The wheels screech and the car immediately jumps away from the pavement and speeds away, disappearing into the distance.');
+    scene.actions([
+      { label: 'Go home', handler: (st: GameState) => {
+    qspCall(st, 'dina', 'brodilr');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'qwmeetdy':
+      enterQwmeetdy(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const vladimirQW_meet: LocationDef = {

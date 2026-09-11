@@ -11,13 +11,16 @@ function enterCreateclass(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[5] ?? 0) === 'yes') {
     if (((s as any).locArgs?.[6] ?? 0) === 'yes') {
-      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_breakeven_point'] = ((s as any).min ?? 0)(10 * ((s as any).ARGS ?? 0)[3] + 25, 5 * ((s as any).ARGS ?? 0)[3] + 50);
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_breakeven_point'] = Math.min(10 * ((s as any).ARGS ?? 0)[3] + 25, 5 * ((s as any).ARGS ?? 0)[3] + 50);
     } else {
       (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_breakeven_point'] = 10 * ((s as any).ARGS ?? 0)[3];
     }
   } else {
-    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_breakeven_point'] = 50;
-    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_breakeven_point'] = 5 * ((s as any).ARGS ?? 0)[8];
+    if (((s as any).locArgs?.[6] ?? 0) ==='yes') {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_breakeven_point'] = 50;
+    } else {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_breakeven_point'] = 5 * ((s as any).ARGS ?? 0)[8];
+    }
   }
   (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_homework'] = ((((s as any).locArgs?.[6] ?? 0) === 'yes') ? (1) : (0));
   (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_max'] = 10 * ((s as any).ARGS ?? 0)[8];
@@ -31,7 +34,7 @@ function enterCreateclass(s: GameState, scene: SceneBuilder): void {
 
 function enterGradeCap(s: GameState, scene: SceneBuilder): void {
   (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_grade_cap'] = qspUntranslated(s, "ARGS[3]", { location: "grades" });
-  if (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade'] > ((s as any).ARGS ?? 0)[3]) {
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_grade'] > ((s as any).locArgs?.[3] ?? 0)) {
     (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_grade'] = qspUntranslated(s, "ARGS[3]", { location: "grades" });
   }
   scene.build();
@@ -53,38 +56,518 @@ function enterClassActivity(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
       (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (5);
     } else {
-      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (5);
-      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
-        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (3);
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (5);
       } else {
-        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (2);
-        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (1);
-      }
-      if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
-        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
-          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (9);
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (3);
         } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (2);
+          } else {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (1);
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (9);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
           (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (8);
+        } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
             (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (6);
           } else {
-            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (4);
-            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (2);
-          }
-          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
-            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (10);
-          } else {
-            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (9);
-            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
-              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (7);
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (4);
             } else {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (2);
+            }
+          }
+        }
+      }
+    } else {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (10);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (9);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (7);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
               (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (5);
+            } else {
               (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (2);
             }
           }
         }
       }
     }
+  }
+  scene.build();
+}
+
+function enterClassActivitySkill(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
+  if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (10 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[3]) / 400);
+  } else {
+    if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (9 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[3]) / 400);
+    } else {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (7 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[3]) / 400);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[3]) / 400);
+        } else {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[3]) / 400);
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterClassActivityAttributes(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
+  if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (10 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[3]) / 400);
+  } else {
+    if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (9 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[3]) / 400);
+    } else {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (7 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[3]) / 400);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[3]) / 400);
+        } else {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[3]) / 400);
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterOptionalActivity(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 0  ||  ((s as any).locArgs?.[3] ?? 0) === 'yes') {
+    if (((s as any).pcs_stam ?? 0) <= 0) {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (5);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (4);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (3);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+            } else {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (1);
+            }
+          }
+        }
+      }
+    } else {
+      if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (9);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (8);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (6);
+            } else {
+              if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (4);
+              } else {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+              }
+            }
+          }
+        }
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (10);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (9);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (7);
+            } else {
+              if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (5);
+              } else {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+              }
+            }
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 1) {
+      if (((s as any).pcs_stam ?? 0) <= 0) {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (3);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+            } else {
+              if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (1);
+              } else {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (1);
+              }
+            }
+          }
+        }
+      } else {
+        if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (4);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (3);
+            } else {
+              if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+              } else {
+                if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+                  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+                } else {
+                  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (1);
+                }
+              }
+            }
+          }
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (5);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (4);
+            } else {
+              if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (3);
+              } else {
+                if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+                  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2);
+                } else {
+                  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (1);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_max']) {
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
+  }
+  scene.build();
+}
+
+function enterOptionalActivitySkill(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 0  ||  ((s as any).locArgs?.[3] ?? 0) === 'yes') {
+    if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (10 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+    } else {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (9 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (7 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+          } else {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 1) {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (4 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (3 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+            } else {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (1 * ((s as any).temp_grades_mult_fact ?? 0) * (85 + ((s as any).ARGS ?? 0)[4]) / 400);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_max']) {
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
+  }
+  scene.build();
+}
+
+function enterOptionalActivityAttribute(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 0  ||  ((s as any).locArgs?.[3] ?? 0) === 'yes') {
+    if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (10 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+    } else {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (9 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (7 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+          } else {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_use_computer'] === 1) {
+      if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+        (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (4 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (3 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+            } else {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] ?? 0) + (1 * ((s as any).temp_grades_mult_fact ?? 0) * (50 + ((s as any).ARGS ?? 0)[4]) / 400);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_grade_gain'] > ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_optional_weekly_max']) {
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_optional_weekly_grade_gain'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_optional_weekly_max'];
+  }
+  scene.build();
+}
+
+function enterHomework(s: GameState, scene: SceneBuilder): void {
+  (s as any).lernHome = ((s as any).lernHome ?? 0) - (qspUntranslated(s, "ARGS[3]", { location: "grades" }));
+  (s as any).temp_grades_mult_fact = ((((s as any).pcs_stam ?? 0) <= 0) ? (2) : (((((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) ? (3) : (4))));
+  if (((s as any).locArgs?.[4] ?? 0) === 2) {
+    (s as any).temp_grades_modifier = 0;
+  } else {
+    if (((s as any).locArgs?.[4] ?? 0) === 1) {
+      (s as any).temp_grades_modifier = Math.max(qspUntranslated(s, "npc_intel[\u00000\u0000]", { location: "grades" }), ((s as any).pcs_intel ?? 0)) + Math.max(10 + Math.min(((s as any).npc_intel ?? 0)[((s as any).locArgs?.[5] ?? 0)] - ((s as any).pcs_intel ?? 0), ((s as any).pcs_intel ?? 0) - ((s as any).npc_intel ?? 0)[((s as any).locArgs?.[5] ?? 0)]), 0) * (100 - Math.max(qspUntranslated(s, "npc_intel[\u00003\u0000]", { location: "grades" }), ((s as any).pcs_intel ?? 0))) / 50;
+    } else {
+      if (((s as any).locArgs?.[4] ?? 0) === 3) {
+        (s as any).temp_grades_modifier = qspUntranslated(s, "ARGS[5]", { location: "grades" });
+      } else {
+        (s as any).temp_grades_modifier = ((s as any).pcs_intel ?? 0);
+      }
+    }
+  }
+  (s as any).temp_grades_i = 0;
+  // TODO-QSP: :homework_loop
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_homework'] === 1) {
+      if (((s as any).locArgs?.[2] ?? 0) === '!') {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (4 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (3 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+            } else {
+              if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+              } else {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (1 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+              }
+            }
+          }
+        }
+      } else {
+        if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
+          (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (10 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+        } else {
+          if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
+            (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (9 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+          } else {
+            if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
+              (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (7 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+            } else {
+              if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+              } else {
+                (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
+  if (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
+    // TODO-QSP: jump 'homework_loop'
+  }
+  scene.build();
+}
+
+function enterGradeAward(s: GameState, scene: SceneBuilder): void {
+  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_grade'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_grade'] ?? 0) + (qspUntranslated(s, "ARGS[3]", { location: "grades" }));
+  if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_grade'] < 0) {
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_grade'] = 0;
+  } else {
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_grade'] > ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_grade_cap']) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_grade'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).locArgs?.[2] ?? 0)) + '_grade_cap'];
+    }
+  }
+  (s as any).temp_grades_sum = 0;
+  (s as any).temp_grades_n = 0;
+  (s as any).temp_grades_i = 0;
+  // TODO-QSP: :grade_loop
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+    (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade']);
+    (s as any).temp_grades_n = ((s as any).temp_grades_n ?? 0) + (1);
+  }
+  (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
+  if (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
+    // TODO-QSP: jump 'grade_loop'
+  }
+  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_grade_average'] = ((s as any).temp_grades_sum ?? 0) / Math.max(1, ((s as any).temp_grades_n ?? 0));
+  scene.build();
+}
+
+function enterCalculateGrade(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_grades_sum = 0;
+  (s as any).temp_grades_n = 0;
+  (s as any).temp_grades_i = 0;
+  // TODO-QSP: :grade_loop1
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_optional_weekly_grade_gain']);
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_optional_weekly_grade_gain'] = 0;
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] ?? 0) - ((5 - 5 * ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_weekly_grade_gain'] / ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'1\'>>_weekly_grade_gain_breakeven_point']));
+    } else {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] ?? 0) + (3 * (((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_weekly_grade_gain'] - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'1\'>>_weekly_grade_gain_breakeven_point']) / (((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'2\'>>_weekly_grade_gain_max'] - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'3\'>>_weekly_grade_gain_breakeven_point']));
+    }
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade'] > ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade_cap']) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade_cap'];
+    }
+    (s as any).temp_grades_sum = ((s as any).temp_grades_sum ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade']);
+    (s as any).temp_grades_n = ((s as any).temp_grades_n ?? 0) + (1);
+    (s as any).class['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = 0;
+  }
+  (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
+  if (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
+    // TODO-QSP: jump 'grade_loop1'
+  }
+  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_grade_average'] = ((s as any).temp_grades_sum ?? 0) / Math.max(1, ((s as any).temp_grades_n ?? 0));
+  scene.build();
+}
+
+function enterAssignGradeDescription(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_grades_i = 0;
+  // TODO-QSP: :assign_grade_loop
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 10) {
+      // TODO-QSP: $class_grade_desc[$temp_var_name] = '1'
+    } else {
+      if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 20) {
+        // TODO-QSP: $class_grade_desc[$temp_var_name] = '2-'
+      } else {
+        if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 35) {
+          // TODO-QSP: $class_grade_desc[$temp_var_name] = '2'
+        } else {
+          if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 40) {
+            // TODO-QSP: $class_grade_desc[$temp_var_name] = '2+'
+          } else {
+            if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 50) {
+              // TODO-QSP: $class_grade_desc[$temp_var_name] = '3-'
+            } else {
+              if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 65) {
+                // TODO-QSP: $class_grade_desc[$temp_var_name] = '3'
+              } else {
+                if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 70) {
+                  // TODO-QSP: $class_grade_desc[$temp_var_name] = '3+'
+                } else {
+                  if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 75) {
+                    // TODO-QSP: $class_grade_desc[$temp_var_name] = '4-'
+                  } else {
+                    if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 86) {
+                      // TODO-QSP: $class_grade_desc[$temp_var_name] = '4'
+                    } else {
+                      if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 90) {
+                        // TODO-QSP: $class_grade_desc[$temp_var_name] = '4+'
+                      } else {
+                        if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 92) {
+                          // TODO-QSP: $class_grade_desc[$temp_var_name] = '5-'
+                        } else {
+                          if (((s as any).class ?? 0)?.[String((s as any).temp_var_name ?? 0)] < 97) {
+                            // TODO-QSP: $class_grade_desc[$temp_var_name] = '5'
+                          } else {
+                            // TODO-QSP: $class_grade_desc[$temp_var_name] = '5+'
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
+  if (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
+    // TODO-QSP: jump 'assign_grade_loop'
+  }
+  scene.build();
+}
+
+function enterGradeAbove(s: GameState, scene: SceneBuilder): void {
+  (s as any).class['' + String((s as any).$ARGS[1] || '') + '_grades_above_' + String((s as any).ARGS[2] || '') + ''] = 0;
+  (s as any).temp_grades_i = 0;
+  // TODO-QSP: :grade_above_loop
+  if (((s as any).class_list_institution ?? 0)?.[String((s as any).temp_grades_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade'] >= ((s as any).locArgs?.[2] ?? 0)) {
+      (s as any).class['' + String((s as any).$ARGS[1] || '') + '_grades_above_' + String((s as any).ARGS[2] || '') + ''] = ((s as any).class['' + String((s as any).$ARGS[1] || '') + '_grades_above_' + String((s as any).ARGS[2] || '') + ''] ?? 0) + (1);
+    }
+  }
+  (s as any).temp_grades_i = ((s as any).temp_grades_i ?? 0) + (1);
+  if (((s as any).temp_grades_i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
+    // TODO-QSP: jump 'grade_above_loop'
   }
   scene.build();
 }
@@ -106,6 +589,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'class_activity':
       enterClassActivity(s, scene);
+      break;
+    case 'class_activity_skill':
+      enterClassActivitySkill(s, scene);
+      break;
+    case 'class_activity_attributes':
+      enterClassActivityAttributes(s, scene);
+      break;
+    case 'optional_activity':
+      enterOptionalActivity(s, scene);
+      break;
+    case 'optional_activity_skill':
+      enterOptionalActivitySkill(s, scene);
+      break;
+    case 'optional_activity_attribute':
+      enterOptionalActivityAttribute(s, scene);
+      break;
+    case 'homework':
+      enterHomework(s, scene);
+      break;
+    case 'grade_award':
+      enterGradeAward(s, scene);
+      break;
+    case 'calculate_grade':
+      enterCalculateGrade(s, scene);
+      break;
+    case 'assign_grade_description':
+      enterAssignGradeDescription(s, scene);
+      break;
+    case 'grade above':
+      enterGradeAbove(s, scene);
       break;
     default:
       enterCreateclass(s, scene);

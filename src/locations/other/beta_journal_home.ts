@@ -54,55 +54,93 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_residential', '')) {
       scene.text('Your car is parked in St. Petersburg\'s residential area.');
     } else {
-      scene.text('Your car is parked in St. Petersburg\'s city center.');
-      if (qspFunc(s, 'car_funcs', 'is_here', 'city_industrial', '')) {
-        scene.text('Your car is parked in St. Petersburg\'s industrial region.');
+      if (qspFunc(s, 'car_funcs', 'is_here', 'city_center', '')) {
+        scene.text('Your car is parked in St. Petersburg\'s city center.');
       } else {
-        scene.text('Your car is parked at St. Petersburg\'s Lake.');
-        if (qspFunc(s, 'car_funcs', 'is_here', 'cty_park', 'start')) {
-          scene.text('Your car is parked at St. Petersburg\'s Park.');
+        if (qspFunc(s, 'car_funcs', 'is_here', 'city_industrial', '')) {
+          scene.text('Your car is parked in St. Petersburg\'s industrial region.');
         } else {
-          scene.text('Your car is parked at the gas station in St. Petersburg\'s industrial region.');
-          if (qspFunc(s, 'car_funcs', 'is_here', 'autoservisF', 'start')) {
-            scene.text('Your car is parked at the Car Repair Shop in St. Petersburg.');
+          if (qspFunc(s, 'car_funcs', 'is_here', 'city_lake', 'start')) {
+            scene.text('Your car is parked at St. Petersburg\'s Lake.');
           } else {
-            scene.text('Your car is parked at your house in St. Petersburg\'s residential area.');
-            if (qspFunc(s, 'car_funcs', 'is_here', 'autotraidF', 'start')) {
-              scene.text('Your car is parked at the Car Dealership in St. Petersburg.');
-            } else {
+            if (qspFunc(s, 'car_funcs', 'is_here', 'cty_park', 'start')) {
               scene.text('Your car is parked at St. Petersburg\'s Park.');
-              if (qspFunc(s, 'car_funcs', 'is_here', 'city_sauna', '')) {
-                scene.text('Your car is parked at St. Petersburg\'s Sauna.');
+            } else {
+              if (qspFunc(s, 'car_funcs', 'is_here', 'fuelstation', 'start', 'city')) {
+                scene.text('Your car is parked at the gas station in St. Petersburg\'s industrial region.');
               } else {
-                scene.text('Your car is parked at the construction site.');
-                if (qspFunc(s, 'car_funcs', 'is_here', 'dachi', '')) {
-                  scene.text('Your car is parked in the Suburban Cooperative.');
+                if (qspFunc(s, 'car_funcs', 'is_here', 'autoservisF', 'start')) {
+                  scene.text('Your car is parked at the Car Repair Shop in St. Petersburg.');
                 } else {
-                  scene.text('Your car is parked in Old Town district of Pavlovsk.');
-                  if (qspFunc(s, 'car_funcs', 'is_here', 'city_mansion_entrance', '')) {
-                    scene.text('Your car is parked at Matryona Mansion.');
+                  if (qspFunc(s, 'car_funcs', 'is_here', 'city_house_res_misc', 'fronty')) {
+                    scene.text('Your car is parked at your house in St. Petersburg\'s residential area.');
                   } else {
-                    scene.text('Your car is parked at St. Petersburg\'s industrial train station.');
-                    if (qspFunc(s, 'car_funcs', 'is_here', 'pav_residential', '')) {
-                      scene.text('Your car is parked in Pavlovsk\'s residential area.');
+                    if (qspFunc(s, 'car_funcs', 'is_here', 'autotraidF', 'start')) {
+                      scene.text('Your car is parked at the Car Dealership in St. Petersburg.');
                     } else {
-                      scene.text('Your car is parked at the gas station near Pavlovsk.');
-                      if (qspFunc(s, 'car_funcs', 'is_here', 'road')) {
-                        scene.text('Your car is parked on the highway.');
+                      if (qspFunc(s, 'car_funcs', 'is_here', 'city_park', 'whore')) {
+                        scene.text('Your car is parked at St. Petersburg\'s Park.');
                       } else {
-                        scene.text('Your car is parked in Gadukino.');
-                        if (qspFunc(s, 'car_funcs', 'is_here', 'pav_commercial', '')) {
-                          scene.text('Your car is parked in Pavlovsk\'s commercial region.');
+                        if (qspFunc(s, 'car_funcs', 'is_here', 'city_sauna', '')) {
+                          scene.text('Your car is parked at St. Petersburg\'s Sauna.');
                         } else {
-                          scene.text('Your car is parked in Vasilyevsky Island');
-                          if (qspFunc(s, 'car_funcs', 'is_here', 'pav_industrial', '')) {
-                            scene.text('Your car is parked in Pavlovsk\'s industrial region.');
+                          if (qspFunc(s, 'car_funcs', 'is_here', 'obekt', '')) {
+                            scene.text('Your car is parked at the construction site.');
                           } else {
-                            scene.text('Your car is parked in St. Petersburg\'s red light district.');
-                            if (qspFunc(s, 'car_funcs', 'is_here', 'city_suburbs', 'start')) {
-                              scene.text('Your car is parked in St. Petersburg\'s suburbs.');
+                            if (qspFunc(s, 'car_funcs', 'is_here', 'dachi', '')) {
+                              scene.text('Your car is parked in the Suburban Cooperative.');
                             } else {
-                              scene.text('Your car is parked at the Gazpromneft gas station on the highway.');
+                              if (qspFunc(s, 'car_funcs', 'is_here', 'pushkin', '')) {
+                                scene.text('Your car is parked in Old Town district of Pavlovsk.');
+                              } else {
+                                if (qspFunc(s, 'car_funcs', 'is_here', 'city_mansion_entrance', '')) {
+                                  scene.text('Your car is parked at Matryona Mansion.');
+                                } else {
+                                  if (qspFunc(s, 'car_funcs', 'is_here', 'city_industrial_train', 'outside')) {
+                                    scene.text('Your car is parked at St. Petersburg\'s industrial train station.');
+                                  } else {
+                                    if (qspFunc(s, 'car_funcs', 'is_here', 'pav_residential', '')) {
+                                      scene.text('Your car is parked in Pavlovsk\'s residential area.');
+                                    } else {
+                                      if (qspFunc(s, 'car_funcs', 'is_here', 'fuelstation', 'start', 'pav')) {
+                                        scene.text('Your car is parked at the gas station near Pavlovsk.');
+                                      } else {
+                                        if (qspFunc(s, 'car_funcs', 'is_here', 'road')) {
+                                          scene.text('Your car is parked on the highway.');
+                                        } else {
+                                          if (qspFunc(s, 'car_funcs', 'is_here', 'gadukino', '')) {
+                                            scene.text('Your car is parked in Gadukino.');
+                                          } else {
+                                            if (qspFunc(s, 'car_funcs', 'is_here', 'pav_commercial', '')) {
+                                              scene.text('Your car is parked in Pavlovsk\'s commercial region.');
+                                            } else {
+                                              if (qspFunc(s, 'car_funcs', 'is_here', 'city_island', '')) {
+                                                scene.text('Your car is parked in Vasilyevsky Island');
+                                              } else {
+                                                if (qspFunc(s, 'car_funcs', 'is_here', 'pav_industrial', '')) {
+                                                  scene.text('Your car is parked in Pavlovsk\'s industrial region.');
+                                                } else {
+                                                  if (qspFunc(s, 'car_funcs', 'is_here', 'city_redlight', 'start')) {
+                                                    scene.text('Your car is parked in St. Petersburg\'s red light district.');
+                                                  } else {
+                                                    if (qspFunc(s, 'car_funcs', 'is_here', 'city_suburbs', 'start')) {
+                                                      scene.text('Your car is parked in St. Petersburg\'s suburbs.');
+                                                    } else {
+                                                      if (qspFunc(s, 'car_funcs', 'is_here', 'gas_station_gp_117', 'outside')) {
+                                                        scene.text('Your car is parked at the Gazpromneft gas station on the highway.');
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
                             }
                           }
                         }

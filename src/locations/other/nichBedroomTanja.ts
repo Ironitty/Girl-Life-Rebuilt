@@ -27,13 +27,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichRand ?? 0) === 0  ||  ((s as any).nichTanyaSpyLast ?? 0) === ((s as any).daystart ?? 0)  ||  (!((s as any).nichTanyaSpyCounter ?? 0))) {
       scene.text('The view is obscured by something. You can\'t see anything.');
     } else {
-      scene.img(`${((s as any).nichTempPic ?? 0)}`);
-      scene.text('You can see Tanya having sex with a man. You can\'t see his face. From your location you can\'t figure out who he is. Afraid of getting caught spying through the keyhole you turn away.');
-      qspCall(s, 'arousal', 'voyeur_sex', (-5));
-      (s as any).nichNTRelation = 1;
-      scene.img(`${((s as any).nichTempPic ?? 0)}`);
-      scene.text('You can see Tanya having sex with a man. You can\'t see his face but from the clothes lying around, the body stature and the muffled sounds there is no doubt that Tanya is fucking her stepfather.');
-      qspCall(s, 'arousal', 'voyeur_sex', (-5), 'incest');
+      if (((s as any).nichTanyaSpyCounter ?? 0) < 2) {
+        scene.img(`${((s as any).nichTempPic ?? 0)}`);
+        scene.text('You can see Tanya having sex with a man. You can\'t see his face. From your location you can\'t figure out who he is. Afraid of getting caught spying through the keyhole you turn away.');
+        qspCall(s, 'arousal', 'voyeur_sex', (-5));
+      } else {
+        (s as any).nichNTRelation = 1;
+        scene.img(`${((s as any).nichTempPic ?? 0)}`);
+        scene.text('You can see Tanya having sex with a man. You can\'t see his face but from the clothes lying around, the body stature and the muffled sounds there is no doubt that Tanya is fucking her stepfather.');
+        qspCall(s, 'arousal', 'voyeur_sex', (-5), 'incest');
+      }
     }
     (s as any).nichTanyaSpyLast = ((s as any).daystart ?? 0);
     (s as any).nichTanyaSpyCounter = ((s as any).nichTanyaSpyCounter ?? 0) + (1);
@@ -44,51 +47,60 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Walk away', goto: ['nichApartment', 'return'] },
       ]);
     } else {
-      scene.text('The door to Tanyas room seems to be locked. You assume that her boyfriend is in there with her now. You could spy through the keyhole.');
-      return;
-      if (((s as any).nichTanyAct ?? 0) === 'sleep') {
-        scene.text('Tanya is sleeping in her bed.');
-        (s as any).nichCleanAppropriate = 0;
-      } else {
-        (s as any).nichRand = Math.floor(Math.random() * 4) + 0;
-        if ((!((s as any).nichRand ?? 0))) {
-          scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is lying on her bed listening to music.');
-        } else {
-          scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is lying on her bed watching TV.');
-          if (((s as any).nichRand ?? 0) === 2) {
-            scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is in her walk-in closet trying on some outfits.');
-          } else {
-            scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is sitting at her desk surfing the internet.');
-          }
-          scene.text('Tanya is not here at the moment.');
-        }
-        if (((s as any).nichWork ?? 0) === 2) {
-          if ((!((s as any).nichCleanAppropriate ?? 0))) {
-            scene.text('It wouldn\'t be appropriate to clean this room now.');
-          } else {
-            qspCall(s, 'nichChore', 'inspect', 'tanya');
-          }
-        }
+      if (((s as any).nichTanyAct ?? 0) === 'boyfriend') {
+        scene.text('The door to Tanyas room seems to be locked. You assume that her boyfriend is in there with her now. You could spy through the keyhole.');
+        return;
         scene.actions([
-          { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichApartment', ''] },
-          { label: 'Go to the master bathroom', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBathMaster', ''] },
-        ]);
-      }
-      scene.actions([
-        { label: 'Spy', handler: (st: GameState) => {
+          { label: 'Spy', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([
       { label: 'Walk away', goto: ['nichApartment', 'return'] },
     ]);
   } },
-        { label: 'Walk away', goto: ['nichApartment', 'return'] },
-      ]);
+          { label: 'Walk away', goto: ['nichApartment', 'return'] },
+        ]);
+      } else {
+        if (((s as any).nichTanyAct ?? 0) === 'sleep') {
+          scene.text('Tanya is sleeping in her bed.');
+          (s as any).nichCleanAppropriate = 0;
+        } else {
+          if (((s as any).nichTanyAct ?? 0) === 'tanya') {
+            (s as any).nichRand = Math.floor(Math.random() * 4) + 0;
+            if ((!((s as any).nichRand ?? 0))) {
+              scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is lying on her bed listening to music.');
+            } else {
+              if (((s as any).nichRand ?? 0) === 1) {
+                scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is lying on her bed watching TV.');
+              } else {
+                if (((s as any).nichRand ?? 0) === 2) {
+                  scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is in her walk-in closet trying on some outfits.');
+                } else {
+                  scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is sitting at her desk surfing the internet.');
+                }
+              }
+            }
+          } else {
+            scene.text('Tanya is not here at the moment.');
+          }
+        }
+      }
     }
+    if (((s as any).nichWork ?? 0) === 2) {
+      if ((!((s as any).nichCleanAppropriate ?? 0))) {
+        scene.text('It wouldn\'t be appropriate to clean this room now.');
+      } else {
+        qspCall(s, 'nichChore', 'inspect', 'tanya');
+      }
+    }
+    scene.actions([
+      { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichApartment', ''] },
+      { label: 'Go to the master bathroom', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichBathMaster', ''] },
+    ]);
   }
   scene.build();
 }

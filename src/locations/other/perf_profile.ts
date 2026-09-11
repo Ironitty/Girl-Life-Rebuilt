@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  (s as any).prof_iterations = ((((s as any).ARGS ?? 0)[0] > 0) ? (qspUntranslated(s, "ARGS[0]", { location: "perf_profile" })) : (500000));
+  (s as any).prof_iterations = ((((s as any).locArgs?.[0] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[0]", { location: "perf_profile" })) : (500000));
   (s as any).prof_saved_gameover = ((s as any).cheatVars ?? 0)?.['gameover'];
   (s as any).prof_saved_hunger = ((s as any).cheatVars ?? 0)?.['hunger'];
   (s as any).prof_saved_thirst = ((s as any).cheatVars ?? 0)?.['thirst'];

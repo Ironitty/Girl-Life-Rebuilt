@@ -950,7 +950,7 @@ function enterNusholusvet(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse', handler: (st: GameState) => {
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

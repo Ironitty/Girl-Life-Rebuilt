@@ -134,11 +134,13 @@ function enterLivroom(s: GameState, scene: SceneBuilder): void {
           { label: 'Start a new tapestry', goto: ['sewing', 'tapestry'] },
         ]);
       } else {
-        // TODO-QSP: dynamic text: Your tapestry is <<newgobelen/10>> percent finished.
-        scene.text(`Your tapestry is ${((s as any).newgobelen ?? 0)/10} percent finished.`);
-        scene.actions([
-          { label: 'Work on the tapestry', goto: ['sewing', 'tapestry'] },
-        ]);
+        if (((s as any).newgobelen ?? 0) >= 1) {
+          // TODO-QSP: dynamic text: Your tapestry is <<newgobelen/10>> percent finished.
+          scene.text(`Your tapestry is ${((s as any).newgobelen ?? 0)/10} percent finished.`);
+          scene.actions([
+            { label: 'Work on the tapestry', goto: ['sewing', 'tapestry'] },
+          ]);
+        }
       }
     }
     if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {

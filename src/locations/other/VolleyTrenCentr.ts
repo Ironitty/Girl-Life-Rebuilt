@@ -48,9 +48,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.text('You see Guang and hurry over to him.');
-    scene.actions([
-      { label: 'Greet Guang', handler: (st: GameState) => {
+    if (((s as any).ShowerIvan ?? 0) === 5  &&  ((s as any).centr ?? 0) === 2) {
+      scene.text('You see Guang and hurry over to him.');
+      scene.actions([
+        { label: 'Greet Guang', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenerspeak13.jpg');
     scene.text('You go up to Guang and say hello.');
     scene.text('"Have you brought it?" he asks.');
@@ -102,7 +103,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

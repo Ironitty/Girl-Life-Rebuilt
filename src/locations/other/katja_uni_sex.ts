@@ -134,7 +134,7 @@ function enterLibraryLicking1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Crawl under the table to lick Katja\'s pussy', handler: (st: GameState) => {
+      { label: 'Crawl under the table to lick Katja\'s pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['katja_uni_sex', 'library_licking2'] },
     ]);

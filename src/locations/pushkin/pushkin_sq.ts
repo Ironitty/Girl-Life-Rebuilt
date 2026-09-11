@@ -39,9 +39,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
     scene.text('<a href="exec:gt \'pushkin_ballet_secrets\',\'init\'">Ballet Secrets</a> is located at the end of a well maintained alleyway with a flamboyant ballet shop display and despite it\'s name the premises offers a wide range of services for dancers and athletes. ');
   } else {
-    scene.text('The dance shop is closed, but you can still access the <a href="exec:gt \'pushkin_ballet_secrets\',\'init\'">Members Area</a> with your card.');
-    // TODO-QSP: dynamic text: Ballet Secrets is currently closed. The shop opens '+func('time', 'get_time_stri...
-    scene.text('Ballet Secrets is currently closed. The shop opens \'+func(\'time\', \'get_time_string\', 9, 0)+\'-\'+func(\'time\', \'get_time_string\', 17, 0)+\' Monday to Saturday, and members only access for class is open on Sunday from \'+func(\'time\', \'get_time_string\', 10, 0)+\' - \'+func(\'time\', \'get_time_string\', 17, 0)+\'.');
+    if (((s as any).week ?? 0) === 7  &&  (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)) {
+      scene.text('The dance shop is closed, but you can still access the <a href="exec:gt \'pushkin_ballet_secrets\',\'init\'">Members Area</a> with your card.');
+    } else {
+      // TODO-QSP: dynamic text: Ballet Secrets is currently closed. The shop opens '+func('time', 'get_time_stri...
+      scene.text('Ballet Secrets is currently closed. The shop opens \'+func(\'time\', \'get_time_string\', 9, 0)+\'-\'+func(\'time\', \'get_time_string\', 17, 0)+\' Monday to Saturday, and members only access for class is open on Sunday from \'+func(\'time\', \'get_time_string\', 10, 0)+\' - \'+func(\'time\', \'get_time_string\', 17, 0)+\'.');
+    }
   }
   if (((s as any).exhibitionQW ?? 0) > 3) {
     if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
@@ -125,8 +128,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.actions([
-        { label: 'Go to the local hangout', handler: (st: GameState) => {
+      if (((s as any).tusnyakday ?? 0) !== ((s as any).daystart ?? 0)) {
+        scene.actions([
+          { label: 'Go to the local hangout', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     qspCall(s, 'dibodi', '');
     qspCall(s, 'stat', '');
@@ -158,7 +162,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pushkin_sq', ''] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
   }
   if (((s as any).stallionQ ?? 0) === 3) {
@@ -172,7 +177,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Hold it', handler: (st: GameState) => {
+        { label: 'Hold it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).stallionQ = 1;
   }, goto: ['pushkin_sq', ''] },

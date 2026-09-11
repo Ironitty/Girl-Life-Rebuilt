@@ -38,15 +38,12 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep on walking', goto: ['city_mall', ''] },
       ]);
     } else {
-      scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
-      scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
-      scene.text('You nervously look around, making sure there isn\'t anyone following you as you pass the counter. All of a sudden, you see a guard appear and walk towards you…');
-      scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
-      scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
-      scene.text('You pass by the counter, and seeing no one reacting, you relax for a bit and let down your guard. Just as you\'re about to leave through the entrance, you feel a hand grab you by the shoulder.');
-      scene.text('You instantly turn around, seeing a security guard is holding you and dragging you back inside. Before you\'re even able to speak up, he is forcefully leading you back to his office.');
-      scene.actions([
-        { label: 'Try to escape', handler: (st: GameState) => {
+      if (((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) + ((s as any).pcs_run ?? 0) > 200) {
+        scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
+        scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
+        scene.text('You nervously look around, making sure there isn\'t anyone following you as you pass the counter. All of a sudden, you see a guard appear and walk towards you…');
+        scene.actions([
+          { label: 'Try to escape', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/running.jpg');
@@ -71,8 +68,16 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Get dragged into the back room', goto: ['shoplifting', 'securityroom'] },
-      ]);
+        ]);
+      } else {
+        scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
+        scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
+        scene.text('You pass by the counter, and seeing no one reacting, you relax for a bit and let down your guard. Just as you\'re about to leave through the entrance, you feel a hand grab you by the shoulder.');
+        scene.text('You instantly turn around, seeing a security guard is holding you and dragging you back inside. Before you\'re even able to speak up, he is forcefully leading you back to his office.');
+        scene.actions([
+          { label: 'Get dragged into the back room', goto: ['shoplifting', 'securityroom'] },
+        ]);
+      }
     }
   } },
     ]);
@@ -607,15 +612,12 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep on walking', goto: ['pav_commercial', ''] },
       ]);
     } else {
-      scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
-      scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
-      scene.text('You nervously look around, making sure there isn\'t anyone following you as you pass the counter. All of a sudden, you see a guard appear and walk towards you…');
-      scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
-      scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
-      scene.text('You pass by the counter, and seeing no one reacting, you relax for a bit and let down your guard. Just as you\'re about to leave through the entrance, you feel a hand grab you by the shoulder.');
-      scene.text('You instantly turn around, seeing a security guard is holding you and dragging you back inside. Before you\'re even able to speak up, he is forcefully leading you back to his office.');
-      scene.actions([
-        { label: 'Try to escape', handler: (st: GameState) => {
+      if (((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) + ((s as any).pcs_run ?? 0) > 200) {
+        scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
+        scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
+        scene.text('You nervously look around, making sure there isn\'t anyone following you as you pass the counter. All of a sudden, you see a guard appear and walk towards you…');
+        scene.actions([
+          { label: 'Try to escape', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/running.jpg');
@@ -637,8 +639,16 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-        { label: 'Get dragged into the back room', goto: ['shoplifting', 'securityroom_pav'] },
-      ]);
+        ]);
+      } else {
+        scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
+        scene.text('You desperately try to calm yourself down as with every step you get closer to the exit. No one seems to be stopping you so far… maybe you got lucky?');
+        scene.text('You pass by the counter, and seeing no one reacting, you relax for a bit and let down your guard. Just as you\'re about to leave through the entrance, you feel a hand grab you by the shoulder.');
+        scene.text('You instantly turn around, seeing a security guard is holding you and dragging you back inside. Before you\'re even able to speak up, he is forcefully leading you back to his office.');
+        scene.actions([
+          { label: 'Get dragged into the back room', goto: ['shoplifting', 'securityroom_pav'] },
+        ]);
+      }
     }
   } },
     ]);

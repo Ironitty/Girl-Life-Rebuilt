@@ -37,58 +37,14 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).DjibrilQW['seduce'] = ((s as any).daystart ?? 0);
-    scene.text('As you enter, he pulls you over towards the couch. "I want you. I want you <i>right now</i>."');
-    scene.text('Before you can respond, he pulls you into a kiss.');
-    qspCall(s, 'arousal', 'kiss', 3);
-    qspCall(s, 'stat', '');
-    if (((s as any).npc_had_sex ?? 0)?.['A82']) {
-      scene.text('As you enter, he takes a seat on the couch and pats the seat next to him.');
-      scene.text('As you sit down, he turns to you. "So… What do you want to do? We can play some games?" He points to the PlayStation. "We could also just talk, or we could have some fun…"');
-      scene.text('You have no doubt about what kind of fun he means.');
-      if (((s as any).DjibrilQW ?? 0)?.['anya_inv'] + ((s as any).DjibrilQW ?? 0)?.['nush_inv'] + ((s as any).DjibrilQW ?? 0)?.['nat_inv'] > 0) {
-        scene.actions([
-          { label: 'How about I invite someone else?', handler: (st: GameState) => {
-    scene.img('images/characters/shared/headshots_main/big82.jpg');
-    scene.text('You smile at him. "Actually, I was thinking I could invite over someone else, if you\'re up for it?"');
-    scene.text('He pauses to process what you said before he grins. "If you\'re up for it and you think she would be too, then I\'m up for it. Is she pretty?"');
-    scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    qspCall(s, 'djibril', 'invite');
-  } },
-        ]);
-      }
+    if (((s as any).npc_had_sex ?? 0)?.['A82']  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).DjibrilQW ?? 0)?.['seduce'] !== ((s as any).daystart ?? 0)) {
+      (s as any).DjibrilQW['seduce'] = ((s as any).daystart ?? 0);
+      scene.text('As you enter, he pulls you over towards the couch. "I want you. I want you <i>right now</i>."');
+      scene.text('Before you can respond, he pulls you into a kiss.');
+      qspCall(s, 'arousal', 'kiss', 3);
+      qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Let\'s talk', goto: ['djibril', 'djibril_chat'] },
-        { label: 'Let\'s play some games', goto: ['djibril', 'djibril_playgames'] },
-        { label: 'I should get going', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
-    scene.img('images/characters/shared/headshots_main/big82.jpg');
-    scene.text('You look over at the clock. "I should really get going. Sorry to have bothered you."');
-    scene.text('He looks a little confused about you suddenly wanting to go, but doesn\'t say anything as you turn and leave.');
-    scene.actions([
-      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
-    ]);
-  } },
-      ]);
-    } else {
-      scene.text('As you enter, he takes a seat on the couch and pats the seat next to him.');
-      scene.text('As you sit down, he turns to you. "So… what do you want to do? We can play some games?" He points to the PlayStation. "We could also just talk?"');
-      scene.actions([
-        { label: 'Let\'s talk', goto: ['djibril', 'djibril_chat'] },
-        { label: 'Let\'s play video games', goto: ['djibril', 'djibril_playgames'] },
-        { label: 'I should get going', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
-    scene.img('images/characters/shared/headshots_main/big82.jpg');
-    scene.text('You look over at the clock. "I should really get going. Sorry to have bothered you."');
-    scene.text('He looks a little confused about you suddenly wanting to go, but doesn\'t say anything as you turn and leave.');
-    scene.actions([
-      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
-    ]);
-  } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Return the kiss', handler: (st: GameState) => {
+        { label: 'Return the kiss', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A82', 1);
     scene.img('images/characters/city/university/boy/djibril/sex/dorm/sveta/anal_kiss.jpg');
     scene.text('You return the kiss as he puts a hand around your back and pulls you in tighter. After a few seconds, his hand lowers and starts squeezing your ass. He then puts his hands on your shoulders and starts pushing you down.');
@@ -129,7 +85,7 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'Stop the kiss', handler: (st: GameState) => {
+        { label: 'Stop the kiss', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
     scene.img('images/characters/shared/headshots_main/big82.jpg');
     scene.text('You pull away from him. He looks a little disappointed, but doesn\'t press the issue.');
@@ -160,7 +116,54 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
+      ]);
+    } else {
+      if (((s as any).npc_had_sex ?? 0)?.['A82']) {
+        scene.text('As you enter, he takes a seat on the couch and pats the seat next to him.');
+        scene.text('As you sit down, he turns to you. "So… What do you want to do? We can play some games?" He points to the PlayStation. "We could also just talk, or we could have some fun…"');
+        scene.text('You have no doubt about what kind of fun he means.');
+        if (((s as any).DjibrilQW ?? 0)?.['anya_inv'] + ((s as any).DjibrilQW ?? 0)?.['nush_inv'] + ((s as any).DjibrilQW ?? 0)?.['nat_inv'] > 0) {
+          scene.actions([
+            { label: 'How about I invite someone else?', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big82.jpg');
+    scene.text('You smile at him. "Actually, I was thinking I could invite over someone else, if you\'re up for it?"');
+    scene.text('He pauses to process what you said before he grins. "If you\'re up for it and you think she would be too, then I\'m up for it. Is she pretty?"');
+    scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
+    qspCall(s, 'djibril', 'invite');
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Let\'s talk', goto: ['djibril', 'djibril_chat'] },
+          { label: 'Let\'s play some games', goto: ['djibril', 'djibril_playgames'] },
+          { label: 'I should get going', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
+    scene.img('images/characters/shared/headshots_main/big82.jpg');
+    scene.text('You look over at the clock. "I should really get going. Sorry to have bothered you."');
+    scene.text('He looks a little confused about you suddenly wanting to go, but doesn\'t say anything as you turn and leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
     ]);
+  } },
+        ]);
+      } else {
+        scene.text('As you enter, he takes a seat on the couch and pats the seat next to him.');
+        scene.text('As you sit down, he turns to you. "So… what do you want to do? We can play some games?" He points to the PlayStation. "We could also just talk?"');
+        scene.actions([
+          { label: 'Let\'s talk', goto: ['djibril', 'djibril_chat'] },
+          { label: 'Let\'s play video games', goto: ['djibril', 'djibril_playgames'] },
+          { label: 'I should get going', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
+    scene.img('images/characters/shared/headshots_main/big82.jpg');
+    scene.text('You look over at the clock. "I should really get going. Sorry to have bothered you."');
+    scene.text('He looks a little confused about you suddenly wanting to go, but doesn\'t say anything as you turn and leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
+    ]);
+  } },
+        ]);
+      }
+    }
   }
   scene.build();
 }

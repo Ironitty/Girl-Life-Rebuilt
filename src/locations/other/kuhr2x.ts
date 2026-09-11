@@ -43,7 +43,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
     scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot ?? 0)}`);
   } else {
-    scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');
+    if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
+      scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');
+    }
   }
   qspCall(s, 'kit_din', 'edahota');
   qspCall(s, 'lover_living', 'kitchen');
@@ -89,13 +91,16 @@ function enterDildo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 17)) {
     scene.actions([{ label: 'Continue', goto: ['husbsex', 'husb_mastr_vtor'] }]);
   } else {
-    scene.actions([{ label: 'Continue', goto: ['husbsex', 'husb_mastr_vtor'] }]);
-    qspCall(s, 'npcStat', 'D1');
-    scene.img('images/shared/sex/mast/mastr.mp4');
-    scene.text('Unable to control yourself, you immediately reach for your dildo so you can take care of your lustful desires. You waste no time in attaching the suction base of the dildo to the floor before lowering yourself slowly onto it.');
-    scene.text('Shivers run down your spine as you feel the thick head spreading your lips and soon the whole length begins to slide deep inside your hole. A throaty moan overwhelms the room when the dildo bottoms out inside you.');
-    scene.text('After shifting your legs and getting more comfortable, you start to rock your hips and bounce on it, moaning louder and louder as you keep increasing the power and pace of your thrusts. Your ass is hammering against the floor with each thrust and it takes you just a few minutes to reach orgasm, your toes curling tightly as your entire body is overwhelmed in pleasure.');
-    scene.text('Your juices drip down the length of the dildo, pooling on the floor beneath you. You take a few deep breaths and a satisfied smile grows on your face. That was just what you needed!');
+    if (((s as any).wifID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 17)) {
+      scene.actions([{ label: 'Continue', goto: ['husbsex', 'husb_mastr_vtor'] }]);
+    } else {
+      qspCall(s, 'npcStat', 'D1');
+      scene.img('images/shared/sex/mast/mastr.mp4');
+      scene.text('Unable to control yourself, you immediately reach for your dildo so you can take care of your lustful desires. You waste no time in attaching the suction base of the dildo to the floor before lowering yourself slowly onto it.');
+      scene.text('Shivers run down your spine as you feel the thick head spreading your lips and soon the whole length begins to slide deep inside your hole. A throaty moan overwhelms the room when the dildo bottoms out inside you.');
+      scene.text('After shifting your legs and getting more comfortable, you start to rock your hips and bounce on it, moaning louder and louder as you keep increasing the power and pace of your thrusts. Your ass is hammering against the floor with each thrust and it takes you just a few minutes to reach orgasm, your toes curling tightly as your entire body is overwhelmed in pleasure.');
+      scene.text('Your juices drip down the length of the dildo, pooling on the floor beneath you. You take a few deep breaths and a satisfied smile grows on your face. That was just what you needed!');
+    }
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');

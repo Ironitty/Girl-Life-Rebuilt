@@ -23,7 +23,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Push his hands away', handler: (st: GameState) => {
+      { label: 'Push his hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
@@ -45,7 +45,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Close your eyes', handler: (st: GameState) => {
+      { label: 'Close your eyes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['katalkinSex', 'd_katsub'] },

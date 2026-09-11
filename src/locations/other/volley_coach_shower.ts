@@ -42,7 +42,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Carry on', handler: (st: GameState) => {
+      { label: 'Carry on [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A69', 2);
     (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (2);
@@ -88,7 +88,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Masturbate', handler: (st: GameState) => {
+        { label: 'Masturbate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A69', 1);
     (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (4);
@@ -149,7 +149,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Cover up', handler: (st: GameState) => {
+        { label: 'Cover up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower12.jpg');
     scene.text('Scared, you cover you ass with your hands and look at him like a deer caught in the headlights.');
@@ -311,21 +311,23 @@ function enter5(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower26.mp4');
       scene.text('For a moment, you feel some regret you might lose your virginity like this, though in your excitement you don\'t focus too much on this thought. However, then the coach stops with surprise and says: "Are you a virgin?". It seems he felt one of his finger push against your hymen. Pulling his fingers from your pussy, he switches all his focus to your ass, saying: "No, I will not take your virginity. Besides, you\'ve got more beautiful young holes for me to explore." He continues to finger your anus, which along with his words has you whining with desire. You can\'t wait any longer and moan out loud: "Fuck me!"');
     } else {
-      scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower26.mp4');
-      scene.text('He is having some difficulties fingering your pussy. It seems you\'re too tight for him. Pulling the finger from your pussy, he switches all his focus to your ass, saying: "You\'re a bit too tight for me, but no matter, you\'ve got more beautiful young holes for me to explore." He continues to finger your anus, which along with his words has you whining with desire. You can\'t wait any longer and moan out loud: "Fuck me!"');
-      if (((s as any).pcs_vag ?? 0) > 15  &&  ((s as any).mesec ?? 0) <= 0) {
-        scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower25.mp4');
-        scene.text('Thrusting one finger in your ass and one in your pussy, the coach begins to move them at the same time in both holes. The feeling of them rubbing against each other through the thin walls between them is driving you wild and forcing you to moan and squirm. A moan almost becomes a scream: "Fuck me, fuck, fuck…", - you cry completely deprived of reason from the overflowing desire.');
-        qspCall(s, 'willpower', 'sex', 'self');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: 'Jump on his member [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      if (((s as any).pcs_vag ?? 0) <= 15) {
+        scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower26.mp4');
+        scene.text('He is having some difficulties fingering your pussy. It seems you\'re too tight for him. Pulling the finger from your pussy, he switches all his focus to your ass, saying: "You\'re a bit too tight for me, but no matter, you\'ve got more beautiful young holes for me to explore." He continues to finger your anus, which along with his words has you whining with desire. You can\'t wait any longer and moan out loud: "Fuck me!"');
+      } else {
+        if (((s as any).pcs_vag ?? 0) > 15  &&  ((s as any).mesec ?? 0) <= 0) {
+          scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower25.mp4');
+          scene.text('Thrusting one finger in your ass and one in your pussy, the coach begins to move them at the same time in both holes. The feeling of them rubbing against each other through the thin walls between them is driving you wild and forcing you to moan and squirm. A moan almost becomes a scream: "Fuck me, fuck, fuck…", - you cry completely deprived of reason from the overflowing desire.');
+          qspCall(s, 'willpower', 'sex', 'self');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Jump on his member [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-          ]);
-        } else {
-          scene.actions([
-            { label: 'Jump on his member', handler: (st: GameState) => {
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Jump on his member [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower27.jpg');
     qspCall(s, 'arousal', 'foreplay', (-15), 'sub');
@@ -336,11 +338,13 @@ function enter5(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['gdksport', 'start'] },
     ]);
   } },
-          ]);
+            ]);
+          }
         }
       }
-      scene.actions([
-        { label: 'Offer your ass', handler: (st: GameState) => {
+    }
+    scene.actions([
+      { label: 'Offer your ass', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower28.jpg');
     scene.text('You present your ass to the coach and soon feel the head of his penis pushing against your anus. You feel a slight pain as it passes through and try to relax your ass for what\'s coming.');
     scene.actions([
@@ -354,8 +358,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
+    ]);
   } },
     ]);
   } },

@@ -4,7 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterZariyahApproach(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'pav_park') {
     (s as any).chance = 75;
   } else {
@@ -15,40 +15,139 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] > 250  ||  ((s as any).fame ?? 0)?.['pav_prostitute'] > 250  ||  ((s as any).fame ?? 0)?.['pav_sex'] > 250  ||  ((s as any).fame ?? 0)?.['pav_porn'] > 500  ||  ((s as any).fame ?? 0)?.['pav_stripping'] > 500) {
       (s as any).ml_delparcoQW['Stage'] = 100;
     } else {
-      (s as any).ml_delparcoQW['Stage'] = 100;
-      if (((s as any).alko ?? 0) > 6) {
-        (s as any).ml_approach = 0;
-        (s as any).ml_delparcoQW['Zariyah_Trust'] = ((s as any).ml_delparcoQW['Zariyah_Trust'] ?? 0) - (10);
+      if (((s as any).cumvol ?? 0)[11] > 10  ||  ((s as any).cumvol ?? 0)[16] > 20  ||  ((s as any).cumvol ?? 0)[6] > 20  ||  ((s as any).cumvol ?? 0)[7] > 20) {
+        (s as any).ml_delparcoQW['Stage'] = 100;
       } else {
-        (s as any).ml_approach = 0;
-        (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (20);
-      }
-      if (((s as any).alko ?? 0) > 4  &&  ((s as any).alko ?? 0) < 7) {
-        (s as any).ml_delparcoQW['Drinking Rule'] = 1;
-        (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (5);
-      }
-      if (((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
-        (s as any).ml_delparcoQW['Weed Rule'] = 1;
-        (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (5);
-      }
-      if (((s as any).PCloStyle ?? 0) > 3  ||  ((s as any).PCloStyle2 ?? 0) === 3  ||  ((s as any).PCloThinness ?? 0) > 4  ||  ((s as any).PCloTopCut ?? 0) > 3  ||  ((s as any).PCloSkirt ?? 0) > 4  ||  ((s as any).PCloPants ?? 0) > 5  ||  ((s as any).PCloPanties ?? 0) > 0) {
-        (s as any).ml_delparcoQW['Outfit Rule'] = 1;
-        (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (5);
-      }
-      if (((s as any).pregChem ?? 0) > 3450) {
-        if (((s as any).alko ?? 0) > 4  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['heroin_high'] > 20  ||  ((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 1) {
-          (s as any).ml_delparcoQW['Stage'] = 100;
+        if (((s as any).alko ?? 0) > 6) {
+          (s as any).ml_approach = 0;
+          (s as any).ml_delparcoQW['Zariyah_Trust'] = ((s as any).ml_delparcoQW['Zariyah_Trust'] ?? 0) - (10);
         } else {
-          (s as any).ml_delparcoQW['Stage'] = 99;
+          if (((s as any).drugVars ?? 0)?.['heroin_high'] > 20) {
+            (s as any).ml_approach = 0;
+            (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (20);
+          }
         }
       }
-      qspCall(s, 'music_checks', 'check_for_trust');
-      if (((s as any).ml_delparcoQW ?? 0)?.['Stage'] === 100) {
-        (s as any).ml_approach = 0;
+    }
+    if (((s as any).alko ?? 0) > 4  &&  ((s as any).alko ?? 0) < 7) {
+      (s as any).ml_delparcoQW['Drinking Rule'] = 1;
+      (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (5);
+    }
+    if (((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
+      (s as any).ml_delparcoQW['Weed Rule'] = 1;
+      (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (5);
+    }
+    if (((s as any).PCloStyle ?? 0) > 3  ||  ((s as any).PCloStyle2 ?? 0) === 3  ||  ((s as any).PCloThinness ?? 0) > 4  ||  ((s as any).PCloTopCut ?? 0) > 3  ||  ((s as any).PCloSkirt ?? 0) > 4  ||  ((s as any).PCloPants ?? 0) > 5  ||  ((s as any).PCloPanties ?? 0) > 0) {
+      (s as any).ml_delparcoQW['Outfit Rule'] = 1;
+      (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (5);
+    }
+    if (((s as any).pregChem ?? 0) > 3450) {
+      if (((s as any).alko ?? 0) > 4  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['heroin_high'] > 20  ||  ((s as any).ml_delparcoQW ?? 0)?.['Outfit Rule'] === 1) {
+        (s as any).ml_delparcoQW['Stage'] = 100;
+      } else {
+        (s as any).ml_delparcoQW['Stage'] = 99;
+      }
+    }
+    qspCall(s, 'music_checks', 'check_for_trust');
+    if (((s as any).ml_delparcoQW ?? 0)?.['Stage'] === 100) {
+      (s as any).ml_approach = 0;
+    }
+  }
+  scene.build();
+}
+
+function enterCheckIfFired(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).fame ?? 0)?.['pav_sex'] > 150) {
+    (s as any).ml_delparcoQW['Sveta Sex'] = 1;
+    (s as any).ml_delparcoQW['Stage'] = 100;
+  } else {
+    if (((s as any).fame ?? 0)?.['pav_prostitute'] > 150) {
+      (s as any).ml_delparcoQW['Sveta Prostitute'] = 1;
+      (s as any).ml_delparcoQW['Stage'] = 100;
+    } else {
+      if (((s as any).fame ?? 0)?.['pav_porn'] > 500) {
+        (s as any).ml_delparcoQW['Sveta Porn'] = 1;
+        (s as any).ml_delparcoQW['Stage'] = 100;
+      } else {
+        if (((s as any).fame ?? 0)?.['pav_stripping'] > 500) {
+          (s as any).ml_delparcoQW['Sveta Stripper'] = 1;
+          (s as any).ml_delparcoQW['Stage'] = 100;
+        } else {
+          if (((s as any).cumvol ?? 0)[11] > 10  ||  ((s as any).cumvol ?? 0)[16] > 20  ||  ((s as any).cumvol ?? 0)[6] > 20  ||  ((s as any).cumvol ?? 0)[7] > 20) {
+            (s as any).ml_delparcoQW['Stage'] = 100;
+          } else {
+            if (((s as any).alko ?? 0) > 6) {
+              (s as any).ml_delparcoQW['Sveta Drunk'] = 1;
+              (s as any).ml_delparcoQW['Stage'] = 100;
+            } else {
+              if (((s as any).drugVars ?? 0)?.['heroin_high'] > 20) {
+                (s as any).ml_delparcoQW['Sveta Stoned'] = 1;
+                (s as any).ml_delparcoQW['Stage'] = 100;
+              }
+            }
+          }
+        }
       }
     }
   }
   scene.build();
+}
+
+function enterCheckIfCanPerform(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).alko ?? 0) > 4  &&  ((s as any).alko ?? 0) < 7) {
+    (s as any).ml_delparcoQW['Drinking Rule'] = 1;
+    (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (10);
+    (s as any).ml_perform = 0;
+  }
+  if (((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
+    (s as any).ml_delparcoQW['Weed Rule'] = 1;
+    (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (10);
+    (s as any).ml_perform = 0;
+  }
+  if (((s as any).PCloStyle ?? 0) > 3  ||  ((s as any).PCloStyle2 ?? 0) === 3  ||  ((s as any).PCloThinness ?? 0) > 4  ||  ((s as any).PCloTopCut ?? 0) > 3  ||  ((s as any).PCloSkirt ?? 0) > 4  ||  ((s as any).PCloPants ?? 0) > 5  ||  ((s as any).PCloPanties ?? 0) > 0) {
+    (s as any).ml_delparcoQW['Outfit Rule'] = 1;
+    (s as any).ml_delparcoQW['Zariyah Trust'] = ((s as any).ml_delparcoQW['Zariyah Trust'] ?? 0) - (10);
+    (s as any).ml_perform = 0;
+  }
+  scene.build();
+}
+
+function enterCheckForTrust(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).ml_delparcoQW ?? 0)?.['Zariyah Trust'] <= 0) {
+    (s as any).ml_delparcoQW['Stage'] = 100;
+  }
+  scene.build();
+}
+
+function enterResetChecks(s: GameState, scene: SceneBuilder): void {
+  (s as any).ml_delparcoQW['Drinking Rule'] = 1;
+  (s as any).ml_delparcoQW['Weed Rule'] = 1;
+  (s as any).ml_delparcoQW['Outfit Rule'] = 1;
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'zariyah_approach':
+      enterZariyahApproach(s, scene);
+      break;
+    case 'check_if_fired':
+      enterCheckIfFired(s, scene);
+      break;
+    case 'check_if_can_perform':
+      enterCheckIfCanPerform(s, scene);
+      break;
+    case 'check_for_trust':
+      enterCheckForTrust(s, scene);
+      break;
+    case 'reset_checks':
+      enterResetChecks(s, scene);
+      break;
+    default:
+      enterZariyahApproach(s, scene);
+      break;
+  }
 }
 
 export const music_checks: LocationDef = {

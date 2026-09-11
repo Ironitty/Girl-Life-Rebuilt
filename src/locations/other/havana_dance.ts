@@ -14,13 +14,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
     scene.text('You\'re too exhausted to even bring yourself to look at the activities available. Recover your stamina before trying to dance.');
   } else {
-    scene.text('You\'re so hungry that you can\'t even bring yourself to look at the activities available.');
-    if (((s as any).pcs_hydra ?? 0) < 10) {
-      scene.text('You\'re so thirsty that you can\'t even bring yourself to look at the activities available.');
+    if (((s as any).pcs_energy ?? 0) < 10) {
+      scene.text('You\'re so hungry that you can\'t even bring yourself to look at the activities available.');
     } else {
-      if (((s as any).pcs_stren ?? 0) >= 40  ||  (!((s as any).needstrength ?? 0))) {
-        scene.actions([
-          { label: 'Pole dance class (0:30)', handler: (st: GameState) => {
+      if (((s as any).pcs_hydra ?? 0) < 10) {
+        scene.text('You\'re so thirsty that you can\'t even bring yourself to look at the activities available.');
+      } else {
+        if (((s as any).pcs_stren ?? 0) >= 40  ||  (!((s as any).needstrength ?? 0))) {
+          scene.actions([
+            { label: 'Pole dance class (0:30)', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier2', 15, 'agil', 'stren', 'dancpol');
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
     if (((s as any).pcs_inhib ?? 0) < 60) {
@@ -46,10 +48,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['havana_dance', ''] },
     ]);
   } },
-        ]);
-      }
-      scene.actions([
-        { label: 'Modern dance class (0:30)', handler: (st: GameState) => {
+          ]);
+        }
+        scene.actions([
+          { label: 'Modern dance class (0:30)', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier2', 30, 'agil', 'stren', 'danc');
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
     if (((s as any).pcs_inhib ?? 0) < 40) {
@@ -66,7 +68,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['havana_dance', ''] },
     ]);
   } },
-        { label: 'Burlesque class (0:30)', handler: (st: GameState) => {
+          { label: 'Burlesque class (0:30)', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier2', 15, 'agil', 'stren', 'danc', 'dancero');
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
     if (((s as any).pcs_inhib ?? 0) < 60) {
@@ -88,12 +90,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['havana_dance', ''] },
     ]);
   } },
-      ]);
+        ]);
+      }
     }
-    scene.actions([
-      { label: 'Leave', goto: ['havana', 'dressing_room'] },
-    ]);
   }
+  scene.actions([
+    { label: 'Leave', goto: ['havana', 'dressing_room'] },
+  ]);
   scene.build();
 }
 

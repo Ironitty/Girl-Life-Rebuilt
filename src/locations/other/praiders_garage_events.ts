@@ -15,7 +15,9 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
     scene.text('Lena and Lera move out of the way before watching the fight, clearly enjoying the sight of the boys beating on each other while Niko grabs a beer off a table before sitting on a table across from the girls, enjoying the chaos as well. A group of girls that arrived with the outsiders charge toward the guys fighting, clearly intending to join in, but receive a deathly stare from Lena and Lera, promising to jump them if they try.');
   } else {
-    scene.text('Lena and Lera move out of the way before watching the fight, clearly enjoying the sight of the boys beating on each other. When it looks like some of the girls that were with the outsiders are about the join in, they get a look from Lena and Lera promising them they will jump them if they do.');
+    if (((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1) {
+      scene.text('Lena and Lera move out of the way before watching the fight, clearly enjoying the sight of the boys beating on each other. When it looks like some of the girls that were with the outsiders are about the join in, they get a look from Lena and Lera promising them they will jump them if they do.');
+    }
   }
   if (((s as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
     scene.text('Meanwhile, Lavrenti gets into a shoving match with another guy. Neither of them seem like they really want to throw down, but instead keep each other form joining the main fight.');
@@ -178,10 +180,12 @@ function enterRadnushLove(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      scene.text('Lena grins a little. "Someone is going to get some tonight. Wish it was me."');
-      scene.text('Lera looks at her. "You want Rad to fuck you?"');
-      scene.text('Lena rolls her eyes. "I meant I wanted some dick, but…" She gives Radomir a lusty look. "If he wasn\'t already busy…"');
-      scene.text('Lera just rolls her eyes. Not too long after this, the two of them get up and leave as well.');
+      if (((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1) {
+        scene.text('Lena grins a little. "Someone is going to get some tonight. Wish it was me."');
+        scene.text('Lera looks at her. "You want Rad to fuck you?"');
+        scene.text('Lena rolls her eyes. "I meant I wanted some dick, but…" She gives Radomir a lusty look. "If he wasn\'t already busy…"');
+        scene.text('Lera just rolls her eyes. Not too long after this, the two of them get up and leave as well.');
+      }
     }
     qspCall(s, 'arousal', 'voyeur', 2);
     qspCall(s, 'stat', '');
@@ -454,7 +458,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Calm them down', handler: (st: GameState) => {
+      { label: 'Calm them down [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A155', 'like');
@@ -517,7 +521,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Stand your ground', handler: (st: GameState) => {
+          { label: 'Stand your ground [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
@@ -569,7 +573,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Stand your ground', handler: (st: GameState) => {
+          { label: 'Stand your ground [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A156', 'loath');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

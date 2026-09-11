@@ -9,30 +9,42 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'allure_swimsuit') {
     // TODO-QSP: $result += 'allure/one/'
   } else {
-    // TODO-QSP: $result += 'allure/two/'
-    if (((s as any).locArgs?.[0] ?? 0) === 'scandalicious_swimsuit') {
-      // TODO-QSP: $result += 'scandalicious/swim/one/'
+    if (((s as any).locArgs?.[0] ?? 0) === 'allure_bikinis') {
+      // TODO-QSP: $result += 'allure/two/'
     } else {
-      // TODO-QSP: $result += 'scandalicious/swim/two/'
-      if (((s as any).locArgs?.[0] ?? 0) === 'danilovich_swimsuit') {
-        // TODO-QSP: $result += 'danilovich/swimwear/'
+      if (((s as any).locArgs?.[0] ?? 0) === 'scandalicious_swimsuit') {
+        // TODO-QSP: $result += 'scandalicious/swim/one/'
       } else {
-        // TODO-QSP: $result += 'market/clothes/'
-        if (((s as any).locArgs?.[0] ?? 0) === 'materinstvo_dress') {
-          // TODO-QSP: $result += 'mommy/'
+        if (((s as any).locArgs?.[0] ?? 0) === 'scandalicious_bikinis') {
+          // TODO-QSP: $result += 'scandalicious/swim/two/'
         } else {
-          // TODO-QSP: $result += 'nerdvana/swim/two/'
-          if (((s as any).locArgs?.[0] ?? 0) === 'nerdvana_swimsuit') {
-            // TODO-QSP: $result += 'nerdvana/swim/one/'
+          if (((s as any).locArgs?.[0] ?? 0) === 'danilovich_swimsuit') {
+            // TODO-QSP: $result += 'danilovich/swimwear/'
           } else {
-            (s as any).temp_pcs_outfit_image_str_index = qspUntranslated(s, "instr(ARGS[0], '_')", { location: "_pcs_outfit_image" });
-            // TODO-QSP: $result += $temp_pcs_outfit_image_shop_name + '/' + $temp_pcs_outfit_image_class_name + '/'
+            if (((s as any).locArgs?.[0] ?? 0) === 'market_outfits') {
+              // TODO-QSP: $result += 'market/clothes/'
+            } else {
+              if (((s as any).locArgs?.[0] ?? 0) === 'materinstvo_dress') {
+                // TODO-QSP: $result += 'mommy/'
+              } else {
+                if (((s as any).locArgs?.[0] ?? 0) === 'nerdvana_bikinis') {
+                  // TODO-QSP: $result += 'nerdvana/swim/two/'
+                } else {
+                  if (((s as any).locArgs?.[0] ?? 0) === 'nerdvana_swimsuit') {
+                    // TODO-QSP: $result += 'nerdvana/swim/one/'
+                  } else {
+                    (s as any).temp_pcs_outfit_image_str_index = qspUntranslated(s, "instr(ARGS[0], '_')", { location: "_pcs_outfit_image" });
+                    // TODO-QSP: $result += $temp_pcs_outfit_image_shop_name + '/' + $temp_pcs_outfit_image_class_name + '/'
+                  }
+                }
+              }
+            }
           }
-          // TODO-QSP: $result += '<<ARGS[1]>>.jpg'
         }
       }
     }
   }
+  // TODO-QSP: $result += '<<ARGS[1]>>.jpg'
   scene.build();
 }
 

@@ -29,13 +29,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] >= 30) {
       scene.text('You already have too much stored at home and do not have any more space.');
     } else {
-      (s as any).trinkets_can_take = 30 - ((s as any).mc_inventory ?? 0)?.['trinkets_home'];
-      // TODO-QSP: dynamic text: You can bring <<trinkets_can_take>> trinkets home and store them somewhere, unti...
-      scene.text(`You can bring ${((s as any).trinkets_can_take ?? 0)} trinkets home and store them somewhere, until you have time to collect and sell them at the train station.`);
-      if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] > 0) {
-        if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= ((s as any).trinkets_can_take ?? 0)) {
-          scene.actions([
-            { label: 'Move <<trinkets_can_take>> trinkets to your home', handler: (st: GameState) => {
+      if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
+        (s as any).trinkets_can_take = 30 - ((s as any).mc_inventory ?? {})?.['trinkets_home'];
+        // TODO-QSP: dynamic text: You can bring <<trinkets_can_take>> trinkets home and store them somewhere, unti...
+        scene.text(`You can bring ${((s as any).trinkets_can_take ?? 0)} trinkets home and store them somewhere, until you have time to collect and sell them at the train station.`);
+        if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] > 0) {
+          if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= ((s as any).trinkets_can_take ?? 0)) {
+            scene.actions([
+              { label: 'Move <<trinkets_can_take>> trinkets to your home', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (((s as any).trinkets_can_take ?? 0));
     (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory['trinkets_garage'] ?? 0) - (((s as any).trinkets_can_take ?? 0));
@@ -47,11 +48,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-          ]);
-        }
-        if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] < ((s as any).trinkets_can_take ?? 0)) {
-          scene.actions([
-            { label: 'Collect <<mc_inventory[\'trinkets_garage\']>> trinkets to take with you', handler: (st: GameState) => {
+            ]);
+          }
+          if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] < ((s as any).trinkets_can_take ?? 0)) {
+            scene.actions([
+              { label: 'Collect <<mc_inventory[\'trinkets_garage\']>> trinkets to take with you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['trinkets_garage']);
     (s as any).mc_inventory['trinkets_garage'] = 0;
@@ -63,7 +64,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-          ]);
+            ]);
+          }
         }
       }
     }

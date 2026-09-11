@@ -8,9 +8,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pav_park_meet_event_type ?? 0) ==='kol') {
     qspCall(s, 'pav_park_meet_kol_event', 'meet_start');
   } else {
-    qspCall(s, 'pav_park_meet_kol_event', 'meet_start_1');
-    if (((s as any).pav_park_meet_event_type ?? 0) ==='kol_deep') {
-      qspCall(s, 'pav_park_meet_kol_event', 'meet_start_2');
+    if (((s as any).pav_park_meet_event_type ?? 0) ==='kol_more') {
+      qspCall(s, 'pav_park_meet_kol_event', 'meet_start_1');
+    } else {
+      if (((s as any).pav_park_meet_event_type ?? 0) ==='kol_deep') {
+        qspCall(s, 'pav_park_meet_kol_event', 'meet_start_2');
+      }
     }
   }
   scene.build();

@@ -19,17 +19,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'boylove', 'figure');
     }
   } else {
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
-      qspCall(s, 'boylove', 'tits');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
-      qspCall(s, 'boylove', 'figure');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 15) {
-      qspCall(s, 'boylove', 'tits');
-    }
-    if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
-      qspCall(s, 'boylove', 'figure');
+    if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
+        qspCall(s, 'boylove', 'tits');
+      }
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
+        qspCall(s, 'boylove', 'figure');
+      }
+    } else {
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 15) {
+        qspCall(s, 'boylove', 'tits');
+      }
+      if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 20) {
+        qspCall(s, 'boylove', 'figure');
+      }
     }
   }
   scene.actions([

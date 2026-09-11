@@ -562,8 +562,9 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.actions([
-      { label: 'Take one of his cigarettes', handler: (st: GameState) => {
+    if (((s as any).drugVars ?? 0)?.['cigarettes_used'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cigarettes'] === 0) {
+      scene.actions([
+        { label: 'Take one of his cigarettes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     qspCall(s, 'drugs', 'smoke');
@@ -590,7 +591,8 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+      ]);
+    }
   }
   if (((s as any).strip_club ?? 0)?.['viktor_present'] === 1) {
     scene.actions([

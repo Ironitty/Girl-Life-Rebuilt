@@ -16,12 +16,17 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         { label: 'Enter', goto: ['dimaHome', 'hallway'] },
       ]);
     } else {
-      scene.text('A few moments later Dimka\'s mother answers the door. "I\'m sorry, Dimka isn\'t home right now. But I will let him know you stopped by to see him." With a smile she closes the door.');
-      scene.text('After knocking several times, no one answers. It seems that either no one is home, or everyone is asleep.');
-      scene.actions([
-        { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
-        { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
-      ]);
+      if ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).week ?? 0) !== 5  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 24)) {
+        scene.text('A few moments later Dimka\'s mother answers the door. "I\'m sorry, Dimka isn\'t home right now. But I will let him know you stopped by to see him." With a smile she closes the door.');
+        scene.actions([
+          { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
+        ]);
+      } else {
+        scene.text('After knocking several times, no one answers. It seems that either no one is home, or everyone is asleep.');
+        scene.actions([
+          { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
+        ]);
+      }
     }
   } else {
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 19  &&  (Math.floor(Math.random() * 5) + 0) !== 0) {
@@ -30,12 +35,17 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         { label: 'Enter', goto: ['dimaHome', 'hallway'] },
       ]);
     } else {
-      scene.text('A few moments later Dimka\'s mother answers the door "I\'m sorry, Dimka isn\'t home right now. But I will let him know you stopped by to see him." With a smile she closes the door.');
-      scene.text('After knocking several times, no one answers. It seems that either no one is home, or everyone is asleep.');
-      scene.actions([
-        { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
-        { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
-      ]);
+      if ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).week ?? 0) !== 5  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 24)) {
+        scene.text('A few moments later Dimka\'s mother answers the door "I\'m sorry, Dimka isn\'t home right now. But I will let him know you stopped by to see him." With a smile she closes the door.');
+        scene.actions([
+          { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
+        ]);
+      } else {
+        scene.text('After knocking several times, no one answers. It seems that either no one is home, or everyone is asleep.');
+        scene.actions([
+          { label: 'Leave Dimka\'s home', goto: ['pav_residential', ''] },
+        ]);
+      }
     }
   }
   scene.build();
@@ -599,7 +609,7 @@ function enterStudy3(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Not his business', handler: (st: GameState) => {
+        { label: 'Not his business [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
@@ -831,7 +841,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Dimka\'s Room</b></center>');
@@ -853,7 +863,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-1));
     qspCall(s, 'stat', '');
@@ -870,7 +880,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -898,7 +908,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Change your mind', handler: (st: GameState) => {
+        { label: 'Change your mind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -953,12 +963,15 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       scene.text('You tell him. "I have a boyfriend, you know? I\'m dating Niko."');
       scene.text('He busts out laughing. "That loser? Oh god I thought you had more sense than that. You know you could do much better than him don\'t you?" He says as he genly strokes your hair.');
     } else {
-      scene.text('You tell him. "I have a boyfriend you know, I\'m dating Fedor."');
-      scene.text('He busts out laughing. "Fedor? Oh god I thought you had more sense than that. I mean if it was Lazar or Ivan, maybe. Fedor is just a hanger on, you know you could do much better than that, don\'t you?" He says as he strokes your hair.');
-      // TODO-QSP: dynamic text: You tell him. "I have a boyfriend you know, I'm dating <<$npc_usedname[$temp_npc...
-      scene.text(`You tell him. "I have a boyfriend you know, I'm dating ${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcID ?? 0)]}."`);
-      // TODO-QSP: dynamic text: He busts out laughing. "<<$npc_usedname[$temp_npcID]>>? Oh god I thought you had...
-      scene.text(`He busts out laughing. "${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcID ?? 0)]}? Oh god I thought you had more sense than that. You know you could do much better than him, right?" He says as he strokes your hair.`);
+      if (((s as any).fedorKozlovQW ?? 0) >= 1) {
+        scene.text('You tell him. "I have a boyfriend you know, I\'m dating Fedor."');
+        scene.text('He busts out laughing. "Fedor? Oh god I thought you had more sense than that. I mean if it was Lazar or Ivan, maybe. Fedor is just a hanger on, you know you could do much better than that, don\'t you?" He says as he strokes your hair.');
+      } else {
+        // TODO-QSP: dynamic text: You tell him. "I have a boyfriend you know, I'm dating <<$npc_usedname[$temp_npc...
+        scene.text(`You tell him. "I have a boyfriend you know, I'm dating ${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcID ?? 0)]}."`);
+        // TODO-QSP: dynamic text: He busts out laughing. "<<$npc_usedname[$temp_npcID]>>? Oh god I thought you had...
+        scene.text(`He busts out laughing. "${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcID ?? 0)]}? Oh god I thought you had more sense than that. You know you could do much better than him, right?" He says as he strokes your hair.`);
+      }
     }
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -969,7 +982,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No I don\'t think I can', handler: (st: GameState) => {
+        { label: 'No I don\'t think I can [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -999,7 +1012,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -1027,7 +1040,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Change your mind', handler: (st: GameState) => {
+        { label: 'Change your mind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -1079,7 +1092,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-1));
     qspCall(s, 'stat', '');
@@ -1096,7 +1109,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'No', handler: (st: GameState) => {
+        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -1124,7 +1137,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Change your mind', handler: (st: GameState) => {
+        { label: 'Change your mind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -1183,7 +1196,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop kissing', handler: (st: GameState) => {
+        { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-1));
     qspCall(s, 'stat', '');
@@ -1200,7 +1213,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop kissing', handler: (st: GameState) => {
+        { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -1246,7 +1259,7 @@ function enterDimkaMakeout(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Stop him', handler: (st: GameState) => {
+      { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-3));
     qspCall(s, 'stat', '');
@@ -1263,7 +1276,7 @@ function enterDimkaMakeout(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'I said no', handler: (st: GameState) => {
+        { label: 'I said no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -1305,7 +1318,7 @@ function enterDimkaSeduce(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Stop kissing', handler: (st: GameState) => {
+      { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-1));
     qspCall(s, 'stat', '');
@@ -1322,7 +1335,7 @@ function enterDimkaSeduce(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop kissing', handler: (st: GameState) => {
+        { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');
@@ -1363,7 +1376,7 @@ function enterDimkaMakeout2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Stop him', handler: (st: GameState) => {
+      { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-3));
     qspCall(s, 'stat', '');
@@ -1380,7 +1393,7 @@ function enterDimkaMakeout2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'I said no', handler: (st: GameState) => {
+        { label: 'I said no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A1', (-5));
     qspCall(s, 'stat', '');

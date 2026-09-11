@@ -39,13 +39,16 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).pose = 1;
     scene.text('You lean against the car and expose your bare ass to the man. He\'s not wasting any time and immediately gets behind you, eagerly rubbing his cock against your vagina.');
   } else {
-    (s as any).picpRand = Math.floor(Math.random() * 3) + 10;
-    (s as any).pose = 1;
-    scene.text('You get down on your hands and knees like he wants, and brace yourself when you feel him pressing his cock against your pussy in a none too gentle fashion.');
-    (s as any).pose = 0;
-    (s as any).picpRand = Math.floor(Math.random() * 7) + 13;
-    scene.text('He groans in your ear: "Get on the hood, on your back!"');
-    scene.text('You quickly do as he says, and let out a soft moan when he rubs his cock against your pussy lips.');
+    if (((s as any).prostRand ?? 0) <= 75) {
+      (s as any).picpRand = Math.floor(Math.random() * 3) + 10;
+      (s as any).pose = 1;
+      scene.text('You get down on your hands and knees like he wants, and brace yourself when you feel him pressing his cock against your pussy in a none too gentle fashion.');
+    } else {
+      (s as any).pose = 0;
+      (s as any).picpRand = Math.floor(Math.random() * 7) + 13;
+      scene.text('He groans in your ear: "Get on the hood, on your back!"');
+      scene.text('You quickly do as he says, and let out a soft moan when he rubs his cock against your pussy lips.');
+    }
   }
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'unknown', 'prostitution');
   qspCall(s, 'arousal', 'end');

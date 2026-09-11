@@ -223,11 +223,13 @@ function enterSec(s: GameState, scene: SceneBuilder): void {
       { label: 'Head to the coordinator', goto: ['buklinik', 'dir'] },
     ]);
   } else {
-    // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>! Is there anything I can help you with?"
-    scene.text(`"Hello, ${((s as any).pcs_nickname ?? 0)}! Is there anything I can help you with?"`);
-    scene.actions([
-      { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
-    ]);
+    if (((s as any).bumtolik ?? 0) > 5) {
+      // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>! Is there anything I can help you with?"
+      scene.text(`"Hello, ${((s as any).pcs_nickname ?? 0)}! Is there anything I can help you with?"`);
+      scene.actions([
+        { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
+      ]);
+    }
   }
   scene.build();
 }
@@ -250,11 +252,13 @@ function enterDir(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue the tour', goto: ['buklinik', 'olga2'] },
     ]);
   } else {
-    // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>! Is there anything I can help you with?"
-    scene.text(`"Hello, ${((s as any).pcs_nickname ?? 0)}! Is there anything I can help you with?"`);
-    scene.actions([
-      { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
-    ]);
+    if (((s as any).bumtolik ?? 0) > 5) {
+      // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>! Is there anything I can help you with?"
+      scene.text(`"Hello, ${((s as any).pcs_nickname ?? 0)}! Is there anything I can help you with?"`);
+      scene.actions([
+        { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
+      ]);
+    }
   }
   scene.build();
 }

@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -705,7 +707,7 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust0']
   (s as any).s = 1;
   // TODO-QSP: :loop_whore7
-  qspCall(s, 'npcgeneratec', '', 0, 'The old man\'s friend <<s>>', Math.floor(Math.random() * 31) + 30, 0, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'The old man\'s friend ' + qspUntranslated(s, "s>", { location: "albina_starlets_sex" }) + '', Math.floor(Math.random() * 31) + 30, 0, 1);
   (s as any).AlbinaQW['Cust' + String((s as any).s || '') + ''] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust<<s>>'], s
   (s as any).s = ((s as any).s ?? 0) + (1);

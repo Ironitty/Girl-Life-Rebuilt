@@ -24,17 +24,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Go to the exit', goto: ['Gnpc2', ''] },
       ]);
     } else {
-      scene.text('You have been watching a movie and suddenly felt a hand on my knee Man.');
-      qspCall(s, 'willpower', 'foreplay', 'self', 'easy');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Remove his hands [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
+        scene.text('You have been watching a movie and suddenly felt a hand on my knee Man.');
+        qspCall(s, 'willpower', 'foreplay', 'self', 'easy');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Remove his hands [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
-        ]);
-      } else {
-        scene.actions([
-          { label: 'Remove his hands', handler: (st: GameState) => {
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Remove his hands [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (20);
     qspCall(s, 'stat', '');
@@ -43,17 +44,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the exit', goto: ['Gnpc2', ''] },
     ]);
   } },
-        ]);
-      }
-      if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
-        // TODO-QSP: dynamic text: You have been watching the movies, and <<$nameBoyfrend[numnpc]>> put his hand on...
-        scene.text(`You have been watching the movies, and ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} put his hand on your foot and began to stroke your knee. Movie finally ended. In the hall lights went on and the screen went titles.`);
+          ]);
+        }
         scene.actions([
-          { label: 'Go to the exit', goto: ['Gnpc2', ''] },
-        ]);
-      }
-      scene.actions([
-        { label: 'Ignore', handler: (st: GameState) => {
+          { label: 'Ignore', handler: (st: GameState) => {
     (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.text('You pretended that nothing happens and the guy started more actively stroking your leg. The movie finally ends, the lights come up in the hall and the credits roll on the screen.');
@@ -61,7 +55,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the exit', goto: ['Gnpc2', ''] },
     ]);
   } },
-      ]);
+        ]);
+      } else {
+        if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
+          // TODO-QSP: dynamic text: You have been watching the movies, and <<$nameBoyfrend[numnpc]>> put his hand on...
+          scene.text(`You have been watching the movies, and ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]} put his hand on your foot and began to stroke your knee. Movie finally ended. In the hall lights went on and the screen went titles.`);
+          scene.actions([
+            { label: 'Go to the exit', goto: ['Gnpc2', ''] },
+          ]);
+        }
+      }
     }
   } },
   ]);

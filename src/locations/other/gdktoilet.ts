@@ -4,7 +4,7 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gdktoilet', 'start');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   (s as any).ghnow = 0;
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
+        { label: 'Enter the men\'s restroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -64,25 +64,26 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  &&  ((s as any).cumloc ?? 0)[11] === 1) {
         scene.text('You should clean the cum off your face and clothes before heading back to the dance.');
       } else {
-        scene.text('You should clean the cum off your face before heading back to the dance.');
-        if (((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1) {
-          scene.text('You should clean the cum off your clothes before heading back to the dance.');
+        if (((s as any).cumloc ?? 0)[11] === 1) {
+          scene.text('You should clean the cum off your face before heading back to the dance.');
+        } else {
+          if (((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1) {
+            scene.text('You should clean the cum off your clothes before heading back to the dance.');
+          }
         }
       }
-      (s as any).music_loop = 0;
     }
-    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
-      // TODO-QSP: act 'Go to the library': gt 'pav_library'
-    }
-    if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20) {
-      // TODO-QSP: act 'Go upstairs to the hobby clubs': gt 'pav_commclubs'
-    }
-    if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
-      // TODO-QSP: act 'Go to the gym': gt 'gdksport', 'start'
-    }
-    scene.actions([
-      { label: 'Change outfit in the locker room', goto: ['wardrobe', 'start'] },
-    ]);
+  } else {
+    (s as any).music_loop = 0;
+  }
+  if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
+    // TODO-QSP: act 'Go to the library': gt 'pav_library'
+  }
+  if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20) {
+    // TODO-QSP: act 'Go upstairs to the hobby clubs': gt 'pav_commclubs'
+  }
+  if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
+    // TODO-QSP: act 'Go to the gym': gt 'gdksport', 'start'
   }
   scene.actions([
     { label: 'Go outside', handler: (st: GameState) => {
@@ -91,8 +92,41 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['pav_commcenter', ''] }]);
     }
   } },
+    { label: 'Change outfit in the locker room', goto: ['wardrobe', 'start'] },
   ]);
   scene.build();
+}
+
+function enterWomens(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'gdktoilet', 'womens');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Women\'s Room</b></center>');
+  scene.img('images/locations/pavlovsk/community/bathroom/womens/bathroom_women.jpg');
+  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="exec:gt \'mirror\', \'start\'">mirrors</a>. You notice the last stall has its door wide open.');
+  qspCall(s, 'din_van', 'tampon');
+  qspCall(s, 'din_van', 'quickwash');
+  qspCall(s, 'din_van', 'basin');
+  qspCall(s, 'din_van', 'publicpan');
+  scene.actions([
+    { label: 'Leave', goto: ['gdktoilet', 'start'] },
+    { label: 'Go to the last stall', goto: ['gloryhole', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'womens':
+      enterWomens(s, scene);
+      break;
+    default:
+      enterStart(s, scene);
+      break;
+  }
 }
 
 export const gdktoilet: LocationDef = {

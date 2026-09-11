@@ -96,7 +96,7 @@ function enterLesson(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGoodbye(s: GameState, scene: SceneBuilder): void {
-  (s as any).ml_guitarlesson['nextlesson'] = ((s as any).daystart ?? 0) + (((s as any).ml_guitarlesson ?? 0)?.['lessonday'] + 7 - ((s as any).week ?? 0));
+  (s as any).ml_guitarlesson['nextlesson'] = ((s as any).daystart ?? 0) + (((s as any).ml_guitarlesson ?? {})?.['lessonday'] + 7 - ((s as any).week ?? 0));
   (s as any).ml_guitarlesson['lessonhour'] = 15;
   if (((s as any).ml_guitarlesson ?? 0)?.['lessonday'] < 8) {
     qspCall(s, 'music_guitarlesson', 'getdate');
@@ -123,25 +123,28 @@ function enterAdvertisement(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetdate(s: GameState, scene: SceneBuilder): void {
-  (s as any).newday = ((s as any).day ?? 0) + (((s as any).ml_guitarlesson ?? 0)?.['lessonday'] + 7 - ((s as any).week ?? 0));
+  (s as any).newday = ((s as any).day ?? 0) + (((s as any).ml_guitarlesson ?? {})?.['lessonday'] + 7 - ((s as any).week ?? 0));
   (s as any).newmonth = ((s as any).month ?? 0);
   if ((((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 3  ||  ((s as any).month ?? 0) === 5  ||  ((s as any).month ?? 0) === 7  ||  ((s as any).month ?? 0) === 8  ||  ((s as any).month ?? 0) === 10  ||  ((s as any).month ?? 0) === 12)  &&  ((s as any).newday ?? 0) > 31) {
     (s as any).newday = ((s as any).newday ?? 0) - (31);
   } else {
-    if ((((s as any).year ?? 0) % 4 === 0)) {
-      if (((s as any).newday ?? 0) > 29) {
-        (s as any).newday = ((s as any).newday ?? 0) - (29);
-        (s as any).newmonth = ((s as any).newmonth ?? 0) + (1);
+    if (((s as any).month ?? 0) === 2) {
+      if ((((s as any).year ?? 0) % 4 === 0)) {
+        if (((s as any).newday ?? 0) > 29) {
+          (s as any).newday = ((s as any).newday ?? 0) - (29);
+          (s as any).newmonth = ((s as any).newmonth ?? 0) + (1);
+        }
+      } else {
+        if (((s as any).newday ?? 0) > 28) {
+          (s as any).newday = ((s as any).newday ?? 0) - (28);
+          (s as any).newmonth = ((s as any).newmonth ?? 0) + (1);
+        }
       }
     } else {
-      if (((s as any).newday ?? 0) > 28) {
-        (s as any).newday = ((s as any).newday ?? 0) - (28);
+      if (((s as any).newday ?? 0) > 30) {
+        (s as any).newday = ((s as any).newday ?? 0) - (30);
         (s as any).newmonth = ((s as any).newmonth ?? 0) + (1);
       }
-    }
-    if (((s as any).newday ?? 0) > 30) {
-      (s as any).newday = ((s as any).newday ?? 0) - (30);
-      (s as any).newmonth = ((s as any).newmonth ?? 0) + (1);
     }
   }
   scene.build();

@@ -62,8 +62,11 @@ function enterNiz(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.img('images/locations/city/residential/apartment/balcony_naked2.jpg');
     } else {
-      scene.img('images/locations/city/residential/apartment/balcony_underwear2.jpg');
-      scene.img('images/locations/city/residential/apartment/balcony_dressed2.jpg');
+      if (((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/locations/city/residential/apartment/balcony_underwear2.jpg');
+      } else {
+        scene.img('images/locations/city/residential/apartment/balcony_dressed2.jpg');
+      }
     }
     scene.actions([
       { label: 'Enjoy the view', handler: (st: GameState) => {
@@ -103,7 +106,7 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Flip him off', handler: (st: GameState) => {
+        { label: 'Flip him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -123,7 +126,7 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Show off your body', handler: (st: GameState) => {
+        { label: 'Show off your body [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');

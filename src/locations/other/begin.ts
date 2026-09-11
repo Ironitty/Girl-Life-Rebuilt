@@ -79,10 +79,18 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'loc') {
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
+    } else {
+      if (((s as any).temp_rand ?? 0) === 1) {
+      }
     }
   } else {
-    (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-    if ((!((s as any).temp_rand ?? 0))) {
+    if (((s as any).locArgs?.[1] ?? 0) === 'magic') {
+      (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
+      if ((!((s as any).temp_rand ?? 0))) {
+      } else {
+        if (((s as any).temp_rand ?? 0) === 1) {
+        }
+      }
     }
   }
   return;
@@ -120,7 +128,7 @@ function enterRealCharacter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUseAvatarMenu(s: GameState, scene: SceneBuilder): void {
-  (s as any).face_style['avatar_path'] = ((s as any).input ?? 0)('((s as any).Where ?? 0) ((s as any).is ?? 0) ((s as any).the ?? 0) ((s as any).avatar ?? 0) ((s as any).image ?? 0) ((s as any).located ?? 0)? (((s as any).Leave ?? 0) ((s as any).blank ?? 0) ((s as any).for ?? 0) "((s as any).images ?? 0)/((s as any).avatar?.jpg ?? 0)")');
+  (s as any).face_style['avatar_path'] = 0;
   if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
     (s as any).face_style['avatar_path'] = 'images/avatar.jpg';
   }

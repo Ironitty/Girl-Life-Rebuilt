@@ -102,8 +102,11 @@ function enterPoliceArrest(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).temp_arrest ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest1'] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest2'] }]);
-      scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest3'] }]);
+      if (((s as any).temp_arrest ?? 0) === 1) {
+        scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest2'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest3'] }]);
+      }
     }
   } },
     ]);
@@ -141,7 +144,7 @@ function enterPoliceArrest2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I have no excuse, your honor…" you meekly answer.');
   scene.text('Their eyes piercing through you, the judge clears their throat. "I see. You have thirty days to pay your fine. If you fail to do so, you will be arrested again and given a prison sentence."');
   scene.text('You silently nod that you understand.');
-  (s as any).policeQW['fine_deadline'] = ((s as any).max ?? 0)(((s as any).policeQW ?? 0)?.['fine_deadline'], ((s as any).daystart ?? 0) + 30);
+  (s as any).policeQW['fine_deadline'] = Math.max(((s as any).policeQW ?? 0)?.['fine_deadline'], ((s as any).daystart ?? 0) + 30);
   scene.actions([
     { label: 'Leave the court', handler: (st: GameState) => {
     // TODO-QSP: gt 'city_center', '', 'mom_check'

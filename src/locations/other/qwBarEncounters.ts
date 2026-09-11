@@ -67,48 +67,58 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).PBB_Met ?? 0) === 1) {
-      scene.text('While you are sitting at the bar and enjoying your drink, somebody approaches you - it\'s the guy in his mid-twenties you had a drink with earlier. What was his name again?');
-      scene.text('Before you can even try to remember, he\'s already sat down next to you and asks if you wanna chat and have a drink on him.');
-    } else {
-      scene.text('While you are sitting at the bar and enjoying your drink, somebody approaches you - the pool player who bet money against a blowjob.');
-      scene.text('For a moment, you expect him to be straightforward about it and ask if you wanna play, but instead, he simply sits down next to you and politely offers to buy you a drink.');
-      scene.text('While you are sitting at the bar and enjoying your drink, a guy who\'s slightly older than you - in his mid- or maybe late twenties - sits down next to you and orders himself a drink. After a few minutes of silently nursing on your respective drinks, he starts chatting you up and offers to buy you a drink.');
-    }
-    scene.actions([
-      { label: 'Decline', handler: (st: GameState) => {
+    if (((s as any).Enc_Rand ?? 0) === 1  &&  ((s as any).bill_rand ?? 0) !== 3) {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      if (((s as any).PBB_Met ?? 0) === 1) {
+        scene.text('While you are sitting at the bar and enjoying your drink, somebody approaches you - it\'s the guy in his mid-twenties you had a drink with earlier. What was his name again?');
+        scene.text('Before you can even try to remember, he\'s already sat down next to you and asks if you wanna chat and have a drink on him.');
+      } else {
+        if (((s as any).PBB_Met ?? 0) === 2) {
+          scene.text('While you are sitting at the bar and enjoying your drink, somebody approaches you - the pool player who bet money against a blowjob.');
+          scene.text('For a moment, you expect him to be straightforward about it and ask if you wanna play, but instead, he simply sits down next to you and politely offers to buy you a drink.');
+        } else {
+          scene.text('While you are sitting at the bar and enjoying your drink, a guy who\'s slightly older than you - in his mid- or maybe late twenties - sits down next to you and orders himself a drink. After a few minutes of silently nursing on your respective drinks, he starts chatting you up and offers to buy you a drink.');
+        }
+      }
+      scene.actions([
+        { label: 'Decline', handler: (st: GameState) => {
     scene.text('You shake your head no and decline the offered drink, letting him know you can buy your own. "But thanks anyways."');
     scene.text('He doesn\'t seem too disappointed though. He remains polite and chats with you for a few more minutes before getting up and leaving you to yourself.');
     scene.actions([
       { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },
     ]);
   } },
-      { label: 'Accept', handler: (st: GameState) => {
+        { label: 'Accept', handler: (st: GameState) => {
     if (((s as any).boozeVar ?? 0) === 'beer') {
       qspCall(s, 'exp_gain', 'agil', Math.floor(Math.random() * 2) + 0);
       qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 0);
       qspCall(s, 'drugs', 'alcohol', 'beer');
     } else {
-      qspCall(s, 'exp_gain', 'stren', Math.floor(Math.random() * 2) + 0);
-      qspCall(s, 'exp_gain', 'vital', Math.floor(Math.random() * 2) + 0);
-      qspCall(s, 'drugs', 'alcohol', 'vodka');
-      if (((s as any).boozeVar ?? 0) === 'wine') {
-        qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 0);
-        qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 0);
-        qspCall(s, 'drugs', 'alcohol', 'wine');
-      } else {
-        qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0);
-        qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
+      if (((s as any).boozeVar ?? 0) === 'vodka') {
+        qspCall(s, 'exp_gain', 'stren', Math.floor(Math.random() * 2) + 0);
+        qspCall(s, 'exp_gain', 'vital', Math.floor(Math.random() * 2) + 0);
         qspCall(s, 'drugs', 'alcohol', 'vodka');
+      } else {
+        if (((s as any).boozeVar ?? 0) === 'wine') {
+          qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 0);
+          qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 0);
+          qspCall(s, 'drugs', 'alcohol', 'wine');
+        } else {
+          if (((s as any).boozeVar ?? 0) === 'spirit') {
+            qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0);
+            qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
+            qspCall(s, 'drugs', 'alcohol', 'vodka');
+          }
+        }
       }
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      (s as any).PBB_Met = 1;
-      // TODO-QSP: dynamic text: You smile at him and accept his offer. He buys you another <<$boozeVar>> and as ...
-      scene.text(`You smile at him and accept his offer. He buys you another ${((s as any).boozeVar ?? 0)} and as you nurse on it, the two of you chat some more about everything and nothing.`);
-      scene.text('Eventually he asks you if you would like to go play pool with him.');
-      scene.actions([
-        { label: 'Decline', handler: (st: GameState) => {
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).PBB_Met = 1;
+    // TODO-QSP: dynamic text: You smile at him and accept his offer. He buys you another <<$boozeVar>> and as ...
+    scene.text(`You smile at him and accept his offer. He buys you another ${((s as any).boozeVar ?? 0)} and as you nurse on it, the two of you chat some more about everything and nothing.`);
+    scene.text('Eventually he asks you if you would like to go play pool with him.');
+    scene.actions([
+      { label: 'Decline', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.text('You decline the offer with a laugh.');
     scene.text('"After the drinks I\'ve had, you\'d have it too easy", you joke, to which he responds with a broad laughter.');
@@ -118,7 +128,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },
     ]);
   } },
-        { label: 'Challenge accepted', handler: (st: GameState) => {
+      { label: 'Challenge accepted', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/pool/pool1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
@@ -163,7 +173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Not that kind of girl', handler: (st: GameState) => {
+          { label: 'Not that kind of girl [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.text('You shake your head and glare at him.');
     scene.text('"Do I look like some sort of cheap whore to you?!"');
@@ -209,29 +219,31 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 18) + 18);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    scene.img('images/locations/city/industrial/bar/sex/bar/bargrind1.jpg');
-    scene.text('Martin nods and prepares your beverage, then places it in front of you.');
-    scene.text('"Thank you," you smile at him and earn a half-smile in return before he leaves you to yourself.');
-    if (((s as any).alko ?? 0) >= 5) {
-      scene.text('Truth is, you\'re drinking more than you can really handle and at this point, you are starting to feel pretty drunk.');
-    }
-    scene.text('You lean against the bar, caught up in a random thought as you nurse on your drink, and so you barely notice at first that somebody is grinding against your ass. Taking your ignorance as consent, the guy grabs you by the hip with one hand to pull you back against him, at which point it becomes pretty hard to ignore, and just then, he grabs you by your hair and tilts you forward a bit more.');
-    scene.text('It\'s not difficult to deduce how this is going to end if you don\'t put an end to it right now.');
-    qspCall(s, 'willpower', 'sex', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Grind back against him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+    ]);
   } },
       ]);
     } else {
-      scene.actions([
-        { label: 'Grind back against him', handler: (st: GameState) => {
+      qspCall(s, 'stat', '');
+      qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 18) + 18);
+      qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+      scene.img('images/locations/city/industrial/bar/sex/bar/bargrind1.jpg');
+      scene.text('Martin nods and prepares your beverage, then places it in front of you.');
+      scene.text('"Thank you," you smile at him and earn a half-smile in return before he leaves you to yourself.');
+      if (((s as any).alko ?? 0) >= 5) {
+        scene.text('Truth is, you\'re drinking more than you can really handle and at this point, you are starting to feel pretty drunk.');
+      }
+      scene.text('You lean against the bar, caught up in a random thought as you nurse on your drink, and so you barely notice at first that somebody is grinding against your ass. Taking your ignorance as consent, the guy grabs you by the hip with one hand to pull you back against him, at which point it becomes pretty hard to ignore, and just then, he grabs you by your hair and tilts you forward a bit more.');
+      scene.text('It\'s not difficult to deduce how this is going to end if you don\'t put an end to it right now.');
+      qspCall(s, 'willpower', 'sex', 'resist');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Grind back against him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Grind back against him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/locations/city/industrial/bar/sex/bar/bargrind2.mp4');
     scene.text('Maybe it\'s the alcohol, or maybe you are just really horny - whatever the case may be, you don\'t really want the stranger to stop. Quite the opposite, in fact.');
@@ -324,10 +336,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Tell him to get lost', handler: (st: GameState) => {
+        ]);
+      }
+      scene.actions([
+        { label: 'Tell him to get lost', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A216', 1);
     scene.text('At first you just try to pull away, but the guy is either too drunk or too horny to take a hint. You try to shove him off but the guy hangs onto you, his grip tight and insistent.');
     scene.text('Just as you are about to tell him to "piss off", Martin comes over.');
@@ -342,9 +354,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'He might have a point - Finish your drink', goto: ['qwBarPolet', 'bar'] },
     ]);
   } },
-    ]);
-  } },
-    ]);
+      ]);
+    }
   }
   scene.build();
 }

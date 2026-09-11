@@ -39,7 +39,7 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Send', handler: (st: GameState) => {
+      { label: 'Send [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['palatka', 'start'] },

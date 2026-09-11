@@ -19,7 +19,9 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -29,7 +31,7 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Kucherov', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Kucherov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -106,7 +108,9 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
-    (s as any).will_cost = 0;
+    if (((s as any).trait_vars ?? 0)?.['academic'] >= 3) {
+      (s as any).will_cost = 0;
+    }
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -116,7 +120,7 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Kucherov', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Kucherov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -217,19 +221,28 @@ function enterPsychology_101TalkKendra_2(s: GameState, scene: SceneBuilder): voi
     scene.text('You\'re about to sit next to Kendra when she glares at you. "I don\'t think so, Princess. We\'re not friends and I want nothing to do with you. Go sit somewhere else."');
     scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
   } else {
-    if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
-      scene.text('You start to sit next to Kendra, who glares at you. "We\'re not friends. You\'re nothing more than my white slave bitch to use and abuse as I see fit. You don\'t come over to me in public, <i>ever</i>. Go sit somewhere else."');
-      scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
+    if (((s as any).kendraQW ?? 0)?.['sub'] < 10) {
+      if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
+        scene.text('You start to sit next to Kendra, who glares at you. "We\'re not friends. You\'re nothing more than my white slave bitch to use and abuse as I see fit. You don\'t come over to me in public, <i>ever</i>. Go sit somewhere else."');
+        scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A82'] < 60) {
+          scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
+        } else {
+          scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
+        }
+      }
     } else {
-      scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
-      scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
-    }
-    if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
-      scene.text('You\'re about to sit next to Kendra when she glares at you. "We\'re not friends. You\'re nothing more than my white slave bitch to use and abuse as I see fit. You don\'t come over to me in public, <i>ever</i>. Go sit somewhere else."');
-      scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
-    } else {
-      scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
-      scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
+      if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
+        scene.text('You\'re about to sit next to Kendra when she glares at you. "We\'re not friends. You\'re nothing more than my white slave bitch to use and abuse as I see fit. You don\'t come over to me in public, <i>ever</i>. Go sit somewhere else."');
+        scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A82'] < 60) {
+          scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
+        } else {
+          scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
+        }
+      }
     }
   }
   scene.actions([
@@ -276,19 +289,28 @@ function enterPsychology_102TalkKendra_2(s: GameState, scene: SceneBuilder): voi
     scene.text('You start to sit next to Kendra, who glares at you. "I don\'t think so, Princess. We\'re not friends and I want nothing to do with you. Go sit somewhere else."');
     scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
   } else {
-    if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
-      scene.text('You start to sit next to Kendra, who glares at you. "I don\'t think so, Princess. We\'re not friends and I want nothing to do with you. Go sit somewhere else."');
-      scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
+    if (((s as any).kendraQW ?? 0)?.['sub'] < 10) {
+      if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
+        scene.text('You start to sit next to Kendra, who glares at you. "I don\'t think so, Princess. We\'re not friends and I want nothing to do with you. Go sit somewhere else."');
+        scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A82'] < 60) {
+          scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
+        } else {
+          scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
+        }
+      }
     } else {
-      scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
-      scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
-    }
-    if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
-      scene.text('You start to sit next to Kendra, who glares at you. "We\'re not friends. You\'re nothing more than my white slave bitch to use and abuse as I see fit. You don\'t come over to me in public, <i>ever</i>. Go sit somewhere else."');
-      scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
-    } else {
-      scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
-      scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
+      if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
+        scene.text('You start to sit next to Kendra, who glares at you. "We\'re not friends. You\'re nothing more than my white slave bitch to use and abuse as I see fit. You don\'t come over to me in public, <i>ever</i>. Go sit somewhere else."');
+        scene.text('You glance around and notice a few other students staring at you, so you move away from her and find a seat by yourself.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A82'] < 60) {
+          scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she gives you a dirty look until you shut up and let her keep talking.');
+        } else {
+          scene.text('You decide to sit next to Kendra. You talk to her and she even lets you get a few words in, but she mostly treats you like a pet or someone simple, often making condescending comments towards you.');
+        }
+      }
     }
   }
   scene.actions([
@@ -306,11 +328,14 @@ function enterPsychology_101TalkKatja(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
     scene.text('text for Sveta trying to talk to the npc hates her');
   } else {
-    scene.text('text if they just know each other and have no strong feelings one way or the other');
-    if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-      scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+    if (((s as any).npc_rel ?? 0)?.['A14'] < 60) {
+      scene.text('text if they just know each other and have no strong feelings one way or the other');
     } else {
-      scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
+        scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+      } else {
+        scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      }
     }
   }
   scene.actions([
@@ -328,11 +353,14 @@ function enterPsychology_102TalkKatja(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
     scene.text('text for Sveta trying to talk to the npc hates her');
   } else {
-    scene.text('text if they just know each other and have no strong feelings one way or the other');
-    if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-      scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+    if (((s as any).npc_rel ?? 0)?.['A14'] < 60) {
+      scene.text('text if they just know each other and have no strong feelings one way or the other');
     } else {
-      scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
+        scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+      } else {
+        scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      }
     }
   }
   scene.actions([
@@ -350,11 +378,14 @@ function enterPsychology_101TalkVicky(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
     scene.text('text for Sveta trying to talk to the npc hates her');
   } else {
-    scene.text('text if they just know each other and have no strong feelings one way or the other');
-    if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-      scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+    if (((s as any).npc_rel ?? 0)?.['A15'] < 60) {
+      scene.text('text if they just know each other and have no strong feelings one way or the other');
     } else {
-      scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
+        scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+      } else {
+        scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      }
     }
   }
   scene.actions([
@@ -372,11 +403,14 @@ function enterPsychology_102TalkVicky(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
     scene.text('text for Sveta trying to talk to the npc hates her');
   } else {
-    scene.text('text if they just know each other and have no strong feelings one way or the other');
-    if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-      scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+    if (((s as any).npc_rel ?? 0)?.['A15'] < 60) {
+      scene.text('text if they just know each other and have no strong feelings one way or the other');
     } else {
-      scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
+        scene.text('text for them being good friends. feel free to change the rel requirement up or down, 60 is the default.');
+      } else {
+        scene.text('optional text if the npc judges Sveta on high slut fame, feel free to change the numbers');
+      }
     }
   }
   scene.actions([
@@ -395,15 +429,21 @@ function enterPsychology_101TalkAlbina(s: GameState, scene: SceneBuilder): void 
     if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
       scene.text('You sit next to Albina, but she ignores all of your attempts to speak with her and pays attention to the class instead.');
     } else {
-      scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Albina and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A23'] < 70) {
+        scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Albina and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
       scene.text('You\'re about to sit next to Albina when she glares up at you. "Don\'t even think about it, you fucking cum rag."');
     } else {
-      scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
-      scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      if (((s as any).npc_rel ?? 0)?.['A23'] < 70) {
+        scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
+      } else {
+        scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -422,15 +462,21 @@ function enterPsychology_102TalkAlbina(s: GameState, scene: SceneBuilder): void 
     if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
       scene.text('You sit next to Albina, but she ignores all of your attempts to speak with her and pays attention to the class instead.');
     } else {
-      scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Albina and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      if (((s as any).npc_rel ?? 0)?.['A23'] < 70) {
+        scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Albina and spend most of the class quietly talking with her. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
       scene.text('You\'re about to sit next to Albina when she glares up at you. "Don\'t even think about it, you fucking cum rag."');
     } else {
-      scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
-      scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      if (((s as any).npc_rel ?? 0)?.['A23'] < 70) {
+        scene.text('You sit next to Albina and try to talk to her, but she brushes you off and focuses on the lecture instead.');
+      } else {
+        scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -450,16 +496,22 @@ function enterPsychology_101TalkMiaYana(s: GameState, scene: SceneBuilder): void
     if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 <= 20) {
       scene.text('You sit next to Mia and Yana and try to talk to them, but they just ignore you and chat and giggle amongst themselves, trying to think of a prank they can pull on Professor Kucherov instead.');
     } else {
-      scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with them before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+      if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 < 60) {
+        scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with them before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 <= 20) {
       scene.text('You approach the twins, who immediately glare at you in disgust. "Ugh, what could this filthy slut want with us?" one of them asks in an annoyed tone.');
       scene.text('"Maybe she wants to learn how to mind control guys so they fuck her dirty pussy all night long?" the other replies and they both burst into laughter.');
     } else {
-      scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
-      scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with them before a fellow student asks you to be quiet.');
+      if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 < 60) {
+        scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
+      } else {
+        scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with them before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -479,16 +531,22 @@ function enterPsychology_102TalkMiaYana(s: GameState, scene: SceneBuilder): void
     if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 <= 20) {
       scene.text('You sit next to Mia and Yana and try to talk to them, but they just ignore you and chat and giggle amongst themselves, trying to think of a prank they can pull on Professor Kucherov instead.');
     } else {
-      scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with them before a fellow student asks you to be quiet.');
-      scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+      if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 < 60) {
+        scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with them before a fellow student asks you to be quiet.');
+      } else {
+        scene.text('You sit next to Mia and Yana and spend most of the class quietly talking with them. You often get shushed by your fellow students when you get a bit too loud.');
+      }
     }
   } else {
     if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 <= 20) {
       scene.text('You approach the twins, who immediately glare at you in disgust. "Ugh, what could this filthy slut want with us?" one of them asks in an annoyed tone.');
       scene.text('"Maybe she wants to learn how to mind control guys so they fuck her dirty pussy all night long?" the other replies and they both burst into laughter.');
     } else {
-      scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
-      scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with them before a fellow student asks you to be quiet.');
+      if ((((s as any).npc_rel ?? 0)?.['A267'] + ((s as any).npc_rel ?? 0)?.['A268']) / 2 < 60) {
+        scene.text('You sit next to Mia and Yana and briefly speak with them before one of them has an idea about a prank they can pull on someone they know, at which point they start giggling amongst themselves.');
+      } else {
+        scene.text('You sit next to Mia and Yana. They\'re a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with them before a fellow student asks you to be quiet.');
+      }
     }
   }
   scene.actions([
@@ -505,35 +563,115 @@ function enterPsychology_101Events(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/university/classroom/electives/psychology/boy_sleeping.jpg');
     scene.text('As Professor Kucherov continues his lecture, you notice a boy just ahead of you with his head down softly snoring. You shake your head and go back to focusing on the lecture.');
   } else {
-    scene.img('images/locations/city/island/university/classroom/electives/psychology/girl_feet.jpg');
-    scene.text('During the short break in the middle of class, you glance over and see a girl with her bare feet up on a desk in front of a boy. You can\'t hear what they\'re saying, but he dips his head down and sniffs her feet before looking back at her. She nods at him and he starts kissing her feet which makes her smile. You notice several girls watching while giggling and grinning while many of the boys are looking on in disgus. Professor Kucherov comes back in a few seconds later and everyone gets back in their seats.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).temp ?? 0) < 6) {
-      scene.img('images/locations/city/island/university/classroom/electives/psychology/girl_smoking.jpg');
-      scene.text('As Professor Kucherov continues his lecture, you glance over and notice a girl bent over hiding her head from Professor Kucherov. She pulls out a cigarette and lights it up before she starts smoking it. After taking a drag, she sits back up while holding the cigarette below the desk before ducking her head back down to take another drag. She keeps repeating this until she finishes the cigarette.');
+    if (((s as any).temp ?? 0) < 4) {
+      scene.img('images/locations/city/island/university/classroom/electives/psychology/girl_feet.jpg');
+      scene.text('During the short break in the middle of class, you glance over and see a girl with her bare feet up on a desk in front of a boy. You can\'t hear what they\'re saying, but he dips his head down and sniffs her feet before looking back at her. She nods at him and he starts kissing her feet which makes her smile. You notice several girls watching while giggling and grinning while many of the boys are looking on in disgus. Professor Kucherov comes back in a few seconds later and everyone gets back in their seats.');
+      qspCall(s, 'arousal', 'erotic', 1);
+      qspCall(s, 'arousal', 'end');
     } else {
-      scene.img('images/locations/city/island/university/classroom/electives/psychology/girls_texting.jpg');
-      scene.text('As Professor Kucherov continues his lecture, you notice the two girls sitting directly in front of you have their phones out and are texting. They occasionally show each other the text they got, causing them to giggle. After a few minutes, Professor Kucherov clears his throat loudly, but the girls don\'t stop texting and try to muffle their giggles.');
-      if (((s as any).temp ?? 0) < 10) {
-        scene.img('images/locations/city/island/university/classroom/electives/psychology/uniskirtpull.jpg');
-        scene.text('As class ends, all the students start leaving. Ahead of you is a boy walking with a girl when another boy suddenly runs over and grabs the hem of her dress before pulling it all the way up, showing off her thong and stockings for everyone to see. The girl squeals and jerks away, getting her dress back in place as her apparent boyfriend looks around in confusion. By the time he figures it out, the other boy has already long took off.');
-        qspCall(s, 'arousal', 'erotic', 1);
-        qspCall(s, 'arousal', 'end');
+      if (((s as any).temp ?? 0) < 6) {
+        scene.img('images/locations/city/island/university/classroom/electives/psychology/girl_smoking.jpg');
+        scene.text('As Professor Kucherov continues his lecture, you glance over and notice a girl bent over hiding her head from Professor Kucherov. She pulls out a cigarette and lights it up before she starts smoking it. After taking a drag, she sits back up while holding the cigarette below the desk before ducking her head back down to take another drag. She keeps repeating this until she finishes the cigarette.');
       } else {
-        if (((s as any).kendraQW ?? 0)?.['dom'] >= 16) {
-          scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_psychology1', 'event_kendra'] }]);
+        if (((s as any).temp ?? 0) < 8) {
+          scene.img('images/locations/city/island/university/classroom/electives/psychology/girls_texting.jpg');
+          scene.text('As Professor Kucherov continues his lecture, you notice the two girls sitting directly in front of you have their phones out and are texting. They occasionally show each other the text they got, causing them to giggle. After a few minutes, Professor Kucherov clears his throat loudly, but the girls don\'t stop texting and try to muffle their giggles.');
+        } else {
+          if (((s as any).temp ?? 0) < 10) {
+            scene.img('images/locations/city/island/university/classroom/electives/psychology/uniskirtpull.jpg');
+            scene.text('As class ends, all the students start leaving. Ahead of you is a boy walking with a girl when another boy suddenly runs over and grabs the hem of her dress before pulling it all the way up, showing off her thong and stockings for everyone to see. The girl squeals and jerks away, getting her dress back in place as her apparent boyfriend looks around in confusion. By the time he figures it out, the other boy has already long took off.');
+            qspCall(s, 'arousal', 'erotic', 1);
+            qspCall(s, 'arousal', 'end');
+          } else {
+            if (((s as any).temp ?? 0) === 10  &&  ((s as any).kendraQW ?? 0)?.['sub'] >= 10) {
+              if (((s as any).kendraQW ?? 0)?.['dom'] >= 16) {
+                scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_psychology1', 'event_kendra'] }]);
+              }
+              scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_stay.jpg');
+              scene.text('The class is pretty uneventful for the most part, but you notice Kendra sitting next to a black guy whispering something to him. They don\'t seem to have noticed you.');
+            } else {
+              scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
+              scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
+            }
+          }
         }
-        scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_stay.jpg');
-        scene.text('The class is pretty uneventful for the most part, but you notice Kendra sitting next to a black guy whispering something to him. They don\'t seem to have noticed you.');
-        scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
-        scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
       }
-      scene.actions([
-        { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
-      ]);
     }
   }
+  scene.actions([
+    { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
+  ]);
+  scene.build();
+}
+
+function enterEventKendra(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: close all
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_stay.jpg');
+  scene.text('The class is pretty uneventful for the most part, but you notice Kendra sitting next to a black guy and occasionally looking over at you, usually followed by him looking at you. As the class goes on, his looks get more lustful. You don\'t know what she\'s telling him, but you\'re sure it\'s about you.');
+  scene.text('As Professor Blagov finishes his lecture, he informs the class that he won\'t be able to stay to help anyone and if they need to ask him something, then they should come and see him in his office later or wait for the next class.');
+  scene.text('With class finished, everyone gets up and heads for the exit. You glance over once more at Kendra, who motions for you to follow. Once the class clears out, she sits on the professor\'s desk while the boy leans against the desk.');
+  scene.text('"What did you want, mistress?" you obediently ask.');
+  scene.text('Kendra glances at the boy, then you. "I told my friend here what a good little white slave slut you are, so you\'re going to show him just how well you obey me."');
+  scene.actions([
+    { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
+    { label: 'Wait for her to answer', handler: (st: GameState) => {
+    scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_explain.jpg');
+    scene.text('Kendra glances at the boy, then you. "I told my friend here what a good little white slave slut you are, so you\'re going to show him just how well you obey me."');
+    scene.text('You glance at him and notice that he\'s looking at you with lust in his eyes, so you have no doubt of what she promised him you would do. "I want you to get on your knees in front of him," she orders.');
+    qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
+    (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (1);
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');
+    scene.text('You shake your head. "Sorry mistress, I can\'t... I\'m not a whore that you can just pimp out."');
+    scene.text('An angry scowl appears on her face. "Listen you little fucking cunt, either get down on your knees or we\'re done!"');
+    qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Refuse again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Refuse again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
+    (s as any).kendraQW['sub'] = (-1);
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');
+    scene.text('You shake your head. "No! I\'m not going to let you pimp me out!"');
+    scene.text('She looks even angrier beforeshe takes a deep breath. "Fine! Get the fuck out of here, you useless cunt! Don\'t come crawling back to me, we\'re done!"');
+    scene.text('She gets up and walks out with the young man following her. You have a feeling you just closed a door with her that will never be reopened.');
+    scene.actions([
+      { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Obey', goto: ['uni_lessons_electives_shared1', 'obey_kendra'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Obey', goto: ['uni_lessons_electives_shared1', 'obey_kendra'] },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -602,6 +740,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'psychology_101_events':
       enterPsychology_101Events(s, scene);
+      break;
+    case 'event_kendra':
+      enterEventKendra(s, scene);
       break;
     default:
       enterPsychology_101(s, scene);

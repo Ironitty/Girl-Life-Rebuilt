@@ -5,13 +5,25 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'fashionista') {
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'flamingos') {
+    if (((s as any).locArgs?.[0] ?? 0) === 'coco') {
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'gm') {
+      if (((s as any).locArgs?.[0] ?? 0) === 'flamingos') {
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'nerdvana') {
+        if (((s as any).locArgs?.[0] ?? 0) === 'danilovich') {
         } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 'bomba') {
+          if (((s as any).locArgs?.[0] ?? 0) === 'gm') {
+          } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 'cats') {
+            } else {
+              if (((s as any).locArgs?.[0] ?? 0) === 'nerdvana') {
+              } else {
+                if (((s as any).locArgs?.[0] ?? 0) === 'moncheri') {
+                } else {
+                  if (((s as any).locArgs?.[0] ?? 0) === 'bomba') {
+                  }
+                }
+              }
+            }
           }
         }
       }

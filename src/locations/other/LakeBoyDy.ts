@@ -48,7 +48,7 @@ function enterGo(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Apologize and leave', handler: (st: GameState) => {
+        { label: 'Apologize and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -101,7 +101,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -123,7 +123,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Kick him in the balls', handler: (st: GameState) => {
+      { label: 'Kick him in the balls [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'skill_base', 'stren', 'resist', 'medium');
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -166,13 +166,16 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).npc_QW['A113'] = 1;
     (s as any).daybelisex = ((s as any).daystart ?? 0);
-    qspCall(s, 'money', 'debt_add', 'belgangPay', ((s as any).max ?? 0)(((s as any).money ?? 0) * 5, 50000));
+    qspCall(s, 'money', 'debt_add', 'belgangPay', Math.max(((s as any).money ?? 0) * 5, 50000));
     qspCall(s, 'stat', '');
     if (((s as any).week ?? 0) === 7) {
       (s as any).belfirstweek = 0;
     } else {
-      (s as any).belfirstweek = 0;
-      (s as any).belfirstweek = 1;
+      if (((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) <= 2) {
+        (s as any).belfirstweek = 0;
+      } else {
+        (s as any).belfirstweek = 1;
+      }
     }
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('You\'ve given up trying to be tough a while ago, and by now you are crying your eyes out. Thick tears roll down your cheeks as you beg him: "Please sir, I\'m begging you! I can give you money… please just let me go! Please!"');
@@ -197,7 +200,9 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     if (((s as any).belfirstweek ?? 0) === 1) {
       scene.text('"I expect the first payment by the end of next week. By the way, you can call me Mr. Bely."');
     } else {
-      scene.text('"I expect the first payment next Sunday. By the way, you can call me Mr. Bely."');
+      if ((!((s as any).belfirstweek ?? 0))) {
+        scene.text('"I expect the first payment next Sunday. By the way, you can call me Mr. Bely."');
+      }
     }
     scene.actions([
       { label: 'Accept', handler: (st: GameState) => {
@@ -286,7 +291,9 @@ function enterSucksasha(s: GameState, scene: SceneBuilder): void {
   if (((s as any).belfirstweek ?? 0) === 1) {
     scene.text('"I expect the first payment by the end of next week. By the way, you can call me Mr. Bely."');
   } else {
-    scene.text('"I expect the first payment next Sunday. By the way, you can call me Mr. Bely."');
+    if ((!((s as any).belfirstweek ?? 0))) {
+      scene.text('"I expect the first payment next Sunday. By the way, you can call me Mr. Bely."');
+    }
   }
   scene.text('The two men leave you to collect your thoughts and walk away, taking a seat a bit further down at the beach. The younger guy pulls out his phone and watches the video of you giving the fat man a blowjob again, while the fat man makes a call with your passport in his hand - you hope he\'s not digging up more info on you while you quickly gather your things and get ready to leave.');
   if ((!((s as any).belfirstweek ?? 0))) {

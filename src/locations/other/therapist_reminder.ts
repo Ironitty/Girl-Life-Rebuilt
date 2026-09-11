@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -28,7 +28,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Return to what you were doing', handler: (st: GameState) => {
+          { label: 'Return to what you were doing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'therapist_reminder', 'ignore_cost');
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/Sad.jpg');
@@ -103,8 +103,8 @@ function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
     if (((s as any).reminderCount ?? 0) > 10) {
       (s as any).tempReminderVars['Mult'] = 10;
     }
-    (s as any).tempReminderVars['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * ((s as any).tempReminderVars ?? 0)?.['Mult']);
-    (s as any).tempReminderVars['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * ((s as any).tempReminderVars ?? 0)?.['Mult']);
+    (s as any).tempReminderVars['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * ((s as any).tempReminderVars ?? {})?.['Mult']);
+    (s as any).tempReminderVars['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * ((s as any).tempReminderVars ?? {})?.['Mult']);
   }
   qspCall(s, 'mood', 'lower', qspUntranslated(s, "rand(tempReminderVars['CostLow'], tempReminderVars['CostHigh'])", { location: "therapist_reminder" }));
   (s as any).daysSkippedHypno = ((s as any).daysSkippedHypno ?? 0) + (1);
@@ -116,7 +116,9 @@ function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'traits', 'level', 'cum_addict', 0);
     }
   } else {
-    qspCall(s, 'therapist', 'restTherapyVariables');
+    if ((!((s as any).hypnoTime ?? 0))) {
+      qspCall(s, 'therapist', 'restTherapyVariables');
+    }
   }
   scene.build();
 }
@@ -125,17 +127,30 @@ function enterMoveToTherapist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'pav_lake') {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (((s as any).region ?? 0) === 'pav') {
+    if (((s as any).loc ?? 0) === 'pav_park') {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-    }
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
-      qspCall(s, 'outfit', 'wear_last_worn');
-      qspCall(s, 'shoes', 'wear', 'last_worn');
+      if (((s as any).region ?? 0) === 'pav') {
+        (s as any).minut = ((s as any).minut ?? 0) + 10;
+      } else {
+        (s as any).minut = ((s as any).minut ?? 0) + 5;
+      }
     }
   }
+  if (((s as any).clothingworntype ?? 0) === 'nude') {
+    qspCall(s, 'outfit', 'wear_last_worn');
+    qspCall(s, 'shoes', 'wear', 'last_worn');
+  }
+  scene.build();
+}
+
+function enterReturn(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_loc', 'menu_arg'); } }]);
+  scene.build();
+}
+
+function enterTherapist(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['therapist', 'start'] }]);
   scene.build();
 }
 
@@ -147,6 +162,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'move_to_therapist':
       enterMoveToTherapist(s, scene);
+      break;
+    case 'return':
+      enterReturn(s, scene);
+      break;
+    case 'therapist':
+      enterTherapist(s, scene);
       break;
     default:
       enterDefault(s, scene);

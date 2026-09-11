@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Push them away', handler: (st: GameState) => {
+      { label: 'Push them away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['Nudelake', ''] },
     ]);

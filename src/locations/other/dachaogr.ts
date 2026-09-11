@@ -11,8 +11,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/suburban/cottage/vspah.jpg');
     scene.text('Well-kept garden.');
   } else {
-    scene.img('images/locations/suburban/cottage/vspah.jpg');
-    scene.text('Not for planting season');
+    if (((s as any).month ?? 0) <= 4  ||  ((s as any).month ?? 0) >= 10) {
+      scene.img('images/locations/suburban/cottage/vspah.jpg');
+      scene.text('Not for planting season');
+    }
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {

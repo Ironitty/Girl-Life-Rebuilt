@@ -40,8 +40,10 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'vaginal_sex', 10);
     qspCall(s, 'dinsex', 'sexcum');
   } else {
-    qspCall(s, 'dinSex', 'boy_wants_anal', 'lubri');
-    qspCall(s, 'dinsex', 'analsex');
+    if (((s as any).tiprand ?? 0) === 2) {
+      qspCall(s, 'dinSex', 'boy_wants_anal', 'lubri');
+      qspCall(s, 'dinsex', 'analsex');
+    }
   }
   qspCall(s, 'stat', '');
   (s as any).ciklkm = ((s as any).ciklkm ?? 0) - (1);

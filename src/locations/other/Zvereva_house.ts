@@ -43,22 +43,22 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Christina'] === 1  ||  ((s as any).locat ?? 0)?.['Christina'] === 2  ||  ((s as any).locat ?? 0)?.['Christina'] === 8  ||  ((s as any).locat ?? 0)?.['Christina'] === 22) {
     scene.text('Christina is in her bedroom right now.');
   } else {
-    scene.text('Christina is in the kitchen right now.');
-    if (((s as any).locat ?? 0)?.['Christina'] === 14  ||  ((s as any).locat ?? 0)?.['Christina'] === 17) {
-      scene.text('Christina is in the living room right now.');
+    if (((s as any).locat ?? 0)?.['Christina'] === 3  ||  ((s as any).locat ?? 0)?.['Christina'] === 11  ||  ((s as any).locat ?? 0)?.['Christina'] === 12) {
+      scene.text('Christina is in the kitchen right now.');
     } else {
-      scene.text('Christina is in the bathroom right now.');
-      scene.text('Christina isn\'t home right now.');
+      if (((s as any).locat ?? 0)?.['Christina'] === 14  ||  ((s as any).locat ?? 0)?.['Christina'] === 17) {
+        scene.text('Christina is in the living room right now.');
+      } else {
+        if (((s as any).locat ?? 0)?.['Christina'] === 13) {
+          scene.text('Christina is in the bathroom right now.');
+        } else {
+          scene.text('Christina isn\'t home right now.');
+        }
+      }
     }
-    if (((s as any).slyQW ?? 0)?.['met'] === 2) {
-      // TODO-QSP: act 'Silvestr''s bedroom': gt 'Zvereva_house', 'sly_bedro'
-    }
-    scene.actions([
-      { label: 'Living Room', goto: ['Zvereva_house', 'livroom'] },
-      { label: 'Kitchen', goto: ['Zvereva_house', 'kitch'] },
-      { label: 'Bathroom', goto: ['Zvereva_house', 'bathr'] },
-      { label: 'Christina\'s Bedroom', goto: ['Zvereva_house', 'chris_bedro'] },
-    ]);
+  }
+  if (((s as any).slyQW ?? 0)?.['met'] === 2) {
+    // TODO-QSP: act 'Silvestr''s bedroom': gt 'Zvereva_house', 'sly_bedro'
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -69,6 +69,133 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['Zvereva_house', 'hallw'] }]);
     }
   } },
+    { label: 'Living Room', goto: ['Zvereva_house', 'livroom'] },
+    { label: 'Kitchen', goto: ['Zvereva_house', 'kitch'] },
+    { label: 'Bathroom', goto: ['Zvereva_house', 'bathr'] },
+    { label: 'Christina\'s Bedroom', goto: ['Zvereva_house', 'chris_bedro'] },
+  ]);
+  scene.build();
+}
+
+function enterLivroom(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'Zvereva_schedule', '');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Living Room</b></center>');
+  scene.img('images/locations/pavlovsk/resident/christina_home/living_room.jpg');
+  scene.text('A spacious room with two large couches and an expensive looking tv hanging on the wall above a fireplace.');
+  if (((s as any).locat ?? 0)?.['Christina'] !== 14  &&  ((s as any).locat ?? 0)?.['Christina'] !== 17  &&  ((s as any).slyQW ?? 0)?.['met'] === 1) {
+    scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_events', 'Sly_house_intro_1'] }]);
+  }
+  if (((s as any).locat ?? 0)?.['Christina'] === 14) {
+    scene.text('Christina is watching TV right now.');
+  }
+  if (((s as any).locat ?? 0)?.['Christina'] === 17) {
+    scene.text('Christina is hanging out here, looking bored.');
+  }
+  if (((s as any).locat ?? 0)?.['Silvestr'] === 5) {
+    scene.text('<a href="exec:gt \'Zvereva_Sly_events\',\'sly_house_chat\'">Silvestr</a> is here, watching TV.');
+  }
+  scene.actions([
+    { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
+  ]);
+  scene.build();
+}
+
+function enterKitch(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'Zvereva_schedule', '');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Kitchen</b></center>');
+  scene.img('images/locations/pavlovsk/resident/christina_home/kitchen.jpg');
+  scene.text('A very modern looking kitchen with a large fridge and stove.');
+  if (((s as any).locat ?? 0)?.['Christina'] === 3) {
+    scene.text('Christina is here, eating breakfast.');
+  }
+  if (((s as any).locat ?? 0)?.['Silvestr'] === 2) {
+    scene.text('Silvestr is eating breakfast');
+  }
+  if (((s as any).locat ?? 0)?.['Christina'] === 11) {
+    scene.text('Christina is making dinner.');
+  }
+  if (((s as any).locat ?? 0)?.['Christina'] === 12  &&  ((s as any).locat ?? 0)?.['Silvestr'] === 6) {
+    scene.text('Christina and Silvestr are here eating dinner.');
+  } else {
+    if (((s as any).locat ?? 0)?.['Christina'] === 12) {
+      scene.text('Christina is eating dinner right now.');
+    } else {
+      if (((s as any).locat ?? 0)?.['Silvestr'] === 6) {
+        scene.text('Silvestr is eating dinner right now.');
+      }
+    }
+  }
+  qspCall(s, 'core_library', 'kitchen', 'shared');
+  scene.actions([
+    { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
+  ]);
+  scene.build();
+}
+
+function enterBathr(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'Zvereva_schedule', '');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Bathroom</b></center>');
+  scene.img('images/locations/pavlovsk/resident/christina_home/bathroom.jpg');
+  // TODO-QSP: dynamic text: The stylish room has a large glass shower, toilet, sink, and a <a href="exec:gt ...
+  scene.text('The stylish room has a large glass shower, toilet, sink, and a <a href="exec:gt \'mirror\',\'start\'">mirror</a> where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
+  if (((s as any).locat ?? 0)?.['Christina'] === 13) {
+    scene.text('<a href="exec:gt \'Zvereva_house_events\',\'chris_shower\'">Christina</a> is here, taking a shower.');
+  }
+  if (((s as any).locat ?? 0)?.['Silvestr'] === 3) {
+    scene.text('Silvestr is in the shower right now.');
+  }
+  scene.actions([
+    { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
+  ]);
+  scene.build();
+}
+
+function enterChrisBedro(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'Zvereva_schedule', '');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Christina\'s Bedroom</b></center>');
+  scene.img('images/locations/pavlovsk/resident/christina_home/chris_bedroom.jpg');
+  scene.text('Surprisingly girly for someone of Christina\'s tastes, there is a large bed, walk-in closet, a desk, and a large <a href="exec:gt \'mirror\', \'start\'">mirror</a> leaning against the wall.');
+  if (((s as any).locat ?? 0)?.['Christina'] === 1) {
+    scene.text('Christina is in bed, asleep.');
+  }
+  if (((s as any).locat ?? 0)?.['Christina'] === 2) {
+    scene.text('Christina is getting dressed right now.');
+  }
+  if (((s as any).locat ?? 0)?.['Christina'] === 8) {
+    scene.text('Christina is here, doing her homework.');
+  }
+  if (((s as any).locat ?? 0)?.['Christina'] === 22) {
+    scene.text('<a href="exec:gt \'Zvereva_house_events\', \'bed_chat\'">Christina</a> is hanging out here, looking bored.');
+  }
+  scene.actions([
+    { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
+  ]);
+  scene.build();
+}
+
+function enterSlyBedro(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'Zvereva_schedule', '');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Silvestr\'s Bedroom</b></center>');
+  scene.img('images/locations/pavlovsk/resident/christina_home/sly_bedroom.jpg');
+  scene.text('Sly\'s rather stylish room holds a huge bed, a small couch, and a lot of different artsy looking items.');
+  if (((s as any).locat ?? 0)?.['Silvestr'] === 1) {
+    scene.text('Silvestr is asleep in his bed.');
+  }
+  if (((s as any).locat ?? 0)?.['Silvestr'] === 7) {
+    scene.text('<a href="exec:gt \'Zvereva_Sly_events\',\'sly_house_chat\'">Silvestr</a> is hanging out in here.');
+  }
+  scene.actions([
+    { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
   scene.build();
 }
@@ -81,6 +208,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'hallw':
       enterHallw(s, scene);
+      break;
+    case 'livroom':
+      enterLivroom(s, scene);
+      break;
+    case 'kitch':
+      enterKitch(s, scene);
+      break;
+    case 'bathr':
+      enterBathr(s, scene);
+      break;
+    case 'chris_bedro':
+      enterChrisBedro(s, scene);
+      break;
+    case 'sly_bedro':
+      enterSlyBedro(s, scene);
       break;
     default:
       enterFrontDoor(s, scene);

@@ -220,7 +220,7 @@ function enterDjibrilTaxiSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Stop him', handler: (st: GameState) => {
+      { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).DjibrilQW['invite'] = 1;
@@ -255,7 +255,7 @@ function enterDjibrilTaxiSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop him', handler: (st: GameState) => {
+        { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -294,7 +294,7 @@ function enterDjibrilTaxiSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Stop him', handler: (st: GameState) => {
+        { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A82', (-1));
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -518,7 +518,7 @@ function enterOluTaxiSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Lick me', handler: (st: GameState) => {
+        { label: 'Lick me [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/taxi/taxi2.jpg');
@@ -538,7 +538,7 @@ function enterOluTaxiSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Suck him off instead', handler: (st: GameState) => {
+        { label: 'Suck him off instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/taxi/taxi4.jpg');
@@ -594,7 +594,7 @@ function enterOluTaxiSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Just a blowjob', handler: (st: GameState) => {
+        { label: 'Just a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/taxi/taxi4.jpg');
@@ -665,7 +665,7 @@ function enterOluTaxiSexVaginal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Just a blowjob', handler: (st: GameState) => {
+        { label: 'Just a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/taxi/taxi4.jpg');

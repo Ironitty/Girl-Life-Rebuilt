@@ -4,7 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterSecretroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
   if (((s as any).katjaQW ?? 0)?.['school_sex'] === 0) {
     (s as any).katjaQW['school_sex'] = 1;
@@ -32,26 +32,40 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dildonumber ?? 0) > 0) {
       qspCall(s, 'boyStat', 'D<<dildonumber>>');
     } else {
-      qspCall(s, 'boyStat', 'D1');
-      if (((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 1) {
-        qspCall(s, 'boyStat', 'D2');
+      if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1) {
+        qspCall(s, 'boyStat', 'D1');
       } else {
-        qspCall(s, 'boyStat', 'D3');
-        if (((s as any).mc_inventory ?? 0)?.['dildo_large'] === 1) {
-          qspCall(s, 'boyStat', 'D4');
+        if (((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 1) {
+          qspCall(s, 'boyStat', 'D2');
         } else {
-          qspCall(s, 'boyStat', 'D5');
-          if (((s as any).mc_inventory ?? 0)?.['dildo_enormous'] === 1) {
-            qspCall(s, 'boyStat', 'D6');
+          if (((s as any).mc_inventory ?? 0)?.['dildo_big'] === 1) {
+            qspCall(s, 'boyStat', 'D3');
           } else {
-            qspCall(s, 'boyStat', 'D7');
+            if (((s as any).mc_inventory ?? 0)?.['dildo_large'] === 1) {
+              qspCall(s, 'boyStat', 'D4');
+            } else {
+              if (((s as any).mc_inventory ?? 0)?.['dildo_huge'] === 1) {
+                qspCall(s, 'boyStat', 'D5');
+              } else {
+                if (((s as any).mc_inventory ?? 0)?.['dildo_enormous'] === 1) {
+                  qspCall(s, 'boyStat', 'D6');
+                } else {
+                  if (((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] === 1) {
+                    qspCall(s, 'boyStat', 'D7');
+                  }
+                }
+              }
+            }
           }
-          qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'lesbian');
-          qspCall(s, 'stat', '');
-          scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/tanga4_5.jpg');
-          scene.text('Her pussy is now soaking wet and you can tell she would like something bigger than your fingers in her. Reaching over to your bag, you pull out your dildo and slide it up between her breasts to show her what you have in store for her. Her eyes widen slightly at the sight of the dildo, but she quickly pulls your hand up and begins to suck on the dildo. She moans onto the dildo as you continue to finger fuck her.');
-          scene.actions([
-            { label: 'Fuck Katja', handler: (st: GameState) => {
+        }
+      }
+    }
+    qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/tanga4_5.jpg');
+    scene.text('Her pussy is now soaking wet and you can tell she would like something bigger than your fingers in her. Reaching over to your bag, you pull out your dildo and slide it up between her breasts to show her what you have in store for her. Her eyes widen slightly at the sight of the dildo, but she quickly pulls your hand up and begins to suck on the dildo. She moans onto the dildo as you continue to finger fuck her.');
+    scene.actions([
+      { label: 'Fuck Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal_dildo_give', (-5), 'lesbian');
     qspCall(s, 'arousal', 'rimming_give', 5, 'lesbian');
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
@@ -83,11 +97,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-          ]);
-        }
-      }
-      scene.actions([
-        { label: 'Tongue fuck Katja', handler: (st: GameState) => {
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Tongue fuck Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
     (s as any).katjaQW['horny'] = 0;
     (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
@@ -108,16 +123,347 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
-  } },
-      ]);
-    }
+    ]);
   } },
     ]);
   } },
   ]);
   scene.build();
+}
+
+function enterSchool(s: GameState, scene: SceneBuilder): void {
+  (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
+  scene.text('You do a quick turn, causing your skirt to twirl up and expose your lack of panties for a brief second. Katja\'s eyes widen in surprise. "You\'re not wearing panties?!" she whispers in shock.');
+  if (((s as any).analPlugIn ?? 0) === 1) {
+    scene.img('images/characters/pavlovsk/school/girl/katja/tanga1_7.mp4');
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 4) + 1);
+    scene.text('"I\'m not only not wearing panties!" you say while smiling enigmatically. You turn and lift your skirt before parting your ass cheeks, showing Katja the butt plug in your ass.');
+  } else {
+    scene.img(`images/characters/pavlovsk/school/girl/katja/tanga1_${Math.floor(Math.random() * 6) + 1}.jpg`);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    scene.text('You look around, making sure that nobody is nearby before turning your ass towards Katja and bending over, showing off your bare ass and pussy and proving that you\'re not wearing any panties.');
+  }
+  scene.text('');
+  scene.text('"I showed you mine," you state. "Now I want to know if you\'re wearing any panties."');
+  scene.actions([
+    { label: 'Katja\'s turn', handler: (st: GameState) => {
+    if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 5) {
+      scene.actions([{ label: 'Continue', goto: ['Katja_Tanga', 'school5'] }]);
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['school_sex'] >= 1  &&  ((s as any).katjaQW ?? 0)?.['slut'] > 60  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
+        scene.actions([{ label: 'Continue', goto: ['Katja_Tanga', 'school4'] }]);
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['slut'] > 40) {
+          scene.actions([{ label: 'Continue', goto: ['Katja_Tanga', 'school3'] }]);
+        } else {
+          if (((s as any).katjaQW ?? 0)?.['slut'] >= 20) {
+            scene.actions([{ label: 'Continue', goto: ['Katja_Tanga', 'school2'] }]);
+          } else {
+            scene.actions([{ label: 'Continue', goto: ['Katja_Tanga', 'school1'] }]);
+          }
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSchool1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/katja/tanga2.jpg');
+  // TODO-QSP: dynamic text: Katja blushes in embarrassment and covers her eyes, "You're such a bad influence...
+  scene.text(`Katja blushes in embarrassment and covers her eyes, "You're such a bad influence, ${((s as any).pcs_nickname ?? 0)}! I always wear shorts since the boys in this school are all perverts."`);
+  scene.actions([
+    { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
+  ]);
+  scene.build();
+}
+
+function enterSchool2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'erotic', (-5));
+  qspCall(s, 'arousal', 'end');
+  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+  (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  scene.img(`images/characters/pavlovsk/school/girl/katja/tanga3_${Math.floor(Math.random() * 6) + 1}.jpg`);
+  scene.text('Katja looks around to make sure nobody is nearby before furtively lifting up her skirt and showing you her panties. "See? I\'m wearing panties."');
+  scene.actions([
+    { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
+  ]);
+  scene.build();
+}
+
+function enterSchool3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A14');
+  scene.img('images/characters/pavlovsk/school/girl/katja/tanga4_1.jpg');
+  scene.text('You give Katja a slightly disappointed frown. "Still wearing panties, huh?"');
+  scene.text('Katja blushes. "Yes, but I\'m not wearing a bra…" she whispers.');
+  scene.actions([
+    { label: 'Share', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'erotic', (-5));
+    qspCall(s, 'arousal', 'foreplay', (-5), 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    scene.img('images/characters/pavlovsk/school/girl/katja/tanga4_2.jpg');
+    scene.text('Katja looks around to make sure nobody is watching before she unbuttons her shirt and pulls it open to reveal her bare breasts. With a smile, you reach up and grab her breasts in your hands, teasing her nipples with your fingers. A moan of pleasure escapes from her mouth.');
+    if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 40  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).mesec ?? 0) <= 0  &&  ((s as any).katjaQW ?? 0)?.['school_sex'] === 0) {
+      scene.text('Blushing, Katja pulls away from you and buttons her shirt back up, but looks at you with a sly grin. "I have a key to a storage closet. We can go there for a bit more privacy if you want…" She gives you pleading eyes, hoping that you\'ll agree.');
+      scene.actions([
+        { label: 'Go', goto: ['Katja_tanga', 'secretroom'] },
+      ]);
+    } else {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+      if (((s as any).katjaQW ?? 0)?.['school_sex'] === 1) {
+        (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+      }
+      // TODO-QSP: dynamic text: Blushing, Katja pulls away from you and buttons her shirt back up, looking aroun...
+      scene.text(`Blushing, Katja pulls away from you and buttons her shirt back up, looking around to see if anyone has seen you. "${((s as any).pcs_nickname ?? 0)}, are you crazy?! Someone could have seen us! What would they say?!"`);
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSchool4(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A14');
+  (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+  scene.img('images/characters/pavlovsk/school/girl/katja/tanga5_1.jpg');
+  if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 4) {
+    scene.text('Katja quickly lifts her skirt, showing you her thong-clad ass. "You\'re back to wearing panties again?" you cry.');
+    scene.text('Katja hisses at you. "So? It\'s not like you haven\'t seen everything before."');
+  } else {
+    scene.text('Katja quickly lifts her skirt, showing her thong-clad ass. "Still wearing panties, huh?" you ask and Katja hisses at you. "So? It\'s not like you haven\'t seen everything before."');
+  }
+  scene.actions([
+    { label: 'Denied', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'kiss', (-5), 'lesbian');
+    if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 1) {
+      (s as any).katjaQW['pantiesQWstage'] = 1;
+    }
+    scene.img('images/characters/pavlovsk/school/girl/katja/tanga_kiss1.jpg');
+    scene.text('"Fine, whatever," you say and turn to leave, dejected at her reaction. Katja, afraid that she has offended you, grabs your hand and pulls you into a passionate kiss. "Don\'t pout sweetie, I\'m sorry. Let me make it up to you!"');
+    scene.actions([
+      { label: 'Watch', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'erotic', (-5));
+    if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 1) {
+      (s as any).katjaQW['pantiesQWstage'] = 2;
+      scene.img('images/characters/pavlovsk/school/girl/katja/tanga5_2.jpg');
+      scene.text('Katja sits on the floor and parts her legs as she pulls her panties aside.');
+      qspCall(s, 'arousal', 'end');
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 2) {
+        (s as any).katjaQW['pantiesQWstage'] = 3;
+        scene.img('images/characters/pavlovsk/school/girl/katja/tanga5_3.jpg');
+        scene.text('Turning away from you and bending over, Katja lifts up her skirt and pulls down her panties, showing you her ass and pussy. Hearing someone coming, she quickly pulls her panties back up and straightens up her skirt as she smiles at you shyly.');
+        qspCall(s, 'arousal', 'end');
+        (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+      } else {
+        scene.img('images/characters/pavlovsk/school/girl/katja/tanga5_4.jpg');
+        scene.text('Turning away from you and bending over, Katja lifts up her skirt and pulls down her panties, showing you her ass and pussy. She starts to pull her panties back up as you pout. "Is that it?"');
+        scene.actions([
+          { label: 'That\'s all?', handler: (st: GameState) => {
+    if (((s as any).katjaQW ?? 0)?.['slut'] > 80  &&  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 4) {
+      (s as any).katjaQW['pantiesQWstage'] = 5;
+    }
+    if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 3) {
+      (s as any).katjaQW['pantiesQWstage'] = 4;
+    }
+    (s as any).katjaQW['take_of_panties_day'] = ((s as any).daystart ?? 0);
+    qspCall(s, 'arousal', 'erotic', (-5));
+    qspCall(s, 'arousal', 'end');
+    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    scene.img('images/characters/pavlovsk/school/girl/katja/tanga5_5.jpg');
+    scene.text('Katja looks over her shoulder at you, biting her lower lip as she looks around with a mischievous smile to make sure nobody is nearby. She then pulls her panties down further, letting them drop around her ankles. "To hell with panties then." She quickly gathers her panties off the floor and sticks them in her purse before she twirls in front of you, giving you a fantastic view of her pussy and bare ass.');
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
+    ]);
+  } },
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSchool5(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'erotic', (-5));
+  qspCall(s, 'arousal', 'end');
+  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+  (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+  scene.img(`images/characters/pavlovsk/school/girl/katja/tanga6_${Math.floor(Math.random() * 6) + 1}.jpg`);
+  scene.text('Without any hesitation, Katja pulls up her skirt and shows you her pussy.');
+  scene.text('"Like what you see?" she asks with a teasing smile.');
+  scene.actions([
+    { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
+  ]);
+  scene.build();
+}
+
+function enterDance(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'arousal', 'flash', 5);
+  qspCall(s, 'stat', '');
+  (s as any).katjaQW['no_panties_day_disco'] = ((s as any).daystart ?? 0);
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+  scene.img(`images/characters/pavlovsk/school/girl/katja/katja_disco2_${Math.floor(Math.random() * 3) + 1}.jpg`);
+  scene.text('You lift the edge of your skirt up and flash your pussy at Katja. "I showed you mine, now show me yours."');
+  scene.actions([
+    { label: 'Ask to see', handler: (st: GameState) => {
+    if (((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+      scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco3.jpg');
+      scene.text('Katja blushes in embarrassment. "I\'m not as brave as you! I can\'t to go to a dance without my panties on."');
+      qspCall(s, 'arousal', 'end');
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['slut'] <= 40) {
+        qspCall(s, 'arousal', 'erotic', (-5));
+        qspCall(s, 'arousal', 'end');
+        (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+        scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco4.jpg');
+        scene.text('Katja looks around to make sure nobody is watching before partially bending over and lifting her skirt, showing you her thong and giving you a nice view of her ass.');
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['slut'] <= 60) {
+          qspCall(s, 'arousal', 'erotic', (-5));
+          qspCall(s, 'arousal', 'end');
+          (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+          (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+          qspCall(s, 'stat', '');
+          if (((s as any).katjaQW ?? 0)?.['disco_Foto'] === 0) {
+            (s as any).katjaQW['disco_Foto'] = 1;
+            scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco5_1.jpg');
+            scene.text('Katja unbuttons her shirt and exposes her bra. There is a brief flash as someone takes a picture. You quickly look around, but can\'t tell who took the picture.');
+          } else {
+            scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco5_2.jpg');
+            scene.text('Katja unbuttons her shirt and exposes her bra.');
+          }
+        } else {
+          if (((s as any).katjaQW ?? 0)?.['slut'] <= 80) {
+            if (((s as any).katjaQW ?? 0)?.['horny'] > 70) {
+              qspCall(s, 'arousal', 'erotic', (-5));
+              (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+              (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+              scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco6_1.jpg');
+              scene.text('Katja resolutely lifts her dress up to her neck, showing not only her panties but also her bare breasts. She smiles as she pulls her dress back down. "Now show me your tits."');
+              if (((s as any).pcs_horny ?? 0) > 70  ||  ((s as any).alko ?? 0) > 1) {
+                scene.actions([
+                  { label: 'Show your tits', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'flash', (-5));
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco6_2.jpg');
+    scene.text('Laughing, you pull aside your dress and reveal one of your bare breasts. Katja looks at you, wanting more. "I showed you both of mine!"');
+    scene.text('You smile. "Yeah, but you\'re wearing panties and I\'m not."');
+    if (((s as any).hour ?? 0) >= 20) {
+      scene.actions([
+        { label: 'Keep dancing', handler: (st: GameState) => {
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+    }
+  }, goto: ['pav_disco_coolkids', 'katja_dance'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
+    ]);
+  } },
+                ]);
+              }
+              scene.actions([
+                { label: 'Tease her', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'flash', (-5));
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco6_3.jpg');
+    scene.text('You pull at the edge of your dress, barely exposing one of your nipples as Katja indignantly squeaks."Hey, I showed you mine!"');
+    scene.text('You respond with a laugh. "I already showed you my pussy, so that makes us even."');
+    if (((s as any).hour ?? 0) >= 20) {
+      scene.actions([
+        { label: 'Keep dancing', handler: (st: GameState) => {
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+    }
+  }, goto: ['pav_disco_coolkids', 'katja_dance'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
+    ]);
+  } },
+              ]);
+            } else {
+              qspCall(s, 'arousal', 'end');
+              scene.img('images/characters/pavlovsk/school/girl/katja/katja_disco6_4.jpg');
+              scene.text('You watch with anticipation, but Katja just pulls down her top, showing a little extra cleavage before stopping. After seeing your disappointed look, she sticks out her tongue and turns away. You grit your teeth at her teasing.');
+            }
+          } else {
+            qspCall(s, 'arousal', 'erotic', (-10));
+            qspCall(s, 'arousal', 'end');
+            (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+            (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+            (s as any).katjaQW['no_panties_at_disco'] = 1;
+            qspCall(s, 'stat', '');
+            scene.img(`images/characters/pavlovsk/school/girl/katja/katja_disco7_${Math.floor(Math.random() * 3) + 1}.jpg`);
+            scene.text('Katja doesn\'t hesitate and lifts the hem of her skirt, showing you her bare pussy.');
+          }
+        }
+      }
+    }
+    if (((s as any).hour ?? 0) >= 20) {
+      scene.actions([
+        { label: 'Keep dancing', handler: (st: GameState) => {
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+    }
+  }, goto: ['pav_disco_coolkids', 'katja_dance'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'secretroom':
+      enterSecretroom(s, scene);
+      break;
+    case 'school':
+      enterSchool(s, scene);
+      break;
+    case 'school1':
+      enterSchool1(s, scene);
+      break;
+    case 'school2':
+      enterSchool2(s, scene);
+      break;
+    case 'school3':
+      enterSchool3(s, scene);
+      break;
+    case 'school4':
+      enterSchool4(s, scene);
+      break;
+    case 'school5':
+      enterSchool5(s, scene);
+      break;
+    case 'dance':
+      enterDance(s, scene);
+      break;
+    default:
+      enterSecretroom(s, scene);
+      break;
+  }
 }
 
 export const Katja_Tanga: LocationDef = {

@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).tabhead_i = 0;
   // TODO-QSP: :tabs_loop
   // TODO-QSP: $tabhead_table += '<th padding=<<40 / tabhead_max_i>>>'
-  if (((s as any).ARGS ?? 0)[0] === ((s as any).tabhead_i ?? 0)) {
+  if (((s as any).locArgs?.[0] ?? 0) === ((s as any).tabhead_i ?? 0)) {
     // TODO-QSP: $tabhead_table += '<<$tabsname[tabhead_i]>>'
   } else {
     // TODO-QSP: $tabhead_table += '<a href="exec:<<$tabsaction[tabhead_i]>>"><<$tabsname[tabhead_i]>></a>'

@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'That\'s enough! Leave before this gets out of hand', handler: (st: GameState) => {
+        { label: 'That\'s enough! Leave before this gets out of hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['Nudelake', ''] },

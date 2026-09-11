@@ -14,12 +14,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).klofday = ((s as any).daystart ?? 0);
       scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev1'] }]);
     } else {
-      (s as any).klofday = ((s as any).daystart ?? 0);
-      scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'start1'] }]);
-      scene.text('No one home');
-      scene.actions([
-        { label: 'Go home', goto: ['city_residential', ''] },
-      ]);
+      if (((s as any).klofQW ?? 0) > 2  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).klofday ?? 0) !== ((s as any).daystart ?? 0)) {
+        (s as any).klofday = ((s as any).daystart ?? 0);
+        scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'start1'] }]);
+      } else {
+        scene.text('No one home');
+        scene.actions([
+          { label: 'Go home', goto: ['city_residential', ''] },
+        ]);
+      }
     }
   } },
     { label: 'Go home', goto: ['city_residential', ''] },
@@ -435,7 +438,7 @@ function enterEv22(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Go home', handler: (st: GameState) => {
+      { label: 'Go home [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['city_residential', ''] },
@@ -460,7 +463,7 @@ function enterEv23(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_residential', ''] },
@@ -485,7 +488,7 @@ function enterEv24(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_residential', ''] },
@@ -514,7 +517,7 @@ function enterEv25(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -541,7 +544,7 @@ function enterEv26(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -566,7 +569,7 @@ function enterEv27(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -593,7 +596,7 @@ function enterEv28(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -619,7 +622,7 @@ function enterEv29(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -645,7 +648,7 @@ function enterEv30(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -671,7 +674,7 @@ function enterEv31(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -698,7 +701,7 @@ function enterEv32(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -725,7 +728,7 @@ function enterEv33(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -754,7 +757,7 @@ function enterEv34(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -838,7 +841,7 @@ function enterEv39(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
+      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
@@ -894,7 +897,7 @@ function enterEv42(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -924,7 +927,7 @@ function enterEv43(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -954,7 +957,7 @@ function enterEv44(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -991,7 +994,7 @@ function enterEv45(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1044,7 +1047,7 @@ function enterEv47(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1077,7 +1080,7 @@ function enterEv48(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1110,7 +1113,7 @@ function enterEv49(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1142,7 +1145,7 @@ function enterEv50(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1173,7 +1176,7 @@ function enterEv51(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1204,7 +1207,7 @@ function enterEv52(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1247,7 +1250,7 @@ function enterEv54(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1291,7 +1294,7 @@ function enterEv56(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
@@ -1360,7 +1363,7 @@ function enterEv61(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Get out of here', handler: (st: GameState) => {
+      { label: 'Get out of here [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']

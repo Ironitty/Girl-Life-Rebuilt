@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: "
   (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('\'0\'_w')) {
+  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] + '_w')) {
     // TODO-QSP: jump 'loopclonum'
   }
   (s as any).j = ((s as any).j ?? 0) + (1);

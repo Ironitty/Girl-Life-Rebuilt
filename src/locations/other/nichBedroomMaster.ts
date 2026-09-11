@@ -30,7 +30,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichGalaAct ?? 0) === 'sleep'  &&  ((s as any).nichNichAct ?? 0) !== 'sleep') {
       scene.text('Gala is sleeping in her bed.');
     } else {
-      scene.text('Gala lies on her bed. Her eyes are open but she still looks sleepy. Apparently she wants to get some extra minutes of relaxation before she has to stand up.');
+      if (((s as any).nichGalaAct ?? 0) === 'snooze') {
+        scene.text('Gala lies on her bed. Her eyes are open but she still looks sleepy. Apparently she wants to get some extra minutes of relaxation before she has to stand up.');
+      }
     }
     if (((s as any).nichWork ?? 0) === 2) {
       if (((s as any).nichNichPresent ?? 0) === 1) {
@@ -41,24 +43,37 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        scene.text('With Gala being present it wouldn\'t be appropriate to clean this room now.');
-        if (((s as any).nichTanyPresent ?? 0) === 1) {
-          scene.text('With Tanya being present it wouldn\'t be appropriate to clean this room now.');
+        if (((s as any).nichGalaPresent ?? 0) === 1) {
+          scene.text('With Gala being present it wouldn\'t be appropriate to clean this room now.');
           scene.actions([
             { label: 'Don\'t clean', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
           ]);
         } else {
-          qspCall(s, 'nichChore', 'inspect', 'master');
-        }
-        scene.actions([
-          { label: 'Don\'t clean', handler: (st: GameState) => {
+          if (((s as any).nichTanyPresent ?? 0) === 1) {
+            scene.text('With Tanya being present it wouldn\'t be appropriate to clean this room now.');
+            scene.actions([
+              { label: 'Don\'t clean', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-        ]);
+            ]);
+          } else {
+            qspCall(s, 'nichChore', 'inspect', 'master');
+          }
+        }
       }
-    } else {
+    }
+    scene.actions([
+      { label: 'Return to the hallway', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichApartment', ''] },
+      { label: 'Go to the master bathroom', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichBathMaster', ''] },
+    ]);
+  } else {
+    if (((s as any).locArgs?.[0] ?? 0) === 'evtGalaMast1') {
       scene.text('Just before you enter the master bedroom you hear a moan. It sounds like Gala is having fun.');
       scene.actions([
         { label: 'Leave', goto: ['nichApartment', ''] },
@@ -102,14 +117,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    scene.actions([
-      { label: 'Return to the hallway', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichApartment', ''] },
-      { label: 'Go to the master bathroom', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBathMaster', ''] },
-    ]);
   }
   scene.build();
 }

@@ -169,12 +169,14 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_backwater', ''] },
       ]);
     } else {
-      scene.actions([
-        { label: 'Get dressed', handler: (st: GameState) => {
+      if (((s as any).forced_naked_day ?? 0) < ((s as any).daystart ?? 0)) {
+        scene.actions([
+          { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'recover_lost_outfit', 'gad_backwater', 1);
     qspCall(s, 'underwear', 'wear');
   }, goto: ['gad_backwater', ''] },
-      ]);
+        ]);
+      }
     }
   }
   scene.actions([

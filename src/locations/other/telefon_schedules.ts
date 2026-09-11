@@ -32,13 +32,17 @@ function enterCiklSms(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'telefon', 'AddContact', 'A144', 'icon_na', 1);
     }
   } else {
-    (s as any).gopnikbandQW['on_tour'] = 0;
+    if (((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 1  &&  ((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) >= 19) {
+      (s as any).gopnikbandQW['on_tour'] = 0;
+    }
   }
   if (((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A144'] >= 50  &&  ((s as any).anushkaQW ?? 0)?.['tour_SMS_send'] < ((s as any).daystart ?? 0)  &&  ((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] < 11) {
     if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] <= 9  &&  ((s as any).week ?? 0) === 6) {
       // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A144', "gs 'band_tour_anushka_SMS', 'start'", "totminut > <<totmi...
     } else {
-      // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A144', "gs 'band_tour_anushka_SMS', 'start'", "totminut > <<totmi...
+      if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 10  &&  ((s as any).week ?? 0) === 2) {
+        // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A144', "gs 'band_tour_anushka_SMS', 'start'", "totminut > <<totmi...
+      }
     }
   }
   if (((s as any).mainQW ?? 0) >= 1) {

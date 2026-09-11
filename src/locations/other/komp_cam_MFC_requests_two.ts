@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
-  if (((s as any).ARGS ?? 0)[0] === 80) {
+  if (((s as any).locArgs?.[0] ?? 0) === 80) {
     scene.text('When one of your loyal viewers speaks up, you feel a weird knot in your throat. He\'s usually making rather insensitive comments and seems to enjoy watching you squirm, but he pays well.');
     scene.text('"I want to really see you suffer today", he types. "I\'ll give you a lot of tokens if you do this, but it will hurt: Find a hook and stick it inside your cunt. Then puncture your perineum with it, so it comes out your anus again."');
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Ignore him', handler: (st: GameState) => {
+        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -55,24 +55,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    scene.text('One of the regulars says: "I\'ve always been curious what the inside of a girl\'s ass looks like. How about you show me? I\'ve got a bunch of tokens with your name on it! ;)"');
-    qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Ignore him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
-      ]);
-    }
-    if (((s as any).ARGS ?? 0)[0] === 82) {
-      scene.text('One of the regulars asks: "You know, I really love it when girls stick something in their urethra! Could you do that for me? It doesn\'t have to be big!"');
+    if (((s as any).locArgs?.[0] ?? 0) === 81) {
+      scene.text('One of the regulars says: "I\'ve always been curious what the inside of a girl\'s ass looks like. How about you show me? I\'ve got a bunch of tokens with your name on it! ;)"');
       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
@@ -82,14 +66,52 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Ignore him', handler: (st: GameState) => {
+          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
         ]);
       }
       scene.actions([
-        { label: 'Do as he asks', handler: (st: GameState) => {
+        { label: 'Do', handler: (st: GameState) => {
+    qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
+    scene.img('images/pc/items/accessories/computer/camwhore82,\'+rand(0, 9)+\'.jpg');
+    scene.text('That request sounds simple enough! You dutifully turn your back to the computer and slip two fingers inside your well-used ass, carefully pulling your asshole open.');
+    scene.text('"More! We want to see more!" the chat encourages you, and you smile obediently while you do as they ask, pulling your sphincter wide open. The promises of donations make you go through with it, even when you feel a cool breeze in your rectum.');
+    scene.text('The pain in your ass is unbearable for a while, but the viewer is true to his word. He donates a decent amount of tokens and lets you know that he hopes to meet an anal queen like you one day. You\'re not sure if you can carry on with your show, though… that hurt a lot more than you thought it would.');
+    if (((s as any).agape ?? 0) < 2) {
+      (s as any).agape = 2;
+    }
+    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+    qspCall(s, 'stat', '');
+    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+      // TODO-QSP: $camGirl['MFC_donate_message']
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).locArgs?.[0] ?? 0) === 82) {
+        scene.text('One of the regulars asks: "You know, I really love it when girls stick something in their urethra! Could you do that for me? It doesn\'t have to be big!"');
+        qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+          ]);
+        }
+        scene.actions([
+          { label: 'Do as he asks', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 10, 'fetish', 'request');
     scene.img('images/pc/items/accessories/computer/camwhore81.jpg');
     scene.text('Kind of a strange request, but… okay. You won\'t get a following if you refuse to do what your viewers want to see. "One moment, I\'ll go find something!" you let him know, and quickly run to the bathroom. You look around and see your toothbrush. The handle is not particularly thick, that should work! You\'re definitely wrapping a condom around it first though… you\'re brushing your teeth with that later, ew!');
@@ -106,32 +128,58 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   } },
-      ]);
-    } else {
-      scene.text('One of the viewers asks you: "Fuck yourself with something! But not a dildo… be creative! Use your imagination and surprise us!"');
-      qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        scene.actions([
-          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
         ]);
       } else {
-        scene.actions([
-          { label: 'Ignore him', handler: (st: GameState) => {
+        if (((s as any).locArgs?.[0] ?? 0) === 83) {
+          scene.text('One of the viewers asks you: "Fuck yourself with something! But not a dildo… be creative! Use your imagination and surprise us!"');
+          qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
-        ]);
-      }
-      if (((s as any).ARGS ?? 0)[0] === 84) {
-        if (((s as any).pcs_vag ?? 0) >= ((s as any).pcs_ass ?? 0)) {
-          scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina and fuck yourself with it? That would be so hot…"');
+            ]);
+          }
+          scene.actions([
+            { label: 'Use the wooden knob on your bed', handler: (st: GameState) => {
+    qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
+    qspCall(s, 'npcStat', 'D3');
+    if (((s as any).pcs_horny ?? 0) >= 95) {
+      scene.img('images/pc/items/accessories/computer/camwhore78.jpg');
+      scene.text('You look around quickly and see the wooden knobs on your bed. Those look kinda phallic… should work!');
+      scene.text('After you spit on your fingers and coat it with saliva, you carefully rest the tip of the wooden knob against your labia and lower yourself down onto it, feeling how it stretches you nicely.');
+    } else {
+      scene.img('images/pc/items/accessories/computer/camwhore77.jpg');
+      scene.text('You look around quickly and see the wooden knobs on your bed. Those look kinda phallic… should work!');
+      scene.text('After you spit on your fingers and coat it with saliva, you carefully rest the tip of the wooden knob against your labia and lower yourself down onto it, feeling how it stretches you nicely.');
+      scene.text('Despite the nice feeling of fullness it provides, it\'s not enough to reach an orgasm right now. You make an effort of riding the wooden knob for a little while, but have to stop when your vagina hurts too much to continue.');
+    }
+    qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
+    qspCall(s, 'stat', '');
+    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+      // TODO-QSP: $camGirl['MFC_donate_message']
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
+  } },
+          ]);
         } else {
-          scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your ass and fuck yourself with it? That would be so hot…"');
-        }
-        scene.actions([
-          { label: 'Go find a bottle', handler: (st: GameState) => {
+          if (((s as any).locArgs?.[0] ?? 0) === 84) {
+            if (((s as any).pcs_vag ?? 0) >= ((s as any).pcs_ass ?? 0)) {
+              scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina and fuck yourself with it? That would be so hot…"');
+            } else {
+              scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your ass and fuck yourself with it? That would be so hot…"');
+            }
+            scene.actions([
+              { label: 'Go find a bottle', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 10, 'porn', 'request');
     qspCall(s, 'npcStat', 'D7');
     if (((s as any).pcs_vag ?? 0) >= ((s as any).pcs_ass ?? 0)) {
@@ -162,21 +210,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   } },
-        ]);
-      } else {
-        // TODO-QSP: dynamic text: One of the viewers, noticing how drunk you are, asks in chat: "Hey, <<$pcs_nickn...
-        scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? 0)}! Show us something unusual! Anything!"`);
-        (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
-        if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
-          (s as any).temp[1] = 1;
-        }
-        (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 1)", { location: "komp_cam_MFC_requests_two" });
-        if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
-          (s as any).temp[1] = 1;
-        }
-        if (((s as any).temp ?? 0)[1] > 0) {
-          scene.actions([
-            { label: 'Shock them', handler: (st: GameState) => {
+            ]);
+          } else {
+            if (((s as any).locArgs?.[0] ?? 0) === 85) {
+              // TODO-QSP: dynamic text: One of the viewers, noticing how drunk you are, asks in chat: "Hey, <<$pcs_nickn...
+              scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? 0)}! Show us something unusual! Anything!"`);
+              (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
+              if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
+                (s as any).temp[1] = 1;
+              }
+              (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 1)", { location: "komp_cam_MFC_requests_two" });
+              if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
+                (s as any).temp[1] = 1;
+              }
+              if (((s as any).temp ?? 0)[1] > 0) {
+                scene.actions([
+                  { label: 'Shock them', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 3, 'porn', 'request');
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/computer/camwhore73.jpg');
@@ -191,11 +240,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   } },
-          ]);
-        } else {
-          if (((s as any).tits ?? 0) >= 1) {
-            scene.actions([
-              { label: 'Bind your breasts with whatever you can find', handler: (st: GameState) => {
+                ]);
+              } else {
+                if (((s as any).tits ?? 0) >= 1) {
+                  scene.actions([
+                    { label: 'Bind your breasts with whatever you can find', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 10, 'fetish', 'request');
     if (((s as any).braworntype ?? 0) !== 'none') {
       qspCall(s, 'bras', 'remove');
@@ -209,36 +258,46 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).tits ?? 0) === 2) {
         (s as any).img_source = 63;
       } else {
-        (s as any).img_source = 65;
-        if (((s as any).tits ?? 0) === 4) {
-          (s as any).img_source = 66;
+        if (((s as any).tits ?? 0) === 3) {
+          (s as any).img_source = 65;
         } else {
-          if (((s as any).pcs_piercings ?? 0)?.['nipples'] === 1) {
-            (s as any).img_source = 68;
+          if (((s as any).tits ?? 0) === 4) {
+            (s as any).img_source = 66;
           } else {
-            (s as any).img_source = 67;
+            if (((s as any).tits ?? 0) === 5) {
+              if (((s as any).pcs_piercings ?? 0)?.['nipples'] === 1) {
+                (s as any).img_source = 68;
+              } else {
+                (s as any).img_source = 67;
+              }
+            } else {
+              if (((s as any).tits ?? 0) >= 6) {
+                (s as any).img_source = 69;
+              }
+            }
           }
-          if (((s as any).tits ?? 0) >= 6) {
-            (s as any).img_source = 69;
-          }
-          scene.img('images/pc/items/accessories/computer/camwhore\' + img_source + \'.jpg');
-          scene.text('In your drunken stupor you find some rope and rubber bands and begin to bind your breasts, using the helpful advice of the chat to guide you.');
-          scene.text('Your senses have been dulled by the excessive amount of alcohol you drank, but you\'re still conscious enough to make sure you don\'t bind your breasts too tightly.');
-          scene.text('A few minutes later you decide your poor boobs have had enough, and untie them again. Your chat enjoyed seeing you like that, and you receive a few donations while you carefully rub some feeling back into your tingling breasts.');
         }
-        qspCall(s, 'arousal', 'BDSM', (-10), 'maso');
-        qspCall(s, 'pain', '', ((((s as any).alko ?? 0) >= 10) ? (4) : (2)), 'pinch', 'nipples');
-        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (Math.floor(Math.random() * 11) + 10);
-        qspCall(s, 'stat', '');
-        if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-          // TODO-QSP: $camGirl['MFC_donate_message']
-        }
-        scene.actions([
-          { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
-        ]);
       }
-      scene.actions([
-        { label: 'Play with your pussy', handler: (st: GameState) => {
+      scene.img('images/pc/items/accessories/computer/camwhore\' + img_source + \'.jpg');
+      scene.text('In your drunken stupor you find some rope and rubber bands and begin to bind your breasts, using the helpful advice of the chat to guide you.');
+      scene.text('Your senses have been dulled by the excessive amount of alcohol you drank, but you\'re still conscious enough to make sure you don\'t bind your breasts too tightly.');
+      scene.text('A few minutes later you decide your poor boobs have had enough, and untie them again. Your chat enjoyed seeing you like that, and you receive a few donations while you carefully rub some feeling back into your tingling breasts.');
+    }
+    qspCall(s, 'arousal', 'BDSM', (-10), 'maso');
+    qspCall(s, 'pain', '', ((((s as any).alko ?? 0) >= 10) ? (4) : (2)), 'pinch', 'nipples');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (Math.floor(Math.random() * 11) + 10);
+    qspCall(s, 'stat', '');
+    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+      // TODO-QSP: $camGirl['MFC_donate_message']
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
+  } },
+                  ]);
+                } else {
+                  scene.actions([
+                    { label: 'Play with your pussy', handler: (st: GameState) => {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       qspCall(s, 'panties', 'remove');
     }
@@ -249,20 +308,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('It hurts quite a lot, but the alcohol and approving comments in chat give you enough courage to soldier through the pain for a little while. Eventually it becomes too much though, and you have to give up.');
       qspCall(s, 'arousal', 'BDSM', (-10), 'maso');
     } else {
-      qspCall(s, 'komp_cam_functions', 'camming', 10, 'fetish', 'request');
-      qspCall(s, 'npcStat', 'D5');
-      scene.img('images/pc/items/accessories/computer/camwhore71.jpg');
-      scene.text('"Erm… okay, hold on just one moment!" you smile at the camera and quickly go through your house, trying to find something that would impress him. Unable to find anything better, you come back with a shoe.');
-      scene.text('You thrust the shoe inside your pussy and begin to fuck yourself with it, but find out fast that this was a terrible idea. The dirty soles still had some sand on them, which grates against your bare pussy horribly. Much to the disappointment of your chat you have to stop. They enjoyed it though, giving you a few tokens while you sit down on your chair again with a painful grimace on your face.');
-      qspCall(s, 'arousal', 'vaginal_dildo', (-10), 'dick_length', 'masturbation');
-      qspCall(s, 'komp_cam_functions', 'camming', 10, 'porn', 'request');
-      qspCall(s, 'npcStat', 'D4');
-      scene.img('images/pc/items/accessories/computer/camwhore72.jpg');
-      scene.text('"Erm… okay, hold on just one moment!" you smile at the camera and quickly go through your house, trying to find something that would impress him. In your kitchen you find something that will work just fine - two cucumbers!');
-      scene.text('You drunkenly mutter something into the camera and turn your back to it, as you guide the two cucumbers to your holes and shove them in unceremoniously.');
-      scene.text('You didn\'t even wash them first! Their uneven surface and the lack of lubrication makes fucking yourself with them very painful, and it\'s not long before you force yourself to stop. The viewers enjoyed it though, giving you a few tokens while you sit down on your chair again with a painful grimace on your face.');
-      qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
-      qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
+      if (((s as any).pcs_ass ?? 0) < 15) {
+        qspCall(s, 'komp_cam_functions', 'camming', 10, 'fetish', 'request');
+        qspCall(s, 'npcStat', 'D5');
+        scene.img('images/pc/items/accessories/computer/camwhore71.jpg');
+        scene.text('"Erm… okay, hold on just one moment!" you smile at the camera and quickly go through your house, trying to find something that would impress him. Unable to find anything better, you come back with a shoe.');
+        scene.text('You thrust the shoe inside your pussy and begin to fuck yourself with it, but find out fast that this was a terrible idea. The dirty soles still had some sand on them, which grates against your bare pussy horribly. Much to the disappointment of your chat you have to stop. They enjoyed it though, giving you a few tokens while you sit down on your chair again with a painful grimace on your face.');
+        qspCall(s, 'arousal', 'vaginal_dildo', (-10), 'dick_length', 'masturbation');
+      } else {
+        qspCall(s, 'komp_cam_functions', 'camming', 10, 'porn', 'request');
+        qspCall(s, 'npcStat', 'D4');
+        scene.img('images/pc/items/accessories/computer/camwhore72.jpg');
+        scene.text('"Erm… okay, hold on just one moment!" you smile at the camera and quickly go through your house, trying to find something that would impress him. In your kitchen you find something that will work just fine - two cucumbers!');
+        scene.text('You drunkenly mutter something into the camera and turn your back to it, as you guide the two cucumbers to your holes and shove them in unceremoniously.');
+        scene.text('You didn\'t even wash them first! Their uneven surface and the lack of lubrication makes fucking yourself with them very painful, and it\'s not long before you force yourself to stop. The viewers enjoyed it though, giving you a few tokens while you sit down on your chair again with a painful grimace on your face.');
+        qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
+        qspCall(s, 'arousal', 'anal_dildo', (-5), 'dick_length', 'masturbation');
+      }
     }
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (Math.floor(Math.random() * 11) + 10);
     qspCall(s, 'stat', '');
@@ -273,161 +335,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   } },
-      ]);
-    }
-  } },
-            ]);
-          } else {
-            scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina? That would be so hot…"');
-            scene.text('You immediately jump up from your chair, forgetting to even ask for tokens. "I\'ll go get one! I don\'t normally do this, but… only today, and only for you!" you wink at the camera in a slightly slurry voice.');
-            if (((s as any).ARGS ?? 0)[0] === 87) {
-              scene.text('One of the viewers challenges you: "Put something in your vagina. Anything. Impress me."');
-              qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
-              if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+                  ]);
+                }
                 scene.actions([
-                  { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-                ]);
-              } else {
-                scene.actions([
-                  { label: 'Ignore him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
-                ]);
-              }
-              scene.actions([
-                { label: 'Find something to put inside you', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'camming', 3, 'porn', 'request');
-    qspCall(s, 'npcStat', 'D5');
-    scene.img('images/pc/items/accessories/computer/camwhore59.jpg');
-    scene.text('"Erm… okay, hold on just one moment!" you smile at the camera and quickly go through your house, trying to find something that would impress him.');
-    scene.text('You return to your computer holding two objects: a remote control and a small bottle. Just when the people in the chat were about to suggest their preference, you silence them by sticking the bottle inside you first and then adding the remote too. That\'s right, you do both!');
-    scene.text('The chat is very impressed with your eagerness to please, and makes several lewd comments on what a good slut you are. You wiggle your hips at them for a moment before retrieving the objects and setting them aside.');
-    qspCall(s, 'arousal', 'vaginal_dildo', (-3), 'dick_length', 'masturbation');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    qspCall(s, 'stat', '');
-    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
-    }
-    scene.actions([
-      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
-    ]);
-  } },
-              ]);
-            } else {
-              scene.text('One of the viewers has a rather unusual request: "Time for you to quiet down for a while! Gag yourself by putting your panties into your mouth…"');
-              qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
-              if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-                scene.actions([
-                  { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-                ]);
-              } else {
-                scene.actions([
-                  { label: 'Ignore him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
-                ]);
-              }
-              if (((s as any).ARGS ?? 0)[0] === 89) {
-                scene.text('One of the viewers makes several comments on how badly he wants to fuck your ass, and then offers you tokens to show your asshole to him…');
-                scene.actions([
-                  { label: 'Show him your anus', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'camming', 3, 'erotic', 'request');
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
-      (s as any).img_source = 57;
-    } else {
-      (s as any).img_source = 54;
-      if (((s as any).pcs_vag ?? 0) >= 25) {
-        (s as any).img_source = 56;
-      } else {
-        (s as any).img_source = 55;
-      }
-      scene.img('images/pc/items/accessories/computer/camwhore\' + img_source + \'.jpg');
-      if (((s as any).analPlugIn ?? 0) === 1) {
-        scene.text('You smile to yourself, he\'s going to love what you have in store for him!');
-        scene.text('"I\'m sorry," you tell him, explicitly mentioning his username as well. "That\'s going to be a bit difficult…"');
-        scene.text('Then you turn around, and show him the large plug you currently have shoved inside you. You pull it out for a second and wiggle your ass seductively at the camera and hear the donation sound mere seconds later while you slide the plug back in.');
-      } else {
-        scene.text('"I don\'t know if it could handle your cock just yet," you tell the viewer. "What do you think?"');
-        scene.text('You turn your back to the camera and pull your butt cheeks aside, giving him (and everyone else in the channel) a good look at your sphincter. Unsurprisingly he\'s very confident that he could make you feel good, but he donates some tokens as promised.');
-      }
-      qspCall(s, 'arousal', 'flash', (-3));
-      qspCall(s, 'stat', '');
-      if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-        // TODO-QSP: $camGirl['MFC_donate_message']
-      }
-      scene.actions([
-        { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
-      ]);
-    }
-    qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Ignore him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
-      ]);
-    }
-  } },
-                ]);
-              }
-              scene.actions([
-                { label: 'Do as he asks', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'camming', 3, 'fetish', 'request');
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
-      qspCall(s, 'panties', 'remove');
-      scene.img('images/pc/items/accessories/computer/camwhore58.jpg');
-      scene.text('You smile at the camera and slide your panties down your legs, stuffing them in your mouth dutifully. You try to say something to the chat but only manage to produce some muffled sounds, much to the enjoyment of your viewers. "Haha, what a slut! That\'s the way she should be!" everyone laughs, belittling you with their degrading comments.');
-    } else {
-      scene.img('images/pc/items/accessories/computer/camwhore58.jpg');
-      scene.text('You smile at the camera and find the panties that you had already taken off somewhere nearby, stuffing them in your mouth dutifully. You try to say something to the chat but only manage to produce some muffled sounds, much to the enjoyment of your viewers. "Haha, what a slut! That\'s the way she should be!" everyone laughs, belittling you with their degrading comments.');
-    }
-    qspCall(s, 'arousal', 'BDSM', (-3), 'humiliation');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (Math.floor(Math.random() * 6) + 5);
-    qspCall(s, 'stat', '');
-    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
-    }
-    scene.actions([
-      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
-    ]);
-  } },
-              ]);
-            }
-            scene.actions([
-              { label: 'Go find a bottle', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'camming', 3, 'porn', 'request');
-    qspCall(s, 'npcStat', 'D7');
-    scene.img('images/pc/items/accessories/computer/camwhore60.jpg');
-    scene.text('You rummage around in the kitchen for a moment, but don\'t find any bottles other than the one still in your fridge. You settle on a cold bottle of beer, and return to the living room where you proudly put it on your desk.');
-    scene.text('You get comfortable in front of the camera and begin to shove the bottle inside you. The glass is cold and unyielding, but you\'re too drunk to care and keep trying out different angles until you finally manage to penetrate yourself with the bottom. Letting out a triumphant squeal, you push the bottle inside you as far as it will go and adjust your position a bit so everyone watching has a great view of your cunt being stretched out.');
-    scene.text('After a while reality kicks in, and that reality is that the cold bottle really doesn\'t feel comfortable inside your snatch! Nevertheless, your viewers loved it and sing your praises when you slowly let the bottle slide out of your stretched pussy and crack the bottle open.');
-    qspCall(s, 'arousal', 'vaginal_dildo', (-3), 'dick_length', 'masturbation');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (Math.floor(Math.random() * 11) + 10);
-    qspCall(s, 'stat', '');
-    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
-    }
-    scene.actions([
-      { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
-    ]);
-  } },
-            ]);
-          }
-          scene.actions([
-            { label: 'Play hide-the-panties', handler: (st: GameState) => {
+                  { label: 'Play hide-the-panties', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
     if (((s as any).pcs_vag ?? 0) >= ((s as any).pcs_ass ?? 0)) {
       scene.img('images/pc/items/accessories/computer/camwhore62.jpg');
@@ -467,24 +378,152 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   } },
-          ]);
+                ]);
+              }
+            } else {
+              if (((s as any).locArgs?.[0] ?? 0) === 86) {
+                scene.text('One of the viewers, noticing how drunk you are, asks in chat: "How much would it take for you to shove a bottle in your vagina? That would be so hot…"');
+                scene.text('You immediately jump up from your chair, forgetting to even ask for tokens. "I\'ll go get one! I don\'t normally do this, but… only today, and only for you!" you wink at the camera in a slightly slurry voice.');
+                scene.actions([
+                  { label: 'Go find a bottle', handler: (st: GameState) => {
+    qspCall(s, 'komp_cam_functions', 'camming', 3, 'porn', 'request');
+    qspCall(s, 'npcStat', 'D7');
+    scene.img('images/pc/items/accessories/computer/camwhore60.jpg');
+    scene.text('You rummage around in the kitchen for a moment, but don\'t find any bottles other than the one still in your fridge. You settle on a cold bottle of beer, and return to the living room where you proudly put it on your desk.');
+    scene.text('You get comfortable in front of the camera and begin to shove the bottle inside you. The glass is cold and unyielding, but you\'re too drunk to care and keep trying out different angles until you finally manage to penetrate yourself with the bottom. Letting out a triumphant squeal, you push the bottle inside you as far as it will go and adjust your position a bit so everyone watching has a great view of your cunt being stretched out.');
+    scene.text('After a while reality kicks in, and that reality is that the cold bottle really doesn\'t feel comfortable inside your snatch! Nevertheless, your viewers loved it and sing your praises when you slowly let the bottle slide out of your stretched pussy and crack the bottle open.');
+    qspCall(s, 'arousal', 'vaginal_dildo', (-3), 'dick_length', 'masturbation');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (Math.floor(Math.random() * 11) + 10);
+    qspCall(s, 'stat', '');
+    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+      // TODO-QSP: $camGirl['MFC_donate_message']
+    }
+    scene.actions([
+      { label: 'Further', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
+  } },
+                ]);
+              } else {
+                if (((s as any).locArgs?.[0] ?? 0) === 87) {
+                  scene.text('One of the viewers challenges you: "Put something in your vagina. Anything. Impress me."');
+                  qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
+                  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+                    scene.actions([
+                      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+                    ]);
+                  } else {
+                    scene.actions([
+                      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+                    ]);
+                  }
+                  scene.actions([
+                    { label: 'Find something to put inside you', handler: (st: GameState) => {
+    qspCall(s, 'komp_cam_functions', 'camming', 3, 'porn', 'request');
+    qspCall(s, 'npcStat', 'D5');
+    scene.img('images/pc/items/accessories/computer/camwhore59.jpg');
+    scene.text('"Erm… okay, hold on just one moment!" you smile at the camera and quickly go through your house, trying to find something that would impress him.');
+    scene.text('You return to your computer holding two objects: a remote control and a small bottle. Just when the people in the chat were about to suggest their preference, you silence them by sticking the bottle inside you first and then adding the remote too. That\'s right, you do both!');
+    scene.text('The chat is very impressed with your eagerness to please, and makes several lewd comments on what a good slut you are. You wiggle your hips at them for a moment before retrieving the objects and setting them aside.');
+    qspCall(s, 'arousal', 'vaginal_dildo', (-3), 'dick_length', 'masturbation');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    qspCall(s, 'stat', '');
+    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+      // TODO-QSP: $camGirl['MFC_donate_message']
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
+  } },
+                  ]);
+                } else {
+                  if (((s as any).locArgs?.[0] ?? 0) === 88) {
+                    scene.text('One of the viewers has a rather unusual request: "Time for you to quiet down for a while! Gag yourself by putting your panties into your mouth…"');
+                    qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
+                    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+                      scene.actions([
+                        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+                      ]);
+                    } else {
+                      scene.actions([
+                        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+                      ]);
+                    }
+                    scene.actions([
+                      { label: 'Do as he asks', handler: (st: GameState) => {
+    qspCall(s, 'komp_cam_functions', 'camming', 3, 'fetish', 'request');
+    if (((s as any).pantyworntype ?? 0) !== 'none') {
+      qspCall(s, 'panties', 'remove');
+      scene.img('images/pc/items/accessories/computer/camwhore58.jpg');
+      scene.text('You smile at the camera and slide your panties down your legs, stuffing them in your mouth dutifully. You try to say something to the chat but only manage to produce some muffled sounds, much to the enjoyment of your viewers. "Haha, what a slut! That\'s the way she should be!" everyone laughs, belittling you with their degrading comments.');
+    } else {
+      scene.img('images/pc/items/accessories/computer/camwhore58.jpg');
+      scene.text('You smile at the camera and find the panties that you had already taken off somewhere nearby, stuffing them in your mouth dutifully. You try to say something to the chat but only manage to produce some muffled sounds, much to the enjoyment of your viewers. "Haha, what a slut! That\'s the way she should be!" everyone laughs, belittling you with their degrading comments.');
+    }
+    qspCall(s, 'arousal', 'BDSM', (-3), 'humiliation');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (Math.floor(Math.random() * 6) + 5);
+    qspCall(s, 'stat', '');
+    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
+      // TODO-QSP: $camGirl['MFC_donate_message']
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
+    ]);
+  } },
+                    ]);
+                  } else {
+                    if (((s as any).locArgs?.[0] ?? 0) === 89) {
+                      scene.text('One of the viewers makes several comments on how badly he wants to fuck your ass, and then offers you tokens to show your asshole to him…');
+                      qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
+                      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+                        scene.actions([
+                          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+                        ]);
+                      } else {
+                        scene.actions([
+                          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['komp_cam_MFC_main', 'waitclients'] },
+                        ]);
+                      }
+                      scene.actions([
+                        { label: 'Show him your anus', handler: (st: GameState) => {
+    qspCall(s, 'komp_cam_functions', 'camming', 3, 'erotic', 'request');
+    if (((s as any).pantyworntype ?? 0) !== 'none') {
+      (s as any).img_source = 57;
+    } else {
+      if (((s as any).pcs_ass ?? 0) < 25) {
+        (s as any).img_source = 54;
+      } else {
+        if (((s as any).pcs_vag ?? 0) >= 25) {
+          (s as any).img_source = 56;
+        } else {
+          (s as any).img_source = 55;
         }
       }
-      scene.actions([
-        { label: 'Use the wooden knob on your bed', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
-    qspCall(s, 'npcStat', 'D3');
-    if (((s as any).pcs_horny ?? 0) >= 95) {
-      scene.img('images/pc/items/accessories/computer/camwhore78.jpg');
-      scene.text('You look around quickly and see the wooden knobs on your bed. Those look kinda phallic… should work!');
-      scene.text('After you spit on your fingers and coat it with saliva, you carefully rest the tip of the wooden knob against your labia and lower yourself down onto it, feeling how it stretches you nicely.');
+    }
+    scene.img('images/pc/items/accessories/computer/camwhore\' + img_source + \'.jpg');
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      scene.text('You smile to yourself, he\'s going to love what you have in store for him!');
+      scene.text('"I\'m sorry," you tell him, explicitly mentioning his username as well. "That\'s going to be a bit difficult…"');
+      scene.text('Then you turn around, and show him the large plug you currently have shoved inside you. You pull it out for a second and wiggle your ass seductively at the camera and hear the donation sound mere seconds later while you slide the plug back in.');
     } else {
-      scene.img('images/pc/items/accessories/computer/camwhore77.jpg');
-      scene.text('You look around quickly and see the wooden knobs on your bed. Those look kinda phallic… should work!');
-      scene.text('After you spit on your fingers and coat it with saliva, you carefully rest the tip of the wooden knob against your labia and lower yourself down onto it, feeling how it stretches you nicely.');
-      scene.text('Despite the nice feeling of fullness it provides, it\'s not enough to reach an orgasm right now. You make an effort of riding the wooden knob for a little while, but have to stop when your vagina hurts too much to continue.');
+      scene.text('"I don\'t know if it could handle your cock just yet," you tell the viewer. "What do you think?"');
+      scene.text('You turn your back to the camera and pull your butt cheeks aside, giving him (and everyone else in the channel) a good look at your sphincter. Unsurprisingly he\'s very confident that he could make you feel good, but he donates some tokens as promised.');
     }
-    qspCall(s, 'arousal', 'vaginal_dildo', (-5), 'dick_length', 'masturbation');
+    qspCall(s, 'arousal', 'flash', (-3));
     qspCall(s, 'stat', '');
     if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
       // TODO-QSP: $camGirl['MFC_donate_message']
@@ -493,28 +532,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   } },
-      ]);
+                      ]);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
-    scene.actions([
-      { label: 'Do', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
-    scene.img('images/pc/items/accessories/computer/camwhore82,\'+rand(0, 9)+\'.jpg');
-    scene.text('That request sounds simple enough! You dutifully turn your back to the computer and slip two fingers inside your well-used ass, carefully pulling your asshole open.');
-    scene.text('"More! We want to see more!" the chat encourages you, and you smile obediently while you do as they ask, pulling your sphincter wide open. The promises of donations make you go through with it, even when you feel a cool breeze in your rectum.');
-    scene.text('The pain in your ass is unbearable for a while, but the viewer is true to his word. He donates a decent amount of tokens and lets you know that he hopes to meet an anal queen like you one day. You\'re not sure if you can carry on with your show, though… that hurt a lot more than you thought it would.');
-    if (((s as any).agape ?? 0) < 2) {
-      (s as any).agape = 2;
-    }
-    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
-    qspCall(s, 'stat', '');
-    if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
-      // TODO-QSP: $camGirl['MFC_donate_message']
-    }
-    scene.actions([
-      { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
-    ]);
-  } },
-    ]);
   }
   scene.build();
 }

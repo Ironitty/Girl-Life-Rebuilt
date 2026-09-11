@@ -25,31 +25,34 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Come on. Suck it like you mean it, <<$pcs_firstname>>," he growls instead.
       scene.text(`"Come on. Suck it like you mean it, ${((s as any).pcs_firstname ?? 0)}," he growls instead.`);
     } else {
-      (s as any).pic_rand = Math.floor(Math.random() * 2) + 1;
-      scene.img(`images/locations/city/industrial/bar/sex/bar/martin/blowjob/martinconvincebj${((s as any).pic_rand ?? 0)}.jpg`);
-      scene.text('Honestly, you are tired of talking, of subtle hints, of waiting for Martin to notice what you\'re getting at. You want him, plain and simple, and you are confident and just slutty enough to chose the easy way to get him.');
-      // TODO-QSP: dynamic text: Without another, you take a step back and bare your <<$pc_desc['breast']>> breas...
-      scene.text(`Without another, you take a step back and bare your ${((s as any).pc_desc ?? 0)?.['breast']} breasts to the bartender. Ignoring the sounds he makes, you immediately take the next step and reveal your ${((s as any).pc_desc ?? 0)?.['pubes']} pussy as well before you as much as take a glance at him.`);
-      scene.text('The look of utter amazement he gives you is priceless, but you are not done yet, not in the slightest.');
-      if (((s as any).pic_rand ?? 0) === 1) {
-        scene.text('Before he can recover from that first blow, you are already kneeling in front of him, undoing his pants.');
-        // TODO-QSP: dynamic text: "<<$pcs_firstname>>," Martin begins, but as you release his hardening <<dick>>cm...
-        scene.text(`"${((s as any).pcs_firstname ?? 0)}," Martin begins, but as you release his hardening ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock from its prison, you shoot a short glance up at him and see that his resistance is barely deserving of the name.`);
+      if (((s as any).MartinConvinceBJ ?? 0) === 1) {
+        (s as any).pic_rand = Math.floor(Math.random() * 2) + 1;
+        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/blowjob/martinconvincebj${((s as any).pic_rand ?? 0)}.jpg`);
+        scene.text('Honestly, you are tired of talking, of subtle hints, of waiting for Martin to notice what you\'re getting at. You want him, plain and simple, and you are confident and just slutty enough to chose the easy way to get him.');
+        // TODO-QSP: dynamic text: Without another, you take a step back and bare your <<$pc_desc['breast']>> breas...
+        scene.text(`Without another, you take a step back and bare your ${((s as any).pc_desc ?? 0)?.['breast']} breasts to the bartender. Ignoring the sounds he makes, you immediately take the next step and reveal your ${((s as any).pc_desc ?? 0)?.['pubes']} pussy as well before you as much as take a glance at him.`);
+        scene.text('The look of utter amazement he gives you is priceless, but you are not done yet, not in the slightest.');
+        if (((s as any).pic_rand ?? 0) === 1) {
+          scene.text('Before he can recover from that first blow, you are already kneeling in front of him, undoing his pants.');
+          // TODO-QSP: dynamic text: "<<$pcs_firstname>>," Martin begins, but as you release his hardening <<dick>>cm...
+          scene.text(`"${((s as any).pcs_firstname ?? 0)}," Martin begins, but as you release his hardening ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock from its prison, you shoot a short glance up at him and see that his resistance is barely deserving of the name.`);
+        } else {
+          scene.text('Before he can recover from that first blow, you have already pushed him back to sit on a stool as you bend over his zipper.');
+          // TODO-QSP: dynamic text: "<<$pcs_firstname>>," Martin begins, but as you release his hardening <<dick>>cm...
+          scene.text(`"${((s as any).pcs_firstname ?? 0)}," Martin begins, but as you release his hardening ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock from its prison, you doubt that he's actually going to resist you when he's only an inch away from your mouth.`);
+        }
+        // TODO-QSP: dynamic text: He says your name again, more urgent, but whatever he intended to say next turns...
+        scene.text(`He says your name again, more urgent, but whatever he intended to say next turns into a groan as the tip of your ${((s as any).pc_desc ?? 0)?.['tongue']} tongue meets the tip of his dick for the first time and enthusiastically explores it.`);
+        scene.text('Whatever thoughts or doubts he might have had didn\'t survive that first contact, that much is clear. The longer you play with his dick, the more he relaxes his body and hardens between your lips. He\'s given himself up to your licks and kisses, to your perfect little torture, and you doubt he\'ll be able to go back to keeping his distance after you are done with him…');
       } else {
-        scene.text('Before he can recover from that first blow, you have already pushed him back to sit on a stool as you bend over his zipper.');
-        // TODO-QSP: dynamic text: "<<$pcs_firstname>>," Martin begins, but as you release his hardening <<dick>>cm...
-        scene.text(`"${((s as any).pcs_firstname ?? 0)}," Martin begins, but as you release his hardening ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock from its prison, you doubt that he's actually going to resist you when he's only an inch away from your mouth.`);
+        scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/dressdom_bjtease.mp4');
+        scene.text('Sure, you could talk to Martin, explore this strange relationship on an intellectual level and all that, but if you\'re honest with yourself, you\'d rather suck his dick right now, so why pretend otherwise? You\'ll have plenty of time to talk another day.');
+        // TODO-QSP: dynamic text: You give Martin a lingering kiss, wiping any conscious thought from his mind, th...
+        scene.text(`You give Martin a lingering kiss, wiping any conscious thought from his mind, then slowly get down on your knees. Every man knows what that means, no matter where they were born. You look up at Martin, smiling seductively as you're opening his fly and freeing his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick from its textile prison.`);
+        scene.text('Taking his cock into your hand, you can feel the heat emanating from it, can see it growing to its full size before your eyes. It\'s a wondrous sight… but not so much so that it would make you forget what you intended to do.');
+        scene.text('The key is to tease before you please: You lick the tip, kiss it, take a little of it inside your mouth, then most of it… but you do so delicately and quickly, doing barely more than brushing against his cock with your lips and retreating immediately, only to start all over again.');
+        scene.text('At the end of each \'cycle\', you look up at him, gauging his reaction. It\'s a torture alright, but judging by his closed eyes and low groans, he would gladly submit himself to it any day.');
       }
-      // TODO-QSP: dynamic text: He says your name again, more urgent, but whatever he intended to say next turns...
-      scene.text(`He says your name again, more urgent, but whatever he intended to say next turns into a groan as the tip of your ${((s as any).pc_desc ?? 0)?.['tongue']} tongue meets the tip of his dick for the first time and enthusiastically explores it.`);
-      scene.text('Whatever thoughts or doubts he might have had didn\'t survive that first contact, that much is clear. The longer you play with his dick, the more he relaxes his body and hardens between your lips. He\'s given himself up to your licks and kisses, to your perfect little torture, and you doubt he\'ll be able to go back to keeping his distance after you are done with him…');
-      scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/dressdom_bjtease.mp4');
-      scene.text('Sure, you could talk to Martin, explore this strange relationship on an intellectual level and all that, but if you\'re honest with yourself, you\'d rather suck his dick right now, so why pretend otherwise? You\'ll have plenty of time to talk another day.');
-      // TODO-QSP: dynamic text: You give Martin a lingering kiss, wiping any conscious thought from his mind, th...
-      scene.text(`You give Martin a lingering kiss, wiping any conscious thought from his mind, then slowly get down on your knees. Every man knows what that means, no matter where they were born. You look up at Martin, smiling seductively as you're opening his fly and freeing his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick from its textile prison.`);
-      scene.text('Taking his cock into your hand, you can feel the heat emanating from it, can see it growing to its full size before your eyes. It\'s a wondrous sight… but not so much so that it would make you forget what you intended to do.');
-      scene.text('The key is to tease before you please: You lick the tip, kiss it, take a little of it inside your mouth, then most of it… but you do so delicately and quickly, doing barely more than brushing against his cock with your lips and retreating immediately, only to start all over again.');
-      scene.text('At the end of each \'cycle\', you look up at him, gauging his reaction. It\'s a torture alright, but judging by his closed eyes and low groans, he would gladly submit himself to it any day.');
     }
     qspCall(s, 'arousal', 'bj', 5, 'dom');
     qspCall(s, 'stat', '');

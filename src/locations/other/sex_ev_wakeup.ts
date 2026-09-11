@@ -15,12 +15,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vomit ?? 0)?.['hangover'] + ((s as any).vomit ?? 0)?.['morning_sick'] + ((s as any).vomit ?? 0)?.['unlucky'] > 0) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'throw_up'] }]);
   } else {
-    if ((((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'facial'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted')  &&  (Math.floor(Math.random() * 2) + 1) === 2) {
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'cumshot_wakeup1'] }]);
+    if ((((s as any).npc_earlyriser ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).hour ?? 0) >= 7)  &&  ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)])) {
+      if ((((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'facial'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted')  &&  (Math.floor(Math.random() * 2) + 1) === 2) {
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'cumshot_wakeup1'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'wakeup_fondling'] }]);
+      }
     } else {
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'wakeup_fondling'] }]);
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'wake_events'] }]);
     }
-    scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'wake_events'] }]);
   }
   scene.build();
 }
@@ -44,17 +47,23 @@ function enterWakeEvents(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: Your mind stirs and you slowly come to consciousness, snuggled under your covers...
         scene.text(`Your mind stirs and you slowly come to consciousness, snuggled under your covers with ${((s as any).npcdesc ?? 0)}'s arms wrapped around you.`);
       } else {
-        // TODO-QSP: dynamic text: Your mind stirs and you slowly come to consciousness, tucked under the covers of...
-        scene.text(`Your mind stirs and you slowly come to consciousness, tucked under the covers of ${((s as any).npcdesc ?? 0)}'s bed.`);
-        // TODO-QSP: dynamic text: Your mind stirs and you slowly come to consciousness, snuggled under the covers ...
-        scene.text(`Your mind stirs and you slowly come to consciousness, snuggled under the covers with ${((s as any).npcdesc ?? 0)}'s arms wrapped around you.`);
+        if (((s as any).sex_ev ?? 0)?.['loc'] === 'npc_home') {
+          // TODO-QSP: dynamic text: Your mind stirs and you slowly come to consciousness, tucked under the covers of...
+          scene.text(`Your mind stirs and you slowly come to consciousness, tucked under the covers of ${((s as any).npcdesc ?? 0)}'s bed.`);
+        } else {
+          // TODO-QSP: dynamic text: Your mind stirs and you slowly come to consciousness, snuggled under the covers ...
+          scene.text(`Your mind stirs and you slowly come to consciousness, snuggled under the covers with ${((s as any).npcdesc ?? 0)}'s arms wrapped around you.`);
+        }
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['loc'] === 'pc_home') {
         scene.text('Your mind stirs and you slowly come to consciousness, snuggled under your covers.');
       } else {
-        scene.text('Your mind stirs and you slowly come to consciousness, tucked under the covers.');
-        scene.text('Your mind stirs and you slowly come to consciousness, snuggled under the covers.');
+        if (((s as any).sex_ev ?? 0)?.['loc'] === 'npc_home') {
+          scene.text('Your mind stirs and you slowly come to consciousness, tucked under the covers.');
+        } else {
+          scene.text('Your mind stirs and you slowly come to consciousness, snuggled under the covers.');
+        }
       }
     }
     qspCall(s, 'sex_ev_wakeup', 'kiss_wake');
@@ -131,44 +140,68 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['sleep_cum_vagina'] === 1) {
     scene.text('<i>Is that cum leaking out of my pussy?</i>');
   } else {
-    scene.text('<i>Is there cum on my face?</i>');
-    if (((s as any).sex_ev ?? 0)?.['sleep_cum_tits'] === 1) {
-      scene.text('<i>Is there cum on my tits?</i>');
+    if (((s as any).sex_ev ?? 0)?.['sleep_cum_face'] === 1) {
+      scene.text('<i>Is there cum on my face?</i>');
     } else {
-      scene.text('<i>Is that cum on my stomach?</i>');
-      if (((s as any).sex_ev ?? 0)?.['sleep_cum_hair'] === 1) {
-        scene.text('<i>Is that cum in my hair?</i>');
+      if (((s as any).sex_ev ?? 0)?.['sleep_cum_tits'] === 1) {
+        scene.text('<i>Is there cum on my tits?</i>');
       } else {
-        scene.text('<i>Is that cum on my back?</i>');
-        if (((s as any).sex_ev ?? 0)?.['sleep_cum_butt'] === 1) {
-          scene.text('<i>Is that cum on my butt?</i>');
+        if (((s as any).sex_ev ?? 0)?.['sleep_cum_stomach'] === 1) {
+          scene.text('<i>Is that cum on my stomach?</i>');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['sleep_cum_hair'] === 1) {
+            scene.text('<i>Is that cum in my hair?</i>');
+          } else {
+            if (((s as any).sex_ev ?? 0)?.['sleep_cum_back'] === 1) {
+              scene.text('<i>Is that cum on my back?</i>');
+            } else {
+              if (((s as any).sex_ev ?? 0)?.['sleep_cum_butt'] === 1) {
+                scene.text('<i>Is that cum on my butt?</i>');
+              }
+            }
+          }
         }
-        scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['sleep_cum_vagina'] === 1) {
       scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
       scene.text('You pull aside the covers and discover, yes, it is indeed fresh cum dripping from your pussy.');
     } else {
-      scene.img('images/shared/sex/cum/facial/facial35.jpg');
-      scene.text('You blink carefully, running your hand across your cheek to discover, yes, there is indeed fresh cum on your face.');
-      if (((s as any).sex_ev ?? 0)?.['sleep_cum_tits'] === 1) {
-        scene.img('images/pc/body/cum/cumtits/cumtits8.jpg');
-        scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your tits.');
+      if (((s as any).sex_ev ?? 0)?.['sleep_cum_face'] === 1) {
+        scene.img('images/shared/sex/cum/facial/facial35.jpg');
+        scene.text('You blink carefully, running your hand across your cheek to discover, yes, there is indeed fresh cum on your face.');
       } else {
-        scene.img('images/pc/body/cum/cumbelly/cumbelly10.jpg');
-        scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your belly.');
-        if (((s as any).sex_ev ?? 0)?.['sleep_cum_hair'] === 1) {
-          scene.img('images/pc/body/cum/cumhair/cumhair1.jpg');
-          scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum in your hair.');
+        if (((s as any).sex_ev ?? 0)?.['sleep_cum_tits'] === 1) {
+          scene.img('images/pc/body/cum/cumtits/cumtits8.jpg');
+          scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your tits.');
         } else {
-          scene.img('images/pc/body/cum/cumsleep/cumsleep2.jpg');
-          scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your back.');
-          if (((s as any).sex_ev ?? 0)?.['sleep_cum_butt'] === 1) {
-            scene.img('images/pc/body/cum/cumass/cumass6.jpg');
-            scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your ass.');
+          if (((s as any).sex_ev ?? 0)?.['sleep_cum_stomach'] === 1) {
+            scene.img('images/pc/body/cum/cumbelly/cumbelly10.jpg');
+            scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your belly.');
+          } else {
+            if (((s as any).sex_ev ?? 0)?.['sleep_cum_hair'] === 1) {
+              scene.img('images/pc/body/cum/cumhair/cumhair1.jpg');
+              scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum in your hair.');
+            } else {
+              if (((s as any).sex_ev ?? 0)?.['sleep_cum_back'] === 1) {
+                scene.img('images/pc/body/cum/cumsleep/cumsleep2.jpg');
+                scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your back.');
+              } else {
+                if (((s as any).sex_ev ?? 0)?.['sleep_cum_butt'] === 1) {
+                  scene.img('images/pc/body/cum/cumass/cumass6.jpg');
+                  scene.text('You sit up, looking down to discover, yes, there is indeed fresh cum on your ass.');
+                }
+              }
+            }
           }
-          scene.actions([
-            { label: 'Did you fuck me in my sleep?', handler: (st: GameState) => {
+        }
+      }
+    }
+    scene.actions([
+      { label: 'Did you fuck me in my sleep?', handler: (st: GameState) => {
     scene.text('"... did you fuck me while I was sleeping last night?" you ask.');
     if (((s as any).npc_sleep_sex_okay ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       scene.text('"Yeah. Got horny and you wouldn\'t wake up."');
@@ -230,7 +263,7 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            { label: 'Someone had fun last night', handler: (st: GameState) => {
+      { label: 'Someone had fun last night', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Somebody had fun last night," you muse, looking over at <<$npcdesc>> who is als...
     scene.text(`"Somebody had fun last night," you muse, looking over at ${((s as any).npcdesc ?? 0)} who is also waking.`);
     if (((s as any).npc_sleep_sex_okay ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -280,49 +313,11 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
       }
     }
   } },
-            { label: 'Thanks for not waking me', handler: (st: GameState) => {
+      { label: 'Thanks for not waking me', handler: (st: GameState) => {
     scene.text('"Thanks for not waking me," you yawn pleasantly. You roll your hips as you do, noting that your pussy <i>definitely</i> feels used. "I really needed the sleep."');
     scene.text('"Thanks for letting me fuck you," he grins.');
     scene.text('"Any time," you smile.');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
-  } },
-          ]);
-        }
-      }
-    }
-    // TODO-QSP: dynamic text: When your guts stop coming up, you stumble to your feet and stagger out the door...
-    scene.text(`When your guts stop coming up, you stumble to your feet and stagger out the door to see ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} still snoring in bed.`);
-    qspCall(s, 'sex_ev_morning', 'morning_menu1');
-  } },
-        ]);
-      }
-    }
-  }
-  scene.build();
-}
-
-function enterWakeupFondling(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gs 'arousal', 'foreplay', -rand(5,10), 'no_orgasm_msg', $sex_ev['prostitution_flag']
-  scene.img('images/shared/sex/sleep/fondle1.jpg');
-  scene.text('You stir as you feel a hands roaming your body. One passes over your breasts, squeezing them on the way down to your stomach. The other is already snaking its way between your legs. Something stiff and warm is poking into your lower back.');
-  scene.actions([
-    { label: '"Good morning"', handler: (st: GameState) => {
-    scene.text('"Mmmmm..." you hum, smiling to yourself as his fingers find your pussy. "Good morning to you too, mister."');
-    if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'tits') {
-      scene.text('"Sorry, couldn\'t help myself," he murmurs, reaching up to grope your breasts again. "Your tits just feel so good."');
-    } else {
-      scene.text('"Sorry, couldn\'t help myself," he murmurs.');
-    }
-    scene.actions([
-      { label: 'Time to get up anyways', handler: (st: GameState) => {
-    // TODO-QSP: $sex_ev['bed_room']
-    scene.text('"I don\'t mind," you reply. "It was about time to get up anyways."');
-    qspCall(s, 'sex_ev_morning', 'morning_menu1');
-  } },
-      { label: 'Have wakeup sex', handler: (st: GameState) => {
-    scene.text('"So did you just want to cop a feel or were you interested in something else?" you reply, grinding back and forth between his hard-on and his fingers.');
-    qspCall(s, 'sex_ev_sex', 'session_reset');
-    qspCall(s, 'sex_ev_foreplay', 'foreplay_choose');
   } },
     ]);
   } },
@@ -330,113 +325,34 @@ function enterWakeupFondling(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterForgotBcPill(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pilldaychk ?? 0) < ((s as any).daystart ?? 0) - 1  &&  ((s as any).birth_control ?? 0)?.['using_bc'] > 0) {
+function enterLateForSchool(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 7) {
     scene.actions([
-      { label: 'Forgot your birth control', handler: (st: GameState) => {
-    (s as any).sex_ev['forgot_bc'] = 1;
-    if (((s as any).npc_earlyriser ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
-      scene.img('images/shared/sex/after/wakeup_shock1.mp4');
-      scene.text('You bolt upright as a horrible realization jolts through your mind.');
+      { label: 'School!', handler: (st: GameState) => {
+    scene.img('images/shared/romance/misc/wakeup2.mp4');
+    scene.text('Your eyes snap open as the cold clarity of shock washes over you and frantically grab your phone.');
+    qspCall(s, 'shortgs', 'calendar_display');
+    scene.text('Oh <i>fuck!</i> You need to get to school!');
+    if (((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
+      qspCall(s, 'sex_ev_wakeup', 'late_school_not_at_home');
     } else {
-      scene.img('images/shared/sex/after/wakeup1.jpg');
-      scene.text('You jolt awake as a horrible realization jumps through your mind.');
-    }
-    scene.text('<i>I forgot to take my birth control!</i>');
-    scene.actions([
-      { label: 'Panic', handler: (st: GameState) => {
-    scene.img('images/shared/sex/after/wakeup_shock2.mp4');
-    scene.text('Panic begins to set in as you sit up, your breathing already at the edge of hyperventilation.');
-    if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 3) {
-      // TODO-QSP: dynamic text: Not only did you forget your birth control, but <<$npcdesc>> came inside you las...
-      scene.text(`Not only did you forget your birth control, but ${((s as any).npcdesc ?? 0)} came inside you last night too. <i>A lot.</i> How could you fuck up like this?`);
-    } else {
-      // TODO-QSP: dynamic text: Not only did you forget your birth control, but <<$npcdesc>> came inside you las...
-      scene.text(`Not only did you forget your birth control, but ${((s as any).npcdesc ?? 0)} came inside you last night too. How could you fuck up like this?`);
-      if (((s as any).pharmacy_timers ?? 0)?.['birth_control'] > 0) {
-        // TODO-QSP: dynamic text: <<$npcdesc>> didn't come inside you yesterday, but this breaks your streak. Aunt...
-        scene.text(`${((s as any).npcdesc ?? 0)} didn't come inside you yesterday, but this breaks your streak. Aunt Luda said you need to take it every day or it won't work. So if you take it now, does that mean you're still not safe?`);
-      } else {
-        // TODO-QSP: dynamic text: <<$npcdesc>> didn't come inside you yesterday, but this breaks your streak. Are ...
-        scene.text(`${((s as any).npcdesc ?? 0)} didn't come inside you yesterday, but this breaks your streak. Are you still safe if you skip a day?`);
-      }
-    }
-    if (((s as any).mc_inventory ?? 0)?.['morning_after_pill'] > 0) {
-      if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((s as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
-        scene.text('Wait, don\'t you have that morning after pill Aunt Luda gave you?');
-      } else {
-        scene.text('Wait, don\'t you have a morning after pill in your bag?');
-      }
-    }
-    // TODO-QSP: xgt 'sex_ev_wakeup', 'forgot_bc_pill2'
-  } },
-      { label: 'Calm down', handler: (st: GameState) => {
-    scene.img('images/shared/sex/after/wakeup_shock2.mp4');
-    scene.text('You sit up and start taking big deep breaths, forcing yourself to calm down and try to approach the situation logically.');
-    if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 0) {
-      if (((s as any).stat ?? 0)?.['preg_risk'] !== 'danger') {
-        scene.actions([
-          { label: 'You\'re not fertile right now', handler: (st: GameState) => {
-    if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 0) {
-      if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 5) {
-        // TODO-QSP: dynamic text: Okay, so <<$npcdesc>> came inside you last night... <i>A lot.</i> But it's not t...
-        scene.text(`Okay, so ${((s as any).npcdesc ?? 0)} came inside you last night... <i>A lot.</i> But it's not the fertile stage of your cycle. You should be fine, right?`);
-      } else {
-        // TODO-QSP: dynamic text: Okay, so <<$npcdesc>> came inside you last night... More than once... A <i>few</...
-        scene.text(`Okay, so ${((s as any).npcdesc ?? 0)} came inside you last night... More than once... A <i>few</i> times. But it's not the fertile stage of your cycle. You should be fine, right?`);
-        if (((s as any).sex_ev ?? 0)?.['creampie_count'] === 1) {
-          // TODO-QSP: dynamic text: Okay, so <<$npcdesc>> came inside you last night... But only once. And it's not ...
-          scene.text(`Okay, so ${((s as any).npcdesc ?? 0)} came inside you last night... But only once. And it's not the fertile stage of your cycle. You should be fine, right?`);
-        }
-        if (((s as any).pharmacy_timers ?? 0)?.['birth_control'] > 0) {
-          // TODO-QSP: dynamic text: <<$npcdesc>> didn't come inside you yesterday, so you're not in any real danger ...
-          scene.text(`${((s as any).npcdesc ?? 0)} didn't come inside you yesterday, so you're not in any real danger of getting pregnant right this second. But this breaks your streak. Aunt Luda said you need to take it every day or it won't work. So if you take it now, does that mean you're still not safe?`);
-        } else {
-          // TODO-QSP: dynamic text: <<$npcdesc>> didn't come inside you yesterday, so you're not in any real danger ...
-          scene.text(`${((s as any).npcdesc ?? 0)} didn't come inside you yesterday, so you're not in any real danger of getting pregnant right this second. But does this mean you'll need to wait a few days to build up the birth control in your system again? If you take your next pill now, does that mean you're still not safe?`);
-        }
-      }
-      // TODO-QSP: xgt 'sex_ev_wakeup', 'forgot_bc_pill2'
-    }
-  } },
-        ]);
-      }
       scene.actions([
-        { label: 'You can take a morning after pill', handler: (st: GameState) => {
-    if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 5) {
-      // TODO-QSP: dynamic text: Okay, so <<$npcdesc>> came inside you last night... <i>A lot.</i> But you can st...
-      scene.text(`Okay, so ${((s as any).npcdesc ?? 0)} came inside you last night... <i>A lot.</i> But you can still take a morning after pill. Maybe it'll be okay.`);
+        { label: 'Get up!', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "I need to go," you say, hurriedly hauling <<$npcdesc>> out of your bed. "And so...
+    scene.text(`"I need to go," you say, hurriedly hauling ${((s as any).npcdesc ?? 0)} out of your bed. "And so do you."`);
+    if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 2);
+      // TODO-QSP: dynamic text: <<$npcdesc>> groggily starts gathering his clothes as you impatiently try to get...
+      scene.text(`${((s as any).npcdesc ?? 0)} groggily starts gathering his clothes as you impatiently try to get him to go faster, constantly checking the clock to see how much time he's wasting. When he's <i>finally</i> dressed you rush ${((s as any).npcdesc ?? 0)} to the door and shove him out and slam it shut, racing to get ready for class.`);
     } else {
-      // TODO-QSP: dynamic text: Okay, so <<$npcdesc>> came inside you last night... More than once... A <i>few</...
-      scene.text(`Okay, so ${((s as any).npcdesc ?? 0)} came inside you last night... More than once... A <i>few</i> times. But you can still take a morning after pill. Maybe it'll be okay.`);
-      if (((s as any).sex_ev ?? 0)?.['creampie_count'] === 1) {
-        // TODO-QSP: dynamic text: Okay, so <<$npcdesc>> came inside you last night... But only once. That's not to...
-        scene.text(`Okay, so ${((s as any).npcdesc ?? 0)} came inside you last night... But only once. That's not too bad, right? Maybe you can still take a morning after pill. Maybe it'll be okay.`);
-      }
-      if (((s as any).mc_inventory ?? 0)?.['morning_after_pill'] > 0) {
-        if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((s as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
-          scene.text('Actually, you have the one Aunt Luda gave you. For emergencies she said...');
-        } else {
-          scene.text('Actually, you have one in your bag. You could take it right now.');
-        }
-      }
-      // TODO-QSP: xgt 'sex_ev_wakeup', 'forgot_bc_pill2'
+      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      // TODO-QSP: dynamic text: At your command, <<$npcdesc>> starts throwing his clothes on while you impatient...
+      scene.text(`At your command, ${((s as any).npcdesc ?? 0)} starts throwing his clothes on while you impatiently keep checking the clock. Thankfully it's not more than a minute before he's fully dressed and you rush him out the door and slam it behind him, racing to get ready for class.`);
     }
-    if (((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
-      (s as any).sex_ev['forgot_bc_act'] = 'You used condoms';
-    } else {
-      (s as any).sex_ev['forgot_bc_act'] = '<<$npcdesc>> didn\'t come inside you';
-    }
+    qspCall(s, 'stat', '');
     scene.actions([
-      { label: '<<$sex_ev[\'forgot_bc_act\']>>', handler: (st: GameState) => {
-    if (((s as any).pharmacy_timers ?? 0)?.['birth_control'] > 0) {
-      // TODO-QSP: dynamic text: <<$npcdesc>> didn't come inside you yesterday, so you're not in any real danger ...
-      scene.text(`${((s as any).npcdesc ?? 0)} didn't come inside you yesterday, so you're not in any real danger of getting pregnant right this second.' + iif(sex_ev['no_condom'] = 0, ' Besides, you used condoms.', ' ') + 'But this breaks your streak. Aunt Luda said you need to take it every day or it won't work. So if you take it now, does that mean you're still not safe?`);
-    } else {
-      // TODO-QSP: dynamic text: <<$npcdesc>> didn't come inside you yesterday, so you're not in any real danger ...
-      scene.text(`${((s as any).npcdesc ?? 0)} didn't come inside you yesterday, so you're not in any real danger of getting pregnant right this second.' + iif(sex_ev['no_condom'] = 0, ' Besides, you used condoms.', ' ') + 'But does this mean you'll need to wait a few days to build up the birth control in your system again? If you take your next pill now, does that mean you're still not safe?`);
-    }
-    // TODO-QSP: xgt 'sex_ev_wakeup', 'forgot_bc_pill2'
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_leave', 'exit');
   } },
     ]);
   } },
@@ -444,8 +360,162 @@ function enterForgotBcPill(s: GameState, scene: SceneBuilder): void {
     }
   } },
     ]);
+  }
+  scene.build();
+}
+
+function enterLateSchoolNotAtHome(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: '<i>Get dressed!</i>', handler: (st: GameState) => {
+    scene.img('images/pc/activities/misc/dress_1.mp4');
+    qspCall(s, 'clothing', 'wear_last_worn');
+    qspCall(s, 'underwear', 'wear');
+    scene.text('Scrambling from the bed, you start grabbing your clothes and throwing them on as fast as you can.');
+    if (((s as any).PCloStyle2 ?? 0) === 4) {
+      scene.text('You probably don\'t have time for a shower, but at least you don\'t have to run home and change clothes, you think gratefully to yourself as your pull on your discarded uniform from last night.');
+    } else {
+      scene.text('You need to get home and change into your uniform! You\'re not sure if you have time for a shower, but you definitely <i>need</i> to get your uniform!');
+    }
+    // TODO-QSP: dynamic text: "Hey, what's wrong?" <<$npcdesc>> says, turning over and squinting at you with s...
+    scene.text(`"Hey, what's wrong?" ${((s as any).npcdesc ?? 0)} says, turning over and squinting at you with sleepy eyes.`);
+    scene.actions([
+      { label: 'I need to be somewhere!', handler: (st: GameState) => {
+    scene.text('"I\'m gonna be late for something!" you say hurriedly. "Gotta go!"');
+    // TODO-QSP: dynamic text: With one last quick check, you make sure all your clothes are in place and rush ...
+    scene.text(`With one last quick check, you make sure all your clothes are in place and rush out the door, leaving ${((s as any).npcdesc ?? 0)} and your night together behind you.`);
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_leave', 'exit');
   } },
     ]);
+  } },
+      { label: 'I\'m gonna be late for school!', handler: (st: GameState) => {
+    if (((s as any).PCloStyle2 ?? 0) === 4) {
+      scene.text('"I need to go! I\'m going to be late for school!" you huff, pulling your skirt up and buttoning your shirt as fast as you can. It\'s a bit wrinkled from laying in a pile all night, but it\'ll do in a pinch.');
+    } else {
+      scene.text('"I need to go! I\'m going to be late for school!" you huff. "I need to go home! I don\'t have my uniform! Shit! <i>Fuck!</i>"');
+    }
+    if (((s as any).npc_car ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
+      scene.text('"You need a ride? I can drop you off in my car."');
+      if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+        scene.actions([
+          { label: 'I can walk', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('"That\'s okay," you shake your head. "I live right around the corner, I can just walk. But thanks for the offer."');
+    qspCall(s, 'sex_ev_leave', 'hurry_leave');
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'No thanks', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('"No, I\'ll be okay. But thanks for the offer."');
+    scene.text('With one last quick check, you make sure all your clothes are in place and call, "See you later!" over your shoulder as you rush out the door.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_leave', 'exit');
+  } },
+    ]);
+  } },
+        { label: 'That\'d be great', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('"Really?" you perk up. "That\'d be great!"');
+    scene.text('"Let me just get dressed."');
+    scene.text('You collect your things while he throws on some clothes and grabs his keys, then both of you head outside and climb into his car.');
+    scene.text('"Where do you want me to take you?" he asks');
+    scene.actions([
+      { label: 'Take me home', handler: (st: GameState) => {
+    // TODO-QSP: sex_ev['give_lift'] = 1
+  }, goto: ['sex_ev_morning', 'give_lift'] },
+      { label: 'Take me to school', handler: (st: GameState) => {
+    // TODO-QSP: sex_ev['give_lift'] = 2
+  }, goto: ['sex_ev_morning', 'give_lift'] },
+    ]);
+  } },
+        { label: 'Can\'t let people see', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('You hesitate for a moment, considering it.');
+    scene.text('"No," you shake your head. "I don\'t want someone seeing me get out of your car. Rumors spread like fire at my school. I can\'t risk it."');
+    qspCall(s, 'sex_ev_leave', 'hurry_leave');
+  } },
+      ]);
+    } else {
+      scene.text('With one last quick check, you make sure all your clothes are in place and grab the rest of your things. "See you later!" you call over your shoulder as you rush out the door.');
+      qspCall(s, 'sex_ev_leave', 'hurry_leave');
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterThrowUp(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $sex_ev['bed_room']
+  scene.text('Your stomach churns, waking you from sleep.');
+  scene.text('<b>You\'re about to throw up.</b>');
+  // TODO-QSP: act'Run to the bathroom':
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/shared/home/bathroom/vomit.jpg');
+  scene.text('Clamping your hand over your mouth, you scramble from your bed and tear your way to the bathroom. You barely manage to lift the lid up in time and violently hurl into the toilet bowl.');
+  // TODO-QSP: act'Continue':
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 7) + 2);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/shared/home/bathroom/vomit_after.jpg');
+  scene.text('After several minutes of retching, your stomach finally seems to be empty, and you just lay there, panting over the toilet bowl.');
+  if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+    (s as any).sex_ev['boy_in_shower'] = 0;
+    // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> peeks his head in through the door.
+    scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} peeks his head in through the door.`);
+    scene.text('"Hey, you okay?"');
+    // TODO-QSP: act'No idea':
+    scene.text('"No idea," you groan.');
+    if ((Math.floor(Math.random() * 100) + 1) < ((s as any).npc_intel ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).npc_creampie_count ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+      (s as any).thinkpreg = 1;
+      scene.text('"You\'re not... pregnant are you...?"');
+      scene.text('The blood drains from your face. You clutch the toilet bowl in panic as your stomach turns again.');
+      if (((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 28) {
+        scene.text('<i>Your period is late...</i>');
+      }
+      scene.text('"Oh <i>shit</i>..." you whisper before hurling up your guts again.');
+    } else {
+      // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> makes a face and leaves you to keep throwing up until ...
+      scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} makes a face and leaves you to keep throwing up until you feel you can stand.`);
+    }
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  }
+  if (((s as any).vomit ?? 0)?.['hangover'] === 1) {
+    // TODO-QSP: act'Hungover':
+    scene.text('"No," you groan. "I\'m really hungover..."');
+    qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  }
+  if (((s as any).vomit ?? 0)?.['morning_sick'] === 1) {
+    if (((s as any).knowpreg ?? 0) === 1) {
+      if ((!((s as any).morning_sickness ?? 0))) {
+        (s as any).morning_sickness = 1;
+        scene.text('<i>Ugh, is this what morning sickness feels like?</i> you think to yourself as you lay there on the floor.');
+      } else {
+        scene.text('<i>Ugh! Why does pregnancy have to come with so many side effects...</i> you think to yourself as you lay there on the floor.');
+      }
+    } else {
+      if (((s as any).thinkpreg ?? 0) === 1) {
+        // TODO-QSP: act'Might be pregnant':
+        scene.text('"Erm..." You clutch the toilet bowl, hesitating before answering. "I uhh... I might be pregnant..."');
+        qspCall(s, 'sex_ev_morning', 'morning_menu1');
+      }
+    }
+  } else {
+    if ((!((s as any).knowpreg ?? 0))) {
+      if (((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 28  &&  (Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_intel ?? 0)) {
+        // TODO-QSP: act'Might be pregnant':
+        (s as any).thinkpreg = 1;
+        scene.text('"Erm..." You clutch the toilet bowl, hesitating before answering as you do some of the mental math. "I uhh... I might be pregnant..."');
+        scene.text('"Really?"');
+        scene.text('"My period is a little late..." you admit, biting your lip.');
+        qspCall(s, 'sex_ev_morning', 'morning_menu1');
+      }
+    }
   }
   scene.build();
 }
@@ -471,11 +541,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'sleep_fuck_wake':
       enterSleepFuckWake(s, scene);
       break;
-    case 'wakeup_fondling':
-      enterWakeupFondling(s, scene);
+    case 'late_for_school':
+      enterLateForSchool(s, scene);
       break;
-    case 'forgot_bc_pill':
-      enterForgotBcPill(s, scene);
+    case 'late_school_not_at_home':
+      enterLateSchoolNotAtHome(s, scene);
+      break;
+    case 'throw_up':
+      enterThrowUp(s, scene);
       break;
     default:
       enterStart(s, scene);

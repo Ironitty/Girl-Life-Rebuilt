@@ -31,13 +31,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).izoldaQW ?? 0) < 5) {
       scene.text('You went to the apartment and Isolde you spent in the kitchen. There she poured tea, and you yourself. You sat at the table and began to chat about all sorts of trivia.');
     } else {
-      scene.text('Isolde suggested that you drink wine. You agreed and went to the kitchen. Isolde opened a bottle of wine and poured two glasses. You drank it.');
-      qspCall(s, 'drugs', 'alcohol', 'wine');
-      qspCall(s, 'stat', '');
-      if (((s as any).izoldaQW ?? 0) >= 10  &&  (!((s as any).izoldaSex ?? 0))) {
-        scene.text('Soon you both drunk and Isolde invited you to go to the lounge to relax.');
-        scene.actions([
-          { label: 'Go Isolde', handler: (st: GameState) => {
+      if (((s as any).izoldaQW ?? 0) >= 5  &&  (!((s as any).izoldaSex ?? 0))) {
+        scene.text('Isolde suggested that you drink wine. You agreed and went to the kitchen. Isolde opened a bottle of wine and poured two glasses. You drank it.');
+        qspCall(s, 'drugs', 'alcohol', 'wine');
+        qspCall(s, 'stat', '');
+        if (((s as any).izoldaQW ?? 0) >= 10  &&  (!((s as any).izoldaSex ?? 0))) {
+          scene.text('Soon you both drunk and Isolde invited you to go to the lounge to relax.');
+          scene.actions([
+            { label: 'Go Isolde', handler: (st: GameState) => {
     (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).izoldaSex = 1;
     scene.img('images/characters/city/isolde/sex/izoldasex.jpg');
@@ -74,14 +75,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        ]);
-      }
-      if (((s as any).izoldaSex ?? 0) > 0) {
-        scene.text('Isolde offer you a drink of wine and you have gone with her to the kitchen, drinking a bottle she took you by the hand and led her into the room.');
-        qspCall(s, 'drugs', 'alcohol', 'wine');
-        qspCall(s, 'stat', '');
-        scene.actions([
-          { label: 'Go Isolde', handler: (st: GameState) => {
+          ]);
+        }
+      } else {
+        if (((s as any).izoldaSex ?? 0) > 0) {
+          scene.text('Isolde offer you a drink of wine and you have gone with her to the kitchen, drinking a bottle she took you by the hand and led her into the room.');
+          qspCall(s, 'drugs', 'alcohol', 'wine');
+          qspCall(s, 'stat', '');
+          scene.actions([
+            { label: 'Go Isolde', handler: (st: GameState) => {
     (s as any).izoldaSex = ((s as any).izoldaSex ?? 0) + (1);
     (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.img('images/characters/city/isolde/sex/izoldasex.jpg');
@@ -119,12 +121,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        ]);
+          ]);
+        }
       }
-      scene.actions([
-        { label: 'Leave', goto: ['city_center', ''] },
-      ]);
     }
+    scene.actions([
+      { label: 'Leave', goto: ['city_center', ''] },
+    ]);
   } },
   ]);
   scene.build();

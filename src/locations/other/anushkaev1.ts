@@ -17,10 +17,13 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
       scene.text('Her eyes widen ever so slightly and she rolls over onto all fours with her ass facing you. She looks back over her shoulder at you and bites her lower lip; you can see the lust in her eyes and how badly she wants you to fuck her. You smile at her. "Who\'s my good little bitch? Do you want my cock?"');
       scene.text('"Yes… Please fuck me with your big cock," she breathlessly replies.');
     } else {
-      scene.text('You pull out the strap-on harness and hold it up. "Yeah, I like this…"');
-      scene.text('Her eyes widen ever so slightly as she grins and holds out her hand. "So my little slut wants to get fucked again, huh? Well hand it to me and I\'ll make your dreams come true," she says in a somewhat commanding tone.');
-      scene.text('You pull out the strap-on harness and hold it up. "Yeah, I like this…"');
-      scene.text('Her eyes widen ever so slightly. "Just what do you plan to do with that?"');
+      if (((s as any).anushkaQW ?? 0)?.['dom_nush'] <= -50) {
+        scene.text('You pull out the strap-on harness and hold it up. "Yeah, I like this…"');
+        scene.text('Her eyes widen ever so slightly as she grins and holds out her hand. "So my little slut wants to get fucked again, huh? Well hand it to me and I\'ll make your dreams come true," she says in a somewhat commanding tone.');
+      } else {
+        scene.text('You pull out the strap-on harness and hold it up. "Yeah, I like this…"');
+        scene.text('Her eyes widen ever so slightly. "Just what do you plan to do with that?"');
+      }
     }
     if (((s as any).anushkaQW ?? 0)?.['dom_nush'] >= -50  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.actions([
@@ -46,12 +49,15 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
       scene.text('As you walk up behind her, she wiggles her ass suggestively at you. Smiling, you reach over and slap her ass hard enough to make her yelp a little. "Not today. Today, I want you to give me a good fucking."');
       scene.text('She spins around and flops down on the bed with an arched brow. You see her smiling deviously as you hand her the strap-on. "Okay, one hard fucking coming up."');
     } else {
-      scene.text('You bite your lower lip, walk over, and hand the strap-on to her. "Yes… I want you to fuck me again."');
-      scene.text('Her grin widens. "Beg me to fuck you like the little slut you are," she says in a somewhat commanding tone.');
-      scene.text('You look down, unable to meet her eyes. "Please fuck me, fuck me like the little slut I am."');
-      scene.text('You feel slightly aroused as you hand the strap-on over to Anushka. "Maybe you could wear it and show me what you can do with it?"');
-      scene.text('She takes it and points at it as she looks at you. "So you want me to wear this and fuck you silly with it, huh?"');
-      scene.text('You nod your head, thinking you already made that clear, and she grins.');
+      if (((s as any).anushkaQW ?? 0)?.['dom_nush'] <= -50) {
+        scene.text('You bite your lower lip, walk over, and hand the strap-on to her. "Yes… I want you to fuck me again."');
+        scene.text('Her grin widens. "Beg me to fuck you like the little slut you are," she says in a somewhat commanding tone.');
+        scene.text('You look down, unable to meet her eyes. "Please fuck me, fuck me like the little slut I am."');
+      } else {
+        scene.text('You feel slightly aroused as you hand the strap-on over to Anushka. "Maybe you could wear it and show me what you can do with it?"');
+        scene.text('She takes it and points at it as she looks at you. "So you want me to wear this and fuck you silly with it, huh?"');
+        scene.text('You nod your head, thinking you already made that clear, and she grins.');
+      }
     }
     scene.actions([
       { label: 'You asked for it', handler: (st: GameState) => {
@@ -355,12 +361,15 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
       scene.text('As you walk up behind her, she wiggles her ass suggestively at you. Smiling, you reach over and slap her ass hard enough to make her yelp a little. "Not today. Today, I want you to fuck my ass."');
       scene.text('She spins around and flops down on the bed with an arched brow. You see her smile deviously as you hand her strap-on. "Okay, one hard butt fucking coming up."');
     } else {
-      scene.text('You bite your lower lip, walk over, and hand her the strap-on. "Yes… I want you to butt fuck me."');
-      scene.text('Her grin widens. "You\'re such a dirty little whore and a complete butt slut. Tell me how much of a butt slut you are!" she says in a somewhat commanding tone.');
-      scene.text('You look down, unable to meet her eyes. "I\'m a dirty little butt slut, I loved getting my ass ploughed."');
-      scene.text('You feel slightly aroused as you hand the strap-on over to Anushka. "Maybe you could wear it and show me what you can do with it?"');
-      scene.text('She takes it and points at it as she looks at you. "So you want me to wear this and fuck you silly with it, huh?"');
-      scene.text('You nod your head, thinking you already made that clear, and she grins.');
+      if (((s as any).anushkaQW ?? 0)?.['dom_nush'] <= -50) {
+        scene.text('You bite your lower lip, walk over, and hand her the strap-on. "Yes… I want you to butt fuck me."');
+        scene.text('Her grin widens. "You\'re such a dirty little whore and a complete butt slut. Tell me how much of a butt slut you are!" she says in a somewhat commanding tone.');
+        scene.text('You look down, unable to meet her eyes. "I\'m a dirty little butt slut, I loved getting my ass ploughed."');
+      } else {
+        scene.text('You feel slightly aroused as you hand the strap-on over to Anushka. "Maybe you could wear it and show me what you can do with it?"');
+        scene.text('She takes it and points at it as she looks at you. "So you want me to wear this and fuck you silly with it, huh?"');
+        scene.text('You nod your head, thinking you already made that clear, and she grins.');
+      }
     }
     scene.actions([
       { label: 'You asked for it', handler: (st: GameState) => {
@@ -649,7 +658,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Punish that ass', handler: (st: GameState) => {
+        { label: 'Punish that ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapnush8.jpg');
@@ -885,7 +894,7 @@ function enterStraponCowgirlMagic(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Punish that ass', handler: (st: GameState) => {
+        { label: 'Punish that ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapnush8.jpg');
@@ -1482,7 +1491,7 @@ function enterDomnushFuckassNolubeMagic(s: GameState, scene: SceneBuilder): void
       ]);
     } else {
       scene.actions([
-        { label: 'Fuck her ass raw', handler: (st: GameState) => {
+        { label: 'Fuck her ass raw [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush7.jpg');
@@ -1614,7 +1623,7 @@ function enterCouchStraponGive(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Sit on her face', handler: (st: GameState) => {
+        { label: 'Sit on her face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/livingroom/couchstrap4.jpg');
@@ -1736,7 +1745,7 @@ function enterCouchFuckHerAss(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Fuck her ass hard', handler: (st: GameState) => {
+      { label: 'Fuck her ass hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/livingroom/couchstrap9.jpg');
@@ -1869,7 +1878,7 @@ function enterCouchFuckHerAssMagic(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Fuck her ass hard', handler: (st: GameState) => {
+      { label: 'Fuck her ass hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/livingroom/couchstrap9.jpg');

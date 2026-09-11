@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -11,7 +11,7 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
   (s as any).temppain['i'] = 0;
   (s as any).temppain['maxi'] = 0;
   // TODO-QSP: :pain_calc_loop
-  (s as any).temppain['total'] = ((s as any).temppain['total'] ?? 0) + (((s as any).pain ?? 0)[((s as any).painParts ?? 0)[((s as any).temppain ?? 0)?.['i']]] * ((s as any).pain ?? 0)[((s as any).painParts ?? 0)[((s as any).temppain ?? 0)?.['i']]]);
+  (s as any).temppain['total'] = ((s as any).temppain['total'] ?? 0) + (((s as any).pain ?? 0)[((s as any).painParts ?? 0)[((s as any).temppain ?? {})?.['i']]] * ((s as any).pain ?? 0)[((s as any).painParts ?? 0)[((s as any).temppain ?? {})?.['i']]]);
   (s as any).temppain['i'] = ((s as any).temppain['i'] ?? 0) + (1);
   if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
     // TODO-QSP: jump 'pain_calc_loop'
@@ -27,7 +27,7 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'drugs', 'pain_relief');
   if (((s as any).pain ?? 0)?.['relief'] > 0) {
-    (s as any).pain['total'] = ((s as any).pain ?? 0)?.['total'] * (100 - ((s as any).pain ?? 0)?.['relief']) / 100;
+    (s as any).pain['total'] = ((s as any).pain ?? {})?.['total'] * (100 - ((s as any).pain ?? {})?.['relief']) / 100;
     if (((s as any).pain ?? 0)?.['total'] < 0) {
       (s as any).pain['total'] = 0;
     }
@@ -47,14 +47,14 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).pain ?? 0)?.['damage'] + ((s as any).pain ?? 0)?.['total']) <= 0) {
     // TODO-QSP: exit
   }
-  (s as any).temppain['tmp_0'] = 1 + (((s as any).totminut ?? 0) - ((s as any).pain ?? 0)?.['timer']) / 10;
+  (s as any).temppain['tmp_0'] = 1 + (((s as any).totminut ?? 0) - ((s as any).pain ?? {})?.['timer']) / 10;
   (s as any).temppain['i'] = 0;
   (s as any).temppain['maxi'] = 0;
   // TODO-QSP: :pain_manage_loop
   (s as any).temppain['loc'] = qspUntranslated(s, "painParts[temppain['i']]", { location: "pain" });
   if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['loc']] > 0) {
-    (s as any).temppain['tmp_1'] = ((s as any).rand ?? 0)(((s as any).temppain ?? 0)?.['tmp_0'] / 3, ((s as any).temppain ?? 0)?.['tmp_0']);
-    (s as any).temppain['tmp_2'] = ((s as any).rand ?? 0)(((s as any).temppain ?? 0)?.['tmp_0'] / 2, ((s as any).temppain ?? 0)?.['tmp_0']);
+    (s as any).temppain['tmp_1'] = ((s as any).rand ?? 0)(((s as any).temppain ?? {})?.['tmp_0'] / 3, ((s as any).temppain ?? {})?.['tmp_0']);
+    (s as any).temppain['tmp_2'] = ((s as any).rand ?? 0)(((s as any).temppain ?? {})?.['tmp_0'] / 2, ((s as any).temppain ?? {})?.['tmp_0']);
     (s as any).temppain['tmp_3'] = ((((s as any).inSleep ?? 0)) ? (qspUntranslated(s, "rand(0, pain[temppain['loc']])", { location: "pain" })) : (0));
     // TODO-QSP: pain[$temppain['loc']] -= max(temppain['tmp_1'], temppain['tmp_2'] + temppain['tmp_3'])
   }
@@ -88,147 +88,72 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 9 / 10;
     }
   } else {
-    if ((((s as any).pcs_health ?? 0) * 5 / 4)    >= ((s as any).healthmax ?? 0)) {
-      (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 8 / 10;
-    }
-    if (((s as any).pain ?? 0)?.['total'] <= 60) {
-      if ((((s as any).pcs_health ?? 0) * 5 / 3)    >= ((s as any).healthmax ?? 0)) {
-        (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 7 / 10;
-      }
-    } else {
-      if ((((s as any).pcs_health ?? 0) * 5 / 2)    >= ((s as any).healthmax ?? 0)) {
-        (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 5 / 10;
-      }
-      if ((((s as any).pcs_health ?? 0) * 5)      >= ((s as any).healthmax ?? 0)) {
-        (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 4 / 10;
-      }
-    }
-    (s as any).temppain['mood_loss'] = ((s as any).max ?? 0)(1, ((s as any).pain ?? 0)?.['total'] / 10);
-    if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === -1) {
-      (s as any).temppain['mood_loss'] = (((s as any).temppain ?? 0)?.['mood_loss'] * 12) / 10;
-    } else {
-      (s as any).temppain['mood_loss'] = ((s as any).max ?? 0)(1, ((s as any).temppain ?? 0)?.['mood_loss'] * 8 / 10);
-    }
     if (((s as any).pain ?? 0)?.['total'] <= 40) {
-      if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === -1) {
-        if (((s as any).pcs_mood ?? 0) > ((s as any).moodVars ?? 0)?.['disp'] - 10) {
-          // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
-        }
-      } else {
-        if (((s as any).pcs_mood ?? 0) > ((s as any).moodVars ?? 0)?.['disp'] + 5) {
-          // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
-        }
-        if (((s as any).pcs_mood ?? 0) > ((s as any).moodVars ?? 0)?.['disp']) {
-          // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
-        }
+      if ((((s as any).pcs_health ?? 0) * 5 / 4)    >= ((s as any).healthmax ?? 0)) {
+        (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 8 / 10;
       }
     } else {
-      if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === -1) {
-        // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
-      } else {
-        if (((s as any).pcs_mood ?? 0) > 30) {
-          // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+      if (((s as any).pain ?? 0)?.['total'] <= 60) {
+        if ((((s as any).pcs_health ?? 0) * 5 / 3)    >= ((s as any).healthmax ?? 0)) {
+          (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 7 / 10;
         }
-        if (((s as any).pcs_mood ?? 0) > 20) {
-          // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
-        }
-      }
-      // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
-    }
-    return;
-  }
-  if (Object.keys((s as any).ARGS ?? {}).length < 3) {
-    // TODO-QSP: exit
-  }
-  (s as any).painCalc[0] = ((s as any).min ?? 0)(((s as any).ARGS ?? 0)[0] + ((s as any).ARGS ?? 0)[1] + ((s as any).ARGS ?? 0)[2] + ((s as any).ARGS ?? 0)[3], 9);
-  if (((s as any).painCalc ?? 0)[0] <= 0) {
-    // TODO-QSP: exit
-  }
-  (s as any).painCalc[1] = 0;
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('slap') : -1)      >= 0) {
-    (s as any).painCalc[1] = 1;
-  } else {
-    (s as any).painCalc[1] = 1;
-    if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('spank') : -1)    >= 0) {
-      (s as any).painCalc[1] = 3;
-      (s as any).spank = ((s as any).spank ?? 0) + (1);
-    } else {
-      (s as any).painCalc[1] = 3;
-      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('shock') : -1)    >= 0) {
-        (s as any).painCalc[1] = 4;
       } else {
-        (s as any).painCalc[1] = 4;
-        if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('pull') : -1)    >= 0) {
-          (s as any).painCalc[1] = 4;
+        if (((s as any).pain ?? 0)?.['total'] <= 80) {
+          if ((((s as any).pcs_health ?? 0) * 5 / 2)    >= ((s as any).healthmax ?? 0)) {
+            (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 5 / 10;
+          }
         } else {
-          (s as any).painCalc[1] = 4;
-          if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('labor') : -1)    >= 0) {
-            (s as any).painCalc[1] = 4;
-          } else {
-            (s as any).painCalc[1] = 5;
-            if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('stretch') : -1)  >= 0) {
-              (s as any).painCalc[1] = 6;
-            } else {
-              (s as any).painCalc[1] = 6;
-              if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('burn') : -1)    >= 0) {
-                (s as any).painCalc[1] = 7;
-              } else {
-                (s as any).painCalc[1] = 7;
-                if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('hit') : -1)    >= 0) {
-                  (s as any).painCalc[1] = 7;
-                } else {
-                  (s as any).painCalc[1] = 8;
-                  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bite') : -1)    >= 0) {
-                    (s as any).painCalc[1] = 8;
-                  } else {
-                    (s as any).painCalc[1] = 9;
-                    if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('ache') : -1)    >= 0) {
-                      (s as any).painCalc[1] = 9;
-                    } else {
-                      (s as any).painCalc[1] = 10;
-                      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('break') : -1)    >= 0) {
-                        (s as any).painCalc[1] = 10;
-                      } else {
-                        (s as any).painCalc[1] = 10;
-                        return;
-                      }
-                      (s as any).painCalc[2] = 0;
-                      (s as any).temppain['i'] = 0;
-                      (s as any).temppain['maxi'] = 0;
-                      // TODO-QSP: :pain_else_loop
-                      if (((s as any).ARGS ?? 0)[((s as any).temppain ?? 0)?.['i']] !== ''  &&  (Array.isArray((s as any).painParts) ? ((s as any).painParts as any[]).indexOf(((s as any).ARGS ?? 0)[((s as any).temppain ?? 0)?.['i']]) : -1) >= 0) {
-                        (s as any).temppain['part'] = qspUntranslated(s, "ARGS[temppain['i']]", { location: "pain" });
-                        (s as any).painCalc[2] = ((s as any).painMod ?? 0)?.[((s as any).temppain ?? 0)?.['part']];
-                      } else {
-                        (s as any).temppain['i'] = ((s as any).temppain['i'] ?? 0) + (1);
-                        if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
-                          // TODO-QSP: jump 'pain_else_loop'
-                        }
-                        return;
-                      }
-                      (s as any).temppain['curpain'] = (((s as any).painCalc ?? 0)[0] * ((s as any).painCalc ?? 0)[1] * ((s as any).painCalc ?? 0)[2]) / 10;
-                      (s as any).temppain['prevpain'] = ((s as any).pain ?? 0)?.[((s as any).temppain ?? 0)?.['part']];
-                      (s as any).lastpain = qspFunc(s, 'math', 'int_sqrt', ((s as any).temppain ?? 0)?.['prevpain'] * ((s as any).temppain ?? 0)?.['prevpain'] + ((s as any).temppain ?? 0)?.['curpain'] * ((s as any).temppain ?? 0)?.['curpain']);
-                      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('get') : -1) >= 0) {
-                        (s as any).result = ((s as any).lastpain ?? 0);
-                      } else {
-                        // TODO-QSP: pain[$temppain['part']] = lastpain
-                        if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['part']] > 100) {
-                          // TODO-QSP: pain[$temppain['part']] = 100
-                        }
-                        (s as any).pain['timer'] = ((s as any).totminut ?? 0) + 30;
-                        qspCall(s, 'pain', 'calc');
-                      }
-                    }
-                  }
-                }
-              }
-            }
+          if ((((s as any).pcs_health ?? 0) * 5)      >= ((s as any).healthmax ?? 0)) {
+            (s as any).pcs_health = ((s as any).pcs_health ?? 0) * 4 / 10;
           }
         }
       }
     }
   }
+  (s as any).temppain['mood_loss'] = Math.max(1, ((s as any).pain ?? {})?.['total'] / 10);
+  if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === -1) {
+    (s as any).temppain['mood_loss'] = (((s as any).temppain ?? {})?.['mood_loss'] * 12) / 10;
+  } else {
+    if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === 1) {
+      (s as any).temppain['mood_loss'] = Math.max(1, ((s as any).temppain ?? {})?.['mood_loss'] * 8 / 10);
+    }
+  }
+  if (((s as any).pain ?? 0)?.['total'] <= 40) {
+    if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === -1) {
+      if (((s as any).pcs_mood ?? 0) > ((s as any).moodVars ?? 0)?.['disp'] - 10) {
+        // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+      }
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === 1) {
+        if (((s as any).pcs_mood ?? 0) > ((s as any).moodVars ?? 0)?.['disp'] + 5) {
+          // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+        }
+      } else {
+        if (((s as any).pcs_mood ?? 0) > ((s as any).moodVars ?? 0)?.['disp']) {
+          // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+        }
+      }
+    }
+  } else {
+    if (((s as any).pain ?? 0)?.['total'] <= 80) {
+      if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === -1) {
+        // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === 1) {
+          if (((s as any).pcs_mood ?? 0) > 30) {
+            // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+          }
+        } else {
+          if (((s as any).pcs_mood ?? 0) > 20) {
+            // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+          }
+        }
+      }
+    } else {
+      // TODO-QSP: gs 'mood', 'lower', temppain['mood_loss']
+    }
+  }
+  return;
   scene.build();
 }
 

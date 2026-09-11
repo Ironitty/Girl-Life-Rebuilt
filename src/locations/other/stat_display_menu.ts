@@ -30,8 +30,8 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rco ?? 0)?.['i'] < ((s as any).rco ?? 0)?.['size']) {
     (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['i']], '|')", { location: "stat_display_menu" });
     if (((s as any).rco ?? 0)?.['pipe'] > 0) {
-      (s as any).rco['entry_val'] = ((qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)));
-      (s as any).rco['entry_lbl'] = ((qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? 0)?.['pipe'] + 1)-1));
+      (s as any).rco['entry_val'] = ((qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
+      (s as any).rco['entry_lbl'] = ((qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
     } else {
       (s as any).rco['entry_val'] = qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" });
       (s as any).rco['entry_lbl'] = qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" });
@@ -39,7 +39,9 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rco ?? 0)?.['entry_val'] === 'custom') {
       (s as any).rco['custom_idx'] = ((s as any).rco ?? 0)?.['i'];
     } else {
-      (s as any).rco['idx'] = ((s as any).rco ?? 0)?.['i'];
+      if (((s as any).rco ?? 0)?.['entry_val'] === ((s as any).rco ?? 0)?.['cur_str']  ||  parseFloat(((s as any).rco ?? 0)?.['entry_val']) === ((s as any).rco ?? 0)?.['cur_num']) {
+        (s as any).rco['idx'] = ((s as any).rco ?? 0)?.['i'];
+      }
     }
     (s as any).rco['i'] = ((s as any).rco['i'] ?? 0) + (1);
     // TODO-QSP: jump 'rco_search'
@@ -53,31 +55,31 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx']], '|')", { location: "stat_display_menu" });
   if (((s as any).rco ?? 0)?.['pipe'] > 0) {
-    (s as any).rco['entry_val'] = ((qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)));
-    (s as any).rco['entry_lbl'] = ((qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? 0)?.['pipe'] + 1)-1));
+    (s as any).rco['entry_val'] = ((qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
+    (s as any).rco['entry_lbl'] = ((qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
   } else {
     (s as any).rco['entry_val'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
     (s as any).rco['entry_lbl'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
   }
   if (((s as any).rco ?? 0)?.['entry_val'] === 'custom') {
-    (s as any).rco['label'] = '((s as any).Custom ?? 0): ' + ((s as any).rco ?? 0)?.['cur_str'];
+    (s as any).rco['label'] = 'Custom: ' + ((s as any).rco ?? {})?.['cur_str'];
   } else {
     (s as any).rco['label'] = ((s as any).rco ?? 0)?.['entry_lbl'];
   }
   (s as any).rco['action_left'] = ((((s as any).temp_actions_left ?? 0)[((s as any).rco ?? 0)?.['idx']]  !== '') ? (qspUntranslated(s, "temp_actions_left[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_left[0]", { location: "stat_display_menu" })));
   (s as any).rco['action_right'] = ((((s as any).temp_actions_right ?? 0)[((s as any).rco ?? 0)?.['idx']] !== '') ? (qspUntranslated(s, "temp_actions_right[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_right[0]", { location: "stat_display_menu" })));
   if (((s as any).rco ?? 0)?.['action_left'] === ''  ||  ((s as any).rco ?? 0)?.['action_right'] === '') {
-    (s as any).rco['idx_prev'] = (((s as any).rco ?? 0)?.['idx'] - 1 + ((s as any).rco ?? 0)?.['size']) % ((s as any).rco ?? 0)?.['size'];
-    (s as any).rco['idx_next'] = (((s as any).rco ?? 0)?.['idx'] + 1) % ((s as any).rco ?? 0)?.['size'];
+    (s as any).rco['idx_prev'] = (((s as any).rco ?? {})?.['idx'] - 1 + ((s as any).rco ?? {})?.['size']) % ((s as any).rco ?? {})?.['size'];
+    (s as any).rco['idx_next'] = (((s as any).rco ?? {})?.['idx'] + 1) % ((s as any).rco ?? {})?.['size'];
     (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_prev']], '|')", { location: "stat_display_menu" });
-    (s as any).rco['prev_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })));
+    (s as any).rco['prev_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })));
     (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_next']], '|')", { location: "stat_display_menu" });
-    (s as any).rco['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
+    (s as any).rco['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
     if (((s as any).rco ?? 0)?.['action_left'] === '') {
-      (s as any).rco['action_left'] = ((parseFloat(qspUntranslated(s, "\u00000\u0000", { location: "stat_display_menu" })) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['prev_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['prev_val'] + ''));
+      (s as any).rco['action_left'] = ((parseFloat(((s as any).rco ?? 0)?.['prev_val']) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? {})?.['prev_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + ((s as any).rco ?? {})?.['prev_val'] + '\''));
     }
     if (((s as any).rco ?? 0)?.['action_right'] === '') {
-      (s as any).rco['action_right'] = ((parseFloat(qspUntranslated(s, "\u00000\u0000", { location: "stat_display_menu" })) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['next_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['next_val'] + ''));
+      (s as any).rco['action_right'] = ((parseFloat(((s as any).rco ?? 0)?.['next_val']) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? {})?.['next_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + ((s as any).rco ?? {})?.['next_val'] + '\''));
     }
   }
   // TODO-QSP: $result +=    '<tr>'
@@ -110,10 +112,10 @@ function enterRenderCellNum(s: GameState, scene: SceneBuilder): void {
   (s as any).rcn['def'] = qspUntranslated(s, "ARGS[3]", { location: "stat_display_menu" });
   (s as any).rcn['min'] = qspUntranslated(s, "ARGS[4]", { location: "stat_display_menu" });
   (s as any).rcn['max'] = qspUntranslated(s, "ARGS[5]", { location: "stat_display_menu" });
-  (s as any).rcn['act_left'] = ((s as any).locArgs?.[2] ?? 0) + ' = ((s as any).max ?? 0)(' + String(((s as any).rcn ?? 0)?.['min']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' - 1)';
-  (s as any).rcn['act_right'] = ((s as any).locArgs?.[2] ?? 0) + ' = ((s as any).min ?? 0)(' + String(((s as any).rcn ?? 0)?.['max']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' + 1)';
-  (s as any).rcn['act_input'] = '$rcn_inp = input(\' + $ARGS[1] + \' [default: \' + $str(rcn[\'def\']) + \', Min: \' + $str(rcn[\'min\']) + \', Max: \' + $str(rcn[\'max\']) + \']\')';
-  (s as any).rcn['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & \' + $ARGS[2] + \' = iif($rcn_inp = \' or val($rcn_inp) = 0 and $rcn_inp <> \'0\', \' + $str(rcn[\'def\']) + \', min(\' + $str(rcn[\'max\']) + \', max(\' + $str(rcn[\'min\']) + \', val($rcn_inp))))');
+  (s as any).rcn['act_left'] = ((s as any).locArgs?.[2] ?? 0) + ' = ax(' + String(((s as any).rcn ?? 0)?.['min']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' - 1)';
+  (s as any).rcn['act_right'] = ((s as any).locArgs?.[2] ?? 0) + ' = in(' + String(((s as any).rcn ?? 0)?.['max']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' + 1)';
+  (s as any).rcn['act_input'] = '$rcn_inp = input(\'\' + $ARGS[1] + \' [default: \' + $str(rcn[\'def\']) + \', Min: \' + $str(rcn[\'min\']) + \', Max: \' + $str(rcn[\'max\']) + \']\')';
+  (s as any).rcn['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & \' + $ARGS[2] + \' = iif($rcn_inp = \'\' or val($rcn_inp) = 0 and $rcn_inp <> \'0\', \' + $str(rcn[\'def\']) + \', min(\' + $str(rcn[\'max\']) + \', max(\' + $str(rcn[\'min\']) + \', val($rcn_inp))))');
   (s as any).rcn['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & killvar \'rcn_inp\'');
   // TODO-QSP: $result +=    '<tr>'
   // TODO-QSP: $result +=      '<td align="center" valign="middle" width="1%" nowrap rowspan="3" style="text-align:...
@@ -147,7 +149,7 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_st_icon['lower'] = 'images/system/ui/angle_down_\' + $temp_st_icon_color + \'.png';
   (s as any).temp_st_icon['hide'] = 'images/system/ui/\' + iif(stat_hide[$temp_st_key] = 1, \'hide_\', \'show_\') + $temp_st_icon_color + \'.png';
   (s as any).temp_st_icon['expand'] = 'images/system/ui/\' + iif(stat_collapse[$temp_st_key] = 0, \'expand_\', \'collapse_\') + $temp_st_icon_color + \'.png';
-  (s as any).temp_st_align_val = ((s as any).stat_cfg ?? 0)?.['((s as any).align_ ?? 0)' + ((s as any).temp_st_key ?? 0)];
+  (s as any).temp_st_align_val = ((s as any).stat_cfg ?? 0)?.['align_' + ((s as any).temp_st_key ?? 0)];
   if ((!((s as any).temp_st_align_val ?? 0))) {
     (s as any).temp_st_align_eff = ((s as any).stat_cfg ?? 0)?.['global_align'];
   } else {
@@ -168,8 +170,8 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_st_title['hide'] = ((((s as any).stat_hide ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 1) ? ('Show Section') : ('Hide Section'));
   (s as any).temp_st_title['expand'] = ((((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('Collapse Options') : ('Expand Options'));
   (s as any).temp_st_td['icon'] = '<td align="center" width="1%" style="text-align:center; padding:3px;">';
-  (s as any).temp_st_td['spacer'] = '<td align="center" width="1%" style="text-align:center; padding:3px;"><span style="display:inline-block; padding:2px; line-height:0; border:1px solid transparent; border-radius:6px;"><img height="32" src="<<$temp_st_icon[\'raise\']>>" style="visibility:hidden"></span></td>';
-  (s as any).temp_st_td['cell'] = '<td align="center" valign="middle" bgcolor="<<$theme_hex[\'table_bg_alt\']>>" style="border:1px solid <<$theme_hex[\'goth\']>>; background-color: <<$theme_hex[\'table_bg_alt\']>>; padding:3px; text-align:center; vertical-align:middle;">';
+  (s as any).temp_st_td['spacer'] = '<td align="center" width="1%" style="text-align:center; padding:3px;"><span style="display:inline-block; padding:2px; line-height:0; border:1px solid transparent; border-radius:6px;"><img height="32" src="' + qspUntranslated(s, "temp_st_icon['raise']>", { location: "stat_display_menu" }) + '" style="visibility:hidden"></span></td>';
+  (s as any).temp_st_td['cell'] = '<td align="center" valign="middle" bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:1px solid <<$theme_hex[\'goth\']>>; background-color: <<$theme_hex[\'table_bg_alt\']>>; padding:3px; text-align:center; vertical-align:middle;">';
   // TODO-QSP: $result +=  '<table width="80%" cellspacing="6" bgcolor="<<$theme_hex[''table_bg'']>>" style="border...
   // TODO-QSP: $result +=  '<colgroup>'
   // TODO-QSP: $result +=    '<col width="32%">'
@@ -466,7 +468,9 @@ function enterImagesOptions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['image_size'] === 2) {
     // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_num', 'He...
   } else {
-    // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_num', 'Wi...
+    if (((s as any).stat_cfg ?? 0)?.['image_size'] === 3) {
+      // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_num', 'Wi...
+    }
   }
   // TODO-QSP: $temp_values[0] = '0|Off'
   // TODO-QSP: $temp_values[1] = '1|Type label'
@@ -548,9 +552,9 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   (s as any).ro['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
   (s as any).ro['up'] = 'images/system/ui/angle_up_\'   + $ro[\'c\'] + \'.png';
   (s as any).ro['down'] = 'images/system/ui/angle_down_\' + $ro[\'c\'] + \'.png';
-  (s as any).ro['bdr'] = '1px solid <<$theme_hex[\'goth\']>>';
+  (s as any).ro['bdr'] = '1px solid ' + qspUntranslated(s, "theme_hex['goth']>", { location: "stat_display_menu" }) + '';
   (s as any).ro['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid \' + $func(\'shortgs\', \'rgb_to_hex\', theme[\'fcolor\']) + \'; border-radius:4px;';
-  (s as any).ro['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="exec: killvar \'$<<$ARGS[1]>>\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'">[Reset]</a></td></tr>';
+  (s as any).ro['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="exec: killvar \'$' + qspUntranslated(s, "ARGS[1]>", { location: "stat_display_menu" }) + '\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'">[Reset]</a></td></tr>';
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   (s as any).ro['i'] = 0;
   // TODO-QSP: :_rfl_loop
@@ -564,17 +568,17 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   (s as any).ro['hidden'] = 0;
   (s as any).ro['hide_icon'] = 'images/system/ui/\' + iif(ro[\'hidden\'] = 1, \'hide_\', \'show_\') + $ro[\'c\'] + \'.png';
   (s as any).ro['label'] = ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'key\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']]));
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg_alt\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:5px 6px;">');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:5px 6px;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap\', \'<<$ARGS[1]>>\', <<ro[\'i\']>>, \'up\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap\', \'<<$ARGS[1]>>\', <<ro[\'i\']>>, \'down\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'<<$ARGS[1]>>\', <<ro[\'i\']>>, \'up\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'<<$ARGS[1]>>\', <<ro[\'i\']>>, \'down\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] = 1 - <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] & gt \'$menu_settings\', \'<<$ARGS[3]>>\'">\' + $ro[\'label\'] + \'</a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: ' + qspUntranslated(s, "ARGS[2]>", { location: "stat_display_menu" }) + '[\'<<$ro[\'key\']>>\'] = 1 - <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] & gt \'$menu_settings\', \'<<$ARGS[3]>>\'">\' + $ro[\'label\'] + \'</a>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] = 1 - <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'hide_icon\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] = 1 - <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'hide_icon\']>>"></a>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
   // TODO-QSP: :_rfl_next
@@ -591,7 +595,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   (s as any).ro['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
   (s as any).ro['up'] = 'images/system/ui/angle_up_\'   + $ro[\'c\'] + \'.png';
   (s as any).ro['down'] = 'images/system/ui/angle_down_\' + $ro[\'c\'] + \'.png';
-  (s as any).ro['bdr'] = '1px solid <<$theme_hex[\'goth\']>>';
+  (s as any).ro['bdr'] = '1px solid ' + qspUntranslated(s, "theme_hex['goth']>", { location: "stat_display_menu" }) + '';
   (s as any).ro['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid \' + $func(\'shortgs\', \'rgb_to_hex\', theme[\'fcolor\']) + \'; border-radius:4px;';
   (s as any).ro['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="exec: gs \'$menu_settings\', \'reset_skills\' & gt \'$menu_settings\', \'status\'">[Reset]</a></td></tr>';
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
@@ -599,46 +603,46 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :_rns_gloop
   (s as any).ro['gkey'] = qspUntranslated(s, "skill_group_order[ro['gi']]", { location: "stat_display_menu" });
   (s as any).ro['ghid'] = ((s as any).stat_hide ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['((s as any).show_skills_ ?? 0)' + ((s as any).ro ?? 0)?.['gkey']];
+  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_skills_' + ((s as any).ro ?? {})?.['gkey']];
   (s as any).ro['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   (s as any).ro['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
   (s as any).ro['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', <<ro[\'gi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', <<ro[\'gi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', <<ro[\'gi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', <<ro[\'gi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'glbl\'] + \'</a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[\'show_skills_' + qspUntranslated(s, "ro['gkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'glbl\'] + \'</a>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: stat_hide[\'<<$ro[\'gkey\']>>\'] = 1 - stat_hide[\'<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'ghi_ic\']>>"></a>');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'gex_ic\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide[\'<<$ro[\'gkey\']>>\'] = 1 - stat_hide[\'<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'ghi_ic\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'gex_ic\']>>"></a>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table>');
   if (((s as any).ro ?? 0)?.['gexp'] === 1) {
     (s as any).ro['mi'] = 0;
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rns_mloop
-    (s as any).ro['mkey'] = ((s as any).skill_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '((s as any)._ ?? 0)' + String(((s as any).ro ?? 0)?.['mi'])];
+    (s as any).ro['mkey'] = ((s as any).skill_grp ?? 0)?.[((s as any).ro ?? {})?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rns_mdone'
     }
     (s as any).ro['mhid'] = ((s as any).stat_hide_skill ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
     (s as any).ro['mhi_ic'] = 'images/system/ui/\' + iif(ro[\'mhid\'] = 1, \'hide_\', \'show_\') + $ro[\'c\'] + \'.png';
     (s as any).ro['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'mkey\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]));
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg_alt\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:4px 6px;">');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:4px 6px;">');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'up\']>>"></a>');
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'down\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'up\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'down\']>>"></a>');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_skill[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_skill[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'mlbl\'] + \'</a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_skill[\'' + qspUntranslated(s, "ro['mkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_hide_skill[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'mlbl\'] + \'</a>');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: stat_hide_skill[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_skill[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'mhi_ic\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide_skill[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_skill[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'mhi_ic\']>>"></a>');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
     (s as any).ro['mi'] = ((s as any).ro['mi'] ?? 0) + (1);
@@ -660,7 +664,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   (s as any).ro['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
   (s as any).ro['up'] = 'images/system/ui/angle_up_\'   + $ro[\'c\'] + \'.png';
   (s as any).ro['down'] = 'images/system/ui/angle_down_\' + $ro[\'c\'] + \'.png';
-  (s as any).ro['bdr'] = '1px solid <<$theme_hex[\'goth\']>>';
+  (s as any).ro['bdr'] = '1px solid ' + qspUntranslated(s, "theme_hex['goth']>", { location: "stat_display_menu" }) + '';
   (s as any).ro['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid \' + $func(\'shortgs\', \'rgb_to_hex\', theme[\'fcolor\']) + \'; border-radius:4px;';
   (s as any).ro['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="exec: gs \'$menu_settings\', \'reset_rels\' & gt \'$menu_settings\', \'status\'">[Reset]</a></td></tr>';
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
@@ -668,29 +672,29 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :_rnr_gloop
   (s as any).ro['gkey'] = qspUntranslated(s, "rel_group_order[ro['gi']]", { location: "stat_display_menu" });
   (s as any).ro['ghid'] = ((s as any).stat_hide_rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['((s as any).show_rels_ ?? 0)' + ((s as any).ro ?? 0)?.['gkey']];
+  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_rels_' + ((s as any).ro ?? {})?.['gkey']];
   (s as any).ro['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   (s as any).ro['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
   (s as any).ro['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', <<ro[\'gi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', <<ro[\'gi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', <<ro[\'gi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', <<ro[\'gi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers') {
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'glbl\'] + \'</a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[\'show_rels_' + qspUntranslated(s, "ro['gkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'glbl\'] + \'</a>');
   } else {
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + (((s as any).ro ?? 0)?.['glbl']);
   }
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: stat_hide_rel_grp[\'<<$ro[\'gkey\']>>\'] = 1 - stat_hide_rel_grp[\'<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'ghi_ic\']>>"></a>');
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide_rel_grp[\'<<$ro[\'gkey\']>>\'] = 1 - stat_hide_rel_grp[\'<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'ghi_ic\']>>"></a>');
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers') {
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'gex_ic\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'gex_ic\']>>"></a>');
   } else {
-    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<span style="<<$ro[\'ibdr\']>>; visibility:hidden;"><img height="18" src="<<$ro[\'up\']>>"></span>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<span style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '; visibility:hidden;"><img height="18" src="<<$ro[\'up\']>>"></span>');
   }
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table>');
@@ -699,7 +703,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     (s as any).ro['nm'] = ((s as any).stat_cfg ?? 0)?.['rel_name_mode'];
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rnr_mloop
-    (s as any).ro['mkey'] = ((s as any).rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '((s as any)._ ?? 0)' + String(((s as any).ro ?? 0)?.['mi'])];
+    (s as any).ro['mkey'] = ((s as any).rel_grp ?? 0)?.[((s as any).ro ?? {})?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rnr_mdone'
     }
@@ -709,72 +713,162 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ro ?? 0)?.['eff_nm'] === 1) {
       (s as any).ro['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
     } else {
-      (s as any).ro['mname'] = ((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
-      if (((s as any).ro ?? 0)?.['mname'] === '') {
-        (s as any).ro['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
-      }
-      if (((s as any).ro ?? 0)?.['eff_nm'] === 3) {
-        (s as any).ro['mname'] = ((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+      if (((s as any).ro ?? 0)?.['eff_nm'] === 2) {
+        (s as any).ro['mname'] = ((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
         if (((s as any).ro ?? 0)?.['mname'] === '') {
           (s as any).ro['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
         }
       } else {
-        (s as any).ro['mname'] = ((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+        if (((s as any).ro ?? 0)?.['eff_nm'] === 3) {
+          (s as any).ro['mname'] = ((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+          if (((s as any).ro ?? 0)?.['mname'] === '') {
+            (s as any).ro['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+          }
+        } else {
+          (s as any).ro['mname'] = ((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+        }
       }
-      if (((s as any).ro ?? 0)?.['mname'] === '') {
-        (s as any).ro['mname'] = ((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
-      }
-      if (((s as any).ro ?? 0)?.['mname'] === '') {
-        (s as any).ro['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
-      }
-      if (((s as any).ro ?? 0)?.['mname'] === '') {
-        (s as any).ro['mname'] = ((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
-      }
-      if (((s as any).ro ?? 0)?.['mname'] === '') {
-        (s as any).ro['mname'] = ((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
-      }
-      if (((s as any).ro ?? 0)?.['mname'] === '') {
-        (s as any).ro['mname'] = ((s as any).ro ?? 0)?.['mkey'];
-      }
-      (s as any).ro['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $ro[\'mname\'] + \'</font>') : (((s as any).ro ?? 0)?.['mname']));
-      (s as any).ro['nmo'] = ((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
-      if (((s as any).ro ?? 0)?.['nmo'] === 1) {
-        (s as any).ro['nmo_ic'] = 'images/system/ui/name_first_\'    + $ro[\'c\'] + \'.png';
-      } else {
+    }
+    if (((s as any).ro ?? 0)?.['mname'] === '') {
+      (s as any).ro['mname'] = ((s as any).npc_usedname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    }
+    if (((s as any).ro ?? 0)?.['mname'] === '') {
+      (s as any).ro['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    }
+    if (((s as any).ro ?? 0)?.['mname'] === '') {
+      (s as any).ro['mname'] = ((s as any).npc_nickname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    }
+    if (((s as any).ro ?? 0)?.['mname'] === '') {
+      (s as any).ro['mname'] = ((s as any).npc_lastname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    }
+    if (((s as any).ro ?? 0)?.['mname'] === '') {
+      (s as any).ro['mname'] = ((s as any).ro ?? 0)?.['mkey'];
+    }
+    (s as any).ro['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $ro[\'mname\'] + \'</font>') : (((s as any).ro ?? 0)?.['mname']));
+    (s as any).ro['nmo'] = ((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
+    if (((s as any).ro ?? 0)?.['nmo'] === 1) {
+      (s as any).ro['nmo_ic'] = 'images/system/ui/name_first_\'    + $ro[\'c\'] + \'.png';
+    } else {
+      if (((s as any).ro ?? 0)?.['nmo'] === 2) {
         (s as any).ro['nmo_ic'] = 'images/system/ui/name_family_\'   + $ro[\'c\'] + \'.png';
+      } else {
         if (((s as any).ro ?? 0)?.['nmo'] === 3) {
           (s as any).ro['nmo_ic'] = 'images/system/ui/name_nickname_\' + $ro[\'c\'] + \'.png';
         } else {
           (s as any).ro['nmo_ic'] = 'images/system/ui/name_default_\'  + $ro[\'c\'] + \'.png';
         }
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg_alt\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:4px 6px;">');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'up\']>>"></a>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'down\']>>"></a>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_rel[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_rel[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'mlbl\'] + \'</a>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: stat_hide_rel[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_rel[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'mhi_ic\']>>"></a>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="<<$ro[\'ibdr\']>>" href="exec: sd_rel_name_override[\'<<$ro[\'mkey\']>>\'] = (sd_rel_name_override[\'<<$ro[\'mkey\']>>\'] + 1) mod 4 & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'nmo_ic\']>>"></a>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
-        (s as any).ro['mi'] = ((s as any).ro['mi'] ?? 0) + (1);
-        // TODO-QSP: jump '_rnr_mloop'
-        // TODO-QSP: :_rnr_mdone
-        (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</table>');
       }
-      (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td></tr>');
-      (s as any).ro['gi'] = ((s as any).ro['gi'] ?? 0) + (1);
-      if (((s as any).ro ?? 0)?.['gi'] < Object.keys((s as any).rel_group_order ?? {}).length) {
-        // TODO-QSP: jump '_rnr_gloop'
-      }
-      (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
-      return;
     }
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:4px 6px;">');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'up\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'down\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_rel[\'' + qspUntranslated(s, "ro['mkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_hide_rel[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'mlbl\'] + \'</a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide_rel[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_rel[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'mhi_ic\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: sd_rel_name_override[\'<<$ro[\'mkey\']>>\'] = (sd_rel_name_override[\'<<$ro[\'mkey\']>>\'] + 1) mod 4 & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'nmo_ic\']>>"></a>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
+    (s as any).ro['mi'] = ((s as any).ro['mi'] ?? 0) + (1);
+    // TODO-QSP: jump '_rnr_mloop'
+    // TODO-QSP: :_rnr_mdone
+    (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</table>');
   }
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td></tr>');
+  (s as any).ro['gi'] = ((s as any).ro['gi'] ?? 0) + (1);
+  if (((s as any).ro ?? 0)?.['gi'] < Object.keys((s as any).rel_group_order ?? {}).length) {
+    // TODO-QSP: jump '_rnr_gloop'
+  }
+  (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
+  return;
+  scene.build();
+}
+
+function enterReorderMenuBar(s: GameState, scene: SceneBuilder): void {
+  (s as any).ro['ri_character'] = 'icon_character.png';
+  (s as any).ro['ri_looks'] = 'icon_lookself.png';
+  (s as any).ro['ri_purse'] = 'icon_purse.png';
+  (s as any).ro['ri_phone'] = 'icon_phone.png';
+  (s as any).ro['ri_journal'] = 'journal_norm.png';
+  (s as any).ro['ri_magic'] = 'journal_magic.png';
+  (s as any).ro['ri_clock'] = 'clock.png';
+  (s as any).ro['ri_settings'] = 'icon_menu.png';
+  (s as any).ro['ri_help'] = 'icon_help_color.png';
+  (s as any).ro['imgbase'] = 'images/system/icons/menu/';
+  (s as any).ro['bdr'] = '1px solid ' + qspUntranslated(s, "theme_hex['goth']>", { location: "stat_display_menu" }) + '';
+  // TODO-QSP: $result += '<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table cellspacing="6" ce...
+  (s as any).ro['i'] = 0;
+  // TODO-QSP: :_rmb_loop
+  (s as any).ro['key'] = qspUntranslated(s, "menu_bar_order[ro['i']]", { location: "stat_display_menu" });
+  if (((s as any).ro ?? 0)?.['key'] === 'magic'  &&  (((s as any).start_type ?? 0)?.['magic'] === 'nomagic'  ||  ((s as any).stat_cfg ?? 0)?.['magic_separate'] === 0)) {
+    // TODO-QSP: jump '_rmb_next'
+  }
+  (s as any).ro['imgfile'] = 0;
+  // TODO-QSP: $result += '<td valign="top"><table border="0" cellspacing="0" cellpadding="0" bgcolor="<<$theme_hex...
+  // TODO-QSP: $result += '<tr><td colspan="2" align="center" style="padding:4px;"><img height="<<stat_cfg[''menu_i...
+  // TODO-QSP: $result += '<tr>'
+  // TODO-QSP: $result += '<td align="center" width="50%" style="border-top:<<$ro[''bdr'']>>; padding:3px 6px;"><a ...
+  // TODO-QSP: $result += '<td align="center" width="50%" style="border-top:<<$ro[''bdr'']>>; border-left:<<$ro[''b...
+  // TODO-QSP: $result += '</tr></table></td>'
+  // TODO-QSP: :_rmb_next
+  (s as any).ro['i'] = ((s as any).ro['i'] ?? 0) + (1);
+  if (((s as any).ro ?? 0)?.['i'] < Object.keys((s as any).menu_bar_order ?? {}).length) {
+    // TODO-QSP: jump '_rmb_loop'
+  }
+  // TODO-QSP: $result += '</tr></table></center></td></tr>'
+  return;
+  scene.build();
+}
+
+function enterGeneralOptions(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_st_td['cell'] = '<td align="center" valign="middle" bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:1px solid <<$theme_hex[\'goth\']>>; background-color: <<$theme_hex[\'table_bg_alt\']>>; padding:5px; text-align:center; vertical-align:middle;">';
+  // TODO-QSP: $result +=  '<colgroup>'
+  // TODO-QSP: $result +=    '<col width="32%">'
+  // TODO-QSP: $result +=    '<col width="32%">'
+  // TODO-QSP: $result +=    '<col width="32%">'
+  // TODO-QSP: $result +=  '</colgroup>'
+  // TODO-QSP: $temp_values[0] = '0|Left'
+  // TODO-QSP: $temp_values[1] = '1|Center'
+  // TODO-QSP: $temp_values[2] = '2|Right'
+  // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Gl...
+  // TODO-QSP: $temp_values[0] = '0|Hidden'
+  // TODO-QSP: $temp_values[1] = '1|Labels'
+  // TODO-QSP: $temp_values[2] = '2|Collapsible'
+  // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'He...
+  // TODO-QSP: $temp_values[0] = '0|Auto'
+  // TODO-QSP: $temp_values[1] = '1|Line break'
+  // TODO-QSP: $temp_values[2] = '2|Horizontal rule'
+  // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Di...
+  // TODO-QSP: $temp_values[0] = '-2|Small (70%)'
+  // TODO-QSP: $temp_values[1] = '-1|Smaller (85%)'
+  // TODO-QSP: $temp_values[2] = '0|Normal'
+  // TODO-QSP: $temp_values[3] = '1|Larger (115%)'
+  // TODO-QSP: $temp_values[4] = '2|Large (130%)'
+  // TODO-QSP: $temp_values[5] = 'custom|Custom'
+  // TODO-QSP: $temp_actions_right[0] = 'stat_cfg[''font_size''] = -1'
+  // TODO-QSP: $temp_actions_right[1] = 'stat_cfg[''font_size''] = 0'
+  // TODO-QSP: $temp_actions_right[2] = 'stat_cfg[''font_size''] = 1'
+  // TODO-QSP: $temp_actions_right[3] = 'stat_cfg[''font_size''] = 2'
+  // TODO-QSP: $temp_actions_right[4] = $temp_fs_act
+  // TODO-QSP: $temp_actions_right[5] = 'stat_cfg[''font_size''] = -2'
+  // TODO-QSP: $temp_actions_left[0] = $temp_fs_act
+  // TODO-QSP: $temp_actions_left[1] = 'stat_cfg[''font_size''] = -2'
+  // TODO-QSP: $temp_actions_left[2] = 'stat_cfg[''font_size''] = -1'
+  // TODO-QSP: $temp_actions_left[3] = 'stat_cfg[''font_size''] = 0'
+  // TODO-QSP: $temp_actions_left[4] = 'stat_cfg[''font_size''] = 1'
+  // TODO-QSP: $temp_actions_left[5] = 'stat_cfg[''font_size''] = 2'
+  // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Fo...
+  // TODO-QSP: $temp_values[0] = '0|Icons & Texts'
+  // TODO-QSP: $temp_values[1] = '1|Prefer Icons'
+  // TODO-QSP: $temp_values[2] = '2|Text only'
+  // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'St...
+  // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
+  // TODO-QSP: $result += '</table>'
+  return;
   scene.build();
 }
 
@@ -849,6 +943,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case '_reorder_nested_relations':
       enterReorderNestedRelations(s, scene);
+      break;
+    case '_reorder_menu_bar':
+      enterReorderMenuBar(s, scene);
+      break;
+    case 'general_options':
+      enterGeneralOptions(s, scene);
       break;
     default:
       enterStart(s, scene);

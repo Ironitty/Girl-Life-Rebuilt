@@ -34,7 +34,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Keep watching', handler: (st: GameState) => {
+        { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -68,7 +68,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Keep watching', handler: (st: GameState) => {
+      { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -104,7 +104,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Comfort her', handler: (st: GameState) => {
+          { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -131,7 +131,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Comfort her', handler: (st: GameState) => {
+        { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
     qspCall(s, 'willpower', 'misc', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -162,7 +162,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Ask about getting a job at the brothel', handler: (st: GameState) => {
+          { label: 'Ask about getting a job at the brothel [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
     (s as any).bordel = 1;
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
@@ -215,7 +215,7 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Comfort her', handler: (st: GameState) => {
+      { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 15);
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');

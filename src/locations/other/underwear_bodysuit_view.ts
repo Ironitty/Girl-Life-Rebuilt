@@ -193,13 +193,13 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   (s as any).shop_utils_view['number'] = qspUntranslated(s, "ARGS[3]", { location: "underwear_bodysuit_view" });
   (s as any).shop_utils_view['discount'] = qspUntranslated(s, "ARGS[4]", { location: "underwear_bodysuit_view" });
   qspCall(s, 'stat', '');
-  scene.img(`${qspFunc(s, '\'$pcs_outfit_image\'', '$shop_utils_view[\'type\'] + \'_bodysuits\'', ((s as any).shop_utils_view ?? 0)?.['\'number\''])}`);
+  scene.img(`${qspFunc(s, '\'$pcs_outfit_image\'', '$shop_utils_view[\'type\'] + \'_bodysuits\'', ((s as any).shop_utils_view ?? 0)?.['number'])}`);
   // TODO-QSP: gs 'underwear_attributes', $shop_utils_view['type']+'_bodysuits', shop_utils_view['number']
   qspCall(s, 'underwear_descriptions', 'bodysuit');
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
     // TODO-QSP: xgt 'underwear_bodysuit_view', 'view_item_shop'
   }
-  if (qspFunc(s, 'underwear_bodysuits', 'is_wearing', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" }), qspUntranslated(s, "\u00001\u0000", { location: "underwear_bodysuit_view" }))) {
+  if (qspFunc(s, 'underwear_bodysuits', 'is_wearing', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
     // TODO-QSP: xgt 'underwear_bodysuit_view', 'view_item_wearing'
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
@@ -221,22 +221,22 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
-  if (qspFunc(s, 'underwear_bodysuits', 'is_owned', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" }), qspUntranslated(s, "\u00001\u0000", { location: "underwear_bodysuit_view" }))) {
+  if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
     scene.text('You already own this item.');
     return;
   }
-  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._bodysuits ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
+  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? {})?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? {})?.['type'] + '_bodysuits', ((s as any).shop_utils_view ?? 0)?.['number']);
   (s as any).shop_utils_view['base_price'] = ((s as any).BraPrice ?? 0);
-  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['base_price'] * ((s as any).max ?? 0)(0, 100 - ((s as any).shop_utils_view ?? 0)?.['discount_total']) / 100;
-  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['price'] / 50 * 50;
+  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['base_price'] * Math.max(0, 100 - ((s as any).shop_utils_view ?? {})?.['discount_total']) / 100;
+  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
   if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['base_price']) {
     (s as any).shop_utils_view['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
   } else {
-    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <((s as any).b ?? 0)>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</((s as any).b ?? 0)>';
+    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
     // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
   }
   // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
-  if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" })) === 0) {
+  if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['price']) === 0) {
     scene.text('You do not have enough money to buy this bodysuit.');
   } else {
     scene.actions([
@@ -345,7 +345,7 @@ function enterViewItemWearHypno(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Put it on anyways', handler: (st: GameState) => {
+      { label: 'Put it on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     // TODO-QSP: gs 'underwear_bodysuits', 'wear', $shop_utils_view['type'], shop_utils_view['number']
@@ -363,10 +363,10 @@ function enterViewItemWearHypno(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
-  if (qspFunc(s, 'underwear_bodysuits', 'is_owned', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" }), qspUntranslated(s, "\u00001\u0000", { location: "underwear_bodysuit_view" })) === 0) {
+  if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     // TODO-QSP: exit
   }
-  if (qspFunc(s, 'underwear_bodysuits', 'in_wardrobe', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" }), qspUntranslated(s, "\u00001\u0000", { location: "underwear_bodysuit_view" })) === 0) {
+  if (qspFunc(s, 'underwear_bodysuits', 'in_wardrobe', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to wardrobe', handler: (st: GameState) => {
     // TODO-QSP: gs 'underwear_bodysuits', 'move_to_wardrobe', $shop_utils_view['type'], shop_utils_view['number']
@@ -374,10 +374,10 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (qspFunc(s, 'underwear_bodysuits', 'is_immutable', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" }), qspUntranslated(s, "\u00001\u0000", { location: "underwear_bodysuit_view" }))) {
+  if (qspFunc(s, 'underwear_bodysuits', 'is_immutable', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
     // TODO-QSP: exit
   }
-  if (qspFunc(s, 'underwear_bodysuits', 'in_storage', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" }), qspUntranslated(s, "\u00001\u0000", { location: "underwear_bodysuit_view" })) === 0) {
+  if (qspFunc(s, 'underwear_bodysuits', 'in_storage', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to storage', handler: (st: GameState) => {
     // TODO-QSP: gs 'underwear_bodysuits', 'move_to_storage', $shop_utils_view['type'], shop_utils_view['number']
@@ -385,7 +385,7 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (qspFunc(s, 'underwear_bodysuits', 'in_unwanted', qspUntranslated(s, "\u00000\u0000", { location: "underwear_bodysuit_view" }), qspUntranslated(s, "\u00001\u0000", { location: "underwear_bodysuit_view" })) === 0) {
+  if (qspFunc(s, 'underwear_bodysuits', 'in_unwanted', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     scene.actions([
       { label: 'Move to unwanted', handler: (st: GameState) => {
     // TODO-QSP: gs 'underwear_bodysuits', 'move_to_unwanted', $shop_utils_view['type'], shop_utils_view['number']

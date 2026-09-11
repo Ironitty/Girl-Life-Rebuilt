@@ -382,10 +382,15 @@ function enterDoublelovesex(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['huntersex', 'doubleloveOral12'] },
     ]);
   } else {
-    scene.actions([
-      { label: 'Suck', goto: ['huntersex', 'doubleloveOralCum12_1'] },
-      { label: 'Suck', goto: ['huntersex', 'doubleloveOralCum12_2'] },
-    ]);
+    if (((s as any).huntsexa ?? 0) === 4) {
+      scene.actions([
+        { label: 'Suck', goto: ['huntersex', 'doubleloveOralCum12_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Suck', goto: ['huntersex', 'doubleloveOralCum12_2'] },
+      ]);
+    }
   }
   scene.build();
 }
@@ -397,30 +402,1155 @@ function enterDoubleloveOral12(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temphunt ?? 0) <= 2) {
     qspCall(s, 'boyStat', 'A172');
   } else {
-    qspCall(s, 'boyStat', 'A173');
-    if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
-      qspCall(s, 'boyStat', 'A63');
-    } else {
-      qspCall(s, 'boyStat', 'A62');
-    }
-    qspCall(s, 'oral', 'start');
-    if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
-      qspCall(s, 'boyStat', 'A174');
-    } else {
+    if (((s as any).temphunt ?? 0) === 3) {
       qspCall(s, 'boyStat', 'A173');
+    } else {
+      if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+        qspCall(s, 'boyStat', 'A63');
+      } else {
+        qspCall(s, 'boyStat', 'A62');
+      }
+    }
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  } else {
+    if (((s as any).temphunt ?? 0) === 2) {
+      qspCall(s, 'boyStat', 'A173');
+    } else {
       if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
         qspCall(s, 'boyStat', 'A61');
       } else {
         qspCall(s, 'boyStat', 'A62');
       }
-      qspCall(s, 'oral', 'start');
-      // TODO-QSP: dynamic text: <<$textsexhunter[5]>>
-      scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "huntersex" })}`);
-      qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
-      qspCall(s, 'stat', '');
-      qspCall(s, 'huntersex', 'rng_1');
     }
   }
+  qspCall(s, 'oral', 'start');
+  // TODO-QSP: dynamic text: <<$textsexhunter[5]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_1');
+  scene.build();
+}
+
+function enterDoubleloveOralCum12_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveoralcum12.1.jpg');
+  scene.text('You kneel in front of guys and begin sucking their dicks, taking turns and paying attention to each one…');
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_2');
+  scene.build();
+}
+
+function enterDoubleloveOralCum12_2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveoralcum12.2.jpg');
+  scene.text('You kneel in front of guys and begin sucking their dicks, taking turns and paying attention to each one…');
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_3');
+  scene.build();
+}
+
+function enterDoubleloveDog112(s: GameState, scene: SceneBuilder): void {
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  scene.img('images/locations/gadukino/sex/hunter/doublelovedog112.\' + rand(1, 3) + \'.jpg');
+  scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_4');
+  scene.build();
+}
+
+function enterDoubleloveDogCum112_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovedogcum112_1.jpg');
+  scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
+  qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_2');
+  scene.build();
+}
+
+function enterDoubleloveDogCum112_2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovedogcum112_2.jpg');
+  scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_3');
+  scene.build();
+}
+
+function enterDoubleloveDog212(s: GameState, scene: SceneBuilder): void {
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  scene.img('images/locations/gadukino/sex/hunter/doublelovedog212.\' + rand(1, 3) + \'.jpg');
+  scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_4');
+  scene.build();
+}
+
+function enterDoubleloveDogCum212_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovedogcum212_1.jpg');
+  scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
+  qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_3');
+  scene.build();
+}
+
+function enterDoubleloveDogCum212_2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovedogcum212_2.jpg');
+  scene.text('You bend over in between the boys and suck one cock, while the second penetrates you from behind…');
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_2');
+  scene.build();
+}
+
+function enterDoubleloveSide12(s: GameState, scene: SceneBuilder): void {
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveside12.\' + rand(1, 2) + \'.jpg');
+  scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_1');
+  scene.build();
+}
+
+function enterDoubleloveSideCum12_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovesidecum12_1.jpg');
+  scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
+  qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_3');
+  scene.build();
+}
+
+function enterDoubleloveSideCum12_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  scene.img('images/locations/gadukino/sex/hunter/doublelovesidecum12_2.jpg');
+  scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_2');
+  scene.build();
+}
+
+function enterDoubleloveCow112(s: GameState, scene: SceneBuilder): void {
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecow112.\' + rand(1, 2) + \'.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  (s as any).huntsexa = Math.floor(Math.random() * 8) + 1;
+  qspCall(s, 'huntersex', 'rng_5');
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 8) {
+    // TODO-QSP: act 'Sit down': gt 'huntersex', 'doubleloveCowCum1'
+  }
+  scene.build();
+}
+
+function enterDoubleloveCowCum112_1(s: GameState, scene: SceneBuilder): void {
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecowcum112_1.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_2');
+  scene.build();
+}
+
+function enterDoubleloveCowCum112_2(s: GameState, scene: SceneBuilder): void {
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecowcum112_2.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_3');
+  scene.build();
+}
+
+function enterDoubleloveCow212(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecow212.\' + rand(1, 2) + \'.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[7]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[7]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  (s as any).huntsexa = Math.floor(Math.random() * 7) + 1;
+  qspCall(s, 'huntersex', 'rng_5');
+  scene.build();
+}
+
+function enterDoubleloveCowCum212_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecowcum212_1.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_2');
+  scene.build();
+}
+
+function enterDoubleloveCowCum212_2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecowcum212_2.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) - (1);
+  }
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[6]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[6]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_3');
+  scene.build();
+}
+
+function enterDoubleloveSide2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyBsexa = ((s as any).boyBsexa ?? 0) + (1);
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveside2.\' + rand(1, 2) + \'.jpg');
+  scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  (s as any).huntsexa = Math.floor(Math.random() * 2) + 1;
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
+    // TODO-QSP: act 'Lie on your side': gt 'huntersex', 'doubleloveSideCum2'
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2) {
+    // TODO-QSP: act 'Suck': gt 'huntersex', 'doubleloveOral2'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterDoubleloveSideCum2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doublelovesidecum2.jpg');
+  scene.text('You lie on your side with a member in front of your face, and the other one penetrating you from behind…');
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  (s as any).lubonus = 0;
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
+  qspCall(s, 'stat', '');
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
+    // TODO-QSP: act 'Further': gt $loc, $loc_arg
+  }
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    (s as any).hunterVars['forest_sex'] = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+  }, goto: ['gad_swamp_yard', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterDoubleloveCow1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecow1.\' + rand(1, 2) + \'.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'huntersex', 'rng_3');
+  scene.build();
+}
+
+function enterDoubleloveCowCum1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doublelovecowcum1.jpg');
+  scene.text('One of the guys lays on the ground and you mount him. The second puts his cock in your mouth…');
+  qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "huntersex" })}`);
+  (s as any).lubonus = 0;
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'anal', (-5), 'sub', 'group', 'rough');
+  qspCall(s, 'stat', '');
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
+    // TODO-QSP: act 'Further': gt $loc, $loc_arg
+  }
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    (s as any).hunterVars['forest_sex'] = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+  }, goto: ['gad_swamp_yard', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterDoubleloveOral1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+    (s as any).boyAsexa = ((s as any).boyAsexa ?? 0) + (1);
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveoral1.\' + rand(1, 2) + \'.jpg');
+  scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
+  qspCall(s, 'oral', 'start');
+  // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[2]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  if (((s as any).pcs_sleep ?? 0) >= 10) {
+    // TODO-QSP: act 'Suck on': gt 'huntersex', 'doubleloveOralCum1'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterDoubleloveOralCum1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) <= 2) {
+    qspCall(s, 'boyStat', 'A172');
+  }
+  if (((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A63');
+  }
+  if (((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveoralcum1.jpg');
+  scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
+  qspCall(s, 'oral', 'start');
+  // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  (s as any).lubonus = 0;
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
+    // TODO-QSP: act 'Further': gt $loc, $loc_arg
+  }
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    (s as any).hunterVars['forest_sex'] = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+  }, goto: ['gad_swamp_yard', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterDoubleloveOral2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveoral2.\' + rand(1, 2) + \'.jpg');
+  scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[2]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[2]", { location: "huntersex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  if (((s as any).pcs_sleep ?? 0) >= 10) {
+    // TODO-QSP: act 'Suck on': gt 'huntersex', 'doubleloveOralCum2'
+  }
+  if (((s as any).pcs_sleep ?? 0) < 10) {
+    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+  }
+  scene.build();
+}
+
+function enterDoubleloveOralCum2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  if (((s as any).temphunt ?? 0) === 1  ||  ((s as any).temphunt ?? 0) === 3) {
+    qspCall(s, 'boyStat', 'A174');
+  }
+  if (((s as any).temphunt ?? 0) === 2) {
+    qspCall(s, 'boyStat', 'A173');
+  }
+  if (((s as any).temphunt ?? 0) === 4  ||  ((s as any).temphunt ?? 0) === 6) {
+    qspCall(s, 'boyStat', 'A61');
+  }
+  if (((s as any).temphunt ?? 0) === 5) {
+    qspCall(s, 'boyStat', 'A62');
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveoralcum2.jpg');
+  scene.text('You kneel in front of the boys, their cocks pointed right at your face…');
+  qspCall(s, 'oral', 'start');
+  if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).boyBsexa ?? 0) > 0) {
+    // TODO-QSP: dynamic text: <<$textsexhunter[1]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[1]", { location: "huntersex" })}`);
+    qspCall(s, 'mood', 'lower', 'tiny');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
+  }
+  qspCall(s, 'dinsex', 'dinrandswallow');
+  // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
+  (s as any).lubonus = 0;
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
+    // TODO-QSP: act 'Further': gt $loc, $loc_arg
+  }
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    (s as any).hunterVars['forest_sex'] = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+  }, goto: ['gad_swamp_yard', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterDoubleloveOralCum12(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+  qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
+  (s as any).lubonus = 0;
+  if (((s as any).clothingworntype ?? 0) === 'nude') {
+    qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1);
+  }
+  if ((((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0)) {
+    qspCall(s, 'cum_call', 'clothes_hidden', ((s as any).boy ?? 0), 1);
+  }
+  scene.img('images/locations/gadukino/sex/hunter/doubleloveoralcum12.\' + rand(1, 3) + \'.jpg');
+  scene.text('You are on your knees in front of the boys with an open mouth.');
+  scene.text('Soon, a jet of sperm hits you in the mouth, then another, and another. The sperm fills your mouth and runs down your chin and onto your breasts.');
+  scene.text('The guys put their dicks back in their pants and go about their business, leaving you alone to freshen up.');
+  qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
+  qspCall(s, 'arousal', 'end');
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
+    // TODO-QSP: act 'Further': gt $loc, $loc_arg
+  }
+  if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    (s as any).hunterVars['forest_sex'] = 0;
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+  }, goto: ['gad_swamp_yard', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterSluthomeSTART(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
+  scene.img('images/locations/gadukino/sex/hunter/sluthomestart.jpg');
+  scene.text('You crouched down and began to pull down the guy\'s pants. When it was done, the he looks at you and says…');
+  qspCall(s, 'arousal', 'foreplay', 5, 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).huntsexa ?? 0) === 1) {
+    // TODO-QSP: act 'Suck': gt 'huntersex', 'sluthomeORAL1'
+  }
+  if (((s as any).huntsexa ?? 0) === 2) {
+    // TODO-QSP: act 'Suck': gt 'huntersex', 'sluthomeOralCum1'
+  }
+  if (((s as any).huntsexa ?? 0) === 3) {
+    // TODO-QSP: act 'Panties': gt 'huntersex', 'sluthomeTanga'
+  }
+  // TODO-QSP: end & !! --- sluthomeSTART ---
   scene.build();
 }
 
@@ -444,6 +1574,87 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'doubleloveOral12':
       enterDoubleloveOral12(s, scene);
+      break;
+    case 'doubleloveOralCum12_1':
+      enterDoubleloveOralCum12_1(s, scene);
+      break;
+    case 'doubleloveOralCum12_2':
+      enterDoubleloveOralCum12_2(s, scene);
+      break;
+    case 'doubleloveDog112':
+      enterDoubleloveDog112(s, scene);
+      break;
+    case 'doubleloveDogCum112_1':
+      enterDoubleloveDogCum112_1(s, scene);
+      break;
+    case 'doubleloveDogCum112_2':
+      enterDoubleloveDogCum112_2(s, scene);
+      break;
+    case 'doubleloveDog212':
+      enterDoubleloveDog212(s, scene);
+      break;
+    case 'doubleloveDogCum212_1':
+      enterDoubleloveDogCum212_1(s, scene);
+      break;
+    case 'doubleloveDogCum212_2':
+      enterDoubleloveDogCum212_2(s, scene);
+      break;
+    case 'doubleloveSide12':
+      enterDoubleloveSide12(s, scene);
+      break;
+    case 'doubleloveSideCum12_1':
+      enterDoubleloveSideCum12_1(s, scene);
+      break;
+    case 'doubleloveSideCum12_2':
+      enterDoubleloveSideCum12_2(s, scene);
+      break;
+    case 'doubleloveCow112':
+      enterDoubleloveCow112(s, scene);
+      break;
+    case 'doubleloveCowCum112_1':
+      enterDoubleloveCowCum112_1(s, scene);
+      break;
+    case 'doubleloveCowCum112_2':
+      enterDoubleloveCowCum112_2(s, scene);
+      break;
+    case 'doubleloveCow212':
+      enterDoubleloveCow212(s, scene);
+      break;
+    case 'doubleloveCowCum212_1':
+      enterDoubleloveCowCum212_1(s, scene);
+      break;
+    case 'doubleloveCowCum212_2':
+      enterDoubleloveCowCum212_2(s, scene);
+      break;
+    case 'doubleloveSide2':
+      enterDoubleloveSide2(s, scene);
+      break;
+    case 'doubleloveSideCum2':
+      enterDoubleloveSideCum2(s, scene);
+      break;
+    case 'doubleloveCow1':
+      enterDoubleloveCow1(s, scene);
+      break;
+    case 'doubleloveCowCum1':
+      enterDoubleloveCowCum1(s, scene);
+      break;
+    case 'doubleloveOral1':
+      enterDoubleloveOral1(s, scene);
+      break;
+    case 'doubleloveOralCum1':
+      enterDoubleloveOralCum1(s, scene);
+      break;
+    case 'doubleloveOral2':
+      enterDoubleloveOral2(s, scene);
+      break;
+    case 'doubleloveOralCum2':
+      enterDoubleloveOralCum2(s, scene);
+      break;
+    case 'doubleloveOralCum12':
+      enterDoubleloveOralCum12(s, scene);
+      break;
+    case 'sluthomeSTART':
+      enterSluthomeSTART(s, scene);
       break;
     default:
       enterSexafterstrip1(s, scene);
