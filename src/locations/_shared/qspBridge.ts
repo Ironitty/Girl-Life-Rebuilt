@@ -206,7 +206,10 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
     }
     case 'core_library': {
       switch (func) {
-        case 'setloc': goto(s, str(args[0]), str(args[1])); return;
+        case 'setloc':
+          s.loc = str(args[0]);
+          s.locArg = str(args[1]);
+          return;
       }
       warn(module, func, args);
       return;
