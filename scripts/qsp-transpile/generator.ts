@@ -184,11 +184,21 @@ function generateSceneBody(
            out.push(`// TODO-QSP: ${node.var} ${node.op} ${node.value}`);
            break;
          }
-         if (lhs === 'backimage' && node.op === '=') {
-          out.push(`scene.img(${val});`);
-          stateWrites.push(varName);
-          break;
-        }
+          if (lhs === 'backimage' && node.op === '=') {
+           out.push(`scene.img(${val});`);
+           stateWrites.push(varName);
+           break;
+         }
+          if (lhs === "setloc['StageImage']" && node.op === '=') {
+           out.push(`scene.img(${val});`);
+           stateWrites.push(varName);
+           break;
+         }
+          if (lhs === "setloc['imagepath']" && node.op === '=') {
+           out.push(`((s as any).setloc ?? {})['imagepath'] = 'images/' + ${val};`);
+           stateWrites.push(varName);
+           break;
+         }
         const bracketIdx = lhs.indexOf('[');
         if (bracketIdx !== -1) {
           const objName = lhs.slice(0, bracketIdx);

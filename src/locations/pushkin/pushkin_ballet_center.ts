@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'ballet_pushkin_center', ((s as any).locArgs?.[0] ?? 0));
   ((s as any).setloc ?? {})['StageTitle'] = 'Pushkin Residential School';
-  ((s as any).setloc ?? {})['StageImage'] = 'locations/pushkin/ballet_residence/residence.jpg';
+  scene.img('locations/pushkin/ballet_residence/residence.jpg');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'stat', '');

@@ -18,9 +18,9 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prevloc ?? 0) !== 'gad_gphouse') {
     qspCall(s, 'gad_gphouse', 'init');
   }
-  ((s as any).setloc ?? {})['imagepath'] = 'locations/gadukino/gp_dacha/';
+  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/gadukino/gp_dacha/';
   ((s as any).setloc ?? {})['StageTitle'] = ((s as any).setloc ?? 0)?.['room_title'];
-  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + ((s as any).setloc ?? {})?.['room_image'];
+  scene.img(((s as any).setloc ?? {})?.['imagepath'] + ((s as any).setloc ?? {})?.['room_image']);
   qspCall(s, 'shortgs', 'clothing_status');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');

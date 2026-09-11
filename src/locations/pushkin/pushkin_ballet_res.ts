@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['imagepath'] = 'locations/pushkin/';
+  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pushkin/';
   scene.build();
 }
 
@@ -49,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterBedroom(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Residential Bedroom';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/bedroom.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/bedroom.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'shortgs', 'clothing_status');
   qspCall(s, 'stat', '');
@@ -150,7 +150,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Residential Hallway';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/hall.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/hall.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'core_library', 'corridor');
   qspCall(s, 'stat', '');
@@ -237,7 +237,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 
 function enterMayaRoom(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = '' + qspUntranslated(s, "npc_firstname['A274']>", { location: "pushkin_ballet_res" }) + ' Room';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/maya_room.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/maya_room.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -257,7 +257,7 @@ function enterMayaRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterCommunalArea(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/communal.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/communal.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -290,7 +290,7 @@ function enterCommunalArea(s: GameState, scene: SceneBuilder): void {
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Residential Kitchen';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/kitchen.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/kitchen.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -331,7 +331,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) > 4  &&  ((s as any).hour ?? 0) < 8) {
         scene.actions([
           { label: 'Eat breakfast', handler: (st: GameState) => {
-    ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/breakfast.jpg';
+    scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/breakfast.jpg');
     qspCall(s, 'food', 'family_meals', 'breakfast');
     qspCall(s, 'stat', '');
     qspCall(s, 'core_library', 'stage_title');
@@ -358,7 +358,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterWardenRoom(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Wardens Residence';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/warden.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_residence/warden.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_res', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -472,7 +472,7 @@ function enterRadio(s: GameState, scene: SceneBuilder): void {
     ((s as any).ballet_grade_score ?? {})['homework'] = (((s as any).ballet_grade_score ?? {})['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
   }
   ((s as any).setloc ?? {})['StageTitle'] = 'Radio';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/russian_radio.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/russian_radio.jpg');
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You listen to the radio for half an hour, taking notes of the performance with the musical concepts from your earlier lessons. Then, you close your eyes and start to relax humming along to the familiar music after a while. ');
@@ -493,7 +493,7 @@ function enterFeetcare(s: GameState, scene: SceneBuilder): void {
   (s as any).ballet_grade_health = ((s as any).ballet_grade_health ?? 0) + (1);
   qspCall(s, 'stat', '');
   ((s as any).setloc ?? {})['StageTitle'] = 'Feet Care';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_events/feet_soak.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_events/feet_soak.jpg');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('After the long day at the ballet class, you diligently inspect your calves and feet for injuries, gently massaging Arnica Gel onto your calves and ankles to alleviate stiffness and swelling. Next, you carefully examine your calluses and check for any blisters.');
   scene.text('With your checks completed, you reach for your exercise band, commencing a series of foot-stretching exercises, culminating in a soothing massage using a tennis ball on your calves and soles.');
@@ -514,7 +514,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   ((s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
   ((s as any).ballet_grade_score ?? {})['homework'] = (((s as any).ballet_grade_score ?? {})['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
   ((s as any).setloc ?? {})['StageTitle'] = 'Ballet Studies';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/study.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + 'ballet_residence/study.jpg');
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You gather your school books and notebook to begin studying ballet movements, history, and musical theory, diligently taking notes as you progress. After an hour of reading, you notice your eyes beginning to glaze over. Recognizing the need for a break, you decide to stand up and stretch.');
@@ -546,7 +546,7 @@ function enterMakeUp(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   ((s as any).setloc ?? {})['StageTitle'] = 'Make Up Practice';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_events/make-up.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_res" }) + '/ballet_events/make-up.jpg');
   qspCall(s, 'core_library', 'stage_title');
   if (((s as any).pcs_makupskl ?? 0) <= 30) {
     scene.text('You struggle to master the basics of applying your look, wasting a lot of your expensive make-up. You begin to wonder if you need to get help with practicing.');

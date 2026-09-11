@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['imagepath'] = 'locations/gadukino';
+  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/gadukino';
   qspCall(s, 'core_library', 'setloc', 'gad_gpbarn', '');
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'stat', '');
@@ -194,7 +194,7 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
   ((s as any).setloc ?? {})['StageTitle'] = 'Guest Room';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "gad_gpbarn" }) + '/gp_dacha/gad_room.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "gad_gpbarn" }) + '/gp_dacha/gad_room.jpg');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('A small rustic loft space converted from your grandparents barn. A pair of sleeping pallets of dubious comfort is laid out for guests. The room walls are whitewashed with some clothes lines to dry your clothes with some farming tools. It\'s not much to look at but it\'s somewhere you can call home and have some privacy.');
   qspCall(s, 'library_functions', 'set_home_read_acts');

@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['imagepath'] = 'locations/city/mariinsky/';
+  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/city/mariinsky/';
   // TODO-QSP: end
   scene.build();
 }
@@ -32,7 +32,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((s as any).ARGS ?? 0) === 'hall'  ||  ((s as any).locArgs?.[0] ?? 0) === 'start') {
     ((s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Theatre Foyer';
-    ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_hall';
+    scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_hall');
     qspCall(s, 'city_mariinsky', 'setup', 'hall');
     if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 0) {
       // TODO-QSP: act 'Tickets Booth': gt 'city_mariinsky', 'tickets'
@@ -79,7 +79,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 
 function enterTickets(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Tickets';
-  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_tickets';
+  scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_tickets');
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('fluff text for purchasing tickets');
   // TODO-QSP: end
@@ -88,7 +88,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Main Stage';
-  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_stage';
+  scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_stage');
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('For over two centuries, the grand stage of St. Petersburgs\' has been the most prestigious of all Russia\'s ballet and opera theatres and, each year, hosts the Vaganova Ballet Academy\'s performances for their students. You gaze in wonder as you take your seat at the rich facade and feel the presence of all those illustrious performers who have tread those boards.');
   // TODO-QSP: end
@@ -148,7 +148,7 @@ function enterStageDoor(s: GameState, scene: SceneBuilder): void {
 
 function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Changing Room';
-  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'changing_room';
+  scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'changing_room');
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   if (((s as any).balletqw ?? 0)?.['rehearsals'] === 1) {
     scene.text('You enter the changing room and see the other dancers getting for today\'s rehearsals. You quickly change into your dance outfit and head out onto the stage.');

@@ -15,18 +15,18 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'core_library', 'setloc', 'city_canals', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'stat', '');
-  ((s as any).setloc ?? {})['imagepath'] = 'locations/city/canals/';
+  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/city/canals/';
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 9) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'city_canals_day_' + Math.floor(Math.random() * 2) + 1 + '.jpg';
+      scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'city_canals_day_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
     } else {
-      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'city_canals_night_' + Math.floor(Math.random() * 2) + 1 + '.jpg';
+      scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'city_canals_night_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'w_city_canals_day_1.jpg';
+      scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'w_city_canals_day_1.jpg');
     } else {
-      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'w_city_canals_night_1.jpg';
+      scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'w_city_canals_night_1.jpg');
     }
   }
   qspCall(s, 'core_library', 'stage_title');

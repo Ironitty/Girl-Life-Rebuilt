@@ -73,7 +73,7 @@ function enterGrave(s: GameState, scene: SceneBuilder): void {
 
 function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'Pushkin Graveyard';
-  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "npc_274_init" }) + 'ballet_events/graveyard.jpg';
+  scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "npc_274_init" }) + 'ballet_events/graveyard.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');

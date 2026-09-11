@@ -280,7 +280,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'prep') {
         ((s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
-        ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/communal.jpg';
+        scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/communal.jpg');
         qspCall(s, 'core_library', 'stage_title');
         (s as any).minut = ((s as any).minut ?? 0) + 20;
         qspCall(s, 'stat', '');
@@ -302,7 +302,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'party') {
           ((s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
-          ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/gasha_birthday.jpg';
+          scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/gasha_birthday.jpg');
           qspCall(s, 'core_library', 'stage_title');
           (s as any).minut = ((s as any).minut ?? 0) + 90;
           qspCall(s, 'stat', '');
@@ -593,7 +593,7 @@ function enterRudolphqw(s: GameState, scene: SceneBuilder): void {
 function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '0') {
     ((s as any).setloc ?? {})['StageTitle'] = 'The Chess Match';
-    ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg';
+    scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg');
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You enter the communal room you see the twins <<$npc_firstname['A281']>> and <<$...
     scene.text(`You enter the communal room you see the twins ${((s as any).npc_firstname ?? 0)?.['A281']} and ${((s as any).npc_firstname ?? 0)?.['A282']} sitting in the corner intently staring at a chess board. You notice the game has just started and a few of the other residents had settled down to watch them.`);
@@ -603,7 +603,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === '1') {
       ((s as any).setloc ?? {})['StageTitle'] = 'TV Night';
-      ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg';
+      scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg');
       // TODO-QSP: dynamic text: You enter the common room and see <<$npc_firstname['A280']>> relaxing in front o...
       scene.text(`You enter the common room and see ${((s as any).npc_firstname ?? 0)?.['A280']} relaxing in front of the TV watching a ballet rehearsal. She is nibbling a small plate of fruit pieces and looks towards you as you enter.`);
     } else {
