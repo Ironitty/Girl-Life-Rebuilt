@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gkafe', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'family_schedule', '');
@@ -183,5 +179,6 @@ export const gkafe: LocationDef = {
   title: 'Borislav\'s cafe',
   region: 'other',
   locationType: 'public_indoors',
+  description: ['A small shabby cafe attached to the train station.'],
   enter: enter,
 };

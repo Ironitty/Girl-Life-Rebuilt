@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');

@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) === 21) {
     scene.actions([{ label: 'Continue', goto: ['rasputin_show_var', 'first_half'] }]);
   } else {

@@ -7,10 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hotelRoomDays ?? 0)?.['pav'] === 0  &&  ((s as any).hour ?? 0) > 11) {
     ((s as any).HotelRoom ?? {})['pav'] = 0;
   }
@@ -241,5 +237,6 @@ export const pav_hotelReception: LocationDef = {
   name: 'pav_hotelReception',
   title: '<center><h4>Hotel reception</h4></center>',
   region: 'pavlovsk',
+  description: ['The same cute brunette as always is manning the reception desk. You wonder if she ever takes a break.'],
   enter: enter,
 };

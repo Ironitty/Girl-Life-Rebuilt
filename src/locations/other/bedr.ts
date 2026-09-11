@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bedr', '');
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'stat', '');
@@ -95,5 +91,6 @@ export const bedr: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
+  description: ['Your guitar rests on its stand next to your bed.'],
   enter: enter,
 };

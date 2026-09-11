@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'komp_cam_functions', 'check_available_vaginal_dildo');
@@ -845,5 +841,6 @@ export const komp_cam_MFC_requests_one: LocationDef = {
   name: 'komp_cam_MFC_requests_one',
   title: 'One of the viewers asks: "Do you have a vibrator or dildo? I',
   region: 'other',
+  description: ['One of the viewers asks: "Do you have a vibrator or dildo? I want you to put up a little show and fuck yourself with it…"'],
   enter: enter,
 };

@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'city_mall', '');
@@ -124,5 +120,6 @@ export const city_mall: LocationDef = {
   title: '<center><b>Shopping mall</b></center>',
   region: 'city',
   locationType: 'public_indoors',
+  description: ['The shopping center is closed and security are guiding everyone out so they can lock up.'],
   enter: enter,
 };

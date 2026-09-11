@@ -38,6 +38,8 @@ export function generateTs(loc: QspLocation): GenResult {
   if (loc.scenes.length > 0) {
     if (loc.scenes[0].arg === '' && loc.topLevel.length > 0) {
       sceneList = [{ ...loc.scenes[0], body: [...loc.topLevel, ...loc.scenes[0].body] }, ...loc.scenes.slice(1)];
+    } else if (loc.scenes[0].arg === '') {
+      sceneList = loc.scenes;
     } else {
       sceneList = [{ kind: 'scene' as const, arg: '', body: loc.topLevel }, ...loc.scenes];
     }

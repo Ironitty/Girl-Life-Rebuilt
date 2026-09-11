@@ -7,10 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'vanrPar', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'family_schedule', '');
@@ -462,5 +458,6 @@ export const vanrPar: LocationDef = {
   title: 'Bathroom',
   region: 'other',
   locationType: 'bathroom',
+  description: ['The bathroom is very small and unimpressive. Nevertheless, it has everything you need.'],
   enter: enter,
 };

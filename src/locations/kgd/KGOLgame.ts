@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   if (((s as any).KGOLset ?? 0) === '') {
@@ -396,5 +392,6 @@ export const KGOLgame: LocationDef = {
   name: 'KGOLgame',
   title: 'Earn experience points to improve your stats.',
   region: 'kgd',
+  description: ['You are in a picturesque village with other player characters. An NPC is standing near some pillars.'],
   enter: enter,
 };

@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) === 17  ||  (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) < 30)) {
     scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', 'first_half'] }]);
   } else {
