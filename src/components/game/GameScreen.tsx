@@ -36,8 +36,12 @@ export default function GameScreen() {
     e.preventDefault();
     const store = useGameStore.getState();
     const locs = getRegisteredLocations().filter(n => n !== 'start' && n !== 'map_view');
-    const loc = locs[Math.floor(Math.random() * locs.length)];
-    store.doGoto(loc, '');
+    for (let i = 0; i < 20; i++) {
+      const loc = locs[Math.floor(Math.random() * locs.length)];
+      store.doGoto(loc, '');
+      const sc = store.scene;
+      if (sc && (sc.mainText || sc.curActs?.length || sc.backimage)) break;
+    }
   };
 
   const goMap = () => {
