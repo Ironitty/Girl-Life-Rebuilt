@@ -584,10 +584,12 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     (s as any).analPlugIn = 0;
     (s as any).analPlugOut = 1;
     if (((s as any).pcs_ass ?? 0) < 16) {
-      // TODO-QSP: *p ' <<$npcdesc>> pulls the butt plug out of your narrow and tight ass, '
+      // TODO-QSP: dynamic text:  <<$npcdesc>> pulls the butt plug out of your narrow and tight ass, 
+      scene.text(` ${((s as any).npcdesc ?? 0)} pulls the butt plug out of your narrow and tight ass, `);
     } else {
       if (((s as any).pcs_ass ?? 0) >= 16) {
-        // TODO-QSP: *p ' <<$npcdesc>>pulls out your butt plug, '
+        // TODO-QSP: dynamic text:  <<$npcdesc>>pulls out your butt plug, 
+        scene.text(` ${((s as any).npcdesc ?? 0)}pulls out your butt plug, `);
       }
     }
     scene.text('and you feel his hard cock resting on your ass.');

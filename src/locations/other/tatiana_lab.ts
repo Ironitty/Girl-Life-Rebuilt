@@ -1265,7 +1265,7 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
   if (((s as any).sucpcinfo ?? 0) < 2) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    // TODO-QSP: *p 'As you both settle onto the couch, Tatiana turns to you and says, "Ok, tell me what happened."'
+    scene.text('As you both settle onto the couch, Tatiana turns to you and says, "Ok, tell me what happened."');
     scene.text('You spend the next 15 minutes telling her about the Fairy, the odd dream, ');
     if (((s as any).succubusQW ?? 0) < 11) {
       scene.text('and the energy you let loose the other night.');

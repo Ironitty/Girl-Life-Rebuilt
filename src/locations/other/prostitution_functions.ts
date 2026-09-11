@@ -609,7 +609,8 @@ function enterYourCondom(s: GameState, scene: SceneBuilder): void {
 function enterHisCondom(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
-  // TODO-QSP: *p '<<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom and puts it on ...
+  // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
+  scene.text(`${qspUntranslated(s, "ucase(mid(bwa_boy,1,1))", { location: "prostitution_functions" })}${((((s as any).bwa_boy ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).bwa_boy ?? 0)).length)-1)))} takes his condom and puts it on his ${((s as any).dick ?? 0)} centimeter dick.`);
   // TODO-QSP: end
   scene.build();
 }

@@ -492,9 +492,9 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     scene.text('A few minutes later, you see them coming back to the disco. Vitek occasionally steadies Sonia when she nearly falls over; you can tell she\'s totally hammered.');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
-      // TODO-QSP: *p 'You go back to the disco with the rest of the group, where '
+      scene.text('You go back to the disco with the rest of the group, where ');
     } else {
-      // TODO-QSP: *p 'Not wanting to stick around, you return to the dance. A while later, the rest of the group retur...
+      scene.text('Not wanting to stick around, you return to the dance. A while later, the rest of the group returns, and ');
     }
   }
   scene.text('Sonia immediately runs to the dance floor. Her drunken stumbling doesn\'t look too much like dancing, but she\'s having fun. In her enthusiasm to pull off some experimental dance moves, she doesn\'t notice that one of her straps has slid down.');
@@ -1452,9 +1452,9 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
       scene.text('You don\'t really want to drink alcohol right now, so you just shake your head. "Thanks for the invite, but I think I\'d rather stay here right now. You guys have fun!"');
-      // TODO-QSP: *p 'Half an hour later, you see the boys return, quite rowdy and pleased with themselves. '
+      scene.text('Half an hour later, you see the boys return, quite rowdy and pleased with themselves. ');
     } else {
-      // TODO-QSP: *p 'Not wanting to stick around and see what happens to Sonia, you return to the dance. A while late...
+      scene.text('Not wanting to stick around and see what happens to Sonia, you return to the dance. A while later, the boys return, quite rowdy and looking quite pleased with themselves.');
     }
     scene.text('Vitek is dragging a drunken Sonia around like she\'s a trophy on display. She\'s all smiles and seems pretty happy, but is even more drunk than when you last saw her. When you look closer, you see her face is entirely covered in cum! You don\'t know if she\'s too drunk to notice or simply doesn\'t care.');
   }

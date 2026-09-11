@@ -656,12 +656,14 @@ function enterMatrix(s: GameState, scene: SceneBuilder): void {
 
 function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
   scene.text('<tr>');
-  // TODO-QSP: *p '<td><<$ARGS[2]>></td>'
+  // TODO-QSP: dynamic text: <td><<$ARGS[2]>></td>
+  scene.text(`<td>${((s as any).locArgs?.[2] ?? 0)}</td>`);
   if ((!(0 as any))) {
     // TODO-QSP: dynamic 'exer_stam<<ARGS[1]>>[<<stamindx>>] = 0'
-    // TODO-QSP: *p '<td>Selected</td>'
+    scene.text('<td>Selected</td>');
   } else {
-    // TODO-QSP: *p '<td><a href="exec:dynamic ''exer_rout<<ARGS[1]>>[stamindx] = 0'' & gt ''exercise'', ''matrix''">...
+    // TODO-QSP: dynamic text: <td><a href="exec:dynamic 'exer_rout<<ARGS[1]>>[stamindx] = 0' & gt 'exercise', ...
+    scene.text(`<td><a href="exec:dynamic 'exer_rout${qspUntranslated(s, "ARGS[1]", { location: "exercise" })}[stamindx] = 0' & gt 'exercise', 'matrix'">Select</a></td>`);
   }
   if ((0 as any) === 1) {
     if (((s as any).locArgs?.[3] ?? 0) === 1) {
@@ -679,9 +681,10 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: *p '<td>Selected</td>'
+    scene.text('<td>Selected</td>');
   } else {
-    // TODO-QSP: *p '<td><a href="exec:dynamic ''exer_rout<<ARGS[1]>>[stamindx] = 1'' & gt ''exercise'', ''matrix''">...
+    // TODO-QSP: dynamic text: <td><a href="exec:dynamic 'exer_rout<<ARGS[1]>>[stamindx] = 1' & gt 'exercise', ...
+    scene.text(`<td><a href="exec:dynamic 'exer_rout${qspUntranslated(s, "ARGS[1]", { location: "exercise" })}[stamindx] = 1' & gt 'exercise', 'matrix'">Select</a></td>`);
   }
   if ((0 as any) === 2) {
     if (((s as any).locArgs?.[3] ?? 0) === 1) {
@@ -699,9 +702,10 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: *p '<td>Selected</td>'
+    scene.text('<td>Selected</td>');
   } else {
-    // TODO-QSP: *p '<td><a href="exec:dynamic ''exer_rout<<ARGS[1]>>[stamindx] = 2'' & gt ''exercise'', ''matrix''">...
+    // TODO-QSP: dynamic text: <td><a href="exec:dynamic 'exer_rout<<ARGS[1]>>[stamindx] = 2' & gt 'exercise', ...
+    scene.text(`<td><a href="exec:dynamic 'exer_rout${qspUntranslated(s, "ARGS[1]", { location: "exercise" })}[stamindx] = 2' & gt 'exercise', 'matrix'">Select</a></td>`);
   }
   if ((0 as any) === 3) {
     if (((s as any).locArgs?.[3] ?? 0) === 1) {
@@ -719,9 +723,10 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: *p '<td>Selected</td>'
+    scene.text('<td>Selected</td>');
   } else {
-    // TODO-QSP: *p '<td><a href="exec:dynamic ''exer_rout<<ARGS[1]>>[stamindx] = 3'' & gt ''exercise'', ''matrix''">...
+    // TODO-QSP: dynamic text: <td><a href="exec:dynamic 'exer_rout<<ARGS[1]>>[stamindx] = 3' & gt 'exercise', ...
+    scene.text(`<td><a href="exec:dynamic 'exer_rout${qspUntranslated(s, "ARGS[1]", { location: "exercise" })}[stamindx] = 3' & gt 'exercise', 'matrix'">Select</a></td>`);
   }
   if ((0 as any) === 4) {
     if (((s as any).locArgs?.[3] ?? 0) === 1) {
@@ -739,9 +744,10 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: *p '<td>Selected</td>'
+    scene.text('<td>Selected</td>');
   } else {
-    // TODO-QSP: *p '<td><a href="exec:dynamic ''exer_rout<<ARGS[1]>>[stamindx] = 4'' & gt ''exercise'', ''matrix''">...
+    // TODO-QSP: dynamic text: <td><a href="exec:dynamic 'exer_rout<<ARGS[1]>>[stamindx] = 4' & gt 'exercise', ...
+    scene.text(`<td><a href="exec:dynamic 'exer_rout${qspUntranslated(s, "ARGS[1]", { location: "exercise" })}[stamindx] = 4' & gt 'exercise', 'matrix'">Select</a></td>`);
   }
   ((s as any).exer_stam ?? {})[String((s as any).stamindx ?? 0)] = ((s as any).exer_stam0 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam1 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam2 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam3 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam4 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam5 ?? 0)?.[String((s as any).stamindx ?? 0)];
   // TODO-QSP: end

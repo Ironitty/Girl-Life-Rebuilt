@@ -36,148 +36,182 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShopMenu(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p  '<center><table border=1>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<th>'
-  // TODO-QSP: *p        'View tattoos'
-  // TODO-QSP: *p      '</th>'
-  // TODO-QSP: *p      '<th>'
-  // TODO-QSP: *p        'View tattoos'
-  // TODO-QSP: *p      '</th>'
-  // TODO-QSP: *p      '<th>'
-  // TODO-QSP: *p        'View piercings'
-  // TODO-QSP: *p      '</th>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_hand''">Hand - <<$func(''money'', ''string_p...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_lip''">Lip - <<$func(''money'', ''string_pri...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('<center><table border=1>');
+  scene.text('<tr>');
+  scene.text('<th>');
+  scene.text('View tattoos');
+  scene.text('</th>');
+  scene.text('<th>');
+  scene.text('View tattoos');
+  scene.text('</th>');
+  scene.text('<th>');
+  scene.text('View piercings');
+  scene.text('</th>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_hand'">Hand - <<$func('money', 'string...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_hand'">Hand - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_lip'">Lip - <<$func('money', 'string_p...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_lip'">Lip - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['ears'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_ears''">Ear - <<$func...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_ears'">Ear - ...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_ears'">Ear - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_ears''">Ear - <<$func...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_ears'">Ear - ...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_ears'">Ear - ${qspFunc(s, 'money', 'string_price', 1000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_wrist''">Wrist - <<$func(''money'', ''string...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_belly''">Belly - <<$func(''money'', ''string...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_wrist'">Wrist - <<$func('money', 'stri...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_wrist'">Wrist - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_belly'">Belly - <<$func('money', 'stri...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_belly'">Belly - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['nose'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_nose''">Nose - <<$fun...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_nose'">Nose -...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_nose'">Nose - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_nose''">Nose - <<$fun...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_nose'">Nose -...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_nose'">Nose - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_ankle''">Ankle - <<$func(''money'', ''string...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_ass''">Ass - <<$func(''money'', ''string_pri...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_ankle'">Ankle - <<$func('money', 'stri...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_ankle'">Ankle - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_ass'">Ass - <<$func('money', 'string_p...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_ass'">Ass - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['brow'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_brow''">Eyebrow - <<$...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_brow'">Eyebro...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_brow'">Eyebrow - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_brow''">Eyebrow - <<$...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_brow'">Eyebro...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_brow'">Eyebrow - ${qspFunc(s, 'money', 'string_price', 2000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_arm''">Arm - <<$func(''money'', ''string_pri...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_face''">Face - <<$func(''money'', ''string_p...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_arm'">Arm - <<$func('money', 'string_p...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_arm'">Arm - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_face'">Face - <<$func('money', 'string...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_face'">Face - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['lip'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_lip''">Lip - <<$func(...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_lip'">Lip - <...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_lip'">Lip - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_lip''">Lip - <<$func(...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_lip'">Lip - <...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_lip'">Lip - ${qspFunc(s, 'money', 'string_price', 3000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_shoulder''">Shoulder - <<$func(''money'', ''...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_chest''">Chest - <<$func(''money'', ''string...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_shoulder'">Shoulder - <<$func('money',...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_shoulder'">Shoulder - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_chest'">Chest - <<$func('money', 'stri...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_chest'">Chest - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_tongue''">Tongue - <<...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_tongue'">Tong...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_tongue'">Tongue - ${qspFunc(s, 'money', 'string_price', 7000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_tongue''">Tongue - <<...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_tongue'">Tong...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_tongue'">Tongue - ${qspFunc(s, 'money', 'string_price', 4000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_neck''">Neck - <<$func(''money'', ''string_p...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_tramp''">Tramp stamp - <<$func(''money'', ''...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_neck'">Neck - <<$func('money', 'string...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_neck'">Neck - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_tramp'">Tramp stamp - <<$func('money',...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_tramp'">Tramp stamp - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['navel'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_navel''">Navel - <<$f...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_navel'">Navel...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_navel'">Navel - ${qspFunc(s, 'money', 'string_price', 8000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_navel''">Navel - <<$f...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_navel'">Navel...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_navel'">Navel - ${qspFunc(s, 'money', 'string_price', 5000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_back''">Back - <<$func(''money'', ''string_p...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_under''">Under breast - <<$func(''money'', '...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_back'">Back - <<$func('money', 'string...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_back'">Back - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_under'">Under breast - <<$func('money'...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_under'">Under breast - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['nipples'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_nipples''">Nipple - <...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_nipples'">Nip...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_nipples'">Nipple - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_nipples''">Nipple - <...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_nipples'">Nip...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_nipples'">Nipple - ${qspFunc(s, 'money', 'string_price', 6000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_leg''">Legs - <<$func(''money'', ''string_pr...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_breast''">Breasts - <<$func(''money'', ''str...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_leg'">Legs - <<$func('money', 'string_...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_leg'">Legs - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_breast'">Breasts - <<$func('money', 's...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_breast'">Breasts - ${qspFunc(s, 'money', 'string_price', 15000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).pcs_piercings ?? 0)?.['pussy'] === 0) {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 0 & gt ''pirsingsalon'', ''piercing_pussy''">Pussy - <<$f...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_pussy'">Pussy...
+    scene.text(`<a href="exec: salon_temp_state = 0 & gt 'pirsingsalon', 'piercing_pussy'">Pussy - ${qspFunc(s, 'money', 'string_price', 25000)}</a>`);
   } else {
-    // TODO-QSP: *p      '<a href="exec: salon_temp_state = 1 & gt ''pirsingsalon'', ''piercing_pussy''">Pussy - <<$f...
+    // TODO-QSP: dynamic text: <a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_pussy'">Pussy...
+    scene.text(`<a href="exec: salon_temp_state = 1 & gt 'pirsingsalon', 'piercing_pussy'">Pussy - ${qspFunc(s, 'money', 'string_price', 10000)}</a>`);
   }
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_side''">Side - <<$func(''money'', ''string_p...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p        '<a href="exec: gt ''pirsingsalon'', ''tattoo_pussy''">Pubic - <<$func(''money'', ''string...
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p      '<td>'
-  // TODO-QSP: *p      '</td>'
-  // TODO-QSP: *p    '</tr>'
+  scene.text('</td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_side'">Side - <<$func('money', 'string...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_side'">Side - ${qspFunc(s, 'money', 'string_price', 12000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  // TODO-QSP: dynamic text: <a href="exec: gt 'pirsingsalon', 'tattoo_pussy'">Pubic - <<$func('money', 'stri...
+  scene.text(`<a href="exec: gt 'pirsingsalon', 'tattoo_pussy'">Pubic - ${qspFunc(s, 'money', 'string_price', 20000)}</a>`);
+  scene.text('</td>');
+  scene.text('<td>');
+  scene.text('</td>');
+  scene.text('</tr>');
   // TODO-QSP: end
   scene.build();
 }

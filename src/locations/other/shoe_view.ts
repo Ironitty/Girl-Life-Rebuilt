@@ -336,7 +336,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'shoe_attributes', $ARGS[4], ARGS[5]
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
-        // TODO-QSP: *p '<a href="exec: gt ''shoe_view'', ''view_item'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', <<ARGS[5]>>,...
+        scene.img(`${qspFunc(s, '$shoe_image', '$ARGS[4]', qspUntranslated(s, "ARGS[5]", { location: "shoe_view" }))}`);
       }
       return;
     }
@@ -349,8 +349,9 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === 'header') {
       qspCall(s, 'shop_utils', 'display', 'wardrobe_storage_unwanted_header', 'view_list');
       qspCall(s, 'shoe_view', 'filter_builder', 'setup_home_filters');
-      // TODO-QSP: *p '<center><table border=0 cellspacing=0 cellpadding=5>'
-      // TODO-QSP: *p $func('shoe_view', 'get_wardrobe_list_header')
+      scene.text('<center><table border=0 cellspacing=0 cellpadding=5>');
+      // TODO-QSP: dynamic text: $func('shoe_view', 'get_wardrobe_list_header')
+      scene.text('$func(\'shoe_view\', \'get_wardrobe_list_header\')');
       return;
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
@@ -418,25 +419,34 @@ function enterViewList(s: GameState, scene: SceneBuilder): void {
 function enterListLine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'clothing');
   // TODO-QSP: gs 'shoe_attributes', $ARGS[2], ARGS[3]
-  // TODO-QSP: *p  '<tr bgcolor='+$temp_bcolor+'>'
-  // TODO-QSP: *p    '<td><a href="exec:gt ''shoe_view'', ''view_item'', ''wardrobe'', ''<<$ARGS[2]>>'', <<ARGS[3]>...
-  // TODO-QSP: *p    '<td><<$func(''$shoe_description'', $ARGS[2], ARGS[3])>></td>'
-  // TODO-QSP: *p    '<td><<$func(''$shoe_description2'', $ARGS[2])>></td>'
-  // TODO-QSP: *p    '<td>' + iif(ShoBimbo, 'Yes', 'No') + '</td>'
-  // TODO-QSP: *p    '<td>' + iif(ShoStrip, 'Yes', 'No') + '</td>'
-  // TODO-QSP: *p    '<td><a href="exec:gt ''shoe_view'', ''view_item'', ''wardrobe'', ''<<$ARGS[2]>>'', <<ARGS[3]>...
-  // TODO-QSP: *p    '<td>'
+  // TODO-QSP: dynamic text: '<tr bgcolor='+$temp_bcolor+'>'
+  scene.text('\'<tr bgcolor=\'+$temp_bcolor+\'>\'');
+  scene.img(`${qspFunc(s, '$shoe_image', '$ARGS[2]', qspUntranslated(s, "ARGS[3]", { location: "shoe_view" }))}`);
+  // TODO-QSP: dynamic text: <td><<$func('$shoe_description', $ARGS[2], ARGS[3])>></td>
+  scene.text(`<td>${qspFunc(s, '$shoe_description', '$ARGS[2]', qspUntranslated(s, "ARGS[3]", { location: "shoe_view" }))}</td>`);
+  // TODO-QSP: dynamic text: <td><<$func('$shoe_description2', $ARGS[2])>></td>
+  scene.text(`<td>${qspFunc(s, '$shoe_description2', '$ARGS[2]')}</td>`);
+  // TODO-QSP: dynamic text: '<td>' + iif(ShoBimbo, 'Yes', 'No') + '</td>'
+  scene.text('\'<td>\' + iif(ShoBimbo, \'Yes\', \'No\') + \'</td>\'');
+  // TODO-QSP: dynamic text: '<td>' + iif(ShoStrip, 'Yes', 'No') + '</td>'
+  scene.text('\'<td>\' + iif(ShoStrip, \'Yes\', \'No\') + \'</td>\'');
+  // TODO-QSP: dynamic text: <td><a href="exec:gt 'shoe_view', 'view_item', 'wardrobe', '<<$ARGS[2]>>', <<ARG...
+  scene.text(`<td><a href="exec:gt 'shoe_view', 'view_item', 'wardrobe', '${((s as any).locArgs?.[2] ?? 0)}', ${qspUntranslated(s, "ARGS[3]", { location: "shoe_view" })}, ${qspUntranslated(s, "ARGS[4]", { location: "shoe_view" })}">View</a></td>`);
+  scene.text('<td>');
   if (qspFunc(s, 'shoes', 'in_wardrobe', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "shoe_view" })) === 0) {
-    // TODO-QSP: *p ' <a href="exec: gt ''shoe_view'', ''list_line_move_to_wardrobe'', ''<<$ARGS[1]>>'', ''<<$ARGS[2]...
+    // TODO-QSP: dynamic text:  <a href="exec: gt 'shoe_view', 'list_line_move_to_wardrobe', '<<$ARGS[1]>>', '<...
+    scene.text(` <a href="exec: gt 'shoe_view', 'list_line_move_to_wardrobe', '${((s as any).locArgs?.[1] ?? 0)}', '${((s as any).locArgs?.[2] ?? 0)}', ${qspUntranslated(s, "ARGS[3]", { location: "shoe_view" })}">Wardrobe</a>`);
   }
   if (qspFunc(s, 'shoes', 'in_storage', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "shoe_view" })) === 0) {
-    // TODO-QSP: *p ' <a href="exec: gt ''shoe_view'', ''list_line_move_to_storage'', ''<<$ARGS[1]>>'', ''<<$ARGS[2]>...
+    // TODO-QSP: dynamic text:  <a href="exec: gt 'shoe_view', 'list_line_move_to_storage', '<<$ARGS[1]>>', '<<...
+    scene.text(` <a href="exec: gt 'shoe_view', 'list_line_move_to_storage', '${((s as any).locArgs?.[1] ?? 0)}', '${((s as any).locArgs?.[2] ?? 0)}', ${qspUntranslated(s, "ARGS[3]", { location: "shoe_view" })}">Storage</a>`);
   }
   if (qspFunc(s, 'shoes', 'in_unwanted', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "shoe_view" })) === 0) {
-    // TODO-QSP: *p ' <a href="exec: gt ''shoe_view'', ''list_line_move_to_unwanted'', ''<<$ARGS[1]>>'', ''<<$ARGS[2]...
+    // TODO-QSP: dynamic text:  <a href="exec: gt 'shoe_view', 'list_line_move_to_unwanted', '<<$ARGS[1]>>', '<...
+    scene.text(` <a href="exec: gt 'shoe_view', 'list_line_move_to_unwanted', '${((s as any).locArgs?.[1] ?? 0)}', '${((s as any).locArgs?.[2] ?? 0)}', ${qspUntranslated(s, "ARGS[3]", { location: "shoe_view" })}">Unwanted</a>`);
   }
-  // TODO-QSP: *p    '</td>'
-  // TODO-QSP: *p  '</tr>'
+  scene.text('</td>');
+  scene.text('</tr>');
   return;
   // TODO-QSP: end
   scene.build();

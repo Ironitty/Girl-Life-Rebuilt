@@ -1297,26 +1297,26 @@ function enterAnnaDomSession1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom4.jpg');
   scene.text('<center><b> "Well… it\'s not what I had in mind… but we can arrange something… Anayway wasn\'t better to start with a simple spanking?"</b></center>');
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 1 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 2 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 3 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 4 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 5 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 6 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 7 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 8 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 9 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 10 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="image...
-  // TODO-QSP: *p '   '
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/1.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/2.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/3.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/4.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/5.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/6.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/7.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/8.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/9.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom1/10.jpg');
+  scene.text('   ');
   // TODO-QSP: end
   scene.actions([
     { label: '…', goto: ['hotel_anna_sex', 'Anna_dom_session2'] },
@@ -1370,26 +1370,26 @@ function enterAnnaDomSession2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 1 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 2 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 3 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 4 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 5 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 6 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 7 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 8 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 9 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="images...
-  // TODO-QSP: *p '   '
-  // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 11 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="image...
-  // TODO-QSP: *p '   '
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/1.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/2.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/3.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/4.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/5.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/6.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/7.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/8.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/9.jpg');
+  scene.text('   ');
+  scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/handcom2/10.jpg');
+  scene.text('   ');
   // TODO-QSP: end
   scene.actions([
     { label: 'Shit! I don\'t remember…', goto: ['hotel_anna_sex', 'Anna_dom_session3'] },

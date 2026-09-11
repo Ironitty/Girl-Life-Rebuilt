@@ -79,8 +79,9 @@ function enterWorld(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: *p $map_nav
-  // TODO-QSP: *p '<img src="images/system/map/<<$map_img>>">'
+  // TODO-QSP: dynamic text: $map_nav
+  scene.text('$map_nav');
+  scene.img(`images/system/map/${((s as any).map_img ?? 0)}`);
   scene.build();
 }
 

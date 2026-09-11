@@ -124,19 +124,23 @@ function enterResetSkills(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToggleMenu(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p $menu_span + $ARGS[3] + ':</span>'
+  // TODO-QSP: dynamic text: $menu_span + $ARGS[3] + ':</span>'
+  scene.text('$menu_span + $ARGS[3] + \':</span>\'');
   // TODO-QSP: dynamic "temp_value = " + $ARGS[2]
   (s as any).i = 0;
   // TODO-QSP: :toggle_menu_loop
   if (((s as any).i ?? 0) > 0) {
-    // TODO-QSP: *p '&nbsp;|&nbsp;'
+    scene.text('&nbsp;|&nbsp;');
   }
   if (((s as any).temp_value ?? 0) === ((s as any).i ?? 0)) {
-    // TODO-QSP: *p '<b><<$ARGS[i+4]>></b>'
+    // TODO-QSP: dynamic text: <b><<$ARGS[i+4]>></b>
+    scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? 0)+4]}</b>`);
   } else {
-    // TODO-QSP: *p '<a href="exec:<<$ARGS[2]>>=<<i>> & gt ''$menu_settings'', ''<<$ARGS[1]>>''"><<$ARGS[i+4]>></a>'
+    // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
+    scene.text(`<a href="exec:${((s as any).locArgs?.[2] ?? 0)}=${((s as any).i ?? 0)} & gt '$menu_settings', '${((s as any).locArgs?.[1] ?? 0)}'">${((s as any).ARGS ?? 0)?.[((s as any).i ?? 0)+4]}</a>`);
   }
-  // TODO-QSP: *p $temp_toggle_names
+  // TODO-QSP: dynamic text: $temp_toggle_names
+  scene.text('$temp_toggle_names');
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).ARGS ?? 0)[((s as any).i ?? 0)+4] !== '') {
     // TODO-QSP: jump 'toggle_menu_loop'
@@ -147,17 +151,20 @@ function enterToggleMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToggleMenuRev(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p $menu_span + $ARGS[3] + ':</span>'
+  // TODO-QSP: dynamic text: $menu_span + $ARGS[3] + ':</span>'
+  scene.text('$menu_span + $ARGS[3] + \':</span>\'');
   // TODO-QSP: dynamic "temp_value = " + $ARGS[2]
   (s as any).i = 0;
   // TODO-QSP: :toggle_menu_rev_loop
   if (((s as any).ARGS ?? 0)[((s as any).i ?? 0)+5] !== '') {
-    // TODO-QSP: *p '&nbsp;|&nbsp;'
+    scene.text('&nbsp;|&nbsp;');
   }
   if (((s as any).temp_value ?? 0) === ((s as any).i ?? 0)) {
-    // TODO-QSP: *p '<b><<$ARGS[i+4]>></b>'
+    // TODO-QSP: dynamic text: <b><<$ARGS[i+4]>></b>
+    scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? 0)+4]}</b>`);
   } else {
-    // TODO-QSP: *p '<a href="exec:<<$ARGS[2]>>=<<i>> & gt ''$menu_settings'', ''<<$ARGS[1]>>''"><<$ARGS[i+4]>></a>'
+    // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
+    scene.text(`<a href="exec:${((s as any).locArgs?.[2] ?? 0)}=${((s as any).i ?? 0)} & gt '$menu_settings', '${((s as any).locArgs?.[1] ?? 0)}'">${((s as any).ARGS ?? 0)?.[((s as any).i ?? 0)+4]}</a>`);
   }
   (s as any).i = ((s as any).i ?? 0) - (1);
   if (((s as any).i ?? 0) >= 0) {
@@ -185,7 +192,8 @@ function enterToggleMenuSymOpt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p $menu_span + $ARGS[3] + ':</span>'
+  // TODO-QSP: dynamic text: $menu_span + $ARGS[3] + ':</span>'
+  scene.text('$menu_span + $ARGS[3] + \':</span>\'');
   // TODO-QSP: dynamic 'temp_tms_cur = ' + $ARGS[2]
   (s as any).temp_tms_i = 0;
   (s as any).temp_tms_matched = 0;
@@ -195,32 +203,38 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :toggle_menu_sym_loop
   if (((s as any).temp_tms_i ?? 0) < ((s as any).tms_opt_count ?? 0)) {
     if (((s as any).temp_tms_i ?? 0) > 0) {
-      // TODO-QSP: *p '&nbsp;|&nbsp;'
+      scene.text('&nbsp;|&nbsp;');
     }
     if (((s as any).temp_tms_cur ?? 0) === ((s as any).tms_opt_val ?? 0)?.[String((s as any).temp_tms_i ?? 0)]) {
-      // TODO-QSP: *p '<b><<$tms_opt_lbl[temp_tms_i]>></b>'
+      // TODO-QSP: dynamic text: <b><<$tms_opt_lbl[temp_tms_i]>></b>
+      scene.text(`<b>${((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)]}</b>`);
       (s as any).temp_tms_matched = 1;
     } else {
-      // TODO-QSP: *p '<a href="exec:<<$ARGS[2]>>=<<tms_opt_val[temp_tms_i]>> & gt ''$menu_settings'', ''<<$ARGS[1]>>''...
+      // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<tms_opt_val[temp_tms_i]>> & gt '$menu_settings', '<...
+      scene.text(`<a href="exec:${((s as any).locArgs?.[2] ?? 0)}=${((s as any).tms_opt_val ?? 0)?.[String((s as any).temp_tms_i ?? 0)]} & gt '$menu_settings', '${((s as any).locArgs?.[1] ?? 0)}'">${((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)]}</a>`);
     }
     (s as any).temp_tms_i = ((s as any).temp_tms_i ?? 0) + (1);
     // TODO-QSP: jump 'toggle_menu_sym_loop'
   }
   if (((s as any).locArgs?.[4] ?? 0) !== ''  &&  ((s as any).locArgs?.[5] ?? 0) !== '') {
-    // TODO-QSP: *p '&nbsp;|&nbsp;'
+    scene.text('&nbsp;|&nbsp;');
     if ((!((s as any).temp_tms_matched ?? 0))) {
       // TODO-QSP: dynamic '$temp_tms_custom_val = $str(' + $ARGS[4] + ')'
-      // TODO-QSP: *p '<b>Custom: <<$temp_tms_custom_val>>%</b>'
+      // TODO-QSP: dynamic text: <b>Custom: <<$temp_tms_custom_val>>%</b>
+      scene.text(`<b>Custom: ${((s as any).temp_tms_custom_val ?? 0)}%</b>`);
     } else {
-      // TODO-QSP: *p '<a href="exec: <<$temp_tms_custom_exec>>">Custom</a>'
+      // TODO-QSP: dynamic text: <a href="exec: <<$temp_tms_custom_exec>>">Custom</a>
+      scene.text(`<a href="exec: ${((s as any).temp_tms_custom_exec ?? 0)}">Custom</a>`);
     }
   }
   if (((s as any).locArgs?.[6] ?? 0) !== '') {
-    // TODO-QSP: *p '&nbsp;|&nbsp;'
+    scene.text('&nbsp;|&nbsp;');
     if (((s as any).temp_tms_cur ?? 0) === -99) {
-      // TODO-QSP: *p '<b>' + $ARGS[6] + '</b>'
+      // TODO-QSP: dynamic text: '<b>' + $ARGS[6] + '</b>'
+      scene.text('\'<b>\' + $ARGS[6] + \'</b>\'');
     } else {
-      // TODO-QSP: *p '<a href="exec:<<$ARGS[2]>>=-99 & gt ''$menu_settings'', ''<<$ARGS[1]>>''"><<$ARGS[6]>></a>'
+      // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=-99 & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[6]...
+      scene.text(`<a href="exec:${((s as any).locArgs?.[2] ?? 0)}=-99 & gt '$menu_settings', '${((s as any).locArgs?.[1] ?? 0)}'">${((s as any).locArgs?.[6] ?? 0)}</a>`);
     }
   }
   return;
@@ -231,9 +245,11 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
 function enterToggleMenuShowHide(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "temp_value = " + $ARGS[1]
   if (((s as any).temp_value ?? 0) === 1) {
-    // TODO-QSP: *p '<a href="exec:<<$ARGS[1]>>=0 & gt ''$menu_settings'', ''status'' & gs ''stat_display''">Show</a>...
+    // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[1]>>=0 & gt '$menu_settings', 'status' & gs 'stat_display'...
+    scene.text(`<a href="exec:${((s as any).locArgs?.[1] ?? 0)}=0 & gt '$menu_settings', 'status' & gs 'stat_display'">Show</a>&nbsp;|&nbsp;<b>Hide</b>`);
   } else {
-    // TODO-QSP: *p '<b>Show</b>&nbsp;|&nbsp;<a href="exec:<<$ARGS[1]>>=1 & gt ''$menu_settings'', ''status'' & gs ''...
+    // TODO-QSP: dynamic text: <b>Show</b>&nbsp;|&nbsp;<a href="exec:<<$ARGS[1]>>=1 & gt '$menu_settings', 'sta...
+    scene.text(`<b>Show</b>&nbsp;|&nbsp;<a href="exec:${((s as any).locArgs?.[1] ?? 0)}=1 & gt '$menu_settings', 'status' & gs 'stat_display'">Hide</a>`);
   }
   return;
   // TODO-QSP: end
@@ -244,9 +260,11 @@ function enterShowHideCalendar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[3] ?? 0) === 'pack') {
   }
   if (((s as any).calendar_show ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    // TODO-QSP: *p $menu_span + '<<$ARGS[2]>> Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: calendar_show[''<...
+    // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>> Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: ...
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? 0)} Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: calendar_show['${((s as any).locArgs?.[1] ?? 0)}'] = 1 & gs 'calendar',${((s as any).temp_func ?? 0)} 'add', '${((s as any).locArgs?.[1] ?? 0)}' & gt '$menu_settings', 'setting'">Show</a><br>'`);
   } else {
-    // TODO-QSP: *p $menu_span + '<<$ARGS[2]>> Events:</span><a href="exec: calendar_show[''<<$ARGS[1]>>''] = 0 & gs ...
+    // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>> Events:</span><a href="exec: calendar_show[''<<$ARGS[...
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? 0)} Events:</span><a href="exec: calendar_show['${((s as any).locArgs?.[1] ?? 0)}'] = 0 & gs 'calendar',${((s as any).temp_func ?? 0)} 'remove', '${((s as any).locArgs?.[1] ?? 0)}' & gt '$menu_settings', 'setting'">Hide</a>&nbsp;|&nbsp;<b>Show</b><br>'`);
   }
   return;
   // TODO-QSP: end
@@ -255,9 +273,11 @@ function enterShowHideCalendar(s: GameState, scene: SceneBuilder): void {
 
 function enterShowHideCycleCal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).locArgs?.[1] ?? 0)] === 0) {
-    // TODO-QSP: *p $menu_span + '<<$ARGS[2]>>:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: calCycleOpts[''show_<<AR...
+    // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>>:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: calCycl...
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? 0)}:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: calCycleOpts['show_${qspUntranslated(s, "ARGS[1]", { location: "_menu_settings" })}'] = 1 & gs 'calendar', 'cycle_rebuild', 1 & gt '$menu_settings', 'setting'">Show</a><br>'`);
   } else {
-    // TODO-QSP: *p $menu_span + '<<$ARGS[2]>>:</span><a href="exec: calCycleOpts[''show_<<ARGS[1]>>''] = 0 & gs ''ca...
+    // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>>:</span><a href="exec: calCycleOpts[''show_<<ARGS[1]>>...
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? 0)}:</span><a href="exec: calCycleOpts['show_${qspUntranslated(s, "ARGS[1]", { location: "_menu_settings" })}'] = 0 & gs 'calendar', 'cycle_rebuild', 1 & gt '$menu_settings', 'setting'">Hide</a>&nbsp;|&nbsp;<b>Show</b><br>'`);
   }
   return;
   // TODO-QSP: end
@@ -265,7 +285,8 @@ function enterShowHideCycleCal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPickTheme(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p iif($theme['name'] = $iif(cfg_vars['themetype'] = 0, 'Dynamic ', '') + $ARGS[1], '<b><<$ARGS[1]>>...
+  // TODO-QSP: dynamic text: iif($theme['name'] = $iif(cfg_vars['themetype'] = 0, 'Dynamic ', '') + $ARGS[1],...
+  scene.text(`iif($theme['name'] = $iif(cfg_vars['themetype'] = 0, 'Dynamic ', ') + $ARGS[1], '<b>${((s as any).locArgs?.[1] ?? 0)}</b>', '<a href="exec: $cfg_vars['theme_main_name'] = '${((s as any).locArgs?.[1] ?? 0)}' & gs 'themes', 'set_theme','${((((s as any).cfg_vars ?? 0)?.['themetype'] === 0) ? ('Dynamic ') : ('\''))}', '${((s as any).locArgs?.[2] ?? 0)}' & gs '$menu_obnovit' & gt '$menu_settings', 'display'">${((s as any).locArgs?.[1] ?? 0)}</a>')`);
   // TODO-QSP: end
   scene.build();
 }
@@ -474,23 +495,36 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'archetypes', 'init');
   scene.text('<center><h2>Difficulty Settings</h2></center>');
   // TODO-QSP: $settings['table_start']
-  // TODO-QSP: *p $menu_span + '<b>Difficulty Presets:</b></span>'
+  // TODO-QSP: dynamic text: $menu_span + '<b>Difficulty Presets:</b></span>'
+  scene.text('$menu_span + \'<b>Difficulty Presets:</b></span>\'');
   (s as any).temp_preset = qspFunc(s, '_difficulty', 'preset', 'get');
-  // TODO-QSP: *p iif(temp_preset = 1, '<b>Sims</b>', '<a href="exec: gs ''_difficulty'', ''preset'', ''set'', ''si...
-  // TODO-QSP: *p iif(temp_preset = 2, '<b>Very Easy</b>', '<a href="exec: gs ''_difficulty'', ''preset'', ''set'',...
-  // TODO-QSP: *p iif(temp_preset = 3, '<b>Easy</b>', '<a href="exec: gs ''_difficulty'', ''preset'', ''set'', ''ea...
-  // TODO-QSP: *p iif(temp_preset = 4, '<b>Normal</b>', '<a href="exec: gs ''_difficulty'', ''preset'', ''set'', ''...
-  // TODO-QSP: *p iif(temp_preset = 5, '<b>Hard</b>', '<a href="exec: gs ''_difficulty'', ''preset'', ''set'', ''ha...
-  // TODO-QSP: *p iif(temp_preset = 6, '<b>Very Hard</b>', '<a href="exec: gs ''_difficulty'', ''preset'', ''set'',...
-  // TODO-QSP: *p iif(temp_preset = 7, '<b>Russia</b>', '<a href="exec: gs ''_difficulty'', ''preset'', ''set'', ''...
+  // TODO-QSP: dynamic text: iif(temp_preset = 1, '<b>Sims</b>', '<a href="exec: gs ''_difficulty'', ''preset...
+  scene.text('iif(temp_preset = 1, \'<b>Sims</b>\', \'<a href="exec: gs \'_difficulty\', \'preset\', \'set\', \'sims\' & gt \'$menu_settings\', \'difficulty\'">Sims</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(temp_preset = 2, '<b>Very Easy</b>', '<a href="exec: gs ''_difficulty'', ''p...
+  scene.text('iif(temp_preset = 2, \'<b>Very Easy</b>\', \'<a href="exec: gs \'_difficulty\', \'preset\', \'set\', \'very easy\' & gt \'$menu_settings\', \'difficulty\'">Very Easy</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(temp_preset = 3, '<b>Easy</b>', '<a href="exec: gs ''_difficulty'', ''preset...
+  scene.text('iif(temp_preset = 3, \'<b>Easy</b>\', \'<a href="exec: gs \'_difficulty\', \'preset\', \'set\', \'easy\' & gt \'$menu_settings\', \'difficulty\'">Easy</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(temp_preset = 4, '<b>Normal</b>', '<a href="exec: gs ''_difficulty'', ''pres...
+  scene.text('iif(temp_preset = 4, \'<b>Normal</b>\', \'<a href="exec: gs \'_difficulty\', \'preset\', \'set\', \'normal\' & gt \'$menu_settings\', \'difficulty\'">Normal</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(temp_preset = 5, '<b>Hard</b>', '<a href="exec: gs ''_difficulty'', ''preset...
+  scene.text('iif(temp_preset = 5, \'<b>Hard</b>\', \'<a href="exec: gs \'_difficulty\', \'preset\', \'set\', \'hard\' & gt \'$menu_settings\', \'difficulty\'">Hard</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(temp_preset = 6, '<b>Very Hard</b>', '<a href="exec: gs ''_difficulty'', ''p...
+  scene.text('iif(temp_preset = 6, \'<b>Very Hard</b>\', \'<a href="exec: gs \'_difficulty\', \'preset\', \'set\', \'very hard\' & gt \'$menu_settings\', \'difficulty\'">Very Hard</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(temp_preset = 7, '<b>Russia</b>', '<a href="exec: gs ''_difficulty'', ''pres...
+  scene.text('iif(temp_preset = 7, \'<b>Russia</b>\', \'<a href="exec: gs \'_difficulty\', \'preset\', \'set\', \'russia\' & gt \'$menu_settings\', \'difficulty\'">Russia</a>\')');
   scene.text('<font color="grey">Selecting a preset will adjust multiple settings at once.</font>');
   scene.text('<center><h3>Custom difficulty settings</h3></center>');
   scene.text('<b>Skill multipliers:</b>');
-  // TODO-QSP: *p $menu_span + '    Skill gain rate:</span>'
-  // TODO-QSP: *p iif(cheatVars['skill_gain'] = 1, '<b>Very Fast</b>', '<a href="exec: gs ''_difficulty'', ''setdif...
-  // TODO-QSP: *p iif(cheatVars['skill_gain'] = 2, '<b>Fast</b>', '<a href="exec: gs ''_difficulty'', ''setdifficul...
-  // TODO-QSP: *p iif(cheatVars['skill_gain'] = 3, '<b>Normal</b>', '<a href="exec: gs ''_difficulty'', ''setdiffic...
-  // TODO-QSP: *p iif(cheatVars['skill_gain'] = 4, '<b>Slow</b>', '<a href="exec: gs ''_difficulty'', ''setdifficul...
+  // TODO-QSP: dynamic text: $menu_span + '    Skill gain rate:</span>'
+  scene.text('$menu_span + \'    Skill gain rate:</span>\'');
+  // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 1, '<b>Very Fast</b>', '<a href="exec: gs ''_diffi...
+  scene.text('iif(cheatVars[\'skill_gain\'] = 1, \'<b>Very Fast</b>\', \'<a href="exec: gs \'_difficulty\', \'setdifficulty_int\', 1 & gt \'$menu_settings\', \'difficulty\'">Very Fast</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 2, '<b>Fast</b>', '<a href="exec: gs ''_difficulty...
+  scene.text('iif(cheatVars[\'skill_gain\'] = 2, \'<b>Fast</b>\', \'<a href="exec: gs \'_difficulty\', \'setdifficulty_int\', 2 & gt \'$menu_settings\', \'difficulty\'">Fast</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 3, '<b>Normal</b>', '<a href="exec: gs ''_difficul...
+  scene.text('iif(cheatVars[\'skill_gain\'] = 3, \'<b>Normal</b>\', \'<a href="exec: gs \'_difficulty\', \'setdifficulty_int\', 3 & gt \'$menu_settings\', \'difficulty\'">Normal</a>\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 4, '<b>Slow</b>', '<a href="exec: gs ''_difficulty...
+  scene.text('iif(cheatVars[\'skill_gain\'] = 4, \'<b>Slow</b>\', \'<a href="exec: gs \'_difficulty\', \'setdifficulty_int\', 4 & gt \'$menu_settings\', \'difficulty\'">Slow</a>\')');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-4:⅓×', '-3:½×', '-1:¾×', '0:1× ✿', '2:1½×', '3:2×', '4:3×');
   // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['deg_speed_opt']", '    Skill degra...
   scene.text('<b>Economic multipliers:</b>');
@@ -562,7 +596,8 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       qspCall(s, '$menu_obnovit', '');
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
     }
-    // TODO-QSP: *p $menu_span + 'Classic Theme Selection [Dynamic only]:</span>'
+    // TODO-QSP: dynamic text: $menu_span + 'Classic Theme Selection [Dynamic only]:</span>'
+    scene.text('$menu_span + \'Classic Theme Selection [Dynamic only]:</span>\'');
     qspCall(s, '$menu_settings', 'pick_theme', 'Default', 'dynamic');
   } else {
     if (((s as any).theme ?? 0)?.['type'] === 'dynamic') {
@@ -572,28 +607,34 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       qspCall(s, '$menu_obnovit', '');
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
     }
-    // TODO-QSP: *p $menu_span + 'Classic Theme Selection [Static only]:</span>'
+    // TODO-QSP: dynamic text: $menu_span + 'Classic Theme Selection [Static only]:</span>'
+    scene.text('$menu_span + \'Classic Theme Selection [Static only]:</span>\'');
     qspCall(s, '$menu_settings', 'pick_theme', 'White', 'static\' & *p \'&nbsp;|&nbsp;');
     qspCall(s, '$menu_settings', 'pick_theme', 'Black', 'static\' & *p \'&nbsp;|&nbsp;');
     qspCall(s, '$menu_settings', 'pick_theme', 'Modern Grey', 'static\' & *p \'&nbsp;|&nbsp;');
     qspCall(s, '$menu_settings', 'pick_theme', 'Custom', 'static\' & *p \'&nbsp;');
-    // TODO-QSP: *p '<a href="exec: gt ''$menu_settings'', ''theme_customize''"><img src="images/system/ui/preference...
+    scene.img(`images/system/ui/preferences${((((s as any).theme ?? 0)?.['is_dark'] === 0) ? ('_b') : ('_w'))}.png`);
   }
-  // TODO-QSP: *p $menu_span + 'Catppuccin themes:</span>'
+  // TODO-QSP: dynamic text: $menu_span + 'Catppuccin themes:</span>'
+  scene.text('$menu_span + \'Catppuccin themes:</span>\'');
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Latte', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static') & *...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Frappé', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static') & ...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Macchiato', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Mocha', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')
-  // TODO-QSP: *p $menu_span + 'Nord themes:</span>'
+  // TODO-QSP: dynamic text: $menu_span + 'Nord themes:</span>'
+  scene.text('$menu_span + \'Nord themes:</span>\'');
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Nord Light', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static'...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Nord Dark', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')
-  // TODO-QSP: *p $menu_span + 'Solarized themes:</span>'
+  // TODO-QSP: dynamic text: $menu_span + 'Solarized themes:</span>'
+  scene.text('$menu_span + \'Solarized themes:</span>\'');
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Solarized Light', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'st...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Solarized Dark', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'sta...
-  // TODO-QSP: *p $menu_span + 'Tokyo Night themes:</span>'
+  // TODO-QSP: dynamic text: $menu_span + 'Tokyo Night themes:</span>'
+  scene.text('$menu_span + \'Tokyo Night themes:</span>\'');
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Tokyo Night Light', $iif(cfg_vars['themetype'] = 0, 'dynamic', '...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Tokyo Night', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static...
-  // TODO-QSP: *p $menu_span + 'Rosé Pine themes:</span>'
+  // TODO-QSP: dynamic text: $menu_span + 'Rosé Pine themes:</span>'
+  scene.text('$menu_span + \'Rosé Pine themes:</span>\'');
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Rosé Pine Dawn', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'sta...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Rosé Pine', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'static')...
   // TODO-QSP: gs '$menu_settings', 'pick_theme', 'Rosé Pine Moon', $iif(cfg_vars['themetype'] = 0, 'dynamic', 'sta...
@@ -655,45 +696,69 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_page = (-1);
   qspCall(s, '$menu_settings', 'settingtabs');
   scene.text('<center><h2>Customize Theme</h2></center>');
-  // TODO-QSP: *p '<center><table width="90%" cellspacing="0" cellpadding="20" valign="top"><tr><td bgcolor="black"...
+  scene.text('<center><table width="90%" cellspacing="0" cellpadding="20" valign="top"><tr><td bgcolor="black" width="50%" cellspacing="0" cellpadding="20" valign="top"><font face="Tahoma" size="4" color="white">');
   (s as any).icon_height = 13;
-  // TODO-QSP: *p 'Font Family: <<$custom_theme[''fname'']>>&nbsp;'
-  // TODO-QSP: *p 'Font Size:&nbsp;'
-  // TODO-QSP: *p '<a href="exec: custom_theme[''fsize''] = iif(custom_theme[''fsize''] <= 9, 9, custom_theme[''fsi...
-  // TODO-QSP: *p '&nbsp;<<custom_theme[''fsize'']>>&nbsp;'
-  // TODO-QSP: *p '<a href="exec: custom_theme[''fsize''] += 1 & gt ''$menu_settings'', ''theme_customize''"><img s...
-  // TODO-QSP: *p 'BG Color: <<func(''shortgs'', ''rgb_to_hex'', custom_theme[''bcolor''])>>&nbsp;'
-  // TODO-QSP: *p 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', 'custom_theme[''b...
-  // TODO-QSP: *p 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green', 'custom_theme['...
-  // TODO-QSP: *p 'FG (text) Color: <<func(''shortgs'', ''rgb_to_hex'', custom_theme[''fcolor''])>>&nbsp;'
-  // TODO-QSP: *p 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', 'custom_theme[''f...
-  // TODO-QSP: *p 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green', 'custom_theme['...
-  // TODO-QSP: *p 'Link Color: <<func(''shortgs'', ''rgb_to_hex'', custom_theme[''lcolor''])>>&nbsp;'
-  // TODO-QSP: *p 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', 'custom_theme[''l...
-  // TODO-QSP: *p 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green', 'custom_theme['...
-  // TODO-QSP: *p 'Table BG: <font color="<<$custom_theme[''table_bg'']>>">&#9632;</font>&nbsp;<<$custom_theme[''ta...
-  // TODO-QSP: *p 'Alt Table BG: <font color="<<$custom_theme[''table_bg_alt'']>>">&#9632;</font>&nbsp;<<$custom_th...
-  // TODO-QSP: *p 'Dark Mode&nbsp;'
+  // TODO-QSP: dynamic text: Font Family: <<$custom_theme['fname']>>&nbsp;
+  scene.text(`Font Family: ${((s as any).custom_theme ?? 0)?.['fname']}&nbsp;`);
+  scene.text('Font Size:&nbsp;');
+  scene.img(`images/system/ui/less${((s as any).icon_selector ?? 0)}.png`);
+  // TODO-QSP: dynamic text: &nbsp;<<custom_theme['fsize']>>&nbsp;
+  scene.text(`&nbsp;${((s as any).custom_theme ?? 0)?.['fsize']}&nbsp;`);
+  scene.img(`images/system/ui/more${((s as any).icon_selector ?? 0)}.png`);
+  // TODO-QSP: dynamic text: BG Color: <<func('shortgs', 'rgb_to_hex', custom_theme['bcolor'])>>&nbsp;
+  scene.text(`BG Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['bcolor'])}&nbsp;`);
+  // TODO-QSP: dynamic text: 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', ...
+  scene.text('\'R:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'red\', \'custom_theme[\'bcolor\']\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green'...
+  scene.text('\'G:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'green\', \'custom_theme[\'bcolor\']\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: FG (text) Color: <<func('shortgs', 'rgb_to_hex', custom_theme['fcolor'])>>&nbsp;
+  scene.text(`FG (text) Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['fcolor'])}&nbsp;`);
+  // TODO-QSP: dynamic text: 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', ...
+  scene.text('\'R:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'red\', \'custom_theme[\'fcolor\']\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green'...
+  scene.text('\'G:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'green\', \'custom_theme[\'fcolor\']\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: Link Color: <<func('shortgs', 'rgb_to_hex', custom_theme['lcolor'])>>&nbsp;
+  scene.text(`Link Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['lcolor'])}&nbsp;`);
+  // TODO-QSP: dynamic text: 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', ...
+  scene.text('\'R:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'red\', \'custom_theme[\'lcolor\']\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: 'G:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'green'...
+  scene.text('\'G:&nbsp;\' + $func(\'$menu_settings\', \'theme_customize_print_color_line\', \'green\', \'custom_theme[\'lcolor\']\') + \'&nbsp;|&nbsp;\'');
+  // TODO-QSP: dynamic text: Table BG: <font color="<<$custom_theme['table_bg']>>">&#9632;</font>&nbsp;<<$cus...
+  scene.text(`Table BG: <font color="${((s as any).custom_theme ?? 0)?.['table_bg']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['table_bg']}&nbsp;`);
+  // TODO-QSP: dynamic text: Alt Table BG: <font color="<<$custom_theme['table_bg_alt']>>">&#9632;</font>&nbs...
+  scene.text(`Alt Table BG: <font color="${((s as any).custom_theme ?? 0)?.['table_bg_alt']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['table_bg_alt']}&nbsp;`);
+  scene.text('Dark Mode&nbsp;');
   if (((s as any).custom_theme ?? 0)?.['is_dark'] === 0) {
   }
-  // TODO-QSP: *p 'Accent: <font color="<<$custom_theme[''accent'']>>">&#9632;</font>&nbsp;<<$custom_theme[''accent...
-  // TODO-QSP: *p 'V.Positive: <font color="<<$custom_theme[''v_pos'']>>">&#9632;</font>&nbsp;<<$custom_theme[''v_p...
-  // TODO-QSP: *p 'Positive: <font color="<<$custom_theme[''pos'']>>">&#9632;</font>&nbsp;<<$custom_theme[''pos'']>...
-  // TODO-QSP: *p 'Neutral: <font color="<<$custom_theme[''neutral'']>>">&#9632;</font>&nbsp;<<$custom_theme[''neut...
-  // TODO-QSP: *p 'Negative: <font color="<<$custom_theme[''neg'']>>">&#9632;</font>&nbsp;<<$custom_theme[''neg'']>...
-  // TODO-QSP: *p 'V.Negative: <font color="<<$custom_theme[''v_neg'']>>">&#9632;</font>&nbsp;<<$custom_theme[''v_n...
-  // TODO-QSP: *p 'Bimbo: <font color="<<$custom_theme[''bimbo'']>>">&#9632;</font>&nbsp;<<$custom_theme[''bimbo'']...
-  // TODO-QSP: *p 'Goth: <font color="<<$custom_theme[''goth'']>>">&#9632;</font>&nbsp;<<$custom_theme[''goth'']>>&...
-  // TODO-QSP: *p 'Punk: <font color="<<$custom_theme[''punk'']>>">&#9632;</font>&nbsp;<<$custom_theme[''punk'']>>&...
-  // TODO-QSP: *p 'Hypno: <font color="<<$custom_theme[''hypno'']>>">&#9632;</font>&nbsp;<<$custom_theme[''hypno'']...
+  // TODO-QSP: dynamic text: Accent: <font color="<<$custom_theme['accent']>>">&#9632;</font>&nbsp;<<$custom_...
+  scene.text(`Accent: <font color="${((s as any).custom_theme ?? 0)?.['accent']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['accent']}&nbsp;`);
+  // TODO-QSP: dynamic text: V.Positive: <font color="<<$custom_theme['v_pos']>>">&#9632;</font>&nbsp;<<$cust...
+  scene.text(`V.Positive: <font color="${((s as any).custom_theme ?? 0)?.['v_pos']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['v_pos']}&nbsp;`);
+  // TODO-QSP: dynamic text: Positive: <font color="<<$custom_theme['pos']>>">&#9632;</font>&nbsp;<<$custom_t...
+  scene.text(`Positive: <font color="${((s as any).custom_theme ?? 0)?.['pos']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['pos']}&nbsp;`);
+  // TODO-QSP: dynamic text: Neutral: <font color="<<$custom_theme['neutral']>>">&#9632;</font>&nbsp;<<$custo...
+  scene.text(`Neutral: <font color="${((s as any).custom_theme ?? 0)?.['neutral']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['neutral']}&nbsp;`);
+  // TODO-QSP: dynamic text: Negative: <font color="<<$custom_theme['neg']>>">&#9632;</font>&nbsp;<<$custom_t...
+  scene.text(`Negative: <font color="${((s as any).custom_theme ?? 0)?.['neg']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['neg']}&nbsp;`);
+  // TODO-QSP: dynamic text: V.Negative: <font color="<<$custom_theme['v_neg']>>">&#9632;</font>&nbsp;<<$cust...
+  scene.text(`V.Negative: <font color="${((s as any).custom_theme ?? 0)?.['v_neg']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['v_neg']}&nbsp;`);
+  // TODO-QSP: dynamic text: Bimbo: <font color="<<$custom_theme['bimbo']>>">&#9632;</font>&nbsp;<<$custom_th...
+  scene.text(`Bimbo: <font color="${((s as any).custom_theme ?? 0)?.['bimbo']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['bimbo']}&nbsp;`);
+  // TODO-QSP: dynamic text: Goth: <font color="<<$custom_theme['goth']>>">&#9632;</font>&nbsp;<<$custom_them...
+  scene.text(`Goth: <font color="${((s as any).custom_theme ?? 0)?.['goth']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['goth']}&nbsp;`);
+  // TODO-QSP: dynamic text: Punk: <font color="<<$custom_theme['punk']>>">&#9632;</font>&nbsp;<<$custom_them...
+  scene.text(`Punk: <font color="${((s as any).custom_theme ?? 0)?.['punk']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['punk']}&nbsp;`);
+  // TODO-QSP: dynamic text: Hypno: <font color="<<$custom_theme['hypno']>>">&#9632;</font>&nbsp;<<$custom_th...
+  scene.text(`Hypno: <font color="${((s as any).custom_theme ?? 0)?.['hypno']}">&#9632;</font>&nbsp;${((s as any).custom_theme ?? 0)?.['hypno']}&nbsp;`);
   if (((s as any).custom_theme ?? 0)?.['increment'] === 0) {
     ((s as any).custom_theme ?? {})['increment'] = 16;
   }
-  // TODO-QSP: *p 'Increment:&nbsp;'
-  // TODO-QSP: *p '<a href="exec: custom_theme[''increment''] = iif(custom_theme[''increment''] <= 1, 1, custom_the...
-  // TODO-QSP: *p '&nbsp;<<custom_theme[''increment'']>>&nbsp;'
-  // TODO-QSP: *p '<a href="exec: custom_theme[''increment''] += 1 & gt ''$menu_settings'', ''theme_customize''"><i...
-  // TODO-QSP: *p '</font></td>'
+  scene.text('Increment:&nbsp;');
+  scene.img(`images/system/ui/less${((s as any).icon_selector ?? 0)}.png`);
+  // TODO-QSP: dynamic text: &nbsp;<<custom_theme['increment']>>&nbsp;
+  scene.text(`&nbsp;${((s as any).custom_theme ?? 0)?.['increment']}&nbsp;`);
+  scene.img(`images/system/ui/more${((s as any).icon_selector ?? 0)}.png`);
+  scene.text('</font></td>');
   ((s as any).theme_hex ?? {})['table_bg'] = ((s as any).custom_theme ?? 0)?.['table_bg'];
   ((s as any).theme_hex ?? {})['table_bg_alt'] = ((s as any).custom_theme ?? 0)?.['table_bg_alt'];
   ((s as any).theme_hex ?? {})['accent'] = ((s as any).custom_theme ?? 0)?.['accent'];
@@ -702,32 +767,46 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme_hex ?? {})['neutral'] = ((s as any).custom_theme ?? 0)?.['neutral'];
   ((s as any).theme_hex ?? {})['neg'] = ((s as any).custom_theme ?? 0)?.['neg'];
   ((s as any).theme_hex ?? {})['v_neg'] = ((s as any).custom_theme ?? 0)?.['v_neg'];
-  // TODO-QSP: *p '<td valign="top" style="padding:20px;">'
+  scene.text('<td valign="top" style="padding:20px;">');
   // TODO-QSP: dynamic text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="<<$custo...
   scene.text(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="${((s as any).custom_theme ?? 0)?.['bimbo']}">bimbo</font> wandered into a <font color="${((s as any).custom_theme ?? 0)?.['goth']}">goth</font> café, sparking a <font color="${((s as any).custom_theme ?? 0)?.['punk']}">punk</font> uprising while the air crackled with <font color="${((s as any).custom_theme ?? 0)?.['hypno']}">hypno</font> energy. <a href="exec:gt '$menu_settings', 'theme_customize'">Pellentesque habitant</a> morbi tristique senectus et netus.`);
-  // TODO-QSP: *p '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">'
-  // TODO-QSP: *p '<tr><td style="background:<<$custom_theme[''table_bg'']>>; padding:6px 14px; color:<<$tc_fg_hex>...
-  // TODO-QSP: *p '<tr><td style="background:<<$custom_theme[''table_bg_alt'']>>; padding:6px 14px; color:<<$tc_fg_...
-  // TODO-QSP: *p '<tr><td style="background:<<$custom_theme[''table_bg'']>>; padding:6px 14px; color:<<$tc_fg_hex>...
-  // TODO-QSP: *p '<tr><td style="background:<<$custom_theme[''table_bg_alt'']>>; padding:6px 14px; color:<<$tc_fg_...
-  // TODO-QSP: *p '</table>'
-  // TODO-QSP: *p '<table style="border-collapse:collapse; vertical-align:top;"><tr>'
-  // TODO-QSP: *p '<td style="vertical-align:top; padding-right:16px;">'
-  // TODO-QSP: *p $func('progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p '</td>'
-  // TODO-QSP: *p '<td style="vertical-align:top;">'
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 100)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 80)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 60)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 40)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 20)
-  // TODO-QSP: *p '</td>'
-  // TODO-QSP: *p '</tr></table>'
-  // TODO-QSP: *p '</td></tr></table></center>'
+  scene.text('<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">');
+  // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg']>>; padding:6px 14px; color...
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 1, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 1, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
+  // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg_alt']>>; padding:6px 14px; c...
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 2, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 2, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
+  // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg']>>; padding:6px 14px; color...
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 3, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 3, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
+  // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg_alt']>>; padding:6px 14px; c...
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 4, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)};">Row 4, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt']}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? 0)}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
+  scene.text('</table>');
+  scene.text('<table style="border-collapse:collapse; vertical-align:top;"><tr>');
+  scene.text('<td style="vertical-align:top; padding-right:16px;">');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 100, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 80, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 60, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 40, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 20, 0, 0, 0, \', \', \'21,41,61,81\')');
+  scene.text('</td>');
+  scene.text('<td style="vertical-align:top;">');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 100)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 100)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 80)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 80)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 60)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 60)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 40)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 40)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 20)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 20)');
+  scene.text('</td>');
+  scene.text('</tr></table>');
+  scene.text('</td></tr></table></center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
@@ -1057,8 +1136,9 @@ function enterThemePresets(s: GameState, scene: SceneBuilder): void {
 function enterStatus(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, '$menu_settings', 'settingtabs', 'Status Window');
-  // TODO-QSP: *p '<center><h2>Status Window Settings</h2></center>'
-  // TODO-QSP: *p $func('stat_display_menu', 'start')
+  scene.text('<center><h2>Status Window Settings</h2></center>');
+  // TODO-QSP: dynamic text: $func('stat_display_menu', 'start')
+  scene.text('$func(\'stat_display_menu\', \'start\')');
   // TODO-QSP: end
   scene.build();
 }

@@ -4,7 +4,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).anrand = Math.floor(Math.random() * 40) + 0;
-  // TODO-QSP: *p '"'
+  scene.text('"');
   if ((!((s as any).anrand ?? 0))) {
     scene.text('What is the difference between a snowman and a snow-woman?');
     scene.text('Snowballs."');
@@ -213,7 +213,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const anekdot: LocationDef = {
   name: 'anekdot',
-  title: 'What is the difference between a snowman and a snow-woman?',
+  title: '"',
   region: 'other',
   description: ['What is the difference between a snowman and a snow-woman?'],
   enter: enter,

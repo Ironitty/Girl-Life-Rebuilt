@@ -167,14 +167,16 @@ function enterGenerateOutput(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'flash', 'display_image');
   }
   if (((s as any).flash_text ?? 0)[0] !== '') {
-    // TODO-QSP: *pl $flash_text[0]
+    // TODO-QSP: dynamic text: l $flash_text[0]
+    scene.text('l $flash_text[0]');
   }
   // TODO-QSP: gs 'arousal', $ARGS[3], ARGS[4], 'exhibitionism', $flash_arousal[0], $flash_arousal[1], $flash_arous...
   if (((s as any).locArgs?.[5] ?? 0) !== 1) {
     // TODO-QSP: gs 'flash', 'events', $ARGS[1], $ARGS[2], ARGS[4], ARGS[5]
   }
   if (((s as any).flash_text ?? 0)[1] !== '') {
-    // TODO-QSP: *pl $flash_text[1]
+    // TODO-QSP: dynamic text: l $flash_text[1]
+    scene.text('l $flash_text[1]');
   }
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: gs 'flash', 'cleanup', ARGS[5]

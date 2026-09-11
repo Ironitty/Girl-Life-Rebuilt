@@ -733,7 +733,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $streetev_title
     scene.img('images/locations/shared/street/bottomed1.mp4');
     scene.text('As you walk down the street, you are suddenly pushed forward hard. You nearly lose your balance and only barely catch yourself. While you are half bent over and trying to recover, you feel someone yank up your dress and yank down your panties, exposing your ass and pussy for everyone to see. You quickly regain your balance. As you do, you pull up your panties and smooth your dress back in place. By that time, whoever did this is long gone.');
-    // TODO-QSP: *p 'You look around and notice several people staring at you. You are sure they''ve seen everything....
+    scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
       qspCall(s, 'arousal', 'flash', (-5));
       qspCall(s, 'arousal', 'end');
@@ -760,7 +760,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $streetev_title
       scene.img('images/locations/shared/street/sharkdress\'+ rand(1, 2) +\'.mp4');
       scene.text('As you walk down the street, someone comes up behind you, grabs the top of your dress and yanks it down around your ankles, which leaves you standing stark naked. You quickly squat down and grab your dress, pulling it back up and into place. By that time, who ever did this is long gone.');
-      // TODO-QSP: *p 'You look around and notice several people staring at you. You are sure they''ve seen everything....
+      scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
         qspCall(s, 'arousal', 'flash', (-5));
         qspCall(s, 'arousal', 'end');
@@ -786,7 +786,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $streetev_title
         scene.img('images/locations/shared/street/bottomeds\'+ rand(1, 2) +\'.mp4');
         scene.text('As you walk down the street, someone comes up behind you and grabs your skirt and panties, yanking them down. Your skirt ends up around your ankles and your panties halfway down your thighs, which leaves your ass and pussy on fully display to everyone around. You quickly pull up your panties and then squat down and grab your skirt, pulling it back up and into place. By that time, whoever did this is long gone.');
-        // TODO-QSP: *p 'You look around and notice several people staring at you. You are sure they''ve seen everything....
+        scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
         if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
           qspCall(s, 'arousal', 'flash', (-5));
           qspCall(s, 'arousal', 'end');
@@ -812,7 +812,7 @@ function enterMinorClothesGrabbed(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $streetev_title
         scene.img('images/locations/shared/street/topped\'+ rand(1, 2) +\'.mp4');
         scene.text('As you walk down the street, someone comes up behind you and grabs your top, yanking it down, which leaves your tits on full display to everyone around. You quickly pull your top back up. By that time, whoever did this is long gone.');
-        // TODO-QSP: *p 'You look around and notice several people staring at you. You are sure they''ve seen everything....
+        scene.text('You look around and notice several people staring at you. You are sure they\'ve seen everything. ');
         if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
           qspCall(s, 'arousal', 'flash', (-5));
           qspCall(s, 'arousal', 'end');

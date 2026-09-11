@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :looplocations
     if (((s as any).portfolio_locations ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      // TODO-QSP: *p '<a href="exec:gt ''journal_portfolio'', ''image_view'', ''locations'', <<i>>"><img height="250" ...
+      scene.img(`images/pc/activities/photography/foto/locations/${((s as any).i ?? 0)}.jpg`);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_locations ?? {}).length) {
@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :looppeople
     if (((s as any).portfolio_people ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      // TODO-QSP: *p '<a href="exec:gt ''journal_portfolio'', ''image_view'', ''people'', <<i>>"><img height="250" src...
+      scene.img(`images/pc/activities/photography/foto/people/${((s as any).i ?? 0)}.jpg`);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_people ?? {}).length) {

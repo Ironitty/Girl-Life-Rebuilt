@@ -123,7 +123,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'underwear_attributes', $ARGS[4] + '_bodysuits', ARGS[5]
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
-        // TODO-QSP: *p '<a href="exec: gt ''underwear_bodysuit_view'', ''view_item'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''...
+        scene.img(`${qspFunc(s, '$bodysuit_image', '$ARGS[4]', qspUntranslated(s, "ARGS[5]", { location: "underwear_bodysuit_view" }))}`);
       }
       return;
     }
@@ -141,7 +141,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'underwear_attributes', $ARGS[4] + '_bodysuits', ARGS[5]
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
-        // TODO-QSP: *p '<a href="exec: gt ''underwear_bodysuit_view'', ''view_item'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''...
+        scene.img(`${qspFunc(s, '$bodysuit_image', '$ARGS[4]', qspUntranslated(s, "ARGS[5]", { location: "underwear_bodysuit_view" }))}`);
       }
       return;
     }

@@ -662,7 +662,8 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       (s as any).rentdue = qspFunc(s, 'homes_properties', 'get_rent_amount', 'city_apartment');
       // TODO-QSP: dynamic text: You have rented an apartment in the city residential area, which is paid up for ...
       scene.text(`You have rented an apartment in the city residential area, which is paid up for <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment')}</b> days`);
-      // TODO-QSP: *p 'The monthly rent for your city apartment is <<$func(''money'', ''string_price'', rentdue)>>.'
+      // TODO-QSP: dynamic text: The monthly rent for your city apartment is <<$func('money', 'string_price', ren...
+      scene.text(`The monthly rent for your city apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue ?? 0))}.`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).rentdue ?? 0))) {
         scene.text(' You can make an advance <a href="exec:gs \'money\', \'pay\', rentdue & gs \'homes_properties\', \'add_rent_days\', \'city_apartment\' & gs \'$menu_obnovit\'">payment</a>.');
       } else {
@@ -673,7 +674,8 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       (s as any).rentdue = qspFunc(s, 'homes_properties', 'get_rent_amount', 'old_town_apartment');
       // TODO-QSP: dynamic text: You have rented an apartment in Pushkin, and you're paid up for <<func('homes_pr...
       scene.text(`You have rented an apartment in Pushkin, and you're paid up for ${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')} days`);
-      // TODO-QSP: *p 'The monthly rent for your Pushkin apartment is <<$func(''money'', ''string_price'', rentdue)>>.'
+      // TODO-QSP: dynamic text: The monthly rent for your Pushkin apartment is <<$func('money', 'string_price', ...
+      scene.text(`The monthly rent for your Pushkin apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue ?? 0))}.`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).rentdue ?? 0))) {
         scene.text(' You can make an advance <a href="exec:gs \'money\', \'pay\', rentdue & gs \'homes_properties\', \'add_rent_days\', \'old_town_apartment\' & gs \'$menu_obnovit\'">payment</a>.');
       } else {
@@ -2230,7 +2232,7 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
 
 function enterArchetypes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_character', 'charactertabs', 'Archetypes');
-  // TODO-QSP: *p '<center><h2>Archetypes</h2></center>'
+  scene.text('<center><h2>Archetypes</h2></center>');
   qspCall(s, 'archetypes', 'arch_tabs', ((((s as any).locArgs?.[1] ?? 0) !== '') ? (((s as any).locArgs?.[1] ?? 0)) : ('main')));
   if (((s as any).locArgs?.[1] ?? 0) === 'catalog') {
     qspCall(s, 'archetypes', 'cause_catalog');
@@ -2238,9 +2240,11 @@ function enterArchetypes(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[1] ?? 0) === 'history') {
       qspCall(s, 'archetypes', 'history_page');
     } else {
-      // TODO-QSP: *p $settings['table_start']
+      // TODO-QSP: dynamic text: $settings['table_start']
+      scene.text('$settings[\'table_start\']');
       qspCall(s, 'archetypes', 'display_page');
-      // TODO-QSP: *p $settings['table_end']
+      // TODO-QSP: dynamic text: $settings['table_end']
+      scene.text('$settings[\'table_end\']');
     }
   }
   // TODO-QSP: end
@@ -2249,10 +2253,12 @@ function enterArchetypes(s: GameState, scene: SceneBuilder): void {
 
 function enterTraits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_character', 'charactertabs', 'Traits');
-  // TODO-QSP: *p '<center><h2>Traits</h2></center>'
-  // TODO-QSP: *p $settings['table_start']
+  scene.text('<center><h2>Traits</h2></center>');
+  // TODO-QSP: dynamic text: $settings['table_start']
+  scene.text('$settings[\'table_start\']');
   // TODO-QSP: $func('traits', 'show_all')
-  // TODO-QSP: *p $settings['table_end']
+  // TODO-QSP: dynamic text: $settings['table_end']
+  scene.text('$settings[\'table_end\']');
   // TODO-QSP: end
   scene.build();
 }
@@ -2415,7 +2421,8 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
       scene.text(`<font color="magenta">${((s as any).pfname ?? 0)}</font> retired after <b>${((s as any).film ?? 0)}</b> porn films:`);
     }
     scene.text('<a href="exec:gs \'pornhist\', \'pdetail\'">View detailed Filmography</a>');
-    // TODO-QSP: *p '<<$pfilmhistory>>'
+    // TODO-QSP: dynamic text: <<$pfilmhistory>>
+    scene.text(`${((s as any).pfilmhistory ?? 0)}`);
   }
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end

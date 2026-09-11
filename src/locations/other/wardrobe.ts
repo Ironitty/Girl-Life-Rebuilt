@@ -139,10 +139,10 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><font color="maroon">These are the clothes you are currently wearing - C...
   scene.text(`<center><font color="maroon">These are the clothes you are currently wearing - Click on an item to change it</font></center><center><table border=0 cellspacing=${((s as any).ward_img_hgt ?? 0)/25} cellpadding=5>`);
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
-    // TODO-QSP: *p '<th>Bra worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>'
+    scene.text('<th>Bra worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
     // TODO-QSP: *P '<tr><td><center><a href="exec:gt ''wardrobe'', ''underwear_options'', ''bra''"><img Height = <<w...
   } else {
-    // TODO-QSP: *p '<th>Bodysuit worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>'
+    scene.text('<th>Bodysuit worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
     // TODO-QSP: *P '<tr><td ROWSPAN=4><center><a href="exec:gt ''wardrobe'', ''underwear_options'', ''full''"><img H...
   }
   if (((s as any).coatworntype ?? 0) === 'none') {
@@ -174,10 +174,10 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('</center></td>');
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
-    // TODO-QSP: *p '<tr><th>Panties worn</th><th>Shoes (Only worn outside)</th><th>Purse worn</th>'
+    scene.text('<tr><th>Panties worn</th><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
     // TODO-QSP: *P '<tr><td><center><a href="exec:gt ''wardrobe'', ''underwear_options'', ''panties''"><img Height =...
   } else {
-    // TODO-QSP: *p '<tr><th>Shoes (Only worn outside)</th><th>Purse worn</th>'
+    scene.text('<tr><th>Shoes (Only worn outside)</th><th>Purse worn</th>');
     // TODO-QSP: *P '<tr><td><center><a href="exec:gt ''shoe_view'', ''view_list'', ''wardrobe''"><img Height = <<war...
   }
   if (((s as any).bag ?? 0) === 1) {
@@ -398,7 +398,8 @@ function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = ((s as any).default_entry ?? 0);
   // TODO-QSP: :loopdefault_entry_set
   if ((0 as any) !== 0) {
-    // TODO-QSP: *p $func('wardrobe', 'default_clothing_line')
+    // TODO-QSP: dynamic text: $func('wardrobe', 'default_clothing_line')
+    scene.text('$func(\'wardrobe\', \'default_clothing_line\')');
   }
   (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
   if (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]) {
@@ -407,7 +408,8 @@ function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = ((s as any).temp ?? 0);
   // TODO-QSP: :loopdefault_entry_empty
   if ((!(0 as any))) {
-    // TODO-QSP: *p $func('wardrobe', 'default_clothing_line')
+    // TODO-QSP: dynamic text: $func('wardrobe', 'default_clothing_line')
+    scene.text('$func(\'wardrobe\', \'default_clothing_line\')');
   }
   (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
   if (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]) {

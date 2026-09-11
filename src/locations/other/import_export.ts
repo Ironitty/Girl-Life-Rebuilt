@@ -300,7 +300,8 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $export_str += ' & ' + "$rel_group_order[6] = '<<$rel_group_order[6]>>'"
     // TODO-QSP: $export_str += ' & ' + "$rel_group_order[7] = '<<$rel_group_order[7]>>'"
     // TODO-QSP: $export_str += ' & ' + "$rel_group_order[8] = '<<$rel_group_order[8]>>'"
-    // TODO-QSP: *p $export_str
+    // TODO-QSP: dynamic text: $export_str
+    scene.text('$export_str');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).usehtml = 1;

@@ -60,7 +60,8 @@ function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
   ((s as any).card_in ?? {})['border'] = ((s as any).theme_hex ?? 0)?.['accent'];
   ((s as any).card_in ?? {})['bg'] = qspFunc(s, 'themes', 'alt_color', '');
   qspCall(s, 'cards', 'shell_open');
-  // TODO-QSP: *p $result
+  // TODO-QSP: dynamic text: $result
+  scene.text('$result');
   return;
   // TODO-QSP: end
   scene.build();
@@ -68,7 +69,8 @@ function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
 
 function enterSectionClose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cards', 'shell_close');
-  // TODO-QSP: *p $result
+  // TODO-QSP: dynamic text: $result
+  scene.text('$result');
   return;
   // TODO-QSP: end
   scene.build();

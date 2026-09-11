@@ -922,12 +922,18 @@ function enterSetLooksInput(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrintLooksLinks(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', 100">Max</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 1">+1</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 10">+10</a>...
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 1">-1</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 10">-10</a>...
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', 0">Min</a> '
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', 100">Max</a> 
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', 100">Max</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl +...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 1">+1</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl +...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 10">+10</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl -...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 1">-1</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl -...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 10">-10</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', 0">Min</a> 
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', 0">Min</a> `);
   // TODO-QSP: end
   ((s as any).cheatmenu ?? {})['looks'] = 'gt \'cheatmenu_din\', \'looks\'';
   scene.build();
@@ -1142,15 +1148,16 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fat ?? 0) !== 0) {
       scene.text('<a href="exec:fat = 0 & gt \'cheatmenu_din\', \'looks\'">Zero fat</a>');
     }
-    // TODO-QSP: *p 'Body Fat = (<<pcs_mass[''body'']>>): '
+    // TODO-QSP: dynamic text: Body Fat = (<<pcs_mass['body']>>): 
+    scene.text(`Body Fat = (${((s as any).pcs_mass ?? 0)?.['body']}): `);
     if (((s as any).pcs_mass ?? 0)?.['body'] > 10) {
-      // TODO-QSP: *p '<a href="exec: gs ''cheatmenu_din'', ''change_pcs_mass_body'', -10">-10</a> '
+      scene.text('<a href="exec: gs \'cheatmenu_din\', \'change_pcs_mass_body\', -10">-10</a> ');
     }
     if (((s as any).pcs_mass ?? 0)?.['body'] > 5) {
-      // TODO-QSP: *p '<a href="exec: gs ''cheatmenu_din'', ''change_pcs_mass_body'', -5">-5</a> '
+      scene.text('<a href="exec: gs \'cheatmenu_din\', \'change_pcs_mass_body\', -5">-5</a> ');
     }
     if (((s as any).pcs_mass ?? 0)?.['body'] > 1) {
-      // TODO-QSP: *p '<a href="exec: gs ''cheatmenu_din'', ''change_pcs_mass_body'', -1">-1</a> '
+      scene.text('<a href="exec: gs \'cheatmenu_din\', \'change_pcs_mass_body\', -1">-1</a> ');
     }
     // TODO-QSP: dynamic text: Note: You need some Body Fat to survive, any value under 11 is classified as "st...
     scene.text(`Note: You need some Body Fat to survive, any value under 11 is classified as "starving" and a value of 0 can lead to a Game Over. ${qspFunc(s, 'body', 'CalcOptBodyMass')} gives a bmi of 22.5.`);
@@ -1637,18 +1644,28 @@ function enterSetSkills(s: GameState, scene: SceneBuilder): void {
 
 function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[3] ?? 0))) {
-    // TODO-QSP: *p "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>) - Total (<<dyneval('result = pcs_<<$ARGS...
+    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>) - Total (<<dyneval('res...
+    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>) - Total (${0}')>>): "`);
   } else {
-    // TODO-QSP: *p "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>): "
+    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>): "
+    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>): "`);
   }
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', 0">Min</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 10">-10</a> ...
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 5">-5</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 1">-1</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 1">+1</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 5">+5</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 10">+10</a> ...
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', 100">Max</a> '
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 0">Min</a> 
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 0">Min</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 10">-10</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 5">-5</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 1">-1</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 1">+1</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 5">+5</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 10">+10</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 100">Max</a> 
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 100">Max</a> `);
   // TODO-QSP: end
   ((s as any).cheatmenu ?? {})['printStatLinksInverted'] = 'gs \'cheatmenu_din\', \'printStatLinksInverted\', $ARGS[0], $ARGS[1]';
   scene.build();
@@ -1656,18 +1673,28 @@ function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
 
 function enterPrintStatLinksInverted(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[3] ?? 0))) {
-    // TODO-QSP: *p "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>) - Total (<<dyneval('result = 100 -...
+    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>) - Total (<<dyneva...
+    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>) - Total (${0}')>>): "`);
   } else {
-    // TODO-QSP: *p "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>): "
+    // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>): "
+    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>): "`);
   }
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', 100">Min</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 10">-10</a> ...
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 5">-5</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 1">-1</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 1">+1</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 5">+5</a> '
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 10">+10</a> ...
-  // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', 0">Max</a> '
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 100">Min</a> 
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 100">Min</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 10">-10</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 5">-5</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 1">-1</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 1">+1</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 5">+5</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 10">+10</a> `);
+  // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 0">Max</a> 
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 0">Max</a> `);
   // TODO-QSP: end
   ((s as any).cheatmenu ?? {})['stats'] = 'gt \'cheatmenu_din\', \'stats\'';
   scene.build();
@@ -1699,10 +1726,12 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
     (s as any).willpowermax = 50;
   }
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
-    // TODO-QSP: *pl '<a href="exec:teacher[''level''] += 10 & gt ''cheatmenu_din'', ''stats''">Reputation teacher+10...
+    // TODO-QSP: dynamic text: l '<a href="exec:teacher[''level''] += 10 & gt ''cheatmenu_din'', ''stats''">Rep...
+    scene.text(`l '<a href="exec:teacher['level'] += 10 & gt 'cheatmenu_din', 'stats'">Reputation teacher+10: ${((s as any).teacher ?? 0)?.['level']}</a>'`);
   }
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
-    // TODO-QSP: *pl '<a href="exec:teacher[''level''] -= 10 & gt ''cheatmenu_din'', ''stats''">Reputation teacher-10...
+    // TODO-QSP: dynamic text: l '<a href="exec:teacher[''level''] -= 10 & gt ''cheatmenu_din'', ''stats''">Rep...
+    scene.text(`l '<a href="exec:teacher['level'] -= 10 & gt 'cheatmenu_din', 'stats'">Reputation teacher-10: ${((s as any).teacher ?? 0)?.['level']}</a>'`);
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
     qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'math', 'Math');
@@ -1719,7 +1748,8 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'mus', 'Music');
     qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'pe', 'P.E.');
     if (((s as any).gschoolVars ?? 0)?.['absence_count'] >= 0) {
-      // TODO-QSP: *pl '<a href="exec: gschoolVars[''absence_count''] = 0 & gt ''cheatmenu_din'', ''stats''">Zero Absen...
+      // TODO-QSP: dynamic text: l '<a href="exec: gschoolVars[''absence_count''] = 0 & gt ''cheatmenu_din'', ''s...
+      scene.text(`l '<a href="exec: gschoolVars['absence_count'] = 0 & gt 'cheatmenu_din', 'stats'">Zero Absenteeism (School): ${((s as any).gschoolVars ?? 0)?.['absence_count']}</a>'`);
     }
   }
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
@@ -2823,12 +2853,15 @@ function enterCheatTattoo(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatGradeRow(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cheat_val = ((s as any).class ?? 0)?.[String((s as any).temp_cheat_key ?? 0)];
-  // TODO-QSP: *p '<<$ARGS[2]>> grade: <<temp_cheat_val>>'
+  // TODO-QSP: dynamic text: <<$ARGS[2]>> grade: <<temp_cheat_val>>
+  scene.text(`${((s as any).locArgs?.[2] ?? 0)} grade: ${((s as any).temp_cheat_val ?? 0)}`);
   if (((s as any).temp_cheat_val ?? 0) > 0) {
-    // TODO-QSP: *p ' <a href="exec:gs ''grades'', ''grade_award'', ''school'', ''<<$ARGS[1]>>'', -10 & gt ''cheatmen...
+    // TODO-QSP: dynamic text:  <a href="exec:gs 'grades', 'grade_award', 'school', '<<$ARGS[1]>>', -10 & gt 'c...
+    scene.text(` <a href="exec:gs 'grades', 'grade_award', 'school', '${((s as any).locArgs?.[1] ?? 0)}', -10 & gt 'cheatmenu_din', 'stats'">-10</a>`);
   }
   if (((s as any).temp_cheat_val ?? 0) < 100) {
-    // TODO-QSP: *p ' <a href="exec:gs ''grades'', ''grade_award'', ''school'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu...
+    // TODO-QSP: dynamic text:  <a href="exec:gs 'grades', 'grade_award', 'school', '<<$ARGS[1]>>', 10 & gt 'ch...
+    scene.text(` <a href="exec:gs 'grades', 'grade_award', 'school', '${((s as any).locArgs?.[1] ?? 0)}', 10 & gt 'cheatmenu_din', 'stats'">+10</a>`);
   }
   // TODO-QSP: end
   scene.build();
@@ -2872,11 +2905,16 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cheat_arch[0] = 'bimbo' & $cheat_arch[1] = 'preppy' & $cheat_arch[2] = 'prude' & $cheat_arch[3] = '...
   (s as any).cheat_tp_i = 0;
   // TODO-QSP: :cheat_tp_loop
-  // TODO-QSP: *p '<b><<$cheat_tp_title>></b> (<<arch_vars[$cheat_tp_k]>>): '
-  // TODO-QSP: *p ' <a href="exec:arch_vars[''<<$cheat_tp_k>>''] += 10000 & gs ''archetypes'', ''clamp'', ''<<$chea...
-  // TODO-QSP: *p ' <a href="exec:arch_vars[''<<$cheat_tp_k>>''] += 1000 & gs ''archetypes'', ''clamp'', ''<<$cheat...
-  // TODO-QSP: *p ' <a href="exec:arch_vars[''<<$cheat_tp_k>>''] -= 1000 & gs ''archetypes'', ''clamp'', ''<<$cheat...
-  // TODO-QSP: *p ' <a href="exec:arch_vars[''<<$cheat_tp_k>>''] -= 10000 & gs ''archetypes'', ''clamp'', ''<<$chea...
+  // TODO-QSP: dynamic text: <b><<$cheat_tp_title>></b> (<<arch_vars[$cheat_tp_k]>>): 
+  scene.text(`<b>${((s as any).cheat_tp_title ?? 0)}</b> (${((s as any).arch_vars ?? 0)?.[String((s as any).cheat_tp_k ?? 0)]}): `);
+  // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] += 10000 & gs 'archetypes', 'clamp',...
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] += 10000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">+10k</a>`);
+  // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] += 1000 & gs 'archetypes', 'clamp', ...
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] += 1000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">+1k</a>`);
+  // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] -= 1000 & gs 'archetypes', 'clamp', ...
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] -= 1000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">-1k</a>`);
+  // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] -= 10000 & gs 'archetypes', 'clamp',...
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] -= 10000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">-10k</a>`);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] = 0 & <<$cheat_tp_refresh>>">Zero</a...
   scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] = 0 & ${((s as any).cheat_tp_refresh ?? 0)}">Zero</a>`);
   (s as any).cheat_tp_i = ((s as any).cheat_tp_i ?? 0) + (1);

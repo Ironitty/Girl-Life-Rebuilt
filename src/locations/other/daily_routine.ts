@@ -1154,17 +1154,17 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dr_ph ?? 0) !== 'evening') {
   }
   if (((s as any).dr_ph ?? 0) === 'evening') {
-    // TODO-QSP: *p '<center><b>Evening routine</b></center>'
+    scene.text('<center><b>Evening routine</b></center>');
   } else {
-    // TODO-QSP: *p '<center><b>Morning routine</b></center>'
+    scene.text('<center><b>Morning routine</b></center>');
   }
   qspCall(s, 'daily_routine', 'settings_defaults');
   qspCall(s, 'daily_routine', 'catalog_build');
-  // TODO-QSP: *p '<b>Your routine</b> <i>(plays top to bottom)</i>'
+  scene.text('<b>Your routine</b> <i>(plays top to bottom)</i>');
   if (((s as any).droutine ?? 0)[((s as any).dr_ph ?? 0) + '_count'] <= 0) {
-    // TODO-QSP: *p '<i>No steps yet - add some from the list below.</i>'
+    scene.text('<i>No steps yet - add some from the list below.</i>');
   } else {
-    // TODO-QSP: *p '<table width=100% cellpadding=4 cellspacing=0>'
+    scene.text('<table width=100% cellpadding=4 cellspacing=0>');
     (s as any).temp_dpi = 0;
     // TODO-QSP: :droutine_mp_orderloop
     (s as any).temp_dpi = ((s as any).temp_dpi ?? 0) + (1);
@@ -1193,15 +1193,16 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      // TODO-QSP: *p '<tr><td width=35%><<$dr_col1>></td><td><<$dr_col2>></td></tr>'
+      // TODO-QSP: dynamic text: <tr><td width=35%><<$dr_col1>></td><td><<$dr_col2>></td></tr>
+      scene.text(`<tr><td width=35%>${((s as any).dr_col1 ?? 0)}</td><td>${((s as any).dr_col2 ?? 0)}</td></tr>`);
       // TODO-QSP: killvar 'dr_col1'
       // TODO-QSP: killvar 'dr_col2'
       // TODO-QSP: jump 'droutine_mp_orderloop'
     }
-    // TODO-QSP: *p '</table>'
+    scene.text('</table>');
   }
-  // TODO-QSP: *p '<b>Add steps</b>'
-  // TODO-QSP: *p '<table width=100% cellpadding=4 cellspacing=0>'
+  scene.text('<b>Add steps</b>');
+  scene.text('<table width=100% cellpadding=4 cellspacing=0>');
   (s as any).dr_bath_shown = 0;
   (s as any).temp_dci = 0;
   // TODO-QSP: :droutine_mp_addloop
@@ -1231,15 +1232,17 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).dr_show ?? 0) === 1) {
       if (((s as any).droutine ?? 0)?.['current_category'] !== ((s as any).dr_prevcat ?? 0)) {
-        // TODO-QSP: *p '<tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b><<$dr_prevcat>></b></...
+        // TODO-QSP: dynamic text: <tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b><<$dr...
+        scene.text(`<tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b>${((s as any).dr_prevcat ?? 0)}</b></td></tr>`);
       }
-      // TODO-QSP: *p '<tr><td width=35%><font color="#888"><<$dr_col1>></font></td><td><<$dr_col2>></td></tr>'
+      // TODO-QSP: dynamic text: <tr><td width=35%><font color="#888"><<$dr_col1>></font></td><td><<$dr_col2>></t...
+      scene.text(`<tr><td width=35%><font color="#888">${((s as any).dr_col1 ?? 0)}</font></td><td>${((s as any).dr_col2 ?? 0)}</td></tr>`);
     }
     // TODO-QSP: killvar 'dr_col1'
     // TODO-QSP: killvar 'dr_col2'
     // TODO-QSP: jump 'droutine_mp_addloop'
   }
-  // TODO-QSP: *p '</table>'
+  scene.text('</table>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Back', goto: ['daily_routine', 'manage'] },

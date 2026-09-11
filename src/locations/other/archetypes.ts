@@ -1310,8 +1310,9 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: jump 'tv_dp_find_label'
       }
     }
-    // TODO-QSP: *p '<table width="82%" align="center" cellpadding="0" cellspacing="0" style="border-left: 4px solid ...
-    // TODO-QSP: *p '<tr><td style="padding: 8px 14px;">'
+    // TODO-QSP: dynamic text: <table width="82%" align="center" cellpadding="0" cellspacing="0" style="border-...
+    scene.text(`<table width="82%" align="center" cellpadding="0" cellspacing="0" style="border-left: 4px solid ${((s as any).temp_tv ?? 0)?.['active_color']}; margin: 4px auto 8px;">`);
+    scene.text('<tr><td style="padding: 8px 14px;">');
     ((s as any).temp_tv ?? {})['pct'] = (((s as any).arch_vars ?? 0)[((s as any).temp_tv ?? {})?.['active'] + '_points'] * 100) / ((s as any).arch_const ?? {})?.['points_full_effect'];
     if (((s as any).temp_tv ?? 0)?.['pct'] > 100) {
       ((s as any).temp_tv ?? {})['pct'] = 100;
@@ -1362,9 +1363,10 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: *p '</td></tr></table>'
+    scene.text('</td></tr></table>');
   } else {
-    // TODO-QSP: *p '<center><font color="#888888"><i>No active archetype — gain at least <<arch_const[''point_min'']...
+    // TODO-QSP: dynamic text: <center><font color="#888888"><i>No active archetype — gain at least <<arch_cons...
+    scene.text(`<center><font color="#888888"><i>No active archetype — gain at least ${((s as any).arch_const ?? {})?.['point_min'] / 250} points in any archetype to activate it.</i></font></center>`);
   }
   ((s as any).temp_tv ?? {})['max'] = ((s as any).arch_const ?? 0)?.['points_full_effect'];
   ((s as any).temp_tv ?? {})['saved_bar_width'] = ((s as any).stat_cfg ?? 0)?.['bar_width'];
@@ -1393,7 +1395,7 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_tv ?? {})['html'] = (((s as any).temp_tv ?? {})['html'] ?? 0) + ('</table>');
   // TODO-QSP: $temp_tv['html']
   ((s as any).stat_cfg ?? {})['bar_width'] = ((s as any).temp_tv ?? 0)?.['saved_bar_width'];
-  // TODO-QSP: *p '<center><font size="2" color="#888888">Archetypes are shaped by clothing, makeup, and other pres...
+  scene.text('<center><font size="2" color="#888888">Archetypes are shaped by clothing, makeup, and other presentation choices, as well as social cliques and many decisions you can make.<br>Each archetype has two opposites, with opposing effects. Gaining points in a archetype reduces an equal amount of points in its opposites.<br>Bimbo opposes Prude &amp; Punk, Preppy opposes Punk &amp; Goth, Prude opposes Goth &amp; Bimbo, Punk opposes Bimbo &amp; Preppy, and Goth opposes Preppy &amp; Prude.<br>The more points you have in your active archetype, the stronger its effects.</font></center>');
   return;
   // TODO-QSP: end
   scene.build();
@@ -1434,15 +1436,17 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   ((s as any).thp ?? {})['tname'] = ((s as any).thp ?? 0)?.['names, ' + String(((s as any).thp ?? 0)?.['ti'])];
   ((s as any).thp ?? {})['tlabel'] = ((s as any).thp ?? 0)?.['labels, ' + String(((s as any).thp ?? 0)?.['ti'])];
   ((s as any).thp ?? {})['tcolor'] = ((s as any).thp ?? 0)?.['colors, ' + String(((s as any).thp ?? 0)?.['ti'])];
-  // TODO-QSP: *p '<div style="margin:12px 0 4px;border-bottom:2px solid <<$thp[''tcolor'']>>;padding-bottom:3px;">...
-  // TODO-QSP: *p '<b><font color="<<$thp[''tcolor'']>>"><<$thp[''tlabel'']>></font></b>'
-  // TODO-QSP: *p '</div>'
-  // TODO-QSP: *p '<table width="100%" cellpadding="2" cellspacing="0" style="font-size:0.9em;">'
-  // TODO-QSP: *p '<tr>'
-  // TODO-QSP: *p '<td width="120" style="color:#888888;font-size:0.85em;">Category</td>'
-  // TODO-QSP: *p '<td width="80" align="right" style="color:#888888;font-size:0.85em;">Last hour</td>'
-  // TODO-QSP: *p '<td width="80" align="right" style="color:#888888;font-size:0.85em;">Last day</td>'
-  // TODO-QSP: *p '</tr>'
+  // TODO-QSP: dynamic text: <div style="margin:12px 0 4px;border-bottom:2px solid <<$thp['tcolor']>>;padding...
+  scene.text(`<div style="margin:12px 0 4px;border-bottom:2px solid ${((s as any).thp ?? 0)?.['tcolor']};padding-bottom:3px;">`);
+  // TODO-QSP: dynamic text: <b><font color="<<$thp['tcolor']>>"><<$thp['tlabel']>></font></b>
+  scene.text(`<b><font color="${((s as any).thp ?? 0)?.['tcolor']}">${((s as any).thp ?? 0)?.['tlabel']}</font></b>`);
+  scene.text('</div>');
+  scene.text('<table width="100%" cellpadding="2" cellspacing="0" style="font-size:0.9em;">');
+  scene.text('<tr>');
+  scene.text('<td width="120" style="color:#888888;font-size:0.85em;">Category</td>');
+  scene.text('<td width="80" align="right" style="color:#888888;font-size:0.85em;">Last hour</td>');
+  scene.text('<td width="80" align="right" style="color:#888888;font-size:0.85em;">Last day</td>');
+  scene.text('</tr>');
   ((s as any).thp ?? {})['ci'] = 0;
   ((s as any).thp ?? {})['tot60'] = 0;
   ((s as any).thp ?? {})['tot1440'] = 0;
@@ -1453,11 +1457,14 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   ((s as any).thp ?? {})['v1440'] = ((s as any).agg ?? 0)?.['arch:\' + $thp[\'tname\'] + \', cat:\' + $thp[\'ckey\'] + \', w:1440'];
   ((s as any).thp ?? {})['tot60'] = (((s as any).thp ?? {})['tot60'] ?? 0) + (((s as any).thp ?? 0)?.['v60']);
   ((s as any).thp ?? {})['tot1440'] = (((s as any).thp ?? {})['tot1440'] ?? 0) + (((s as any).thp ?? 0)?.['v1440']);
-  // TODO-QSP: *p '<tr>'
-  // TODO-QSP: *p '<td><<$thp[''clabel'']>></td>'
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''v60''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''v60''],   ''...
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''v1440''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''v1440''], ...
-  // TODO-QSP: *p '</tr>'
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: <td><<$thp['clabel']>></td>
+  scene.text(`<td>${((s as any).thp ?? 0)?.['clabel']}</td>`);
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v60'] <> 0, $func('archetypes', 'fmt_pts', thp['v60...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'], 'coarse')) : ('—'))}</td>`);
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v1440'] <> 0, $func('archetypes', 'fmt_pts', thp['v...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text('</tr>');
   ((s as any).thp ?? {})['ci'] = (((s as any).thp ?? {})['ci'] ?? 0) + (1);
   if (((s as any).thp ?? 0)?.['ci'] < 9) {
     // TODO-QSP: jump 'thp_cat_loop'
@@ -1466,25 +1473,32 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   ((s as any).thp ?? {})['v1440'] = ((s as any).agg ?? 0)?.['arch:\' + $thp[\'tname\'] + \', cat:decay, w:1440'];
   ((s as any).thp ?? {})['tot60'] = (((s as any).thp ?? {})['tot60'] ?? 0) + (((s as any).thp ?? 0)?.['v60']);
   ((s as any).thp ?? {})['tot1440'] = (((s as any).thp ?? {})['tot1440'] ?? 0) + (((s as any).thp ?? 0)?.['v1440']);
-  // TODO-QSP: *p '<tr style="color:#888888;">'
-  // TODO-QSP: *p '<td><i>Decay</i></td>'
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''v60''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''v60''],   ''...
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''v1440''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''v1440''], ...
-  // TODO-QSP: *p '</tr>'
+  scene.text('<tr style="color:#888888;">');
+  scene.text('<td><i>Decay</i></td>');
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v60'] <> 0, $func('archetypes', 'fmt_pts', thp['v60...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'], 'coarse')) : ('—'))}</td>`);
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v1440'] <> 0, $func('archetypes', 'fmt_pts', thp['v...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text('</tr>');
   ((s as any).thp ?? {})['v60'] = ((s as any).agg ?? 0)?.['arch:\' + $thp[\'tname\'] + \', cat:opposition, w:60'];
   ((s as any).thp ?? {})['v1440'] = ((s as any).agg ?? 0)?.['arch:\' + $thp[\'tname\'] + \', cat:opposition, w:1440'];
   ((s as any).thp ?? {})['tot60'] = (((s as any).thp ?? {})['tot60'] ?? 0) + (((s as any).thp ?? 0)?.['v60']);
   ((s as any).thp ?? {})['tot1440'] = (((s as any).thp ?? {})['tot1440'] ?? 0) + (((s as any).thp ?? 0)?.['v1440']);
-  // TODO-QSP: *p '<tr style="color:#888888;">'
-  // TODO-QSP: *p '<td><i>Opposition</i></td>'
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''v60''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''v60''],   ''...
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''v1440''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''v1440''], ...
-  // TODO-QSP: *p '</tr>'
-  // TODO-QSP: *p '<tr style="border-top:1px solid <<$thp[''border'']>>;font-weight:bold;">'
-  // TODO-QSP: *p '<td>Total</td>'
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''tot60''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''tot60''], ...
-  // TODO-QSP: *p '<td align="right"><<iif(thp[''tot1440''] <> 0, $func(''archetypes'', ''fmt_pts'', thp[''tot1440'...
-  // TODO-QSP: *p '</tr>'
+  scene.text('<tr style="color:#888888;">');
+  scene.text('<td><i>Opposition</i></td>');
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v60'] <> 0, $func('archetypes', 'fmt_pts', thp['v60...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'], 'coarse')) : ('—'))}</td>`);
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v1440'] <> 0, $func('archetypes', 'fmt_pts', thp['v...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text('</tr>');
+  // TODO-QSP: dynamic text: <tr style="border-top:1px solid <<$thp['border']>>;font-weight:bold;">
+  scene.text(`<tr style="border-top:1px solid ${((s as any).thp ?? 0)?.['border']};font-weight:bold;">`);
+  scene.text('<td>Total</td>');
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['tot60'] <> 0, $func('archetypes', 'fmt_pts', thp['t...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['tot60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['tot60'], 'coarse')) : ('—'))}</td>`);
+  // TODO-QSP: dynamic text: <td align="right"><<iif(thp['tot1440'] <> 0, $func('archetypes', 'fmt_pts', thp[...
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['tot1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['tot1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text('</tr>');
   scene.text('</table>');
   ((s as any).thp ?? {})['cutoff24'] = ((s as any).totminut ?? 0) - 1440;
   ((s as any).thp ?? {})['cutoff1'] = ((s as any).totminut ?? 0) - 60;
@@ -1511,12 +1525,12 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
     ((s as any).thp ?? {})['si'] = (((s as any).thp ?? {})['si'] ?? 0) + (1);
     // TODO-QSP: jump 'thp_story_scan'
   }
-  // TODO-QSP: *p '<div style="margin-top:4px;font-size:0.88em;color:#888888;">'
+  scene.text('<div style="margin-top:4px;font-size:0.88em;color:#888888;">');
   if (((s as any).thp ?? 0)?.['story_count'] === 0) {
-    // TODO-QSP: *p '<i>(no story events recorded in the last day)</i>'
+    scene.text('<i>(no story events recorded in the last day)</i>');
   } else {
-    // TODO-QSP: *p '<b>Story events (last day):</b>'
-    // TODO-QSP: *p '<table width="100%" cellpadding="1" cellspacing="0">'
+    scene.text('<b>Story events (last day):</b>');
+    scene.text('<table width="100%" cellpadding="1" cellspacing="0">');
     ((s as any).thp ?? {})['sj'] = 0;
     ((s as any).thp ?? {})['stot60'] = 0;
     ((s as any).thp ?? {})['stot1440'] = 0;
@@ -1526,28 +1540,34 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
     ((s as any).thp ?? {})['sv1440'] = ((s as any).thp_story_d1440 ?? 0)?.[((s as any).thp ?? 0)?.['slbl']];
     ((s as any).thp ?? {})['stot60'] = (((s as any).thp ?? {})['stot60'] ?? 0) + (((s as any).thp ?? 0)?.['sv60']);
     ((s as any).thp ?? {})['stot1440'] = (((s as any).thp ?? {})['stot1440'] ?? 0) + (((s as any).thp ?? 0)?.['sv1440']);
-    // TODO-QSP: *p '<tr>'
-    // TODO-QSP: *p '<td><<$thp[''slbl'']>></td>'
-    // TODO-QSP: *p '<td width="80" align="right"><<$func(''archetypes'', ''fmt_pts'', thp[''sv60''],   ''coarse'')>>...
-    // TODO-QSP: *p '<td width="80" align="right"><<$func(''archetypes'', ''fmt_pts'', thp[''sv1440''], ''coarse'')>>...
-    // TODO-QSP: *p '</tr>'
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: <td><<$thp['slbl']>></td>
+    scene.text(`<td>${((s as any).thp ?? 0)?.['slbl']}</td>`);
+    // TODO-QSP: dynamic text: <td width="80" align="right"><<$func('archetypes', 'fmt_pts', thp['sv60'],   'co...
+    scene.text(`<td width="80" align="right">${qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['sv60'], 'coarse')}</td>`);
+    // TODO-QSP: dynamic text: <td width="80" align="right"><<$func('archetypes', 'fmt_pts', thp['sv1440'], 'co...
+    scene.text(`<td width="80" align="right">${qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['sv1440'], 'coarse')}</td>`);
+    scene.text('</tr>');
     ((s as any).thp ?? {})['sj'] = (((s as any).thp ?? {})['sj'] ?? 0) + (1);
     if (((s as any).thp ?? 0)?.['sj'] < ((s as any).thp ?? 0)?.['story_count']) {
       // TODO-QSP: jump 'thp_story_render'
     }
-    // TODO-QSP: *p '<tr style="border-top:1px solid <<$thp[''border'']>>;font-weight:bold;">'
-    // TODO-QSP: *p '<td>Total</td>'
-    // TODO-QSP: *p '<td width="80" align="right"><<iif(thp[''stot60'']   <> 0, $func(''archetypes'', ''fmt_pts'', th...
-    // TODO-QSP: *p '<td width="80" align="right"><<iif(thp[''stot1440''] <> 0, $func(''archetypes'', ''fmt_pts'', th...
-    // TODO-QSP: *p '</tr>'
-    // TODO-QSP: *p '</table>'
+    // TODO-QSP: dynamic text: <tr style="border-top:1px solid <<$thp['border']>>;font-weight:bold;">
+    scene.text(`<tr style="border-top:1px solid ${((s as any).thp ?? 0)?.['border']};font-weight:bold;">`);
+    scene.text('<td>Total</td>');
+    // TODO-QSP: dynamic text: <td width="80" align="right"><<iif(thp['stot60']   <> 0, $func('archetypes', 'fm...
+    scene.text(`<td width="80" align="right">${((((s as any).thp ?? 0)?.['stot60']   !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['stot60'], 'coarse')) : ('—'))}</td>`);
+    // TODO-QSP: dynamic text: <td width="80" align="right"><<iif(thp['stot1440'] <> 0, $func('archetypes', 'fm...
+    scene.text(`<td width="80" align="right">${((((s as any).thp ?? 0)?.['stot1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['stot1440'], 'coarse')) : ('—'))}</td>`);
+    scene.text('</tr>');
+    scene.text('</table>');
   }
-  // TODO-QSP: *p '</div>'
+  scene.text('</div>');
   ((s as any).thp ?? {})['ti'] = (((s as any).thp ?? {})['ti'] ?? 0) + (1);
   if (((s as any).thp ?? 0)?.['ti'] < 5) {
     // TODO-QSP: jump 'thp_archetype_loop'
   }
-  // TODO-QSP: *p '</div></center>'
+  scene.text('</div></center>');
   return;
   // TODO-QSP: end
   scene.build();
@@ -1675,43 +1695,55 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cc_cond[i]='On amphetamines'            & $cc_cat[i]='Drugs &amp; Alcohol'  & $cc_bv[i]='__'  & $cc...
   // TODO-QSP: $cc_cond[i]='On heroin'                & $cc_cat[i]='Drugs &amp; Alcohol'  & $cc_bv[i]='__'  & $cc_p...
   // TODO-QSP: $cc_cond[i]='14+ days since last sex'        & $cc_cat[i]='Chastity'    & $cc_bv[i]='__'  & $cc_pv[i...
-  // TODO-QSP: *p '<h3 style="text-align:center;margin:8px 0 4px;">Archetype Points Gain & Loss</h3>'
-  // TODO-QSP: *p '<p style="text-align:center;font-size:0.85em;color:#888888;margin:0 0 8px;">Each cue pushes arch...
+  scene.text('<h3 style="text-align:center;margin:8px 0 4px;">Archetype Points Gain & Loss</h3>');
+  scene.text('<p style="text-align:center;font-size:0.85em;color:#888888;margin:0 0 8px;">Each cue pushes archetypes up or down every minute it is active. ↑ = moderate &nbsp;↑↑ = strong &nbsp;↑↑↑ = very strong &nbsp; small arrow = slight.</p>');
   ((s as any).cc ?? {})['btn'] = 'display:inline-block;padding:7px 18px;margin:2px;border:1px solid #888888;border-radius:4px;font-size:0.95em;';
   ((s as any).cc ?? {})['btn_on'] = ((s as any).cc ?? {})?.['btn'] + 'font-weight:bold;opacity:0.5;cursor:default;';
   if ((!((s as any).archetype_catalog_view ?? 0))) {
-    // TODO-QSP: *p '<div style="text-align:center;margin:10px 0 4px;"><span style="' + $cc['btn_on'] + '">By Categor...
+    // TODO-QSP: dynamic text: '<div style="text-align:center;margin:10px 0 4px;"><span style="' + $cc['btn_on'...
+    scene.text('\'<div style="text-align:center;margin:10px 0 4px;"><span style="\' + $cc[\'btn_on\'] + \'">By Category</span><a href="exec:archetype_catalog_view=1 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'btn\'] + \'">By Archetype</a></div>\'');
   } else {
-    // TODO-QSP: *p '<div style="text-align:center;margin:10px 0 4px;"><a href="exec:archetype_catalog_view=0 & gt ''...
+    // TODO-QSP: dynamic text: '<div style="text-align:center;margin:10px 0 4px;"><a href="exec:archetype_catal...
+    scene.text('\'<div style="text-align:center;margin:10px 0 4px;"><a href="exec:archetype_catalog_view=0 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'btn\'] + \'">By Category</a><span style="\' + $cc[\'btn_on\'] + \'">By Archetype</span></div>\'');
     ((s as any).cc ?? {})['tb'] = 'display:inline-block;padding:5px 16px;margin:2px;border:1px solid;border-radius:4px;font-size:0.9em;';
     ((s as any).cc ?? {})['tb_on'] = ((s as any).cc ?? {})?.['tb'] + 'font-weight:bold;opacity:0.6;cursor:default;';
-    // TODO-QSP: *p '<div style="text-align:center;margin:0 0 12px;">'
+    scene.text('<div style="text-align:center;margin:0 0 12px;">');
     if (((s as any).archetype_catalog_view ?? 0) === 1) {
-      // TODO-QSP: *p '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['bimbo'] + ';color:' + $theme_hex['...
+      // TODO-QSP: dynamic text: '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['bimbo'] + ';color...
+      scene.text('\'<span style="\' + $cc[\'tb_on\'] + \'border-color:\' + $theme_hex[\'bimbo\'] + \';color:\' + $theme_hex[\'bimbo\'] + \';">Bimbo</span>\'');
     } else {
-      // TODO-QSP: *p '<a href="exec:archetype_catalog_view=1 & archetype_catalog_sort=1 & gt ''$menu_character'', ''ar...
+      // TODO-QSP: dynamic text: '<a href="exec:archetype_catalog_view=1 & archetype_catalog_sort=1 & gt ''$menu_...
+      scene.text('\'<a href="exec:archetype_catalog_view=1 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'tb\'] + \'border-color:\' + $theme_hex[\'bimbo\'] + \';color:\' + $theme_hex[\'bimbo\'] + \';">Bimbo</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 2) {
-      // TODO-QSP: *p '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['accent'] + ';color:' + $theme_hex[...
+      // TODO-QSP: dynamic text: '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['accent'] + ';colo...
+      scene.text('\'<span style="\' + $cc[\'tb_on\'] + \'border-color:\' + $theme_hex[\'accent\'] + \';color:\' + $theme_hex[\'accent\'] + \';">Preppy</span>\'');
     } else {
-      // TODO-QSP: *p '<a href="exec:archetype_catalog_view=2 & archetype_catalog_sort=1 & gt ''$menu_character'', ''ar...
+      // TODO-QSP: dynamic text: '<a href="exec:archetype_catalog_view=2 & archetype_catalog_sort=1 & gt ''$menu_...
+      scene.text('\'<a href="exec:archetype_catalog_view=2 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'tb\'] + \'border-color:\' + $theme_hex[\'accent\'] + \';color:\' + $theme_hex[\'accent\'] + \';">Preppy</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 3) {
-      // TODO-QSP: *p '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['neutral'] + ';color:' + $theme_hex...
+      // TODO-QSP: dynamic text: '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['neutral'] + ';col...
+      scene.text('\'<span style="\' + $cc[\'tb_on\'] + \'border-color:\' + $theme_hex[\'neutral\'] + \';color:\' + $theme_hex[\'neutral\'] + \';">Prude</span>\'');
     } else {
-      // TODO-QSP: *p '<a href="exec:archetype_catalog_view=3 & archetype_catalog_sort=1 & gt ''$menu_character'', ''ar...
+      // TODO-QSP: dynamic text: '<a href="exec:archetype_catalog_view=3 & archetype_catalog_sort=1 & gt ''$menu_...
+      scene.text('\'<a href="exec:archetype_catalog_view=3 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'tb\'] + \'border-color:\' + $theme_hex[\'neutral\'] + \';color:\' + $theme_hex[\'neutral\'] + \';">Prude</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 4) {
-      // TODO-QSP: *p '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['punk'] + ';color:' + $theme_hex['p...
+      // TODO-QSP: dynamic text: '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['punk'] + ';color:...
+      scene.text('\'<span style="\' + $cc[\'tb_on\'] + \'border-color:\' + $theme_hex[\'punk\'] + \';color:\' + $theme_hex[\'punk\'] + \';">Punk</span>\'');
     } else {
-      // TODO-QSP: *p '<a href="exec:archetype_catalog_view=4 & archetype_catalog_sort=1 & gt ''$menu_character'', ''ar...
+      // TODO-QSP: dynamic text: '<a href="exec:archetype_catalog_view=4 & archetype_catalog_sort=1 & gt ''$menu_...
+      scene.text('\'<a href="exec:archetype_catalog_view=4 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'tb\'] + \'border-color:\' + $theme_hex[\'punk\'] + \';color:\' + $theme_hex[\'punk\'] + \';">Punk</a>\'');
     }
     if (((s as any).archetype_catalog_view ?? 0) === 5) {
-      // TODO-QSP: *p '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['goth'] + ';color:' + $theme_hex['g...
+      // TODO-QSP: dynamic text: '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['goth'] + ';color:...
+      scene.text('\'<span style="\' + $cc[\'tb_on\'] + \'border-color:\' + $theme_hex[\'goth\'] + \';color:\' + $theme_hex[\'goth\'] + \';">Goth</span>\'');
     } else {
-      // TODO-QSP: *p '<a href="exec:archetype_catalog_view=5 & archetype_catalog_sort=1 & gt ''$menu_character'', ''ar...
+      // TODO-QSP: dynamic text: '<a href="exec:archetype_catalog_view=5 & archetype_catalog_sort=1 & gt ''$menu_...
+      scene.text('\'<a href="exec:archetype_catalog_view=5 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'tb\'] + \'border-color:\' + $theme_hex[\'goth\'] + \';color:\' + $theme_hex[\'goth\'] + \';">Goth</a>\'');
     }
-    // TODO-QSP: *p '</div>'
+    scene.text('</div>');
   }
   if ((!((s as any).archetype_catalog_view ?? 0))) {
     (s as any).n = 0;
@@ -1719,40 +1751,43 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
     if (((s as any).n ?? 0) < Object.keys((s as any).cc_cond ?? {}).length) {
       if (((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)] !== ((s as any).cc_prevcat ?? 0)) {
         if (((s as any).cc_prevcat ?? 0) !== '') {
-          // TODO-QSP: *p '</table>'
+          scene.text('</table>');
         }
-        // TODO-QSP: *p '<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;"><...
+        // TODO-QSP: dynamic text: <div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px s...
+        scene.text(`<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">${((s as any).cc_prevcat ?? 0)}</div>`);
         if (((s as any).cc_prevcat ?? 0) === 'Clothing') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Active whenever you''re dressed. St...
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Active whenever you\'re dressed. Style, cut, and coverage all shape your archetype scores.</i></p>');
         }
         if (((s as any).cc_prevcat ?? 0) === 'Shoes') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Active whenever you have shoes on.<...
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Active whenever you have shoes on.</i></p>');
         }
         if (((s as any).cc_prevcat ?? 0) === 'Makeup') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Based on your current makeup style....
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Based on your current makeup style.</i></p>');
         }
         if (((s as any).cc_prevcat ?? 0) === 'Hair') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Hair length, colour and grooming al...
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Hair length, colour and grooming all send signals.</i></p>');
         }
         if (((s as any).cc_prevcat ?? 0) === 'Body Mods') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Permanent modifications (implants, ...
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Permanent modifications (implants, tattoos) and worn items (piercings, eyewear, braces).</i></p>');
         }
         if (((s as any).cc_prevcat ?? 0) === 'Social') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Only counts while you''re still in ...
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Only counts while you\'re still in school. Your clique, hobbies and extracurriculars all colour how others see you.</i></p>');
         }
         if (((s as any).cc_prevcat ?? 0) === 'Drugs &amp; Alcohol') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Being drunk or under the influence ...
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Being drunk or under the influence of certain substances actively shifts archetype scores.</i></p>');
         }
         if (((s as any).cc_prevcat ?? 0) === 'Chastity') {
-          // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Individual sex acts award a one-tim...
+          scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Individual sex acts award a one-time Story event instead of a rate here; see your archetype history.</i></p>');
         }
-        // TODO-QSP: *p $cc['tbl'] + $cc['hdr']
+        // TODO-QSP: dynamic text: $cc['tbl'] + $cc['hdr']
+        scene.text('$cc[\'tbl\'] + $cc[\'hdr\']');
       }
-      // TODO-QSP: *p '<tr><td><<$cc_cond[n]>></td>' + $cc[$cc_bv[n]] + $cc[$cc_pv[n]] + $cc[$cc_rv[n]] + $cc[$cc_uv[n]...
+      // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td>' + $cc[$cc_bv[n]] + $cc[$cc_pv[n]] + $cc[$cc_rv[n]...
+      scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_bv[n]] + $cc[$cc_pv[n]] + $cc[$cc_rv[n]] + $cc[$cc_uv[n]] + $cc[$cc_gv[n]] + '</tr>'`);
       (s as any).n = ((s as any).n ?? 0) + 1;
       // TODO-QSP: jump 'cc_cat_loop'
     }
-    // TODO-QSP: *p '</table>'
+    scene.text('</table>');
   } else {
     if (((s as any).archetype_catalog_view ?? 0) === 1) {
     }
@@ -1766,7 +1801,8 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).archetype_catalog_sort ?? 0) === 1) {
     }
-    // TODO-QSP: *p $cc['tbl'] + $cc_hdr2
+    // TODO-QSP: dynamic text: $cc['tbl'] + $cc_hdr2
+    scene.text('$cc[\'tbl\'] + $cc_hdr2');
     if (((s as any).archetype_catalog_sort ?? 0) === 1) {
       (s as any).n = 0;
       // TODO-QSP: :cc_t_sp
@@ -1782,7 +1818,8 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         if (((s as any).archetype_catalog_view ?? 0) === 5) {
         }
         if (((s as any).cc_tcell ?? 0) === 'b+6'  ||  ((s as any).cc_tcell ?? 0) === 'p+6'  ||  ((s as any).cc_tcell ?? 0) === 'r+6'  ||  ((s as any).cc_tcell ?? 0) === 'u+6'  ||  ((s as any).cc_tcell ?? 0) === 'g+6'  ||  ((s as any).cc_tcell ?? 0) === 'b+4'  ||  ((s as any).cc_tcell ?? 0) === 'p+4'  ||  ((s as any).cc_tcell ?? 0) === 'r+4'  ||  ((s as any).cc_tcell ?? 0) === 'u+4'  ||  ((s as any).cc_tcell ?? 0) === 'g+4') {
-          // TODO-QSP: *p '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_sp'
@@ -1801,7 +1838,8 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         if (((s as any).archetype_catalog_view ?? 0) === 5) {
         }
         if (((s as any).cc_tcell ?? 0) === 'b+2'  ||  ((s as any).cc_tcell ?? 0) === 'p+2'  ||  ((s as any).cc_tcell ?? 0) === 'r+2'  ||  ((s as any).cc_tcell ?? 0) === 'u+2'  ||  ((s as any).cc_tcell ?? 0) === 'g+2'  ||  ((s as any).cc_tcell ?? 0) === 'b+1'  ||  ((s as any).cc_tcell ?? 0) === 'p+1'  ||  ((s as any).cc_tcell ?? 0) === 'r+1'  ||  ((s as any).cc_tcell ?? 0) === 'u+1'  ||  ((s as any).cc_tcell ?? 0) === 'g+1') {
-          // TODO-QSP: *p '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_mp'
@@ -1820,7 +1858,8 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         if (((s as any).archetype_catalog_view ?? 0) === 5) {
         }
         if (((s as any).cc_tcell ?? 0) === 'b-1'  ||  ((s as any).cc_tcell ?? 0) === 'p-1'  ||  ((s as any).cc_tcell ?? 0) === 'r-1'  ||  ((s as any).cc_tcell ?? 0) === 'u-1'  ||  ((s as any).cc_tcell ?? 0) === 'g-1'  ||  ((s as any).cc_tcell ?? 0) === 'b-2'  ||  ((s as any).cc_tcell ?? 0) === 'p-2'  ||  ((s as any).cc_tcell ?? 0) === 'r-2'  ||  ((s as any).cc_tcell ?? 0) === 'u-2'  ||  ((s as any).cc_tcell ?? 0) === 'g-2') {
-          // TODO-QSP: *p '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_mn'
@@ -1839,7 +1878,8 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         if (((s as any).archetype_catalog_view ?? 0) === 5) {
         }
         if (((s as any).cc_tcell ?? 0) === 'b-4'  ||  ((s as any).cc_tcell ?? 0) === 'p-4'  ||  ((s as any).cc_tcell ?? 0) === 'r-4'  ||  ((s as any).cc_tcell ?? 0) === 'u-4'  ||  ((s as any).cc_tcell ?? 0) === 'g-4'  ||  ((s as any).cc_tcell ?? 0) === 'b-6'  ||  ((s as any).cc_tcell ?? 0) === 'p-6'  ||  ((s as any).cc_tcell ?? 0) === 'r-6'  ||  ((s as any).cc_tcell ?? 0) === 'u-6'  ||  ((s as any).cc_tcell ?? 0) === 'g-6') {
-          // TODO-QSP: *p '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_sn'
@@ -1859,20 +1899,22 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         if (((s as any).archetype_catalog_view ?? 0) === 5) {
         }
         if (((s as any).cc_tcell ?? 0) !== '__') {
-          // TODO-QSP: *p '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_archetype_loop'
       }
     }
-    // TODO-QSP: *p '</table>'
+    scene.text('</table>');
   }
-  // TODO-QSP: *p '<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">P...
-  // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">All archetypes decay every game minute...
-  // TODO-QSP: *p '<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">O...
-  // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Each archetype has two opposites; gain...
-  // TODO-QSP: *p '<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">S...
-  // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Direct archetype gains and losses from...
+  scene.text('<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">Passive Decay</div>');
+  scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">All archetypes decay every game minute, with the decay strength depending on how many points that archetype currently has. This downward drift is what keeps any one archetype from running away without ongoing reinforcement.</p>');
+  scene.text('<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">Opposition</div>');
+  // TODO-QSP: dynamic text: <p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Each archetype has two...
+  scene.text(`<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Each archetype has two opposites; gaining points in one always chips away at its opposites. ${((s as any).cc ?? 0)?.['b']} opposes ${((s as any).cc ?? 0)?.['pr']} &amp; ${((s as any).cc ?? 0)?.['pu']}. ${((s as any).cc ?? 0)?.['pp']} opposes ${((s as any).cc ?? 0)?.['pu']} &amp; ${((s as any).cc ?? 0)?.['g']}. ${((s as any).cc ?? 0)?.['pr']} opposes ${((s as any).cc ?? 0)?.['g']} &amp; ${((s as any).cc ?? 0)?.['b']}. ${((s as any).cc ?? 0)?.['pu']} opposes ${((s as any).cc ?? 0)?.['b']} &amp; ${((s as any).cc ?? 0)?.['pp']}. ${((s as any).cc ?? 0)?.['g']} opposes ${((s as any).cc ?? 0)?.['pp']} &amp; ${((s as any).cc ?? 0)?.['pr']}.</p>`);
+  scene.text('<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">Story Events</div>');
+  scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Direct archetype gains and losses from quests, events, and choices in the story.<br>For example, performing a genuine prayer in church may award prude points.</p>');
   scene.text('</div></center>');
   return;
   // TODO-QSP: end

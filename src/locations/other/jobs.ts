@@ -1601,42 +1601,48 @@ function enterShowAll(s: GameState, scene: SceneBuilder): void {
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_r_emp
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).sa_emp ?? {}).length) {
-    // TODO-QSP: *p $func('jobs', 'card', $sa_emp[show_all_ji])
+    // TODO-QSP: dynamic text: $func('jobs', 'card', $sa_emp[show_all_ji])
+    scene.text('$func(\'jobs\', \'card\', $sa_emp[show_all_ji])');
     (s as any).show_all_ji = ((s as any).show_all_ji ?? 0) + (1);
     // TODO-QSP: jump 'show_all_r_emp'
   }
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_r_pre
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).sa_pre ?? {}).length) {
-    // TODO-QSP: *p $func('jobs', 'card', $sa_pre[show_all_ji])
+    // TODO-QSP: dynamic text: $func('jobs', 'card', $sa_pre[show_all_ji])
+    scene.text('$func(\'jobs\', \'card\', $sa_pre[show_all_ji])');
     (s as any).show_all_ji = ((s as any).show_all_ji ?? 0) + (1);
     // TODO-QSP: jump 'show_all_r_pre'
   }
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_r_term
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).sa_term ?? {}).length) {
-    // TODO-QSP: *p $func('jobs', 'card', $sa_term[show_all_ji])
+    // TODO-QSP: dynamic text: $func('jobs', 'card', $sa_term[show_all_ji])
+    scene.text('$func(\'jobs\', \'card\', $sa_term[show_all_ji])');
     (s as any).show_all_ji = ((s as any).show_all_ji ?? 0) + (1);
     // TODO-QSP: jump 'show_all_r_term'
   }
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_r_fired
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).sa_fired ?? {}).length) {
-    // TODO-QSP: *p $func('jobs', 'card', $sa_fired[show_all_ji])
+    // TODO-QSP: dynamic text: $func('jobs', 'card', $sa_fired[show_all_ji])
+    scene.text('$func(\'jobs\', \'card\', $sa_fired[show_all_ji])');
     (s as any).show_all_ji = ((s as any).show_all_ji ?? 0) + (1);
     // TODO-QSP: jump 'show_all_r_fired'
   }
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_r_unemp
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).sa_unemp ?? {}).length) {
-    // TODO-QSP: *p $func('jobs', 'card', $sa_unemp[show_all_ji])
+    // TODO-QSP: dynamic text: $func('jobs', 'card', $sa_unemp[show_all_ji])
+    scene.text('$func(\'jobs\', \'card\', $sa_unemp[show_all_ji])');
     (s as any).show_all_ji = ((s as any).show_all_ji ?? 0) + (1);
     // TODO-QSP: jump 'show_all_r_unemp'
   }
   (s as any).show_all_ji = 0;
   // TODO-QSP: :show_all_r_hidden
   if (((s as any).show_all_ji ?? 0) < Object.keys((s as any).sa_hidden ?? {}).length) {
-    // TODO-QSP: *p $func('jobs', 'card', $sa_hidden[show_all_ji])
+    // TODO-QSP: dynamic text: $func('jobs', 'card', $sa_hidden[show_all_ji])
+    scene.text('$func(\'jobs\', \'card\', $sa_hidden[show_all_ji])');
     (s as any).show_all_ji = ((s as any).show_all_ji ?? 0) + (1);
     // TODO-QSP: jump 'show_all_r_hidden'
   }

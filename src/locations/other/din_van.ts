@@ -2530,7 +2530,7 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).shave_img_hgt ?? 0))) {
     (s as any).shave_img_hgt = 100;
   }
-  // TODO-QSP: *p '<center><h3><b>Shaving Options</b></h3>'
+  scene.text('<center><h3><b>Shaving Options</b></h3>');
   scene.text('Here you can choose your style for pubic hair and which body parts you wish to shave.');
   // TODO-QSP: dynamic text: Your razors will last for&nbsp;<b><<mc_inventory['razor']>></b>&nbsp;more shaves...
   scene.text(`Your razors will last for&nbsp;<b>${((s as any).mc_inventory ?? 0)?.['razor']}</b>&nbsp;more shaves.`);
@@ -2538,15 +2538,23 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.text('Note: Choosing to never shave, or to shave legs only, will remove your chosen shave style.');
   scene.text('You can only choose a style if you currently have enough hair to support it.</b>');
   if ((!((s as any).pubestyle ?? 0))) {
-    // TODO-QSP: *p iif(shave_menu = 1, 'Everything&nbsp;|&nbsp;', '<a href="exec: msg ''You must choose a shave styl...
-    // TODO-QSP: *p iif(shave_menu = 2, 'Pussy only&nbsp;|&nbsp;', '<a href="exec: msg ''You must choose a shave styl...
-    // TODO-QSP: *p iif(shave_menu = 3, 'Legs only&nbsp;|&nbsp;', '<a href="exec:shave_menu = 3 & pubestyle = 0 & gs ...
-    // TODO-QSP: *p iif(shave_menu = 0, 'Never shave', '<a href="exec:shave_menu = 0 & pubestyle = 0 & gs ''din_van''...
+    // TODO-QSP: dynamic text: iif(shave_menu = 1, 'Everything&nbsp;|&nbsp;', '<a href="exec: msg ''You must ch...
+    scene.text('iif(shave_menu = 1, \'Everything&nbsp;|&nbsp;\', \'<a href="exec: msg \'You must choose a shave style before you can choose to shave everything.\'">Everything</a>&nbsp;|&nbsp;\')');
+    // TODO-QSP: dynamic text: iif(shave_menu = 2, 'Pussy only&nbsp;|&nbsp;', '<a href="exec: msg ''You must ch...
+    scene.text('iif(shave_menu = 2, \'Pussy only&nbsp;|&nbsp;\', \'<a href="exec: msg \'You must choose a shave style before you can choose to shave your pussy.\'">Pussy only</a>&nbsp;|&nbsp;\')');
+    // TODO-QSP: dynamic text: iif(shave_menu = 3, 'Legs only&nbsp;|&nbsp;', '<a href="exec:shave_menu = 3 & pu...
+    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="exec:shave_menu = 3 & pubestyle = 0 & gs \'din_van\', \'shave_options\'">Legs only</a>&nbsp;|&nbsp;\')');
+    // TODO-QSP: dynamic text: iif(shave_menu = 0, 'Never shave', '<a href="exec:shave_menu = 0 & pubestyle = 0...
+    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="exec:shave_menu = 0 & pubestyle = 0 & gs \'din_van\', \'shave_options\'">Never shave</a>\')');
   } else {
-    // TODO-QSP: *p iif(shave_menu = 1, 'Everything&nbsp;|&nbsp;', '<a href="exec:shave_menu = 1 & gs ''din_van'', ''...
-    // TODO-QSP: *p iif(shave_menu = 2, 'Pussy only&nbsp;|&nbsp;', '<a href="exec:shave_menu = 2 & gs ''din_van'', ''...
-    // TODO-QSP: *p iif(shave_menu = 3, 'Legs only&nbsp;|&nbsp;', '<a href="exec:shave_menu = 3 & pubestyle = 0 & gs ...
-    // TODO-QSP: *p iif(shave_menu = 0, 'Never shave', '<a href="exec:shave_menu = 0 & pubestyle = 0 & gs ''din_van''...
+    // TODO-QSP: dynamic text: iif(shave_menu = 1, 'Everything&nbsp;|&nbsp;', '<a href="exec:shave_menu = 1 & g...
+    scene.text('iif(shave_menu = 1, \'Everything&nbsp;|&nbsp;\', \'<a href="exec:shave_menu = 1 & gs \'din_van\', \'shave_options\'">Everything</a>&nbsp;|&nbsp;\')');
+    // TODO-QSP: dynamic text: iif(shave_menu = 2, 'Pussy only&nbsp;|&nbsp;', '<a href="exec:shave_menu = 2 & g...
+    scene.text('iif(shave_menu = 2, \'Pussy only&nbsp;|&nbsp;\', \'<a href="exec:shave_menu = 2 & gs \'din_van\', \'shave_options\'">Pussy only</a>&nbsp;|&nbsp;\')');
+    // TODO-QSP: dynamic text: iif(shave_menu = 3, 'Legs only&nbsp;|&nbsp;', '<a href="exec:shave_menu = 3 & pu...
+    scene.text('iif(shave_menu = 3, \'Legs only&nbsp;|&nbsp;\', \'<a href="exec:shave_menu = 3 & pubestyle = 0 & gs \'din_van\', \'shave_options\'">Legs only</a>&nbsp;|&nbsp;\')');
+    // TODO-QSP: dynamic text: iif(shave_menu = 0, 'Never shave', '<a href="exec:shave_menu = 0 & pubestyle = 0...
+    scene.text('iif(shave_menu = 0, \'Never shave\', \'<a href="exec:shave_menu = 0 & pubestyle = 0 & gs \'din_van\', \'shave_options\'">Never shave</a>\')');
   }
   if ((!((s as any).shave_menu ?? 0))) {
     scene.text('Your current routine doesn\'t include any shaving options.');
@@ -2566,95 +2574,108 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: *p '<table border=0 cellspacing=<<shave_img_hgt/25>> cellpadding=5>'
-  // TODO-QSP: *p '<tr><td><center><a href="exec:view''images/pc/body/pussy/hair/pussy.jpg''"><img Height = <<shave...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<tr><td><center>'
+  // TODO-QSP: dynamic text: <table border=0 cellspacing=<<shave_img_hgt/25>> cellpadding=5>
+  scene.text(`<table border=0 cellspacing=${((s as any).shave_img_hgt ?? 0)/25} cellpadding=5>`);
+  scene.img('images/pc/body/pussy/hair/pussy.jpg');
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 1) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 1 & shave_length = 0 & shave_trigger = 3 & <<$temp_toggle>> & gt ''din...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 1 & shave_length = 0 & shave_trigger = 3 & <<$temp_tog...
+    scene.text(`<a href="exec:pubestyle = 1 & shave_length = 0 & shave_trigger = 3 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Clean Shave</a>`);
   } else {
-    // TODO-QSP: *p 'Clean Shave'
+    scene.text('Clean Shave');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 2  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 2 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 2 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 2 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">V-shaped</a>`);
   } else {
-    // TODO-QSP: *p 'V-shaped'
+    scene.text('V-shaped');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 3  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 3 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 3 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 3 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Triangle-shaped</a>`);
   } else {
-    // TODO-QSP: *p 'Triangle-shaped'
+    scene.text('Triangle-shaped');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 4  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 4 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 4 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 4 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Landing-strip</a>`);
   } else {
-    // TODO-QSP: *p 'Landing-strip'
+    scene.text('Landing-strip');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 5  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 5 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 5 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 5 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Heart-shaped</a>`);
   } else {
-    // TODO-QSP: *p 'Heart-shaped'
+    scene.text('Heart-shaped');
   }
-  // TODO-QSP: *p '</center></td></tr>'
-  // TODO-QSP: *p '<tr><td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src=...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<tr><td><center>'
+  scene.text('</center></td></tr>');
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 6  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 6 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 6 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 6 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Flame-shaped</a>`);
   } else {
-    // TODO-QSP: *p 'Flame-shaped'
+    scene.text('Flame-shaped');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 7  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 7 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 7 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 7 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Cross-Shaped</a>`);
   } else {
-    // TODO-QSP: *p 'Cross-Shaped'
+    scene.text('Cross-Shaped');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 8  &&  ((s as any).pcs_pubes ?? 0) > 16) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 8 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 8 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 8 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Trimmed</a>`);
   } else {
-    // TODO-QSP: *p 'Trimmed'
+    scene.text('Trimmed');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 9  &&  ((s as any).pcs_pubes ?? 0) > 20) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 9 & shave_length = 20 & shave_trigger = 26 & <<$temp_toggle>> & gt ''d...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 9 & shave_length = 20 & shave_trigger = 26 & <<$temp_t...
+    scene.text(`<a href="exec:pubestyle = 9 & shave_length = 20 & shave_trigger = 26 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Small Bush</a>`);
   } else {
-    // TODO-QSP: *p 'Small Bush'
+    scene.text('Small Bush');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 10) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 10 & shave_length = 26 & shave_trigger = 31 & <<$temp_toggle>> & gt ''...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 10 & shave_length = 26 & shave_trigger = 31 & <<$temp_...
+    scene.text(`<a href="exec:pubestyle = 10 & shave_length = 26 & shave_trigger = 31 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Full Bush</a>`);
   } else {
-    // TODO-QSP: *p 'Full Bush'
+    scene.text('Full Bush');
   }
-  // TODO-QSP: *p '</center></td></tr>'
-  // TODO-QSP: *p '<tr><td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src=...
-  // TODO-QSP: *p '<td><center><a href="exec:view''<<$temp_pube_image>>''"><img Height = <<shave_img_hgt>> src="<<$...
-  // TODO-QSP: *p '<tr><td><center>'
+  scene.text('</center></td></tr>');
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 11  &&  ((s as any).pcs_pubes ?? 0) > 10) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 11 & shave_length = 0 & shave_trigger = 8 & <<$temp_toggle>> & gt ''di...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 11 & shave_length = 0 & shave_trigger = 8 & <<$temp_to...
+    scene.text(`<a href="exec:pubestyle = 11 & shave_length = 0 & shave_trigger = 8 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Lazy</a>`);
   } else {
-    // TODO-QSP: *p 'Lazy'
+    scene.text('Lazy');
   }
-  // TODO-QSP: *p '</center></td><td><center>'
+  scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 12  &&  ((s as any).pcs_pubes ?? 0) > 15) {
-    // TODO-QSP: *p '<a href="exec:pubestyle = 12 & shave_length = 16 & shave_trigger = 21 & <<$temp_toggle>> & gt ''...
+    // TODO-QSP: dynamic text: <a href="exec:pubestyle = 12 & shave_length = 16 & shave_trigger = 21 & <<$temp_...
+    scene.text(`<a href="exec:pubestyle = 12 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Mini Bush</a>`);
   } else {
-    // TODO-QSP: *p 'Mini Bush'
+    scene.text('Mini Bush');
   }
-  // TODO-QSP: *p '</center></td></tr></table>'
-  // TODO-QSP: *p '<sub><small>Lazy - (don''t immediately shave stubble)</small></sub></center>'
+  scene.text('</center></td></tr></table>');
+  scene.text('<sub><small>Lazy - (don\'t immediately shave stubble)</small></sub></center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {

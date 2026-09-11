@@ -27,7 +27,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
       qspCall(s, 'stat', '');
       scene.img('images/pc/items/accessories/computer/camwhore2.jpg');
-      // TODO-QSP: *p $access['nocamshow']
+      // TODO-QSP: dynamic text: $access['nocamshow']
+      scene.text('$access[\'nocamshow\']');
       scene.actions([
         { label: 'Leave this website', goto: ['komp', 'browse'] },
       ]);

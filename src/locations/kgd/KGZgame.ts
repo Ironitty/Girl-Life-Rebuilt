@@ -37,13 +37,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Weapon: <<$KGZVars['weapon_text']>>
   scene.text(`Weapon: ${((s as any).KGZVars ?? 0)?.['weapon_text']}`);
   if (((s as any).KGZVars ?? 0)?.['gun_text'] !== '') {
-    // TODO-QSP: *pl $KGZVars['gun_text']
+    // TODO-QSP: dynamic text: l $KGZVars['gun_text']
+    scene.text('l $KGZVars[\'gun_text\']');
   }
   if (((s as any).KGZVars ?? 0)?.['gun2_text'] !== '') {
-    // TODO-QSP: *pl $KGZVars['gun2_text']
+    // TODO-QSP: dynamic text: l $KGZVars['gun2_text']
+    scene.text('l $KGZVars[\'gun2_text\']');
   }
   if (((s as any).KGZVars ?? 0)?.['gun3_text'] !== '') {
-    // TODO-QSP: *pl $KGZVars['gun3_text']
+    // TODO-QSP: dynamic text: l $KGZVars['gun3_text']
+    scene.text('l $KGZVars[\'gun3_text\']');
   }
   if (((s as any).KGZVars ?? 0)?.['bolgarka'] > 0) {
     scene.text('You have a battery operated angle grinder, useful for cutting through locks and other sturdy materials.');

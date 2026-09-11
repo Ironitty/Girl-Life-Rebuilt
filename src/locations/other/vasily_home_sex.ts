@@ -289,7 +289,7 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'vaginal', 2, $npcID[1], 'gangbang'
     // TODO-QSP: gs 'arousal', 'anal', 2, $npcID[2], 'gangbang'
     // TODO-QSP: gs 'arousal', 'bj', 2, $npcID[3], 'gangbang', 'deepthroat'
-    // TODO-QSP: *p 'You end up deepthroating the dick of whoever is in front of you at the time a lot, with the guys...
+    scene.text('You end up deepthroating the dick of whoever is in front of you at the time a lot, with the guys behind you fucking you so roughly that your head keeps bouncing forward.');
     scene.text('Your throat feels a little sore, but for the rest it feels heavenly! You can easily take their members on by now and blissfully lie down on the chest of the guy beneath you, willingly surrendering yourself to them.');
     qspCall(s, 'stat', '');
     scene.actions([

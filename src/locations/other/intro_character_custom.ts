@@ -1156,7 +1156,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/gm.png');
     (s as any).i = 1;
     // TODO-QSP: :loopgmpurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''gm'', <<i>>"><img height="300" src="i...
+    scene.img(`images/pc/items/gm/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopgmpurses'
@@ -1166,7 +1166,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/sports.png');
     (s as any).i = 1;
     // TODO-QSP: :loopdanilovichpurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''danilovich'', <<i>>"><img height="300...
+    scene.img(`images/pc/items/danilovich/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 60) {
       // TODO-QSP: jump 'loopdanilovichpurses'
@@ -1176,7 +1176,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/dolls/shop_name.png');
     (s as any).i = 1;
     // TODO-QSP: :loopdollspurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''dolls'', <<i>>"><img height="300" src...
+    scene.img(`images/pc/items/dolls/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopdollspurses'
@@ -1186,7 +1186,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/bomba/shop_name.png');
     (s as any).i = 1;
     // TODO-QSP: :loopbombapurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''bomba'', <<i>>"><img height="300" src...
+    scene.img(`images/pc/items/bomba/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopbombapurses'
@@ -1196,7 +1196,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista.png');
     (s as any).i = 1;
     // TODO-QSP: :loopfashionistapurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''fashionista'', <<i>>"><img height="30...
+    scene.img(`images/pc/items/fashionista/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopfashionistapurses'
@@ -1206,7 +1206,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/coco/shop_name.png');
     (s as any).i = 1;
     // TODO-QSP: :loopcocopurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''coco'', <<i>>"><img height="300" src=...
+    scene.img(`images/pc/items/coco/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 60) {
       // TODO-QSP: jump 'loopcocopurses'
@@ -1216,7 +1216,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/pussycat.png');
     (s as any).i = 1;
     // TODO-QSP: :loopkatspurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''cats'', <<i>>"><img height="300" src=...
+    scene.img(`images/pc/items/cats/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopkatspurses'
@@ -1226,7 +1226,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/flamingos/shop_name.png');
     (s as any).i = 1;
     // TODO-QSP: :loopflamingospurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''flamingos'', <<i>>"><img height="300"...
+    scene.img(`images/pc/items/flamingos/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopflamingospurses'
@@ -1236,7 +1236,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/moncheri.png');
     (s as any).i = 1;
     // TODO-QSP: :loopmoncheripurses
-    // TODO-QSP: *p '<a href="exec:gt ''intro_character_custom'', ''modpur'', ''moncheri'', <<i>>"><img height="300" ...
+    scene.img(`images/pc/items/moncheri/purses/${((s as any).i ?? 0)}.jpg`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopmoncheripurses'

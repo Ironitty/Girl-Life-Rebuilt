@@ -71,7 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             scene.text('You put together another trinket but then realize you have too many trinkets already. \' + iif(YouCanGar > 0, \'Even the space in your stepfather\'s garage is full. \', \') + \'With a deep sense of regret, you throw it away, having no place to store it. At least you learned more about sewing…');
           } else {
             scene.img('images/pc/activities/sewing/trinket.jpg');
-            // TODO-QSP: *p 'You spend some time trying to sew something together. After a half hour, you find yourself rewar...
+            scene.text('You spend some time trying to sew something together. After a half hour, you find yourself rewarded for your effort with a small trinket that\'s actually of decently high quality. ');
             if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
               ((s as any).mc_inventory ?? {})['trinkets_home'] = (((s as any).mc_inventory ?? {})['trinkets_home'] ?? 0) + (1);
               // TODO-QSP: 'Storing it away, you figure you ' + iif(mc_inventory['trinkets_home'] < 30, 'still have space for a...

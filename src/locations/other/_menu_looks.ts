@@ -211,94 +211,94 @@ function enterTattoos(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).pcs_tattoos ?? 0)?.['face'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooface''">Face</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooface\'">Face</a> | ');
   } else {
-    // TODO-QSP: *p 'Face | '
+    scene.text('Face | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['lip'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoolip''">Lip</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoolip\'">Lip</a> | ');
   } else {
-    // TODO-QSP: *p 'Lip | '
+    scene.text('Lip | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['neck'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooneck''">Neck</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooneck\'">Neck</a> | ');
   } else {
-    // TODO-QSP: *p 'Neck | '
+    scene.text('Neck | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['back'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooback''">Back</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooback\'">Back</a> | ');
   } else {
-    // TODO-QSP: *p 'Back | '
+    scene.text('Back | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooshoulder''">Shoulder</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooshoulder\'">Shoulder</a> | ');
   } else {
-    // TODO-QSP: *p 'Shoulder | '
+    scene.text('Shoulder | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['breast'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoobreast''">Breast</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoobreast\'">Breast</a> | ');
   } else {
-    // TODO-QSP: *p 'Breast | '
+    scene.text('Breast | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['under'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoounder''">Under Breast</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoounder\'">Under Breast</a> | ');
   } else {
-    // TODO-QSP: *p 'Under Breast | '
+    scene.text('Under Breast | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['chest'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoochest''">Chest</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoochest\'">Chest</a> | ');
   } else {
-    // TODO-QSP: *p 'Chest | '
+    scene.text('Chest | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['side'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooside''">Side</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooside\'">Side</a> | ');
   } else {
-    // TODO-QSP: *p 'Side | '
+    scene.text('Side | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['belly'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoobelly''">Belly</a>'
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoobelly\'">Belly</a>');
   } else {
-    // TODO-QSP: *p 'Belly'
+    scene.text('Belly');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['arm'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooarm''">Arm</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooarm\'">Arm</a> | ');
   } else {
-    // TODO-QSP: *p 'Arm | '
+    scene.text('Arm | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['wrist'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoowrist''">Wrist</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoowrist\'">Wrist</a> | ');
   } else {
-    // TODO-QSP: *p 'Wrist | '
+    scene.text('Wrist | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['hand'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoohand''">Hand</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoohand\'">Hand</a> | ');
   } else {
-    // TODO-QSP: *p 'Hand | '
+    scene.text('Hand | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['leg'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooleg''">Leg</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooleg\'">Leg</a> | ');
   } else {
-    // TODO-QSP: *p 'Leg | '
+    scene.text('Leg | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ankle'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooankle''">Ankle</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooankle\'">Ankle</a> | ');
   } else {
-    // TODO-QSP: *p 'Foot | '
+    scene.text('Foot | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattootramp''">"Tramp Stamp"</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattootramp\'">"Tramp Stamp"</a> | ');
   } else {
-    // TODO-QSP: *p 'Tramp Stamp | '
+    scene.text('Tramp Stamp | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ass'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattooass''">Butt</a> | '
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattooass\'">Butt</a> | ');
   } else {
-    // TODO-QSP: *p 'Butt | '
+    scene.text('Butt | ');
   }
   if (((s as any).pcs_tattoos ?? 0)?.['pussy'] > 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''$menu_looks'', ''tattoovag''">Groin</a>'
+    scene.text('<a href="exec: gs \'$menu_looks\', \'tattoovag\'">Groin</a>');
   } else {
-    // TODO-QSP: *p 'Groin'
+    scene.text('Groin');
   }
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
@@ -447,44 +447,44 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_ears''">Ears</a> | '
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_ears\'">Ears</a> | ');
   } else {
-    // TODO-QSP: *p 'Ears | '
+    scene.text('Ears | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['nose'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_nose''">Nose</a> | '
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_nose\'">Nose</a> | ');
   } else {
-    // TODO-QSP: *p 'Nose | '
+    scene.text('Nose | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['brow'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_brow''">Eyebrows</a> | '
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_brow\'">Eyebrows</a> | ');
   } else {
-    // TODO-QSP: *p 'Eyebrows | '
+    scene.text('Eyebrows | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['lip'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_lip''">Lips</a> | '
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_lip\'">Lips</a> | ');
   } else {
-    // TODO-QSP: *p 'lips | '
+    scene.text('lips | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_tongue''">Tongue</a> | '
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_tongue\'">Tongue</a> | ');
   } else {
-    // TODO-QSP: *p 'Tongue | '
+    scene.text('Tongue | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['navel'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_navel''">Navel</a> | '
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_navel\'">Navel</a> | ');
   } else {
-    // TODO-QSP: *p 'Navel | '
+    scene.text('Navel | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['nipples'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_nipples''">Nipples</a> | '
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_nipples\'">Nipples</a> | ');
   } else {
-    // TODO-QSP: *p 'Nipples | '
+    scene.text('Nipples | ');
   }
   if (((s as any).pcs_piercings ?? 0)?.['pussy'] > 0) {
-    // TODO-QSP: *p '<a href="exec:gs ''$menu_looks'', ''piercing_pussy''">Pussy</a>'
+    scene.text('<a href="exec:gs \'$menu_looks\', \'piercing_pussy\'">Pussy</a>');
   } else {
-    // TODO-QSP: *p 'Pussy'
+    scene.text('Pussy');
   }
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end

@@ -9,315 +9,498 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hairbsh = 1;
   // TODO-QSP: view $func('$face_image')
-  // TODO-QSP: *p '<center>'
-  // TODO-QSP: *p  '<table width="70%" cellspacing="10" bgcolor="<<$theme_hex[''table_bg'']>>" style="border:4px so...
-  // TODO-QSP: *p    '<colgroup>'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p    '</colgroup>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_1
-  // TODO-QSP: *p        '<big><b>Character Overview</b></big><br><small>Changing Game Type or Setting may result i...
-  // TODO-QSP: *p      $temp_cell_td_1_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr style="height:0; font-size:0; line-height:0; visibility:hidden;">'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_firstname_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_lastname_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_nickname_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_start_type_magic_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_start_type_loc_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_start_location_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_start_type_group_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_start_type_cat_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_start_time_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_birthday_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_birthmonth_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_birthyear_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_haircolor_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_hairlength_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_hairtype_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_eyecolor_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_height_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p      $temp_cell_td_3
-  // TODO-QSP: *p        $func('intro_overview', 'get_portrait_setter')
-  // TODO-QSP: *p      $temp_cell_td_3_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p  '</table>'
-  // TODO-QSP: *p '</center>'
-  // TODO-QSP: *p '<center>'
-  // TODO-QSP: *p  '<table width="70%" cellspacing="10" bgcolor="<<$theme_hex[''table_bg'']>>" style="border:4px so...
-  // TODO-QSP: *p    '<colgroup>'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p      '<col width="8%">'
-  // TODO-QSP: *p    '</colgroup>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_1
-  // TODO-QSP: *p        $func('intro_overview', 'render_cell', 'Advanced Options', '<small>These options may affec...
-  // TODO-QSP: *p      $temp_cell_td_1_end
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr style="height:0; font-size:0; line-height:0; visibility:hidden;">'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p      '<td style="padding:0; border:0; height:0;"></td>'
-  // TODO-QSP: *p    '</tr>'
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_1
-  // TODO-QSP: *p        $func('intro_overview', 'render_cell', 'Body', iif(overview_show_body_options = 1, 'Visibl...
-  // TODO-QSP: *p      $temp_cell_td_1_end
-  // TODO-QSP: *p    '</tr>'
+  scene.text('<center>');
+  // TODO-QSP: dynamic text: <table width="70%" cellspacing="10" bgcolor="<<$theme_hex['table_bg']>>" style="...
+  scene.text(`<table width="70%" cellspacing="10" bgcolor="${((s as any).theme_hex ?? 0)?.['table_bg']}" style="border:4px solid ${((s as any).theme_hex ?? 0)?.['goth']}; margin:10px; padding:10px; border-spacing:10px; background-color: ${((s as any).theme_hex ?? 0)?.['table_bg']};">`);
+  scene.text('<colgroup>');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('</colgroup>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1
+  scene.text('$temp_cell_td_1');
+  scene.text('<big><b>Character Overview</b></big><br><small>Changing Game Type or Setting may result in inconsistencies in the prologue.</small>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1_end
+  scene.text('$temp_cell_td_1_end');
+  scene.text('</tr>');
+  scene.text('<tr style="height:0; font-size:0; line-height:0; visibility:hidden;">');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_firstname_setter')
+  scene.text('$func(\'intro_overview\', \'get_firstname_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_lastname_setter')
+  scene.text('$func(\'intro_overview\', \'get_lastname_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_nickname_setter')
+  scene.text('$func(\'intro_overview\', \'get_nickname_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_start_type_magic_setter')
+  scene.text('$func(\'intro_overview\', \'get_start_type_magic_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_start_type_loc_setter')
+  scene.text('$func(\'intro_overview\', \'get_start_type_loc_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_start_location_setter')
+  scene.text('$func(\'intro_overview\', \'get_start_location_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_start_type_group_setter')
+  scene.text('$func(\'intro_overview\', \'get_start_type_group_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_start_type_cat_setter')
+  scene.text('$func(\'intro_overview\', \'get_start_type_cat_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_start_time_setter')
+  scene.text('$func(\'intro_overview\', \'get_start_time_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_birthday_setter')
+  scene.text('$func(\'intro_overview\', \'get_birthday_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_birthmonth_setter')
+  scene.text('$func(\'intro_overview\', \'get_birthmonth_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_birthyear_setter')
+  scene.text('$func(\'intro_overview\', \'get_birthyear_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_haircolor_setter')
+  scene.text('$func(\'intro_overview\', \'get_haircolor_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_hairlength_setter')
+  scene.text('$func(\'intro_overview\', \'get_hairlength_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_hairtype_setter')
+  scene.text('$func(\'intro_overview\', \'get_hairtype_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_eyecolor_setter')
+  scene.text('$func(\'intro_overview\', \'get_eyecolor_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_height_setter')
+  scene.text('$func(\'intro_overview\', \'get_height_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  // TODO-QSP: dynamic text: $temp_cell_td_3
+  scene.text('$temp_cell_td_3');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'get_portrait_setter')
+  scene.text('$func(\'intro_overview\', \'get_portrait_setter\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_3_end
+  scene.text('$temp_cell_td_3_end');
+  scene.text('</tr>');
+  scene.text('</table>');
+  scene.text('</center>');
+  scene.text('<center>');
+  // TODO-QSP: dynamic text: <table width="70%" cellspacing="10" bgcolor="<<$theme_hex['table_bg']>>" style="...
+  scene.text(`<table width="70%" cellspacing="10" bgcolor="${((s as any).theme_hex ?? 0)?.['table_bg']}" style="border:4px solid ${((s as any).theme_hex ?? 0)?.['goth']}; margin:10px; padding:10px; border-spacing:10px; background-color: ${((s as any).theme_hex ?? 0)?.['table_bg']};">`);
+  scene.text('<colgroup>');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('<col width="8%">');
+  scene.text('</colgroup>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1
+  scene.text('$temp_cell_td_1');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'render_cell', 'Advanced Options', '<small>These options...
+  scene.text('$func(\'intro_overview\', \'render_cell\', \'Advanced Options\', \'<small>These options may affect game balance or deviate from the intended experience for a start path.<br>\'+$func(\'wrap\', \'v_neg\', \'We strongly recommend new players avoid changing them. You should probably only touch these if you\'ve already tried every default path that interests you\')+\'</small>\', 2)');
+  // TODO-QSP: dynamic text: $temp_cell_td_1_end
+  scene.text('$temp_cell_td_1_end');
+  scene.text('</tr>');
+  scene.text('<tr style="height:0; font-size:0; line-height:0; visibility:hidden;">');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('<td style="padding:0; border:0; height:0;"></td>');
+  scene.text('</tr>');
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1
+  scene.text('$temp_cell_td_1');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'render_cell', 'Body', iif(overview_show_body_options = ...
+  scene.text('$func(\'intro_overview\', \'render_cell\', \'Body\', iif(overview_show_body_options = 1, \'Visible\', \'Hidden\'), 1, \'overview_show_body_options = 1 - overview_show_body_options\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_1_end
+  scene.text('$temp_cell_td_1_end');
+  scene.text('</tr>');
   if (((s as any).overview_show_body_options ?? 0) === 1) {
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_eyesight_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_eyesize_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_eyelashes_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_bodyweight_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_bust_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_butt_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_est_bmi')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_lipsize_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_teeth_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_eyesight_setter')
+    scene.text('$func(\'intro_overview\', \'get_eyesight_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_eyesize_setter')
+    scene.text('$func(\'intro_overview\', \'get_eyesize_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_eyelashes_setter')
+    scene.text('$func(\'intro_overview\', \'get_eyelashes_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_bodyweight_setter')
+    scene.text('$func(\'intro_overview\', \'get_bodyweight_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_bust_setter')
+    scene.text('$func(\'intro_overview\', \'get_bust_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_butt_setter')
+    scene.text('$func(\'intro_overview\', \'get_butt_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_est_bmi')
+    scene.text('$func(\'intro_overview\', \'get_est_bmi\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_lipsize_setter')
+    scene.text('$func(\'intro_overview\', \'get_lipsize_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_teeth_setter')
+    scene.text('$func(\'intro_overview\', \'get_teeth_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
   }
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_1
-  // TODO-QSP: *p        $func('intro_overview', 'render_cell', 'Archetypes', iif(overview_show_archetype_options =...
-  // TODO-QSP: *p      $temp_cell_td_1_end
-  // TODO-QSP: *p    '</tr>'
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1
+  scene.text('$temp_cell_td_1');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'render_cell', 'Archetypes', iif(overview_show_archetype...
+  scene.text('$func(\'intro_overview\', \'render_cell\', \'Archetypes\', iif(overview_show_archetype_options = 1, \'Visible\', \'Hidden\'), 1, \'overview_show_archetype_options = 1 - overview_show_archetype_options\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_1_end
+  scene.text('$temp_cell_td_1_end');
+  scene.text('</tr>');
   if (((s as any).overview_show_archetype_options ?? 0) === 1) {
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_archetypes', 'bimbo')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_archetypes', 'preppy')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_archetypes', 'prude')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_archetypes', 'punk')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_archetypes', 'goth')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_archetypes', 'bimbo')
+    scene.text('$func(\'intro_overview\', \'get_archetypes\', \'bimbo\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_archetypes', 'preppy')
+    scene.text('$func(\'intro_overview\', \'get_archetypes\', \'preppy\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_archetypes', 'prude')
+    scene.text('$func(\'intro_overview\', \'get_archetypes\', \'prude\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_archetypes', 'punk')
+    scene.text('$func(\'intro_overview\', \'get_archetypes\', \'punk\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_archetypes', 'goth')
+    scene.text('$func(\'intro_overview\', \'get_archetypes\', \'goth\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
   }
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_1
-  // TODO-QSP: *p        $func('intro_overview', 'render_cell', 'Traits', iif(overview_show_trait_options = 1, 'Vis...
-  // TODO-QSP: *p      $temp_cell_td_1_end
-  // TODO-QSP: *p    '</tr>'
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1
+  scene.text('$temp_cell_td_1');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'render_cell', 'Traits', iif(overview_show_trait_options...
+  scene.text('$func(\'intro_overview\', \'render_cell\', \'Traits\', iif(overview_show_trait_options = 1, \'Visible\', \'Hidden\'), 1, \'overview_show_trait_options = 1 - overview_show_trait_options\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_1_end
+  scene.text('$temp_cell_td_1_end');
+  scene.text('</tr>');
   if (((s as any).overview_show_trait_options ?? 0) === 1) {
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_trait', 'academic')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_trait', 'fertility')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_trait', 'drinking')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_trait', 'sleep_duration')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_trait', 'elasticity')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_trait', 'body_hair_growth_rate')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_trait', 'hair_growth_rate')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_trait', 'academic')
+    scene.text('$func(\'intro_overview\', \'get_trait\', \'academic\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_trait', 'fertility')
+    scene.text('$func(\'intro_overview\', \'get_trait\', \'fertility\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_trait', 'drinking')
+    scene.text('$func(\'intro_overview\', \'get_trait\', \'drinking\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_trait', 'sleep_duration')
+    scene.text('$func(\'intro_overview\', \'get_trait\', \'sleep_duration\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_trait', 'elasticity')
+    scene.text('$func(\'intro_overview\', \'get_trait\', \'elasticity\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_trait', 'body_hair_growth_rate')
+    scene.text('$func(\'intro_overview\', \'get_trait\', \'body_hair_growth_rate\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_trait', 'hair_growth_rate')
+    scene.text('$func(\'intro_overview\', \'get_trait\', \'hair_growth_rate\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
   }
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_1
-  // TODO-QSP: *p        $func('intro_overview', 'render_cell', 'Documents', iif(overview_show_document_options = 1...
-  // TODO-QSP: *p      $temp_cell_td_1_end
-  // TODO-QSP: *p    '</tr>'
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1
+  scene.text('$temp_cell_td_1');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'render_cell', 'Documents', iif(overview_show_document_o...
+  scene.text('$func(\'intro_overview\', \'render_cell\', \'Documents\', iif(overview_show_document_options = 1, \'Visible\', \'Hidden\'), 1, \'overview_show_document_options = 1 - overview_show_document_options\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_1_end
+  scene.text('$temp_cell_td_1_end');
+  scene.text('</tr>');
   if (((s as any).overview_show_document_options ?? 0) === 1) {
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
     // TODO-QSP: *P      $func('intro_overview', 'get_passport_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_secretary_licence_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_masseuse_licence_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_secretary_licence_setter')
+    scene.text('$func(\'intro_overview\', \'get_secretary_licence_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_masseuse_licence_setter')
+    scene.text('$func(\'intro_overview\', \'get_masseuse_licence_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
   }
-  // TODO-QSP: *p    '<tr>'
-  // TODO-QSP: *p      $temp_cell_td_1
-  // TODO-QSP: *p        $func('intro_overview', 'render_cell', 'Items', iif(overview_show_item_options = 1, 'Visib...
-  // TODO-QSP: *p      $temp_cell_td_1_end
-  // TODO-QSP: *p    '</tr>'
+  scene.text('<tr>');
+  // TODO-QSP: dynamic text: $temp_cell_td_1
+  scene.text('$temp_cell_td_1');
+  // TODO-QSP: dynamic text: $func('intro_overview', 'render_cell', 'Items', iif(overview_show_item_options =...
+  scene.text('$func(\'intro_overview\', \'render_cell\', \'Items\', iif(overview_show_item_options = 1, \'Visible\', \'Hidden\'), 1, \'overview_show_item_options = 1 - overview_show_item_options\')');
+  // TODO-QSP: dynamic text: $temp_cell_td_1_end
+  scene.text('$temp_cell_td_1_end');
+  scene.text('</tr>');
   if (((s as any).overview_show_item_options ?? 0) === 1) {
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_umbrella_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_comb_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_mirror_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_water_bottle_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_skipping_rope_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_hula_hoop_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_yoga_book_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_ice_skates_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_sewing_kit_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
-    // TODO-QSP: *p  '<tr>'
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_vibrator_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_butt_plug_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p    $temp_cell_td_3
-    // TODO-QSP: *p      $func('intro_overview', 'get_money_setter')
-    // TODO-QSP: *p    $temp_cell_td_3_end
-    // TODO-QSP: *p  '</tr>'
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_umbrella_setter')
+    scene.text('$func(\'intro_overview\', \'get_umbrella_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_comb_setter')
+    scene.text('$func(\'intro_overview\', \'get_comb_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_mirror_setter')
+    scene.text('$func(\'intro_overview\', \'get_mirror_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_water_bottle_setter')
+    scene.text('$func(\'intro_overview\', \'get_water_bottle_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_skipping_rope_setter')
+    scene.text('$func(\'intro_overview\', \'get_skipping_rope_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_hula_hoop_setter')
+    scene.text('$func(\'intro_overview\', \'get_hula_hoop_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_yoga_book_setter')
+    scene.text('$func(\'intro_overview\', \'get_yoga_book_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_ice_skates_setter')
+    scene.text('$func(\'intro_overview\', \'get_ice_skates_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_sewing_kit_setter')
+    scene.text('$func(\'intro_overview\', \'get_sewing_kit_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
+    scene.text('<tr>');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_vibrator_setter')
+    scene.text('$func(\'intro_overview\', \'get_vibrator_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_butt_plug_setter')
+    scene.text('$func(\'intro_overview\', \'get_butt_plug_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    // TODO-QSP: dynamic text: $temp_cell_td_3
+    scene.text('$temp_cell_td_3');
+    // TODO-QSP: dynamic text: $func('intro_overview', 'get_money_setter')
+    scene.text('$func(\'intro_overview\', \'get_money_setter\')');
+    // TODO-QSP: dynamic text: $temp_cell_td_3_end
+    scene.text('$temp_cell_td_3_end');
+    scene.text('</tr>');
   }
-  // TODO-QSP: *p  '</table>'
-  // TODO-QSP: *p '</center>'
+  scene.text('</table>');
+  scene.text('</center>');
   // TODO-QSP: view $func('$face_image')
   return;
   // TODO-QSP: end

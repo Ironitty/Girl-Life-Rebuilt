@@ -598,7 +598,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'clothing_attributes', $ARGS[4], ARGS[5]
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
-        // TODO-QSP: *p '<a href="exec: gt ''clothing_view'', ''view_item'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', <<ARGS[5...
+        scene.img(`${qspFunc(s, '$clothing_image', '$ARGS[4]', qspUntranslated(s, "ARGS[5]", { location: "clothing_view" }))}`);
       }
       return;
     }
@@ -616,7 +616,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'clothing_attributes', $ARGS[4], ARGS[5]
       if (qspFunc(s, 'shop_utils', 'filter', 'apply')) {
-        // TODO-QSP: *p '<a href="exec: gt ''clothing_view'', ''view_item'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', <<ARGS[5...
+        scene.img(`${qspFunc(s, '$clothing_image', '$ARGS[4]', qspUntranslated(s, "ARGS[5]", { location: "clothing_view" }))}`);
       }
       return;
     }
@@ -628,8 +628,9 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'list_wardrobe') {
     if (((s as any).locArgs?.[2] ?? 0) === 'header') {
       qspCall(s, 'clothing_view', 'filter_builder', 'setup_home_list_filters');
-      // TODO-QSP: *p '<center><table border=0 cellspacing=0 cellpadding=5>'
-      // TODO-QSP: *p $func('clothing_view', 'get_wardrobe_list_header')
+      scene.text('<center><table border=0 cellspacing=0 cellpadding=5>');
+      // TODO-QSP: dynamic text: $func('clothing_view', 'get_wardrobe_list_header')
+      scene.text('$func(\'clothing_view\', \'get_wardrobe_list_header\')');
       return;
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
@@ -903,116 +904,124 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
 function enterListLine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'clothing');
   // TODO-QSP: gs 'clothing_attributes', $ARGS[2], ARGS[3]
-  // TODO-QSP: *p  '<tr bgcolor='+$temp_bcolor+'>'
-  // TODO-QSP: *p    '<td><a href="exec: gt ''clothing_view'', ''view_item'', ''<<$ARGS[1]>>'', ''<<$ARGS[2]>>'', <...
+  // TODO-QSP: dynamic text: '<tr bgcolor='+$temp_bcolor+'>'
+  scene.text('\'<tr bgcolor=\'+$temp_bcolor+\'>\'');
+  scene.img(`${qspFunc(s, '$clothing_image', '$ARGS[2]', qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))}`);
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))) {
-    // TODO-QSP: *p  '<td colspan="2"></td>'
+    scene.text('<td colspan="2"></td>');
   } else {
-    // TODO-QSP: *p  '<td>'
-    // TODO-QSP: *p    dyneval('result = <<$ARGS[2]>>_h[<<ARGS[3]>>]')
-    // TODO-QSP: *p  '</td><td>'
+    scene.text('<td>');
+    // TODO-QSP: dynamic text: dyneval('result = <<$ARGS[2]>>_h[<<ARGS[3]>>]')
+    scene.text(`dyneval('result = ${((s as any).locArgs?.[2] ?? 0)}_h[${qspUntranslated(s, "ARGS[3]", { location: "clothing_view" })}]')`);
+    scene.text('</td><td>');
     if (((s as any).CloStyle ?? 0) !== 5  &&  ((s as any).CloStyle2 ?? 0) !== 6) {
-      // TODO-QSP: *p  dyneval('result = <<$ARGS[2]>>_b[<<ARGS[3]>>]')
+      // TODO-QSP: dynamic text: dyneval('result = <<$ARGS[2]>>_b[<<ARGS[3]>>]')
+      scene.text(`dyneval('result = ${((s as any).locArgs?.[2] ?? 0)}_b[${qspUntranslated(s, "ARGS[3]", { location: "clothing_view" })}]')`);
     }
-    // TODO-QSP: *p  '</td>'
+    scene.text('</td>');
   }
-  // TODO-QSP: *p    '<td>'
+  scene.text('<td>');
   if (((s as any).locArgs?.[2] ?? 0) === 'misc_outfits'  &&  ((s as any).locArgs?.[3] ?? 0) === 1) {
-    // TODO-QSP: *p    'A hessian sack the hunters gave you.'
+    scene.text('A hessian sack the hunters gave you.');
   } else {
     if (((s as any).swimwear_description ?? 0) !== '') {
-      // TODO-QSP: *p    $swimwear_description
+      // TODO-QSP: dynamic text: $swimwear_description
+      scene.text('$swimwear_description');
     } else {
       qspCall(s, 'clothing_descriptions', '');
-      // TODO-QSP: *p    $func('$short_description', $ARGS[2], ARGS[3]) + '<br/>' + $description
+      // TODO-QSP: dynamic text: $func('$short_description', $ARGS[2], ARGS[3]) + '<br/>' + $description
+      scene.text('$func(\'$short_description\', $ARGS[2], ARGS[3]) + \'<br/>\' + $description');
     }
   }
   if (((s as any).CloInhibit ?? 0) > ((s as any).pcs_inhib ?? 0)) {
-    // TODO-QSP: *p '<br>You don''t feel confident enough to wear an outfit this revealing.'
+    scene.text('<br>You don\'t feel confident enough to wear an outfit this revealing.');
   }
-  // TODO-QSP: *p    '</td>'
-  // TODO-QSP: *p    '<td>'
+  scene.text('</td>');
+  scene.text('<td>');
   if (((s as any).CloBimbo ?? 0)) {
-    // TODO-QSP: *p '<img src="images/system/icons/clothing/bimbo_exc.png"><br>'
+    scene.text('<img src="images/system/icons/clothing/bimbo_exc.png"><br>');
   }
   if (((s as any).CloGoth ?? 0)) {
-    // TODO-QSP: *p '<img src="images/system/icons/clothing/goth_exc.png"><br>'
+    scene.text('<img src="images/system/icons/clothing/goth_exc.png"><br>');
   }
   if (((s as any).CloPunk ?? 0)) {
-    // TODO-QSP: *p '<img src="images/system/icons/clothing/punk_exc.png"><br>'
+    scene.text('<img src="images/system/icons/clothing/punk_exc.png"><br>');
   }
   if (((s as any).CloPrep ?? 0)) {
-    // TODO-QSP: *p '<img src="images/system/icons/clothing/preppy_exc.png"><br>'
+    scene.text('<img src="images/system/icons/clothing/preppy_exc.png"><br>');
   }
   if (((s as any).CloPrude ?? 0)) {
-    // TODO-QSP: *p '<img src="images/system/icons/clothing/prude_exc.png"><br>'
+    scene.text('<img src="images/system/icons/clothing/prude_exc.png"><br>');
   }
   if (((s as any).CloProstitute ?? 0)) {
-    // TODO-QSP: *p '<img src="images/system/icons/clothing/prostitute_exc.png"><br>'
+    scene.text('<img src="images/system/icons/clothing/prostitute_exc.png"><br>');
   }
   if (((s as any).CloStrip ?? 0)) {
-    // TODO-QSP: *p'<img src="images/system/icons/clothing/stripper_exc.png"><br>'
+    // TODO-QSP: dynamic text: '<img src="images/system/icons/clothing/stripper_exc.png"><br>'
+    scene.text('\'<img src="images/system/icons/clothing/stripper_exc.png"><br>\'');
   }
   if (((s as any).CloServer ?? 0)) {
-    // TODO-QSP: *p'<img src="images/system/icons/clothing/server_exc.png"><br>'
+    // TODO-QSP: dynamic text: '<img src="images/system/icons/clothing/server_exc.png"><br>'
+    scene.text('\'<img src="images/system/icons/clothing/server_exc.png"><br>\'');
   }
   if (((s as any).CloMaid ?? 0)) {
-    // TODO-QSP: *p'<img src="images/system/icons/clothing/maid_exc.png"><br>'
+    // TODO-QSP: dynamic text: '<img src="images/system/icons/clothing/maid_exc.png"><br>'
+    scene.text('\'<img src="images/system/icons/clothing/maid_exc.png"><br>\'');
   }
-  // TODO-QSP: *p    '</td>'
+  scene.text('</td>');
   if (((s as any).locArgs?.[1] ?? 0) === 'resize') {
-    // TODO-QSP: *p  '<td colspan="4"></td>'
-    // TODO-QSP: *p  '<td><center>'
+    scene.text('<td colspan="4"></td>');
+    scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'does_fit', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))  ||  (! qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" })))  ||  ((s as any).pcs_sewng ?? 0) < 50  ||  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] <= 0) {
-      // TODO-QSP: *p  '<img src="images/system/icons/clothing/resize_off.png">'
+      scene.img('images/system/icons/clothing/resize_off.png');
     } else {
-      // TODO-QSP: *p  '<a href="exec: gt ''clothing_view'', ''list_line_tailor_resize'', ''<<$ARGS[2]>>'', <<ARGS[3]>>...
+      scene.img('images/system/icons/clothing/resize.png');
     }
-    // TODO-QSP: *p  '</center></td>'
-    // TODO-QSP: *p  '<td></td>'
+    scene.text('</center></td>');
+    scene.text('<td></td>');
   } else {
-    // TODO-QSP: *p  '<td><center>'
+    scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'in_wardrobe', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))) {
-      // TODO-QSP: *p  '<img src="images/system/icons/clothing/wardrobe.png">'
+      scene.img('images/system/icons/clothing/wardrobe.png');
     } else {
-      // TODO-QSP: *p  '<a href="exec: gt ''clothing_view'', ''list_line_move_to_wardrobe'', ''<<$ARGS[2]>>'', <<ARGS[3...
+      scene.img('images/system/icons/clothing/wardrobe_off.png');
     }
-    // TODO-QSP: *p  '</center></td>'
-    // TODO-QSP: *p  '<td><center>'
+    scene.text('</center></td>');
+    scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'in_storage', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))) {
-      // TODO-QSP: *p  '<img src="images/system/icons/clothing/storage.png">'
+      scene.img('images/system/icons/clothing/storage.png');
     } else {
-      // TODO-QSP: *p  '<a href="exec: gt ''clothing_view'', ''list_line_move_to_storage'', ''<<$ARGS[2]>>'', <<ARGS[3]...
+      scene.img('images/system/icons/clothing/storage_off.png');
     }
-    // TODO-QSP: *p  '</center></td>'
-    // TODO-QSP: *p  '<td><center>'
+    scene.text('</center></td>');
+    scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'in_unwanted', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))) {
-      // TODO-QSP: *p  '<img src="images/system/icons/clothing/unwanted.png">'
+      scene.img('images/system/icons/clothing/unwanted.png');
     } else {
-      // TODO-QSP: *p  '<a href="exec: gt ''clothing_view'', ''list_line_move_to_unwanted'', ''<<$ARGS[2]>>'', <<ARGS[3...
+      scene.img('images/system/icons/clothing/unwanted_off.png');
     }
-    // TODO-QSP: *p  '</center></td>'
-    // TODO-QSP: *p  '<td><center>'
+    scene.text('</center></td>');
+    scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))  ||  qspFunc(s, 'clothing', 'is_strength_low', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" })) === 0  ||  ((s as any).pcs_sewng ?? 0) < 60  ||  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] <= 0) {
-      // TODO-QSP: *p  '<img src="images/system/icons/clothing/repair_off.png">'
+      scene.img('images/system/icons/clothing/repair_off.png');
     } else {
-      // TODO-QSP: *p  '<a href="exec: gt ''clothing_view'', ''list_line_repair'', ''<<$ARGS[2]>>'', <<ARGS[3]>>"><img ...
+      scene.img('images/system/icons/clothing/repair.png');
     }
-    // TODO-QSP: *p  '</center></td>'
-    // TODO-QSP: *p  '<td><center>'
+    scene.text('</center></td>');
+    scene.text('<td><center>');
     if (qspFunc(s, 'clothing', 'does_fit', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))  ||  (! qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" })))  ||  ((s as any).pcs_sewng ?? 0) < 50  ||  qspFunc(s, 'money', 'can_afford', 500) === 0) {
-      // TODO-QSP: *p  '<img src="images/system/icons/clothing/resize_off.png">'
+      scene.img('images/system/icons/clothing/resize_off.png');
     } else {
-      // TODO-QSP: *p  '<a href="exec: gt ''clothing_view'', ''list_line_resize'', ''<<$ARGS[2]>>'', <<ARGS[3]>>"><img ...
+      scene.img('images/system/icons/clothing/resize.png');
     }
-    // TODO-QSP: *p  '</center></td>'
-    // TODO-QSP: *p  '<td><center>'
+    scene.text('</center></td>');
+    scene.text('<td><center>');
     if (! qspFunc(s, 'clothing', 'is_immutable', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "clothing_view" }))) {
-      // TODO-QSP: *p  '<a href="exec: gt ''clothing_view'', ''list_line_delete'', ''<<$ARGS[2]>>'', <<ARGS[3]>>"><img ...
+      scene.img('images/system/icons/clothing/delete_on.png');
     }
-    // TODO-QSP: *p  '</center></td>'
+    scene.text('</center></td>');
   }
-  // TODO-QSP: *p  '</tr>'
+  scene.text('</tr>');
   // TODO-QSP: end
   scene.build();
 }
@@ -1153,9 +1162,11 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_shop'] }]);
   }
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
-    // TODO-QSP: *p '(dirty ' + min(max(0, CloDirt / 24), 100) + ', strength ' + CloStrength
+    // TODO-QSP: dynamic text: '(dirty ' + min(max(0, CloDirt / 24), 100) + ', strength ' + CloStrength
+    scene.text('\'(dirty \' + min(max(0, CloDirt / 24), 100) + \', strength \' + CloStrength');
     if (((s as any).CloSport ?? 0) === 0  &&  ((s as any).CloStyle ?? 0) !== 5) {
-      // TODO-QSP: *p ', hip size ' + $dyneval("$result = <<$shop_utils_view['type']>>_b[<<shop_utils_view['number']>>]...
+      // TODO-QSP: dynamic text: ', hip size ' + $dyneval("$result = <<$shop_utils_view['type']>>_b[<<shop_utils_...
+      scene.text(`', hip size ' + $dyneval("$result = ${((s as any).shop_utils_view ?? 0)?.['type']}_b[${((s as any).shop_utils_view ?? 0)?.['number']}]")`);
     }
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'resize') {

@@ -35,7 +35,8 @@ function enterMenuCell(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme ?? {})['name'] = ((s as any).temp_mc_full ?? 0);
   ((s as any).theme ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
   qspCall(s, 'themes', 'get_theme', 'indoors');
-  // TODO-QSP: *p '<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg +...
+  // TODO-QSP: dynamic text: '<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:...
+  scene.text(`'<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg + '; ' + $temp_mc_sel + 'width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="exec: $cfg_vars['theme_main_name'] = '${((s as any).locArgs?.[1] ?? 0)}' & gs 'themes', 'set_theme', '${((s as any).temp_mc_full ?? 0)}', '${((s as any).locArgs?.[2] ?? 0)}' & gs '$menu_obnovit' & gt 'themes', 'menu'" style="display:block; padding:20px 28px; color:' + $temp_mc_fg + '; text-decoration:none; font-weight:' + $iif($themes_menu_cur = $temp_mc_full, 'bold', 'normal') + ';">${((s as any).locArgs?.[1] ?? 0)}</a></td>'`);
   return;
   // TODO-QSP: end
   scene.build();
@@ -56,17 +57,23 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).fcolor = ((s as any).theme ?? 0)?.['fcolor'];
   (s as any).lcolor = ((s as any).theme ?? 0)?.['lcolor'];
   (s as any).fsize = ((s as any).theme ?? 0)?.['fsize'];
-  // TODO-QSP: *p '<center>'
+  scene.text('<center>');
   if (((s as any).cfg_vars ?? 0)?.['themetype'] === 0) {
-    // TODO-QSP: *p '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style="display:inline-b...
-    // TODO-QSP: *p '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style="display:inline-b...
+    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
+    scene.text('\'<a href="exec: gs \'themes\', \'menu_toggle\' & gt \'themes\', \'menu\'" style="display:inline-block; font-size:1.15em; font-weight:bold; padding:7px 22px; margin:4px 2px; background:\' + $theme_hex[\'accent\'] + \'; color:#ffffff; text-decoration:none; border-radius:3px;">Dynamic</a>\'');
+    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
+    scene.text('\'<a href="exec: gs \'themes\', \'menu_toggle\' & gt \'themes\', \'menu\'" style="display:inline-block; font-size:1.15em; padding:7px 22px; margin:4px 2px; background:\' + $tm_label_fg + \'; color:\' + $tm_cell_bg + \'; text-decoration:none; border-radius:3px; opacity:0.5;">Static</a>\'');
   } else {
-    // TODO-QSP: *p '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style="display:inline-b...
-    // TODO-QSP: *p '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style="display:inline-b...
+    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
+    scene.text('\'<a href="exec: gs \'themes\', \'menu_toggle\' & gt \'themes\', \'menu\'" style="display:inline-block; font-size:1.15em; padding:7px 22px; margin:4px 2px; background:\' + $tm_label_fg + \'; color:\' + $tm_cell_bg + \'; text-decoration:none; border-radius:3px; opacity:0.5;">Dynamic</a>\'');
+    // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
+    scene.text('\'<a href="exec: gs \'themes\', \'menu_toggle\' & gt \'themes\', \'menu\'" style="display:inline-block; font-size:1.15em; font-weight:bold; padding:7px 22px; margin:4px 2px; background:\' + $theme_hex[\'accent\'] + \'; color:#ffffff; text-decoration:none; border-radius:3px;">Static</a>\'');
   }
-  // TODO-QSP: *p '<table style="border-collapse:separate; border-spacing:0 6px;">'
-  // TODO-QSP: *p '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Classic</b></td></tr>'
-  // TODO-QSP: *p '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; padding:8px; border...
+  scene.text('<table style="border-collapse:separate; border-spacing:0 6px;">');
+  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Classic</b></td...
+  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Classic</b></td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
+  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
   if (((s as any).cfg_vars ?? 0)?.['themetype'] === 0) {
     qspCall(s, 'themes', 'menu_cell', 'Default', 'dynamic');
   } else {
@@ -75,37 +82,47 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'themes', 'menu_cell', 'Modern Grey', 'static');
     qspCall(s, 'themes', 'menu_cell', 'Custom', 'static');
   }
-  // TODO-QSP: *p '</tr></table></td></tr>'
-  // TODO-QSP: *p '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Catppuccin</b></td></tr>'
-  // TODO-QSP: *p '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; padding:8px; border...
+  scene.text('</tr></table></td></tr>');
+  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Catppuccin</b><...
+  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Catppuccin</b></td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
+  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
   qspCall(s, 'themes', 'menu_cell', 'Latte', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Frappé', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Macchiato', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Mocha', ((s as any).themes_menu_mode ?? 0));
-  // TODO-QSP: *p '</tr></table></td></tr>'
-  // TODO-QSP: *p '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Nord</b></td></tr>'
-  // TODO-QSP: *p '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; padding:8px; border...
+  scene.text('</tr></table></td></tr>');
+  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Nord</b></td></...
+  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Nord</b></td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
+  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
   qspCall(s, 'themes', 'menu_cell', 'Nord Light', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Nord Dark', ((s as any).themes_menu_mode ?? 0));
-  // TODO-QSP: *p '</tr></table></td></tr>'
-  // TODO-QSP: *p '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Solarized</b></td></tr>'
-  // TODO-QSP: *p '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; padding:8px; border...
+  scene.text('</tr></table></td></tr>');
+  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Solarized</b></...
+  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Solarized</b></td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
+  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
   qspCall(s, 'themes', 'menu_cell', 'Solarized Light', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Solarized Dark', ((s as any).themes_menu_mode ?? 0));
-  // TODO-QSP: *p '</tr></table></td></tr>'
-  // TODO-QSP: *p '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Tokyo Night</b></td></tr>'
-  // TODO-QSP: *p '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; padding:8px; border...
+  scene.text('</tr></table></td></tr>');
+  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Tokyo Night</b>...
+  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Tokyo Night</b></td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
+  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
   qspCall(s, 'themes', 'menu_cell', 'Tokyo Night Light', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Tokyo Night', ((s as any).themes_menu_mode ?? 0));
-  // TODO-QSP: *p '</tr></table></td></tr>'
-  // TODO-QSP: *p '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Rosé Pine</b></td></tr>'
-  // TODO-QSP: *p '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; padding:8px; border...
+  scene.text('</tr></table></td></tr>');
+  // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Rosé Pine</b></...
+  scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Rosé Pine</b></td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
+  scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
   qspCall(s, 'themes', 'menu_cell', 'Rosé Pine Dawn', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Rosé Pine', ((s as any).themes_menu_mode ?? 0));
   qspCall(s, 'themes', 'menu_cell', 'Rosé Pine Moon', ((s as any).themes_menu_mode ?? 0));
-  // TODO-QSP: *p '</tr></table></td></tr>'
-  // TODO-QSP: *p '</table>'
-  // TODO-QSP: *p '</center>'
+  scene.text('</tr></table></td></tr>');
+  scene.text('</table>');
+  scene.text('</center>');
   ((s as any).theme ?? {})['name'] = ((s as any).themes_menu_cur ?? 0);
   ((s as any).theme ?? {})['type'] = ((s as any).themes_menu_mode ?? 0);
   qspCall(s, 'themes', 'get_theme', 'indoors');
@@ -117,30 +134,44 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>Preview</b>');
   // TODO-QSP: dynamic text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i...
   scene.text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> wandered into a <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> café, sparking a <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> uprising while the air crackled with <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> energy. <a href="exec:gt \'themes\', \'menu\'">Pellentesque habitant</a> morbi tristique senectus et netus et malesuada fames. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> smiled serenely, the <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> raised an eyebrow, the <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> tuned her guitar. <a href="exec:gt \'themes\', \'menu\'">Excepteur sint occaecat</a> cupidatat non proident. The <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> spiral deepened, and all four found something unexpected in the silence that followed.');
-  // TODO-QSP: *p '<table style="border-collapse:collapse; vertical-align:top;"><tr>'
-  // TODO-QSP: *p '<td valign="top" style="vertical-align:top; padding-right:32px;">'
-  // TODO-QSP: *p '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">'
-  // TODO-QSP: *p '<tr><td bgcolor="' + $theme_hex['table_bg'] + '" style="background:' + $theme_hex['table_bg'] + ...
-  // TODO-QSP: *p '<tr><td bgcolor="' + $theme_hex['table_bg_alt'] + '" style="background:' + $theme_hex['table_bg_...
-  // TODO-QSP: *p '<tr><td bgcolor="' + $theme_hex['table_bg'] + '" style="background:' + $theme_hex['table_bg'] + ...
-  // TODO-QSP: *p '<tr><td bgcolor="' + $theme_hex['table_bg_alt'] + '" style="background:' + $theme_hex['table_bg_...
-  // TODO-QSP: *p '</table>'
-  // TODO-QSP: *p '</td>'
-  // TODO-QSP: *p '<td valign="top" style="vertical-align:top;">'
-  // TODO-QSP: *p $func('progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p $func('progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81')
-  // TODO-QSP: *p '</td>'
-  // TODO-QSP: *p '<td valign="top" style="vertical-align:top; padding-left:32px;">'
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 100)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 80)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 60)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 40)
-  // TODO-QSP: *p $func('progressbar', 'mono:accent', 20)
-  // TODO-QSP: *p '</td>'
-  // TODO-QSP: *p '</tr></table>'
+  scene.text('<table style="border-collapse:collapse; vertical-align:top;"><tr>');
+  scene.text('<td valign="top" style="vertical-align:top; padding-right:32px;">');
+  scene.text('<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg'] + '" style="background:' + $theme_h...
+  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 1, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 1, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg</td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg_alt'] + '" style="background:' + $the...
+  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 2, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 2, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg'] + '" style="background:' + $theme_h...
+  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 3, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 3, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg\'] + \'" style="background:\' + $theme_hex[\'table_bg\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg</td></tr>\'');
+  // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $theme_hex['table_bg_alt'] + '" style="background:' + $the...
+  scene.text('\'<tr><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 4, Column A</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \';">Row 4, Column B</td><td bgcolor="\' + $theme_hex[\'table_bg_alt\'] + \'" style="background:\' + $theme_hex[\'table_bg_alt\'] + \'; padding:6px 14px; color:\' + $tm_fg_hex + \'; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>\'');
+  scene.text('</table>');
+  scene.text('</td>');
+  scene.text('<td valign="top" style="vertical-align:top;">');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 100, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 80, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 60, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 40, 0, 0, 0, \', \', \'21,41,61,81\')');
+  // TODO-QSP: dynamic text: $func('progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81')
+  scene.text('$func(\'progressbar\', \'positive\', 20, 0, 0, 0, \', \', \'21,41,61,81\')');
+  scene.text('</td>');
+  scene.text('<td valign="top" style="vertical-align:top; padding-left:32px;">');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 100)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 100)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 80)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 80)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 60)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 60)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 40)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 40)');
+  // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 20)
+  scene.text('$func(\'progressbar\', \'mono:accent\', 20)');
+  scene.text('</td>');
+  scene.text('</tr></table>');
   return;
   // TODO-QSP: end
   scene.actions([

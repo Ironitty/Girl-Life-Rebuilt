@@ -59,12 +59,17 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'bm_build_loop'
     }
     // TODO-QSP: $bm_lnk[birthmonth] = '<td style="' + $bm_td_sel + '"><b>' + $monthName[birthmonth] + '</b></td>'
-    // TODO-QSP: *p '<center><table style="border:2px solid ' + $theme_hex['goth'] + '; background-color:' + $theme_h...
-    // TODO-QSP: *p '<tr><<$bm_lnk[1]>><<$bm_lnk[2]>><<$bm_lnk[3]>></tr>'
-    // TODO-QSP: *p '<tr><<$bm_lnk[4]>><<$bm_lnk[5]>><<$bm_lnk[6]>></tr>'
-    // TODO-QSP: *p '<tr><<$bm_lnk[7]>><<$bm_lnk[8]>><<$bm_lnk[9]>></tr>'
-    // TODO-QSP: *p '<tr><<$bm_lnk[10]>><<$bm_lnk[11]>><<$bm_lnk[12]>></tr>'
-    // TODO-QSP: *p '</table></center>'
+    // TODO-QSP: dynamic text: '<center><table style="border:2px solid ' + $theme_hex['goth'] + '; background-c...
+    scene.text('\'<center><table style="border:2px solid \' + $theme_hex[\'goth\'] + \'; background-color:\' + $theme_hex[\'table_bg\'] + \'; border-spacing:4px; margin:6px;" cellpadding="0" cellspacing="0">\'');
+    // TODO-QSP: dynamic text: <tr><<$bm_lnk[1]>><<$bm_lnk[2]>><<$bm_lnk[3]>></tr>
+    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[1]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[2]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[3]", { location: "intro_character_creation" })}</tr>`);
+    // TODO-QSP: dynamic text: <tr><<$bm_lnk[4]>><<$bm_lnk[5]>><<$bm_lnk[6]>></tr>
+    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[4]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[5]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[6]", { location: "intro_character_creation" })}</tr>`);
+    // TODO-QSP: dynamic text: <tr><<$bm_lnk[7]>><<$bm_lnk[8]>><<$bm_lnk[9]>></tr>
+    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[7]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[8]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[9]", { location: "intro_character_creation" })}</tr>`);
+    // TODO-QSP: dynamic text: <tr><<$bm_lnk[10]>><<$bm_lnk[11]>><<$bm_lnk[12]>></tr>
+    scene.text(`<tr>${qspUntranslated(s, "bm_lnk[10]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[11]", { location: "intro_character_creation" })}${qspUntranslated(s, "bm_lnk[12]", { location: "intro_character_creation" })}</tr>`);
+    scene.text('</table></center>');
     scene.actions([
       { label: '<b>Done</b>', handler: (st: GameState) => {
     dynamicGoto(st, 'locM', 'locM_arg');

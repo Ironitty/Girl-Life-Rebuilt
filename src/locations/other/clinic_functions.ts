@@ -200,7 +200,8 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
 function enterOfferRow(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_or_i = qspUntranslated(s, "ARGS[1]", { location: "clinic_functions" });
   (s as any).temp_or_offset = ((s as any).appointment_offer_day ?? 0)?.[String((s as any).temp_or_i ?? 0)] - ((s as any).daystart ?? 0);
-  // TODO-QSP: *p '<tr' + $iif(appointment_selected_index = temp_or_i, ' style="font-weight:bold;"', '') + '><td>' ...
+  // TODO-QSP: dynamic text: '<tr' + $iif(appointment_selected_index = temp_or_i, ' style="font-weight:bold;"...
+  scene.text('\'<tr\' + $iif(appointment_selected_index = temp_or_i, \' style="font-weight:bold;"\', \') + \'><td>\' + $temp_or_link + $temp_or_label + \'</a></td><td>\' + $temp_or_link + $temp_or_time + \'</a></td><td>\' + $temp_or_note + \'</td></tr>\'');
   return;
   // TODO-QSP: end
   scene.build();

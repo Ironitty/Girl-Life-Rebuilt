@@ -540,31 +540,31 @@ function enterUnderwear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Click on an item to view details</b></center>');
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 7) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''panty_view'', ''view_item'', ''shop'', ''gm'',  7"><img height="150" src="ima...
+    scene.text('<a href="exec:gt \'panty_view\', \'view_item\', \'shop\', \'gm\',  7"><img height="150" src="images/pc/items/gm/panties/7.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 9) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''panty_view'', ''view_item'', ''shop'', ''gm'',  9"><img height="150" src="ima...
+    scene.text('<a href="exec:gt \'panty_view\', \'view_item\', \'shop\', \'gm\',  9"><img height="150" src="images/pc/items/gm/panties/9.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 12) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''panty_view'', ''view_item'', ''shop'', ''gm'', 12"><img height="150" src="ima...
+    scene.text('<a href="exec:gt \'panty_view\', \'view_item\', \'shop\', \'gm\', 12"><img height="150" src="images/pc/items/gm/panties/12.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 21) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''panty_view'', ''view_item'', ''shop'', ''gm'', 21"><img height="150" src="ima...
+    scene.text('<a href="exec:gt \'panty_view\', \'view_item\', \'shop\', \'gm\', 21"><img height="150" src="images/pc/items/gm/panties/21.jpg"/></a>');
   }
   if (qspFunc(s, 'panties', 'is_owned', 'gm', 37) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''panty_view'', ''view_item'', ''shop'', ''gm'', 37"><img height="150" src="ima...
+    scene.text('<a href="exec:gt \'panty_view\', \'view_item\', \'shop\', \'gm\', 37"><img height="150" src="images/pc/items/gm/panties/37.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 11) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''bra_view'', ''view_item'', ''shop'', ''gm'', 11"><img height="150" src="image...
+    scene.text('<a href="exec:gt \'bra_view\', \'view_item\', \'shop\', \'gm\', 11"><img height="150" src="images/pc/items/gm/bras/11.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 12) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''bra_view'', ''view_item'', ''shop'', ''gm'', 12"><img height="150" src="image...
+    scene.text('<a href="exec:gt \'bra_view\', \'view_item\', \'shop\', \'gm\', 12"><img height="150" src="images/pc/items/gm/bras/12.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 16) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''bra_view'', ''view_item'', ''shop'', ''gm'', 16"><img height="150" src="image...
+    scene.text('<a href="exec:gt \'bra_view\', \'view_item\', \'shop\', \'gm\', 16"><img height="150" src="images/pc/items/gm/bras/16.jpg"/></a>');
   }
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 18) === 0) {
-    // TODO-QSP: *p '<a href="exec:gt ''bra_view'', ''view_item'', ''shop'', ''gm'', 18"><img height="150" src="image...
+    scene.text('<a href="exec:gt \'bra_view\', \'view_item\', \'shop\', \'gm\', 18"><img height="150" src="images/pc/items/gm/bras/18.jpg"/></a>');
   }
   // TODO-QSP: end
   scene.actions([

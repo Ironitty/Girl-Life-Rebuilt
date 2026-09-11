@@ -219,7 +219,8 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).access ?? 0)?.['noporn'] !== '') {
       scene.img('images/pc/items/accessories/computer/komp.jpg');
-      // TODO-QSP: *p $access['noporn']
+      // TODO-QSP: dynamic text: $access['noporn']
+      scene.text('$access[\'noporn\']');
       scene.actions([
         { label: 'Leave this website', goto: ['komp', 'browse'] },
       ]);

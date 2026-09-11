@@ -3,13 +3,14 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p '<p style="text-align:center;"><img src="images/system/map/university.png" style="width:80%;max-w...
-  // TODO-QSP: *p '<a href="gt ''city_center''" style="display:block;text-align:center;margin-top:10px;">Back to Ci...
+  scene.img('images/system/map/university.png');
+  scene.text('<a href="gt \'city_center\'" style="display:block;text-align:center;margin-top:10px;">Back to City</a>');
   scene.build();
 }
 
 export const map: LocationDef = {
   name: 'map',
+  title: '<a href="gt \'city_center\'" style="display:block;text-align:c',
   region: 'other',
   enter: enter,
 };

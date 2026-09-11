@@ -361,36 +361,37 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   (s as any).p1 = 1;
   (s as any).w1 = 1;
   // TODO-QSP: :monthloop
-  // TODO-QSP: *p '<table border=0 cellpadding=1><tr><th colspan=7><b><i><font size=6 color="brown"><<$monthName[m1...
-  // TODO-QSP: *p '<tr align="center"><th>   Monday    </th><th>   Tuesday   </th><th>Wednesday</th><th>  Thursday ...
+  // TODO-QSP: dynamic text: <table border=0 cellpadding=1><tr><th colspan=7><b><i><font size=6 color="brown"...
+  scene.text(`<table border=0 cellpadding=1><tr><th colspan=7><b><i><font size=6 color="brown">${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)]}</font></i></b></th></tr>`);
+  scene.text('<tr align="center"><th>   Monday    </th><th>   Tuesday   </th><th>Wednesday</th><th>  Thursday   </th><th>     Friday     </th><th>  Saturday   </th><th>    Sunday    </th></tr>');
   // TODO-QSP: :weekloop
   ((s as any).selected ?? {})[String((s as any).p1 ?? 0)] = ((s as any).p1 ?? 0);
   if (((s as any).w1 ?? 0) === 1) {
-    // TODO-QSP: *p '<tr>'
+    scene.text('<tr>');
   }
   if (((s as any).w2 ?? 0) !== 1) {
     if (((s as any).w2 ?? 0) === 7) {
       (s as any).w1 = 7;
-      // TODO-QSP: *p '<td></td><td></td><td></td><td></td><td></td><td></td>'
+      scene.text('<td></td><td></td><td></td><td></td><td></td><td></td>');
     } else {
       if (((s as any).w2 ?? 0) === 6) {
         (s as any).w1 = 6;
-        // TODO-QSP: *p '<td></td><td></td><td></td><td></td><td></td>'
+        scene.text('<td></td><td></td><td></td><td></td><td></td>');
       } else {
         if (((s as any).w2 ?? 0) === 5) {
           (s as any).w1 = 5;
-          // TODO-QSP: *p '<td></td><td></td><td></td><td></td>'
+          scene.text('<td></td><td></td><td></td><td></td>');
         } else {
           if (((s as any).w2 ?? 0) === 4) {
             (s as any).w1 = 4;
-            // TODO-QSP: *p '<td></td><td></td><td></td>'
+            scene.text('<td></td><td></td><td></td>');
           } else {
             if (((s as any).w2 ?? 0) === 3) {
               (s as any).w1 = 3;
-              // TODO-QSP: *p '<td></td><td></td>'
+              scene.text('<td></td><td></td>');
             } else {
               (s as any).w1 = 2;
-              // TODO-QSP: *p '<td></td>'
+              scene.text('<td></td>');
             }
           }
         }
@@ -434,12 +435,13 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: *p '<td align="center"><font size=5><<$option>></font></td>'
+  // TODO-QSP: dynamic text: <td align="center"><font size=5><<$option>></font></td>
+  scene.text(`<td align="center"><font size=5>${((s as any).option ?? 0)}</font></td>`);
   (s as any).d1 = ((s as any).d1 ?? 0) + (1);
   (s as any).p1 = ((s as any).p1 ?? 0) + (1);
   (s as any).w1 = ((s as any).w1 ?? 0) + (1);
   if (((s as any).monthsend ?? 0)?.[String((s as any).m1 ?? 0)] < ((s as any).d1 ?? 0)) {
-    // TODO-QSP: *p '</tr></table><br>'
+    scene.text('</tr></table><br>');
     if (((s as any).w1 ?? 0) === 8) {
       (s as any).w1 = 1;
     }
@@ -456,12 +458,12 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).p1 ?? 0) < 50) {
       if (((s as any).w1 ?? 0) === 8) {
-        // TODO-QSP: *p '</tr>'
+        scene.text('</tr>');
         (s as any).w1 = 1;
       }
       // TODO-QSP: jump 'weekloop'
     } else {
-      // TODO-QSP: *p '</tr></table><br>'
+      scene.text('</tr></table><br>');
     }
   }
   (s as any).inversefilter = 0;
@@ -470,8 +472,9 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).weekendfilter ?? 0))) {
   }
-  // TODO-QSP: *p '<<$weekdayfilter_link>> <<$weekendfilter_link>> <a href="exec:inversefilter = 1 & gs ''pornsched...
-  // TODO-QSP: *p '<a href="exec:killvar ''datefilter'' & killvar ''selected'' & weekdayfilter = 0 & weekendfilter ...
+  // TODO-QSP: dynamic text: <<$weekdayfilter_link>> <<$weekendfilter_link>> <a href="exec:inversefilter = 1 ...
+  scene.text(`${((s as any).weekdayfilter_link ?? 0)} ${((s as any).weekendfilter_link ?? 0)} <a href="exec:inversefilter = 1 & gs 'pornschedule', 'selection'">Inverse selection</a><br>`);
+  scene.text('<a href="exec:killvar \'datefilter\' & killvar \'selected\' & weekdayfilter = 0 & weekendfilter = 0 & gs \'pornschedule\', \'selection\'">Clear date filters</a>');
   // TODO-QSP: end
   scene.build();
 }

@@ -525,6 +525,33 @@ interface ParseResult {
       continue;
     }
 
+    // *p print statement
+    const pMatch = trimmed.match(/^\*p\s+'((?:[^']|'')*)'$/);
+    if (pMatch) {
+      const inner = unescapeQsp(pMatch[1]);
+      const isImage = inner.includes('<img');
+      if (isImage) {
+        const imgMatch = inner.match(/src="([^"]+)"/);
+        if (imgMatch) {
+          nodes.push({ kind: 'image', src: imgMatch[1] });
+          i++;
+          continue;
+        }
+      }
+      const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
+      nodes.push({ kind: 'text', content: inner, dynamic });
+      i++;
+      continue;
+    }
+    if (trimmed.startsWith('*p')) {
+      const pRest = trimmed.slice(2).trim();
+      if (pRest) {
+        nodes.push({ kind: 'text', content: pRest, dynamic: true });
+        i++;
+        continue;
+      }
+    }
+
     // Fallback
     nodes.push({ kind: 'unknown', raw: trimmed });
     if (trimmed.length < 120) unsupported.push(trimmed);
@@ -858,6 +885,31 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
+  // *p print statement
+  const pMatch = trimmed.match(/^\*p\s+'((?:[^']|'')*)'$/);
+  if (pMatch) {
+    const inner = unescapeQsp(pMatch[1]);
+    const isImage = inner.includes('<img');
+    if (isImage) {
+      const imgMatch = inner.match(/src="([^"]+)"/);
+      if (imgMatch) {
+        nodes.push({ kind: 'image', src: imgMatch[1] });
+        return { nodes, nextIdx: idx + 1 };
+      }
+    }
+    const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
+    nodes.push({ kind: 'text', content: inner, dynamic });
+    return { nodes, nextIdx: idx + 1 };
+  }
+
+  if (trimmed.startsWith('*p')) {
+    const pRest = trimmed.slice(2).trim();
+    if (pRest) {
+      nodes.push({ kind: 'text', content: pRest, dynamic: true });
+      return { nodes, nextIdx: idx + 1 };
+    }
+  }
+
   // Dollar array assignment: $Word['key'] = val
   const dollarArrMatch = trimmed.match(/^\$(\w+)\['([^']+)'\]\s*(\+=|-=|=)\s*(.+)$/);
   if (dollarArrMatch) {
@@ -959,6 +1011,22 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
     nodes.push({ kind: 'text', content: unescapeQsp(inner), dynamic });
     return nodes;
+  }
+
+  const pMatch = trimmed.match(/^\*p\s+'((?:[^']|'')*)'$/);
+  if (pMatch) {
+    const inner = unescapeQsp(pMatch[1]);
+    const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
+    nodes.push({ kind: 'text', content: inner, dynamic });
+    return nodes;
+  }
+
+  if (trimmed.startsWith('*p')) {
+    const pRest = trimmed.slice(2).trim();
+    if (pRest) {
+      nodes.push({ kind: 'text', content: pRest, dynamic: true });
+      return nodes;
+    }
   }
 
   nodes.push({ kind: 'unknown', raw: trimmed });

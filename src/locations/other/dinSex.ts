@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -232,10 +234,12 @@ function enterWearCondom(s: GameState, scene: SceneBuilder): void {
       ((s as any).mc_inventory ?? {})['bad_condoms'] = (((s as any).mc_inventory ?? {})['bad_condoms'] ?? 0) - (1);
       (s as any).noprotect = 1;
       (s as any).sexcontra = Math.floor(Math.random() * 2) + 4;
-      // TODO-QSP: *p '<<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your '+iif(preziktype = 2,...
+      // TODO-QSP: dynamic text: '<<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your '+ii...
+      scene.text(`'${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${((((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).boydesc ?? 0)).length)-1)))} takes your '+iif(preziktype = 2, 'sabotaged condom and puts it on, not even noticing anything off.', 'condom and puts it on ${((s as any).xyr ?? 0)} cock. ')`);
     } else {
       (s as any).sexcontra = 3;
-      // TODO-QSP: *p '<<$boydesc>> takes your condom and puts it on <<$xyr>> cock. '
+      // TODO-QSP: dynamic text: <<$boydesc>> takes your condom and puts it on <<$xyr>> cock. 
+      scene.text(`${((s as any).boydesc ?? 0)} takes your condom and puts it on ${((s as any).xyr ?? 0)} cock. `);
       (s as any).noprotect = 0;
     }
     if (((s as any).preziktype ?? 0) === 2) {
@@ -320,10 +324,12 @@ function enterBoyPutsCondom(s: GameState, scene: SceneBuilder): void {
         ((s as any).mc_inventory ?? {})['bad_condoms'] = (((s as any).mc_inventory ?? {})['bad_condoms'] ?? 0) - (1);
         (s as any).noprotect = 1;
         (s as any).sexcontra = Math.floor(Math.random() * 2) + 4;
-        // TODO-QSP: *p '<<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your '+iif(preziktype = 2,...
+        // TODO-QSP: dynamic text: '<<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your '+ii...
+        scene.text(`'${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${((((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).boydesc ?? 0)).length)-1)))} takes your '+iif(preziktype = 2, 'sabotaged ', ')+ 'condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. '`);
       } else {
         (s as any).sexcontra = 3;
-        // TODO-QSP: *p '<<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your condom and puts it on...
+        // TODO-QSP: dynamic text: <<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your condo...
+        scene.text(`${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${((((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).boydesc ?? 0)).length)-1)))} takes your condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. `);
         (s as any).noprotect = 0;
       }
       if (((s as any).preziktype ?? 0) === 2) {
@@ -335,7 +341,8 @@ function enterBoyPutsCondom(s: GameState, scene: SceneBuilder): void {
       (s as any).sexcontra = 0;
     }
   } else {
-    // TODO-QSP: *p '<<$custmsg>> '
+    // TODO-QSP: dynamic text: <<$custmsg>> 
+    scene.text(`${((s as any).custmsg ?? 0)} `);
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
       if ((Math.floor(Math.random() * (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] - 1 + 1)) + (1)) <= ((s as any).mc_inventory ?? 0)?.['bad_condoms']) {
         ((s as any).mc_inventory ?? {})['bad_condoms'] = (((s as any).mc_inventory ?? {})['bad_condoms'] ?? 0) - (1);
@@ -361,7 +368,8 @@ function enterBoyPutsCondom(s: GameState, scene: SceneBuilder): void {
 function enterBoyPutsHisCondom(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
-  // TODO-QSP: *p '<<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom and puts it on ...
+  // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
+  scene.text(`${qspUntranslated(s, "ucase(mid(bwa_boy,1,1))", { location: "dinSex" })}${((((s as any).bwa_boy ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).bwa_boy ?? 0)).length)-1)))} takes his condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).penis_desc ?? 0)}. `);
   // TODO-QSP: end & !! --- boy_puts_his_condom ---
   scene.build();
 }
@@ -374,10 +382,12 @@ function enterPcPutsCondom(s: GameState, scene: SceneBuilder): void {
         ((s as any).mc_inventory ?? {})['bad_condoms'] = (((s as any).mc_inventory ?? {})['bad_condoms'] ?? 0) - (1);
         (s as any).noprotect = 1;
         (s as any).sexcontra = Math.floor(Math.random() * 2) + 4;
-        // TODO-QSP: *p 'You take your '+iif(preziktype = 2, 'sabotaged ', '')+ 'condom and put it on <<$xyr>> <<dick>> c...
+        // TODO-QSP: dynamic text: 'You take your '+iif(preziktype = 2, 'sabotaged ', '')+ 'condom and put it on <<...
+        scene.text(`'You take your '+iif(preziktype = 2, 'sabotaged ', ')+ 'condom and put it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. '`);
       } else {
         (s as any).sexcontra = 3;
-        // TODO-QSP: *p 'You take your condom and put it on <<$xyr>> <<dick>> centimeter dick. '
+        // TODO-QSP: dynamic text: You take your condom and put it on <<$xyr>> <<dick>> centimeter dick. 
+        scene.text(`You take your condom and put it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. `);
         (s as any).noprotect = 0;
       }
       if (((s as any).preziktype ?? 0) === 2) {
@@ -389,7 +399,8 @@ function enterPcPutsCondom(s: GameState, scene: SceneBuilder): void {
       (s as any).sexcontra = 0;
     }
   } else {
-    // TODO-QSP: *p '<<$custmsg>> '
+    // TODO-QSP: dynamic text: <<$custmsg>> 
+    scene.text(`${((s as any).custmsg ?? 0)} `);
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
       if ((Math.floor(Math.random() * (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] - 1 + 1)) + (1)) <= ((s as any).mc_inventory ?? 0)?.['bad_condoms']) {
         ((s as any).mc_inventory ?? {})['bad_condoms'] = (((s as any).mc_inventory ?? {})['bad_condoms'] ?? 0) - (1);
@@ -419,27 +430,34 @@ function enterBoyWantsAnal(s: GameState, scene: SceneBuilder): void {
     (s as any).analPlugIn = 0;
     (s as any).analPlugOut = 1;
     if (((s as any).pcs_ass ?? 0) < 16) {
-      // TODO-QSP: *p '<<$bwa_boy>> pulls the plug out of your narrow and tight ass, '
+      // TODO-QSP: dynamic text: <<$bwa_boy>> pulls the plug out of your narrow and tight ass, 
+      scene.text(`${((s as any).bwa_boy ?? 0)} pulls the plug out of your narrow and tight ass, `);
     } else {
-      // TODO-QSP: *p '<<$bwa_boy>> pulls the plug out of your ass, '
+      // TODO-QSP: dynamic text: <<$bwa_boy>> pulls the plug out of your ass, 
+      scene.text(`${((s as any).bwa_boy ?? 0)} pulls the plug out of your ass, `);
     }
   }
   if (((s as any).locArgs?.[2] ?? 0) === 'lubri') {
-    // TODO-QSP: *p '<<iif(analPlugOut = 1,$xe,$bwa_boy)>> takes a tube of lubricant, squeezes a little on <<$xyr>> p...
+    // TODO-QSP: dynamic text: <<iif(analPlugOut = 1,$xe,$bwa_boy)>> takes a tube of lubricant, squeezes a litt...
+    scene.text(`${((((s as any).analPlugOut ?? 0) === 1) ? (((s as any).xe ?? 0)) : (((s as any).bwa_boy ?? 0)))} takes a tube of lubricant, squeezes a little on ${((s as any).xyr ?? 0)} palm and rubs your anus. `);
     qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
-      // TODO-QSP: *p 'You have no lube, <<iif(analPlugOut = 1,$xe,$bwa_boy)>> spits on his fingers and using saliva he...
+      // TODO-QSP: dynamic text: You have no lube, <<iif(analPlugOut = 1,$xe,$bwa_boy)>> spits on his fingers and...
+      scene.text(`You have no lube, ${((((s as any).analPlugOut ?? 0) === 1) ? (((s as any).xe ?? 0)) : (((s as any).bwa_boy ?? 0)))} spits on his fingers and using saliva he massages your anus. `);
       qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
     } else {
       ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
       if ((!(Math.floor(Math.random() * 3) + 0))) {
-        // TODO-QSP: *p 'You take a tube of lubricant and hand it to <<$bwa_boy>>, he squeezes a little on his palm and r...
+        // TODO-QSP: dynamic text: You take a tube of lubricant and hand it to <<$bwa_boy>>, he squeezes a little o...
+        scene.text(`You take a tube of lubricant and hand it to ${((s as any).bwa_boy ?? 0)}, he squeezes a little on his palm and rubs your anus. `);
       } else {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: *p 'You squeeze anal lube on your hand and begin to smear it in your ass. Then you give the guy a tu...
+          // TODO-QSP: dynamic text: You squeeze anal lube on your hand and begin to smear it in your ass. Then you g...
+          scene.text(`You squeeze anal lube on your hand and begin to smear it in your ass. Then you give the guy a tube and ${((s as any).xe ?? 0)} starts lucricating ${((s as any).xyr ?? 0)} cock. `);
         } else {
-          // TODO-QSP: *p 'You squeeze anal lube on your hand and begin to smear it in your ass. Then you give it to <<$xem...
+          // TODO-QSP: dynamic text: You squeeze anal lube on your hand and begin to smear it in your ass. Then you g...
+          scene.text(`You squeeze anal lube on your hand and begin to smear it in your ass. Then you give it to ${((s as any).xem ?? 0)} and ${((s as any).xe ?? 0)} smears it on ${((s as any).xyr ?? 0)} dick. `);
         }
       }
       qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
@@ -456,22 +474,27 @@ function enterGirlWantsAnal(s: GameState, scene: SceneBuilder): void {
     (s as any).analPlugIn = 0;
     (s as any).analPlugOut = 1;
     if (((s as any).pcs_ass ?? 0) < 16) {
-      // TODO-QSP: *p '<<$bwa_girl>> pulls the plug out of your narrow and tight ass, '
+      // TODO-QSP: dynamic text: <<$bwa_girl>> pulls the plug out of your narrow and tight ass, 
+      scene.text(`${((s as any).bwa_girl ?? 0)} pulls the plug out of your narrow and tight ass, `);
     } else {
-      // TODO-QSP: *p '<<$bwa_girl>> pulls the plug out of your ass, '
+      // TODO-QSP: dynamic text: <<$bwa_girl>> pulls the plug out of your ass, 
+      scene.text(`${((s as any).bwa_girl ?? 0)} pulls the plug out of your ass, `);
     }
   }
   if (((s as any).locArgs?.[2] ?? 0) === 'lubri') {
     ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) + (1);
-    // TODO-QSP: *p '<<iif(analPlugOut = 1,$xe,$bwa_girl)>> takes a tube of lubricant, squeezes a little on her palm ...
+    // TODO-QSP: dynamic text: <<iif(analPlugOut = 1,$xe,$bwa_girl)>> takes a tube of lubricant, squeezes a lit...
+    scene.text(`${((((s as any).analPlugOut ?? 0) === 1) ? (((s as any).xe ?? 0)) : (((s as any).bwa_girl ?? 0)))} takes a tube of lubricant, squeezes a little on her palm and rubs your anus. `);
     qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
-      // TODO-QSP: *p 'You have no lube, <<iif(analPlugOut = 1,$xe,$bwa_girl)>> spits on her fingers and using saliva s...
+      // TODO-QSP: dynamic text: You have no lube, <<iif(analPlugOut = 1,$xe,$bwa_girl)>> spits on her fingers an...
+      scene.text(`You have no lube, ${((((s as any).analPlugOut ?? 0) === 1) ? (((s as any).xe ?? 0)) : (((s as any).bwa_girl ?? 0)))} spits on her fingers and using saliva she massages your anus. `);
       qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        // TODO-QSP: *p 'You take a tube of lubricant and hand it to <<$bwa_girl>>, she squeezes a little on her palm and...
+        // TODO-QSP: dynamic text: You take a tube of lubricant and hand it to <<$bwa_girl>>, she squeezes a little...
+        scene.text(`You take a tube of lubricant and hand it to ${((s as any).bwa_girl ?? 0)}, she squeezes a little on her palm and rubs your anus. `);
         qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
       }
     }
@@ -508,16 +531,21 @@ function enterAfterAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterAnalsex(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  // TODO-QSP: *p '<<$boydesc>> fingers your anus, slowly pushing in before squeezing in a second one, '
-  // TODO-QSP: *p iif(pcs_ass < 10, 'when <<$xe>> tries inserting a third finger you groan in pain. ', '<<$xe>> ins...
-  // TODO-QSP: *p '<<$xe>> pulls <<$xyr>> fingers out of your ass and you feel <<$xyr>> <<$penis_desc>> pushing aga...
+  // TODO-QSP: dynamic text: <<$boydesc>> fingers your anus, slowly pushing in before squeezing in a second o...
+  scene.text(`${((s as any).boydesc ?? 0)} fingers your anus, slowly pushing in before squeezing in a second one, `);
+  // TODO-QSP: dynamic text: iif(pcs_ass < 10, 'when <<$xe>> tries inserting a third finger you groan in pain...
+  scene.text(`iif(pcs_ass < 10, 'when ${((s as any).xe ?? 0)} tries inserting a third finger you groan in pain. ', '${((s as any).xe ?? 0)} inserts a third finger, very slowly thrusting and wiggling to stretch your anus, ')`);
+  // TODO-QSP: dynamic text: <<$xe>> pulls <<$xyr>> fingers out of your ass and you feel <<$xyr>> <<$penis_de...
+  scene.text(`${((s as any).xe ?? 0)} pulls ${((s as any).xyr ?? 0)} fingers out of your ass and you feel ${((s as any).xyr ?? 0)} ${((s as any).penis_desc ?? 0)} pushing against your butthole. `);
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     ((s as any).ARGS ?? {})[1] = (-1);
   }
   // TODO-QSP: gs 'arousal', 'anal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
   (s as any).grange = 0;
-  // TODO-QSP: *p iif(arousalVars['girth_diff'] + arousalVars['length_diff'] >= 20, 'You scream and bite your lip f...
-  // TODO-QSP: *p '<<$xe>> stops for a moment, giving your ass time to adjust to <<$xyr>> cock in it. Then he start...
+  // TODO-QSP: dynamic text: iif(arousalVars['girth_diff'] + arousalVars['length_diff'] >= 20, 'You scream an...
+  scene.text(`iif(arousalVars['girth_diff'] + arousalVars['length_diff'] >= 20, 'You scream and bite your lip from the sharp pain when ${((s as any).xe ?? 0)} penetrates your ass, ', 'You moan when ${((s as any).xe ?? 0)} penetrates your ass, ')`);
+  // TODO-QSP: dynamic text: <<$xe>> stops for a moment, giving your ass time to adjust to <<$xyr>> cock in i...
+  scene.text(`${((s as any).xe ?? 0)} stops for a moment, giving your ass time to adjust to ${((s as any).xyr ?? 0)} cock in it. Then he starts to slowly move, pumping your anus. `);
   if (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff'] >= (Math.floor(Math.random() * 11) + 25)) {
     if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
       (s as any).pcs_makeup = 0;
@@ -671,10 +699,11 @@ function enterEnema(s: GameState, scene: SceneBuilder): void {
   (s as any).klismaday = ((s as any).daystart ?? 0);
   (s as any).klismaday1 = 1;
   if (((s as any).locArgs?.[1] ?? 0)==='') {
-    // TODO-QSP: *p 'You give yourself an enema, feeling clean down there. Your ass is now ready for anal sex without...
+    scene.text('You give yourself an enema, feeling clean down there. Your ass is now ready for anal sex without any awkward surprises. ');
   } else {
     if (((s as any).locArgs?.[1] ?? 0)!== ' ') {
-      // TODO-QSP: *p '<<$ARGS[1]>> '
+      // TODO-QSP: dynamic text: <<$ARGS[1]>> 
+      scene.text(`${((s as any).locArgs?.[1] ?? 0)} `);
     }
   }
   // TODO-QSP: end & !! --- enema ---

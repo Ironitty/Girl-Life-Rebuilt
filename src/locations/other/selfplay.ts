@@ -414,8 +414,10 @@ function enterDildoOptions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'selfplay', 'hole_cap_desc');
   qspCall(s, 'selfplay', 'dildosize_desc');
   if (((s as any).dildonumber ?? 0) !== 0) {
-    // TODO-QSP: *pl
-    // TODO-QSP: *pl 'You decide to play with your <<$dildo_desc>>. <<$pussy_cap_desc>> <<$anal_cap_desc>>'
+    // TODO-QSP: dynamic text: l
+    scene.text('l');
+    // TODO-QSP: dynamic text: l 'You decide to play with your <<$dildo_desc>>. <<$pussy_cap_desc>> <<$anal_cap...
+    scene.text(`l 'You decide to play with your ${((s as any).dildo_desc ?? 0)}. ${((s as any).pussy_cap_desc ?? 0)} ${((s as any).anal_cap_desc ?? 0)}'`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1) {
     if (((s as any).dildonumber ?? 0) === 1) {

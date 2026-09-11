@@ -150,7 +150,8 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$xec>> starts to stretch your anus using three fingers.
     scene.text(`${((s as any).xec ?? 0)} starts to stretch your anus using three fingers.`);
   }
-  // TODO-QSP: *p '<<$boydesc>> pulls <<$xyr>> fingers out of your ass and you feel '
+  // TODO-QSP: dynamic text: <<$boydesc>> pulls <<$xyr>> fingers out of your ass and you feel 
+  scene.text(`${((s as any).boydesc ?? 0)} pulls ${((s as any).xyr ?? 0)} fingers out of your ass and you feel `);
   if ((Math.floor(Math.random() * 2) + 0)===0) {
     // TODO-QSP: dynamic text: <<$xyr>> fake cock near your hole.' else '<<$xem>> pushing <<$xyr>> fake cock in...
     scene.text(`${((s as any).xyr ?? 0)} fake cock near your hole.' else '${((s as any).xem ?? 0)} pushing ${((s as any).xyr ?? 0)} fake cock into your hole.`);

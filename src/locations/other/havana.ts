@@ -180,7 +180,8 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pcs_makeup ?? 0) !== 1  &&  (!((s as any).cosmetic_tattoo ?? 0))) {
-      // TODO-QSP: *pl 'You need to wash your make-up off first if you want to go in the pool.'
+      // TODO-QSP: dynamic text: l 'You need to wash your make-up off first if you want to go in the pool.'
+      scene.text('l \'You need to wash your make-up off first if you want to go in the pool.\'');
     }
   }
   if (((s as any).abonement ?? 0) > 0) {

@@ -508,7 +508,8 @@ function enterWithdrawCash(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetWithdrawText(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p '<br>You withdraw <<$func(''money'', ''format'', ARGS[1])>>. '
+  // TODO-QSP: dynamic text: <br>You withdraw <<$func('money', 'format', ARGS[1])>>. 
+  scene.text(`<br>You withdraw ${qspFunc(s, 'money', 'format', qspUntranslated(s, "ARGS[1]", { location: "bank" }))}. `);
   if (((s as any).karta ?? 0) > ((s as any).bankDebtLimit ?? 0)) {
   } else {
     if (((s as any).karta ?? 0) === ((s as any).bankDebtLimit ?? 0)) {
@@ -519,7 +520,8 @@ function enterSetWithdrawText(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetDepositText(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p '<br>You deposit <<$func(''money'', ''format'', ARGS[1])>>. '
+  // TODO-QSP: dynamic text: <br>You deposit <<$func('money', 'format', ARGS[1])>>. 
+  scene.text(`<br>You deposit ${qspFunc(s, 'money', 'format', qspUntranslated(s, "ARGS[1]", { location: "bank" }))}. `);
   // TODO-QSP: end
   scene.build();
 }
@@ -582,7 +584,8 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       (s as any).bank_i = 0;
       // TODO-QSP: :loop_messages
       if (((s as any).internet_action_messages ?? 0)?.[String((s as any).bank_i ?? 0)] !== '') {
-        // TODO-QSP: *pl $internet_action_messages[bank_i]
+        // TODO-QSP: dynamic text: l $internet_action_messages[bank_i]
+        scene.text('l $internet_action_messages[bank_i]');
       }
       (s as any).bank_i = ((s as any).bank_i ?? 0) + (1);
       if (((s as any).bank_i ?? 0) < ((s as any).bank_max_i ?? 0)) {

@@ -414,15 +414,18 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'wardrobe_storage_unwanted_header') {
-    // TODO-QSP: *p '<center><table border=1><tr>'
+    scene.text('<center><table border=1><tr>');
     if (((s as any).shop_display ?? 0)?.['link'] !== 'wardrobe') {
-      // TODO-QSP: *p '<th><a href="exec:gs ''shop_utils'', ''cleanup'' & gt ''<<$shop_display[''view_file'']>>'', ''<<...
+      // TODO-QSP: dynamic text: <th><a href="exec:gs 'shop_utils', 'cleanup' & gt '<<$shop_display['view_file']>...
+      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file']}', '${((s as any).locArgs?.[2] ?? 0)}', 'wardrobe'">Wardrobe</a></th>`);
     }
     if (((s as any).shop_display ?? 0)?.['link'] !== 'storage') {
-      // TODO-QSP: *p '<th><a href="exec:gs ''shop_utils'', ''cleanup'' & gt ''<<$shop_display[''view_file'']>>'', ''<<...
+      // TODO-QSP: dynamic text: <th><a href="exec:gs 'shop_utils', 'cleanup' & gt '<<$shop_display['view_file']>...
+      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file']}', '${((s as any).locArgs?.[2] ?? 0)}', 'storage'">Storage</a></th>`);
     }
     if (((s as any).shop_display ?? 0)?.['link'] !== 'unwanted') {
-      // TODO-QSP: *p '<th><a href="exec:gs ''shop_utils'', ''cleanup'' & gt ''<<$shop_display[''view_file'']>>'', ''<<...
+      // TODO-QSP: dynamic text: <th><a href="exec:gs 'shop_utils', 'cleanup' & gt '<<$shop_display['view_file']>...
+      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file']}', '${((s as any).locArgs?.[2] ?? 0)}', 'unwanted'">Unwanted</a></th>`);
     }
     return;
   }
@@ -571,23 +574,27 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['sorting'] = qspUntranslated(s, "mid(Headerstring['sorting'], 10)", { location: "shop_utils" });
     ((s as any).Headerstring ?? {})['filter'] = qspUntranslated(s, "mid(Headerstring['filter'], 10)", { location: "shop_utils" });
     if (((s as any).locArgs?.[2] ?? 0) === 'mini') {
-      // TODO-QSP: *p '<center><table>'
+      scene.text('<center><table>');
       if (((s as any).Headerstring ?? 0)?.['filter_count'] + ((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
-        // TODO-QSP: *p '<tr>'
+        scene.text('<tr>');
         if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
-          // TODO-QSP: *p '<th colspan="<<Headerstring[''filter_count'']>>"><font color="<<$Headerstring[''inc_color'']>>">...
+          // TODO-QSP: dynamic text: <th colspan="<<Headerstring['filter_count']>>"><font color="<<$Headerstring['inc...
+          scene.text(`<th colspan="${((s as any).Headerstring ?? 0)?.['filter_count']}"><font color="${((s as any).Headerstring ?? 0)?.['inc_color']}">Include</font>/<font color="red">Exclude</font></th>`);
         }
         if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
-          // TODO-QSP: *p "<th colspan=""<<Headerstring['sorting_count']>>"">Sort by</th>"
+          // TODO-QSP: dynamic text: "<th colspan=""<<Headerstring['sorting_count']>>"">Sort by</th>"
+          scene.text(`"<th colspan=""${((s as any).Headerstring ?? 0)?.['sorting_count']}"">Sort by</th>"`);
         }
-        // TODO-QSP: *p '</tr><tr>'
+        scene.text('</tr><tr>');
         if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
-          // TODO-QSP: *p $Headerstring['filter']
+          // TODO-QSP: dynamic text: $Headerstring['filter']
+          scene.text('$Headerstring[\'filter\']');
         }
         if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
-          // TODO-QSP: *p $Headerstring['sorting']
+          // TODO-QSP: dynamic text: $Headerstring['sorting']
+          scene.text('$Headerstring[\'sorting\']');
         }
-        // TODO-QSP: *p '</tr>'
+        scene.text('</tr>');
       }
       return;
     }
@@ -616,14 +623,18 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'filter_builder', '_split_headerstring', 'sorting');
     qspCall(s, 'shop_utils', 'filter_builder', '_split_headerstring', 'filter');
-    // TODO-QSP: *p '<center><table>'
+    scene.text('<center><table>');
     if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
-      // TODO-QSP: *p "<tr><th colspan=""<<Headerstring['max_width']>>"">Sort by</th></tr>"
-      // TODO-QSP: *p $Headerstring['sorting']
+      // TODO-QSP: dynamic text: "<tr><th colspan=""<<Headerstring['max_width']>>"">Sort by</th></tr>"
+      scene.text(`"<tr><th colspan=""${((s as any).Headerstring ?? 0)?.['max_width']}"">Sort by</th></tr>"`);
+      // TODO-QSP: dynamic text: $Headerstring['sorting']
+      scene.text('$Headerstring[\'sorting\']');
     }
     if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
-      // TODO-QSP: *p '<tr><th colspan="<<Headerstring[''max_width'']>>"><font color="<<$Headerstring[''inc_color'']>>"...
-      // TODO-QSP: *p $Headerstring['filter']
+      // TODO-QSP: dynamic text: <tr><th colspan="<<Headerstring['max_width']>>"><font color="<<$Headerstring['in...
+      scene.text(`<tr><th colspan="${((s as any).Headerstring ?? 0)?.['max_width']}"><font color="${((s as any).Headerstring ?? 0)?.['inc_color']}">Include</font>/<font color="red">Exclude</font></th></tr>`);
+      // TODO-QSP: dynamic text: $Headerstring['filter']
+      scene.text('$Headerstring[\'filter\']');
     }
     return;
   }
@@ -1745,6 +1756,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const shop_utils: LocationDef = {
   name: 'shop_utils',
+  title: '<center><table border=1><tr>',
   region: 'other',
   enter: enter,
 };

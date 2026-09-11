@@ -9,16 +9,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: *p '<center>'
-  // TODO-QSP: *p $func('stat_display_menu', 'general_options')
+  scene.text('<center>');
+  // TODO-QSP: dynamic text: $func('stat_display_menu', 'general_options')
+  scene.text('$func(\'stat_display_menu\', \'general_options\')');
   (s as any).temp_ls_i = 0;
   // TODO-QSP: :loop_sections
   if (((s as any).temp_ls_i ?? 0) < Object.keys((s as any).stat_order ?? {}).length) {
-    // TODO-QSP: *p $func('stat_display_menu', 'section_table', temp_ls_i)
+    // TODO-QSP: dynamic text: $func('stat_display_menu', 'section_table', temp_ls_i)
+    scene.text('$func(\'stat_display_menu\', \'section_table\', temp_ls_i)');
     (s as any).temp_ls_i = ((s as any).temp_ls_i ?? 0) + (1);
     // TODO-QSP: jump 'loop_sections'
   }
-  // TODO-QSP: *p '</center>'
+  scene.text('</center>');
   return;
   // TODO-QSP: end
   scene.build();
@@ -987,6 +989,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const stat_display_menu: LocationDef = {
   name: 'stat_display_menu',
+  title: '<center>',
   region: 'other',
   enter: enter,
 };

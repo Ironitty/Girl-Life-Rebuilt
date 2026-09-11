@@ -99,7 +99,8 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).outfitfilter ?? 0)?.['quality_sort'] === 1  &&  ((s as any).CloQuality ?? 0) === ((s as any).clo_i ?? 0))  ||  (((s as any).outfitfilter ?? 0)?.['inhibition_sort'] === 1  &&  ((s as any).CloInhibit ?? 0) === ((s as any).clo_i ?? 0))  ||  ((s as any).outfitfilter ?? 0)?.['number_sort'] === 1) {
       if (((s as any).outfitfilter ?? 0)?.['include'] === 1  &&  ((s as any).outfitfilter ?? 0)?.['sport'] >= 0) {
         if (qspFunc(s, 'clothing', 'can_wear', 'danilovich', ((s as any).i ?? 0))) {
-          // TODO-QSP: *p '<a href="exec:gt ''clothing_QV'', ''change'', ''danilovich_outfits'', <<i>>"><img height="250" s...
+          // TODO-QSP: dynamic text: <a href="exec:gt 'clothing_QV', 'change', 'danilovich_outfits', <<i>>"><img heig...
+          scene.text(`<a href="exec:gt 'clothing_QV', 'change', 'danilovich_outfits', ${((s as any).i ?? 0)}"><img height="250" src="images/pc/items/danilovich/outfits/${((s as any).i ?? 0)}.jpg"/></a>`);
         }
       }
     }
@@ -148,7 +149,8 @@ function enterCloak(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopcoat
   if (((s as any).coat ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     if (((s as any).coat_h ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      // TODO-QSP: *p '<a href="exec:gt ''clothing_QV'', ''change'', ''coat'', <<i>>"><img height="250" src="images/pc/...
+      // TODO-QSP: dynamic text: <a href="exec:gt 'clothing_QV', 'change', 'coat', <<i>>"><img height="250" src="...
+      scene.text(`<a href="exec:gt 'clothing_QV', 'change', 'coat', ${((s as any).i ?? 0)}"><img height="250" src="images/pc/clothing/11coat/${((s as any).i ?? 0)}.jpg"/></a>`);
     }
   }
   (s as any).i = ((s as any).i ?? 0) + (1);

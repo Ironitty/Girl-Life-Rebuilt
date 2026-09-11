@@ -85,7 +85,7 @@ function enterDresser(s: GameState, scene: SceneBuilder): void {
   scene.text('The wear panties and bra options here are for the regular underwear, the large buttons for choosing unique items.');
   // TODO-QSP: dynamic text: Your dresser contains <<func('panties','sum','dresser')>> pairs of regular panti...
   scene.text(`Your dresser contains ${qspFunc(s, 'panties', 'sum', 'dresser')} pairs of regular panties and ${qspFunc(s, 'bras', 'sum', 'dresser')} regular bras.`);
-  // TODO-QSP: *p '<center><a href="exec:gt ''bra_view'', ''view_grid'', ''clean'', 6"><img src="images/system/icon...
+  scene.img('images/system/icons/bra.png');
   qspCall(s, 'din_van', 'wearpan');
   qspCall(s, 'din_van', 'removepan');
   return;

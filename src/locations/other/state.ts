@@ -21,7 +21,8 @@ function enterPush(s: GameState, scene: SceneBuilder): void {
 function enterPop(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: killobj
   // TODO-QSP: p $stat_stack[arrsize('$stat_stack')-1]
-  // TODO-QSP: *p $main_stack[arrsize('$main_stack')-1]
+  // TODO-QSP: dynamic text: $main_stack[arrsize('$main_stack')-1]
+  scene.text('$main_stack[arrsize(\'$main_stack\')-1]');
   // TODO-QSP: end
   scene.build();
 }

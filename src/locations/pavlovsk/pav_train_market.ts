@@ -1016,7 +1016,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: *p ', However, you''re not hungry right now.'
+      scene.text(', However, you\'re not hungry right now.');
     }
     scene.actions([
       { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },

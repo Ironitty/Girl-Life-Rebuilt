@@ -305,14 +305,14 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: *NL 'It is raining and you do not have an umbrella.'
       if (((s as any).pcs_makeup ?? 0) > ((s as any).cosmetic_tattoo ?? 0) + 1) {
         (s as any).pcs_makeup = 0;
-        // TODO-QSP: *p ' The rain has ruined your makeup.'
+        scene.text(' The rain has ruined your makeup.');
       }
       if (((s as any).pcs_hairbsh ?? 0) === 1) {
         (s as any).pcs_hairbsh = 0;
         if (((s as any).curly ?? 0) > 0) {
           (s as any).curly = ((s as any).curly ?? 0) - (1);
         }
-        // TODO-QSP: *p ' Your hair is soaked.'
+        scene.text(' Your hair is soaked.');
       }
     }
     if (((s as any).temper ?? 0) <= 0) {

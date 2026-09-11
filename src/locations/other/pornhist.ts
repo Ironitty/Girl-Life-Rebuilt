@@ -145,7 +145,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     scene.text(' <font color="red" size=2><b>You were unprotected and fertile during the shoot.</b></font>');
   }
   if (((s as any).i ?? 0) < ((s as any).film ?? 0)) {
-    // TODO-QSP: *p '<font color="sienna"><hr></font>'
+    scene.text('<font color="sienna"><hr></font>');
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'pornhistloop2'
   }

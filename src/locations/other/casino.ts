@@ -844,16 +844,17 @@ function enterBlackjackPlay(s: GameState, scene: SceneBuilder): void {
 
 function enterRules(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/casino/crupbd.jpg');
-  // TODO-QSP: *p '<ol><li>The player and dealer are each dealt 2 cards after initial bets (<<minBet>> - <<maxBet>>...
-  // TODO-QSP: *p '<li>Face cards are worth 10 points, aces can double as either 11 or 1, and all other cards are w...
-  // TODO-QSP: *p '<li>After the player finishes drawing, the dealer must continue to draw until they have 17 point...
-  // TODO-QSP: *p '<li>To win, the player must score more points than the dealer, have the dealer bust, or get a bl...
-  // TODO-QSP: *p '<li>Getting over 21 points is known as a bust, and an automatic loss.</li>'
-  // TODO-QSP: *p '<li>Getting an ace and a 10 point card in the first 2 cards is known as a blackjack, and is an a...
-  // TODO-QSP: *p '<li>If the dealer''s face-up card is an ace, the player can make a side-bet called "insurance" t...
-  // TODO-QSP: *p '<li>At any time, the player can choose to double their bet, which gives the player 1 more card b...
-  // TODO-QSP: *p '<li>If the player''s hand only consists of two cards of equal value, they can split them into 2 ...
-  // TODO-QSP: *p '<li>The player cannot score a blackjack using a split hand.</li>'
+  // TODO-QSP: dynamic text: <ol><li>The player and dealer are each dealt 2 cards after initial bets (<<minBe...
+  scene.text(`<ol><li>The player and dealer are each dealt 2 cards after initial bets (${((s as any).minBet ?? 0)} - ${((s as any).maxBet ?? 0)} chips). The dealer will have 1 face-up card and 1 face-down card.</li>`);
+  scene.text('<li>Face cards are worth 10 points, aces can double as either 11 or 1, and all other cards are worth their numeric value.</li>');
+  scene.text('<li>After the player finishes drawing, the dealer must continue to draw until they have 17 points or more.</li>');
+  scene.text('<li>To win, the player must score more points than the dealer, have the dealer bust, or get a blackjack.</li>');
+  scene.text('<li>Getting over 21 points is known as a bust, and an automatic loss.</li>');
+  scene.text('<li>Getting an ace and a 10 point card in the first 2 cards is known as a blackjack, and is an automatic win which pays 3 : 2.</li>');
+  scene.text('<li>If the dealer\'s face-up card is an ace, the player can make a side-bet called "insurance" that pays 2 : 1 if the dealer has a blackjack.</li>');
+  scene.text('<li>At any time, the player can choose to double their bet, which gives the player 1 more card but prevents further draws on that hand.</li>');
+  scene.text('<li>If the player\'s hand only consists of two cards of equal value, they can split them into 2 hands. Each hand must be covered by an amount equal to the original bet.</li>');
+  scene.text('<li>The player cannot score a blackjack using a split hand.</li>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['casino', 'blackjack_play'] },
@@ -948,11 +949,13 @@ function enterInsurance1(s: GameState, scene: SceneBuilder): void {
 function enterInsurance2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dealerPoints ?? 0) === 21  ||  ((s as any).deckFace ?? 0)[((s as any).temp_dealer_hand ?? 0)[1]] > 9) {
     qspCall(s, 'casino', 'blackjack_view', 1);
-    // TODO-QSP: *p 'The dealer takes your <<temp_player_bets[0]>> chips bet'
+    // TODO-QSP: dynamic text: The dealer takes your <<temp_player_bets[0]>> chips bet
+    scene.text(`The dealer takes your ${qspUntranslated(s, "temp_player_bets[0]", { location: "casino" })} chips bet`);
     if (((s as any).insurance ?? 0) > 0) {
-      // TODO-QSP: *p ' but also gives you <<insurance>> chips for your side bet'
+      // TODO-QSP: dynamic text:  but also gives you <<insurance>> chips for your side bet
+      scene.text(` but also gives you ${((s as any).insurance ?? 0)} chips for your side bet`);
     }
-    // TODO-QSP: *p '.'
+    scene.text('.');
     (s as any).casino_chips = ((s as any).casino_chips ?? 0) - (qspUntranslated(s, "temp_player_bets[0]", { location: "casino" }));
     (s as any).casino_chips = ((s as any).casino_chips ?? 0) + (((s as any).insurance ?? 0));
     scene.actions([
@@ -961,7 +964,8 @@ function enterInsurance2(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'casino', 'blackjack_view');
     if (((s as any).insurance ?? 0) > 0) {
-      // TODO-QSP: *p 'He relieves you of <<insurance>> chips for your side bet.'
+      // TODO-QSP: dynamic text: He relieves you of <<insurance>> chips for your side bet.
+      scene.text(`He relieves you of ${((s as any).insurance ?? 0)} chips for your side bet.`);
     }
     (s as any).casino_chips = ((s as any).casino_chips ?? 0) - (((s as any).insurance ?? 0));
     scene.actions([
@@ -984,7 +988,8 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
     (s as any).doubleBet = 0;
   }
   if (((s as any).handLosses ?? 0) === ((s as any).numHands ?? 0)) {
-    // TODO-QSP: *p 'The dealer relieves you of <<betTotal>> chips.'
+    // TODO-QSP: dynamic text: The dealer relieves you of <<betTotal>> chips.
+    scene.text(`The dealer relieves you of ${((s as any).betTotal ?? 0)} chips.`);
     (s as any).casino_chips = ((s as any).casino_chips ?? 0) - (((s as any).betTotal ?? 0));
     scene.actions([
       { label: 'Continue', goto: ['casino', 'blackjack_play'] },
@@ -1092,7 +1097,8 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
       if (((s as any).i ?? 0) < ((s as any).numHands ?? 0)) {
         // TODO-QSP: jump 'loop5'
       }
-      // TODO-QSP: *p 'You receive <<betTotal>> chips in winnings.'
+      // TODO-QSP: dynamic text: You receive <<betTotal>> chips in winnings.
+      scene.text(`You receive ${((s as any).betTotal ?? 0)} chips in winnings.`);
       (s as any).casino_chips = ((s as any).casino_chips ?? 0) + (((s as any).betTotal ?? 0));
       scene.actions([
         { label: 'Continue', goto: ['casino', 'blackjack_play'] },
@@ -1118,22 +1124,24 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
       }
       if ((!((s as any).betTotal ?? 0))) {
         if (((s as any).numHands ?? 0) === 1) {
-          // TODO-QSP: *p 'You retrieve your bet.'
+          scene.text('You retrieve your bet.');
         }
         if (((s as any).numHands ?? 0) > 1) {
-          // TODO-QSP: *p 'You retrieve your bets.'
+          scene.text('You retrieve your bets.');
         }
       } else {
         if (((s as any).betTotal ?? 0) < 0) {
           if (((s as any).numHands ?? 0) > 1) {
-            // TODO-QSP: *p 'After taking into account all the hands, you have lost. '
+            scene.text('After taking into account all the hands, you have lost. ');
           }
-          // TODO-QSP: *p 'The dealer relieves you of <<0 - betTotal>> chips.'
+          // TODO-QSP: dynamic text: The dealer relieves you of <<0 - betTotal>> chips.
+          scene.text(`The dealer relieves you of ${0 - ((s as any).betTotal ?? 0)} chips.`);
         } else {
           if (((s as any).numHands ?? 0) > 1) {
-            // TODO-QSP: *p 'After taking into account all the hands, you have won. '
+            scene.text('After taking into account all the hands, you have won. ');
           }
-          // TODO-QSP: *p 'You receive <<betTotal>> chips in winnings.'
+          // TODO-QSP: dynamic text: You receive <<betTotal>> chips in winnings.
+          scene.text(`You receive ${((s as any).betTotal ?? 0)} chips in winnings.`);
         }
       }
       (s as any).casino_chips = ((s as any).casino_chips ?? 0) + (((s as any).betTotal ?? 0));
@@ -1148,13 +1156,13 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
 
 function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    // TODO-QSP: *p '<img <<$set_imgh>> src="<<$deckImg[temp_dealer_hand[0]]>>">'
+    scene.img(`${qspUntranslated(s, "deckImg[temp_dealer_hand[0]]", { location: "casino" })}`);
   } else {
     (s as any).numAces = 0;
     (s as any).dealerPoints = 0;
     (s as any).i = 0;
     // TODO-QSP: :loop7
-    // TODO-QSP: *p '<img <<$set_imgh>> src="<<$deckImg[temp_dealer_hand[i]]>>">'
+    scene.img(`${qspUntranslated(s, "deckImg[temp_dealer_hand[i]]", { location: "casino" })}`);
     if (((s as any).deckFace ?? 0)[((s as any).temp_dealer_hand ?? 0)?.[String((s as any).i ?? 0)]] === 1) {
       (s as any).dealerPoints = ((s as any).dealerPoints ?? 0) + (11);
       (s as any).numAces = ((s as any).numAces ?? 0) + (1);
@@ -1176,12 +1184,13 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loop8'
     }
     if (((s as any).dealerPoints ?? 0) > 21) {
-      // TODO-QSP: *p '<br>BUST!'
+      scene.text('<br>BUST!');
     } else {
       if (((s as any).dealerPoints ?? 0) === 21  &&  ((s as any).temp_dealer_hand ?? 0)[2] === 0) {
-        // TODO-QSP: *p '<br>BLACKJACK!'
+        scene.text('<br>BLACKJACK!');
       } else {
-        // TODO-QSP: *p '<br><<dealerPoints>> points'
+        // TODO-QSP: dynamic text: <br><<dealerPoints>> points
+        scene.text(`<br>${((s as any).dealerPoints ?? 0)} points`);
       }
     }
   }
@@ -1190,12 +1199,13 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
   (s as any).numAces = 0;
   ((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = 0;
   if (((s as any).numHands ?? 0) > 1) {
-    // TODO-QSP: *pl 'Hand #<<i + 1>>:'
+    // TODO-QSP: dynamic text: l 'Hand #<<i + 1>>:'
+    scene.text(`l 'Hand #${((s as any).i ?? 0) + 1}:'`);
   }
   (s as any).j = 0;
   // TODO-QSP: :loop10
   if (((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] !== 0) {
-    // TODO-QSP: *p '<img <<$set_imgh>> src="<<$deckImg[temp_player_hand[i * 16 + j]]>>">'
+    scene.img(`${((s as any).deckImg ?? 0)?.[((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]]}`);
     if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] === 1) {
       ((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = (((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] ?? 0) + (11);
       (s as any).numAces = ((s as any).numAces ?? 0) + (1);
@@ -1216,15 +1226,17 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop11'
   }
   if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > 21) {
-    // TODO-QSP: *p '<br>BUST!'
+    scene.text('<br>BUST!');
   } else {
     if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] === 21  &&  ((s as any).temp_player_hand ?? 0)[2] === 0  &&  ((s as any).numHands ?? 0) === 1) {
-      // TODO-QSP: *p '<br>BLACKJACK!'
+      scene.text('<br>BLACKJACK!');
     } else {
-      // TODO-QSP: *p '<br><<temp_player_points[i]>> points |'
+      // TODO-QSP: dynamic text: <br><<temp_player_points[i]>> points |
+      scene.text(`<br>${((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)]} points |`);
     }
   }
-  // TODO-QSP: *p ' Bet = <<temp_player_bets[i]>> chips<br><br>'
+  // TODO-QSP: dynamic text:  Bet = <<temp_player_bets[i]>> chips<br><br>
+  scene.text(` Bet = ${((s as any).temp_player_bets ?? 0)?.[String((s as any).i ?? 0)]} chips<br><br>`);
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) < ((s as any).numHands ?? 0)) {
     // TODO-QSP: jump 'loop9'

@@ -72,7 +72,7 @@ function enterDPpHjcum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 2, 'sub');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/pphjcum.jpg');
-  // TODO-QSP: *p 'You speed up your movements and tighten your grip, continuing to stroke his cock until he reache...
+  scene.text('You speed up your movements and tighten your grip, continuing to stroke his cock until he reaches orgasm.');
   if ((Math.floor(Math.random() * 100) + 0) < 20) {
     qspCall(s, 'cum_call', 'clothes', ((s as any).npcID ?? 0));
   }
@@ -283,7 +283,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const skverdin: LocationDef = {
   name: 'skverdin',
-  title: 'You continue to suck and in less than a minute his member er',
+  title: 'You speed up your movements and tighten your grip, continuin',
   region: 'other',
   enter: enter,
 };

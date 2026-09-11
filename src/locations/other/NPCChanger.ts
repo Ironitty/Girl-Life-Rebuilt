@@ -38,11 +38,11 @@ function enterNPCLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'LoopNPC'
   }
   scene.text('<hr>');
-  // TODO-QSP: *p '<a href="exec:gt ''NPCChanger'', ''next10'' ">Next 10</a> '
-  // TODO-QSP: *p '<a href="exec:gt ''NPCChanger'', ''back10'' ">Previous 10</a> '
-  // TODO-QSP: *p '<a href="exec:gt ''NPCChanger'', ''next50'' ">Skip 50</a> '
-  // TODO-QSP: *p '<a href="exec:gt ''NPCChanger'', ''back50'' ">Back 50</a> '
-  // TODO-QSP: *p '<a href="exec:gt ''NPCChanger'', ''selection'' ">Select an NPC to modify</a>'
+  scene.text('<a href="exec:gt \'NPCChanger\', \'next10\' ">Next 10</a> ');
+  scene.text('<a href="exec:gt \'NPCChanger\', \'back10\' ">Previous 10</a> ');
+  scene.text('<a href="exec:gt \'NPCChanger\', \'next50\' ">Skip 50</a> ');
+  scene.text('<a href="exec:gt \'NPCChanger\', \'back50\' ">Back 50</a> ');
+  scene.text('<a href="exec:gt \'NPCChanger\', \'selection\' ">Select an NPC to modify</a>');
   scene.text('</td></tr></table></center>');
   // TODO-QSP: end
   scene.actions([
@@ -91,19 +91,22 @@ function enterBack50(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcdisplay(s: GameState, scene: SceneBuilder): void {
   if (!isNaN($npc_firstname['A' + ((s as any).n ?? 0)]) && $npc_firstname['A' + ((s as any).n ?? 0)] !== '') {
-    // TODO-QSP: *p ''
+    scene.text('');
   } else {
-    // TODO-QSP: *p $npc_firstname['A<<n>>']
+    // TODO-QSP: dynamic text: $npc_firstname['A<<n>>']
+    scene.text(`$npc_firstname['A${((s as any).n ?? 0)}']`);
   }
   if (((s as any).npc_firstname ?? 0)['A' + ((s as any).n ?? 0)] === ((s as any).npc_nickname ?? 0)['A' + ((s as any).n ?? 0)]  ||  !isNaN($npc_nickname['A' + ((s as any).n ?? 0)]) && $npc_nickname['A' + ((s as any).n ?? 0)] !== '') {
-    // TODO-QSP: *p ''
+    scene.text('');
   } else {
-    // TODO-QSP: *p ' "<<$npc_nickname[''A<<n>>'']>>"'
+    // TODO-QSP: dynamic text:  "<<$npc_nickname['A<<n>>']>>"
+    scene.text(` "${qspUntranslated(s, "npc_nickname['A<<n", { location: "NPCChanger" })}']>>"`);
   }
   if (!isNaN($npc_lastname['a' + ((s as any).n ?? 0)]) && $npc_lastname['a' + ((s as any).n ?? 0)] !== '') {
-    // TODO-QSP: *p ''
+    scene.text('');
   } else {
-    // TODO-QSP: *p ' <<$npc_lastname[''A<<n>>'']>>'
+    // TODO-QSP: dynamic text:  <<$npc_lastname['A<<n>>']>>
+    scene.text(` ${qspUntranslated(s, "npc_lastname['A<<n", { location: "NPCChanger" })}']>>`);
   }
   // TODO-QSP: end
   scene.build();

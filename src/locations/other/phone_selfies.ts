@@ -370,7 +370,8 @@ function enterSendSelfieHandler(s: GameState, scene: SceneBuilder): void {
 
 function enterViewSelfies(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
-  // TODO-QSP: *p $func('phone_selfies', 'get_selfie_layout')
+  // TODO-QSP: dynamic text: $func('phone_selfies', 'get_selfie_layout')
+  scene.text('$func(\'phone_selfies\', \'get_selfie_layout\')');
   qspCall(s, 'phone_selfies', 'act_exit');
   return;
   // TODO-QSP: end
@@ -417,7 +418,8 @@ function enterGetSelfieLayout(s: GameState, scene: SceneBuilder): void {
 
 function enterShowlocation(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${qspUntranslated(s, "selfieLocDesc[ARGS[1]]", { location: "phone_selfies" })} selfies</b></center>`);
-  // TODO-QSP: *p $func('phone_selfies', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]])
+  // TODO-QSP: dynamic text: $func('phone_selfies', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]])
+  scene.text('$func(\'phone_selfies\', \'listretrieve\', ARGS[1], $selfieLoc[ARGS[1]])');
   qspCall(s, 'phone_selfies', 'act_exit');
   return;
   // TODO-QSP: end
@@ -1243,7 +1245,8 @@ function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $ps_temp_table += '</tr><tr></tr>'
   }
   // TODO-QSP: $ps_temp_table += '</table>'
-  // TODO-QSP: *p $ps_temp_table
+  // TODO-QSP: dynamic text: $ps_temp_table
+  scene.text('$ps_temp_table');
   qspCall(s, 'phone_selfies', 'act_exit');
   return;
   // TODO-QSP: end

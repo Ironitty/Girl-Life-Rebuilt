@@ -60,7 +60,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images\\locations\\city\\residential\\clinic\\experiments\\experiment_form.jpg');
   scene.text('You look through the long list of various available clinical trials and the following stick out:');
-  // TODO-QSP: *p '<center><table align="center" width=80%>'
+  scene.text('<center><table align="center" width=80%>');
   (s as any).cetl_i = 0;
   // TODO-QSP: :loop_start
   if (((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)] === -1  ||  ((s as any).experimentQW ?? 0)['times_participated_' + ((s as any).cetl_i ?? 0)] < ((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)]) {
@@ -69,12 +69,13 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_text += '<tr><td bgcolor="<<$temp_bgcolor>>" align="center"><font color="<<$func("shortgs", "r...
   }
   // TODO-QSP: $temp_text += '</td> <td bgcolor="<<$temp_bgcolor>>" align="right"><font color="<<$func("shortgs", "...
-  // TODO-QSP: *p '<<$temp_text>>'
+  // TODO-QSP: dynamic text: <<$temp_text>>
+  scene.text(`${((s as any).temp_text ?? 0)}`);
   (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
   if (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length) {
     // TODO-QSP: jump 'loop_start'
   }
-  // TODO-QSP: *p '</table></center>'
+  scene.text('</table></center>');
   // TODO-QSP: end
   if (((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[0]) {
     // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[0]

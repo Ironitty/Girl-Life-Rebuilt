@@ -21,7 +21,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>Fashion</b> - A fashion shoot is more stylized and though the base pay is not as high, there will be a higher bonus based on your modelling skill and fame.');
   scene.text('<b>Glamour</b> - A glamour shoot will always involve nudity or risqué clothing, though will always be artistic in nature. This type of modelling will have good pay with good bonuses based on skill and fame, but also will spread your fame beyond the city far more quickly. If you grew up in a small town outside St. Petersburg, the pictures may reach its populace sooner rather than later.');
   scene.text('<b>Erotic</b> - An erotic shoot makes no excuses about its purpose. The intent is to capture sexual images of female bodies to sell to pornography sites and erotic magazines. This type of modelling will have the highest bonuses based on your appearance but will also increase your fame in the porn industry as well.');
-  // TODO-QSP: *p '</table></center>'
+  scene.text('</table></center>');
   if (((s as any).Fit ?? 0)?.['FMR'] === 1) {
     scene.actions([
       { label: '"I\'d like to do a fitness shoot"', goto: ['foto_shoot', 'fitness_shoot'] },

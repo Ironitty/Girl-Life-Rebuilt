@@ -1735,7 +1735,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('After some time, he gets you and Katja close so you both can hear him. He suggests that the four of you continue the party at his place, making it very clear that he and his friend are expecting the bedroom to be the main location of the party.');
       if (((s as any).katjaQW ?? 0)?.['QWstage'] < 5  ||  ((s as any).katjaQW ?? 0)?.['boy_block'] === 1  ||  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] > 0  ||  qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') + ((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 51) + 50)) {
-        // TODO-QSP: *p '"No. We prefer to stay here and dance," Katja quickly replies in a firm voice, which clearly sur...
+        scene.text('"No. We prefer to stay here and dance," Katja quickly replies in a firm voice, which clearly surprises the guy. ');
         if (((s as any).katjaQW ?? 0)?.['QWstage'] > 5  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
           if (((s as any).katjaQW ?? 0)?.['simultanous_boys'] < 2) {
             scene.text('She then leans into you and whispers in your ear. "I\'ve never been with two guys at once…"');
@@ -1992,7 +1992,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('After some time, when there is a break in the song, one of the girls suggest that you go to the private room to have some drinks.');
       if (((s as any).katjaQW ?? 0)?.['sex_clossedness'] > 0  ||  qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') + ((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 51) + 25)) {
-        // TODO-QSP: *p '"No. We prefer to stay here and dance," Katja quickly replies quickly which makes the girls seem...
+        scene.text('"No. We prefer to stay here and dance," Katja quickly replies quickly which makes the girls seem a little surprised. ');
         if (((s as any).npc_had_sex ?? 0)?.['A14']) {
           if (((s as any).katjaQW ?? 0)?.['simultanous_girls'] < 2) {
             scene.text('She then leans into you and whispers in your ear. "While the might just want to drink they might want to do more, and I\'ve never been with several girls at once…"');

@@ -325,7 +325,8 @@ function enterRender(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_layout +=      $help_page_content
   // TODO-QSP: $help_layout +=    '</td>'
   // TODO-QSP: $help_layout += '</tr></table>'
-  // TODO-QSP: *p $help_layout
+  // TODO-QSP: dynamic text: $help_layout
+  scene.text('$help_layout');
   // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {

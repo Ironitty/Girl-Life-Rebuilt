@@ -100,7 +100,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'purse_attributes', $ARGS[4], ARGS[5]
-      // TODO-QSP: *p '<a href="exec: gt ''purse_view'', ''view_item'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', <<ARGS[5]>>...
+      scene.img(`${qspFunc(s, '$purse_image', '$ARGS[4]', qspUntranslated(s, "ARGS[5]", { location: "purse_view" }))}`);
       return;
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'footer') {
@@ -116,7 +116,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'purse_attributes', $ARGS[4], ARGS[5]
-      // TODO-QSP: *p '<a href="exec: gt ''purse_view'', ''view_item'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', <<ARGS[5]>>...
+      scene.img(`${qspFunc(s, '$purse_image', '$ARGS[4]', qspUntranslated(s, "ARGS[5]", { location: "purse_view" }))}`);
       return;
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'footer') {
