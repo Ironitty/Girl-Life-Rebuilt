@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOCATIONS_DIR = path.resolve(__dirname, '../src/locations');
+const QSP_DIR = path.resolve(__dirname, '../GL QSP/locations');
 
 interface AuditResult {
   file: string;
@@ -13,6 +14,9 @@ interface AuditResult {
   hasDefaultScene: boolean;
   actionCount: number;
   unconditionalActionCount: number;
+  qspHasActions: boolean;
+  qspHasImage: boolean;
+  qspFile: string | null;
 }
 
 function findLocationFiles(dir: string): string[] {
@@ -132,6 +136,59 @@ function analyzeFunction(body: string): { hasImage: boolean; hasAnyActions: bool
   return { hasImage, hasAnyActions, hasUnconditionalActions, actionCount, unconditionalActionCount };
 }
 
+function findQspFile(tsFile: string): string | null {
+  const base = path.basename(tsFile, '.ts');
+  const qspPath = path.join(QSP_DIR, `${base}.qsps`);
+  if (fs.existsSync(qspPath)) return qspPath;
+  return null;
+}
+
+function extractQspDefaultScene(qspSrc: string): string | null {
+  const lines = qspSrc.split('\n');
+  const startRe = /^if\s+\$ARGS\[0\]\s*=\s*''/;
+  let startIdx = -1;
+  for (let i = 0; i < lines.length; i++) {
+    if (startRe.test(lines[i].trim())) {
+      startIdx = i;
+      break;
+    }
+  }
+  if (startIdx === -1) return null;
+
+  const startLine = lines[startIdx].trim();
+  const colonIdx = startLine.indexOf(':');
+  if (colonIdx !== -1) {
+    const afterColon = startLine.slice(colonIdx + 1).trim();
+    if (afterColon.length > 0) {
+      return startLine;
+    }
+  }
+
+  let depth = 1;
+  let endIdx = -1;
+  for (let i = startIdx + 1; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+    if (/^(if|elseif)\s/.test(trimmed)) {
+      const colonIdx = trimmed.indexOf(':');
+      if (colonIdx === -1 || trimmed.slice(colonIdx + 1).trim().length === 0) {
+        depth++;
+      }
+    }
+    if (trimmed === 'end' || trimmed === 'end ') {
+      depth--;
+      if (depth === 0) { endIdx = i; break; }
+    }
+  }
+  if (endIdx === -1) return null;
+  return lines.slice(startIdx, endIdx + 1).join('\n');
+}
+
+function analyzeQspScene(scene: string): { hasActions: boolean; hasImage: boolean } {
+  const hasActions = /\bact\s+['"]/.test(scene) || /\*a\s+['"]/.test(scene);
+  const hasImage = /\$backimage\s*=/.test(scene) || /<img/.test(scene) || /\$setloc\['StageImage'\]/.test(scene);
+  return { hasActions, hasImage };
+}
+
 function main() {
   const files = findLocationFiles(LOCATIONS_DIR);
   const results: AuditResult[] = [];
@@ -140,6 +197,19 @@ function main() {
     const src = fs.readFileSync(file, 'utf8');
     const relPath = path.relative(path.resolve(__dirname, '..'), file);
     const funcBody = extractFunction(src, 'enterDefault');
+
+    const qspFile = findQspFile(file);
+    let qspHasActions = false;
+    let qspHasImage = false;
+    if (qspFile) {
+      const qspSrc = fs.readFileSync(qspFile, 'utf8');
+      const qspScene = extractQspDefaultScene(qspSrc);
+      if (qspScene) {
+        const qspAnalysis = analyzeQspScene(qspScene);
+        qspHasActions = qspAnalysis.hasActions;
+        qspHasImage = qspAnalysis.hasImage;
+      }
+    }
 
     if (!funcBody) {
       results.push({
@@ -150,6 +220,9 @@ function main() {
         hasDefaultScene: false,
         actionCount: 0,
         unconditionalActionCount: 0,
+        qspHasActions,
+        qspHasImage,
+        qspFile: qspFile ? path.relative(path.resolve(__dirname, '..'), qspFile) : null,
       });
       continue;
     }
@@ -163,45 +236,42 @@ function main() {
       hasDefaultScene: true,
       actionCount: analysis.actionCount,
       unconditionalActionCount: analysis.unconditionalActionCount,
+      qspHasActions,
+      qspHasImage,
+      qspFile: qspFile ? path.relative(path.resolve(__dirname, '..'), qspFile) : null,
     });
   }
 
   const total = results.length;
   const noDefault = results.filter(r => !r.hasDefaultScene);
-  const noImage = results.filter(r => r.hasDefaultScene && !r.hasImage);
-  const noUncondActions = results.filter(r => r.hasDefaultScene && !r.hasUnconditionalActions);
-  const noAnyActions = results.filter(r => r.hasDefaultScene && !r.hasAnyActions);
-  const bothMissing = results.filter(r => r.hasDefaultScene && !r.hasImage && !r.hasUnconditionalActions);
+  const tsMissingActions = results.filter(r => r.hasDefaultScene && r.qspHasActions && !r.hasUnconditionalActions);
+  const tsMissingImage = results.filter(r => r.hasDefaultScene && r.qspHasImage && !r.hasImage);
+  const tsMissingBoth = results.filter(r => r.hasDefaultScene && r.qspHasActions && r.qspHasImage && !r.hasUnconditionalActions && !r.hasImage);
 
-  console.log('=== LOCATION AUDIT ===\n');
+  console.log('=== LOCATION AUDIT (QSP cross-reference) ===\n');
   console.log(`Total locations: ${total}`);
   console.log(`With default scene: ${total - noDefault.length}`);
   console.log(`No default scene: ${noDefault.length}`);
-  console.log(`With image: ${results.filter(r => r.hasImage).length}`);
-  console.log(`Without image: ${noImage.length}`);
-  console.log(`With unconditional actions: ${results.filter(r => r.hasUnconditionalActions).length}`);
-  console.log(`Without unconditional actions: ${noUncondActions.length}`);
-  console.log(`Without any actions: ${noAnyActions.length}`);
-  console.log(`Missing both image + unconditional actions: ${bothMissing.length}`);
+  console.log('');
+  console.log(`QSP has actions but TS missing unconditional actions: ${tsMissingActions.length}`);
+  console.log(`QSP has image but TS missing image: ${tsMissingImage.length}`);
+  console.log(`QSP has both but TS missing both: ${tsMissingBoth.length}`);
 
-  if (noDefault.length > 0) {
-    console.log(`\n--- No default scene (${noDefault.length}) ---`);
-    for (const r of noDefault) console.log(`  ${r.file}`);
+  if (tsMissingBoth.length > 0) {
+    console.log(`\n--- MISSING BOTH (QSP has, TS doesn't) (${tsMissingBoth.length}) ---`);
+    for (const r of tsMissingBoth) console.log(`  ${r.file}`);
   }
 
-  if (noImage.length > 0) {
-    console.log(`\n--- No image (${noImage.length}) ---`);
-    for (const r of noImage) console.log(`  ${r.file} [actions: ${r.actionCount}]`);
+  const actionsOnly = tsMissingActions.filter(r => !tsMissingBoth.includes(r));
+  if (actionsOnly.length > 0) {
+    console.log(`\n--- MISSING ACTIONS ONLY (${actionsOnly.length}) ---`);
+    for (const r of actionsOnly) console.log(`  ${r.file} [TS actions: ${r.actionCount}, image: ${r.hasImage ? 'yes' : 'no'}]`);
   }
 
-  if (noUncondActions.length > 0) {
-    console.log(`\n--- No unconditional actions (${noUncondActions.length}) ---`);
-    for (const r of noUncondActions) console.log(`  ${r.file} [any actions: ${r.actionCount}, image: ${r.hasImage ? 'yes' : 'no'}]`);
-  }
-
-  if (bothMissing.length > 0) {
-    console.log(`\n--- Missing both image + unconditional actions (${bothMissing.length}) ---`);
-    for (const r of bothMissing) console.log(`  ${r.file}`);
+  const imageOnly = tsMissingImage.filter(r => !tsMissingBoth.includes(r));
+  if (imageOnly.length > 0) {
+    console.log(`\n--- MISSING IMAGE ONLY (${imageOnly.length}) ---`);
+    for (const r of imageOnly) console.log(`  ${r.file} [TS actions: ${r.actionCount}]`);
   }
 }
 
