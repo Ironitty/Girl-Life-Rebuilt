@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bedrPar2', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -277,5 +273,6 @@ export const bedrPar2: LocationDef = {
   title: 'Master bedroom',
   region: 'other',
   locationType: 'private',
+  description: ['Your mother and stepfather are sleeping on the bed.'],
   enter: enter,
 };

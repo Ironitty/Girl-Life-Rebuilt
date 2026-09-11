@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'start');
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
     ((s as any).anushkaQW ?? {})['dolls'] = 1;
@@ -346,5 +342,6 @@ export const shop_dolls: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['The store has a small front on a side street, but one glance is all you need to tell this is not your average clothing store.'],
   enter: enter,
 };

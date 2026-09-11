@@ -125,10 +125,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', '');
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');

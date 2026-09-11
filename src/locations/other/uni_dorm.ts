@@ -4,11 +4,7 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', '');
   ((s as any).uni_dorm ?? {})['floor'] = '';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -168,20 +164,12 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const uni_dorm: LocationDef = {
   name: 'uni_dorm',
   title: 'Dormitory',
   region: 'other',
   locationType: 'private',
   locclass: 'restroom',
+  description: ['You walk up to the dorm building and head inside. It\'s pretty clean and in good shape. An older woman, with a very unpleasant and judgmental look on her face sits in a room just off the main hallway. It has a partially glass wall and window splitting it from the main room.'],
   enter: enter,
 };

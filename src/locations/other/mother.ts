@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).motherAge = ((s as any).year ?? 0) - ((((s as any).npc_dob ?? {})?.['A29'] - (((s as any).npc_dob ?? {})?.['A29'] % 10000)) / 10000);
   if (((s as any).momslut ?? 0) >= 2  &&  ((s as any).npc_rel ?? 0)?.['A29'] < 40) {
     qspCall(s, 'npc_relationship', 'set', 'A29', 40);
@@ -3336,5 +3332,6 @@ export const mother: LocationDef = {
   name: 'mother',
   title: '<br>You feel too hungry to do this.',
   region: 'other',
+  description: ['"I tell everyone my younger daughter is decent, but it turns out she sleeps around like a common whore and proudly displays the stains for the whole town to see! Get out of my sight, slut!"'],
   enter: enter,
 };

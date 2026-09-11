@@ -4,13 +4,9 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).Enc_Rand = Math.floor(Math.random() * 2) + 1;
   if (((s as any).Enc_Rand ?? 0) === 1  &&  (!((s as any).Jaska_Ev ?? 0))) {
     scene.img('images/locations/city/industrial/bar/billiard_1.jpg');
@@ -366,19 +362,11 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const qwBarEncounters: LocationDef = {
   name: 'qwBarEncounters',
   title: 'While you\'re sitting idly at the counter, drink in hand, you',
   region: 'other',
   locationType: 'event',
+  description: ['While you\'re sitting idly at the counter, drink in hand, you take a look around the room. After a moment, your attention is pulled to three guys playing pool. Two of them look to be in their mid to late 30s, while the third looks to be in his early 20s. They\'re all dressed casually albeit a bit rough looking.'],
   enter: enter,
 };

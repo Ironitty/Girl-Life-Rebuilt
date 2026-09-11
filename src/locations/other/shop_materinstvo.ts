@@ -8,10 +8,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shoplocation ?? 0) === 'items') {
     scene.actions([{ label: 'Continue', goto: ['shop_materinstvo', 'items'] }]);
   }
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -81,5 +77,6 @@ export const shop_materinstvo: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.'],
   enter: enter,
 };

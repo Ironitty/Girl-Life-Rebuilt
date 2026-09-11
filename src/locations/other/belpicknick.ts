@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).sashaBeliTimes = Math.floor(Math.random() * 3) + 1;
   (s as any).sipliGangTimes = Math.floor(Math.random() * 3) + 1;
   (s as any).kolGangTimes = Math.floor(Math.random() * 3) + 1;
@@ -752,5 +748,6 @@ export const belpicknick: LocationDef = {
   name: 'belpicknick',
   title: 'The band of criminals quickly fold out a convenient steel gr',
   region: 'other',
+  description: ['The band of criminals quickly fold out a convenient steel grill, and have it heated up within minutes. The one named Tatar fries the meat they brought with them, while one of the others pours vodka into some glasses. Vadim hands you a glass: "Here, drink". They didn\'t bring any other snacks, so you\'re pretty much drinking the vodka on an empty stomach.'],
   enter: enter,
 };

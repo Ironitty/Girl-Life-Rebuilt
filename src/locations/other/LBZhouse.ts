@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '', ((s as any).lbz_npc ?? 0));
   scene.img('images/shared/sex/kiss/kiss.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> leads you back to his place, gently brushing your cheek, "You are r...

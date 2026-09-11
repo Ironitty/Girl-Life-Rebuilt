@@ -7,10 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/walk.jpg');
@@ -1194,5 +1190,6 @@ export const FedorEv2: LocationDef = {
   title: '<<"Vasily [Shulga] Shulgin">>',
   region: 'other',
   locationType: 'public_indoors',
+  description: ['As you arrive at the park Fedor reaches out for your hand and leads you down the main path. You turn to him to see a gentle smile on his face which you are quite surprised to see. Usually Fedor is pretty crude when he is hanging out with the other jocks but there may be a softer side to him you think to yourself as Fedor leads you through the park. During your walk you both hear some people loudly laughing nearby, Fedor turns to you "Sounds like someone is having fun, wanna check it out?"'],
   enter: enter,
 };

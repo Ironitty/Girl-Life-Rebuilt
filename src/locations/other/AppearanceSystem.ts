@@ -18,10 +18,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).teethPenalty = qspFunc(s, 'AppearanceSystem', 'CalcTeethPenalty');
     (s as any).pcs_apprncbase = ((s as any).skinBonus ?? 0) + ((s as any).bodyShapeBonus ?? 0) + ((s as any).attributeBonus ?? 0) - ((s as any).visibleAgePenalty ?? 0) - ((s as any).teethPenalty ?? 0) + ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0);
   }
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).clothingBonus = qspFunc(s, 'AppearanceSystem', 'CalcClothingBonus');
   (s as any).accessoriesBonus = qspFunc(s, 'AppearanceSystem', 'CalcAccessoriesBonus');
   (s as any).groomingBonus = qspFunc(s, 'AppearanceSystem', 'CalcGroomingBonus');

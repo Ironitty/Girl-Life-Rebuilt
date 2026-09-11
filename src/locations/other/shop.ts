@@ -8,10 +8,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'move') {
     (s as any).minut = ((s as any).minut ?? 0) + (1);
   }
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shoplocation ?? 0) !== '') {
     // TODO-QSP: $ARGS[0] = $shoplocation
     // TODO-QSP: gt 'shop', $ARGS[0]
@@ -19,7 +15,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault3(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   if (((s as any).loc ?? 0) !== 'shop') {
   }

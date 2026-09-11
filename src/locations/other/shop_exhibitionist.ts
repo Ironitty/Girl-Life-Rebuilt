@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'start');
   if (((s as any).exhibitionQW ?? 0) === 3) {
     (s as any).exhibitionQW = 4;
@@ -406,5 +402,6 @@ export const shop_exhibitionist: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['A modern looking store where the clothing is all very revealing and not nearly as classy as the store itself.'],
   enter: enter,
 };

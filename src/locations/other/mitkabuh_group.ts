@@ -7,10 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_drunk ?? {})['A60'] = 0;
   ((s as any).GadBoy ?? {})['drunk_event'] = 0;
   ((s as any).MiraVars ?? {})['drunk_event'] = 0;
@@ -770,5 +766,6 @@ export const mitkabuh_group: LocationDef = {
   title: 'You follow the boys into the woods. Soon the familiar old tr',
   region: 'other',
   locationType: 'public_indoors',
+  description: ['You follow the boys into the woods. Soon the familiar old trailer comes into view.'],
   enter: enter,
 };

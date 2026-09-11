@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'talent_agency', '');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -638,5 +634,6 @@ export const talent_agency: LocationDef = {
   name: 'talent_agency',
   title: 'Aurora Talent Agency',
   region: 'other',
+  description: ['"Hello, welcome to the Aurora Female Talent Agency! How may I help you?"'],
   enter: enter,
 };

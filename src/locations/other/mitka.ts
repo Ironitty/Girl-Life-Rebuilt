@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
   if (((s as any).GadBoy ?? 0)?.['first_drink'] === 0) {
     ((s as any).GadBoy ?? {})['first_drink'] = 1;
@@ -499,5 +495,6 @@ export const mitka: LocationDef = {
   name: 'mitka',
   title: 'Mitka Shkvoryen',
   region: 'other',
+  description: ['You and Mitka are strangers.'],
   enter: enter,
 };

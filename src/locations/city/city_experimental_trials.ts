@@ -4,11 +4,7 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
@@ -110,19 +106,11 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const city_experimental_trials: LocationDef = {
   name: 'city_experimental_trials',
   title: 'A young woman, dressed in office clothes and wearing glasses',
   region: 'city',
   locationType: 'private',
+  description: ['A young woman, dressed in office clothes and wearing glasses, is sitting behind a desk.'],
   enter: enter,
 };

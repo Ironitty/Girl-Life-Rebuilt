@@ -70,20 +70,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The library is closing for the night.');
     return;
   }
-  scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 5;
-  }, goto: ['uni_grounds', ''] },
-    { label: 'Return to the entrance', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 2;
-  }, goto: ['uni_library', 'start'] },
-    { label: 'Keep studying', goto: ['uni_library', 'study'] },
-    { label: 'Wander around', goto: ['uni_library', 'wander'] },
-  ]);
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'uni_library', 'start');
   qspCall(s, 'katja_meynold_schedule', '');
@@ -140,6 +126,14 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['uni_grounds', ''] },
+    { label: 'Return to the entrance', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['uni_library', 'start'] },
+    { label: 'Keep studying', goto: ['uni_library', 'study'] },
+    { label: 'Wander around', goto: ['uni_library', 'wander'] },
     { label: 'Read a book', goto: ['uni_library', 'read'] },
     { label: 'Borrow a book', goto: ['uni_library', 'loan'] },
     { label: 'Wander around', goto: ['uni_library', 'wander'] },

@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   scene.text('One of the viewers asks, "Do you have a dildo or something? I\'d love to see your throat skills…"');
@@ -300,5 +296,6 @@ export const komp_cam_MFC_requests_oral: LocationDef = {
   name: 'komp_cam_MFC_requests_oral',
   title: 'One of the viewers asks, "Do you have a dildo or something? ',
   region: 'other',
+  description: ['One of the viewers asks, "Do you have a dildo or something? I\'d love to see your throat skills…"'],
   enter: enter,
 };

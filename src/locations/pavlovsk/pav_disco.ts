@@ -7,10 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
     (s as any).pav_disco_in = ((s as any).daystart ?? 0);
   }
@@ -1345,5 +1341,6 @@ export const pav_disco: LocationDef = {
   title: 'Disco',
   region: 'pavlovsk',
   locationType: 'public_indoors',
+  description: ['The club is closing for the night. The main lights go on, the music fades and everyone starts leaving.'],
   enter: enter,
 };

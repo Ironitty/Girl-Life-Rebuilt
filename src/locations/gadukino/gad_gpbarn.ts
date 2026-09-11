@@ -8,10 +8,6 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['imagepath'] = 'locations/gadukino';
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_gpbarn', '');
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'stat', '');
@@ -290,5 +286,6 @@ export const gad_gpbarn: LocationDef = {
   title: '<center><h4>Grandparents\' Barn</h4></center>',
   region: 'gadukino',
   locationType: 'private',
+  description: ['Your grandparents\' old barn could hold some valuable items if you spend time searching.'],
   enter: enter,
 };

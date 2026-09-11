@@ -4,7 +4,7 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'nichBedroomServant', '');
   if (((s as any).nichWork ?? 0) === 2) {
     if (((s as any).nichLastWorkDay ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -12,10 +12,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'nichUtil', 'checkOutfit');
   }
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your Bedroom in Nicholas\' Apartment</b></center>');
@@ -622,20 +618,12 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const nichBedroomServant: LocationDef = {
   name: 'nichBedroomServant',
   title: '<center><b>Your Bedroom in Nicholas\' Apartment</b></center>',
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
+  description: ['Your bedroom is fairly large, considering you\'re only an employee.'],
   enter: enter,
 };

@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_library', ((s as any).locArgs?.[0] ?? 0));
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
@@ -112,5 +108,6 @@ export const city_library: LocationDef = {
   title: 'National Library of Russia',
   region: 'city',
   locationType: 'public_indoors',
+  description: ['A huge library with thousands upon thousands of books. You could spend years in here and probably still wouldn\'t be able to read it all.'],
   enter: enter,
 };

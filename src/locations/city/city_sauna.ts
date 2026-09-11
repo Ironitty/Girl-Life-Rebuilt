@@ -6,10 +6,6 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).phone_off = 0;
   qspCall(s, 'core_library', 'setloc', 'city_sauna', '');
   (s as any).sauna = ((s as any).sauna ?? 0) + (1);
@@ -265,5 +261,6 @@ export const city_sauna: LocationDef = {
   title: 'Sauna',
   region: 'city',
   locationType: 'private',
+  description: ['A luxurious high quality public sauna built a long time ago. The sauna houses separate changing rooms and shower facilities for men and women.'],
   enter: enter,
 };

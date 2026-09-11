@@ -4,7 +4,7 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).sexpartkno = 1;
   qspCall(s, 'boyStat', 'A52');
@@ -15,10 +15,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'nichUtil', 'checkOutfit');
   }
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
@@ -577,19 +573,11 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const nichLivingroom: LocationDef = {
   name: 'nichLivingroom',
   title: '<center><b>Nicholas\' Living Room</b></center>',
   region: 'other',
   locclass: 'livingr',
+  description: ['The living room is furnished with finest leather couches of modern design, a fireplace, a large TV on the wall, several side tables and a cabinet and fridge for various expensive alcoholic beverages.'],
   enter: enter,
 };

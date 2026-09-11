@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).numnpc = 5;
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A5']} ${((s as any).npc_lastname ?? 0)?.['A5']}</b></center>`);

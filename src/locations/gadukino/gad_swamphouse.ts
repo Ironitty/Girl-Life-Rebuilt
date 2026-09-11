@@ -6,10 +6,6 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'hunter_ambient', 'schedule');
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_swamphouse', 'start');
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
@@ -2117,5 +2113,6 @@ export const gad_swamphouse: LocationDef = {
   title: '<center><h4>Hut</h4></center>',
   region: 'gadukino',
   locationType: 'public_indoors',
+  description: ['A small hunting cabin. The cabin contains a small room with a low ceiling.'],
   enter: enter,
 };

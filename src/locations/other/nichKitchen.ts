@@ -4,17 +4,13 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'nichKitchen', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
   (s as any).sexpartkno = 1;
   qspCall(s, 'npcStat', 'A52');
   qspCall(s, 'npcStat', 'A161', 'a');
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nicholas\' Kitchen</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/kitchen.jpg');
   scene.text('The kitchen has a sleek, contemporary design with lots of metal and polished wood - black, white and gray dominate the room\'s color scheme and all appliances and additional furniture in it adhere to this order.');
@@ -45,19 +41,11 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const nichKitchen: LocationDef = {
   name: 'nichKitchen',
   title: '<center><b>Nicholas\' Kitchen</b></center>',
   region: 'other',
   locationType: 'private',
+  description: ['The kitchen has a sleek, contemporary design with lots of metal and polished wood - black, white and gray dominate the room\'s color scheme and all appliances and additional furniture in it adhere to this order.'],
   enter: enter,
 };

@@ -34,9 +34,16 @@ export function generateTs(loc: QspLocation): GenResult {
   lines.push(`import type { SceneBuilder } from '../../core/scene';`);
   lines.push('');
 
-  const sceneList = loc.scenes.length > 0
-    ? [{ kind: 'scene' as const, arg: '' as string, body: loc.topLevel }, ...loc.scenes]
-    : [{ kind: 'scene' as const, arg: '' as string, body: loc.topLevel }];
+  let sceneList: { kind: 'scene'; arg: string; body: import('./ast').QspNode[] }[];
+  if (loc.scenes.length > 0) {
+    if (loc.scenes[0].arg === '' && loc.topLevel.length > 0) {
+      sceneList = [{ ...loc.scenes[0], body: [...loc.topLevel, ...loc.scenes[0].body] }, ...loc.scenes.slice(1)];
+    } else {
+      sceneList = [{ kind: 'scene' as const, arg: '', body: loc.topLevel }, ...loc.scenes];
+    }
+  } else {
+    sceneList = [{ kind: 'scene' as const, arg: '', body: loc.topLevel }];
+  }
 
   if (sceneList.length === 1) {
     const scene = sceneList[0];

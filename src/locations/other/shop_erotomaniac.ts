@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'start');
   (s as any).ghnow = 0;
   qspCall(s, 'schedule', 'A84');
@@ -140,7 +136,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault3(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'sexshop');
   qspCall(s, 'stat', '');
@@ -1021,5 +1017,6 @@ export const shop_erotomaniac: LocationDef = {
   region: 'other',
   locationType: 'event',
   locclass: 'changingroom',
+  description: ['The main counter displays various sex toys and other related items:'],
   enter: enter,
 };

@@ -4,11 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'ballet_pushkin_center', ((s as any).locArgs?.[0] ?? 0));
   ((s as any).setloc ?? {})['StageTitle'] = 'Pushkin Residential School';
   ((s as any).setloc ?? {})['StageImage'] = 'locations/pushkin/ballet_residence/residence.jpg';
@@ -24,18 +20,10 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const pushkin_ballet_center: LocationDef = {
   name: 'pushkin_ballet_center',
   title: 'You can see the apartment block that\'s been converted into a',
   region: 'pushkin',
+  description: ['You can see the apartment block that\'s been converted into a residential accommodation for the school. The street always seems to be packed with cars but there is few people on the street at this time.'],
   enter: enter,
 };

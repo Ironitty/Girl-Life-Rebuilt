@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'pav_lake', '');
@@ -815,5 +811,6 @@ export const pav_lake: LocationDef = {
   region: 'pavlovsk',
   locationType: 'public_outdoors',
   locclass: 'beach',
+  description: ['As you walk down to the beach area of the lake, you see the jocks and cool kids hanging out and hope none of them have seen you naked. You should put on a swimsuit before approaching them if you want to hang out, or just avoid them and do your own thing today.'],
   enter: enter,
 };

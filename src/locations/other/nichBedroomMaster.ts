@@ -4,15 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).sexpartkno = 1;
   qspCall(s, 'boyStat', 'A52');
   qspCall(s, 'boyStat', 'A161', 'a');
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'masterBedroom');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'masterBedroom');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'masterBedroom');
@@ -122,20 +118,12 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  const arg = s.locArg;
-  switch (arg) {
-    default:
-      enterDefault(s, scene);
-      break;
-  }
-}
-
 export const nichBedroomMaster: LocationDef = {
   name: 'nichBedroomMaster',
   title: '<center><b>Nicholas\' Master Bedroom</b></center>',
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
+  description: ['This is where Nicholas and his wife sleep. There\'s a king-sized bed with matching bedside tables and lamps, a make-up table covered with bottles of expensive perfume, make-up and jewelry, a wall mirror with filigree gold ornaments and an entire wall is dominated by several solid wood wardrobes that look like they must have cost a fortune. Another small door leads to another walk-in wardrobe.'],
   enter: enter,
 };

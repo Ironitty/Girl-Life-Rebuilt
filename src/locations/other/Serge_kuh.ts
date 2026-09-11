@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sergebazarkuh_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).sergebazarkuh_count = 5;
   }
@@ -2269,5 +2265,6 @@ export const Serge_kuh: LocationDef = {
   title: 'Sergey is standing at the kitchen counter. He\'s making soup,',
   region: 'other',
   locclass: 'kitr',
+  description: ['Sergey is standing at the kitchen counter. He\'s making soup, cutting up ingredients and throwing them into a large pan.'],
   enter: enter,
 };

@@ -7,10 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).FedorHomeDate = 1;
   (s as any).WithFedor = 1;
   qspCall(s, 'boyStat', 'A5');
@@ -1793,5 +1789,6 @@ export const FedorEv4: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
+  description: ['As you arrive at Fedor\'s house and he opens the door for you then gives you a pat on the ass with a playful smile on his face as you walk in. You respond by pushing him against the wall while grabbing the back of his head and passionately kissing his lips as you rub on his crotch.'],
   enter: enter,
 };

@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -129,5 +125,6 @@ export const uni_shop: LocationDef = {
   title: 'ATM',
   region: 'other',
   locationType: 'public_indoors',
+  description: ['The store is currently closed.'],
   enter: enter,
 };

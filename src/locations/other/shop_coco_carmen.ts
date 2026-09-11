@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -116,5 +112,6 @@ export const shop_coco_carmen: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['If you\'re happy to push through the tourists, then Coco has everything a young adult might like to wear. It\'s a step up from G&M and unless you can afford the boutiques in Old Town, you\'ll be spending some time buying outfits here.'],
   enter: enter,
 };

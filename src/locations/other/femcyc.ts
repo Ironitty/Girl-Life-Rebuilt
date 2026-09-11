@@ -15,10 +15,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).focH_max = Math.floor(Math.random() * 49) + 312;
     // TODO-QSP: !! 13-15 days including menstruation
   }
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'femcyc', 'femcyc_errhdl');
   if (((s as any).rcntorgzm ?? 0) === 1) {
     if (((s as any).rcntorgzmtmp ?? 0) === 1) {

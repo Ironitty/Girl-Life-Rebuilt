@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Man</b></center>');
@@ -76,5 +72,6 @@ export const vladimirQW_loc: LocationDef = {
   title: 'Man',
   region: 'other',
   locationType: 'event_outdoors',
+  description: ['A man standing near the fence noticed your gaze and smiled.'],
   enter: enter,
 };
