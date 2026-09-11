@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) === 1) {
     (s as any).ArendHouseSL_due = 31;
@@ -124,7 +128,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCable(s, scene);
       break;
     default:
-      enterRent(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

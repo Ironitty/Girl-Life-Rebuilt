@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_library', '');
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
@@ -150,6 +154,5 @@ export const pav_library: LocationDef = {
   title: 'Community center library',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['For such a small town, the library is surprisingly large, containing many interesting books on a wide variety of subjects.'],
   enter: enter,
 };

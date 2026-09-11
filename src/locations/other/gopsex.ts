@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: *P ''
+  scene.build();
+}
+
 function enterSettings(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shgopsex_vasya_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).shgopsex_vasya_count = 2;
@@ -2384,7 +2389,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHide(s, scene);
       break;
     default:
-      enterSettings(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

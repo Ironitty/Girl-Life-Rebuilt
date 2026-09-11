@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW ?? {})['meet_uni_class'] = 1;
   if (((s as any).npc_had_sex ?? 0)?.['A14']) {
@@ -1877,7 +1881,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKatjaLazarCafe(s, scene);
       break;
     default:
-      enterFirstInClassMeet(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1887,6 +1891,5 @@ export const katja_uni: LocationDef = {
   title: 'The University Library',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['As you\'re walking into the lecture hall, you yelp in surprise when a pair of hands snake underneath your arms and grab your breasts, giving them a firm squeeze. Before you can turn around, you hear a soft voice from behind you.'],
   enter: enter,
 };

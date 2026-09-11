@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterComputer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'attend_class', 'school', 'comp');
   qspCall(s, 'exp_gain', 'compskl', Math.floor(Math.random() * 2) + 1);
@@ -2657,7 +2661,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterArinaDream(s, scene);
       break;
     default:
-      enterComputer(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2666,6 +2670,5 @@ export const gschool_lessons2: LocationDef = {
   name: 'gschool_lessons2',
   title: 'You go to your computer class and find a seat at one of the ',
   region: 'other',
-  description: ['You go to your computer class and find a seat at one of the computer stations. Before long, all of your classmates file in and takes their seats as well. Once the bell rings, Mr. Ivanov takes roll call and then gets up and starts walking around the room explaining today\'s lesson. He occasionally stops to look at the screens of various students to make sure they\'re doing it right.'],
   enter: enter,
 };

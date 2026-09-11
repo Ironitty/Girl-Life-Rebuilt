@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRide(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go with the massive man', handler: (st: GameState) => {
@@ -338,7 +342,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSucksasha(s, scene);
       break;
     default:
-      enterRide(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
   if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -1778,7 +1782,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTwobbcfinish(s, scene);
       break;
     default:
-      enterEvents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

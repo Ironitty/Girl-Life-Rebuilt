@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'uni_grounds', '');
   qspCall(s, 'katja_meynold_schedule', '');
@@ -747,6 +751,5 @@ export const uni_grounds: LocationDef = {
   title: 'As you head to class, you overhear many of your fellow stude',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['As you head to class, you overhear many of your fellow students talking. It seems someone has made websites ranking both the male and female students on how bangable they are. You overhear someone mention the links and make a note of them to check when you get a chance.'],
   enter: enter,
 };

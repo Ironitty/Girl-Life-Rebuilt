@@ -4,6 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
 function enterNice1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A241');
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
@@ -1321,7 +1326,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGs6(s, scene);
       break;
     default:
-      enterNice1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1331,6 +1336,5 @@ export const alexandriaSex: LocationDef = {
   title: 'You find yourself lying half-naked on Aleksei\'s fluffy bed, ',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You only moan in reply, mostly because Aleksei has moved a hand between your thighs and started to caress your pussy, turning on a heat that quickly rises towards your stomach, where a tensed knot pushes for release… a release that is negated as he quickly withdraws the hand, making you squirm in frustration.'],
   enter: enter,
 };

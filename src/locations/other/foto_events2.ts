@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChampagne1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
@@ -309,7 +313,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTrack__FieldDocumentary(s, scene);
       break;
     default:
-      enterChampagne1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -318,6 +322,5 @@ export const foto_events2: LocationDef = {
   name: 'foto_events2',
   title: 'As you walk out of the changing room you hear someone call y',
   region: 'other',
-  description: ['As you walk out of the changing room you hear someone call your name.'],
   enter: enter,
 };

@@ -4,7 +4,20 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).motherworry ?? {})[1] = ((s as any).daystart ?? 0);
+  qspCall(s, 'core_library', 'setloc', 'bedrPar', ((s as any).locArgs?.[0] ?? 0));
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'family_schedule', '');
+  qspCall(s, 'music_actions', 'clear_restrictions');
+  if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] === 0) {
+    ((s as any).ml_performance ?? {})['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
+  }
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Mother'] === 26  &&  ((s as any).prevloc ?? 0) === 'bedrPar'  &&  qspFunc(s, 'homes_properties', 'can_live_here')) {
     scene.img('images/characters/pavlovsk/resident/mom/prost1.jpg');
     if (((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (Math.floor(Math.random() * 3) + 1) === 1  &&  ((s as any).mom ?? 0)?.['condoms'] === 0) {
@@ -367,6 +380,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const bedrPar: LocationDef = {

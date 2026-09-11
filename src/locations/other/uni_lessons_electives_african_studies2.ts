@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEventKendra(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_stay.jpg');
   scene.text('The class is pretty uneventful for the most part, but you notice Kendra sitting next to a black guy and occasionally looking over at you, usually followed by him looking at you. As the class goes on, his looks get more lustful. You don\'t know what she\'s telling him, but you\'re sure it\'s about you.');
@@ -554,7 +558,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAfricanStudiesDjibrilNushCleanup(s, scene);
       break;
     default:
-      enterEventKendra(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -563,6 +567,5 @@ export const uni_lessons_electives_african_studies2: LocationDef = {
   name: 'uni_lessons_electives_african_studies2',
   title: 'The class is pretty uneventful for the most part, but you no',
   region: 'other',
-  description: ['The class is pretty uneventful for the most part, but you notice Kendra sitting next to a black guy and occasionally looking over at you, usually followed by him looking at you. As the class goes on, his looks get more lustful. You don\'t know what she\'s telling him, but you\'re sure it\'s about you.'],
   enter: enter,
 };

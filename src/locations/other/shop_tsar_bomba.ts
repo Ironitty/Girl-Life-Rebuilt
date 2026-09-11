@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -167,6 +171,5 @@ export const shop_tsar_bomba: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
-  description: ['Tsar Bomba, a small clothing store in the Okhlopkov Square. It\'s fairly unique and used to be very cool with punk fashion, but is much more generic these days and could easily be mistaken for an alternative fashion chain store.'],
   enter: enter,
 };

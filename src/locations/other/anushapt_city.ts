@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -1000,7 +1004,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNushlivroom(s, scene);
       break;
     default:
-      enterHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1011,6 +1015,5 @@ export const anushapt_city: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'kitr',
-  description: ['You walk up the stairs to the top floor where Anushka, Radomir, Valentin and Arkadi are renting a three bedroom apartment.'],
   enter: enter,
 };

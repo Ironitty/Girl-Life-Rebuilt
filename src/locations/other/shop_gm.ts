@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_gm', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -339,6 +343,5 @@ export const shop_gm: LocationDef = {
   region: 'other',
   locationType: 'event',
   locclass: 'changingroom',
-  description: ['G&M is certainly not high fashion, but it\'s affordable and has specific work and school wear.'],
   enter: enter,
 };

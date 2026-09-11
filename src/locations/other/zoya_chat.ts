@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBreakfastChat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
   scene.text('You take a seat at the table and Zoya smiles at you.');
@@ -1799,7 +1803,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLoungeChat1(s, scene);
       break;
     default:
-      enterBreakfastChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1808,6 +1812,5 @@ export const zoya_chat: LocationDef = {
   name: 'zoya_chat',
   title: 'You take a seat at the table and Zoya smiles at you.',
   region: 'other',
-  description: ['You take a seat at the table and Zoya smiles at you.'],
   enter: enter,
 };

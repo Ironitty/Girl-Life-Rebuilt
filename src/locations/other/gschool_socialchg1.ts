@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTLazar(s: GameState, scene: SceneBuilder): void {
   ((s as any).socialchg ?? {})['tLazar_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
@@ -847,7 +851,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTVeronika(s, scene);
       break;
     default:
-      enterTLazar(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -856,6 +860,5 @@ export const gschool_socialchg1: LocationDef = {
   name: 'gschool_socialchg1',
   title: 'You decide to walk over and see what the fuss is about. As u',
   region: 'other',
-  description: ['You decide to walk over and see what the fuss is about. As usual, Lazar is showing off his skills as some younger kids challenge him 1-on-1 or even 1-on-2, and he easily bests them. You see several girls from school sitting on the bleachers watching Lazar and notice that he glances at them from time to time, obviously trying to show off.'],
   enter: enter,
 };

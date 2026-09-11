@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterComputers_101(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
   qspCall(s, 'stat', '');
@@ -1095,7 +1099,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnushkaDjibrilSex(s, scene);
       break;
     default:
-      enterComputers_101(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1104,6 +1108,5 @@ export const uni_lessons_electives_computers1: LocationDef = {
   name: 'uni_lessons_electives_computers1',
   title: 'You walk into the classroom and take a seat at one of the co',
   region: 'other',
-  description: ['You walk into the classroom and take a seat at one of the computer stations. The rest of your classmates walk in one-by-one before Professor Blagov enters the lab and closes the door. He turns to the class and begins today\'s lecture.'],
   enter: enter,
 };

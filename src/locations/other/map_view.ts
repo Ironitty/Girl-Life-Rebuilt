@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterWorld(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'city_center') {
   } else {
     if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(17))) === 'city_residential') {
@@ -78,6 +82,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p $map_nav
   // TODO-QSP: *p '<img src="images/system/map/<<$map_img>>">'
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'world':
+      enterWorld(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const map_view: LocationDef = {

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
@@ -484,7 +488,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterStatLoopCore1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

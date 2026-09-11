@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     if (((s as any).week ?? 0) === 7) {
@@ -318,7 +322,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPray(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -328,6 +332,5 @@ export const city_church: LocationDef = {
   title: 'Kazan Cathedral',
   region: 'city',
   locationType: 'public_indoors',
-  description: ['Kazan Cathedral, also known as the Cathedral of Our Lady of Kazan. It\'s old, but well maintained by the worshipers of the parish.'],
   enter: enter,
 };

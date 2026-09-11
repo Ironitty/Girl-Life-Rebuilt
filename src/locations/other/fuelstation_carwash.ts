@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'fuelstation_carwash', 'start');
   if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
@@ -1152,7 +1156,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPunishEnd(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1161,6 +1165,5 @@ export const fuelstation_carwash: LocationDef = {
   name: 'fuelstation_carwash',
   title: 'The gas station worker chases you away. "At least wash yours',
   region: 'other',
-  description: ['The gas station worker chases you away. "At least wash yourself off first, whore!"'],
   enter: enter,
 };

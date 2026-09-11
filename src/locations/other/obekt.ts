@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'obekt', '');
   qspCall(s, 'stat', '');
   scene.text('<center><h4>An object</h4></center>');
@@ -320,6 +324,5 @@ export const obekt: LocationDef = {
   title: '<center><h4>An object</h4></center>',
   region: 'other',
   locationType: 'secluded',
-  description: ['The construction work has stopped and there is complete silence, the only person there is the guard walking around.'],
   enter: enter,
 };

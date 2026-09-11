@@ -3,12 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/09
-  // TODO-QSP: PanPrice ~ 300 * (20 + PanQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 1: 300
-  // TODO-QSP: 2: 350
-  // TODO-QSP: PanQuality ranges from 1 to 2
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).PanType = 1;
     (s as any).PanFun = 1;

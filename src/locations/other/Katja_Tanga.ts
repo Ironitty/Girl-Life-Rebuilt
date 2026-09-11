@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSecretroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
   if (((s as any).katjaQW ?? 0)?.['school_sex'] === 0) {
@@ -461,7 +465,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDance(s, scene);
       break;
     default:
-      enterSecretroom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -470,6 +474,5 @@ export const Katja_Tanga: LocationDef = {
   name: 'Katja_Tanga',
   title: 'You hurry down the hall hand in hand with Katja towards the ',
   region: 'other',
-  description: ['You hurry down the hall hand in hand with Katja towards the storage room she told you about as each of you tries to pull up the other\'s skirt. Once at the door, she pulls out a key and unlocks it. You grab and squeeze her ass as she does before she pushes the door open and turns towards you. You both immediately start kissing and fondling each other, barely avoiding tumbling into the room before you manage to close the door and lock it.'],
   enter: enter,
 };

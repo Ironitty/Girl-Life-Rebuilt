@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCustomers(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NikoSlut ?? 0) === 2  &&  ((s as any).NikoDiner ?? 0) > 0) {
     (s as any).NikoCust = Math.floor(Math.random() * 16) + 1;
@@ -1953,7 +1957,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDinerExit(s, scene);
       break;
     default:
-      enterCustomers(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

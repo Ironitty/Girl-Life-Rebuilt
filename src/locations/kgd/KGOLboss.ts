@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLstrenV = 30;
   (s as any).KGOLspeedV = 30;
   (s as any).KGOLvitalV = 100;
@@ -17,6 +21,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLpowerV = ((s as any).KGOLstrenV ?? 0);
   (s as any).KGOLennum = (-1);
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case '1':
+      enter1(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const KGOLboss: LocationDef = {

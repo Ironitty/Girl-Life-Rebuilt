@@ -4,6 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'hunter_ambient', 'schedule');
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_swamp_yard', 'start');
   ((s as any).hunterVars ?? {})['cabin'] = 1;
@@ -462,7 +467,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDaytimeFlavorEvents(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

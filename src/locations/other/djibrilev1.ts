@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDjibrilgb(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
@@ -1599,7 +1603,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDjibrilNushGangbang1(s, scene);
       break;
     default:
-      enterDjibrilgb(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1608,6 +1612,5 @@ export const djibrilev1: LocationDef = {
   name: 'djibrilev1',
   title: 'The dorm room is fairly small, with a large chair and a couc',
   region: 'other',
-  description: ['The dorm room is fairly small, with a large chair and a couch in one corner while two beds sit on the other side of the room. You take a seat on the couch with three of the guys while Djibril takes a seat on the chair.'],
   enter: enter,
 };

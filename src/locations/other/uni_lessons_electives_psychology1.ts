@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -745,7 +749,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEventKendra(s, scene);
       break;
     default:
-      enterPsychology_101(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -754,6 +758,5 @@ export const uni_lessons_electives_psychology1: LocationDef = {
   name: 'uni_lessons_electives_psychology1',
   title: 'You walk into the classroom and take a seat at one of the ta',
   region: 'other',
-  description: ['You walk into the classroom and take a seat at one of the tables. The rest of your classmates walk in one-by-one before Professor Kucherov enters the classroom and closes the door. He turns to the class and begins today\'s lecture.'],
   enter: enter,
 };

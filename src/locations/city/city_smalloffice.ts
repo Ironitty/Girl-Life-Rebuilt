@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'get_job_definition', 'city_office_cleaner');
   qspCall(s, 'jobs', 'get_job_definition', 'city_office_toilet_cleaner');
@@ -700,7 +704,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOhrsex(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -709,6 +713,5 @@ export const city_smalloffice: LocationDef = {
   name: 'city_smalloffice',
   title: 'Office building',
   region: 'city',
-  description: ['You notice several ads on one of the walls. As you look through them you see a notice that someone is searching for cleaners.'],
   enter: enter,
 };

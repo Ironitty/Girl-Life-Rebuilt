@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCity(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Attempt to steal makeup', handler: (st: GameState) => {
@@ -989,7 +993,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterQuietPav(s, scene);
       break;
     default:
-      enterCity(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

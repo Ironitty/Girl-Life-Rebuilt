@@ -4,7 +4,11 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterAdd(s: GameState, scene: SceneBuilder): void {
   (s as any).spellCompSize = 0;
   ((s as any).spellComplete ?? {})[String((s as any).spellCompSize ?? 0)] = ((s as any).totminut ?? 0) + ((s as any).ARGS ?? 0)[2];
   // TODO-QSP: $spellTimeName[spellCompSize] = $ARGS[1]
@@ -47,6 +51,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'SpellTimerLoop'
   }
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'add':
+      enterAdd(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const spellTimer: LocationDef = {

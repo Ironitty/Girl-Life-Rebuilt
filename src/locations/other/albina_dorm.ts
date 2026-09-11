@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'albina_dorm', 'start');
   qspCall(s, 'schedule', 'A23');
@@ -535,7 +539,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAlbinaNotHereErmias_SMSResponse(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -546,6 +550,5 @@ export const albina_dorm: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'livingr',
-  description: ['Albina\'s dorm room is as tastefully decorated as you would imagine. Along the left of the room sits her well furnished and comfortable looking bed that contains storage space underneath. The wall above the bed is covered with framed pictures and other decorations. Since her roommate is absent, she is using the empty bed against the other wall as a dumping ground for various items.'],
   enter: enter,
 };

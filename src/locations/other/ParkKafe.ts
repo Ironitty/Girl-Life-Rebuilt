@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'ParkKafe', 'start');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1697,7 +1701,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1707,6 +1711,5 @@ export const ParkKafe: LocationDef = {
   title: 'Park Café',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['The café is a gathering point located in the center of the park. It\'s open all year round while offering different foods and beverages that depend on the season.'],
   enter: enter,
 };

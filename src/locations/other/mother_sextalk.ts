@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).motherKnowSpravka ?? 0) > 0  ||  ((s as any).motherKnowWhore ?? 0) > 0) {
     scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildo_shriek4'] }]);
@@ -1077,7 +1081,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDiscoverDildo(s, scene);
       break;
     default:
-      enterBathroomDildoShriek1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1086,6 +1090,5 @@ export const mother_sextalk: LocationDef = {
   name: 'mother_sextalk',
   title: 'You\'re walking down the hall when you suddenly hear a shriek',
   region: 'other',
-  description: ['You\'re walking down the hall when you suddenly hear a shriek come from the bathroom. It sounds like your mother. You run to the door just as it opens and you see her there.'],
   enter: enter,
 };

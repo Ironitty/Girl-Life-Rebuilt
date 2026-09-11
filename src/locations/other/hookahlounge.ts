@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
@@ -84,7 +88,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSmoke_Hookah(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -94,6 +98,5 @@ export const hookahlounge: LocationDef = {
   title: 'Hookah Lounge',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You enter the lounge'],
   enter: enter,
 };

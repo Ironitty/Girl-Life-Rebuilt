@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon_schedules', 'cikl_calls');
   qspCall(s, 'telefon_schedules', 'cikl_sms');
@@ -64,7 +68,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCiklSms(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_meadow', 'start');
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'stat', '');
@@ -578,7 +582,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temper ?? 0) < 12) {
     scene.img('images/characters/gadukino/mira/sex/mirameadowbj5.jpg');
     scene.text('Mira is tied to a tree as Vasyan enthusiastically drives his cock in her mouth. She gags and coughs, but simultaneously, she moves her head farther down his member. After a couple of minutes, Vasyan tilts back his head and, with a blissful roar cums in her mouth…');
@@ -1475,6 +1479,5 @@ export const gad_meadow: LocationDef = {
   title: '<center><h4>Meadow</h4></center>',
   region: 'gadukino',
   locationType: 'secluded',
-  description: ['A quiet and deserted open field of grass and wildflowers in the forest, well hidden from civilization.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetTotal(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'cats') {
     (s as any).result = 72;
@@ -819,7 +823,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShopFilter(s, scene);
       break;
     default:
-      enterGetTotal(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

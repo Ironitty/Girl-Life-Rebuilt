@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterConfession(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -1398,7 +1402,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnal(s, scene);
       break;
     default:
-      enterConfession(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1407,6 +1411,5 @@ export const pav_church2: LocationDef = {
   name: 'pav_church2',
   title: 'You wait for the priest to finish listening to an old woman,',
   region: 'pavlovsk',
-  description: ['You wait for the priest to finish listening to an old woman, then approach him.'],
   enter: enter,
 };

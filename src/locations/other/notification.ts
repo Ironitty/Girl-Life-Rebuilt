@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any)._n_counter ?? 0)?.['duration'] === 0) {
     ((s as any)._n_counter ?? {})['duration'] = 4000;
@@ -32,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAdd(s, scene);
       break;
     default:
-      enterDisplay(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

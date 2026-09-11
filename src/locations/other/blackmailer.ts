@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInitCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['day'] !== 0) {
     // TODO-QSP: exit
@@ -551,8 +555,8 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_package ?? 0) >= 1  &&  ((s as any).temp_package ?? 0) < 21) {
     (s as any).bm_i = qspFunc(s, 'blackmailer', 'bmid_to_cosplaynumber', ((s as any).temp_package ?? 0));
     ((s as any).temp_package ?? {})['type'] = 'clothing';
-    ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'nerdvana_cosplay', <<bm_i>>\"", { location: "blackmailer" });
-    ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'nerdvana_cosplay', <<bm_i>>\"", { location: "blackmailer" });
+    // TODO-QSP: $temp_package['set_vars'] = "gs 'clothing_attributes', 'nerdvana_cosplay', <<bm_i>>"
+    // TODO-QSP: $temp_package['add_item'] = "gs 'clothing', 'add_item', 'nerdvana_cosplay', <<bm_i>>"
     ((s as any).temp_package ?? {})['image'] = 'images/pc/items/nerdvana/cosplay/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
   } else {
     if (((s as any).temp_package ?? 0) >= 21  &&  ((s as any).temp_package ?? 0) <= 25) {
@@ -574,8 +578,8 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
         }
       }
       ((s as any).temp_package ?? {})['type'] = 'clothing';
-      ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'salacious_outfits', <<bm_i>>\"", { location: "blackmailer" });
-      ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'salacious_outfits', <<bm_i>>, 0\"", { location: "blackmailer" });
+      // TODO-QSP: $temp_package['set_vars'] = "gs 'clothing_attributes', 'salacious_outfits', <<bm_i>>"
+      // TODO-QSP: $temp_package['add_item'] = "gs 'clothing', 'add_item', 'salacious_outfits', <<bm_i>>, 0"
       ((s as any).temp_package ?? {})['image'] = 'images/pc/items/salacious/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
     } else {
       if (((s as any).temp_package ?? 0) >= 26  &&  ((s as any).temp_package ?? 0) <= 30) {
@@ -597,8 +601,8 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
           }
         }
         ((s as any).temp_package ?? {})['type'] = 'clothing';
-        ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'eroto_outfits', <<bm_i>>\"", { location: "blackmailer" });
-        ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'eroto_outfits', <<bm_i>>\"", { location: "blackmailer" });
+        // TODO-QSP: $temp_package['set_vars'] = "gs 'clothing_attributes', 'eroto_outfits', <<bm_i>>"
+        // TODO-QSP: $temp_package['add_item'] = "gs 'clothing', 'add_item', 'eroto_outfits', <<bm_i>>"
         ((s as any).temp_package ?? {})['image'] = 'images/pc/items/eroto/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
       } else {
         if (((s as any).temp_package ?? 0) >= 31  &&  ((s as any).temp_package ?? 0) <= 35) {
@@ -620,8 +624,8 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
             }
           }
           ((s as any).temp_package ?? {})['type'] = 'clothing';
-          ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'scandalicious_outfits', <<bm_i>>\"", { location: "blackmailer" });
-          ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'scandalicious_outfits', <<bm_i>>\"", { location: "blackmailer" });
+          // TODO-QSP: $temp_package['set_vars'] = "gs 'clothing_attributes', 'scandalicious_outfits', <<bm_i>>"
+          // TODO-QSP: $temp_package['add_item'] = "gs 'clothing', 'add_item', 'scandalicious_outfits', <<bm_i>>"
           ((s as any).temp_package ?? {})['image'] = 'images/pc/items/scandalicious/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
         } else {
           if (((s as any).temp_package ?? 0) === 36) {
@@ -642,8 +646,8 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
             }
           }
           ((s as any).temp_package ?? {})['type'] = 'clothing';
-          ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'scandalicious_dress', <<bm_i>>\"", { location: "blackmailer" });
-          ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'scandalicious_dress', <<bm_i>>\"", { location: "blackmailer" });
+          // TODO-QSP: $temp_package['set_vars'] = "gs 'clothing_attributes', 'scandalicious_dress', <<bm_i>>"
+          // TODO-QSP: $temp_package['add_item'] = "gs 'clothing', 'add_item', 'scandalicious_dress', <<bm_i>>"
           ((s as any).temp_package ?? {})['image'] = 'images/pc/items/scandalicious/dress/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
         }
       }
@@ -855,7 +859,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCosplaynumberToBmid(s, scene);
       break;
     default:
-      enterInitCheck(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

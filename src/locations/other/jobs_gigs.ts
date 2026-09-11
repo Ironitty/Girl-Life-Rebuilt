@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).evt_transient ?? {})['type'] = qspUntranslated(s, "ARGS[1]", { location: "jobs_gigs" });
   ((s as any).evt_transient ?? {})['subtype'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
@@ -297,7 +301,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDelEvt(s, scene);
       break;
     default:
-      enterSetEvent(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

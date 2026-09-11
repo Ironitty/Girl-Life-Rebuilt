@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['morning_event_check'] = 1;
   if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -1638,7 +1642,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterClassmatesSee(s, scene);
       break;
     default:
-      enterMorningEventCheck(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

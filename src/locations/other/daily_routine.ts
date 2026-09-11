@@ -6,6 +6,21 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(21))) === 'step_outfit_wardrobe_') {
+    (s as any).temp_wslot = 0;
+    ((s as any).droutine ?? {})['current_label'] = ((((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)] !== '') ? (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)]) : ('Outfit ' + qspUntranslated(s, "temp_wslot>", { location: "daily_routine" }) + ''));
+    ((s as any).droutine ?? {})['current_category'] = 'Clothing';
+    ((s as any).droutine ?? {})['current_style'] = 'chain';
+    ((s as any).droutine ?? {})['current_room'] = 'bedroom';
+    // TODO-QSP: $droutine['current_runner'] = "gt 'wardrobe', 'default_wardrobe_wear', <<temp_wslot>>"
+    ((s as any).droutine ?? {})['can_run'] = (((s as any).defclothingnumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defbranumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defpantynumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] + ((s as any).defshoenumber ?? 0)?.[String((s as any).temp_wslot ?? 0)] > 0);
+    ((s as any).droutine ?? {})['current_quick'] = 1;
+    ((s as any).droutine ?? {})['skip_reason'] = 'outfit slot is empty or unavailable';
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'daily_routine', 'settings_defaults');
   ((s as any).droutine ?? {})['phase'] = ((s as any).locArgs?.[1] ?? 0);
@@ -52,7 +67,7 @@ function enterHub(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_dri = ((s as any).temp_dri ?? 0) + (1);
   if (((s as any).temp_dri ?? 0) <= ((s as any).temp_drc ?? 0)) {
     if (((s as any).droutine_done ?? 0)?.[String((s as any).temp_dri ?? 0)] === 0) {
-      ((s as any).droutine ?? {})['current_label'] = ((s as any).droutine ?? 0)?.['' + qspUntranslated(s, "droutine['phase']>", { location: "daily_routine" }) + '_step_<<temp_dri>>'];
+      // TODO-QSP: $droutine['current_label'] = $droutine['<<$droutine[''phase'']>>_step_<<temp_dri>>']
       ((s as any).droutine ?? {})['current_runner'] = '';
       ((s as any).droutine ?? {})['skip_reason'] = '';
       ((s as any).droutine ?? {})['can_run'] = 1;
@@ -1454,7 +1469,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRenderListInline(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

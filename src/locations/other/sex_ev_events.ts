@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRandEvCheck(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['rand_ev'] = (((s as any).sex_ev ?? {})['rand_ev'] ?? 0) + (1);
   if ((Math.floor(Math.random() * 20) + 1) <= ((s as any).sex_ev ?? 0)?.['rand_ev']) {
@@ -636,7 +640,6 @@ function enterSexFilmAccept(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
       qspCall(s, 'arousal', 'vaginal', (-5), 'no_orgasm_msg', 'exhibitionism');
     }
-    // TODO-QSP: end}
     scene.actions([
       { label: 'Blush', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['video_media'] = '<center><video autoplay loop ' + qspUntranslated(s, "set_imgh>", { location: "sex_ev_events" }) + ' src="images/shared/sex/vag/miss/enjoy1.mp4"></video></center>';
@@ -681,169 +684,7 @@ function enterSexFilmAccept(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few minutes of filming, he puts his phone away.');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
-      { label: 'This costs extra' }, // TODO-QSP: empty action body
     ]);
-  } },
-  ]);
-  scene.build();
-}
-
-function enterSexFilmEnd(s: GameState, scene: SceneBuilder): void {
-  if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_indiscreet ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  (Math.floor(Math.random() * 3) + 1) === 1)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] < 1  &&  ((s as any).sex_ev ?? 0)?.['phone_film'] !== -1) {
-    qspCall(s, 'fame', '', ((s as any).region ?? 0), 'sex', 5);
-  }
-  if (((s as any).sex_ev ?? 0)?.['phone_film'] !== -1) {
-    (s as any).i = 0;
-    // TODO-QSP: $sex_video[i] = $sex_ev['video_media']
-    // TODO-QSP: $sex_video_author[i] = $sex_ev['video_author']
-    // TODO-QSP: $sex_video_dialogue[i] = $sex_ev['video_dialogue']
-  }
-  qspCall(s, 'sex_ev_sex', 'fuck_continue');
-  scene.build();
-}
-
-function enterCreampieAskEv(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['creampie_ask_ev'] = 1;
-  if (((s as any).sex_ev ?? 0)?.['position'] !== 'cowgirl') {
-    // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," <<$npcdesc>> grunts as he plows you. "Can I cum inside ...
-    scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," ${((s as any).npcdesc ?? 0)} grunts as he plows you. "Can I cum inside you today?"`);
-  } else {
-    // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," <<$npcdesc>> grunts as you bounce up and down on his co...
-    scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," ${((s as any).npcdesc ?? 0)} grunts as you bounce up and down on his cock. "Can I cum inside you today?"`);
-  }
-  if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-    scene.actions([
-      { label: 'It\'s too risky (danger day)', handler: (st: GameState) => {
-    scene.text('"You can\'t," you say, shaking your head. "I could get pregnant if you do it today."');
-    scene.text('"Come on, what\'s the harm? You can just get a morning after pill."');
-    scene.actions([
-      { label: 'Refuse', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'sex_ev_events', 'creampie_ask_ev_ma_pill_deny'
-  } },
-    ]);
-  } },
-    ]);
-  }
-  if (((s as any).sex_ev ?? 0)?.['promise_no_creampie'] === 1) {
-    scene.actions([
-      { label: 'Already told you no (mad)', handler: (st: GameState) => {
-    scene.text('"I\'m pretty sure I already told you no," you frown.');
-    scene.text('"Yeah you did, but..." he says. "I figured what\'s the harm in asking again?"');
-    scene.actions([
-      { label: 'Firmly deny him', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'sex_ev_events', 'creampie_ask_ev_annoyed_deny'
-  } },
-      { label: 'Acquiesce', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'sex_ev_events', 'creampie_ask_ev_annoyed_allow'
-  } },
-    ]);
-  } },
-    ]);
-  }
-  scene.build();
-}
-
-function enterCreampieAskEvMaPillDeny(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: "No way! <<$npcdesc>>, do <i>not</i> cum inside me, do you hear me?"
-  scene.text(`"No way! ${((s as any).npcdesc ?? 0)}, do <i>not</i> cum inside me, do you hear me?"`);
-  scene.text('"Okay okay, fine," he sighs.');
-  qspCall(s, 'sex_ev_sex', 'fuck_continue');
-  scene.build();
-}
-
-function enterCreampieAskEvMaPillAllow(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sex_ev ?? 0)?.['position'] !== 'cowgirl') {
-    // TODO-QSP: dynamic text: You think about it for a few moments while <<$npcdesc>> keeps thrusting into you...
-    scene.text(`You think about it for a few moments while ${((s as any).npcdesc ?? 0)} keeps thrusting into you.`);
-  } else {
-    // TODO-QSP: dynamic text: You think about it for a few moments while rolling your hips over <<$npcdesc>>'s...
-    scene.text(`You think about it for a few moments while rolling your hips over ${((s as any).npcdesc ?? 0)}'s cock.`);
-  }
-  scene.text('"Okay," you smile. "You can do it today. I\'ll get a pill later."');
-  // TODO-QSP: dynamic text: "You're the best, <<$pcs_nickname>>," he grins and starts moving his hips with r...
-  scene.text(`"You're the best, ${((s as any).pcs_nickname ?? 0)}," he grins and starts moving his hips with renewed enthusiasm.`);
-  qspCall(s, 'sex_ev_sex', 'fuck_continue');
-  scene.build();
-}
-
-function enterCreampieAskEvAnnoyedDeny(s: GameState, scene: SceneBuilder): void {
-  scene.text('"Well I\'ll tell you now," you growl. "Fucking <i>don\'t</i>."');
-  scene.text('"Fine, fine. Yeesh, I was just asking."');
-  qspCall(s, 'sex_ev_sex', 'fuck_continue');
-  scene.build();
-}
-
-function enterCreampieAskEvAnnoyedAllow(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['must_creampie'] = 1;
-  ((s as any).sex_ev ?? {})['creampie_allowance'] = 1;
-  scene.text('"<i>Ugh</i>. If I tell you no, you\'re just gonna ask again aren\'t you?" You sigh in exasperation and he returns it with a bratty grin. You glare at him but end up saying, "<i>Fine</i>. Just this once, okay?"');
-  // TODO-QSP: dynamic text: "You're the best, <<$pcs_nickname>>," he grins and starts moving his hips with r...
-  scene.text(`"You're the best, ${((s as any).pcs_nickname ?? 0)}," he grins and starts moving his hips with renewed enthusiasm.`);
-  scene.actions([
-    { label: 'Roll your eyes', handler: (st: GameState) => {
-    scene.text('"Yeah, yeah, whatever," you say with a wave. "Just remember it\'s your fault if you knock me up."');
-    qspCall(s, 'sex_ev_sex', 'fuck_continue');
-  } },
-    { label: 'Smile', handler: (st: GameState) => {
-    scene.text('Unable to help yourself, you end up smiling back. His childish persistence is strangely endearing, even if it\'s just about wanting to bust a nut inside you.');
-    qspCall(s, 'sex_ev_sex', 'fuck_continue');
-  } },
-  ]);
-  scene.build();
-}
-
-function enterFuckPunchLink(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).crime_placeholder ?? 0) > 0  &&  ((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl'  &&  ((s as any).pcs_punch ?? 0) > 30) {
-    scene.text('With you riding on top, it\'s the perfect opportunity for you to <a href="exec: gs \'sex_ev_events\', \'fuck_punch1\'">knock him out</a> right now if you wanted to.');
-  }
-  scene.build();
-}
-
-function enterFuckPunch1(s: GameState, scene: SceneBuilder): void {
-  scene.actions([
-    { label: 'Cancel', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'fuck_continue');
-  } },
-    { label: '"Night night"', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['punchout'] = 1;
-    scene.img('images/shared/sex/misc/fuck_punch1.mp4');
-    // TODO-QSP: dynamic text: "Night night, <<$npc_usedname[$npcID]>>," you smile and punch him in the face, k...
-    scene.text(`"Night night, ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}," you smile and punch him in the face, knocking him out cold.`);
-    // TODO-QSP: act'Call it in': gt 'sex_ev_events', 'fuck_punch2'
-  } },
-  ]);
-  scene.build();
-}
-
-function enterFuckPunch2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $sex_ev['bed_room']
-  scene.text('You pick up your phone and call your boss.');
-  scene.text('"It\'s done. Come get him."');
-  scene.actions([
-    { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(s, 'sex_ev_leave', 'dress');
-    // TODO-QSP: $sex_ev['bed_room']
-    scene.text('You get dressed while you wait for the boys to show up.');
-    // TODO-QSP: dynamic text: It doesn't take long and a few minutes later they arrive to tow <<$npc_usedname[...
-    scene.text(`It doesn't take long and a few minutes later they arrive to tow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s unconscious body out.`);
-  } },
-    { label: 'Just wait', handler: (st: GameState) => {
-    // TODO-QSP: $sex_ev['bed_room']
-    scene.text('You don\'t bother getting dressed and wait for the boys to show up.');
-    // TODO-QSP: dynamic text: It doesn't take long and within a few minutes They shamelessly ogle you, grinnin...
-    scene.text(`It doesn't take long and within a few minutes They shamelessly ogle you, grinning at you as they tow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s unconscious body out.`);
-    // TODO-QSP: act'Give them the finger':
-    scene.text('You sneer back at them with a look that says, <i>shut the fuck up</i> and put your finger up at them. This is the job.');
-    scene.actions([
-      { label: 'Ignore them', handler: (st: GameState) => {
-    scene.text('Doesn\'t matter to you. Let them look if you want. You know your role in this.');
-  } },
-    ]);
-  } },
-    { label: 'Smile back', handler: (st: GameState) => {
-    scene.text('Doesn\'t matter to you if they look. Let them. You know your role in this. And that\'s being a hot piece of ass. If they\'re looking, it means you\'re working.');
-    scene.text('You smile back.');
-    scene.text('Besides. It\'s a compliment.');
   } },
   ]);
   scene.build();
@@ -891,35 +732,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'sex_film_accept':
       enterSexFilmAccept(s, scene);
       break;
-    case 'sex_film_end':
-      enterSexFilmEnd(s, scene);
-      break;
-    case 'creampie_ask_ev':
-      enterCreampieAskEv(s, scene);
-      break;
-    case 'creampie_ask_ev_ma_pill_deny':
-      enterCreampieAskEvMaPillDeny(s, scene);
-      break;
-    case 'creampie_ask_ev_ma_pill_allow':
-      enterCreampieAskEvMaPillAllow(s, scene);
-      break;
-    case 'creampie_ask_ev_annoyed_deny':
-      enterCreampieAskEvAnnoyedDeny(s, scene);
-      break;
-    case 'creampie_ask_ev_annoyed_allow':
-      enterCreampieAskEvAnnoyedAllow(s, scene);
-      break;
-    case 'fuck_punch_link':
-      enterFuckPunchLink(s, scene);
-      break;
-    case 'fuck_punch1':
-      enterFuckPunch1(s, scene);
-      break;
-    case 'fuck_punch2':
-      enterFuckPunch2(s, scene);
-      break;
     default:
-      enterRandEvCheck(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

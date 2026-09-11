@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBandGarage(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'praiders_garage', 'band_garage');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -984,7 +988,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPartyOver(s, scene);
       break;
     default:
-      enterBandGarage(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -994,6 +998,5 @@ export const praiders_garage: LocationDef = {
   title: 'The garage has been converted into a music studio that Radom',
   region: 'other',
   locationType: 'private',
-  description: ['The garage has been converted into a music studio that Radomir and his band hang out in. In the left corner, opposite the door, is a makeshift stage with a drum set on it. Surrounding the stage are several large speakers, amps, mics and guitar stands. The walls are plastered with sound deafening foam that has various posters stapled into it. In the left corner near the door is an old iron stove which is currently radiating heat. The only source of heat in the room, it barely keeps the garage at a reasonable temperature. Along the right wall is an old ratty couch and some chairs surrounding a coffee table completely covered in empty beer bottles and discarded takeout containers. If someone needs a refresher, there\'s an ice cooler next to the couch with several bottles of beer and water in it.'],
   enter: enter,
 };

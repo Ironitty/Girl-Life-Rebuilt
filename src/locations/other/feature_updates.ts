@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterShow(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>New & Updated Mechanics</h1></center>');
   scene.text('This page details new mechanics added to the game. It does <b>not</b> include new events, storylines, and so on, nor is it exhaustive: the focus is on systems that the player may want to familiarize themselves with as they continue playing in the new version. After closing this page, you may find it in the start page (when you open the game).');
   if (((s as any).update_report_last ?? 0) < 98) {
@@ -111,10 +115,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'show':
+      enterShow(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const feature_updates: LocationDef = {
   name: 'feature_updates',
   title: '<center><h1>New & Updated Mechanics</h1></center>',
   region: 'other',
-  description: ['For example, if your mood is 80 and your disposition is 50, your mood will decline until it reaches 50. If you then keep your mood consistently above your disposition, your disposition will slowly rise to meet it — so maintaining a good mood over time is how you raise your baseline.'],
   enter: enter,
 };

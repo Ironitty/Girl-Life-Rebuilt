@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).region ?? 0) === 'city') {
     scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
@@ -277,83 +281,6 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  (s as any).i = 0;
-  // TODO-QSP: :loopcard
-  if ((!((s as any).i ?? 0))) {
-    (s as any).n = 5;
-    (s as any).price = 60;
-  } else {
-    if (((s as any).i ?? 0) === 1) {
-      (s as any).n = 10;
-      (s as any).price = 115;
-    } else {
-      if (((s as any).i ?? 0) === 2) {
-        (s as any).n = 20;
-        (s as any).price = 220;
-      } else {
-        if (((s as any).i ?? 0) === 3) {
-          (s as any).n = 50;
-          (s as any).price = 520;
-        }
-      }
-    }
-  }
-  (s as any).i = ((s as any).i ?? 0) + (1);
-  // TODO-QSP: dynamic text: <tr><td align="center"><<n>> hour internet card </td><td align="right">(you have...
-  scene.text(`<tr><td align="center">${((s as any).n ?? 0)} hour internet card </td><td align="right">(you have ${((s as any).internet ?? 0)} hours of internet access) </td><td align="right">${((s as any).buy_link ?? 0)} </td><td align="left">for ${((s as any).price ?? 0)} <b>₽</b></td></tr>`);
-  if (((s as any).i ?? 0) < 4) {
-    // TODO-QSP: jump 'loopcard'
-  }
-  scene.text('</table></center>');
-  if (((s as any).money ?? 0) > 0) {
-    scene.actions([
-      { label: 'Put the money on the phone', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).obmennik = 0;
-    if (((s as any).obmennik ?? 0) <= 0) {
-      scene.text('<center><br><b>Invalid operation.</b></center>');
-      scene.actions([
-        { label: 'Return', goto: ['post_office', 'counter'] },
-      ]);
-    } else {
-      if (((s as any).money ?? 0) < ((s as any).obmennik ?? 0)) {
-        // TODO-QSP: dynamic text: <center><br>You do not have <b><<obmennik>></b> <b>₽</b>.</center>
-        scene.text(`<center><br>You do not have <b>${((s as any).obmennik ?? 0)}</b> <b>₽</b>.</center>`);
-        scene.actions([
-          { label: 'Return', goto: ['post_office', 'counter'] },
-        ]);
-      }
-      if (((s as any).money ?? 0) >= ((s as any).obmennik ?? 0)) {
-        // TODO-QSP: set balans = balans + obmennik
-        // TODO-QSP: set money = money - obmennik
-        qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: <center><br>You put <b><<obmennik>></b> <b>₽</b> to the account.</center>
-        scene.text(`<center><br>You put <b>${((s as any).obmennik ?? 0)}</b> <b>₽</b> to the account.</center>`);
-        scene.text('"Is there anything else I can do for you?"');
-        scene.actions([
-          { label: 'Yes', goto: ['post_office', 'counter'] },
-          { label: 'Leave the post office', goto: ['post_office', 'counter'] },
-        ]);
-      }
-    }
-  } },
-    ]);
-  }
-  if (((s as any).askWork ?? 0) === 0  &&  ((s as any).region ?? 0) === 'pav') {
-    scene.actions([
-      { label: 'Ask for work', handler: (st: GameState) => {
-    (s as any).askWork = ((s as any).askWork ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    scene.text('You approach the counter and greet the girl there. "Excuse me, I hear you\'re looking for postal workers?"');
-    // TODO-QSP: dynamic text: She nods understandingly. "We're looking for new workers and I'd hire you in an ...
-    scene.text('She nods understandingly. "We\'re looking for new workers and I\'d hire you in an instant, but unfortunately it\'s not up to me. You should go see Oleg Koltsov, the postmaster. He\'s usually in his office between \'+func(\'time\', \'get_time_string\', 12, 0)+\' and \'+func(\'time\', \'get_time_string\', 14, 0)+\'. I bet he\'ll hire you! Good luck when you see him!"');
-    scene.actions([
-      { label: 'Step away from the counter', goto: ['post_office', 'start'] },
-    ]);
-  } },
-    ]);
-  }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -502,7 +429,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPostOff(s, scene);
       break;
     default:
-      enterLeave(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

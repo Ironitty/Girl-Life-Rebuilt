@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAlbina_3some(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big23.jpg');
   scene.text('You chat with Artem about what to expect before you reach the door to Albina\'s dorm room. You knock and Albina soon answers it, wearing a T shirt and a pair of shorts.');
@@ -1813,7 +1817,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAlbina_3some3Aftermath(s, scene);
       break;
     default:
-      enterAlbina_3some(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1822,6 +1826,5 @@ export const artem_alb_sex: LocationDef = {
   name: 'artem_alb_sex',
   title: 'You chat with Artem about what to expect before you reach th',
   region: 'other',
-  description: ['You chat with Artem about what to expect before you reach the door to Albina\'s dorm room. You knock and Albina soon answers it, wearing a T shirt and a pair of shorts.'],
   enter: enter,
 };

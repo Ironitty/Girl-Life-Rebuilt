@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterYfoyer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_mansion_residence_1', 'yfoyer');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -241,7 +245,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterYkitchen(s, scene);
       break;
     default:
-      enterYfoyer(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -252,6 +256,5 @@ export const city_mansion_residence_1: LocationDef = {
   region: 'city',
   locationType: 'private',
   locclass: 'kitr',
-  description: ['The main hall of Matryona Mansion. You can visit the different rooms in the mansion from here.'],
   enter: enter,
 };

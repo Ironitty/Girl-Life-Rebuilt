@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_swamp', 'start');
   qspCall(s, 'gadukino_event', 'sound');
@@ -192,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStuck(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -202,6 +206,5 @@ export const gad_swamp: LocationDef = {
   title: '<center><h4>Swamp</h4></center>',
   region: 'gadukino',
   locationType: 'secluded',
-  description: ['You are at the village\'s swamp on the far side of the woods.'],
   enter: enter,
 };

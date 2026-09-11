@@ -4,6 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  return;
+  scene.build();
+}
+
 function enterPornactor(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pfactor ?? 0) !== 50) {
     (s as any).num = ((s as any).pfactor ?? 0);
@@ -908,7 +913,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter8(s, scene);
       break;
     default:
-      enterPornactor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSexTalkStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -2200,7 +2204,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnalEnd2(s, scene);
       break;
     default:
-      enterSexTalkStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2209,6 +2213,5 @@ export const albina_sex_chat: LocationDef = {
   name: 'albina_sex_chat',
   title: 'Knowing that you don\'t have much experience in the subject, ',
   region: 'other',
-  description: ['Knowing that you don\'t have much experience in the subject, she offers to change the topic.'],
   enter: enter,
 };

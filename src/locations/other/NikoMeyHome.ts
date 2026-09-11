@@ -1,8 +1,14 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
 
 function enterAftermath(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A25'] >= 80) {
@@ -613,6 +619,7 @@ function enterVickyReminder(s: GameState, scene: SceneBuilder): void {
 
 function enterLeaving(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoMeyHome" }) + '');
   // TODO-QSP: 'You approach the door. ' + $OpenInnerThought + 'I haven''t spoken to all the girls yet. Should I le...
   scene.actions([
     { label: 'Return to the hallway', goto: ['NikoMeyHome', 'hallway'] },
@@ -670,6 +677,7 @@ function enterKatjachat(s: GameState, scene: SceneBuilder): void {
       { label: 'Reply', handler: (st: GameState) => {
     (s as any).VKKatjaChat = 1;
     qspCall(s, 'stat', '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoMeyHome" }) + '');
     if ((!((s as any).VKNatChat ?? 0))) {
       scene.text('"Tell me about it," you sarcastically reply and Katja lightly squeezes your shoulders.');
       scene.text('"No one can change who you are beside you. Remember that. Anyway, you should take a bath before Vicky decides to gussy herself in there. Trust me when I say you won\'t be able to use the bathroom anytime this century."');
@@ -1415,7 +1423,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKatjaBath(s, scene);
       break;
     default:
-      enterAftermath(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1425,6 +1433,5 @@ export const NikoMeyHome: LocationDef = {
   title: 'Hallway',
   region: 'other',
   locationType: 'bathroom',
-  description: ['"After what happened at school, we couldn\'t just leave you there, so we brought you back to our place."'],
   enter: enter,
 };

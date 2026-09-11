@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEvent1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).exhibitionQW = 1;
@@ -295,7 +299,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEvent3_1(s, scene);
       break;
     default:
-      enterEvent1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -305,6 +309,5 @@ export const kseniyaQW: LocationDef = {
   title: 'Woman',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['As you wander through the park you see someone in a field, who waves you over. As you get closer you realize it is a pretty looking woman of some kind of Asian descent, she gives you an enigmatic smile then runs off.'],
   enter: enter,
 };

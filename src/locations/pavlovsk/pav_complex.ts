@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_complex', 'start');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -674,7 +678,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGarages(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -684,6 +688,5 @@ export const pav_complex: LocationDef = {
   title: '<center><h2>Five Eight Estate</h2></center>',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['Opposite you is a meager courtyard, which has changed over the years to now include a kid\'s playground, a basketball court and a small grassy area that\'s mostly used to play football.'],
   enter: enter,
 };

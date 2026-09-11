@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'attend_class', 'school', 'math');
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -2760,7 +2764,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPostDress(s, scene);
       break;
     default:
-      enterMath(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2771,6 +2775,5 @@ export const gschool_lessons4: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'locker',
-  description: ['You sit in your seat just as Mr. Tsarev stands up to begin his lesson. He casually leans against the desk, then crosses his arms. "Today, we\'ll be learning about problem solving. The most important thing about solving a problem is to know what answer you\'re looking for, especially with word problems. You\'ll need to know the question that you need to answer. Here is an example: If Anna had four bottle caps and Dina had two pebbles, then how many bottle caps do they have in total? Anyone?"'],
   enter: enter,
 };

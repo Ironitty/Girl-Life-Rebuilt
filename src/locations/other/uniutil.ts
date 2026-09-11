@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEligibleForUniversity(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'uniutil', 'student', 'status') === 0  &&  qspFunc(s, 'uniutil', 'diploma', 'obtained') === 0  &&  (((s as any).age ?? 0) >= 17  ||  ((s as any).fakepassport ?? 0) === 1);
   return;
@@ -543,7 +547,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPassedSemesters(s, scene);
       break;
     default:
-      enterEligibleForUniversity(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,12 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
 function enterMartinSexPrep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A216');
   if (((s as any).martinpos ?? 0) === 'cowgirl') {
@@ -930,7 +936,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMartinCleanup(s, scene);
       break;
     default:
-      enterMartinSexPrep(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -939,6 +945,5 @@ export const MartinSex2: LocationDef = {
   name: 'MartinSex2',
   title: 'With your pussy thoroughly eaten out, you wet and ready for ',
   region: 'other',
-  description: ['With your pussy thoroughly eaten out, you wet and ready for the real thing.'],
   enter: enter,
 };

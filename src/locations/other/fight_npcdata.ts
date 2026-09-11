@@ -1,6 +1,26 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).NPCFS_Team ?? 0) === '') {
+  }
+  (s as any).NPCFS_TeamSlot = 0;
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).NPCFS_Value = qspUntranslated(s, "ARGS[1]", { location: "fight_npcdata" });
+    // TODO-QSP: dynamic '<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = <<NPCFS_Value>>'
+  } else {
+    // TODO-QSP: dynamic '$<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = ''<<$NPCFS_Value>>'''
+  }
+  (s as any).NPCFightStatStr = 0;
+  (s as any).NPCFightStatVit = 0;
+  (s as any).result = 5 * (((s as any).NPCFightStatStr ?? 0) + ((s as any).NPCFightStatVit ?? 0));
+  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  }
+  scene.build();
+}
 
 function enterGustav(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 2;
@@ -240,7 +260,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRandomGopmale(s, scene);
       break;
     default:
-      enterGustav(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

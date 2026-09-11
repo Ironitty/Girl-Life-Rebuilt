@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).fightClubQW ?? {})['story'] = 1;
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
@@ -721,7 +725,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHome(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -730,6 +734,5 @@ export const fightClub_intro: LocationDef = {
   name: 'fightClub_intro',
   title: 'You climb out of the ring when you are approached by a man. ',
   region: 'other',
-  description: ['You climb out of the ring when you are approached by a man. '],
   enter: enter,
 };

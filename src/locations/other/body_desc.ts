@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'throat');
   qspCall(s, 'body_desc', 'pussy');
   qspCall(s, 'body_desc', 'anus');
@@ -234,7 +238,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
     (s as any).tits = 0;
     ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'tiny', 'barely-there');
     if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-      ((s as any).pc_descWordy ?? {})['breast'] = 'scarcely-augmented' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+      // TODO-QSP: $pc_descWordy['breast'] = 'scarcely-augmented<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
     } else {
       ((s as any).pc_descWordy ?? {})['breast'] = 'tiny, mosquito-bite ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
     }
@@ -249,7 +253,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
       }
       ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'petite', 'smaller than a handful');
       if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-        ((s as any).pc_descWordy ?? {})['breast'] = 'barely modified' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+        // TODO-QSP: $pc_descWordy['breast'] = 'barely modified<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
       } else {
         ((s as any).pc_descWordy ?? {})['breast'] = 'petite, puffy little ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
       }
@@ -258,7 +262,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
         (s as any).tits = 2;
         ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'small', 'sporty');
         if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-          ((s as any).pc_descWordy ?? {})['breast'] = 'small, subtly augmented' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+          // TODO-QSP: $pc_descWordy['breast'] = 'small, subtly augmented<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
         } else {
           ((s as any).pc_descWordy ?? {})['breast'] = 'small, handful-sized ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
         }
@@ -267,7 +271,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
           (s as any).tits = 3;
           ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'ample', 'average-sized');
           if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-            ((s as any).pc_descWordy ?? {})['breast'] = 'ample, silicone-padded' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+            // TODO-QSP: $pc_descWordy['breast'] = 'ample, silicone-padded<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
           } else {
             ((s as any).pc_descWordy ?? {})['breast'] = 'ample, handful-sized ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
           }
@@ -276,7 +280,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
             (s as any).tits = 4;
             ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'full', 'hefty');
             if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-              ((s as any).pc_descWordy ?? {})['breast'] = 'full, silicone-padded' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+              // TODO-QSP: $pc_descWordy['breast'] = 'full, silicone-padded<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
             } else {
               ((s as any).pc_descWordy ?? {})['breast'] = 'jiggly, womanly full ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
             }
@@ -285,7 +289,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
               (s as any).tits = 5;
               ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'generous', 'heavy', 'fairly large');
               if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-                ((s as any).pc_descWordy ?? {})['breast'] = 'heavy, fake' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+                // TODO-QSP: $pc_descWordy['breast'] = 'heavy, fake<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
               } else {
                 ((s as any).pc_descWordy ?? {})['breast'] = 'soft, generously-sized ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
               }
@@ -294,7 +298,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
                 (s as any).tits = 6;
                 ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'big', 'large');
                 if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-                  ((s as any).pc_descWordy ?? {})['breast'] = 'big, implant-stuffed' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+                  // TODO-QSP: $pc_descWordy['breast'] = 'big, implant-stuffed<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
                 } else {
                   ((s as any).pc_descWordy ?? {})['breast'] = 'big, jiggly and sizeable ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
                 }
@@ -303,7 +307,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
                   (s as any).tits = 7;
                   ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'considerably large', 'quite large');
                   if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-                    ((s as any).pc_descWordy ?? {})['breast'] = 'considerably large, implant-stuffed' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+                    // TODO-QSP: $pc_descWordy['breast'] = 'considerably large, implant-stuffed<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
                   } else {
                     ((s as any).pc_descWordy ?? {})['breast'] = 'quite large and jiggly ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
                   }
@@ -312,7 +316,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
                     (s as any).tits = 8;
                     ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'extremely large', 'incredibly stacked');
                     if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-                      ((s as any).pc_descWordy ?? {})['breast'] = 'extremely large, silicone-stuffed' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+                      // TODO-QSP: $pc_descWordy['breast'] = 'extremely large, silicone-stuffed<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
                     } else {
                       ((s as any).pc_descWordy ?? {})['breast'] = 'extremely large, over-stacked ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
                     }
@@ -321,7 +325,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
                       (s as any).tits = 9;
                       ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'huge', 'impractically big', 'figure-dominating');
                       if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-                        ((s as any).pc_descWordy ?? {})['breast'] = 'huge, silicone-swollen' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+                        // TODO-QSP: $pc_descWordy['breast'] = 'huge, silicone-swollen<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
                       } else {
                         ((s as any).pc_descWordy ?? {})['breast'] = 'huge, wholly impractical ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
                       }
@@ -330,7 +334,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
                         (s as any).tits = 10;
                         ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'massive', 'enormous');
                         if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-                          ((s as any).pc_descWordy ?? {})['breast'] = 'massively fake' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+                          // TODO-QSP: $pc_descWordy['breast'] = 'massively fake<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
                         } else {
                           ((s as any).pc_descWordy ?? {})['breast'] = 'massive, attention-grabbing ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
                         }
@@ -338,7 +342,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
                         (s as any).tits = 11;
                         ((s as any).pc_desc ?? {})['breast'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'whorishly oversized', 'fucktoy-appropriate', 'ridiculously big');
                         if (((s as any).bodyVars ?? 0)?.['bust_silicone'] <= 0) {
-                          ((s as any).pc_descWordy ?? {})['breast'] = 'whorishly oversized' + qspUntranslated(s, "pcdesc_breastsqualifierinsertive>", { location: "body_desc" }) + ' <<$pcdesc_breastsword>>';
+                          // TODO-QSP: $pc_descWordy['breast'] = 'whorishly oversized<<$pcdesc_breastsqualifierinsertive>> <<$pcdesc_breastsword>>'
                         } else {
                           ((s as any).pc_descWordy ?? {})['breast'] = 'ridiculously big and figure-dominating ' + qspUntranslated(s, "pcdesc_breastsword>", { location: "body_desc" }) + '';
                         }
@@ -458,9 +462,9 @@ function enterLips(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).pc_descFull ?? {})['lip'] = 'You have ' + qspUntranslated(s, "pcs_lipSize>", { location: "body_desc" }) + ', <<$pc_desc[\'lip gloss\']>> \' + iif(pcs_lip = 4, \'suggestively full \', \') + \'lips. <<$pcs_piercings[\'lip_desc\']>> <<$pcs_piercings[\'tongue_desc\']>>';
-  ((s as any).pc_desc ?? {})['lips'] = '' + qspUntranslated(s, "pc_desc['lip size']>", { location: "body_desc" }) + ' <<$pc_desc[\'lip gloss\']>>';
-  ((s as any).pc_descWordy ?? {})['lips'] = '' + qspUntranslated(s, "pc_desc['lip gloss']>", { location: "body_desc" }) + ', <<$pc_descWordy[\'lip size\']>>';
+  // TODO-QSP: $pc_descFull['lip'] = 'You have <<$pcs_lipSize>>, <<$pc_desc[''lip gloss'']>> ' + iif(pcs_lip = 4, 'suggestively full ', '') + 'lips. <<$pcs_piercings[''lip_desc'']>> <<$pcs_piercings[''tongue_desc'']>>'
+  // TODO-QSP: $pc_desc['lips'] = '<<$pc_desc[''lip size'']>> <<$pc_desc[''lip gloss'']>>'
+  // TODO-QSP: $pc_descWordy['lips'] = '<<$pc_desc[''lip gloss'']>>, <<$pc_descWordy[''lip size'']>>'
   return;
   scene.build();
 }
@@ -501,26 +505,26 @@ function enterSkin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_skin ?? 0) < 200) {
     ((s as any).pc_desc ?? {})['skin'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'terrible', 'awful', 'greasy', 'pimple-strewn');
     ((s as any).pc_descWordy ?? {})['skin'] = 'awful, greasy and pimply';
-    ((s as any).pc_descFull ?? {})['skin'] = 'Your ' + qspUntranslated(s, "pcs_tanstate>", { location: "body_desc" }) + ' skin is rough and covered with pimples and moles. <<$pcs_piercings[\'ears_desc\']>> <<$pcs_piercings[\'nose_desc\']>> <<$pcs_piercings[\'brow_desc\']>> <<$pcs_piercings[\'navel_desc\']>>';
+    // TODO-QSP: $pc_descFull['skin'] = 'Your <<$pcs_tanstate>> skin is rough and covered with pimples and moles. <<$pcs_piercings[''ears_desc'']>> <<$pcs_piercings[''nose_desc'']>> <<$pcs_piercings[''brow_desc'']>> <<$pcs_piercings[''navel_desc'']>>'
   } else {
     if (((s as any).pcs_skin ?? 0) < 400) {
       ((s as any).pc_desc ?? {})['skin'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'bad', 'greasy', 'rough', 'unappealing');
       ((s as any).pc_descWordy ?? {})['skin'] = 'poorly-kept, unappealing';
-      ((s as any).pc_descFull ?? {})['skin'] = 'Your ' + qspUntranslated(s, "pcs_tanstate>", { location: "body_desc" }) + ' skin is rough and has a few pimples. <<$pcs_piercings[\'ears_desc\']>> <<$pcs_piercings[\'nose_desc\']>> <<$pcs_piercings[\'brow_desc\']>> <<$pcs_piercings[\'navel_desc\']>>';
+      // TODO-QSP: $pc_descFull['skin'] = 'Your <<$pcs_tanstate>> skin is rough and has a few pimples. <<$pcs_piercings[''ears_desc'']>> <<$pcs_piercings[''nose_desc'']>> <<$pcs_piercings[''brow_desc'']>> <<$pcs_piercings[''navel_desc'']>>'
     } else {
       if (((s as any).pcs_skin ?? 0) < 600) {
         ((s as any).pc_desc ?? {})['skin'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'average', 'normal', 'clear');
         ((s as any).pc_descWordy ?? {})['skin'] = 'normal, slightly rough';
-        ((s as any).pc_descFull ?? {})['skin'] = 'Your ' + qspUntranslated(s, "pcs_tanstate>", { location: "body_desc" }) + ' skin is clear of acne but still slightly rough. <<$pcs_piercings[\'ears_desc\']>> <<$pcs_piercings[\'nose_desc\']>> <<$pcs_piercings[\'brow_desc\']>> <<$pcs_piercings[\'navel_desc\']>>';
+        // TODO-QSP: $pc_descFull['skin'] = 'Your <<$pcs_tanstate>> skin is clear of acne but still slightly rough. <<$pcs_piercings[''ears_desc'']>> <<$pcs_piercings[''nose_desc'']>> <<$pcs_piercings[''brow_desc'']>> <<$pcs_piercings[''navel_desc'']>>'
       } else {
         if (((s as any).pcs_skin ?? 0) < 800) {
           ((s as any).pc_desc ?? {})['skin'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'good', 'nice', 'smooth', 'great', 'well-kept');
           ((s as any).pc_descWordy ?? {})['skin'] = 'smooth, well-kept';
-          ((s as any).pc_descFull ?? {})['skin'] = 'You have ' + qspUntranslated(s, "pcs_tanstate>", { location: "body_desc" }) + ', smooth and well-groomed skin. <<$pcs_piercings[\'ears_desc\']>> <<$pcs_piercings[\'nose_desc\']>> <<$pcs_piercings[\'brow_desc\']>> <<$pcs_piercings[\'navel_desc\']>>';
+          // TODO-QSP: $pc_descFull['skin'] = 'You have <<$pcs_tanstate>>, smooth and well-groomed skin. <<$pcs_piercings[''ears_desc'']>> <<$pcs_piercings[''nose_desc'']>> <<$pcs_piercings[''brow_desc'']>> <<$pcs_piercings[''navel_desc'']>>'
         } else {
           ((s as any).pc_desc ?? {})['skin'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'excellent', 'silken', 'soft', 'silky', 'immaculate');
           ((s as any).pc_descWordy ?? {})['skin'] = 'immaculate, silky-soft';
-          ((s as any).pc_descFull ?? {})['skin'] = 'You have ' + qspUntranslated(s, "pcs_tanstate>", { location: "body_desc" }) + ' and very smooth skin which almost feels like silk to the touch. <<$pcs_piercings[\'ears_desc\']>> <<$pcs_piercings[\'nose_desc\']>> <<$pcs_piercings[\'brow_desc\']>> <<$pcs_piercings[\'navel_desc\']>>';
+          // TODO-QSP: $pc_descFull['skin'] = 'You have <<$pcs_tanstate>> and very smooth skin which almost feels like silk to the touch. <<$pcs_piercings[''ears_desc'']>> <<$pcs_piercings[''nose_desc'']>> <<$pcs_piercings[''brow_desc'']>> <<$pcs_piercings[''navel_desc'']>>'
         }
       }
     }
@@ -623,22 +627,22 @@ function enterEyeSize(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_eyesize = 0;
     ((s as any).pc_desc ?? {})['eye size'] = '';
     ((s as any).pc_descWordy ?? {})['eye size'] = 'little';
-    ((s as any).pc_descFull ?? {})['eyes'] = 'You have little ' + qspUntranslated(s, "pcs_eyecolor>", { location: "body_desc" }) + ' eyes <<$pcs_lashes_txt>>.<<$glasses>>';
+    // TODO-QSP: $pc_descFull['eyes'] = 'You have little <<$pcs_eyecolor>> eyes <<$pcs_lashes_txt>>.<<$glasses>>'
   } else {
     if (((s as any).pcs_eyesize ?? 0) === 1) {
       ((s as any).pc_desc ?? {})['eye size'] = '';
       ((s as any).pc_descWordy ?? {})['eye size'] = 'medium-sized';
-      ((s as any).pc_descFull ?? {})['eyes'] = 'You have medium-sized ' + qspUntranslated(s, "pcs_eyecolor>", { location: "body_desc" }) + ' eyes <<$pcs_lashes_txt>>.<<$glasses>>';
+      // TODO-QSP: $pc_descFull['eyes'] = 'You have medium-sized <<$pcs_eyecolor>> eyes <<$pcs_lashes_txt>>.<<$glasses>>'
     } else {
       if (((s as any).pcs_eyesize ?? 0) === 2) {
         ((s as any).pc_desc ?? {})['eye size'] = 'large';
         ((s as any).pc_descWordy ?? {})['eye size'] = 'large, expressive';
-        ((s as any).pc_descFull ?? {})['eyes'] = 'You have large ' + qspUntranslated(s, "pcs_eyecolor>", { location: "body_desc" }) + ' eyes <<$pcs_lashes_txt>>.<<$glasses>>';
+        // TODO-QSP: $pc_descFull['eyes'] = 'You have large <<$pcs_eyecolor>> eyes <<$pcs_lashes_txt>>.<<$glasses>>'
       } else {
         (s as any).pcs_eyesize = 3;
         ((s as any).pc_desc ?? {})['eye size'] = 'huge';
         ((s as any).pc_descWordy ?? {})['eye size'] = 'huge';
-        ((s as any).pc_descFull ?? {})['eyes'] = 'You have huge ' + qspUntranslated(s, "pcs_eyecolor>", { location: "body_desc" }) + ' eyes that almost look like they\'re out of an anime, <<$pcs_lashes_txt>>.<<$glasses>>';
+        // TODO-QSP: $pc_descFull['eyes'] = 'You have huge <<$pcs_eyecolor>> eyes that almost look like they''re out of an anime, <<$pcs_lashes_txt>>.<<$glasses>>'
       }
     }
   }
@@ -1435,8 +1439,8 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).pc_desc ?? {})['hair'] = '' + qspUntranslated(s, "pc_desc['hair status']>", { location: "body_desc" }) + ', <<$pc_desc[\'hair length\']>> <<$pc_desc[\'hair colour\']>> <<$pc_descWordy[\'hair texture\']>>';
-  ((s as any).pc_descWordy ?? {})['hair'] = '' + qspUntranslated(s, "pc_desc['hair status']>", { location: "body_desc" }) + ', <<$pc_descWordy[\'hair length\']>> <<$pc_descWordy[\'hair texture\']>> of <<$pc_descWordy[\'hair colour\']>>';
+  // TODO-QSP: $pc_desc['hair'] = '<<$pc_desc[''hair status'']>>, <<$pc_desc[''hair length'']>> <<$pc_desc[''hair colour'']>> <<$pc_descWordy[''hair texture'']>>'
+  // TODO-QSP: $pc_descWordy['hair'] = '<<$pc_desc[''hair status'']>>, <<$pc_descWordy[''hair length'']>> <<$pc_descWordy[''hair texture'']>> of <<$pc_descWordy[''hair colour'']>>'
   return;
   scene.build();
 }

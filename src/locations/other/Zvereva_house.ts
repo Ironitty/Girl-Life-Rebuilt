@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'Zvereva_schedule', '');
@@ -225,7 +229,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSlyBedro(s, scene);
       break;
     default:
-      enterFrontDoor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -236,6 +240,5 @@ export const Zvereva_house: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
-  description: ['The Zvereva family house is quite impressive.'],
   enter: enter,
 };

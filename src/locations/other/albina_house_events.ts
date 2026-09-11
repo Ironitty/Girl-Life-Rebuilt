@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['KnowsHouse'] === 0) {
     ((s as any).AlbinaQW ?? {})['KnowsHouse'] = 1;
@@ -619,29 +623,8 @@ function enterSwimWinter1(s: GameState, scene: SceneBuilder): void {
     { label: 'No swimsuit', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/pool_winter.jpg');
     scene.text('"I don\'t have a swimsuit," you protest, but Albina just gives you an amused look.');
-    scene.text('"You\'re not wearing panties, are you?" she smirks.');
-    // TODO-QSP: end !}
-    scene.actions([
-      { label: 'Blush', handler: (st: GameState) => {
-    scene.text('Your face burns, giving up the ghost without a word.');
-    scene.text('"Ha! I knew it! Just go nude then," she grins, snapping off her own bottoms. "It\'s nothing we haven\'t done before."');
-    // TODO-QSP: else !}
     scene.text('"Then go in your underwear," she smirks.');
     qspCall(s, 'albina_house_events', 'swim_winter2');
-    scene.actions([
-      { label: 'Admit you\'re not wearing any', handler: (st: GameState) => {
-    scene.actions([
-      { label: 'Shyly', handler: (st: GameState) => {
-    scene.text('"But I\'m..." you blush. "... Not wearing any."');
-  } },
-      { label: 'Openly', handler: (st: GameState) => {
-    scene.text('"I would, but I\'m not actually wearing right now," you reply with a smirk.');
-  } },
-    ]);
-  } },
-    ]);
-  } },
-    ]);
   } },
   ]);
   scene.build();
@@ -2491,7 +2474,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAlbBedroomShower(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

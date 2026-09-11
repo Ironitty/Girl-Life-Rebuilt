@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).hunterVars ?? 0)?.['were_met'] > 0) {
@@ -4889,7 +4893,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRng_9(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -4898,6 +4902,5 @@ export const hunters: LocationDef = {
   name: 'hunters',
   title: 'The three hunters, Sergei, Igor and Andrei are sitting and t',
   region: 'other',
-  description: ['The three hunters, Sergei, Igor and Andrei are sitting and telling each other all kinds of hunting stories.'],
   enter: enter,
 };

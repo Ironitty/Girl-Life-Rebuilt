@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGoForWalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
     scene.text('<center><h2>Pavlovsk Park</h2></center>');
@@ -1188,7 +1192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGopniks(s, scene);
       break;
     default:
-      enterGoForWalk1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1198,6 +1202,5 @@ export const pav_parkev: LocationDef = {
   title: '<center><h2>Pavlovsk Park</h2></center>',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['You go for a walk along the main square of Pavlovsk Park. During the summer, it\'s one of the primary places in town where locals and tourists enjoy spending their spare time. As long as the weather is nice, it\'s always busy; people are resting, walking, playing and dating to their heart\'s desires, enjoying the pleasant surroundings.'],
   enter: enter,
 };

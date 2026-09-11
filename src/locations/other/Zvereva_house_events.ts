@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChrisWalkHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big18.jpg');
@@ -225,7 +229,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBedChat(s, scene);
       break;
     default:
-      enterChrisWalkHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -234,6 +238,5 @@ export const Zvereva_house_events: LocationDef = {
   name: 'Zvereva_house_events',
   title: '"About time, bitch. Come on, lets go." She starts walking aw',
   region: 'other',
-  description: ['"About time, bitch. Come on, lets go." She starts walking away at a brisk pace. You follow, making sure to stay at least one step behind her.'],
   enter: enter,
 };

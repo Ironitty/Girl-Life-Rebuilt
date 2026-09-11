@@ -4,6 +4,10 @@ import { dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ballet ?? 0)?.['debug'] === 1) {
     ((s as any).debug ?? {})['code'] = 1;
@@ -16,7 +20,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_id'); } }]);
   scene.build();
 }

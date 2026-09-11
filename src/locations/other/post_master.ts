@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/postoffice/postmaster.jpg');
@@ -425,7 +429,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterJobOffer(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -434,6 +438,5 @@ export const post_master: LocationDef = {
   name: 'post_master',
   title: 'Resign from your job',
   region: 'other',
-  description: ['The manager of the post office, also known as the postmaster, has just finished helping a customer and is about to walk back to his office when he spots you.'],
   enter: enter,
 };

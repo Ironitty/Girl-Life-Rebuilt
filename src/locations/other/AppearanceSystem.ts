@@ -7,6 +7,21 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).args ?? 0)[0] === 'UpdateBaseAppearance') {
+    // TODO-QSP: Base Appearance is updated once a day at midnight and called from cikl
+    // TODO-QSP: Base Appearance is calculated from:
+    // TODO-QSP: vidage, skin, body shape (fat and strength), attributes (endurance and agility)
+    (s as any).attributeBonus = qspFunc(s, 'AppearanceSystem', 'CalcAttributeBonus');
+    (s as any).skinBonus = ((s as any).pcs_skin ?? 0) / 10;
+    (s as any).bodyShapeBonus = qspFunc(s, 'AppearanceSystem', 'CalcBodyShapeBonus');
+    (s as any).visibleAgePenalty = qspFunc(s, 'AppearanceSystem', 'CalcVisibleAgePenalty');
+    (s as any).teethPenalty = qspFunc(s, 'AppearanceSystem', 'CalcTeethPenalty');
+    (s as any).pcs_apprncbase = ((s as any).skinBonus ?? 0) + ((s as any).bodyShapeBonus ?? 0) + ((s as any).attributeBonus ?? 0) - ((s as any).visibleAgePenalty ?? 0) - ((s as any).teethPenalty ?? 0) + ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0);
+  }
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).clothingBonus = qspFunc(s, 'AppearanceSystem', 'CalcClothingBonus');
   (s as any).accessoriesBonus = qspFunc(s, 'AppearanceSystem', 'CalcAccessoriesBonus');
   (s as any).groomingBonus = qspFunc(s, 'AppearanceSystem', 'CalcGroomingBonus');

@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.text('<b><center><font size="4">Manager Andrew M. Sobulyagin</font></center></b>');
   if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'fired') {
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
@@ -703,6 +707,5 @@ export const andrey: LocationDef = {
   name: 'andrey',
   title: 'Unfortunately, both shifts conflict with your existing schedule.',
   region: 'other',
-  description: ['You knock on Mr. Sobulyagin\'s office door, and when he sees you enter, his expression hardens. "What do you want," he questions you with a scowl.'],
   enter: enter,
 };

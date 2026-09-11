@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  return;
+  scene.build();
+}
+
 function enterBuyTrainPass(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['trainpass_day']) {
     scene.actions([
@@ -134,7 +139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSetTrainTicket(s, scene);
       break;
     default:
-      enterBuyTrainPass(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

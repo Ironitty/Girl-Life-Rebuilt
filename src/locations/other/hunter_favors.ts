@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['were_met'] === 1  &&  ((s as any).util_rand_favor ?? 0) < 3) {
     (s as any).util_rand_favor = Math.floor(Math.random() * 3) + 1;
@@ -782,7 +786,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNighttimeEntertainment(s, scene);
       break;
     default:
-      enterHousekeepingRequest(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

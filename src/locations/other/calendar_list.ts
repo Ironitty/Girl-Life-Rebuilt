@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInitEventVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['id'] = '';
   ((s as any).event_vars ?? {})['title'] = '';
@@ -1300,7 +1304,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCyclePhase_3(s, scene);
       break;
     default:
-      enterInitEventVars(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLevelUpInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).vballVars ?? {})['volleyball_practice'] = ((s as any).vball_lvl ?? 0);
   ((s as any).vballVars ?? {})['blocking_practice'] = ((s as any).pcs_vball_block ?? 0);
@@ -779,13 +783,945 @@ function enterArrival(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You\'re finally let in and begin warming up.');
-  if (((s as any).vballVars ?? 0)?.['coachsex'] > 0) {
-    scene.actions([
-      { label: 'See the coach for a good luck fuck' }, // TODO-QSP: empty action body
-    ]);
-  }
   scene.actions([
     { label: 'Warm ups', goto: ['volleyball_ev', 'warm_ups'] },
+  ]);
+  scene.build();
+}
+
+function enterWarmUps(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/pc/activities/volleyball/court.jpg');
+  scene.text('You and your team begin passing back and forth to each other, practicing serves, spikes, and receives, getting your bodies ready for the match. And soon enough, it\'s time for it to begin.');
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  qspCall(s, 'stat', '');
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    scene.text('The coin toss comes up in your favor and your team gets to decide whether you serve first or receive first.');
+    if (((s as any).vballVars ?? 0)?.['team_captain'] === 1) {
+      scene.text('Which will it be?');
+      scene.actions([
+        { label: 'Serve first', handler: (st: GameState) => {
+    scene.img('images/pc/activities/volleyball/court.jpg');
+    scene.text('"We\'ll serve first," you say.');
+    scene.actions([
+      { label: 'Get ready', goto: ['volleyball_ev', 'serve_start'] },
+    ]);
+  } },
+        { label: 'Receive first', handler: (st: GameState) => {
+    scene.img('images/pc/activities/volleyball/court.jpg');
+    scene.text('"We\'ll serve first," you say.');
+    scene.actions([
+      { label: 'Get ready', goto: ['volleyball_ev', 'serve_start'] },
+    ]);
+  } },
+      ]);
+    } else {
+      if ((Math.floor(Math.random() * 100) + 0) < ((s as any).pcs_vball_serve ?? 0)  ||  ((s as any).pcs_vball_serve ?? 0) >= 65) {
+        if (((s as any).pcs_vball_serve ?? 0) > 35  &&  ((s as any).vballVars ?? 0)?.['libero'] !== 1) {
+          scene.text('"We\'ll serve first," your team captain says and looks back at you.');
+          // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You're up!" Coach Mikhail calls from the bench.
+          scene.text(`"${((s as any).pcs_lastname ?? 0)}! You're up!" Coach Mikhail calls from the bench.`);
+          scene.actions([
+            { label: 'Serve', goto: ['volleyball_ev', 'serve_start'] },
+          ]);
+        } else {
+          scene.text('"We\'ll serve first," your team captain says and heads back to the team, nodding at the one who you decided would be the first to serve.');
+          scene.text('The match has officially begun…');
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+          } else {
+            ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          }
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        }
+      } else {
+        scene.text('"We\'ll receive first," your team captain says, and then heads back to the court as all of you take your positions.');
+        scene.actions([
+          { label: 'Wait for the serve', goto: ['volleyball_ev', 'receive_start'] },
+        ]);
+      }
+    }
+  } else {
+    scene.text('The coin toss comes up in their favor and the opposing team gets to decide whether they serve first or receive first.');
+    if (((s as any).vballVars ?? 0)?.['opp_defense'] > ((s as any).vballVars ?? 0)?.['opp_attack']) {
+      if (((s as any).pcs_vball_serve ?? 0) > 35) {
+        scene.text('"We\'ll receive first," their team captain says. Your own captain nods in response and looks back at you.');
+        // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You're up!" Coach Mikhail calls from the bench as you nod ba...
+        scene.text(`"${((s as any).pcs_lastname ?? 0)}! You're up!" Coach Mikhail calls from the bench as you nod back.`);
+        scene.actions([
+          { label: 'Serve', goto: ['volleyball_ev', 'serve_start'] },
+        ]);
+      } else {
+        scene.text('"We\'ll receive first," their team captain says. Your own captain nods in response and looks back at the one who you decided would be the first to serve.');
+        scene.text('The match has officially begun…');
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
+          ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+        } else {
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+        }
+        scene.actions([
+          { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+        ]);
+      }
+    } else {
+      scene.text('"We\'ll serve first," their captain says. Your own captain nods back and heads back to the court as all of you take your positions');
+      scene.actions([
+        { label: 'Wait for the serve', goto: ['volleyball_ev', 'receive_start'] },
+      ]);
+    }
+  }
+  scene.build();
+}
+
+function enterPointCheck(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 3);
+  ((s as any).vballVars ?? {})['opp_att_penalty'] = 0;
+  qspCall(s, 'stat', '');
+  if (((s as any).vballVars ?? 0)?.['team_points'] >= 5) {
+    scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'victory'] }]);
+  } else {
+    if (((s as any).vballVars ?? 0)?.['opp_points'] >= 5) {
+      scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'defeat'] }]);
+    } else {
+      if (((s as any).pcs_stam ?? 0) <= 5) {
+        scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'collapse'] }]);
+      } else {
+        if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+          scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'serve'] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'randomizer'] }]);
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterRandomizer(s: GameState, scene: SceneBuilder): void {
+  ((s as any).vballVars ?? {})['random'] = Math.floor(Math.random() * 5) + 0;
+  if (((s as any).vballVars ?? 0)?.['random'] < 2) {
+    scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'free_ball'] }]);
+  } else {
+    if (((s as any).vballVars ?? 0)?.['random'] < 4) {
+      scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'opp_spike'] }]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['random'] === 4) {
+        scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'serve'] }]);
+      }
+    }
+  }
+  scene.build();
+}
+
+function enterFreeBall(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/pc/activities/volleyball/receive/1.mp4');
+  scene.text('"Free ball!" you shout as the ball soars high over the net towards your team.');
+  scene.text('Your team just got in a good attack but didn\'t manage to score a point off of it. Fortunately, it seemed to take your opponents off balance and they couldn\'t attack back, forced to use all three of their touches just to get it back over the net.');
+  scene.text('As the ball begins to come back down, you need to decide what to do next.');
+  qspCall(s, 'volleyball_ev', 'block_follow');
+  qspCall(s, 'volleyball_ev', 'set');
+  qspCall(s, 'volleyball_ev', 'spike');
+  qspCall(s, 'volleyball_ev', 'spike_fake');
+  scene.build();
+}
+
+function enterOppSpike(s: GameState, scene: SceneBuilder): void {
+  scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
+  scene.text('"Here it comes!" you shout as your opponents jump up to spike the ball.');
+  scene.text('They had a clean receive on their end and they quickly turned it into an attack. Once you see them coming back, you decide to…');
+  qspCall(s, 'volleyball_ev', 'block');
+  qspCall(s, 'volleyball_ev', 'receive');
+  scene.build();
+}
+
+function enterCollapse(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/pc/activities/volleyballcollapse.jpg');
+  scene.text('You rush forward towards the ball when suddenly your legs give out from underneath you. The world spins and you\'re hit with a wave of confusion before slamming into the ground and blacking out.');
+  scene.actions([
+    { label: 'Regain consciousness', handler: (st: GameState) => {
+    scene.img('images/pc/activities/volleyball/court.jpg');
+    if (((s as any).Lariska_team ?? 0) === 1) {
+      scene.text('You groan as you slowly open your eyes, blinking as your vision transitions from blurry to sharp and you see Lariska\'s concerned face above yours, your head in her lap.');
+      scene.text('"Wha… what happened?"');
+      scene.text('"You collapsed!" she says. "One second you were playing and then the next you were sprawled out on the court!"');
+    } else {
+      scene.text('You groan as you slowly open your eyes, blinking as your vision transitions from blurry to sharp and you see Coach Mikhail\'s face above yours, your teammates all surrounding you as well.');
+      scene.text('"Wha… what happened?"');
+      scene.text('"You collapsed," Coach Mikhail says. "You were pushing yourself too hard. Exhausted yourself."');
+    }
+    scene.text('"Oh…"');
+    scene.actions([
+      { label: 'Continue',  },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReceiveStats(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+  ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 3) + 1;
+  ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+  ((s as any).vballVars ?? {})['rec'] = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_vball_rec ?? 0) / 4 - ((s as any).vballVars ?? {})?.['exhaust'];
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+  scene.build();
+}
+
+function enterBlock(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Go for a block', handler: (st: GameState) => {
+    qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+    ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 2) + 2;
+    ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 4);
+    ((s as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense'] - 40) {
+      if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['team_defense'] + ((s as any).pcs_vball_block ?? 0) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
+        scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'block3_win'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'block3_fail'] }]);
+      }
+    } else {
+      if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense'] - 20) {
+        if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['team_defense'] / 2 + ((s as any).pcs_vball_block ?? 0) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
+          scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'block2_win'] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'block2_fail'] }]);
+        }
+      } else {
+        if ((Math.floor(Math.random() * 50) + 1) + ((s as any).pcs_vball_block ?? 0) > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
+          scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'block1_win'] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'block1_fail'] }]);
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBlock1Win(s: GameState, scene: SceneBuilder): void {
+  ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+  scene.img('images/pc/activities/volleyball/block/1_win.jpg');
+  scene.text('You were the only one to see the spike coming and find yourself jumping up by yourself trying to block it.');
+  scene.text('The ball connects with your opponents hand and flies forward, slamming into your hands and bouncing back down to their side of the court.');
+  scene.text('Your teammates cheer at your miraculous one man shutout while the girl you just blocked glares at you from beyond the net. You just earned another point!');
+  scene.actions([
+    { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+  ]);
+  scene.build();
+}
+
+function enterBlock1Fail(s: GameState, scene: SceneBuilder): void {
+  ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+  scene.img('images/pc/activities/volleyball/block/1_fail.mp4');
+  scene.text('You were the only one to see the spike coming and find yourself jumping up by yourself trying to block it.');
+  scene.text('But one girl\'s arms do not make a good wall and your opponent easily spikes the ball straight past you into the court on your side.');
+  scene.text('You grit your teeth at the loss of another point to the opposing team.');
+  scene.actions([
+    { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+  ]);
+  scene.build();
+}
+
+function enterBlock2Win(s: GameState, scene: SceneBuilder): void {
+  ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+  scene.img('images/pc/activities/volleyball/block/2_win.jpg');
+  scene.text('You and one other girl get into position in time before the spike. With careful coordination, the two of you jump up together and slap the ball down right as it gets spiked from your opponent\'s hand.');
+  scene.text('Woo! Another point!');
+  scene.actions([
+    { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+  ]);
+  scene.build();
+}
+
+function enterBlock2Fail(s: GameState, scene: SceneBuilder): void {
+  ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+  scene.img('images/pc/activities/volleyball/block/2_fail.jpg');
+  scene.text('You and one other girl get into position in time before the spike. The two of you jump up together but when the spike comes, it\'s more powerful than you can handle and it blows straight through your arms.');
+  scene.text('You grit your teeth in anger while the other team cheers for the point they won.');
+  scene.actions([
+    { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+  ]);
+  scene.build();
+}
+
+function enterBlock3Win(s: GameState, scene: SceneBuilder): void {
+  ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+  scene.img('images/pc/activities/volleyball/block/3_win.jpg');
+  scene.text('Your team manages to get a full 3-man wall of defenders in position just before the spike comes. With careful timing, you all jump up together to form a wide wall with nowhere for the enemy to aim past. The ball gets spiked into your arms and falls straight back down on their side.');
+  scene.text('Your team cheers together! You scored another point!');
+  scene.actions([
+    { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+  ]);
+  scene.build();
+}
+
+function enterBlock3Fail(s: GameState, scene: SceneBuilder): void {
+  ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+  scene.img('images/pc/activities/volleyball/block/3_fail.jpg');
+  scene.text('Your team manages to get a full 3-man wall of defenders in position just before the ball comes down. Unfortunately, your timing is way off and they spike the ball straight over your hands into the court.');
+  scene.text('You grit your teeth in anger while the other team cheers for the point they won.');
+  scene.actions([
+    { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+  ]);
+  scene.build();
+}
+
+function enterBlockFollow(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Follow-up in case of block', handler: (st: GameState) => {
+    qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+    ((s as any).vballVars ?? {})['block_follow'] = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_vball_rec ?? 0) / 4 - ((s as any).vballVars ?? {})?.['exhaust'];
+    if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['team_attack'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
+      scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
+      scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
+      scene.text('Fortunately, there was no need at all as your team\'s spike goes cleanly through your opponent\'s defense and scores a clean point!');
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['block_follow'] > 70) {
+        scene.img('images/pc/activities/volleyball/receive/1.jpg');
+        scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
+        scene.text('And a good thing that you did. Your opponents manage to get up a block in time and the ball bounces right off it, coming back towards your side of the court. You quickly move in, bumping it high into the air, trying to give your team another opportunity to attack.');
+        qspCall(s, 'volleyball_ev', 'spike');
+        qspCall(s, 'volleyball_ev', 'fake_spike');
+      } else {
+        if (((s as any).vballVars ?? 0)?.['block_follow'] > 50) {
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            scene.img('images/pc/activities/volleyball/receive/2.jpg');
+            ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+            scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
+            scene.text('And a good thing that you did. Your opponents manage to get up a block in time and the ball bounces right off it, coming back towards your side of the court. You quickly move in, bumping it back into the air, but it\'s lower than you hoped. Still, somehow somebody gets it in front of a spiker and scores your team a point!');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          } else {
+            scene.img('images/pc/activities/volleyball/block/2.mp4');
+            ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+            scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
+            scene.text('And a good thing that you did. Your opponents manage to get up a block in time and the ball bounces right off it, coming back towards your side of the court. You quickly move in, bumping it back into the air.');
+            scene.text('Unfortunately, it goes right back over the net and your opponents spike it straight back down, scoring a point against you.');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          }
+        } else {
+          scene.img('images/pc/activities/volleyball/receive/dive2.jpg');
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
+          scene.text('And unfortunately, they do. Perfectly. You and some of the other girls dive for the ball as it bounces off the block, but not one of you get a hand on the ball before it touches the ground, and it costs you a point.');
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReceiveStart(s: GameState, scene: SceneBuilder): void {
+  scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
+  scene.text('You and your teammates take your defensive positions.');
+  scene.text('This is the first point of the game… Whoever wins this will have a morale boost right off the bat, could set the flow for the rest of the game…');
+  scene.text('<i>Pressure\'s on…</i>');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/pc/activities/volleyball/receive/dive2.jpg');
+    scene.text('The serve comes up and flies over the net, directly towards you!');
+    scene.actions([
+      { label: 'Receive!', handler: (st: GameState) => {
+    qspCall(s, 'volleyball_ev', 'receive_stats');
+    if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
+      scene.img('images/pc/activities/volleyball/receive/1.mp4');
+      scene.text('You lunge forward, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
+      qspCall(s, 'volleyball_ev', 'block_follow');
+      qspCall(s, 'volleyball_ev', 'spike2');
+    } else {
+      if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
+          ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+          scene.img('images/pc/activities/volleyball/receive/3.jpg');
+          scene.text('You lunge forward arm outstretched and just somehow barely get your arms under it before it flies past you. The force of the serve knocks you onto your ass, but somehow you still manage to get it up in the air.');
+          scene.text('Your team rallies from your reception and immediately manages to score! They grab you in a group hug, cheering for you.');
+          scene.text('<i>The first point is ours!</i>');
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        } else {
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          scene.img('images/pc/activities/volleyball/receive/3.jpg');
+          scene.text('You lunge forward arm outstretched and just somehow barely get your arms under it before it flies past you. The force of the serve knocks you onto your ass, but somehow you still manage to get it up in the air.');
+          scene.text('Unfortunately, it was all for nothing. With such a shakey reception, your team can\'t get an attack out of it, forcing them to bump it over the net. The following attack smashes past all of you and you\'re forced to give up the first point of the match.');
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        }
+      } else {
+        if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+          ((s as any).vballVars ?? {})['service'] = 0;
+        }
+        ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+        scene.img('images/pc/activities/volleyball/receive/4.jpg');
+        scene.text('You lunge forward arm outstretched but the serve is too powerful for you. It smashes into your arms before flying past you and your teammates, not one of you able to do a thing as it bounces out of your reach.');
+        scene.text('"No worries, no worries," your teammates all say to each other around you, trying to rally back from losing the first point.');
+        scene.actions([
+          { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReceive(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Dig to receive (bump)', handler: (st: GameState) => {
+    qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+    ((s as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    if (((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense']) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.img(`images/pc/activities/volleyball/receive/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
+      scene.text('You\'re fully prepared to receive the ball but it proves unnecessary when your teammates on the front line jump up to block the shot.');
+      scene.text('You cheer, congratulating your comrades for managing to score another point.');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
+        qspCall(s, 'volleyball_ev', 'receive_stats');
+        scene.img('images/pc/activities/volleyball/receive/1.mp4');
+        scene.text('Your opponents jump up for their spike and you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
+        qspCall(s, 'volleyball_ev', 'block_follow');
+        qspCall(s, 'volleyball_ev', 'spike2');
+      } else {
+        if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
+          qspCall(s, 'volleyball_ev', 'receive_stats');
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+            scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
+            scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
+            scene.text('Your team rallies from your dive and even manage to score off of it! They grab you in a group hug, cheering for you and your miraculous save.');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          } else {
+            qspCall(s, 'volleyball_ev', 'receive_stats');
+            ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+            scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
+            scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
+            scene.text('Unfortunately, it was all for nothing. Bouncing off your hand, it\'s too low for your team and they have to send it over the net without a proper attack before your opponents immediately spike it right back.');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          }
+        } else {
+          qspCall(s, 'volleyball_ev', 'receive_stats');
+          if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+            ((s as any).vballVars ?? {})['service'] = 0;
+          }
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          scene.img('images/pc/activities/volleyball/receive/dive2.jpg');
+          scene.text('Your opponents smash a spike over the net.');
+          scene.text('The team dives for the ball but not a single one of you can get a hand on it, a clean point won for your opponents.');
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReceive2(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Receive the spike', handler: (st: GameState) => {
+    qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+    ((s as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    if (((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense']) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.img(`images/pc/activities/volleyball/block/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
+      scene.text('Shaken by your serve, they barely manage to get it up to spike, at which point your team is already in position to jump right up in front of it to block, totally shutting them out.');
+      scene.text('Your teammates cheer from the bench as you score another point!');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
+        qspCall(s, 'volleyball_ev', 'receive_stats');
+        scene.img('images/pc/activities/volleyball/block/1.mp4');
+        scene.text('Obviously put off balance by your serve, you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
+        qspCall(s, 'volleyball_ev', 'block_follow');
+        qspCall(s, 'volleyball_ev', 'spike');
+      } else {
+        if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
+          qspCall(s, 'volleyball_ev', 'receive_stats');
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+            scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
+            scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
+            scene.text('Your team rallies from your dive and even manage to score off of it! They grab you in a group hug, cheering for you and your miraculous save.');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          } else {
+            ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+            scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
+            scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
+            scene.text('Unfortunately, it was all for nothing. Bouncing off your hand, it\'s too low for your team and they have to send it over the net without a proper attack before your opponents immediately spike it right back.');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          }
+        } else {
+          qspCall(s, 'volleyball_ev', 'receive_stats');
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+            ((s as any).vballVars ?? {})['service'] = 0;
+          }
+          scene.img('images/pc/activities/volleyball/receive/dive2.jpg');
+          scene.text('Your opponents smash a spike over the net.');
+          scene.text('The team dives for the ball but not a single one of you can get a hand on it, a clean point won for your opponents.');
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReceive3(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Receive the spike', handler: (st: GameState) => {
+    qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+    ((s as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    if (((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense']) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.img(`images/pc/activities/volleyball/block/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
+      scene.text('Despite how well they did receiving the ball, by the time they get it up to spike your team is already in position to jump right up in front of it to block, totally shutting them out.');
+      scene.text('Your teammates cheer from the bench as you score another point!');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
+        qspCall(s, 'volleyball_ev', 'receive_stats');
+        scene.img('images/pc/activities/volleyball/receive/1.mp4');
+        scene.text('Despite how well they did receiving the ball, you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
+        qspCall(s, 'volleyball_ev', 'block_follow');
+        qspCall(s, 'volleyball_ev', 'spike2');
+      } else {
+        if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
+          qspCall(s, 'volleyball_ev', 'receive_stats');
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+            scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
+            scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
+            scene.text('Your team rallies from your dive and even manage to score off of it! They grab you in a group hug, cheering for you and your miraculous save.');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          } else {
+            ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+            scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
+            scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
+            scene.text('Unfortunately, it was all for nothing. Bouncing off your hand, it\'s too low for your team and they have to send it over the net without a proper attack before your opponents immediately spike it right back.');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          }
+        } else {
+          qspCall(s, 'volleyball_ev', 'receive_stats');
+          if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+            ((s as any).vballVars ?? {})['service'] = 0;
+          }
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          scene.img('images/pc/activities/volleyball/receive/dive2.jpg');
+          scene.text('Your opponents smash a spike over the net.');
+          scene.text('The team dives for the ball but not a single one of you can get a hand on it, a clean point won for your opponents.');
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterServeStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+  ((s as any).vballVars ?? {})['service'] = 1;
+  ((s as any).vballVars ?? {})['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_serve - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+  ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+  scene.img('images/pc/activities/volleyball/serve/pre.jpg');
+  scene.text('You exhale slowly as you hold the ball in your hands.');
+  scene.text('This is the first point of the game. How this goes could possibly determine the flow of the rest of the game…');
+  scene.text('<i>Pressure\'s on…</i>');
+  scene.actions([
+    { label: 'Serve the ball', handler: (st: GameState) => {
+    if (((s as any).pcs_vball_serve ?? 0) < 20) {
+      scene.img('images/pc/activities/volleyball/serve/jump.jpg');
+    } else {
+      scene.img('images/pc/activities/volleyball/serve/over.jpg');
+    }
+    if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense'] + 20) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.text('Your hand whips forward, making perfect contact with the ball which soars forward over the net and straight past your opponents defenders. It bounces off the court with a thud and your team cheers with glee.');
+      scene.text('Service ace! For the first point of the game!');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
+        ((s as any).vballVars ?? {})['opp_att_penalty'] = (((s as any).vballVars ?? {})['opp_att_penalty'] ?? 0) + (20);
+        ((s as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+        scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders manage to get a hand on the ball, but your spike was powerful enough that it wasn\'t a good reception.');
+        scene.text('Despite that, they still manage to get the ball up and it looks like they\'ll manage to get in an attack. You rush to a defensive position, preparing for if they manage to get past the block.');
+        qspCall(s, 'volleyball_ev', 'receive2');
+      } else {
+        if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
+          scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders were ready for you and bump the ball high into the air. It looks like they\'re going to get a good opportunity to spike. Quickly, you get into your own defensive position and prepare to receive the ball.');
+          qspCall(s, 'volleyball_ev', 'receive3');
+        } else {
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+            ((s as any).vballVars ?? {})['service'] = 0;
+          }
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            scene.text('Your hand whips forward, slapping into the ball which soars forward and directly into the net.');
+            scene.text('<i>God fucking damn it! A fucking net ball?! For the first point of the game?!</i>');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          } else {
+            scene.text('Your hand whips forward, slapping into the ball which soars forward and right out of bounds of the court. You hiss as you realize your serve just cost your team a point.');
+            scene.text('<i>God fucking damn it! An out of bounds serve?! For the first point of the game?!</i>');
+            scene.actions([
+              { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+            ]);
+          }
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterServe(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
+  ((s as any).vballVars ?? {})['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_serve - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+  ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 3) + 3;
+  ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+  scene.img('images/pc/activities/volleyball/serve/pre.jpg');
+  if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+    scene.text('A teammate throws the ball back to you. You close your eyes, going through your pre-serve rhythm.');
+    scene.text('"One more point!" your team shouts at you from the bench.');
+    scene.text('Opening your eyes, you focus on the spot you intend to aim at. The whistle blows and you toss throw the ball into the air and run forward, jumping up after it.');
+  } else {
+    ((s as any).vballVars ?? {})['service'] = 1;
+    scene.text('A teammate throws the ball to you. Your turn to serve.');
+    scene.text('You close your eyes, going through your pre-serve rhythm. Opening them, you focus on the spot you intend to aim at. The whistle blows and you toss throw the ball into the air and run forward, jumping up after it.');
+  }
+  scene.actions([
+    { label: 'Serve the ball', handler: (st: GameState) => {
+    if (((s as any).pcs_vball_serve ?? 0) < 20) {
+      scene.img('images/pc/activities/volleyball/serve/jump.jpg');
+    } else {
+      scene.img('images/pc/activities/volleyball/serve/over.jpg');
+    }
+    if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense'] + 20) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.text('Your hand whips forward, making perfect contact with the ball which soars forward over the net and straight past your opponents defenders. It bounces off the court with a thud and your team cheers with glee.');
+      scene.text('Service ace!');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
+        ((s as any).vballVars ?? {})['opp_att_penalty'] = (((s as any).vballVars ?? {})['opp_att_penalty'] ?? 0) + (20);
+        ((s as any).vballVars ?? {})['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+        scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders manage to get a hand on the ball, but your spike was powerful enough that it wasn\'t a good reception.');
+        scene.text('Despite that, they still manage to get the ball up and it looks like they\'ll manage to get in an attack. You rush to a defensive position, preparing for if they manage to get past the block.');
+        qspCall(s, 'volleyball_ev', 'receive2');
+      } else {
+        if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
+          scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders were ready for you and bump the ball high into the air. It looks like they\'re going to get a good opportunity to spike. Quickly, you get into your own defensive position and prepare to receive the ball.');
+          qspCall(s, 'volleyball_ev', 'receive3');
+        } else {
+          ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+          if (((s as any).vballVars ?? 0)?.['service'] === 1) {
+            ((s as any).vballVars ?? {})['service'] = 0;
+          }
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            scene.text('Your hand whips forward, slapping into the ball which soars forward and directly into the net. You hiss as you realize your serve just cost your team a point.');
+          } else {
+            scene.text('Your hand whips forward, slapping into the ball which soars forward and right out of bounds of the court. You hiss as you realize your serve just cost your team a point.');
+          }
+          if (((s as any).pcs_vball_serve ?? 0) < 35) {
+            scene.text('<i>Man, you really need to work on your serves…</i>');
+          }
+          scene.actions([
+            { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+          ]);
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSet(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Prepare to set', handler: (st: GameState) => {
+    scene.img(`images/pc/activities/volleyball/set/${Math.floor(Math.random() * 3) + 1}.jpg`);
+    ((s as any).vballVars ?? {})['set'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (pcs_vball_set - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
+    ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    scene.text('You quickly get under the ball and toss it towards one of your teammates, setting them up to spike.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).vballVars ?? 0)?.['set'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
+      scene.img('images/pc/activities/volleyball/spike/1.mp4');
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.text('The ball soars from your hands over the court to your teammate as she jumps up into the air. Your toss is absolutely perfect and allows her to nail a straight right past your opponents.');
+      scene.text('She pumps her fist in victory and you and your teammates cheer her on!');
+      scene.text('"Nice kill! Nice kill!"');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      scene.img(`images/pc/activities/volleyball/block/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
+      ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+      scene.text('The ball soars from your hands over the court to your teammate as she jumps up into the air. Unfortunately, your opponents get a read on you and jump up in time to shut down your teammate\'s spike.');
+      scene.text('She screams in frustration as your teammates try to console you both.');
+      scene.text('"No worries! No worries! Let\'s get the next one!"');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSpike(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Go for a spike', handler: (st: GameState) => {
+    ((s as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_spike - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
+    ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    scene.img(`images/pc/activities/volleyball/spike/run/${Math.floor(Math.random() * 2) + 1}.jpg`);
+    scene.text('You take a step back before running forward, bending your knees and throwing your arms back, preparing to vault into a jump to spike the ball.');
+    if (((s as any).vballVars ?? 0)?.['position'] !== '') {
+      // TODO-QSP: dynamic text: "<<$vballVars['position']>>!" you call, leaping into the air.
+      scene.text(`"${((s as any).vballVars ?? 0)?.['position']}!" you call, leaping into the air.`);
+    }
+    scene.actions([
+      { label: 'Spike it!', handler: (st: GameState) => {
+    if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.img('images/pc/activities/volleyball/spike/1.mp4');
+      scene.text('You throw your hand forward, smashing the ball over the net, right past your opponents, and into the court on the other side.');
+      scene.text('Another point! Your team cheers for you.');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
+        scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
+        scene.text('Your opponents manage to cleanly receive your spike even though it got past the block. You can see they\'re already getting ready to counterattack back and you quickly need to decide what your next move is.');
+        qspCall(s, 'volleyball_ev', 'block');
+        qspCall(s, 'volleyball_ev', 'receive');
+      } else {
+        ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+        scene.img(`images/pc/activities/volleyball/block/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
+        scene.text('You throw your hand forward, smashing the ball over the net… and straight into the waiting block of your opponents.');
+        scene.text('The ball bounces off their hands and straight into the court on your side of the net, costing your team a point.');
+        scene.actions([
+          { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSpike2(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Go for a spike', handler: (st: GameState) => {
+    ((s as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_spike - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
+    ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    scene.img(`images/pc/activities/volleyball/spike/run/${Math.floor(Math.random() * 2) + 1}.jpg`);
+    scene.text('You decide to go on the offense, running forward, bending your knees and throwing your arms back, preparing to spike the ball from the back line.');
+    scene.actions([
+      { label: 'Spike it!', handler: (st: GameState) => {
+    if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.img('images/pc/activities/volleyball/spike/1.mp4');
+      scene.text('You throw your hand forward, smashing the ball over the net and into the court on the other side.');
+      scene.text('Another point! Your team cheers for you.');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
+        scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
+        scene.text('Your opponents manage to cleanly receive your spike even though it got past the block. You can see they\'re already getting ready to counterattack back and you quickly need to decide what your next move is.');
+        qspCall(s, 'volleyball_ev', 'block');
+        qspCall(s, 'volleyball_ev', 'receive');
+      } else {
+        ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+        scene.img(`images/pc/activities/volleyball/receive/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
+        scene.text('You throw your hand forward, smashing the ball over the net… and straight into the waiting block of your opponents.');
+        scene.text('The ball bounces off their hands and straight into the court on your side of the net, costing your team a point.');
+        scene.actions([
+          { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSpikeFake(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Fake a spike, provide distraction', handler: (st: GameState) => {
+    ((s as any).vballVars ?? {})['spike'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (pcs_vball_spike - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    ((s as any).vballVars ?? {})['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
+    ((s as any).vballVars ?? {})['exhaust'] = (((s as any).vballVars ?? {})['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    scene.text('You decide to try and distract the enemy and draw their attention away from the real spikers.');
+    scene.actions([
+      { label: 'Jump!', handler: (st: GameState) => {
+    if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
+      ((s as any).vballVars ?? {})['team_points'] = (((s as any).vballVars ?? {})['team_points'] ?? 0) + (1);
+      scene.img('images/pc/activities/volleyball/spike/2.mp4');
+      scene.text('You run forward as if the ball really were coming to you and fling yourself into the empty air. Your fake is so effective that it causes defenders to jump towards you even as the ball to a completely different person on your team, who spikes it straight into the court.');
+      scene.text('Another point! You and your team cheer for the girl who scored the it.');
+      scene.text('"Nice kill!"');
+      scene.actions([
+        { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+      ]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
+        scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
+        scene.text('You fling yourself into the empty air, fully taking a spiker\'s form as if the ball really were coming to you. Your jump manages to fool one of the defenders and your teammate spikes it past the others, but they still manage to get a good receive in, bumping the ball high into the air over their side.');
+        scene.text('The ball is coming back! How are you going to try to stop it?');
+        qspCall(s, 'volleyball_ev', 'block');
+        qspCall(s, 'volleyball_ev', 'receive');
+      } else {
+        ((s as any).vballVars ?? {})['opp_points'] = (((s as any).vballVars ?? {})['opp_points'] ?? 0) + (1);
+        scene.img('images/pc/activities/volleyball/receive/3_win.jpg');
+        scene.text('You fling yourself into the empty air, fully taking a spiker\'s form as if the ball really were coming to you. But it doesn\'t fool a single person on the enemy team, who all jump up in front of the girl who was really getting the ball, totally blocking out her spike.');
+        scene.text('The ball bounces off their hands and straight into the court on your side of the net, costing your team a point.');
+        scene.actions([
+          { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterVictory(s: GameState, scene: SceneBuilder): void {
+  scene.img(`images/pc/activities/volleyball/match/victory${Math.floor(Math.random() * 2) + 1}.jpg`);
+  ((s as any).vballVars ?? {})['result'] = 1;
+  ((s as any).vballVars ?? {})['wins'] = (((s as any).vballVars ?? {})['wins'] ?? 0) + (1);
+  // TODO-QSP: $vballVars['match_result_<<vballVars[''opponent'']>>'] = 'victory'
+  scene.text('Victory!');
+  // TODO-QSP: dynamic text: The match is over, the scoreboard reading 25 to <<vballVars['opp_points'] * 5 + ...
+  scene.text(`The match is over, the scoreboard reading 25 to ${((s as any).vballVars ?? {})?.['opp_points'] * 5 + (Math.floor(Math.random() * 5) + 0)}. You won!`);
+  scene.text('"We did it!" you cheer, the whole team gathering together for a team hug.');
+  scene.text('"Alright, good job girls!" Coach Mikhail says, congratulating you. "Let\'s pack up now. Make sure we leave nothing behind. You can all shower back at the community centre."');
+  scene.text('"Yes coach!" the team replies in unison before quickly dispersing to carry out his orders.');
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 61) + 0);
+  qspCall(s, 'exercise', 'tier2', 40, 'vball');
+  qspCall(s, 'exercise', 'tier2', 20, 'vball', 'stren', 'agil', 'vital', 'react', 'prcptn');
+  qspCall(s, 'fame', 'pav', 'volleyball', 'medium');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Pack up and drive back', goto: ['volleyball_ev', 'drive_back'] },
+  ]);
+  scene.build();
+}
+
+function enterDefeat(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/pc/activities/volleyball/match/defeat1.jpg');
+  // TODO-QSP: $vballVars['match_result_<<vballVars[''opponent'']>>'] = 'defeat'
+  ((s as any).vballVars ?? {})['result'] = (-1);
+  ((s as any).vballVars ?? {})['losses'] = (((s as any).vballVars ?? {})['losses'] ?? 0) + (1);
+  // TODO-QSP: dynamic text: The match is over, the scoreboard reading <<(vballVars['team_points'] * 5) + ran...
+  scene.text(`The match is over, the scoreboard reading ${(((s as any).vballVars ?? {})?.['team_points'] * 5) + (Math.floor(Math.random() * 5) + 0)} to 25. Your team… lost.`);
+  scene.text('Soft sniffles come from the team as you walk off the court, some girls wiping tears from their eyes even as others try to hold back sobs.');
+  scene.text('"It was a good hussle out there girls," Coach Mikhail says. "We\'ll talk about what went wrong and what can improve later. We\'ll get \'em next time. But right now, we need to pack up. Make sure we leave nothing behind. You can all shower back at the community centre."');
+  scene.text('"Yes coach," the team dejectedly, sluggishly dispersing to carry out his orders.');
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 61) + 0);
+  qspCall(s, 'exercise', 'tier2', 40, 'vball');
+  qspCall(s, 'exercise', 'tier2', 20, 'vball', 'stren', 'agil', 'vital', 'react', 'prcptn');
+  qspCall(s, 'fame', 'pav', 'volleyball', 'small');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Pack up and drive back', goto: ['volleyball_ev', 'drive_back'] },
+  ]);
+  scene.build();
+}
+
+function enterDriveBack(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/community/dk.jpg');
+  scene.text('Your team piles onto the bus and 20 minutes later, you are all back at the community centre.');
+  (s as any).minut = ((s as any).minut ?? 0) + 20;
+  qspCall(s, 'stat', '');
+  if (((s as any).vballVars ?? 0)?.['coachsex'] >= 6  ||  ((s as any).npc_rel ?? 0)?.['A69'] >= 90) {
+    if (((s as any).vballVars ?? 0)?.['result'] === -1) {
+      scene.actions([
+        { label: 'Go to Mikhail for comfort (sex)', goto: ['volley_coach', 'comfort_sex1'] },
+      ]);
+    } else {
+      if (((s as any).vballVars ?? 0)?.['result'] === 1) {
+        scene.actions([
+          { label: 'Celebrate with Mikhail (sex)', goto: ['volley_coach', 'victory_sex1'] },
+        ]);
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Continue', goto: ['gdksport', 'start'] },
   ]);
   scene.build();
 }
@@ -859,8 +1795,92 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'arrival':
       enterArrival(s, scene);
       break;
+    case 'warm_ups':
+      enterWarmUps(s, scene);
+      break;
+    case 'point_check':
+      enterPointCheck(s, scene);
+      break;
+    case 'randomizer':
+      enterRandomizer(s, scene);
+      break;
+    case 'free_ball':
+      enterFreeBall(s, scene);
+      break;
+    case 'opp_spike':
+      enterOppSpike(s, scene);
+      break;
+    case 'collapse':
+      enterCollapse(s, scene);
+      break;
+    case 'receive_stats':
+      enterReceiveStats(s, scene);
+      break;
+    case 'block':
+      enterBlock(s, scene);
+      break;
+    case 'block1_win':
+      enterBlock1Win(s, scene);
+      break;
+    case 'block1_fail':
+      enterBlock1Fail(s, scene);
+      break;
+    case 'block2_win':
+      enterBlock2Win(s, scene);
+      break;
+    case 'block2_fail':
+      enterBlock2Fail(s, scene);
+      break;
+    case 'block3_win':
+      enterBlock3Win(s, scene);
+      break;
+    case 'block3_fail':
+      enterBlock3Fail(s, scene);
+      break;
+    case 'block_follow':
+      enterBlockFollow(s, scene);
+      break;
+    case 'receive_start':
+      enterReceiveStart(s, scene);
+      break;
+    case 'receive':
+      enterReceive(s, scene);
+      break;
+    case 'receive2':
+      enterReceive2(s, scene);
+      break;
+    case 'receive3':
+      enterReceive3(s, scene);
+      break;
+    case 'serve_start':
+      enterServeStart(s, scene);
+      break;
+    case 'serve':
+      enterServe(s, scene);
+      break;
+    case 'set':
+      enterSet(s, scene);
+      break;
+    case 'spike':
+      enterSpike(s, scene);
+      break;
+    case 'spike2':
+      enterSpike2(s, scene);
+      break;
+    case 'spike_fake':
+      enterSpikeFake(s, scene);
+      break;
+    case 'victory':
+      enterVictory(s, scene);
+      break;
+    case 'defeat':
+      enterDefeat(s, scene);
+      break;
+    case 'drive_back':
+      enterDriveBack(s, scene);
+      break;
     default:
-      enterLevelUpInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

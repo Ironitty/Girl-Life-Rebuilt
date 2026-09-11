@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).phone_off = 0;
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'pav_residential', '');
@@ -394,6 +398,5 @@ export const pav_residential: LocationDef = {
   title: '<center><h2>Pavlovsk</h2></center>',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['You stop under the dim light of a streetlight. Breathing heavy, you occasionally stop to wince from the pain coming from your pussy. You convince yourself not to tell anyone, and to just get home, clean up and go to bed as soon as possible. The sooner you do that, the sooner you can forget this ever happened.'],
   enter: enter,
 };

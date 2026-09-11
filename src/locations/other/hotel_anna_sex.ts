@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLesSex(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -1675,7 +1679,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnnaDomBrat(s, scene);
       break;
     default:
-      enterLesSex(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1685,6 +1689,5 @@ export const hotel_anna_sex: LocationDef = {
   title: ' "Well sweetie, I will force you on nothing… but today you will be able to have only the submissive role in the session… Your clear disposition, made me think you\'ll need more time to come to the best solution for yourself. To be honest there will be no such a difference with the original session we planned…" ',
   region: 'other',
   locationType: 'event',
-  description: ['Leaving your clothes in the room you follow Anna next door.'],
   enter: enter,
 };

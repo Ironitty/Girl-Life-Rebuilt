@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFoyer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bdsm_hallway', 'check_foyer_events');
   qspCall(s, 'core_library', 'setloc', 'bdsm_hallway', 'foyer');
@@ -138,7 +142,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFoyerEvent_5(s, scene);
       break;
     default:
-      enterFoyer(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -148,6 +152,5 @@ export const bdsm_hallway: LocationDef = {
   title: 'You stand in the grand foyer, your eye is draw towards and u',
   region: 'other',
   locationType: 'private',
-  description: ['You stand in the grand foyer, your eye is draw towards and up the dual staircases. To your left is the Dinning room, to your right the dressing room.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNudeDebutMemory(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('Hello, if you are seeing this page it is either because you were already doing nude modelling on a save before this content was added or the game has bugged out for some reason.');
@@ -925,7 +929,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDebutEnding(s, scene);
       break;
     default:
-      enterNudeDebutMemory(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -934,6 +938,5 @@ export const foto_nude_debut: LocationDef = {
   name: 'foto_nude_debut',
   title: 'Hello, if you are seeing this page it is either because you ',
   region: 'other',
-  description: ['Hello, if you are seeing this page it is either because you were already doing nude modelling on a save before this content was added or the game has bugged out for some reason.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
   ((s as any).tempLCVars ?? {})['i'] = 0;
   ((s as any).tempLCVars ?? {})['maxi'] = 0;
@@ -25,10 +29,10 @@ function enterSetBaseSchedule(s: GameState, scene: SceneBuilder): void {
   ((s as any).tempLCVars2 ?? {})['type'] = qspUntranslated(s, "ARGS[2]", { location: "lover_call" });
   if (((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  ((((s as any).tempLCVars2 ?? 0)?.['ID']).length) > 1  &&  !isNaN(((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1))) && ((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1)) !== '') {
     if (((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'girlfriend') {
-      ((s as any).tempLCVars2 ?? {})['OutCode'] = qspUntranslated(s, "\"gt 'lover_call', 'callingTheLover', '<<tempLCVars2['ID']>>'\"", { location: "lover_call" });
+      // TODO-QSP: $tempLCVars2['OutCode'] = "gt 'lover_call', 'callingTheLover', '<<$tempLCVars2['ID']>>'"
       ((s as any).tempLCVars2 ?? {})['OutSched'] = "((s as any).npc_meetday ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] < ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20";
       if (((s as any).tempLCVars2 ?? 0)?.['type'] !== 0) {
-        ((s as any).tempLCVars2 ?? {})['InCode'] = qspUntranslated(s, "\"gs 'lover_call', 'lover', '<<tempLCVars2['ID']>>'\"", { location: "lover_call" });
+        // TODO-QSP: $tempLCVars2['InCode'] = "gs 'lover_call', 'lover', '<<$tempLCVars2['ID']>>'"
         ((s as any).tempLCVars2 ?? {})['InSched'] = "((s as any).totminut ?? 0) > ((s as any).totminut ?? 0) + (9 - ((s as any).hour ?? 0)) * 24 + (Math.floor(Math.random() * 601) + 0) - ((s as any).minut ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20";
       } else {
         ((s as any).tempLCVars2 ?? {})['InCode'] = '';
@@ -983,7 +987,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNPCCallsForDate(s, scene);
       break;
     default:
-      enterScheduler(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

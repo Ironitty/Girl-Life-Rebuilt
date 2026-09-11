@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNudeModelConvo(s: GameState, scene: SceneBuilder): void {
   ((s as any).hunterVars ?? {})['knowfoto'] = 1;
   ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (5);
@@ -386,7 +390,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBringFood(s, scene);
       break;
     default:
-      enterNudeModelConvo(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -395,6 +399,5 @@ export const hunter_ambient: LocationDef = {
   name: 'hunter_ambient',
   title: '"I\'m telling you, I\'ve seen her pictures in a men\'s magazine',
   region: 'other',
-  description: ['"I\'m telling you, I\'ve seen her pictures in a men\'s magazine." you overhear Igor.'],
   enter: enter,
 };

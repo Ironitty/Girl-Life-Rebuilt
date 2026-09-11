@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetEventColor(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_color_idx = (((s as any).ARGS ?? 0)[1] - 1) % 20;
   if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
@@ -608,7 +612,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRenderEmptyCell(s, scene);
       break;
     default:
-      enterGetEventColor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

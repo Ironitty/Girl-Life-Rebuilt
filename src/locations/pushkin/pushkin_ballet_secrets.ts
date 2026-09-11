@@ -4,6 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).setloc ?? {})['imagepath'] = 'locations/pushkin/ballet_secrets';
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'init');
   ((s as any).setloc ?? {})['StageTitle'] = 'Ballet Secrets';
@@ -551,7 +556,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnergyDrink(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -562,6 +567,5 @@ export const pushkin_ballet_secrets: LocationDef = {
   region: 'pushkin',
   locationType: 'public_indoors',
   locclass: 'changingroom',
-  description: ['You enter the shop getting greeted by a riot of displays showcasing ballet and other dance equipment. A woman is sewing something in the corner and glances at you before continuing.'],
   enter: enter,
 };

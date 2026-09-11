@@ -6,7 +6,11 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.text('This page should never appear. Please report this bug including a description of how you got here.');
   if (((s as any).locArgs?.[0] ?? 0) === 'debug') {
     if (((s as any).settingmode ?? 0) > 0) {
@@ -276,10 +280,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const nichUtil: LocationDef = {
   name: 'nichUtil',
   title: 'This page should never appear. Please report this bug includ',
   region: 'other',
-  description: ['This page should never appear. Please report this bug including a description of how you got here.'],
   enter: enter,
 };

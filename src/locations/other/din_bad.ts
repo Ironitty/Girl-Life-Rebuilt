@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMobileCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).menu_off ?? 0) === 1) {
     // TODO-QSP: exit
@@ -1546,7 +1550,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
       if (((s as any).wombthfath ?? 0) === 'unknown'  ||  ((s as any).wombthfath ?? 0) === '') {
         ((s as any).stat_texts ?? {})['cycle_state'] = 'You are pregnant. Based on the last period you remember, your due date is probably around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
       } else {
-        ((s as any).stat_texts ?? {})['cycle_state'] = 'You are pregnant with ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '\'s baby. Based on the last period you remember, your due date is probably around <<$pregduedate>>.';
+        // TODO-QSP: $stat_texts['cycle_state'] = 'You are pregnant with <<$wombthfath>>''s baby. Based on the last period you remember, your due date is probably around <<$pregduedate>>.'
       }
     }
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/know_pregnant', 3, "gs 'din...
@@ -1560,7 +1564,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
       if (((s as any).wombthfath ?? 0) === 'unknown'  ||  ((s as any).wombthfath ?? 0) === '') {
         ((s as any).stat_texts ?? {})['cycle_state'] = 'You think you might be pregnant. Based on the last period you remember, your due date would be around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
       } else {
-        ((s as any).stat_texts ?? {})['cycle_state'] = 'You think you might be pregnant with ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '\'s baby. Based on the last period you remember, your due date would be around <<$pregduedate>>.';
+        // TODO-QSP: $stat_texts['cycle_state'] = 'You think you might be pregnant with <<$wombthfath>>''s baby. Based on the last period you remember, your due date would be around <<$pregduedate>>.'
       }
     }
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/think_pregnant', 3, "gs 'di...
@@ -1760,18 +1764,18 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
     if (((s as any).cycle ?? 0) === 2) {
-      ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are ovulating.';
+      // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since the start of your last period.<<$stat_texts[''cycle_feel'']>> You are ovulating.'
     } else {
       if (((s as any).cycle ?? 0) === 1  &&  ((s as any).focH ?? 0) > ((s as any).focH_max ?? 0) - 96) {
-        ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are approaching ovulation.';
+        // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since the start of your last period.<<$stat_texts[''cycle_feel'']>> You are approaching ovulation.'
       } else {
         if (((s as any).cycle ?? 0) === 1) {
-          ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are in your follicular phase.';
+          // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since the start of your last period.<<$stat_texts[''cycle_feel'']>> You are in your follicular phase.'
         } else {
           if (((s as any).cycle ?? 0) === 3) {
-            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are in your luteal phase.';
+            // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since the start of your last period.<<$stat_texts[''cycle_feel'']>> You are in your luteal phase.'
           } else {
-            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>>';
+            // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since the start of your last period.<<$stat_texts[''cycle_feel'']>>'
           }
         }
       }
@@ -1779,19 +1783,19 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_intel ?? 0) >= 50) {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe'  &&  ((s as any).temp ?? 0)[1] < 6) {
-        ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your follicular phase, early in your cycle.';
+        // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> You think you are in your follicular phase, early in your cycle.'
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-          ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your luteal phase.';
+          // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> You think you are in your luteal phase.'
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe'  &&  ((s as any).temp ?? 0)[1] < 8) {
-            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are approaching your fertile window.';
+            // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> You think you are approaching your fertile window.'
           } else {
             if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-              ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are leaving your fertile window.';
+              // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> You think you are leaving your fertile window.'
             } else {
               if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-                ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your fertile window.';
+                // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> You think you are in your fertile window.'
               } else {
                 ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.';
               }
@@ -1801,15 +1805,15 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-        ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> It should be safe to have unprotected sex.';
+        // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> It should be safe to have unprotected sex.'
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-          ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> It might be a little risky to have unprotected sex.';
+          // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> It might be a little risky to have unprotected sex.'
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your fertile window.';
+            // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>> You think you are in your fertile window.'
           } else {
-            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>>';
+            // TODO-QSP: $stat_texts['cycle_state'] = 'It has been <<temp[1]>> days since you last remember having a period.<<$stat_texts[''cycle_feel'']>>'
           }
         }
       }
@@ -1920,7 +1924,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterComputeCycleState(s, scene);
       break;
     default:
-      enterMobileCheck(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

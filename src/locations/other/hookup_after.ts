@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterExit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   ((s as any).stat ?? {})['hookup'] = (((s as any).stat ?? {})['hookup'] ?? 0) + (1);
@@ -161,9 +165,6 @@ function enterCreampiePanic(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You put your hand to your head as you begin to feel faint.');
-  scene.text('<i>What was I thinking? What if I get an STD?! Why didn\'t I insist on a condom...</i>');
-  scene.text('<i>What was I thinking? What if I get an STD? What if I get pregnant?! Why didn\'t I insist on a condom...</i>');
-  // TODO-QSP: end !}
   // TODO-QSP: dynamic text: "Jeez, I didn't know you were going to freak out like this," <<$npcdesc>> says, ...
   scene.text(`"Jeez, I didn't know you were going to freak out like this," ${((s as any).npcdesc ?? 0)} says, holding his hands up defensively. "Just chill out! You can buy a morning-after pill tomorrow, it'll be fine."`);
   scene.actions([
@@ -375,7 +376,6 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end !}
   if (((s as any).hookup ?? 0)?.['creampie_ask'] === 0) {
     scene.actions([
       { label: 'Did you just cum inside me?', handler: (st: GameState) => {
@@ -409,7 +409,6 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Yeah, your pussy was so tight, I just couldn\'t help it."');
     }
-    // TODO-QSP: end !}
     if (((s as any).hookup ?? 0)?.['not_inside'] === 1  ||  ((s as any).hookup ?? 0)?.['condom'] === 2  ||  ((s as any).hookup ?? 0)?.['condom'] === 3) {
       scene.actions([
         { label: 'Forgive the mistake', handler: (st: GameState) => {
@@ -528,138 +527,11 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'Ugh, two pump chump' }, // TODO-QSP: empty action body
     ]);
   } },
     ]);
   }
   qspCall(s, 'hookup_after', 'preg_responsibility_glare');
-  scene.actions([
-    { label: 'Did you just cum inside me?', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'hands', ((s as any).npcID ?? 0), 1);
-    if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
-      scene.img('images/shared/sex/cum/vagcreampie/oops.jpg');
-      // TODO-QSP: dynamic text: "Did you just..." <<$npcdesc>> pulls out of you. You feel something trickle from...
-      scene.text(`"Did you just..." ${((s as any).npcdesc ?? 0)} pulls out of you. You feel something trickle from your pussy and your eyes go wide. "... come inside me?"`);
-    } else {
-      if (((s as any).hookup ?? 0)?.['position'] === 'doggy') {
-        scene.img('images/shared/sex/cum/vagcreampie/drip1.mp4');
-        scene.text('"Did you just..." You wait a few heartbeats and you feel something continue to drip from your pussy. Still a bit stunned, you reach between your legs and wipe your pussy with your hand. It comes back with white liquid smeared acoss it. "... come inside me?"');
-      } else {
-        if (((s as any).hookup ?? 0)?.['position'] === 'cowgirl') {
-          if (((s as any).hookup ?? 0)?.['creampie_exit'] === 1) {
-            scene.text('"Did you just... cum inside me?"');
-          } else {
-            scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
-            // TODO-QSP: dynamic text: A bit stunned, you carefully pull yourself off of <<$npcdesc>>'s cock. As it pop...
-            scene.text(`A bit stunned, you carefully pull yourself off of ${((s as any).npcdesc ?? 0)}'s cock. As it pops from your pussy, you feel a glob of something leak out. Wiping with your hand, it comes back with white liquid smeared across it.`);
-          }
-        }
-      }
-    }
-    if (((s as any).hookup ?? 0)?.['not_inside'] === 1  ||  ((s as any).hookup ?? 0)?.['condom'] > 2) {
-      scene.text('"I\'m so sorry! I didn\'t mean to! I know you told me not to, I just-! Really! I didn\'t mean to!"');
-    } else {
-      scene.text('"Yeah, your pussy was so tight, I just couldn\'t help it."');
-    }
-    if (((s as any).hookup ?? 0)?.['not_inside'] === 1  ||  ((s as any).hookup ?? 0)?.['condom'] === 2  ||  ((s as any).hookup ?? 0)?.['condom'] === 3) {
-      scene.actions([
-        { label: 'Forgive the mistake', handler: (st: GameState) => {
-    scene.img('images/shared/sex/cum/cum6.jpg');
-    scene.text('"It\'s okay I guess," you say, leaning back, letting the cum continue trickling out of you.');
-    qspCall(s, 'hookup_after', 'pre');
-    qspCall(s, 'hookup_talk', 'pillow_talk1');
-  } },
-      ]);
-    }
-    scene.actions([
-      { label: 'What the fuck!', handler: (st: GameState) => {
-    scene.img('images/shared/sex/cum/cum111.jpg');
-    scene.text('"What the fuck!" you shout, scrambling backwards off the bed to look down at your pussy, horrified by the white liquid dripping from your snatch.');
-    qspCall(s, 'hookup_after', 'creampie_mad');
-  } },
-      { label: 'Panic!', handler: (st: GameState) => {
-    scene.img('images/shared/sex/cum/cum111.jpg');
-    scene.text('"Holy shit!" you shout, scrambling backwards off the bed to look down at your pussy, horrified by the white liquid dripping from your snatch.');
-    qspCall(s, 'hookup_after', 'creampie_panic');
-  } },
-      { label: 'Just wondering', handler: (st: GameState) => {
-    if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
-      scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
-      scene.text('"It\'s fine," you say, looking at him through your legs. "I was just wondering."');
-    } else {
-      if (((s as any).hookup ?? 0)?.['position'] === 'doggy') {
-        scene.img('images/shared/sex/cum/vagcreampie/doggy1.jpg');
-        scene.text('"It\'s fine," you say, laying down on your stomach and snuggling your face into the pillow while the cum drips from your pussy. "Was just wondering."');
-      } else {
-        if (((s as any).hookup ?? 0)?.['position'] === 'cowgirl') {
-          scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
-          scene.text('"It\'s fine," you say, looking at him through your legs. "I was just wondering."');
-        }
-      }
-    }
-    qspCall(s, 'hookup_after', 'pre');
-    qspCall(s, 'hookup_talk', 'pillow_talk1');
-  } },
-      { label: 'That\'s hot', handler: (st: GameState) => {
-    if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
-      scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
-      scene.text('"That\'s..." You prop yourself up on your elbows, looking down between your legs, letting the cum trickle from your pussy.');
-    } else {
-      if (((s as any).hookup ?? 0)?.['position'] === 'doggy') {
-        scene.img('images/shared/sex/cum/vagcreampie/doggy1.jpg');
-        scene.text('"That\'s..." You lay down on your stomach, letting the cum slowly ooze from between your legs.');
-      } else {
-        if (((s as any).hookup ?? 0)?.['position'] === 'cowgirl') {
-          scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
-          scene.text('"That\'s..." You lay back on the bed, letting the cum continue to trickle from your pussy.');
-        }
-      }
-    }
-    scene.text('"... <i>sooooooo hot,</i>" you moan, shivers running across your body as you feel another glob of spunk drip from your just-fucked snatch.');
-    scene.text('"Got a bit of a creampie fetish don\'t you?"');
-    if (((s as any).hookup ?? 0)?.['creampie_surprise'] === 1) {
-      scene.actions([
-        { label: 'Premature ejaculation is hot', handler: (st: GameState) => {
-    scene.text('"It\'s not that," you shake your head. It\'s premature ejaculation."');
-    // TODO-QSP: dynamic text: <<$npcdesc>> gives you a look.
-    scene.text(`${((s as any).npcdesc ?? 0)} gives you a look.`);
-    scene.text('"Seriously."');
-    scene.text('You nod in satisfaction, feeling a glob of cum leak out of you.');
-    scene.text('"I\'m so sexy and desirable that a guy can\'t hold his load? Can\'t help but nut inside of me? <i>So</i> fucking hot!"');
-    qspCall(s, 'hookup_after', 'pre');
-  } },
-      ]);
-    }
-    // TODO-QSP: end !}
-    if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
-      scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
-      scene.text('You prop yourself up on your elbows, looking down between your legs, letting the cum trickle from your pussy.');
-    } else {
-      if (((s as any).hookup ?? 0)?.['position'] === 'doggy') {
-        scene.img('images/shared/sex/cum/vagcreampie/doggy1.jpg');
-        scene.text('You lay down on your stomach, letting the cum slowly ooze from between your legs.');
-      } else {
-        if (((s as any).hookup ?? 0)?.['position'] === 'cowgirl') {
-          scene.img('images/shared/sex/cum/cum6.jpg');
-          scene.text('You lay back on the bed, letting the cum continue to trickle from your pussy.');
-        }
-      }
-    }
-    scene.text('"If I get pregnant, you better take responsibility for this."');
-    scene.text('Though the words carry a heavy weight, you say it with a smile to let him know you\'re only teasing. Though you really hope you don\'t get pregnant off of this...');
-    qspCall(s, 'hookup_after', 'pre');
-    scene.actions([
-      { label: 'Maybe', handler: (st: GameState) => {
-    scene.text('"Maybe..."');
-    qspCall(s, 'hookup_after', 'pre');
-    qspCall(s, 'hookup_talk', 'pillow_talk1');
-  } },
-    ]);
-  } },
-    ]);
-  } },
-  ]);
   scene.build();
 }
 
@@ -2604,7 +2476,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSleep(s, scene);
       break;
     default:
-      enterExit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

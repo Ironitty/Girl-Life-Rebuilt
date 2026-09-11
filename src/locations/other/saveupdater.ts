@@ -217,19 +217,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :saveupdaterloop853_1
     if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 5) {
-      ((s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_outcast_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "i>", { location: "saveupdater" }) + '\']) + \'\'"><<$npc_usedname["A<<i>>"]>></a>';
+      // TODO-QSP: $npcGoSchool['A<<i>>'] = '<a href="exec:gt ''gschool_outcast_chats'', ''' + $lcase($npc_usedname['A<<i>>']) + '''"><<$npc_usedname["A<<i>>"]>></a>'
     } else {
       if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4) {
-        ((s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_gopnik_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "i>", { location: "saveupdater" }) + '\']) + \'\'"><<$npc_usedname["A<<i>>"]>></a>';
+        // TODO-QSP: $npcGoSchool['A<<i>>'] = '<a href="exec:gt ''gschool_gopnik_chats'', ''' + $lcase($npc_usedname['A<<i>>']) + '''"><<$npc_usedname["A<<i>>"]>></a>'
       } else {
         if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 3) {
-          ((s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_nerd_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "i>", { location: "saveupdater" }) + '\']) + \'\'"><<$npc_usedname["A<<i>>"]>></a>';
+          // TODO-QSP: $npcGoSchool['A<<i>>'] = '<a href="exec:gt ''gschool_nerd_chats'', ''' + $lcase($npc_usedname['A<<i>>']) + '''"><<$npc_usedname["A<<i>>"]>></a>'
         } else {
           if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2) {
-            ((s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_jock_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "i>", { location: "saveupdater" }) + '\']) + \'\'"><<$npc_usedname["A<<i>>"]>></a>';
+            // TODO-QSP: $npcGoSchool['A<<i>>'] = '<a href="exec:gt ''gschool_jock_chats'', ''' + $lcase($npc_usedname['A<<i>>']) + '''"><<$npc_usedname["A<<i>>"]>></a>'
           } else {
             if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
-              ((s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_coolkid_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "i>", { location: "saveupdater" }) + '\']) + \'\'"><<$npc_usedname["A<<i>>"]>></a>';
+              // TODO-QSP: $npcGoSchool['A<<i>>'] = '<a href="exec:gt ''gschool_coolkid_chats'', ''' + $lcase($npc_usedname['A<<i>>']) + '''"><<$npc_usedname["A<<i>>"]>></a>'
             }
           }
         }
@@ -3314,7 +3314,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).su_i = 0;
       // TODO-QSP: :zaprFreplaceloop
       if (((qspUntranslated(s, "blackmailQW[\u00000\u0000]", { location: "saveupdater" })).indexOf(('zaprF'))) + 1 > 0) {
-        ((s as any).blackmailQW ?? {})['selfie_location_' + String((s as any).su_i || '') + ''] = qspUntranslated(s, "replace(blackmailQW['selfie_location_<<su_i>>'], 'zaprF', 'fuelstation')", { location: "saveupdater" });
+        // TODO-QSP: $blackmailQW['selfie_location_<<su_i>>'] = replace($blackmailQW['selfie_location_<<su_i>>'], 'zaprF', 'fuelstation')
       }
       (s as any).su_i = ((s as any).su_i ?? 0) + (1);
       if (((s as any).su_i ?? 0) < 10) {

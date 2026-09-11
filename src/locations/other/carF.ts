@@ -6,6 +6,70 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: If $ARGS[0] = 'highway':
+  if (((s as any).nroad ?? 0) > 0) {
+    scene.actions([
+      { label: 'Drive toward St. Petersburg', handler: (st: GameState) => {
+    (s as any).driving = qspUntranslated(s, "val(driveStr)", { location: "carF" });
+    if (((s as any).driving ?? 0) >= 0  &&  ((s as any).driving ?? 0) <= ((s as any).nroad ?? 0)) {
+      (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).driving ?? 0)+1)/2);
+      (s as any).nroad = ((s as any).nroad ?? 0) - (((s as any).driving ?? 0));
+      // TODO-QSP: dynamic text: You drive for <<(driving+1)/2>> minutes along the Highway towards Pavlovsk
+      scene.text(`You drive for ${(((s as any).driving ?? 0)+1)/2} minutes along the Highway towards Pavlovsk`);
+      qspCall(s, 'stat', '');
+    }
+    qspCall(s, 'carF', 'highway');
+  } },
+    ]);
+  }
+  if (((s as any).nroad ?? 0) < 19) {
+    scene.actions([
+      { label: 'Drive towards Pavlovsk', handler: (st: GameState) => {
+    (s as any).driving = qspUntranslated(s, "val(driveStr)", { location: "carF" });
+    if (((s as any).driving ?? 0) >= 0  &&  ((s as any).driving ?? 0) <= 20 - ((s as any).nroad ?? 0)) {
+      (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).driving ?? 0)+1)/2);
+      (s as any).nroad = ((s as any).nroad ?? 0) + (((s as any).driving ?? 0));
+      // TODO-QSP: dynamic text: You drive for <<(driving+1)/2>> minutes along the Highway towards Pavlovsk
+      scene.text(`You drive for ${(((s as any).driving ?? 0)+1)/2} minutes along the Highway towards Pavlovsk`);
+      qspCall(s, 'stat', '');
+    }
+    qspCall(s, 'carF', 'highway');
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Drive to St. Petersburg (0:<<nroad/2 + 5>>)', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You drive along the Highway for <<nroad/2 + 5>> and arrive at the outskirts of S...
+    scene.text(`You drive along the Highway for ${((s as any).nroad ?? 0)/2 + 5} and arrive at the outskirts of St. Petersburg.`);
+    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nroad ?? 0)/2 + 5);
+    ((s as any).car ?? {})['city_sup_region'] = '';
+    qspCall(s, 'carF', 'city');
+  } },
+    { label: 'Drive to Pavlovsk (0:<<(20 - nroad)/2 + 5>>)', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You drive along the Highway for <<(20 - nroad)/2 + 5>> and arrive at the outskir...
+    scene.text(`You drive along the Highway for ${(20 - ((s as any).nroad ?? 0))/2 + 5} and arrive at the outskirts of Pavlovsk.`);
+    (s as any).minut = ((s as any).minut ?? 0) + ((20 - ((s as any).nroad ?? 0))/2 + 5);
+    qspCall(s, 'carF', 'pav');
+  } },
+    { label: 'Drive to Pushkin (0:<<(19- nroad)/2 + 1>>)', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You drive along the Highway for <<(19 - nroad)/2 + 1>> and arrive at the center ...
+    scene.text(`You drive along the Highway for ${(19 - ((s as any).nroad ?? 0))/2 + 1} and arrive at the center of Pushkin.`);
+    (s as any).minut = ((s as any).minut ?? 0) + ((19 - ((s as any).nroad ?? 0))/2);
+    qspCall(s, 'car_funcs', 'setloc', 'pushkin', '', 'pushkin');
+    qspCall(s, 'carF', 'nearby', 1);
+    scene.actions([
+      { label: 'Park and get out', goto: ['pushkin', ''] },
+    ]);
+  } },
+    { label: 'Park and get out', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'car_funcs', 'setloc', 'road', '' + qspUntranslated(s, "nroad>", { location: "carF" }) + '', 'other');
+  }, goto: ['road', ''] },
+  ]);
+  scene.build();
+}
+
 function enterEnddrive(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['car_funcs', 'goto_car'] }]);
   scene.build();
@@ -411,7 +475,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSalon(s, scene);
       break;
     default:
-      enterEnddrive(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

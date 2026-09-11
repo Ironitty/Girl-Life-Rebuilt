@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDinSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['htday'] !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'boyStat', 'A4');
@@ -1708,7 +1712,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStraponCrossdressBjMagicSecond(s, scene);
       break;
     default:
-      enterDinSex(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1717,6 +1721,5 @@ export const igorsex: LocationDef = {
   name: 'igorsex',
   title: 'Igor\'s sister\'s room',
   region: 'other',
-  description: ['Both of you quickly undress while kissing, pulling the clothes off each other.'],
   enter: enter,
 };

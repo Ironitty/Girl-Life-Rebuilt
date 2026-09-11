@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'worksalon', 'start');
   qspCall(s, 'stat', '');
@@ -511,7 +515,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter3(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -521,6 +525,5 @@ export const worksalon: LocationDef = {
   title: 'Beauty Salon',
   region: 'other',
   locationType: 'event',
-  description: ['You show up to work and see your coworkers already working. You give them a friendly wave as you head over to your work station.'],
   enter: enter,
 };

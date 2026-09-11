@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_parks', 'start');
   qspCall(s, 'stat', '');
@@ -300,7 +304,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLuzhayka(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -311,6 +315,5 @@ export const pushkin_parks: LocationDef = {
   region: 'pushkin',
   locationType: 'public_outdoors',
   locclass: 'city_park',
-  description: ['The gardens of the old palace have been sculpted over many years into a wonder landscape with a tranquil atmosphere.'],
   enter: enter,
 };

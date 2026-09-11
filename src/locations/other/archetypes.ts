@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFmtPts(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     return;
@@ -29,7 +33,7 @@ function enterClamp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_const ?? 0)?.['point_cap'] > 0) {
     ((s as any).arch_vars ?? {})['' + String((s as any).$ARGS[1] || '') + '_points'] = qspFunc(s, 'math', 'int_clamp', ((s as any).arch_vars ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_points'], 0, ((s as any).arch_const ?? 0)?.['point_cap']);
   } else {
-    ((s as any).arch_vars ?? {})['' + String((s as any).$ARGS[1] || '') + '_points'] = qspUntranslated(s, "max(0, arch_vars['<<ARGS[1]>>_points'])", { location: "archetypes" });
+    // TODO-QSP: arch_vars['<<$ARGS[1]>>_points'] = max(0, arch_vars['<<$ARGS[1]>>_points'])
   }
   return;
   scene.build();
@@ -1531,36 +1535,36 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
   ((s as any).cc ?? {})['bg+_hex'] = ((s as any).theme_hex ?? 0)?.['v_pos'];
   ((s as any).cc ?? {})['bg-_hex'] = ((s as any).theme_hex ?? 0)?.['v_neg'];
   ((s as any).cc ?? {})['__'] = '<td align="center" style="color:#555555;">—</td>';
-  ((s as any).cc ?? {})['b+1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'bimbo\', \'<small>↑</small>\') + \'</td>';
-  ((s as any).cc ?? {})['b+2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'bimbo\', \'↑\') + \'</td>';
-  ((s as any).cc ?? {})['b+4'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'bimbo b\', \'↑↑\') + \'</td>';
-  ((s as any).cc ?? {})['b-1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'bimbo\', \'<small>↓</small>\') + \'</td>';
-  ((s as any).cc ?? {})['b-2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'bimbo\', \'↓\') + \'</td>';
-  ((s as any).cc ?? {})['b-4'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'bimbo b\', \'↓↓\') + \'</td>';
-  ((s as any).cc ?? {})['p+1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'preppy\', \'<small>↑</small>\') + \'</td>';
-  ((s as any).cc ?? {})['p+2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'preppy\', \'↑\') + \'</td>';
-  ((s as any).cc ?? {})['p+4'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'preppy b\', \'↑↑\') + \'</td>';
-  ((s as any).cc ?? {})['p-1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'preppy\', \'<small>↓</small>\') + \'</td>';
-  ((s as any).cc ?? {})['p-2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'preppy\', \'↓\') + \'</td>';
-  ((s as any).cc ?? {})['p-4'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'preppy b\', \'↓↓\') + \'</td>';
-  ((s as any).cc ?? {})['r+1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'prude\', \'<small>↑</small>\') + \'</td>';
-  ((s as any).cc ?? {})['r+2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'prude\', \'↑\') + \'</td>';
-  ((s as any).cc ?? {})['r+4'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'prude b\', \'↑↑\') + \'</td>';
-  ((s as any).cc ?? {})['r+6'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'prude b\', \'↑↑↑\') + \'</td>';
-  ((s as any).cc ?? {})['r-1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'prude\', \'<small>↓</small>\') + \'</td>';
-  ((s as any).cc ?? {})['r-2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'prude\', \'↓\') + \'</td>';
-  ((s as any).cc ?? {})['r-4'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'prude b\', \'↓↓\') + \'</td>';
-  ((s as any).cc ?? {})['r-6'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'prude b\', \'↓↓↓\') + \'</td>';
-  ((s as any).cc ?? {})['u+1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'punk\', \'<small>↑</small>\') + \'</td>';
-  ((s as any).cc ?? {})['u+2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'punk\', \'↑\') + \'</td>';
-  ((s as any).cc ?? {})['u+4'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'punk b\', \'↑↑\') + \'</td>';
-  ((s as any).cc ?? {})['u-1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'punk\', \'<small>↓</small>\') + \'</td>';
-  ((s as any).cc ?? {})['u-2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'punk\', \'↓\') + \'</td>';
-  ((s as any).cc ?? {})['g+1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'goth\', \'<small>↑</small>\') + \'</td>';
-  ((s as any).cc ?? {})['g+2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'goth\', \'↑\') + \'</td>';
-  ((s as any).cc ?? {})['g+6'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg+_hex']> + '" style="<<$cc[\'bg+\']>>">\' + $func(\'wrap\', \'goth b\', \'↑↑↑\') + \'</td>';
-  ((s as any).cc ?? {})['g-1'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'goth\', \'<small>↓</small>\') + \'</td>';
-  ((s as any).cc ?? {})['g-2'] = '<td align="center" bgcolor="' + ((s as any).cc ?? {})?.['bg-_hex']> + '" style="<<$cc[\'bg-\']>>">\' + $func(\'wrap\', \'goth\', \'↓\') + \'</td>';
+  // TODO-QSP: $cc['b+1'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'bimbo', '<small>↑</small>') + '</td>'
+  // TODO-QSP: $cc['b+2'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'bimbo', '↑') + '</td>'
+  // TODO-QSP: $cc['b+4'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'bimbo b', '↑↑') + '</td>'
+  // TODO-QSP: $cc['b-1'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'bimbo', '<small>↓</small>') + '</td>'
+  // TODO-QSP: $cc['b-2'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'bimbo', '↓') + '</td>'
+  // TODO-QSP: $cc['b-4'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'bimbo b', '↓↓') + '</td>'
+  // TODO-QSP: $cc['p+1'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'preppy', '<small>↑</small>') + '</td>'
+  // TODO-QSP: $cc['p+2'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'preppy', '↑') + '</td>'
+  // TODO-QSP: $cc['p+4'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'preppy b', '↑↑') + '</td>'
+  // TODO-QSP: $cc['p-1'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'preppy', '<small>↓</small>') + '</td>'
+  // TODO-QSP: $cc['p-2'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'preppy', '↓') + '</td>'
+  // TODO-QSP: $cc['p-4'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'preppy b', '↓↓') + '</td>'
+  // TODO-QSP: $cc['r+1'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'prude', '<small>↑</small>') + '</td>'
+  // TODO-QSP: $cc['r+2'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'prude', '↑') + '</td>'
+  // TODO-QSP: $cc['r+4'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'prude b', '↑↑') + '</td>'
+  // TODO-QSP: $cc['r+6'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'prude b', '↑↑↑') + '</td>'
+  // TODO-QSP: $cc['r-1'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'prude', '<small>↓</small>') + '</td>'
+  // TODO-QSP: $cc['r-2'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'prude', '↓') + '</td>'
+  // TODO-QSP: $cc['r-4'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'prude b', '↓↓') + '</td>'
+  // TODO-QSP: $cc['r-6'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'prude b', '↓↓↓') + '</td>'
+  // TODO-QSP: $cc['u+1'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'punk', '<small>↑</small>') + '</td>'
+  // TODO-QSP: $cc['u+2'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'punk', '↑') + '</td>'
+  // TODO-QSP: $cc['u+4'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'punk b', '↑↑') + '</td>'
+  // TODO-QSP: $cc['u-1'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'punk', '<small>↓</small>') + '</td>'
+  // TODO-QSP: $cc['u-2'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'punk', '↓') + '</td>'
+  // TODO-QSP: $cc['g+1'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'goth', '<small>↑</small>') + '</td>'
+  // TODO-QSP: $cc['g+2'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'goth', '↑') + '</td>'
+  // TODO-QSP: $cc['g+6'] = '<td align="center" bgcolor="<<$cc[''bg+_hex'']>>" style="<<$cc[''bg+'']>>">' + $func('wrap', 'goth b', '↑↑↑') + '</td>'
+  // TODO-QSP: $cc['g-1'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'goth', '<small>↓</small>') + '</td>'
+  // TODO-QSP: $cc['g-2'] = '<td align="center" bgcolor="<<$cc[''bg-_hex'']>>" style="<<$cc[''bg-'']>>">' + $func('wrap', 'goth', '↓') + '</td>'
   ((s as any).cc ?? {})['tbl'] = '<table width="100%" cellpadding="3" cellspacing="0" style="font-size:0.88em;border-collapse:collapse;">';
   ((s as any).cc ?? {})['hdr'] = '<tr style="border-bottom:1px solid #888888;font-size:0.85em;"><th align="left">Condition</th>';
   ((s as any).cc ?? {})['hdr'] = (((s as any).cc ?? {})['hdr'] ?? 0) + ('<th align="center" width="52"><a href="exec:archetype_catalog_view=1 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'">\' + $func(\'wrap\', \'bimbo\', \'Bimbo\') + \'</a></th>');
@@ -1878,7 +1882,7 @@ function enterAggregate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :agg_loop
   if (((s as any).temp_agg ?? 0)?.['i'] < Object.keys((s as any).arch_log_minut ?? {}).length) {
     if (((s as any).arch_log_minut ?? 0)[((s as any).temp_agg ?? 0)?.['i']] >= ((s as any).temp_agg ?? 0)?.['cutoff']) {
-      ((s as any).temp_agg ?? {})['key'] = 'arch:' + qspUntranslated(s, "arch_log_archetype[temp_agg['i']]>", { location: "archetypes" }) + ', cat:<<$arch_log_cat[temp_agg[\'i\']]>>, w:<<temp_agg[\'window\']>>';
+      // TODO-QSP: $temp_agg['key'] = 'arch:<<$arch_log_archetype[temp_agg[''i'']]>>, cat:<<$arch_log_cat[temp_agg[''i'']]>>, w:<<temp_agg[''window'']>>'
       // TODO-QSP: agg[$temp_agg['key']] += arch_log_delta[temp_agg['i']]
     }
     ((s as any).temp_agg ?? {})['i'] = (((s as any).temp_agg ?? {})['i'] ?? 0) + (1);
@@ -1997,13 +2001,13 @@ function enterNotifyPopup(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_np ?? {})['i'] = (((s as any).temp_np ?? {})['i'] ?? 0) + (1);
     // TODO-QSP: jump 'np_walk_loop'
   }
-  ((s as any).temp_np ?? {})['out'] = '<font color="' + qspUntranslated(s, "theme_hex[temp_np['archetype']]>", { location: "archetypes" }) + '"><b><<$temp_np[\'disp\']>></b></font> <<$func(\'archetypes\',\'fmt_pts\',temp_np[\'total\'],\'fine\')>> this update<br><br>';
+  // TODO-QSP: $temp_np['out'] = '<font color="<<$theme_hex[$temp_np[''archetype'']]>>"><b><<$temp_np[''disp'']>></b></font> <<$func(''archetypes'',''fmt_pts'',temp_np[''total''],''fine'')>> this update<br><br>'
   ((s as any).temp_np ?? {})['ci'] = 0;
   // TODO-QSP: :np_cats_loop
   if (((s as any).temp_np ?? 0)?.['ci'] < 9) {
     ((s as any).temp_np ?? {})['ck'] = qspUntranslated(s, "temp_np_cats[temp_np['ci']]", { location: "archetypes" });
     if (((s as any).temp_np_cat_delta ?? 0)[((s as any).temp_np ?? 0)?.['ck']] !== 0) {
-      ((s as any).temp_np ?? {})['out'] = (((s as any).temp_np ?? {})['out'] ?? 0) + ('&nbsp;&nbsp;' + qspUntranslated(s, "temp_np_cat_disp[temp_np['ck']]>", { location: "archetypes" }) + ': <<$func(\'archetypes\',\'fmt_pts\',temp_np_cat_delta[$temp_np[\'ck\']],\'fine\')>><br>');
+      // TODO-QSP: $temp_np['out'] += '&nbsp;&nbsp;<<$temp_np_cat_disp[$temp_np[''ck'']]>>: <<$func(''archetypes'',''fmt_pts'',temp_np_cat_delta[$temp_np[''ck'']],''fine'')>><br>'
     }
     ((s as any).temp_np ?? {})['ci'] = (((s as any).temp_np ?? {})['ci'] ?? 0) + (1);
     // TODO-QSP: jump 'np_cats_loop'
@@ -2020,7 +2024,7 @@ function enterNotifyPopup(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :np_lbls_loop
     if (((s as any).temp_np ?? 0)?.['li'] < Object.keys((s as any).temp_np_labels ?? {}).length) {
       ((s as any).temp_np ?? {})['lbl'] = qspUntranslated(s, "temp_np_labels[temp_np['li']]", { location: "archetypes" });
-      ((s as any).temp_np ?? {})['out'] = (((s as any).temp_np ?? {})['out'] ?? 0) + ('&nbsp;&nbsp;' + qspUntranslated(s, "temp_np['lbl']>", { location: "archetypes" }) + ': <<$func(\'archetypes\',\'fmt_pts\',temp_np_lbl_delta[$temp_np[\'lbl\']],\'fine\')>><br>');
+      // TODO-QSP: $temp_np['out'] += '&nbsp;&nbsp;<<$temp_np[''lbl'']>>: <<$func(''archetypes'',''fmt_pts'',temp_np_lbl_delta[$temp_np[''lbl'']],''fine'')>><br>'
       ((s as any).temp_np ?? {})['li'] = (((s as any).temp_np ?? {})['li'] ?? 0) + (1);
       // TODO-QSP: jump 'np_lbls_loop'
     }
@@ -2129,7 +2133,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNotifyPopup(s, scene);
       break;
     default:
-      enterFmtPts(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

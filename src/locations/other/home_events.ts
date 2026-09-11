@@ -4,6 +4,99 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('entry') : -1) >= 0) {
+    if (qspFunc(s, 'homes_properties', 'is_current_home', ((s as any).loc ?? 0))) {
+      qspCall(s, 'courtletter', '');
+      if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 8  &&  ((s as any).NatbelQW ?? 0)?.['Isabella'] === 0  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 23) {
+        if (((s as any).loc ?? 0) !== 'korrPar') {
+          scene.actions([{ label: 'Continue', goto: ['home_events', 'natbel'] }]);
+        } else {
+          if (((s as any).NatbelQW ?? 0)?.['mother_talk'] === 2) {
+            scene.actions([{ label: 'Continue', goto: ['home_events', 'natbel_pav'] }]);
+          }
+        }
+      }
+    }
+    if (((s as any).loc ?? 0) !== 'korrPar') {
+      if (((s as any).parkblackmail ?? 0) === 1  &&  ((s as any).parkday ?? 0) !== ((s as any).daystart ?? 0)) {
+        (s as any).parkblackmail = 2;
+        (s as any).parkday = ((s as any).daystart ?? 0);
+        scene.text('A heavy envelope has arrived in the mail. When you open it, you\'re horrified to find several pictures of you giving blowjobs to the guys in the park inside. A small note accompanying them says:');
+        scene.text('"If you don\'t want these pictures to be posted on your door and sent to your workplace, then come to this address. If you don\'t come today, these pictures will be hanging in your stairwell tomorrow."');
+        scene.text('You check the address and find that it\'s Aphrodite Photography in the City Center.');
+        return;
+      } else {
+        if (((s as any).parkblackmail ?? 0) === 2  &&  ((s as any).parkday ?? 0) !== ((s as any).daystart ?? 0)) {
+          (s as any).parkblackmail = 0;
+          (s as any).fotoyousuck = 1;
+          scene.text('You\'re horrified and embarrassed when you see photos of you with your face covered in cum with two dicks in your mouth covering your stairwell walls.');
+          return;
+        }
+      }
+      if (((s as any).santehnikDolg ?? 0) > 0  &&  qspFunc(s, 'money', 'can_afford', ((s as any).santehnikDolg ?? 0), 'desk')  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 21) {
+        scene.text('<b><font color = red>The doorbell rings</font></b>');
+        scene.actions([
+          { label: 'Answer the door', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.text('You go to the door and look through the peephole to see a dark male figure. "It\'s me. Grisha, the plumber. You owe me some money, remember?" he says through the door.');
+    scene.actions([
+      { label: 'Open the door', handler: (st: GameState) => {
+    qspCall(s, 'money', 'pay', ((s as any).santehnikDolg ?? 0), 'desk');
+    qspCall(s, 'stat', '');
+    scene.text('You open the door and Grisha smiles. "I thought you were hiding from me. So, do you have my money?" You nod and pay him the money you owe.');
+    scene.actions([
+      { label: 'Close the door', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  } },
+        ]);
+      }
+      if (((s as any).BurgerQW ?? 0)?.['IlyQW'] === 1  &&  ((s as any).BurgerQW ?? 0)?.['IlyQWDay'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21) {
+        scene.actions([{ label: 'Continue', goto: ['home_events', 'burgerIly1'] }]);
+      } else {
+        if (((s as any).BurgerQW ?? 0)?.['IlyQW'] === 3  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 21) {
+          scene.actions([{ label: 'Continue', goto: ['home_events', 'burgerIly3'] }]);
+        }
+      }
+      if (((s as any).gopstop ?? 0) > 30) {
+        scene.actions([{ label: 'Continue', goto: ['police', '1'] }]);
+      }
+      if (((s as any).sick ?? 0) > 0  &&  ((s as any).doktorday ?? 0) !== ((s as any).daystart ?? 0)) {
+        scene.actions([
+          { label: 'Call a doctor', goto: ['home_events', 'call_doctor1'] },
+        ]);
+      }
+      if (((s as any).fightClubQW ?? 0)?.['story'] === 5  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) === 19) {
+        scene.text('<a href="exec:gt \'fightClub_intro\', \'ride\'">Sultan</a> shows up outside in a fancy BMW.');
+      }
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('livingroom') : -1) >= 0) {
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bedroom') : -1) >= 0) {
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('kitchen') : -1) >= 0) {
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bathroom') : -1) >= 0) {
+    if (((s as any).loc ?? 0) === 'HotelRoom'  ||  ((s as any).loc ?? 0) === 'mey_home'  &&  qspFunc(s, 'homes_properties', 'can_live_here', 'mey_home')) {
+      qspCall(s, 'home_events', 'set_wash_clothes_act');
+    } else {
+      if (qspFunc(s, 'homes_properties', 'can_live_here', ((s as any).loc ?? 0))) {
+        if (((s as any).mc_inventory ?? 0)?.['laundry_soap'] <= 0) {
+          scene.text('You have run out of washing powder for washing clothes.');
+        } else {
+          qspCall(s, 'home_events', 'set_wash_clothes_act');
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
 function enterCallDoctor1(s: GameState, scene: SceneBuilder): void {
   (s as any).doktorday = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -718,7 +811,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGoHomeNaked(s, scene);
       break;
     default:
-      enterCallDoctor1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -727,6 +820,6 @@ export const home_events: LocationDef = {
   name: 'home_events',
   title: 'A heavy envelope has arrived in the mail. When you open it, ',
   region: 'other',
-  description: ['You dial the number of the clinic several times, but it\'s always busy.'],
+  description: ['A heavy envelope has arrived in the mail. When you open it, you\'re horrified to find several pictures of you giving blowjobs to the guys in the park inside. A small note accompanying them says:'],
   enter: enter,
 };

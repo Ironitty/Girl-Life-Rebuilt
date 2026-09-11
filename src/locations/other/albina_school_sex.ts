@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBreakFun_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/chat/cooljocks.jpg');
@@ -354,7 +358,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLunchFun_2(s, scene);
       break;
     default:
-      enterBreakFun_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -363,6 +367,5 @@ export const albina_school_sex: LocationDef = {
   name: 'albina_school_sex',
   title: 'You look around for Albina, but she\'s nowhere to be seen. Ju',
   region: 'other',
-  description: ['You look around for Albina, but she\'s nowhere to be seen. Just then, you get an alert on your phone and open it to find a message from her.'],
   enter: enter,
 };

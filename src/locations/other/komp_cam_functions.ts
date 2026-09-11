@@ -6,6 +6,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).camConst ?? {})['MFC_N'] = 100000;
+  scene.build();
+}
+
 function enterMFCInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).camGirl ?? {})['MFC_Actives'] = 0;
   ((s as any).camGirl ?? {})['MFC_Passives'] = 0;
@@ -621,7 +626,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMFCStopCamming(s, scene);
       break;
     default:
-      enterMFCInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -630,6 +635,5 @@ export const komp_cam_functions: LocationDef = {
   name: 'komp_cam_functions',
   title: '+<<temp_camVars[\'payout\']>> Tokens',
   region: 'other',
-  description: ['You consider which name you\'d like to register under.'],
   enter: enter,
 };

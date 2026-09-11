@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRoutingMatrix(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] >= 2) {
     scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'hotel_pre'] }]);
@@ -638,11 +642,6 @@ function enterBoysexHandjob(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterHookupInvite(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: end}
-  scene.build();
-}
-
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -697,11 +696,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'boysex_handjob':
       enterBoysexHandjob(s, scene);
       break;
-    case 'hookup_invite':
-      enterHookupInvite(s, scene);
-      break;
     default:
-      enterRoutingMatrix(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

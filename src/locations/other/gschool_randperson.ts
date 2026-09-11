@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterCoupleGenerator(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :couple_jump
   (s as any).couple_rand = Math.floor(Math.random() * 53) + 1;
   if (((s as any).couple_rand ?? 0) === 1) {
@@ -166,6 +170,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'couple_generator':
+      enterCoupleGenerator(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const gschool_randperson: LocationDef = {

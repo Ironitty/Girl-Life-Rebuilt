@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'sitrPar', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -365,6 +369,5 @@ export const sitrPar: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'livingr',
-  description: ['No one else is here right now, so you\'re free to use the room how you like.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'gad_gpyard', 'start');
@@ -650,7 +654,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCikl(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -660,6 +664,5 @@ export const gad_gpyard: LocationDef = {
   title: '<center><h4>Your grandparents\' yard</h4></center>',
   region: 'gadukino',
   locationType: 'secluded',
-  description: ['A fenced yard behind your grandparents\' house. The yard contains a small barn, garden, root cellar, and banya where you can bathe.'],
   enter: enter,
 };

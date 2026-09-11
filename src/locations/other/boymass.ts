@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterA(s: GameState, scene: SceneBuilder): void {
   (s as any).boynum = ((s as any).boynum ?? 0) + (1);
   // TODO-QSP: $bmNane[boynum] = $npclastcalled
@@ -43,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterB(s, scene);
       break;
     default:
-      enterA(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

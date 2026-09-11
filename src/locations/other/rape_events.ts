@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRapistGenerate(s: GameState, scene: SceneBuilder): void {
   (s as any).re_i = 0;
   ((s as any).temp ?? {})['rapist_age'] = Math.floor(Math.random() * 27) + 19;
@@ -1281,7 +1285,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRapeReport(s, scene);
       break;
     default:
-      enterRapistGenerate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

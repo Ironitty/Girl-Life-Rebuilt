@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['thought_mood'] === '') {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
@@ -297,34 +301,6 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
     scene.text(`You find it hard to describe how it made you feel. One second, ${((s as any).npcdesc ?? 0)} was pulsing inside you, the next you felt yourself getting <i>filled</i> by something. Almost like you were getting... <i>inflated?</i>`);
     scene.text('Thinking about it those terms makes it really hard to decide if you found it pleasurable or not. If nothing else, your first creampie was certainly <i>a</i> feeling...');
   }, goto: ['sex_ev_reflection', 'top_menu'] },
-      { label: 'Kinky (breeding kink)', handler: (st: GameState) => {
-    scene.text('It was... <i>so fucking hot...</i>');
-    // TODO-QSP: dynamic text: Thoughts of <<$npcdesc>>'s cum gushing into your womb, sperm racing through your...
-    scene.text(`Thoughts of ${((s as any).npcdesc ?? 0)}'s cum gushing into your womb, sperm racing through your fallopian tubes, searching for an egg to fertilize and impregnate you make you shiver. `);
-    if (((s as any).pcs_traits ?? 0)?.['breeding_kink'] === 0) {
-      if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
-        // TODO-QSP: dynamic text: The idea of being <i>bred</i> you like some kind of prized mare has your sticky ...
-        scene.text(`The idea of being <i>bred</i> you like some kind of prized mare has your sticky thighs rubbing together. Of course, you're on ${((s as any).birth_control ?? 0)?.['type']} so it's not like that's possible, but the thought is still insanely hot.`);
-      } else {
-        scene.text('The idea of being <i>bred</i> you like some kind of prized mare has your sticky thighs rubbing together. And because you\'re not on birth control, the risk is real. Which makes it <i>insanely</i> hot.');
-      }
-      scene.text('Do... do you have a breeding kink?');
-      scene.actions([
-        { label: 'Sounds dangerous (no)', handler: (st: GameState) => {
-    scene.text('You shake your head with a shudder. This is <i>not</i> a rabbit hole you should go down, even if it seems enticing.');
-  } },
-      ]);
-    } else {
-      if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
-        // TODO-QSP: dynamic text: You can feel your skin flush and your breathing start to grow heavy and you have...
-        scene.text(`You can feel your skin flush and your breathing start to grow heavy and you have to gulp it down to keep a lid on it. Even if you're on ${((s as any).birth_control ?? 0)?.['type']} it doesn't make the fantasy of being bred any less intense. Almost makes you want to stop your protection...`);
-      } else {
-        // TODO-QSP: 'You can feel your skin flush and your breathing start to grow heavy and you have to gulp it down to...
-      }
-      scene.actions([{ label: 'Continue', goto: ['sex_ev_reflection', 'top_menu'] }]);
-    }
-    // TODO-QSP: end}
-  } },
     ]);
   } },
     ]);
@@ -368,7 +344,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFirstCreampieReflect(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

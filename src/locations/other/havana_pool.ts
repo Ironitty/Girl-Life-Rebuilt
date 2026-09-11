@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'havana_pool', 'start');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -69,7 +73,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSwim(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -79,6 +83,5 @@ export const havana_pool: LocationDef = {
   title: 'You stand beside the large pool, the peaceful tranquility of',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You stand beside the large pool, the peaceful tranquility of the water feeling very inviting.'],
   enter: enter,
 };

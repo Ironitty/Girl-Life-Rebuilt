@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== '') {
     if (((s as any).npc_rel ?? 0)?.[String((s as any).husID ?? 0)] > 10) {
@@ -219,7 +223,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAddDating(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

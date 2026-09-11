@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSultan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'AddContact', 'A295', 'images/locations/city/shared/fightclub/sultan_portrait.jpg', 0);
   // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A295', "gt 'fightClub_phone', 'dial'", "fightClubQW['sultancall...
@@ -88,7 +92,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOutofoffice(s, scene);
       break;
     default:
-      enterSultan(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

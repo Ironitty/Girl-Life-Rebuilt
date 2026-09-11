@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBirthControl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).therapistFuckedPussyStage ?? 0) < 2  &&  (!((s as any).knowpreg ?? 0))) {
     if (((s as any).shotdays ?? 0) < 14  &&  ((s as any).birth_control ?? 0)?.['implant_status'] === 0) {
@@ -273,7 +277,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAbortion(s, scene);
       break;
     default:
-      enterBirthControl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

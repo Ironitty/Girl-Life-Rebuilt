@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSisboyQWParty(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW ?? {})['partycount'] = (((s as any).sisterQW ?? {})['partycount'] ?? 0) + (1);
   ((s as any).sisterQW ?? {})['party'] = 2;
@@ -378,7 +382,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSit(s, scene);
       break;
     default:
-      enterSisboyQWParty(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -388,6 +392,5 @@ export const rex_party_firstTime: LocationDef = {
   title: 'Once you burst into Rex\'s house, the loud music immediately ',
   region: 'other',
   locclass: 'kitr',
-  description: ['Once you burst into Rex\'s house, the loud music immediately drowns out just about any other noise.'],
   enter: enter,
 };

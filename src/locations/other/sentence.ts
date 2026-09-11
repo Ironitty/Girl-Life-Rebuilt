@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -195,7 +199,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPoliceArrest3(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -204,6 +208,5 @@ export const sentence: LocationDef = {
   name: 'sentence',
   title: 'You\'re standing in the middle of the Greco-Roman inspired co',
   region: 'other',
-  description: ['You\'re standing in the middle of the Greco-Roman inspired courthouse, the bastion of justice for the city of St. Petersburg.'],
   enter: enter,
 };

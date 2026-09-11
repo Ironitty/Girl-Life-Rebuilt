@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).prosti = 0;
   // TODO-QSP: gs 'money', 'earn', ProsMoney*100
@@ -205,7 +209,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter6(s, scene);
       break;
     default:
-      enter1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -215,6 +219,5 @@ export const AnalPR: LocationDef = {
   title: 'After a few minutes of fucking your ass, the man groans, and',
   region: 'other',
   locationType: 'event',
-  description: ['After a few minutes of fucking your ass, the man groans, and you feel his hips spasming against your ass. He pulls out of you then takes the filled condom off his slowly shrinking cock.'],
   enter: enter,
 };

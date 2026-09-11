@@ -4,6 +4,13 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).husID ?? 0) === ''  &&  (((s as any).wifID ?? 0) === ''  ||  1)) {
+    // TODO-QSP: exit
+  }
+  scene.build();
+}
+
 function enterTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).husID ?? 0) !== '') {
@@ -329,7 +336,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHusbandDrunk(s, scene);
       break;
     default:
-      enterTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

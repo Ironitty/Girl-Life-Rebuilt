@@ -4,6 +4,61 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'boyStat', 'A119');
+  scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
+  if (((s as any).pcafejob ?? 0) <= 0) {
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>>," he greets you. "Enjoying the cafe?"
+    scene.text(`"${((s as any).pcs_firstname ?? 0)}," he greets you. "Enjoying the cafe?"`);
+  }
+  if (((s as any).pcafejob ?? 0) >=2  &&  ((s as any).pcafejob ?? 0) <= 4) {
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>>," he greets you. "Are you here to work a shift?"
+    scene.text(`"${((s as any).pcs_firstname ?? 0)}," he greets you. "Are you here to work a shift?"`);
+  }
+  if (((s as any).pcafejob ?? 0) === 4  &&  ((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
+    scene.text('"Or do you want to have some fun?"');
+  }
+  if (((s as any).pcafejob ?? 0) === 1) {
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>>," he greets you. "Are you here for another interview to disc...
+    scene.text(`"${((s as any).pcs_firstname ?? 0)}," he greets you. "Are you here for another interview to discuss that 'job offer?' he says with the faintest hint of a smile at the corners of his lips.`);
+  }
+  if (((s as any).pcafejob ?? 0) === 1  &&  ((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Let\'s get this over with', goto: ['motherkafeboss', 'slava_deal'] },
+      { label: 'I\'ve reconsidered the job offer', handler: (st: GameState) => {
+    (s as any).pcafejob = 2;
+    scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
+    scene.text('"If I\'m going to do this, then you have to pay me as a waitress."');
+    scene.text('"So long as you recognize you\'re going to work as a waitress too. I don\'t need to spend extra money paying for a whore. If I wanted that, I\'d just get it from your mother for free."');
+    scene.text('You grit your teeth in anger at his final comment as he stands from his chair and moves towards you.');
+    scene.text('You can start right away.');
+    scene.actions([
+      { label: 'Start shift', goto: ['motherkafeboss', 'work_shift'] },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).pcafejob ?? 0) >=2  &&  ((s as any).pcafejob ?? 0) <= 4) {
+    // TODO-QSP: act 'Work a shift': gt 'motherkafeboss', 'work_shift'
+  }
+  if (((s as any).momslut ?? 0) === 2  &&  (!((s as any).slavatalk ?? 0))) {
+    // TODO-QSP: act 'Confront him about your mother': gt 'motherkafeboss', 'confrontation'
+  }
+  if (((s as any).slavatalk ?? 0) === 2) {
+    // TODO-QSP: act 'Confront him about your deal': gt 'motherkafeboss', 'dealbreaker'
+  }
+  if (((s as any).pcafejob ?? 0) === 4  &&  ((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
+    // TODO-QSP: act 'Fuck Slava': gt 'motherkafeboss', 'slava_deal'
+  }
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
 function enterConfrontation(s: GameState, scene: SceneBuilder): void {
   (s as any).slavatalk = 1;
   scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
@@ -1325,7 +1380,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterClothFuck(s, scene);
       break;
     default:
-      enterConfrontation(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1334,6 +1389,6 @@ export const motherkafeboss: LocationDef = {
   name: 'motherkafeboss',
   title: '"Or do you want to have some fun?"',
   region: 'other',
-  description: ['You walk up to Borislav and he turns to face you.'],
+  description: ['"Or do you want to have some fun?"'],
   enter: enter,
 };

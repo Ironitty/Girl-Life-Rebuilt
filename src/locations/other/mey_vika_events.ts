@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 20) {
     scene.actions([{ label: 'Continue', goto: ['mey_tamara_events', 'first_meet'] }]);
@@ -2044,7 +2048,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBangKatya2(s, scene);
       break;
     default:
-      enterFirstVisit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2054,6 +2058,5 @@ export const mey_vika_events: LocationDef = {
   title: 'Vicky\'s room',
   region: 'other',
   locationType: 'event',
-  description: ['As soon as you walk in the room, Vicky throws herself onto Vanya. Wraps her legs around his waist and hugs him around the neck. They start making out. Vanya holds Vicky\'s ass and starts squeezing it. While you watch them, you start feeling aroused. They finally stop…'],
   enter: enter,
 };

@@ -4,6 +4,16 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 'vitek'  ||  ((s as any).locArgs?.[0] ?? 0) === 'dan'  ||  ((s as any).locArgs?.[0] ?? 0) === 'shulga') {
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_gopniks', 'vitek_dan_vasily'] }]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 'lena'  ||  ((s as any).locArgs?.[0] ?? 0) === 'lera') {
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_gopniks', 'lena_lera'] }]);
+  }
+  scene.build();
+}
+
 function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', 'A9', 'like', 1, 'pav_disco');
@@ -2520,7 +2530,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAlyonaDance(s, scene);
       break;
     default:
-      enterVitekDanVasily(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2529,6 +2539,5 @@ export const pav_disco_gopniks: LocationDef = {
   name: 'pav_disco_gopniks',
   title: 'Vitek, Dan and Vasily are hanging out in the dark corner of ',
   region: 'pavlovsk',
-  description: ['Vitek, Dan and Vasily are hanging out in the dark corner of the hall with the other gopniks. It\'s dimly lit and hard to make out details, but it looks like they\'re sharing some beers they\'ve smuggled in.'],
   enter: enter,
 };

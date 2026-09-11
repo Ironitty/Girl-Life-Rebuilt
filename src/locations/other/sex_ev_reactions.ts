@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCumReact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['react'] === 0) {
     scene.actions([
@@ -1552,14 +1556,6 @@ function enterFacialHappyReacts(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'sex_ev_reactions', 'ruined_makeup');
-  qspCall(s, 'sex_ev_cum', 'facial_smile_img');
-  // TODO-QSP: dynamic text: "I feel like a sex goddess when you finish on my face," you grin up at <<$npcdes...
-  scene.text(`"I feel like a sex goddess when you finish on my face," you grin up at ${((s as any).npcdesc ?? 0)} through the strands of cum glazing your face.`);
-  scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    qspCall(st, 'sex_ev_sex', 'sex_end');
-  } },
-  ]);
   scene.build();
 }
 
@@ -2969,7 +2965,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter2pumpReact2(s, scene);
       break;
     default:
-      enterCumReact(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterOlusex(s: GameState, scene: SceneBuilder): void {
   ((s as any).OluQW ?? {})['sex'] = 1;
   ((s as any).npc_had_sex ?? {})['A55'] = 1;
@@ -1208,7 +1212,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNatolusvet(s, scene);
       break;
     default:
-      enterOlusex(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1218,6 +1222,5 @@ export const olu: LocationDef = {
   title: 'You return his kiss and feel yourself getting aroused as his',
   region: 'other',
   locationType: 'event',
-  description: ['You return his kiss and feel yourself getting aroused as his hands start roaming around your body before you\'re suddenly lifted into the air as he carries you in his arms through the hallway and down to the bedroom. He tosses you onto the bed, where you bounce from the landing before he starts pulling your clothes off, quickly getting you naked. He then takes his pants off you\'re greeted by the sight of the largest dick you\'ve ever seen. The thing is massive and your eyes bulge as you wonder if it will even fit inside you.'],
   enter: enter,
 };

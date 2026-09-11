@@ -4,6 +4,13 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).nichTanya ?? 0)?.['FuckLast'] !== ((s as any).daystart ?? 0)) {
+    ((s as any).nichTanya ?? {})['FuckToday'] = 0;
+  }
+  scene.build();
+}
+
 function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).nichTanyaPic ?? 0)}`);
   ((s as any).nichTanya ?? {})['PropDate'] = 0;
@@ -2367,7 +2374,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPrepareInterview(s, scene);
       break;
     default:
-      enterBedroomTanya(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

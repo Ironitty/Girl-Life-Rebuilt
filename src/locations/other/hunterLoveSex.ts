@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDinMesec(s: GameState, scene: SceneBuilder): void {
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: <<$boydesc>>: Damn, they weren't lying about that body of yours.
     scene.text(`${((s as any).boydesc ?? 0)}: Damn, they weren't lying about that body of yours.`);
@@ -22,6 +26,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
   // TODO-QSP: end & !! --- din_mesec ---
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'din_mesec':
+      enterDinMesec(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const hunterLoveSex: LocationDef = {

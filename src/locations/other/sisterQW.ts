@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSisboyQWExpel(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -723,7 +727,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFirstCumShot(s, scene);
       break;
     default:
-      enterSisboyQWExpel(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -732,6 +736,5 @@ export const sisterQW: LocationDef = {
   name: 'sisterQW',
   title: 'Your sister reminds you that she wants to spend time alone w',
   region: 'other',
-  description: ['Your sister reminds you that she wants to spend time alone with Roma and asks you to leave the room.'],
   enter: enter,
 };

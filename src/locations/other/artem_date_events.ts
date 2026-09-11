@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
   scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
@@ -746,7 +750,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGeneratgopniks(s, scene);
       break;
     default:
-      enterFirstdate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -755,6 +759,5 @@ export const artem_date_events: LocationDef = {
   name: 'artem_date_events',
   title: 'You enjoy a pleasant walk in the park while making small tal',
   region: 'other',
-  description: ['You enjoy a pleasant walk in the park while making small talk with Artem.'],
   enter: enter,
 };

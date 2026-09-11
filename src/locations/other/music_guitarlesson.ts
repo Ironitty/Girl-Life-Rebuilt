@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   if (((s as any).age ?? 0) < 18) {
     ((s as any).ml_guitarlesson ?? {})['lessoncost'] = 300;
@@ -175,7 +179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGetdate(s, scene);
       break;
     default:
-      enterEnquiry(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -184,6 +188,5 @@ export const music_guitarlesson: LocationDef = {
   name: 'music_guitarlesson',
   title: 'You follow the directions from the receptionist and reach th',
   region: 'other',
-  description: ['You follow the directions from the receptionist and reach the room where the guitar lessons take place.'],
   enter: enter,
 };

@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.build();
+}
+
 function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).dyadyamishaevent = 1;
   qspCall(s, 'themes', 'indoors');
@@ -337,7 +342,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter7(s, scene);
       break;
     default:
-      enter1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -346,6 +351,5 @@ export const gevent: LocationDef = {
   name: 'gevent',
   title: 'You agree to help, and leave the cafe with uncle Misha. When',
   region: 'other',
-  description: ['You agree to help, and leave the cafe with uncle Misha. When you reach his apartment, he takes you by the hand and pulls you to his bedroom, locking the door with a key behind him. Roughly grabbing you by your hair, he pulls you down to your knees and unbuttons his pants with his other hand.'],
   enter: enter,
 };

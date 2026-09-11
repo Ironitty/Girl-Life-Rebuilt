@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetFilterHeader(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'shop') {
     qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
@@ -335,7 +339,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterChange(s, scene);
       break;
     default:
-      enterGetFilterHeader(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

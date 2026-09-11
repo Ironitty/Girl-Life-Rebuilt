@@ -6,6 +6,21 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $textsexhunter[2] = '<<$boydesc>> staring you in the face until your lips slide on his hard dick. In...
+  // TODO-QSP: $textsexhunter[3] = '<<$boydesc>> finished and left with a satisfied smile on her face, and you are ...
+  // TODO-QSP: $textsexhunter[4] = 'Enough to enjoy in this position, the guy says…'
+  // TODO-QSP: $textsexhunter[5] = 'Guys look you in the face while your lips slide on their hard members. Interrup...
+  // TODO-QSP: $textsexhunter[6] = '<<$boydesc>> finished and walked away with a satisfied smile on his face, and y...
+  // TODO-QSP: $textsexhunter[7] = 'Enough to enjoy in this position, guys…'
+  // TODO-QSP: $textsexhunter[8] = '<<$boydesc>> staring you in the face until your lips slide on his hard dick…'
+  // TODO-QSP: $textsexhunter[9] = 'Guys look you in the face while your lips slide on their hard members…'
+  // TODO-QSP: $textsexhunter[10] = '<<$boydesc>> finished and walked away with a satisfied smile on her face, and ...
+  // TODO-QSP: $textsexhunter[11] = 'Gradually, a pleasant warmth growing and throbbing in the abdomen, then the se...
+  // TODO-QSP: $textsexhunter[12] = 'You feel nice when <<dick>> cm dick is moving inside of your ass and you moan ...
+  scene.build();
+}
+
 function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A172', 1);
   qspCall(s, 'npcStat', 'A173', 2);
@@ -1657,7 +1672,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSluthomeSTART(s, scene);
       break;
     default:
-      enterSexafterstrip1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1666,6 +1681,5 @@ export const huntersex: LocationDef = {
   name: 'huntersex',
   title: 'You tiredly sit down on the edge of the table to rest and ha',
   region: 'other',
-  description: ['You tiredly sit down on the edge of the table to rest and have a smoke. During the dance you captivated the guys attention, but when you are approached by Igor, you notice that they are now completely naked.'],
   enter: enter,
 };

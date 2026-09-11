@@ -7,6 +7,18 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).lutH_max ?? 0))) {
+    (s as any).lutH_max = Math.floor(Math.random() * 49) + 312;
+    // TODO-QSP: !! 13-15 days including ovulation
+  }
+  if ((!((s as any).focH_max ?? 0))) {
+    (s as any).focH_max = Math.floor(Math.random() * 49) + 312;
+    // TODO-QSP: !! 13-15 days including menstruation
+  }
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'femcyc', 'femcyc_errhdl');
   if (((s as any).rcntorgzm ?? 0) === 1) {
     if (((s as any).rcntorgzmtmp ?? 0) === 1) {

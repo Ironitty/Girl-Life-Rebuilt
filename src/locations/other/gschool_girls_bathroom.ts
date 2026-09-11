@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_girls_bathroom', 'start');
   qspCall(s, 'stat', '');
@@ -1498,7 +1502,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCaught3(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1509,6 +1513,5 @@ export const gschool_girls_bathroom: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'school_bathroom',
-  description: ['You slip into the girl\'s bathroom and into one of the stalls; the other students already in the room don\'t pay any attention to you. You sit on the toilet and pull your feet up so no one can see them under the stall. After a few minutes, you hear the other girls leave as the bell for class rings and relax, a period of peace and quiet ahead of you.'],
   enter: enter,
 };

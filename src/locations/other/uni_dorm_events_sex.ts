@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enter8floorAnalGangbang(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set2/5wg1bm1.jpg');
   scene.text('You enter the room and close the door. As you start stripping off your clothes, you watch as Haruna walks up behind the first girl and lines his dick up with her asshole.');
   scene.text('He pushes forward and his large massively thick black dick slides into her asshole with surprising ease.');
@@ -108,10 +112,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case '8floor_anal_gangbang':
+      enter8floorAnalGangbang(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const uni_dorm_events_sex: LocationDef = {
   name: 'uni_dorm_events_sex',
   title: 'You enter the room and close the door. As you start strippin',
   region: 'other',
-  description: ['You enter the room and close the door. As you start stripping off your clothes, you watch as Haruna walks up behind the first girl and lines his dick up with her asshole.'],
   enter: enter,
 };

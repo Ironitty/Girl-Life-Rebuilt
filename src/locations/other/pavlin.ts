@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPavlbar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
@@ -2206,7 +2210,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPregBDSM(s, scene);
       break;
     default:
-      enterPavlbar(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2215,6 +2219,5 @@ export const pavlin: LocationDef = {
   name: 'pavlin',
   title: 'You stand up, put your clothes back on and step out of the r',
   region: 'other',
-  description: ['You stand up, put your clothes back on and step out of the room.'],
   enter: enter,
 };

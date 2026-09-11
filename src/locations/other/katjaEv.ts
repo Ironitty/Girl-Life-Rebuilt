@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['afterschool_hangout_day'] !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
   }
@@ -1656,6 +1660,5 @@ export const katjaEv: LocationDef = {
   name: 'katjaEv',
   title: '<<$npc_firstname[\'A14\']>> <<$npc_lastname[\'A14\']>>',
   region: 'other',
-  description: ['You and Katja run into Fedor, who gives you a wave. "Hey girls, what are you two up to?"'],
   enter: enter,
 };

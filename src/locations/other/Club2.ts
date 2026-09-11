@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterToilet1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'npcgeneratec', '', 0, 'Gloryhole Client', Math.floor(Math.random() * 43) + 18);
@@ -189,7 +193,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterToilet2(s, scene);
       break;
     default:
-      enterToilet1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -198,6 +202,5 @@ export const Club2: LocationDef = {
   name: 'Club2',
   title: 'You head into the stall and close the door. The walls are co',
   region: 'other',
-  description: ['You head into the stall and close the door. The walls are covered with obscene graffiti and circular holes are carved in the walls. Sitting on the toilet, you hear a noise coming from the next stall.'],
   enter: enter,
 };

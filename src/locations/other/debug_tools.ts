@@ -1,17 +1,19 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterTrace(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'loc_change') {
     if (((s as any).debug ?? 0)?.['trace_loc_change'] === 0) {
       // TODO-QSP: exit
     }
-    ((s as any).debug ?? {})['trace_line'] = qspUntranslated(s, "\"'<<curloc>>'\"", { location: "debug_tools" });
+    // TODO-QSP: $debug['trace_line'] = "'<<$curloc>>'"
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'direct') {
       if (Object.keys((s as any).trace_locations ?? {}).length === 0) {
@@ -20,7 +22,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((Array.isArray((s as any).trace_locations) ? ((s as any).trace_locations as any[]).indexOf(((s as any).locArgs?.[2] ?? 0)) : -1) === -1) {
         // TODO-QSP: exit
       }
-      ((s as any).debug ?? {})['trace_line'] = qspUntranslated(s, "\"'<<ARGS[2]>>'\"", { location: "debug_tools" });
+      // TODO-QSP: $debug['trace_line'] = "'<<$ARGS[2]>>'"
     } else {
       return;
     }
@@ -29,10 +31,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :trace_loc_change_loop
   if (((s as any).debug ?? 0)?.['trace_index'] < Object.keys((s as any).trace_args ?? {}).length) {
     if (((s as any).trace_args ?? 0)[((s as any).debug ?? 0)?.['trace_index']] !== '') {
-      ((s as any).debug ?? {})['trace_line'] = (((s as any).debug ?? {})['trace_line'] ?? 0) + (qspUntranslated(s, "\", '<<trace_args[debug['trace_index']]>>'\"", { location: "debug_tools" }));
+      // TODO-QSP: $debug['trace_line'] += ", '<<$trace_args[debug['trace_index']]>>'"
     } else {
       if (((s as any).trace_args ?? 0)[((s as any).debug ?? 0)?.['trace_index']] !== 0) {
-        ((s as any).debug ?? {})['trace_line'] = (((s as any).debug ?? {})['trace_line'] ?? 0) + (qspUntranslated(s, "\", <<trace_args[debug['trace_index']]>>\"", { location: "debug_tools" }));
+        // TODO-QSP: $debug['trace_line'] += ", <<trace_args[debug['trace_index']]>>"
       } else {
         ((s as any).debug ?? {})['trace_line'] = (((s as any).debug ?? {})['trace_line'] ?? 0) + (', /DEF');
       }
@@ -61,6 +63,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'trace':
+      enterTrace(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const debug_tools: LocationDef = {

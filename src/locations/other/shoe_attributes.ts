@@ -7,38 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: **Shoe Organization
-  // TODO-QSP: Shoe Categories: moncheri, bomba, dolls, eroto, gm, danilovich
-  // TODO-QSP: ShoExhibit: 0-100 Exhibitionism value required to wear the outfit
-  // TODO-QSP: **Shoe Variables
-  (s as any).ShoStyle = 1;
-  // TODO-QSP: 1 Alternative - For all good rebels might help your willpower
-  // TODO-QSP: ShoStyle2:  1 Stripper, 2 Exercise
-  (s as any).ShoQuality = Math.floor(Math.random() * 7) + 1;
-  // TODO-QSP: Notes: 7 is for shoes that might only be found on celebrities or millionaires at red carpet events.
-  // TODO-QSP: Ex:    6-5 are the higher and lower levels of the expensive category
-  // TODO-QSP: 4-3 are the same for average category
-  // TODO-QSP: 2-1 are the same for cheap category.
-  (s as any).ShoHeels = Math.floor(Math.random() * 6) + 1;
-  // TODO-QSP: Ex:    6 eroto heel over 15cm (6")
-  // TODO-QSP: 5 Ultra high heel around 15cm (6")
-  // TODO-QSP: 4 High heel around 10cm (4")
-  // TODO-QSP: 3 Mid heel around 7.6cm (3")
-  // TODO-QSP: 2 low heel around 5cm (2")
-  // TODO-QSP: 1 Flats less than 5cm (2")
-  (s as any).ShoCut = Math.floor(Math.random() * 6) + 1;
-  // TODO-QSP: Ex:    6 groin high
-  // TODO-QSP: 5 Thigh high
-  // TODO-QSP: 4 for approx. knee high
-  // TODO-QSP: 3 for calf high
-  // TODO-QSP: 2 for ankle high
-  // TODO-QSP: 1 for shoes
-  // TODO-QSP: ShoPrice: The full price of the shoes
-  (s as any).ShoStrip = 1;
-  (s as any).ShoSport = 1;
-  (s as any).ShoBimbo = 1;
-  (s as any).ShoGoth = 1;
-  (s as any).ShoPunk = 1;
   qspCall(s, 'shoes', 'reset_ShoVars');
   if (((s as any).loc ?? 0)('$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_shoes')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_shoes', ARGS[1]

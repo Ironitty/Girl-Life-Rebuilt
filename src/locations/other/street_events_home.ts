@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMinorDebtPayoff(s: GameState, scene: SceneBuilder): void {
   (s as any).workDisk = 0;
   qspCall(s, 'stat', '');
@@ -110,7 +114,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMinorTatianaUnlockMagic(s, scene);
       break;
     default:
-      enterMinorDebtPayoff(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -119,6 +123,5 @@ export const street_events_home: LocationDef = {
   name: 'street_events_home',
   title: 'As you approach the entrance to your apartment, you see two ',
   region: 'other',
-  description: ['As you approach the entrance to your apartment, you see two large guys approaching you. They seem to be carrying guns. As they get closer to you, one of them says, "It\'s time for you to pay back your debts."'],
   enter: enter,
 };

@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGoHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['current'] === 'hunters_lodge') {
     scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
@@ -38,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGoStraightHome(s, scene);
       break;
     default:
-      enterGoHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

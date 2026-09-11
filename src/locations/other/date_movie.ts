@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev ?? {})['ticket_cost'] = 100;
   qspCall(s, 'date_movie', 'init');
@@ -209,16 +213,7 @@ function enterWhatToWatchPav(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Insist you do something else [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    scene.text('Event text');
-    scene.actions([
-      { label: 'Next action', handler: (st: GameState) => {
-    // TODO-QSP: gt 'farawayistan' !}
-  } },
-    ]);
-  } },
+          { label: 'Insist you do something else [+$func(\'willpower\', \'get_willcost_string\'...]',  },
         ]);
       }
       scene.actions([
@@ -1351,7 +1346,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMovieInterlude(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

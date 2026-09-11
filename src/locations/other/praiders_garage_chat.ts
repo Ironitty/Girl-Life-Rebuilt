@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -2301,7 +2305,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterChatNiko1(s, scene);
       break;
     default:
-      enterChatRadomir(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2310,6 +2314,5 @@ export const praiders_garage_chat: LocationDef = {
   name: 'praiders_garage_chat',
   title: 'You take a seat next to Radomir as everyone spreads out. He ',
   region: 'other',
-  description: ['You take a seat next to Radomir as everyone spreads out. He gives you a sly smile as you sit next to him. "Great set wasn\'t it? We really nailed it." He says the last part with a suggestive tone.'],
   enter: enter,
 };

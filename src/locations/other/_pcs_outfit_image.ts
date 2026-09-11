@@ -4,7 +4,11 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterMiscOutfits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += 'misc/'
   if (((s as any).locArgs?.[0] ?? 0) === 'allure_swimsuit') {
     // TODO-QSP: $result += 'allure/one/'
@@ -46,6 +50,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += '<<ARGS[1]>>.jpg'
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'misc_outfits':
+      enterMiscOutfits(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const _pcs_outfit_image: LocationDef = {

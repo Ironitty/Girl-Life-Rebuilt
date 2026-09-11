@@ -6,6 +6,19 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) > 0) {
+    (s as any).knwn = qspUntranslated(s, "ARGS[1]", { location: "sexdvoe" });
+    // TODO-QSP: :knownloop
+    ((s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
+    (s as any).knwn = ((s as any).knwn ?? 0) - (1);
+    if (((s as any).knwn ?? 0) > 0) {
+      // TODO-QSP: jump 'knownloop'
+    }
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
@@ -404,7 +417,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

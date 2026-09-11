@@ -6,6 +6,31 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).brotherQW ?? {})['Age'] = ((s as any).year ?? 0) - ((((s as any).npc_dob ?? {})?.['A34'] - (((s as any).npc_dob ?? {})?.['A34'] % 10000)) / 10000);
+  (s as any).BrotherHappy = 1;
+  qspCall(s, 'family_schedule', '');
+  if ((((s as any).npc_dob ?? 0)?.['A34'] % 10000) / 100 > ((s as any).month ?? 0)) {
+    ((s as any).brotherQW ?? {})['Age'] = (((s as any).brotherQW ?? {})['Age'] ?? 0) - (1);
+  }
+  if ((((s as any).npc_dob ?? 0)?.['A34'] % 10000) / 100 === ((s as any).month ?? 0)  &&  (((s as any).npc_dob ?? 0)?.['A34'] % 100) > ((s as any).day ?? 0)) {
+    ((s as any).brotherQW ?? {})['Age'] = (((s as any).brotherQW ?? {})['Age'] ?? 0) - (1);
+  }
+  if (((s as any).npc_QW ?? 0)?.['A34'] > 20  &&  ((s as any).npc_QW ?? 0)?.['A34'] < 25) {
+    ((s as any).npc_QW ?? {})['A34'] = 20;
+  }
+  if (((s as any).npc_pregtalk ?? 0)?.['A34'] === 0  &&  ((s as any).brother_pregreact ?? 0) !== 1  &&  (((s as any).locArgs?.[0] ?? 0) === 'start'  ||  ((s as any).locArgs?.[0] ?? 0) === 'showbody'  ||  ((s as any).locArgs?.[0] ?? 0) === 'kiss_talk'  ||  ((s as any).locArgs?.[0] ?? 0) === 'homework')) {
+    qspCall(s, 'brother', 'pregreact');
+    if (((s as any).brother_pregreact ?? 0) === 1) {
+      // TODO-QSP: exit
+    }
+  }
+  if (((s as any).npc_pregtalk ?? 0)?.['A34'] === 1) {
+    // TODO-QSP: killvar 'brother_pregreact'
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'boystat', 'A34');
@@ -1708,7 +1733,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBrotherknows8(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1717,6 +1742,5 @@ export const brother: LocationDef = {
   name: 'brother',
   title: 'Kolka',
   region: 'other',
-  description: ['He\'s a student at the same school as you. You can usually find him at home playing video games or playing football with his friends.'],
   enter: enter,
 };

@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLneedExpNextLvl = (((s as any).KGOLlvl ?? 0) * 10) * ((s as any).KGOLlvl ?? 0);
   (s as any).KGOLneedExp = ((s as any).KGOLneedExpNextLvl ?? 0) - ((s as any).KGOLexp ?? 0);
   if (((s as any).KGOLneedExp ?? 0) <= 0  &&  ((s as any).KGOLlvl ?? 0) > ((s as any).KGOLlvlr ?? 0)) {

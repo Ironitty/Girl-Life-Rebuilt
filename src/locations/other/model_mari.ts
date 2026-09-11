@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMariAge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 5  &&  ((s as any).day ?? 0) >= 20) {
     ((s as any).mari ?? {})['age'] = ((s as any).year ?? 0) - 1999;
@@ -1771,10 +1775,6 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading17.jpg');
     scene.text('"What do you think? Do you really think I might like girls too?"');
-    scene.img('images/characters/city/models/mari/talking/reading19.jpg');
-    scene.text('"I really think you might be Mari," you admit. "The way you act, how you\'re always hugging me and other girls, honestly the way you look at us sometimes… It might be more affectionate than you realize."');
-    scene.text('"Oh.');
-    // TODO-QSP: end !}
     scene.actions([
       { label: 'No', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading17.jpg');
@@ -1939,7 +1939,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMariSexTalk(s, scene);
       break;
     default:
-      enterMariAge(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

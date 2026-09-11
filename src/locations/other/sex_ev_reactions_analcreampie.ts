@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
     qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
@@ -469,6 +473,19 @@ function enterCreampieAskNextTime2(s: GameState, scene: SceneBuilder): void {
 function enterCreampieBeBetter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Don\'t be sorry, be better', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['ask_next_time'] !== 'not_mad') {
+      scene.actions([
+        { label: '(Sullen)', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
+      scene.img('images/shared/sex/vag/doggy/2.jpg');
+    } else {
+      scene.img('images/shared/sex/after/pillow_talk2.jpg');
+    }
+    scene.text('"Don\'t be sorry," you sigh with measurable disappointment. "Be better."');
+    qspCall(s, 'sex_ev_sex', 'sex_end');
+  } },
+      ]);
+    }
     scene.actions([
       { label: '(Forgiving)', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
@@ -478,75 +495,89 @@ function enterCreampieBeBetter(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: "Don't be sorry," you say gently, looking into <<$npcdesc>>'s eyes. "Be better."
     scene.text(`"Don't be sorry," you say gently, looking into ${((s as any).npcdesc ?? 0)}'s eyes. "Be better."`);
-    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
-      scene.img('images/shared/sex/vag/miss/2.jpg');
-      // TODO-QSP: dynamic text: "Don't be sorry," you say, gently cupping <<$npcdesc>>'s face. "Be better."
-      scene.text(`"Don't be sorry," you say, gently cupping ${((s as any).npcdesc ?? 0)}'s face. "Be better."`);
-    } else {
-      scene.img('images/shared/sex/after/pillow_talk2.jpg');
-      // TODO-QSP: dynamic text: "Don't be sorry," you say gently, looking into <<$npcdesc>>'s eyes. "Be better."
-      scene.text(`"Don't be sorry," you say gently, looking into ${((s as any).npcdesc ?? 0)}'s eyes. "Be better."`);
-    }
-    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
-      if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
-        scene.img('images/shared/sex/vag/doggy/1.jpg');
-      } else {
-        scene.img('images/shared/sex/after/pillow_talk2.jpg');
-      }
-      // TODO-QSP: dynamic text: "Don't be sorry," you say gently, looking into <<$npcdesc>>'s eyes. "Be better."
-      scene.text(`"Don't be sorry," you say gently, looking into ${((s as any).npcdesc ?? 0)}'s eyes. "Be better."`);
-    } else {
-      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
-        if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
-          scene.img('images/shared/sex/vag/cowgirl/3.jpg');
-        } else {
-          scene.img('images/shared/sex/cum/analcreampie/cowgirl1.mp4');
-        }
-        // TODO-QSP: dynamic text: "Don't be sorry," you say gently, looking into <<$npcdesc>>'s eyes. "Be better."
-        scene.text(`"Don't be sorry," you say gently, looking into ${((s as any).npcdesc ?? 0)}'s eyes. "Be better."`);
-        // TODO-QSP: end !}
-        qspCall(s, 'sex_ev_sex', 'sex_end');
-      }
-    }
-    if (((s as any).sex_ev ?? 0)?.['ask_next_time'] !== 'not_mad') {
-      scene.actions([
-        { label: '(Sullen)', handler: (st: GameState) => {
-    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
-      scene.img('images/shared/sex/vag/doggy/2.jpg');
-    } else {
-      scene.img('images/shared/sex/after/pillow_talk2.jpg');
-    }
-    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
-      scene.img('images/shared/sex/vag/miss/2.jpg');
-      scene.text('"Don\'t be sorry," you sigh with disappointment. "Be better."');
-    } else {
-      scene.img('images/shared/sex/cum/vagcreampie/oops.jpg');
-    }
-    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
-      if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
-        scene.img('images/shared/sex/vag/doggy/2.jpg');
-      } else {
-        scene.img('images/shared/sex/after/pillow_talk2.jpg');
-      }
-    } else {
-      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
-        if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
-          scene.img('images/shared/sex/vag/cowgirl/3.jpg');
-        } else {
-          scene.img('images/shared/sex/cum/analcreampie/cowgirl1.mp4');
-        }
-        // TODO-QSP: end !}
-        scene.text('"Don\'t be sorry," you sigh with measurable disappointment. "Be better."');
-        qspCall(s, 'sex_ev_sex', 'sex_end');
-      }
-    }
-  } },
-      ]);
-    }
+    qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
     ]);
   } },
   ]);
+  scene.build();
+}
+
+function enterCreampieAskNextTimeMad(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['creampie_force'] !== 1) {
+    if (((s as any).npc_ask_anal_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      scene.actions([
+        { label: 'Ask next time (very mad)', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
+    } else {
+      scene.img('images/shared/sex/vag/miss/3.jpg');
+    }
+    scene.img('images/shared/sex/vag/doggy/shock1.jpg');
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+      scene.img('images/shared/sex/vag/cowgirl/3.jpg');
+      // TODO-QSP: end !}
+    }
+    if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
+      scene.img('images/shared/sex/vag/doggy/3.jpg');
+      scene.text('"You need to..." you pant. "... ask... before you do... that..."');
+      scene.text('It\'s hard to give a glare that has impact when you\'re still dick drunk off the back of an anal orgasm but you somehow manage anyways, looking at him with daggers in your eyes.');
+    } else {
+      scene.img('images/shared/sex/vag/doggy/shock1.jpg');
+      scene.text('"Can\'t you fucking ask before you come inside my ass?" you scowl.');
+    }
+    if (((s as any).sex_ev ?? 0)?.['cum_wherever'] === 1) {
+      scene.text('"You told me I could come wherever I wanted," he pants in return, smiling.');
+      scene.text('"You still need to fucking tell me what you\'re gonna do," you hiss.');
+    } else {
+      // TODO-QSP: dynamic text: "Sorry," <<$npcdesc>> mumbles, apparently exhausted from emptying his balls into...
+      scene.text(`"Sorry," ${((s as any).npcdesc ?? 0)} mumbles, apparently exhausted from emptying his balls into you without permission.`);
+      scene.text('"Don\'t be sorry," you grumble. "Be better."');
+    }
+    ((s as any).npc_ask_anal_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    qspCall(s, 'sex_ev_reactions_analcreampie', 'creampie_ask_next_time_mad2');
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'What happened to asking (very mad)', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
+      scene.text('"Didn\'t..." you pant, tiredly glaring at him. "... I tell you... to ask first...?"');
+    } else {
+      scene.text('"What the fuck!" you scowl. "Didn\'t I tell you to ask first?!"');
+    }
+    qspCall(s, 'sex_ev_reactions_analcreampie', 'creampie_ask_next_time_mad2');
+  } },
+      ]);
+    }
+  }
+  scene.build();
+}
+
+function enterCreampieAskNextTimeMad2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['cum_wherever'] === 1) {
+    scene.text('"You told me I could come wherever I wanted," he pants in return, smiling.');
+    scene.text('"You still need to fucking tell me what you\'re gonna do," you hiss.');
+  } else {
+    // TODO-QSP: dynamic text: "Sorry," <<$npcdesc>> mumbles, apparently exhausted from emptying his balls into...
+    scene.text(`"Sorry," ${((s as any).npcdesc ?? 0)} mumbles, apparently exhausted from emptying his balls into you without permission.`);
+    scene.text('"Don\'t be sorry," you grumble. "Be better."');
+  }
+  ((s as any).npc_ask_anal_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+  qspCall(s, 'sex_ev_sex', 'sex_end');
+  scene.build();
+}
+
+function enterPullOutFinish(s: GameState, scene: SceneBuilder): void {
+  if ((((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1  ||  ((s as any).sex_ev ?? 0)?.['not_inside'] === 1)  &&  ((s as any).sex_ev ?? 0)?.['creampie_surprise'] === 1  &&  ((s as any).sex_ev ?? 0)?.['pull-out_fail_react'] === 0) {
+    // TODO-QSP: act iif(sex_ev['not_inside'] = 1, '[not]... inside...', '[pull]... out...'):
+    ((s as any).sex_ev ?? {})['pull-out_fail_react'] = 1;
+    if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
+      // TODO-QSP: iif(sex_ev['not_inside'] = 1, '"not... in... side..."', '"... out..."') + ' you finish belatedly. Yo...
+    } else {
+      // TODO-QSP: iif(sex_ev['not_inside'] = 1, '"not... in... side..."', '"... out..."') + ' you finish belatedly.'
+    }
+    qspCall(s, 'sex_ev_reactions_analcreampie', 'creampie_react');
+  }
   scene.build();
 }
 
@@ -586,8 +617,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'creampie_be_better':
       enterCreampieBeBetter(s, scene);
       break;
+    case 'creampie_ask_next_time_mad':
+      enterCreampieAskNextTimeMad(s, scene);
+      break;
+    case 'creampie_ask_next_time_mad2':
+      enterCreampieAskNextTimeMad2(s, scene);
+      break;
+    case 'pull-out_finish':
+      enterPullOutFinish(s, scene);
+      break;
     default:
-      enterCreampieReact(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

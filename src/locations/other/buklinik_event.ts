@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPos1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   (s as any).buklinikDay = ((s as any).daystart ?? 0);
@@ -1281,7 +1285,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEvent2NannyAct6(s, scene);
       break;
     default:
-      enterPos1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1292,6 +1296,5 @@ export const buklinik_event: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'kitr',
-  description: ['The majority of them mumble between themselves before going back to loitering around. All except one. "Hey girl! The name\'s Vladimir! Why are you standing there all scared? Come in and sit with us. I\'ll introduce you to everyone."'],
   enter: enter,
 };

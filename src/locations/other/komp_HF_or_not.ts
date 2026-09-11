@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFuckornot(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
@@ -263,7 +267,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHotornotUniList(s, scene);
       break;
     default:
-      enterFuckornot(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -272,6 +276,5 @@ export const komp_HF_or_not: LocationDef = {
   name: 'komp_HF_or_not',
   title: '10: Perfection - Would let her do whatever she wants to me.',
   region: 'other',
-  description: ['10: Perfection - Would let her do whatever she wants to me.'],
   enter: enter,
 };

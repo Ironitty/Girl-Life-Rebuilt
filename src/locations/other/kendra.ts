@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKendraRoomStart(s: GameState, scene: SceneBuilder): void {
   (s as any).reccoldorm = 0;
   qspCall(s, 'stat', '');
@@ -1376,7 +1380,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKendraPetka1(s, scene);
       break;
     default:
-      enterKendraRoomStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1386,6 +1390,5 @@ export const kendra: LocationDef = {
   title: 'There are two beds, one on each side of the window, along wi',
   region: 'other',
   locationType: 'event',
-  description: ['There are two beds, one on each side of the window, along with various pictures and posters hanging on both sides of the room. A string of large lights hang from one of the walls and just down from the beds on each side are two desks, both decorated with slight differences. A small couch and two wardrobes are near the door.'],
   enter: enter,
 };

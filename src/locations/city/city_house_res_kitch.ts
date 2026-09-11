@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterKitch(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'core_library', 'setloc', 'city_house_res_kitch', 'kitch');
   qspCall(s, 'kit_din', '');
@@ -48,12 +52,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'kitch':
+      enterKitch(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const city_house_res_kitch: LocationDef = {
   name: 'city_house_res_kitch',
   title: 'Kitchen',
   region: 'city',
   locationType: 'private',
   locclass: 'kitr',
-  description: ['A well stocked kitchen containing all the necessities to make whatever meal you please.'],
   enter: enter,
 };

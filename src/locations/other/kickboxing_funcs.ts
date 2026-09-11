@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInitFightVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_kickboxVars ?? {})['pcs_points'] = 0;
   ((s as any).temp_kickboxVars ?? {})['npc_points'] = 0;
@@ -373,7 +377,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDisplayHeader2(s, scene);
       break;
     default:
-      enterInitFightVars(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'tatiana_lab', 'start');
   if (((s as any).locArgs?.[1] ?? 0) !== 'no_time') {
@@ -1841,7 +1845,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAddContact(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1850,6 +1854,5 @@ export const tatiana_lab: LocationDef = {
   name: 'tatiana_lab',
   title: 'Myrkov Investigative Agency.',
   region: 'other',
-  description: ['The Myrkov Investigative Agency is the front for Tatiana\'s laboratory and business in St Petersburg. It also provides a safe haven for council members when needed. You look at around the room and see a haphazard mishmash of modern scientific equipment and magical paraphernalia. On the walls are strange runes that sometimes flicker with a strange internal light causing Tatiana briefly to glance at them.'],
   enter: enter,
 };

@@ -4,7 +4,21 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Go to the office', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).AboutBussines = 0;
+    (s as any).AboutDocs = 0;
+    (s as any).AboutDocsManager = 0;
+    (s as any).YouNotOpenDoorDir = 0;
+    (s as any).YouNotOpenDoorBuh = 0;
+  }, goto: ['TerminalOffice', '00'] },
+  ]);
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'Terminal', '');
   qspCall(s, 'stat', '');
@@ -32,11 +46,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const Terminal: LocationDef = {
   name: 'Terminal',
   title: 'Storage terminal',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['A large shipping center with many on and off load truck ports.'],
   enter: enter,
 };

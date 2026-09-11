@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDimkalina0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).dimbadgirl = 0;
@@ -1520,7 +1524,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLinaundress(s, scene);
       break;
     default:
-      enterDimkalina0(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

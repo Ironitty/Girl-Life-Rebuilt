@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_hotel', 'skip_resepevent');
   if (((s as any).temp ?? 0) !== 0) {
     // TODO-QSP: killvar 'temp'
@@ -619,6 +623,5 @@ export const pav_hotel: LocationDef = {
   title: '<a href="exec:gt \'pav_hotel\',\'Pavlin\'">Pavlin</a> is sitting',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['You sit in one of the comfortable chairs in the lobby and watch the guests checking in and out.'],
   enter: enter,
 };

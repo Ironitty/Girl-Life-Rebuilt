@@ -4,6 +4,54 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).ARGS ?? 0) === 'hall'  ||  ((s as any).locArgs?.[0] ?? 0) === 'start') {
+    ((s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Theatre Foyer';
+    ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_hall';
+    qspCall(s, 'city_mariinsky', 'setup', 'hall');
+    if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 0) {
+      // TODO-QSP: act 'Tickets Booth': gt 'city_mariinsky', 'tickets'
+    }
+    if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 1) {
+      // TODO-QSP: act 'Main Stage': gt 'city_mariinsky', 'main'
+    }
+    if (((s as any).hour ?? 0) >= 8) {
+      qspCall(s, 'willpower', 'exhib', 'self');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Enter the men\'s restroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Enter the men\'s restroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'exhib', 'self');
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'stat', '');
+  }, goto: ['city_mariinsky', 'toilets_men'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Enter the women\'s restroom', handler: (st: GameState) => {
+    // TODO-QSP: $marreturn = 'hall'
+  }, goto: ['city_mariinsky', 'toilets_women'] },
+      ]);
+    }
+    scene.text('You enter the Mariinksy Theatre into the massive open hall with dazzling lights and posters proclaiming the theatre\'s next performances.');
+    if (((s as any).daystage ?? 0) <= 3) {
+      scene.text('The hall is relatively quite at this time of day, with few performances on during the day.');
+    } else {
+      scene.text('The hall is packed, elegantly dressed theatre goers and concert aficionados eagerly discussing the upcoming performances or waiting to enter the building and watch the evening\'s performances.');
+    }
+    scene.actions([
+      { label: 'Stage Door', goto: ['city_mariinsky', 'stage_door'] },
+      { label: 'Exit', goto: ['city_mariinsky', 'exit'] },
+    ]);
+  }
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['imagepath'] = 'locations/city/mariinsky/';
   scene.build();
@@ -196,7 +244,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHallowedGround(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -207,5 +255,6 @@ export const city_mariinsky: LocationDef = {
   region: 'city',
   locationType: 'private_shared',
   locclass: 'restroom',
+  description: ['You enter the Mariinksy Theatre into the massive open hall with dazzling lights and posters proclaiming the theatre\'s next performances.'],
   enter: enter,
 };

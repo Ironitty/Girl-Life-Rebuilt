@@ -6,6 +6,61 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === ''  ||  !isNaN(((s as any).locArgs?.[0] ?? 0)) && ((s as any).locArgs?.[0] ?? 0) !== '') {
+    if (((s as any).locArgs?.[0] ?? 0) !== '') {
+      ((s as any).ARGS ?? {})[0] = qspUntranslated(s, "val(ARGS[0])", { location: "npcgeneratec" });
+    }
+    (s as any).npcgen_lastrun = 1;
+    ((s as any).npcgeneratecVars ?? {})['gender'] = qspUntranslated(s, "ARGS[0]", { location: "npcgeneratec" });
+    if (((s as any).locArgs?.[2] ?? 0) !== 0) {
+      ((s as any).npcgeneratecVars ?? {})['age'] = qspUntranslated(s, "ARGS[2]", { location: "npcgeneratec" });
+    } else {
+      ((s as any).npcgeneratecVars ?? {})['age'] = Math.floor(Math.random() * 18) + 18;
+    }
+    if (((s as any).locArgs?.[1] ?? 0) !== '') {
+      ((s as any).npcgeneratecVars ?? {})['name'] = ((s as any).locArgs?.[1] ?? 0);
+    } else {
+      if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
+        ((s as any).npcgeneratecVars ?? {})['name'] = 'A Male';
+      } else {
+        if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 1) {
+          ((s as any).npcgeneratecVars ?? {})['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
+        } else {
+          if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 2) {
+            ((s as any).npcgeneratecVars ?? {})['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
+          } else {
+            ((s as any).npcgeneratecVars ?? {})['name'] = 'A Male';
+          }
+        }
+      }
+    }
+    if (((s as any).locArgs?.[3] ?? 0) !== 0) {
+      ((s as any).npcgeneratecVars ?? {})['loc'] = qspUntranslated(s, "ARGS[3]", { location: "npcgeneratec" });
+    } else {
+      if (((s as any).region ?? 0) === 'pav') {
+        ((s as any).npcgeneratecVars ?? {})['loc'] = 1;
+      } else {
+        if (((s as any).region ?? 0) === 'city') {
+          ((s as any).npcgeneratecVars ?? {})['loc'] = Math.floor(Math.random() * 2) + 3;
+        }
+      }
+    }
+    ((s as any).npcgeneratecVars ?? {})['anonymous'] = qspUntranslated(s, "ARGS[4]", { location: "npcgeneratec" });
+    if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('attracted') : -1) > 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('like') : -1) > 0) {
+      ((s as any).npcgeneratecVars ?? {})['attracted'] = 'like';
+    } else {
+      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unattracted') : -1) > 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('dislike') : -1) > 0) {
+        ((s as any).npcgeneratecVars ?? {})['attracted'] = 'dislike';
+      } else {
+        ((s as any).npcgeneratecVars ?? {})['attracted'] = '';
+      }
+    }
+    qspCall(s, 'npcgeneratec', 'init');
+  }
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', 'assign_index');
   qspCall(s, 'npcgeneratec', 'assign_dob', ((s as any).npclastgenerated ?? 0));
@@ -1280,15 +1335,6 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: npc_sex_stamina[$ARGS[1]] = rand(1, 10)
-  if ((Math.floor(Math.random() * 10) + 1) <= 4) {
-    // TODO-QSP: npc_sex_stamina[$ARGS[1]] = rand(3,5)
-  } else {
-    if ((Math.floor(Math.random() * 10) + 1) <= 3) {
-      // TODO-QSP: npc_sex_stamina[$ARGS[1]] = rand(1,3)
-    } else {
-      // TODO-QSP: npc_sex_stamina[$ARGS[1]] = rand(1,10)
-    }
-  }
   // TODO-QSP: npc_sex_spanker[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
   // TODO-QSP: npc_childfree[$ARGS[1]] = iif(rand(0, 4) = 0, 1, 0)
   // TODO-QSP: npc_pussyeater[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
@@ -2033,7 +2079,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCleanup(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

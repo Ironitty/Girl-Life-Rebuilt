@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSection2Party(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).stage ?? 0))) {
     (s as any).stage = ((s as any).stage ?? 0) + (1);
@@ -103,7 +107,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSection2Bender(s, scene);
       break;
     default:
-      enterSection2Party(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

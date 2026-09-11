@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLazar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'npc_relationship', 'modify', 'A149', 'like');
@@ -2439,7 +2443,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterIvan(s, scene);
       break;
     default:
-      enterLazar(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2448,6 +2452,5 @@ export const gschool_jock_chats: LocationDef = {
   name: 'gschool_jock_chats',
   title: '<<"Ivan Prokhorov">>',
   region: 'other',
-  description: ['Lazar smirks when he sees you. "Back for more? I know, it was amazing."'],
   enter: enter,
 };

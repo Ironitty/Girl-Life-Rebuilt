@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     if (((s as any).week ?? 0) === 7) {
@@ -304,7 +308,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPray(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -314,6 +318,5 @@ export const gad_church: LocationDef = {
   title: 'Local Church',
   region: 'gadukino',
   locationType: 'public_indoors',
-  description: ['The local church is small and relatively old, it is not in the best shape, but it appears well-loved.'],
   enter: enter,
 };

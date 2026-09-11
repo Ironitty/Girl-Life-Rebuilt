@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) < 1080) {
     (s as any).minut = ((s as any).minut ?? 0) + (1080 - (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)));
@@ -1249,7 +1253,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterIvannaSlave(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

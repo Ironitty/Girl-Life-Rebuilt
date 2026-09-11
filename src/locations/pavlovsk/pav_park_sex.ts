@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterWatchSonia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/park/watch/sonia_boy1.jpg');
@@ -1813,7 +1817,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNushValCum(s, scene);
       break;
     default:
-      enterWatchSonia(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1823,6 +1827,5 @@ export const pav_park_sex: LocationDef = {
   title: 'You carefully walk through an opening between the trees and ',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['You carefully walk through an opening between the trees and bushes, pushing some branches aside to see what\'s happening. There, you see Sonia on her haunches in front of Svyatoslav, sucking on the head of his dick while using one hand to stroke his shaft.'],
   enter: enter,
 };

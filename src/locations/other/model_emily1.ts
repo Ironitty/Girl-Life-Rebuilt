@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEmily_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).emily ?? 0)?.['status'] === 2) {
     scene.actions([{ label: 'Continue', goto: ['model_emily1', 'emily_2'] }]);
@@ -471,7 +475,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEmilyChat(s, scene);
       break;
     default:
-      enterEmily_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -480,6 +484,5 @@ export const model_emily1: LocationDef = {
   name: 'model_emily1',
   title: 'You\'re walking through the studio when you hear someone shou',
   region: 'other',
-  description: ['You\'re walking through the studio when you hear someone shout from behind you.'],
   enter: enter,
 };

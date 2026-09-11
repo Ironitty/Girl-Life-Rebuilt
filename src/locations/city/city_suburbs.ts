@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_suburbs', 'start');
   qspCall(s, 'stat', '');
@@ -143,7 +147,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPs2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -153,6 +157,5 @@ export const city_suburbs: LocationDef = {
   title: '<center><h4>Elite settlement<h4></center>',
   region: 'city',
   locationType: 'public_outdoors',
-  description: ['There is a vacant plot of land for sale where a large mansion could be constructed.'],
   enter: enter,
 };

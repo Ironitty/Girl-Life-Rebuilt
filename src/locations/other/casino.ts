@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterOutside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/industrial/casino/zdcasino.jpg');
@@ -816,6 +820,7 @@ function enterBlackjackPlay(s: GameState, scene: SceneBuilder): void {
   (s as any).minBet = 10;
   (s as any).maxBet = 500;
   qspCall(s, 'deckShuffle', 'sort');
+  scene.img('images/locations/city/industrial/casino/stolbd.jpg');
   scene.text(`<center><b>You currently have ${((s as any).casino_chips ?? 0)} chips.<br></b></center>`);
   scene.actions([
     { label: 'Move away from the table', goto: ['casino', 'cards'] },
@@ -826,6 +831,7 @@ function enterBlackjackPlay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRules(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/industrial/casino/crupbd.jpg');
   // TODO-QSP: *p '<ol><li>The player and dealer are each dealt 2 cards after initial bets (<<minBet>> - <<maxBet>>...
   // TODO-QSP: *p '<li>Face cards are worth 10 points, aces can double as either 11 or 1, and all other cards are w...
   // TODO-QSP: *p '<li>After the player finishes drawing, the dealer must continue to draw until they have 17 point...
@@ -843,6 +849,7 @@ function enterRules(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBet1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/industrial/casino/stavkabd.jpg');
   scene.text(`<center><b>You currently have ${((s as any).casino_chips ?? 0)} chips.<br></b></center>`);
   ((s as any).temp_player_bets ?? {})[0] = 0;
   if (((s as any).casino_chips ?? 0) < ((s as any).temp_player_bets ?? 0)[0]) {
@@ -990,6 +997,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
     // TODO-QSP: temp_player_hand[i + 1] = cardsDealt
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
+    scene.img('images/locations/city/industrial/casino/cartbde.jpg');
   }, goto: ['casino', 'player'] },
           ]);
         }
@@ -1006,6 +1014,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).temp_player_hand ?? {})[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
+    scene.img('images/locations/city/industrial/casino/cartbde.jpg');
   }, goto: ['casino', 'player'] },
         ]);
       }
@@ -1019,6 +1028,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).temp_player_hand ?? {})[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
+    scene.img('images/locations/city/industrial/casino/cartbde.jpg');
   }, goto: ['casino', 'player'] },
         { label: '<<$text>>Stay', handler: (st: GameState) => {
     (s as any).currentHand = ((s as any).currentHand ?? 0) + (1);
@@ -1048,6 +1058,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).temp_dealer_hand ?? {})[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
+    scene.img('images/locations/city/industrial/casino/cartbde.jpg');
   }, goto: ['casino', 'dealer'] },
     ]);
   } else {
@@ -1268,7 +1279,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBlackjackView(s, scene);
       break;
     default:
-      enterOutside(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1278,6 +1289,5 @@ export const casino: LocationDef = {
   title: 'You currently have <<casino_chips>> chips.<br>',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You stand in front of the door to the casino.'],
   enter: enter,
 };

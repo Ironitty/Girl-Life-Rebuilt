@@ -4,6 +4,10 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCreateclass(s: GameState, scene: SceneBuilder): void {
   ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$ARGS[2] || '') + '_weekly_grade_gain_max'] = 10 * (((s as any).ARGS ?? 0)[3] * (1 + ((s as any).ARGS ?? 0)[4]) + ((s as any).ARGS ?? 0)[8]);
   if (((s as any).locArgs?.[6] ?? 0) === 'yes') {
@@ -398,18 +402,18 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
     if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_homework'] === 1) {
       if (((s as any).locArgs?.[2] ?? 0) === '!') {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 2) {
-          ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (5 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+          // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] += 5 * temp_grades_mult_fact * ARGS[3] * (2 - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_use_computer']) * (50 + temp_grades_modifier) / 400
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 5) {
-            ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (4 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+            // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] += 4 * temp_grades_mult_fact * ARGS[3] * (2 - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_use_computer']) * (50 + temp_grades_modifier) / 400
           } else {
             if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 10) {
-              ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (3 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+              // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] += 3 * temp_grades_mult_fact * ARGS[3] * (2 - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_use_computer']) * (50 + temp_grades_modifier) / 400
             } else {
               if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] < 20) {
-                ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (2 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+                // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] += 2 * temp_grades_mult_fact * ARGS[3] * (2 - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_use_computer']) * (50 + temp_grades_modifier) / 400
               } else {
-                ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (1 * ((s as any).temp_grades_mult_fact ?? 0) * ((s as any).ARGS ?? 0)[3] * (2 - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_use_computer']) * (50 + ((s as any).temp_grades_modifier ?? 0)) / 400);
+                // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] += 1 * temp_grades_mult_fact * ARGS[3] * (2 - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_use_computer']) * (50 + temp_grades_modifier) / 400
               }
             }
           }
@@ -476,9 +480,9 @@ function enterCalculateGrade(s: GameState, scene: SceneBuilder): void {
     ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_weekly_grade_gain'] ?? 0) + (((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_optional_weekly_grade_gain']);
     ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_optional_weekly_grade_gain'] = 0;
     if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
-      ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] ?? 0) - ((5 - 5 * ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_weekly_grade_gain'] / ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'1\'>>_weekly_grade_gain_breakeven_point']));
+      // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_grade'] -= (5 - 5 * class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] / class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point'])
     } else {
-      ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] = (((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] ?? 0) + (3 * (((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'0\'>>_weekly_grade_gain'] - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'1\'>>_weekly_grade_gain_breakeven_point']) / (((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'2\'>>_weekly_grade_gain_max'] - ((s as any).class ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_<<$\'3\'>>_weekly_grade_gain_breakeven_point']));
+      // TODO-QSP: class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_grade'] += 3 * (class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain'] - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point']) / (class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_max'] - class['<<$ARGS[1]>>_<<$class_list_name[temp_grades_i]>>_weekly_grade_gain_breakeven_point'])
     }
     if (((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade'] > ((s as any).class ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)] + '_grade_cap']) {
       ((s as any).class ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).$class_list_name[temp_grades_i] || '') + '_grade'] = ((s as any).class ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_' + String(((s as any).class_list_name ?? 0)?.[String((s as any).temp_grades_i ?? 0)]) + '_grade_cap'];
@@ -621,7 +625,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGradeAbove(s, scene);
       break;
     default:
-      enterCreateclass(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

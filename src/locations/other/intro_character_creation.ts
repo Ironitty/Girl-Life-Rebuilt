@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).birthday ?? 0))) {
     qspCall(s, 'intro_functions', 'set_default', 'birthday');
@@ -1205,7 +1209,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSetHairNextPrev(s, scene);
       break;
     default:
-      enterCoreBirthday(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

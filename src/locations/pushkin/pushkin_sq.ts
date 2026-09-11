@@ -143,21 +143,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['dibodi', 'sotusa'] },
       ]);
     }
-    if (((s as any).sttan ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none') {
-      // TODO-QSP: dynamic text: - <<$pcs_nickname>>, and again without panties, - said one of the boys - Pussy p...
-      scene.text(`- ${((s as any).pcs_nickname ?? 0)}, and again without panties, - said one of the boys - Pussy pokezh?`);
-      scene.text('- And yet to show? - you said - How do I want and go.');
-      scene.actions([
-        { label: 'Further', goto: ['ETO_village', 'community_alleys'] },
-      ]);
-    }
-    if (((s as any).sttan ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
-      // TODO-QSP: dynamic text: - Vav <<$pcs_nickname>> truselya put.
-      scene.text(`- Vav ${((s as any).pcs_nickname ?? 0)} truselya put.`);
-      scene.actions([
-        { label: 'Answer', goto: ['ETO_village', 'forest_area'] },
-      ]);
-    }
     scene.actions([
       { label: 'Leave', goto: ['pushkin_sq', ''] },
     ]);

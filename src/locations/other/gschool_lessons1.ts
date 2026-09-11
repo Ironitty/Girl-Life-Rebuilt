@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRussian(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'attend_class', 'school', 'rus');
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -2120,7 +2124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHistory(s, scene);
       break;
     default:
-      enterRussian(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2129,6 +2133,5 @@ export const gschool_lessons1: LocationDef = {
   name: 'gschool_lessons1',
   title: 'You walk into the classroom and take a seat farthest to the ',
   region: 'other',
-  description: ['You walk into the classroom and take a seat farthest to the right, next to a window. The rest of your classmates walk in one by one before Mr. Yenotin enters the classroom. Just as he\'s about to close the door, one of your classmates grabs it from outside the room. Mr. Yenotin turns to the tardy student, informs them that they\'re late and that he\'ll have to report them. This instruction is followed by an awkward wink and the student is allowed in to find a seat. Everyone knows that he never reports the tardy students. As everyone settles in, Mr. Yenotin does a roll call before opening a grammar book and telling you to open your textbooks to where you left off in the last lesson.'],
   enter: enter,
 };

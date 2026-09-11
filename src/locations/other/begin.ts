@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterWarning(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b><font color = white>WARNING</font></b></center>');
   scene.img('images/system/1_openings/warning.jpg');
@@ -167,7 +171,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterUseAvatarMenu(s, scene);
       break;
     default:
-      enterWarning(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

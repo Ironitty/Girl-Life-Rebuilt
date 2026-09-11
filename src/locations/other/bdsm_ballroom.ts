@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBallroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_ballroom', 'ballroom');
   qspCall(s, 'stat', '');
@@ -37,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAtrium(s, scene);
       break;
     default:
-      enterBallroom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKnockStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_chill', 'init', ((s as any).locArgs?.[1] ?? 0));
   scene.text('<center>$npc_apt_hall[$npcID]</center>');
@@ -817,7 +821,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDateEndStats(s, scene);
       break;
     default:
-      enterKnockStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -826,6 +830,5 @@ export const date_chill: LocationDef = {
   name: 'date_chill',
   title: '<center>$npc_apt_hall[$npcID]</center>',
   region: 'other',
-  description: ['"Hey, come on in."'],
   enter: enter,
 };

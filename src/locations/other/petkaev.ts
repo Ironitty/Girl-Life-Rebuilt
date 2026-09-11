@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/nerdtalk.jpg');
@@ -952,7 +956,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFemdomPetkaCuminsideMagic(s, scene);
       break;
     default:
-      enterFollowPetka(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -961,6 +965,5 @@ export const petkaev: LocationDef = {
   name: 'petkaev',
   title: 'You follow Petka into the bathroom. He quickly turns around,',
   region: 'other',
-  description: ['You follow Petka into the bathroom. He quickly turns around, looking very eager.'],
   enter: enter,
 };

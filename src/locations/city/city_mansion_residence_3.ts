@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterYgym(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_mansion_residence_3', 'ygym');
   qspCall(s, 'stat', '');
@@ -163,7 +167,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterYsauna(s, scene);
       break;
     default:
-      enterYgym(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -173,6 +177,5 @@ export const city_mansion_residence_3: LocationDef = {
   title: 'Gym',
   region: 'city',
   locationType: 'private',
-  description: ['Your private gym with all the necessities to live a healthy life. From here you can walk over to the pool or relax in the sauna.'],
   enter: enter,
 };

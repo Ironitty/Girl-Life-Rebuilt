@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -62,7 +60,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
         }
       }
-      ((s as any).placerStringParameter ?? {})['text_start_meet'] = '' + qspUntranslated(s, "txt_a>", { location: "placer_man" }) + ' <<$txt_b>>';
+      // TODO-QSP: $placerStringParameter['text_start_meet'] = '<<$txt_a>> <<$txt_b>>'
     }
   } else {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 0) {
@@ -71,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ((s as any).placerStringParameter ?? {})['text_start_meet'] = ' The guy grins, he recognizes who you are.';
         } else {
           if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1) {
-            ((s as any).placerStringParameter ?? {})['text_start_meet'] = ' The guys whisper to one another: "Look guys, it\'s ' + qspUntranslated(s, "pcs_nickname>", { location: "placer_man" }) + '. She\'s a pretty big <<$gnikname>>, from what I heard."';
+            // TODO-QSP: $placerStringParameter['text_start_meet'] = ' The guys whisper to one another: "Look guys, it''s <<$pcs_nickname>>. She''s a pretty big <<$gnikname>>, from what I heard."'
           }
         }
       } else {

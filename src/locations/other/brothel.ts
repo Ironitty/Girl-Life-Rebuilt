@@ -4,6 +4,35 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).dbg = 0;
+  if (((s as any).dbg ?? 0) === 1) {
+    // TODO-QSP: 'loc: ' + $loc
+    // TODO-QSP: 'args: ' + $ARGS[0]
+    // TODO-QSP: 'session: ' + $sessionB
+    // TODO-QSP: 'stage: ' + stage
+    // TODO-QSP: 'pain: ' + pain['total']
+    // TODO-QSP: 'step: ' + brothel['step']
+    // TODO-QSP: 'caneFeetCount: ' + caneFeetCount
+  }
+  if (((s as any).sect ?? 0) === 'section2') {
+    scene.actions([
+      { label: 'Go back to lobby', goto: ['brothel', 'section2_lobby'] },
+    ]);
+  } else {
+    if (((s as any).sect ?? 0) === 'reception') {
+      scene.actions([
+        { label: 'Go back to the reception', goto: ['brothel', 'reception'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Go back to lobby', goto: ['brothel', 'section1_lobby'] },
+      ]);
+    }
+  }
+  scene.build();
+}
+
 function enterLobby(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Hotel Lobby</h3>');
   scene.img('images/locations/shared/brothel/hotellobby.jpg');
@@ -655,7 +684,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBrothelDressingroom(s, scene);
       break;
     default:
-      enterLobby(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -665,6 +694,5 @@ export const brothel: LocationDef = {
   title: 'You are drunk and the barman is obviously enjoying the presence of a nice girl in such a state, often flirting with you and enjoying your looks.',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You are in a lobby of a middle-class Hotel.'],
   enter: enter,
 };

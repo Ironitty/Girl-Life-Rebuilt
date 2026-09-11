@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'saveposition', '');
   scene.actions([{ label: 'Continue', goto: ['adverts_manager', 'show'] }]);
@@ -234,7 +238,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterViewAdvert(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

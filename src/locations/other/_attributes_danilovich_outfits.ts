@@ -3,14 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/13
-  // TODO-QSP: CloPrice ~ 3000 * (20 + CloQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 2: 3300
-  // TODO-QSP: 3: 3450
-  // TODO-QSP: 4: 3600
-  // TODO-QSP: 5: 3750
-  // TODO-QSP: CloQuality range is 2-5. 3 for casual short-and-shorts, 4 for clothing specially designed for exerci...
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).CloQuality = 2;
     (s as any).CloStrength = 198750;

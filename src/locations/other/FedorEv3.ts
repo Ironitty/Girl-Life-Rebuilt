@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/couple.jpg');
@@ -1412,6 +1416,5 @@ export const FedorEv3: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'restroom',
-  description: ['As you and Fedor arrive at the cinema, Fedor presented the tickets at the entrance then brought you to the concession stand.'],
   enter: enter,
 };

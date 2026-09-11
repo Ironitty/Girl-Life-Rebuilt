@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterIvanVitekFight1(s: GameState, scene: SceneBuilder): void {
   (s as any).numnpc = 3;
   (s as any).ivansportday = ((s as any).daystart ?? 0);
@@ -827,7 +831,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLockerRoomDressed(s, scene);
       break;
     default:
-      enterIvanVitekFight1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -836,6 +840,5 @@ export const IvanEv: LocationDef = {
   name: 'IvanEv',
   title: '<<$npc_firstname[\'A3\']>> <<$npc_lastname[\'A3\']>>',
   region: 'other',
-  description: ['When you enter the sports center, Ivan sees you come in. Even though he\'s getting ready for a training session and is only wearing his boxing shorts, he comes over for a quick chat.'],
   enter: enter,
 };

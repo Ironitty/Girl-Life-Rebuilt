@@ -1,8 +1,12 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
 
 function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
   ((s as any).foto ?? {})['documentary'] = 0;
@@ -945,64 +949,37 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.actions([
-    { label: 'Early morning with exercise', handler: (st: GameState) => {
-    ((s as any).foto_documentary ?? {})['question_11'] = 1;
-    scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
-    scene.text('');
-    scene.actions([
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-    ]);
-  } },
-    { label: 'Early morning to do chores', handler: (st: GameState) => {
-    ((s as any).foto_documentary ?? {})['question_11'] = 2;
-    scene.img('images/locations/city/citycenter/photo/special/interview/7.mp4');
-    scene.text('"');
-    scene.actions([
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-    ]);
-  } },
-    { label: 'Early morning with a light breakfast', handler: (st: GameState) => {
-    ((s as any).foto_documentary ?? {})['question_11'] = 3;
-    scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
-    scene.text('');
-    scene.actions([
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-    ]);
-  } },
-    { label: 'Anything involving coffee', handler: (st: GameState) => {
-    ((s as any).foto_documentary ?? {})['question_11'] = 4;
-    scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
-    scene.text('');
-    scene.actions([
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-    ]);
-  } },
-    { label: 'Anything involving coffee (slightly crude/slutty)', handler: (st: GameState) => {
-    ((s as any).foto_documentary ?? {})['question_11'] = 5;
-    scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
-    scene.text('');
-    scene.actions([
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-    ]);
-  } },
-    { label: 'Sleeping in followed by brunch', handler: (st: GameState) => {
-    ((s as any).foto_documentary ?? {})['question_11'] = 6;
-    scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
-    scene.text('');
-    scene.actions([
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-    ]);
-  } },
-    { label: '', handler: (st: GameState) => {
-    ((s as any).foto_documentary ?? {})['question_11'] = 7;
-    scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
-    scene.text('');
-    // TODO-QSP: end !}
-    scene.actions([
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-      { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
-    ]);
-  } },
+    { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
+  ]);
+  scene.build();
+}
+
+function enter1stDocumentaryEnd(s: GameState, scene: SceneBuilder): void {
+  ((s as any).foto ?? {})['documentary'] = 0;
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
+  (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
+  qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 9);
+  if (((s as any).pcs_inhib ?? 0) < 55) {
+    qspCall(s, 'willpower', 'pay', 'self');
+  }
+  qspCall(s, 'fame', 'city', 'modelling', 'medium');
+  if (((s as any).fame ?? 0)?.['city_modelling'] > 200) {
+    qspCall(s, 'fame', 'city', 'modelling', 'small');
+  }
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+  qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
+  ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
+  ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/citycenter/photo/foto.jpg');
+  scene.text('"Well, that\'s the end of the interview. Thank you so much for your time and for answering our questions! I\'m sure the viewers will love what you had to say."');
+  scene.text('"No problem! You were a very good interviewer."');
+  // TODO-QSP: dynamic text: After exchanging a few more pleasantries, they hand you an envelope filled with ...
+  scene.text(`After exchanging a few more pleasantries, they hand you an envelope filled with bills that count out to ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} and call the next girl in from the side.`);
+  ((s as any).foto ?? {})['1st_documentary'] = 1;
+  scene.actions([
+    { label: 'Leave', goto: ['foto', 'studio'] },
   ]);
   scene.build();
 }
@@ -1046,8 +1023,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'documentary_11':
       enterDocumentary_11(s, scene);
       break;
+    case '1st_documentary_end':
+      enter1stDocumentaryEnd(s, scene);
+      break;
     default:
-      enter1stDocumentary(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1056,6 +1036,5 @@ export const foto_model_documentary: LocationDef = {
   name: 'foto_model_documentary',
   title: 'You step out of the room and almost run head first into one ',
   region: 'other',
-  description: ['You step out of the room and almost run head first into one of the managers.'],
   enter: enter,
 };

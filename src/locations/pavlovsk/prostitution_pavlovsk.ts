@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_pavlovsk', 'pav_rnd');
   if (((s as any).prostitute ?? 0)?.['pav_daily_count'] < ((s as any).prostitute ?? 0)?.['pav_daily_max']  &&  (Math.floor(Math.random() * 1000) + 1) < Math.min(((s as any).prostitute ?? 0)?.['pav_rnd'], 400)) {
@@ -1357,7 +1361,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSet_8(s, scene);
       break;
     default:
-      enterChance(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

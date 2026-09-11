@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'dimaHome', 'home');
   qspCall(s, 'stat', '');
@@ -1615,7 +1619,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDimkaKnees(s, scene);
       break;
     default:
-      enterHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1626,6 +1630,5 @@ export const dimaHome: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'bedr',
-  description: ['You walk up the path from the street to a relatively large, nice looking two-story house. You notice balconies on the front and side of the home. You exhale a deep breathe as you wonder what it would be like to live in such a nice place. You approach the front door and knock.'],
   enter: enter,
 };

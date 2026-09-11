@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFedorIntro(s: GameState, scene: SceneBuilder): void {
   (s as any).FedorIntro = 1;
   qspCall(s, 'stat', '');
@@ -199,6 +203,7 @@ function enterComb(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor combs your hair for you as you watch him, admiring how handsome he is. After Fedor finishes combing your hair, he says, "There is my beautiful girlfriend. Your hair is too pretty to be all knotted up like that." you give Fedor a kiss on the cheek as he puts his comb away.');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorMisc" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
+  scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorMisc" }) + '');
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     // TODO-QSP: gt $loc, $loc_arg, ARGS[1]
@@ -1264,7 +1269,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWorkoutTime(s, scene);
       break;
     default:
-      enterFedorIntro(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1275,6 +1280,5 @@ export const FedorMisc: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'school_bathroom',
-  description: ['As you walk out of the cafeteria, you see a crowd of students gathered around; what appears to be a fight. You move closer to get a better look when one of the boys in the fight gets knocked back into you. You recoil as one of the boys throws a punch that misses the other, but is rushing toward your face. Suddenly you feel someone\'s arm press against your chest, pushing you away from the fight, and saving you from getting hit. The one who saved you says, "That was a close one. Are you alright?'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
@@ -159,7 +163,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDinDimaPredlog(s, scene);
       break;
     default:
-      enterDinPredlogDimaBj(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

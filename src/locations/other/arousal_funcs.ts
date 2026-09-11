@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetBaseStimmag(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 1 + (Math.floor(Math.random() * 3) + 0) + (Math.floor(Math.random() * 4) + 0) + (Math.floor(Math.random() * 4) + 0);
   scene.build();
@@ -471,7 +475,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAutoLube(s, scene);
       break;
     default:
-      enterGetBaseStimmag(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

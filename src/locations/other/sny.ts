@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
@@ -572,7 +576,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enter3(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -581,6 +585,5 @@ export const sny: LocationDef = {
   name: 'sny',
   title: 'The whole class went to Dimka\'s home. He has house music pla',
   region: 'other',
-  description: ['The whole class went to Dimka\'s home. He has house music playing and lots of alcohol to drink. You go up to a table with a couple of the other girls and get a glass of vodka. Soon, everyone is drinking and celebrating the new year.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'anushka_konstantinov_schedule', '');
@@ -954,7 +958,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoffeeHoleAlbinaDrink(s, scene);
       break;
     default:
-      enterCoffeeHole(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -963,6 +967,5 @@ export const artem_events_uni: LocationDef = {
   name: 'artem_events_uni',
   title: 'Cafe "Coffee Hole"',
   region: 'other',
-  description: ['The cafe looks like it was once some type of industrial building, with tall ceilings, exposed pipes, ductwork and lights. The counter is in the far corner, while the middle of the room contains several tables and chairs.'],
   enter: enter,
 };

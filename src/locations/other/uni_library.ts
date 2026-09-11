@@ -7,6 +7,83 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) - (40);
+    scene.text('You\'re stoned, which makes it hard to concentrate on studying.');
+  }
+  if (((s as any).drugVars ?? 0)?.['amphetamine_high'] > 0) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) + (20);
+  }
+  if (((s as any).pcs_energy ?? 0) < 5) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) - (20);
+    scene.text('You\'re extremely hungry and it\'s hard to think about anything other than food.');
+  } else {
+    if (((s as any).pcs_energy ?? 0) < 10) {
+      (s as any).study_mod = ((s as any).study_mod ?? 0) - (10);
+      scene.text('You\'re very hungry and it affects your ability to concentrate.');
+    } else {
+      if (((s as any).pcs_energy ?? 0) < 20) {
+        (s as any).study_mod = ((s as any).study_mod ?? 0) - (10);
+        scene.text('You\'re hungry and your thoughts often drift to food, affecting your performance negatively.');
+      }
+    }
+  }
+  if (((s as any).pcs_horny ?? 0) > 90) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) - (10);
+    scene.text('You\'re extremely horny and your thoughts often drift to sex, affecting your ability to study.');
+  }
+  if (((s as any).pain ?? 0)?.['total'] > 90) {
+    (s as any).no_study = 1;
+    scene.text('You\'re in so much pain that you can\'t study.');
+  } else {
+    if (((s as any).pain ?? 0)?.['total'] > 75) {
+      (s as any).study_mod = ((s as any).study_mod ?? 0) - (40);
+      scene.text('You\'re in so much pain that you have a very hard time concentrating on studying.');
+    } else {
+      if (((s as any).pain ?? 0)?.['total'] > 60) {
+        (s as any).study_mod = ((s as any).study_mod ?? 0) - (20);
+        scene.text('Your pain is constantly bothering you and makes it hard to study.');
+      }
+    }
+  }
+  (s as any).study_mod = Math.max(0, ((Math.floor(Math.random() * (pcs_intel + study_mod - 30 + study_mod + 1)) + (30 + study_mod)) + 10)/33);
+  if (((s as any).no_study ?? 0) === 1) {
+    scene.text('You try to study for half an hour, but get nothing done.');
+  } else {
+    if ((!((s as any).study_mod ?? 0))) {
+      scene.text('You study for half an hour, but you don\'t think you\'re improving.');
+    } else {
+      if (((s as any).study_mod ?? 0) === 1) {
+        scene.text('You study for half an hour and think you\'re improving a little.');
+      } else {
+        if (((s as any).study_mod ?? 0) === 2) {
+          scene.text('You study for half an hour and believe that you\'re making good progress in getting ready for the exam.');
+        } else {
+          scene.text('You study for half an hour and believe that you\'re improving a lot.');
+        }
+      }
+    }
+    qspCall(s, 'grades', 'grade_award', '' + qspUntranslated(s, "ARGS[1]>", { location: "uni_library" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "uni_library" }) + '', ((s as any).study_mod ?? 0));
+  }
+  qspCall(s, 'stat', '');
+  if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8) {
+    scene.text('The library is closing for the night.');
+    return;
+  }
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['uni_grounds', ''] },
+    { label: 'Return to the entrance', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['uni_library', 'start'] },
+    { label: 'Keep studying', goto: ['uni_library', 'study'] },
+    { label: 'Wander around', goto: ['uni_library', 'wander'] },
+  ]);
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'uni_library', 'start');
   qspCall(s, 'katja_meynold_schedule', '');
@@ -228,6 +305,6 @@ export const uni_library: LocationDef = {
   title: 'The University Library',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['One of the medium sized buildings is the university\'s library. It is three stories tall and filled with books, sections with tables scattered around to study or relax at and computer stations to help students with their studying.'],
+  description: ['You\'re stoned, which makes it hard to concentrate on studying.'],
   enter: enter,
 };

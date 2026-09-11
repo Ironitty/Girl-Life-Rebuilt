@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -776,7 +780,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnal(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -785,6 +789,5 @@ export const gloryhole: LocationDef = {
   name: 'gloryhole',
   title: 'Empty Stall',
   region: 'other',
-  description: ['You walk down to the last stall and sit down, next to the toilet is a rather large almost perfectly round hole. Puzzled, you wonder how it got there and why no one has fixed it.'],
   enter: enter,
 };

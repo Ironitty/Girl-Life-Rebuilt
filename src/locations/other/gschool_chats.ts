@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNerds(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_chats', 'nerds');
   qspCall(s, 'gschool_chats', 'nerd_event_check');
@@ -823,7 +827,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCooljocksGropeEvent(s, scene);
       break;
     default:
-      enterNerds(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -832,6 +836,5 @@ export const gschool_chats: LocationDef = {
   name: 'gschool_chats',
   title: 'This uniform is very conservative. Only the nerds would approve of you wearing it.',
   region: 'other',
-  description: ['You are using the school uniform cheat and are not wearing a uniform, therefore there are no reactions to your uniform.'],
   enter: enter,
 };

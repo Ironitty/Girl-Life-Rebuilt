@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).arturKnow ?? 0))) {
     qspCall(s, 'stat', '');
@@ -229,7 +233,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWork_2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -238,6 +242,5 @@ export const arturRinok: LocationDef = {
   name: 'arturRinok',
   title: 'The handsome Armenian man smiles while handing you a plump t',
   region: 'other',
-  description: ['The handsome Armenian man smiles while handing you a plump tangerine.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).ArtemBeInHome = 1;
   if (((s as any).artemQW ?? 0)?.['katja_threesome'] === 1  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
@@ -594,7 +598,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterArtemdryhump2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -603,6 +607,5 @@ export const artem_events: LocationDef = {
   name: 'artem_events',
   title: '<<$npc_firstname[\'A2\']>> <<$npc_lastname[\'A2\']>>',
   region: 'other',
-  description: ['You walk across the school courtyard to meet up with Artem. He gives you a friendly nod as you approach. "You ready to go?"'],
   enter: enter,
 };

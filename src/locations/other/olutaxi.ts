@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big55.jpg');
@@ -845,7 +849,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOluTaxiSexAnal(s, scene);
       break;
     default:
-      enterStation(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -854,6 +858,5 @@ export const olutaxi: LocationDef = {
   name: 'olutaxi',
   title: 'He sits back down on the bench and you walk over and take a ',
   region: 'other',
-  description: ['He sits back down on the bench and you walk over and take a seat next to him. "No luck finding customers?"'],
   enter: enter,
 };

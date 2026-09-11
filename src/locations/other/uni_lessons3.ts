@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGeneralEducation_201(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'attend_class', 'uni_teaching_studies_semester_3', 'general education 201');
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -1738,7 +1742,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDosagesAndPharmaceuticals_101(s, scene);
       break;
     default:
-      enterGeneralEducation_201(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1747,6 +1751,5 @@ export const uni_lessons3: LocationDef = {
   name: 'uni_lessons3',
   title: 'You walk into the classroom and take a seat next to a window',
   region: 'other',
-  description: ['You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Kovalyov enters the classroom and closes the door.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFronty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_house_res_misc', 'fronty');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -170,7 +174,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLivroom(s, scene);
       break;
     default:
-      enterFronty(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -181,6 +185,5 @@ export const city_house_res_misc: LocationDef = {
   region: 'city',
   locationType: 'private',
   locclass: 'livingr',
-  description: ['Your small two story house sits on the edge of the residential area. Despite that, your neighbors are pretty close and the sounds of the street fill the air.'],
   enter: enter,
 };

@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gadukino', '');
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'gadukino_event', 'sound');
@@ -804,6 +808,5 @@ export const gadukino: LocationDef = {
   title: 'Mitka Shkvoryen',
   region: 'gadukino',
   locationType: 'public_outdoors',
-  description: ['As you walk through the village, you are approached by Mitka, your childhood friend.'],
   enter: enter,
 };

@@ -1,8 +1,32 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).washer_funcs ?? {})['washing_count'] = qspUntranslated(s, "{", { location: "washer" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
+    (s as any).washer_total_wash_count = ((s as any).washer_total_wash_count ?? 0) + (1);
+  }
+  // TODO-QSP: "
+  ((s as any).washer_funcs ?? {})['washing_cost'] = qspUntranslated(s, "{", { location: "washer" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
+    (s as any).washer_total_wash_cost = ((s as any).washer_total_wash_cost ?? 0) + (10);
+  }
+  // TODO-QSP: "
+  ((s as any).washer_funcs ?? {})['wash'] = qspUntranslated(s, "{", { location: "washer" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+    // TODO-QSP: <<$ARGS[0]>>_dirt[<<ARGS[1]>>] = 0
+  }
+  // TODO-QSP: "
+  scene.build();
+}
 
 function enterSetWasherActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'set_wash_all_act');
@@ -193,7 +217,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBodysuitsLoop(s, scene);
       break;
     default:
-      enterSetWasherActs(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_grounds', 'main');
   qspCall(s, 'vicky_meynold_schedule', '');
@@ -1296,7 +1300,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFamilyExtension(s, scene);
       break;
     default:
-      enterMain(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1307,6 +1311,5 @@ export const gschool_grounds: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'locker',
-  description: ['Pavlovsk\'s only school, where all the local children go for their education. Next to the school is the athletic field and a parking lot for the teachers, with a large grove of trees just beyond them.'],
   enter: enter,
 };

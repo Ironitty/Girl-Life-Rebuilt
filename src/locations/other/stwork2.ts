@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStripShowStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).strip_club ?? {})['cust_boos'] = 0;
   ((s as any).strip_club ?? {})['strip_tips'] = 0;
@@ -1099,7 +1103,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPrivatdanceEnd(s, scene);
       break;
     default:
-      enterStripShowStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1108,6 +1112,5 @@ export const stwork2: LocationDef = {
   name: 'stwork2',
   title: 'Stage',
   region: 'other',
-  description: ['The music starts blaring as the DJ announces you to the crowd.'],
   enter: enter,
 };

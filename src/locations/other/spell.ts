@@ -6,6 +6,62 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).SuccessValue = ((!isNaN(((s as any).locArgs?.[1] ?? 0)) && ((s as any).locArgs?.[1] ?? 0) !== '') ? (qspUntranslated(s, "val(ARGS[1])", { location: "spell" })) : (qspUntranslated(s, "ARGS[1]", { location: "spell" })));
+  if (((s as any).spellTarget ?? 0)[((s as any).locArgs?.[2] ?? 0)] === 'self') {
+    (s as any).TargetNumber = qspUntranslated(s, "ARGS[3]", { location: "spell" });
+    (s as any).CasterNumber = qspUntranslated(s, "ARGS[3]", { location: "spell" });
+  } else {
+    if (((s as any).spellTarget ?? 0)[((s as any).locArgs?.[2] ?? 0)] === 'team') {
+      (s as any).TargetNumber = qspUntranslated(s, "ARGS[3]", { location: "spell" });
+      (s as any).CasterNumber = qspUntranslated(s, "ARGS[4]", { location: "spell" });
+    } else {
+      if (((s as any).TargetType ?? 0) === 'pcs') {
+        if (((s as any).locArgs?.[0] ?? 0) === 'heal'  ||  ((s as any).locArgs?.[0] ?? 0) === 'clone'  ||  ((s as any).locArgs?.[0] ?? 0) === 'multiclone'  ||  ((s as any).locArgs?.[0] ?? 0) === 'energo'  ||  ((s as any).locArgs?.[0] ?? 0) === 'haste') {
+        }
+      } else {
+        if (((s as any).TargetType ?? 0) === 'opp') {
+        }
+      }
+      (s as any).TargetNumber = qspUntranslated(s, "ARGS[3]", { location: "spell" });
+      (s as any).CasterNumber = qspUntranslated(s, "ARGS[4]", { location: "spell" });
+    }
+  }
+  ((s as any).spellFunc ?? {})['UpdateAttrib'] = qspUntranslated(s, "{", { location: "spell" });
+  ((s as any).SpellFuncVar ?? {})['BaseArray'] = ((s as any).locArgs?.[0] ?? 0);
+  ((s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).SpellFuncVar ?? {})['TargetNum'] = qspUntranslated(s, "ARGS[2]", { location: "spell" });
+  ((s as any).SpellFuncVar ?? {})['Operation'] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).SpellFuncVar ?? {})['Amount'] = qspUntranslated(s, "ARGS[4]", { location: "spell" });
+  if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '===') {
+    // TODO-QSP: !"opp_fog[0] = 0"
+    // TODO-QSP: dynamic "<<$SpellFuncVar['TargetType']>>_<<$SpellFuncVar['BaseArray']>>[<<SpellFuncVar['TargetNum']>...
+  } else {
+    if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '+'  ||  ((s as any).SpellFuncVar ?? 0)?.['Operation'] === '-') {
+      // TODO-QSP: !"opp_fog[0] += 10"
+      // TODO-QSP: dynamic "<<$SpellFuncVar['TargetType']>>_<<$SpellFuncVar['BaseArray']>>[<<SpellFuncVar['TargetNum']>...
+    } else {
+      // TODO-QSP: dynamic text: Invalid Operator, must be "+", "-", or "=".
+      scene.text('Invalid Operator, must be "+", "-", or "=".');
+    }
+  }
+  ((s as any).spellFunc ?? {})['GetCombatantName'] = qspUntranslated(s, "{", { location: "spell" });
+  ((s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
+  ((s as any).SpellFuncVar ?? {})['TargetNum'] = qspUntranslated(s, "ARGS[1]", { location: "spell" });
+  ((s as any).spellFunc ?? {})['ApplyDamageToAll'] = qspUntranslated(s, "{", { location: "spell" });
+  ((s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
+  ((s as any).SpellFuncVar ?? {})['Damage'] = qspUntranslated(s, "ARGS[1]", { location: "spell" });
+  // TODO-QSP: dynamic "
+  // TODO-QSP: :DamageAllLoop1
+  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).SpellFuncVar ?? 0)?.['TargetType'] + '_health')) {
+    // TODO-QSP: gs 'fight', 'applyDamage', '<<$SpellFuncVar['TargetType']>>', i, <<SpellFuncVar['Damage']>>
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    // TODO-QSP: jump 'DamageAllLoop1'
+  }
+  // TODO-QSP: "
+  scene.build();
+}
+
 function enterTeleport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :RandLocLoop
   if (((s as any).randomLoc ?? 0) === ((s as any).NewLocation ?? 0)  ||  ((s as any).randomLoc ?? 0) === ((s as any).EntryPoint ?? 0)) {
@@ -885,7 +941,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGreatflood(s, scene);
       break;
     default:
-      enterTeleport(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

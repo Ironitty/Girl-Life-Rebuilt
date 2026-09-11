@@ -4,6 +4,13 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).music_loop = 0;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).TatianaCall = 0;
   if (((s as any).TatianaMissionQW ?? 0) === 1) {
@@ -1037,7 +1044,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMission2sex(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

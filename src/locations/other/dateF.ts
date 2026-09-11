@@ -4,6 +4,38 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).args ?? 0)[0] === 'decline') {
+    scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
+    scene.text('"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."');
+    // TODO-QSP: dynamic text: <<$npcdesc>> looks at you disappointed and then shrugs. "Well can't blame a girl...
+    scene.text(`${((s as any).npcdesc ?? 0)} looks at you disappointed and then shrugs. "Well can't blame a girl for trying, right?"`);
+    scene.text('The two of you say goodbye to each other.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'date_choice') {
+    if (((s as any).sunWeather ?? 0) === 1) {
+      scene.actions([
+        { label: '"Let\'s go to the park"', goto: ['dateF', 'datepark'] },
+      ]);
+    }
+    if ((!(Math.floor(Math.random() * 5) + 0))) {
+      scene.text('"We could just go to my place and make out." She says with a blush that exposes her arousal.');
+      scene.actions([
+        { label: 'Let\'s have sex', goto: ['hookup_female', 'quickie'] },
+      ]);
+    }
+    scene.actions([
+      { label: '"Let\'s go to a bar"', goto: ['dateF', 'datebar'] },
+    ]);
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 1, '', Math.floor(Math.random() * 18) + 18, 'like');
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
@@ -665,7 +697,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBarend(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -675,5 +707,6 @@ export const dateF: LocationDef = {
   title: '"I\'m sorry but I don\'t feel us clicking so I\'ll have to decl',
   region: 'other',
   locationType: 'public_indoors',
+  description: ['"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."'],
   enter: enter,
 };

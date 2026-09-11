@@ -5,6 +5,11 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).alko_temp = ((s as any).alko ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'qwBarPolet', 'intro');
@@ -637,6 +642,5 @@ export const qwBarPolet: LocationDef = {
   title: 'Bar "Rabotnik"',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['As you enter the bar, you see that about a dozen regular tables and stools take up most of the room. A bar counter, right in front of you, dominates the center of the establishment. At the far end of it, near a door leading to the toilet, a doorway with a curtain leads to the obligatory pool table that rounds off the furniture.'],
   enter: enter,
 };

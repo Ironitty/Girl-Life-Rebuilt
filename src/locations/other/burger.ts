@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'burger', 'start');
   qspCall(s, 'stat', '');
@@ -974,7 +978,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBossSlut_10(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -984,6 +988,5 @@ export const burger: LocationDef = {
   title: 'Diner Bystroeshka',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['A bright advertising on the wall reads, "The most nutritious food in the county"'],
   enter: enter,
 };

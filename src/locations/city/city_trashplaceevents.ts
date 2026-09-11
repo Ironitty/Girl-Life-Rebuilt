@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPos2(s: GameState, scene: SceneBuilder): void {
   (s as any).bumtolik = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -290,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPos10(s, scene);
       break;
     default:
-      enterPos2(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -299,6 +303,5 @@ export const city_trashplaceevents: LocationDef = {
   name: 'city_trashplaceevents',
   title: 'You see a hungover homeless man. He looks at you and you giv',
   region: 'city',
-  description: ['You see a hungover homeless man. He looks at you and you give him an angry stare in return.'],
   enter: enter,
 };

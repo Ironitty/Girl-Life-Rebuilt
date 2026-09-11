@@ -6,6 +6,10 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetClass(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     ((s as any).ARGS ?? {})[1] = ((s as any).pcs_bmi ?? 0);
@@ -649,7 +653,7 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = ((s as any).ARGS ?? 0)[1] / 100;
     // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
   } else {
-    (s as any).bs_imgnum = (Math.floor(Math.random() * (cheatVars['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_imgnums_<<$cbi_class>>']-1 - 0 + 1)) + (0));
+    // TODO-QSP: bs_imgnum = rand(0, cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_imgnums_<<$cbi_class>>']-1)
     if (((s as any).temp_base_folder ?? 0) === '') {
     }
     // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
@@ -997,7 +1001,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCsGetDefaultDesc(s, scene);
       break;
     default:
-      enterGetClass(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

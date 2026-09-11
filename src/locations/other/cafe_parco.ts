@@ -4,7 +4,25 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).args ?? 0)[0] === 'start') {
+    qspCall(s, 'core_library', 'setloc', 'cafe_parco', 'start');
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Cafe "Del Parco"</b></center>');
+    scene.img('images/locations/pavlovsk/park/cafe/caffe_del_parco\' + iif(hour > 20 or hour < 7, \'_night\', \') + \'.jpg');
+    // TODO-QSP: dynamic text: The newly opened cafe "Del Parco", with its striking facade, lots of tables and ...
+    scene.text('The newly opened cafe "Del Parco", with its striking facade, lots of tables and a summer terrace. Opening hours are between \' + $func(\'time\', \'get_time_string\', 14, 0) + \' and \' + $func(\'time\', \'get_time_string\', 21, 0) + \'.');
+    if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 21) {
+      // TODO-QSP: act 'Enter the cafe': gt 'cafe_parco', 'inner'
+    }
+    scene.actions([
+      { label: 'Return to the square', goto: ['pav_park', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterInner(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'cafe_parco', 'inner');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/cafe/caffe_del_parco_in.jpg');
@@ -99,11 +117,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'inner':
+      enterInner(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const cafe_parco: LocationDef = {
   name: 'cafe_parco',
   title: 'Cafe "Del Parco"',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You notice Vicky and Vanya sitting at a table.'],
   enter: enter,
 };

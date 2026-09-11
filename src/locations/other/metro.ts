@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetMetroImage(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/metro/platisland.jpg');
   scene.build();
@@ -112,7 +116,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterIsland(s, scene);
       break;
     default:
-      enterGetMetroImage(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

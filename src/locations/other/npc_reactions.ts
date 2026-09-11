@@ -4,6 +4,20 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'cikl') {
+    if (((s as any).week ?? 0) === 1) {
+      // TODO-QSP: killvar 'npc_reaction_weekly'
+    }
+    return;
+  }
+  if (((s as any).npc_preferences ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
+  }
+  if (!isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
+  }
+  scene.build();
+}
+
 function enterStat(s: GameState, scene: SceneBuilder): void {
   return;
   scene.build();
@@ -750,7 +764,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFit(s, scene);
       break;
     default:
-      enterStat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

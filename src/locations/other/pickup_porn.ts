@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -923,7 +927,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWatchCastingCall(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -932,6 +936,5 @@ export const pickup_porn: LocationDef = {
   name: 'pickup_porn',
   title: 'You\'re walking through campus when you\'re approached by a gu',
   region: 'other',
-  description: ['You\'re walking through campus when you\'re approached by a guy who looks young enough to be a student, but you don\'t remember ever seeing him around campus before.'],
   enter: enter,
 };

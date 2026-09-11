@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLunch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).breakevent_lunch_day ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -1127,7 +1131,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRolanMeet(s, scene);
       break;
     default:
-      enterLunch(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -3,13 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/13
-  // TODO-QSP: ShoPrice ~ 3750 * (20 + ShoQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 4: 4500
-  // TODO-QSP: 5: 4700
-  // TODO-QSP: 6: 4900
-  // TODO-QSP: ShoQuality ranges from 4 to 6 but please avoid adding too many 6s
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).ShoStyle = 0;
     (s as any).ShoQuality = 5;

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_title ?? 0)?.['city_diner_secretary'] === '') {
     qspCall(s, 'jobs', 'get_job_definition', 'city_diner_secretary');
@@ -273,7 +277,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWork3(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -282,6 +286,5 @@ export const burgerWork: LocationDef = {
   name: 'burgerWork',
   title: 'You sit in front of Anatoly Borisovich\'s office.',
   region: 'other',
-  description: ['You sit in front of Anatoly Borisovich\'s office.'],
   enter: enter,
 };

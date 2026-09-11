@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_dressing', '');
   ((s as any).bdsmclub ?? {})['role'] = '';
   qspCall(s, 'stat', '');
@@ -47,11 +51,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const bdsm_dressing: LocationDef = {
   name: 'bdsm_dressing',
   title: 'A huge dressing room. Mostly used by submissives to dress as',
   region: 'other',
   locationType: 'private',
-  description: ['A huge dressing room. Mostly used by submissives to dress as staff and because of this, it is a safe space and games are not allowed.'],
   enter: enter,
 };

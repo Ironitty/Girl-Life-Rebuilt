@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFizRand(s: GameState, scene: SceneBuilder): void {
   (s as any).fizperand = Math.floor(Math.random() * 32) + 1;
   if (((s as any).fizperand ?? 0) === 1  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
@@ -2673,7 +2677,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRussian(s, scene);
       break;
     default:
-      enterFizRand(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2682,6 +2686,5 @@ export const gschool_lessonsev1: LocationDef = {
   name: 'gschool_lessonsev1',
   title: 'During the warm-up for gym class, Coach Pavlovich comes over',
   region: 'other',
-  description: ['During the warm-up for gym class, Coach Pavlovich comes over to assist you with your warm-up, his groin grinding against your ass as he does. If looks could kill, Christina\'s jealous gaze would have had you dead on the ground by now.'],
   enter: enter,
 };

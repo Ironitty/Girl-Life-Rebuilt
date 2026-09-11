@@ -6,6 +6,17 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).virgin_stats ?? 0)?.['cock_size']) {
+    // TODO-QSP: act'First time was bigger (unimpressed)':
+    scene.text('"Oh please," you sigh, rolling your eyes. "I lost my virginity to a guy bigger than you. I think I\'ll be fine."');
+    scene.actions([
+      { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
+    ]);
+  }
+  scene.build();
+}
+
 function enterMissGoto(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).sex_ev ?? 0)?.['virgin_fuck'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
     scene.img('images/shared/sex/foreplay/miss3.jpg');
@@ -272,7 +283,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMissBigCockReact(s, scene);
       break;
     default:
-      enterMissGoto(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -281,5 +292,6 @@ export const sex_ev_miss: LocationDef = {
   name: 'sex_ev_miss',
   title: '"Don\'t be afraid to tap out if my cock is too big," he grins',
   region: 'other',
+  description: ['"Oh please," you sigh, rolling your eyes. "I lost my virginity to a guy bigger than you. I think I\'ll be fine."'],
   enter: enter,
 };

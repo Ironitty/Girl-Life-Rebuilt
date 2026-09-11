@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_kitchen', 'kitchen');
   qspCall(s, 'stat', '');
@@ -50,7 +54,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPantry(s, scene);
       break;
     default:
-      enterKitchen(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

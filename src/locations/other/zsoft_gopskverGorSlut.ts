@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/skver.jpg');
@@ -1383,7 +1387,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnalsex(s, scene);
       break;
     default:
-      enter1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

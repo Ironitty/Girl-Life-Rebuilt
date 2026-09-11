@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -1491,10 +1495,10 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
                                                     if (((s as any).grandmaQW ?? 0)?.['chore_gather_both'] > 0  &&  ((s as any).grandmaQW ?? 0)?.['chore_gather_both'] < 3) {
                                                       if (((s as any).bilberry ?? 0) < ((s as any).grandmaQW ?? 0)?.['chore_berry_quantity']  ||  ((s as any).boletus ?? 0) < ((s as any).grandmaQW ?? 0)?.['chore_mushroom_quantity']) {
                                                         ((s as any).grandmaQW ?? {})['chore_gather_both'] = 1;
-                                                        ((s as any).stat_texts ?? {})['gadukino'] = (((s as any).stat_texts ?? {})['gadukino'] ?? 0) + ('<br><b>You promised Grandma you would pick ' + qspUntranslated(s, "grandmaQW['chore_mushroom_quantity']>", { location: "gp_elene" }) + ' kg of mushrooms and <<grandmaQW[\'chore_berry_quantity\']>> kg of berries for her today.</b>');
+                                                        // TODO-QSP: $stat_texts['gadukino'] += '<br><b>You promised Grandma you would pick <<grandmaQW[''chore_mushroom_quantity'']>> kg of mushrooms and <<grandmaQW[''chore_berry_quantity'']>> kg of berries for her today.</b>'
                                                       } else {
                                                         ((s as any).grandmaQW ?? {})['chore_gather_both'] = 2;
-                                                        ((s as any).stat_texts ?? {})['gadukino'] = (((s as any).stat_texts ?? {})['gadukino'] ?? 0) + ('<br><b>You have picked the ' + qspUntranslated(s, "grandmaQW['chore_mushroom_quantity']>", { location: "gp_elene" }) + ' kg of mushrooms and <<grandmaQW[\'chore_berry_quantity\']>> kg of berries that Grandma asked for - you should give them to her.</b>');
+                                                        // TODO-QSP: $stat_texts['gadukino'] += '<br><b>You have picked the <<grandmaQW[''chore_mushroom_quantity'']>> kg of mushrooms and <<grandmaQW[''chore_berry_quantity'']>> kg of berries that Grandma asked for - you should give them to her.</b>'
                                                       }
                                                     }
                                                   }
@@ -1679,7 +1683,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStatDisplay(s, scene);
       break;
     default:
-      enterTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1688,6 +1692,5 @@ export const gp_elene: LocationDef = {
   name: 'gp_elene',
   title: 'Your grandma is extremely old and seldom leaves the house. M',
   region: 'other',
-  description: ['Your grandma is extremely old and seldom leaves the house. Most of the time, she sits on her bed watching TV or slowly cleans.'],
   enter: enter,
 };

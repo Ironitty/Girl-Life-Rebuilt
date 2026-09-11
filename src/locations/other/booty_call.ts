@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'booty_call', 'booty_call_scheduler');
   scene.build();
@@ -534,7 +538,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSMSRaiser(s, scene);
       break;
     default:
-      enterScheduler(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

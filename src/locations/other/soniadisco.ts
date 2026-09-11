@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 0  &&  ((s as any).month ?? 0) > 9  &&  ((s as any).daystart ?? 0) >= ((s as any).soniaQW ?? 0)?.['fallday'] + 6) {
     if (((s as any).soniaQW ?? 0)?.['soniafall'] < 7) {
@@ -1733,7 +1737,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFollowsonia(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

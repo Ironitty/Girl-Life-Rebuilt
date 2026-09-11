@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/kat.jpg');
   scene.text('The warm rays of sun on your naked body feel nice, but at the same time… you have nothing to do! You get bored just lying there and try to kill time by looking around you, examining the other beach-goers.');
@@ -191,6 +195,5 @@ export const Katlake: LocationDef = {
   name: 'Katlake',
   title: 'The warm rays of sun on your naked body feel nice, but at th',
   region: 'other',
-  description: ['The warm rays of sun on your naked body feel nice, but at the same time… you have nothing to do! You get bored just lying there and try to kill time by looking around you, examining the other beach-goers.'],
   enter: enter,
 };

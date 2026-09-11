@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'start');
   ((s as any).NatbelQW ?? {})['underwearShop'] = 0;
   qspCall(s, 'stat', '');
@@ -443,6 +447,5 @@ export const shop_fashionista: LocationDef = {
   region: 'other',
   locationType: 'event',
   locclass: 'changingroom',
-  description: ['This store features many big name brands and designer clothing. Even their bags look cool.'],
   enter: enter,
 };

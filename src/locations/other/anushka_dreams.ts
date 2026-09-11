@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDreams(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npcStat', 'A144');
@@ -1227,7 +1231,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDream3Fuck7(s, scene);
       break;
     default:
-      enterDreams(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1236,6 +1240,5 @@ export const anushka_dreams: LocationDef = {
   name: 'anushka_dreams',
   title: 'Anushka\'s Dream',
   region: 'other',
-  description: ['As the two of you sit on her bed and talk about a variety of topics, she suddenly stops, her eyes widen and you can tell she just remembered something she thought was important. She grabs your thigh with her hand. "Oh my god, I totally forgot I hadn\'t told you about this dream I had the other night."'],
   enter: enter,
 };

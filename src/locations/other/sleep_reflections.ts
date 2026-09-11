@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEventCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).test_var ?? 0) === 1) {
     // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_reflections'', ''test_reflection'' '
@@ -159,7 +163,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterArtemLove(s, scene);
       break;
     default:
-      enterEventCheck(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

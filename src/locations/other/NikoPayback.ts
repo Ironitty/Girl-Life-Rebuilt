@@ -1,8 +1,14 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
 
 function enterPayback(s: GameState, scene: SceneBuilder): void {
   (s as any).NikoPayback_Day = ((s as any).daystart ?? 0);
@@ -792,6 +798,7 @@ function enterVitekHelp(s: GameState, scene: SceneBuilder): void {
     { label: 'Shout out', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
+    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoPayback" }) + '');
     scene.text('"NIKO RAPED ME!!!" you scream and the guys freeze as Niko suddenly stands up and starts sprinting toward the door when Vasily shoulder tackles him into the wall. Roman tries to help Niko but Dan stands in front of him, blocking him from interfering. Roman punches Dan in the face, but Vasily returns the punch, staggering Roman before Dan tackles him to the ground.');
     scene.actions([
       { label: 'Turn to Vitek', handler: (st: GameState) => {
@@ -930,7 +937,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAlbinaHelp(s, scene);
       break;
     default:
-      enterPayback(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -939,6 +946,5 @@ export const NikoPayback: LocationDef = {
   name: 'NikoPayback',
   title: 'As you\'re walking towards the hallway, hands covering your m',
   region: 'other',
-  description: ['As you\'re walking towards the hallway, hands covering your mouth and you feel your ribs being struck, causing you to recoil in pain as you\'re dragged into the nearby bathroom.'],
   enter: enter,
 };

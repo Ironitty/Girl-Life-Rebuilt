@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
   ((s as any).tgQW ?? {})['dream_sex_anya'] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
@@ -636,7 +640,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDreamSexKatjaVicky(s, scene);
       break;
     default:
-      enterDreamSexAnya(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -645,6 +649,5 @@ export const sleep_events_magic: LocationDef = {
   name: 'sleep_events_magic',
   title: 'You awaken in your bedroom, but something feels… different. ',
   region: 'other',
-  description: ['You awaken in your bedroom, but something feels… different. You glance over and see Anya snoozing away in her bed when you suddenly feel a tingling sensation pulse through you and pull back the covers to discover that you\'ve turned back to your old self, your cock hanging between your legs once more. It\'s at this point you realize that you\'re naked with Anya next to you!'],
   enter: enter,
 };

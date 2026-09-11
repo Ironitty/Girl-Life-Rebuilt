@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNinel0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/apartment/event/sick/ninel00.jpg');
   scene.text('You open the door and see a pretty young girl carrying a medical bag in her hand standing on the threshold.');
@@ -556,7 +560,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNinel3(s, scene);
       break;
     default:
-      enterNinel0(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -565,6 +569,5 @@ export const housecall: LocationDef = {
   name: 'housecall',
   title: 'You open the door and see a pretty young girl carrying a med',
   region: 'other',
-  description: ['You open the door and see a pretty young girl carrying a medical bag in her hand standing on the threshold.'],
   enter: enter,
 };

@@ -6,7 +6,29 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'homes_properties', 'get_owned_properties', 'home');
+  (s as any).agentned_count = 0;
+  if (((s as any).agentned_count ?? 0) > 0) {
+    scene.text('<h4>You own the following properties</h4>');
+    (s as any).agentned_i = 0;
+    // TODO-QSP: :listing_owned_properties_loop
+    (s as any).agentned_i = ((s as any).agentned_i ?? 0) + (1);
+    if (((s as any).agentned_i ?? 0) < ((s as any).agentned_count ?? 0)) {
+      // TODO-QSP: jump 'listing_owned_properties_loop'
+    }
+    scene.text('We are at your service if you decide to <a href="exec:gt \'agentned\',\'sell\'">sell</a>.');
+  }
+  qspCall(s, 'homes_properties', 'clean_up_property_data');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_center', ''] },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'agentned', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'dina', '');
@@ -44,11 +66,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const agentned: LocationDef = {
   name: 'agentned',
   title: 'Kirsanova Real Estate Agency',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['This is the head office of the largest real estate agency in the Leningrad Oblast.'],
   enter: enter,
 };

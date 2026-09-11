@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['locat'] = ((s as any).locArgs?.[2] ?? 0);
   qspCall(s, 'sex_ev_start', 'npcstat_init', ((s as any).locArgs?.[1] ?? 0));
@@ -443,7 +447,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMeyKatjaSpot(s, scene);
       break;
     default:
-      enterInitiatePre(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

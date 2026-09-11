@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterModify(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === '') {
     (s as any).npcRelSetVal = qspUntranslated(s, "ARGS[2]", { location: "npc_relationship" });
@@ -230,7 +234,7 @@ function enterDefaultnotschool(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop3
   qspCall(s, 'npc_relationship', 'set', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30);
@@ -278,10 +282,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDefaultnotschool(s, scene);
       break;
     case 'default':
-      enterDefault(s, scene);
+      enterDefault2(s, scene);
       break;
     default:
-      enterModify(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

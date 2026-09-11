@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_online ?? {})['account'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -440,7 +444,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnushkaRecordingEnd(s, scene);
       break;
     default:
-      enterSetUpAccount(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -450,6 +454,5 @@ export const music_onlinemusic: LocationDef = {
   title: 'You log into Youtube to set up a channel for your music. You',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['You log into Youtube to set up a channel for your music. You can upload videos or live stream, but you will need to open a bank account if you want to receive any tips from viewers of your stream.'],
   enter: enter,
 };

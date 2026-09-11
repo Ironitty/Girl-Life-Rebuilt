@@ -6,6 +6,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: "
+  scene.build();
+}
+
 function enterCalc(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'dnd');
   (s as any).will_calc = ((s as any).will_dnd ?? 0);
@@ -296,7 +301,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSimpleAct(s, scene);
       break;
     default:
-      enterCalc(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

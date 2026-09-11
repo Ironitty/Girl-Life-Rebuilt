@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A20', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
@@ -1598,7 +1602,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDrinkingGame(s, scene);
       break;
     default:
-      enterFemaleGopnikBeer_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1607,6 +1611,5 @@ export const pav_parkev1: LocationDef = {
   name: 'pav_parkev1',
   title: 'You take the offered beer and take a swig of it as you liste',
   region: 'pavlovsk',
-  description: ['You take the offered beer and take a swig of it as you listen to the girls talking about their latest ventures, ranging from vandalism, beating some girls up, bullying some of the nerds and outcasts, or what boys they find cute. You occasionally comment, but mostly just listen to them.'],
   enter: enter,
 };

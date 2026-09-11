@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTalkwithzariyah(s: GameState, scene: SceneBuilder): void {
   scene.text('You ask the first waitress about Zariyah, and she directs you to the office. As you approach, she waves at you through the open door, signaling to enter "Yes, yes Ruslan, don\'t worry about it. No, I have to go, talk later."');
   if (((s as any).ml_delparcoQW ?? 0)?.['Stage'] === 1) {
@@ -159,7 +163,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEveningshow(s, scene);
       break;
     default:
-      enterTalkwithzariyah(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -168,6 +172,5 @@ export const music_delparco: LocationDef = {
   name: 'music_delparco',
   title: 'You ask the first waitress about Zariyah, and she directs yo',
   region: 'other',
-  description: ['You ask the first waitress about Zariyah, and she directs you to the office. As you approach, she waves at you through the open door, signaling to enter "Yes, yes Ruslan, don\'t worry about it. No, I have to go, talk later."'],
   enter: enter,
 };

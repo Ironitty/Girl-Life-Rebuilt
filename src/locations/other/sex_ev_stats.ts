@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNpcUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
     ((s as any).npc_usedname ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_firstname ?? 0)?.[String((s as any).npcID ?? 0)];
@@ -177,7 +181,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSaveStats(s, scene);
       break;
     default:
-      enterNpcUpdate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

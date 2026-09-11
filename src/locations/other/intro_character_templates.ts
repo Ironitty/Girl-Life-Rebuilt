@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetRandomTemplate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'intro_character_templates', 'set_template', $func('intro_character_templates', 'get_random_templ...
   return;
@@ -1989,7 +1993,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPoor(s, scene);
       break;
     default:
-      enterSetRandomTemplate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

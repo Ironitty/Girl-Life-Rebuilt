@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_class', ((s as any).locArgs?.[0] ?? 0));
   ((s as any).setloc ?? {})['imagepath'] = 'locations/pushkin/ballet_school/';
@@ -816,7 +820,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAssessment(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,7 +4,12 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).stat_cfg ?? {})['time_hidden'] = 0;
+  scene.build();
+}
+
+function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichAbdStage ?? 0))) {
     (s as any).inSleep = 0;
     ((s as any).stat_cfg ?? {})['time_hidden'] = 1;
@@ -727,10 +732,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'abdIntro':
+      enterAbdIntro(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const nichTaras: LocationDef = {
   name: 'nichTaras',
   title: 'You don\'t know how much time has passed when you finally reg',
   region: 'other',
-  description: ['You don\'t know how much time has passed when you finally regain consciousness. Maybe minutes? Hours? A whole day?'],
   enter: enter,
 };

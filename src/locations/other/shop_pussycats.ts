@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_pussycats', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -834,6 +838,5 @@ export const shop_pussycats: LocationDef = {
   title: 'The store is closed.',
   region: 'other',
   locclass: 'changingroom',
-  description: ['The latest chart topping pop single is playing throughout the small store. The interior is decorated in bright colors and bold designs, and the floor is packed with stands and tables displaying clothes with a more daring style.'],
   enter: enter,
 };

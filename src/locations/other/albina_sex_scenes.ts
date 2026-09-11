@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   if (((s as any).region ?? 0) === 'city') {
@@ -2341,7 +2345,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWatchPorn(s, scene);
       break;
     default:
-      enterLeave(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'foto', 'start');
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] !== 'employed') {
@@ -1773,7 +1777,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCikl(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1783,6 +1787,5 @@ export const foto: LocationDef = {
   title: 'Photography studio',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['Apparently there\'s a "dress code" here and all models are required to be naked in the studio, even if they never do nude shoots. Supposedly, it\'s primarily to save time when dressing up and the wardrobe department has an easier time fitting the clothing properly if you\'re already naked. And if it\'s a nude shoot, it saves even more time because then you can walk right on set. Makes sense you suppose… Kinda…'],
   enter: enter,
 };

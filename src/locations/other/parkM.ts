@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   scene.text('You leisurely stroll through the park.');
@@ -371,7 +375,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAa(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -380,6 +384,5 @@ export const parkM: LocationDef = {
   name: 'parkM',
   title: 'You leisurely stroll through the park.',
   region: 'other',
-  description: ['You leisurely stroll through the park.'],
   enter: enter,
 };

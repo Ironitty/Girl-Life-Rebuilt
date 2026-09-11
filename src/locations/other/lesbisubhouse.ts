@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).lesbiday = ((s as any).day ?? 0);
@@ -1872,7 +1876,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGetFucked(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1882,6 +1886,5 @@ export const lesbisubhouse: LocationDef = {
   title: 'You ring the bell, but no one answers. You then remember tha',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You ring the bell, but no one answers. You then remember that your slave is probably working in the sex shop\'s basement right now.'],
   enter: enter,
 };

@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_cafe', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'katja_meynold_schedule', '');
@@ -501,6 +505,5 @@ export const uni_cafe: LocationDef = {
   title: 'University Cafe',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['The university cafe is a popular spot for students preparing for their exams or just unwinding from their busy schedule.'],
   enter: enter,
 };

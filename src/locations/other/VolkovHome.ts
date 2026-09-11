@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNikoBedroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -93,7 +97,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterQuickWash(s, scene);
       break;
     default:
-      enterNikoBedroom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -104,6 +108,5 @@ export const VolkovHome: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'bedr',
-  description: ['Niko\'s room is very messy with two lamps, a bed, and various electronics scattered around.'],
   enter: enter,
 };

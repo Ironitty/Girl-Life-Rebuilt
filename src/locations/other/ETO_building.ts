@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAtticTeens(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
   scene.text('You hear some muffled voices and head straight toward a group of teenagers who have gathered here to smoke, chat, and drink beer. There are 7 young people, ranging from 18 to 20 years old. They watch you with interest, waiting to see what you will say.');
@@ -194,7 +198,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRoof(s, scene);
       break;
     default:
-      enterAtticTeens(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -204,6 +208,5 @@ export const ETO_building: LocationDef = {
   title: 'You need to get dressed.',
   region: 'other',
   locationType: 'secluded',
-  description: ['You hear some muffled voices and head straight toward a group of teenagers who have gathered here to smoke, chat, and drink beer. There are 7 young people, ranging from 18 to 20 years old. They watch you with interest, waiting to see what you will say.'],
   enter: enter,
 };

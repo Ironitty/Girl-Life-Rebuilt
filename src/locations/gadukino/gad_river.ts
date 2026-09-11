@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_river', 'start');
   qspCall(s, 'schedule', 'A60');
@@ -518,7 +522,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFishing(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -528,6 +532,5 @@ export const gad_river: LocationDef = {
   title: '<center><h2>Slavka River</h2></center>',
   region: 'gadukino',
   locationType: 'public_outdoors',
-  description: ['A large river flows lazily for a few hundred meters on the northern outskirts of Gadukino.'],
   enter: enter,
 };

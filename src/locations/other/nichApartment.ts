@@ -5,6 +5,16 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).nichWork ?? 0) === 2) {
+    if (((s as any).nichLastWorkDay ?? 0) !== ((s as any).daystart ?? 0)) {
+      qspCall(s, 'nichUtil', 'startWorkday');
+    }
+    qspCall(s, 'nichUtil', 'checkOutfit');
+  }
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichWork ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['nichApartment', 'visitTanya'] }]);
   }
@@ -689,6 +699,5 @@ export const nichApartment: LocationDef = {
   title: '<center><b>Nicholas\' Apartment</b></center>',
   region: 'other',
   locationType: 'event',
-  description: ['You are standing in a luxurious and spacious city center home.'],
   enter: enter,
 };

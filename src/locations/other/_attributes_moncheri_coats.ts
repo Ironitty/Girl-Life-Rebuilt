@@ -3,13 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/13
-  // TODO-QSP: CoatPrice ~ 4000 * (20 + CoatQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 5: 5000
-  // TODO-QSP: 6: 5200
-  // TODO-QSP: 7: 5400
-  // TODO-QSP: CoatQuality ranges from 5 to 7
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).CoatQuality = 6;
     (s as any).CoatStrength = 450000;

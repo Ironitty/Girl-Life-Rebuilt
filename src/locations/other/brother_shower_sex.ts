@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSexMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Blow him', goto: ['brother_shower_sex', 'brother_shower_bj'] },
@@ -1732,7 +1736,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBrotherShowerFinishEnd(s, scene);
       break;
     default:
-      enterSexMenu(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

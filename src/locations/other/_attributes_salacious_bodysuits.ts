@@ -3,22 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/13
-  // TODO-QSP: BraType:      1-Full      2-long sleeve  3-high neck  4-backless  5-t-shirt  6-vest  7-spaghetti str...
-  // TODO-QSP: BraMaterial:    1-Leather    2-rubber    3-mesh    4-fishnet  5-vinyl    6-lace
-  // TODO-QSP: BraFun:        1-regular    2-sports
-  // TODO-QSP: BraQuality      1-6 (6 most expensive)
-  // TODO-QSP: Thiness:      1-Thick      2-not particularly thick    3-thin      4-slightly transparent      5-sem...
-  // TODO-QSP: BraCover:      1-Just visible  2-Quite visible (ie mesh/lace)  3-Fully visible, but covered (fishnet...
-  // TODO-QSP: PanCoverFront:    1-Just visible  2-Quite visible (ie mesh/lace)  3-Fully visible, but covered (fish...
-  // TODO-QSP: PanCoverBack:    1-Just visible  2-Quite visible (ie mesh/lace)  3-Fully visible, but covered (fishn...
-  // TODO-QSP: BraPrice ~ 1000 * (20 + BraQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 3: 1150
-  // TODO-QSP: 4: 1200
-  // TODO-QSP: 5: 1250
-  // TODO-QSP: 6: 1300
-  // TODO-QSP: BraQuality ranges from 3 to 6, please avoid adding too many 3s and 6s.
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).BraType = 1;
     (s as any).BraMaterial = 3;

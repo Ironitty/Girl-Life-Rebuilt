@@ -4,6 +4,46 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).args ?? 0)[0] === 'decline') {
+    scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).boy ?? 0)]}`);
+    scene.text('"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."');
+    // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> looks at you disappointed then shrugs. "Well can't blam...
+    scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)]} looks at you disappointed then shrugs. "Well can't blame a guy for trying right."`);
+    scene.text('The two of you say goodbye to each other.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'date_choice') {
+    if (((s as any).sunWeather ?? 0) === 1) {
+      scene.actions([
+        { label: '"Let\'s go to the park." (old content)', goto: ['dateM', 'datepark'] },
+      ]);
+    }
+    if (((s as any).loc ?? 0) === 'pav_residential'  ||  ((s as any).loc ?? 0) === 'pav_commercial'  ||  ((s as any).loc ?? 0) === 'city_center') {
+      scene.actions([
+        { label: '"Let\'s go to the movie theater." (old content)', goto: ['dateM', 'datecinema'] },
+        { label: '"Let\'s go to the movie theater." (new content)', handler: (st: GameState) => {
+    qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
+    // TODO-QSP: gt 'date_ev', 'initiate_pre', $npcID, 'movie_date'
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: '"Let\'s go to a cafe" (old content)', goto: ['dateM', 'datecafe'] },
+      { label: '"Let\'s go to a cafe" (new content)', handler: (st: GameState) => {
+    qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
+    // TODO-QSP: gt 'date_ev', 'initiate_pre', $npcID, 'casual_meal'
+  } },
+      { label: '"Let\'s go to a bar." (old content)', goto: ['dateM', 'datebar'] },
+    ]);
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, '', Math.floor(Math.random() * 18) + 18, 'like');
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
@@ -1248,7 +1288,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBarend(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1258,6 +1298,6 @@ export const dateM: LocationDef = {
   title: 'A man approaches, smiling at you.',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['A man approaches, smiling at you.'],
+  description: ['"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."'],
   enter: enter,
 };

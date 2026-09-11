@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'clothing') {
   }
@@ -579,7 +583,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFixStatInner(s, scene);
       break;
     default:
-      enterAddItem(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

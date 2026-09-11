@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSchedule(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).school_period ?? 0))) {
     if (((s as any).week ?? 0) === 1) {
@@ -218,7 +222,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).InvitationToDimkaNYparty ?? 0) === 1  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).day ?? 0) === 31) {
-        ((s as any).stat_texts ?? {})['sg_dimka_party'] = 'Go to the residential area between ' + qspUntranslated(s, "func('time', 'get_time_string', 15, 0, cheatVars['time_format'])>", { location: "gschool" }) + ' and <<$func(\'time\', \'get_time_string\', 18, 0, cheatVars[\'time_format\'])>> to go to Dimka\'s New Year party.';
+        // TODO-QSP: $stat_texts['sg_dimka_party'] = 'Go to the residential area between <<$func(''time'', ''get_time_string'', 15, 0, cheatVars[''time_format''])>> and <<$func(''time'', ''get_time_string'', 18, 0, cheatVars[''time_format''])>> to go to Dimka''s New Year party.'
         qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_dimka_party');
         if (((s as any).hour ?? 0) >= 13) {
           qspCall(s, 'stat_display_compute', 'queue_alert', 'Dimka\'s New Year party starts at \' + $func(\'time\', \'get_time_string\', 15, 0) + \'.', 'neg');
@@ -257,7 +261,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterComputeStatDisplay(s, scene);
       break;
     default:
-      enterSchedule(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

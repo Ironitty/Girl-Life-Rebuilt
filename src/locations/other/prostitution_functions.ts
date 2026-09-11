@@ -6,6 +6,21 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $solicitation_locations[0] = 'pav_commcenter'
+  // TODO-QSP: $solicitation_locations[1] = 'pav_residential'
+  // TODO-QSP: $solicitation_locations[2] = 'pav_industrial'
+  // TODO-QSP: $solicitation_locations[3] = 'pav_commercial'
+  // TODO-QSP: $solicitation_locations[4] = 'pav_market'
+  // TODO-QSP: $solicitation_locations[5] = 'pav_complex'
+  // TODO-QSP: $solicitation_locations[6] = 'pav_park'
+  // TODO-QSP: $solicitation_locations[7] = 'pushkin'
+  if (((s as any).locArgs?.[1] ?? 0) === 'block') {
+    ((s as any).prostitute ?? {})['full_block'] = qspUntranslated(s, "ARGS[1]", { location: "prostitution_functions" });
+  }
+  scene.build();
+}
+
 function enterSetPavlovskHours(s: GameState, scene: SceneBuilder): void {
   ((s as any).prostitute ?? {})['pav_start_hour'] = qspUntranslated(s, "ARGS[1]", { location: "prostitution_functions" });
   ((s as any).prostitute ?? {})['pav_end_hour'] = qspUntranslated(s, "ARGS[2]", { location: "prostitution_functions" });
@@ -1191,7 +1206,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterExactRound(s, scene);
       break;
     default:
-      enterSetPavlovskHours(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKolkabj(s: GameState, scene: SceneBuilder): void {
   ((s as any).NatbelQW ?? {})['KolkaFuckDay'] = ((s as any).daystart ?? 0);
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 8) {
@@ -1009,7 +1013,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCumeater(s, scene);
       break;
     default:
-      enterKolkabj(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1019,6 +1023,5 @@ export const natkolEv: LocationDef = {
   title: '"Today I want you to do something different for me, Natasha.',
   region: 'other',
   locationType: 'bathroom',
-  description: ['"Today I want you to do something different for me, Natasha. You did promise to do anything that I wanted, remember?"'],
   enter: enter,
 };

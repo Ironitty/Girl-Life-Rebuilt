@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLazar(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', 'A149', 'like', 1, 'pav_disco');
@@ -1417,7 +1421,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLinaDance(s, scene);
       break;
     default:
-      enterLazar(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1426,6 +1430,5 @@ export const pav_disco_jocks: LocationDef = {
   name: 'pav_disco_jocks',
   title: '<<"Ivan Prokhorov">>',
   region: 'pavlovsk',
-  description: ['Lazar is out on the dance floor dancing with a small group of people. The girls in the group are all competing for his attention.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
   (s as any).i_gs_cl = 0;
   // TODO-QSP: :CiklNpcCleanLoop
@@ -277,7 +281,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterIntro(s, scene);
       break;
     default:
-      enterCleanarrays(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

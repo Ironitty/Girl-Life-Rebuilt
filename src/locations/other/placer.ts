@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).placerParameter ?? {})['friend_index'] = 0;
   ((s as any).placerParameter ?? {})['friend_horny'] = 0;
   ((s as any).placerParameter ?? {})['friend_dom'] = 0;
@@ -26,6 +30,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['placer_pav_park', ''] }]);
   }
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'init':
+      enterInit(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const placer: LocationDef = {

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetProgramName(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['enrolled_in'] === 'nursing') {
   } else {
@@ -2114,7 +2118,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterExam(s, scene);
       break;
     default:
-      enterGetProgramName(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

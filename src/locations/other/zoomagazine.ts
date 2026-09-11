@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ParrotQW ?? 0)?.['Level'] === 1  &&  ((s as any).ParrotQW ?? 0)?.['Failed'] === 0) {
     scene.actions([{ label: 'Continue', goto: ['zoomagazine', 'event_1'] }]);
@@ -233,7 +237,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEvent_1(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

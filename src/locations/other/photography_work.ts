@@ -4,6 +4,16 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).evt_stage ?? 0)"  ||  ((s as any).locArgs?.[0] ?? 0) === '') {
+    ((s as any).photography ?? {})['experience'] = (((s as any).photography ?? {})['experience'] ?? 0) + (1);
+    // TODO-QSP: gs 'money', 'earn', evtVars['wage']
+    qspCall(s, 'stat', '');
+    // TODO-QSP: gt 'photography_work', 'stage_' + evtVars['event_sub']
+  }
+  scene.build();
+}
+
 function enterStage_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
@@ -225,7 +235,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterJob_5(s, scene);
       break;
     default:
-      enterStage_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -234,6 +244,5 @@ export const photography_work: LocationDef = {
   name: 'photography_work',
   title: 'You head over to the industrial region where you quickly mee',
   region: 'other',
-  description: ['You head over to the industrial region where you quickly meet up with your contact at the Experience Center.'],
   enter: enter,
 };

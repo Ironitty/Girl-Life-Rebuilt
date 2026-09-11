@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arturTimes ?? 0) >= 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150  &&  ((s as any).pcs_hotcat ?? 0) >= 7) {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -178,7 +182,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterArturQW_2(s, scene);
       break;
     default:
-      enterArturQW_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -187,6 +191,5 @@ export const arturQW: LocationDef = {
   name: 'arturQW',
   title: '"Oh, thanks Arturik, that is very kind of you to say." You r',
   region: 'other',
-  description: ['"Oh, thanks Arturik, that is very kind of you to say." You respond, blushing slightly at the compliment.'],
   enter: enter,
 };

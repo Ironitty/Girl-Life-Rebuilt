@@ -1,8 +1,14 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
 
 function enterDate1_1(s: GameState, scene: SceneBuilder): void {
   (s as any).NikoDate_Day = ((s as any).daystart ?? 0);
@@ -721,6 +727,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Talk to Niko', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoDates" }) + '');
     scene.text('"Do you mind if I ask you some more questions about your… family?" you ask as Niko applies the sunscreen. "I\'m really interested in getting to know you better."');
     scene.text('He pauses for a second before replying. "Sure, why not? Ask away."');
     scene.text('"You told me that you had a sister who… passed away, but you never told me what happened to your younger brother or your father."');
@@ -747,6 +754,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat with him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoDates" }) + '');
     scene.text('You spend the next few minutes talking about various topics before Niko interrupts.');
     // TODO-QSP: dynamic text: "Hey <<$pcs_firstname>>, would you consider yourself a daring girl?"
     scene.text(`"Hey ${((s as any).pcs_firstname ?? 0)}, would you consider yourself a daring girl?"`);
@@ -1731,7 +1739,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTeacherBlock(s, scene);
       break;
     default:
-      enterDate1_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1741,6 +1749,5 @@ export const NikoDates: LocationDef = {
   title: '<<"Nikolai [Niko] Volkov">>',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['As you ride the train, Niko pulls out his phone. "Would you like to take a photo together?" You give him a smile and nod as he wraps his arm around your waist and pulls you towards him. He then lifts his phone above you before snapping a photo. You spend the rest of the journey discussing your favorite musical artists and bands.'],
   enter: enter,
 };

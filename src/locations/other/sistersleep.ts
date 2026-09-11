@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/pavlovsk/resident/anya/home/sleep0${Math.floor(Math.random() * 7) + 1}.jpg`);
   scene.text('Anya is sleeping face down on her bed, with her covers tossed aside, exposing her panty-clad ass. She has a really nice ass, but you never see her work out, leaving you wondering how she keeps so fit.');
@@ -634,7 +638,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDrunkAfterParty(s, scene);
       break;
     default:
-      enterSisterSleep(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -643,6 +647,5 @@ export const sistersleep: LocationDef = {
   name: 'sistersleep',
   title: 'Anya is sleeping face down on her bed, with her covers tosse',
   region: 'other',
-  description: ['Anya is sleeping face down on her bed, with her covers tossed aside, exposing her panty-clad ass. She has a really nice ass, but you never see her work out, leaving you wondering how she keeps so fit.'],
   enter: enter,
 };

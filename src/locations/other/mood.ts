@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterClamp(s: GameState, scene: SceneBuilder): void {
   (s as any).mood_trauma = qspFunc(s, 'math', 'int_clamp', ((s as any).mood_trauma ?? 0), 0, 15);
   if (((s as any).moodVars ?? 0)?.['disp_base'] === 0) {
@@ -255,7 +259,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterUpdate(s, scene);
       break;
     default:
-      enterClamp(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

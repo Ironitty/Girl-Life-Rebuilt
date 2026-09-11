@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFacefuck(s: GameState, scene: SceneBuilder): void {
   (s as any).artfacefucktimes = ((s as any).artfacefucktimes ?? 0) + (1);
   (s as any).artbj = ((s as any).artbj ?? 0) + (1);
@@ -346,7 +350,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFist(s, scene);
       break;
     default:
-      enterFacefuck(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -356,6 +360,5 @@ export const arturdin: LocationDef = {
   title: 'You choke as his member presses into the back of your throat',
   region: 'other',
   locationType: 'event',
-  description: ['You choke as his member presses into the back of your throat, causing it to burn like fire. You gag and twist, trying desperately to escape from the giant lump of meat, but his grip is too firm.'],
   enter: enter,
 };

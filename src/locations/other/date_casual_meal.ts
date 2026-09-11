@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'together') {
     qspCall(s, 'date_casual_meal', 'init');
@@ -1038,16 +1042,6 @@ function enterWaitressOgle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
   // TODO-QSP: dynamic text: The waitress gives you a polite smile, collecting your menus, and heading off to...
   scene.text(`The waitress gives you a polite smile, collecting your menus, and heading off towards the kitchen. As she turns to leave, you can't help but notice ${((s as any).npcdesc ?? 0)}'s eyes linger on her ass.`);
-  scene.text('"Hey!" you snap, drawing his attention back to you. "What do you think you\'re looking at?"');
-  if (((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    scene.text('He starts, at least having the decency to blush that he\'s been caught.');
-    scene.text('"Er, uhh, sorry..."');
-  } else {
-    scene.text('"Just appreciating that fine piece of ass there," he grins, and unbelievably glances back for another look. "Is it a crime to look?"');
-    scene.text('"It is when you\'re on a date with me," you snarl. He just shrugs.');
-  }
-  scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
-  // TODO-QSP: end !}
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
     scene.text('You sigh internally but otherwise ignore his wandering eyes. Boys will be boys after all.');
@@ -1668,7 +1662,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDateEndStats(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

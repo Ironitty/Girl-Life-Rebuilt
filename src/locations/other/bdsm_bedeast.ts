@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bdsm_bedeast', 'check_events');
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedeast', 'start');
@@ -233,7 +237,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEvent_10(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -244,6 +248,5 @@ export const bdsm_bedeast: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
-  description: ['Guest bedroom 2'],
   enter: enter,
 };

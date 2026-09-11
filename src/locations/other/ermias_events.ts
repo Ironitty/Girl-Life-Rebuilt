@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'ermias_events', 'first_visit');
   qspCall(s, 'stat', '');
@@ -2677,7 +2681,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterThroatFuck(s, scene);
       break;
     default:
-      enterFirstVisit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2688,6 +2692,5 @@ export const ermias_events: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'livingr',
-  description: ['The room is pretty standard looking other than the numerous posters of naked or scantily dressed white women on the walls. Two beds are over by the windows with a large desk between, while a couch sits against the bottom of one of the beds across from the door.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterJeff_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jeff ?? 0)?.['status'] === 2) {
     scene.actions([{ label: 'Continue', goto: ['model_jeff1', 'jeff_2'] }]);
@@ -536,7 +540,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterJeffModelling(s, scene);
       break;
     default:
-      enterJeff_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -545,6 +549,5 @@ export const model_jeff1: LocationDef = {
   name: 'model_jeff1',
   title: 'Walking around the studio, you suddenly stop when you see a ',
   region: 'other',
-  description: ['Walking around the studio, you suddenly stop when you see a naked girl staring at you.'],
   enter: enter,
 };

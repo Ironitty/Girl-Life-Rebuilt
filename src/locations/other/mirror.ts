@@ -6,13 +6,33 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: makeup['routine_<<ARGS[1]>>_makeup'] > 0 and
+  // TODO-QSP: pcs_makeup < makeup['routine_<<ARGS[1]>>_makeup'] + 1 and
+  // TODO-QSP: mc_inventory['cosmetics'] >= min(makeup['routine_<<ARGS[1]>>_makeup'], 3)
+  // TODO-QSP: makeup['routine_<<ARGS[1]>>_lipbalm'] > 0 and
+  // TODO-QSP: pcs_lipbalm < makeup['routine_<<ARGS[1]>>_lipbalm'] and
+  // TODO-QSP: mc_inventory['lipbalm'] > 0
+  // TODO-QSP: makeup['routine_<<ARGS[1]>>_lashes'] > 0 and
+  // TODO-QSP: lashextensionstyle <= 0 and
+  // TODO-QSP: pcs_lashes < makeup['routine_<<ARGS[1]>>_lashes'] + 2 and
+  // TODO-QSP: ((
+  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 1;
+  // TODO-QSP: mc_inventory['eyelash_fake'] >= 1
+  // TODO-QSP: ) or (
+  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 2;
+  // TODO-QSP: mc_inventory['eyelash_mink'] >= 1
+  // TODO-QSP: ))
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mirror_steam ?? 0) === ((s as any).hour ?? 0)  &&  (((s as any).loc ?? 0) === 'vanrPar'  ||  ((s as any).loc ?? 0) === 'vanr'  ||  ((s as any).loc_arg ?? 0) === 'ybathroom'  ||  ((s as any).loc ?? 0) === 'city_house_res_bathr')) {
     scene.actions([{ label: 'Continue', goto: ['mirror', 'steam'] }]);
   }
   if (((s as any).newstylemirror ?? 0) === 1) {
-    ((s as any).serv ?? {})['avatar'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "mirror" }) + ' src="<<func(\'$face_image\')>>"></center>';
+    // TODO-QSP: $serv['avatar'] = '<center><img <<$set_imgh>> src="<<func(''$face_image'')>>"></center>'
     if (((s as any).cheatVars ?? 0)?.['auto_brush'] === 1  &&  (!((s as any).pcs_hairbsh ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['mirror', 'brush'] }]);
     }
@@ -705,7 +725,7 @@ function enterBrush(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hairbsh = 1;
   if (((s as any).newstylemirror ?? 0) === 1) {
     ((s as any).serv ?? {})['noaction'] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "mirror" }) + ' src="images/system/icons/blank.png">';
-    ((s as any).serv ?? {})['avatar'] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "mirror" }) + ' src="<<func(\'$face_image\')>>">';
+    // TODO-QSP: $serv['avatar'] = '<img <<$set_imgh>> src="<<func(''$face_image'')>>">'
     if (((s as any).mirrorloc ?? 0) === 'mirror') {
       ((s as any).serv ?? {})['back'] = '<a href="exec: gt \'mirror\',\'start\'"><img src="images/system/icons/action/back.png"></a>';
     } else {
@@ -864,7 +884,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWorks(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -873,6 +893,5 @@ export const mirror: LocationDef = {
   name: 'mirror',
   title: 'You consider for a moment which look you want to go for.',
   region: 'other',
-  description: ['You consider for a moment which look you want to go for.'],
   enter: enter,
 };

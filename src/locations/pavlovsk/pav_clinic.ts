@@ -4,7 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_clinic', '');
   (s as any).frost = 0;
   qspCall(s, 'stat', '');
@@ -193,11 +197,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const pav_clinic: LocationDef = {
   name: 'pav_clinic',
   title: 'Clinic',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['The entrance hall of Pavlovsk Poliklinik is a modest, well-worn space typical of a small town. Natural daylight filters through front windows onto pale turquise walls and scuffed light-gray floor tiles.'],
   enter: enter,
 };

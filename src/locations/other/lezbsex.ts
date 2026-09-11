@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStartloverhome(s: GameState, scene: SceneBuilder): void {
   (s as any).lezbsexhome = 1;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -341,7 +345,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterStartloverhome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

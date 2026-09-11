@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_road', 'start');
   qspCall(s, 'schedule', 'A60');
@@ -192,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDrinkingInvite(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -202,6 +206,5 @@ export const gad_road: LocationDef = {
   title: '<br>You are too exhausted to do this. Recover your stamina before trying to go for a run.',
   region: 'gadukino',
   locationType: 'secluded',
-  description: ['A dirt road leading to the outskirts of Gadukino. You are surrounded by grainfields where the grains appear, reaching all the way to the heavens.'],
   enter: enter,
 };

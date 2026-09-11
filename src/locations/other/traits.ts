@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).trait_vars ?? {})['list, 0'] = 'cumeater';
   ((s as any).trait_vars ?? {})['list, 1'] = 'creampie_fetish';
@@ -351,7 +355,7 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
         ((s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'];
         ((s as any).trait_temp ?? {})['exp_down'] = (-1);
         ((s as any).trait_temp ?? {})['exp_up'] = 200;
-        ((s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + qspUntranslated(s, "trait_vars['creampie_fetish_exp']>", { location: "traits" }) + '/200. Risky/unsafe EXP: <<trait_vars[\'creampie_fetish_exp_risky\']>>/100. Keep taking risky creampies to unlock the next level.';
+        // TODO-QSP: $trait_temp['tooltip'] = 'EXP: <<trait_vars[''creampie_fetish_exp'']>>/200. Risky/unsafe EXP: <<trait_vars[''creampie_fetish_exp_risky'']>>/100. Keep taking risky creampies to unlock the next level.'
       } else {
         if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] === 2) {
           ((s as any).trait_temp ?? {})['name'] = 'Breeding Slut';
@@ -361,7 +365,7 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
           ((s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'];
           ((s as any).trait_temp ?? {})['exp_down'] = (-1);
           ((s as any).trait_temp ?? {})['exp_up'] = (-1);
-          ((s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + qspUntranslated(s, "trait_vars['creampie_fetish_exp']>", { location: "traits" }) + '. Risky/unsafe EXP: <<trait_vars[\'creampie_fetish_exp_risky\']>>.';
+          // TODO-QSP: $trait_temp['tooltip'] = 'EXP: <<trait_vars[''creampie_fetish_exp'']>>. Risky/unsafe EXP: <<trait_vars[''creampie_fetish_exp_risky'']>>.'
         }
       }
     }
@@ -1640,7 +1644,7 @@ function enterBookworm(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Bookworm</b>.';
       ((s as any).trait_temp ?? {})['exp_down'] = 0;
       ((s as any).trait_temp ?? {})['exp_up'] = (-1);
-      ((s as any).trait_temp ?? {})['tooltip'] = 'Reading EXP: ' + qspUntranslated(s, "trait_vars['bookworm_exp']>", { location: "traits" }) + '. Last read: \' + iif(daystart = lastreadday, \'today\', iif(daystart = lastreadday + 1, \'yesterday\', \'<<daystart - lastreadday>> days ago\')) + \'. ';
+      // TODO-QSP: $trait_temp['tooltip'] = 'Reading EXP: <<trait_vars[''bookworm_exp'']>>. Last read: ' + iif(daystart = lastreadday, 'today', iif(daystart = lastreadday + 1, 'yesterday', '<<daystart - lastreadday>> days ago')) + '. '
       ((s as any).trait_temp ?? {})['tooltip'] = (((s as any).trait_temp ?? {})['tooltip'] ?? 0) + ('EXP drops rapidly if you go more than 2 days without reading.');
     }
   }
@@ -2589,7 +2593,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDoormat(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

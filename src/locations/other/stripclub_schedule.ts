@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDoBook(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sb_weekday = qspUntranslated(s, "ARGS[1]", { location: "stripclub_schedule" });
   (s as any).temp_sb_shift = qspUntranslated(s, "ARGS[2]", { location: "stripclub_schedule" });
@@ -254,7 +258,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNextWeekSetSchedule(s, scene);
       break;
     default:
-      enterDoBook(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

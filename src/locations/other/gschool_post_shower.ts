@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPostShower(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/nudepic2.jpg');
   scene.text('You walk back to your locker, throwing your towel in a bin along the way, and start rifling through your locker, gathering your things and grabbing your clothes.');
@@ -2472,7 +2476,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPostShower2(s, scene);
       break;
     default:
-      enterPostShower(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2481,6 +2485,5 @@ export const gschool_post_shower: LocationDef = {
   name: 'gschool_post_shower',
   title: 'You walk back to your locker, throwing your towel in a bin a',
   region: 'other',
-  description: ['You walk back to your locker, throwing your towel in a bin along the way, and start rifling through your locker, gathering your things and grabbing your clothes.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterArt_101(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'agil', Math.floor(Math.random() * 2) + 0);
   qspCall(s, 'exp_gain', 'artskls', Math.floor(Math.random() * 2) + 0);
@@ -1559,7 +1563,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAlbinaArt(s, scene);
       break;
     default:
-      enterArt_101(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1568,6 +1572,5 @@ export const uni_lessons_electives_art1: LocationDef = {
   name: 'uni_lessons_electives_art1',
   title: 'You walk into the classroom and see Professor Ilyushin stand',
   region: 'other',
-  description: ['You walk into the classroom and see Professor Ilyushin standing by his desk as the rest of your classmates walk in one-by-one under his watchful eye. You notice his eyes linger a bit longer on some of the prettier girls that are dressed in revealing clothes.'],
   enter: enter,
 };

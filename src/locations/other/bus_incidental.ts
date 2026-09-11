@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'event<<rand(1, 1)>>'] }]);
   scene.build();
@@ -54,7 +58,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd1(s, scene);
       break;
     default:
-      enterEvents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

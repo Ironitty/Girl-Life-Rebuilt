@@ -4,6 +4,10 @@ import { dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).tobiQW = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -192,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter10(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -202,6 +206,5 @@ export const tobiQW: LocationDef = {
   title: 'Tatianas\' Laboratory',
   region: 'other',
   locationType: 'event',
-  description: ['"Hi Mikhail, how\'s it going?"'],
   enter: enter,
 };

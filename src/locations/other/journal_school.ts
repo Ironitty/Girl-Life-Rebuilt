@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal', 'journalmenu');
   scene.text('<center><h2>Class schedule</h2></center>');
@@ -358,7 +362,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLeaveactions(s, scene);
       break;
     default:
-      enterCoursesinfo(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -367,6 +371,5 @@ export const journal_school: LocationDef = {
   name: 'journal_school',
   title: '<center><h2>Class schedule</h2></center>',
   region: 'other',
-  description: ['Monday: Math, Russian, Literature, Art, Biology, P.E'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDummy(s: GameState, scene: SceneBuilder): void {
   scene.text('It is a shortcut out - because this event is not finished, be patient !!!');
   scene.actions([
@@ -1253,7 +1257,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRomanticEvent(s, scene);
       break;
     default:
-      enterDummy(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1262,6 +1266,5 @@ export const grigory: LocationDef = {
   name: 'grigory',
   title: 'It is a shortcut out - because this event is not finished, b',
   region: 'other',
-  description: ['It is a shortcut out - because this event is not finished, be patient !!!'],
   enter: enter,
 };

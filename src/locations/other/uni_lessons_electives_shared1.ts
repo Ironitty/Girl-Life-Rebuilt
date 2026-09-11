@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAnushkaStudy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
   qspCall(s, 'uni_lessons_electives', 'study_with_friends');
@@ -256,7 +260,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterObeyKendraTakecum(s, scene);
       break;
     default:
-      enterAnushkaStudy(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -265,6 +269,5 @@ export const uni_lessons_electives_shared1: LocationDef = {
   name: 'uni_lessons_electives_shared1',
   title: 'You smile. "Yeah, that sounds like a good idea. Mind if I co',
   region: 'other',
-  description: ['You smile. "Yeah, that sounds like a good idea. Mind if I come?"'],
   enter: enter,
 };

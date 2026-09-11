@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStairwellChat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   ((s as any).tryndinQW ?? {})['stairwell_chat'] = (((s as any).tryndinQW ?? {})['stairwell_chat'] ?? 0) + (1);
@@ -290,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterA77_AptInvEv_1(s, scene);
       break;
     default:
-      enterStairwellChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -299,6 +303,5 @@ export const tryndin: LocationDef = {
   name: 'tryndin',
   title: 'Tryndin tells you that he\'s a college student but he\'s going',
   region: 'other',
-  description: ['Tryndin tells you that he\'s a college student but he\'s going to graduate soon.'],
   enter: enter,
 };

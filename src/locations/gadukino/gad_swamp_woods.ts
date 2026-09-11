@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_swamp_woods', 'start');
   scene.img('images/locations/gadukino/hunters/nearby_woods.jpg');
   scene.text('You are in the woods near the hut. You can see it not too far in the distance.');
@@ -109,11 +113,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const gad_swamp_woods: LocationDef = {
   name: 'gad_swamp_woods',
   title: 'You are in the woods near the hut. You can see it not too fa',
   region: 'gadukino',
   locationType: 'secluded',
-  description: ['You are in the woods near the hut. You can see it not too far in the distance.'],
   enter: enter,
 };

@@ -4,7 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterWorkofdebt(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
   scene.text('The tinted window slides down and you find yourself staring directly into Vadim\'s face. "Slut, get in. It\'s time for you to work off your debts."');
   // TODO-QSP: 'You owe him: ' + $func('money', 'string_debt', belgangPay)
@@ -227,10 +231,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'workofdebt':
+      enterWorkofdebt(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const belgang: LocationDef = {
   name: 'belgang',
   title: 'The tinted window slides down and you find yourself staring ',
   region: 'other',
-  description: ['The tinted window slides down and you find yourself staring directly into Vadim\'s face. "Slut, get in. It\'s time for you to work off your debts."'],
   enter: enter,
 };

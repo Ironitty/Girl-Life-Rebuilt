@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterZariyahPassingBy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_checks', 'zariyah_approach');
   if (((s as any).ml_approach ?? 0)) {
@@ -150,7 +154,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDelparcoDecline(s, scene);
       break;
     default:
-      enterZariyahPassingBy(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

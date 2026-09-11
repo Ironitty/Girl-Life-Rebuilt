@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHomesex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/walkhome/walksex1.jpg');
@@ -1118,7 +1122,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStraponMagicBedroomAfterglow(s, scene);
       break;
     default:
-      enterHomesex(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1127,6 +1131,5 @@ export const soniaev1: LocationDef = {
   name: 'soniaev1',
   title: 'Sonia unlocks the door and the two of you head inside. As so',
   region: 'other',
-  description: ['Sonia unlocks the door and the two of you head inside. As soon as you do, you start kissing again with renewed vigor. Fumbling behind her, Sonia manages to close the door and the two of you stumble into the dining room, where you back into the table.'],
   enter: enter,
 };

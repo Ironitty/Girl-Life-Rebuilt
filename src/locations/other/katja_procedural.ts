@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHourly(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'katja_meynold_schedule', '');
   if (((s as any).katjaQW ?? 0)?.['drinks'] > 0) {
@@ -600,7 +604,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSexSet(s, scene);
       break;
     default:
-      enterHourly(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

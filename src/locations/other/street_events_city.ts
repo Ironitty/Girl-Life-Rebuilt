@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'Rapist', 0, 0, 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
@@ -261,7 +265,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMinorGirlBeggarSubEvent(s, scene);
       break;
     default:
-      enterFailedCelebBlackmail(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -270,6 +274,5 @@ export const street_events_city: LocationDef = {
   name: 'street_events_city',
   title: 'A black jeep suddenly hit the brakes on the street close to ',
   region: 'other',
-  description: ['A black jeep suddenly hit the brakes on the street close to you. You turn your head to see what\'s happening and see two prominent men jump out of it and start running towards you. Before you can react, they grab you and drag you into the car.'],
   enter: enter,
 };

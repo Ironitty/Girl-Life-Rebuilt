@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterWork(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -163,7 +167,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRoadSegment(s, scene);
       break;
     default:
-      enterWork(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -173,6 +177,5 @@ export const road_prostitution: LocationDef = {
   title: 'If you want, you can tell your clients a different name.',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['If you want, you can tell your clients a different name.'],
   enter: enter,
 };

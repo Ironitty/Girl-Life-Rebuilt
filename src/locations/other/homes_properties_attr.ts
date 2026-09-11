@@ -6,6 +6,120 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).train_station ?? {}).length < 1) {
+    ((s as any).train_station ?? {})['city'] = 'gt \'city_center\'';
+    ((s as any).train_station ?? {})['pav'] = 'gt \'pav_market\'';
+    ((s as any).train_station ?? {})['pav_park'] = 'gt \'pav_market\'';
+    ((s as any).train_station ?? {})['pushkin'] = 'gt \'pushkin_sq\'';
+    ((s as any).train_station ?? {})['gad'] = 'gt \'train\', \'village\'';
+    ((s as any).train_station ?? {})['gad_forest'] = 'gt \'train\', \'village\'';
+    ((s as any).train_station ?? {})['dachi'] = 'gt \'train\', \'communal\'';
+  }
+  if (Object.keys((s as any).homes ?? {}).length < 18) {
+    // TODO-QSP: $homes[] = 'city_apartment'
+    // TODO-QSP: $homes[] = 'parents_home'
+    // TODO-QSP: $homes[] = 'village_cottage'
+    // TODO-QSP: $homes[] = 'old_town_apartment'
+    // TODO-QSP: $homes[] = 'matryona_mansion'
+    // TODO-QSP: $homes[] = 'pavlovsk_hotel'
+    // TODO-QSP: $homes[] = 'maid_bedroom'
+    // TODO-QSP: $homes[] = 'niko_apartment'
+    // TODO-QSP: $homes[] = 'vasilyhome'
+    // TODO-QSP: $homes[] = 'lyceum_dorm'
+    // TODO-QSP: $homes[] = 'university_dorm'
+    // TODO-QSP: $homes[] = 'hunters_lodge'
+    // TODO-QSP: $homes[] = 'shared_apartment'
+    // TODO-QSP: $homes[] = 'grandparents_house'
+    // TODO-QSP: $homes[] = 'city_house'
+    // TODO-QSP: $homes[] = 'meynold_household'
+    // TODO-QSP: $homes[] = 'hotel_therapist'
+    // TODO-QSP: $homes[] = 'pushkin_ballet_dorm'
+  }
+  if (Object.keys((s as any).home_name ?? {}).length < 4) {
+    ((s as any).home_name ?? {})['city_apartment'] = 'city_apartment';
+    ((s as any).home_name ?? {})['1'] = 'city_apartment';
+    ((s as any).home_name ?? {})['korr'] = 'city_apartment';
+    ((s as any).home_name ?? {})['bedr'] = 'city_apartment';
+    ((s as any).home_name ?? {})['sitr'] = 'city_apartment';
+    ((s as any).home_name ?? {})['kuhr'] = 'city_apartment';
+    ((s as any).home_name ?? {})['vanr'] = 'city_apartment';
+    ((s as any).home_name ?? {})['parents_home'] = 'parents_home';
+    ((s as any).home_name ?? {})['2'] = 'parents_home';
+    ((s as any).home_name ?? {})['code'] = 'parents_home';
+    ((s as any).home_name ?? {})['korrPar'] = 'parents_home';
+    ((s as any).home_name ?? {})['bedrPar'] = 'parents_home';
+    ((s as any).home_name ?? {})['sitrPar'] = 'parents_home';
+    ((s as any).home_name ?? {})['kuhrPar'] = 'parents_home';
+    ((s as any).home_name ?? {})['vanrPar'] = 'parents_home';
+    ((s as any).home_name ?? {})['village_cottage'] = 'village_cottage';
+    ((s as any).home_name ?? {})['3'] = 'village_cottage';
+    ((s as any).home_name ?? {})['dachamy'] = 'village_cottage';
+    ((s as any).home_name ?? {})['dachain'] = 'village_cottage';
+    ((s as any).home_name ?? {})['dachaogr'] = 'village_cottage';
+    ((s as any).home_name ?? {})['dachaogr0'] = 'village_cottage';
+    ((s as any).home_name ?? {})['old_town_apartment'] = 'old_town_apartment';
+    ((s as any).home_name ?? {})['4'] = 'old_town_apartment';
+    ((s as any).home_name ?? {})['korr2x'] = 'old_town_apartment';
+    ((s as any).home_name ?? {})['bedr2x'] = 'old_town_apartment';
+    ((s as any).home_name ?? {})['sitr2x'] = 'old_town_apartment';
+    ((s as any).home_name ?? {})['kuhr2x'] = 'old_town_apartment';
+    ((s as any).home_name ?? {})['vanr2x'] = 'old_town_apartment';
+    ((s as any).home_name ?? {})['matryona_mansion'] = 'matryona_mansion';
+    ((s as any).home_name ?? {})['5'] = 'matryona_mansion';
+    ((s as any).home_name ?? {})['city_mansion_entrance'] = 'matryona_mansion';
+    ((s as any).home_name ?? {})['city_mansion_residence_1'] = 'matryona_mansion';
+    ((s as any).home_name ?? {})['city_mansion_residence_2'] = 'matryona_mansion';
+    ((s as any).home_name ?? {})['city_mansion_residence_3'] = 'matryona_mansion';
+    ((s as any).home_name ?? {})['pavlovsk_hotel'] = 'pavlovsk_hotel';
+    ((s as any).home_name ?? {})['6'] = 'pavlovsk_hotel';
+    ((s as any).home_name ?? {})['pav_hotel'] = 'pavlovsk_hotel';
+    ((s as any).home_name ?? {})['HotelRoom'] = 'pavlovsk_hotel';
+    ((s as any).home_name ?? {})['maid_bedroom'] = 'maid_bedroom';
+    ((s as any).home_name ?? {})['7'] = 'maid_bedroom';
+    ((s as any).home_name ?? {})['nichBedroomServant'] = 'maid_bedroom';
+    ((s as any).home_name ?? {})['niko_apartment'] = 'niko_apartment';
+    ((s as any).home_name ?? {})['8'] = 'niko_apartment';
+    ((s as any).home_name ?? {})['shulga_apartment'] = 'vasilyhome';
+    ((s as any).home_name ?? {})['9'] = 'vasilyhome';
+    ((s as any).home_name ?? {})['vasilyhome'] = 'vasilyhome';
+    ((s as any).home_name ?? {})['lyceum_dorm'] = 'lyceum_dorm';
+    ((s as any).home_name ?? {})['10'] = 'lyceum_dorm';
+    ((s as any).home_name ?? {})['dom_gor'] = 'lyceum_dorm';
+    ((s as any).home_name ?? {})['university_dorm'] = 'university_dorm';
+    ((s as any).home_name ?? {})['11'] = 'university_dorm';
+    ((s as any).home_name ?? {})['uni_grounds'] = 'university_dorm';
+    ((s as any).home_name ?? {})['uni_dorm'] = 'university_dorm';
+    ((s as any).home_name ?? {})['hunters_lodge'] = 'hunters_lodge';
+    ((s as any).home_name ?? {})['12'] = 'hunters_lodge';
+    ((s as any).home_name ?? {})['gad_swamphouse'] = 'hunters_lodge';
+    ((s as any).home_name ?? {})['gad_swamp_yard'] = 'hunters_lodge';
+    ((s as any).home_name ?? {})['shared_apartment'] = 'shared_apartment';
+    ((s as any).home_name ?? {})['13'] = 'shared_apartment';
+    ((s as any).home_name ?? {})['pav_shared_apt'] = 'shared_apartment';
+    ((s as any).home_name ?? {})['grandparents_house'] = 'grandparents_house';
+    ((s as any).home_name ?? {})['14'] = 'grandparents_house';
+    ((s as any).home_name ?? {})['gad_gpyard'] = 'grandparents_house';
+    ((s as any).home_name ?? {})['gad_gpbath'] = 'grandparents_house';
+    ((s as any).home_name ?? {})['gad_gphouse'] = 'grandparents_house';
+    ((s as any).home_name ?? {})['gad_gpbarn'] = 'grandparents_house';
+    ((s as any).home_name ?? {})['city_house'] = 'city_house';
+    ((s as any).home_name ?? {})['15'] = 'city_house';
+    ((s as any).home_name ?? {})['city_house_res_misc'] = 'city_house';
+    ((s as any).home_name ?? {})['city_house_res_bath'] = 'city_house';
+    ((s as any).home_name ?? {})['city_house_re_bedr'] = 'city_house';
+    ((s as any).home_name ?? {})['city_house-res_kitch'] = 'city_house';
+    ((s as any).home_name ?? {})['meynold_household'] = 'meynold_household';
+    ((s as any).home_name ?? {})['16'] = 'meynold_household';
+    ((s as any).home_name ?? {})['mey_home'] = 'meynold_household';
+    ((s as any).home_name ?? {})['hotel_therapist'] = 'hotel_therapist';
+    ((s as any).home_name ?? {})['17'] = 'hotel_therapist';
+    ((s as any).home_name ?? {})['pushkin_ballet_dorm'] = 'pushkin_ballet_dorm';
+    ((s as any).home_name ?? {})['18'] = 'pushkin_ballet_dorm';
+  }
+  scene.build();
+}
+
 function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'city_apartment') {
     ((s as any).property ?? {})['id'] = 1;
@@ -457,7 +571,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAddNewTrainStation(s, scene);
       break;
     default:
-      enterGetPropertyAttr(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

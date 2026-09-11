@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'havana', ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -969,7 +973,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFMR(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -980,6 +984,5 @@ export const havana: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'changingroom',
-  description: ['This modern and well staffed fitness center features all of the latest equipment, as well as trainers to help you make the most of them.'],
   enter: enter,
 };

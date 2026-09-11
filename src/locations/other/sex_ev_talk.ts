@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTopicExit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['sex_over'] === 1) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
@@ -17,8 +21,6 @@ function enterTopicExit(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyAccidentalCreampie(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['accidental_creampie_convo'] = 1;
-  scene.img('images/shared/sex/after/pillow_talk1.jpg');
-  // TODO-QSP: end !}
   if (((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
   } else {
@@ -778,7 +780,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFreeCreampies(s, scene);
       break;
     default:
-      enterTopicExit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

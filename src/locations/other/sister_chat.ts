@@ -4,6 +4,41 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
+  // TODO-QSP: $OpenInnerThought + '"Come on <<$pcs_firstname>>, keep it together! Act sober,"' + $CloseInnerThough...
+  // TODO-QSP: dynamic text: Your sister looks at you, her eyebrow raised. "Are you stoned, <<$pcs_nickname>>...
+  scene.text(`Your sister looks at you, her eyebrow raised. "Are you stoned, ${((s as any).pcs_nickname ?? 0)}?"`);
+  scene.actions([
+    { label: 'No', handler: (st: GameState) => {
+    (s as any).narkossister = 1;
+    qspCall(s, 'stat', '');
+    scene.text('You nervously shake your head and back away, but it\'s obvious that Anya can tell.');
+    scene.actions([
+      { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    { label: 'Yes', handler: (st: GameState) => {
+    (s as any).narkossister = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
+    scene.text('You admit that you learned where to buy drugs and wanted to try them out.');
+    // TODO-QSP: dynamic text: Anya looks at you sternly. "<<$pcs_nickname>>, I'm not your mother, who would ki...
+    scene.text(`Anya looks at you sternly. "${((s as any).pcs_nickname ?? 0)}, I'm not your mother, who would kill you if she found out by the way, but this is the first and last time. It's not worth it! If you continue, then your whole life will not be worth shit."`);
+    return;
+    scene.actions([
+      { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
 function enterChecks(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A33'] < 20) {
     scene.text('Your relationship with your sister is scandalous.');
@@ -1828,7 +1863,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPornRepeat2(s, scene);
       break;
     default:
-      enterChecks(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1837,6 +1872,5 @@ export const sister_chat: LocationDef = {
   name: 'sister_chat',
   title: 'Anya',
   region: 'other',
-  description: ['Your relationship with your sister is scandalous.'],
   enter: enter,
 };

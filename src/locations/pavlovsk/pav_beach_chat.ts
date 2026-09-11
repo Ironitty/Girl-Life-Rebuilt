@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).hour ?? 0) < 15  &&  ((s as any).sunWeather ?? 0) === 1) {
@@ -1518,7 +1522,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSonia(s, scene);
       break;
     default:
-      enterBeachHangout(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1528,6 +1532,5 @@ export const pav_beach_chat: LocationDef = {
   title: 'Beach',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['Some of the cool kids and jocks are lounging around tanning and chatting while others are wading and swimming out in the lake.'],
   enter: enter,
 };

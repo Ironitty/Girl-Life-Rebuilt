@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -29,7 +33,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
   if (((s as any).pharma_day ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -84,6 +88,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'chemist');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_'+pharma_picrand+'.jpg');
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
     qspCall(st, 'item_cart', 'shopping_var_clear');

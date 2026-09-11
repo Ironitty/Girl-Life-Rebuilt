@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterExport(s: GameState, scene: SceneBuilder): void {
   scene.text('Your current settings will be displayed on the next screen. Copy the entire block and save it to a text file. To restore, use Import and paste the text back.');
   scene.actions([
@@ -352,7 +356,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterImport(s, scene);
       break;
     default:
-      enterExport(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -361,6 +365,5 @@ export const import_export: LocationDef = {
   name: 'import_export',
   title: 'Your current settings will be displayed on the next screen. ',
   region: 'other',
-  description: ['Your current settings will be displayed on the next screen. Copy the entire block and save it to a text file. To restore, use Import and paste the text back.'],
   enter: enter,
 };

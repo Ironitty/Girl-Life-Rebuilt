@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRexRep(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A57'] < 20) {
     scene.text('You and Rex get along terribly.');
@@ -1077,7 +1081,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSmsEnd2(s, scene);
       break;
     default:
-      enterRexRep(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1086,6 +1090,5 @@ export const rex_events: LocationDef = {
   name: 'rex_events',
   title: 'You and Rex get along terribly.',
   region: 'other',
-  description: ['You and Rex get along terribly.'],
   enter: enter,
 };

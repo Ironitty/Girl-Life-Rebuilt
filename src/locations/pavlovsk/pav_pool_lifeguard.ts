@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PCloSwimwear ?? 0)) {
     qspCall(s, 'clothing', 'wear_last_worn');
@@ -1351,7 +1355,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterVadimShowerPostsex(s, scene);
       break;
     default:
-      enterLeave(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

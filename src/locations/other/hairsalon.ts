@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Golden Curl Salon</b></center>');
   scene.img('images/locations/city/citycenter/mall/golden curl/golden curl.jpg');
@@ -1486,7 +1490,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMixed(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1495,6 +1499,5 @@ export const hairsalon: LocationDef = {
   name: 'hairsalon',
   title: 'The Golden Curl Salon',
   region: 'other',
-  description: ['Established several years back, The Golden Curl is known to offer high-quality services ranging from hairstyles, dimensional hair shading, to updos, expansions, and fixing.'],
   enter: enter,
 };

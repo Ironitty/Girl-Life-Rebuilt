@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInitiation(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/events/gopnikinvite/lenameet.jpg');
   scene.text('You meet Lena by the apartment garages and find her and Lera already there, squatting and smoking while they wait for you. When you get close, Lena stands up. "You ready little bunny?" Before you can even answer, she starts off down the street with Lera in tow, talking as she goes. "We\'re going to that little liquor store in town."');
@@ -1464,7 +1468,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGopnikSlut(s, scene);
       break;
     default:
-      enterInitiation(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1474,6 +1478,5 @@ export const gopnik_initiation: LocationDef = {
   title: 'You meet Lena by the apartment garages and find her and Lera',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You meet Lena by the apartment garages and find her and Lera already there, squatting and smoking while they wait for you. When you get close, Lena stands up. "You ready little bunny?" Before you can even answer, she starts off down the street with Lera in tow, talking as she goes. "We\'re going to that little liquor store in town."'],
   enter: enter,
 };

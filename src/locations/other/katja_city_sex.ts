@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterWalkingHomeWithAGuy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'npcgeneratec', '', 0, '', Math.floor(Math.random() * 38) + 18, 4);
@@ -2062,7 +2066,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTwoGuysCumming(s, scene);
       break;
     default:
-      enterWalkingHomeWithAGuy(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2072,6 +2076,5 @@ export const katja_city_sex: LocationDef = {
   title: 'It doesn\'t take long before you arrive at his building and h',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['It doesn\'t take long before you arrive at his building and he shows you up to his rather nice apartment.'],
   enter: enter,
 };

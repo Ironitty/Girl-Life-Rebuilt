@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterUndressed1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A34');
   scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/kiss_2.mp4');
@@ -896,7 +900,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBoyfriendSex(s, scene);
       break;
     default:
-      enterUndressed1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -905,6 +909,5 @@ export const LariskaSex: LocationDef = {
   name: 'LariskaSex',
   title: 'You roll her onto her back and straddle her, while you pull ',
   region: 'other',
-  description: ['You roll her onto her back and straddle her, while you pull off your shirt first before tugging hers off too. Giggling you both try to take the others bra off at the same time and only manage to tangle them together, before tossing them off to the side. You kiss her lips again before working your way down to her neck, planting more kisses as you go. Sliding your body lower, you slip off your own pants and panties, not pausing your kisses until you reach her breasts. Teasing her nipples with your tongue, your hands slide down to her waist and start unbuttoning her pants. Getting them loose, you pull both her pants and panties down until they slide off her feet, before kissing your way back up to her mouth.'],
   enter: enter,
 };

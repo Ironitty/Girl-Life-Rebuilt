@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterVasilyHomeMomgg1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/momgg/ev1_1.jpg');
   // TODO-QSP: dynamic text: Oops, uncle Sergey has a woman over! Just as you're about to leave them alone, y...
   scene.text(`Oops, uncle Sergey has a woman over! Just as you're about to leave them alone, you're shocked by the realization. "Wait a minute… ${((s as any).npc_nickname ?? 0)?.['A29']}?!"`);
@@ -68,10 +72,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'vasily_home_momgg1':
+      enterVasilyHomeMomgg1(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const vasily_home_sex: LocationDef = {
   name: 'vasily_home_sex',
   title: 'Sergey\'s hands are roving over your mother\'s body, fondling ',
   region: 'other',
-  description: ['Sergey\'s hands are roving over your mother\'s body, fondling her breasts and caressing her ass while she moans like a wanton whore. Sergey runs his hands over her pussy, rubbing her clit until your mother tries to scoot away from him.'],
   enter: enter,
 };

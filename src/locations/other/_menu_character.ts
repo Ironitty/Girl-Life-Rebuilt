@@ -6,6 +6,13 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
+  scene.build();
+}
+
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
   scene.build();
@@ -46,7 +53,7 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_page = 0;
   qspCall(s, '$menu_character', 'charactertabs', 'Character');
   qspCall(s, 'AppearanceSystem', '');
@@ -490,7 +497,7 @@ function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp ?? 0)?.['skl_desc'] === '') {
     ((s as any).temp ?? {})['skl_desc'] = ((s as any).att_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
-    ((s as any).temp ?? {})['skl_desc'] = "<((s as any).b ?? 0)><<((s as any).id ?? 0)(((s as any).temp ?? {})?.['skl_desc'], 1, 3)>></((s as any).b ?? 0)><<((s as any).id ?? 0)(((s as any).temp ?? {})?.['skl_desc'], 4)>>";
+    // TODO-QSP: $temp['skl_desc'] = "<b><<$mid($temp['skl_desc'], 1, 3)>></b><<$mid($temp['skl_desc'], 4)>>"
   }
   if (((s as any).temp ?? 0)?.['skl_name'] === 'stren') {
     ((s as any).temp ?? {})['skl_lvl'] = ((s as any).stren_lvl ?? 0) + ((s as any).stren_plus_lvl ?? 0);

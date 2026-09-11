@@ -4,6 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'family_schedule', '');
+  scene.build();
+}
+
 function enterHomework(s: GameState, scene: SceneBuilder): void {
   ((s as any).brotherQW ?? {})['last_day_homework'] = ((s as any).daystart ?? 0);
   if (((s as any).npc_rel ?? 0)?.['A34'] < 50) {
@@ -1900,7 +1905,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnatomylessonConceptionEnd(s, scene);
       break;
     default:
-      enterHomework(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1909,6 +1914,5 @@ export const brother_lessons: LocationDef = {
   name: 'brother_lessons',
   title: 'Kolka',
   region: 'other',
-  description: ['Partway through your sibling study session, you suddenly feel Kolka\'s hand stroking your leg.'],
   enter: enter,
 };

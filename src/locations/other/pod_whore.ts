@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterClientTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pod_whore', 'setup');
   qspCall(s, 'stat', '');
@@ -1213,7 +1217,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHide(s, scene);
       break;
     default:
-      enterClientTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1222,6 +1226,5 @@ export const pod_whore: LocationDef = {
   name: 'pod_whore',
   title: 'You open the door and look at a strange man who looks quite ',
   region: 'other',
-  description: ['You open the door and look at a strange man who looks quite surprised. He accidentally mutters: "Holy shit, she looks terrible!", just loud enough for you to hear.'],
   enter: enter,
 };

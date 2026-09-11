@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBookingStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'shplft'  ||  ((s as any).locArgs?.[1] ?? 0) === 'shoplift') {
     qspCall(s, 'court_functions', 'arrest_for', 'shoplift');
@@ -688,7 +692,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCellmateStory(s, scene);
       break;
     default:
-      enterBookingStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

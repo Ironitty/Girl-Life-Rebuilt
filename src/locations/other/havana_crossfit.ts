@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBox(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'havana_crossfit', 'box');
   if (((s as any).crossfit_random_choice ?? 0) < ((s as any).daystart ?? 0)  ||  ((s as any).todays_crossfit_wod ?? 0) === '') {
@@ -203,7 +207,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGirlmeet(s, scene);
       break;
     default:
-      enterBox(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -213,6 +217,5 @@ export const havana_crossfit: LocationDef = {
   title: 'Crossfit North St. Petersburg',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['This crossfit box might not look like it, but it\'s said to be one of the best in the region.'],
   enter: enter,
 };

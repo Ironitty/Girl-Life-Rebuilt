@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
   qspCall(s, 'npcStat', 'A2');
@@ -2335,7 +2339,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStraponAgainMagic(s, scene);
       break;
     default:
-      enterHj(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2344,6 +2348,5 @@ export const artem_sex: LocationDef = {
   name: 'artem_sex',
   title: 'You rub his hard dick through his pants for a few seconds be',
   region: 'other',
-  description: ['You rub his hard dick through his pants for a few seconds before sliding off his lap, kneeling next to the bed as you unbutton his pants and reach inside. His erect cock springs free as soon as you pull it out, and it seems to almost be pulsing by your touch. He moans softly as you slowly start stroking his dick.'],
   enter: enter,
 };

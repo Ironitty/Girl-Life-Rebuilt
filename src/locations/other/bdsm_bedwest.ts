@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMaster(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bdsm_bedwest', 'check_master_events');
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedwest', 'master');
@@ -164,7 +168,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGuestEvent_2(s, scene);
       break;
     default:
-      enterMaster(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -175,6 +179,5 @@ export const bdsm_bedwest: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
-  description: ['Master bedroom'],
   enter: enter,
 };

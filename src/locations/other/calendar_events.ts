@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAddToEventsList(s: GameState, scene: SceneBuilder): void {
   if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) === -1) {
     // TODO-QSP: $events_list[] = $ARGS[1]
@@ -622,7 +626,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGetEvent(s, scene);
       break;
     default:
-      enterAddToEventsList(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

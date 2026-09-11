@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
 function enterIntercom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) > 10  ||  ((s as any).month ?? 0) < 4) {
@@ -121,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStudy(s, scene);
       break;
     default:
-      enterIntercom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -131,6 +136,5 @@ export const alexandriaHome: LocationDef = {
   title: 'Aleksei',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['The house is situated on the more wealthy side of the neighborhood. It\'s big and expensive, but not by too much, and sits in a nebulous middle point, making it utterly forgettable, yet classy. You wonder if the neighnours know that one of the most powerful beings in the world lives here.'],
   enter: enter,
 };

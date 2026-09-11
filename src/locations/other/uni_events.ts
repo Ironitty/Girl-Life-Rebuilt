@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterLectureHallEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 7) + 1;
   if (((s as any).temp ?? 0) === 1) {
     scene.img('images/locations/city/island/university/lecture_hall/events/4girls_makeout.jpg');
@@ -165,10 +169,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'lecture_hall_events':
+      enterLectureHallEvents(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const uni_events: LocationDef = {
   name: 'uni_events',
   title: 'As you walk down the hall, you spot a small group of boys wa',
   region: 'other',
-  description: ['As you walk down the hall, you spot a small group of boys watching two groups of girls making out. The girls either don\'t care or are loving the attention.'],
   enter: enter,
 };

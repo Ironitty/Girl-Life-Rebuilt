@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sweat ?? 0) < 25) {
     qspCall(s, 'sweat', 'add', 5);
   }
@@ -66,6 +70,5 @@ export const divan: LocationDef = {
   name: 'divan',
   title: 'You lie down on the sofa and began to fondle your chest with',
   region: 'other',
-  description: ['You lie down on the sofa and began to fondle your chest with one hand while you slide the other hand down your stomach and across your mound.'],
   enter: enter,
 };

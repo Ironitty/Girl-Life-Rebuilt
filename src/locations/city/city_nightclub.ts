@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_nightclub', 'start');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1103,7 +1107,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWork(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1113,6 +1117,5 @@ export const city_nightclub: LocationDef = {
   title: 'Nightclub',
   region: 'city',
   locationType: 'public_indoors',
-  description: ['The entrance area of the club is full of younger looking people. The entrance itself is watched over by a very large man wearing a shirt that says \'Security\'. He\'s checking everyone and ensuring that they pay to enter.'],
   enter: enter,
 };

@@ -4,6 +4,18 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).moodTypeRand ?? 0) <= 0) {
+  } else {
+    if (((s as any).moodTypeRand ?? 0) >= 1  &&  ((s as any).moodTypeRand ?? 0) <= 3) {
+    } else {
+      if (((s as any).moodTypeRand ?? 0) >= 4) {
+      }
+    }
+  }
+  scene.build();
+}
+
 function enterSaunawork(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_saunawhore', 'saunawork');
   (s as any).saunaYouRoom = 1;
@@ -1528,7 +1540,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterClientLeave(s, scene);
       break;
     default:
-      enterSaunawork(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1538,6 +1550,5 @@ export const city_saunawhore: LocationDef = {
   title: 'Sauna',
   region: 'city',
   locationType: 'bathroom',
-  description: ['You are beckoned by the nurse. You walk up to her and she demands to see your arm. You present your arm and she takes out a syringe filled with drugs. "Sit still, I\'ll give you a shot now and it will make you feel like normal again."'],
   enter: enter,
 };

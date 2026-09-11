@@ -4,6 +4,16 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).katjaQW ?? 0)?.['meet_uni_class'] === 0  &&  ((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
+    // TODO-QSP: gt 'katja_uni', 'first_in_class_meet', $ARGS[0]
+  }
+  if (((s as any).AlbinaQW ?? 0)?.['meet_uni_class'] === 0  &&  ((s as any).university ?? 0)?.['enrolled_in'] === 'nursing') {
+    // TODO-QSP: gt 'albina_events', 'first_in_class_meet', $ARGS[0]
+  }
+  scene.build();
+}
+
 function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'attend_class', 'uni_teaching_studies_semester_1', 'general education 101');
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -1739,7 +1749,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterExaminationAndTreatment_101(s, scene);
       break;
     default:
-      enterGeneralEducation_101(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1748,6 +1758,5 @@ export const uni_lessons1: LocationDef = {
   name: 'uni_lessons1',
   title: 'You walk into the classroom and take a seat next to a window',
   region: 'other',
-  description: ['You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Kovalyov enters the classroom and closes the door.'],
   enter: enter,
 };

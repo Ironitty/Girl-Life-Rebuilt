@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSub(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 1, 'Elektra', 27);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -567,7 +571,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDom(s, scene);
       break;
     default:
-      enterSub(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

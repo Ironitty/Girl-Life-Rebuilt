@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterOutside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_industrial_train', 'outside');
   qspCall(s, 'stat', '');
@@ -150,7 +154,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterToilet(s, scene);
       break;
     default:
-      enterOutside(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

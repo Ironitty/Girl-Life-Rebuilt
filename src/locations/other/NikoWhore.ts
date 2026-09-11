@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -896,6 +900,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
+    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoWhore" }) + '');
     // TODO-QSP: dynamic text: You can feel your consciousness fading in and out. You can hear some words, but ...
     scene.text(`You can feel your consciousness fading in and out. You can hear some words, but they too seem to fade in and out… "You'll be a star, ${((s as any).pcs_nickname ?? 0)}. An even bigger whore than Sonia."… "You look all tuckered out. Had a good time?…" "I think we broke our new toy already…" … "It looks like she passed out… Too much fun maybe."…`);
     scene.text('You hear footsteps as they leave the room and everything starts to fade until you hear… "How could they do this to her?"…"Oh wow, she looks… Sticky."…" This isn\'t the time for jokes, Vicky! We need to do something! We can\'t just leave her like this!" …');
@@ -965,6 +970,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept his offer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
+    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoWhore" }) + '');
     scene.text('You meekly nod and his eyes light up. "Great! Let\'s get going." He grabs your arm and guides you to the restroom.');
     scene.actions([
       { label: 'Follow him to the restroom', handler: (st: GameState) => {
@@ -1167,6 +1173,7 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
     (s as any).NikoEv = 11;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
+    scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoWhore" }) + '');
     scene.text('You let out your tears, submitting to your own sorrow.');
     scene.actions([
       { label: 'Embrace him', handler: (st: GameState) => {
@@ -1294,7 +1301,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLeaveWithNush(s, scene);
       break;
     default:
-      enterLockerRoom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1304,6 +1311,5 @@ export const NikoWhore: LocationDef = {
   title: 'Break up with Niko',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['Niko wraps his arm around your neck and leads you to the locker room. When you enter, he closes the door and takes a quick look around to see if anyone is present before he walks up behind you and whispers in your ear. "Take off your clothes."'],
   enter: enter,
 };

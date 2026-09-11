@@ -1,8 +1,193 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).razors_to_use ?? {})['all'] = Math.min(3, Math.max(1, (((s as any).pcs_leghair ?? 0)*4 + Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0)))/20));
+  ((s as any).razors_to_use ?? {})['pussy'] = Math.min(2, Math.max(1, (Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0)))/20));
+  ((s as any).razors_to_use ?? {})['legs'] = Math.min(3, Math.max(1, (((s as any).pcs_leghair ?? 0)*4)/20));
+  if (((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] > 0) {
+    // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'hair_extensioncream'">Apply hair extension shampoo.</...
+    scene.text(`<a href="exec:gs 'drugs', 'hair_extensioncream'">Apply hair extension shampoo.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['hair_extensioncream']}.`);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['butt_injection'] > 0) {
+    // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'butt_injection'">Inject the KBI butt enhancement shot...
+    scene.text(`<a href="exec:gs 'drugs', 'butt_injection'">Inject the KBI butt enhancement shot.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['butt_injection']}.`);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['breastcream'] > 0) {
+    // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'breastcream'">Apply breast cream.</a> Uses left: <<mc...
+    scene.text(`<a href="exec:gs 'drugs', 'breastcream'">Apply breast cream.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['breastcream']}.`);
+  }
+  qspCall(s, 'piercing_management', 'set_manage_string');
+  if (((s as any).fillimplant ?? 0) === 1) {
+    if (((s as any).siliconeBag ?? 0) >= 1) {
+      // TODO-QSP: dynamic text: <a href="exec:cls & siliconeBag -= 1 & bodyVars['bust_silicone'] += 10 & gt $loc...
+      scene.text('<a href="exec:cls & siliconeBag -= 1 & bodyVars[\'bust_silicone\'] += 10 & gt $loc, $loc_arg">Inject silicone into your breast implants.</a>');
+    }
+    if (((s as any).bodyVars ?? 0)?.['bust_silicone'] >= 20) {
+      scene.text('<a href="exec:cls & bodyVars[\'bust_silicone\'] -= 10 & gt $loc, $loc_arg">Drain silicone from your breast implants.</a>');
+    }
+  }
+  qspCall(s, 'din_van', 'bteeth');
+  qspCall(s, 'din_van', 'tampon');
+  // TODO-QSP: dynamic text: <a href="exec:msg '<center>Your weight is <<pcs_weight[0]>>.<<pcs_weight[1]>> kg...
+  scene.text(`<a href="exec:msg '<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "din_van" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "din_van" })}.<br>${((s as any).bodyVars ?? 0)?.['bmi_desc']}</center>'">Check weight on the scales</a>`);
+  qspCall(s, 'din_van', 'prvt_pee');
+  qspCall(s, 'din_van', 'basin');
+  qspCall(s, 'din_van', 'brit');
+  qspCall(s, 'din_van', 'enema');
+  qspCall(s, 'din_van', 'palelady');
+  if (((s as any).mc_inventory ?? 0)?.['chafing_cream'] > 0  &&  ((s as any).mosol ?? 0) > 0  &&  ((s as any).mosal_time ?? 0) <= ((s as any).totminut ?? 0)) {
+    scene.actions([
+      { label: 'Rub ointment onto your pussy (0:05)', handler: (st: GameState) => {
+    (s as any).mosal_time = ((s as any).totminut ?? 0) + 600;
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    ((s as any).mc_inventory ?? {})['chafing_cream'] = (((s as any).mc_inventory ?? {})['chafing_cream'] ?? 0) - (1);
+    (s as any).mosol = ((s as any).mosol ?? 0) - (5);
+    qspCall(s, 'stat', '');
+    scene.text('You take a tube of cream and rub it onto your itchy vulva.');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).knowpreg ?? 0) !== 1  &&  ((s as any).mc_inventory ?? 0)?.['pregnancy_test'] > 0  &&  (((s as any).abortionbirthdate ?? 0) === 0  ||  ((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) > 100)  &&  ((s as any).last_pee ?? 0) + 59 < ((s as any).totminut ?? 0)) {
+    scene.actions([
+      { label: 'Do a pregnancy test (0:05)', handler: (st: GameState) => {
+    (s as any).last_pee = ((s as any).totminut ?? 0);
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    ((s as any).mc_inventory ?? {})['pregnancy_test'] = (((s as any).mc_inventory ?? {})['pregnancy_test'] ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/birthcontrol/preg_test.jpg');
+    scene.text('You sit down on the toilet and slip the test between your legs, carefully letting loose a stream of urine from your pussy onto the tip. Following the instructions, you then re-cap it and lay it flat on the sink, spending the next five minutes nervously fidgeting, waiting out the suggested time…');
+    scene.text('When the time is up, you eagerly snatch it up and yank off the cap to see the results.');
+    if (((s as any).pregChem ?? 0) <= 120) {
+      (s as any).knowpreg = 0;
+      scene.text('The test shows one band. You are not pregnant.');
+      scene.actions([
+        { label: 'Sigh in relief', goto: ['din_van', 'ReliefReact'] },
+        { label: 'Sigh in disappointment', goto: ['din_van', 'DisappointedReact'] },
+      ]);
+    } else {
+      if (((s as any).hypnoTime ?? 0) >= 10) {
+        (s as any).knowpreg = 0;
+        scene.text('The test shows one band. You are not pregnant.');
+        scene.actions([
+          { label: 'Happy', goto: ['din_van', 'HappyReact'] },
+          { label: 'Sigh in relief', goto: ['din_van', 'ReliefReact'] },
+        ]);
+      } else {
+        if (((s as any).pcs_pregtalk ?? 0) === 1) {
+          (s as any).knowpreg = 1;
+          (s as any).thinkpreg = 1;
+          scene.text('The test shows two strips. You are pregnant.');
+        } else {
+          (s as any).knowpreg = 1;
+          (s as any).thinkpreg = 1;
+          if (((s as any).husID ?? 0) !== '') {
+            if ((!((s as any).kid ?? 0))) {
+              scene.actions([{ label: 'Continue', goto: ['din_van', 'WifeReact1'] }]);
+            } else {
+              scene.actions([{ label: 'Continue', goto: ['din_van', 'WifeReact2'] }]);
+            }
+          } else {
+            scene.text('The test shows two strips. You are pregnant. As you look at the test in your hand, you are…');
+            if (qspFunc(s, 'archetypes', 'get_lvl', 'bimbo') < 3  &&  ((s as any).hypnoTime ?? 0) < 10) {
+              scene.actions([
+                { label: 'Horrified', goto: ['din_van', 'HorrifiedReact1'] },
+                { label: 'Concerned', goto: ['din_van', 'ConcernedReact1'] },
+                { label: 'Excited', goto: ['din_van', 'ExcitedReact1'] },
+              ]);
+            } else {
+              if (((s as any).pcs_horny ?? 0) >= 50  ||  qspFunc(s, 'archetypes', 'get_lvl', 'bimbo') === 3) {
+                // TODO-QSP: act 'Aroused': gt 'din_van', 'ArousedReact1'
+              }
+              scene.actions([
+                { label: 'Excited', goto: ['din_van', 'ExcitedReact1'] },
+              ]);
+            }
+          }
+        }
+      }
+    }
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['breast_pump'] > 0  &&  ((s as any).bp_unbox ?? 0) >= 1) {
+    scene.actions([
+      { label: 'Use breast pump', goto: ['lact_bp', 'bp_milking'] },
+    ]);
+  } else {
+    if (((s as any).mc_inventory ?? 0)?.['breast_pump'] > 0  &&  ((s as any).bp_unbox ?? 0) <= 0) {
+      scene.text('<a href="exec: gt \'lact_bp\', \'bp_unbox_event\'">Unbox</a> your breast pump');
+    } else {
+      if (((s as any).mc_inventory ?? 0)?.['breast_pump'] <= 0) {
+        qspCall(s, 'lact_bp', 'massage');
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Change clothes and toys', handler: (st: GameState) => {
+    qspCall(s, 'din_van', 'wearpan');
+    qspCall(s, 'din_van', 'removepan');
+    if (((s as any).curloc ?? 0) === 'vanrPar'  &&  ((s as any).clothingworntype ?? 0) === 'nude') {
+      scene.actions([
+        { label: 'Wear clothes (0:05)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/pc/activities/misc/dress_1.mp4');
+    scene.text('You get dressed.');
+    qspCall(s, 'outfit', 'wear_last_worn');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    (st as any).menu_off = 0;
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).curloc ?? 0) === 'vanrPar'  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
+        scene.actions([
+          { label: 'Remove clothes (0:05)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/pc/items/accessories/computer/webcam/undress1.mp4');
+    scene.text('You remove your clothing.');
+    qspCall(s, 'clothing', 'strip');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    (st as any).menu_off = 0;
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+        ]);
+      }
+    }
+    qspCall(s, 'din_van', 'toymanage');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    (st as any).menu_off = 0;
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
 
 function enterShowerdin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0) {
@@ -1710,7 +1895,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPrivate(s, scene);
       break;
     default:
-      enterShowerdin(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1720,6 +1905,5 @@ export const din_van: LocationDef = {
   title: 'Your skin is pruning excessively, maybe you shouldn\'t shower this often',
   region: 'other',
   locationType: 'restroom',
-  description: ['You\'re careful enough that your false lashes make it through relatively unscathed.'],
   enter: enter,
 };

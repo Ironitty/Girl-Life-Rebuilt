@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTownHostel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -109,7 +113,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBathroom(s, scene);
       break;
     default:
-      enterTownHostel(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -119,6 +123,5 @@ export const ETO_hostel: LocationDef = {
   title: 'Town Hostel',
   region: 'other',
   locationType: 'bathroom',
-  description: ['Your room in the hostel. It\'s in poor condition, but still better than nothing. In the courtyard, there is a clothesline and a shed for storing junk. Strangely, even though there seem to be no tenants around, the hostel is crammed to capacity.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A18'] > 20) {
     qspCall(s, 'npc_relationship', 'set', 'A18', 20);
@@ -212,7 +216,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKristinaFight(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

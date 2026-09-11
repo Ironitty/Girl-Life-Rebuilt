@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPark(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0)===3  ||  ((s as any).month ?? 0)===4  ||  ((s as any).month ?? 0)===5) {
     if (((s as any).hour ?? 0)>=6  &&  ((s as any).hour ?? 0)<=17) {
@@ -1140,7 +1144,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFirstFisting(s, scene);
       break;
     default:
-      enterPark(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1149,6 +1153,5 @@ export const katja_sex: LocationDef = {
   name: 'katja_sex',
   title: 'After months of winter, spring is finally here. Flowers begi',
   region: 'other',
-  description: ['After months of winter, spring is finally here. Flowers begin to bloom, new leaves grow on the trees and puddles of melted snow litter the ground.'],
   enter: enter,
 };

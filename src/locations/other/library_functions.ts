@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterReadBook(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blizoruk ?? 0) === 500  ||  ((s as any).glassqw ?? 0) === 1) {
     (s as any).glassqw = 1;
@@ -229,7 +233,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLoanBookAct(s, scene);
       break;
     default:
-      enterReadBook(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

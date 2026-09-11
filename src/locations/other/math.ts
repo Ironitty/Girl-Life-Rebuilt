@@ -6,6 +6,10 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterIntSqrt(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).result = 0;
@@ -414,7 +418,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterColorMix(s, scene);
       break;
     default:
-      enterIntSqrt(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

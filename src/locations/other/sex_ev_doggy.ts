@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDoggyGoto(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).sex_ev ?? 0)?.['virgin_fuck'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
     scene.img('images/shared/sex/foreplay/miss3.jpg');
@@ -3839,18 +3843,6 @@ function enterDoggy3BoyTalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggy3EnjoyDesc(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
-    (s as any).pcs_makeup = 0;
-    // TODO-QSP: dynamic text: Your eyes roll back into your head as <<$npcdesc>> slams his cock into you from ...
-    scene.text(`Your eyes roll back into your head as ${((s as any).npcdesc ?? 0)} slams his cock into you from behind. Your mind goes blank with pleasure and . Within minutes, your makeup is as fucked as you are. It feels so good you want to die.`);
-  } else {
-    if ((!((s as any).pcs_makeup ?? 0))) {
-      scene.text('You groan in pleasure, loving how deep his cock goes inside you, hammers your pussy in all the right ways. Tears of pleasure blur your sight and beads of sweat gather on your skin and your already ruined makeup gets even worse with every passing minute.');
-    } else {
-      // TODO-QSP: dynamic text: Your eyes roll back into your head as <<$npcdesc>> slams his cock into you from ...
-      scene.text(`Your eyes roll back into your head as ${((s as any).npcdesc ?? 0)} slams his cock into you from behind. Your mind goes blank with pleasure and it feels so good you want to die.`);
-    }
-  }
   if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
     // TODO-QSP: dynamic text: Your eyes roll back into your head as <<$npcdesc>> pummels you from behind. Loud...
     scene.text(`Your eyes roll back into your head as ${((s as any).npcdesc ?? 0)} pummels you from behind. Loud slapping echoes off the walls as ${((s as any).npcdesc ?? 0)} claps your ass over and over again, letting the sheer force make up for his tiny dick.`);
@@ -4594,7 +4586,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDoggy3_2SensationDesc(s, scene);
       break;
     default:
-      enterDoggyGoto(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

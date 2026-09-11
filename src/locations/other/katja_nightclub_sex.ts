@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npcgeneratec', '', 0, '', Math.floor(Math.random() * 38) + 18, 4);
@@ -2090,7 +2094,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPrivateBooth_FFFFGirls(s, scene);
       break;
     default:
-      enterPrivateRoom1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2099,6 +2103,5 @@ export const katja_nightclub_sex: LocationDef = {
   name: 'katja_nightclub_sex',
   title: 'The cocktails arrive before you and Katja finish your introd',
   region: 'other',
-  description: ['The cocktails arrive before you and Katja finish your introduction, and you start sipping your drinks as you continue chatting.'],
   enter: enter,
 };

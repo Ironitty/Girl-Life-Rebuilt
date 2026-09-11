@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Katja\'s apartment</b></center>');
@@ -102,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKatjobs(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -113,6 +117,5 @@ export const katspalnya: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
-  description: ['Katja\'s apartment. It\'s mostly just one large room, with a huge bed in it. There\'s a small couch to the side.'],
   enter: enter,
 };

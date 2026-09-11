@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/eugene/sex/firsttime1.jpg');
@@ -591,7 +595,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPhotography(s, scene);
       break;
     default:
-      enterFirsttime(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -600,6 +604,5 @@ export const eugeneev1: LocationDef = {
   name: 'eugeneev1',
   title: 'You follow Eugene through the kitchen and into the pantry. R',
   region: 'other',
-  description: ['You follow Eugene through the kitchen and into the pantry. Racks of stored food and equipment, as well as various boxes, are stacked around back here. There is a desk in the corner and an old couch as well.'],
   enter: enter,
 };

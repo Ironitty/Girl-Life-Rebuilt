@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSmallTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'stop_talk');
   qspCall(s, 'sex_ev_pillow_talk2', 'plans_later');
@@ -764,7 +768,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTakeAShower(s, scene);
       break;
     default:
-      enterSmallTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

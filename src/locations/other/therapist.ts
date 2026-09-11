@@ -6,6 +6,22 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  (s as any).thingsTheTherapistLikes = 0;
+  if (((s as any).age ?? 0) < 18) {
+    (s as any).thingsTheTherapistLikes = ((s as any).thingsTheTherapistLikes ?? 0) + (1);
+  }
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
+    (s as any).thingsTheTherapistLikes = ((s as any).thingsTheTherapistLikes ?? 0) + (1);
+  }
+  if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
+    ((s as any).trait_vars ?? {})['sensitivity_override'] = 1;
+  }
+  scene.build();
+}
+
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
@@ -3382,7 +3398,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRestTherapyVariables(s, scene);
       break;
     default:
-      enterLeave(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

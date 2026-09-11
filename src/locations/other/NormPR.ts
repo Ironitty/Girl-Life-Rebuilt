@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).prosti = 0;
   (s as any).protect = 1;
@@ -70,7 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter2(s, scene);
       break;
     default:
-      enter1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -80,6 +84,5 @@ export const NormPR: LocationDef = {
   title: 'You obediently lie down on your back in the back seat, and t',
   region: 'other',
   locationType: 'event',
-  description: ['You obediently lie down on your back in the back seat, and the man pounces you eagerly. Within seconds, his cock is deep inside you.'],
   enter: enter,
 };

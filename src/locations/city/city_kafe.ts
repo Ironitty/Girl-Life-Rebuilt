@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).kafe_food = (((s as any).pcs_ate ?? 0) + ((s as any).pcs_drank ?? 0));
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -781,7 +785,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTips(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -791,6 +795,5 @@ export const city_kafe: LocationDef = {
   title: 'The Roadhouse',
   region: 'city',
   locationType: 'event',
-  description: ['The Roadhouse is decorated with bright neon signs, pictures of flashy American muscle cars and pop art. There\'s even the body of an old pink Cadillac hanging from the ceiling, like something from an old American TV show.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAfricanStudies_101(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -2075,7 +2079,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNushHarunaAfrica101(s, scene);
       break;
     default:
-      enterAfricanStudies_101(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2084,6 +2088,5 @@ export const uni_lessons_electives_african_studies1: LocationDef = {
   name: 'uni_lessons_electives_african_studies1',
   title: 'You walk into the classroom and take a seat. You see a lot o',
   region: 'other',
-  description: ['You walk into the classroom and take a seat. You see a lot of the African boys stop to talk to some of the white girls, likely to discuss some of Professor Bryant\'s ideas about "personal reparations."'],
   enter: enter,
 };

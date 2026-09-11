@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   ((s as any).post_vars ?? {})['qw_1'] = 3;
@@ -947,7 +951,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter4(s, scene);
       break;
     default:
-      enter1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -956,6 +960,5 @@ export const post_events: LocationDef = {
   name: 'post_events',
   title: 'You return to the man\'s house after you leave the post offic',
   region: 'other',
-  description: ['You return to the man\'s house after you leave the post office and ring the doorbell. "Ah, you came back!" he smiles happily when he opens the door. "Please come in, this will only take a minute of your time."'],
   enter: enter,
 };

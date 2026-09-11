@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopniksev ?? {})['gopskver'] = ((s as any).daystart ?? 0);
   if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1 > 0) {
   }
@@ -1444,6 +1448,5 @@ export const gopskver: LocationDef = {
   title: 'Vitek Kotov sees you entering the cafe and tells you to come',
   region: 'other',
   locationType: 'event_indoors',
-  description: ['Vitek Kotov sees you entering the cafe and tells you to come over. When you approach him, he explains he\'s drinking some beer with his friends, and asks you to join them.'],
   enter: enter,
 };

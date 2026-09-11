@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -187,7 +191,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShowportfolio(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -197,6 +201,5 @@ export const shop_photography: LocationDef = {
   title: 'Camera & Photography Store',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['The shop is dedicated to cameras and is celebrating this fact by displaying a myriad of them along every wall. A singular counter sits just off the adjacent wall with the shopkeeper standing behind it, clearly eager for some trade to enter his shop.'],
   enter: enter,
 };

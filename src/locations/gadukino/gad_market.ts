@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_market', 'start');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -96,6 +100,7 @@ function enterHunterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'outdoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'gad_market_hunter');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/gadukino/market/hunter_stand.jpg');
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
     // TODO-QSP: $backimage = ''
@@ -396,7 +401,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSellNobody(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -406,6 +411,5 @@ export const gad_market: LocationDef = {
   title: 'Return',
   region: 'gadukino',
   locationType: 'public_outdoors',
-  description: ['A small and modest farmers market, a few small shops fill the space.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAbdCustomerGate(s: GameState, scene: SceneBuilder): void {
   scene.text('Your master approaches you. "Hello, slave."');
   scene.text('"I have a customer here who came to rent you for a while. Do whatever he asks of you."');
@@ -1587,7 +1591,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAbdCustomerEndPunishment(s, scene);
       break;
     default:
-      enterAbdCustomerGate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1596,6 +1600,5 @@ export const abductionCustomer: LocationDef = {
   name: 'abductionCustomer',
   title: 'Your master approaches you. "Hello, slave."',
   region: 'other',
-  description: ['Your master approaches you. "Hello, slave."'],
   enter: enter,
 };

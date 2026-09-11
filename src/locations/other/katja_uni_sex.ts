@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/first_time1.jpg');
@@ -174,7 +178,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLibraryLicking1(s, scene);
       break;
     default:
-      enterFirstTime(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -185,6 +189,5 @@ export const katja_uni_sex: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'livingr',
-  description: ['The two of you get on her bed and you slide your hand between her legs and start rubbing her clit through her panties. She moans softly at your touch while looking at you intently; you can see how turned on she is.'],
   enter: enter,
 };

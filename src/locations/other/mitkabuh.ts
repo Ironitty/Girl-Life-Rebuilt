@@ -7,6 +7,11 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'miroslava_schedule', '');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_drunk ?? {})['A60'] = 0;
   ((s as any).GadBoy ?? {})['drunk_event'] = 0;
   ((s as any).MiraVars ?? {})['drunk_event'] = 0;
@@ -1414,6 +1419,5 @@ export const mitkabuh: LocationDef = {
   title: 'You follow the boys into the woods. After about 15 minutes y',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You follow the boys into the woods. After about 15 minutes you get to an old rusty trailer partially overgrown with vegetation. It obviously has been here a long time.'],
   enter: enter,
 };

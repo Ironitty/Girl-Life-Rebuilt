@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).elektro = ((s as any).elektro ?? 0) + (5);
   qspCall(s, 'stat', '');
@@ -245,7 +249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMeyhome(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -254,6 +258,5 @@ export const TV: LocationDef = {
   name: 'TV',
   title: 'You turn on the TV and settle comfortably on the couch.',
   region: 'other',
-  description: ['You turn on the TV and settle comfortably on the couch.'],
   enter: enter,
 };

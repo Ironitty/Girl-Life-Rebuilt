@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterOs1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).body_paint_day = ((s as any).daystart ?? 0);
@@ -144,7 +148,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSptusa(s, scene);
       break;
     default:
-      enterOs1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -153,6 +157,5 @@ export const dibodi: LocationDef = {
   name: 'dibodi',
   title: 'You are taken aback by all the naked people, with their bodi',
   region: 'other',
-  description: ['You are taken aback by all the naked people, with their bodies only covered by body paint.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPos1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -69,7 +73,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPos2(s, scene);
       break;
     default:
-      enterPos1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -78,6 +82,5 @@ export const parkBimbo: LocationDef = {
   name: 'parkBimbo',
   title: 'You notice an old guy who has to be in his sixties watching ',
   region: 'other',
-  description: ['You notice an old guy who has to be in his sixties watching you. Then you see he has his rather large dick out and a raging hard-on.'],
   enter: enter,
 };

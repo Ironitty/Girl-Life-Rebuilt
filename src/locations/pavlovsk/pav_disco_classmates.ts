@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterClassmates(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 20) {
     scene.actions([{ label: 'Continue', goto: ['pav_disco', ''] }]);
@@ -594,7 +598,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoachSex(s, scene);
       break;
     default:
-      enterClassmates(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -604,6 +608,5 @@ export const pav_disco_classmates: LocationDef = {
   title: 'Disco',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['Most of the cool kids and jocks are gathered around some tables and couches near the dance floor while the others dance. Some of the other students are hanging around near them or are out dancing.'],
   enter: enter,
 };

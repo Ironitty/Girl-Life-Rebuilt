@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterIsInit(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).shop_display ?? 0)?.['init'] !== 0);
   return;
@@ -680,7 +684,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter ?? {})['number_sort'] = 1;
       ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/number_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: gs \'shop_utils\', \'filter\', \'reset_sorting\' & outfitfilter[\'number_sort\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/number_exc.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: gs ''shop_utils'', ''filter'', ''reset_sorting'' & outfitfilter[''number_sort''] = 1 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/number_exc.png"></a>'
     }
     return;
   }
@@ -701,7 +705,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter ?? {})['quality_sort'] = 1;
       ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/quality_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: gs \'shop_utils\', \'filter\', \'reset_sorting\' & outfitfilter[\'quality_sort\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/quality_exc.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: gs ''shop_utils'', ''filter'', ''reset_sorting'' & outfitfilter[''quality_sort''] = 1 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/quality_exc.png"></a>'
     }
     return;
   }
@@ -722,7 +726,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter ?? {})['inhibition_sort'] = 1;
       ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/inhibition_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: gs \'shop_utils\', \'filter\', \'reset_sorting\' & outfitfilter[\'inhibition_sort\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/inhibition_exc.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: gs ''shop_utils'', ''filter'', ''reset_sorting'' & outfitfilter[''inhibition_sort''] = 1 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/inhibition_exc.png"></a>'
     }
     return;
   }
@@ -743,7 +747,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter ?? {})['heelsize_sort'] = 1;
       ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/heels_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: gs \'shop_utils\', \'filter\', \'reset_sorting\' & outfitfilter[\'heelsize_sort\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/heels_exc.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: gs ''shop_utils'', ''filter'', ''reset_sorting'' & outfitfilter[''heelsize_sort''] = 1 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/heels_exc.png"></a>'
     }
     return;
   }
@@ -764,7 +768,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter ?? {})['price_sort'] = 1;
       ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/price_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: gs \'shop_utils\', \'filter\', \'reset_sorting\' & outfitfilter[\'price_sort\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/price_exc.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: gs ''shop_utils'', ''filter'', ''reset_sorting'' & outfitfilter[''price_sort''] = 1 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/price_exc.png"></a>'
     }
     return;
   }
@@ -785,7 +789,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       ((s as any).outfitfilter ?? {})['discount_sort'] = 1;
       ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/discount_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: gs \'shop_utils\', \'filter\', \'reset_sorting\' & outfitfilter[\'discount_sort\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/discount_exc.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: gs ''shop_utils'', ''filter'', ''reset_sorting'' & outfitfilter[''discount_sort''] = 1 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/discount_exc.png"></a>'
     }
     return;
   }
@@ -803,9 +807,9 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['sort_direction']) {
       ((s as any).outfitfilter ?? {})['sort_direction'] = 1;
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: outfitfilter[\'sort_direction\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/high_low.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: outfitfilter[''sort_direction''] = 0 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/high_low.png"></a>'
     } else {
-      ((s as any).Headerstring ?? {})['sorting'] = (((s as any).Headerstring ?? {})['sorting'] ?? 0) + ('<a href="exec: outfitfilter[\'sort_direction\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + '\', \'<<$ARGS[3]>>\', \'<<$ARGS[4]>>\'"><img src="images/system/icons/clothing/low_high.png"></a>');
+      // TODO-QSP: $Headerstring['sorting'] += '<a href="exec: outfitfilter[''sort_direction''] = 1 & gt ''<<$ARGS[2]>>'', ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>''"><img src="images/system/icons/clothing/low_high.png"></a>'
     }
     return;
   }
@@ -826,14 +830,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['prostitution'] > 0) {
       ((s as any).outfitfilter_check ?? {})['prostitution'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'prostitution\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/prostitute_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''prostitution''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/prostitute_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['prostitution'] < 0) {
         ((s as any).outfitfilter_check ?? {})['prostitution'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'prostitution\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/prostitute_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''prostitution''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/prostitute_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['prostitution'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'prostitution\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/prostitute_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''prostitution''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/prostitute_off.png"></a>'
       }
     }
     return;
@@ -855,14 +859,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['stripper'] > 0) {
       ((s as any).outfitfilter_check ?? {})['stripper'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'stripper\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/stripper_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''stripper''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/stripper_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['stripper'] < 0) {
         ((s as any).outfitfilter_check ?? {})['stripper'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'stripper\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/stripper_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''stripper''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/stripper_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['stripper'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'stripper\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/stripper_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''stripper''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/stripper_off.png"></a>'
       }
     }
     return;
@@ -884,14 +888,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['bimbo'] > 0) {
       ((s as any).outfitfilter_check ?? {})['bimbo'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'bimbo\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/bimbo_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''bimbo''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/bimbo_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['bimbo'] < 0) {
         ((s as any).outfitfilter_check ?? {})['bimbo'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'bimbo\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/bimbo_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''bimbo''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/bimbo_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['bimbo'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'bimbo\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/bimbo_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''bimbo''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/bimbo_off.png"></a>'
       }
     }
     return;
@@ -913,14 +917,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['goth'] > 0) {
       ((s as any).outfitfilter_check ?? {})['goth'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'goth\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/goth_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''goth''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/goth_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['goth'] < 0) {
         ((s as any).outfitfilter_check ?? {})['goth'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'goth\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/goth_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''goth''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/goth_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['goth'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'goth\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/goth_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''goth''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/goth_off.png"></a>'
       }
     }
     return;
@@ -942,14 +946,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['preppy'] > 0) {
       ((s as any).outfitfilter_check ?? {})['preppy'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'preppy\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/preppy_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''preppy''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/preppy_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['preppy'] < 0) {
         ((s as any).outfitfilter_check ?? {})['preppy'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'preppy\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/preppy_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''preppy''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/preppy_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['preppy'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'preppy\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/preppy_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''preppy''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/preppy_off.png"></a>'
       }
     }
     return;
@@ -971,14 +975,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['prude'] > 0) {
       ((s as any).outfitfilter_check ?? {})['prude'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'prude\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/prude_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''prude''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/prude_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['prude'] < 0) {
         ((s as any).outfitfilter_check ?? {})['prude'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'prude\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/prude_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''prude''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/prude_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['prude'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'prude\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/prude_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''prude''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/prude_off.png"></a>'
       }
     }
     return;
@@ -1000,14 +1004,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['punk'] > 0) {
       ((s as any).outfitfilter_check ?? {})['punk'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'punk\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/punk_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''punk''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/punk_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['punk'] < 0) {
         ((s as any).outfitfilter_check ?? {})['punk'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'punk\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/punk_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''punk''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/punk_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['punk'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'punk\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/punk_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''punk''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/punk_off.png"></a>'
       }
     }
     return;
@@ -1029,14 +1033,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['alternative'] > 0) {
       ((s as any).outfitfilter_check ?? {})['alternative'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'alternative\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/alternative_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''alternative''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/alternative_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['alternative'] < 0) {
         ((s as any).outfitfilter_check ?? {})['alternative'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'alternative\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/alternative_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''alternative''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/alternative_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['alternative'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'alternative\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/alternative_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''alternative''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/alternative_off.png"></a>'
       }
     }
     return;
@@ -1058,14 +1062,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['conservative'] > 0) {
       ((s as any).outfitfilter_check ?? {})['conservative'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'conservative\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/conservative_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''conservative''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/conservative_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['conservative'] < 0) {
         ((s as any).outfitfilter_check ?? {})['conservative'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'conservative\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/conservative_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''conservative''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/conservative_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['conservative'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'conservative\'] = 1 & outfitfilter[\'risque\'] = 0 & outfitfilter[\'too_risque\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/conservative_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''conservative''] = 1 & outfitfilter[''risque''] = 0 & outfitfilter[''too_risque''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/conservative_off.png"></a>'
       }
     }
     return;
@@ -1087,14 +1091,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['risque'] > 0) {
       ((s as any).outfitfilter_check ?? {})['risque'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'risque\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/risque_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''risque''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/risque_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['risque'] < 0) {
         ((s as any).outfitfilter_check ?? {})['risque'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'risque\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/risque_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''risque''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/risque_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['risque'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'risque\'] = 1 & outfitfilter[\'conservative\'] = 0 & outfitfilter[\'too_risque\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/risque_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''risque''] = 1 & outfitfilter[''conservative''] = 0 & outfitfilter[''too_risque''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/risque_off.png"></a>'
       }
     }
     return;
@@ -1116,14 +1120,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['too_risque'] > 0) {
       ((s as any).outfitfilter_check ?? {})['too_risque'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'too_risque\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/too_risque_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''too_risque''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/too_risque_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['too_risque'] < 0) {
         ((s as any).outfitfilter_check ?? {})['too_risque'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'too_risque\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/too_risque_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''too_risque''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/too_risque_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['too_risque'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'too_risque\'] = 1 & outfitfilter[\'conservative\'] = 0 & outfitfilter[\'risque\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/too_risque_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''too_risque''] = 1 & outfitfilter[''conservative''] = 0 & outfitfilter[''risque''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/too_risque_off.png"></a>'
       }
     }
     return;
@@ -1145,14 +1149,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['loose'] > 0) {
       ((s as any).outfitfilter_check ?? {})['loose'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'loose\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/loose_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''loose''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/loose_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['loose'] < 0) {
         ((s as any).outfitfilter_check ?? {})['loose'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'loose\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/loose_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''loose''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/loose_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['loose'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'loose\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/loose_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''loose''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/loose_off.png"></a>'
       }
     }
     return;
@@ -1174,14 +1178,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['sport'] > 0) {
       ((s as any).outfitfilter_check ?? {})['sport'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'sport\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/sport_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''sport''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/sport_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['sport'] < 0) {
         ((s as any).outfitfilter_check ?? {})['sport'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'sport\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/sport_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''sport''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/sport_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['sport'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'sport\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/sport_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''sport''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/sport_off.png"></a>'
       }
     }
     return;
@@ -1203,14 +1207,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['school'] > 0) {
       ((s as any).outfitfilter_check ?? {})['school'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'school\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/school_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''school''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/school_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['school'] < 0) {
         ((s as any).outfitfilter_check ?? {})['school'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'school\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/school_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''school''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/school_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['school'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'school\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/school_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''school''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/school_off.png"></a>'
       }
     }
     return;
@@ -1232,14 +1236,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['maid'] > 0) {
       ((s as any).outfitfilter_check ?? {})['maid'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'maid\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/maid_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''maid''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/maid_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['maid'] < 0) {
         ((s as any).outfitfilter_check ?? {})['maid'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'maid\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/maid_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''maid''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/maid_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['maid'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'maid\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/maid_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''maid''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/maid_off.png"></a>'
       }
     }
     return;
@@ -1261,14 +1265,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['server'] > 0) {
       ((s as any).outfitfilter_check ?? {})['server'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'server\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/server_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''server''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/server_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['server'] < 0) {
         ((s as any).outfitfilter_check ?? {})['server'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'server\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/server_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''server''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/server_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['server'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'server\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/server_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''server''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/server_off.png"></a>'
       }
     }
     return;
@@ -1290,14 +1294,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['swim'] > 0) {
       ((s as any).outfitfilter_check ?? {})['swim'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'swim\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/swim_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''swim''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/swim_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['swim'] < 0) {
         ((s as any).outfitfilter_check ?? {})['swim'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'swim\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/swim_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''swim''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/swim_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['swim'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'swim\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/swim_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''swim''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/swim_off.png"></a>'
       }
     }
     return;
@@ -1319,14 +1323,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['heels'] > 0) {
       ((s as any).outfitfilter_check ?? {})['heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'heels\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/heels_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''heels''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/heels_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['heels'] < 0) {
         ((s as any).outfitfilter_check ?? {})['heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'heels\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/heels_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''heels''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/heels_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['heels'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'heels\'] = 1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/heels_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''heels''] = 1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/heels_off.png"></a>'
       }
     }
     return;
@@ -1348,14 +1352,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['comfy_heels'] > 0) {
       ((s as any).outfitfilter_check ?? {})['comfy_heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'comfy_heels\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/comfy_heels_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''comfy_heels''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/comfy_heels_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['comfy_heels'] < 0) {
         ((s as any).outfitfilter_check ?? {})['comfy_heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'comfy_heels\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/comfy_heels_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''comfy_heels''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/comfy_heels_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['comfy_heels'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'comfy_heels\'] = 1 & outfitfilter[\'uncomfy_heels\'] = 0 & outfitfilter[\'extreme_heels\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/comfy_heels_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''comfy_heels''] = 1 & outfitfilter[''uncomfy_heels''] = 0 & outfitfilter[''extreme_heels''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/comfy_heels_off.png"></a>'
       }
     }
     return;
@@ -1377,14 +1381,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['uncomfy_heels'] > 0) {
       ((s as any).outfitfilter_check ?? {})['uncomfy_heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'uncomfy_heels\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/uncomfy_heels_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''uncomfy_heels''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/uncomfy_heels_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['uncomfy_heels'] < 0) {
         ((s as any).outfitfilter_check ?? {})['uncomfy_heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'uncomfy_heels\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/uncomfy_heels_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''uncomfy_heels''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/uncomfy_heels_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['uncomfy_heels'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'uncomfy_heels\'] = 1 & outfitfilter[\'comfy_heels\'] = 0 & outfitfilter[\'extreme_heels\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/uncomfy_heels_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''uncomfy_heels''] = 1 & outfitfilter[''comfy_heels''] = 0 & outfitfilter[''extreme_heels''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/uncomfy_heels_off.png"></a>'
       }
     }
     return;
@@ -1406,14 +1410,14 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['extreme_heels'] > 0) {
       ((s as any).outfitfilter_check ?? {})['extreme_heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ')';
-      ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'extreme_heels\'] = -1 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/extreme_heels_inc<<$Headerstring[\'inc_alt\']>>.png"></a>');
+      // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''extreme_heels''] = -1 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/extreme_heels_inc<<$Headerstring[''inc_alt'']>>.png"></a>'
     } else {
       if (((s as any).outfitfilter ?? 0)?.['extreme_heels'] < 0) {
         ((s as any).outfitfilter_check ?? {})['extreme_heels'] = '(' + qspUntranslated(s, "ARGS[2]>", { location: "shop_utils" }) + ') = 0';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'extreme_heels\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/extreme_heels_exc.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''extreme_heels''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/extreme_heels_exc.png"></a>'
       } else {
         ((s as any).outfitfilter_check ?? {})['extreme_heels'] = '1';
-        ((s as any).Headerstring ?? {})['filter'] = (((s as any).Headerstring ?? {})['filter'] ?? 0) + ('<a href="exec:outfitfilter[\'extreme_heels\'] = 1 & outfitfilter[\'comfy_heels\'] = 0 & outfitfilter[\'uncomfy_heels\'] = 0 & gt \'' + qspUntranslated(s, "ARGS[3]>", { location: "shop_utils" }) + '\', \'<<$ARGS[4]>>\', \'<<$ARGS[5]>>\'"><img src="images/system/icons/clothing/extreme_heels_off.png"></a>');
+        // TODO-QSP: $Headerstring['filter'] += '<a href="exec:outfitfilter[''extreme_heels''] = 1 & outfitfilter[''comfy_heels''] = 0 & outfitfilter[''uncomfy_heels''] = 0 & gt ''<<$ARGS[3]>>'', ''<<$ARGS[4]>>'', ''<<$ARGS[5]>>''"><img src="images/system/icons/clothing/extreme_heels_off.png"></a>'
       }
     }
     return;
@@ -1700,7 +1704,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAddTypes(s, scene);
       break;
     default:
-      enterIsInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

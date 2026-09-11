@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A293');
   qspCall(s, 'stat', '');
@@ -1304,7 +1308,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWakeupViktorBj(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1313,6 +1317,5 @@ export const viktor_sex: LocationDef = {
   name: 'viktor_sex',
   title: 'You climb into Viktor\'s car and he speeds off, clearly inten',
   region: 'other',
-  description: ['You climb into Viktor\'s car and he speeds off, clearly intent on getting you into bed as fast as possible.'],
   enter: enter,
 };

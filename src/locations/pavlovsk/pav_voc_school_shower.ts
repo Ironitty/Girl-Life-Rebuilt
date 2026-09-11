@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterShower(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
@@ -183,7 +187,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShowerEvent(s, scene);
       break;
     default:
-      enterShower(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -192,6 +196,5 @@ export const pav_voc_school_shower: LocationDef = {
   name: 'pav_voc_school_shower',
   title: 'Women\'s Shower',
   region: 'pavlovsk',
-  description: ['The shower is divided into two sections: a dressing room with lockers and the actual shower area with tiled floor and walls. Making sure that no one is in the shower, you walk over to lock the door. To your dismay, you discover that the lock has been removed, probably for security purposes.'],
   enter: enter,
 };

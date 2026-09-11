@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGarden(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bdsm_garden', 'check_garden_events');
   qspCall(s, 'core_library', 'setloc', 'bdsm_garden', 'garden');
@@ -290,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGarage(s, scene);
       break;
     default:
-      enterGarden(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -300,6 +304,5 @@ export const bdsm_garden: LocationDef = {
   title: 'Extensive garden, meticulously designed and maintained. Spli',
   region: 'other',
   locationType: 'private',
-  description: ['Extensive garden, meticulously designed and maintained. Split into different areas each with its own theme and inspiration.'],
   enter: enter,
 };

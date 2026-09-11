@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAlbinaJoggingPav(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   ((s as any).socialchg ?? {})['tAlbina_jog'] = ((s as any).daystart ?? 0);
@@ -1052,7 +1056,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMoncheri(s, scene);
       break;
     default:
-      enterAlbinaJoggingPav(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1061,6 +1065,5 @@ export const albina_events: LocationDef = {
   name: 'albina_events',
   title: 'University Cafeteria',
   region: 'other',
-  description: ['You walk over and greet her with a smile. "Hey Albina!"'],
   enter: enter,
 };

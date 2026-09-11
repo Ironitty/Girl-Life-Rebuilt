@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTaxi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_mansion', 'taxi');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -211,7 +215,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterReception(s, scene);
       break;
     default:
-      enterTaxi(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

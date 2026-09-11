@@ -4,6 +4,268 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === '') {
+    scene.actions([{ label: 'Continue', goto: ['igorhome', 'chat'] }]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 'Ask about Diana\'s date') {
+    if (((s as any).IgorQW ?? 0)?.['DimaNos'] === 2) {
+      ((s as any).IgorQW ?? {})['DimaNos'] = 3;
+      if (((s as any).week ?? 0) > 4) {
+        ((s as any).IgorQW ?? {})['DimaNos_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
+      } else {
+        ((s as any).IgorQW ?? {})['DimaNos_day'] = ((s as any).daystart ?? 0) -((s as any).week ?? 0) + 6;
+      }
+      qspCall(s, 'igorev', 'kruglov_desc');
+      scene.img('images/characters/pavlovsk/school/boy/igor/talk.jpg');
+      scene.text('"How did your date with Dimka go?" you ask.');
+      scene.text('"It went well. We took a walk together," he replies.');
+      scene.text('"I want to hear all the details, no matter how small! Leave nothing out!" you excitedly tell him.');
+      scene.actions([
+        { label: 'Listen to his tale', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/kd.jpg');
+    scene.text('"Well, we had our date on Saturday, so I started preparing for the date quite early. I put on the makeup just like you taught me and dressed up in one of my sister\'s better outfits. When I was sure I was looking spectacular, I went to meet Dimka."');
+    scene.actions([
+      { label: 'Continue to listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/vsheky.mp4');
+    scene.text('"I went to the square in the center of the town as we agreed. Dimka was already waiting for me there. He saw me, came over and gave me a kiss me on the cheek."');
+    scene.text('"Why not on the lips?" you think out loud and immediately regret it as you interrupt Igor.');
+    scene.text('He looks at you accusingly before continuing with the story. "Please be silent. I don\'t lose track of the events."');
+    scene.actions([
+      { label: 'Continue to listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/zaryky.jpg');
+    scene.text('"Okay, where was I? Oh, yes. He took me by the hand and we went for a walk. He told me many stories and some jokes. He really has a dark sense of humor. He never saw through the makeup and the clothes so I guess, all in all, the date went quite well."');
+    scene.text('"Wait a second… You were going to tell him to that you couldn\'t continue dating? Right?" you ask.');
+    scene.text('"Well, at first I thought I should tell him immediately, but then decided to do it after the walk," he confesses.');
+    scene.text('"And what happened next?"');
+    scene.actions([
+      { label: 'Continue to listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/ozero.jpg');
+    scene.text('"Well, while we were walking past the lake, he suddenly grabbed me in his arms and acted like he wanted to throw me in the water. I\'m ashamed to admit it, but I screamed like a girl. I grabbed onto his neck with my hands."');
+    scene.actions([
+      { label: 'Continue to listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/ozero.jpg');
+    scene.text('"I clung to him and begged him not to do it."');
+    scene.text('"And…?" you spur him on. "Did he listen to you?"');
+    scene.text('Igor raises an eyebrow, somewhat irritated. "Well, not really…"');
+    scene.actions([
+      { label: 'As?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/ozero3.mp4');
+    scene.text('"What happened?" you ask, fully engaged in the tale.');
+    scene.text('"Well, with me in his arms and my arms around his neck, he ran into the water. So we both got wet."');
+    scene.actions([
+      { label: 'What happened after that?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/yshipnyl.mp4');
+    scene.text('"What happened then? Did you end the date with that?"');
+    scene.text('"No, we dried off a bit, then went to back to walking. While we were walking, he started getting a bit frisky… He pinched me on the ass, but I immediately removed his hand. Then we passed by the market, and he asked me to wait a few minutes while he ran off."');
+    scene.actions([
+      { label: 'Where did he go?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/podarok.jpg');
+    scene.text('"So he just left you there alone?" you indignantly ask.');
+    scene.text('"Yes, but only for a few minutes. When he came back, he had a stuffed bear in his hands and gave it to me!"');
+    scene.text('"Wow, how cute. I never would have thought that Dimka is such a romantic!" you chuckle.');
+    scene.text('"Neither did I…" Igor grins back.');
+    scene.actions([
+      { label: 'What happened next?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/kiss.jpg');
+    scene.text('Igor continues. "Then we walked a little more. It was only then it finally hit me that this was in fact a real date I was on."');
+    scene.text('"It was getting late in the afternoon as we walked we seemed to wander around. All of a sudden, we found ourselves near his home. It was now that I decided that it was the time to finish the date. I thought of following my initial plan, saying that we couldn\'t date and this would be the first and only time he would be seeing me."');
+    scene.text('"However, I was having such a good time with him! I had fun and he was complimenting me. It was so sweet! I never knew that side of him existed. And I really wanted to thank him. I wanted to kiss him…"');
+    scene.text('"Wait, WHAT?! What made you decide to do that?" you gasp in surprise.');
+    scene.text('"It was the whole situation! My feelings got the better of me and I decided to kiss him!"');
+    scene.text('"So what happened next?!" you eagerly ask.');
+    scene.actions([
+      { label: 'Listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/kiss5.mp4');
+    scene.text('"I kissed him again. We ended up kissing for a few minutes, and then he asked me to go with him back to his house. I was shocked and I started to overthink everything, so I started to hesitate. Before I could answer, Dimka took me by my hand and led me to his house."');
+    scene.text('"We went to his house, and up to his room. Once there, he asked me if I wanted to snort some cocaine, but I refused. I know he enjoys taking a couple of lines every once in a while, but I don\'t."');
+    scene.actions([
+      { label: 'Keep listening', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/medlyak.mp4');
+    scene.text('"Then he hugged me and we began to dance. He was still complimenting me, saying that this was the best date he\'d ever been on."');
+    scene.actions([
+      { label: 'Keep listening', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/krovat.jpg');
+    scene.text('"Then he laid me on the bed and laid next to me. I was quivering inside and could feel the panic creeping up on me."');
+    scene.actions([
+      { label: 'Listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/kiss4.mp4');
+    scene.text('Then he whispered in my ear. "I want to have sex with you…"');
+    scene.text('"I started panicking, wondering what I was supposed to do as he was about to undress me, so I said the first thing that came to mind. "I\'m on my period. I can\'t have sex."');
+    scene.text('"And he was like, \'Fuck, I\'m so turned on and hard as a rock! Can\'t you help me out?\'"');
+    scene.actions([
+      { label: 'And?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/sex/dimdate/kneel.jpg');
+    scene.text('"So I got even more confused. Next thing I know he lays his hands on my shoulders and lowers me down.');
+    scene.text('"He took off his pants and started approaching me. He stopped right in front of me, with his cock dangling in my face!"');
+    scene.text('"I was freaking out, but part of me really wanted to suck his dick too. It felt like I was thinking about what to do for several minutes, but I finally opened my mouth. And he got even closer…');
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/sex/dimdate/bj.jpg');
+    scene.text('"Before I knew it, he had already stuck his cock in my mouth. And then he started fucking my mouth. FUCK, I can\'t believe I did it! Part of me was disgusted by it, but another part of me loved it, loved the feeling of cock in my mouth…"');
+    scene.actions([
+      { label: 'How did it all end?', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    (s as any).DimaLoveIgor = 2;
+    qspCall(s, 'igorev', 'kruglov_desc');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/igor/sex/dimdate/cum.jpg');
+    scene.text('"So you kept sucking his cock?" you ask. "Did he cum in your mouth?"');
+    scene.text('"Yeah… Not knowing what else to do, I even swallowed it… As soon as he was done, I got up and went home."');
+    scene.text('You shake your head while smiling. "What a wild story!"');
+    scene.text('He lowers his gaze and blushes. "I was so afraid to tell you about it…"');
+    scene.text('"Don\'t be silly! You can talk to me about absolutely everything, especially about Diana and Dimka…" you smile while approvingly patting him on the cheek.');
+    scene.text('"There is no more Diana and Dimka. That adventure is done," he says firmly.');
+    scene.text('"Oh? You just said you loved doing it, so what\'s the problem?"');
+    scene.text('"What\'s the problem?! Next time he\'ll want to fuck me and I\'m sure you\'ve noticed that I don\'t have a pussy!"');
+    scene.text('"Yeah, that\'s kind of hard to avoid, but maybe you can tell him the truth? If he really cares, maybe it will work out?"');
+    scene.text('Igor scoffs at you. "Okay, don\'t then. But you could tell him you\'re shy and want to do it with the lights off. If you guide him into your ass, he most likely wouldn\'t even be able to tell the difference."');
+    scene.text('He wants to respond, but stops and seems to think about it. "That might work, but it\'s such a huge gamble."');
+    scene.text('"Igor, if this makes you happy, then you need to be true to yourself. Just don\'t overthink it. Keep it simple."');
+    scene.text('He nods and seems to already be thinking about how to manage the situation.');
+    scene.actions([
+      { label: 'Finish', goto: ['igorhome', 'igorroom'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      ((s as any).IgorQW ?? {})['DimaNos'] = 4;
+      qspCall(s, 'igorev', 'kruglov_desc');
+      scene.img('images/characters/pavlovsk/school/boy/igor/talk.jpg');
+      scene.text('"How did your second date with Dimka go?" you ask.');
+      scene.text('"It went well. We took a walk together." he replies.');
+      scene.text('"I want to hear all the details, no matter how small! Don\'t leave anything out!" you excitedly tell him.');
+      scene.actions([
+        { label: 'Listen to his tale', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/kd.jpg');
+    scene.text('"Well, we had our date on Saturday, so I started preparing for the date quite early. I put on the makeup just like you taught me and dressed up in one of my sister\'s better outfits. When I was sure I was looking spectacular, I went to meet Dimka."');
+    scene.actions([
+      { label: 'Continue to listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/vsheky.mp4');
+    scene.text('"I went to the square in the center of the town and Dimka was already waiting for me there. He saw me, came over and gave me a kiss me on the cheek. It was sweet."');
+    scene.actions([
+      { label: 'Continue to listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/zaryky.jpg');
+    scene.text('"He took me by the hand and we went for a walk. He told me many more stories and some jokes. If anything, it was better than our first date."');
+    scene.text('"And what happened next?" you ask.');
+    scene.actions([
+      { label: 'Continue to listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/ozero.jpg');
+    scene.text('"We stopped at a park bench and just sat and talked for a few hours. It was amazing! He was so sweet and attentive to me."');
+    scene.actions([
+      { label: 'What happened next?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/kiss.jpg');
+    scene.text('Igor continues. "Then we got up and walked a little more. I could tell he was walking me back to his house again. When we got there, I suddenly wanted to thank him for the great time. I wanted to kiss him."');
+    scene.text('"So what happened next?" you eagerly ask.');
+    scene.actions([
+      { label: 'Listen', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/kiss5.mp4');
+    scene.text('"I kissed him again and then he asked me to come into his house with him before he took me by the hand and led me to his room."');
+    scene.text('"When we ended up in the room, we sat down on the couch and I started kissing him again. And… I liked it so much that I started to get excited."');
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/spalil.mp4');
+    // TODO-QSP: dynamic text: "Dimka told me 'You're so special, not like the other girls at school!' My God <...
+    scene.text(`"Dimka told me 'You're so special, not like the other girls at school!' My God ${((s as any).pcs_nickname ?? 0)}, it was so exciting! My cock was already at half mast!"`);
+    scene.text('"I got so hard that when I stood up, he saw my boner. He was reaching out to me for another kiss and stopped immediately when he noticed it…"');
+    scene.text('He said, "Uh… Diana? Is that a fucking cock?"');
+    scene.text('I tried to make up an excuse and tried to smooth my clothes, but my cock popped right up again… And that\'s when he pulled my wig off!"');
+    scene.text('<b>"IGOR?"</b> he screamed. "He was shocked."');
+    scene.text('"Hi…" I told him and smiled.');
+    scene.actions([
+      { label: 'Oh no', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/ybeshal.mp4');
+    scene.text('"I immediately got up from the sofa and ran away. I locked myself in his bathroom."');
+    scene.actions([
+      { label: 'What happened?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/otkroi.mp4');
+    scene.text('"He started banging on the door, screaming. Then he kind of calmed down and asked if I could open the door, just so we could talk."');
+    scene.actions([
+      { label: 'And you opened the door?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/otkril.mp4');
+    scene.text('"Yeah? What else could I do? I was at his house with nowhere to run! So I decided to open the door."');
+    scene.actions([
+      { label: 'And that was that?', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/igor/dimanos/poimal.mp4');
+    scene.text('"No. He yelled and screamed, threatened to tell everyone. I begged him not to and reminded him about all the years we had been friends. He finally calmed down enough that we were able to talk. I explained everything, why I did it and how I felt."');
+    scene.text('"What did he say?" you ask, eagerly awaiting the rest of the story.');
+    scene.text('"He was worried I would tell everyone I tricked him. I swore I wouldn\'t and in the end I convinced him, but only after I let him record me in drag," he sighs.');
+    scene.text('"What?" you ask.');
+    scene.text('"That\'s when he said our friendship wouldn\'t be the same anymore. I had betrayed his trust and if I wanted to be a whore so bad, he would treat me like one, or he would send that recording to everyone in school and my parents."');
+    scene.actions([
+      { label: 'What a dick!', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/igor/sex/dimdate/fuck.mp4');
+    scene.text('"He told me to get on my knees and suck his dick. I didn\'t know what else to do, so I did it. Once he was good and hard, he laid me down and fucked my ass."');
+    scene.text('"He came inside me and told me to get out, so I got dressed and left. As I was leaving, he told me that any time he felt having sex, he would call me over and fuck me like the whore I want to be."');
+    scene.text('You rub his arm. "I\'m sorry he treated you like that."');
+    scene.text('"No, he was right to be upset. I betrayed him and got exactly what I deserved." He shakes his head and then laughs. "Hell, if I\'m being honest, I got exactly what I was hoping for. I just hope in time he can forgive me and we can become close again. I don\'t mind being his girl."');
+    scene.text('"So you liked it? You liked being fucked by him?"');
+    scene.text('He thinks for a moment. "Yeah, I did. I mean he was really rough and it hurt a lot at first, but I still kind of liked it. Look, I don\'t really want to talk about this anymore, okay?"');
+    scene.text('You don\'t know what else to do, so you get up and leave.');
+    scene.actions([
+      { label: 'Leave quickly', goto: ['pav_residential', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  }
+  scene.build();
+}
+
 function enterMovies(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Walk to the theater', handler: (st: GameState) => {
@@ -1111,7 +1373,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKruglovDesc(s, scene);
       break;
     default:
-      enterMovies(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1121,5 +1383,6 @@ export const igorev: LocationDef = {
   title: 'Igor\'s sister\'s room',
   region: 'other',
   locationType: 'event',
+  description: ['"How did your date with Dimka go?" you ask.'],
   enter: enter,
 };

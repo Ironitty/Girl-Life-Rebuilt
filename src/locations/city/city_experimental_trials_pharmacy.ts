@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCounter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Experimental Pharmacy</b></center>');
   if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -50,7 +54,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCart(s, scene);
       break;
     default:
-      enterCounter(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -59,6 +63,5 @@ export const city_experimental_trials_pharmacy: LocationDef = {
   name: 'city_experimental_trials_pharmacy',
   title: 'Experimental Pharmacy',
   region: 'city',
-  description: ['You approach the pharmacy front desk. The older pharmacist behind the counter looks up at you and gives you a smile.'],
   enter: enter,
 };

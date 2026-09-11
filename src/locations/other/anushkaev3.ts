@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetpleasured(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
   ((s as any).npc_had_sex ?? {})['A144'] = 1;
@@ -666,7 +670,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBedroomLesbianFinish(s, scene);
       break;
     default:
-      enterGetpleasured(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -675,6 +679,5 @@ export const anushkaev3: LocationDef = {
   name: 'anushkaev3',
   title: 'Anushka\'s Room',
   region: 'other',
-  description: ['After a bit of heated kissing and fondling while exploring each other\'s naked bodies, you lie back on the bed and spread your legs. You place your hand on top of her head and gently guide her face toward your pussy. She really doesn\'t need any encouragement and dives straight in. She gives your pussy one long lick from taint to clit and then starts flicking your clit with her tongue, switching to sucking and giving it a quick nibble now and then, before plunging her tongue deep between your wet pussy lips.'],
   enter: enter,
 };

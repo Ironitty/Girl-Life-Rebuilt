@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_basement', 'start');
   qspCall(s, 'stat', '');
@@ -125,7 +129,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEndSex(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -135,6 +139,5 @@ export const bdsm_basement: LocationDef = {
   title: 'Basement, for torture and whatnot',
   region: 'other',
   locationType: 'private',
-  description: ['Basement, for torture and whatnot'],
   enter: enter,
 };

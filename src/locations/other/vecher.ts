@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/sex/party/vecher.jpg');
@@ -393,7 +397,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd12(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -402,6 +406,5 @@ export const vecher: LocationDef = {
   name: 'vecher',
   title: 'You turn up to a Friday night party.',
   region: 'other',
-  description: ['You turn up to a Friday night party.'],
   enter: enter,
 };

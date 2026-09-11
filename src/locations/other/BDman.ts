@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGivi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A41');
   (s as any).finance = 2;
@@ -128,7 +132,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMuhtar(s, scene);
       break;
     default:
-      enterGivi(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

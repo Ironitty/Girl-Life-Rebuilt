@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).arturplan ?? 0) > 4000) {
@@ -353,7 +357,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSex(s, scene);
       break;
     default:
-      enterTheBeginning(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -362,6 +366,5 @@ export const city_marketsex: LocationDef = {
   name: 'city_marketsex',
   title: 'You enter a large warehouse, where he pulls out a bottle of ',
   region: 'city',
-  description: ['You enter a large warehouse, where he pulls out a bottle of vodka and a snack.'],
   enter: enter,
 };

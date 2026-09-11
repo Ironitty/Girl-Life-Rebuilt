@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -201,7 +205,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMansion1(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -210,6 +214,5 @@ export const kakuzu: LocationDef = {
   name: 'kakuzu',
   title: '<center><b>Mansion Kakuzu</b></center>',
   region: 'other',
-  description: ['Old gloomy mansion, which even at the local gangs don\'t approach out of fear and sincerely believe that something evil lives there. No need to have some sort of skills that make your system, from the death blows.'],
   enter: enter,
 };

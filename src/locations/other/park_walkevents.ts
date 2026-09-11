@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEmpty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
@@ -1511,7 +1515,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFindBaby(s, scene);
       break;
     default:
-      enterEmpty(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1520,6 +1524,5 @@ export const park_walkevents: LocationDef = {
   name: 'park_walkevents',
   title: 'One of the other guys takes your camera and smashes it against a rock',
   region: 'other',
-  description: ['You take a relaxing and refreshing walk through the park, trying to figure out the meaning of life.'],
   enter: enter,
 };

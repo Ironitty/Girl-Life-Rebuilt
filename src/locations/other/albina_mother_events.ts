@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterZoyaChatMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -496,7 +500,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPeep2(s, scene);
       break;
     default:
-      enterZoyaChatMenu(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['imagepath'] = 'locations/city/industrial';
   scene.build();
@@ -76,7 +80,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'St Petersburg - Industrial Region';
   qspCall(s, 'city_industrial', 'setup', '');
   qspCall(s, 'random_events', '');

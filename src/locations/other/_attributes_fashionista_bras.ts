@@ -3,11 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: BraPrice ~ 750 * (20 + BraQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 4: 850
-  // TODO-QSP: 5: 900
-  // TODO-QSP: BraQuality ranges from 4 to 5
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).BraQuality = 4;
     (s as any).BraStrength = 100000;

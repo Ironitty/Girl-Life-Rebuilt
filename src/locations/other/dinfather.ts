@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFatherAct1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 40  ||  ((s as any).TouchedByFather ?? 0)===1) {
     scene.actions([
@@ -1033,7 +1037,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGardrunkchat(s, scene);
       break;
     default:
-      enterFatherAct1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

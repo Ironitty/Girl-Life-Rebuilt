@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKrystal1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).krystal ?? 0)?.['status'] === 2) {
     scene.actions([{ label: 'Continue', goto: ['model_krystal', 'krystal2'] }]);
@@ -1005,7 +1009,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKrystalshower(s, scene);
       break;
     default:
-      enterKrystal1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1014,6 +1018,5 @@ export const model_krystal: LocationDef = {
   name: 'model_krystal',
   title: 'You\'ve run out of shampoo and will have to buy some more before you can wash yourself.',
   region: 'other',
-  description: ['Walking by one of the sets you hear the photographer exclaim, "Yeah, that\'s exactly what I was looking for. It\'s always a pleasure working with you Katherine. You always seem to outdo yourself with every shoot."'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   (s as any).LCEugenefirst = 1;
   qspCall(s, 'stat', '');
@@ -146,7 +150,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSex(s, scene);
       break;
     default:
-      enterFirsttime(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -155,6 +159,5 @@ export const LCporn: LocationDef = {
   name: 'LCporn',
   title: 'You follow Eugene through the kitchen, into the pantry. The ',
   region: 'other',
-  description: ['You follow Eugene through the kitchen, into the pantry. The soiled mattress in the corner makes you believe that you\'re not the first girl Eugene has brought here.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterVar1(s: GameState, scene: SceneBuilder): void {
   (s as any).var = Math.floor(Math.random() * 4) + 0;
   if (((s as any).var ?? 0) !== 0) {
@@ -502,7 +506,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterVar3(s, scene);
       break;
     default:
-      enterVar1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -511,6 +515,5 @@ export const qjob: LocationDef = {
   name: 'qjob',
   title: 'You arrive at a small photo studio in the center of the city',
   region: 'other',
-  description: ['You arrive at a small photo studio in the center of the city. "Hi! I\'m here for the model job? I came as quick as I could!" you say with a smile.'],
   enter: enter,
 };

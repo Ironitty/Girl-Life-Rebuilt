@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLetter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['letter'] !== 1  &&  ((s as any).balletqw ?? 0)?.['blocker'] !== 1) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -787,7 +791,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterJournal(s, scene);
       break;
     default:
-      enterLetter(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -796,6 +800,5 @@ export const pushkin_ballet_evt: LocationDef = {
   name: 'pushkin_ballet_evt',
   title: 'Your Mother, Natasha Lebedev',
   region: 'pushkin',
-  description: ['You look at the envelope with a sense of déjà vu when you see the school\'s branding. Then, you sit down at the kitchen table and open it.'],
   enter: enter,
 };

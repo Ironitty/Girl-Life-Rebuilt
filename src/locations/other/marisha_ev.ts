@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMarishaEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).marisha_day = ((s as any).daystart ?? 0);
   if (((s as any).MarishaQW ?? 0)?.['Event'] === 0) {
@@ -208,7 +212,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMall(s, scene);
       break;
     default:
-      enterMarishaEvent(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

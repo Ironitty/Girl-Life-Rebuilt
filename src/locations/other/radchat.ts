@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Radomir\'s Room</b></center>');
@@ -704,7 +708,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTellingMarrigeDreams(s, scene);
       break;
     default:
-      enterChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -713,6 +717,5 @@ export const radchat: LocationDef = {
   name: 'radchat',
   title: 'Radomir\'s Room',
   region: 'other',
-  description: ['You sit on the edge of his bed while he sits on his bean bag chair and talk about a variety of topics.'],
   enter: enter,
 };

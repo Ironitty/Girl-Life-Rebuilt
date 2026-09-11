@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHair(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: As you arrive at the salon with <<$npcdesc>>, <<$Xe>> heads over to the counter ...
@@ -1350,7 +1354,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFigure(s, scene);
       break;
     default:
-      enterHair(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,7 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/01.jpg');
   if (((s as any).nichTemp ?? 0) === 'sleep') {
     scene.text('Nicholas is sleeping. It would be a bad idea to wake him up now.');
@@ -725,10 +729,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const nichNicholas: LocationDef = {
   name: 'nichNicholas',
   title: 'Nicholas is sleeping. It would be a bad idea to wake him up ',
   region: 'other',
-  description: ['Nicholas is sleeping. It would be a bad idea to wake him up now.'],
   enter: enter,
 };

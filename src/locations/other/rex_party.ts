@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW ?? {})['partycount'] = (((s as any).sisterQW ?? {})['partycount'] ?? 0) + (1);
   ((s as any).sisterQW ?? {})['party'] = 2;
@@ -213,7 +217,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEvent2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -223,6 +227,5 @@ export const rex_party: LocationDef = {
   title: 'Rex\'s Room',
   region: 'other',
   locationType: 'event',
-  description: ['You arrive at Rex\'s apartment for the weekend party. Going inside with the others, the loud music drowns out any noise from outside. As soon as you are inside, several boys immediately start offering you drinks.'],
   enter: enter,
 };

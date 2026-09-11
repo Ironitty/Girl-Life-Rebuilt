@@ -4,6 +4,16 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: !2026/01/02
+  if (((s as any).locArgs ?? 0) === 'first_orgy_katja_getting_naked') {
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    // TODO-QSP: dynamic text: <<$katja_first_orgy_temp['first_orgy_name_second_black_girl']>> has stopped fuck...
+    scene.text(`${((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_second_black_girl']} has stopped fucking ${((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_bald_guy']} to help Katja remove her dress as Katja continues to ride ${((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_green_shirt_guy']}'s cock.`);
+  }
+  scene.build();
+}
+
 function enterFirstOrgyInvite(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW ?? {})['first_orgy_day'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -1867,7 +1877,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFirstOrgyWalkHome(s, scene);
       break;
     default:
-      enterFirstOrgyInvite(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1877,6 +1887,5 @@ export const katja_nightclub_first_orgy: LocationDef = {
   title: 'Just as you\'re about to reach the bar, you hear a voice spea',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['Just as you\'re about to reach the bar, you hear a voice speaking to you. "How about you lovely ladies have all the drinks you want tonight for free?"'],
   enter: enter,
 };

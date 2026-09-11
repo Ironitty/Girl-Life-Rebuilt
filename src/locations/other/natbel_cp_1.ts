@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] > 0) {
     if (((s as any).NatbelQW ?? 0)?.['FriendLover'] === 1) {
@@ -1228,7 +1232,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLaundry(s, scene);
       break;
     default:
-      enterJournalQuests(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1237,6 +1241,5 @@ export const natbel_cp_1: LocationDef = {
   name: 'natbel_cp_1',
   title: 'Laundry room',
   region: 'other',
-  description: ['Natasha is a good friend but perhaps she could be more…'],
   enter: enter,
 };

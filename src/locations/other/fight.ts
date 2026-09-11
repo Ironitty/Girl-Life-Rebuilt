@@ -6,6 +6,25 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $AttackType[0] = 'Kick'
+  // TODO-QSP: $AttackSkill[0] = 'kick'
+  ((s as any).AttackMin ?? {})[0] = 5;
+  ((s as any).AttackMax ?? {})[0] = 8;
+  ((s as any).AttackTime ?? {})[0] = 40;
+  // TODO-QSP: $AttackType[1] = 'Hard Punch'
+  // TODO-QSP: $AttackSkill[1] = 'punch'
+  ((s as any).AttackMin ?? {})[1] = 4;
+  ((s as any).AttackMax ?? {})[1] = 6;
+  ((s as any).AttackTime ?? {})[1] = 30;
+  // TODO-QSP: $AttackType[2] = 'Jab'
+  // TODO-QSP: $AttackSkill[2] = 'jab'
+  ((s as any).AttackMin ?? {})[2] = 2;
+  ((s as any).AttackMax ?? {})[2] = 3;
+  ((s as any).AttackTime ?? {})[2] = 15;
+  scene.build();
+}
+
 function enterInitFight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fight', 'clearPCSArrayPlayer');
   (s as any).temp_clear_check = 0;
@@ -911,7 +930,7 @@ function enterSpellListCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).ActionMade1 = 0;
   // TODO-QSP: :loop000002
   if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0))  &&  ((s as any).ActionMade1 ?? 0)===0) {
-    (s as any).ActionMade1 = qspFunc(s, 'fight', 'spellCheck', '' + qspUntranslated(s, "ARGS[1]>", { location: "fight" }) + '[<<i>>]', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "ARGS[3]", { location: "fight" }), ((s as any).locArgs?.[4] ?? 0), qspUntranslated(s, "ARGS[5]", { location: "fight" }));
+    // TODO-QSP: ActionMade1 = func('fight', 'spellCheck', '<<$ARGS[1]>>[<<i>>]', $ARGS[2], ARGS[3], $ARGS[4], ARGS[5])
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'loop000002'
   }
@@ -1004,7 +1023,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSpellcast(s, scene);
       break;
     default:
-      enterInitFight(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

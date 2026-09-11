@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('If you want to set your skills and attributes to a certain number, use the cheat menu to do it, the options to do it here were removed.');
   if (((s as any).start_type ?? 0)?.['group']  === '') {
@@ -358,6 +362,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).menu_name ?? 0) === 'erotomaniac') {
+            scene.img('');
             scene.text('<center><b>The Erotomaniac</b></center>');
             scene.img('images/locations/city/redlight/erotomaniac/sexshop.jpg');
             scene.text('The main counter displays various sex toys:');
@@ -1887,7 +1892,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPolGrupSet(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1896,6 +1901,5 @@ export const intro_character_custom: LocationDef = {
   name: 'intro_character_custom',
   title: 'shop_allure',
   region: 'other',
-  description: ['If you want to set your skills and attributes to a certain number, use the cheat menu to do it, the options to do it here were removed.'],
   enter: enter,
 };

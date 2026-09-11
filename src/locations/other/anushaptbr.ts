@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -757,7 +761,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRematch(s, scene);
       break;
     default:
-      enterBrotherroom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -766,6 +770,5 @@ export const anushaptbr: LocationDef = {
   name: 'anushaptbr',
   title: 'Anushka\'s brother\'s room',
   region: 'other',
-  description: ['The room is disorganized and untidy. It\'s fairly messy with a lot of clothes scattered about in various piles. Two beds are crammed against opposite walls, leaving an open space in the center. There is a small TV on a stand in the room with a PlayStation console lying partially hidden under some clothes in front of it.'],
   enter: enter,
 };

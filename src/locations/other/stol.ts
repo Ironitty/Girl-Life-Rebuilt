@@ -1,8 +1,94 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).args ?? 0)[0] === 'studying') {
+    scene.img('images/locations/shared/apartment/homework.jpg');
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
+      qspCall(s, 'grades', 'optional_activity_attribute', '' + qspUntranslated(s, "ARGS[1]>", { location: "stol" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "stol" }) + '', 'yes', ((s as any).pcs_intel ?? 0));
+    } else {
+      qspCall(s, 'grades', 'optional_activity_attribute', '' + qspUntranslated(s, "ARGS[1]>", { location: "stol" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "stol" }) + '', 'no', ((s as any).pcs_intel ?? 0));
+    }
+    qspCall(s, 'stat', '');
+    if ((0 as any) < (0 as any)) {
+      scene.text('You study for half an hour, but you can tell you\'ll need to study more if you want to completely understand this week\'s material.');
+    } else {
+      scene.text('You study for half an hour and think you understand everything that was covered this week.');
+    }
+    scene.actions([
+      { label: 'Get up from your desk', goto: ['stol', '<<$ARGS[3]>>'] },
+    ]);
+  }
+  if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) - (40);
+    scene.text('You\'re stoned, which makes it difficult to concentrate on studying.');
+  }
+  if (((s as any).drugVars ?? 0)?.['amphetamine_high'] > 0) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) + (20);
+  }
+  if (((s as any).pcs_energy ?? 0) < 5) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) - (20);
+    scene.text('You\'re extremely hungry and it\'s hard thinking about anything else other than food.');
+  } else {
+    if (((s as any).pcs_energy ?? 0) < 10) {
+      (s as any).study_mod = ((s as any).study_mod ?? 0) - (10);
+      scene.text('You\'re very hungry and it affects your ability to concentrate.');
+    } else {
+      if (((s as any).pcs_energy ?? 0) < 20) {
+        (s as any).study_mod = ((s as any).study_mod ?? 0) - (10);
+        scene.text('You\'re hungry and your thoughts often drift to food, affecting your performance negatively.');
+      }
+    }
+  }
+  if (((s as any).pcs_horny ?? 0) > 90) {
+    (s as any).study_mod = ((s as any).study_mod ?? 0) - (10);
+    scene.text('You\'re so aroused that your thoughts often drift to sex, affecting you ability to study.');
+  }
+  if (((s as any).pain ?? 0)?.['total'] > 90) {
+    (s as any).no_study = 1;
+    scene.text('You\'re in so much pain that you can\'t even begin to concentrate on studying.');
+  } else {
+    if (((s as any).pain ?? 0)?.['total'] > 75) {
+      (s as any).study_mod = ((s as any).study_mod ?? 0) - (40);
+      scene.text('You\'re in so much pain that you have a very hard time concentrating on studying.');
+    } else {
+      if (((s as any).pain ?? 0)?.['total'] > 60) {
+        (s as any).study_mod = ((s as any).study_mod ?? 0) - (20);
+        scene.text('Your pain is constantly bothering you and makes it harder to study.');
+      }
+    }
+  }
+  (s as any).study_mod = Math.max(0, (Math.floor(Math.random() * (pcs_intel + study_mod - 30 + study_mod + 1)) + (30 + study_mod))/33);
+  if (((s as any).no_study ?? 0) === 1) {
+    scene.text('You try to study for half an hour, but gets nothing done.');
+  } else {
+    if ((!((s as any).study_mod ?? 0))) {
+      scene.text('You study for half an hour, but don\'t think you\'re improving.');
+    } else {
+      if (((s as any).study_mod ?? 0) === 1) {
+        scene.text('You study for half an hour and think you\'re improving a little.');
+      } else {
+        if (((s as any).study_mod ?? 0) === 2) {
+          scene.text('You study for half an hour and think you\'re making good progress in getting ready for the exam.');
+        } else {
+          scene.text('You study for half an hour and think you\'re improving a lot.');
+        }
+      }
+    }
+    qspCall(s, 'grades', 'grade_award', '' + qspUntranslated(s, "ARGS[1]>", { location: "stol" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "stol" }) + '', ((s as any).study_mod ?? 0));
+  }
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Get up from your desk', goto: ['stol', '<<$ARGS[3]>>'] },
+  ]);
+  scene.build();
+}
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
@@ -427,7 +513,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStudyingExam(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -437,6 +523,6 @@ export const stol: LocationDef = {
   title: '<center><h1>Desk</h1></center>',
   region: 'other',
   locclass: 'bedr',
-  description: ['You sit down at your desk.'],
+  description: ['You study for half an hour, but you can tell you\'ll need to study more if you want to completely understand this week\'s material.'],
   enter: enter,
 };

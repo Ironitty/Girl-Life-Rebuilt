@@ -4,6 +4,10 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHasCar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).car ?? 0)?.['ID'] > 0) {
     (s as any).result = 1;
@@ -642,7 +646,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAvb(s, scene);
       break;
     default:
-      enterHasCar(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

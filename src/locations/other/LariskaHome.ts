@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -860,7 +864,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCommunityCenterInvite(s, scene);
       break;
     default:
-      enterFrontDoor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -871,6 +875,5 @@ export const LariskaHome: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
-  description: ['You knock on Lariska\'s apartment door.'],
   enter: enter,
 };

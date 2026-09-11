@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['semester_week'] === 0  &&  (((s as any).month ?? 0) === 8  ||  ((s as any).month ?? 0) === 1)  &&  (((s as any).day ?? 0) - ((s as any).week ?? 0)) >= 20) {
     ((s as any).university ?? {})['semester_week'] = (-1);
@@ -251,7 +255,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterComputeStatDisplay(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

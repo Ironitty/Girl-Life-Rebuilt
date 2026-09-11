@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
 function enterLate(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -949,7 +954,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTractatus(s, scene);
       break;
     default:
-      enterLate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -959,6 +964,5 @@ export const alexandriaChat: LocationDef = {
   title: 'Aleksei',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['DONG! DONG! DONG! DONG! DONG! DONG! DONG! DONG!'],
   enter: enter,
 };

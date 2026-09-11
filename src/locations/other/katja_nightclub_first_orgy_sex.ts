@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: !2026/27/06
+  scene.build();
+}
+
 function enterFirstOrgyObserve1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -2132,7 +2137,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFirstOrgyInitiativeContinued9(s, scene);
       break;
     default:
-      enterFirstOrgyObserve1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2141,6 +2146,5 @@ export const katja_nightclub_first_orgy_sex: LocationDef = {
   name: 'katja_nightclub_first_orgy_sex',
   title: 'You continue to dance while observing what\'s happening aroun',
   region: 'other',
-  description: ['You continue to dance while observing what\'s happening around you. Most girls don\'t really seem to pay any attention to what\'s happening on the dance floor, where several of the girls have taken off their skirts and are dancing in their panties.'],
   enter: enter,
 };

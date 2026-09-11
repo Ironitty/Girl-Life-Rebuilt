@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSlyHouseIntro_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).slyQW ?? {})['met'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -239,7 +243,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSlyHouseChat(s, scene);
       break;
     default:
-      enterSlyHouseIntro_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -248,6 +252,5 @@ export const Zvereva_Sly_events: LocationDef = {
   name: 'Zvereva_Sly_events',
   title: 'Wandering through Christina\'s house, you hear the TV going i',
   region: 'other',
-  description: ['Wandering through Christina\'s house, you hear the TV going in the living room. Knowing Christina isn\'t in there, you realize it must be the infamous Sly.'],
   enter: enter,
 };

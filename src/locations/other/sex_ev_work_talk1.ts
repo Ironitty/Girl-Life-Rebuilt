@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterJobTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'stop_talk');
   if ((!((s as any).npc_job_known ?? 0))) {
@@ -388,7 +392,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWhatsYourJob(s, scene);
       break;
     default:
-      enterJobTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

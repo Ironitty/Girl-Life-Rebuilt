@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).FedorHomeDate = 1;
   (s as any).WithFedor = 1;
   qspCall(s, 'boyStat', 'A5');
@@ -629,6 +633,7 @@ function enterPicture(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
+  scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv4" }) + '');
   scene.text('Fedor has framed the picture he took of you and placed it by his bed with your name on the frame. After seeing the picture by his bed, you can\'t help but think to yourself. "That\'s so sweet. I must mean a lot to him… ohh Fedor." you then place the picture back.');
   scene.actions([
     { label: 'Step away', goto: ['FedorEv4', 'Bedroom'] },
@@ -1543,6 +1548,7 @@ function enterHomeEntrance2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FedorShelter ?? 0) === 2) {
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv4" }) + '');
     scene.text('You place the key into the door lock then turn it, unlocking the door then making your way inside.');
     scene.actions([
       { label: 'Enter house', goto: ['FedorEv4', 'Hallway'] },
@@ -1787,6 +1793,5 @@ export const FedorEv4: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
-  description: ['As you arrive at Fedor\'s house and he opens the door for you then gives you a pat on the ass with a playful smile on his face as you walk in. You respond by pushing him against the wall while grabbing the back of his head and passionately kissing his lips as you rub on his crotch.'],
   enter: enter,
 };

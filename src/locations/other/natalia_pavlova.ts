@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirstChat(s: GameState, scene: SceneBuilder): void {
   ((s as any).nataliaQW ?? {})['introduction'] = 1;
   if (((s as any).grupTipe ?? 0) === 1) {
@@ -329,7 +333,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLibrary(s, scene);
       break;
     default:
-      enterFirstChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -338,6 +342,5 @@ export const natalia_pavlova: LocationDef = {
   name: 'natalia_pavlova',
   title: 'You see Natalia sitting with the nerds, reading a book. When',
   region: 'other',
-  description: ['You see Natalia sitting with the nerds, reading a book. When she notices you, she glances up and smiles.'],
   enter: enter,
 };

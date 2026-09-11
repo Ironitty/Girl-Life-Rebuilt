@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < 760) {
     // TODO-QSP: exit
@@ -618,7 +622,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCollectTailor(s, scene);
       break;
     default:
-      enterSetAct(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
   (s as any).lariska_ball = ((s as any).daystart ?? 0);
   ((s as any).LariskaQW ?? {})['story'] = 1;
@@ -540,7 +544,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBoyfriend_9(s, scene);
       break;
     default:
-      enterStoryIntro(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -549,6 +553,5 @@ export const lariska_storyline: LocationDef = {
   name: 'lariska_storyline',
   title: 'You carefully walk up behind her, trying your best not to di',
   region: 'other',
-  description: ['You carefully walk up behind her, trying your best not to distract her as she effortlessly smacks the ball into the wall and having it return to her hands over and over again…'],
   enter: enter,
 };

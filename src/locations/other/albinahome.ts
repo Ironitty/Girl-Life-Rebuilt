@@ -4,6 +4,11 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'din_van', 'prvt_pee');
+  scene.build();
+}
+
 function enterDoorBell(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'albinahome', 'zoya_schedule');
@@ -215,7 +220,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDownstairsBathroom(s, scene);
       break;
     default:
-      enterDoorBell(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -226,6 +231,5 @@ export const albinahome: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'kitr',
-  description: ['There are better times for a house call than right now!'],
   enter: enter,
 };

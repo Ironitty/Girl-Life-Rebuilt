@@ -4,7 +4,14 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'kseniyaQW', 'events');
+  qspCall(s, 'flash', 'park');
+  qspCall(s, 'blackmailer', 'set_park_act');
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_park', 'start');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     if (((s as any).month ?? 0) >= 11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >= 1  &&  ((s as any).month ?? 0) <= 3) {
@@ -192,12 +199,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const city_park: LocationDef = {
   name: 'city_park',
   title: 'Park',
   region: 'city',
   locationType: 'event_outdoors',
   locclass: 'city_park',
-  description: ['The central park is huge. Sandy paths spread out in every direction, and every so often you\'ll find a bench to take a seat. In the summer, you\'ll see a lot people playing ball, relaxing, or have a picnic in the more open areas, while in the winter you\'ll meet families with their children sledding down the grass banks.'],
   enter: enter,
 };

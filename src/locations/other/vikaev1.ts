@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBVikaPresentStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
@@ -284,7 +288,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBVikaPresentCum(s, scene);
       break;
     default:
-      enterBVikaPresentStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -293,6 +297,5 @@ export const vikaev1: LocationDef = {
   name: 'vikaev1',
   title: '"Where are we going?" you ask as you try to cover yourself t',
   region: 'other',
-  description: ['"Where are we going?" you ask as you try to cover yourself the best you can using the bathrobe.'],
   enter: enter,
 };

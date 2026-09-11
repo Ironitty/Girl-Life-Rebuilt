@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBuildWeekSchedule(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_week_start = qspUntranslated(s, "ARGS[1]", { location: "calendar_schedule" });
   ((s as any).week_schedule ?? {})['start_daystart'] = ((s as any).temp_week_start ?? 0);
@@ -231,7 +235,7 @@ function enterPlaceStaticEvents(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_start_ts = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', start'];
         (s as any).temp_end_ts = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', end'];
         qspCall(s, 'calendar_schedule', 'add_event_to_schedule', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_evt_id ?? 0));
-        (s as any).temp_this_event_index = ((s as any).week_schedule ?? 0)['days=' + ((s as any).temp_d ?? 0) + ', timeslots=<<temp_start_ts>>, event_count'] - 1;
+        // TODO-QSP: temp_this_event_index = week_schedule['days=<<temp_d>>, timeslots=<<temp_start_ts>>, event_count'] - 1
         (s as any).temp_check_t = ((s as any).temp_end_ts ?? 0);
         // TODO-QSP: :loop_check_conflicts
         if (((s as any).temp_check_t ?? 0) >= 0) {
@@ -530,7 +534,7 @@ function enterAddEventToSchedule(s: GameState, scene: SceneBuilder): void {
 
 function enterChangeBusyTimeslots(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mb_ts = ((s as any).week_schedule ?? 0)?.['days=' + String(qspUntranslated(s, "ARGS[1]", { location: "calendar_schedule" })) + ', timeslots=' + String(qspUntranslated(s, "ARGS[2]", { location: "calendar_schedule" })) + ', events=' + String(qspUntranslated(s, "ARGS[3]", { location: "calendar_schedule" })) + ', start_ts'];
-  (s as any).temp_mb_end = ((s as any).temp_mb_ts ?? 0) + ((s as any).week_schedule ?? 0)['days=' + qspUntranslated(s, "ARGS[1]", { location: "calendar_schedule" }) + ', timeslots=<<ARGS[2]>>, events=<<ARGS[3]>>, span'] - 1;
+  // TODO-QSP: temp_mb_end = temp_mb_ts + week_schedule['days=<<ARGS[1]>>, timeslots=<<ARGS[2]>>, events=<<ARGS[3]>>, span'] - 1
   // TODO-QSP: :inc_busy_ts_loop
   if (((s as any).temp_mb_ts ?? 0) <= ((s as any).temp_mb_end ?? 0)  &&  ((s as any).temp_mb_ts ?? 0) < 96) {
     ((s as any).week_schedule ?? {})['days=' + String((s as any).ARGS[1] || '') + ', timeslots=' + String((s as any).temp_mb_ts || '') + ', busy_count'] = (((s as any).week_schedule ?? {})['days=' + String((s as any).ARGS[1] || '') + ', timeslots=' + String((s as any).temp_mb_ts || '') + ', busy_count'] ?? 0) + (qspUntranslated(s, "ARGS[4]", { location: "calendar_schedule" }));
@@ -822,7 +826,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCleanupTempStructures(s, scene);
       break;
     default:
-      enterBuildWeekSchedule(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

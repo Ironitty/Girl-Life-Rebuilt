@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInterview1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >2  &&  ((s as any).month ?? 0) <9) {
     scene.img('images/characters/city/alexandria/alexhome.jpg');
@@ -1840,7 +1844,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnamotel(s, scene);
       break;
     default:
-      enterInterview1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1850,6 +1854,5 @@ export const alexandriaEv: LocationDef = {
   title: 'Alexandria VS Reinhold?!',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['Asking yourself for the umpteenth time if this is a good idea, you search the residentials for the mighty wizard\'s lair, and what you find is… pretty normal? Utterly different from Tatiana\'s carefully hidden lab. A big home in the more wealthy side of the neighborhood, but… not exactly "Rich", big, but not excessively, and with a modest fence to protect it\'s privacy. In general, you will say, that Alexandria\'s home is pretty forgettable.'],
   enter: enter,
 };

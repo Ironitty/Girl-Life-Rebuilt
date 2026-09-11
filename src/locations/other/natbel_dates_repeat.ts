@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetPavDatesActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'natbel_dates_repeat', 'set_small_pav_dates_acts');
   qspCall(s, 'natbel_dates_repeat', 'set_big_pav_dates_acts');
@@ -1318,7 +1322,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCelebrateRunnerChampionship1(s, scene);
       break;
     default:
-      enterSetPavDatesActs(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

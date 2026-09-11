@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -178,7 +182,6 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  // TODO-QSP: end !}
   if (((s as any).job_status ?? 0)?.['city_strip_stripper'] === 'employed') {
     scene.actions([
       { label: 'I\'m a stripper', handler: (st: GameState) => {
@@ -193,11 +196,6 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  scene.actions([
-    { label: 'I work as a masseuse', handler: (st: GameState) => {
-    qspCall(s, 'albina_chat', 'small_talk');
-  } },
-  ]);
   scene.build();
 }
 
@@ -1736,7 +1734,6 @@ function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Ask what she wears to bed', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/sleep1.jpg');
     scene.text('"I almost always sleep naked," she smirks. "I love the silky smooth feeling of my sheets. It feels wrong to even wear panties under the covers and deprive myself of that lovely softness. And because I\'m on the pill, I don\'t need to worry about getting my period and staining the sheets. I can just snuggle in and sleep comfortably."');
-    // TODO-QSP: end !}
     scene.actions([
       { label: 'I sleep naked too', handler: (st: GameState) => {
     scene.actions([
@@ -1765,16 +1762,6 @@ function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'albina_chat', 'small_talk');
   } },
     ]);
-  } },
-      { label: 'Same reason', handler: (st: GameState) => {
-    scene.text('"I like how it feels too," you tell her. "But I still wear panties to bed."');
-    scene.text('"Prude," she replies jokingly. "I bet you turn off the lights when you masturbate too."');
-    qspCall(s, 'albina_chat', 'small_talk');
-  } },
-      { label: 'It gets hot', handler: (st: GameState) => {
-    scene.text('"I still wear panties," you tell her. "It\'s too hot for me under the covers if I put on anything more than that."');
-    scene.text('"Full nude makes you too \'hot?\'" she grins back, bouncing her eyebrows suggestively.');
-    qspCall(s, 'albina_chat', 'small_talk');
   } },
       { label: 'Panties and a top (no bra)', handler: (st: GameState) => {
     scene.actions([
@@ -2148,7 +2135,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterClubBj(s, scene);
       break;
     default:
-      enterChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

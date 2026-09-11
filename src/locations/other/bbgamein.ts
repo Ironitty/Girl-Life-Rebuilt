@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).bbpickupDay = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1457,7 +1461,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEndGame(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1466,6 +1470,5 @@ export const bbgamein: LocationDef = {
   name: 'bbgamein',
   title: 'When you enter the gym, you notice some of the jocks standin',
   region: 'other',
-  description: ['When you enter the gym, you notice some of the jocks standing around the basket, shooting and talking. They seem to joke around as some do more poorly than the others.'],
   enter: enter,
 };

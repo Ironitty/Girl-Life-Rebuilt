@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStartDoor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'Peterroom', 'start_door');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -323,7 +327,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterD2(s, scene);
       break;
     default:
-      enterStartDoor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

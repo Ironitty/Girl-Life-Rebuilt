@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_beach', 'start');
   qspCall(s, 'miroslava_schedule', '');
@@ -840,7 +844,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGuysBeach(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -851,6 +855,5 @@ export const gad_beach: LocationDef = {
   region: 'gadukino',
   locationType: 'public_outdoors',
   locclass: 'beach',
-  description: ['A small country beach, where you can sunbathe and swim.'],
   enter: enter,
 };

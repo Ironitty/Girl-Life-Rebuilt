@@ -4,6 +4,10 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRelationship(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_npc_rel = qspUntranslated(s, "ARGS[1]", { location: "journal_NPC_information" });
   if (((s as any).locArgs?.[2] ?? 0) === 'm') {
@@ -177,7 +181,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterA28(s, scene);
       break;
     default:
-      enterRelationship(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -186,6 +190,5 @@ export const journal_NPC_information: LocationDef = {
   name: 'journal_NPC_information',
   title: 'He really likes you and considers you one of his best friend',
   region: 'other',
-  description: ['He really likes you and considers you one of his best friends.'],
   enter: enter,
 };

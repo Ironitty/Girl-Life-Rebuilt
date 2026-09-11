@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHasAppointment(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') ? (1) : (0));
   return;
@@ -166,9 +170,9 @@ function enterOfferDescribe(s: GameState, scene: SceneBuilder): void {
           ((s as any).temp_apptDesc ?? {})['day'] = 'In two days';
         } else {
           if (((s as any).temp_apptDesc ?? 0)?.['offset'] < 7) {
-            ((s as any).temp_apptDesc ?? {})['day'] = "((s as any).On ?? 0) <<((s as any).weekName ?? 0)[(((s as any).week ?? 0) + ((s as any).temp_apptDesc ?? {})?.['offset']) % 7]>>";
+            // TODO-QSP: $temp_apptDesc['day'] = "On <<$weekName[(week + temp_apptDesc['offset']) mod 7]>>"
           } else {
-            ((s as any).temp_apptDesc ?? {})['day'] = "((s as any).On ?? 0) <<((s as any).weekName ?? 0)[(((s as any).week ?? 0) + ((s as any).temp_apptDesc ?? {})?.['offset']) % 7]>> (((s as any).in ?? 0) <<((s as any).temp_apptDesc ?? {})?.['offset']>> ((s as any).days ?? 0))";
+            // TODO-QSP: $temp_apptDesc['day'] = "On <<$weekName[(week + temp_apptDesc['offset']) mod 7]>> (in <<temp_apptDesc['offset']>> days)"
           }
         }
       }
@@ -363,7 +367,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRenderActs(s, scene);
       break;
     default:
-      enterHasAppointment(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

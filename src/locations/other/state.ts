@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPush(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $main_stack[]       = $maintxt
   // TODO-QSP: $stat_stack[]       = $stattxt
@@ -30,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPop(s, scene);
       break;
     default:
-      enterPush(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

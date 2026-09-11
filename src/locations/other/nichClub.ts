@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichGentleclubVisits ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['nichClub', 'firstVisit'] }]);
   }
@@ -191,10 +195,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const nichClub: LocationDef = {
   name: 'nichClub',
   title: 'The drive to the club takes about half an hour.',
   region: 'other',
-  description: ['The drive to the club takes about half an hour.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -221,7 +225,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMaksimRoomNaked(s, scene);
       break;
     default:
-      enterMaksimBlackmail(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -230,6 +234,5 @@ export const anushkamaksim: LocationDef = {
   name: 'anushkamaksim',
   title: 'You can\'t believe you\'re about to be blackmailed by a boy no',
   region: 'other',
-  description: ['You can\'t believe you\'re about to be blackmailed by a boy not old enough to even grow facial hair yet. You sigh, resigned to your fate. "Fine. What do you want?"'],
   enter: enter,
 };

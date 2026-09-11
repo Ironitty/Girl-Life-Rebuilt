@@ -4,6 +4,33 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).pcs_hairbsh ?? 0) < 1) {
+    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+  }
+  scene.actions([
+    { label: 'Look in the mirror', goto: ['mirror', 'start'] },
+    { label: 'Take a cold shower (0:15)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
+    (s as any).noshampoo = 1;
+    qspCall(s, 'din_van', 'showerdin');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/shared/abduction/shower1.jpg');
+    scene.text('The shower is cold and you don\'t have any shampoo, but at least you get clean again…');
+    if (((s as any).deodorant_on ?? 0) === 1) {
+      qspCall(s, 'sweat', 'remove_deo');
+      scene.text('<br>Your deodorant gets washed away in the shower.');
+    }
+    scene.actions([
+      { label: 'Get back', goto: ['abduction', 'abdFood'] },
+    ]);
+  } },
+    { label: 'Get back to your bed', goto: ['abduction', 'abdRoom'] },
+  ]);
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).i = Math.floor(Math.random() * 2) + 1;
   scene.img(`images/locations/shared/abduction/girltocar${((s as any).i ?? 0)}.jpg`);
@@ -814,7 +841,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAbdFood(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -824,6 +851,5 @@ export const abduction: LocationDef = {
   title: 'You suddenly hear what sounds like someone rushing up behind',
   region: 'other',
   locationType: 'private',
-  description: ['You suddenly hear what sounds like someone rushing up behind you, but before you can turn and look, you feel something hit your head hard. You stumble as your vision goes black…'],
   enter: enter,
 };

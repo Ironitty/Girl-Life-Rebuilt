@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/walk.jpg');
@@ -630,6 +634,7 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor walks you out of the bathroom then takes out his phone and asks you to strike a pose. You happily comply, Fedor takes a picture and says, "Thank you ${((s as any).pcs_firstname ?? 0)}, I needed some beautiful wallpaper for my phone." you reply with a smirk "Flatterer." Fedor chuckles then leads you to the front door, where he helps you into your coat then kisses you on the cheek. "${((s as any).pcs_nickname ?? 0)} are you ready to head home?" you turn to him, smile, nod then grab his hand and start walking home with Fedor.`);
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
     scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv2" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
+    scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv2" }) + '');
     scene.actions([
       { label: 'Walk Home', handler: (st: GameState) => {
     (s as any).fedorkozqw = 5;
@@ -1189,6 +1194,5 @@ export const FedorEv2: LocationDef = {
   title: '<<"Vasily [Shulga] Shulgin">>',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['As you arrive at the park Fedor reaches out for your hand and leads you down the main path. You turn to him to see a gentle smile on his face which you are quite surprised to see. Usually Fedor is pretty crude when he is hanging out with the other jocks but there may be a softer side to him you think to yourself as Fedor leads you through the park. During your walk you both hear some people loudly laughing nearby, Fedor turns to you "Sounds like someone is having fun, wanna check it out?"'],
   enter: enter,
 };

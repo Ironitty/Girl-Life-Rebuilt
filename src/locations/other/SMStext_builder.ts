@@ -6,6 +6,10 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetSmsId(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length > 1) {
     (s as any).result = qspUntranslated(s, "SMSIdentifier[ARGS[1]]", { location: "SMStext_builder" });
@@ -72,7 +76,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStart(s, scene);
       break;
     default:
-      enterGetSmsId(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

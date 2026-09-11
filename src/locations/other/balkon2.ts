@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKurit(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'drugs', 'smoke');
@@ -324,7 +328,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFingerSolo(s, scene);
       break;
     default:
-      enterKurit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -333,6 +337,5 @@ export const balkon2: LocationDef = {
   name: 'balkon2',
   title: 'Balcony',
   region: 'other',
-  description: ['You put the cigarette in your mouth and tightly squeeze it with your lips as you light it. You inhale the smoke and hold it in for for a second before continuing and enjoying your smoke.'],
   enter: enter,
 };

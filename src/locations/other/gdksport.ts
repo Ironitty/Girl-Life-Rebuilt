@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gdksport', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
@@ -857,7 +861,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterJocksAcceptance(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -867,6 +871,5 @@ export const gdksport: LocationDef = {
   title: 'Community center',
   region: 'other',
   locationType: 'bathroom',
-  description: ['You see Ivan entering the sports club carrying a large sports bag. He heads into the boxing area of the gym.'],
   enter: enter,
 };

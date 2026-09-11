@@ -4,6 +4,16 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 'read') {
+    qspCall(s, 'library_functions', 'set_home_read_acts');
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 'read_porn') {
+    qspCall(s, 'library_functions', 'set_read_porn_act');
+  }
+  scene.build();
+}
+
 function enterStreetCum(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
     if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
@@ -220,7 +230,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSnkayf1(s, scene);
       break;
     default:
-      enterStreetCum(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -229,6 +239,5 @@ export const events: LocationDef = {
   name: 'events',
   title: 'Passers puzzled turn around staring at you - one with surpri',
   region: 'other',
-  description: ['Passers puzzled turn around staring at you - one with surprise, and others with contempt. Someone smiles and shows a finger. Some of the pictures on your phone, absolutely not hiding and giggling at you. You clearly noticeable semen and bargain painted face.'],
   enter: enter,
 };

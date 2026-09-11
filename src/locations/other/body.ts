@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRegularUpdate(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).dounspell ?? 0))) {
     qspCall(s, 'body', 'UpdateBodyMeasurement');
@@ -223,14 +227,6 @@ function enterUpdate_PubesAndLeghair(s: GameState, scene: SceneBuilder): void {
   if (((s as any).age ?? 0) < 18  &&  (Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).pcs_leghair ?? 0) > 0) {
     (s as any).pcs_leghair = ((s as any).pcs_leghair ?? 0) - (1);
   }
-  (s as any).pcs_leghair = ((s as any).pcs_leghair ?? 0) + (1);
-  if (((s as any).pcs_pubes ?? 0)?.['growth'] > 1) {
-    ((s as any).pcs_pubes ?? {})['growth'] = 0;
-    (s as any).pcs_pubes = ((s as any).pcs_pubes ?? 0) + (1);
-  }
-  ((s as any).pcs_pubes ?? {})['growth'] = (((s as any).pcs_pubes ?? {})['growth'] ?? 0) + (1);
-  qspCall(s, 'body_desc', 'pube_desc_update');
-  // TODO-QSP: end !}
   return;
   scene.build();
 }
@@ -559,7 +555,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFindWaistToHipRatio(s, scene);
       break;
     default:
-      enterRegularUpdate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

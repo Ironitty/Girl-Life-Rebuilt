@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBody(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
@@ -12,7 +16,7 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== 0) {
     (s as any).temp_pubes = 0;
   }
@@ -109,7 +113,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bodyVars ?? 0)?.['butt_silicone'] > 0) {
     // TODO-QSP: $result += '9s.jpg'
   } else {

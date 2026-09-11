@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_miroslava_home', 'start');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -203,7 +207,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMirabrother(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -213,6 +217,5 @@ export const gad_miroslava_home: LocationDef = {
   title: '<center><h2>Gadukino Village</h2></center>',
   region: 'gadukino',
   locationType: 'public_outdoors',
-  description: ['You see a motorcycle parked outside of Mira\'s house. Mira\'s brother has come in from the city to visit his sister and father.'],
   enter: enter,
 };

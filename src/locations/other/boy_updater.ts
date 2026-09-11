@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHomeImgUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home_img_update ?? 0)?.[String((s as any).npcID ?? 0)] !== 21062026) {
     ((s as any).home_img_update ?? {})[String((s as any).npcID ?? 0)] = 21062026;
@@ -31,19 +35,19 @@ function enterHomeImgUpdate(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $npc_apt_bathroom[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''up...
     // TODO-QSP: $npc_apt_hall[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''update...
     if (((s as any).npc_apt_guest_bathroom ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_guest_bathroom ?? {})[String((s as any).npcID ?? 0)] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "boy_updater" }) + ' src="images/shared/romance/lovers/homes/<<$temp[\'update_folder\']>>/<<npc_apt_number[$npcID]>>/bathg.jpg">';
+      // TODO-QSP: $npc_apt_guest_bathroom[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''update_folder'']>>/<<npc_apt_number[$npcID]>>/bathg.jpg">'
     }
     if (((s as any).npc_apt_office ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_office ?? {})[String((s as any).npcID ?? 0)] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "boy_updater" }) + ' src="images/shared/romance/lovers/homes/<<$temp[\'update_folder\']>>/<<npc_apt_number[$npcID]>>/office.jpg">';
+      // TODO-QSP: $npc_apt_office[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''update_folder'']>>/<<npc_apt_number[$npcID]>>/office.jpg">'
     }
     if (((s as any).npc_apt_pool ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_pool ?? {})[String((s as any).npcID ?? 0)] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "boy_updater" }) + ' src="images/shared/romance/lovers/homes/<<$temp[\'update_folder\']>>/<<npc_apt_number[$npcID]>>/pool.jpg">';
+      // TODO-QSP: $npc_apt_pool[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''update_folder'']>>/<<npc_apt_number[$npcID]>>/pool.jpg">'
     }
     if (((s as any).npc_apt_sauna ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_sauna ?? {})[String((s as any).npcID ?? 0)] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "boy_updater" }) + ' src="images/shared/romance/lovers/homes/<<$temp[\'update_folder\']>>/<<npc_apt_number[$npcID]>>/sauna.jpg">';
+      // TODO-QSP: $npc_apt_sauna[$npcID] = '<img <<$set_imgh>> src="images/shared/romance/lovers/homes/<<$temp[''update_folder'']>>/<<npc_apt_number[$npcID]>>/sauna.jpg">'
     }
     if (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npcID ?? 0)] !== '') {
-      ((s as any).npc_apt_spare ?? {})[String((s as any).npcID ?? 0)] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "boy_updater" }) + ' src="<<$npcgeneratecVars[\'home_path\']>>/<<$temp[\'update_folder\']>>/<<npc_apt_number[$ARGS[1]]>>/<<$npc_apt_sparetype[$ARGS[1]]>>.jpg"></center>';
+      // TODO-QSP: $npc_apt_spare[$npcID] = '<center><img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/<<$temp[''update_folder'']>>/<<npc_apt_number[$ARGS[1]]>>/<<$npc_apt_sparetype[$ARGS[1]]>>.jpg"></center>'
     }
   }
   scene.build();
@@ -380,7 +384,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterVasilySeed(s, scene);
       break;
     default:
-      enterHomeImgUpdate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

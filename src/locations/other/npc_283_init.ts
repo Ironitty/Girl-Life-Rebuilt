@@ -4,7 +4,11 @@ import { dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterExamInterview(s: GameState, scene: SceneBuilder): void {
   scene.text('You arrive at the ballet school and thread your way through the schools corridors to Rudolph\'s office. You look at your watch and notice you\'re a few minutes early. You look at the carved door in front of you and knock on it.');
   scene.text('“Wait,” a voice pre-emptively commands from a speaker in the wall leaving you to fidget as you wait. A few minutes later the voice comes through on the scratchy speaker. “Enter.”');
   scene.text('You push open the door and enter the richly appointed office. You look around and see Rudolph sitting at his desk with the sunlight casting a halo of light around him. You notice a chair in front of his desk and move towards it to sit down.');
@@ -78,10 +82,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'exam_interview':
+      enterExamInterview(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const npc_283_init: LocationDef = {
   name: 'npc_283_init',
   title: 'You arrive at the ballet school and thread your way through ',
   region: 'other',
-  description: ['You arrive at the ballet school and thread your way through the schools corridors to Rudolph\'s office. You look at your watch and notice you\'re a few minutes early. You look at the carved door in front of you and knock on it.'],
   enter: enter,
 };

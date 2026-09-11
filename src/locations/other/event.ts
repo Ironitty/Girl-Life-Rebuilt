@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKlof2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -1214,7 +1218,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLesbi3(s, scene);
       break;
     default:
-      enterKlof2(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1223,6 +1227,5 @@ export const event: LocationDef = {
   name: 'event',
   title: '"Well baby, come and see us if you want more entertainment, ',
   region: 'other',
-  description: ['"Well baby, come and see us if you want more entertainment, and if you behave, you can earn some cash"'],
   enter: enter,
 };

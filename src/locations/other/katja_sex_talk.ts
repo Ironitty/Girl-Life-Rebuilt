@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSextalk(s: GameState, scene: SceneBuilder): void {
   scene.text('After talking for some time, Katja looks at you thoughtfully as her face turns completely red.');
   if (((s as any).katjaQW ?? 0)?.['boy_block'] === 1  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] !== 1) {
@@ -760,7 +764,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBjTalk2(s, scene);
       break;
     default:
-      enterSextalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -769,6 +773,5 @@ export const katja_sex_talk: LocationDef = {
   name: 'katja_sex_talk',
   title: '(blocks further contents with Katja and boys)',
   region: 'other',
-  description: ['After talking for some time, Katja looks at you thoughtfully as her face turns completely red.'],
   enter: enter,
 };

@@ -4,6 +4,20 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) !== 'fin') {
+    if (((s as any).loc ?? 0) === 'pav_library'  &&  (((s as any).hour ?? 0) >= 18  ||  ((s as any).hour ?? 0) < 8)  ||  ((s as any).loc ?? 0) === 'city_library'  &&  (((s as any).hour ?? 0) >= 19  ||  ((s as any).hour ?? 0) < 8)  ||  ((s as any).loc ?? 0) === 'uni_library'  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) === 23)  ||  ((s as any).hour ?? 0) < 8)) {
+      scene.img('images/pc/items/accessories/computer/komp.jpg');
+      scene.text('The library is closing.');
+      return;
+      scene.actions([
+        { label: 'Shut your computer down', goto: ['komp', 'fin'] },
+      ]);
+    }
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/komp.jpg');
@@ -934,7 +948,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFin(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -943,6 +957,6 @@ export const komp: LocationDef = {
   name: 'komp',
   title: '<<$func(\'money\', \'format\', bankDebtLimit)>>!',
   region: 'other',
-  description: ['Your computer boots up and you\'re soon looking at your operating system\'s main screen.'],
+  description: ['The library is closing.'],
   enter: enter,
 };

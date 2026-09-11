@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRapeTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).rape_talk_mom = ((s as any).rape_count ?? 0);
@@ -719,7 +723,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNatbel(s, scene);
       break;
     default:
-      enterRapeTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -728,6 +732,5 @@ export const mother_chats: LocationDef = {
   name: 'mother_chats',
   title: 'She quickly wraps you in her arms and doesn\'t say anything a',
   region: 'other',
-  description: ['She quickly wraps you in her arms and doesn\'t say anything as she holds you tightly against her. You can feel her tears wetting your cheek, running down alongside your own.'],
   enter: enter,
 };

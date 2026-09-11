@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCheckForInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['blocker'] === 0  &&  ((s as any).start_type ?? 0)?.['cat'] === 'dancer') {
     if (((((s as any).daystart ?? 0) >= 158  &&  ((s as any).daystart ?? 0) <= 198)  &&  ((s as any).balletqw ?? 0)?.['letter'] === 0)  ||  (((s as any).daystart ?? 0) >= 198  &&  ((s as any).balletqw ?? 0)?.['school'] > 1)) {
@@ -411,7 +415,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBalletDebug(s, scene);
       break;
     default:
-      enterCheckForInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

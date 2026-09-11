@@ -4,7 +4,11 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefaults(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_pic ?? {})['A' + String((s as any).npctemp || '') + ''] = 'xPICx';
   ((s as any).npc_perstype ?? {})['A' + String((s as any).npctemp || '') + ''] = 'XXXX';
   if (((s as any).npc_gender ?? 0)['A' + ((s as any).npctemp ?? 0)] === 0) {
@@ -42,30 +46,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
             ((s as any).npc_grupTipe ?? {})['A' + String((s as any).npctemp || '') + ''] = 7;
           } else {
             ((s as any).schoolenable ?? {})['A' + String((s as any).npctemp || '') + ''] = 1;
-            ((s as any).npcGo ?? {})['A' + String((s as any).npctemp || '') + ''] = '<a href="exec:numnpc = ' + qspUntranslated(s, "npctemp>", { location: "npcstaticdefaults" }) + ' & gt \'Snpc\'"><<$npc_firstname["A<<npctemp>>"]>> <<$npc_lastname["A<<npctemp>>"]>></a>';
+            // TODO-QSP: $npcGo['A<<npctemp>>'] = '<a href="exec:numnpc = <<npctemp>> & gt ''Snpc''"><<$npc_firstname["A<<npctemp>>"]>> <<$npc_lastname["A<<npctemp>>"]>></a>'
             ((s as any).school_static_num ?? {})['A' + String((s as any).npctemp || '') + ''] = 'A' + qspUntranslated(s, "npctemp>", { location: "npcstaticdefaults" }) + '';
             if (((s as any).locArgs?.[1] ?? 0) === 'teacher'  ||  ((s as any).locArgs?.[1] ?? 0) === 6) {
               ((s as any).npc_grupTipe ?? {})['A' + String((s as any).npctemp || '') + ''] = 6;
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 'outcast'  ||  ((s as any).locArgs?.[1] ?? 0) === 5) {
                 ((s as any).npc_grupTipe ?? {})['A' + String((s as any).npctemp || '') + ''] = 5;
-                ((s as any).npcGoSchool ?? {})['A' + String((s as any).npctemp || '') + ''] = '<a href="exec:gt \'gschool_outcast_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "npctemp>", { location: "npcstaticdefaults" }) + '\']) + \'\'"><<$npc_usedname["A<<npctemp>>"]>></a>';
+                // TODO-QSP: $npcGoSchool['A<<npctemp>>'] = '<a href="exec:gt ''gschool_outcast_chats'', ''' + $lcase($npc_usedname['A<<npctemp>>']) + '''"><<$npc_usedname["A<<npctemp>>"]>></a>'
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 'gopnik'  ||  ((s as any).locArgs?.[1] ?? 0) === 4) {
                   ((s as any).npc_grupTipe ?? {})['A' + String((s as any).npctemp || '') + ''] = 4;
-                  ((s as any).npcGoSchool ?? {})['A' + String((s as any).npctemp || '') + ''] = '<a href="exec:gt \'gschool_gopnik_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "npctemp>", { location: "npcstaticdefaults" }) + '\']) + \'\'"><<$npc_usedname["A<<npctemp>>"]>></a>';
+                  // TODO-QSP: $npcGoSchool['A<<npctemp>>'] = '<a href="exec:gt ''gschool_gopnik_chats'', ''' + $lcase($npc_usedname['A<<npctemp>>']) + '''"><<$npc_usedname["A<<npctemp>>"]>></a>'
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 'nerd'  ||  ((s as any).locArgs?.[1] ?? 0) === 3) {
                     ((s as any).npc_grupTipe ?? {})['A' + String((s as any).npctemp || '') + ''] = 3;
-                    ((s as any).npcGoSchool ?? {})['A' + String((s as any).npctemp || '') + ''] = '<a href="exec:gt \'gschool_nerd_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "npctemp>", { location: "npcstaticdefaults" }) + '\']) + \'\'"><<$npc_usedname["A<<npctemp>>"]>></a>';
+                    // TODO-QSP: $npcGoSchool['A<<npctemp>>'] = '<a href="exec:gt ''gschool_nerd_chats'', ''' + $lcase($npc_usedname['A<<npctemp>>']) + '''"><<$npc_usedname["A<<npctemp>>"]>></a>'
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === 'jock'  ||  ((s as any).locArgs?.[1] ?? 0) === 2) {
                       ((s as any).npc_grupTipe ?? {})['A' + String((s as any).npctemp || '') + ''] = 2;
-                      ((s as any).npcGoSchool ?? {})['A' + String((s as any).npctemp || '') + ''] = '<a href="exec:gt \'gschool_jock_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "npctemp>", { location: "npcstaticdefaults" }) + '\']) + \'\'"><<$npc_usedname["A<<npctemp>>"]>></a>';
+                      // TODO-QSP: $npcGoSchool['A<<npctemp>>'] = '<a href="exec:gt ''gschool_jock_chats'', ''' + $lcase($npc_usedname['A<<npctemp>>']) + '''"><<$npc_usedname["A<<npctemp>>"]>></a>'
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) === 'coolkid'  ||  ((s as any).locArgs?.[1] ?? 0) === 1) {
                         ((s as any).npc_grupTipe ?? {})['A' + String((s as any).npctemp || '') + ''] = 1;
-                        ((s as any).npcGoSchool ?? {})['A' + String((s as any).npctemp || '') + ''] = '<a href="exec:gt \'gschool_coolkid_chats\', \'\' + $lcase($npc_usedname[\'A' + qspUntranslated(s, "npctemp>", { location: "npcstaticdefaults" }) + '\']) + \'\'"><<$npc_usedname["A<<npctemp>>"]>></a>';
+                        // TODO-QSP: $npcGoSchool['A<<npctemp>>'] = '<a href="exec:gt ''gschool_coolkid_chats'', ''' + $lcase($npc_usedname['A<<npctemp>>']) + '''"><<$npc_usedname["A<<npctemp>>"]>></a>'
                       }
                     }
                   }
@@ -116,6 +120,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'defaults':
+      enterDefaults(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const npcstaticdefaults: LocationDef = {

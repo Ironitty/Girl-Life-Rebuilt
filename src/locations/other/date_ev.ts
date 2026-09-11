@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS ?? {})[1] = ((s as any).npcID ?? 0);
@@ -610,7 +614,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDateMenu(s, scene);
       break;
     default:
-      enterInitiatePre(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

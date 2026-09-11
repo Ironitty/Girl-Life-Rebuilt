@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterManager(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('As you walk past the station manager\'s office, you notice a sign next to the door:');
@@ -993,7 +997,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTrinkets(s, scene);
       break;
     default:
-      enterManager(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1002,6 +1006,5 @@ export const pav_train_hall_events: LocationDef = {
   name: 'pav_train_hall_events',
   title: 'As you walk past the station manager\'s office, you notice a ',
   region: 'pavlovsk',
-  description: ['As you walk past the station manager\'s office, you notice a sign next to the door:'],
   enter: enter,
 };

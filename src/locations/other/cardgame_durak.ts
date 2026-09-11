@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetModFame(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).fame ?? {})?.['pav_slut'] + ((s as any).card_game_durak_nude ?? 0) + ((s as any).cg_clother_cum ?? 0) + ((s as any).cg_pussy_licked ?? 0) + ((s as any).npc_vaginal_count ?? {})?.['A9'] + ((s as any).npc_vaginal_count ?? {})?.['A10'] + ((s as any).npc_vaginal_count ?? {})?.['A11'] + ((s as any).npc_anal_count ?? {})?.['A9'] + ((s as any).npc_anal_count ?? {})?.['A10'] + ((s as any).npc_anal_count ?? {})?.['A11'] + ((s as any).npc_oral_count ?? {})?.['A9'] + ((s as any).npc_oral_count ?? {})?.['A10'] + ((s as any).npc_oral_count ?? {})?.['A11'] + ((s as any).vasily ?? {})?.['drunk_sex'];
   return;
@@ -952,7 +956,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCardGameWonFuckMyAss(s, scene);
       break;
     default:
-      enterGetModFame(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

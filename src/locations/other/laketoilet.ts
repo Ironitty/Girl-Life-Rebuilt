@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterMain(s: GameState, scene: SceneBuilder): void {
   (s as any).LCtoiletiventrand = Math.floor(Math.random() * 100) + 1;
   if ((((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) <= 4)  &&  ((s as any).LCtoiletiventrand ?? 0) >= 75) {
     scene.img('images/locations/city/industrial/bbq/sex/toiletsexstart.jpg');
@@ -32,11 +36,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'main':
+      enterMain(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const laketoilet: LocationDef = {
   name: 'laketoilet',
   title: 'When you enter the restroom, you see a naked man slowly jerk',
   region: 'other',
   locationType: 'bathroom',
-  description: ['When you enter the restroom, you see a naked man slowly jerking himself off. He hasn\'t noticed you yet.'],
   enter: enter,
 };

@@ -6,6 +6,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  return;
+  scene.build();
+}
+
 function enterReceptionOptionLabel(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rol_state ?? 0) === 'none') {
   } else {
@@ -273,7 +278,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAttendAppointment(s, scene);
       break;
     default:
-      enterReceptionOptionLabel(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

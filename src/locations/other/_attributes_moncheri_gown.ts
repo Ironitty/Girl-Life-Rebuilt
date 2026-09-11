@@ -3,15 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/13
-  // TODO-QSP: CloPrice ~ 30000 * (20 + CloQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 6: 39000
-  // TODO-QSP: 7: 40500
-  // TODO-QSP: CloQuality ranges from 6 to 7
-  // TODO-QSP: Notes:
-  // TODO-QSP: All items should have the wealthy style applied.
-  // TODO-QSP: No items outside this category should be quality = 7, although not all items in it must be that qual...
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).CloQuality = 7;
     (s as any).CloStrength = 86250;

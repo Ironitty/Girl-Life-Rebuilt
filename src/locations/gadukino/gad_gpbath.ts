@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_gpbath', 'start');
   qspCall(s, 'miroslava_schedule', '');
@@ -272,7 +276,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWith_MiraCore(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -282,6 +286,5 @@ export const gad_gpbath: LocationDef = {
   title: 'You\'ve run out of shampoo and will have to buy some more before you can wash.',
   region: 'gadukino',
   locationType: 'bathroom',
-  description: ['A small room with a low, smoky ceiling, a small stove, a couple of stainless steel water tanks, and a blackened wooden shelf.'],
   enter: enter,
 };

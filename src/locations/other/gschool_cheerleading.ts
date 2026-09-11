@@ -4,6 +4,18 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: act iif(cheerleadingQW['try_count'] > 0, 'It''s not worth the hassle ', 'Ignore the poster ') + $fun...
+  ((s as any).cheerleadingQW ?? {})['quest_stage'] = (-2);
+  if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
+    scene.text('Even though you\'re capable enough to try out, prancing around on the field to amuse people doesn\'t sound fun to you at all. You shake your head and continue on your way.');
+  } else {
+    scene.text('"Why would I ever want to join a group of skimpily dressed sluts prancing around a field for the amusement of perverts?" you think to yourself as you walk away in disgust.');
+  }
+  qspCall(s, 'gschool_events', 'leave_break_events');
+  scene.build();
+}
+
 function enterPoster(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/afterschool/cheerleading/poster.jpg');
   scene.text('Walking through the hallway, you notice a poster saying that a spot has opened up on the school\'s cheerleading squad and that tryouts are being held after school today. The squad is ruled with an iron fist by Albina and is made up of only the most popular and athletic girls in school.');
@@ -111,7 +123,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPosterRepeat(s, scene);
       break;
     default:
-      enterPoster(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -121,6 +133,6 @@ export const gschool_cheerleading: LocationDef = {
   title: '(Last chance to join cheerleading)',
   region: 'other',
   locationType: 'event',
-  description: ['Walking through the hallway, you notice a poster saying that a spot has opened up on the school\'s cheerleading squad and that tryouts are being held after school today. The squad is ruled with an iron fist by Albina and is made up of only the most popular and athletic girls in school.'],
+  description: ['Even though you\'re capable enough to try out, prancing around on the field to amuse people doesn\'t sound fun to you at all. You shake your head and continue on your way.'],
   enter: enter,
 };

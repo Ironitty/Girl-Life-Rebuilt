@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterProfessors(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Professors & Facility</h2></center>');
   qspCall(s, 'journal_NPC_information', 'A254');
@@ -153,7 +157,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLeaveactions(s, scene);
       break;
     default:
-      enterProfessors(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

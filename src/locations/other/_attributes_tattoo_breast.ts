@@ -3,16 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/13
-  // TODO-QSP: TatPrice ~ 22500 * (20 + TatQUality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 1: 15750
-  // TODO-QSP: 2: 16500
-  // TODO-QSP: 3: 17250
-  // TODO-QSP: 4: 18000
-  // TODO-QSP: 5: 18750
-  // TODO-QSP: 6: 19500
-  // TODO-QSP: 7: 20250
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).TatQuality = 3;
     (s as any).TatPrice = 17250;

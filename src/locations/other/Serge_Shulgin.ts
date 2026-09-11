@@ -4,6 +4,13 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).serge_sleep_sex_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).serge_sleep_sex_count = 2;
+  }
+  scene.build();
+}
+
 function enterRep(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A112'] < 10) {
     scene.text('You don\'t really know Sergey at all.');
@@ -726,7 +733,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHide(s, scene);
       break;
     default:
-      enterRep(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -735,6 +742,5 @@ export const Serge_Shulgin: LocationDef = {
   name: 'Serge_Shulgin',
   title: 'You don\'t really know Sergey at all.',
   region: 'other',
-  description: ['You don\'t really know Sergey at all.'],
   enter: enter,
 };

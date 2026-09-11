@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hotelRoomDays ?? 0)?.['city'] - ((s as any).daystart ?? 0) === 0  &&  ((s as any).hour ?? 0) > 11) {
     ((s as any).HotelRoom ?? {})['city'] = 0;
   }
@@ -212,6 +216,5 @@ export const city_hotel: LocationDef = {
   name: 'city_hotel',
   title: 'You enter the hotel lobby, but all you can see is a bored lo',
   region: 'city',
-  description: ['You enter the hotel lobby, but all you can see is a bored looking girl standing at the reception desk.'],
   enter: enter,
 };

@@ -4,6 +4,13 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
+    ((s as any).trait_vars ?? {})['sensitivity_override'] = 1;
+  }
+  scene.build();
+}
+
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
     ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
@@ -850,7 +857,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEvent6Submit4(s, scene);
       break;
     default:
-      enterLeave(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

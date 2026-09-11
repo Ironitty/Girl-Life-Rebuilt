@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).hour ?? 0) < 19) {
@@ -910,7 +914,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPartyHeadingOut(s, scene);
       break;
     default:
-      enterGoingOutTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -919,6 +923,5 @@ export const katja_party: LocationDef = {
   name: 'katja_party',
   title: 'She starts to change before you even have a chance to say an',
   region: 'other',
-  description: ['She starts to change before you even have a chance to say anything, rummaging around in her wardrobe.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterWhore1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 40;
   qspCall(s, 'npcgeneratec', '', 0, 'The Armenian', Math.floor(Math.random() * 15) + 18, 0, 1);
@@ -1098,7 +1102,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCabHome(s, scene);
       break;
     default:
-      enterWhore1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1107,6 +1111,5 @@ export const albina_starlets_sex: LocationDef = {
   name: 'albina_starlets_sex',
   title: 'The Armenian, still tightly gripping your arm, drags you int',
   region: 'other',
-  description: ['The Armenian, still tightly gripping your arm, drags you into his hotel room where he forces you to strip naked, his hungry eyes inspecting every inch of you.'],
   enter: enter,
 };

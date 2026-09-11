@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'rolanbath', 'start');
   qspCall(s, 'stat', '');
@@ -960,7 +964,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSurprise(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -970,6 +974,5 @@ export const rolanbath: LocationDef = {
   title: 'Bathroom',
   region: 'other',
   locationType: 'bathroom',
-  description: ['Rolan is here.'],
   enter: enter,
 };

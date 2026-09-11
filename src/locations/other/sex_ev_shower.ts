@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterShowerAloneDirect(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Shower', goto: ['sex_ev_shower', 'after_alone'] },
@@ -1652,7 +1656,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBoyShowerFinishActs(s, scene);
       break;
     default:
-      enterShowerAloneDirect(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

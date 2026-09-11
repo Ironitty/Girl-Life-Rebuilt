@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFameEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame_events', 'select', 'pav');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
@@ -214,7 +218,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMinorOlderWomenShaming(s, scene);
       break;
     default:
-      enterFameEvents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

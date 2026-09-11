@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterUndressFunction(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['undressed_check'] === 0) {
     ((s as any).sex_ev ?? {})['undressed_check'] = 1;
@@ -529,7 +533,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDressLoopCode(s, scene);
       break;
     default:
-      enterUndressFunction(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

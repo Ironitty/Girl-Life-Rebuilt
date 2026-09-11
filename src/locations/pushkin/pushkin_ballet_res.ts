@@ -6,6 +6,11 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).setloc ?? {})['imagepath'] = 'locations/pushkin/';
+  scene.build();
+}
+
 function enterCheckStartEvt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['cat'] === 'dancer'  &&  ((s as any).balletqw ?? 0)?.['letter'] === 1  &&  (((s as any).daystart ?? 0) === 185  &&  ((s as any).hour ?? 0) === 16)) {
     scene.actions([
@@ -642,7 +647,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWarden(s, scene);
       break;
     default:
-      enterCheckStartEvt(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

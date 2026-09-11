@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterArtem(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -1712,7 +1716,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNatalia(s, scene);
       break;
     default:
-      enterArtem(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1721,6 +1725,5 @@ export const gschool_nerd_chats: LocationDef = {
   name: 'gschool_nerd_chats',
   title: 'Girls Bathroom',
   region: 'other',
-  description: ['Just as you\'re about to head over to Artem, the gopniks come crowding into the classroom. Making snide remarks, they push and shove the nerds and outcasts around as they spread out.'],
   enter: enter,
 };

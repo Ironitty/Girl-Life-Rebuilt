@@ -6,6 +6,12 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).brothel_vars ?? {})['orgasm_meter'] = qspUntranslated(s, "min(100, brothel_vars['orgasm_meter'])", { location: "brothel_section1" });
+  ((s as any).brothel_vars ?? {})['rage_meter'] = qspUntranslated(s, "min(100, brothel_vars['rage_meter'])", { location: "brothel_section1" });
+  scene.build();
+}
+
 function enterPrintStats(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Playroom</h3>');
   // TODO-QSP: dynamic text: <b>Orgasm meter: <<brothel_vars['orgasm_meter']>> / 100</b>
@@ -2061,7 +2067,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSection1End(s, scene);
       break;
     default:
-      enterPrintStats(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

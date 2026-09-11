@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterShow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0) {
     (s as any).calendar_ui_week_start = qspUntranslated(s, "ARGS[1]", { location: "calendar" });
@@ -192,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCycleRebuild(s, scene);
       break;
     default:
-      enterShow(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

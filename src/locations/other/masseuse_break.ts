@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/break.jpg');
   if (((s as any).masseuse ?? 0)?.['break'] === 0) {
@@ -384,7 +388,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLeiTalkEnd(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -393,6 +397,5 @@ export const masseuse_break: LocationDef = {
   name: 'masseuse_break',
   title: 'You\'re taking a break.',
   region: 'other',
-  description: ['You\'re taking a break.'],
   enter: enter,
 };

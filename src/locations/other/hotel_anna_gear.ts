@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterToysPaddle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'hotel_anna_gear', 'toys_images');
   qspCall(s, 'stat', '');
@@ -1789,7 +1793,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRestraintsLeash(s, scene);
       break;
     default:
-      enterToysPaddle(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1799,6 +1803,5 @@ export const hotel_anna_gear: LocationDef = {
   title: '"let see… this one Anna. What can you tell me about paddles?',
   region: 'other',
   locationType: 'event',
-  description: ['"let see… this one Anna. What can you tell me about paddles?"'],
   enter: enter,
 };

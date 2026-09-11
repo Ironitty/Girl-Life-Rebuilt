@@ -6,6 +6,13 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).cheatVars ?? 0)?.['skill_gain'] === 0) {
+    ((s as any).cheatVars ?? {})['skill_gain'] = 3;
+  }
+  scene.build();
+}
+
 function enterPreset(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
     if (((s as any).locArgs?.[2] ?? 0) === 'sims') {
@@ -379,7 +386,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGetmaxgrades(s, scene);
       break;
     default:
-      enterPreset(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

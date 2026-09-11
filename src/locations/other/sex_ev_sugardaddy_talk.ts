@@ -4,6 +4,24 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: act'What you want to eat later':
+  if (((s as any).hour ?? 0) >= 21) {
+    scene.text('... what you want to have for breakfast.');
+    scene.text('<i>Pancakes? Eggs? Maybe I should just have a cup of coffee and call it quits.</i>');
+  } else {
+    if (((s as any).hour ?? 0) >= 16) {
+      scene.text('... what you want to have for dinner later.');
+      scene.text('<i>Should I go out for dinner? Maybe I should cook something at home. Takeout and split the difference?</i>');
+    } else {
+      scene.text('... what you want to have for lunch later.');
+      scene.text('<i>Should I go out for lunch? Maybe I should cook something at home. Takeout and split the difference?</i>');
+    }
+  }
+  qspCall(s, 'sex_ev_sugardaddy_talk', 'pretend_listen_end');
+  scene.build();
+}
+
 function enterVirginityPaidTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['virginity_paid_talk'] = 1;
   // TODO-QSP: gs 'sex_ev_stats', 'prostitution_init', sex_ev['buy_virginity'] * 1000
@@ -553,7 +571,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPretendListenThoughts(s, scene);
       break;
     default:
-      enterVirginityPaidTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -562,5 +580,6 @@ export const sex_ev_sugardaddy_talk: LocationDef = {
   name: 'sex_ev_sugardaddy_talk',
   title: '"So how about we do it again?"',
   region: 'other',
+  description: ['... what you want to have for breakfast.'],
   enter: enter,
 };

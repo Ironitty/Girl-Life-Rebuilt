@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSelect(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).temp ?? 0))) {
@@ -322,7 +326,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGirl(s, scene);
       break;
     default:
-      enterSelect(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

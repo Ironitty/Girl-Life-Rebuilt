@@ -4,7 +4,110 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).pcs_mood ?? 0) < 10) {
+    scene.actions([
+      { label: 'See a therapist (1:00)', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    qspCall(s, 'mood', 'raise', 'medium');
+    if ((!((s as any).hosprand ?? 0))) {
+      scene.actions([{ label: 'Continue', goto: ['city_clinic', '0'] }]);
+    }
+    if (((s as any).hosprand ?? 0) === 1) {
+      scene.actions([{ label: 'Continue', goto: ['city_clinic', '1'] }]);
+    }
+    if (((s as any).hosprand ?? 0) === 2) {
+      scene.actions([{ label: 'Continue', goto: ['city_clinic', '2'] }]);
+    }
+    scene.img('images/locations/pavlovsk/clinic/therapist/therapy1.jpg');
+    scene.text('You lie down on the therapist\'s couch and tell him about your troubles. You immediately feel much better, but the therapist seems to be in a state of shock.');
+    scene.actions([
+      { label: 'Return to the entrance', goto: ['city_clinic', 'start'] },
+    ]);
+  } },
+    ]);
+  }
+  qspCall(s, 'medical_din', 'birth_control');
+  qspCall(s, 'clinic_functions', 'set_abortion_act');
+  if (((s as any).experimentQW ?? 0)?.['discovered'] === 1) {
+    scene.text('In the far corner you spot the entrance to a signup area for <a href="exec: experimentQW[\'discovered\'] = 2 & gt \'city_experimental_trials\', \'front_desk\'">experimental trials</a>.');
+  } else {
+    if (((s as any).experimentQW ?? 0)?.['discovered'] === 10) {
+      scene.text('In the far corner you spot the entrance to a signup area for <a href="exec: experimentQW[\'discovered\'] = 2 & gt \'city_experimental_trials\', \'front_desk\'">experimental trials</a>. That must be the place your <i>husband</i> told you about.');
+    } else {
+      if (((s as any).experimentQW ?? 0)?.['discovered'] === 2) {
+        scene.actions([
+          { label: 'Go to the medical trials reception desk', goto: ['city_experimental_trials', 'front_desk'] },
+        ]);
+      }
+    }
+  }
+  if (((s as any).preg ?? 0) === 2) {
+    scene.actions([
+      { label: 'Give birth', handler: (st: GameState) => {
+    qspCall(s, 'medical_din', 'give_birth');
+    scene.actions([
+      { label: 'Return to the entrance', goto: ['city_clinic', 'start'] },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).sick ?? 0) <= 0  &&  ((s as any).pcs_horny ?? 0) >= 90  &&  ((s as any).ninelsex ?? 0) >= 1  &&  ((s as any).ninelday ?? 0) !== ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Look for Dr. Ninel', handler: (st: GameState) => {
+    (s as any).ninelday = ((s as any).daystart ?? 0);
+    (s as any).ninelrand = Math.floor(Math.random() * 3) + 0;
+    if ((!((s as any).ninelrand ?? 0))) {
+      scene.text('Reception informs you that Dr. Ninel is in her office.');
+      scene.actions([
+        { label: 'Go to Dr. Ninel', goto: ['city_clinic', 'ninel3'] },
+      ]);
+    } else {
+      if (((s as any).ninelrand ?? 0) === 1) {
+        scene.text('Reception informs you that Dr. Ninel can\'t see you today.');
+        scene.actions([
+          { label: 'Leave the clinic', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_residential', ''] },
+        ]);
+      } else {
+        if (((s as any).ninelrand ?? 0) === 2) {
+          scene.text('Reception informs you that Dr. Ninel is making house calls today.');
+          scene.actions([
+            { label: 'Leave the clinic', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_residential', ''] },
+          ]);
+        }
+      }
+    }
+  } },
+    ]);
+  }
+  if (((s as any).cumcondslip ?? 0) > 0  &&  ((s as any).cumcondslip_aware ?? 0) > 0) {
+    scene.actions([
+      { label: 'See a doctor now (urgent)', goto: ['city_clinic', 'drPP'] },
+    ]);
+  }
+  if (((s as any).katjob ?? 0) > 0) {
+    // TODO-QSP: act 'Visit the chief doctor': gt 'city_clinic', 'glavdoc'
+  }
+  // TODO-QSP: act $func('clinic_functions', 'reception_option_label', 'City Dentist', 'a dentist'):
+  if (qspFunc(s, 'appointments', 'get_state', 'City Dentist', '') === 'none') {
+    scene.text('"I would like to book an appointment with a dentist, please," you tell the receptionist.');
+    scene.text('"Of course, let me check what we have available," she replies, flipping through the appointment book.');
+  } else {
+    scene.text('"I have an appointment with a dentist," you tell the receptionist.');
+    scene.text('"Let me check on that for you," she replies, flipping through the appointment book.');
+  }
+  qspCall(s, 'clinic_functions', 'reception_attend', ((s as any).reception_category ?? 0));
+  scene.actions([
+    { label: 'Go to the STD clinic', goto: ['city_clinic', 'stdclinic'] },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_clinic', 'start');
   (s as any).hosprand = Math.floor(Math.random() * 11) + 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -77,11 +180,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const city_clinic: LocationDef = {
   name: 'city_clinic',
   title: 'Clinic',
   region: 'city',
   locationType: 'public_indoors',
-  description: ['A sign inside the clinic lists some of the services the clinic has to offer:'],
+  description: ['"I would like to book an appointment with a dentist, please," you tell the receptionist.'],
   enter: enter,
 };

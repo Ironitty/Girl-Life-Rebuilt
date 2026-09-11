@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'family_schedule', '');
   if (((s as any).mesec ?? 0) > 0) {
@@ -412,7 +416,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnyaInterrupted(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -421,6 +425,5 @@ export const komp_cam_MFC_main: LocationDef = {
   name: 'komp_cam_MFC_main',
   title: 'Dance',
   region: 'other',
-  description: ['It\'s that time of the month! You feel sick to your stomach and the cramps hurt pretty badly from time to time… you\'re in no condition to earn money showing off your body.'],
   enter: enter,
 };

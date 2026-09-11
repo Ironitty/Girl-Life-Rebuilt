@@ -4,7 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beta_journal', 'nav_construct');
   // TODO-QSP: gs $loc_id, 'nav_construct'
   if (((s as any).accessible_property ?? 0)?.['shared_apartment'] === 4) {
@@ -158,10 +162,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'init':
+      enterInit(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const beta_journal_home: LocationDef = {
   name: 'beta_journal_home',
   title: 'You share an apartment with three others in Pavlovsk. Your b',
   region: 'other',
-  description: ['You share an apartment with three others in Pavlovsk. Your bills are paid by the other tenants in exchange for your house services.'],
   enter: enter,
 };

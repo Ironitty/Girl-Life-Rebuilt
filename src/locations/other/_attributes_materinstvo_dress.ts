@@ -3,12 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: 2026/05/13
-  // TODO-QSP: CloPrice ~ 3000 * (20 + CloQuality) / 20
-  // TODO-QSP: Rounded to 50
-  // TODO-QSP: 3: 3450
-  // TODO-QSP: 4: 3600
-  // TODO-QSP: CloQuality ranges from 3 to 4
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).CloQuality = 3;
     (s as any).CloStrength = 166875;

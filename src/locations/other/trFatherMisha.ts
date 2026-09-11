@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A35');
   if (((s as any).cumloc ?? 0)[11] === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -655,6 +659,5 @@ export const trFatherMisha: LocationDef = {
   name: 'trFatherMisha',
   title: 'As you walk up to your father with a face fully smeared with',
   region: 'other',
-  description: ['As you walk up to your father with a face fully smeared with semen he reacts as expected.'],
   enter: enter,
 };

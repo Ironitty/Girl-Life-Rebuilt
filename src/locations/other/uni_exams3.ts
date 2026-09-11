@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGeneralEducation_201(s: GameState, scene: SceneBuilder): void {
   ((s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
@@ -266,7 +270,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDosagesAndPharmaceuticals_101(s, scene);
       break;
     default:
-      enterGeneralEducation_201(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -275,6 +279,5 @@ export const uni_exams3: LocationDef = {
   name: 'uni_exams3',
   title: 'You walk into the classroom and take a seat next to a window',
   region: 'other',
-  description: ['You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Kovalyov enters the classroom and closes the door before turning to the class.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_base_ranking_name[1] = 'Anastasia P.'    &  $temp_base_ranking_link[1] = 'anastasia'
   // TODO-QSP: $temp_base_ranking_name[2] = 'Katherine A.'    &  $temp_base_ranking_link[2] = 'katherine'
@@ -567,7 +571,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOlga(s, scene);
       break;
     default:
-      enterModelPortraits(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

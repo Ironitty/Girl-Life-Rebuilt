@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPrincipal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Principal\'s Office</b></center>');
@@ -879,7 +883,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSuspended(s, scene);
       break;
     default:
-      enterPrincipal(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -888,6 +892,5 @@ export const gschool_office: LocationDef = {
   name: 'gschool_office',
   title: 'Principal\'s Office',
   region: 'other',
-  description: ['The office is, in a word, impressive: It must have cost a full year\'s worth of the school\'s budget to decorate it. At least now you know why so much of the school is in dire need of repair and it never seems to happen - all the money is spent on this one room.'],
   enter: enter,
 };

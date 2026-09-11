@@ -4,6 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).transportVars ?? {})['train_event_day'] = ((s as any).daystart ?? 0);
+  scene.build();
+}
+
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 15) {
@@ -894,7 +899,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGopnik(s, scene);
       break;
     default:
-      enterEvents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

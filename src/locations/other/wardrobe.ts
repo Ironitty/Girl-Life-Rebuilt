@@ -6,6 +6,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = ((s as any).defclothingnumber ?? 0)[((s as any).ARGS ?? 0)[0]]+ ((s as any).defbranumber ?? 0)[((s as any).ARGS ?? 0)[0]] + ((s as any).defpantynumber ?? 0)[((s as any).ARGS ?? 0)[0]] + ((s as any).defshoenumber ?? 0)[((s as any).ARGS ?? 0)[0]] + ((s as any).defpursenumber ?? 0)[((s as any).ARGS ?? 0)[0]] + ((s as any).defcoatnumber ?? 0)[((s as any).ARGS ?? 0)[0]];
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).wardrobeDefaultPagePref ?? 0) === '') {
   }
@@ -1561,7 +1566,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBackToRegularClothes(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

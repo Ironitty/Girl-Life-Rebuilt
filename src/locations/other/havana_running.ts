@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/pc/activities/exercises/gym/fit1.jpg');
@@ -781,7 +785,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFamilyExtension(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -790,6 +794,5 @@ export const havana_running: LocationDef = {
   name: 'havana_running',
   title: 'You\'re stretching and warming up before your practice run. Y',
   region: 'other',
-  description: ['You\'re stretching and warming up before your practice run. You can see your coach, Igor Yurisovich, talking to the other athletes.'],
   enter: enter,
 };

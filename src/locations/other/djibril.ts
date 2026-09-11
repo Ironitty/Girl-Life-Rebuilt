@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).reccoldorm = 0;
   (s as any).djibrilflag = 0;
@@ -550,7 +554,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTextnush(s, scene);
       break;
     default:
-      enterDjibrilRoom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -560,6 +564,5 @@ export const djibril: LocationDef = {
   title: 'His room is bigger than you expected. There is a bed over by',
   region: 'other',
   locationType: 'event',
-  description: ['His room is bigger than you expected. There is a bed over by the windows, with a laptop sitting on the desk next to it. Closer to the door is a couch and a recliner, with a small TV and PlayStation across from them. It is clean and tastefully decorated.'],
   enter: enter,
 };

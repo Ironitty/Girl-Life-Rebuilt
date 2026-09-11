@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCommunityAlleys(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -500,7 +504,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLakeArea(s, scene);
       break;
     default:
-      enterCommunityAlleys(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -509,6 +513,5 @@ export const ETO_village: LocationDef = {
   name: 'ETO_village',
   title: 'Lake',
   region: 'other',
-  description: ['You walk through the alleys. This community is not very populated. Occasionally there are gardeners working in the area. You hear the clank of a saw somewhere at the edge of the forest. At the end of the alley is an artificial reservoir. There are some houses for sale.'],
   enter: enter,
 };

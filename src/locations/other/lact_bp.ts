@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBuildBp(s: GameState, scene: SceneBuilder): void {
   (s as any).bp_i = 0;
   ((s as any).bpID_arr ?? {})[String((s as any).bp_i ?? 0)] = ((s as any).bp_i ?? 0);
@@ -1394,7 +1398,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHandMilking(s, scene);
       break;
     default:
-      enterBuildBp(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

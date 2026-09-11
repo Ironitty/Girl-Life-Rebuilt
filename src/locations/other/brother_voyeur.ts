@@ -4,6 +4,24 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).brotherQW ?? {})['Age'] = ((s as any).year ?? 0) - ((((s as any).npc_dob ?? {})?.['A34'] - (((s as any).npc_dob ?? {})?.['A34'] % 10000)) / 10000);
+  if ((((s as any).npc_dob ?? 0)?.['A34'] % 10000)/100 > ((s as any).month ?? 0)) {
+    ((s as any).brotherQW ?? {})['Age'] = (((s as any).brotherQW ?? {})['Age'] ?? 0) - (1);
+  }
+  if ((((s as any).npc_dob ?? 0)?.['A34'] % 10000)/100 === ((s as any).month ?? 0)  &&  (((s as any).npc_dob ?? 0)?.['A34'] % 100) > ((s as any).day ?? 0)) {
+    ((s as any).brotherQW ?? {})['Age'] = (((s as any).brotherQW ?? {})['Age'] ?? 0) - (1);
+  }
+  (s as any).dick = ((s as any).npc_dick ?? 0)?.['A' + String(34)];
+  if (((s as any).npc_QW ?? 0)?.['A34'] > 20  &&  ((s as any).npc_QW ?? 0)?.['A34'] < 25) {
+    ((s as any).npc_QW ?? {})['A34'] = 20;
+  }
+  ((s as any).razors_to_use ?? {})['all'] = Math.min(Math.max(1, (4 * ((s as any).pcs_leghair ?? 0) + Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0))) / 20), 3);
+  ((s as any).razors_to_use ?? {})['pussy'] = Math.min(Math.max(1, Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0)) / 20), 2);
+  ((s as any).razors_to_use ?? {})['legs'] = Math.min(Math.max(1, 4 * ((s as any).pcs_leghair ?? 0) / 20), 3);
+  scene.build();
+}
+
 function enterShowertalk1(s: GameState, scene: SceneBuilder): void {
   (s as any).dick = ((s as any).npc_dick ?? 0)?.['A' + String(34)];
   if (((s as any).brotherQW ?? 0)?.['shower_talk'] > 0) {
@@ -2220,7 +2238,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBrotherVoyeurEv3_2(s, scene);
       break;
     default:
-      enterShowertalk1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2229,6 +2247,5 @@ export const brother_voyeur: LocationDef = {
   name: 'brother_voyeur',
   title: 'Through the crack in the door you make eye contact with your',
   region: 'other',
-  description: ['Through the crack in the door you make eye contact with your brother.'],
   enter: enter,
 };

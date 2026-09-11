@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like', 1, 'chat');
   if (((s as any).locat ?? 0)?.['katja'] === 25) {
@@ -885,7 +889,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoffeeHoleEvent(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -894,6 +898,5 @@ export const katja_chat: LocationDef = {
   name: 'katja_chat',
   title: 'You approach Katja while she\'s talking on the phone. She fin',
   region: 'other',
-  description: ['You approach Katja while she\'s talking on the phone. She finishes her call just before you reach her.'],
   enter: enter,
 };

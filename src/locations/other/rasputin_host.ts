@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   qspCall(s, 'core_library', 'setloc', 'rasputin_host', 'start');
@@ -218,7 +222,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOptions(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -228,6 +232,5 @@ export const rasputin_host: LocationDef = {
   title: 'Nadia waits with a warm smile.',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['Nadia waits with a warm smile.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'boyStat', 'A54');
@@ -712,7 +716,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDirtyAnal(s, scene);
       break;
     default:
-      enter1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -721,6 +725,5 @@ export const misha: LocationDef = {
   name: 'misha',
   title: 'You enter Uncle Misha\'s apartment. He lets you in, and you t',
   region: 'other',
-  description: ['You enter Uncle Misha\'s apartment. He lets you in, and you take a seat as he glances down the hallway once more to see if anyone saw you walk in. Content that the hallway is empty, he closes the door behind him. He immediately reaches for his pants and pulls out his giant cock with a lewd grin.'],
   enter: enter,
 };

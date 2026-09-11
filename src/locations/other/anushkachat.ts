@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
   qspCall(s, 'stat', '');
@@ -1747,7 +1751,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPhotoshoot1(s, scene);
       break;
     default:
-      enterChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

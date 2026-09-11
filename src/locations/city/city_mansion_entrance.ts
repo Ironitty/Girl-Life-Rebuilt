@@ -4,7 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).property_construction_status = qspFunc(s, 'homes_properties', 'get_property_construction_status');
   (s as any).property_owned = qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'matryona_mansion');
@@ -582,6 +586,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_suburbs', 'start'] },
   ]);
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const city_mansion_entrance: LocationDef = {

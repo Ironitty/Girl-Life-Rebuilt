@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterOldSchool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/oldschool/old_school.jpg');
   if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 1) {
@@ -54,10 +58,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'old_school':
+      enterOldSchool(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const pav_old_school: LocationDef = {
   name: 'pav_old_school',
   title: 'You walk down the path that leads to the old school building',
   region: 'pavlovsk',
-  description: ['You walk down the path that leads to the old school building. It\'s in rough shape; many of the windows have been broken and almost all of the walls are covered in graffiti.'],
   enter: enter,
 };

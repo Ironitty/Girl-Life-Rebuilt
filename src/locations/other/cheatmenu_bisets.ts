@@ -6,6 +6,13 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).cheatmenu ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).cheatmenu ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).cheatmenu ?? {})['table_end'] = '</td></tr></table></center>';
+  scene.build();
+}
+
 function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -248,7 +255,7 @@ function enterCsExport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cheatmenu['table_start']
   // TODO-QSP: dynamic "
   // TODO-QSP: "
-  ((s as any).fix_bod_set ?? {})['folder'] = '' + qspUntranslated(s, "cheatVars['fix_biset_<<cmbs_exp_set>>_folder']>", { location: "cheatmenu_bisets" }) + '';
+  // TODO-QSP: $fix_bod_set['folder'] = '<<$cheatVars['fix_biset_<<cmbs_exp_set>>_folder']>>'
   // TODO-QSP: "
   if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cmbs_exp_set ?? 0) + '_name'] !== '') {
     // TODO-QSP: $temp_export_text += "$fix_bod_set['name'] = '<<$cheatVars['fix_biset_<<cmbs_exp_set>>_name']>>'
@@ -1461,7 +1468,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterModsHowTo(s, scene);
       break;
     default:
-      enterMain(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1470,6 +1477,5 @@ export const cheatmenu_bisets: LocationDef = {
   name: 'cheatmenu_bisets',
   title: '<center><h1>Cheat Menu - Body Image Sets</h1></center>',
   region: 'other',
-  description: ['These are the default body image sets:'],
   enter: enter,
 };

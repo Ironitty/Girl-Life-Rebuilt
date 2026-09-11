@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNatSchedule(s: GameState, scene: SceneBuilder): void {
   (s as any).NatashaShower = 0;
   (s as any).NatashaLoc = Math.floor(Math.random() * 8) + 0;
@@ -737,7 +741,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShowerEscalation(s, scene);
       break;
     default:
-      enterNatSchedule(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

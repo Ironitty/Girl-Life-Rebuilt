@@ -6,6 +6,10 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPickFromArray(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_randomVars ?? {})['start'] = 0;
   ((s as any).temp_randomVars ?? {})['end'] = 0;
@@ -145,7 +149,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStringHash(s, scene);
       break;
     default:
-      enterPickFromArray(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

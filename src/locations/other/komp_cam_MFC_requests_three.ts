@@ -4,6 +4,12 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  qspCall(s, 'stat', '');
+  scene.build();
+}
+
 function enterShowAsshole(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the viewers makes several comments on how badly he wants to fuck your ass, and then offers you tokens to show your anus to him…');
   qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
@@ -360,7 +366,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShowVagina(s, scene);
       break;
     default:
-      enterShowAsshole(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -369,6 +375,5 @@ export const komp_cam_MFC_requests_three: LocationDef = {
   name: 'komp_cam_MFC_requests_three',
   title: 'One of the viewers makes several comments on how badly he wa',
   region: 'other',
-  description: ['One of the viewers makes several comments on how badly he wants to fuck your ass, and then offers you tokens to show your anus to him…'],
   enter: enter,
 };

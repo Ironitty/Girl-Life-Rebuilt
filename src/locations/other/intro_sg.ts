@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   (s as any).hour = 6;
@@ -452,7 +456,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSetMotherNickname(s, scene);
       break;
     default:
-      enterQuickStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAnastasia1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anastasia ?? 0)?.['escort_ask'] === 1) {
     scene.actions([{ label: 'Continue', goto: ['model_anastasia', 'anastasia_escort_ask'] }]);
@@ -637,7 +641,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAnastasiasextalk(s, scene);
       break;
     default:
-      enterAnastasia1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -646,6 +650,5 @@ export const model_anastasia: LocationDef = {
   name: 'model_anastasia',
   title: 'As you\'re walking around the different sets at the agency a ',
   region: 'other',
-  description: ['As you\'re walking around the different sets at the agency a nude woman with curly black hair walks up to you, "Sorry to bother you but you seem lost, need some help?"'],
   enter: enter,
 };

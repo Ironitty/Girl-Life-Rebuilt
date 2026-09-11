@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -588,7 +592,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAsianStudies_101Events(s, scene);
       break;
     default:
-      enterAsianStudies_101(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -597,6 +601,5 @@ export const uni_lessons_electives_asian_studies1: LocationDef = {
   name: 'uni_lessons_electives_asian_studies1',
   title: '<br>Note: She doesn\'t have a dorm room yet, but will in the future.',
   region: 'other',
-  description: ['You walk into the classroom and take a seat as the rest of your classmates walk in one-by-one before Professor Da enters the room and closes the door.'],
   enter: enter,
 };

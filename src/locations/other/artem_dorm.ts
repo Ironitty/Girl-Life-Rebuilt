@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'artem_dorm', 'start');
   qspCall(s, 'artem_chebotarev_schedule', '');
@@ -1821,7 +1825,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTimecheck(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1832,6 +1836,5 @@ export const artem_dorm: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'livingr',
-  description: ['The dorm room has two beds. The one on the left belongs to Artem\'s roommate while the one on the right is Artem\'s.'],
   enter: enter,
 };

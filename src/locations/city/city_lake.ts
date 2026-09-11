@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_lake', 'start');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -2287,7 +2291,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAndreiRape(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2298,6 +2302,5 @@ export const city_lake: LocationDef = {
   region: 'city',
   locationType: 'event_outdoors',
   locclass: 'beach',
-  description: ['A large lake close to the city, it is a favorite destination of residents in the summer.'],
   enter: enter,
 };

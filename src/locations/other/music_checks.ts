@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterZariyahApproach(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'pav_park') {
     (s as any).chance = 75;
@@ -145,7 +149,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterResetChecks(s, scene);
       break;
     default:
-      enterZariyahApproach(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHome(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -2188,7 +2192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRolanroute(s, scene);
       break;
     default:
-      enterHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2199,6 +2203,5 @@ export const rolanapt: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'kitr',
-  description: ['You walk up to the front door and knock.'],
   enter: enter,
 };

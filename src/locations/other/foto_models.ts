@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterModelChatter(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/photo/models${Math.floor(Math.random() * 2) + 1}.jpg`);
   scene.text('You lean on one of the sinks and listen in on the other models and their chattering…');
   ((s as any).model ?? {})['chatter'] = Math.floor(Math.random() * 9) + 1;
@@ -126,10 +130,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'model_chatter':
+      enterModelChatter(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const foto_models: LocationDef = {
   name: 'foto_models',
   title: 'You lean on one of the sinks and listen in on the other mode',
   region: 'other',
-  description: ['You lean on one of the sinks and listen in on the other models and their chattering…'],
   enter: enter,
 };

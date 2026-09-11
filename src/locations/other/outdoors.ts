@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     ((s as any).ARGS ?? {})[1] = ((s as any).month ?? 0);
@@ -454,7 +458,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMain(s, scene);
       break;
     default:
-      enterSetWeather_TempFall(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

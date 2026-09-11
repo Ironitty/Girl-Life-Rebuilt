@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPlan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (120 - ((s as any).minut ?? 0));
   qspCall(s, 'stat', '');
@@ -1050,7 +1054,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMeetAfterSchool(s, scene);
       break;
     default:
-      enterPlan(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1059,6 +1063,5 @@ export const anushka: LocationDef = {
   name: 'anushka',
   title: 'Detention',
   region: 'other',
-  description: ['You look at the pills, turning them uncertainly in your fingers before looking up at them again. "What exactly will these do to him?"'],
   enter: enter,
 };

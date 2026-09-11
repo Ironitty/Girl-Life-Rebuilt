@@ -4,6 +4,42 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = '';
+  if (((s as any).film ?? 0) > 0) {
+    ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'The photo is a screenshot from one of your porn movies.';
+  } else {
+    if (((s as any).fotoyousuck ?? 0) === 1) {
+      ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'The picture shows you sucking two cocks at the same time.';
+    } else {
+      if (((s as any).fotoCFNMsex ?? 0) > 0) {
+        ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you see yourself getting fucked from behind by a random guy. This must have been taken in the stripclub.';
+      } else {
+        if (((s as any).fotoCFNMblowjobCum ?? 0) > 0) {
+          ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you are sitting in front of a guy, kissing his cock. There seems to be cum on your face. This photo must have been taken in the stripclub.';
+        } else {
+          if (((s as any).fotoCFNMblowjob ?? 0) > 0) {
+            ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you are giving a guy a blowjob. You can spot a group of women in the background and it seems like this photo was taken in the stripclub.';
+          } else {
+            if (((s as any).strip_club ?? 0)?.['total_stripshows'] > 0) {
+              ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you are dancing on a pole. Obviously someone photographed you, while you were on stage at the stripclub.';
+            } else {
+              if (((s as any).modelfoto ?? 0)?.['erotic'] > 0) {
+                ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'The photo shows you naked, it is very well taken and must be from a shoot at the modeling agency.';
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  (s as any).bossassrand = Math.floor(Math.random() * 4) + 0;
+  if ((!((s as any).bossassrand ?? 0))) {
+    scene.text('When you bend over to pick up the papers from the table, Anatoly gives you a slap on the ass.');
+  }
+  scene.build();
+}
+
 function enterWork(s: GameState, scene: SceneBuilder): void {
   (s as any).burand = Math.floor(Math.random() * 7) + 0;
   if ((!((s as any).burand ?? 0))) {
@@ -1393,7 +1429,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWork4(s, scene);
       break;
     default:
-      enterWork(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1402,6 +1438,6 @@ export const BurgerTip: LocationDef = {
   name: 'BurgerTip',
   title: 'The intercom on your desk light up. Anatoly Borisovich wants',
   region: 'other',
-  description: ['The intercom on your desk light up. Anatoly Borisovich wants to see you in his office.'],
+  description: ['When you bend over to pick up the papers from the table, Anatoly gives you a slap on the ass.'],
   enter: enter,
 };

@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterQuickie(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/lovers/hookups/gf/gf1.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> opens the door to her apartment and you both immediately begin care...
   scene.text(`${((s as any).npcdesc ?? 0)} opens the door to her apartment and you both immediately begin caressing each other and kissing passionately.`);
@@ -80,6 +84,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
   ]);
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'quickie':
+      enterQuickie(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const hookup_female: LocationDef = {

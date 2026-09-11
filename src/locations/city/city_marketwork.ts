@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Marketplace</b></center>');
@@ -881,7 +885,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHaggling(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -891,6 +895,5 @@ export const city_marketwork: LocationDef = {
   title: 'Marketplace',
   region: 'city',
   locationType: 'event_outdoors',
-  description: ['You stand at your clothes stall waiting for customers.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'newspaper_pages', 'add_event_pages');
   qspCall(s, 'newspaper_pages', 'fill_arrays');
@@ -659,7 +663,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBalletAfterWithSveta(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

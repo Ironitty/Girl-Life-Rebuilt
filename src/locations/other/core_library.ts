@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetloc(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pav_') {
     // TODO-QSP: $region[1] = 'pav'
@@ -188,7 +192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBedroom(s, scene);
       break;
     default:
-      enterSetloc(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

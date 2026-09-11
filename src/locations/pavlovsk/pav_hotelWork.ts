@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_hotel_maid'] === 'employed') {
     if (qspFunc(s, 'jobs', 'is_arrival_time', 'pav_hotel_maid')  &&  ((s as any).job_last_work_day ?? 0)?.['pav_hotel_maid'] !== ((s as any).daystart ?? 0)) {
@@ -1921,7 +1925,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnding2(s, scene);
       break;
     default:
-      enterSetHotelActs(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

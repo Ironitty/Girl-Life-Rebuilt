@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) < 7  ||  ((s as any).hour ?? 0) > 20) {
@@ -533,7 +537,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -542,6 +546,5 @@ export const masharoom: LocationDef = {
   name: 'masharoom',
   title: 'This is Masha\'s room. It is a huge room with many kinds of s',
   region: 'other',
-  description: ['This is Masha\'s room. It is a huge room with many kinds of sex toys and accessories.'],
   enter: enter,
 };

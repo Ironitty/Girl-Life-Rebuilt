@@ -4,6 +4,10 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '<center>'
   // TODO-QSP: *p $func('stat_display_menu', 'general_options')
@@ -171,7 +175,7 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_st_title ?? {})['expand'] = ((((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('Collapse Options') : ('Expand Options'));
   ((s as any).temp_st_td ?? {})['icon'] = '<td align="center" width="1%" style="text-align:center; padding:3px;">';
   ((s as any).temp_st_td ?? {})['spacer'] = '<td align="center" width="1%" style="text-align:center; padding:3px;"><span style="display:inline-block; padding:2px; line-height:0; border:1px solid transparent; border-radius:6px;"><img height="32" src="' + qspUntranslated(s, "temp_st_icon['raise']>", { location: "stat_display_menu" }) + '" style="visibility:hidden"></span></td>';
-  ((s as any).temp_st_td ?? {})['cell'] = '<td align="center" valign="middle" bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:1px solid <<$theme_hex[\'goth\']>>; background-color: <<$theme_hex[\'table_bg_alt\']>>; padding:3px; text-align:center; vertical-align:middle;">';
+  // TODO-QSP: $temp_st_td['cell'] = '<td align="center" valign="middle" bgcolor="<<$theme_hex[''table_bg_alt'']>>" style="border:1px solid <<$theme_hex[''goth'']>>; background-color: <<$theme_hex[''table_bg_alt'']>>; padding:3px; text-align:center; vertical-align:middle;">'
   // TODO-QSP: $result +=  '<table width="80%" cellspacing="6" bgcolor="<<$theme_hex[''table_bg'']>>" style="border...
   // TODO-QSP: $result +=  '<colgroup>'
   // TODO-QSP: $result +=    '<col width="32%">'
@@ -554,7 +558,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_\' + $ro[\'c\'] + \'.png';
   ((s as any).ro ?? {})['bdr'] = '1px solid ' + qspUntranslated(s, "theme_hex['goth']>", { location: "stat_display_menu" }) + '';
   ((s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid \' + $func(\'shortgs\', \'rgb_to_hex\', theme[\'fcolor\']) + \'; border-radius:4px;';
-  ((s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="exec: killvar \'$' + qspUntranslated(s, "ARGS[1]>", { location: "stat_display_menu" }) + '\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'">[Reset]</a></td></tr>';
+  // TODO-QSP: $ro['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="exec: killvar ''$<<$ARGS[1]>>'' & gt ''$menu_settings'', ''<<$ARGS[3]>>''">[Reset]</a></td></tr>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   ((s as any).ro ?? {})['i'] = 0;
   // TODO-QSP: :_rfl_loop
@@ -568,17 +572,17 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro ?? {})['hidden'] = 0;
   ((s as any).ro ?? {})['hide_icon'] = 'images/system/ui/\' + iif(ro[\'hidden\'] = 1, \'hide_\', \'show_\') + $ro[\'c\'] + \'.png';
   ((s as any).ro ?? {})['label'] = ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'key\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']]));
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:5px 6px;">');
+  // TODO-QSP: $ro['html'] += '<tr><td bgcolor="<<$theme_hex[''table_bg_alt'']>>" style="border:<<$ro[''bdr'']>>; background-color:<<$theme_hex[''table_bg_alt'']>>; padding:5px 6px;">'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'<<$ARGS[1]>>\', <<ro[\'i\']>>, \'up\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'<<$ARGS[1]>>\', <<ro[\'i\']>>, \'down\' & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap'', ''<<$ARGS[1]>>'', <<ro[''i'']>>, ''up'' & gt ''$menu_settings'', ''<<$ARGS[3]>>''"><img height="18" src="<<$ro[''up'']>>"></a>'
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap'', ''<<$ARGS[1]>>'', <<ro[''i'']>>, ''down'' & gt ''$menu_settings'', ''<<$ARGS[3]>>''"><img height="18" src="<<$ro[''down'']>>"></a>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: ' + qspUntranslated(s, "ARGS[2]>", { location: "stat_display_menu" }) + '[\'<<$ro[\'key\']>>\'] = 1 - <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] & gt \'$menu_settings\', \'<<$ARGS[3]>>\'">\' + $ro[\'label\'] + \'</a>');
+  // TODO-QSP: $ro['html'] += '<a style="display:block; text-decoration:none; color:inherit;" href="exec: <<$ARGS[2]>>[''<<$ro[''key'']>>''] = 1 - <<$ARGS[2]>>[''<<$ro[''key'']>>''] & gt ''$menu_settings'', ''<<$ARGS[3]>>''">' + $ro['label'] + '</a>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] = 1 - <<$ARGS[2]>>[\'<<$ro[\'key\']>>\'] & gt \'$menu_settings\', \'<<$ARGS[3]>>\'"><img height="18" src="<<$ro[\'hide_icon\']>>"></a>');
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: <<$ARGS[2]>>[''<<$ro[''key'']>>''] = 1 - <<$ARGS[2]>>[''<<$ro[''key'']>>''] & gt ''$menu_settings'', ''<<$ARGS[3]>>''"><img height="18" src="<<$ro[''hide_icon'']>>"></a>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</tr></table></td></tr>');
   // TODO-QSP: :_rfl_next
@@ -607,18 +611,18 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   ((s as any).ro ?? {})['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
   ((s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
+  // TODO-QSP: $ro['html'] += '<tr><td bgcolor="<<$theme_hex[''table_bg'']>>" style="border:<<$ro[''bdr'']>>; background-color:<<$theme_hex[''table_bg'']>>; padding:5px 6px;">'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', <<ro[\'gi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', <<ro[\'gi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap'', ''skill_group_order'', <<ro[''gi'']>>, ''up'' & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''up'']>>"></a>'
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap'', ''skill_group_order'', <<ro[''gi'']>>, ''down'' & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''down'']>>"></a>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[\'show_skills_' + qspUntranslated(s, "ro['gkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'glbl\'] + \'</a>');
+  // TODO-QSP: $ro['html'] += '<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[''show_skills_<<$ro[''gkey'']>>''] = 1 - stat_cfg[''show_skills_<<$ro[''gkey'']>>''] & gt ''$menu_settings'', ''status''">' + $ro['glbl'] + '</a>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide[\'<<$ro[\'gkey\']>>\'] = 1 - stat_hide[\'<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'ghi_ic\']>>"></a>');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_skills_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'gex_ic\']>>"></a>');
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: stat_hide[''<<$ro[''gkey'']>>''] = 1 - stat_hide[''<<$ro[''gkey'']>>''] & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''ghi_ic'']>>"></a>'
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: stat_cfg[''show_skills_<<$ro[''gkey'']>>''] = 1 - stat_cfg[''show_skills_<<$ro[''gkey'']>>''] & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''gex_ic'']>>"></a>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</tr></table>');
   if (((s as any).ro ?? 0)?.['gexp'] === 1) {
@@ -632,17 +636,17 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro ?? {})['mhid'] = ((s as any).stat_hide_skill ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
     ((s as any).ro ?? {})['mhi_ic'] = 'images/system/ui/\' + iif(ro[\'mhid\'] = 1, \'hide_\', \'show_\') + $ro[\'c\'] + \'.png';
     ((s as any).ro ?? {})['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'mkey\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]));
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:4px 6px;">');
+    // TODO-QSP: $ro['html'] += '<tr><td bgcolor="<<$theme_hex[''table_bg_alt'']>>" style="border:<<$ro[''bdr'']>>; background-color:<<$theme_hex[''table_bg_alt'']>>; padding:4px 6px;">'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'up\']>>"></a>');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'down\']>>"></a>');
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap_grp_member'', ''skill_grp'', ''<<$ro[''gkey'']>>'', <<ro[''mi'']>>, ''up'' & gt ''$menu_settings'', ''status''"><img height="14" src="<<$ro[''up'']>>"></a>'
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap_grp_member'', ''skill_grp'', ''<<$ro[''gkey'']>>'', <<ro[''mi'']>>, ''down'' & gt ''$menu_settings'', ''status''"><img height="14" src="<<$ro[''down'']>>"></a>'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_skill[\'' + qspUntranslated(s, "ro['mkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_hide_skill[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'mlbl\'] + \'</a>');
+    // TODO-QSP: $ro['html'] += '<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_skill[''<<$ro[''mkey'']>>''] = 1 - stat_hide_skill[''<<$ro[''mkey'']>>''] & gt ''$menu_settings'', ''status''">' + $ro['mlbl'] + '</a>'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide_skill[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_skill[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'mhi_ic\']>>"></a>');
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: stat_hide_skill[''<<$ro[''mkey'']>>''] = 1 - stat_hide_skill[''<<$ro[''mkey'']>>''] & gt ''$menu_settings'', ''status''"><img height="14" src="<<$ro[''mhi_ic'']>>"></a>'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</tr></table></td></tr>');
     ((s as any).ro ?? {})['mi'] = (((s as any).ro ?? {})['mi'] ?? 0) + (1);
@@ -676,25 +680,25 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro ?? {})['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   ((s as any).ro ?? {})['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
   ((s as any).ro ?? {})['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
+  // TODO-QSP: $ro['html'] += '<tr><td bgcolor="<<$theme_hex[''table_bg'']>>" style="border:<<$ro[''bdr'']>>; background-color:<<$theme_hex[''table_bg'']>>; padding:5px 6px;">'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', <<ro[\'gi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'up\']>>"></a>');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap\', \'rel_group_order\', <<ro[\'gi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'down\']>>"></a>');
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap'', ''rel_group_order'', <<ro[''gi'']>>, ''up'' & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''up'']>>"></a>'
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap'', ''rel_group_order'', <<ro[''gi'']>>, ''down'' & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''down'']>>"></a>'
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers') {
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[\'show_rels_' + qspUntranslated(s, "ro['gkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'glbl\'] + \'</a>');
+    // TODO-QSP: $ro['html'] += '<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_cfg[''show_rels_<<$ro[''gkey'']>>''] = 1 - stat_cfg[''show_rels_<<$ro[''gkey'']>>''] & gt ''$menu_settings'', ''status''">' + $ro['glbl'] + '</a>'
   } else {
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + (((s as any).ro ?? 0)?.['glbl']);
   }
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-  ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide_rel_grp[\'<<$ro[\'gkey\']>>\'] = 1 - stat_hide_rel_grp[\'<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'ghi_ic\']>>"></a>');
+  // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: stat_hide_rel_grp[''<<$ro[''gkey'']>>''] = 1 - stat_hide_rel_grp[''<<$ro[''gkey'']>>''] & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''ghi_ic'']>>"></a>'
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers') {
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] = 1 - stat_cfg[\'show_rels_<<$ro[\'gkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="<<$ro[\'gex_ic\']>>"></a>');
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: stat_cfg[''show_rels_<<$ro[''gkey'']>>''] = 1 - stat_cfg[''show_rels_<<$ro[''gkey'']>>''] & gt ''$menu_settings'', ''status''"><img height="18" src="<<$ro[''gex_ic'']>>"></a>'
   } else {
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<span style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '; visibility:hidden;"><img height="18" src="<<$ro[\'up\']>>"></span>');
+    // TODO-QSP: $ro['html'] += '<span style="<<$ro[''ibdr'']>>; visibility:hidden;"><img height="18" src="<<$ro[''up'']>>"></span>'
   }
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</tr></table>');
@@ -759,18 +763,18 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<tr><td bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:4px 6px;">');
+    // TODO-QSP: $ro['html'] += '<tr><td bgcolor="<<$theme_hex[''table_bg_alt'']>>" style="border:<<$ro[''bdr'']>>; background-color:<<$theme_hex[''table_bg_alt'']>>; padding:4px 6px;">'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'up\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'up\']>>"></a>');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'<<$ro[\'gkey\']>>\', <<ro[\'mi\']>>, \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'down\']>>"></a>');
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap_grp_member'', ''rel_grp'', ''<<$ro[''gkey'']>>'', <<ro[''mi'']>>, ''up'' & gt ''$menu_settings'', ''status''"><img height="14" src="<<$ro[''up'']>>"></a>'
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: gs ''$menu_settings'', ''swap_grp_member'', ''rel_grp'', ''<<$ro[''gkey'']>>'', <<ro[''mi'']>>, ''down'' & gt ''$menu_settings'', ''status''"><img height="14" src="<<$ro[''down'']>>"></a>'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_rel[\'' + qspUntranslated(s, "ro['mkey']>", { location: "stat_display_menu" }) + '\'] = 1 - stat_hide_rel[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'">\' + $ro[\'mlbl\'] + \'</a>');
+    // TODO-QSP: $ro['html'] += '<a style="display:block; text-decoration:none; color:inherit;" href="exec: stat_hide_rel[''<<$ro[''mkey'']>>''] = 1 - stat_hide_rel[''<<$ro[''mkey'']>>''] & gt ''$menu_settings'', ''status''">' + $ro['mlbl'] + '</a>'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: stat_hide_rel[\'<<$ro[\'mkey\']>>\'] = 1 - stat_hide_rel[\'<<$ro[\'mkey\']>>\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'mhi_ic\']>>"></a>');
-    ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('<a style="' + qspUntranslated(s, "ro['ibdr']>", { location: "stat_display_menu" }) + '" href="exec: sd_rel_name_override[\'<<$ro[\'mkey\']>>\'] = (sd_rel_name_override[\'<<$ro[\'mkey\']>>\'] + 1) mod 4 & gt \'$menu_settings\', \'status\'"><img height="14" src="<<$ro[\'nmo_ic\']>>"></a>');
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: stat_hide_rel[''<<$ro[''mkey'']>>''] = 1 - stat_hide_rel[''<<$ro[''mkey'']>>''] & gt ''$menu_settings'', ''status''"><img height="14" src="<<$ro[''mhi_ic'']>>"></a>'
+    // TODO-QSP: $ro['html'] += '<a style="<<$ro[''ibdr'']>>" href="exec: sd_rel_name_override[''<<$ro[''mkey'']>>''] = (sd_rel_name_override[''<<$ro[''mkey'']>>''] + 1) mod 4 & gt ''$menu_settings'', ''status''"><img height="14" src="<<$ro[''nmo_ic'']>>"></a>'
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</td>');
     ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</tr></table></td></tr>');
     ((s as any).ro ?? {})['mi'] = (((s as any).ro ?? {})['mi'] ?? 0) + (1);
@@ -825,7 +829,7 @@ function enterReorderMenuBar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneralOptions(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_st_td ?? {})['cell'] = '<td align="center" valign="middle" bgcolor="' + qspUntranslated(s, "theme_hex['table_bg_alt']>", { location: "stat_display_menu" }) + '" style="border:1px solid <<$theme_hex[\'goth\']>>; background-color: <<$theme_hex[\'table_bg_alt\']>>; padding:5px; text-align:center; vertical-align:middle;">';
+  // TODO-QSP: $temp_st_td['cell'] = '<td align="center" valign="middle" bgcolor="<<$theme_hex[''table_bg_alt'']>>" style="border:1px solid <<$theme_hex[''goth'']>>; background-color: <<$theme_hex[''table_bg_alt'']>>; padding:5px; text-align:center; vertical-align:middle;">'
   // TODO-QSP: $result +=  '<colgroup>'
   // TODO-QSP: $result +=    '<col width="32%">'
   // TODO-QSP: $result +=    '<col width="32%">'
@@ -951,7 +955,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGeneralOptions(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

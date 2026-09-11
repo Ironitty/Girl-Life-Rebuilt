@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChrisSub(s: GameState, scene: SceneBuilder): void {
   ((s as any).socialchg ?? {})['tChristina_day'] = ((s as any).daystart ?? 0);
   if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
@@ -252,7 +256,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('After your gym class you go to the locker room with the rest of the girls. Christina theatrically moves over to you, and the eyes of all the girls in the locker room are on you now.');
@@ -749,7 +753,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   if (((s as any).christinaQW ?? 0)?.['subpath'] === 3) {
     ((s as any).christinaQW ?? {})['subpath'] = 4;
@@ -848,7 +852,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter14(s, scene);
       break;
     case 'default':
-      enterDefault2(s, scene);
+      enterDefault3(s, scene);
       break;
     case 'finished':
       enterFinished(s, scene);
@@ -866,6 +870,5 @@ export const Zvereva_sub_1: LocationDef = {
   name: 'Zvereva_sub_1',
   title: '"Hey Christina, can I talk to you about something?"',
   region: 'other',
-  description: ['"Hey Christina, can I talk to you about something?"'],
   enter: enter,
 };

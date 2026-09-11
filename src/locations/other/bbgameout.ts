@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).bbpickupDay = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1942,7 +1946,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEndGame(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1951,6 +1955,5 @@ export const bbgameout: LocationDef = {
   name: 'bbgameout',
   title: 'Walking next to the school yard, you notice that most of the',
   region: 'other',
-  description: ['Walking next to the school yard, you notice that most of the jocks have gathered and look like they\'re going to play some basketball. A few of them acknowledge you, but none of them wave you over.'],
   enter: enter,
 };

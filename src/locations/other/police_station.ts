@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'police_station', 'start');
   scene.text('<center><b>Police Station Entrance</b></center>');
@@ -935,7 +939,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterReturncell(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -944,6 +948,5 @@ export const police_station: LocationDef = {
   name: 'police_station',
   title: 'Police Station Entrance',
   region: 'other',
-  description: ['The St. Petersburg police station has definitely seen better days, but continues to stand the test of time. While not as large as other police stations, it still strikes fear into any criminal that passes through its doors.'],
   enter: enter,
 };

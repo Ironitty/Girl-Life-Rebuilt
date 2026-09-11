@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterIntro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/avatars/1.jpg');
@@ -1094,7 +1098,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDimka(s, scene);
       break;
     default:
-      enterIntro(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1103,6 +1107,5 @@ export const NikoEv: LocationDef = {
   name: 'NikoEv',
   title: 'Discord.',
   region: 'other',
-  description: ['You smile back at him. "Good. How was yours?"'],
   enter: enter,
 };

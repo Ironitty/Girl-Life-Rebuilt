@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) < 579) {
     // TODO-QSP: exit
@@ -1299,7 +1303,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoffeeHoleNightclubdateStrangers_1JobHubPorn(s, scene);
       break;
     default:
-      enterSetCoffeeHoleChats(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

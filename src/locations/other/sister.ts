@@ -4,6 +4,26 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).sisterAge = ((s as any).year ?? 0) - ((((s as any).npc_dob ?? {})?.['A33'] - (((s as any).npc_dob ?? {})?.['A33'] % 10000)) / 10000);
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/anya/sister\' + rand(1, 3) + \'.jpg');
+  // TODO-QSP: dynamic text: Your sister Anya is a little older than you at <<sisterAge>> years old. She grad...
+  scene.text(`Your sister Anya is a little older than you at ${((s as any).sisterAge ?? 0)} years old. She graduated from school but, much to your mother's disappointment, didn't go to the university and ended up working at Pavlovsk's local supermarket instead.`);
+  qspCall(s, 'sister_chat', 'checks');
+  if (((s as any).hour ?? 0) === 8  &&  ((s as any).week ?? 0) < 6) {
+    // TODO-QSP: dynamic text: Goddamn it, <<$pcs_nickname>>! I'll be late for work because of you!
+    scene.text(`Goddamn it, ${((s as any).pcs_nickname ?? 0)}! I'll be late for work because of you!`);
+    return;
+    scene.actions([
+      { label: 'Apologize and let her get ready', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  }
+  scene.build();
+}
+
 function enterPavCommcenter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sisboyparty_day ?? 0) + 1 === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 18  &&  ((s as any).sisboypartyQW ?? 0) === 1) {
     if (((s as any).sisboyparty ?? 0) === 1) {
@@ -680,7 +700,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterScene2(s, scene);
       break;
     default:
-      enterPavCommcenter(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -689,6 +709,5 @@ export const sister: LocationDef = {
   name: 'sister',
   title: 'Anya',
   region: 'other',
-  description: ['"What do you want? Fuck off!" Anya and her friends point and laugh at you until you leave them alone.'],
   enter: enter,
 };

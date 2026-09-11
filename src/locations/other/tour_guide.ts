@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterApplyForJob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'tour_guide', 'tourstart');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -607,7 +611,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAfterSpank(s, scene);
       break;
     default:
-      enterApplyForJob(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -617,6 +621,5 @@ export const tour_guide: LocationDef = {
   title: 'You see an ad posted in the park for summer only tour guides',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You see an ad posted in the park for summer only tour guides needed and decide to inquire about it at an office outside the old Imperial Palace.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterShowSms(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $SMSMessage[SMSSelfieVars['SMSIndex']] = $SMSSelfieVars['text']
   // TODO-QSP: $SMSReplies[SMSSelfieVars['SMSIndex']] = ''
@@ -46,7 +50,7 @@ function enterSelfieMenu(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSSelfieVars ?? {})['text'] = '<table width=80%><th>Selfies</th><tr><td>';
   ((s as any).SMSSelfieVars ?? {})['i'] = 0;
   // TODO-QSP: :LocationLoop
-  ((s as any).SMSSelfieVars ?? {})['text'] = (((s as any).SMSSelfieVars ?? {})['text'] ?? 0) + ('<a href="exec: gs \'SMS_selfies\', \'showlocation\', ' + qspUntranslated(s, "SMSSelfieVars['i']>", { location: "SMS_selfies" }) + '"><<$selfieLocDesc[SMSSelfieVars[\'i\']]>> selfies</a>');
+  // TODO-QSP: $SMSSelfieVars['text'] += '<a href="exec: gs ''SMS_selfies'', ''showlocation'', <<SMSSelfieVars[''i'']>>"><<$selfieLocDesc[SMSSelfieVars[''i'']]>> selfies</a>'
   ((s as any).SMSSelfieVars ?? {})['text'] = (((s as any).SMSSelfieVars ?? {})['text'] ?? 0) + ('</tr></td><tr><td>');
   ((s as any).SMSSelfieVars ?? {})['i'] = (((s as any).SMSSelfieVars ?? {})['i'] ?? 0) + (1);
   if (((s as any).SMSSelfieVars ?? 0)?.['i'] < Object.keys((s as any).selfieLoc ?? {}).length) {
@@ -356,7 +360,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRetrieveClothedSelfies(s, scene);
       break;
     default:
-      enterShowSms(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBuild(s: GameState, scene: SceneBuilder): void {
   if (((s as any)._hc_un ?? 0) !== '') {
   } else {
@@ -1634,7 +1638,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCharBronya(s, scene);
       break;
     default:
-      enterBuild(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

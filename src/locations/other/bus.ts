@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetBusImage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 17) {
@@ -122,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCommunity(s, scene);
       break;
     default:
-      enterGetBusImage(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

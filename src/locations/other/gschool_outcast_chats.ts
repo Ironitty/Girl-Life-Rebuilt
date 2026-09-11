@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLesco(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A7', 'like');
   qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
@@ -625,7 +629,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFedor(s, scene);
       break;
     default:
-      enterLesco(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -634,6 +638,5 @@ export const gschool_outcast_chats: LocationDef = {
   name: 'gschool_outcast_chats',
   title: 'You see Lesco talking to Lera and, unsurprisingly, things lo',
   region: 'other',
-  description: ['You see Lesco talking to Lera and, unsurprisingly, things look tense. Knowing how volatile the gopnik can be, you approach them carefully. They greet you and Lesco is the first to speak up. "Lera and I were talking about her needing to do her chores at home, but she doesn\'t want to listen…"'],
   enter: enter,
 };

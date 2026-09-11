@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAnushka_3some1(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW ?? {})['nushart_oral'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some1.jpg');
@@ -1863,7 +1867,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNushBullyPayback4(s, scene);
       break;
     default:
-      enterAnushka_3some1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1872,6 +1876,5 @@ export const artem_nush_sex: LocationDef = {
   name: 'artem_nush_sex',
   title: 'He just nods and you talk about how things will go before yo',
   region: 'other',
-  description: ['He just nods and you talk about how things will go before your phone buzzes; it\'s a text from Anushka containing more emojis. Seeing this, Artem gets up and leaves the room, returning a few minutes later with Anushka in front of him. As he closes the door he reaches out and slaps her hard on the ass, causing her to jump, yepping slightly in surprise. She looks back to him and then looks back to you with a grin, as she moves over to sit next to you. After that he closes the door and locks it after she does. "Someone is feeling feisty today I see." She says.'],
   enter: enter,
 };

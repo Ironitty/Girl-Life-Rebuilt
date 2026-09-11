@@ -4,6 +4,18 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  if (((s as any).liftnotwork_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).liftnotwork_count = 1;
+  }
+  if (((s as any).mishahouse_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).mishahouse_count = 1;
+  }
+  (s as any).rnd_money_sex = Math.floor(Math.random() * 301) + 50;
+  scene.build();
+}
+
 function enterHousemates(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -324,7 +336,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPodObjava(s, scene);
       break;
     default:
-      enterHousemates(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -334,6 +346,5 @@ export const pav_complexb3: LocationDef = {
   title: 'Ground floor of the apartment building',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['Floor 1 - Apartment number 1: Rolan Matveev'],
   enter: enter,
 };

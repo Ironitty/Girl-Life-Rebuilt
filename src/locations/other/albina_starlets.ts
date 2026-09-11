@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAlbina1(s: GameState, scene: SceneBuilder): void {
   (s as any).numnpc = 23;
   qspCall(s, 'stat', '');
@@ -753,7 +757,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterQuit(s, scene);
       break;
     default:
-      enterAlbina1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -762,6 +766,5 @@ export const albina_starlets: LocationDef = {
   name: 'albina_starlets',
   title: 'At the end of the class, a few girls enter the dance studio,',
   region: 'other',
-  description: ['At the end of the class, a few girls enter the dance studio, including Albina Barlovskaya. You know nothing about her outside of her reputation as a stuck up rich bitch.'],
   enter: enter,
 };

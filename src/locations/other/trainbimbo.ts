@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPos1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -477,7 +481,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPos66(s, scene);
       break;
     default:
-      enterPos1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -486,6 +490,5 @@ export const trainbimbo: LocationDef = {
   name: 'trainbimbo',
   title: 'You are now standing in the middle of the station\'s men\'s ro',
   region: 'other',
-  description: ['You are now standing in the middle of the station\'s men\'s room in a rather revealing outfit. What are you thinking, or are you even thinking?'],
   enter: enter,
 };

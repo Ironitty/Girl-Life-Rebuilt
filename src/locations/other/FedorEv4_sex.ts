@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHallSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A5');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall2.jpg');
@@ -1981,7 +1985,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShower2(s, scene);
       break;
     default:
-      enterHallSex(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1990,6 +1994,5 @@ export const FedorEv4_sex: LocationDef = {
   name: 'FedorEv4_sex',
   title: '<<"Ivan Prokhorov">>',
   region: 'other',
-  description: ['Fedor licks his finger tips then he leans forward and begins kissing you as he reaches down between your legs and rubs your vagina. You spread your legs for him, giving him easier access. You continue to kiss Fedor while enjoying his finger tips on your clit until he eventually picks you up by your shoulders and then lightly pushes you against the wall then buries his head between your legs.'],
   enter: enter,
 };

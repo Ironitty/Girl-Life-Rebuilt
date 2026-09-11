@@ -6,6 +6,43 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).money ?? 0) >= 1000000000) {
+    (s as any).norm_temp = (((s as any).money ?? 0) - 950000000) / 1000000;
+    (s as any).money = ((s as any).money ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
+    (s as any).money_overflow = ((s as any).money_overflow ?? 0) + (((s as any).norm_temp ?? 0));
+  } else {
+    if (((s as any).money ?? 0) < 900000000  &&  ((s as any).money_overflow ?? 0) > 0) {
+      (s as any).norm_temp = Math.min(((s as any).money_overflow ?? 0), (950000000 - ((s as any).money ?? 0)) / 1000000);
+      (s as any).money = ((s as any).money ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
+      (s as any).money_overflow = ((s as any).money_overflow ?? 0) - (((s as any).norm_temp ?? 0));
+    }
+  }
+  if (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) >= 1000000000) {
+    (s as any).norm_temp = (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) - 950000000) / 1000000;
+    (s as any).karta = ((s as any).karta ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
+    (s as any).karta_overflow = ((s as any).karta_overflow ?? 0) + (((s as any).norm_temp ?? 0));
+  } else {
+    if (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) < 900000000  &&  ((s as any).karta_overflow ?? 0) > 0) {
+      (s as any).norm_temp = Math.min(((s as any).karta_overflow ?? 0), (950000000 - (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0))) / 1000000);
+      (s as any).karta = ((s as any).karta ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
+      (s as any).karta_overflow = ((s as any).karta_overflow ?? 0) - (((s as any).norm_temp ?? 0));
+    }
+  }
+  if (((s as any).stolmoney ?? 0) >= 1000000000) {
+    (s as any).norm_temp = (((s as any).stolmoney ?? 0) - 950000000) / 1000000;
+    (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
+    (s as any).stolmoney_overflow = ((s as any).stolmoney_overflow ?? 0) + (((s as any).norm_temp ?? 0));
+  } else {
+    if (((s as any).stolmoney ?? 0) < 900000000  &&  ((s as any).stolmoney_overflow ?? 0) > 0) {
+      (s as any).norm_temp = Math.min(((s as any).stolmoney_overflow ?? 0), (950000000 - ((s as any).stolmoney ?? 0)) / 1000000);
+      (s as any).stolmoney = ((s as any).stolmoney ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
+      (s as any).stolmoney_overflow = ((s as any).stolmoney_overflow ?? 0) - (((s as any).norm_temp ?? 0));
+    }
+  }
+  scene.build();
+}
+
 function enterBankTransfer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === 'to_bank') {
     (s as any).money = ((s as any).money ?? 0) - (qspUntranslated(s, "ARGS[1]", { location: "money" }));
@@ -704,7 +741,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGetDebtCostString(s, scene);
       break;
     default:
-      enterBankTransfer(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

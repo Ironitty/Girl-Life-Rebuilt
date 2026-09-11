@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     if (((s as any).week ?? 0) === 7) {
@@ -1737,7 +1741,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFillers(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1747,6 +1751,5 @@ export const pav_church: LocationDef = {
   title: 'Church of Saint Nikolas',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['The church of Saint Nikolas is the only church in Pavlovsk and the tallest building in town. It\'s very old, but is well maintained by the worshipers of the parish.'],
   enter: enter,
 };

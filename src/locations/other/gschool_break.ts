@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterWatercooler(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_break', 'watercooler');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1826,7 +1830,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNakedBathroomEnd(s, scene);
       break;
     default:
-      enterWatercooler(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1837,6 +1841,5 @@ export const gschool_break: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'school_bathroom',
-  description: ['You stop at the water cooler to get a drink. Several nearby students are gossiping with each other about a variety of topics.'],
   enter: enter,
 };

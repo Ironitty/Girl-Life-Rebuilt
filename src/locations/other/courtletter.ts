@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).policeQW_courtletter_dates ?? {}).length > 0  &&  ((s as any).daystart ?? 0) >= ((s as any).policeQW_courtletter_dates ?? 0)[0]) {
     scene.actions([{ label: 'Continue', goto: ['courtletter', 'letter'] }]);
   }

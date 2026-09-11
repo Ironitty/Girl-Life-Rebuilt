@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_tot_booked_pav = ((s as any).policeQW ?? {})?.['shoplift_booked_pav'] + ((s as any).policeQW ?? {})?.['prostitution_booked_pav'];
+  scene.build();
+}
+
 function enterStationOutside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/police/pavext.jpg');
@@ -1239,7 +1244,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRapeReport(s, scene);
       break;
     default:
-      enterStationOutside(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1249,6 +1254,5 @@ export const pav_station: LocationDef = {
   title: 'Reception area',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['The police station is gleaming in a bright yellow color, clearly making it clear that it can\'t be missed by anyone.'],
   enter: enter,
 };

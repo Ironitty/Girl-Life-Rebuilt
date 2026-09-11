@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -420,7 +424,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWalk(s, scene);
       break;
     default:
-      enterHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -431,6 +435,5 @@ export const kotovdom: LocationDef = {
   region: 'other',
   locationType: 'event',
   locclass: 'bedr',
-  description: ['You walk to Vitek\'s house. You approach a rather decrepit house, there is some junk piled up in front of it. The paint is peeling off it, there is an old Lada parked next to the house.'],
   enter: enter,
 };

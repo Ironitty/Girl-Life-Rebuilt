@@ -142,7 +142,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).FSdick ?? 0) > 0) {
-    ((s as any).FSdick ?? {})['text'] = '' + qspUntranslated(s, "dicktipe['text']>", { location: "FSstat" }) + ' long dick <<FSdick>>';
+    // TODO-QSP: $FSdick['text'] = '<<$dicktipe[''text'']>> long dick <<FSdick>>'
   } else {
     ((s as any).FSdick ?? {})['text'] = '';
   }
@@ -202,7 +202,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FSpers ?? 0) <= 0) {
     ((s as any).FSpers ?? {})['text'] = 'You have no character';
   } else {
-    ((s as any).FSpers ?? {})['text'] = '' + qspUntranslated(s, "FSname['text']>", { location: "FSstat" }) + '. <<$FSfemin[\'text\']>> <<$FSface[\'text\']>> <<$FScolor[\'text\']>> <<$FSfigur[\'text\']>> <<$FStits[\'text\']>> <<$FSskin[\'text\']>> <<$FShvost[\'text\']>> <<$FSdick[\'text\']>> <<$FSvagina[\'text\']>>';
+    // TODO-QSP: $FSpers['text'] = '<<$FSname[''text'']>>. <<$FSfemin[''text'']>> <<$FSface[''text'']>> <<$FScolor[''text'']>> <<$FSfigur[''text'']>> <<$FStits[''text'']>> <<$FSskin[''text'']>> <<$FShvost[''text'']>> <<$FSdick[''text'']>> <<$FSvagina[''text'']>>'
   }
   // TODO-QSP: dynamic text: Level <<FSlvl>>, exp <<FSexp>>, need for next level <<FSneedExp>> exp
   scene.text(`Level ${((s as any).FSlvl ?? 0)}, exp ${((s as any).FSexp ?? 0)}, need for next level ${((s as any).FSneedExp ?? 0)} exp`);

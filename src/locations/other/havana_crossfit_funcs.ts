@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetupWod(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Fran', 120, 600, 'for_time', 'pullup');
   qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Nancy', 600, 1200, 'for_time', 'ohs');
@@ -156,7 +160,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBoxRecords(s, scene);
       break;
     default:
-      enterSetupWod(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

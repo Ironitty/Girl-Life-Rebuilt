@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSolarium(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -130,7 +134,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMarketGrope(s, scene);
       break;
     default:
-      enterSolarium(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -139,6 +143,5 @@ export const ETO_salon: LocationDef = {
   name: 'ETO_salon',
   title: 'You walk into the room with the solarium. The room is quiet ',
   region: 'other',
-  description: ['You walk into the room with the solarium. The room is quiet with dim lighting, and it seems like there is nobody here except for the administrator. You look at the door.'],
   enter: enter,
 };

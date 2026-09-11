@@ -6,6 +6,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  return;
+  scene.build();
+}
+
 function enterGetWardrobeListHeader(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result +=    '<th></th>'
   // TODO-QSP: $result +=    '<th>Strength</th>'
@@ -1680,7 +1685,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStorageOptions(s, scene);
       break;
     default:
-      enterGetWardrobeListHeader(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

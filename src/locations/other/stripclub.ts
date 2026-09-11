@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1751,7 +1755,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSetGirl(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1760,6 +1764,5 @@ export const stripclub: LocationDef = {
   name: 'stripclub',
   title: 'Strip Club',
   region: 'other',
-  description: ['The strip club is closing, and the security guards are ushering everyone out.'],
   enter: enter,
 };

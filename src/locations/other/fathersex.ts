@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFatherblow1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_throat ?? 0) < ((s as any).dick ?? 0)) {
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -712,7 +716,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFatherSexAct2(s, scene);
       break;
     default:
-      enterFatherblow1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

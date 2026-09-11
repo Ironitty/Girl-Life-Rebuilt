@@ -5,6 +5,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/bar/martintalk.jpg');
   if ((!((s as any).MartinTalkVar ?? 0))) {
     (s as any).MartinTalkVar = 1;
@@ -898,6 +904,5 @@ export const MartinTalk: LocationDef = {
   title: '"Thanks, Martin", you say and give him a friendly smile. "Do',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['"Thanks, Martin", you say and give him a friendly smile. "Do you mind if I ask you a question?"'],
   enter: enter,
 };

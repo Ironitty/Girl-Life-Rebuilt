@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDFbdStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -526,7 +530,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDFbdThreesome(s, scene);
       break;
     default:
-      enterDFbdStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -535,6 +539,5 @@ export const fbDormD: LocationDef = {
   name: 'fbDormD',
   title: 'In the hallway, you\'re stopped by an older lady. You can onl',
   region: 'other',
-  description: ['In the hallway, you\'re stopped by an older lady. You can only guess she\'s the caretaker for the building.'],
   enter: enter,
 };

@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTeachers(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="3">');
   (s as any).i = 1;
@@ -155,7 +159,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOutcasts(s, scene);
       break;
     default:
-      enterTeachers(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nerd_game ?? 0)?.['fixed_uni_day'] === ((s as any).week ?? 0)) {
     ((s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0);
@@ -1777,9 +1781,9 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
     ((s as any).nerd_game ?? {})['lot'] = qspFunc(s, 'random', 'pick_from', 12, 13, 14, 23, 24, 34);
   }
   if (((s as any).nerd_game ?? 0)?.['first_SMS_received'] === 0) {
-    ((s as any).SMSTree ?? {})['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ' this is Feofan. We do a weekly game night, mostly playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you would like to join us? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[\'lot\'],1,1))]>> or <<$weekName[val(mid(nerd_game[\'lot\'],2,1))]>>.';
+    // TODO-QSP: $SMSTree['0'] = 'Hey <<$pcs_nickname>> this is Feofan. We do a weekly game night, mostly playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you would like to join us? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[''lot''],1,1))]>> or <<$weekName[val(mid(nerd_game[''lot''],2,1))]>>.'
   } else {
-    ((s as any).SMSTree ?? {})['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ', would you like to join us for our weekly game night? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[\'lot\'],1,1))]>> or <<$weekName[val(mid(nerd_game[\'lot\'],2,1))]>>.';
+    // TODO-QSP: $SMSTree['0'] = 'Hey <<$pcs_nickname>>, would you like to join us for our weekly game night? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[''lot''],1,1))]>> or <<$weekName[val(mid(nerd_game[''lot''],2,1))]>>.'
   }
   ((s as any).SMSTree ?? {})['ca1'] = '' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + '';
   ((s as any).SMSTree ?? {})['a1'] = 'Sure, I can make it on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + '.';
@@ -2176,7 +2180,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCrashGamenightUni(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

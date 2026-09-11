@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGeneralDescription(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute ?? 0)?.['customer_total'] > 9) {
     // TODO-QSP: 'A blowjob, anal oder vaginal scene can consist of up to three or only one small scene. Currently th...
@@ -944,7 +948,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMoney(s, scene);
       break;
     default:
-      enterGeneralDescription(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -953,6 +957,5 @@ export const prostitution_car_negotiation: LocationDef = {
   name: 'prostitution_car_negotiation',
   title: 'The start and end scene (getting your money, leaving the car',
   region: 'other',
-  description: ['The start and end scene (getting your money, leaving the car, talking to a regular, …) can either be shown or skipped automatically.'],
   enter: enter,
 };

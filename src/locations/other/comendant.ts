@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPos1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
@@ -67,7 +71,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPos3(s, scene);
       break;
     default:
-      enterPos1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -76,6 +80,5 @@ export const comendant: LocationDef = {
   name: 'comendant',
   title: 'Hostel owner',
   region: 'other',
-  description: ['You see a man standing at the counter doing some work. He\'s the owner and is very friendly.'],
   enter: enter,
 };

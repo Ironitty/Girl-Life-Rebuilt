@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMiraApologise(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).gadboyday = ((s as any).daystart ?? 0);
@@ -1183,7 +1187,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSound(s, scene);
       break;
     default:
-      enterMiraApologise(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1192,6 +1196,5 @@ export const gadukino_event: LocationDef = {
   name: 'gadukino_event',
   title: 'Mitka Pin',
   region: 'gadukino',
-  description: ['Walking through the village, you hear someone catching up to you. Turning around, you see Mira nearing you.'],
   enter: enter,
 };

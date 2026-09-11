@@ -4,6 +4,39 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: If $ARGS[0] = 'home_work_ask_player_katja':
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big14.jpg');
+  scene.text('"Why don\'t we ask Artem to study with us today? I will be willoing to share him with you afterwards!" you ask Katja.');
+  if (((s as any).katjaQW ?? 0)?.['horny'] < 30) {
+    scene.text('"We can go do out homework with him. But I\'m not up for any funny business with him today" Katja answers.');
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 31) + 30)) {
+      scene.text('"Sure, but I don\'t think I\'m up for anything more than just doing homework" Katja answers.');
+    } else {
+      scene.text('"Sure, we had fun last time, so let\'s do our homework together and see what else happens" Katja answers.');
+    }
+  }
+  scene.actions([
+    { label: 'Go ask Artem', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'npc_relationship', 'modify', 'A2', 'live');
+    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big2.jpg');
+    scene.text('you walk over to Artem standing on the other side of the school courtyard. When he sees you and Katja he smiles and says "what can I do for the two of you?"');
+    scene.text('"We where wondering if you want to do your homework with the two of us today?" you ask, while Katja nods in agreement.');
+    scene.text('"Sure, we had fun last time, let\'s go" Artem answers, "okay, let\'s go to my house, nobody else is home right now" Katja says.');
+    scene.actions([
+      { label: 'Walk to the Meynold\'s home', goto: ['artem_katja_sex', 'home_work'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
 function enterGoingHomeTogether(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('You walk across the school courtyard to meet up with Artem, who gives you a friendly nod as you approach. "You ready to go?"');
@@ -1261,7 +1294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHomeWorkAskKatjaNoArtem(s, scene);
       break;
     default:
-      enterGoingHomeTogether(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1270,6 +1303,6 @@ export const artem_katja_sex: LocationDef = {
   name: 'artem_katja_sex',
   title: 'You walk across the school courtyard to meet up with Artem, ',
   region: 'other',
-  description: ['You walk across the school courtyard to meet up with Artem, who gives you a friendly nod as you approach. "You ready to go?"'],
+  description: ['"Why don\'t we ask Artem to study with us today? I will be willoing to share him with you afterwards!" you ask Katja.'],
   enter: enter,
 };

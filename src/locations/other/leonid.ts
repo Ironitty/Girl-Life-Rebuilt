@@ -4,6 +4,20 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A160');
+  (s as any).lustPool = 100;
+  if (((s as any).leonidInFavour ?? 0) < -5) {
+  } else {
+    if (((s as any).leonidInFavour ?? 0) >= -5  &&  ((s as any).leonidInFavour ?? 0) <= 5) {
+    } else {
+      if (((s as any).leonidInFavour ?? 0) > 5) {
+      }
+    }
+  }
+  scene.build();
+}
+
 function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   (s as any).leonidSlave = 1;
@@ -1262,7 +1276,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOnMiss(s, scene);
       break;
     default:
-      enterFirstTime(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1273,6 +1287,5 @@ export const leonid: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'kitr',
-  description: ['"Then let me explain. I love my wife, but I have certain needs. I have neglected myself for a long time now, and things got even worse. When I got the opportunity, I got in touch with the \'Haulers\'. You know them, those are the people that abducted you and made you a what you are now."'],
   enter: enter,
 };

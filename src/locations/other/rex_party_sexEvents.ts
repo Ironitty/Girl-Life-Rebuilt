@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'boys') {
     scene.text('<center><b>Ira and Lena</b></center>');
@@ -1715,7 +1719,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterToiletMast(s, scene);
       break;
     default:
-      enterIraLenaFun(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1724,6 +1728,5 @@ export const rex_party_sexEvents: LocationDef = {
   name: 'rex_party_sexEvents',
   title: 'Ira and Lena',
   region: 'other',
-  description: ['Music pumping puts you in the mood of fierce desire to have fun with Lena and Ira. Dancing with them, you start pulling their clothes off and they follow suit, taking your clothes off until all three of you are half naked just wearing your underwear.'],
   enter: enter,
 };

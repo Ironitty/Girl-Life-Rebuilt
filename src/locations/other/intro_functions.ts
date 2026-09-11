@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterResetAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_traits');
   qspCall(s, 'intro_functions', 'reset_body');
@@ -351,7 +355,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSetDefault(s, scene);
       break;
     default:
-      enterResetAll(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

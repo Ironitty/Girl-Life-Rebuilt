@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_musicstore', '');
   qspCall(s, 'stat', '');
   if ((!((s as any).ml_musicstorevisited ?? 0))) {
@@ -263,6 +267,5 @@ export const city_musicstore: LocationDef = {
   title: 'You enter the store, welcomed by the familiar mix of random ',
   region: 'city',
   locationType: 'public_indoors',
-  description: ['You enter the store, welcomed by the familiar mix of random notes and bits of songs screaming from the back.'],
   enter: enter,
 };

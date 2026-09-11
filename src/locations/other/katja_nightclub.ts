@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetWillpower(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['dom'] < 0) {
     qspCall(s, 'willpower', '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'easy');
@@ -2185,7 +2189,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDanceTwoGirls3(s, scene);
       break;
     default:
-      enterSetWillpower(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

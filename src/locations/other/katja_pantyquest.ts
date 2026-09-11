@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW ?? {})['kitchen_day'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1022,7 +1026,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoffeeHoleAfter(s, scene);
       break;
     default:
-      enterKitchen(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1031,6 +1035,5 @@ export const katja_pantyquest: LocationDef = {
   name: 'katja_pantyquest',
   title: '"I\'m just waiting for my food to finish cooking," she says, ',
   region: 'other',
-  description: ['"I\'m just waiting for my food to finish cooking," she says, pointing at the oven.'],
   enter: enter,
 };

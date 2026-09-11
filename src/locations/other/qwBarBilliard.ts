@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
 function enterBilliardEngine(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_pool ?? 0) < 10) {
     (s as any).billwin = Math.floor(Math.random() * 11) + 0;
@@ -637,7 +642,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBilliardMoney(s, scene);
       break;
     default:
-      enterBilliardEngine(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

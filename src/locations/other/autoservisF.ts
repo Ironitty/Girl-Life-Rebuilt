@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'autoservisF', 'start');
   qspCall(s, 'stat', '');
@@ -118,7 +122,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterIsOpen(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -128,6 +132,5 @@ export const autoservisF: LocationDef = {
   title: '<center><b>Car Service Center</b></center>',
   region: 'other',
   locationType: 'event',
-  description: ['The foreman sighs. "Where is your car, girl? I need to look at your car to see if and what is wrong with it. Bring your car, and I\'ll examine it."'],
   enter: enter,
 };

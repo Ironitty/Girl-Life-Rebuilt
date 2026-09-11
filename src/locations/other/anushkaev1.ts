@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStrapon1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
@@ -2153,7 +2157,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCouchStraponGet(s, scene);
       break;
     default:
-      enterStrapon1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2162,6 +2166,5 @@ export const anushkaev1: LocationDef = {
   name: 'anushkaev1',
   title: 'Living room',
   region: 'other',
-  description: ['You pull out the strap-on harness and hold it up. "Yeah, I like this… I\'m going to use it to fuck you like the little slut you are."'],
   enter: enter,
 };

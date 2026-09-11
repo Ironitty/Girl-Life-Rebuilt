@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEntrance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'igorhome', 'entrance');
   qspCall(s, 'stat', '');
@@ -1586,7 +1590,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHome2(s, scene);
       break;
     default:
-      enterEntrance(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1597,6 +1601,5 @@ export const igorhome: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'bedr',
-  description: ['Fedor\'s eyes narrow and he looks at you as well. "Are you cheating on me?!"'],
   enter: enter,
 };

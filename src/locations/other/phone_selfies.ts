@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPhoneSelfieTotals(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $selfieLoc[0] = 'misc'
   // TODO-QSP: $selfieLocDesc[0] = 'Me'
@@ -724,7 +728,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRetrieveClothedSelfies(s, scene);
       break;
     default:
-      enterPhoneSelfieTotals(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -1,10 +1,17 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'gad_backwater', '');
+  qspCall(s, 'gadukino_event', 'sound');
+  (s as any).clothesAtLocation = qspFunc(s, 'clothing', 'lost_clothes_here', 'gad_backwater');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['Rape'] === 2) {
     scene.img('images/locations/gadukino/sex/hunter/backwaterrelax.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart1(s: GameState, scene: SceneBuilder): void {
   (s as any).horand = (Math.floor(Math.random() * 100) + 1)+ 40;
   qspCall(s, 'dinSex', 'std_trigger_oral');
@@ -330,7 +334,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterToiletsex(s, scene);
       break;
     default:
-      enterStart1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -339,6 +343,5 @@ export const LCwork: LocationDef = {
   name: 'LCwork',
   title: 'You walk up to the group of men and give them a friendly smi',
   region: 'other',
-  description: ['You walk up to the group of men and give them a friendly smile as you say: "Good evening, sirs. I will be your waitress tonight."'],
   enter: enter,
 };

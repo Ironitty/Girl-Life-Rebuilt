@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Alley entrance next to cafe</b></center>');
   scene.img('images/locations/city/residential/street/gopnews.jpg');
@@ -1747,7 +1751,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFightLost(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1756,6 +1760,5 @@ export const gopnew: LocationDef = {
   name: 'gopnew',
   title: '(Succubus)',
   region: 'other',
-  description: ['You walk around the cafe going into a back alley, where you see several guys. They did their best to look like Gopniks, wearing the stereotypical track suits. They mostly just seem to be loitering about, drinking beer and harassing people passing by their alley. You\'re certain none of these guys have jobs, and mostly live off the spoils they gain from their petty crime.'],
   enter: enter,
 };

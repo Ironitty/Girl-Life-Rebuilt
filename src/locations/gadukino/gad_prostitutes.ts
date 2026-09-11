@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_prostitutes', 'start');
   qspCall(s, 'schedule', 'A60');
@@ -332,7 +336,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEventCheck(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -342,6 +346,5 @@ export const gad_prostitutes: LocationDef = {
   title: '<center><h4>Main Road near Gadukino</h4></center>',
   region: 'gadukino',
   locationType: 'public_outdoors',
-  description: ['You look around for Mira but don\'t see her here. So she must be doing something else right now.'],
   enter: enter,
 };

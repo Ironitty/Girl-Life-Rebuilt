@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFame(s: GameState, scene: SceneBuilder): void {
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + ((Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0))/2);
   // TODO-QSP: :reroll_1
@@ -3027,7 +3031,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWet2(s, scene);
       break;
     default:
-      enterFame(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

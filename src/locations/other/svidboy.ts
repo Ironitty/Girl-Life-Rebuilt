@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKinosvid(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -599,7 +603,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKafesvid(s, scene);
       break;
     default:
-      enterKinosvid(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

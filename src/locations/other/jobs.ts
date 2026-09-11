@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetEmployed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'employed') {
     return;
@@ -1054,7 +1058,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).firstkasting ?? 0) > 0  &&  ((s as any).pfilmNO ?? 0) < 1) {
     ((s as any).sd_cm ?? {})['pa_avail'] = ((s as any).job_booking_max_concurrent ?? {})?.['city_pornstudio_actress'] - ((s as any).job_bookings_active ?? {})?.['city_pornstudio_actress'];
     if (((s as any).sd_cm ?? 0)?.['pa_avail'] > 0) {
-      ((s as any).stat_texts ?? {})['porn_acting_avail'] = 'You can contract ' + ((((s as any).sd_cm ?? 0)?.['pa_avail'] === 1) ? ('1 more') : ('up to ' + String(((s as any).sd_cm ?? 0)?.['pa_avail']))) + ' porn shoot<<iif(sd_cm[\'pa_avail\'] > 1, \'s\', \'\')>> at the Porn Studio.';
+      // TODO-QSP: $stat_texts['porn_acting_avail'] = 'You can contract <<iif(sd_cm[''pa_avail''] = 1, ''1 more'', ''up to '' + $str(sd_cm[''pa_avail'']))>> porn shoot<<iif(sd_cm[''pa_avail''] > 1, ''s'', '''')>> at the Porn Studio.'
       qspCall(s, 'stat_display_compute', 'queue_msg', 'porn_acting_avail');
     }
   }
@@ -1747,7 +1751,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShowAll(s, scene);
       break;
     default:
-      enterSetEmployed(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -6,6 +6,16 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).telefon ?? {})['SMS'] = '$result = $func(\'telefon\', \'get_sms_row\', ARGS[0], $ARGS[1], $ARGS[2], $ARGS[3], ARGS[4])';
+  ((s as any).telefon ?? {})['contactsms'] = '$result = $func(\'telefon\', \'get_contactsms_row\', ARGS[0])';
+  ((s as any).telefon ?? {})['smsMessageToSend'] = '$result = $func(\'telefon\', \'get_sms_send_row\', ARGS[0])';
+  ((s as any).telefon ?? {})['print'] = 'gs \'telefon\', \'display\', iif(ARGS[0]=0, $ARGS[0], ARGS[0])';
+  ((s as any).telefon ?? {})['header'] = '$result = $func(\'telefon\', \'get_header_string\')';
+  ((s as any).telefon ?? {})['footer'] = '$result = $func(\'telefon\', \'get_footer_string\')';
+  scene.build();
+}
+
 function enterAddContact(s: GameState, scene: SceneBuilder): void {
   ((s as any).telefonCon ?? {})['NPC'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).telefonCon ?? {})['Icon'] = ((s as any).locArgs?.[2] ?? 0);
@@ -313,7 +323,7 @@ function enterShowSms(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <font size=6>SMS</font><br>
   // TODO-QSP: <img height="80" width="80" src="images/system/phone/theme/<<$phonetheme_name[pcs_phonetheme]>>/<<ii...
   ((s as any).telefon ?? {})['body'] = (((s as any).telefon ?? {})['body'] ?? 0) + ('<table cellspacing="0" width="80%">');
-  ((s as any).telefon ?? {})['body'] = (((s as any).telefon ?? {})['body'] ?? 0) + ('<tr><table><tr><td align="right" valign="middle"><img height=100 src="' + qspUntranslated(s, "telefonCon['Icon']>", { location: "telefon" }) + '"></td><td valign="middle"><<$telefonCon[\'NPCName\']>></td></tr></table></tr>');
+  // TODO-QSP: $telefon['body'] += '<tr><table><tr><td align="right" valign="middle"><img height=100 src="<<$telefonCon[''Icon'']>>"></td><td valign="middle"><<$telefonCon[''NPCName'']>></td></tr></table></tr>'
   ((s as any).telefon ?? {})['body'] = (((s as any).telefon ?? {})['body'] ?? 0) + ('<tr><td>' + qspUntranslated(s, "SMSMessage[telefon['SMSIndex']]>", { location: "telefon" }) + '</td></tr>');
   if (((s as any).SMSReplies ?? 0)[((s as any).telefon ?? 0)?.['SMSIndex']] !== '') {
     ((s as any).telefon ?? {})['body'] = (((s as any).telefon ?? {})['body'] ?? 0) + ('<tr><th> </th></tr>');
@@ -793,7 +803,7 @@ function enterPhoneNotebook(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).calendarday ?? 0) !== '') {
-    ((s as any).telefon ?? {})['body'] = (((s as any).telefon ?? {})['body'] ?? 0) + ('<b>' + qspUntranslated(s, "monthName[m1]>", { location: "telefon" }) + ' <<d1>>, <<$weekName[w1]>>:</b>');
+    // TODO-QSP: $telefon['body'] += '<b><<$monthName[m1]>> <<d1>>, <<$weekName[w1]>>:</b>'
     ((s as any).telefon ?? {})['body'] = (((s as any).telefon ?? {})['body'] ?? 0) + (((s as any).calendarday ?? 0) +'<br>');
   }
   if (((s as any).i ?? 0) < 14) {
@@ -1166,7 +1176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEdit_CustomList(s, scene);
       break;
     default:
-      enterAddContact(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

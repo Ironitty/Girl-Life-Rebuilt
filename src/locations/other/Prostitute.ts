@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -740,7 +744,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWork2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -750,6 +754,5 @@ export const Prostitute: LocationDef = {
   title: 'Road near the park, among prostitutes',
   region: 'other',
   locationType: 'event_outdoors',
-  description: ['Several prostitutes are looking at you a bit awkwardly, remembering the beating you gave their friend all too well. They still don\'t want you here, but they\'re too scared to confront you directly.'],
   enter: enter,
 };

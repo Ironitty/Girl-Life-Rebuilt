@@ -4,6 +4,66 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).roll_3d = Math.floor(Math.random() * 3) + 1;
+  (s as any).roll_2d = Math.floor(Math.random() * 2) + 1;
+  if (((s as any).dick ?? 0) <= 8) {
+    if (((s as any).roll_3d ?? 0) === 1) {
+    }
+    if (((s as any).roll_3d ?? 0) === 2) {
+    }
+    if (((s as any).roll_3d ?? 0) === 3) {
+    }
+  } else {
+    if (((s as any).dick ?? 0) <= 11) {
+      if (((s as any).roll_2d ?? 0) === 1) {
+      }
+      if (((s as any).roll_2d ?? 0) === 2) {
+      }
+    } else {
+      if (((s as any).dick ?? 0) <= 14) {
+        if (((s as any).roll_3d ?? 0) === 1) {
+        }
+        if (((s as any).roll_3d ?? 0) === 2) {
+        }
+        if (((s as any).roll_3d ?? 0) === 3) {
+        }
+      } else {
+        if (((s as any).dick ?? 0) <= 17) {
+          if (((s as any).roll_2d ?? 0) === 1) {
+          }
+          if (((s as any).roll_2d ?? 0) === 2) {
+          }
+        } else {
+          if (((s as any).dick ?? 0) <= 20) {
+            if (((s as any).roll_2d ?? 0) === 1) {
+            }
+            if (((s as any).roll_2d ?? 0) === 2) {
+            }
+          } else {
+            if (((s as any).dick ?? 0) <= 23) {
+              if (((s as any).roll_2d ?? 0) === 1) {
+              }
+              if (((s as any).roll_2d ?? 0) === 2) {
+              }
+            } else {
+              if (((s as any).dick ?? 0) >= 24) {
+                if (((s as any).roll_3d ?? 0) === 1) {
+                }
+                if (((s as any).roll_3d ?? 0) === 2) {
+                }
+                if (((s as any).roll_3d ?? 0) === 3) {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
 function enterStdTrigger(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['std'] === 1  ||  (Math.floor(Math.random() * (((s as any).pcs_health ?? 0) - ((s as any).pcs_health ?? 0)/10 + 1)) + (((s as any).pcs_health ?? 0)/10)) > 600) {
     // TODO-QSP: exit
@@ -317,7 +377,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBoyPutsCondom(s, scene);
       break;
     default:
-      enterStdTrigger(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

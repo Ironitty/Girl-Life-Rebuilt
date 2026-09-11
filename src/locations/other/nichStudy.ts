@@ -4,7 +4,15 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).sexpartkno = 1;
+  qspCall(s, 'boyStat', 'A52');
+  qspCall(s, 'boyStat', 'A161', 'a');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichGentleclubDayE1 ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).nichGentleclubE1 ?? 0) === 1  &&  ((s as any).hour ?? 0) * 100 + ((s as any).minut ?? 0) >= 1745) {
     if (((s as any).hour ?? 0) * 100 + ((s as any).minut ?? 0) >= 2230) {
       scene.text('<font color = red>Nicholas asked you to attend him tonight but you are way too late.</font>');
@@ -127,10 +135,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const nichStudy: LocationDef = {
   name: 'nichStudy',
   title: '<font color = red>Nicholas asked you to attend him tonight b',
   region: 'other',
-  description: ['It wouldn\'t be appropriate to clean this room now.'],
   enter: enter,
 };

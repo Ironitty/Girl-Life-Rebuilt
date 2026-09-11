@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDressTalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['dress_talking_flag'] = 1;
   if (((s as any).sex_ev ?? 0)?.['plans_later_talk'] === 0  &&  ((((s as any).hour ?? 0) < 16  &&  ((s as any).hour ?? 0) > 4)  ||  ((s as any).sex_ev ?? 0)?.['sleepover'] === 1)) {
@@ -1632,7 +1636,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGrabThingsLeave(s, scene);
       break;
     default:
-      enterDressTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

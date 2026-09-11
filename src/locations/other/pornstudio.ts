@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pornstudio', '');
   qspCall(s, 'pornhist', 'short');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1210,6 +1214,5 @@ export const pornstudio: LocationDef = {
   title: 'You enter the studio and are greeted by a busy scene of acto',
   region: 'other',
   locationType: 'bathroom',
-  description: ['You enter the studio and are greeted by a busy scene of actors, actresses and other studio employees going about their business or chatting to each other. It looks like the manager is in his office.'],
   enter: enter,
 };

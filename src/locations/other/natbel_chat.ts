@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -1563,7 +1567,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBirthdayMissed(s, scene);
       break;
     default:
-      enterChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1572,6 +1576,5 @@ export const natbel_chat: LocationDef = {
   name: 'natbel_chat',
   title: 'Natasha\'s Room',
   region: 'other',
-  description: ['The two of you lay on her bed and talk about a variety of topics.'],
   enter: enter,
 };

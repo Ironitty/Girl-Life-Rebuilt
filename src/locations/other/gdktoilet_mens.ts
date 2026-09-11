@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp = Math.floor(Math.random() * 100) + 1;
@@ -744,7 +748,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMensglory(s, scene);
       break;
     default:
-      enterMensEntranceEvents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -754,6 +758,5 @@ export const gdktoilet_mens: LocationDef = {
   title: 'Community Center - Men\'s Restroom',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['It\'s unusually empty, but you see someone near the urinals.'],
   enter: enter,
 };

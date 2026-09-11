@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).mc_inventory ?? {})['newspaper'] = 0;
   qspCall(s, 'newspaper_pages', 'init');
@@ -77,7 +81,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterView(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

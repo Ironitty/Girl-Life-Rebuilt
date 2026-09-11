@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterEmily_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).emily ?? 0)?.['status'] === 2) {
     scene.actions([{ label: 'Continue', goto: ['foto_models2', 'emily_2'] }]);
@@ -1952,7 +1956,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNushPhotoshoot5(s, scene);
       break;
     default:
-      enterEmily_1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1961,6 +1965,5 @@ export const foto_models2: LocationDef = {
   name: 'foto_models2',
   title: 'Makeup Station',
   region: 'other',
-  description: ['You\'re walking through the studio when you hear someone shout from behind you.'],
   enter: enter,
 };

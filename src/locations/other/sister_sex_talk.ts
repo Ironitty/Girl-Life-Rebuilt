@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSexTalk1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (0);
@@ -819,7 +823,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSpitOrSwallow(s, scene);
       break;
     default:
-      enterSexTalk1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

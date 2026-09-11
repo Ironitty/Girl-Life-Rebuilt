@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'intro_initialization', 'init');
@@ -118,7 +122,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterQuickStart(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -127,6 +131,5 @@ export const intro_game_start: LocationDef = {
   name: 'intro_game_start',
   title: 'Welcome to the Schoolgirl version! You will need to carry on',
   region: 'other',
-  description: ['Welcome to the Schoolgirl version! You will need to carry on with your school life, manage your relationships and deal with whatever else comes up along the way!'],
   enter: enter,
 };

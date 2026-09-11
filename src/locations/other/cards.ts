@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterShellOpen(s: GameState, scene: SceneBuilder): void {
   (s as any).cs_icon_size = ((((s as any).card_in ?? 0)?.['icon_size'] > 0) ? (((s as any).card_in ?? 0)?.['icon_size']) : (48));
   (s as any).cs_col_w = ((s as any).cs_icon_size ?? 0) + 22;
@@ -84,7 +88,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSectionClose(s, scene);
       break;
     default:
-      enterShellOpen(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

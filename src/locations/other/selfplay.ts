@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).dildonumber ?? 0))) {
     (s as any).dildohand = 0;
@@ -2510,7 +2514,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStop(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2519,6 +2523,5 @@ export const selfplay: LocationDef = {
   name: 'selfplay',
   title: 'Are you sure? Doing so will most likely break your hymen.',
   region: 'other',
-  description: ['Anya smiles and lets you carry on.'],
   enter: enter,
 };

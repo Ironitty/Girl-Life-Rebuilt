@@ -4,6 +4,93 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'jobs', 'get_job_definition', 'pav_barbershop_cleaner');
+  if (((s as any).job_status ?? 0)?.['pav_barbershop_cleaner'] === '') {
+    scene.actions([
+      { label: 'Ask for work', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.text('You walk up to Mr. Syomin, the owner of the barbershop.');
+    scene.text('"Hello Mr. Syomin", you greet him.');
+    // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>! What can I do for you today?", he asks you in his usua...
+    scene.text(`"Hello ${((s as any).pcs_nickname ?? 0)}! What can I do for you today?", he asks you in his usual soothing voice.`);
+    scene.text('"I was wondering if you\'re looking for some help around here"');
+    scene.text('"Well, I don\'t think you have experience as a hairdresser…" He thinks for a second. "…, but my back isn\'t the best anymore, so I could use some help keeping the shop clean. It\'s not much work, but I\'d be happy if you could come in once a day for about an hour. Just come by, when you\'re done with school and when I\'m still open, obviously."');
+    scene.text('You smile cheerfully. "That sound great! What would I have to do?"');
+    scene.text('"Well," he says, while looking around and gathering tasks for you. "…, you\'d have to mop the floor here in the main room and the break room in the back as well. Take out all the trash, clean the breakroom kitchen, clean the mirrors, windows, chairs and toilet and of course dust the shelves. It might sound like a lot, but don\'t worry, even doing one thing, makes my life easier."');
+    scene.text('You think about it for a second, but you guess it won\'t be too bad and you could need any amount of money… "I… uhm… hate to ask, but how much would I earn per hour?"');
+    // TODO-QSP: dynamic text: "Ah yes," Mr. Syomin chuckles. "…, the most important question. Are you alright ...
+    scene.text(`"Ah yes," Mr. Syomin chuckles. "…, the most important question. Are you alright with ${qspFunc(s, 'money', 'string_profit', 125)} per hour?"`);
+    scene.actions([
+      { label: 'Accept the job', handler: (st: GameState) => {
+    scene.text('"That\'s great", you nod. "When can I start?"');
+    scene.text('"If you could come back tomorrow, that\'d be great."');
+    qspCall(s, 'jobs', 'set_employed', 'pav_barbershop_cleaner');
+    scene.actions([
+      { label: 'Leave', goto: ['barbershop', 'start'] },
+    ]);
+  } },
+      { label: 'Think about it', handler: (st: GameState) => {
+    scene.text('"I guess I\'ll think about it some more.", you answer.');
+    // TODO-QSP: dynamic text: "Sure <<$pcs_nickname>>, come back when you want to work."
+    scene.text(`"Sure ${((s as any).pcs_nickname ?? 0)}, come back when you want to work."`);
+    scene.actions([
+      { label: 'Leave', goto: ['barbershop', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).job_status ?? 0)?.['pav_barbershop_cleaner'] === 'employed') {
+      if (qspFunc(s, 'jobs', 'is_arrival_time', 'pav_barbershop_cleaner') === 1  &&  ((s as any).job_last_work_day ?? 0)?.['pav_barbershop_cleaner'] !== ((s as any).daystart ?? 0)) {
+        scene.actions([
+          { label: 'Clean the shop for <<$func(\'money\', \'string_profit\', 125)>> (1:00)', handler: (st: GameState) => {
+    qspCall(s, 'jobs', 'clock', 'pav_barbershop_cleaner');
+    qspCall(s, 'mood', 'lower', 'small');
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    // TODO-QSP: dynamic text: You work diligently and fast. You clean the floor, take out the trash, dust off ...
+    scene.text(`You work diligently and fast. You clean the floor, take out the trash, dust off the shelves and wipe some mirrors and windows. Before you know an hour has passed and you're ${qspFunc(s, 'money', 'string_profit', 125)} richer.`);
+    qspCall(s, 'exp_gain', 'cleaning', Math.floor(Math.random() * 2) + 1);
+    qspCall(s, 'jobs', 'paycheck', 'pav_barbershop_cleaner');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave', goto: ['barbershop', 'start'] },
+    ]);
+  } },
+        ]);
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Buy Scrunchies [+$func(\'money\', \'get_cost_string\', 60)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 60) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 60);
+      ((s as any).mc_inventory ?? {})['scrunchies'] = (((s as any).mc_inventory ?? {})['scrunchies'] ?? 0) + (10);
+      scene.text('You pay Mr. Syomin and buy the small box.');
+      scene.actions([
+        { label: 'Move away', goto: ['barbershop', 'start'] },
+      ]);
+    }
+  } },
+    { label: 'Buy Hair accessories [+$func(\'money\', \'get_cost_string\', 80)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 80) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 80);
+      ((s as any).mc_inventory ?? {})['kirbygrips'] = (((s as any).mc_inventory ?? {})['kirbygrips'] ?? 0) + (10);
+      scene.text('You pay Mr. Syomin and buy the small box.');
+      scene.actions([
+        { label: 'Move away', goto: ['barbershop', 'start'] },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>The Barber Shop</b></center>');
@@ -1152,7 +1239,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTouchup2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1161,6 +1248,5 @@ export const barbershop: LocationDef = {
   name: 'barbershop',
   title: 'The Barber Shop',
   region: 'other',
-  description: ['Your hair is not long enough to require cutting.'],
   enter: enter,
 };

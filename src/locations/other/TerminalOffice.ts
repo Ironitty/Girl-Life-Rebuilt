@@ -4,6 +4,20 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  (s as any).TerminalOfficeDirWorkTime = 0;
+  (s as any).TerminalOfficeBuhWorkTime = 0;
+  if (((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).week ?? 0) < 6) {
+    (s as any).TerminalOfficeDirWorkTime = 1;
+  }
+  if (((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).week ?? 0) < 6) {
+    (s as any).TerminalOfficeBuhWorkTime = 1;
+  }
+  scene.build();
+}
+
 function enterTerminalOfficeScreen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('wrap', 'header b center', $ARGS[1])
   scene.img('images/locations/city/industrial/terminal/\'+$ARGS[2]+\'.jpg');
@@ -342,7 +356,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter31(s, scene);
       break;
     default:
-      enterTerminalOfficeScreen(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

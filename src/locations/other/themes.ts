@@ -4,6 +4,16 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).theme ?? 0)?.['name'] === '') {
+    ((s as any).theme ?? {})['name'] = 'Dynamic Default';
+    ((s as any).theme ?? {})['type'] = 'dynamic';
+    qspCall(s, 'themes', 'set_theme', 'Dynamic Default', 'dynamic');
+  }
+  // TODO-QSP: "Invalid parameter call for themes. You've found a bug! please let us know."
+  scene.build();
+}
+
 function enterMenuToggle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['themetype'] === 0) {
     ((s as any).cfg_vars ?? {})['themetype'] = 1;
@@ -6987,7 +6997,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGetTheme(s, scene);
       break;
     default:
-      enterMenuToggle(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNotSpying(s: GameState, scene: SceneBuilder): void {
   ((s as any).sofiaQW ?? {})['spying_day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
@@ -236,7 +240,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSpyingSex6(s, scene);
       break;
     default:
-      enterNotSpying(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -245,6 +249,5 @@ export const sofia: LocationDef = {
   name: 'sofia',
   title: 'As you\'re about to open the door, the noises get louder and ',
   region: 'other',
-  description: ['As you\'re about to open the door, the noises get louder and leave no question in your mind that somebody is having sex in the room.'],
   enter: enter,
 };

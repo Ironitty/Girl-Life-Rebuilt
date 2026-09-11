@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBoyTopics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['what_do_you_like_talk'] === 0) {
     // TODO-QSP: $date_ev_topics[] = "gt 'date_boy_talk', 'what_do_you_like_talk'"
@@ -621,7 +625,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFlashingJogger(s, scene);
       break;
     default:
-      enterBoyTopics(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

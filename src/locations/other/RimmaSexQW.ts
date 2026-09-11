@@ -1,10 +1,41 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  (s as any).rimmaday = ((s as any).daystart ?? 0);
+  qspCall(s, 'stat', '');
+  scene.text('You go over to Rima who smiles affably as she greets you.');
+  // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. My shift is almost over. Do you want to do something?"
+  scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}. My shift is almost over. Do you want to do something?"`);
+  scene.actions([
+    { label: '"Sorry, I can\'t right now"', goto: ['shop_moncheri', 'start'] },
+    { label: '"Sure. How about we go to my place?" [+$func(\'money\', \'get_cost_string\', 250, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(s, 'money', 'pay', 250, 'cash');
+      qspCall(s, 'stat', '');
+      scene.text('Rima enthusiastically agrees. While she finishes work for the day, you call a taxi.');
+      // TODO-QSP: nl
+      scene.text('Only half an hour later, you unlock the door to your apartment and beckon Rima inside. As soon as the door is closed, Rima and you start kissing and tearing eachother\'s clothes off.');
+      qspCall(s, 'arousal', 'foreplay', 30, 'lesbian');
+      qspCall(s, 'stat', '');
+      scene.actions([
+        { label: 'Sex', handler: (st: GameState) => {
+    qspCall(st, 'RimmaSexQW', 'rimmasexdi');
+  } },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
   (s as any).RimmaSex = ((s as any).RimmaSex ?? 0) + (1);
   if (((s as any).RimmaSex ?? 0) <= 21) {
     (s as any).RimmaRandEvent = ((s as any).RimmaSex ?? 0);
@@ -374,10 +405,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'rimmasexdi':
+      enterRimmasexdi(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const RimmaSexQW: LocationDef = {
   name: 'RimmaSexQW',
   title: 'You go over to Rima who smiles affably as she greets you.',
   region: 'other',
-  description: ['You instinctively start moving your tongue around its thick tip, her hand at the back of your head holding you in place as she guides it into your throat. Given its size, it doesn\'t come as a surprise that your gag reflex starts acting up but you endure as best you can, covering it generously in saliva.'],
+  description: ['You go over to Rima who smiles affably as she greets you.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['happyslut'] >= 1  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).daystart ?? 0) >= ((s as any).soniaQW ?? 0)?.['happyslut_tickday'] + 7) {
     ((s as any).soniaQW ?? {})['happyslut'] = (((s as any).soniaQW ?? {})['happyslut'] ?? 0) + (1);
@@ -1664,7 +1668,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTellAboutGenericBoyfriend1(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

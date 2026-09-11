@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat ?? {})['maya'] = '';
   if (((s as any).ballet_first_visit ?? 0) === 1) {
@@ -371,7 +375,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSummerSchool(s, scene);
       break;
     default:
-      enterScheduler(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

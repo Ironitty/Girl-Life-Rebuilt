@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   if (((s as any).anushkaQW ?? 0)?.['radspy'] === 0) {
@@ -2047,7 +2051,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDiscoEmptyroomSuckStraponMagic(s, scene);
       break;
     default:
-      enterWatchNushrad(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2056,6 +2060,5 @@ export const anushkaev2: LocationDef = {
   name: 'anushkaev2',
   title: 'Anushka gets on the bed on all fours in her underwear and wi',
   region: 'other',
-  description: ['Anushka gets on the bed on all fours in her underwear and wiggles her ass around. "Damn! You have one of the finest asses I\'ve ever seen, you know that Nush?" You can tell by the voice that it\'s Radomir. He gives her ass a good squeeze with his hand, then grabs her panties and pulls them down, roughly jerking them off and tossing them aside. He then starts playing with her bare ass and rubbing her pussy with his fingers.'],
   enter: enter,
 };

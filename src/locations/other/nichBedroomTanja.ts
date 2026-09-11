@@ -4,7 +4,12 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Tanya\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bedroomTanja.jpg');
   scene.text('This room belongs to <a href="exec: gt \'nichTanya\', \'desc\'">Tanya</a>, Nicholas\' stepdaughter. While she is a little bit selfish, quick-tempered and spoiled, her heart seems to be in the right place.');
@@ -102,11 +107,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const nichBedroomTanja: LocationDef = {
   name: 'nichBedroomTanja',
   title: '<center><b>Tanya\'s Room</b></center>',
   region: 'other',
   locationType: 'private',
-  description: ['Her room is usually in a state of chaos - typical for somebody who\'s gotten used to others cleaning up after them - but otherwise displays the warmth and mix of colors you would expect of a woman who is still trying to figure herself out and doesn\'t worry too much about the future.'],
   enter: enter,
 };

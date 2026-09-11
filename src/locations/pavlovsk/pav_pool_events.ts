@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTimedesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 10) {
     scene.text('The pool is almost empty given how early in the morning it is.');
@@ -1529,7 +1533,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLateAssault(s, scene);
       break;
     default:
-      enterTimedesc(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1538,6 +1542,5 @@ export const pav_pool_events: LocationDef = {
   name: 'pav_pool_events',
   title: 'The pool is almost empty given how early in the morning it i',
   region: 'pavlovsk',
-  description: ['The pool is almost empty given how early in the morning it is.'],
   enter: enter,
 };

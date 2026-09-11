@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAnushroom(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 1;
   qspCall(s, 'core_library', 'setloc', 'anush_bedroom_city', 'anushroom');
@@ -1109,7 +1113,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNushGuitarPlayTogether(s, scene);
       break;
     default:
-      enterAnushroom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask <<$npcdesc>> to take your virginity', handler: (st: GameState) => {
@@ -739,10 +743,6 @@ function enterVirginForceStop(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Get angry', handler: (st: GameState) => {
-    scene.text('sfds');
-    // TODO-QSP: end}
-  } },
   ]);
   scene.build();
 }
@@ -805,7 +805,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterVirginForceStop(s, scene);
       break;
     default:
-      enterStart1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

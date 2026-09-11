@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/activities/sewing/kit.jpg');
   scene.text('You pull your sewing kit out from under your bed.');
@@ -135,7 +139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTapestry(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -144,6 +148,5 @@ export const sewing: LocationDef = {
   name: 'sewing',
   title: 'You pull your sewing kit out from under your bed.',
   region: 'other',
-  description: ['You pull your sewing kit out from under your bed.'],
   enter: enter,
 };

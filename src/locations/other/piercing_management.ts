@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetTotal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'ears') {
     (s as any).result = 24;
@@ -872,7 +876,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterViewItem(s, scene);
       break;
     default:
-      enterGetTotal(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterFirstModelTalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
     scene.actions([
@@ -1195,7 +1199,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRecurrentPornTalk2End(s, scene);
       break;
     default:
-      enterFirstModelTalk1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

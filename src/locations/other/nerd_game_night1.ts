@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMansionAdventureStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
@@ -1477,7 +1481,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNecromancerCave(s, scene);
       break;
     default:
-      enterMansionAdventureStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1486,6 +1490,5 @@ export const nerd_game_night1: LocationDef = {
   name: 'nerd_game_night1',
   title: 'Feofan weaves a tale of how your group travel to the locatio',
   region: 'other',
-  description: ['Feofan weaves a tale of how your group travel to the location of the supposed mansion, which appears to be deep in a forest.'],
   enter: enter,
 };

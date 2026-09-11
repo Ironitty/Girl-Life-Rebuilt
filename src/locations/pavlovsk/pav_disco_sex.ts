@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterPcCondomFunc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (!((s as any).preziktype ?? 0))) {
     ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) - (1);
@@ -832,12 +836,6 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHandjobEnd(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/pavlovsk/community/dk_night.jpg');
-  // TODO-QSP: dynamic text: Releasing <<$npcdesc>>'s cock, you pull away from him.
-  scene.text(`Releasing ${((s as any).npcdesc ?? 0)}'s cock, you pull away from him.`);
-  scene.text('"That was fun," you grin, eyeing the cum webbing your fingers.');
-  scene.text('"Fuck..." he breathes, still coming down from your handjob.');
-  // TODO-QSP: end !}
   scene.actions([
     { label: 'Leave him and go back to the disco', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -3289,7 +3287,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNoDrugs(s, scene);
       break;
     default:
-      enterPcCondomFunc(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

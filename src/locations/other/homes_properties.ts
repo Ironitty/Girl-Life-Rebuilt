@@ -6,6 +6,19 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).NO_ACCESS = 0;
+  (s as any).RENTED = 1;
+  (s as any).OWNED = 2;
+  (s as any).TENANTS = 3;
+  (s as any).ACCESSIBLE = 4;
+  (s as any).PURCHASED = 5;
+  if (Object.keys((s as any).homes ?? {}).length < 16  ||  Object.keys((s as any).home_name ?? {}).length < 7) {
+    qspCall(s, 'homes_properties_attr', '');
+  }
+  scene.build();
+}
+
 function enterCalculateRentablePropertyCount(s: GameState, scene: SceneBuilder): void {
   ((s as any).accessible_property ?? {})['rentable_home_count'] = 0;
   ((s as any).accessible_property ?? {})['rentable_business_count'] = 0;
@@ -1092,7 +1105,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGetHomeDesc(s, scene);
       break;
     default:
-      enterCalculateRentablePropertyCount(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

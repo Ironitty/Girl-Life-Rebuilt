@@ -2,7 +2,11 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterPanties(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PanType ?? 0) === 3  ||  ((s as any).PanType ?? 0) === 4) {
     // TODO-QSP: $description += 'This'
   } else {
@@ -421,6 +425,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $description
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'panties':
+      enterPanties(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const underwear_descriptions: LocationDef = {

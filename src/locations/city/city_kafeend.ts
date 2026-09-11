@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).kafe_rand = Math.floor(Math.random() * 16) + 0;
   if ((!((s as any).kafe_rand ?? 0))) {
     scene.img('images/locations/city/residential/cafe/sex/arand.jpg');
@@ -141,6 +145,5 @@ export const city_kafeend: LocationDef = {
   name: 'city_kafeend',
   title: 'On leaving the cafe, you see a large crowd of young people d',
   region: 'city',
-  description: ['On leaving the cafe, you see a large crowd of young people deciding where to go next. You also notice that one of the girls wasted no time and has started sucking her boyfriend\'s dick, completely undeterred by the crowd.'],
   enter: enter,
 };

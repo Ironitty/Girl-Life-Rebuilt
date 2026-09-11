@@ -1,8 +1,244 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).film_type = qspUntranslated(s, "ARGS[0]", { location: "pornhist" });
+  if (((s as any).tits ?? 0) >= 4) {
+    // TODO-QSP: $porndesc[1] = 'Titfuck'
+  } else {
+    // TODO-QSP: $porndesc[1] = 'Handjob'
+  }
+  // TODO-QSP: $porndesc[2] = 'Blowjob'
+  // TODO-QSP: $porndesc[3] = 'Vaginal sex with facial'
+  // TODO-QSP: $porndesc[4] = 'Vaginal and anal sex with facial'
+  // TODO-QSP: $porndesc[5] = 'Threesome with anal creampie and facial'
+  // TODO-QSP: $porndesc[6] = 'Threesome with double penetration, facial and swallowing'
+  // TODO-QSP: $porndesc[7] = 'Vaginal sex with creampie'
+  // TODO-QSP: $porndesc[8] = 'Double penetration with vaginal creampies'
+  // TODO-QSP: $porndesc[9] = 'Spitroast with two guys with creampie and swallowing'
+  // TODO-QSP: $porndesc[10] = 'Four guy gangbang with vaginal sex and cumshots'
+  // TODO-QSP: $porndesc[11] = 'Four guy gangbang with vaginal sex and creampies'
+  // TODO-QSP: $porndesc[12] = 'Four guy gangbang with anal sex and anal creampies'
+  // TODO-QSP: $porndesc[13] = 'Two double penetration with four guys, vaginal and anal creampies'
+  // TODO-QSP: $porndesc[14] = 'Gangbang with 50 guys'
+  // TODO-QSP: $porndesc[15] = 'Anal sex with anal creampie'
+  // TODO-QSP: $porndesc[16] = 'Anal sex with cumshot'
+  // TODO-QSP: $porndesc[17] = 'Lesbian sex with double dildo'
+  // TODO-QSP: $porndesc[18] = 'Lesbian sex with strapon'
+  // TODO-QSP: $porndesc[19] = 'Primary role in MFF threesome'
+  // TODO-QSP: $porndesc[20] = 'Secondary role in MFF threesome'
+  if (((s as any).film_type ?? 0) === 1) {
+    (s as any).pfType = 0;
+    (s as any).pcash = 20;
+    (s as any).pfactor = 1;
+    (s as any).actbonus = 1;
+    if (((s as any).tits ?? 0) >= 4) {
+    }
+  } else {
+    if (((s as any).film_type ?? 0) === 2) {
+      (s as any).pfType = 0;
+      (s as any).pcash = 30;
+      (s as any).pfactor = 1;
+      (s as any).actbonus = 1;
+    } else {
+      if (((s as any).film_type ?? 0) === 3) {
+        (s as any).pfType = 0;
+        (s as any).pcash = 50;
+        (s as any).pfactor = 1;
+        (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+      } else {
+        if (((s as any).film_type ?? 0) === 4) {
+          (s as any).pfType = 0;
+          (s as any).pcash = 60;
+          (s as any).pfactor = 1;
+          (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+        } else {
+          if (((s as any).film_type ?? 0) === 5) {
+            (s as any).pfType = 0;
+            (s as any).pcash = 70;
+            (s as any).pfactor = 2;
+            (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+          } else {
+            if (((s as any).film_type ?? 0) === 6) {
+              (s as any).pfType = 0;
+              (s as any).pcash = 90;
+              (s as any).pfactor = 2;
+              (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+            } else {
+              if (((s as any).film_type ?? 0) === 7) {
+                (s as any).pfType = 1;
+                (s as any).pcash = 80;
+                (s as any).pfactor = 1;
+                (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+              } else {
+                if (((s as any).film_type ?? 0) === 8) {
+                  (s as any).pfType = 1;
+                  (s as any).pcash = 100;
+                  (s as any).pfactor = 2;
+                  (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                } else {
+                  if (((s as any).film_type ?? 0) === 9) {
+                    (s as any).pfType = 1;
+                    (s as any).pcash = 90;
+                    (s as any).pfactor = 2;
+                    (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+                  } else {
+                    if (((s as any).film_type ?? 0) === 10) {
+                      (s as any).pfType = 1;
+                      (s as any).pcash = 120;
+                      (s as any).pfactor = 4;
+                      (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                    } else {
+                      if (((s as any).film_type ?? 0) === 11) {
+                        (s as any).pfType = 1;
+                        (s as any).pcash = 150;
+                        (s as any).pfactor = 4;
+                        (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                      } else {
+                        if (((s as any).film_type ?? 0) === 12) {
+                          (s as any).pfType = 0;
+                          (s as any).pcash = 150;
+                          (s as any).pfactor = 4;
+                          (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                        } else {
+                          if (((s as any).film_type ?? 0) === 13) {
+                            (s as any).pfType = 1;
+                            (s as any).pcash = 150;
+                            (s as any).pfactor = 4;
+                            (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                          } else {
+                            if (((s as any).film_type ?? 0) === 14) {
+                              (s as any).pfType = 1;
+                              (s as any).pcash = 300;
+                              (s as any).pfactor = 50;
+                              (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                            } else {
+                              if (((s as any).film_type ?? 0) === 15) {
+                                (s as any).pfType = 0;
+                                (s as any).pcash = 50;
+                                (s as any).pfactor = 1;
+                                (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                              } else {
+                                if (((s as any).film_type ?? 0) === 16) {
+                                  (s as any).pfType = 0;
+                                  (s as any).pcash = 50;
+                                  (s as any).pfactor = 1;
+                                  (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                } else {
+                                  if (((s as any).film_type ?? 0) === 17) {
+                                    (s as any).pfType = 0;
+                                    (s as any).pcash = 50;
+                                    (s as any).pfactress = 1;
+                                    (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                  } else {
+                                    if (((s as any).film_type ?? 0) === 18) {
+                                      (s as any).pfType = 0;
+                                      (s as any).pcash = 50;
+                                      (s as any).pfactress = 1;
+                                      (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                    } else {
+                                      if (((s as any).film_type ?? 0) === 19) {
+                                        (s as any).pfType = 0;
+                                        (s as any).pcash = 100;
+                                        (s as any).pfactor = 1;
+                                        (s as any).pfactress = 1;
+                                        (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                                      } else {
+                                        if (((s as any).film_type ?? 0) === 20) {
+                                          (s as any).pfType = 0;
+                                          (s as any).pcash = 100;
+                                          (s as any).pfactor = 1;
+                                          (s as any).pfactress = 1;
+                                          (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] < 20) {
+  } else {
+    if (((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] >= 40) {
+    }
+  }
+  if (((s as any).pornfilmpreg ?? 0)?.[String((s as any).i ?? 0)] === 1) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      // TODO-QSP: $pfilmtags+=', pregnant'
+    }
+  }
+  if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) > 0) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      // TODO-QSP: $pfilmtags += ', lesbian'
+    }
+  }
+  if (((s as any).pfactor ?? 0) > 2  &&  (!((s as any).pfactress ?? 0))) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      // TODO-QSP: $pfilmtags += ', gangbang'
+    }
+  } else {
+    if (((s as any).pfactor ?? 0) > 2  &&  ((s as any).pfactress ?? 0) > 1) {
+      if (((s as any).pfilmtags ?? 0) !== '') {
+        // TODO-QSP: $pfilmtags += ', orgy'
+      }
+    } else {
+      if (((s as any).pfactor ?? 0) === 2  &&  (!((s as any).pfactress ?? 0))) {
+        if (((s as any).pfilmtags ?? 0) !== '') {
+          // TODO-QSP: $pfilmtags += ', threesome'
+        }
+      } else {
+        if (((s as any).pfactor ?? 0) === 1  &&  ((s as any).pfactress ?? 0) === 1) {
+          if (((s as any).pfilmtags ?? 0) !== '') {
+            // TODO-QSP: $pfilmtags += ', threesome'
+          }
+        } else {
+          if (((s as any).pfactor ?? 0) === 0  &&  ((s as any).pfactress ?? 0) === 2) {
+            if (((s as any).pfilmtags ?? 0) !== '') {
+              // TODO-QSP: $pfilmtags += ', threesome'
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).pfType ?? 0) === 1) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      // TODO-QSP: $pfilmtags += ', creampie'
+    }
+  }
+  if (((s as any).tits ?? 0) >= 4) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      // TODO-QSP: $pfilmtags += ', big tits'
+    }
+  }
+  if (qspFunc(s, 'pcs_has_attr', 'body_ass_bubble')) {
+    if (((s as any).pfilmtags ?? 0) !== '') {
+      // TODO-QSP: $pfilmtags += ', big ass'
+    }
+  }
+  if (((s as any).pfilmtags ?? 0) !== '') {
+    // TODO-QSP: $pfilmtags += ', '+$tags
+  }
+  scene.build();
+}
 
 function enterShort(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
@@ -163,7 +399,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPdetail(s, scene);
       break;
     default:
-      enterShort(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

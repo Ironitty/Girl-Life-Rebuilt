@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A60');
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('Mira is a sociable girl the same age as you. She lives with her father, who recently moved in here because of his considerable debts to some disreputable men in the city. He had to sell all the family\'s property, including an apartment in the city center. With the money left over, they could only afford to buy a house in a rundown village like this one.');
@@ -1345,6 +1349,5 @@ export const miroslava: LocationDef = {
   name: 'miroslava',
   title: 'Mira is a sociable girl the same age as you. She lives with ',
   region: 'other',
-  description: ['Mira is a sociable girl the same age as you. She lives with her father, who recently moved in here because of his considerable debts to some disreputable men in the city. He had to sell all the family\'s property, including an apartment in the city center. With the money left over, they could only afford to buy a house in a rundown village like this one.'],
   enter: enter,
 };

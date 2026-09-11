@@ -4,6 +4,23 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Local drug den</b></center>');
+  scene.img('images/locations/city/residential/den/narkopriton.jpg');
+  scene.text('A local drug den where addicts come to buy and use heroin in peace.');
+  scene.text('A skinny guy opens the door with a paranoid look in his eyes.');
+  scene.text('"Are you sure you can afford to be here? My product ain\'t cheap…"');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_residential', ''] },
+    { label: 'Push the door open', goto: ['city_drugden', 'start'] },
+  ]);
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Local drug den</b></center>');
   scene.img('images/locations/city/residential/den/narkopriton.jpg');
@@ -616,7 +633,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDrugslut(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -625,6 +642,6 @@ export const city_drugden: LocationDef = {
   name: 'city_drugden',
   title: '<center><b>Local drug den</b></center>',
   region: 'city',
-  description: ['The skinny guy looks you up and down as you enter.'],
+  description: ['A local drug den where addicts come to buy and use heroin in peace.'],
   enter: enter,
 };

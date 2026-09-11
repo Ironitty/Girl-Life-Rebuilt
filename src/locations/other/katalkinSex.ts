@@ -4,6 +4,12 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A70');
+  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+  scene.build();
+}
+
 function enterSex(s: GameState, scene: SceneBuilder): void {
   (s as any).schtraf = 0;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -241,7 +247,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDKatsub(s, scene);
       break;
     default:
-      enterSex(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -250,6 +256,5 @@ export const katalkinSex: LocationDef = {
   name: 'katalkinSex',
   title: 'Since he doesn\'t notice any clear objections from you, capta',
   region: 'other',
-  description: ['Since he doesn\'t notice any clear objections from you, captain Katalkin\'s groping grows bolder.'],
   enter: enter,
 };

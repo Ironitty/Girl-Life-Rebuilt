@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGeography(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
@@ -2346,7 +2350,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShopPunishment(s, scene);
       break;
     default:
-      enterGeography(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2355,6 +2359,5 @@ export const gschool_lessonsev2: LocationDef = {
   name: 'gschool_lessonsev2',
   title: 'As you walk into class, you see some guys have drawn a goofy',
   region: 'other',
-  description: ['As you walk into class, you see some guys have drawn a goofy scene on the blackboard, making it look like they\'re characters in a computer game. You share a laugh with them as you sit down; that certainly brightened your mood.'],
   enter: enter,
 };

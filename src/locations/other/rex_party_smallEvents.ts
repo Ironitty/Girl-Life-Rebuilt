@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDance(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).pcs_inhib ?? 0) < 40) {
@@ -1781,7 +1785,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFun(s, scene);
       break;
     default:
-      enterDance(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1790,6 +1794,5 @@ export const rex_party_smallEvents: LocationDef = {
   name: 'rex_party_smallEvents',
   title: 'Lena',
   region: 'other',
-  description: ['Moving to the rhythmic sounds, you indulge in an unrestrained dance.'],
   enter: enter,
 };

@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAutoPill(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) <= ((s as any).tabletkichday ?? 0)) {
     // TODO-QSP: exit
@@ -731,7 +735,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterForcePregBy(s, scene);
       break;
     default:
-      enterAutoPill(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'autotraidF', 'start');
   qspCall(s, 'stat', '');
@@ -102,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterManager1(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -112,6 +116,5 @@ export const autotraidF: LocationDef = {
   title: '<center><b>Car Dealership</b></center>',
   region: 'other',
   locationType: 'event',
-  description: ['Upon entering the yard, you see a laminated piece of paper pinned to a wall near the entrance:'],
   enter: enter,
 };

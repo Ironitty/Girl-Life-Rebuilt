@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMain(s: GameState, scene: SceneBuilder): void {
   (s as any).barrnd = Math.floor(Math.random() * 3) + 1;
   qspCall(s, 'stat', '');
@@ -695,7 +699,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBandits(s, scene);
       break;
     default:
-      enterMain(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -705,6 +709,5 @@ export const lakecafe: LocationDef = {
   title: 'The Lake Cafe',
   region: 'other',
   locationType: 'event',
-  description: ['An old-fashioned BBQ café/diner near the lake, known for offering relatively cheap but tasty meals.'],
   enter: enter,
 };

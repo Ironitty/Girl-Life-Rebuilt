@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCallboard(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/callboard.jpg');
   scene.text('<b>Calls For Extras</b>');
@@ -533,7 +537,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterYulyaGavrikov(s, scene);
       break;
     default:
-      enterCallboard(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

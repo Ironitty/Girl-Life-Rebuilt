@@ -4,6 +4,10 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBeauty(s: GameState, scene: SceneBuilder): void {
   (s as any).item_idx = 1;
   ((s as any).item_curr_aisle ?? {})['' + String((s as any).item_idx || '') + ''] = 'Cosmetics';
@@ -1303,7 +1307,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCleanup(s, scene);
       break;
     default:
-      enterBeauty(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

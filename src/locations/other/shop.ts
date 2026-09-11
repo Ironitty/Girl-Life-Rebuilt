@@ -5,6 +5,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 'move') {
+    (s as any).minut = ((s as any).minut ?? 0) + (1);
+  }
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shoplocation ?? 0) !== '') {
     // TODO-QSP: $ARGS[0] = $shoplocation
     // TODO-QSP: gt 'shop', $ARGS[0]
@@ -12,7 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   if (((s as any).loc ?? 0) !== 'shop') {
   }
@@ -258,6 +265,7 @@ function enterGrocery(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'item_cart', 'shopping_aisle', 'food');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/shared/store/shop1.jpg');
   if (((s as any).loc_bak ?? 0) === 'city_mall') {
     qspCall(s, 'shoplifting', 'city');
   }
@@ -404,6 +412,7 @@ function enterCosmetics(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'item_cart', 'shopping_aisle', 'beauty');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/shared/store/shop2.jpg');
   if (((s as any).loc_bak ?? 0) === 'city_mall') {
     qspCall(s, 'shoplifting', 'city');
   }
@@ -432,6 +441,7 @@ function enterHardware(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'item_cart', 'shopping_aisle', 'hardware');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/shared/store/shop3.jpg');
   if (((s as any).pod_whore_countQW ?? 0) > 15  &&  (!((s as any).paint_blue ?? 0))) {
     scene.actions([
       { label: 'Buy paint to cover graffiti [+$func(\'money\', \'get_cost_string\', 200)]', handler: (st: GameState) => {
@@ -571,6 +581,7 @@ function enterTech(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'item_cart', 'shopping_aisle', 'tech');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/shared/store/shop5.jpg');
   scene.actions([
     { label: 'Leave the appliance department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

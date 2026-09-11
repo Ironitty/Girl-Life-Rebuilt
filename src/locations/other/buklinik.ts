@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'buklinik', 'start');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -419,7 +423,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOlga2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -429,6 +433,5 @@ export const buklinik: LocationDef = {
   title: '<center><b>Mercy clinic</b></center>',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['A well-known homeless shelter in a run-down building. Looking above the entrance you can see a sign saying, Mercy Clinic.'],
   enter: enter,
 };

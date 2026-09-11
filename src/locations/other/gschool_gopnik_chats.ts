@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterVitek(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
   qspCall(s, 'stat', '');
@@ -2429,7 +2433,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPauline(s, scene);
       break;
     default:
-      enterVitek(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

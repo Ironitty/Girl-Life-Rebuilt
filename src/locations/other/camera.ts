@@ -1,8 +1,36 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).camera_locations ?? {})['city_library'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['city_island'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['gadukino'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['gad_forest'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['pav_complex'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['pav_market'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['gschool_grounds'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['pav_park'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['pav_lake'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_locations ?? {})['pav_church'] = qspUntranslated(s, "{", { location: "camera" });
+  ((s as any).camera_people ?? {})['mother'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A29'] >= 50  &&  ((s as any).month ?? 0) > 2  &&  ((s as any).month ?? 0) < 9);
+  ((s as any).camera_people ?? {})['anya'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A33'] >= 50);
+  ((s as any).camera_people ?? {})['anushka'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A144'] >= 50);
+  ((s as any).camera_people ?? {})['lazar'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_requirement = (((s as any).npc_rel ?? 0)?.['A149'] >= 50  &&  ((s as any).month ?? 0) > 2  &&  ((s as any).month ?? 0) < 9);
+  ((s as any).camera_people ?? {})['eugene'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_requirement = (((s as any).LCEugenefirst ?? 0) >= 1);
+  ((s as any).camera_people ?? {})['albina'] = qspUntranslated(s, "{", { location: "camera" });
+  (s as any).camera_requirement = (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2);
+  scene.build();
+}
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/accessories/camera.jpg');
@@ -473,7 +501,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPavLakeSonia(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -482,6 +510,5 @@ export const camera: LocationDef = {
   name: 'camera',
   title: 'You can\'t help but smile as you check your camera. You love ',
   region: 'other',
-  description: ['You can\'t help but smile as you check your camera. You love capturing life as it happens, but it can take time to decide precisely who or what you want to take photographs of.'],
   enter: enter,
 };

@@ -4,7 +4,11 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal', 'journalmenu');
   scene.text('<center><h2>Work</h2></center>');
   if (Object.keys((s as any).evt_event ?? {}).length !== 0) {
@@ -56,10 +60,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const journal_work: LocationDef = {
   name: 'journal_work',
   title: '<center><h2>Work</h2></center>',
   region: 'other',
-  description: ['You have been asked to help the homeless at the Mercy Clinic in the city industrial region.'],
   enter: enter,
 };

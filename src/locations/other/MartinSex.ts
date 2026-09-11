@@ -5,6 +5,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A216');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'npc_relationship', 'modify', 'A216', Math.floor(Math.random() * 2) + 0);
@@ -1020,6 +1026,5 @@ export const MartinSex: LocationDef = {
   name: 'MartinSex',
   title: 'You approach Martin as he\'s cleaning the floor. The bartende',
   region: 'other',
-  description: ['You approach Martin as he\'s cleaning the floor. The bartender raises his head when he notices you.'],
   enter: enter,
 };

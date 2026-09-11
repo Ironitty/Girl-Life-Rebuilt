@@ -4,6 +4,10 @@ import { qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAutosave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['disable_autosave'] === 0) {
     if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
@@ -61,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGuy(s, scene);
       break;
     default:
-      enterAutosave(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

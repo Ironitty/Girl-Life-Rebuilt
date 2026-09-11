@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAnushka_3some1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A2');
   qspCall(s, 'npcStat', 'A144', 'a');
@@ -1826,7 +1830,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNerdGameOrcBj(s, scene);
       break;
     default:
-      enterAnushka_3some1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1835,6 +1839,5 @@ export const artem_nush_sex_uni: LocationDef = {
   name: 'artem_nush_sex_uni',
   title: 'He just nods and you talk about how things will go before yo',
   region: 'other',
-  description: ['He just nods and you talk about how things will go before you hear a knock at the door. Artem gets up and answers it, and you see Anushka standing in the hallway. He stands aside to let her in, slapping her hard on the ass as he does, causing her to jump and yelp slightly in surprise. "Someone\'s feeling feisty today I see," she says aa she looks back at him, then looks at you with a grin as she moves over to sit next to you. Artem closes the door and locks it.'],
   enter: enter,
 };

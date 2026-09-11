@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'fuelstation', 'start');
   qspCall(s, 'stat', '');
@@ -132,7 +136,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterToilet(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -142,6 +146,5 @@ export const fuelstation: LocationDef = {
   title: '<center><b>Gas Station</b></center>',
   region: 'other',
   locationType: 'bathroom',
-  description: ['The local gas station, the cheap pumps are limited in functionality and will always fill the tank up completely.'],
   enter: enter,
 };

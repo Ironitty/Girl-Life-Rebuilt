@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterGoSeeOlu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Take her to see Olu for 500', handler: (st: GameState) => {
     ((s as any).OluQW ?? {})['nat_inv'] = 1;
@@ -78,6 +82,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
   ]);
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'go_see_olu':
+      enterGoSeeOlu(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const natpimp: LocationDef = {

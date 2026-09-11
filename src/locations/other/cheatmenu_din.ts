@@ -6,6 +6,72 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).settingmode ?? 0))) {
+    (s as any).settingmode = 69;
+  }
+  ((s as any).cheatmenu ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).cheatmenu ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).cheatmenu ?? {})['table_end'] = '</td></tr></table></center>';
+  ((s as any).cheatmenu ?? {})['empty'] = 'gs \'cheatmenu_din\', \'empty\'';
+  ((s as any).cheatmenu ?? {})['quicktime'] = 'gs \'cheatmenu_din\', \'quicktime\', ARGS[0]';
+  ((s as any).cheatmenu ?? {})['dynamic'] = 'gs \'cheatmenu_din\', \'dynamic\'';
+  ((s as any).cheatmenu ?? {})['vartracker'] = 'gt \'cheatmenu_din\', \'vartracker\'';
+  ((s as any).cheatmenu ?? {})['index'] = 'gt \'cheatmenu_din\', \'index\'';
+  ((s as any).cheatmenu ?? {})['addict'] = 'gs \'cheatmenu_din\', \'addict\'';
+  ((s as any).cheatmenu ?? {})['clothes_dirt'] = 'gs \'cheatmenu_din\', \'clothes_dirt\'';
+  ((s as any).cheatmenu ?? {})['Vibrator'] = 'gs \'cheatmenu_din\', \'Vibrator\'';
+  ((s as any).cheatmenu ?? {})['BimboCloth'] = 'gs \'cheatmenu_din\', \'BimboCloth\'';
+  ((s as any).cheatmenu ?? {})['SmartBimbo'] = 'gs \'cheatmenu_din\', \'SmartBimbo\'';
+  ((s as any).cheatmenu ?? {})['SuccuBimbo'] = 'gs \'cheatmenu_din\', \'SuccuBimbo\'';
+  ((s as any).cheatmenu ?? {})['slutshot'] = 'gs \'cheatmenu_din\', \'slutshot\'';
+  ((s as any).cheatmenu ?? {})['permanent'] = 'gt \'cheatmenu_din\', \'permanent\'';
+  ((s as any).cheatmenu ?? {})['money'] = 'gs \'cheatmenu_din\', \'money\'';
+  ((s as any).cheatmenu ?? {})['bank_money'] = 'gs \'cheatmenu_din\', \'bank_money\'';
+  ((s as any).cheatmenu ?? {})['therapist_reset'] = 'gs \'cheatmenu_din\', \'therapist_reset\'';
+  ((s as any).cheatmenu ?? {})['cycle'] = 'gt \'cheatmenu_din\', \'cycle\'';
+  ((s as any).cheatmenu ?? {})['std_cure'] = 'gs \'cheatmenu_din\', \'std_cure\'';
+  ((s as any).cheatmenu ?? {})['pain_killer'] = 'killvar \'pain\' & gs \'pain\', \'calc\'';
+  ((s as any).cheatmenu ?? {})['force_preg'] = 'gs \'cheatmenu_din\', \'force_preg\'';
+  ((s as any).cheatmenu ?? {})['remove_preg'] = 'gs \'cheatmenu_din\', \'remove_preg\'';
+  ((s as any).cheatmenu ?? {})['state'] = 'gt \'cheatmenu_din\', \'state\'';
+  ((s as any).cheatmenu ?? {})['set_preg_body'] = 'gs \'cheatmenu_din\', \'set_preg_body\', ARGS[0]';
+  ((s as any).cheatmenu ?? {})['set_body_class'] = 'gs \'cheatmenu_din\', \'set_body_class\', ARGS[0]';
+  ((s as any).cheatmenu ?? {})['bodyMod'] = 'gt \'cheatmenu_din\', \'bodyMod\'';
+  ((s as any).cheatmenu ?? {})['age'] = 'gs \'cheatmenu_din\', \'age\'';
+  ((s as any).cheatmenu ?? {})['visualage'] = 'gs \'cheatmenu_din\', \'visualage\'';
+  ((s as any).cheatmenu ?? {})['avatar_hair_set'] = 'gs \'cheatmenu_din\', \'avatar_hair_set\'';
+  ((s as any).cheatmenu ?? {})['rename'] = 'gs \'cheatmenu_din\', \'rename\'';
+  ((s as any).cheatmenu ?? {})['reset_name'] = 'gs \'cheatmenu_din\', \'reset_name\'';
+  ((s as any).cheatmenu ?? {})['setLooks'] = 'gs \'cheatmenu_din\', \'setLooks\', $ARGS[0], ARGS[1]';
+  ((s as any).cheatmenu ?? {})['setLooksInput'] = 'gs \'cheatmenu_din\', \'setLooksInput\', $ARGS[0], $ARGS[1]';
+  ((s as any).cheatmenu ?? {})['printLooksLinks'] = 'gs \'cheatmenu_din\', \'printLooksLinks\', $ARGS[0], $ARGS[1]';
+  ((s as any).cheatmenu ?? {})['looks'] = 'gt \'cheatmenu_din\', \'looks\'';
+  ((s as any).cheatmenu ?? {})['change_avatar_path'] = 'gs \'cheatmenu_din\', \'change_avatar_path\'';
+  ((s as any).cheatmenu ?? {})['tatoo'] = 'gt \'cheatmenu_din\', \'tatoo\'';
+  ((s as any).cheatmenu ?? {})['setStat'] = 'gs \'cheatmenu_din\', \'setStat\', $ARGS[0], ARGS[1]';
+  ((s as any).cheatmenu ?? {})['setStatInput'] = 'gs \'cheatmenu_din\', \'setStatInput\', $ARGS[0], $ARGS[1]';
+  ((s as any).cheatmenu ?? {})['setStatInputInverted'] = 'gs \'cheatmenu_din\', \'setStatInputInverted\', $ARGS[0], $ARGS[1]';
+  ((s as any).cheatmenu ?? {})['setAttrs'] = 'gs \'cheatmenu_din\', \'setAttrs\', ARGS[0]';
+  ((s as any).cheatmenu ?? {})['setSkills'] = 'gs \'cheatmenu_din\', \'setSkills\', ARGS[0]';
+  ((s as any).cheatmenu ?? {})['printStatLinks'] = 'gs \'cheatmenu_din\', \'printStatLinks\', $ARGS[0], $ARGS[1]';
+  ((s as any).cheatmenu ?? {})['printStatLinksInverted'] = 'gs \'cheatmenu_din\', \'printStatLinksInverted\', $ARGS[0], $ARGS[1]';
+  ((s as any).cheatmenu ?? {})['stats'] = 'gt \'cheatmenu_din\', \'stats\'';
+  ((s as any).cheatmenu ?? {})['lover_menu'] = 'gt \'cheatmenu_din\', \'lover_menu\'';
+  ((s as any).cheatmenu ?? {})['input_time'] = 'gs \'cheatmenu_din\', \'input_time\'';
+  ((s as any).cheatmenu ?? {})['week'] = 'gt \'cheatmenu_din\', \'week\'';
+  ((s as any).cheatmenu ?? {})['month'] = 'gt \'cheatmenu_din\', \'month\'';
+  ((s as any).cheatmenu ?? {})['month2'] = 'gs \'cheatmenu_din\', \'month2\', ARGS[0]';
+  ((s as any).cheatmenu ?? {})['time'] = 'gt \'cheatmenu_din\', \'time\'';
+  ((s as any).cheatmenu ?? {})['magicTable'] = 'gs \'cheatmenu_din\', \'magicTable\', $ARGS[0], $ARGS[1]';
+  ((s as any).cheatmenu ?? {})['sucresetdo'] = 'gs \'cheatmenu_din\', \'sucresetdo\'';
+  ((s as any).cheatmenu ?? {})['succubreset'] = 'gt \'cheatmenu_din\', \'succubreset\'';
+  ((s as any).cheatmenu ?? {})['magic'] = 'gt \'cheatmenu_din\', \'magic\'';
+  ((s as any).cheatmenu ?? {})['pain'] = 'gs \'cheatmenu_din\', \'pain\'';
+  ((s as any).cheatmenu ?? {})['traits_cheats'] = 'gt \'cheatmenu_din\', \'traits_cheats\'';
+  scene.build();
+}
+
 function enterEmpty(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
@@ -2649,10 +2715,10 @@ function enterCheatPainRow(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatFameRow(s: GameState, scene: SceneBuilder): void {
   ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "ARGS[2]>", { location: "cheatmenu_din" }) + '</td>');
-  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['pav_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
-  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['city_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
-  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['pushkin_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
-  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['village_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
+  // TODO-QSP: $table['fame'] += '<td><<fame[''pav_<<$ARGS[1]>>'']>>   <a href="exec:gs ''fame'', ''pav'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu_din'', ''fame''">+10</a> <a href="exec:gs ''fame'', ''pav'', ''<<$ARGS[1]>>'', 100 & gt ''cheatmenu_din'', ''fame''">+100</a> <a href="exec:gs ''fame'', ''pav'', ''<<$ARGS[1]>>'', -10 & gt ''cheatmenu_din'', ''fame''">-10</a> <a href="exec:gs ''fame'', ''pav'', ''<<$ARGS[1]>>'', -100 & gt ''cheatmenu_din'', ''fame''">-100</a> </td>'
+  // TODO-QSP: $table['fame'] += '<td><<fame[''city_<<$ARGS[1]>>'']>>   <a href="exec:gs ''fame'', ''city'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu_din'', ''fame''">+10</a> <a href="exec:gs ''fame'', ''city'', ''<<$ARGS[1]>>'', 100 & gt ''cheatmenu_din'', ''fame''">+100</a> <a href="exec:gs ''fame'', ''city'', ''<<$ARGS[1]>>'', -10 & gt ''cheatmenu_din'', ''fame''">-10</a> <a href="exec:gs ''fame'', ''city'', ''<<$ARGS[1]>>'', -100 & gt ''cheatmenu_din'', ''fame''">-100</a> </td>'
+  // TODO-QSP: $table['fame'] += '<td><<fame[''pushkin_<<$ARGS[1]>>'']>>   <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu_din'', ''fame''">+10</a> <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', 100 & gt ''cheatmenu_din'', ''fame''">+100</a> <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', -10 & gt ''cheatmenu_din'', ''fame''">-10</a> <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', -100 & gt ''cheatmenu_din'', ''fame''">-100</a> </td>'
+  // TODO-QSP: $table['fame'] += '<td><<fame[''village_<<$ARGS[1]>>'']>>   <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu_din'', ''fame''">+10</a> <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', 100 & gt ''cheatmenu_din'', ''fame''">+100</a> <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', -10 & gt ''cheatmenu_din'', ''fame''">-10</a> <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', -100 & gt ''cheatmenu_din'', ''fame''">-100</a> </td>'
   ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<tr>');
   scene.build();
 }
@@ -3068,7 +3134,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTraitsCheats(s, scene);
       break;
     default:
-      enterEmpty(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

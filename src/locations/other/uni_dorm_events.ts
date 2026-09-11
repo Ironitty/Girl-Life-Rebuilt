@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDormFloor(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 100) + 0;
   ((s as any).uni_dorm ?? {})['event_minut'] = ((s as any).totminut ?? 0) + 60;
@@ -1677,7 +1681,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDormFloorEightSex(s, scene);
       break;
     default:
-      enterDormFloor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1686,6 +1690,5 @@ export const uni_dorm_events: LocationDef = {
   name: 'uni_dorm_events',
   title: 'As you walk down the hall, you see two girls grinding and da',
   region: 'other',
-  description: ['As you walk down the hall, you see two girls grinding and dancing provocatively against each other while another takes photos with her phone. Some boys are also watching them.'],
   enter: enter,
 };

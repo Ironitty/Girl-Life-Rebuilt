@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).AlbinaQW ?? {})['RideDaystart'] = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 4) + 2);
   qspCall(s, 'stat', '');
@@ -177,7 +181,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRefuseStatement2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -186,6 +190,5 @@ export const albina_election_events: LocationDef = {
   name: 'albina_election_events',
   title: 'A car suddenly pulls up next to you and a man wearing a suit',
   region: 'other',
-  description: ['A car suddenly pulls up next to you and a man wearing a suit and hat steps out. "Captain Chernov, Federal Security Service," he says and pulls out his badge.'],
   enter: enter,
 };

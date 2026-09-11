@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterIShouldGo(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 20) + 1) < ((s as any).sex_ev ?? 0)?.['cum_count'] + ((s as any).sex_ev ?? 0)?.['extra_cum']) {
     ((s as any).sex_ev ?? {})['continuation'] = 1;
@@ -1047,7 +1051,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHaveAGirlfriend(s, scene);
       break;
     default:
-      enterIShouldGo(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

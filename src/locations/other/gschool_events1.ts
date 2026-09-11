@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterButtGrab(s: GameState, scene: SceneBuilder): void {
   (s as any).scoolboy = Math.floor(Math.random() * 5) + 1;
   if (((s as any).scoolboy ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
@@ -1807,7 +1811,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCheerleadingNotice(s, scene);
       break;
     default:
-      enterButtGrab(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1816,6 +1820,5 @@ export const gschool_events1: LocationDef = {
   name: 'gschool_events1',
   title: 'He tries to hide it, but the proud grin on his face tells yo',
   region: 'other',
-  description: ['He tries to hide it, but the proud grin on his face tells you Dimka was the one groping your ass.'],
   enter: enter,
 };

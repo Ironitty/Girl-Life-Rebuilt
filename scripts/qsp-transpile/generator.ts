@@ -34,7 +34,9 @@ export function generateTs(loc: QspLocation): GenResult {
   lines.push(`import type { SceneBuilder } from '../../core/scene';`);
   lines.push('');
 
-  const sceneList = loc.scenes.length > 0 ? loc.scenes : [{ kind: 'scene' as const, arg: '', body: loc.topLevel }];
+  const sceneList = loc.scenes.length > 0
+    ? [{ kind: 'scene' as const, arg: '' as string, body: loc.topLevel }, ...loc.scenes]
+    : [{ kind: 'scene' as const, arg: '' as string, body: loc.topLevel }];
 
   if (sceneList.length === 1) {
     const scene = sceneList[0];
@@ -167,7 +169,16 @@ function generateSceneBody(
         if (node.var === 'menu_off' || node.var === 'loc' || node.var === 'loc2') break;
         const varName = node.var.replace(/^\$/, '');
         const lhs = translateAssignLhs(varName, stateReads);
-        const val = translateValue(node.value, stateReads, todos);
+         const val = translateValue(node.value, stateReads, todos);
+         if (val.includes('<<') || val.includes('>>')) {
+           out.push(`// TODO-QSP: ${node.var} ${node.op} ${node.value}`);
+           break;
+         }
+         if (lhs === 'backimage' && node.op === '=') {
+          out.push(`scene.img(${val});`);
+          stateWrites.push(varName);
+          break;
+        }
         const bracketIdx = lhs.indexOf('[');
         if (bracketIdx !== -1) {
           const objName = lhs.slice(0, bracketIdx);
@@ -211,6 +222,22 @@ function generateSceneBody(
         if (node.raw.includes('minut')) {
           const m = node.raw.match(/minut\s*\+=\s*(\d+)/);
           if (m) out.push(`(s as any).minut = ((s as any).minut ?? 0) + ${m[1]};`);
+        }
+        const backimgMatch = node.raw.match(/^\$backimage\s*=\s*'(.*)'$/);
+        if (backimgMatch) {
+          out.push(`scene.img('${backimgMatch[1]}');`);
+          break;
+        }
+        const plImgMatch = node.raw.match(/^\*pl\s+'<center><img\s+<<\$set_imgh>>\s+src="([^"]+)"><\/center>'$/);
+        if (plImgMatch) {
+          const src = plImgMatch[1];
+          if (src.includes('<<')) {
+            const dynVal = translateValue(`'${src}'`, stateReads, todos);
+            out.push(`scene.img(${dynVal});`);
+          } else {
+            out.push(`scene.img('${src}');`);
+          }
+          break;
         }
         const bareFlag = node.raw.match(/^\$(\w+)$/);
         if (bareFlag) {
@@ -351,7 +378,9 @@ function translateInlineAct(
     const assignMatch = part.match(/^(\w+)\s*(\+=|-=|=)\s*(.+)$/);
     if (assignMatch) {
       const val = translateValue(assignMatch[3].trim(), stateReads, todos, 'st');
-      if (assignMatch[2] === '=') {
+      if (assignMatch[1] === 'backimage' && assignMatch[2] === '=') {
+        handlerBits.push(`st.scene = { ...st.scene, backimage: ${val} };`);
+      } else if (assignMatch[2] === '=') {
         handlerBits.push(`(st as any).${assignMatch[1]} = ${val};`);
       } else if (assignMatch[2] === '+=') {
         handlerBits.push(`(st as any).${assignMatch[1]} = ((st as any).${assignMatch[1]} ?? 0) + (${val});`);

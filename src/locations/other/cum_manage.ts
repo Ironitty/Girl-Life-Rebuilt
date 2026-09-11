@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cum_names[0] = 'vagina'
   // TODO-QSP: $cum_names[1] = 'labia'
@@ -29,7 +33,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat ?? {})['cum_count'] = (((s as any).stat ?? {})['cum_count'] ?? 0) + (1);
   (s as any).condom_break = 0;
   if (((((s as any).npcID ?? 0)).length) > 1  &&  (('ABM').indexOf((((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN(((((s as any).npcID ?? 0)).slice((2)-1))) && ((((s as any).npcID ?? 0)).slice((2)-1)) !== '') {
@@ -795,9 +799,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cumcount ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === ((s as any).knownguy ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']]) {
         if (((s as any).knownguy ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] === 1) {
           if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':0']] === 'stranger') {
-            ((s as any).sd_cum ?? {})['person'] = ((s as any).npc_firstname ?? 0)[((s as any).cumowner ?? 0)['' + ((s as any).sd_cum ?? 0)?.['i'] + ':<<sd_cum[\'j\']>>:0']] + ' ';
+            // TODO-QSP: $sd_cum['person'] = $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' '
           } else {
-            ((s as any).sd_cum ?? {})['person'] = ((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)['' + ((s as any).sd_cum ?? 0)?.['i'] + ':<<sd_cum[\'j\']>>:0']] + ' ';
+            // TODO-QSP: $sd_cum['person'] = $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:0']] + ' '
           }
         } else {
           ((s as any).sd_cum ?? {})['kmax'] = 0;
@@ -809,7 +813,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           ((s as any).sd_cum ?? {})['kmax'] = (((s as any).sd_cum ?? {})['kmax'] ?? 0) - (1);
           ((s as any).sd_cum ?? {})['k'] = 0;
           // TODO-QSP: :cum_knownloop
-          ((s as any).sd_cum ?? {})['person'] = (((s as any).sd_cum ?? {})['person'] ?? 0) + (((s as any).npc_usedname ?? 0)?.[qspUntranslated(s, "cumowner['<<sd_cum['i']>>:<<sd_cum['j']>>:<<sd_cum['k']>>']", { location: "cum_manage" })]);
+          // TODO-QSP: $sd_cum['person'] += $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']]
           if (((s as any).sd_cum ?? 0)?.['k'] < ((s as any).sd_cum ?? 0)?.['kmax'] - 1) {
             ((s as any).sd_cum ?? {})['person'] = (((s as any).sd_cum ?? {})['person'] ?? 0) + (', ');
             ((s as any).sd_cum ?? {})['k'] = (((s as any).sd_cum ?? {})['k'] ?? 0) + (1);
@@ -817,9 +821,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           }
           ((s as any).sd_cum ?? {})['k'] = (((s as any).sd_cum ?? {})['k'] ?? 0) + (1);
           if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k']]] === 'stranger') {
-            ((s as any).sd_cum ?? {})['person'] = (((s as any).sd_cum ?? {})['person'] ?? 0) + (' and \' + $npc_firstname[$cumowner[\'' + qspUntranslated(s, "sd_cum['i']>", { location: "cum_manage" }) + ':<<sd_cum[\'j\']>>:<<sd_cum[\'k\']>>\']] + \' ');
+            // TODO-QSP: $sd_cum['person'] += ' and ' + $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ' '
           } else {
-            ((s as any).sd_cum ?? {})['person'] = (((s as any).sd_cum ?? {})['person'] ?? 0) + (' and \' + $npc_usedname[$cumowner[\'' + qspUntranslated(s, "sd_cum['i']>", { location: "cum_manage" }) + ':<<sd_cum[\'j\']>>:<<sd_cum[\'k\']>>\']] + \' ');
+            // TODO-QSP: $sd_cum['person'] += ' and ' + $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ' '
           }
         }
       } else {
@@ -847,9 +851,9 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             ((s as any).sd_cum ?? {})['k'] = 0;
             // TODO-QSP: :cum_mixloop
             if (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j'] + ':' + ((s as any).sd_cum ?? 0)?.['k']]] === 'stranger') {
-              ((s as any).sd_cum ?? {})['person'] = (((s as any).sd_cum ?? {})['person'] ?? 0) + (((s as any).npc_firstname ?? 0)[((s as any).cumowner ?? 0)['' + ((s as any).sd_cum ?? 0)?.['i'] + ':<<sd_cum[\'j\']>>:<<sd_cum[\'k\']>>']] + ', ');
+              // TODO-QSP: $sd_cum['person'] += $npc_firstname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ', '
             } else {
-              ((s as any).sd_cum ?? {})['person'] = (((s as any).sd_cum ?? {})['person'] ?? 0) + (((s as any).npc_usedname ?? 0)[((s as any).cumowner ?? 0)['' + ((s as any).sd_cum ?? 0)?.['i'] + ':<<sd_cum[\'j\']>>:<<sd_cum[\'k\']>>']] + ', ');
+              // TODO-QSP: $sd_cum['person'] += $npc_usedname[$cumowner['<<sd_cum[''i'']>>:<<sd_cum[''j'']>>:<<sd_cum[''k'']>>']] + ', '
             }
             if (((s as any).sd_cum ?? 0)?.['k'] < ((s as any).sd_cum ?? 0)?.['kmax']) {
               ((s as any).sd_cum ?? {})['k'] = (((s as any).sd_cum ?? {})['k'] ?? 0) + (1);
@@ -867,7 +871,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).sd_cum ?? {})['icon_iscum'] = ((s as any).sd_cum ?? 0)?.['iscum'];
     if (((s as any).sd_cum ?? 0)?.['j'] <= 4  &&  ((s as any).trait_vars ?? 0)?.['cumeater'] === 1  &&  ((s as any).sd_cum ?? 0)?.['iscum'] === 'cum'  &&  qspFunc(s, 'cum_manage', 'check_private', ((s as any).sd_cum ?? 0)?.['i']) === 1  &&  ((((s as any).sd_cum ?? 0)?.['i'] !== 0  &&  ((s as any).sd_cum ?? 0)?.['i'] !== 3)  ||  qspFunc(s, 'cum_manage', 'check_inner_overflow', ((s as any).sd_cum ?? 0)?.['i']) === 1  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 1)) {
-      ((s as any).sd_cum ?? {})['iscum'] = '<a href="exec:gs \'cum_manage\', \'cumeater\', ' + qspUntranslated(s, "sd_cum['i']>", { location: "cum_manage" }) + '"><<$sd_cum[\'iscum\']>></a>';
+      // TODO-QSP: $sd_cum['iscum'] = '<a href="exec:gs ''cum_manage'', ''cumeater'', <<sd_cum[''i'']>>"><<$sd_cum[''iscum'']>></a>'
     }
     if (((s as any).sd_cum ?? 0)?.['person'] !== '') {
       ((s as any).sd_cum ?? {})['person'] = ' from ' + qspUntranslated(s, "sd_cum['person']>", { location: "cum_manage" }) + '';
@@ -880,11 +884,11 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sd_cum ?? 0)?.['i'] === 0  &&  ((s as any).sd_cum ?? 0)?.['j'] === 4  &&  ((s as any).vibratorIN ?? 0) === 0  &&  ((s as any).pcs_vag ?? 0) * 10 < ((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']]  &&  ((s as any).cumvolume ?? 0)[((s as any).sd_cum ?? 0)?.['i'] + ':' + ((s as any).sd_cum ?? 0)?.['j']] >= 20) {
         ((s as any).sd_cum ?? {})['tail'] = ((((s as any).pantyworntype ?? 0) !== 'none') ? (' into your panties.') : (' down your legs.'));
       }
-      ((s as any).sd_cum ?? {})['tooltip'] = '' + qspUntranslated(s, "sd_cum['amount']>", { location: "cum_manage" }) + 'amounts of <<$sd_cum[\'icon_iscum\']>><<$sd_cum[\'person\']>> is <<$sd_cum[\'proxy\']>><<$sd_cum[\'icon_loc\']>><<$sd_cum[\'tail\']>>';
+      // TODO-QSP: $sd_cum['tooltip'] = '<<$sd_cum[''amount'']>>amounts of <<$sd_cum[''icon_iscum'']>><<$sd_cum[''person'']>> is <<$sd_cum[''proxy'']>><<$sd_cum[''icon_loc'']>><<$sd_cum[''tail'']>>'
       if (((s as any).sd_cum ?? 0)?.['j'] >= 5  &&  (!((s as any).cumcondslip_aware ?? 0))) {
         ((s as any).sd_cum ?? {})['display'] = '';
       } else {
-        ((s as any).sd_cum ?? {})['display'] = '' + qspUntranslated(s, "sd_cum['amount']>", { location: "cum_manage" }) + 'amounts of <<$sd_cum[\'iscum\']>><<$sd_cum[\'person\']>> is <<$sd_cum[\'proxy\']>><<$sd_cum[\'loc\']>><<$sd_cum[\'tail\']>>';
+        // TODO-QSP: $sd_cum['display'] = '<<$sd_cum[''amount'']>>amounts of <<$sd_cum[''iscum'']>><<$sd_cum[''person'']>> is <<$sd_cum[''proxy'']>><<$sd_cum[''loc'']>><<$sd_cum[''tail'']>>'
       }
     }
     if (((s as any).sd_cum ?? 0)?.['display'] !== '') {

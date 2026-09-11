@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMorning(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gschoolVars ?? 0)?.['last_attendance'] !== ((s as any).daystart ?? 0)) {
     ((s as any).gschoolVars ?? {})['last_attendance'] = ((s as any).daystart ?? 0);
@@ -633,7 +637,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGradeCheck(s, scene);
       break;
     default:
-      enterMorning(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -643,6 +647,5 @@ export const gschool_lessons: LocationDef = {
   title: 'School Hallway',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['The principal is waiting for you in the hall, and with a simple curl of a finger, she summons you to follow her to her office.'],
   enter: enter,
 };

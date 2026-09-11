@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['performances'] === 0) {
     ((s as any).balletqw ?? {})['performances'] = 1;
@@ -33,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPerformances(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

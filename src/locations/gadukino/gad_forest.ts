@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterForestEdge(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_forest', 'forest_edge');
   qspCall(s, 'miroslava_schedule', '');
@@ -948,7 +952,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPicking(s, scene);
       break;
     default:
-      enterForestEdge(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -958,6 +962,5 @@ export const gad_forest: LocationDef = {
   title: 'You don\'t know this part of the forest very well. You could get lost if you go any deeper into the woods.',
   region: 'gadukino',
   locationType: 'secluded',
-  description: ['You are at the edge of the forest. Mushrooms and berries grow here, and you can often find other people picking them.'],
   enter: enter,
 };

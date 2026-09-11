@@ -6,6 +6,18 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'boyStat', 'A117');
+  (s as any).sexpartkno = 1;
+  (s as any).spafinloc = 0;
+  (s as any).sexcontra = 0;
+  (s as any).protect = 0;
+  (s as any).dick = 14;
+  (s as any).silavag = 2;
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/bathroom/publictoilet.jpg');
   (s as any).stallionQ = 4;
@@ -258,7 +270,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterAwaken(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -267,6 +279,5 @@ export const stallion: LocationDef = {
   name: 'stallion',
   title: 'You enter the men\'s restroom. It appears empty. You move int',
   region: 'other',
-  description: ['You enter the men\'s restroom. It appears empty. You move into a stall and sit down. As you relieve yourself, you hear chuckling in the next stall.'],
   enter: enter,
 };

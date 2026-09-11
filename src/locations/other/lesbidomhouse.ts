@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -2194,7 +2198,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterQW12(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2204,6 +2208,5 @@ export const lesbidomhouse: LocationDef = {
   title: 'You ring the doorbell several times, but no one comes to ans',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You ring the doorbell several times, but no one comes to answer the door. When you try to look inside through the windows, you don\'t see any movement either.'],
   enter: enter,
 };

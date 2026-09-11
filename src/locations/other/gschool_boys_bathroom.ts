@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Boy\'s bathroom</b></center>');
@@ -2242,7 +2246,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBoy7(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2252,6 +2256,5 @@ export const gschool_boys_bathroom: LocationDef = {
   title: 'Boy\'s bathroom',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['After the bell rings and you see the boys leave their bathroom, you slip inside and hurry into one of the stalls. Your heart is pounding with a mixture of fear and excitement - you know you shouldn\'t be in here but that\'s part of the thrill. You can\'t lock the stall without making it obvious you\'re here, so you simply sit on the toilet with your feet pulled up. Hopefully that\'s enough to keep you hidden should someone else enter the bathroom.'],
   enter: enter,
 };

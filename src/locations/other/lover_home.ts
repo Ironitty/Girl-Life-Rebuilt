@@ -4,6 +4,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).music_loop = 0;
+  scene.build();
+}
+
 function enterExit(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).sex_ev ?? {}).length > 0) {
     qspCall(s, 'sex_ev_leave', 'exit');
@@ -546,7 +551,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHomeGym(s, scene);
       break;
     default:
-      enterExit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

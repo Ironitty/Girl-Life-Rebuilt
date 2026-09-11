@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'clock', 'pav_mailgirl');
   scene.text('He guides you to the back room, where a number of small packages and letters are packed into a shoulder bag.');
@@ -1775,7 +1779,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter26(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1784,6 +1788,5 @@ export const post_deliveries: LocationDef = {
   name: 'post_deliveries',
   title: 'He guides you to the back room, where a number of small pack',
   region: 'other',
-  description: ['He guides you to the back room, where a number of small packages and letters are packed into a shoulder bag.'],
   enter: enter,
 };

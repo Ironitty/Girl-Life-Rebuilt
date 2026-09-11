@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterOleg(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'boyStat', 'A266');
@@ -2804,7 +2808,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterOleg_SexPiss(s, scene);
       break;
     default:
-      enterOleg(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

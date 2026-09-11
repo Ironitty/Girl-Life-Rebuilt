@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterJudgeStart(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'shoplift') {
     // TODO-QSP: gt 'court_sentence_events', 'judge_shoplift', $mid($ARGS[1], 10)
@@ -512,7 +516,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPunishmentProstitution(s, scene);
       break;
     default:
-      enterJudgeStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

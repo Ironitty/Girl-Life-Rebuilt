@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_qa ?? {})['text'] = ((((s as any).locArgs?.[2] ?? 0) !== ''  &&  ((s as any).locArgs?.[2] ?? 0) !== 'none') ? (qspFunc(s, 'wrap', '$ARGS[2]', ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
   // TODO-QSP: $sd_alerts[] = $sd_qa['text']
@@ -76,9 +80,9 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sd_qm ?? 0)?.['icon'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 1)) {
     if (((s as any).sd_qm ?? 0)?.['bg_color'] !== '') {
-      ((s as any).sd_qm ?? {})['final_icon'] = '<a href="exec: ' + qspUntranslated(s, "sd_qm['action']>", { location: "stat_display_compute" }) + '"><span style="display:inline-block;background:<<$sd_qm[\'bg_color\']>>;border-radius:12px;width:<<stat_cfg[\'icon_height\']>>px;height:<<stat_cfg[\'icon_height\']>>px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/<<$sd_qm[\'icon\']>>.png" title="<<$sd_qm[\'title\']>>" style="width:100%;height:100%;display:block;"></span></a>';
+      // TODO-QSP: $sd_qm['final_icon'] = '<a href="exec: <<$sd_qm[''action'']>>"><span style="display:inline-block;background:<<$sd_qm[''bg_color'']>>;border-radius:12px;width:<<stat_cfg[''icon_height'']>>px;height:<<stat_cfg[''icon_height'']>>px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/<<$sd_qm[''icon'']>>.png" title="<<$sd_qm[''title'']>>" style="width:100%;height:100%;display:block;"></span></a>'
     } else {
-      ((s as any).sd_qm ?? {})['final_icon'] = '<a href="exec: ' + qspUntranslated(s, "sd_qm['action']>", { location: "stat_display_compute" }) + '"><img src="images/system/icons/<<$sd_qm[\'icon\']>>.png" title="<<$sd_qm[\'title\']>>" height="<<stat_cfg[\'icon_height\']>>"></a>';
+      // TODO-QSP: $sd_qm['final_icon'] = '<a href="exec: <<$sd_qm[''action'']>>"><img src="images/system/icons/<<$sd_qm[''icon'']>>.png" title="<<$sd_qm[''title'']>>" height="<<stat_cfg[''icon_height'']>>"></a>'
     }
     if (((s as any).sd_qm ?? 0)?.['row_arg'] === 1) {
       // TODO-QSP: $sd_icons_1[] = $sd_qm['final_icon']
@@ -801,7 +805,7 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat_texts ?? {})['hotcat'] = 'People would rate your appearance as a ' + qspUntranslated(s, "pcs_hotcat>", { location: "stat_display_compute" }) + ' out of 10.';
   qspCall(s, 'stat_display_compute', 'queue_msg', 'hotcat', '', 'status/appearance', 1, 'const');
   if ((!((s as any).opPRE ?? 0))) {
-    ((s as any).stat_texts ?? {})['makeup_hair'] = 'Your face is ' + qspUntranslated(s, "pc_descWordy['makeup']>", { location: "stat_display_compute" }) + ', and your hair is <<$pcs_hairstate>>.';
+    // TODO-QSP: $stat_texts['makeup_hair'] = 'Your face is <<$pc_descWordy[''makeup'']>>, and your hair is <<$pcs_hairstate>>.'
     qspCall(s, 'stat_display_compute', 'queue_msg', 'makeup_hair');
   }
   if ((!((s as any).opPRE ?? 0))) {
@@ -815,7 +819,7 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).opPRE ?? 0))) {
     if (((s as any).pcs_hairbsh ?? 0) !== 1  &&  ((s as any).mc_inventory ?? 0)?.['comb'] > 0) {
-      ((s as any).stat_texts ?? {})['hair_icon_tooltip'] = 'Your hair is ' + qspUntranslated(s, "pcs_hairstate>", { location: "stat_display_compute" }) + '. Click to brush. It would take about <<min(15, max(1, pcs_hairlng / 80))>> minutes.';
+      // TODO-QSP: $stat_texts['hair_icon_tooltip'] = 'Your hair is <<$pcs_hairstate>>. Click to brush. It would take about <<min(15, max(1, pcs_hairlng / 80))>> minutes.'
       qspCall(s, 'stat_display_compute', 'queue_msg', 'hair_icon', '', 'status/hair_0', 1, 'minut += min(15, max(1, pcs_hairlng / 80)) & pcs_hairbsh = 1 & gs \'stat\'');
     } else {
       ((s as any).stat_texts ?? {})['hair_icon_tooltip'] = 'Your hair is ' + qspUntranslated(s, "pcs_hairstate>", { location: "stat_display_compute" }) + '.';
@@ -1122,7 +1126,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat_texts ?? {})['starlets'] = 'You missed practice with the Starlets today!';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'starlets', 'v_neg', 'status/starlets_red', 4, 'stat_nums[\'starlets_late_msg\'] = daystart & msg \'You missed practice with the Starlets today!\'');
       } else {
-        ((s as any).stat_texts ?? {})['starlets'] = 'You must be at Starlets practice between ' + qspUntranslated(s, "func('time', 'get_time_string', 15, 0)>", { location: "stat_display_compute" }) + ' and <<$func(\'time\', \'get_time_string\', 16, 0)>> today.';
+        // TODO-QSP: $stat_texts['starlets'] = 'You must be at Starlets practice between <<$func(''time'', ''get_time_string'', 15, 0)>> and <<$func(''time'', ''get_time_string'', 16, 0)>> today.'
         qspCall(s, 'stat_display_compute', 'queue_msg', 'starlets', '', 'status/starlets_black|status/starlets_white', 4);
         if (((s as any).hour ?? 0) >= 14) {
           qspCall(s, 'stat_display_compute', 'queue_alert', 'Starlets practice starts soon.', 'neg');
@@ -1138,19 +1142,19 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).daystart ?? 0) === ((s as any).policeQW_courthearing_dates ?? 0)[0] - 1) {
-    ((s as any).stat_texts ?? {})['court'] = 'You have a court hearing tomorrow between ' + qspUntranslated(s, "func('time', 'get_time_string', 7, 0)>", { location: "stat_display_compute" }) + ' and <<$func(\'time\', \'get_time_string\', 11, 0)>>. The court is located in the city center of St. Petersburg.';
+    // TODO-QSP: $stat_texts['court'] = 'You have a court hearing tomorrow between <<$func(''time'', ''get_time_string'', 7, 0)>> and <<$func(''time'', ''get_time_string'', 11, 0)>>. The court is located in the city center of St. Petersburg.'
     qspCall(s, 'stat_display_compute', 'queue_msg', 'court', 'neg', 'status/courtdate', 4);
   } else {
     if (((s as any).daystart ?? 0) === ((s as any).policeQW_courthearing_dates ?? 0)[0]) {
       if (((s as any).hour ?? 0) < 11) {
-        ((s as any).stat_texts ?? {})['court'] = 'You have a court hearing today between ' + qspUntranslated(s, "func('time', 'get_time_string', 7, 0)>", { location: "stat_display_compute" }) + ' and <<$func(\'time\', \'get_time_string\', 11, 0)>>. The court is located in the city center of St. Petersburg.';
+        // TODO-QSP: $stat_texts['court'] = 'You have a court hearing today between <<$func(''time'', ''get_time_string'', 7, 0)>> and <<$func(''time'', ''get_time_string'', 11, 0)>>. The court is located in the city center of St. Petersburg.'
         qspCall(s, 'stat_display_compute', 'queue_msg', 'court', 'v_neg', 'status/courtdate', 4);
         qspCall(s, 'stat_display_compute', 'queue_alert', 'You have a court hearing today.', 'v_neg');
       }
     }
   }
   if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
-    ((s as any).stat_texts ?? {})['fines'] = 'You have outstanding fines totalling ' + qspUntranslated(s, "func('money', 'string_debt', policeQW['legal_fine'])>", { location: "stat_display_compute" }) + ' and you have <<policeQW[\'fine_deadline\']-daystart>> days left to pay them. You can settle your debt at the post office.';
+    // TODO-QSP: $stat_texts['fines'] = 'You have outstanding fines totalling <<$func(''money'', ''string_debt'', policeQW[''legal_fine''])>> and you have <<policeQW[''fine_deadline'']-daystart>> days left to pay them. You can settle your debt at the post office.'
     if (((s as any).policeQW ?? 0)?.['fine_deadline'] === ((s as any).daystart ?? 0)) {
       qspCall(s, 'stat_display_compute', 'queue_msg', 'fines', '', 'status/fine', 4);
       qspCall(s, 'stat_display_compute', 'queue_alert', 'Your fines are due today.', 'v_neg');
@@ -1236,7 +1240,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat_display_compute', 'queue_msg', 'hypno_bra', 'hypno', 'status/hypno_addict', 3);
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).succhungry ?? 0) > 0) {
-    ((s as any).stat_texts ?? {})['succubus_feeding'] = 'You\'ve needed to feed for ' + qspUntranslated(s, "succhungry>", { location: "stat_display_compute" }) + ' day<<iif(succhungry > 1, \'s\', \'\')>>.';
+    // TODO-QSP: $stat_texts['succubus_feeding'] = 'You''ve needed to feed for <<succhungry>> day<<iif(succhungry > 1, ''s'', '''')>>.'
     qspCall(s, 'stat_display_compute', 'queue_msg', 'succubus_feeding', '', 'status/need_succubus_feeding', 4);
   }
   if (Object.keys((s as any).spellComplete ?? {}).length > 0) {
@@ -1272,13 +1276,13 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).accessible_property ?? 0)?.['city_house'] === 1  &&  ((s as any).accessible_property ?? 0)?.['old_town_apartment'] > 0) {
-    ((s as any).stat_texts ?? {})['rent'] = 'You\'ve rented an apartment in the city residential area, which is paid up for ' + qspUntranslated(s, "func('homes_properties', 'get_rent_days', 'city_apartment')>", { location: "stat_display_compute" }) + ' days. You also have an apartment in Pushkin, which is paid up for <<func(\'homes_properties\', \'get_rent_days\', \'old_town_apartment\')>> days. Utilities are due on the 25th of <<$monthName>>.';
+    // TODO-QSP: $stat_texts['rent'] = 'You''ve rented an apartment in the city residential area, which is paid up for <<func(''homes_properties'', ''get_rent_days'', ''city_apartment'')>> days. You also have an apartment in Pushkin, which is paid up for <<func(''homes_properties'', ''get_rent_days'', ''old_town_apartment'')>> days. Utilities are due on the 25th of <<$monthName>>.'
   } else {
     if (((s as any).accessible_property ?? 0)?.['city_house'] === 1) {
-      ((s as any).stat_texts ?? {})['rent'] = 'You\'ve rented an apartment in the city residential area and you\'re paid up for ' + qspUntranslated(s, "func('homes_properties', 'get_rent_days', 'city_apartment')>", { location: "stat_display_compute" }) + ' days. Utilities are due on the 25th of <<$monthName>>.';
+      // TODO-QSP: $stat_texts['rent'] = 'You''ve rented an apartment in the city residential area and you''re paid up for <<func(''homes_properties'', ''get_rent_days'', ''city_apartment'')>> days. Utilities are due on the 25th of <<$monthName>>.'
     } else {
       if (((s as any).accessible_property ?? 0)?.['old_town_apartment'] > 0) {
-        ((s as any).stat_texts ?? {})['rent'] = 'You\'ve rented an apartment in Pushkin and you\'re paid up for ' + qspUntranslated(s, "func('homes_properties', 'get_rent_days', 'old_town_apartment')>", { location: "stat_display_compute" }) + ' days. Utilities are due on the 25th of <<$monthName>>.';
+        // TODO-QSP: $stat_texts['rent'] = 'You''ve rented an apartment in Pushkin and you''re paid up for <<func(''homes_properties'', ''get_rent_days'', ''old_town_apartment'')>> days. Utilities are due on the 25th of <<$monthName>>.'
       }
     }
   }
@@ -1334,13 +1338,13 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_cm ?? {})['need_bilberry'] = 0;
     }
     if (((s as any).sd_cm ?? 0)?.['need_boletus'] > 0  &&  ((s as any).sd_cm ?? 0)?.['need_bilberry'] > 0) {
-      ((s as any).stat_texts ?? {})['gadukino'] = (((s as any).stat_texts ?? {})['gadukino'] ?? 0) + ('<br><b>You need ' + qspUntranslated(s, "sd_cm['need_boletus']>", { location: "stat_display_compute" }) + ' more <<iif(sd_cm[\'need_boletus\'] = 1, \'kilo\', \'kilos\')>> of mushrooms and <<sd_cm[\'need_bilberry\']>> more <<iif(sd_cm[\'need_bilberry\'] = 1, \'kilo\', \'kilos\')>> of berries to satisfy both of your grandparents requests.</b>');
+      // TODO-QSP: $stat_texts['gadukino'] += '<br><b>You need <<sd_cm[''need_boletus'']>> more <<iif(sd_cm[''need_boletus''] = 1, ''kilo'', ''kilos'')>> of mushrooms and <<sd_cm[''need_bilberry'']>> more <<iif(sd_cm[''need_bilberry''] = 1, ''kilo'', ''kilos'')>> of berries to satisfy both of your grandparents requests.</b>'
     } else {
       if (((s as any).sd_cm ?? 0)?.['need_boletus'] > 0) {
-        ((s as any).stat_texts ?? {})['gadukino'] = (((s as any).stat_texts ?? {})['gadukino'] ?? 0) + ('<br><b>You need ' + qspUntranslated(s, "sd_cm['need_boletus']>", { location: "stat_display_compute" }) + ' more <<iif(sd_cm[\'need_boletus\'] = 1, \'kilo\', \'kilos\')>> of mushrooms to satisfy both of your grandparents requests.</b>');
+        // TODO-QSP: $stat_texts['gadukino'] += '<br><b>You need <<sd_cm[''need_boletus'']>> more <<iif(sd_cm[''need_boletus''] = 1, ''kilo'', ''kilos'')>> of mushrooms to satisfy both of your grandparents requests.</b>'
       } else {
         if (((s as any).sd_cm ?? 0)?.['need_bilberry'] > 0) {
-          ((s as any).stat_texts ?? {})['gadukino'] = (((s as any).stat_texts ?? {})['gadukino'] ?? 0) + ('<br><b>You need ' + qspUntranslated(s, "sd_cm['need_bilberry']>", { location: "stat_display_compute" }) + ' more <<iif(sd_cm[\'need_bilberry\'] = 1, \'kilo\', \'kilos\')>> of berries to satisfy both of your grandparents requests.</b>');
+          // TODO-QSP: $stat_texts['gadukino'] += '<br><b>You need <<sd_cm[''need_bilberry'']>> more <<iif(sd_cm[''need_bilberry''] = 1, ''kilo'', ''kilos'')>> of berries to satisfy both of your grandparents requests.</b>'
         }
       }
     }
@@ -1779,7 +1783,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterComputeImages(s, scene);
       break;
     default:
-      enterQueueAlert(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

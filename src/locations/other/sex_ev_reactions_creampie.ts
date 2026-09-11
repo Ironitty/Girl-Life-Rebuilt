@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
     qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
@@ -1159,7 +1163,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPullOutFinish(s, scene);
       break;
     default:
-      enterCreampieReact(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -6,6 +6,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: gs $loc_id, 'init_array'
@@ -38,7 +42,7 @@ function enterInitArray(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs $loc_id, 'nav_construct'
   scene.text('<center>');
   // TODO-QSP: gs $loc_id, 'game_events'
@@ -191,7 +195,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterInitArray(s, scene);
       break;
     case 'default':
-      enterDefault(s, scene);
+      enterDefault2(s, scene);
       break;
     case 'nav_construct':
       enterNavConstruct(s, scene);
@@ -215,7 +219,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFailure(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

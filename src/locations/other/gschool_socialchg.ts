@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTest(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grupvalue ?? 0)[1] > 450  &&  ((s as any).grupwarning ?? 0)[1] === 1) {
     ((s as any).grupwarning ?? {})[1] = 0;
@@ -1181,7 +1185,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGroupStudentRelChange(s, scene);
       break;
     default:
-      enterTest(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

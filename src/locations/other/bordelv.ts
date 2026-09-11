@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
   qspCall(s, 'stat', '');
@@ -260,6 +264,5 @@ export const bordelv: LocationDef = {
   name: 'bordelv',
   title: 'Vika takes you on the metro to the city industrial area. Aft',
   region: 'other',
-  description: ['Vika takes you on the metro to the city industrial area. After the two of you leave the station, she walks you through the neighborhood and through an inconspicuous door to a building where you find a large room full of girls scurrying around in their underwear.'],
   enter: enter,
 };

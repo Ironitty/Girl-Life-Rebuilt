@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
 function enterVicArt_Ev1_Cash(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 3) + 2);
@@ -232,7 +237,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterVicArt_Ev1_Broke(s, scene);
       break;
     default:
-      enterVicArt_Ev1_Cash(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -242,6 +247,5 @@ export const qwBarBilliard2: LocationDef = {
   title: '"Why not."',
   region: 'other',
   locationType: 'event',
-  description: ['Victor and Artyom smile and put their own cash on top of yours before setting up a new game.'],
   enter: enter,
 };

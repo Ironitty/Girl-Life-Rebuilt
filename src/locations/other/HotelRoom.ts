@@ -4,6 +4,16 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? 0) <= 0  &&  ((s as any).hour ?? 0) > 11) {
+    ((s as any).HotelRoom ?? {})[String((s as any).region ?? 0)] = 0;
+  }
+  if (((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? 0) < 0) {
+    ((s as any).HotelRoom ?? {})[String((s as any).region ?? 0)] = 0;
+  }
+  scene.build();
+}
+
 function enterNormal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'HotelRoom', 'normal');
   (s as any).hotelWiFi = 1;
@@ -391,7 +401,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWatchTv(s, scene);
       break;
     default:
-      enterNormal(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -401,6 +411,5 @@ export const HotelRoom: LocationDef = {
   title: 'Your normal hotel room',
   region: 'other',
   locationType: 'bathroom',
-  description: ['Your guitar rests on its stand next to your bed.'],
   enter: enter,
 };

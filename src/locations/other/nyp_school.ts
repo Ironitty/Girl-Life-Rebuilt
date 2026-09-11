@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).alkoblock = 1;
   qspCall(s, 'stat', '');
@@ -1297,7 +1301,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDrinkMore(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1306,6 +1310,5 @@ export const nyp_school: LocationDef = {
   name: 'nyp_school',
   title: 'You notice what you think are all your classmates from schoo',
   region: 'other',
-  description: ['You notice what you think are all your classmates from school here, or at least the majority of them. Most of them are milling about at several tables with tea and sweets laid out. It doesn\'t take long before most of them drift off into their individual cliques, with the gopniks staking claim to the bleachers, sitting and laying about on them, the cool kids and jocks mingling around the tables and the nerds hovering around the edges. The outcasts do their best to stay out of sight, leaning against one of the walls far from the gopniks.'],
   enter: enter,
 };

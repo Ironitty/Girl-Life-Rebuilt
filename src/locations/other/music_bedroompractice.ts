@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGuitar(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   ((s as any).ml_performance ?? {})['performed_minutes'] = (((s as any).ml_performance ?? {})['performed_minutes'] ?? 0) + (15);
@@ -106,7 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRehearse(s, scene);
       break;
     default:
-      enterGuitar(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -115,6 +119,5 @@ export const music_bedroompractice: LocationDef = {
   name: 'music_bedroompractice',
   title: 'You open the book you got from Jimmy and start to practice t',
   region: 'other',
-  description: ['You open the book you got from Jimmy and start to practice the chords and basic techniques on the guitar.'],
   enter: enter,
 };

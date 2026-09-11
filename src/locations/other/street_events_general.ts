@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRandomRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
   (s as any).streetev_day = ((s as any).daystart ?? 0);
@@ -1531,7 +1535,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRape(s, scene);
       break;
     default:
-      enterRandomRape(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1540,6 +1544,5 @@ export const street_events_general: LocationDef = {
   name: 'street_events_general',
   title: 'You notice a hooded man standing in a darkened alleyway up a',
   region: 'other',
-  description: ['You notice a hooded man standing in a darkened alleyway up ahead. Feeling he is up to no good you cross the street to the other side before you get to him. You see him look your direction before fading back into the darkness of the alleyway.'],
   enter: enter,
 };

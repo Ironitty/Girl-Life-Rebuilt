@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLoss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'nill', '');
   if (((s as any).fightEnding ?? 0) === 1) {
@@ -1385,7 +1389,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSurrender(s, scene);
       break;
     default:
-      enterLoss(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1394,6 +1398,5 @@ export const ender: LocationDef = {
   name: 'ender',
   title: '????',
   region: 'other',
-  description: ['You fall to the floor and feel your consciousness slipping away.'],
   enter: enter,
 };

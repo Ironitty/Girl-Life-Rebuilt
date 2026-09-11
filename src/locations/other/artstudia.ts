@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBodimod1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -91,7 +95,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBodimod4(s, scene);
       break;
     default:
-      enterBodimod1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -101,6 +105,5 @@ export const artstudia: LocationDef = {
   title: 'Patio',
   region: 'other',
   locationType: 'secluded',
-  description: ['A small open courtyard, which is often used by the art school for outdoor projects. Occasionally, some of the students spend time here relaxing or smoking.'],
   enter: enter,
 };

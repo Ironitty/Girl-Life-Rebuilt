@@ -4,7 +4,11 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).gopstop = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
@@ -100,10 +104,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case '1':
+      enter1(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const police: LocationDef = {
   name: 'police',
   title: '<center><b>Police station</b></center>',
   region: 'other',
-  description: ['The doorbell rings, and you open the door like any other person would. You\'re a bit surprised to see a neatly dressed girl standing in the doorway.'],
   enter: enter,
 };

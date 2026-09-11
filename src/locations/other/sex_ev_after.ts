@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterQuit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
     scene.actions([
@@ -1823,52 +1827,6 @@ function enterAfterSex2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['action_restricted'] === 0  &&  ((s as any).sex_ev ?? 0)?.['boy_asleep'] === 0) {
     qspCall(s, 'sex_ev_after', 'spend_night_ask');
   }
-  if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
-  } else {
-    if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
-      scene.text('');
-    } else {
-      if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
-        // TODO-QSP: dynamic text: <<$npcdesc>> is in the shower and you can hear water running through the wall.
-        scene.text(`${((s as any).npcdesc ?? 0)} is in the shower and you can hear water running through the wall.`);
-      } else {
-        // TODO-QSP: dynamic text: <<$npcdesc>> is taking a shower somewhere else in his apartment.
-        scene.text(`${((s as any).npcdesc ?? 0)} is taking a shower somewhere else in his apartment.`);
-      }
-    }
-  }
-  // TODO-QSP: end}
-  scene.build();
-}
-
-function enterAfterSexDressed(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
-    if (((s as any).sex_ev ?? 0)?.['type'] === 'hookup') {
-      qspCall(s, 'sex_ev_hookup_leave', 'gotta_go');
-    } else {
-      scene.actions([
-        { label: 'Prepare to leave', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'sex_ev_leave', 'leave_router'
-  } },
-      ]);
-    }
-    if (((s as any).sex_ev ?? 0)?.['leaving'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['cant_stay'] === 0) {
-      scene.actions([
-        { label: 'Hang out', goto: ['sex_ev_leave', 'hang_out_after'] },
-      ]);
-    }
-  } else {
-    scene.actions([
-      { label: 'Prepare to leave', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'sex_ev_leave', 'leave_router'
-  } },
-    ]);
-  }
-  qspCall(s, 'sex_ev_leave', 'breakup_start');
-  scene.actions([
-    { label: 'Use the bathroom', goto: ['sex_ev_after', 'bathroom_after'] },
-    { label: 'This is getting too complicated' }, // TODO-QSP: empty action body
-  ]);
   scene.build();
 }
 
@@ -1989,11 +1947,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'after_sex2':
       enterAfterSex2(s, scene);
       break;
-    case 'after_sex_dressed':
-      enterAfterSexDressed(s, scene);
-      break;
     default:
-      enterQuit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

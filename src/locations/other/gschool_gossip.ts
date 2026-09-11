@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMorning(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniafall ?? 0)?.['gossip'] !== ((s as any).soniaQW ?? 0)?.['soniafall']  &&  ((s as any).soniaQW ?? 0)?.['soniafall'] > 0  &&  ((s as any).soniaQW ?? 0)?.['soniafall'] < 8) {
     qspCall(s, 'gschool_gossip', 'sonia_disco_gossip');
@@ -1784,7 +1788,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSvetaDykeRumors(s, scene);
       break;
     default:
-      enterMorning(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

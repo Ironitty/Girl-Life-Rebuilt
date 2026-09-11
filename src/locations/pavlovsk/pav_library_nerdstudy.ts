@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterNerdStudyNight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).nerdstudynight ?? {})['start_time'] = ((s as any).totminut ?? 0);
@@ -355,7 +359,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNerdStudyNightOver(s, scene);
       break;
     default:
-      enterNerdStudyNight(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -365,6 +369,5 @@ export const pav_library_nerdstudy: LocationDef = {
   title: 'You arrive at the library and see all of your fellow nerds h',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['You arrive at the library and see all of your fellow nerds have already gathered around one of the tables. Some are grabbing some books or looking up things on their laptop, while others are sitting and chatting before the study session begins. You sit down with your fellow students and start studying.'],
   enter: enter,
 };

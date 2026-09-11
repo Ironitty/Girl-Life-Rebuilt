@@ -4,6 +4,13 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 'leave_break_events') {
+    // TODO-QSP: act 'Continue': gt 'gschool_events', 'leave_break_events2'
+  }
+  scene.build();
+}
+
 function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big26.jpg');
   scene.text('You walk down the corridor, past countless classrooms. On the next corner, you see Mr. Tsarev.');
@@ -2347,7 +2354,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRandomPers(s, scene);
       break;
     default:
-      enterTeacherGreet(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2356,6 +2363,5 @@ export const gschool_events: LocationDef = {
   name: 'gschool_events',
   title: 'You walk down the corridor, past countless classrooms. On th',
   region: 'other',
-  description: ['You walk down the corridor, past countless classrooms. On the next corner, you see Mr. Tsarev.'],
   enter: enter,
 };

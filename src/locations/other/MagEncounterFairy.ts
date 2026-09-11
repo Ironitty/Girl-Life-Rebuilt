@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowsfairy ?? 0) === 1) {
     scene.text('You find yourself in the area where you know the fairy to hang around.');
     if ((!((s as any).fairyshoo ?? 0))) {
@@ -384,6 +388,5 @@ export const MagEncounterFairy: LocationDef = {
   name: 'MagEncounterFairy',
   title: 'You find yourself in the area where you know the fairy to ha',
   region: 'other',
-  description: ['You find yourself in the area where you know the fairy to hang around.'],
   enter: enter,
 };

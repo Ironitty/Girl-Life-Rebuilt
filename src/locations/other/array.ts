@@ -4,6 +4,10 @@ import { qspUntranslated } from '../_shared/qspUntranslated';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGetMeIndex(s: GameState, scene: SceneBuilder): void {
   (s as any).testas0 = 0;
   if (((((s as any).test ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
@@ -81,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoupledSort(s, scene);
       break;
     default:
-      enterGetMeIndex(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

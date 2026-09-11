@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You take your glass of vodka and sit down on a rickety chair at the table, betwe...
@@ -110,7 +114,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRapeEnd(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -119,6 +123,5 @@ export const gopnik_house: LocationDef = {
   name: 'gopnik_house',
   title: 'The vodka has you feeling quite drunk, but you are still abl',
   region: 'other',
-  description: ['The vodka has you feeling quite drunk, but you are still able to think. At a certain point in the conversation, you see the smiles on the Gopniks\' faces make place for rather greedy grins. Suddenly everyone\'s looking at you, ogling your body from top to bottom.'],
   enter: enter,
 };

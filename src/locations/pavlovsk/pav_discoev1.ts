@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMarcus(s: GameState, scene: SceneBuilder): void {
   (s as any).Marcus_sextype = 1;
   qspCall(s, 'fame', 'pav', 'sex', 1);
@@ -2079,7 +2083,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMarcusKatjaDisco(s, scene);
       break;
     default:
-      enterMarcus(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2088,6 +2092,5 @@ export const pav_discoev1: LocationDef = {
   name: 'pav_discoev1',
   title: 'Community Center - Men\'s Restroom',
   region: 'pavlovsk',
-  description: ['The two of you leave the dance floor and sneak off to the restrooms. Marcus looks into the men\'s restroom and then waves you in when he sees that nobody is inside. The two of you quickly sneak into the last stall and he pulls his dick out. You sit down on the toilet, take it into your mouth and start sucking on it. He moans softly as you do.'],
   enter: enter,
 };

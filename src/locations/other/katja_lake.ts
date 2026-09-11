@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'katja_lake', 'start');
   qspCall(s, 'stat', '');
@@ -1816,7 +1820,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSaunaSex2(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1827,6 +1831,5 @@ export const katja_lake: LocationDef = {
   region: 'other',
   locationType: 'public_outdoors',
   locclass: 'beach',
-  description: ['One good thing about living in Pavlovsk is the access to rivers and lakes. Now that it\'s winter, this landscape has beautifully transformed, thanks to the ice and snow, into a place where people rush to do things like ice skating, playing hockey and, for those brave enough, swimming.'],
   enter: enter,
 };

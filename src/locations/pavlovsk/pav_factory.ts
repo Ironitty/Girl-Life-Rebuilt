@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTailor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_factory', 'tailor');
   qspCall(s, 'stat', '');
@@ -250,7 +254,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterJob(s, scene);
       break;
     default:
-      enterTailor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -260,6 +264,5 @@ export const pav_factory: LocationDef = {
   title: 'Unfortunately, the shift times conflict with your existing schedule.',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['There is a small wooden counter and a sign that says, "If you can\'t wear it, we\'ll adjust it."'],
   enter: enter,
 };

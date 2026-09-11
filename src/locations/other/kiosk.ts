@@ -4,6 +4,45 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).kioskloc ?? 0) === 'counter'  &&  ((s as any).args ?? 0)[0] !== 'counter') {
+    scene.actions([{ label: 'Continue', goto: ['kiosk', 'counter'] }]);
+  }
+  if (qspFunc(s, 'money', 'can_afford', 40) === 0) {
+    // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don't...
+    scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy water.</td></tr></table></center>');
+  } else {
+    (s as any).frost = 1;
+    if (((s as any).alko ?? 0) > 0) {
+      (s as any).alko = ((s as any).alko ?? 0) - (1);
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'money', 'pay', 40);
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
+    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (4);
+    if (((s as any).pcs_hydra ?? 0) >= 100) {
+      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
+    } else {
+      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (50);
+    }
+    (s as any).cumspclnt = 2;
+    qspCall(s, 'cum_cleanup', '');
+    (s as any).pcs_breath = 0;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/shared/brothel/barorderwater.jpg');
+    // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You enjoy...
+    scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You enjoy a drink of water</td></tr></table></center>');
+    scene.actions([
+      { label: 'Buy some water ( [+$func(\'money\', \'string_price\', 40) + \') ...]', handler: (st: GameState) => {
+    // TODO-QSP: 05)':
+  } },
+      { label: 'Return', goto: ['kiosk', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 16) {
     qspCall(s, 'stat', '');
@@ -65,6 +104,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'outdoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'kiosk');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/city/shared/kiosk/kiosk123.jpg');
   if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
     // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You don't...
     scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You don\'t have enough money to buy a snack.</td></tr></table></center>');
@@ -113,7 +153,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCounter(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -122,6 +162,5 @@ export const kiosk: LocationDef = {
   name: 'kiosk',
   title: 'It is currently very busy. It looks like you\'ll have to wait',
   region: 'other',
-  description: ['It is currently very busy. It looks like you\'ll have to wait to get to the counter.'],
   enter: enter,
 };

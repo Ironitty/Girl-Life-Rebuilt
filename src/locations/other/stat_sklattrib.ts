@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetXpprvXpnxt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$ARGS[1]>>_xpprv = func('stat_funcs', 'get_xpprv', <<$ARGS[1]>>_lvl)
@@ -33,7 +37,7 @@ function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_sklattrib', 'init');
   qspCall(s, 'stat_sklattrib', 'advancement_loop', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat_sklattrib_lvlset', '');
@@ -66,7 +70,7 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$temp_sklattrib['name']>>_lvl = <<$temp_sklattrib['name']>>_lvlst
-  ((s as any).temp_sklattrib ?? {})['max_deg'] = qspFunc(s, 'stat_funcs', 'get_max_deg', qspUntranslated(s, "<<temp_sklattrib['name']>>_lvl", { location: "stat_sklattrib" }), qspUntranslated(s, "<<temp_sklattrib['name']>>_muta", { location: "stat_sklattrib" }));
+  // TODO-QSP: temp_sklattrib['max_deg'] = func('stat_funcs', 'get_max_deg', <<$temp_sklattrib['name']>>_lvl, <<$temp_sklattrib['name']>>_muta)
   if (((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._exp ?? 0) > ((s as any).temp_sklattrib ?? 0)?.['name']((s as any)._mem ?? 0)) {
     // TODO-QSP: <<$temp_sklattrib['name']>>_deg = temp_sklattrib['max_deg']
   } else {
@@ -210,7 +214,7 @@ function enterInitLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: <<$temp_sklattrib['name']>>_xpnxt = func('stat_funcs', 'get_xpnxt', <<$temp_sklattrib['name']>>_lvl)
     // TODO-QSP: <<$temp_sklattrib['name']>>_exp = <<$temp_sklattrib['name']>>_xpprv + 1
     // TODO-QSP: <<$temp_sklattrib['name']>>_mem = <<$temp_sklattrib['name']>>_xpprv
-    ((s as any).temp_sklattrib ?? {})['max_deg'] = qspFunc(s, 'stat_funcs', 'get_max_deg', qspUntranslated(s, "<<temp_sklattrib['name']>>_lvl", { location: "stat_sklattrib" }), qspUntranslated(s, "<<temp_sklattrib['name']>>_muta", { location: "stat_sklattrib" }));
+    // TODO-QSP: temp_sklattrib['max_deg'] = func('stat_funcs', 'get_max_deg', <<$temp_sklattrib['name']>>_lvl, <<$temp_sklattrib['name']>>_muta)
     // TODO-QSP: <<$temp_sklattrib['name']>>_deg = rand(max(100, temp_sklattrib['max_deg'] / 2), max(150, 3 * temp_sk...
   }
   // TODO-QSP: "

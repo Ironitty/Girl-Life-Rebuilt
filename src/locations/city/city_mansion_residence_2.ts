@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterYliving(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_mansion_residence_2', 'yliving');
   qspCall(s, 'stat', '');
@@ -180,7 +184,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterYnursery(s, scene);
       break;
     default:
-      enterYliving(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -191,6 +195,5 @@ export const city_mansion_residence_2: LocationDef = {
   region: 'city',
   locationType: 'private',
   locclass: 'livingr',
-  description: ['Your guitar rests on its stand next to the sofa.'],
   enter: enter,
 };

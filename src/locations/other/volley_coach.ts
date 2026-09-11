@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.build();
+}
+
 function enter___(s: GameState, scene: SceneBuilder): void {
   ((s as any).vballVars ?? {})['coach_leave'] = ((s as any).daystart ?? 0);
   scene.build();
@@ -2852,7 +2857,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoachWalkHome(s, scene);
       break;
     default:
-      enter___(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

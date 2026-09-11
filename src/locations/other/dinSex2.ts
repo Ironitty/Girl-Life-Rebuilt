@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sexstart ?? 0) <= 0) {
     (s as any).sexstart = 1;
@@ -371,7 +375,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDoublepenetration(s, scene);
       break;
     default:
-      enterStaminaNpc(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

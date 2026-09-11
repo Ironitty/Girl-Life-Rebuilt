@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/oldschool/hall.jpg');
@@ -349,7 +353,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBadlyLose(s, scene);
       break;
     default:
-      enterHall(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -358,6 +362,5 @@ export const gopnik_fight_night: LocationDef = {
   name: 'gopnik_fight_night',
   title: '<br>WIP. There will eventually be options to challenge named NPCs or be challenged by them as you win more fights. For now, all you can do is wait around and be challenged by random NPCs.',
   region: 'other',
-  description: ['The front doors are chained together, but the chain is loose enough that you can pull the doors wide enough apart to easily slip in. Once inside, only a scattering of light through the windows lets you see anything at all.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHome(s: GameState, scene: SceneBuilder): void {
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
@@ -1877,7 +1881,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNushkidstory(s, scene);
       break;
     default:
-      enterHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1888,6 +1892,5 @@ export const anushapt: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'kitr',
-  description: ['You walk up to the front door and knock.'],
   enter: enter,
 };

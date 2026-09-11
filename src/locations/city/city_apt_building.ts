@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHousemates(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -1568,7 +1572,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFloor5Event_10(s, scene);
       break;
     default:
-      enterHousemates(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1578,6 +1582,5 @@ export const city_apt_building: LocationDef = {
   title: 'Floor 1 - You don\'t know anyone on this floor.',
   region: 'city',
   locationType: 'public_outdoors',
-  description: ['Floor 1 - You don\'t know anyone on this floor.'],
   enter: enter,
 };

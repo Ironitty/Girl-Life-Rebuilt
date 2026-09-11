@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_allure', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -96,6 +100,5 @@ export const shop_allure: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
-  description: ['This shop has the feel of a summer at the beach, which you\'d expect seeing as it sells swimwear.'],
   enter: enter,
 };

@@ -4,6 +4,11 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'lover_pref', '');
+  scene.build();
+}
+
 function enterClotTypePrefTmp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ngp_pref[] = 'clothes_style_wealthy'
   // TODO-QSP: $ngp_pref[] = 'clothes_style_fetish'
@@ -1198,7 +1203,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCompliance(s, scene);
       break;
     default:
-      enterClotTypePrefTmp(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

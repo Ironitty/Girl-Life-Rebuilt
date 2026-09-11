@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_time_left = ((s as any).ml_performance ?? {})?.['max_perform_minutes']-((s as any).ml_performance ?? {})?.['performed_minutes'];
   if (((s as any).ml_activities ?? 0)?.['enabled'] === 0  &&  (((s as any).ml_guitar ?? 0)?.['hasguitar']  ||  ((s as any).vokal_lvl ?? 0) > 5)) {
@@ -599,7 +603,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFinish(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -609,6 +613,5 @@ export const music_actions: LocationDef = {
   title: '(You are too tired)',
   region: 'other',
   locationType: 'private',
-  description: ['You are too drunk to stream or record music without messing up or throwing up into your guitar.'],
   enter: enter,
 };

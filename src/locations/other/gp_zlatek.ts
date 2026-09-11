@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -1532,10 +1536,10 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
                                           if (((s as any).grandpaQW ?? 0)?.['chore_gather_both'] > 0  &&  ((s as any).grandpaQW ?? 0)?.['chore_gather_both'] < 3) {
                                             if (((s as any).bilberry ?? 0) < ((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']  ||  ((s as any).boletus ?? 0) < ((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']) {
                                               ((s as any).grandpaQW ?? {})['chore_gather_both'] = 1;
-                                              ((s as any).stat_texts ?? {})['gadukino'] = (((s as any).stat_texts ?? {})['gadukino'] ?? 0) + ('<br><b>You promised Grandpa you would pick ' + qspUntranslated(s, "grandpaQW['chore_mushroom_quantity']>", { location: "gp_zlatek" }) + ' kg of mushrooms and <<grandpaQW[\'chore_berry_quantity\']>> kg of berries for him today.</b>');
+                                              // TODO-QSP: $stat_texts['gadukino'] += '<br><b>You promised Grandpa you would pick <<grandpaQW[''chore_mushroom_quantity'']>> kg of mushrooms and <<grandpaQW[''chore_berry_quantity'']>> kg of berries for him today.</b>'
                                             } else {
                                               ((s as any).grandpaQW ?? {})['chore_gather_both'] = 2;
-                                              ((s as any).stat_texts ?? {})['gadukino'] = (((s as any).stat_texts ?? {})['gadukino'] ?? 0) + ('<br><b>You have picked the ' + qspUntranslated(s, "grandpaQW['chore_mushroom_quantity']>", { location: "gp_zlatek" }) + ' kg of mushrooms and <<grandpaQW[\'chore_berry_quantity\']>> kg of berries that Grandpa asked for - you should give them to him.</b>');
+                                              // TODO-QSP: $stat_texts['gadukino'] += '<br><b>You have picked the <<grandpaQW[''chore_mushroom_quantity'']>> kg of mushrooms and <<grandpaQW[''chore_berry_quantity'']>> kg of berries that Grandpa asked for - you should give them to him.</b>'
                                             }
                                           }
                                         }
@@ -1709,7 +1713,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStatDisplay(s, scene);
       break;
     default:
-      enterTalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1718,6 +1722,5 @@ export const gp_zlatek: LocationDef = {
   name: 'gp_zlatek',
   title: 'Your grandfather is a grumpy old man who is always complaini',
   region: 'other',
-  description: ['Your grandfather is a grumpy old man who is always complaining about the village elders and how they have neglected the village to barely being fit to live in. He can walk but requires a cane. So he doesn\'t leave the house anymore unless he really has to.'],
   enter: enter,
 };

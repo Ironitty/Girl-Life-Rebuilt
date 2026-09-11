@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -82,6 +86,9 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   if (((s as any).LudaQW ?? 0)?.['work_hours'] === 1) {
+    scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
+  } else {
+    scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + pav_pharma_picrand + '.jpg');
   }
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
@@ -1376,29 +1383,6 @@ function enterMorningAfterNoMoney(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 2) {
-    scene.actions([
-      { label: 'Ask your Aunt for her present', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
-    ((s as any).LudaQW ?? {})['free_condoms'] = 1;
-    scene.text('"Aunt Luda..." you say.');
-    scene.text('"Yes, darling?"');
-    scene.actions([
-      { label: 'Embarrassed', handler: (st: GameState) => {
-    scene.text('"I... I need your present after all..." you stammer.');
-    scene.text('Luda gives you a gleaming smile in return as she reaches under the counter and produces the same paper bag you gave back to her.');
-    scene.text('"What made you change your mind?"');
-    scene.actions([
-      { label: 'There\'s this boy...' }, // TODO-QSP: empty action body
-      { label: '' }, // TODO-QSP: empty action body
-    ]);
-  } },
-      { label: 'Open' }, // TODO-QSP: empty action body
-    ]);
-  } },
-    ]);
-  }
-  // TODO-QSP: end !}
   scene.build();
 }
 
@@ -1469,7 +1453,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMorningAfterNoMoney(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1479,6 +1463,5 @@ export const pav_pharmacy: LocationDef = {
   title: 'Pharmacy',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['"Do you need anything else?"'],
   enter: enter,
 };

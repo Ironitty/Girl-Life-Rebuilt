@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
     (s as any).pav_disco_in = ((s as any).daystart ?? 0);
   }
@@ -1278,51 +1282,6 @@ function enterKnownPartner(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Leave', goto: ['pav_disco', ''] },
-    { label: 'Dance', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] < 2) {
-      // TODO-QSP: dynamic text: After the dance, <<$npcdesc>> offers to go out and drink beer.
-      scene.text(`After the dance, ${((s as any).npcdesc ?? 0)} offers to go out and drink beer.`);
-    } else {
-      // TODO-QSP: dynamic text: After the dance, <<$npcdesc>> offers to go to his hotel.
-      scene.text(`After the dance, ${((s as any).npcdesc ?? 0)} offers to go to his hotel.`);
-    }
-    qspCall(s, 'willpower', 'drink', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-      scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-      ]);
-    } else {
-      scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'willpower', 'drink', 'resist');
-    qspCall(s, 'willpower', 'pay');
-    qspCall(s, 'stat', '');
-  }, goto: ['pav_disco', ''] },
-      ]);
-    }
-    // TODO-QSP: end}
-    scene.actions([
-      { label: 'Agree', handler: (st: GameState) => {
-    (s as any).boynumBlock = 1;
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
-      (s as any).gdk_nice_guy = 1;
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'outside'] }]);
-    }
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'outside'] }]);
-    }
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 2) {
-      (s as any).DPtipe = 2;
-      ((s as any).sex_ev ?? {})['pav_hotel'] = 1;
-      scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'hotel'] }]);
-    }
-  } },
-    ]);
-  } },
   ]);
   scene.build();
 }
@@ -1386,6 +1345,5 @@ export const pav_disco: LocationDef = {
   title: 'Disco',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['The club is closing for the night. The main lights go on, the music fades and everyone starts leaving.'],
   enter: enter,
 };

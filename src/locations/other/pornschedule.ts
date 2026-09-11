@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterOnBookingMiss(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_obm_film_type = qspUntranslated(s, "val(temp_obm_data)", { location: "pornschedule" });
   (s as any).pornmiss = 1;
@@ -496,7 +500,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSelection(s, scene);
       break;
     default:
-      enterOnBookingMiss(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterModel(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'AURORA<br>'
   // TODO-QSP: $text += 'We are St. Petersburg''s lead female casting agency, providing actresses for blockbuster m...
@@ -175,7 +179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHotelmaid(s, scene);
       break;
     default:
-      enterModel(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

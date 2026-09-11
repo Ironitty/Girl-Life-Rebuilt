@@ -6,6 +6,13 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 'andrey'  ||  ((s as any).locArgs?.[0] ?? 0) === 'stasya') {
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_coolkids', 'andrey_stasya'] }]);
+  }
+  scene.build();
+}
+
 function enterDimka(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like', 1, 'pav_disco');
@@ -2609,7 +2616,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNatashaDance(s, scene);
       break;
     default:
-      enterDimka(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2618,6 +2625,5 @@ export const pav_disco_coolkids: LocationDef = {
   name: 'pav_disco_coolkids',
   title: '<<$npc_firstname[\'A1\']>> <<$npc_lastname[\'A1\']>>',
   region: 'pavlovsk',
-  description: ['You see Dimka out on the dance floor. He is dressed very stylishly and dances very well. He\'s in the middle of a small crowd of of people, mostly girls.'],
   enter: enter,
 };

@@ -6,6 +6,64 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  // TODO-QSP: $textsexhunter[2] = '<<$boydesc>> staring you in the face until your lips slide on his hard dick. In...
+  // TODO-QSP: $textsexhunter[3] = '<<$boydesc>> finished and left with a satisfied smile on her face, and you are ...
+  // TODO-QSP: $textsexhunter[4] = 'Enough to enjoy in this position, the guy says…'
+  // TODO-QSP: $textsexhunter[5] = 'Guys look you in the face while your lips slide on their hard members. Interrup...
+  // TODO-QSP: $textsexhunter[6] = '<<$boydesc>> finished and walked away with a satisfied smile on his face, and y...
+  // TODO-QSP: $textsexhunter[7] = 'Enough to enjoy in this position, guys…'
+  // TODO-QSP: $textsexhunter[8] = '<<$boydesc>> staring you in the face until your lips slide on his hard dick…'
+  // TODO-QSP: $textsexhunter[9] = 'Guys look you in the face while your lips slide on their hard members…'
+  // TODO-QSP: $textsexhunter[10] = '<<$boydesc>> finished and walked away with a satisfied smile on her face, and ...
+  // TODO-QSP: $textsexhunter[11] = 'Gradually, a pleasant warmth growing and throbbing in the abdomen, then the se...
+  // TODO-QSP: $textsexhunter[12] = 'You feel nice when <<dick>> cm dick is moving inside of your ass and you moan ...
+  if (((s as any).args ?? 0)[0] === 'gadsexOral1') {
+    (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
+    (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+    if (((s as any).pcs_throat ?? 0) <= 15) {
+      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (5);
+    }
+    if (((s as any).pcs_throat ?? 0) > 15) {
+      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (10);
+    }
+    scene.img('images/locations/gadukino/sex/mitka/mitkagadsexoral1.\'+rand(1, 2)+\'.jpg');
+    // TODO-QSP: dynamic text: You kneel in front of a boy. <<$boydesc>> takes his <<dick>> cm dick, brings it ...
+    scene.text(`You kneel in front of a boy. ${((s as any).boydesc ?? 0)} takes his ${((s as any).dick ?? 0)} cm dick, brings it to your lips…`);
+    qspCall(s, 'oral', 'start');
+    // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
+    qspCall(s, 'arousal', 'bj', 5, 'sub');
+    qspCall(s, 'stat', '');
+    if (((s as any).horny_boyA ?? 0) < 100) {
+      if (((s as any).huntsexa ?? 0) === 1) {
+        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 2) {
+        // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 3) {
+        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 4) {
+        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+      }
+      if (((s as any).huntsexa ?? 0) === 5) {
+        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 6) {
+        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+      }
+    } else {
+      scene.actions([
+        { label: 'Suck on', goto: ['mitkasex', 'gadOralCum1'] },
+      ]);
+    }
+  }
+  scene.build();
+}
+
 function enterForest1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).boyAsex = 0;
@@ -4014,7 +4072,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterForest1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

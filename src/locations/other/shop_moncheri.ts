@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'start');
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
@@ -267,6 +271,5 @@ export const shop_moncheri: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
-  description: ['You\'re only inside the boutique only a few seconds before a tall, slender brunette saunters up to you. Everything about her is poised and perfect, from the beautiful silver dress she\'s wearing to her unblemished skin and pearly white teeth.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 1, 'unknown', 'prostitution');
@@ -206,7 +210,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter12(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -216,6 +220,5 @@ export const blowPR: LocationDef = {
   title: 'You slide your hand onto his crotch, once you\'re in his car.',
   region: 'other',
   locationType: 'event',
-  description: ['You slide your hand onto his crotch, once you\'re in his car. The man quickly drives to a quiet area, about two streets away. You can feel an impressive bulge when you reach into his pants, and compliment him on his nice cock when you liberate it. He\'s nearly fully erect already, and if you look closely you can actually see the cock throbbing.'],
   enter: enter,
 };

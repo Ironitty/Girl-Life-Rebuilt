@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).tmpl = (((!((s as any).locArgs?.[1] ?? 0))) ? (10) : (qspUntranslated(s, "ARGS[1]", { location: "oral" })));
   (s as any).frost = 0;
@@ -51,7 +55,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter0(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

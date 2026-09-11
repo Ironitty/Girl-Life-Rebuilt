@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLiterature(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
@@ -2286,7 +2290,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterArt(s, scene);
       break;
     default:
-      enterLiterature(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2295,6 +2299,5 @@ export const gschool_lessonsev3: LocationDef = {
   name: 'gschool_lessonsev3',
   title: 'During a rare moment of quietness, you take the opportunity ',
   region: 'other',
-  description: ['During a rare moment of quietness, you take the opportunity to stretch and look around the room. Your attention settles on Igor, who is working quietly by himself, which is an odd sight as he\'s usually attached to Dimka\'s hip. As you continue to watch him, it dawns on you that, without his popular friend around, no one really wants to talk or hang out with him. Maybe those rumors of Dimka being his only friend are true?'],
   enter: enter,
 };

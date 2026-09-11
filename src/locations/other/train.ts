@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'train', 'center');
   qspCall(s, 'stat', '');
@@ -142,7 +146,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCommunal(s, scene);
       break;
     default:
-      enterCenter(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -152,6 +156,5 @@ export const train: LocationDef = {
   title: 'City Center Train Station',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['The grand old station in the city center is an impressive building. It is busy and has a number of shops and bars.'],
   enter: enter,
 };

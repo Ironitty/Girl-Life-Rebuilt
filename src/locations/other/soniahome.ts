@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterHome(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -1055,7 +1059,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNightStand(s, scene);
       break;
     default:
-      enterHome(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1066,6 +1070,5 @@ export const soniahome: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'livingr',
-  description: ['You approach Sonia\'s house, walking up the pathway through a small well-cared garden with various flowers and shrubs towards a grey, wooden-clad house, which is equally well-cared for.'],
   enter: enter,
 };

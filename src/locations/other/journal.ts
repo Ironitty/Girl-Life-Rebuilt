@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRecords(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'housing', 'rent');
   qspCall(s, 'journal', 'journalmenu');
@@ -1511,7 +1515,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFamily(s, scene);
       break;
     default:
-      enterRecords(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

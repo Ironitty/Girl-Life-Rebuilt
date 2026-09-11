@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDimka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
   qspCall(s, 'stat', '');
@@ -2792,7 +2796,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSoniaTampon(s, scene);
       break;
     default:
-      enterDimka(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2801,6 +2805,5 @@ export const gschool_coolkid_chats: LocationDef = {
   name: 'gschool_coolkid_chats',
   title: '<<$npc_firstname[\'A14\']>> <<$npc_lastname[\'A14\']>>',
   region: 'other',
-  description: ['You walk up to Dimka and the first thing he does is pull you aside. "Do you have my money?"'],
   enter: enter,
 };

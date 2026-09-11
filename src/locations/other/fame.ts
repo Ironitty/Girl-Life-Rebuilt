@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCheckIfOnlyLocal(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'sex'  ||  ((s as any).locArgs?.[1] ?? 0) === 'prostitute'  ||  ((s as any).locArgs?.[1] ?? 0) === 'flash');
   scene.build();
@@ -135,7 +139,7 @@ function enterDeg(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (! qspFunc(s, 'fame', 'check_if_only_local', ((s as any).locArgs?.[1] ?? 0))) {
     if (((s as any).locArgs?.[3] ?? 0) !== 'local') {
       ((s as any).ARGS ?? {})[3] = 'core';

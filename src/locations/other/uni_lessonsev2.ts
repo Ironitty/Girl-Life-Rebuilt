@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGeneralEducation(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
   (s as any).temp = Math.floor(Math.random() * 10) + 0;
@@ -347,7 +351,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDosagesAndPharmaceuticals(s, scene);
       break;
     default:
-      enterGeneralEducation(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -356,6 +360,5 @@ export const uni_lessonsev2: LocationDef = {
   name: 'uni_lessonsev2',
   title: 'As Professor Kovalyov continues his lecture, you can\'t help ',
   region: 'other',
-  description: ['As Professor Kovalyov continues his lecture, you can\'t help but notice how attractive he is. He has a mesmerizing smile while he talks and this seems to have an effect on the other girls, even the shy Katja. You remember she used to be quite the shy girl in school, always resisting any charm. But now… She\'s half finished eating her banana while listening to Professor Kovalyov and is almost deepthroating it. Her mind is likely wandering somewhere else…'],
   enter: enter,
 };

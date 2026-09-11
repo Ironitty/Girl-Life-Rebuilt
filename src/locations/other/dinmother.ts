@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDMother1(s: GameState, scene: SceneBuilder): void {
   scene.text('You try having a talk with your mother, but she dislikes you way too much to even pretend to be interested in what you have to say. After a while, you give up and leave her alone. Maybe she\'ll be in a better mood later.');
   if (((s as any).mothersorryday ?? 0)!==((s as any).daystart ?? 0)) {
@@ -139,7 +143,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDMother8(s, scene);
       break;
     default:
-      enterDMother1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -148,6 +152,5 @@ export const dinmother: LocationDef = {
   name: 'dinmother',
   title: 'You try having a talk with your mother, but she dislikes you',
   region: 'other',
-  description: ['You try having a talk with your mother, but she dislikes you way too much to even pretend to be interested in what you have to say. After a while, you give up and leave her alone. Maybe she\'ll be in a better mood later.'],
   enter: enter,
 };

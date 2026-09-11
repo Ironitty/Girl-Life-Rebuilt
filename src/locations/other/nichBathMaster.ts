@@ -4,7 +4,13 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nicholas\' Bathroom</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bathroomMaster.jpg');
   scene.text('The bathroom is modern and well fitted, more than matching the display of wealth in the other rooms, from the elaborate decorations and spacious shower and tub to the underfloor heating.');
@@ -70,11 +76,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const nichBathMaster: LocationDef = {
   name: 'nichBathMaster',
   title: 'Nicholas\' Bathroom',
   region: 'other',
   locationType: 'bathroom',
-  description: ['The bathroom is modern and well fitted, more than matching the display of wealth in the other rooms, from the elaborate decorations and spacious shower and tub to the underfloor heating.'],
   enter: enter,
 };

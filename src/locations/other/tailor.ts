@@ -1,8 +1,48 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).tailor_funcs ?? {})['clothing_resize_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] > ((s as any).pcs_hips ?? 0) + 8)  ||  (((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] < ((s as any).pcs_hips ?? 0) - 8))) {
+      // TODO-QSP: gs 'clothing_attributes', '<<$ARGS[0]>>', <<ARGS[1]>>
+      if (((s as any).CloSport ?? 0) === 0  &&  ((s as any).CloStyle ?? 0) !== 5) {
+        (s as any).tailor_total_resize_cost = ((s as any).tailor_total_resize_cost ?? 0) + (500);
+      }
+    }
+  }
+  // TODO-QSP: "
+  ((s as any).tailor_funcs ?? {})['clothing_resize'] = qspUntranslated(s, "{", { location: "tailor" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] > ((s as any).pcs_hips ?? 0) + 8)  ||  (((s as any).locArgs?.[0] ?? 0)((s as any)._b ?? 0)[((s as any).locArgs?.[1] ?? 0)] < ((s as any).pcs_hips ?? 0) - 8))) {
+      // TODO-QSP: <<$ARGS[0]>>_b[<<ARGS[1]>>] = pcs_hips
+    }
+  }
+  // TODO-QSP: "
+  ((s as any).tailor_funcs ?? {})['clothing_repair_cost'] = qspUntranslated(s, "{", { location: "tailor" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).locArgs?.[0] ?? 0)((s as any)._h ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 1000) {
+      (s as any).tailor_total_repair_cost = ((s as any).tailor_total_repair_cost ?? 0) + (500);
+    }
+  }
+  // TODO-QSP: "
+  ((s as any).tailor_funcs ?? {})['clothing_repair'] = qspUntranslated(s, "{", { location: "tailor" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    // TODO-QSP: if <<$ARGS[0]>>_h[<<ARGS[1]>>] <= 1000
+    // TODO-QSP: gs 'clothing_attributes', '<<$ARGS[0]>>', <<ARGS[1]>>
+    // TODO-QSP: <<$ARGS[0]>>_h[<<ARGS[1]>>] = CloMaxStrength / 4
+  }
+  scene.build();
+}
 
 function enterSetTailorActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'tailor', 'set_resize_current_act');
@@ -121,7 +161,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterResizeAll(s, scene);
       break;
     default:
-      enterSetTailorActs(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

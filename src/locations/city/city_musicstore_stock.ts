@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterElectric(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <th>
   // TODO-QSP: <center><a href="exec:gs ''city_musicstore_stock'', ''electric'', ''store'', ''<<$store>>''">Electri...
@@ -403,7 +407,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStudio(s, scene);
       break;
     default:
-      enterElectric(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

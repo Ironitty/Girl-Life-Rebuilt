@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enter0(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat_cfg ?? {})['render_mode'] = 0;
   qspCall(s, 'stat', '');
@@ -26,7 +30,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter1(s, scene);
       break;
     default:
-      enter0(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

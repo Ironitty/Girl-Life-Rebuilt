@@ -4,6 +4,897 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 1) {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/poproshaika1.jpg');
+    scene.text('You\'re strolling through the market when a beggar asks you for some change.');
+    if (qspFunc(s, 'money', 'can_afford', 20, 'cash')) {
+      scene.actions([
+        { label: 'Give him some money', handler: (st: GameState) => {
+    qspCall(s, 'money', 'pay', Math.floor(Math.random() * 18) + 3, 'cash');
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/podaet.jpg');
+    scene.text('You give the beggar a few rubles and he kindly thanks you.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Don\'t give money', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/poproshaika2.jpg');
+    scene.text('You ignore the beggar and pretend not to hear him.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 2) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/dedgitara.jpg');
+    scene.text('You see an old man playing the guitar. He\'s trying to avert as much attention as he can to himself.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 3) {
+    (s as any).pavtrain_book = 1;
+    qspCall(s, 'stat', '');
+    if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
+      scene.img('images/locations/pavlovsk/market/bookw.jpg');
+    } else {
+      scene.img('images/locations/pavlovsk/market/book.jpg');
+    }
+    // TODO-QSP: dynamic text: You find a stall selling various books. There are fantasy, science fiction and r...
+    scene.text('You find a stall selling various books. There are fantasy, science fiction and romance novels, all of which cost \' + $func(\'money\', \'string_price\', 350) + \' each.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    qspCall(s, 'library_functions', 'set_book_buy_acts');
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 4) {
+    (s as any).pavmarket_porn = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+    scene.text('You find a small stall with many shelves displaying a large variety of porn magazines. In addition, you see several sex toys and a pack of brand-new porn playing cards just behind the counter. The salesman watches over his stall with shifty eyes.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    if (((s as any).mc_inventory ?? 0)?.['card'] < 2) {
+      scene.actions([
+        { label: 'Buy the playing cards [+$func(\'money\', \'get_cost_string\', 700, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 700, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 700, 'cash');
+      ((s as any).mc_inventory ?? {})['card'] = 2;
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+      scene.text('You try not to look into the eyes of the salesman as you count the money and hand it over before quickly grabbing the cards and shoving them in your purse.');
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    if (((s as any).porndeal ?? 0) === 1) {
+      scene.actions([
+        { label: 'Buy a porn magazine for the Chinese boy [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 400, 'cash');
+      (s as any).haveporn = 1;
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+      scene.text('You try your best not to look into the eyes of the salesman as you count the money and hand it over before taking the magazine and quickly hiding it in your purse.');
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Browse the porn magazines', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'erotic', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+    if ((!((s as any).TimesBuyPorno ?? 0))) {
+      scene.text('You look over the magazine covers, which are covered in images of half-naked girls. Many of them appear to be near your own age. The salesman notices your interest and looks at you expectantly.');
+      scene.actions([
+        { label: 'Look through a magazine', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+    scene.text('You pick up one of the magazines and flip through the pages. The magazine is full of images of men engaging in various sexual acts with either half-naked or fully naked girls, most of whom look close to your own age. You feel yourself getting aroused as you continue flipping through the pages.');
+    scene.actions([
+      { label: 'Leave', goto: ['pav_train_market', 'start'] },
+      { label: 'Look for something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      { label: 'Ask for the price', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+    scene.text('Blushing profusely, you approach the salesman and stammer as you ask him how much the magazines cost.');
+    // TODO-QSP: dynamic text: He smiles at you. "All magazines are ' + $func('money', 'string_price', 400) + '...
+    scene.text('He smiles at you. "All magazines are \' + $func(\'money\', \'string_price\', 400) + \' each."');
+    scene.actions([
+      { label: 'Leave', goto: ['pav_train_market', 'start'] },
+      { label: 'Look for something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      { label: 'Buy a magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 400, 'cash');
+      ((s as any).mc_inventory ?? {})['mag_porn'] = 40;
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+      scene.text('You try not to look into the man\'s eyes as you hand him the money. You then take the magazine and quickly hide it.');
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).TimesBuyPorno ?? 0) > 0  &&  ((s as any).TimesBuyPorno ?? 0) < 5) {
+        // TODO-QSP: dynamic text: The salesman notices you approaching. "Looking to buy a magazine? They're only '...
+        scene.text('The salesman notices you approaching. "Looking to buy a magazine? They\'re only \' + $func(\'money\', \'string_price\', 400) + \' each."');
+        scene.actions([
+          { label: 'Look through a magazine', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+    scene.text('You pick up one of the magazines and flip through the pages. The magazine is full of images of men engaging in various sexual acts with either half-naked or fully naked girls, most of whom look close to your own age. You feel yourself getting aroused as you continue flipping through the pages.');
+    scene.actions([
+      { label: 'Leave', goto: ['pav_train_market', 'start'] },
+      { label: 'Look for something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      { label: 'Buy magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 400, 'cash');
+      ((s as any).mc_inventory ?? {})['mag_porn'] = 40;
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+      scene.text('You try not to look into the man\'s eyes as you hand him the money. You then take the magazine and quickly hide it.');
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+        ]);
+      } else {
+        if (((s as any).TimesBuyPorno ?? 0) >= 5) {
+          scene.text('The salesman sees you approaching. "Ah, my best customer! Welcome back!"');
+          scene.actions([
+            { label: 'Look through a magazine', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+    scene.text('You pick up one of the magazines and flip through the pages. The magazine is full of images of men engaging in various sexual acts with either half-naked or fully naked girls, most of whom look close to your own age. You feel yourself getting aroused as you continue flipping through the pages.');
+    scene.actions([
+      { label: 'Leave', goto: ['pav_train_market', 'start'] },
+      { label: 'Look for something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      { label: 'Buy magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 400, 'cash');
+      ((s as any).mc_inventory ?? {})['mag_porn'] = 40;
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/pavlovsk/market/pornmag.jpg');
+      scene.text('You try not to look into the man\'s eyes as you hand him the money. You then take the magazine and quickly hide it.');
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+          ]);
+        }
+      }
+    }
+    scene.actions([
+      { label: 'Leave', goto: ['pav_train_market', 'start'] },
+      { label: 'Look for something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+      { label: 'Ask to see the sex toys', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/sextoys.jpg');
+    scene.text('He lets you step behind the counter to get a better look. "Take a look and let me know what you would like.');
+    // TODO-QSP: dynamic text: You see several 15cm dildos, a small selection of vibrators in various colours a...
+    scene.text('You see several 15cm dildos, a small selection of vibrators in various colours and many butt plugs, all of which are tagged as costing \' + $func(\'money\', \'string_price\', 700) + \' each. Near the bottom are several strap-on harnesses priced at \' + $func(\'money\', \'string_price\', 500) + \' each.');
+    scene.text('The salesman only deals in cash.');
+    if (((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 0) {
+      scene.actions([
+        { label: 'Buy a 15cm dildo [+$func(\'money\', \'get_cost_string\', 700, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 700, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      ((s as any).mc_inventory ?? {})['dildo_normal'] = 1;
+      qspCall(s, 'money', 'pay', 700, 'cash');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      scene.img('images/pc/items/sextoys/15cm.jpg');
+      if (((s as any).pcs_inhib ?? 0) < 35) {
+        scene.text('You buy a dildo and hastily hide it as your face blushes with embarrassment.');
+      } else {
+        scene.text('You buy a dildo and calmly hide it.');
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    if (((s as any).mc_inventory ?? 0)?.['dildo_suction'] === 0) {
+      scene.actions([
+        { label: 'Buy a 15cm suction dildo [+$func(\'money\', \'get_cost_string\', 1000, ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) + (1);
+      qspCall(s, 'money', 'pay', 1000, 'cash');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      scene.img('images/pc/items/sextoys/15cm.jpg');
+      if (((s as any).pcs_inhib ?? 0) < 35) {
+        scene.text('You buy the dildo and hastily hide it as your face blushes with embarrassment.');
+      } else {
+        scene.text('You buy the dildo and calmly hide it.');
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Buy another 15cm suction dildo [+$func(\'money\', \'get_cost_string\', 1000, ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) + (1);
+      qspCall(s, 'money', 'pay', 1000, 'cash');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      scene.img('images/pc/items/sextoys/15cm.jpg');
+      if (((s as any).pcs_inhib ?? 0) < 35) {
+        scene.text('You buy the dildo and hastily hide it as your face blushes with embarrassment.');
+      } else {
+        scene.text('You buy the dildo and calmly hide it.');
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    if (((s as any).mc_inventory ?? 0)?.['vibe'] === 0) {
+      scene.actions([
+        { label: 'Buy a vibrator [+$func(\'money\', \'get_cost_string\', 700, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 700, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      ((s as any).mc_inventory ?? {})['vibe'] = 1;
+      qspCall(s, 'money', 'pay', 700, 'cash');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150) {
+        scene.text('You buy a vibrator and hastily hide it as your face blushes with embarrassment.');
+      } else {
+        scene.text('You buy a vibrator and calmly hide it.');
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 0) {
+      scene.actions([
+        { label: 'Buy a butt plug [+$func(\'money\', \'get_cost_string\', 700, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 700, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 700, 'cash');
+      ((s as any).mc_inventory ?? {})['buttplug'] = 1;
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      scene.img('images/pc/items/sextoys/bp_small.jpg');
+      if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150) {
+        scene.text('You buy a butt plug and hastily hide it as your face blushes with embarrassment.');
+      } else {
+        scene.text('You buy a butt plug and calmly hide it.');
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+      ]);
+    }
+    if (((s as any).mc_inventory ?? 0)?.['dildo_normal'] > 0) {
+      if (((s as any).mc_inventory ?? 0)?.['strapon'] === 0) {
+        scene.actions([
+          { label: 'Buy strap-on harness [+$func(\'money\', \'get_cost_string\', 500, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      ((s as any).mc_inventory ?? {})['strapon'] = 1;
+      (s as any).strapNumber = 2;
+      qspCall(s, 'money', 'pay', 500, 'cash');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      scene.img('images/pc/items/sextoys/harness.jpg');
+      if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150) {
+        scene.text('You buy a strap-on harness and hastily hide it as your face blushes with embarrassment.');
+      } else {
+        scene.text('You buy a strap-on harness and calmly hide it.');
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+        ]);
+      }
+    } else {
+      if (((s as any).mc_inventory ?? 0)?.['strapon'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 0) {
+        scene.actions([
+          { label: 'Buy strap-on harness with a 15cm dildo [+$func(\'money\', \'get_cost_string\', 1200, ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1200, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      ((s as any).mc_inventory ?? {})['strapon'] = 1;
+      ((s as any).mc_inventory ?? {})['dildo_normal'] = 1;
+      (s as any).strapNumber = 2;
+      qspCall(s, 'money', 'pay', 1200, 'cash');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).TimesBuyPorno = ((s as any).TimesBuyPorno ?? 0) + (1);
+      scene.img('images/pc/items/sextoys/harness.jpg');
+      if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150) {
+        scene.text('You buy a strap-on harness and dildo and hastily hide them as your face blushes with embarrassment.');
+      } else {
+        scene.text('You buy a strap-on harness and dildo and calmly hide them.');
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['pav_train_market', 'start'] },
+        { label: 'Buy something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+      ]);
+    }
+  } },
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Leave', goto: ['pav_train_market', 'start'] },
+      { label: 'Look for something else', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pav_train_market', 4
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 5) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/dedgitara.jpg');
+    scene.text('You see an old man playing the guitar. He\'s trying to avert as much attention as he can to himself.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 6) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/nenavizublyadcigan.jpg');
+    scene.text('You meet a Gypsy woman who offers to tell you your fortune.');
+    scene.actions([
+      { label: 'Decline', goto: ['pav_train_market', 'start'] },
+      { label: 'Accept', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/locations/pavlovsk/market/gadaet\'+rand(1, 2)+\'.jpg');
+    scene.text('You agree and the woman takes your hand before she predicts you\'ll have great happiness and lots of money.');
+    scene.text('Afterwards, she quickly hurries away.');
+    scene.actions([
+      { label: 'Something\'s wrong', handler: (st: GameState) => {
+    qspCall(s, 'money', 'set', 0);
+    qspCall(s, 'mood', 'lower', 'huge');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/pusto.jpg');
+    scene.text('With a sneaking suspicion, you start looking through your stuff. Unfortunately, your wallet is nowhere to be found!');
+    scene.actions([
+      { label: 'Find the Gypsy', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/market/okliknut.jpg');
+    scene.text('You search the area hoping to find the thief, but she has already disappeared into the crowd.');
+    scene.actions([
+      { label: 'Back', goto: ['pav_train_market', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 7) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/kosmetic.jpg');
+    // TODO-QSP: dynamic text: You see some cosmetics on sale for '+ $func('money', 'string_price', 800) +'.
+    scene.text('You see some cosmetics on sale for \'+ $func(\'money\', \'string_price\', 800) +\'.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+      { label: 'Buy the cosmetics [+$func(\'money\', \'get_cost_string\', 800, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 800, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 15;
+      qspCall(s, 'money', 'pay', 800, 'cash');
+      ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) + (50);
+      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 8) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/vitaminki.jpg');
+    // TODO-QSP: dynamic text: You see some vitamins on sale for '+ $func('money', 'string_price', 100) +'.
+    scene.text('You see some vitamins on sale for \'+ $func(\'money\', \'string_price\', 100) +\'.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+      { label: 'Buy vitamins [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 15;
+      ((s as any).mc_inventory ?? {})['vitamins'] = (((s as any).mc_inventory ?? {})['vitamins'] ?? 0) + (20);
+      qspCall(s, 'money', 'pay', 100, 'cash');
+      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 9) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/birthcontrol/condoms.jpg');
+    // TODO-QSP: dynamic text: You see a booth selling condoms for '+ $func('money', 'string_price', 80) +'.
+    scene.text('You see a booth selling condoms for \'+ $func(\'money\', \'string_price\', 80) +\'.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+      { label: 'Buy condoms [+$func(\'money\', \'get_cost_string\', 80, \'c...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 80, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 15;
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (5);
+      (s as any).i = 5;
+      // TODO-QSP: :cndmlp
+      if ((!(Math.floor(Math.random() * 26) + 0))) {
+        ((s as any).mc_inventory ?? {})['bad_condoms'] = (((s as any).mc_inventory ?? {})['bad_condoms'] ?? 0) + (1);
+      }
+      if (((s as any).i ?? 0) > 0) {
+        (s as any).i = ((s as any).i ?? 0) - (1);
+        // TODO-QSP: jump 'cndmlp'
+      }
+      qspCall(s, 'money', 'pay', 80, 'cash');
+      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 10) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/balzam.jpg');
+    // TODO-QSP: dynamic text: There is lip balm on sale for '+ $func('money', 'string_price', 100) +'.
+    scene.text('There is lip balm on sale for \'+ $func(\'money\', \'string_price\', 100) +\'.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+      { label: 'Buy lip balm [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 15;
+      ((s as any).mc_inventory ?? {})['lipbalm'] = (((s as any).mc_inventory ?? {})['lipbalm'] ?? 0) + (30);
+      qspCall(s, 'money', 'pay', 100, 'cash');
+      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 11) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
+    if ((!((s as any).arturKnow ?? 0))) {
+      scene.text('Someone suddenly calls out to you.');
+      scene.text('"Hey, pretty girl! Do you want a fresh, juicy tangerine?"');
+      scene.actions([
+        { label: 'Look', goto: ['arturRinok', 'start'] },
+      ]);
+    } else {
+      scene.text('Someone suddenly calls out to you.');
+      // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>! Do you want a fresh, juicy tangerine?"
+      scene.text(`"Hey, ${((s as any).pcs_nickname ?? 0)}! Do you want a fresh, juicy tangerine?"`);
+      scene.actions([
+        { label: 'Go and see Arthur', goto: ['arturRinok', 'start'] },
+      ]);
+    }
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 12) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/cheburek.jpg');
+    scene.text('Walking through the market, you came across an old woman selling pies.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    if (((s as any).pcs_energy ?? 0) <= 80) {
+      scene.actions([
+        { label: 'Buy a pie [+$func(\'money\', \'get_cost_string\', 20, \'c...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).fat = ((s as any).fat ?? 0) + (3);
+      (s as any).frost = 0;
+      (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5);
+      qspCall(s, 'mood', 'raise', 'tiny');
+      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
+      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (5);
+      qspCall(s, 'money', 'pay', 20, 'cash');
+      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/pavlovsk/market/eat.jpg');
+      scene.text('The pie is still warm as the woman hands it over to you. Then, barely able to keep yourself away from it, you find a place to sit and enjoy the pie.');
+      scene.actions([
+        { label: 'Continue walking through the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+  } },
+      ]);
+    } else {
+      // TODO-QSP: *p ', However, you''re not hungry right now.'
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 13) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/dropwallet.jpg');
+    scene.text('You see a wallet fall out of a woman\'s purse.');
+    scene.actions([
+      { label: 'Tell her', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/vernutwallet.jpg');
+    scene.text('You call the woman and hold out her wallet. She looks at you and, upon realizing, gratefully takes her wallet back and walks away.');
+    scene.actions([
+      { label: 'Continue walking through the market', goto: ['pav_train_market', 'events'] },
+    ]);
+  } },
+      { label: 'Look through the purse', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    (s as any).i = Math.floor(Math.random() * 161) + 40;
+    scene.img('images/locations/pavlovsk/market/zaglanut.jpg');
+    // TODO-QSP: dynamic text: You open the wallet and see '+$func('money', 'string_earn', i)+' inside.
+    scene.text('You open the wallet and see \'+$func(\'money\', \'string_earn\', i)+\' inside.');
+    qspCall(s, 'willpower', 'misc', 'self', 'easy');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Take the money and throw the wallet away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Take the money and throw the wallet away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'money', 'earn', ((s as any).i ?? 0));
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You snatch the money from the wallet before tossing it aside.');
+    scene.actions([
+      { label: 'Continue', goto: ['pav_train_market', 'start'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Catch up with the woman and return her purse', handler: (st: GameState) => {
+    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/proverka.jpg');
+    scene.text('You catch up with the woman, and telling her she dropped something, you hand her the purse. The woman checks that her money is still there, and seeing everything in place, she thanks you and walks away.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 14) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/rebenok.jpg');
+    scene.text('You see a young mother and her crying baby.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 15) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/rezba.jpg');
+    scene.text('You find a stall selling beautiful trinkets carved out of wood and metal.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 16) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/gruzchik.jpg');
+    scene.text('Looking around, you almost collide with a man pulling a small cart.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 17) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/meatlavka.jpg');
+    scene.text('You wander past a stall selling meat and see a butcher working with an axe.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 18) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/dirka.jpg');
+    scene.text('As you walk past a stall, you notice a small hole torn in the canvas.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    qspCall(s, 'willpower', 'voyeur', 'self', 'easy');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Look through the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Look through the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'voyeur', 2);
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/pereodev\'+rand(1, 15)+\'.jpg');
+    // TODO-QSP: 'You look inside the tent and see ' + $pavtrain_marketrandtext[rand(3, 7)]
+    scene.actions([
+      { label: 'Leave', goto: ['pav_train_market', 'start'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 19) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/market/birthcontrolpills.jpg');
+    // TODO-QSP: dynamic text: You see a booth selling birth control pills for '+ $func('money', 'string_price'...
+    scene.text('You see a booth selling birth control pills for \'+ $func(\'money\', \'string_price\', 1500) +\'.');
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
+      scene.actions([
+        { label: 'Wander around the market', goto: ['pav_train_market', 'events'] },
+      ]);
+    }
+    if (((s as any).therapistFuckedPussyStage ?? 0) < 2) {
+      scene.actions([
+        { label: 'Buy the birth control pills [+$func(\'money\', \'get_cost_string\', 1500, ...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1500, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 15;
+      ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) + (1);
+      (s as any).temp = Math.floor(Math.random() * 4) + 0;
+      if ((!((s as any).temp ?? 0))) {
+        (s as any).tabletkiold = ((s as any).tabletkiold ?? 0) + (1);
+      } else {
+        if (((s as any).temp ?? 0) === 1) {
+          (s as any).tabletkifert = ((s as any).tabletkifert ?? 0) + (1);
+        } else {
+          if (((s as any).temp ?? 0) === 2) {
+            (s as any).tabletkirej = ((s as any).tabletkirej ?? 0) + (1);
+          } else {
+            if ((Math.floor(Math.random() * 2) + 0) === 1) {
+              (s as any).tabletkifake = ((s as any).tabletkifake ?? 0) + (1);
+            } else {
+              (s as any).tabletkisug = ((s as any).tabletkisug ?? 0) + (1);
+            }
+          }
+        }
+      }
+      qspCall(s, 'money', 'pay', 1500, 'cash');
+      scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+    }
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Stop wandering', goto: ['pav_train_market', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_train_market', 'start');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -347,7 +1238,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEvents(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -357,6 +1248,6 @@ export const pav_train_market: LocationDef = {
   title: 'Clothes',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['This small open-air market is located near the train station. None of the stall owners accept card payments, so you\'ll need cash on hand to buy anything here.'],
+  description: ['You\'re strolling through the market when a beggar asks you for some change.'],
   enter: enter,
 };

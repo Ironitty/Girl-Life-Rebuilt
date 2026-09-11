@@ -4,6 +4,11 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.build();
+}
+
 function enterFindMeadow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/meadow/meadow_path.jpg');
   scene.text('Walking through the forest, you notice a small path that runs along some bushes and a small ravine. The trail leads away from the well-worn tracks you are currently on and into a dense thicket.');
@@ -797,7 +802,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMitkaTemporaryEvent(s, scene);
       break;
     default:
-      enterFindMeadow(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -807,6 +812,5 @@ export const gad_forest_events: LocationDef = {
   title: 'Mitka Shkvoryen',
   region: 'gadukino',
   locationType: 'event_outdoors',
-  description: ['Walking through the forest, you notice a small path that runs along some bushes and a small ravine. The trail leads away from the well-worn tracks you are currently on and into a dense thicket.'],
   enter: enter,
 };

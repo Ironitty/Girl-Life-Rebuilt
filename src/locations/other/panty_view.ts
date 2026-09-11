@@ -6,6 +6,11 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  return;
+  scene.build();
+}
+
 function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'setup_home_filters') {
     // TODO-QSP: gs 'shop_utils', 'filter_builder', 'init', 'panty_view', 'view_grid', $shop_display['link']
@@ -650,7 +655,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterStorageOptions(s, scene);
       break;
     default:
-      enterFilterBuilder(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

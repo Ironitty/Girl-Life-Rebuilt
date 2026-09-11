@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterRomanFight(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight1.jpg');
   scene.text('As everyone sits around talking and enjoying themselves, you notice Roman chatting to some girl you don\'t know. She doesn\'t seem to be enjoying his attention that much, but when she gets up, he grabs her by the arm. She tries to pull away, but he won\'t let go and stands up. As he does, another guy stands up as well. "Let her go, asshole!"');
@@ -643,7 +647,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLavBaddrugs(s, scene);
       break;
     default:
-      enterRomanFight(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -652,6 +656,5 @@ export const praiders_garage_events: LocationDef = {
   name: 'praiders_garage_events',
   title: 'As everyone sits around talking and enjoying themselves, you',
   region: 'other',
-  description: ['As everyone sits around talking and enjoying themselves, you notice Roman chatting to some girl you don\'t know. She doesn\'t seem to be enjoying his attention that much, but when she gets up, he grabs her by the arm. She tries to pull away, but he won\'t let go and stands up. As he does, another guy stands up as well. "Let her go, asshole!"'],
   enter: enter,
 };

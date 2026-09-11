@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterBath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_bathrooms', 'bath');
   qspCall(s, 'stat', '');
@@ -50,7 +54,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRestroom(s, scene);
       break;
     default:
-      enterBath(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -60,6 +64,5 @@ export const bdsm_bathrooms: LocationDef = {
   title: 'A luxrious bathroom, designed to indulge and relax.',
   region: 'other',
   locationType: 'bathroom',
-  description: ['A luxrious bathroom, designed to indulge and relax.'],
   enter: enter,
 };

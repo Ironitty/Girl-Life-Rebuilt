@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
   qspCall(s, 'mood', 'raise', 'small');
@@ -1324,7 +1328,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShower(s, scene);
       break;
     default:
-      enterKiss(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1333,6 +1337,5 @@ export const katjaEvDin: LocationDef = {
   name: 'katjaEvDin',
   title: 'You bring your face to Katja\'s and feel her hot breath on yo',
   region: 'other',
-  description: ['You bring your face to Katja\'s and feel her hot breath on your lips as she closes her eyes and presses her lips to yours.'],
   enter: enter,
 };

@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCoffeeHoleChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).yearstart ?? 0) < 2  ||  ((s as any).week ?? 0) >= 5  ||  ((s as any).hour ?? 0) < 15  ||  ((s as any).hour ?? 0) >= 18) {
     // TODO-QSP: exit
@@ -1135,7 +1139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBeachDate1Lake(s, scene);
       break;
     default:
-      enterCoffeeHoleChat(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

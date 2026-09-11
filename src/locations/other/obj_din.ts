@@ -6,6 +6,38 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 'menu_disabled') {
+    // TODO-QSP: $func('wrap', 'neg b', 'Menu is disabled for this event')
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === 'records') {
+    scene.actions([{ label: 'Continue', goto: ['journal', 'records'] }]);
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).AddDebugVar ?? 0)") {
+    if (((s as any).locArgs?.[1] ?? 0) !== '') {
+      (s as any).i = 0;
+      // TODO-QSP: $ObjDebugVars[i] = '<<$ARGS[1]>>'
+    }
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).DeleteDebugVar ?? 0)") {
+    if (((s as any).locArgs?.[1] ?? 0) !== '') {
+      if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
+        (s as any).i = 0;
+        // TODO-QSP: :DeleteDebugVarLoop
+        if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
+          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+            (s as any).i = 0;
+          } else {
+            (s as any).i = ((s as any).i ?? 0) + (1);
+          }
+          // TODO-QSP: jump 'DeleteDebugVarLoop'
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
 function enterChartabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_character', 'charactertabs', ((s as any).locArgs?.[1] ?? 0));
   scene.build();
@@ -259,7 +291,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRest(s, scene);
       break;
     default:
-      enterChartabs(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

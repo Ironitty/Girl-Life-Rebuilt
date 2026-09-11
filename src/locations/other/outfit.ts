@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterClearAll(s: GameState, scene: SceneBuilder): void {
   (s as any).clothingwornnumber = 0;
   ((s as any).underwear ?? {})['type'] = 0;
@@ -101,16 +105,6 @@ function enterSetDerivedVars(s: GameState, scene: SceneBuilder): void {
     (s as any).PSport = 1;
   }
   (s as any).PSwim = ((s as any).PCloSwim ?? 0);
-  if (((s as any).clothingworntype ?? 0) !== 'nude') {
-  } else {
-    if (((s as any).PPanSwim ?? 0) === 0  &&  ((s as any).pantyWorntype ?? 0) !== 'none') {
-    } else {
-      if (((s as any).PBraSwim ?? 0) === 0  &&  ((s as any).braworntype ?? 0) !== 'none') {
-      } else {
-        (s as any).PSwim = 1;
-      }
-    }
-  }
   (s as any).PCoverTop = Math.max(0, ((s as any).PCloCoverTop ?? 0) + ((s as any).PBraCover ?? 0) - 4);
   (s as any).PCoverFront = Math.max(0, ((s as any).PCloCoverFront ?? 0) + ((s as any).PPanCoverFront ?? 0) - 4);
   (s as any).PCoverBack = Math.max(0, ((s as any).PCloCoverBack ?? 0) + ((s as any).PPanCoverBack ?? 0) - 4);
@@ -1145,21 +1139,21 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).PCloThinness ?? 0) === 6  &&  ((s as any).braworntype ?? 0) === 'none') {
         if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
-          ((s as any).stat_texts ?? {})['bra'] = 'Your \' + iif(PCloDress = 1, \'dress\', \'top\') + \' is transparent and your entire chest, from the full shape of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts to the color of your <<$temp_outfitVars[\'nipple_text\']>>, is completely visible.';
+          // TODO-QSP: $stat_texts['bra'] = 'Your ' + iif(PCloDress = 1, 'dress', 'top') + ' is transparent and your entire chest, from the full shape of your <<$pcdesc_breasts>> breasts to the color of your <<$temp_outfitVars[''nipple_text'']>>, is completely visible.'
         } else {
           if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
-            ((s as any).stat_texts ?? {})['bra'] = 'Your \' + iif(PCloDress = 1, \'dress\', \'top\') + \' is transparent and your entire chest, from the ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' shape of your breasts to the color of your <<$temp_outfitVars[\'nipple_text\']>>, is completely visible.';
+            // TODO-QSP: $stat_texts['bra'] = 'Your ' + iif(PCloDress = 1, 'dress', 'top') + ' is transparent and your entire chest, from the <<$pcdesc_breasts>> shape of your breasts to the color of your <<$temp_outfitVars[''nipple_text'']>>, is completely visible.'
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'body_tits_b_cup')) {
-              ((s as any).stat_texts ?? {})['bra'] = 'Your \' + iif(PCloDress = 1, \'dress\', \'top\') + \' is transparent and your entire chest, from the full shape of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts to the color of your <<$temp_outfitVars[\'nipple_text\']>>, is completely visible. Anyone who looks can watch their light bounce as you walk.';
+              // TODO-QSP: $stat_texts['bra'] = 'Your ' + iif(PCloDress = 1, 'dress', 'top') + ' is transparent and your entire chest, from the full shape of your <<$pcdesc_breasts>> breasts to the color of your <<$temp_outfitVars[''nipple_text'']>>, is completely visible. Anyone who looks can watch their light bounce as you walk.'
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'body_tits_c_cup')) {
-                ((s as any).stat_texts ?? {})['bra'] = 'Your \' + iif(PCloDress = 1, \'dress\', \'top\') + \' is transparent and your entire chest, from the full shape of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts to the color of your <<$temp_outfitVars[\'nipple_text\']>>, is completely visible. Anyone who looks can watch them jiggle as you walk.';
+                // TODO-QSP: $stat_texts['bra'] = 'Your ' + iif(PCloDress = 1, 'dress', 'top') + ' is transparent and your entire chest, from the full shape of your <<$pcdesc_breasts>> breasts to the color of your <<$temp_outfitVars[''nipple_text'']>>, is completely visible. Anyone who looks can watch them jiggle as you walk.'
               } else {
                 if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_d_cup', 'body_tits_e_cup')) {
-                  ((s as any).stat_texts ?? {})['bra'] = 'Your \' + iif(PCloDress = 1, \'dress\', \'top\') + \' is transparent and your entire chest, from the full shape of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts to the color of your <<$temp_outfitVars[\'nipple_text\']>>, is completely visible. Anyone who looks can watch them bounce with every step.';
+                  // TODO-QSP: $stat_texts['bra'] = 'Your ' + iif(PCloDress = 1, 'dress', 'top') + ' is transparent and your entire chest, from the full shape of your <<$pcdesc_breasts>> breasts to the color of your <<$temp_outfitVars[''nipple_text'']>>, is completely visible. Anyone who looks can watch them bounce with every step.'
                 } else {
-                  ((s as any).stat_texts ?? {})['bra'] = 'Your \' + iif(PCloDress = 1, \'dress\', \'top\') + \' is transparent and your entire chest, from the full shape of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts to the color of your <<$temp_outfitVars[\'nipple_text\']>>, is completely visible. Anyone who looks can watch them bounce dramatically with every step.';
+                  // TODO-QSP: $stat_texts['bra'] = 'Your ' + iif(PCloDress = 1, 'dress', 'top') + ' is transparent and your entire chest, from the full shape of your <<$pcdesc_breasts>> breasts to the color of your <<$temp_outfitVars[''nipple_text'']>>, is completely visible. Anyone who looks can watch them bounce dramatically with every step.'
                 }
               }
             }
@@ -1589,7 +1583,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       if (((s as any).PCloCoverFront ?? 0) === ((s as any).PCloCoverBack ?? 0)) {
         ((s as any).stat_texts ?? {})['panties'] = 'Your pussy and ass are ' + qspUntranslated(s, "temp_outfitVars['sdp_f']>", { location: "outfit" }) + ' through your clothing.';
       } else {
-        ((s as any).stat_texts ?? {})['panties'] = 'Your pussy is ' + qspUntranslated(s, "temp_outfitVars['sdp_f']>", { location: "outfit" }) + ' and your ass is <<$temp_outfitVars[\'sdp_b\']>> through your clothing.';
+        // TODO-QSP: $stat_texts['panties'] = 'Your pussy is <<$temp_outfitVars[''sdp_f'']>> and your ass is <<$temp_outfitVars[''sdp_b'']>> through your clothing.'
       }
       if (((s as any).PCloCoverFront ?? 0) === 1  ||  ((s as any).PCloCoverBack ?? 0) === 1) {
         ((s as any).stat_texts ?? {})['panties_color'] = 'accent';
@@ -1998,10 +1992,10 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] !== 2) {
     ((s as any).temp_outfitVars ?? {})['clo_paired'] = '';
     if (((s as any).temp_outfitVars ?? 0)?.['clean_icon'] !== '') {
-      ((s as any).temp_outfitVars ?? {})['clo_paired'] = (((s as any).temp_outfitVars ?? {})['clo_paired'] ?? 0) + ('<a href="exec: msg $stat_texts[\'outfit_clean\']"><img src="images/system/icons/status/clothing/\' + $temp_outfitVars[\'clean_icon\'] + \'.png" title="' + qspUntranslated(s, "stat_texts['outfit_clean']>", { location: "outfit" }) + '" height="<<stat_cfg[\'menu_icon_height\']>>"></a>');
+      // TODO-QSP: $temp_outfitVars['clo_paired'] += '<a href="exec: msg $stat_texts[''outfit_clean'']"><img src="images/system/icons/status/clothing/' + $temp_outfitVars['clean_icon'] + '.png" title="<<$stat_texts[''outfit_clean'']>>" height="<<stat_cfg[''menu_icon_height'']>>"></a>'
     }
     if (((s as any).temp_outfitVars ?? 0)?.['repair_icon'] !== '') {
-      ((s as any).temp_outfitVars ?? {})['clo_paired'] = (((s as any).temp_outfitVars ?? {})['clo_paired'] ?? 0) + ('<a href="exec: msg $stat_texts[\'outfit_repair\']"><img src="images/system/icons/status/clothing/\' + $temp_outfitVars[\'repair_icon\'] + \'.png" title="' + qspUntranslated(s, "stat_texts['outfit_repair']>", { location: "outfit" }) + '" height="<<stat_cfg[\'menu_icon_height\']>>"></a>');
+      // TODO-QSP: $temp_outfitVars['clo_paired'] += '<a href="exec: msg $stat_texts[''outfit_repair'']"><img src="images/system/icons/status/clothing/' + $temp_outfitVars['repair_icon'] + '.png" title="<<$stat_texts[''outfit_repair'']>>" height="<<stat_cfg[''menu_icon_height'']>>"></a>'
     }
     if (((s as any).temp_outfitVars ?? 0)?.['clo_paired'] !== '') {
       // TODO-QSP: $sd_icons_4[] = '<div style="min-width:<<stat_cfg[''menu_icon_height'']>>px;text-align:center;">' + ...
@@ -2087,7 +2081,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterComputeStatDisplay(s, scene);
       break;
     default:
-      enterClearAll(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

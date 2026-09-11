@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -465,7 +469,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLeave(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -474,6 +478,5 @@ export const havana_kickboxing: LocationDef = {
   name: 'havana_kickboxing',
   title: 'Kickboxing Gym',
   region: 'other',
-  description: ['This section is dominated by the ring itself, the only equipment that can\'t be easily moved.'],
   enter: enter,
 };

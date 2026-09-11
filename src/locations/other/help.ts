@@ -6,6 +6,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterOpen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'state', 'push');
   // TODO-QSP: gt 'help', iif($ARGS[1] <> '', $ARGS[1], 'show')
@@ -563,7 +567,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterLocsTown(s, scene);
       break;
     default:
-      enterOpen(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

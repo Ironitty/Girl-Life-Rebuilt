@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterLiterature(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'attend_class', 'school', 'lit');
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
@@ -2264,7 +2268,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMeetAnushka(s, scene);
       break;
     default:
-      enterLiterature(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -2273,6 +2277,5 @@ export const gschool_lessons3: LocationDef = {
   name: 'gschool_lessons3',
   title: '"I want everyone quiet and in a seat!" Ms. Braakman demands ',
   region: 'other',
-  description: ['"I want everyone quiet and in a seat!" Ms. Braakman demands as she finishes writing today\'s lesson plan on the chalkboard. The room lets out a collective groan as they see the mountain of work they have to do today.'],
   enter: enter,
 };

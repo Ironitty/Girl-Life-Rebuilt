@@ -4,7 +4,25 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'gad_store', '');
+  (s as any).frost = 0;
+  scene.text('<center><b>Village Shop</b></center>');
+  scene.img('images/locations/gadukino/village/market.jpg');
+  scene.text('You walk into the small shop with four narrow aisles with chest-high shelves full of food and other household goods. There is little variety in the selections, just the most essential products.');
+  scene.text('Slowly you browse the aisles, looking for something to buy.');
+  scene.text('As you approach the teller, you notice a rack full of magazines, cigarettes, and a few hygienic items.');
+  qspCall(s, 'gp_elene', 'check_for_chores', 'store');
+  scene.actions([
+    { label: 'Browse the aisles', goto: ['gad_store', 'cart'] },
+    { label: 'Leave the store', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['gadukino', ''] },
+  ]);
+  scene.build();
+}
+
+function enterCart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 20) {
     scene.text('The shop is currently closed.');
     return;
@@ -15,6 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'gad_store');
   qspCall(s, 'stat', '');
+  scene.img('images/locations/gadukino/village/market.jpg');
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
     // TODO-QSP: $backimage = ''
@@ -26,11 +45,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'cart':
+      enterCart(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
+}
+
 export const gad_store: LocationDef = {
   name: 'gad_store',
   title: 'Village Shop',
   region: 'gadukino',
   locationType: 'public_indoors',
-  description: ['The shop is currently closed.'],
+  description: ['You walk into the small shop with four narrow aisles with chest-high shelves full of food and other household goods. There is little variety in the selections, just the most essential products.'],
   enter: enter,
 };

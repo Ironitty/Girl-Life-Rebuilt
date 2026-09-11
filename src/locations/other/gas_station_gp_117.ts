@@ -4,6 +4,83 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[0] ?? 0) === 'shop'  ||  ((s as any).gas_shop_inside ?? 0) === 'yes') {
+    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    }
+    qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'shop');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/highway/gas_station_gp_117/gas_interior.jpg');
+    scene.text('The shop is stacked with some magazines, cigarettes, different things to eat and drink.');
+    if (((s as any).prostitute ?? 0)?.['tomas_timer'] === ((s as any).daystart ?? 0)) {
+      scene.text('Behind the counter stands Tomas. He\'s talking to another customer right now.');
+    } else {
+      if (((s as any).week ?? 0) < 7) {
+        // TODO-QSP: 'Behind the counter stands '+iif(prostitute['tomas'] = 0, 'a plump man.', 'Tomas.')
+      } else {
+        if (((s as any).prostitute ?? 0)?.['tomas'] > 0  &&  ((s as any).week ?? 0) === 7) {
+          scene.text('Tomas isn\'t working on Sundays. Another guy you don\'t know is standing behind the counter.');
+        }
+      }
+    }
+    qspCall(s, 'themes', 'indoors');
+    qspCall(s, 'item_cart', 'shopping_aisle', 'prost_shop');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Go outside', handler: (st: GameState) => {
+    // TODO-QSP: $gas_shop_inside = 'no'
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['gas_station_gp_117', 'outside'] },
+      { label: 'Buy and eat a snack (0:05) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 100);
+      qspCall(s, 'food', 'snack_stats');
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/highway/gas_station_gp_117/food.jpg');
+      scene.text('You enjoy a tasty snack.');
+      scene.actions([
+        { label: 'Continue', goto: ['gas_station_gp_117', 'shop'] },
+      ]);
+    }
+  } },
+      { label: 'Buy and eat a healthy snack (0:05) [+$func(\'money\', \'get_cost_string\', 120)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 120) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'money', 'pay', 120);
+      qspCall(s, 'food', 'light_snack_stats');
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/highway/gas_station_gp_117/food.jpg');
+      scene.text('You enjoy a healthy snack.');
+      scene.actions([
+        { label: 'Continue', goto: ['gas_station_gp_117', 'shop'] },
+      ]);
+    }
+  } },
+      { label: 'Buy and drink some water (0:05) [+$func(\'money\', \'get_cost_string\', 40)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 40) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 2;
+      qspCall(s, 'money', 'pay', 40);
+      qspCall(s, 'beverage', 'water_stats');
+      qspCall(s, 'stat', '');
+      scene.img('images/locations/highway/gas_station_gp_117/water.jpg');
+      scene.text('You enjoy a drink of water');
+      scene.actions([
+        { label: 'Continue', goto: ['gas_station_gp_117', 'shop'] },
+      ]);
+    }
+  } },
+    ]);
+  }
+  scene.build();
+}
+
 function enterOutside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'work_clothes');
   qspCall(s, 'gas_station_gp_117', 'event_check');
@@ -395,7 +472,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBusEnd(s, scene);
       break;
     default:
-      enterOutside(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -405,6 +482,6 @@ export const gas_station_gp_117: LocationDef = {
   title: 'The gas station is modern and clean in comparison to other g',
   region: 'other',
   locationType: 'bathroom',
-  description: ['The gas station is modern and clean in comparison to other gas stations in the area. To the south of the station is the highway M-10 that goes from St. Petersburg to Moscow. To the north there are small villages and towns similar to Pavlovsk which is even further south than the highway.'],
+  description: ['The shop is stacked with some magazines, cigarettes, different things to eat and drink.'],
   enter: enter,
 };

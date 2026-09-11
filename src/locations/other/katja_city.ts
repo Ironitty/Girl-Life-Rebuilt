@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterMetro(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/waiting_metro.jpg');
   qspCall(s, 'katja_meynold_schedule', '');
@@ -1031,7 +1035,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPussyCatOutfit2Play(s, scene);
       break;
     default:
-      enterMetro(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

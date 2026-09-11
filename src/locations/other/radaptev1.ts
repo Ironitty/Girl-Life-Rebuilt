@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterShowerRostislav1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A272');
   qspCall(s, 'stat', '');
@@ -196,7 +200,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShowerRadislav1Anal(s, scene);
       break;
     default:
-      enterShowerRostislav1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -206,6 +210,5 @@ export const radaptev1: LocationDef = {
   title: 'You drop to your knees in front of him, his hard cock right ',
   region: 'other',
   locationType: 'bathroom',
-  description: ['You drop to your knees in front of him, his hard cock right in your face. He shoves his dick in your mouth before you have a chance to do it yourself. You start sucking on the tip of his dick while you stroke the shaft.'],
   enter: enter,
 };

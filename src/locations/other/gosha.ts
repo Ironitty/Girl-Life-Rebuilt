@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterGoshaRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).reccoldorm = 0;
   (s as any).goshiflag = 0;
@@ -124,7 +128,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGoshaSex(s, scene);
       break;
     default:
-      enterGoshaRoom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -134,6 +138,5 @@ export const gosha: LocationDef = {
   title: 'His room has two desks against the back well and two beds on',
   region: 'other',
   locationType: 'event',
-  description: ['His room has two desks against the back well and two beds on either side of the room with a small path between them. Near the door is a small couch with a tv against the opposite wall.'],
   enter: enter,
 };

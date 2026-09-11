@@ -2,6 +2,10 @@
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterSetSelfie(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
@@ -62,7 +66,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSMSGetImloc(s, scene);
       break;
     default:
-      enterSetSelfie(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
