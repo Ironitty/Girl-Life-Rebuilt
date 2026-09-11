@@ -700,13 +700,11 @@ function enterGetShopFilterHeader(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFilterHeaderBase(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shoe_view', 'filter_builder', 'setup_shop_filters');
-  qspCall(s, 'shoe_view', 'filter_builder', 'setup_home_filterS');
-  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'shop') {
+    qspCall(s, 'shoe_view', 'filter_builder', 'setup_shop_filters');
+  } else {
+    qspCall(s, 'shoe_view', 'filter_builder', 'setup_home_filterS');
+  }
   return;
   // TODO-QSP: end
   scene.build();
@@ -733,13 +731,11 @@ function enterShopFilter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFilterBase(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
-function enterShop2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shoe_view', 'shop_filter');
-  qspCall(s, 'shoe_view', 'home_base');
-  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'shop') {
+    qspCall(s, 'shoe_view', 'shop_filter');
+  } else {
+    qspCall(s, 'shoe_view', 'home_base');
+  }
   return;
   // TODO-QSP: end
   scene.build();
@@ -895,9 +891,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'get_filter_header_base':
       enterGetFilterHeaderBase(s, scene);
       break;
-    case 'shop':
-      enterShop(s, scene);
-      break;
     case 'get_shoelist_header':
       enterGetShoelistHeader(s, scene);
       break;
@@ -909,9 +902,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'filter_base':
       enterFilterBase(s, scene);
-      break;
-    case 'shop':
-      enterShop2(s, scene);
       break;
     default:
       enterDefault(s, scene);

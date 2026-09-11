@@ -1234,13 +1234,11 @@ function enterDrugs(s: GameState, scene: SceneBuilder): void {
 
 function enterCrime(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[3] ?? 0));
-  scene.build();
-}
-
-function enterForce(s: GameState, scene: SceneBuilder): void {
-  (s as any).will_cost = (80 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
-  (s as any).will_cost = (60 + ((s as any).will_calc ?? 0))/10;
-  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'force') {
+    (s as any).will_cost = (80 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
+  } else {
+    (s as any).will_cost = (60 + ((s as any).will_calc ?? 0))/10;
+  }
   qspCall(s, 'willpower', 'difficulty', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
@@ -1457,9 +1455,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'crime':
       enterCrime(s, scene);
-      break;
-    case 'force':
-      enterForce(s, scene);
       break;
     case 'exhib':
       enterExhib(s, scene);

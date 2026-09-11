@@ -431,6 +431,12 @@ function enterBodyTitsHuge(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(19))) === 'body_tits_at_least_') {
     // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 20)
+    if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(18))) === 'body_tits_at_most_') {
+      // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 19)
+      if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'body_tits_') {
+        // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 11)
+      }
+    }
   }
   scene.build();
 }

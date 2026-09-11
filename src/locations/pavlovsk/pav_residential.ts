@@ -54,24 +54,21 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/pavresn_\'+ rand(1, 2) +\'.jpg');
     }
   }
-  scene.build();
-}
-
-function enterImage(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
-    if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      scene.img('images/locations/pavlovsk/pavreswinter.jpg');
+  if (((s as any).locArgs?.[0] ?? 0) === 'image') {
+    if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
+      if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
+        scene.img('images/locations/pavlovsk/pavreswinter.jpg');
+      } else {
+        scene.img('images/locations/pavlovsk/pavreswintern.jpg');
+      }
     } else {
-      scene.img('images/locations/pavlovsk/pavreswintern.jpg');
-    }
-  } else {
-    if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      scene.img('images/locations/pavlovsk/pavres.jpg');
-    } else {
-      scene.img('images/locations/pavlovsk/pavresn_\'+ rand(1, 2) +\'.jpg');
+      if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
+        scene.img('images/locations/pavlovsk/pavres.jpg');
+      } else {
+        scene.img('images/locations/pavlovsk/pavresn_\'+ rand(1, 2) +\'.jpg');
+      }
     }
   }
-  // TODO-QSP: end
   scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="exec:view\'images/locations/pavlovsk/palace/pav_palace.jpg\'">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="exec:view\'images/locations/pavlovsk/fortress/bip_hotel.jpg\'">Bip fortress</a>, everything else is relatively modern.');
   // TODO-QSP: dynamic text: <br>Even from here, you can see the <a href="exec:minut += 1 & gt 'pav_church','...
   scene.text('<br>Even from here, you can see the <a href="exec:minut += 1 & gt \'pav_church\',\'start\'">Church of St. Nikolas</a>, the tallest building in town.');
@@ -390,9 +387,6 @@ function enterBelyWorkofdebtEvent(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
-    case 'image':
-      enterImage(s, scene);
-      break;
     case 'set_succubus_hunt_act':
       enterSetSuccubusHuntAct(s, scene);
       break;
@@ -422,5 +416,6 @@ export const pav_residential: LocationDef = {
   title: '<center><h2>Pavlovsk</h2></center>',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
+  description: ['You stop under the dim light of a streetlight. Breathing heavy, you occasionally stop to wince from the pain coming from your pussy. You convince yourself not to tell anyone, and to just get home, clean up and go to bed as soon as possible. The sooner you do that, the sooner you can forget this ever happened.'],
   enter: enter,
 };
