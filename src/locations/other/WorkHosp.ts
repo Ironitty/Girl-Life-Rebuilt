@@ -108,7 +108,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).katprorand ?? 0))) {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
     (s as any).picrand = 11;
-    // TODO-QSP: xgt 'lezbsex', 'var'
+    scene.actions([{ label: 'Continue', goto: ['lezbsex', 'var'] }]);
   } else {
     if (((s as any).katprorand ?? 0) === 1) {
       scene.img('images/locations/city/residential/clinic/sex/hospsex7.jpg');
@@ -156,8 +156,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 10, 'group');
     qspCall(s, 'arousal', 'vaginal', (-10), 'group');
     qspCall(s, 'arousal', 'end');
-    // TODO-QSP: xgt 'sexdvanadva', 'var'
-  } },
+  }, goto: ['sexdvanadva', 'var'] },
         ]);
       }
     }
@@ -233,8 +232,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', (-10), 'group');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'end');
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
       ]);
     }
     scene.actions([

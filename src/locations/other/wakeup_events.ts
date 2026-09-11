@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'wakeup_events', 'mod_sleepevents');
-  // TODO-QSP: xgt 'wakeup_events', 'event_handler'
+  scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler'] }]);
   scene.build();
 }
 
@@ -16,11 +16,11 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: xgt 'wakeup_events', 'event_handler2', 'priority'
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
-        // TODO-QSP: xgt 'wakeup_events', 'event_handler2'
+        scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler2'] }]);
       }
     }
   }
-  // TODO-QSP: xgt 'wakeup_events', 'continue'
+  scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'continue'] }]);
   scene.build();
 }
 
@@ -31,7 +31,7 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
-  // TODO-QSP: xgt 'wakeup_events', 'event_end'
+  scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_end'] }]);
   scene.build();
 }
 
@@ -39,7 +39,7 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
     // TODO-QSP: xgt 'wakeup_events', 'event_handler2', 'priority'
   }
-  // TODO-QSP: xgt 'wakeup_events', 'event_handler'
+  scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler'] }]);
   scene.build();
 }
 
@@ -52,7 +52,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
-  // TODO-QSP: xgt 'wakeup', 'get_out'
+  scene.actions([{ label: 'Continue', goto: ['wakeup', 'get_out'] }]);
   scene.build();
 }
 
@@ -62,7 +62,7 @@ function enterMotherSextalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMotherLaundry(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: xgt 'wakeup_events', 'mother_laundry2'
+  scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'mother_laundry2'] }]);
   scene.build();
 }
 

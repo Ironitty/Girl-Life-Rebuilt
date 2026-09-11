@@ -140,13 +140,13 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
     ((s as any).bodyVars ?? {})['bust_silicone'] = (((s as any).bodyVars ?? {})['bust_silicone'] ?? 0) + (1);
     (s as any).fat = ((s as any).fat ?? 0) - (5);
   }
-  // TODO-QSP: xgt 'pre_sleep', 'mod_sleeptriggers'
+  scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'mod_sleeptriggers'] }]);
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'pre_sleep', 'mod_sleeptriggers');
-  // TODO-QSP: xgt 'pre_sleep', 'end'
+  scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'end'] }]);
   scene.build();
 }
 

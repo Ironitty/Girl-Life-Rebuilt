@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You kiss for a while. It feels nice, but you want more!');
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  // TODO-QSP: xgt 'sex', 'var'
+  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
   scene.build();
 }
 
@@ -84,13 +84,13 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) <= 0) {
     (s as any).sexvar = 0;
-    // TODO-QSP: xgt 'sex', 'end'
+    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
   } else {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>The man groans that he will cum soon.');
     }
   }
-  // TODO-QSP: xgt 'sex', 'var'
+  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
   scene.build();
 }
 
@@ -122,13 +122,13 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) <= 0) {
     (s as any).sexvar = 0;
-    // TODO-QSP: xgt 'sex', 'end'
+    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
   } else {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>The man groans that he will cum soon.');
     }
   }
-  // TODO-QSP: xgt 'sex', 'var'
+  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
   scene.build();
 }
 
@@ -164,13 +164,13 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) <= 0) {
     (s as any).sexvar = 0;
-    // TODO-QSP: xgt 'sex', 'end'
+    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
   } else {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>The man groans that he will cum soon.');
     }
   }
-  // TODO-QSP: xgt 'sex', 'var'
+  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
   scene.build();
 }
 

@@ -270,7 +270,7 @@ function enterSuccubusHunt(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('At this hour of the night, the village is only illuminated by the light of the moon. You know this will be to your advantage. No one will be able to see you coming… That is if there were anyone out at night. You prowl the village looking for prey, but as the minutes pass, your frustration grows.');
   if ((Math.floor(Math.random() * 8) + 0) - ((s as any).succublvl ?? 0) < 2) {
-    // TODO-QSP: xgt 'gadukino', 'succubus_hunt2'
+    scene.actions([{ label: 'Continue', goto: ['gadukino', 'succubus_hunt2'] }]);
   } else {
     qspCall(s, 'mood', 'lower', 'tiny');
     scene.text('God, this place is dull! After searching for an hour, you find no one; not even a stray cat seems to be out and about tonight. You give up reluctantly, pondering how else you will feed tonight.');

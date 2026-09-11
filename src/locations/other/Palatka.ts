@@ -54,8 +54,7 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $boy[1] = $npclastgenerated
     (s as any).guy = ((s as any).guy ?? 0) + (2);
     (s as any).picrand = 22;
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
   ]);
   scene.build();
 }

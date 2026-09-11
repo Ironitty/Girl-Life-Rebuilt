@@ -550,7 +550,7 @@ function enterNotReady(s: GameState, scene: SceneBuilder): void {
       scene.text('"Get the fuck out!" he shouts again, pointing at the door.');
       scene.text('"But-!"');
       scene.text('"<i>Get out!</i>"');
-      // TODO-QSP: xgt 'sex_ev_leave', 'scared_exit'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'scared_exit'] }]);
     }
   } },
           ]);
@@ -640,7 +640,7 @@ function enterBjInstead(s: GameState, scene: SceneBuilder): void {
       scene.text('"Get the fuck out!" he shouts again, pointing at the door.');
       scene.text('"But-!"');
       scene.text('"<i>Get out!</i>"');
-      // TODO-QSP: xgt 'sex_ev_leave', 'scared_exit'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'scared_exit'] }]);
     }
   } },
           { label: 'Give in', handler: (st: GameState) => {
@@ -725,7 +725,7 @@ function enterVirginForceStop(s: GameState, scene: SceneBuilder): void {
       scene.text('"Get the fuck out," he sneers.');
       scene.text('"But-"');
       scene.text('"OUT!" he screams.');
-      // TODO-QSP: xgt 'sex_ev_leave', 'scared_exit'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'scared_exit'] }]);
     } else {
       ((s as any).sex_ev ?? {})['fuck_locked'] = 1;
       // TODO-QSP: dynamic text: "No, no, I'm sorry," <<$npcdesc>> says quickly, looking mollified. "It's my faul...

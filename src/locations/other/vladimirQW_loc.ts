@@ -14,16 +14,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Approach the man', handler: (st: GameState) => {
     scene.text('You approach the man and he leaves the fence to walk towards you.');
-    // TODO-QSP: xgt 'vladimirQW_loc', 'qwvladdy'
-  } },
+  }, goto: ['vladimirQW_loc', 'qwvladdy'] },
       { label: 'Smile', handler: (st: GameState) => {
     scene.text('You smile at the man and he leaves the fence to walk towards you.');
-    // TODO-QSP: xgt 'vladimirQW_loc', 'qwvladdy'
-  } },
+  }, goto: ['vladimirQW_loc', 'qwvladdy'] },
       { label: 'Ignore', handler: (st: GameState) => {
     scene.text('You decide to ignore the man and start walking away but hearing his footsteps behind you, you turn back around.');
-    // TODO-QSP: xgt 'vladimirQW_loc', 'qwvladdy'
-  } },
+  }, goto: ['vladimirQW_loc', 'qwvladdy'] },
     ]);
   } else {
     scene.text('The man returns your gaze for a moment before turning away.');

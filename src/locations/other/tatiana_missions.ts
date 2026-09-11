@@ -519,8 +519,7 @@ function enterMission2A(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/btatiana/ST1.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'btatiana');
-    // TODO-QSP: xgt 'fight', 'start'
-  } },
+  }, goto: ['fight', 'start'] },
       ]);
     }
   } },

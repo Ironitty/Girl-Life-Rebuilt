@@ -323,22 +323,22 @@ function enterFunTalk(s: GameState, scene: SceneBuilder): void {
   scene.text(`You end up asking ${((s as any).npcdesc ?? 0)}, "So what do you do for fun?"`);
   ((s as any).pc_know_hobby ?? {})[String((s as any).npcID ?? 0)] = 1;
   if (((s as any).npc_apt_sparetype ?? 0)?.[String((s as any).npcID ?? 0)] === 'gym'  ||  ((s as any).npc_gymrat ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-    // TODO-QSP: xgt 'date_talk', 'workout_fun'
+    scene.actions([{ label: 'Continue', goto: ['date_talk', 'workout_fun'] }]);
   } else {
     if (((s as any).npc_apt_sparetype ?? 0)?.[String((s as any).npcID ?? 0)] === 'gaming') {
-      // TODO-QSP: xgt 'date_talk', 'gaming_fun'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'gaming_fun'] }]);
     } else {
       if (((s as any).npc_door_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'indoor') {
         if (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] === 'netflix_chill') {
-          // TODO-QSP: xgt 'date_talk', 'netflix_fun'
+          scene.actions([{ label: 'Continue', goto: ['date_talk', 'netflix_fun'] }]);
         } else {
-          // TODO-QSP: xgt 'date_talk', 'reading_fun'
+          scene.actions([{ label: 'Continue', goto: ['date_talk', 'reading_fun'] }]);
         }
       } else {
         if (((s as any).npc_fav_date ?? 0)?.[String((s as any).npcID ?? 0)] === 'beach_date') {
-          // TODO-QSP: xgt 'date_talk', 'beach_fun'
+          scene.actions([{ label: 'Continue', goto: ['date_talk', 'beach_fun'] }]);
         } else {
-          // TODO-QSP: xgt 'date_talk', 'running_fun'
+          scene.actions([{ label: 'Continue', goto: ['date_talk', 'running_fun'] }]);
         }
       }
     }
@@ -364,7 +364,7 @@ function enterPoliteHobbyReact(s: GameState, scene: SceneBuilder): void {
 
 function enterBeachFun(s: GameState, scene: SceneBuilder): void {
   scene.text('"I like going to the beach," he says.');
-  // TODO-QSP: xgt 'date_talk', 'beach_fun_react'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'beach_fun_react'] }]);
   scene.build();
 }
 
@@ -375,7 +375,7 @@ function enterBeachFunReact(s: GameState, scene: SceneBuilder): void {
 
 function enterNetflixFun(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh, you know, just watch whatever is on streaming.');
-  // TODO-QSP: xgt 'date_talk', 'netflix_react_menu'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'netflix_react_menu'] }]);
   scene.actions([
     { label: 'Inquire politely', handler: (st: GameState) => {
     scene.text('"Oh, that\'s cool," you say. "Tell me about it?"');
@@ -405,19 +405,19 @@ function enterNetflixWatching(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
       if (((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted') {
         scene.text('"There\'s this fantasy one that\'s pretty good," he says. "Got dragons and stuff. And the lead actress is smoking hot and constantly getting railed by other characters. It\'s awesome watching her tits flop around."');
-        // TODO-QSP: xgt 'date_talk', 'netflix_womanizer'
+        scene.actions([{ label: 'Continue', goto: ['date_talk', 'netflix_womanizer'] }]);
       } else {
         scene.text('"There\'s this fantasy one that\'s pretty good," he says. "Got swords and magic and stuff and the characters are really interesting. Action isn\'t bad either. Can\'t complain about dragons setting everything on fire."');
-        // TODO-QSP: xgt 'date_talk', 'netflix_react_menu2'
+        scene.actions([{ label: 'Continue', goto: ['date_talk', 'netflix_react_menu2'] }]);
       }
     } else {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
         if (((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted') {
           scene.text('"There\'s this dramedy one that\'s pretty good," he says. "About a poor family and all the hijinks and sex they get up to. And the female lead is a hot super slut and getting naked and banging dudes all the time."');
-          // TODO-QSP: xgt 'date_talk', 'netflix_womanizer'
+          scene.actions([{ label: 'Continue', goto: ['date_talk', 'netflix_womanizer'] }]);
         } else {
           scene.text('"There\'s this dramedy one that\'s pretty good," he says. "About a poor family and all the hijinks and sex they get up to. And there is <i>a lot</i> of sex."');
-          // TODO-QSP: xgt 'date_talk', 'netflix_react_menu2'
+          scene.actions([{ label: 'Continue', goto: ['date_talk', 'netflix_react_menu2'] }]);
         }
       }
     }
@@ -525,7 +525,7 @@ function enterNetflixWomanizer(s: GameState, scene: SceneBuilder): void {
 
 function enterReadingFun(s: GameState, scene: SceneBuilder): void {
   scene.text('"I like to read," he says.');
-  // TODO-QSP: xgt 'date_talk', 'reading_fun_react'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'reading_fun_react'] }]);
   scene.build();
 }
 
@@ -536,7 +536,7 @@ function enterReadingFunReact(s: GameState, scene: SceneBuilder): void {
 
 function enterRunningFun(s: GameState, scene: SceneBuilder): void {
   scene.text('"I like to read," he says.');
-  // TODO-QSP: xgt 'date_talk', 'running_fun_react'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'running_fun_react'] }]);
   scene.build();
 }
 
@@ -547,7 +547,7 @@ function enterRunningFunReact(s: GameState, scene: SceneBuilder): void {
 
 function enterWorkoutFun(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: '"I like to work out," he says ' + iif(npc_arrogant[$npcID] > 0, 'more than a little smugly.', 'casu...
-  // TODO-QSP: xgt 'date_talk', 'workout_fun_react'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'workout_fun_react'] }]);
   scene.build();
 }
 
@@ -687,7 +687,7 @@ function enterWorkoutNerdy(s: GameState, scene: SceneBuilder): void {
 
 function enterGamingFun(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: '"I like gaming," he says' + iif(npc_insecure[$npcID] > 0, ' somewhat embarrassedly.', '.')
-  // TODO-QSP: xgt 'date_talk', 'gaming_fun_react'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'gaming_fun_react'] }]);
   scene.build();
 }
 
@@ -696,8 +696,7 @@ function enterGamingFunReact(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '"What do you play?" (uninterested)', handler: (st: GameState) => {
     scene.text('"Oh, that\'s cool. What do you play?"');
-    // TODO-QSP: xgt 'date_talk', 'gaming_fun_describe'
-  } },
+  }, goto: ['date_talk', 'gaming_fun_describe'] },
   ]);
   scene.build();
 }
@@ -798,7 +797,7 @@ function enterBeenBefore(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "First time for me," <<$npcdesc>> shakes his head. "You?"
       scene.text(`"First time for me," ${((s as any).npcdesc ?? 0)} shakes his head. "You?"`);
       scene.text('"Same," you reply with a wry smirk.');
-      // TODO-QSP: xgt 'date_talk', 'small_talk'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'small_talk'] }]);
     }
   }
   scene.build();
@@ -830,7 +829,7 @@ function enterAwkwardStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"(silence)');
     scene.text('"I guess we\'re just... really good at small talk."');
-    // TODO-QSP: xgt 'date_talk', 'awkward_silence'
+    scene.actions([{ label: 'Continue', goto: ['date_talk', 'awkward_silence'] }]);
   }
   scene.build();
 }
@@ -842,12 +841,12 @@ function enterAwkwardMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"Uhm... just, like, school and stuff..." you reply.');
     if ((Math.floor(Math.random() * 100) + 1) + 20 < ((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
       scene.text('"Oh. How was that? Your classes going well?"');
-      // TODO-QSP: xgt 'date_talk', 'school_awkward1'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'school_awkward1'] }]);
     } else {
       scene.text('"That\'s good."');
       scene.text('...');
       scene.text('The silence stretches out between you...');
-      // TODO-QSP: xgt 'date_talk', 'awkward_silence'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'awkward_silence'] }]);
     }
   } },
     ]);
@@ -856,8 +855,7 @@ function enterAwkwardMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'The usual (nothing specific)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Uhm... Y'know, just the usual," you say back, cringing internally as you realiz...
     scene.text(`"Uhm... Y'know, just the usual," you say back, cringing internally as you realize that's exactly what he just said. ${((s as any).date_ev ?? 0)?.['talk_desc1']}..`);
-    // TODO-QSP: xgt 'date_talk', 'awkward_silence'
-  } },
+  }, goto: ['date_talk', 'awkward_silence'] },
   ]);
   scene.build();
 }
@@ -901,14 +899,12 @@ function enterSchoolAwkward1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah," you nod.');
     scene.text('...');
     scene.text('Maybe you should have said more...');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
     { label: 'You didn\'t pay attention', handler: (st: GameState) => {
     scene.text('"I wasn\'t really paying attention," you mumble awkwardly.');
     scene.text('...');
     scene.text('Well, there went any chance of the conversation getting better.');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
     { label: 'Talk about what you learned', handler: (st: GameState) => {
     scene.text('"Well, we went over..."');
     // TODO-QSP: 'You tell <<$npcdesc>> about your classes and what your teachers talked about and ' + iif($npc_humor...
@@ -935,14 +931,14 @@ function enterAwkwardRelax(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_funcs', 'date_rate', 'like');
   qspCall(s, 'date_talk', 'talk_img');
   scene.text('Not sure what happened but the tension starts to bleed away and that awkward feeling is lifted like a physical weight from your shoulders.');
-  // TODO-QSP: xgt 'date_talk', 'date_continue'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'date_continue'] }]);
   scene.build();
 }
 
 function enterBoyTalkLead(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['school_talk'] === 0) {
     if (((s as any).npc_thinkage ?? 0)?.[String((s as any).npcID ?? 0)] < 18  &&  ((s as any).npc_know_school ?? 0)?.[String((s as any).npcID ?? 0)] >= 0) {
-      // TODO-QSP: xgt 'date_talk', 'school_talk'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'school_talk'] }]);
     }
   }
   scene.build();
@@ -971,8 +967,7 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_know_school ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Mhmm," you nod.');
     scene.text('"Anything interesting happen recently?"');
-    // TODO-QSP: xgt 'date_talk', 'school_talk2'
-  } },
+  }, goto: ['date_talk', 'school_talk2'] },
       ]);
     } else {
       scene.actions([
@@ -991,15 +986,14 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_know_school ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Mhmm," you nod, decidedly avoiding talking about how you got kicked out.');
     scene.text('"Anything interesting happen recently?"');
-    // TODO-QSP: xgt 'date_talk', 'school_talk2'
-  } },
+  }, goto: ['date_talk', 'school_talk2'] },
       ]);
     }
   } else {
     if (((s as any).npc_know_school ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "So, how's school going?" <<$npcdesc>> asks. "Anything interesting happen recent...
       scene.text(`"So, how's school going?" ${((s as any).npcdesc ?? 0)} asks. "Anything interesting happen recently?"`);
-      // TODO-QSP: xgt 'date_talk', 'school_talk2'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'school_talk2'] }]);
     }
   }
   scene.build();
@@ -1047,7 +1041,7 @@ function enterBoobLook(s: GameState, scene: SceneBuilder): void {
     scene.text('"Something on your mind?" you ask pointedly, raising an eyebrow.');
     if (((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_misogynist ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_arrogant ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       // TODO-QSP: '"Your tits." Shamelessly, he grins back at you, saying, "They look amazing in that ' + iif(PCloDres...
-      // TODO-QSP: xgt 'date_talk', 'boob_comment'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'boob_comment'] }]);
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> quickly looks up and away, blushing as he realizes he's been caught
       scene.text(`${((s as any).npcdesc ?? 0)} quickly looks up and away, blushing as he realizes he's been caught`);
@@ -1163,13 +1157,12 @@ function enterBralessTalk(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'They\'re just nipples', handler: (st: GameState) => {
     scene.text('"No," you shrug. "Why should it? They\'re just nipples. Pretty sure you have a pair too."');
-    // TODO-QSP: xgt 'date_talk', 'braless_reply_menu'
-  } },
+  }, goto: ['date_talk', 'braless_reply_menu'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: "It's so hot that you don't wear bras," <<$npcdesc>> says, shamelessly ogling yo...
       scene.text(`"It's so hot that you don't wear bras," ${((s as any).npcdesc ?? 0)} says, shamelessly ogling your braless tits.`);
-      // TODO-QSP: xgt 'date_talk', 'braless_reply_menu'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'braless_reply_menu'] }]);
     }
   }
   scene.build();
@@ -1194,8 +1187,7 @@ function enterBralessReplyMenu(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: '"A bit, yeah," he says, blushing as well and looking away from your <<$stat_nipple_text>> poking th...
       }
     }
-    // TODO-QSP: xgt 'date_talk', 'braless_reply_menu2'
-  } },
+  }, goto: ['date_talk', 'braless_reply_menu2'] },
   ]);
   scene.build();
 }
@@ -1337,8 +1329,7 @@ function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You take a quick look around to see if anybody is watching and pull down your dr...
       scene.text(`You take a quick look around to see if anybody is watching and pull down your dress, watching ${((s as any).npcdesc ?? 0)}'s face light up as you reveal your ${((s as any).pcdesc_breasts ?? 0)} breasts to him. You give him a good two second view before tugging your top back into place.`);
     }
-    // TODO-QSP: xgt 'date_talk', 'npc_flash_react'
-  } },
+  }, goto: ['date_talk', 'npc_flash_react'] },
       ]);
     }
   } },
@@ -1351,8 +1342,7 @@ function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Is that a dare?" You grin at him and with no more hesitation than a glance to s...
       scene.text(`"Is that a dare?" You grin at him and with no more hesitation than a glance to see if anybody is watching, pull down your dress and flash him your ${((s as any).pcdesc_breasts ?? 0)} breasts. You give him a good two second view before tugging your top back into place.`);
     }
-    // TODO-QSP: xgt 'date_talk', 'npc_flash_react'
-  } },
+  }, goto: ['date_talk', 'npc_flash_react'] },
   ]);
   scene.build();
 }
@@ -1438,8 +1428,7 @@ function enterPornTalk1(s: GameState, scene: SceneBuilder): void {
         { label: 'Tease him', handler: (st: GameState) => {
     scene.text('You tease him about watching porn.');
     scene.text('"What about you?" he asks, still blushing. "Do you watch porn?"');
-    // TODO-QSP: xgt 'date_talk', 'porn_what_kind2'
-  } },
+  }, goto: ['date_talk', 'porn_what_kind2'] },
       ]);
     } else {
       scene.text('"Yeah, of course," he grins without shame. "Doesn\'t everybody?"');
@@ -1463,8 +1452,7 @@ function enterPornTalk1(s: GameState, scene: SceneBuilder): void {
         { label: 'Tease him', handler: (st: GameState) => {
     scene.text('You tease him about watching porn.');
     scene.text('"What about you?" he asks, still blushing. "Do you watch porn?"');
-    // TODO-QSP: xgt 'date_talk', 'porn_what_kind2'
-  } },
+  }, goto: ['date_talk', 'porn_what_kind2'] },
       ]);
     } else {
       scene.text('"Not really," he shrugs.');
@@ -1624,8 +1612,7 @@ function enterSexEarlier(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You smile at <<$npcdesc>>, a twinkle in your eye as you bounce your eyebrows sug...
     scene.text(`You smile at ${((s as any).npcdesc ?? 0)}, a twinkle in your eye as you bounce your eyebrows suggestively.`);
     qspCall(s, 'date_talk', 'sex_talk_npc_react');
-    // TODO-QSP: xgt 'date_talk', 'sex_earlier2'
-  } },
+  }, goto: ['date_talk', 'sex_earlier2'] },
     { label: 'Explicitly', handler: (st: GameState) => {
     if (((s as any).npc_last_orgasm_count ?? 0)?.[String((s as any).npcID ?? 0)] >= 3) {
       // TODO-QSP: dynamic text: "You were amazing earlier," you grin at <<$npcdesc>>. "I came so many times! I t...
@@ -1637,8 +1624,7 @@ function enterSexEarlier(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You smile at <<$npcdesc>>, a twinkle in your eye as you bounce your eyebrows sug...
     scene.text(`You smile at ${((s as any).npcdesc ?? 0)}, a twinkle in your eye as you bounce your eyebrows suggestively.`);
     qspCall(s, 'date_talk', 'sex_talk_npc_react');
-    // TODO-QSP: xgt 'date_talk', 'sex_earlier2'
-  } },
+  }, goto: ['date_talk', 'sex_earlier2'] },
   ]);
   scene.build();
 }
@@ -1747,34 +1733,28 @@ function enterSexCanStill(s: GameState, scene: SceneBuilder): void {
         { label: 'You do it for him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     scene.text('"I hoped you\'d say something like that," you smile, biting your lip with twinkling eyes.');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
         { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     scene.text('"Yeah," you agree, biting your lip with twinkling eyes.');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
       ]);
     } else {
       scene.text('"How\'s that feel?" he snickers.');
       scene.actions([
         { label: 'Wet', handler: (st: GameState) => {
     scene.text('"<i>Wet</i>," you smirk suggestively.');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
         { label: 'Messy', handler: (st: GameState) => {
     scene.text('"Messy," you answer with a wry twist of your mouth. "Very messy."');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
         { label: 'Gross', handler: (st: GameState) => {
     scene.text('"If I\'m being honest?" You wrinkle your brow. "Kinda gross. I wish I had time to clean up before we came out."');
     scene.text('"That\'s what makes it hot."');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
         { label: 'Slimy', handler: (st: GameState) => {
     scene.text('"Slimy," you answer, rolling your hips. "Very slimy."');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
       ]);
     }
   } },
@@ -1793,19 +1773,16 @@ function enterCanStillBj(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Nice to be appreciated', handler: (st: GameState) => {
     scene.text('"Always nice to be appreciated," you smile back.');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
         { label: 'If you love what you do...', handler: (st: GameState) => {
     scene.text('"Well, if you love what you do..." you trail off, letting the unsaid words linger with your smile.');
     scene.text('From the look he gives you in response, you can almost feel his dick hardening in his pants.');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
         { label: 'Practice makes perfect', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'love');
     scene.text('"Well you know what they say," you smile back slyly. "Practice makes perfect."');
     scene.text('From the look he gives you in response, you can almost feel his dick hardening in his pants.');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
       ]);
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
@@ -1830,8 +1807,7 @@ function enterCanStillBj(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Salty', handler: (st: GameState) => {
     scene.text('"Let\'s just say it tastes salty," you smirk.');
-    // TODO-QSP: xgt 'date_talk', 'can_still_end'
-  } },
+  }, goto: ['date_talk', 'can_still_end'] },
         ]);
       }
     }
@@ -1869,49 +1845,44 @@ function enterFoodRecommendations(s: GameState, scene: SceneBuilder): void {
         { label: 'Just observing', handler: (st: GameState) => {
     scene.text('"I didn\'t mean anything by it," you say quickly. "I was just noticing was all."');
     scene.text('That doesn\'t seem to reassure him.');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
         { label: 'It\'s cute', handler: (st: GameState) => {
     scene.text('"No," you say, putting your hand across the table to reassure him. "I think it\'s cute."');
     scene.text('He hesitates, but eventually gives you a shy smile in return.');
     qspCall(s, 'date_funcs', 'date_rate', 'like');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
         { label: 'What a weirdo', handler: (st: GameState) => {
     scene.text('You don\'t say anything, though a look threatens to make its way across your face.');
     scene.text('<i>Who cares that much about food?</i> you think. <i>What a weirdo.</i>');
     qspCall(s, 'date_funcs', 'date_rate', 'dislike');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: "Yeah, I guess I do," <<$npcdesc>> smiles.
       scene.text(`"Yeah, I guess I do," ${((s as any).npcdesc ?? 0)} smiles.`);
-      // TODO-QSP: xgt 'date_talk', 'date_continue'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'date_continue'] }]);
     }
   } },
       { label: 'That sounds good!', handler: (st: GameState) => {
     qspCall(s, 'date_funcs', 'date_rate', 'like');
     scene.text('"Wow, that sounds good! Maybe I\'ll try that!"');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
       { label: 'Don\'t like pelmeni...', handler: (st: GameState) => {
     qspCall(s, 'date_funcs', 'date_rate', 'dislike');
     scene.text('"I don\'t really like pelmeni," you say flatly.');
     scene.text('"... Oh."');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
     ]);
   } else {
     // TODO-QSP: dynamic text: "It's all pretty much fine," <<$npcdesc>> shrugs.
     scene.text(`"It's all pretty much fine," ${((s as any).npcdesc ?? 0)} shrugs.`);
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
+    scene.actions([{ label: 'Continue', goto: ['date_talk', 'date_continue'] }]);
   }
   scene.build();
 }
 
 function enterFoodFlirtStart(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: xgt 'date_talk', 'food_flirt_<<rand(1,3)>>'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'food_flirt_<<rand(1,3)>>'] }]);
   scene.build();
 }
 
@@ -1925,7 +1896,7 @@ function enterFoodFlirt_1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('"Oh, don\'t worry—I have plenty more where that came from. But I think you\'re already a little intoxicating without the alcohol."');
   scene.text('"Careful, I might start thinking you\'ve got some hidden agenda with all this charm."');
-  // TODO-QSP: xgt 'date_talk', 'date_continue'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'date_continue'] }]);
   scene.build();
 }
 
@@ -1938,13 +1909,11 @@ function enterFoodFlirt_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'date_funcs', 'date_rate', 'dislike');
     scene.text('You groan, rolling your eyes.');
     scene.text('<i>What kind of man-child are you on a date with right now?</i>');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
       { label: 'Laugh', handler: (st: GameState) => {
     qspCall(s, 'date_funcs', 'date_rate', 'like');
     scene.text('You snort, his joke so childish and lame and yet somehow so charming and real in this moment.');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
     ]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['cum_face'] + ((s as any).sex_ev ?? 0)?.['cum_mouth'] > 0) {
@@ -1958,13 +1927,11 @@ function enterFoodFlirt_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Thankfully, it seems nobody did.');
     }
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
         { label: 'Could have some later too', handler: (st: GameState) => {
     qspCall(s, 'date_funcs', 'date_rate', 'like');
     scene.text('"Might not mind having something on it later too," you smirk, suggestively taking a messy bite of your food.');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
       ]);
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted') {
@@ -1975,7 +1942,7 @@ function enterFoodFlirt_2(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('"Ah shit," he says, quickly wiping his face."');
       }
-      // TODO-QSP: xgt 'date_talk', 'date_continue'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'date_continue'] }]);
     }
   }
   scene.build();
@@ -1991,7 +1958,7 @@ function enterFoodFlirt_3(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('"Oh, don\'t worry—I have plenty more where that came from. But I think you\'re already a little intoxicating without the alcohol."');
   scene.text('"Careful, I might start thinking you\'ve got some hidden agenda with all this charm."');
-  // TODO-QSP: xgt 'date_talk', 'date_continue'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'date_continue'] }]);
   scene.build();
 }
 

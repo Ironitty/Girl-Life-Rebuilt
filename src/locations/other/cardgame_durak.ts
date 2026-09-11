@@ -77,7 +77,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <br><<$cgdp_pc_state>><br><<$cgdp_A11_state>><br><<$cgdp_A10_state>><br><<$cgdp_...
   scene.text(`<br>${((s as any).cgdp_pc_state ?? 0)}<br>${((s as any).cgdp_A11_state ?? 0)}<br>${((s as any).cgdp_A10_state ?? 0)}<br>${((s as any).cgdp_A9_state ?? 0)}<br>`);
   if (((s as any).cgd_clothes ?? 0) === '') {
-    // TODO-QSP: xgt 'cardgame_durak', 'card_game_lost'
+    scene.actions([{ label: 'Continue', goto: ['cardgame_durak', 'card_game_lost'] }]);
   } else {
     if (((s as any).cgd_clothes ?? 0)?.['A11'] === ''  ||  ((s as any).cgd_clothes ?? 0)?.['A10'] === ''  ||  ((s as any).cgd_clothes ?? 0)?.['A9'] === '') {
       if (((s as any).cgd_clothes ?? 0)?.['A11'] === '') {
@@ -89,7 +89,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'npcStat', 'A9');
         }
       }
-      // TODO-QSP: xgt 'cardgame_durak', 'card_game_won'
+      scene.actions([{ label: 'Continue', goto: ['cardgame_durak', 'card_game_won'] }]);
     } else {
       (s as any).temp_alko = 0;
       (s as any).temp_durak_trying = ((s as any).ARGS ?? 0)[1] * ((s as any).rand ?? 0)(10, 20);

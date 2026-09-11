@@ -227,7 +227,7 @@ function enterPositionChoose(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).sex_ev ?? 0)?.['position'] === ''  ||  ((s as any).sex_ev ?? 0)?.['new_pos'] === 1) {
         ((s as any).sex_ev ?? {})['initiative'] = 'boy';
-        // TODO-QSP: xgt 'sex_ev_sex', 'he_initiate'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'he_initiate'] }]);
       } else {
         ((s as any).sex_ev ?? {})['new_pos'] = 1;
         ((s as any).sex_ev ?? {})['initiative'] = 'boy';
@@ -249,10 +249,10 @@ function enterLetHimChoose(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['force_initiative'] = 2;
   ((s as any).sex_ev ?? {})['initiative'] = 'boy';
   if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'miss') {
-    // TODO-QSP: xgt 'sex_ev_miss', 'miss_goto'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_goto'] }]);
   } else {
     if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'doggy') {
-      // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_goto'] }]);
     } else {
       if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'cowgirl') {
         qspCall(s, 'sex_ev_cowgirl', 'cowgirl_goto');
@@ -269,15 +269,15 @@ function enterHeInitiate(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       if (((s as any).sex_ev ?? 0)?.['no_anal'] > 0  ||  ((s as any).npc_no_anal ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).sex_ev ?? 0)?.['not_anal'] === 1) {
         if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'miss') {
-          // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
         } else {
           if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'doggy') {
-            // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_start'
+            scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_start'] }]);
           } else {
             if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'cowgirl') {
-              // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_goto'
+              scene.actions([{ label: 'Continue', goto: ['sex_ev_cowgirl', 'cowgirl_goto'] }]);
             } else {
-              // TODO-QSP: xgt 'sex_ev_sex', 'rand_position'
+              scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'rand_position'] }]);
             }
           }
         }
@@ -285,24 +285,24 @@ function enterHeInitiate(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).sex_ev ?? 0)?.['no_vaginal'] > 0) {
           if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'anal') {
-            // TODO-QSP: xgt 'sex_ev_anal', 'anal_start'
+            scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_start'] }]);
           } else {
-            // TODO-QSP: xgt 'sex_ev_sex', 'rand_position'
+            scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'rand_position'] }]);
           }
         } else {
           if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'miss') {
-            // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+            scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
           } else {
             if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'doggy') {
-              // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_start'
+              scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_start'] }]);
             } else {
               if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'cowgirl') {
-                // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_goto'
+                scene.actions([{ label: 'Continue', goto: ['sex_ev_cowgirl', 'cowgirl_goto'] }]);
               } else {
                 if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'anal') {
-                  // TODO-QSP: xgt 'sex_ev_anal', 'anal_start'
+                  scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_start'] }]);
                 } else {
-                  // TODO-QSP: xgt 'sex_ev_sex', 'rand_position'
+                  scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'rand_position'] }]);
                 }
               }
             }
@@ -310,7 +310,7 @@ function enterHeInitiate(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      // TODO-QSP: xgt 'sex_ev_sex', 'rand_position'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'rand_position'] }]);
     }
   } else {
     // TODO-QSP: xgt 'sex_ev_<<$sex_ev[''position'']>>', '<<$sex_ev[''position'']>>_goto'
@@ -368,11 +368,11 @@ function enterHeChoosePosition(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       if (((s as any).sex_ev ?? 0)?.['fuck_locked'] === 0  &&  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'miss') {
         ((s as any).sex_ev ?? {})['fuck_pos'] = 1;
-        // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
       } else {
         if (((s as any).sex_ev ?? 0)?.['fuck_locked'] === 0  &&  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'doggy') {
           ((s as any).sex_ev ?? {})['fuck_pos'] = 1;
-          // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_goto'] }]);
         } else {
           if (((s as any).sex_ev ?? 0)?.['fuck_locked'] === 0  &&  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'cowgirl') {
             ((s as any).sex_ev ?? {})['fuck_pos'] = 1;
@@ -477,19 +477,19 @@ function enterRandPosition(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).stat ?? 0)?.['think_virgin'] === 0  ||  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
     if (((s as any).sex_ev ?? 0)?.['position_rand'] === 1) {
-      // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['position_rand'] === 2) {
-        // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_start'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_start'] }]);
       } else {
         if (((s as any).sex_ev ?? 0)?.['position_rand'] === 3) {
-          // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_goto'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_cowgirl', 'cowgirl_goto'] }]);
         } else {
           if (((s as any).sex_ev ?? 0)?.['position_rand'] === 4) {
-            // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto'
+            scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto'] }]);
           } else {
             if (((s as any).sex_ev ?? 0)?.['position_rand'] === 5) {
-              // TODO-QSP: xgt 'sex_ev_foreplay', 'bj_ask'
+              scene.actions([{ label: 'Continue', goto: ['sex_ev_foreplay', 'bj_ask'] }]);
             } else {
               if (((s as any).sex_ev ?? 0)?.['position_rand'] === 6  &&  (((s as any).sex_ev ?? 0)?.['creampie_count'] < 1  ||  ((s as any).npc_pussyeater ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
                 // TODO-QSP: dynamic text: <<$npcdesc>> starts leading a trail of kisses down your stomach towards your pus...
@@ -508,15 +508,15 @@ function enterRandPosition(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).sex_ev ?? 0)?.['no_vag'] > 0) {
-                  // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto'
+                  scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto'] }]);
                 } else {
                   if (((s as any).sex_ev ?? 0)?.['no_anal'] > 0) {
-                    // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+                    scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
                   } else {
                     if ((Math.floor(Math.random() * 2) + 1) === 1) {
-                      // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+                      scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
                     } else {
-                      // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto'
+                      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto'] }]);
                     }
                   }
                 }
@@ -528,15 +528,15 @@ function enterRandPosition(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['no_vag'] > 0) {
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['no_anal'] > 0) {
-        // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
       } else {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
-          // TODO-QSP: xgt 'sex_ev_miss', 'missionary_start'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'missionary_start'] }]);
         } else {
-          // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto'] }]);
         }
       }
     }
@@ -907,9 +907,9 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Talk while fucking', handler: (st: GameState) => {
     if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
-      // TODO-QSP: xgt 'sex_ev_sex_talk_<<$npcID>>', 'talk_menu'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_sex_talk_<<$npcID>>', 'talk_menu'] }]);
     } else {
-      // TODO-QSP: xgt 'sex_ev_sex_talk_npc', 'talk_menu'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_sex_talk_npc', 'talk_menu'] }]);
     }
   } },
             ]);
@@ -937,9 +937,9 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Talk while fucking', handler: (st: GameState) => {
     if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
-      // TODO-QSP: xgt 'sex_ev_sex_talk_<<$npcID>>', 'during_sex_talk_menu'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_sex_talk_<<$npcID>>', 'during_sex_talk_menu'] }]);
     } else {
-      // TODO-QSP: xgt 'sex_ev_sex_talk_npc', 'during_sex_talk_menu'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_sex_talk_npc', 'during_sex_talk_menu'] }]);
     }
   } },
             ]);
@@ -997,8 +997,7 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
     scene.text('"You\'re not doing a good enough job," you smile wickedly. "Let <i>me</i> show you."');
     scene.text('Taking advantage of the moment, you set your own pace, rubbing your cunt up and down his shaft, using it as your own personal sex toy. Like a cat on a scratching post.');
     scene.text('"Just relax," you coo and you hear him moan in agreement. "Sit back and let\'s <i>both</i> enjoy this..."');
-    // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_menu2'
-  } },
+  }, goto: ['sex_ev_cowgirl', 'cowgirl_menu2'] },
         ]);
       }
       if (((s as any).sex_ev ?? 0)?.['speed'] <= 2) {
@@ -1047,8 +1046,7 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask <<$npcdesc>> to hurry up and finish', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['hurry_up'] = 1;
     ((s as any).sex_ev ?? {})['boy_cum'] = 1;
-    // TODO-QSP: xgt 'sex_ev_sex', 'hurry_up_menu'
-  } },
+  }, goto: ['sex_ev_sex', 'hurry_up_menu'] },
     ]);
   }
   if ((Math.floor(Math.random() * 2) + 1) === 1  &&  ((s as any).sex_ev ?? 0)?.['talk_topic'] !== ''  &&  (((s as any).sex_ev ?? 0)?.['cycle_limit'] + ((s as any).sex_ev ?? 0)?.['extra_stim']) > ((s as any).sex_ev ?? 0)?.['sex_stamina'] - (Math.floor(Math.random() * 2) + 1)  &&  ((s as any).sex_ev ?? 0)?.['cum_limit_warning'] === 0) {
@@ -2036,14 +2034,12 @@ function enterHeEndBreak(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/foreplay/miss3.jpg');
     // TODO-QSP: dynamic text: You burst into uncontrollable giggles as <<$npcdesc>> forces your legs open and ...
     scene.text(`You burst into uncontrollable giggles as ${((s as any).npcdesc ?? 0)} forces your legs open and lines his cock up with your pussy.`);
-    // TODO-QSP: xgt 'sex_ev_miss', 'miss_insert_acts'
-  } },
+  }, goto: ['sex_ev_miss', 'miss_insert_acts'] },
       { label: '... a yelp of surprise', handler: (st: GameState) => {
     scene.img('images/shared/sex/foreplay/miss3.jpg');
     // TODO-QSP: dynamic text: You yelp loudly as <<$npcdesc>> grabs you, forcing your legs open and lining his...
     scene.text(`You yelp loudly as ${((s as any).npcdesc ?? 0)} grabs you, forcing your legs open and lining his cock up with your pussy.`);
-    // TODO-QSP: xgt 'sex_ev_miss', 'miss_insert_acts'
-  } },
+  }, goto: ['sex_ev_miss', 'miss_insert_acts'] },
     ]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['position_rand'] === 2  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'doggy') {
@@ -2054,14 +2050,12 @@ function enterHeEndBreak(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/foreplay/doggy1.jpg');
     // TODO-QSP: dynamic text: After a few minutes, you glance over at <<$npcdesc>> and find him hungrily stari...
     scene.text(`After a few minutes, you glance over at ${((s as any).npcdesc ?? 0)} and find him hungrily staring at you with a raging erection. You realize what's about to happen just before he jumps on top of you, eliciting uncontrollable giggles from your lips as flips you onto your stomach, pulls you up by the hips, and slaps your ass, lining his cock up with your pussy.`);
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_acts'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_insert_acts'] },
         { label: '... a yelp of surprise', handler: (st: GameState) => {
     scene.img('images/shared/sex/foreplay/doggy1.jpg');
     // TODO-QSP: dynamic text: After a few minutes, you glance over at <<$npcdesc>> and find him hungrily stari...
     scene.text(`After a few minutes, you glance over at ${((s as any).npcdesc ?? 0)} and find him hungrily staring at you with a raging erection. You realize what's about to happen just before he jumps on top of you, eliciting a yelp of surprise from from your lips as flips you onto your stomach, pulls you up by the hips, and slaps your ass before plunging his cock into your pussy.`);
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_acts'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_insert_acts'] },
       ]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['need_break'] === 1) {

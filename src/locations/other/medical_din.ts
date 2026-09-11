@@ -12,7 +12,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 2750) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: xgt 'medical_din', 'birth_control_shot'
+      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_shot'] }]);
     }
   } },
       ]);
@@ -23,7 +23,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: xgt 'medical_din', 'birth_control_implant'
+      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_implant'] }]);
     }
   } },
       ]);
@@ -34,7 +34,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: xgt 'medical_din', 'birth_control_renew'
+      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_renew'] }]);
     }
   } },
         ]);
@@ -47,7 +47,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: xgt 'medical_din', 'birth_control_remove'
+      scene.actions([{ label: 'Continue', goto: ['medical_din', 'birth_control_remove'] }]);
     }
   } },
     ]);

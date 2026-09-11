@@ -214,15 +214,15 @@ function enterLeaveOptions(s: GameState, scene: SceneBuilder): void {
 function enterLeaveRouter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['bed_room']
   if (((s as any).sex_ev ?? 0)?.['sleepover'] === 1  &&  ((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 0  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
-    // TODO-QSP: xgt 'sex_ev_leave', 'sneak_out1'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'sneak_out1'] }]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['dress_end'] < 1) {
-      // TODO-QSP: xgt 'sex_ev_leave', 'dressing1'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'dressing1'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 1) {
-        // TODO-QSP: xgt 'sex_ev_leave', 'leaving_dialogue'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'leaving_dialogue'] }]);
       } else {
-        // TODO-QSP: xgt 'sex_ev_leave', 'sneak_out1'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'sneak_out1'] }]);
       }
     }
   }
@@ -611,7 +611,7 @@ function enterLeavingEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_stats', 'prostitution_pay_code');
   // TODO-QSP: dynamic text: "<<$sex_ev['leave_dialogue']>>," you say<<$sex_ev['leave_action']>>.
   scene.text(`"${((s as any).sex_ev ?? 0)?.['leave_dialogue']}," you say${((s as any).sex_ev ?? 0)?.['leave_action']}.`);
-  // TODO-QSP: xgt 'sex_ev_leave', 'leave_options'
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'leave_options'] }]);
   scene.build();
 }
 

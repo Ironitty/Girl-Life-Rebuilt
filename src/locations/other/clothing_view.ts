@@ -1120,7 +1120,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     scene.text('This is sport clothing.');
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_shop'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_shop'] }]);
   }
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     // TODO-QSP: *p '(dirty ' + min(max(0, CloDirt / 24), 100) + ', strength ' + CloStrength
@@ -1129,25 +1129,25 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'resize') {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_resize'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_resize'] }]);
   }
   if (qspFunc(s, 'clothing', 'is_wearing', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_wearing'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_wearing'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'sell') {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_sell'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_sell'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_wardrobe'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_wardrobe'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'storage') {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_storage'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_storage'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'unwanted') {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_unwanted'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_unwanted'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'owned') {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_owned'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_owned'] }]);
   }
   return;
   scene.actions([
@@ -1299,11 +1299,11 @@ function enterViewItemSell(s: GameState, scene: SceneBuilder): void {
 function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'clothing', 'is_immutable', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
     if (qspFunc(s, 'clothing', 'is_strength_low', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-      // TODO-QSP: xgt 'clothing_view', 'view_item_wear_strength_low'
+      scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_wear_strength_low'] }]);
     }
     if (((s as any).CloSport ?? 0) === 0  &&  ((s as any).CloStyle ?? 0) !== 5) {
       if (! qspFunc(s, 'clothing', 'does_fit', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-        // TODO-QSP: xgt 'clothing_view', 'view_item_wear_size_wrong'
+        scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_wear_size_wrong'] }]);
       }
     }
   }
@@ -1358,12 +1358,12 @@ function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
 
 function enterViewItemOwned(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'clothing', 'in_storage', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_storage'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_storage'] }]);
   }
   if (qspFunc(s, 'clothing', 'in_unwanted', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_unwanted'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_unwanted'] }]);
   }
-  // TODO-QSP: xgt 'clothing_view', 'view_item_wardrobe'
+  scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_wardrobe'] }]);
   scene.build();
 }
 
@@ -1463,7 +1463,7 @@ function enterViewItemWearSizeWrong(s: GameState, scene: SceneBuilder): void {
 
 function enterViewItemWear(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'clothing', 'is_hypno_approved', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']) === 0) {
-    // TODO-QSP: xgt 'clothing_view', 'view_item_wear_hypno'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_item_wear_hypno'] }]);
   }
   // TODO-QSP: gs 'clothing', 'wear', $shop_utils_view['type'], shop_utils_view['number']
   if (((s as any).shop_display ?? 0)?.['hub_subloc'] === 'view_grid') {

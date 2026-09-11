@@ -1143,8 +1143,7 @@ function enterHotTub1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't worry about your panties getting wet ${((s as any).pcs_nickname ?? 0)}," she says. "I'll give you something to wear until they dry."`);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    // TODO-QSP: xgt 'albina_house_events', 'hot_tub3'
-  } },
+  }, goto: ['albina_house_events', 'hot_tub3'] },
   ]);
   scene.build();
 }
@@ -1161,7 +1160,7 @@ function enterHotTub2(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Don't worry about your panties getting wet ${((s as any).pcs_nickname ?? 0)}," she says. "I'll give you something to wear until they dry."`);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  // TODO-QSP: xgt 'albina_house_events', 'hot_tub3'
+  scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'hot_tub3'] }]);
   scene.build();
 }
 

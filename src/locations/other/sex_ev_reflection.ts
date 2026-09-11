@@ -44,15 +44,13 @@ function enterTopMenu(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'You sold your virginity', handler: (st: GameState) => {
     scene.text('<i>I sold my virginity tonight,</i> you think to yourself.');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'virgin_whore'
-  } },
+  }, goto: ['sex_ev_reflection', 'virgin_whore'] },
       ]);
     } else {
       scene.actions([
         { label: 'You lost your virginity', handler: (st: GameState) => {
     scene.text('<i>I lost my virginity tonight,</i> you think to yourself.');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'lost_virgin'
-  } },
+  }, goto: ['sex_ev_reflection', 'lost_virgin'] },
       ]);
     }
   }
@@ -68,8 +66,7 @@ function enterTopMenu(s: GameState, scene: SceneBuilder): void {
       { label: '<<$npcdesc>> came inside you...', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: Thoughts drift to when <<$npcdesc>> came inside you...
     scene.text(`Thoughts drift to when ${((s as any).npcdesc ?? 0)} came inside you...`);
-    // TODO-QSP: xgt 'sex_ev_reflection', 'creampie_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'creampie_menu'] },
     ]);
   }
   scene.actions([
@@ -92,7 +89,7 @@ function enterWhatDidIDo(s: GameState, scene: SceneBuilder): void {
   scene.text('What happened?');
   scene.text('Did you lead him on? Give him the wrong idea? Should you just have spoken up more?');
   scene.text('<i>What did I do...?</i> you think again.');
-  // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_reflection', 'top_menu'] }]);
   scene.build();
 }
 
@@ -152,8 +149,7 @@ function enterLostVirgin(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('Thoughts swim around and around in your head until you feel you\'re going to be dizzy. But they don\'t help you figure out how you feel...');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
   ]);
   scene.build();
 }
@@ -165,7 +161,7 @@ function enterGladDeflowered(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: As reluctant as you were at the start, you're actually happy that <<$npcdesc>> p...
   scene.text(`As reluctant as you were at the start, you're actually happy that ${((s as any).npcdesc ?? 0)} pushed you into sleeping with him. How it happened doesn't matter as much as <i>that</i> it happened. You're not a virgin anymore and that's news!`);
   scene.text('The full meaning of that didn\'t hit you until now and fills you with an odd sense of giddiness.');
-  // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_reflection', 'top_menu'] }]);
   scene.build();
 }
 
@@ -179,8 +175,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>... and I\'m happy with that!</i>');
     // TODO-QSP: dynamic text: You got your cherry popped! You're a woman now! And not just that, but you got <...
     scene.text(`You got your cherry popped! You're a woman now! And not just that, but you got ${qspFunc(s, 'money', 'string_profit', ((s as any).sex_ev ?? 0)?.['prostitution_paid'])} on top of that? What a night!`);
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
     { label: 'Glad you got something for it', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['thought_mood'] = 'happy';
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'happy1', 'jpg');
@@ -191,8 +186,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You got paid for it. Your virginity was <i>worth</i> something. More than someth...
     scene.text(`You got paid for it. Your virginity was <i>worth</i> something. More than something, a lot of somethings. About ${((s as any).sex_ev ?? 0)?.['prostitution_paid']} somethings.`);
     scene.text('And the thought of that can\'t help but make you smile a little.');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
     { label: 'You feel dirty', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'upset1', 'jpg');
     ((s as any).sex_ev ?? {})['thought_mood'] = 'sad';
@@ -211,8 +205,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('It covers you like oil and you know exactly why:');
     scene.text('Because you sold your virginity. The knowledge that whatever else happens, you sold yourself from the very first time you had sex. Whatever happens, you\'ll always have been a whore from the start.');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
     { label: 'You feel... <i>turned on</i>', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['thought_mood'] = 'happy';
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'happy2', 'jpg');
@@ -223,8 +216,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('Is it that you feel degraded? Dirty? Used? Like a fleshlite to be paid for and pumped with cum until satisfaction and then thrown away?');
     scene.text('Or do you feel powerful? That your smile and your breasts and your pussy have the power to make men open their wallets? To pay for the <i>privilege</i> of being allowed inside you?');
     scene.text('A rush of giggles threatens to erupt from you and you have to clamp down to not seem like a crazy-girl. As the wetness starts to drip out of you and down the curve of your thigh, you realize you\'re going to have to figure this out...');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
   ]);
   scene.build();
 }
@@ -245,8 +237,7 @@ function enterCreampieMenu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
     // TODO-QSP: dynamic text: <i><<$npcdesc>> came inside me...</i> you think to yourself. <i>Nobody's ever cu...
     scene.text(`<i>${((s as any).npcdesc ?? 0)} came inside me...</i> you think to yourself. <i>Nobody's ever cum inside you before...</i>`);
-    // TODO-QSP: xgt 'sex_ev_reflection', 'first_creampie_reflect'
-  } },
+  }, goto: ['sex_ev_reflection', 'first_creampie_reflect'] },
     ]);
   } else {
     scene.actions([
@@ -270,8 +261,7 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
         { label: 'A night of firsts...', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['night_of_firsts'] = 1;
     scene.text('Then again, nobody\'s ever fucked you either. Your first time getting fucked was also your first time getting filled.');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
       ]);
     }
     scene.actions([
@@ -285,15 +275,14 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
       scene.text('Sure, you came when it happened, but now with the benefit of hindsight and post-nut clarity, \' + iif(cum_loc[\'vagina\'] > 0, \'the sensation of his cum leaking out of you gives you shivers. \', \'the memory of his cum leaking out of you gives you shivers. \') + \'All <i>sticky</i> and <i>slimy</i>. You shudder just thinking about it.');
     } else {
       // TODO-QSP: iif(cum_loc['vagina'] > 0, 'You grimace as you feel another glob of the slimy white stuff ooze out o...
-      // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_reflection', 'top_menu'] }]);
     }
   } },
       { label: 'Warm', handler: (st: GameState) => {
     scene.text('It was... <i>warm...</i>');
     // TODO-QSP: dynamic text: That's the thing that stuck with you the most. How you felt <<$npcdesc>>'s cock ...
     scene.text(`That's the thing that stuck with you the most. How you felt ${((s as any).npcdesc ?? 0)}'s cock throb inside you and then all of a sudden you felt that heat spreading through the inside of your hips. And how it drained from you the moment he pulled out, that warmth trickling from your snatch down your thighs...`);
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
       { label: 'Amazing', handler: (st: GameState) => {
     scene.text('It was... <i>incredible!</i>');
     if (((s as any).sex_ev ?? 0)?.['creampie_orgasm_count'] > 0) {
@@ -301,15 +290,13 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: 'You remember the feeling of how it <i>filled</i> you as <<$npcdesc>> came, the pulsing of his cock ...
     }
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
       { label: '<i>Interesting</i>', handler: (st: GameState) => {
     scene.text('It was... <i>interesting...</i>');
     // TODO-QSP: dynamic text: You find it hard to describe how it made you feel. One second, <<$npcdesc>> was ...
     scene.text(`You find it hard to describe how it made you feel. One second, ${((s as any).npcdesc ?? 0)} was pulsing inside you, the next you felt yourself getting <i>filled</i> by something. Almost like you were getting... <i>inflated?</i>`);
     scene.text('Thinking about it those terms makes it really hard to decide if you found it pleasurable or not. If nothing else, your first creampie was certainly <i>a</i> feeling...');
-    // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
-  } },
+  }, goto: ['sex_ev_reflection', 'top_menu'] },
       { label: 'Kinky (breeding kink)', handler: (st: GameState) => {
     scene.text('It was... <i>so fucking hot...</i>');
     // TODO-QSP: dynamic text: Thoughts of <<$npcdesc>>'s cum gushing into your womb, sperm racing through your...
@@ -334,7 +321,7 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
       } else {
         // TODO-QSP: 'You can feel your skin flush and your breathing start to grow heavy and you have to gulp it down to...
       }
-      // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_reflection', 'top_menu'] }]);
     }
     // TODO-QSP: end}
   } },

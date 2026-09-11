@@ -185,7 +185,7 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  (Math.floor(Math.random() * 4) + 1) <= ((s as any).pcs_magik ?? 0)  &&  (((s as any).hour ?? 0) <=6  ||  ((s as any).hour ?? 0) >=19)) {
     if (((s as any).knowsfairy ?? 0) < 1  &&  ((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
-      // TODO-QSP: xgt 'MagEncounterFairy'
+      scene.actions([{ label: 'Continue', goto: ['MagEncounterFairy', ''] }]);
     } else {
       if (((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
         scene.actions([

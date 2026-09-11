@@ -78,15 +78,15 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     ((s as any).policeQW ?? {})['crime_flag_pav'] = 'shoplift';
     (s as any).temp_tot_booked_pav = ((s as any).temp_tot_booked_pav ?? 0) + (1);
     if (((s as any).temp_tot_booked_pav ?? 0) === 1) {
-      // TODO-QSP: xgt 'pav_station', 'first_shoplift'
+      scene.actions([{ label: 'Continue', goto: ['pav_station', 'first_shoplift'] }]);
     } else {
       if (((s as any).temp_tot_booked_pav ?? 0) <= 5) {
-        // TODO-QSP: xgt 'pav_station', 'repeat'
+        scene.actions([{ label: 'Continue', goto: ['pav_station', 'repeat'] }]);
       } else {
         if (((s as any).temp_tot_booked_pav ?? 0) <= 10) {
-          // TODO-QSP: xgt 'pav_station', 'multiple'
+          scene.actions([{ label: 'Continue', goto: ['pav_station', 'multiple'] }]);
         } else {
-          // TODO-QSP: xgt 'pav_station', 'regular'
+          scene.actions([{ label: 'Continue', goto: ['pav_station', 'regular'] }]);
         }
       }
     }
@@ -95,15 +95,15 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     ((s as any).policeQW ?? {})['crime_flag_pav'] = 'prostitution';
     (s as any).temp_tot_booked_pav = ((s as any).temp_tot_booked_pav ?? 0) + (1);
     if (((s as any).temp_tot_booked_pav ?? 0) === 1) {
-      // TODO-QSP: xgt 'pav_station', 'first_prostitution'
+      scene.actions([{ label: 'Continue', goto: ['pav_station', 'first_prostitution'] }]);
     } else {
       if (((s as any).temp_tot_booked_pav ?? 0) <= 5) {
-        // TODO-QSP: xgt 'pav_station', 'repeat'
+        scene.actions([{ label: 'Continue', goto: ['pav_station', 'repeat'] }]);
       } else {
         if (((s as any).temp_tot_booked_pav ?? 0) <= 10) {
-          // TODO-QSP: xgt 'pav_station', 'multiple'
+          scene.actions([{ label: 'Continue', goto: ['pav_station', 'multiple'] }]);
         } else {
-          // TODO-QSP: xgt 'pav_station', 'regular'
+          scene.actions([{ label: 'Continue', goto: ['pav_station', 'regular'] }]);
         }
       }
     }

@@ -366,9 +366,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the apartment', goto: ['city_center', ''] },
     ]);
   } },
-        { label: 'Agree', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'nichTanya', 'hire'
-  } },
+        { label: 'Agree', goto: ['nichTanya', 'hire'] },
         { label: 'Maybe later', handler: (st: GameState) => {
     (s as any).nichJobRefused = 2;
     scene.text('"Of course I\'d love to be able to spend more time here with you but I have other commitments and I can\'t just drop them so how about if circumstances change I get back to you? For now let\'s leave things as they are and just enjoy our times together."');

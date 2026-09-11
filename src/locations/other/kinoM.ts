@@ -61,8 +61,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
       { label: 'Hug his arm', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
     scene.text('You lean against him and hold his arm, taking his hand in yours. He leans over and kisses you in response. The two of you sit there holding hands for the entire movie.');
-    // TODO-QSP: xgt 'kinoM', 'b'
-  } },
+  }, goto: ['kinoM', 'b'] },
     ]);
   } else {
     scene.actions([
@@ -85,8 +84,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
     qspCall(s, 'exp_gain', 'intel', 1);
     scene.text('The movie proves interesting and you sit through the whole thing without interruption.');
-    // TODO-QSP: xgt 'kinoM', 'b'
-  } },
+  }, goto: ['kinoM', 'b'] },
   ]);
   scene.build();
 }

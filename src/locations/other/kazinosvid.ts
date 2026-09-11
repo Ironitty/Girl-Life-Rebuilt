@@ -125,8 +125,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
     ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
-    // TODO-QSP: xgt 'sexdvanadva', 'var'
-  } },
+  }, goto: ['sexdvanadva', 'var'] },
         ]);
       }
     } else {
@@ -140,8 +139,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
     ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
-    // TODO-QSP: xgt 'sexdvanadva', 'var'
-  } },
+  }, goto: ['sexdvanadva', 'var'] },
         ]);
       } else {
         scene.text('You have enough money to pay them, but the guys are obviously hinting that they would rather take another form of payment from you.');
@@ -170,8 +168,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    // TODO-QSP: xgt 'sexdvanadva', 'var'
-  } },
+  }, goto: ['sexdvanadva', 'var'] },
             ]);
           }
           scene.actions([

@@ -944,7 +944,7 @@ function enterBeachDate1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Right Natasha I need to get a costume or bikini too."');
       scene.text('You both look at the options and decide on your favourite.');
       scene.text('After paying for it you both leave the shop and head to the changing rooms to put in your swimwear.');
-      // TODO-QSP: xgt 'natbel_uni_dates', 'beach_date1_buy_swimwear_loop'
+      scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'beach_date1_buy_swimwear_loop'] }]);
     }
   } },
     ]);

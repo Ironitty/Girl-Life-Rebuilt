@@ -357,8 +357,7 @@ function enterWhosePussy(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Yours!" you moan in a pitiful whimper. Your calves wrap around the back of ${((s as any).npcdesc ?? 0)}'s thighs. Your toes curl. He pounds you again.`);
     scene.text('"Whose?" he asks, pounding you even harder.');
     scene.text('"<i>Yours!</i>" you cry and your whole body goes taut beneath his weight. Fuck! <i>This is so hot!</i>');
-    // TODO-QSP: xgt 'sex_ev_sex', 'fuck_continue'
-  } },
+  }, goto: ['sex_ev_sex', 'fuck_continue'] },
     { label: 'Play along', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/vag/miss/old1.mp4');
@@ -372,7 +371,7 @@ function enterWhosePussy(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>Yours!</i>" you cry. Fuck! <i>This is so hot!</i>');
     if (((s as any).orgasm ?? 0) > ((s as any).sex_ev ?? 0)?.['orgasm']) {
     } else {
-      // TODO-QSP: xgt 'sex_ev_sex', 'fuck_continue'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'fuck_continue'] }]);
     }
   } },
     { label: 'Confusion', handler: (st: GameState) => {
@@ -386,8 +385,7 @@ function enterWhosePussy(s: GameState, scene: SceneBuilder): void {
     scene.text('"Uhmm... Mine...?"');
     // TODO-QSP: dynamic text: <<$npcdesc>> stops in the middle of his next thrust, a look of pure confusion on...
     scene.text(`${((s as any).npcdesc ?? 0)} stops in the middle of his next thrust, a look of pure confusion on his face. A hot blush fills your cheeks as you realize that you just failed at something.`);
-    // TODO-QSP: xgt 'sex_ev_sex', 'fuck_continue'
-  } },
+  }, goto: ['sex_ev_sex', 'fuck_continue'] },
   ]);
   scene.build();
 }

@@ -197,8 +197,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    // TODO-QSP: xgt 'pav_disco_sex', 'handjob'
-  } },
+  }, goto: ['pav_disco_sex', 'handjob'] },
           ]);
         }
       }
@@ -463,8 +462,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"Why wait?" you grin, steadily stroking him.');
-    // TODO-QSP: xgt 'pav_disco_sex', 'handjob'
-  } },
+  }, goto: ['pav_disco_sex', 'handjob'] },
           { label: 'Sure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     scene.text('You pull your clothes back into place before letting him drag you away.');
@@ -515,8 +513,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/hj.jpg');
     scene.text('You reach down his pants, grab hold of his erection and pull it out.');
     scene.text('"That\'s way too far," you grin, steadily stroking him.');
-    // TODO-QSP: xgt 'pav_disco_sex', 'handjob'
-  } },
+  }, goto: ['pav_disco_sex', 'handjob'] },
           { label: 'Sure', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     if (((s as any).npc_car ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -769,8 +766,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    // TODO-QSP: xgt 'pav_disco_sex', 'handjob'
-  } },
+  }, goto: ['pav_disco_sex', 'handjob'] },
     ]);
   } },
       ]);
@@ -904,7 +900,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Knees to the ground, you take <<$npcdesc>>'s <<$npc_dick_noun[$npcID]>> in your ...
   scene.text(`Knees to the ground, you take ${((s as any).npcdesc ?? 0)}'s ${((s as any).npc_dick_noun ?? 0)?.[String((s as any).npcID ?? 0)]} in your hand and guide it into your mouth to start sucking. He groans under your touch, and you see him tilting his head back in pleasure above you.`);
   if ((Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).gdk ?? 0)?.['fuck'] !== 2) {
-    // TODO-QSP: xgt 'pav_disco_sex', 'fuck_pre1'
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'fuck_pre1'] }]);
   } else {
     if ((Math.floor(Math.random() * 10) + 1) >= ((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 1) {
@@ -927,14 +923,12 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_call', 'mouth', $npcID, temp['known_cumID']
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
     scene.text('You retch, coughing up the cum that suddenly appeared in your mouth and looking back at him with tears in your eyes.');
-    // TODO-QSP: xgt 'pav_disco_sex', 'disco_mouth_react1'
-  } },
+  }, goto: ['pav_disco_sex', 'disco_mouth_react1'] },
       { label: 'Swallow', handler: (st: GameState) => {
     // TODO-QSP: gs 'cum_call', 'mouth_swallow', $npcID, temp['known_cumID']
     // TODO-QSP: dynamic text: Not knowing what else to do, you reflexively swallow, gulping down the cum spurt...
     scene.text(`Not knowing what else to do, you reflexively swallow, gulping down the cum spurting from ${((s as any).npcdesc ?? 0)}'s cock. Soon enough, nothing else comes out, and you pull back, looking up at him.`);
-    // TODO-QSP: xgt 'pav_disco_sex', 'disco_mouth_react2'
-  } },
+  }, goto: ['pav_disco_sex', 'disco_mouth_react2'] },
     ]);
   } },
         ]);
@@ -1181,21 +1175,18 @@ function enterVirginFuck(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (50);
     }
     scene.text('You grunt your way through the discomfort of the next few minutes. You try to focus on the sensations, hoping they will start feeling good, but it never does. It just feels like being stabbed repeatedly. <i>In your pussy.</i> It\'s awful and painful, and you can\'t wait for it to stop. The only other sensation you can feel is the blood of your virginity running down your leg.');
-    // TODO-QSP: xgt 'pav_disco_sex', 'disco_cum'
-  } },
+  }, goto: ['pav_disco_sex', 'disco_cum'] },
     { label: 'Don\'t feel much', handler: (st: GameState) => {
     if (((s as any).pcs_horny ?? 0) > 50) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (40);
     }
     scene.text('Within a minute, the initial pain fades. After that, you hope it\'ll start to feel good, but... it doesn\'t actually feel like anything. Just a sort of "pressure" moving in and out of you. It doesn\'t feel good, it doesn\'t feel bad, it just sort of... feels. The only thing you can feel is the blood of your virginity running down your leg.');
-    // TODO-QSP: xgt 'pav_disco_sex', 'disco_cum'
-  } },
+  }, goto: ['pav_disco_sex', 'disco_cum'] },
     { label: 'Start to feel good', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: Within a minute, the initial pain fades. And after that, you start to feel <i>re...
     scene.text(`Within a minute, the initial pain fades. And after that, you start to feel <i>really good</i>. ${((s as any).npcdesc ?? 0)}'s cock just "fills" you in a way you've never experienced before. Soon, you're thrusting your hips back to meet his, chasing after this brand-new pleasure.`);
     scene.text('<i>Why did I wait this long to have sex?!</i> You think to yourself.');
-    // TODO-QSP: xgt 'pav_disco_sex', 'disco_cum'
-  } },
+  }, goto: ['pav_disco_sex', 'disco_cum'] },
   ]);
   scene.build();
 }
@@ -1392,7 +1383,7 @@ function enterFuck1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> quickly builds up to a steady pace, pummeling your pussy from behin...
     scene.text(`${((s as any).npcdesc ?? 0)} quickly builds up to a steady pace, pummeling your pussy from behind, pumping his cock in and out of you. The rhythmic fucking pounds your insides just the right way, and you soon find yourself moaning in pleasure.`);
   }
-  // TODO-QSP: xgt 'pav_disco_sex', 'disco_cum'
+  scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'disco_cum'] }]);
   scene.build();
 }
 
@@ -1481,10 +1472,10 @@ function enterDiscoCum(s: GameState, scene: SceneBuilder): void {
                 // TODO-QSP: dynamic text: You feel pressure building with every thrust of <<$npcdesc>>'s cock inside you, ...
                 scene.text(`You feel pressure building with every thrust of ${((s as any).npcdesc ?? 0)}'s cock inside you, and soon, it explodes in a climactic orgasm. Every muscle in your body clenches, your pussy clamping down on the cock inside it so hard, it almost hurts. Finally, your breathing slowly winds down, and you feel ${((s as any).npcdesc ?? 0)} slip his cock out from inside you.`);
                 scene.text('As he does, you feel something oozing out of your pussy after it.');
-                // TODO-QSP: xgt 'pav_disco_sex', 'creampie_surprise1'
+                scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'creampie_surprise1'] }]);
               } else {
                 scene.text('Your eyes go wide when you feel something spurt inside of your pussy.');
-                // TODO-QSP: xgt 'pav_disco_sex', 'creampie_surprise1'
+                scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'creampie_surprise1'] }]);
               }
             }
           }

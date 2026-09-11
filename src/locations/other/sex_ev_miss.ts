@@ -101,7 +101,7 @@ function enterMissGoto2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    // TODO-QSP: xgt 'sex_ev_miss', 'miss_goto'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_goto'] }]);
   }
   scene.build();
 }
@@ -131,10 +131,10 @@ function enterMissionaryStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_virgin_pre'] }]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['change_pos'] === 1) {
-      // TODO-QSP: xgt 'sex_ev_miss', 'miss_switch'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_switch'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['initiative'] === 'girl') {
-        // TODO-QSP: xgt 'sex_ev_miss', 'miss_spread'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_spread'] }]);
       } else {
         if (((s as any).sex_ev ?? 0)?.['first_insertion'] === 0) {
           scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_first_insertion'] }]);

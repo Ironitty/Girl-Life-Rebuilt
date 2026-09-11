@@ -143,7 +143,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Call of Booty', handler: (st: GameState) => {
     scene.text('"I really like playing Call of Booty! Especially because of those sexy skins that come in the loot boxes."');
     if (((s as any).npc_snob ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';video_games;'))) + 1 > 0) {
-      // TODO-QSP: xgt 'date_boy_talk', 'video_games_talk'
+      scene.actions([{ label: 'Continue', goto: ['date_boy_talk', 'video_games_talk'] }]);
     } else {
       scene.text('"Oh, that\'s cool I guess."');
       scene.actions([
@@ -154,7 +154,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'FUFU (the football game)', handler: (st: GameState) => {
     scene.text('"I really like playing FUFU! All the fun of football without any of the sweating."');
     if (((s as any).npc_snob ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';video_games;'))) + 1 > 0) {
-      // TODO-QSP: xgt 'date_boy_talk', 'video_games_talk'
+      scene.actions([{ label: 'Continue', goto: ['date_boy_talk', 'video_games_talk'] }]);
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
         scene.text('"Nothing like kicking balls around for 90 minutes, huh?" he snickers.');
@@ -347,20 +347,17 @@ function enterWashingHandsTalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Quiet disgust', handler: (st: GameState) => {
     scene.text('"Uhm, yeah..." you reply stiffly, trying not to let your disgust show on your face.');
     scene.text('<i>He only washes his hands when somebody is watching?</i> you think. <i>Gross!</i>');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
     { label: 'Laugh in agreement', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     scene.text('"Yeah!" you laugh. "It\'s the worst!"');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
     { label: 'Visible disgust', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
     scene.text('"You only wash your hands when somebody is watching?!" you say.');
     scene.text('"I mean, it\'s not like I actually touch anything when I take a piss."');
     scene.text('"That\'s fucking gross." Your brow wrinkles in disgust.');
-    // TODO-QSP: xgt 'date_talk', 'date_continue'
-  } },
+  }, goto: ['date_talk', 'date_continue'] },
   ]);
   scene.build();
 }

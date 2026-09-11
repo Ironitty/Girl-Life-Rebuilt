@@ -16,14 +16,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
       scene.text('"You do?" you ask, surprised.');
       scene.text('"Don\'t know why everybody is into blondes," he smiles. "Black hair is so sexy."');
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
     if (((s as any).pcs_haircolor ?? 0) === 'brown') {
       // TODO-QSP: act'You do?':
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
       scene.text('"You do?" you ask, surprised.');
       scene.text('"Don\'t know why everybody is into blondes," he smiles. "Brunettes are gorgeous."');
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
     if (((s as any).pcs_haircolor ?? 0) === 'red') {
       // TODO-QSP: act'You do?':
@@ -34,14 +34,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('"Who doesn\'t think redheads are hot?" he grins back. ');
       }
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
     if (((s as any).pcs_haircolor ?? 0) === 'blonde') {
       // TODO-QSP: act'You do?':
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
       scene.text('"You do?" you ask, surprised.');
       scene.text('"It\'s gorgeous," he smiles. "Blondes are so sexy."');
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
   ]);

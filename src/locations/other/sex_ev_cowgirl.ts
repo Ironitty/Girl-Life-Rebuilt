@@ -198,7 +198,7 @@ function enterCowgirlSwitch2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['first_insertion'] !== 0) {
     qspCall(s, 'sex_ev_cowgirl', 'cowgirl_insert_menu');
   } else {
-    // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_menu'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cowgirl', 'cowgirl_menu'] }]);
   }
   scene.build();
 }
@@ -265,8 +265,7 @@ function enterCowgirlFirstInsertion(s: GameState, scene: SceneBuilder): void {
         { label: '"Is that gonna fit inside me?"', handler: (st: GameState) => {
     scene.text('"Is this going to fit inside me?" you ask, unable to help but gulp anxiously as you feel his length along your belly.');
     scene.text('"Don\'t worry," he grins. "It\'s gone into plenty of other girls before."');
-    // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_insert_menu'
-  } },
+  }, goto: ['sex_ev_cowgirl', 'cowgirl_insert_menu'] },
       ]);
     } else {
       if (((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -274,8 +273,7 @@ function enterCowgirlFirstInsertion(s: GameState, scene: SceneBuilder): void {
           { label: '"I love big cocks"', handler: (st: GameState) => {
     scene.text('You grin, feeling his length along your belly.');
     scene.text('"I love a guy with a big cock," you grin and he grins back as you position his tip to enter your snatch.');
-    // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_insert_menu'
-  } },
+  }, goto: ['sex_ev_cowgirl', 'cowgirl_insert_menu'] },
         ]);
       } else {
         scene.actions([
@@ -283,8 +281,7 @@ function enterCowgirlFirstInsertion(s: GameState, scene: SceneBuilder): void {
     scene.text('You grin, feeling his length along your belly.');
     scene.text('"Have I ever told you how much I love the size of your cock?" you grin.');
     scene.text('"You could stand to mention it more," he grins back as you position his tip to enter your snatch.');
-    // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_insert_menu'
-  } },
+  }, goto: ['sex_ev_cowgirl', 'cowgirl_insert_menu'] },
         ]);
       }
     }
@@ -296,8 +293,7 @@ function enterCowgirlFirstInsertion(s: GameState, scene: SceneBuilder): void {
     { label: '"I\'ve been waiting for this"', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I've been waiting all ' + iif(hour < 21 or hour < 5, 'day', 'night') + ' for th...
     scene.text('"I\'ve been waiting all \' + iif(hour < 21 or hour < 5, \'day\', \'night\') + \' for this," you grin, spreading your thighs even wider to make room for him and he grins back at you.');
-    // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_insert_menu'
-  } },
+  }, goto: ['sex_ev_cowgirl', 'cowgirl_insert_menu'] },
   ]);
   scene.build();
 }

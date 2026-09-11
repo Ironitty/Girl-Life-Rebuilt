@@ -12,7 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  // TODO-QSP: xgt 'sexdvanadva', 'var'
+  scene.actions([{ label: 'Continue', goto: ['sexdvanadva', 'var'] }]);
   scene.build();
 }
 

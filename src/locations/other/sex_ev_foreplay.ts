@@ -515,13 +515,12 @@ function enterKuniLegClose(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"Hey!" you snap, nearly kneeing him in the head to keep him away from your pussy. "I said I don\'t want to!"');
     scene.text('"Fine," he sighs. "What do you want to do instead then?"');
-    // TODO-QSP: xgt 'sex_ev_foreplay', 'cuni_alternatives'
-  } },
+  }, goto: ['sex_ev_foreplay', 'cuni_alternatives'] },
         { label: 'Let it happen', goto: ['sex_ev_foreplay', 'pussy_lick_start'] },
       ]);
     } else {
       scene.text('"Oh. Well..."');
-      // TODO-QSP: xgt 'sex_ev_foreplay', 'cuni_alternatives'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_foreplay', 'cuni_alternatives'] }]);
     }
   } },
     ]);
@@ -845,7 +844,7 @@ function enterNipplePlay(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['condom'] !== 0  ||  ((s as any).sex_ev ?? 0)?.['no_condom'] !== 0) {
-        // TODO-QSP: xgt 'sex_ev_miss', 'miss_goto'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_goto'] }]);
       } else {
         qspCall(s, 'sex_ev_condoms', 'condoms');
       }

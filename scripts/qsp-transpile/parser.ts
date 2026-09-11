@@ -338,8 +338,8 @@ interface ParseResult {
       continue;
     }
 
-    // Goto: gt 'target', 'arg'
-    const gtMatch = trimmed.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?$/);
+    // Goto: gt 'target', 'arg' or xgt 'target', 'arg'
+    const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?$/);
     if (gtMatch) {
       nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '' });
       i++;
@@ -456,9 +456,9 @@ interface ParseResult {
       continue;
     }
 
-    // Goto with variable: gt $var
-    const gtVarMatch = trimmed.match(/^gt\s+(\$\w+|\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
-    if (gtVarMatch && !trimmed.startsWith("gt '")) {
+    // Goto with variable: gt $var or xgt $var
+    const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+|\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
+    if (gtVarMatch && !trimmed.startsWith("gt '") && !trimmed.startsWith("xgt '")) {
       nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[2] || '').replace(/^'|'$/g, '') });
       i++;
       continue;
@@ -705,8 +705,8 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
-  // Goto
-  const gtMatch = trimmed.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?$/);
+  // Goto or xgt
+  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?$/);
   if (gtMatch) {
     nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '' });
     return { nodes, nextIdx: idx + 1 };
@@ -810,9 +810,9 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
-  // Goto with variable: gt $var
-  const gtVarMatch = trimmed.match(/^gt\s+(\$\w+|\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
-  if (gtVarMatch && !trimmed.startsWith("gt '")) {
+  // Goto with variable: gt $var or xgt $var
+  const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+|\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
+  if (gtVarMatch && !trimmed.startsWith("gt '") && !trimmed.startsWith("xgt '")) {
     nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[2] || '').replace(/^'|'$/g, '') });
     return { nodes, nextIdx: idx + 1 };
   }
@@ -880,7 +880,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  const gtMatch = trimmed.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?$/);
+  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?$/);
   if (gtMatch) {
     nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '' });
     return nodes;

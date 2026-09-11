@@ -143,24 +143,21 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       // TODO-QSP: xgt 'havana_kickboxing', 'end', 'winKO'
     }
-    // TODO-QSP: xgt 'havana_kickboxing', 'sta'
-  } },
+  }, goto: ['havana_kickboxing', 'sta'] },
         { label: 'Power punch', handler: (st: GameState) => {
     scene.text('You attempt a powerful punch.');
     qspCall(s, 'kickboxing_funcs', 'attack', 'player', 'punch');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       // TODO-QSP: xgt 'havana_kickboxing', 'end', 'winKO'
     }
-    // TODO-QSP: xgt 'havana_kickboxing', 'sta'
-  } },
+  }, goto: ['havana_kickboxing', 'sta'] },
         { label: 'Big kick', handler: (st: GameState) => {
     scene.text('You try a powerful kick.');
     qspCall(s, 'kickboxing_funcs', 'attack', 'player', 'kick');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       // TODO-QSP: xgt 'havana_kickboxing', 'end', 'winKO'
     }
-    // TODO-QSP: xgt 'havana_kickboxing', 'sta'
-  } },
+  }, goto: ['havana_kickboxing', 'sta'] },
       ]);
     } else {
       scene.text(`${((s as any).boydesc ?? 0)} attacks`);
@@ -173,8 +170,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       // TODO-QSP: xgt 'havana_kickboxing', 'end', 'lossKO'
     }
-    // TODO-QSP: xgt 'havana_kickboxing', 'sta'
-  } },
+  }, goto: ['havana_kickboxing', 'sta'] },
         ]);
       } else {
         if (((s as any).tiprand ?? 0) === 1) {
@@ -185,8 +181,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       // TODO-QSP: xgt 'havana_kickboxing', 'end', 'lossKO'
     }
-    // TODO-QSP: xgt 'havana_kickboxing', 'sta'
-  } },
+  }, goto: ['havana_kickboxing', 'sta'] },
           ]);
         } else {
           scene.actions([
@@ -196,8 +191,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       // TODO-QSP: xgt 'havana_kickboxing', 'end', 'lossKO'
     }
-    // TODO-QSP: xgt 'havana_kickboxing', 'sta'
-  } },
+  }, goto: ['havana_kickboxing', 'sta'] },
           ]);
         }
       }

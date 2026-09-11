@@ -1756,8 +1756,7 @@ function enterAfterSex2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You and <<$npcdesc>> both lay back, quietly relaxing together in the still bliss...
       scene.text(`You and ${((s as any).npcdesc ?? 0)} both lay back, quietly relaxing together in the still bliss of your love-making.`);
     }
-    // TODO-QSP: xgt 'sex_ev_after', 'relax_together'
-  } },
+  }, goto: ['sex_ev_after', 'relax_together'] },
       ]);
     }
   } else {

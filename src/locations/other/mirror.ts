@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).newstylemirror ?? 0) === 1) {
     ((s as any).serv ?? {})['avatar'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "mirror" }) + ' src="<<func(\'$face_image\')>>"></center>';
     if (((s as any).cheatVars ?? 0)?.['auto_brush'] === 1  &&  (!((s as any).pcs_hairbsh ?? 0))) {
-      // TODO-QSP: xgt 'mirror', 'brush'
+      scene.actions([{ label: 'Continue', goto: ['mirror', 'brush'] }]);
     }
     if (((s as any).mc_inventory ?? 0)?.['scrunchies'] < 1) {
       (s as any).hscrunchw = 0;
@@ -294,7 +294,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).cheatVars ?? 0)?.['auto_brush'] === 1  &&  (!((s as any).pcs_hairbsh ?? 0))) {
-      // TODO-QSP: xgt 'mirror', 'brush'
+      scene.actions([{ label: 'Continue', goto: ['mirror', 'brush'] }]);
     }
     if (((s as any).mc_inventory ?? 0)?.['scrunchies'] < 1) {
       (s as any).hscrunchw = 0;

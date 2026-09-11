@@ -543,7 +543,7 @@ function enterLikes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] >= ((s as any).bodyDay ?? 0)) {
     qspCall(s, 'lover_likes', 'bodyPrefTmp');
   }
-  // TODO-QSP: xgt 'lover_meet', 'actions'
+  scene.actions([{ label: 'Continue', goto: ['lover_meet', 'actions'] }]);
   scene.build();
 }
 

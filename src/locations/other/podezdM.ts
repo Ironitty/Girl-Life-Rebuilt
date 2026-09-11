@@ -68,7 +68,7 @@ function enterKiosk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
     if (((s as any).podrand ?? 0) < 9) {
-      // TODO-QSP: xgt 'podezdM', 'kiosk1'
+      scene.actions([{ label: 'Continue', goto: ['podezdM', 'kiosk1'] }]);
     } else {
       if (((s as any).podrand ?? 0) >= 9) {
         scene.actions([{ label: 'Continue', goto: ['podezdM', 'grup'] }]);

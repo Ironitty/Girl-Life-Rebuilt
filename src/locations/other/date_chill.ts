@@ -214,7 +214,7 @@ function enterSnackMenuEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   ((s as any).date_ev ?? {})['grab_snacks'] = 1;
   qspCall(s, 'stat', '');
-  // TODO-QSP: xgt 'date_chill', 'get_ready2'
+  scene.actions([{ label: 'Continue', goto: ['date_chill', 'get_ready2'] }]);
   scene.build();
 }
 
@@ -264,21 +264,21 @@ function enterSettleDown1(s: GameState, scene: SceneBuilder): void {
 function enterNetflixMovie1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['watching_image']
   scene.text('The two of you start watching a movie together.');
-  // TODO-QSP: xgt 'date_chill', 'intermission1'
+  scene.actions([{ label: 'Continue', goto: ['date_chill', 'intermission1'] }]);
   scene.build();
 }
 
 function enterNetflixTv1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['watching_image']
   scene.text('The two of you start binge watching a TV show together.');
-  // TODO-QSP: xgt 'date_chill', 'intermission1'
+  scene.actions([{ label: 'Continue', goto: ['date_chill', 'intermission1'] }]);
   scene.build();
 }
 
 function enterNetflixTv2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['watching_image']
   scene.text('The two of you pick up where you left off, starting the next episode of the TV show you were watching together.');
-  // TODO-QSP: xgt 'date_chill', 'intermission1'
+  scene.actions([{ label: 'Continue', goto: ['date_chill', 'intermission1'] }]);
   scene.build();
 }
 

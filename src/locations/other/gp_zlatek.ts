@@ -123,46 +123,46 @@ function enterGetRandomChoreAct(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 0) {
-      // TODO-QSP: xgt 'gp_zlatek', 'chore_fetchfirewood'
+      scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_fetchfirewood'] }]);
     } else {
       if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 1) {
-        // TODO-QSP: xgt 'gp_zlatek', 'chore_feedhorse'
+        scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_feedhorse'] }]);
       } else {
         if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 2) {
-          // TODO-QSP: xgt 'gp_zlatek', 'chore_feedcow'
+          scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_feedcow'] }]);
         } else {
           if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 3) {
-            // TODO-QSP: xgt 'gp_zlatek', 'chore_cleanyard'
+            scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_cleanyard'] }]);
           } else {
             if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 4) {
-              // TODO-QSP: xgt 'gp_zlatek', 'chore_brushhorse'
+              scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_brushhorse'] }]);
             } else {
               if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 5) {
-                // TODO-QSP: xgt 'gp_zlatek', 'chore_feedboar'
+                scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_feedboar'] }]);
               } else {
                 if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 9) {
-                  // TODO-QSP: xgt 'gp_zlatek', 'chore_leadhorsetofield'
+                  scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_leadhorsetofield'] }]);
                 } else {
                   if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 7  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 9) {
-                    // TODO-QSP: xgt 'gp_zlatek', 'chore_leadcowtofield'
+                    scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_leadcowtofield'] }]);
                   } else {
                     if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 8  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 9) {
-                      // TODO-QSP: xgt 'gp_zlatek', 'chore_herdcattle'
+                      scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_herdcattle'] }]);
                     } else {
                       if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 9  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).week ?? 0) > 5  &&  qspFunc(s, 'changingroom', 'count_swim_item') > 0) {
-                        // TODO-QSP: xgt 'gp_zlatek', 'chore_bathehorse'
+                        scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_bathehorse'] }]);
                       } else {
                         if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 10  &&  ((s as any).boletus_stored ?? 0) <= 18) {
-                          // TODO-QSP: xgt 'gp_zlatek', 'chore_gathermushrooms'
+                          scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_gathermushrooms'] }]);
                         } else {
                           if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 11  &&  ((s as any).bilberry_stored ?? 0) <= 18) {
-                            // TODO-QSP: xgt 'gp_zlatek', 'chore_gatherberries'
+                            scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_gatherberries'] }]);
                           } else {
                             if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 12  &&  ((((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0)) <= 16)) {
-                              // TODO-QSP: xgt 'gp_zlatek', 'chore_gatherboth'
+                              scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_gatherboth'] }]);
                             } else {
                               if (((s as any).grandpaQW ?? 0)?.['chore_type'] === 13  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 9) {
-                                // TODO-QSP: xgt 'gp_zlatek', 'chore_balehay'
+                                scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'chore_balehay'] }]);
                               }
                             }
                           }

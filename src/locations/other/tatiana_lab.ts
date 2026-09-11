@@ -28,10 +28,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1) {
     if ((!((s as any).sucbypass ?? 0))) {
       if (((s as any).sucpcinfo ?? 0) < 2) {
-        // TODO-QSP: xgt 'tatiana_lab', 'suctraining'
+        scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctraining'] }]);
       } else {
         if (((s as any).sucpcinfo ?? 0) >= 6  &&  ((s as any).sucskill ?? 0) < 3  &&  ((s as any).sctrainprep ?? 0) === 1) {
-          // TODO-QSP: xgt 'tatiana_lab', 'suctraining'
+          scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctraining'] }]);
         }
       }
     } else {
@@ -542,7 +542,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
         { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
       ]);
     } else {
-      // TODO-QSP: xgt 'tatiana_lab', 'suctrainsex'
+      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctrainsex'] }]);
     }
   } },
       ]);
@@ -576,7 +576,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Then her eyes snap open, and you feel arousal suddenly flooding the link!');
-      // TODO-QSP: xgt 'tatiana_lab', 'suctrainsex'
+      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctrainsex'] }]);
     }
   } },
         ]);
@@ -676,7 +676,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     scene.text('As you\'re finishing, you notice Tatiana has her eyes closed and is visibly trying to get ahold of herself.');
     if (((s as any).tatisucsexday ?? 0) < ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 100) + 1) > 95) {
       scene.text('Then her eyes snap open, and you feel arousal suddenly flooding the link!');
-      // TODO-QSP: xgt 'tatiana_lab', 'suctrainsex'
+      scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'suctrainsex'] }]);
     } else {
       scene.text('After several moments, she pulls herself together, opens her eyes, smiles at you, and says, "There, I knew I could do it!"');
       scene.text('She then stands up and goes back to her studying.');

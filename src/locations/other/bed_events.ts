@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_events', 'mod_sleepevents');
-  // TODO-QSP: xgt 'bed_events', 'event_handler'
+  scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_handler'] }]);
   scene.build();
 }
 
@@ -20,7 +20,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: xgt 'bed_events', 'continue'
+  scene.actions([{ label: 'Continue', goto: ['bed_events', 'continue'] }]);
   scene.build();
 }
 
@@ -31,12 +31,12 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
-  // TODO-QSP: xgt 'bed_events', 'event_end'
+  scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_end'] }]);
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: xgt 'bed_events', 'event_handler'
+  scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_handler'] }]);
   scene.build();
 }
 
@@ -50,7 +50,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
-  // TODO-QSP: xgt 'bed2', 'start'
+  scene.actions([{ label: 'Continue', goto: ['bed2', 'start'] }]);
   scene.build();
 }
 
@@ -239,8 +239,7 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).picrand = 38;
     qspCall(s, 'bed_events', 'exit');
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
     ]);
   } },
     ]);

@@ -220,18 +220,18 @@ function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 1) > 5  &&  (((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 4)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  ((s as any).sex_ev ?? 0)?.['cant_stay'] === 0  &&  ((s as any).sex_ev ?? 0)?.['sleepover'] !== 1) {
       // TODO-QSP: dynamic text: "You know, it's kinda late." <<$npcdesc>> sits up in bed. "You don't have to go ...
       scene.text(`"You know, it's kinda late." ${((s as any).npcdesc ?? 0)} sits up in bed. "You don't have to go right now. Did you want to maybe... spend the night?"`);
-      // TODO-QSP: xgt 'sex_ev_hookup_leave', 'spend_the_night'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_hookup_leave', 'spend_the_night'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['continuation'] > 0  &&  ((s as any).sex_ev ?? 0)?.['mad'] < 1  &&  ((s as any).sex_ev ?? 0)?.['angry_after'] < 1) {
         ((s as any).sex_ev ?? {})['hookup_continuation_check'] = 1;
         if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((Math.floor(Math.random() * (2 - -1 + 1)) + (-1)) - ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).sex_ev ?? 0)?.['prostitution'] === 1  ||  ((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
-          // TODO-QSP: xgt 'sex_ev_hookup_leave', 'npc_sugar_daddy_offer'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_hookup_leave', 'npc_sugar_daddy_offer'] }]);
         } else {
           if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex'  ||  (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'casual'  &&  (Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)])) {
-            // TODO-QSP: xgt 'sex_ev_hookup_leave', 'npc_fuckbuddy_request'
+            scene.actions([{ label: 'Continue', goto: ['sex_ev_hookup_leave', 'npc_fuckbuddy_request'] }]);
           } else {
             if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'casual'  ||  ((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'serious') {
-              // TODO-QSP: xgt 'sex_ev_hookup_leave', 'npc_date_request'
+              scene.actions([{ label: 'Continue', goto: ['sex_ev_hookup_leave', 'npc_date_request'] }]);
             }
           }
         }
@@ -256,13 +256,13 @@ function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
               scene.text(`"Right back at you," he smirks in return while you're ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
             }
           }
-          // TODO-QSP: xgt 'sex_ev_leave', 'dressing2'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'dressing2'] }]);
         } else {
           if (((s as any).sex_ev ?? 0)?.['hookup_continuation_first_pass'] === 0) {
             scene.text('"Alright, sure. Feel free to see yourself out."');
             ((s as any).sex_ev ?? {})['hookup_continuation_first_pass'] = 1;
           }
-          // TODO-QSP: xgt 'sex_ev_leave', 'dressing2'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'dressing2'] }]);
         }
       }
     }
@@ -270,7 +270,7 @@ function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev ?? {})['continuation'] = ((s as any).rand ?? 0)(-1, 1);
     if (((s as any).sex_ev ?? 0)?.['continuation'] > 0  &&  ((s as any).sex_ev ?? 0)?.['mad'] < 1  &&  ((s as any).sex_ev ?? 0)?.['angry_after'] < 1) {
       if (((s as any).npc_rel_type ?? 0) !== 'sugar_daddy'  &&  ((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((Math.floor(Math.random() * (2 - -1 + 1)) + (-1)) - ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).sex_ev ?? 0)?.['prostitution'] === 1  ||  ((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
-        // TODO-QSP: xgt 'sex_ev_hookup_leave', 'npc_sugar_daddy_offer'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_hookup_leave', 'npc_sugar_daddy_offer'] }]);
       }
     }
   }

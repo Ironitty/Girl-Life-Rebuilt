@@ -218,22 +218,22 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     scene.text(`These panties form a set with bra #${((s as any).underwear ?? 0)?.['pair']}.`);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
-    // TODO-QSP: xgt 'panty_view', 'view_item_shop'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_shop'] }]);
   }
   if (qspFunc(s, 'panties', 'is_wearing', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-    // TODO-QSP: xgt 'panty_view', 'view_item_wearing'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_wearing'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
-    // TODO-QSP: xgt 'panty_view', 'view_item_wardrobe'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_wardrobe'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'bathroom') {
-    // TODO-QSP: xgt 'panty_view', 'view_item_bathroom'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_bathroom'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'storage') {
-    // TODO-QSP: xgt 'panty_view', 'view_item_storage'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_storage'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'unwanted') {
-    // TODO-QSP: xgt 'panty_view', 'view_item_unwanted'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_unwanted'] }]);
   }
   return;
   scene.actions([
@@ -427,7 +427,7 @@ function enterViewItemWearSingle(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hypnoPanty ?? 0) > 0) {
-    // TODO-QSP: xgt 'panty_view', 'view_item_wear_single_hypno'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_wear_single_hypno'] }]);
   }
   // TODO-QSP: gs 'panties', 'wear', $shop_utils_view['type'], shop_utils_view['number']
   qspCall(s, 'shop_utils', 'cleanup');
@@ -487,7 +487,7 @@ function enterViewItemWearPair(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hypnoBra ?? 0) > 0  ||  ((s as any).hypnoPanty ?? 0) > 0) {
-    // TODO-QSP: xgt 'panty_view', 'view_item_wear_pair_hypno'
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_item_wear_pair_hypno'] }]);
   }
   // TODO-QSP: gs 'panties', 'wear', $shop_utils_view['type'], shop_utils_view['number']
   // TODO-QSP: gs 'bras', 'wear', $shop_utils_view['type'], underwear['pair']

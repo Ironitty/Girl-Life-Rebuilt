@@ -34,7 +34,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       return;
     }
     if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((s as any).mey_vika ?? 0)?.['bath_qw'] === 1  &&  ((s as any).mey_vika ?? 0)?.['bath_qw_day'] !== ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).locat ?? 0)?.['Vicky'] === 9) {
-      // TODO-QSP: xgt 'mey_vika_events', 'bath_qw1'
+      scene.actions([{ label: 'Continue', goto: ['mey_vika_events', 'bath_qw1'] }]);
     }
     if (((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).mey_tamara ?? 0)?.['help_day'] !== ((s as any).daystart ?? 0)) {
       scene.actions([

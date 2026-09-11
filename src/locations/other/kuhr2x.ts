@@ -17,7 +17,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((s as any).kransloman ?? {})[1] = ((s as any).daystart ?? 0);
   }
   if (((s as any).kransloman ?? 0) === 1) {
-    // TODO-QSP: xgt 'kuhr2x', 'leak'
+    scene.actions([{ label: 'Continue', goto: ['kuhr2x', 'leak'] }]);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
     // TODO-QSP: dynamic text: <b><<mc_inventory['dish_plates']>></b> clean plates are stored in the cupboard.

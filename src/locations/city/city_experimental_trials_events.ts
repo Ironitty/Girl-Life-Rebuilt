@@ -11,7 +11,7 @@ function enterCheckForEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetExperimentalTrialsEvent(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: xgt 'city_experimental_trials_events'
+  scene.actions([{ label: 'Continue', goto: ['city_experimental_trials_events', ''] }]);
   scene.build();
 }
 

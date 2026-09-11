@@ -82,7 +82,7 @@ function enterCondoms(s: GameState, scene: SceneBuilder): void {
                 // TODO-QSP: dynamic text: "Is it really okay for me to come inside?" <<$npcdesc>> asks as he gets into pos...
                 scene.text(`"Is it really okay for me to come inside?" ${((s as any).npcdesc ?? 0)} asks as he gets into position.`);
                 scene.text('You nod back, smiling warmly. He returns the smile and starts pushing his way in.');
-                // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
+                scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'position_choose'] }]);
               } else {
                 // TODO-QSP: dynamic text: <<$npcdesc>> makes no indication that he's going to put on a condom.
                 scene.text(`${((s as any).npcdesc ?? 0)} makes no indication that he's going to put on a condom.`);
@@ -158,8 +158,7 @@ function enterCondomWait(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get a condom from your bag', handler: (st: GameState) => {
     scene.text('"Wait!" you yelp and scramble for your bag to pull out a condom, holding it between you. "You need to use a condom. Please?"');
-    // TODO-QSP: xgt 'sex_ev_condoms', 'pc_condoms2'
-  } },
+  }, goto: ['sex_ev_condoms', 'pc_condoms2'] },
       ]);
     }
     qspCall(s, 'sex_ev_condoms', 'pc_dangerous_day');
@@ -170,12 +169,12 @@ function enterCondomWait(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Don't worry," <<$npcdesc>> says. "I've got pullout game."
       scene.text(`"Don't worry," ${((s as any).npcdesc ?? 0)} says. "I've got pullout game."`);
       ((s as any).npc_pullout_game ?? {})[String((s as any).npcID ?? 0)] = 1;
-      // TODO-QSP: xgt 'sex_ev_condoms', 'npc_pullout_game'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_condoms', 'npc_pullout_game'] }]);
     } else {
       if (((s as any).npc_no_condoms ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-        // TODO-QSP: xgt 'sex_ev_condoms', 'npc_doesnt_use_condoms'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_condoms', 'npc_doesnt_use_condoms'] }]);
       } else {
-        // TODO-QSP: xgt 'sex_ev_condoms', 'pc_condom_ask3'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_condoms', 'pc_condom_ask3'] }]);
       }
     }
   } },
@@ -292,8 +291,7 @@ function enterPcUseCondoms(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You grab another condom from your stash and roll it on to his cock.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: 'Put a condom on him with your mouth', handler: (st: GameState) => {
     scene.img('images/shared/sex/misc/condom_mouth.mp4');
     qspCall(s, 'sex_ev_stats', 'pc_condom_stats');
@@ -302,8 +300,7 @@ function enterPcUseCondoms(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev ?? {})['first_condom'] = 1;
       scene.text('"Gotta practice safe sex," you smile.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     ]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['using_pc_condoms'] === 1  &&  ((s as any).sex_ev ?? 0)?.['pc_out_of_condoms'] !== 1) {
@@ -386,8 +383,7 @@ function enterPcCondomAsk(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev ?? {})['no_condom'] = 1;
     // TODO-QSP: dynamic text: <<$npcdesc>> takes your silence as consent and begins maneuvering into position.
     scene.text(`${((s as any).npcdesc ?? 0)} takes your silence as consent and begins maneuvering into position.`);
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
   ]);
   scene.build();
 }
@@ -501,7 +497,7 @@ function enterPcSkipTheCondom2(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).sex_ev ?? {})['condom_motive'] = 'exception';
     scene.text('"Just this once," he smiles back.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'position_choose'] }]);
   }
   scene.build();
 }
@@ -574,8 +570,7 @@ function enterNpcCondomPutOn(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He tears open the packaging and begins rolling the rubber sleeve onto his cock. You wait patiently, watching him, thinking about the next position you want him to fuck you in.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     { label: 'Put it on for him', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'npc_condom_stats');
     qspCall(s, 'arousal', 'foreplay_give', (-2));
@@ -584,8 +579,7 @@ function enterNpcCondomPutOn(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> tears open the packaging when you swiftly reach over and pluck the ...
     scene.text(`${((s as any).npcdesc ?? 0)} tears open the packaging when you swiftly reach over and pluck the condom out of the wrapper.`);
     scene.text('"Here, let me," you say with a sexy smile. You gently roll the rubber sleeve down his shaft, squeezing just hard enough to make him twitch under your touch.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     { label: 'Put it on with your mouth', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'npc_condom_stats');
     scene.img('images/shared/sex/misc/condom_mouth.mp4');
@@ -593,8 +587,7 @@ function enterNpcCondomPutOn(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} tears open the packaging when you swiftly reach over and pluck the condom out of the wrapper.`);
     scene.text('"Here, let me," you say with a sexy smile. Placing it on the tip of his cock, you lean over and put your lips over both. Then, using both hands, you roll the sleeve down his shaft, following with your head, lips pressed tight against the rubber. Even through the rubber, you can feel the heat of his member against your tongue.');
     scene.text('You bob your head up and down a few times for good measure before coming up and flashing a grin.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
   ]);
   scene.build();
 }
@@ -665,16 +658,14 @@ function enterNpcOutOfCondoms(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/misc/condom_put.jpg');
     // TODO-QSP: iif(mc_inventory['normal_condoms'] = 1, '"That''s okay, I''ve got one."', '"That''s okay, I''ve got ...
     scene.text('You reach into your bag and pull out a condom, rolling it onto his cock.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: 'Use one of your condoms (mouth)', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['using_pc_condoms'] = 1;
     qspCall(s, 'sex_ev_stats', 'pc_condom_stats');
     scene.img('images/shared/sex/misc/condom_mouth.mp4');
     // TODO-QSP: iif(mc_inventory['normal_condoms'] = 1, '"That''s okay, I''ve got one."', '"That''s okay, I''ve got ...
     scene.text('You reach into your bag and pull out a condom, rolling it onto his cock with your mouth.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     ]);
   }
   qspCall(s, 'sex_ev_condoms', 'still_got_pullout_game');
@@ -699,8 +690,7 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
     scene.text('"... fine..." you sigh begrudgingly. "But you better pull out this time!"');
     scene.text('He nods eagerly as he gets into position.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: 'Last chance', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
     ((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
@@ -710,8 +700,7 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He nods eagerly as he gets into position.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: '<i>Need</i> a condom', handler: (st: GameState) => {
     scene.text('"Not a chance," you reply. "We\'re using one."');
     qspCall(s, 'sex_ev_condoms', 'pc_dangerous_day_condom_insist2');
@@ -729,8 +718,7 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
     scene.text('"Oh <i>fine</i>..." you sigh with false drama, giving him a teasing smile. "I\'ll trust you this time."');
     scene.text('He nods eagerly as he gets into position.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: 'Last chance', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
     ((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
@@ -740,8 +728,7 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He nods eagerly as he gets into position.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: '<i>Need</i> a condom', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sorry, <<$npc_lovername[$npcID]>>," you smirk. "Gotta use a rubber this time."
     scene.text(`"Sorry, ${((s as any).npc_lovername ?? 0)?.[String((s as any).npcID ?? 0)]}," you smirk. "Gotta use a rubber this time."`);
@@ -813,15 +800,13 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
       { label: 'Good day to go bareback', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['preg_risk'] = 'safe';
     scene.text('"It\'s a safe day in my cycle anyways," you smile. "A good day to go bareback."');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: 'No need to pull out', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['preg_risk'] = 'safe';
     ((s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     ((s as any).sex_ev ?? {})['pullout_game'] = 0;
     scene.text('"You don\'t have to," you say with a wry smile. "It\'s a safe day in my cycle."');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     ]);
   } },
     ]);
@@ -833,15 +818,13 @@ function enterNpcPulloutGame(s: GameState, scene: SceneBuilder): void {
       { label: 'Good day to go bareback', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['preg_risk'] = 'prob_safe';
     scene.text('"It\'s a relatively safe day in my cycle," you smile. "It should be okay to go bareback."');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
       { label: 'No need to pull out', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['preg_risk'] = 'prob_safe';
     ((s as any).sex_ev ?? {})['creampie_allowance'] = 1;
     ((s as any).sex_ev ?? {})['pullout_game'] = 0;
     scene.text('"You don\'t have to," you say with a wry smile. "It should be a safe day in my cycle."');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     ]);
   } },
       ]);
@@ -856,8 +839,7 @@ function enterNoCondomAllowAnnoyed(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
     scene.text('"... fine..." you sigh begrudgingly. "But you better pull out this time!"');
     scene.text('He nods eagerly as he gets into position.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     { label: 'Last chance', handler: (st: GameState) => {
     ((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
@@ -867,8 +849,7 @@ function enterNoCondomAllowAnnoyed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He nods eagerly as he gets into position.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
   ]);
   scene.build();
 }
@@ -879,8 +860,7 @@ function enterNoCondomAllowAmused(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
     scene.text('"Oh <i>fine</i>..." you sigh with false drama, giving him a teasing smile. "I\'ll trust you this time."');
     scene.text('He nods eagerly as he gets into position.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     { label: 'Last chance', handler: (st: GameState) => {
     ((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_last_pullout_chance ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
     ((s as any).sex_ev ?? {})['promise_no_creampie'] = 1;
@@ -890,8 +870,7 @@ function enterNoCondomAllowAmused(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He nods eagerly as he gets into position.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
   ]);
   scene.build();
 }
@@ -905,8 +884,7 @@ function enterPulledOutLastTime(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Well... You did a good job of pulling out the last time..." you smile warmly at...
     scene.text(`"Well... You did a good job of pulling out the last time..." you smile warmly at ${((s as any).npcdesc ?? 0)}. "Okay. Let's do it."`);
     scene.text('Your heart flutters in excitement as the both of you get into position to fuck. <i>Without</i> protection.');
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     ]);
   }
   scene.build();
@@ -987,8 +965,7 @@ function enterStillGotPulloutGame(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Hell yeah I do," he grins back, eagerly getting into position.');
     }
-    // TODO-QSP: xgt 'sex_ev_sex', 'position_choose'
-  } },
+  }, goto: ['sex_ev_sex', 'position_choose'] },
     ]);
   }
   scene.build();

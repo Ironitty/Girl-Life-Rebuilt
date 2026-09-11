@@ -190,46 +190,46 @@ function enterGetRandomChoreAct(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 0) {
-      // TODO-QSP: xgt 'gp_elene', 'chore_cleanfloor'
+      scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_cleanfloor'] }]);
     } else {
       if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 1) {
-        // TODO-QSP: xgt 'gp_elene', 'chore_washclothes'
+        scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_washclothes'] }]);
       } else {
         if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 2  &&  ((s as any).hour ?? 0) < 9  &&  ((s as any).hour ?? 0) > 20) {
-          // TODO-QSP: xgt 'gp_elene', 'chore_milkcows'
+          scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_milkcows'] }]);
         } else {
           if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 3) {
-            // TODO-QSP: xgt 'gp_elene', 'chore_groceries'
+            scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_groceries'] }]);
           } else {
             if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 4  &&  ((s as any).boletus_stored ?? 0) >= 5) {
-              // TODO-QSP: xgt 'gp_elene', 'chore_can_mushrooms'
+              scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_can_mushrooms'] }]);
             } else {
               if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 5  &&  ((s as any).bilberry_stored ?? 0) >= 5) {
-                // TODO-QSP: xgt 'gp_elene', 'chore_can_berries'
+                scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_can_berries'] }]);
               } else {
                 if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 6  &&  ((s as any).grandmaQW ?? 0)?.['chore_harvest_done'] === 1) {
-                  // TODO-QSP: xgt 'gp_elene', 'chore_can_veggies'
+                  scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_can_veggies'] }]);
                 } else {
                   if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 7) {
-                    // TODO-QSP: xgt 'gp_elene', 'chore_feedchickens'
+                    scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_feedchickens'] }]);
                   } else {
                     if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 8  &&  ((s as any).sunWeather ?? 0) === 1) {
-                      // TODO-QSP: xgt 'gp_elene', 'chore_checkplants'
+                      scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_checkplants'] }]);
                     } else {
                       if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 9  &&  ((s as any).sunWeather ?? 0) === 1) {
-                        // TODO-QSP: xgt 'gp_elene', 'chore_waterplants'
+                        scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_waterplants'] }]);
                       } else {
                         if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9) {
-                          // TODO-QSP: xgt 'gp_elene', 'chore_harvest_switch'
+                          scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_harvest_switch'] }]);
                         } else {
                           if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 11  &&  ((s as any).boletus_stored ?? 0) <= 18) {
-                            // TODO-QSP: xgt 'gp_elene', 'chore_gathermushrooms'
+                            scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_gathermushrooms'] }]);
                           } else {
                             if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 12  &&  ((s as any).bilberry_stored ?? 0) <= 18) {
-                              // TODO-QSP: xgt 'gp_elene', 'chore_gatherberries'
+                              scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_gatherberries'] }]);
                             } else {
                               if (((s as any).grandmaQW ?? 0)?.['chore_type'] === 13  &&  ((((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0)) <= 16)) {
-                                // TODO-QSP: xgt 'gp_elene', 'chore_gatherboth'
+                                scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_gatherboth'] }]);
                               }
                             }
                           }
@@ -257,13 +257,13 @@ function enterGetRandomChoreAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreHarvestSwitch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) === 7) {
-    // TODO-QSP: xgt 'gp_elene', 'chore_collectstrawberries'
+    scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_collectstrawberries'] }]);
   } else {
     if (((s as any).month ?? 0) === 8  ||  ((s as any).month ?? 0) === 9) {
-      // TODO-QSP: xgt 'gp_elene', 'chore_collectfruit'
+      scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_collectfruit'] }]);
     } else {
       if (((s as any).month ?? 0) === 6) {
-        // TODO-QSP: xgt 'gp_elene', 'chore_harvestgarden'
+        scene.actions([{ label: 'Continue', goto: ['gp_elene', 'chore_harvestgarden'] }]);
       }
     }
   }

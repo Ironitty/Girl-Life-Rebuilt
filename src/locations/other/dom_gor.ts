@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -122,14 +122,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Go out onto the street', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed.</b></center>');
-      // TODO-QSP: xgt $curloc
+      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
     } else {
       if (((s as any).sick ?? 0) > 72) {
         scene.text('<center><b>You feel too ill to travel through the streets.</b></center>');
-        // TODO-QSP: xgt $curloc
+        scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 15;
-        // TODO-QSP: xgt 'pav_commercial'
+        scene.actions([{ label: 'Continue', goto: ['pav_commercial', ''] }]);
       }
     }
   } },

@@ -31,16 +31,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).clientask ?? 0) >= 74  &&  ((s as any).clientask ?? 0) <= 76) {
-    // TODO-QSP: xgt 'komp_cam_MFC_requests_oral'
+    scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_oral', ''] }]);
   } else {
     if (((s as any).clientask ?? 0) >= 77  &&  ((s as any).clientask ?? 0) <= 79) {
       if (((s as any).pantyworntype ?? 0) === 'none') {
-        // TODO-QSP: xgt 'komp_cam_MFC_requests_anal'
+        scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_anal', ''] }]);
       }
     } else {
       if (((s as any).clientask ?? 0) === 80) {
         if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).pcs_ass ?? 0) >= 30  &&  ((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50) {
-          // TODO-QSP: xgt 'komp_cam_MFC_requests_three', 'show_asshole'
+          scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_asshole'] }]);
         }
       } else {
         if (((s as any).clientask ?? 0) >= 81  &&  ((s as any).clientask ?? 0) <= 90) {
@@ -98,36 +98,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           }
           if (((s as any).pantyworntype ?? 0) !== 'none') {
-            // TODO-QSP: xgt 'komp_cam_MFC_requests_three', 'show_pussy'
+            scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_pussy'] }]);
           }
         } else {
           if (((s as any).clientask ?? 0) >= 91) {
             if (((s as any).clientask ?? 0) >= 90  &&  ((s as any).clientask ?? 0) <= 94) {
               if (((s as any).pantyworntype ?? 0) === 'none') {
                 scene.text('One of the viewers asks: "Do you have a vibrator or dildo? I want you to put up a little show…"');
-                // TODO-QSP: xgt 'komp_cam_MFC_requests_one'
+                scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_one', ''] }]);
               }
             } else {
               if (((s as any).clientask ?? 0) >= 95  &&  ((s as any).clientask ?? 0) <= 98) {
                 if (((s as any).braworntype ?? 0) === 'none') {
-                  // TODO-QSP: xgt 'komp_cam_MFC_requests_three', 'play_tits'
+                  scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'play_tits'] }]);
                 }
               } else {
                 if (((s as any).clientask ?? 0) === 99) {
                   if (((s as any).pantyworntype ?? 0) === 'none') {
-                    // TODO-QSP: xgt 'komp_cam_MFC_requests_three', 'show_cunt'
+                    scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_cunt'] }]);
                   }
                 } else {
                   if (((s as any).clientask ?? 0) === 100) {
                     if (((s as any).pantyworntype ?? 0) === 'none') {
-                      // TODO-QSP: xgt 'komp_cam_MFC_requests_three', 'show_vagina'
+                      scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_vagina'] }]);
                     }
                   }
                 }
               }
             }
             if (((s as any).braworntype ?? 0) !== 'none') {
-              // TODO-QSP: xgt 'komp_cam_MFC_requests_three', 'show_tits'
+              scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_three', 'show_tits'] }]);
             }
           }
         }

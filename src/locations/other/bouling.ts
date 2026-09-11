@@ -96,8 +96,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
             ]);
           }
           scene.actions([

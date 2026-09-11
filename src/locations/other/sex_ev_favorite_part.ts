@@ -40,7 +40,7 @@ function enterBoyGoodForYou(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Was it good for you too?" <<$npcdesc>> asks, grinning tiredly at you.
       scene.text(`"Was it good for you too?" ${((s as any).npcdesc ?? 0)} asks, grinning tiredly at you.`);
     }
-    // TODO-QSP: xgt 'sex_ev_favorite_part', 'boy_good_for_you_options'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_favorite_part', 'boy_good_for_you_options'] }]);
   }
   scene.build();
 }
@@ -56,13 +56,11 @@ function enterBoyGoodForYouOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
     scene.text('All you can do is shrug in response.');
     scene.text('"It was fine I guess," you say apathetically.');
-    // TODO-QSP: xgt 'sex_ev_favorite_part', 'good_for_you2'
-  } },
+  }, goto: ['sex_ev_favorite_part', 'good_for_you2'] },
       { label: 'It was nice', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'smile3', 'jpg');
     scene.text('"It was nice," you say, somewhat cheerfully.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
     { label: 'Good', handler: (st: GameState) => {
@@ -73,16 +71,14 @@ function enterBoyGoodForYouOptions(s: GameState, scene: SceneBuilder): void {
       { label: 'It was nice', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'smile3', 'jpg');
     scene.text('"It was nice," you reply with a soft smile.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'I had fun', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
       scene.text('"I had fun too," you smile back. "Was it... good...? For my first time...?');
     } else {
       scene.text('"I had fun too," you smile back.');
     }
-    // TODO-QSP: xgt 'sex_ev_favorite_part', 'good_for_you2'
-  } },
+  }, goto: ['sex_ev_favorite_part', 'good_for_you2'] },
     ]);
   } },
     { label: 'Bad', handler: (st: GameState) => {
@@ -94,8 +90,7 @@ function enterBoyGoodForYouOptions(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I\'ve had better," you shrug ambivalently.');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       ]);
     }
     if (((s as any).sex_ev ?? 0)?.['orgasm_count'] < 1) {
@@ -120,7 +115,7 @@ function enterBoyGoodForYouOptions(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: xgt 'sex_ev_virgin', 'first_time_talk', 'speaking_of'
     } else {
       scene.text('"Yeah, you were amazing," he smiles at you.');
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
     { label: 'I could still go more', handler: (st: GameState) => {
@@ -139,8 +134,7 @@ function enterBoyGoodForYouOptions(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sex_ev_favorite_part', 'good_for_you2'
-  } },
+  }, goto: ['sex_ev_favorite_part', 'good_for_you2'] },
   ]);
   scene.build();
 }
@@ -192,14 +186,14 @@ function enterGoodForYou2(s: GameState, scene: SceneBuilder): void {
           scene.text('"Yeah, it was," he says. "How about you?"');
         }
       }
-      // TODO-QSP: xgt 'sex_ev_favorite_part', 'good_for_you_too'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_favorite_part', 'good_for_you_too'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_count'] >= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).sex_ev ?? 0)?.['fucked_out'] === 1) {
         scene.text('"You fucked me so hard my dick hurts," he says grinning. "So yeah, it was good."');
       } else {
         scene.text('"I could\'ve gone a few more times," he says. "But it wasn\'t bad. What about you?"');
       }
-      // TODO-QSP: xgt 'sex_ev_favorite_part', 'good_for_you_too'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_favorite_part', 'good_for_you_too'] }]);
     }
   }
   scene.build();

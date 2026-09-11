@@ -248,9 +248,9 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
     { label: '</b>Leave the apartment</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed before going out.</b></center>');
-      // TODO-QSP: xgt $curloc
+      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
     } else {
-      // TODO-QSP: xgt 'lover_home', 'exit'
+      scene.actions([{ label: 'Continue', goto: ['lover_home', 'exit'] }]);
     }
   } },
   ]);

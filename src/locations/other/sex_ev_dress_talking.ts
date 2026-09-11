@@ -165,7 +165,7 @@ function enterHadAGoodTime(s: GameState, scene: SceneBuilder): void {
       scene.text('"Sorry," you say ruefully.');
     }
   }
-  // TODO-QSP: xgt 'sex_ev_dress_talking', 'dress_talk'
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_dress_talking', 'dress_talk'] }]);
   scene.build();
 }
 
@@ -830,7 +830,7 @@ function enterNpcSexEvInvite(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     ((s as any).sex_ev ?? {})['sex_ev_he_ask'] = 1;
-    // TODO-QSP: xgt 'sex_ev_dress_talking', 'dress_talk'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_dress_talking', 'dress_talk'] }]);
   }
   scene.build();
 }
@@ -1315,8 +1315,7 @@ function enterBreakUpEv(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I'm breaking up with you," you say, <<$sex_ev['dress_describe']>>.
     scene.text(`"I'm breaking up with you," you say, ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
     scene.text('"What?! Why?"');
-    // TODO-QSP: xgt 'sex_ev_dress_talking', 'breakup_explain'
-  } },
+  }, goto: ['sex_ev_dress_talking', 'breakup_explain'] },
     ]);
   } else {
     scene.actions([
@@ -1332,8 +1331,7 @@ function enterBreakUpEv(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('"Why not?" he asks.');
-    // TODO-QSP: xgt 'sex_ev_dress_talking', 'breakup_explain'
-  } },
+  }, goto: ['sex_ev_dress_talking', 'breakup_explain'] },
     ]);
   }
   scene.build();

@@ -2013,9 +2013,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
   scene.text('"About the job you offered me some time ago… you know, the one as your maid…"');
   scene.text('Tanya looks excited "Yes? Did you change your mind? It is still available."');
   scene.actions([
-    { label: 'Yes', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'nichTanya', 'hire'
-  } },
+    { label: 'Yes', goto: ['nichTanya', 'hire'] },
     { label: 'Still Haven\'t decided', handler: (st: GameState) => {
     scene.text('"Sorry, I still can\'t do this right now."');
     scene.actions([

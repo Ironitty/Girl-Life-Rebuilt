@@ -153,8 +153,7 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
     (s as any).SUB = ((s as any).SUB ?? 0) + (1);
     (s as any).picrand = 21;
     (s as any).sexpartkno = 1;
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
     ]);
   } },
   ]);

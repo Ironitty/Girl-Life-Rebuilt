@@ -227,8 +227,7 @@ function enterVar2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).picrand = 22;
-    // TODO-QSP: xgt 'lezbsex', 'var'
-  } },
+  }, goto: ['lezbsex', 'var'] },
     ]);
   } },
   ]);
@@ -285,8 +284,7 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 81;
     qspCall(s, 'npcgeneratec', '', 0, 'Shy Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+  }, goto: ['sex', 'var'] },
     ]);
   } },
     ]);
@@ -316,8 +314,7 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     (s as any).picrand = 82;
     qspCall(s, 'npcgeneratec', '', 0, 'Dejected Painter', Math.floor(Math.random() * 28) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+  }, goto: ['sex', 'var'] },
     ]);
   } },
       ]);

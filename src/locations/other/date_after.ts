@@ -903,13 +903,11 @@ function enterCoffeeAfterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'So much for coffee', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <i>Well so much for coffee,</i> you think to yourself as <<$npcdesc>> pushes you...
     scene.text(`<i>Well so much for coffee,</i> you think to yourself as ${((s as any).npcdesc ?? 0)} pushes you towards the bedroom.`);
-    // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
-  } },
+  }, goto: ['sex_ev_start', 'date_npc_home_start'] },
       { label: 'Coffee was just an excuse', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <i>Good,</i>you think, grinning as <<$npcdesc>> pushes you towards the bedroom. ...
     scene.text(`<i>Good,</i>you think, grinning as ${((s as any).npcdesc ?? 0)} pushes you towards the bedroom. <i>I didn't really want coffee anyways...</i>`);
-    // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
-  } },
+  }, goto: ['sex_ev_start', 'date_npc_home_start'] },
     ]);
   } else {
     qspCall(s, 'date_ev', 'kitchen_img');
@@ -926,7 +924,7 @@ function enterCoffeeAfter1(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/romance/activities/apartment/coffee${Math.floor(Math.random() * 2) + 1}.jpg`);
   scene.text('You chat about things, drinking coffee together.');
   if (((s as any).npc_sexdrive ?? 0) >= (Math.floor(Math.random() * 10) + 1)  ||  (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex'  &&  ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0)) {
-    // TODO-QSP: xgt 'date_after', 'boy_pushing_sex'
+    scene.actions([{ label: 'Continue', goto: ['date_after', 'boy_pushing_sex'] }]);
   }
   if (((s as any).npc_living_together ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([
@@ -1034,8 +1032,7 @@ function enterBoyPushingSex(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: '<<$npcdesc>> twists his lips wistfully' + iif(rand(1,10) < npc_sexdrive[$npcID] or npc_womanizer[$n...
     }
-    // TODO-QSP: xgt 'date_after', 'leaving_dialogue_choices'
-  } },
+  }, goto: ['date_after', 'leaving_dialogue_choices'] },
       ]);
     }
     scene.actions([
@@ -1105,12 +1102,12 @@ function enterApartmentDateEnd(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Do you have to? Maybe you could stay a while and..." ${((s as any).npcdesc ?? 0)} trails off as he runs his hand down your flank.`);
       }
     }
-    // TODO-QSP: xgt 'date_after', 'sex_inv_offer'
+    scene.actions([{ label: 'Continue', goto: ['date_after', 'sex_inv_offer'] }]);
   } else {
     if ((Math.floor(Math.random() * 100) + 0) < ((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 3) {
       // TODO-QSP: dynamic text: "You don't have to go," <<$npcdesc>> says, standing with you. "Why don't you... ...
       scene.text(`"You don't have to go," ${((s as any).npcdesc ?? 0)} says, standing with you. "Why don't you... spend the night?"`);
-      // TODO-QSP: xgt 'date_after', 'spend_night_offer'
+      scene.actions([{ label: 'Continue', goto: ['date_after', 'spend_night_offer'] }]);
     } else {
       scene.text('"Yeah," he replies.');
       scene.actions([
@@ -1188,8 +1185,7 @@ function enterSexInvOffer(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: '<<$npcdesc>> twists his lips wistfully' + iif(rand(1, 10) < npc_sexdrive[$npcID] or npc_womanizer[$...
     }
-    // TODO-QSP: xgt 'date_after', 'leaving_dialogue_choices'
-  } },
+  }, goto: ['date_after', 'leaving_dialogue_choices'] },
     { label: 'Refuse reluctantly', handler: (st: GameState) => {
     qspCall(s, 'date_ev', 'kitchen_img');
     if (((s as any).npc_sensual_lover ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -1218,20 +1214,17 @@ function enterSexInvOffer(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: '<<$npcdesc>> twists his lips wistfully' + iif(rand(1,10) < npc_sexdrive[$npcID] or npc_womanizer[$n...
     }
-    // TODO-QSP: xgt 'date_after', 'leaving_dialogue_choices'
-  } },
+  }, goto: ['date_after', 'leaving_dialogue_choices'] },
         ]);
       }
       scene.actions([
         { label: 'Change your mind (have sex)', handler: (st: GameState) => {
     scene.text('His insistence wins you over and you can\'t help it as a smile steals across your face.');
     scene.text('"Okay," you murmur and let him lead you away towards the bed.');
-    // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
-  } },
+  }, goto: ['sex_ev_start', 'date_npc_home_start'] },
         { label: 'Give in (reluctantly)', handler: (st: GameState) => {
     scene.text('You aren\'t sure what to do. You don\'t really want to do what he wants but you don\'t see a way out of this situation without making things worse. You keep trying to deny him, but every denial seems to make no progress and before you know it, you\'re at his bed.');
-    // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
-  } },
+  }, goto: ['sex_ev_start', 'date_npc_home_start'] },
       ]);
     } else {
       if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex'  &&  ((s as any).npc_arrogant ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -1240,7 +1233,7 @@ function enterSexInvOffer(s: GameState, scene: SceneBuilder): void {
       } else {
         // TODO-QSP: '<<$npcdesc>> twists his lips wistfully' + iif(rand(1,10) < npc_sexdrive[$npcID] or npc_womanizer[$n...
       }
-      // TODO-QSP: xgt 'date_after', 'leaving_dialogue_choices'
+      scene.actions([{ label: 'Continue', goto: ['date_after', 'leaving_dialogue_choices'] }]);
     }
   } },
     { label: 'Accept happily', handler: (st: GameState) => {
@@ -1255,8 +1248,7 @@ function enterSexInvOffer(s: GameState, scene: SceneBuilder): void {
         scene.text('Your eyes meet his as your lips curl into a smile and you step closer. His hands tighten on your hips and you wrap your arms around his back. Nothing needs to be spoken as you go towards the bedroom together.');
       }
     }
-    // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
-  } },
+  }, goto: ['sex_ev_start', 'date_npc_home_start'] },
     { label: 'Accept reluctantly', handler: (st: GameState) => {
     ((s as any).date_ev ?? {})['reluctant_sex'] = (((s as any).date_ev ?? {})['reluctant_sex'] ?? 0) + (1);
     qspCall(s, 'date_ev', 'kitchen_img');
@@ -1270,8 +1262,7 @@ function enterSexInvOffer(s: GameState, scene: SceneBuilder): void {
         scene.text('"Erm... Uhm..." you glance towards the door just before he pulls you closer. Your gaze moves back to meet his. His hardon is pressing against your pelvis. There\'s a lump in your throat. It\'s too much pressure. You can\'t say no. He grins at you and you return a flimsy smile of dubious consent as he pulls you towards the bedroom...');
       }
     }
-    // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
-  } },
+  }, goto: ['sex_ev_start', 'date_npc_home_start'] },
   ]);
   scene.build();
 }

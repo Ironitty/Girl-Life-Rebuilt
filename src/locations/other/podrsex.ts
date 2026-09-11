@@ -10,7 +10,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  // TODO-QSP: xgt 'podrsex', 'var'
+  scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
   scene.build();
 }
 
@@ -51,7 +51,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: xgt 'podrsex', 'var'
+    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['podrsex', 'end'] }]);
   }
@@ -82,7 +82,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: xgt 'podrsex', 'var'
+    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
   } else {
     qspCall(s, 'podrsex', 'end');
   }
@@ -116,7 +116,7 @@ function enterAss(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: xgt 'podrsex', 'var'
+    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
   } else {
     qspCall(s, 'podrsex', 'end');
   }
@@ -151,7 +151,7 @@ function enterVoy(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>The man groans that he will cum soon.');
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: xgt 'podrsex', 'var'
+    scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
   } else {
     qspCall(s, 'podrsex', 'end');
   }

@@ -16,7 +16,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: xgt 'sleep_events', 'event_handler2', 'priority'
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
-        // TODO-QSP: xgt 'sleep_events', 'event_handler2'
+        scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_handler2'] }]);
       }
     }
   }
@@ -41,7 +41,7 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'wake') {
       // TODO-QSP: gs 'sleep_events', 'exit', ARGS[2]
-      // TODO-QSP: xgt 'wakeup', 'start'
+      scene.actions([{ label: 'Continue', goto: ['wakeup', 'start'] }]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'no_interrupt') {
         qspCall(s, 'sleep_events', 'continue', 'no_interrupt');
@@ -72,7 +72,7 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   if (((s as any).locArgs?.[1] ?? 0) === 'sleep') {
-    // TODO-QSP: xgt 'sleep', 'sleep_handler'
+    scene.actions([{ label: 'Continue', goto: ['sleep', 'sleep_handler'] }]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'dream') {
       scene.actions([{ label: 'Continue', goto: ['sleep', 'start'] }]);

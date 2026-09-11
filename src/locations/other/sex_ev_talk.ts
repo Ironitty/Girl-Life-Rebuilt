@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterTopicExit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['sex_over'] === 1) {
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
   } else {
     qspCall(s, 'sex_ev_sex', 'sex_end');
   }
@@ -20,7 +20,7 @@ function enterBoyAccidentalCreampie(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   // TODO-QSP: end !}
   if (((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'safe') {
       if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -33,7 +33,7 @@ function enterBoyAccidentalCreampie(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Good thing it's one of your safe days," ${((s as any).npcdesc ?? 0)} smiles.`);
         scene.text('"Mhm," you nod back.');
       }
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'prob_safe') {
         if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -69,22 +69,20 @@ function enterBoyAccidentalCreampie(s: GameState, scene: SceneBuilder): void {
             { label: 'Probably should', handler: (st: GameState) => {
     scene.text('"Yeah," you say with a shy smile. "I probably should, shouldn\'t I?"');
     scene.text('He seems relieved.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
             { label: 'Definitely will', handler: (st: GameState) => {
     scene.text('"I will," you tell him. "Just to be safe."');
     scene.text('He seems relieved.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
           ]);
         } else {
           // TODO-QSP: dynamic text: "Good thing it's one of your safe days," <<$npcdesc>> smiles.
           scene.text(`"Good thing it's one of your safe days," ${((s as any).npcdesc ?? 0)} smiles.`);
           scene.text('"Mhm," you nod back.');
         }
-        // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
       } else {
-        // TODO-QSP: xgt 'sex_ev_talk', 'get_plan_b_question'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_talk', 'get_plan_b_question'] }]);
       }
     }
   }
@@ -128,8 +126,7 @@ function enterCreampieOkayBc(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('<i>I mean, what are the odds that something bad happens?</i>');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   }
   scene.build();
@@ -145,8 +142,7 @@ function enterCreampieOkaySafeish(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"It\'s a safe day. I should be okay," you smile reassuringly.');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } else {
     if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
@@ -163,8 +159,7 @@ function enterCreampieOkaySafeish(s: GameState, scene: SceneBuilder): void {
         scene.text('"I think so," you say. "It <i>should</i> be a safe day for me as long as I\'m keeping track of my cycle correctly..."');
       }
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       ]);
     }
   }
@@ -192,7 +187,7 @@ function enterCreampieOkayDanger(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_talk', 'morning_after_money');
     } else {
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
   ]);
@@ -206,7 +201,7 @@ function enterCreampieOkayUnsure(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_talk', 'morning_after_money');
     } else {
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
     { label: 'Roll the dice?', handler: (st: GameState) => {
@@ -214,7 +209,7 @@ function enterCreampieOkayUnsure(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_talk', 'morning_after_money');
     } else {
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
     { label: 'Need plan B (safety)', handler: (st: GameState) => {
@@ -222,7 +217,7 @@ function enterCreampieOkayUnsure(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_talk', 'morning_after_money');
     } else {
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
   ]);
@@ -237,7 +232,7 @@ function enterGetPlanBQuestion(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "You're gonna ' + iif(sex_ev['ma_pill'] = 1, 'take that', 'get a') + ' morning a...
     scene.text(`"You're gonna ' + iif(sex_ev['ma_pill'] = 1, 'take that', 'get a') + ' morning after pill right?" ${((s as any).npcdesc ?? 0)} asks, looking intently at your pussy, clearly thinking about when he came inside you earlier.`);
   }
-  // TODO-QSP: xgt 'sex_ev_talk', 'get_plan_b_answer'
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_talk', 'get_plan_b_answer'] }]);
   scene.build();
 }
 
@@ -256,13 +251,11 @@ function enterGetPlanBAnswer(s: GameState, scene: SceneBuilder): void {
       { label: 'Too expensive', handler: (st: GameState) => {
     scene.text('"They\'re pretty expensive," you sigh. "I don\'t like spending that much money."');
     scene.text('"A kid is going to be more expensive than that," he points out.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Hormones bad', handler: (st: GameState) => {
     scene.text('"I don\'t like using hormonal products," you say. "I don\'t think it\'s safe to mess with my body like that."');
     scene.text('"But it might be better than having a kid," he points out.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
     { label: 'You will', handler: (st: GameState) => {
@@ -282,16 +275,13 @@ function enterGetPlanBAnswer(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I\'ll get one tomorrow," you say.');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     { label: '"I should, shouldn\'t I?"', handler: (st: GameState) => {
     // TODO-QSP: '"I probably should, shouldn''t I?" you reply with an embarrassed smile. ' + iif(stat['think_virgin'...
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     { label: '"If I remember"', handler: (st: GameState) => {
     // TODO-QSP: '"Hopefully I remember to," you reply with an embarrassed smile. ' + iif(stat['think_virgin'] = 0, '...
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
   ]);
   scene.build();
 }
@@ -314,8 +304,7 @@ function enterNoPillOrthodox(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'eyeroll');
     // TODO-QSP: dynamic text: You let out a long frustrated breath but don't want to get into a fight, staying...
     scene.text(`You let out a long frustrated breath but don't want to get into a fight, staying silent and neither arguing nor acquiescing to ${((s as any).npcdesc ?? 0)}'s demand.`);
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
           { label: 'No way!', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'annoyed');
     scene.text('"No way! I\'ll go to hell if I use birth control!"');
@@ -336,8 +325,7 @@ function enterNoPillOrthodox(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No answer', handler: (st: GameState) => {
     scene.text('That question leaves you without anything to say and the room descends into an awkward silence...');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
         ]);
@@ -354,8 +342,7 @@ function enterNoPillOrthodox(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
       scene.text('<i><b>Should</b> be...</i> you think silently to yourself...');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
           ]);
         }
         scene.actions([
@@ -364,8 +351,7 @@ function enterNoPillOrthodox(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: That question stops you in your tracks and a shit eating grin makes its way acro...
     scene.text(`That question stops you in your tracks and a shit eating grin makes its way across ${((s as any).npcdesc ?? 0)}'s face.`);
     scene.text('"Oh shut up," you huff as he chuckles to himself.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
           { label: 'Get irritated', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'annoyed');
     scene.text('"Are you saying you want me to stop having sex with you?" you snap irately.');
@@ -376,8 +362,7 @@ function enterNoPillOrthodox(s: GameState, scene: SceneBuilder): void {
         { label: 'Let it go', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
     scene.text('"Ugh, whatever," you huff, deciding the argument isn\'t worth it.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
         { label: 'Don\'t let it go', goto: ['sex_ev_events', 'long_argument'] },
       ]);
     } else {
@@ -386,25 +371,23 @@ function enterNoPillOrthodox(s: GameState, scene: SceneBuilder): void {
       scene.text('"No, no, not at all. Forget I said anything.');
       scene.text('"<i>Hrmph.</i>"');
       scene.text('You cross your arms in annoyance.');
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
           { label: 'Trying to limit your sins', handler: (st: GameState) => {
     scene.text('"No, that\'s still a sin too," you say with a wry twist of your lips. "But just because I did one bad thing doesn\'t mean I should do more. I\'m trying not to show up to confession with a laundry list."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
           { label: 'It\'s a bigger sin', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     scene.text('"Premarital sex isn\'t as bad as birth control," you say. "That\'s practically <i>murder</i>."');
     scene.text('"You really think the morning after pill counts as murder?"');
     scene.text('"Of course! It\'s like killing the babiest of babies. Literally an egg before it hatches."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
         ]);
       } else {
         scene.text('"Seriously? Sex protection is a sin?"');
         scene.text('"Yes! It is! And I already have enough to confess without adding that on top!"');
-        // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
       }
     }
     qspCall(s, 'sex_ev_stats', 'birth_control_know', 'catholic');
@@ -425,8 +408,7 @@ function enterChildfreeAccidentalCreampie1(s: GameState, scene: SceneBuilder): v
     } else {
       scene.text('"It\'s a safe day, so I should be okay," you smile.');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       ]);
     } else {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
@@ -437,8 +419,7 @@ function enterChildfreeAccidentalCreampie1(s: GameState, scene: SceneBuilder): v
     } else {
       scene.text('"It <i>should</i> be a safe day for me as long as I\'m keeping track of my cycle correctly..."');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
         ]);
       } else {
         scene.actions([
@@ -447,7 +428,7 @@ function enterChildfreeAccidentalCreampie1(s: GameState, scene: SceneBuilder): v
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_talk', 'morning_after_money');
     } else {
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
           { label: 'Need plan B', handler: (st: GameState) => {
@@ -455,7 +436,7 @@ function enterChildfreeAccidentalCreampie1(s: GameState, scene: SceneBuilder): v
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_talk', 'morning_after_money');
     } else {
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
           { label: 'Need plan B (safety)', handler: (st: GameState) => {
@@ -463,7 +444,7 @@ function enterChildfreeAccidentalCreampie1(s: GameState, scene: SceneBuilder): v
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_talk', 'morning_after_money');
     } else {
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
         ]);
@@ -488,8 +469,7 @@ function enterStartBcTalk1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Sigh', handler: (st: GameState) => {
     scene.text('<i>Ugh, what\'s it going to take for this guy to go bareback?</i> you think to yourself, sighing deeply.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       ]);
     } else {
       scene.text('You\'d really do that just to stop using condoms?" he asks.');
@@ -498,20 +478,17 @@ function enterStartBcTalk1(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_bc_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"Yeah," you grin back. "They suck."');
     scene.text('"Well then... Let me know when you\'re safe..."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
         { label: 'Should be on it anyways', handler: (st: GameState) => {
     ((s as any).npc_bc_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"I should probably be on it if we\'re regularly having sex anyways," you say ruefully and flash him a smile. "But bareback would be a nice bonus..."');
     scene.text('"Well then... Let me know when you\'re safe..."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
         { label: 'Been meaning to start', handler: (st: GameState) => {
     ((s as any).npc_bc_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"I\'ve been wanting to start birth control for a while now anyways," you shrug. "Maybe this will give me the motivation to finally do it.');
     scene.text('"Well then... Let me know when you\'re safe..."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       ]);
     }
   } },
@@ -544,8 +521,7 @@ function enterMorningAfterMoney(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "If you're sure..." <<$npcdesc>> says hesitantly, withdrawing his hand.
       scene.text(`"If you're sure..." ${((s as any).npcdesc ?? 0)} says hesitantly, withdrawing his hand.`);
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Take it', handler: (st: GameState) => {
     ((s as any).take_morning_after ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     // TODO-QSP: $sex_ev['bed_room']
@@ -557,8 +533,7 @@ function enterMorningAfterMoney(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('He just nods back in return.');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
     { label: 'Take the money', handler: (st: GameState) => {
@@ -571,8 +546,7 @@ function enterMorningAfterMoney(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Don\'t worry about it," he says, grinning. "I think it would suck for both of us if you got pregnant right now."');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     { label: 'I have enough money [+$func(\'money\', \'get_cost_string\', 740)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 740) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
@@ -585,7 +559,7 @@ function enterMorningAfterMoney(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "If you're sure..." <<$npcdesc>> says hesitantly, withdrawing his hand.
         scene.text(`"If you're sure..." ${((s as any).npcdesc ?? 0)} says hesitantly, withdrawing his hand.`);
       }
-      // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   } },
   ]);

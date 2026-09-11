@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_get_out', 'mod_sleeptriggers');
-  // TODO-QSP: xgt 'bed_get_out_events', 'start'
+  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'start'] }]);
   scene.build();
 }
 

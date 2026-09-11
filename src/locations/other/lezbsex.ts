@@ -36,7 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lezbsexhome ?? 0) === 1) {
   }
   scene.img('images/shared/sex/lesbian/lezbsexstart.jpg');
-  // TODO-QSP: xgt 'lezbsex', 'var'
+  scene.actions([{ label: 'Continue', goto: ['lezbsex', 'var'] }]);
   scene.build();
 }
 

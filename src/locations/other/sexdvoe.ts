@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
-  // TODO-QSP: xgt 'sexdvoe', 'var'
+  scene.actions([{ label: 'Continue', goto: ['sexdvoe', 'var'] }]);
   scene.build();
 }
 
@@ -127,7 +127,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).sexvar = Math.floor(Math.random() * 4) + 3;
   scene.img('images/locations/shared/sex/sexdvoe/kiss.jpg');
   scene.text('After some kissing, it is time to move on to the next stage.');
-  // TODO-QSP: xgt 'sexdvoe', 'menu'
+  scene.actions([{ label: 'Continue', goto: ['sexdvoe', 'menu'] }]);
   scene.build();
 }
 
@@ -246,7 +246,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sexvar ?? 0) === 1) {
       scene.text('<br>They indicate that they will cum soon.');
     }
-    // TODO-QSP: xgt 'sexdvoe', 'menu'
+    scene.actions([{ label: 'Continue', goto: ['sexdvoe', 'menu'] }]);
   } else {
     qspCall(s, 'sexdvoe', 'end');
   }

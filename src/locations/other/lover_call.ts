@@ -162,10 +162,10 @@ function enterCallingTheLover(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'phone_balance');
   qspCall(s, 'telefon', 'phone_call_receive');
   if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  ||  ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2) {
-    // TODO-QSP: xgt 'lover_call', 'callingTheLover_f'
+    scene.actions([{ label: 'Continue', goto: ['lover_call', 'callingTheLover_f'] }]);
   } else {
     if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3) {
-      // TODO-QSP: xgt 'lover_call', 'callingTheLover_m'
+      scene.actions([{ label: 'Continue', goto: ['lover_call', 'callingTheLover_m'] }]);
     }
   }
   scene.build();
@@ -397,10 +397,10 @@ function enterLover(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'phone_call_receive');
   // TODO-QSP: gs 'telefon', 'ClearInCallSchedule', $call4Date["NPC"]
   if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3) {
-    // TODO-QSP: xgt 'lover_call', 'lover_m'
+    scene.actions([{ label: 'Continue', goto: ['lover_call', 'lover_m'] }]);
   } else {
     if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  ||  ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2) {
-      // TODO-QSP: xgt 'lover_call', 'lover_f'
+      scene.actions([{ label: 'Continue', goto: ['lover_call', 'lover_f'] }]);
     }
   }
   scene.build();

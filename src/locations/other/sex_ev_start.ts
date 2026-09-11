@@ -34,15 +34,15 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
   }
   if (Object.keys((s as any).date_ev ?? {}).length > 0) {
     if (((s as any).date_ev ?? 0)?.['npc_home_sex'] === 1) {
-      // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_start', 'date_npc_home_start'] }]);
     } else {
       if (((s as any).date_ev ?? 0)?.['pc_home_sex'] === 1) {
-        // TODO-QSP: xgt 'sex_ev_start', 'date_pc_home_start'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_start', 'date_pc_home_start'] }]);
       } else {
         if (((s as any).date_ev ?? 0)?.['hotel_sex'] === 1) {
-          // TODO-QSP: xgt 'sex_ev_start', 'date_hotel_start'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_start', 'date_hotel_start'] }]);
         } else {
-          // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_start', 'date_npc_home_start'] }]);
         }
       }
     }
@@ -55,7 +55,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(s, 'sex_ev_start', 'hookup_initiate');
         qspCall(s, 'sex_ev_start', 'begin');
-        // TODO-QSP: xgt 'sex_ev_start', 'undress_menu'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_start', 'undress_menu'] }]);
       }
     }
   }
@@ -290,7 +290,7 @@ function enterMeyHomeStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_clothing', 'undress_menu'] }]);
   scene.build();
 }
 
@@ -329,22 +329,19 @@ function enterMeyVickySpot(s: GameState, scene: SceneBuilder): void {
     scene.text(`She doesn't have the slightest appearance of shame as she winks at ${((s as any).npcdesc ?? 0)} instead and walks away while blowing a kiss.`);
     // TODO-QSP: dynamic text: Not wanting any more run-ins with the Meynolds, you hustle <<$npcdesc>> into you...
     scene.text(`Not wanting any more run-ins with the Meynolds, you hustle ${((s as any).npcdesc ?? 0)} into your bedroom.`);
-    // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
-  } },
+  }, goto: ['sex_ev_clothing', 'undress_menu'] },
         { label: 'Just smile', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['hall_way']
     // TODO-QSP: dynamic text: You don't have anything to add to that and just smile at Vicky as she winks at <...
     scene.text(`You don't have anything to add to that and just smile at Vicky as she winks at ${((s as any).npcdesc ?? 0)} and walks away, blowing a kiss at you just before turning the corner. After that, you pull ${((s as any).npcdesc ?? 0)} into your room.`);
-    // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
-  } },
+  }, goto: ['sex_ev_clothing', 'undress_menu'] },
         { label: 'That is <i>not</i> permission', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['hall_way']
     // TODO-QSP: dynamic text: "Wait, hold-" You turn quickly, wagging a stern finger in front of <<$npcdesc>>....
     scene.text(`"Wait, hold-" You turn quickly, wagging a stern finger in front of ${((s as any).npcdesc ?? 0)}. "That is <i>not</i> permission to cum inside me!"`);
     // TODO-QSP: dynamic text: As you turn back towards Vicky, she winks at <<$npcdesc>> and walks away, blowin...
     scene.text(`As you turn back towards Vicky, she winks at ${((s as any).npcdesc ?? 0)} and walks away, blowing a kiss at you just before turning the corner and you pull ${((s as any).npcdesc ?? 0)} into your room.`);
-    // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
-  } },
+  }, goto: ['sex_ev_clothing', 'undress_menu'] },
       ]);
     } else {
       if (((s as any).vicky_know_bc ?? 0) === 'pill') {
@@ -358,29 +355,26 @@ function enterMeyVickySpot(s: GameState, scene: SceneBuilder): void {
     scene.text(`She doesn't have the slightest appearance of shame as she winks at ${((s as any).npcdesc ?? 0)} instead and walks away while blowing a kiss.`);
     // TODO-QSP: dynamic text: Not wanting any more run-ins with the Meynolds, you hustle <<$npcdesc>> into you...
     scene.text(`Not wanting any more run-ins with the Meynolds, you hustle ${((s as any).npcdesc ?? 0)} into your bedroom.`);
-    // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
-  } },
+  }, goto: ['sex_ev_clothing', 'undress_menu'] },
           { label: 'Just smile', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['hall_way']
     // TODO-QSP: dynamic text: You don't have anything to add to that and just smile at Vicky as she winks at <...
     scene.text(`You don't have anything to add to that and just smile at Vicky as she winks at ${((s as any).npcdesc ?? 0)} and walks away, blowing a kiss at you just before turning the corner. After that, you pull ${((s as any).npcdesc ?? 0)} into your room.`);
-    // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
-  } },
+  }, goto: ['sex_ev_clothing', 'undress_menu'] },
           { label: 'That is <i>not</i> permission', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['hall_way']
     // TODO-QSP: dynamic text: "Wait, hold-" You turn quickly, wagging a stern finger in front of <<$npcdesc>>....
     scene.text(`"Wait, hold-" You turn quickly, wagging a stern finger in front of ${((s as any).npcdesc ?? 0)}. "That is <i>not</i> permission to cum inside me!"`);
     // TODO-QSP: dynamic text: As you turn back towards Vicky, she winks at <<$npcdesc>> and walks away, blowin...
     scene.text(`As you turn back towards Vicky, she winks at ${((s as any).npcdesc ?? 0)} and walks away, blowing a kiss at you just before turning the corner and you pull ${((s as any).npcdesc ?? 0)} into your room.`);
-    // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
-  } },
+  }, goto: ['sex_ev_clothing', 'undress_menu'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: "Well I don't want to get in your way. Make sure you pork her good!" Vicky says,...
         scene.text(`"Well I don't want to get in your way. Make sure you pork her good!" Vicky says, winking at ${((s as any).npcdesc ?? 0)}. "She deserves it. If you don't I'm gonna make sure I hear all about it later!"`);
         // TODO-QSP: dynamic text: And with that, she walks off to some other part of the house and you drag <<$npc...
         scene.text(`And with that, she walks off to some other part of the house and you drag ${((s as any).npcdesc ?? 0)} into your bedroom before she can come back.`);
-        // TODO-QSP: xgt 'sex_ev_clothing', 'undress_menu'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_clothing', 'undress_menu'] }]);
       }
     }
   }

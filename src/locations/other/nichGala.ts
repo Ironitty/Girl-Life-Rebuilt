@@ -89,12 +89,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"About your offer… the extended training one…"');
     scene.text('"Yes? Did you make up your mind?"');
     scene.actions([
-      { label: 'Accept', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'nichGala', 'contractOfferAccept'
-  } },
-      { label: 'Reject', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'nichGala', 'contractOfferReject'
-  } },
+      { label: 'Accept', goto: ['nichGala', 'contractOfferAccept'] },
+      { label: 'Reject', goto: ['nichGala', 'contractOfferReject'] },
       { label: 'Not yet', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
@@ -181,9 +177,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Of course you would still have to work for my husband. He must not know about our arrangement."');
     scene.text('"What do you say?"');
     scene.actions([
-      { label: 'Reject', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'nichGala', 'contractOfferReject'
-  } },
+      { label: 'Reject', goto: ['nichGala', 'contractOfferReject'] },
       { label: 'Need time to consider', handler: (st: GameState) => {
     scene.text('"I am sorry Mistress Gala, but I\'m not sure if that\'s something I want. May I have some time to consider your offer, please?"');
     scene.text('"Of course. Just tell me when you made up your mind."');
@@ -194,9 +188,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'Accept', handler: (st: GameState) => {
-    // TODO-QSP: xgt 'nichGala', 'contractOfferAccept'
-  } },
+      { label: 'Accept', goto: ['nichGala', 'contractOfferAccept'] },
     ]);
   } },
           ]);
@@ -1364,7 +1356,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           scene.text('She removes your restraints.');
                                                           scene.text('"You can get back to work now."');
                                                           (s as any).nichEvalGala = 1;
-                                                          // TODO-QSP: xgt 'nichGala', 'trainingEnd'
+                                                          scene.actions([{ label: 'Continue', goto: ['nichGala', 'trainingEnd'] }]);
                                                         } else {
                                                           if (((s as any).nichRand ?? 0) === 2) {
                                                             scene.text('"You are a good little girl. I think you earned yourself a reward."');
@@ -1399,13 +1391,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           scene.text('It because difficult to breathe. You begin to worry about suffocation when Gala finally cums with a loud unintelligible cry.');
                                                           scene.text('"Well done." She says out of breath as she removes your restraint. "You can return to your work now."');
                                                           (s as any).nichEvalGala = 2;
-                                                          // TODO-QSP: xgt 'nichGala', 'trainingEnd'
+                                                          scene.actions([{ label: 'Continue', goto: ['nichGala', 'trainingEnd'] }]);
                                                         } else {
                                                           if (((s as any).nichGalaTrainStage ?? 0) === 51) {
                                                             (s as any).minut = ((s as any).minut ?? 0) + 1;
                                                             scene.img('images/characters/city/gala/training/training11.jpg');
                                                             (s as any).nichEvalGala = 2;
-                                                            // TODO-QSP: xgt 'nichGala', 'trainingEnd'
+                                                            scene.actions([{ label: 'Continue', goto: ['nichGala', 'trainingEnd'] }]);
                                                           } else {
                                                             if (((s as any).nichGalaTrainStage ?? 0) === 60) {
                                                               (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -1468,7 +1460,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                           (s as any).minut = ((s as any).minut ?? 0) + 1;
                                                                           scene.img('images/characters/city/gala/training/training32.jpg');
                                                                           (s as any).nichEvalGala = 2;
-                                                                          // TODO-QSP: xgt 'nichGala', 'trainingEnd'
+                                                                          scene.actions([{ label: 'Continue', goto: ['nichGala', 'trainingEnd'] }]);
                                                                         } else {
                                                                           if (((s as any).nichGalaTrainStage ?? 0) === 70) {
                                                                             (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -1519,7 +1511,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                       (s as any).minut = ((s as any).minut ?? 0) + 1;
                                                                                       scene.img('images/characters/city/gala/training/training56.jpg');
                                                                                       (s as any).nichEvalGala = 2;
-                                                                                      // TODO-QSP: xgt 'nichGala', 'trainingEnd'
+                                                                                      scene.actions([{ label: 'Continue', goto: ['nichGala', 'trainingEnd'] }]);
                                                                                     }
                                                                                   }
                                                                                 }

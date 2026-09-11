@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -129,11 +129,11 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '<b><font color = maroon>OUTSIDE</font></b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
-      // TODO-QSP: xgt 'koncepod', 'start'
+      scene.actions([{ label: 'Continue', goto: ['koncepod', 'start'] }]);
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         scene.text('<b><font color = red>You need to get dressed.</font></b>');
-        // TODO-QSP: xgt $curloc
+        scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
       }
     }
   } },

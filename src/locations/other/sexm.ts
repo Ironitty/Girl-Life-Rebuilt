@@ -1031,8 +1031,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+  }, goto: ['sex', 'var'] },
           ]);
         } else {
           // TODO-QSP: dynamic text: "This is a surprise, but oh well that clown ran away, and I am once again ready....
@@ -1047,8 +1046,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+  }, goto: ['sex', 'var'] },
           ]);
         }
       }
@@ -1095,8 +1093,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
     ]);
   } },
           ]);
@@ -1129,8 +1126,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
     ]);
   } },
           ]);
@@ -1186,8 +1182,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
         ]);
       }
     } else {
@@ -1216,8 +1211,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+  }, goto: ['sex', 'var'] },
             ]);
           } else {
             // TODO-QSP: dynamic text: "Well this is a surprise, but oh well it looks like your hubby dumped you, and I...
@@ -1232,8 +1226,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
     if (((s as any).popolaini ?? 0) === 3) {
       (s as any).picrand = 84;
     }
-    // TODO-QSP: xgt 'sex', 'var'
-  } },
+  }, goto: ['sex', 'var'] },
             ]);
           }
         }
@@ -1294,8 +1287,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
     ]);
   } },
             ]);
@@ -1329,8 +1321,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sexdvoe', 'var'
-  } },
+  }, goto: ['sexdvoe', 'var'] },
     ]);
   } },
             ]);

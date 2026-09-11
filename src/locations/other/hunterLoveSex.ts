@@ -19,7 +19,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`Don't worry, we were only told good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
     scene.text('"Let\'s not rush things too fast", you say.');
   }
-  // TODO-QSP: xgt 'hunterLoveSex', 'din_hunters_bj'
+  scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
   // TODO-QSP: end & !! --- din_mesec ---
   scene.build();
 }

@@ -596,13 +596,13 @@ function enterFuckCum(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_cum', 'cum_decider');
   }
   if (((s as any).sex_ev ?? 0)?.['2pump'] === 1) {
-    // TODO-QSP: xgt 'sex_ev_cum', '2pumpchump'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', '2pumpchump'] }]);
   } else {
     if (((s as any).sex_ev ?? 0)?.['girl_orgasm'] > 0  &&  ((s as any).sex_ev ?? 0)?.['cycle_limit'] + ((s as any).sex_ev ?? 0)?.['extra_stim'] <= ((s as any).sex_ev ?? 0)?.['sex_stamina'] + 1) {
-      // TODO-QSP: xgt 'sex_ev_cum', 'girl_cum'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'girl_cum'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['boy_cum'] > 0) {
-        // TODO-QSP: xgt 'sex_ev_cum', 'fuck_cum2'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'fuck_cum2'] }]);
       } else {
         ((s as any).sex_ev ?? {})['consecutive_orgasm'] = 0;
         ((s as any).sex_ev ?? {})['kiss'] = 0;

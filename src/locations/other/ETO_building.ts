@@ -72,14 +72,14 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave the building', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('<center><b>You need to get dressed.</b></center>');
-      // TODO-QSP: xgt $curloc
+      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
     } else {
       if (((s as any).sick ?? 0) > 72) {
         scene.text('<center><b>You are too ill to go outside.</b></center>');
-        // TODO-QSP: xgt $curloc
+        scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 1;
-        // TODO-QSP: xgt 'city_residential'
+        scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
       }
     }
   } },

@@ -34,7 +34,7 @@ function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sex_ev ?? 0)?.['morning_event_go'] === 1) {
-    // TODO-QSP: xgt 'sex_ev_morning', 'morning_events'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'morning_events'] }]);
   }
   scene.build();
 }
@@ -62,7 +62,7 @@ function enterMorningEvents(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "Want some breakfast?" <<$npcdesc>> asks. "It'll just take me a few minutes."
         scene.text(`"Want some breakfast?" ${((s as any).npcdesc ?? 0)} asks. "It'll just take me a few minutes."`);
       }
-      // TODO-QSP: xgt 'sex_ev_morning', 'boy_breakfast_offer'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'boy_breakfast_offer'] }]);
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['room_service'] === 1) {
@@ -72,7 +72,7 @@ function enterMorningEvents(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "I could use some breakfast after such an energetic start to the day," <<$npcdes...
         scene.text(`"I could use some breakfast after such an energetic start to the day," ${((s as any).npcdesc ?? 0)} grins at you. "Want to order room service with me?"`);
       }
-      // TODO-QSP: xgt 'sex_ev_morning', 'boy_breakfast_offer'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'boy_breakfast_offer'] }]);
     }
   }
   scene.build();

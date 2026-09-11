@@ -111,7 +111,7 @@ function enterSettleIn(s: GameState, scene: SceneBuilder): void {
         scene.text('"Uhm-"');
         scene.text('"I\'ll get us some vodka."');
         scene.text('Before you even have a chance to voice your opinion, he already has a bottle out and is pouring generous measures into two glasses, handing one to you.');
-        // TODO-QSP: xgt 'date_hangout', 'vodka_deliver'
+        scene.actions([{ label: 'Continue', goto: ['date_hangout', 'vodka_deliver'] }]);
       } else {
         scene.text('"How about I get us something to drink?" You can tell by his tone that he definitely doesn\'t mean any kind of "soft" drinks.');
         scene.actions([
@@ -139,22 +139,20 @@ function enterSettleIn(s: GameState, scene: SceneBuilder): void {
     scene.text('"No," you say, firmly. "I really don\'t want anything with alcohol in it."');
     scene.text('"Well, if you insist," he sighs.');
     scene.text('It takes him a few minutes, but eventually he comes back with a mug of tea for you.');
-    // TODO-QSP: xgt 'date_hangout', 'tea_deliver'
-  } },
+  }, goto: ['date_hangout', 'tea_deliver'] },
         ]);
       }
     } else {
       scene.text('"Sure," he smiles.');
       scene.text('It takes him a few minutes, but eventually he comes back with a mug of tea for you.');
-      // TODO-QSP: xgt 'date_hangout', 'tea_deliver'
+      scene.actions([{ label: 'Continue', goto: ['date_hangout', 'tea_deliver'] }]);
     }
   } },
           { label: 'Accept the drink', handler: (st: GameState) => {
     scene.text('"Okay," you nod and he smiles back.');
     scene.text('"Coming right up."');
     scene.text('You hear the clinking of glass and he comes back with a cup filled with a crystal clear liquid.');
-    // TODO-QSP: xgt 'date_hangout', 'vodka_deliver'
-  } },
+  }, goto: ['date_hangout', 'vodka_deliver'] },
         ]);
       }
     } else {
@@ -169,28 +167,26 @@ function enterSettleIn(s: GameState, scene: SceneBuilder): void {
       scene.text('"No, I\'m really-" you start.');
       scene.text('"I\'ll get you some tea," he smiles and busies himself in the kitchen before you can stop him.');
       scene.text('It takes him a few minutes, but eventually he comes back with a mug of tea for you.');
-      // TODO-QSP: xgt 'date_hangout', 'tea_deliver'
+      scene.actions([{ label: 'Continue', goto: ['date_hangout', 'tea_deliver'] }]);
     } else {
       scene.text('"Okay," he smiles and moves to sit down with you.');
-      // TODO-QSP: xgt 'date_hangout', 'activity_menu'
+      scene.actions([{ label: 'Continue', goto: ['date_hangout', 'activity_menu'] }]);
     }
   } },
           { label: 'Tea?', handler: (st: GameState) => {
     scene.text('"How about tea?"');
     scene.text('"Sure," he smiles.');
     scene.text('It takes him a few minutes, but eventually he comes back with a mug of tea for you.');
-    // TODO-QSP: xgt 'date_hangout', 'tea_deliver'
-  } },
+  }, goto: ['date_hangout', 'tea_deliver'] },
           { label: 'Vodka?', handler: (st: GameState) => {
     scene.text('"I\'d love some vodka if you have any."');
     scene.text('"Coming right up," he smiles.');
     scene.text('You hear the clinking of glass and he comes back with a cup filled with a crystal clear liquid.');
-    // TODO-QSP: xgt 'date_hangout', 'vodka_deliver'
-  } },
+  }, goto: ['date_hangout', 'vodka_deliver'] },
         ]);
       } else {
         scene.text('"Make yourself at home, I guess," he says, gesturing vaguely and sits down with you.');
-        // TODO-QSP: xgt 'date_hangout', 'activity_menu'
+        scene.actions([{ label: 'Continue', goto: ['date_hangout', 'activity_menu'] }]);
       }
     }
   } },

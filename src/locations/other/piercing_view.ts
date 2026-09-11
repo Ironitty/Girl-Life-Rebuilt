@@ -83,7 +83,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'piercing_attributes', $shop_utils_view['type'], shop_utils_view['number']
   scene.img(`${qspFunc(s, '\'piercing_management\'', '$shop_utils_view[\'type\'] + \'_image\'', ((s as any).shop_utils_view ?? 0)?.['number'])}`);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop') {
-    // TODO-QSP: xgt 'piercing_view', 'view_item_shop'
+    scene.actions([{ label: 'Continue', goto: ['piercing_view', 'view_item_shop'] }]);
   }
   return;
   scene.actions([

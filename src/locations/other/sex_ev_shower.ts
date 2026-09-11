@@ -137,7 +137,7 @@ function enterAfterAlone(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    // TODO-QSP: xgt 'sex_ev_shower', 'after_alone_shower'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_shower', 'after_alone_shower'] }]);
   }
   scene.build();
 }
@@ -354,8 +354,7 @@ function enterBoyShowerJoin1(s: GameState, scene: SceneBuilder): void {
     scene.text(`You just manage to put your arm across your breasts and turn your hips in a way that covers all your naughty bits as ${((s as any).npcdesc ?? 0)} comes into view.`);
     scene.text('"Yes? Can I help you?" you ask with a playful smile.');
     // TODO-QSP: '"Well, I got to thinking and thought maybe you might ' + iif(rand(1, 2) = 1, 'need someone to wash ...
-    // TODO-QSP: xgt 'sex_ev_shower', 'boy_shower_join_response1'
-  } },
+  }, goto: ['sex_ev_shower', 'boy_shower_join_response1'] },
   ]);
   scene.build();
 }
@@ -366,19 +365,16 @@ function enterBoyShowerJoinResponse1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No thanks," you smirk. "I like my alone time in the shower."');
     // TODO-QSP: dynamic text: "Ah. Well. Let me know if you change your mind," <<$npcdesc>> says and leaves.
     scene.text(`"Ah. Well. Let me know if you change your mind," ${((s as any).npcdesc ?? 0)} says and leaves.`);
-    // TODO-QSP: xgt 'sex_ev_shower', 'after_alone_shower'
-  } },
+  }, goto: ['sex_ev_shower', 'after_alone_shower'] },
     { label: 'Nice try', handler: (st: GameState) => {
     scene.text('"Nice try, but no," you smirk. "We already had our fun. I think I\'m allowed a little alone time."');
     // TODO-QSP: dynamic text: "Ah. Well. Let me know if you change your mind," <<$npcdesc>> says and leaves.
     scene.text(`"Ah. Well. Let me know if you change your mind," ${((s as any).npcdesc ?? 0)} says and leaves.`);
-    // TODO-QSP: xgt 'sex_ev_shower', 'after_alone_shower'
-  } },
+  }, goto: ['sex_ev_shower', 'after_alone_shower'] },
     { label: 'Sure', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sure," you smirk and <<$npcdesc>> moves to get into the shower with you. "I wou...
     scene.text(`"Sure," you smirk and ${((s as any).npcdesc ?? 0)} moves to get into the shower with you. "I wouldn't mind a little bit of company..."`);
-    // TODO-QSP: xgt 'sex_ev_shower', 'shower_together1'
-  } },
+  }, goto: ['sex_ev_shower', 'shower_together1'] },
   ]);
   scene.build();
 }

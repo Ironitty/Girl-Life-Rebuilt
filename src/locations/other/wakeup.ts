@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'wakeup', 'mod_sleeptriggers');
-  // TODO-QSP: xgt 'wakeup_events', 'start'
+  scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'start'] }]);
   scene.build();
 }
 
@@ -46,8 +46,7 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of bed and get dressed for school (0:10)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'wardrobe', 'school_outfit');
-    // TODO-QSP: xgt 'bed_get_out', 'start'
-  } },
+  }, goto: ['bed_get_out', 'start'] },
     ]);
   }
   if (((s as any).strip_here ?? 0) === 1) {
@@ -55,8 +54,7 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of bed and get dressed (0:10)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'wakeup', 'wear_bed_clothes');
-    // TODO-QSP: xgt 'bed_get_out', 'start'
-  } },
+  }, goto: ['bed_get_out', 'start'] },
     ]);
   }
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1  &&  ((s as any).sleepVars ?? 0)?.['time_now'] < ((s as any).sleepVars ?? 0)?.['alarm_time']) {
@@ -66,16 +64,14 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
       { label: 'Nap until your alarm rings (<<temp_hour>>:<<$mid(100+temp_minut, 2)>>)', handler: (st: GameState) => {
     scene.text('You turn around on your bed and close your eyes.');
     // TODO-QSP: gs 'sleep_simple', 'forced', sleepVars['alarm_time'] - sleepVars['time_now']
-    // TODO-QSP: xgt 'wakeup', 'start'
-  } },
+  }, goto: ['wakeup', 'start'] },
     ]);
   }
   scene.actions([
     { label: 'Get out of bed (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     ((s as any).sleepVars ?? {})['slept_in'] = 0;
-    // TODO-QSP: xgt 'bed_get_out', 'start'
-  } },
+  }, goto: ['bed_get_out', 'start'] },
   ]);
   scene.build();
 }

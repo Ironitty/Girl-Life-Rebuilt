@@ -50,16 +50,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPostDream(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: xgt 'sleep', 'sleep_handler'
+  scene.actions([{ label: 'Continue', goto: ['sleep', 'sleep_handler'] }]);
   scene.build();
 }
 
 function enterSleepHandler(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sleep', 'calc_minutes_to_wakeup');
   if (((s as any).sleepVars ?? 0)?.['minutes_to_wakeup'] > 0) {
-    // TODO-QSP: xgt 'sleep', 'sleep_loop'
+    scene.actions([{ label: 'Continue', goto: ['sleep', 'sleep_loop'] }]);
   } else {
-    // TODO-QSP: xgt 'sleep', 'post_sleep'
+    scene.actions([{ label: 'Continue', goto: ['sleep', 'post_sleep'] }]);
   }
   scene.build();
 }
@@ -169,7 +169,7 @@ function enterSleepLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'sleep_loop_loop'
   }
   ((s as any).sleepVars ?? {})['no_health'] = 0;
-  // TODO-QSP: xgt 'sleep', 'post_sleep'
+  scene.actions([{ label: 'Continue', goto: ['sleep', 'post_sleep'] }]);
   scene.build();
 }
 
@@ -197,7 +197,7 @@ function enterPostSleep(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  // TODO-QSP: xgt 'wakeup', 'start'
+  scene.actions([{ label: 'Continue', goto: ['wakeup', 'start'] }]);
   scene.build();
 }
 

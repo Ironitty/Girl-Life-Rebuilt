@@ -17,7 +17,7 @@ function enterAnalStart(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).sex_ev ?? 0)?.['initiative'] !== 'girl'  &&  ((s as any).sex_ev ?? 0)?.['force_initiative'] !== 1) {
       qspCall(s, 'sex_ev_sex', 'speed_select');
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto'] }]);
     } else {
       qspCall(s, 'sex_ev_sex', 'speed_select');
       scene.actions([
@@ -89,9 +89,9 @@ function enterAnalDoggySwitch(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>," <<$npc_usedname[$npcID]>> murmurs. "I want to fuck your ass...
         scene.text(`"${((s as any).pcs_nickname ?? 0)}," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} murmurs. "I want to fuck your ass."`);
       }
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_ask'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_ask'] }]);
     } else {
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_no_ask'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_no_ask'] }]);
     }
   }
   scene.build();
@@ -116,9 +116,9 @@ function enterAnalPresentAss(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0  ||  ((s as any).sex_ev ?? 0)?.['first_anal_insertion'] === 0) {
-    // TODO-QSP: xgt 'sex_ev_anal', 'anal_doggy_insert_slow'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_doggy_insert_slow'] }]);
   } else {
-    // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto2'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto2'] }]);
   }
   scene.build();
 }
@@ -203,8 +203,7 @@ function enterAnalAsk(s: GameState, scene: SceneBuilder): void {
     { label: 'Allow it', handler: (st: GameState) => {
     scene.img('images/shared/sex/foreplay/doggy1.jpg');
     scene.text('"Okay," you say, turning around and presenting your rear hole to him.');
-    // TODO-QSP: xgt 'sex_ev_anal', 'anal_insert_acts'
-  } },
+  }, goto: ['sex_ev_anal', 'anal_insert_acts'] },
   ]);
   scene.build();
 }
@@ -402,7 +401,7 @@ function enterAnalNoAsk(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_wait1'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_wait1'] }]);
     }
   } },
       { label: 'Wait, that\'s my ass!', handler: (st: GameState) => {
@@ -421,7 +420,7 @@ function enterAnalNoAsk(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_wait1'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_wait1'] }]);
     }
   } },
     ]);
@@ -766,19 +765,19 @@ function enterAnalGoto(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>," <<$npc_usedname[$npcID]>> murmurs. "I want to fuck your ass...
         scene.text(`"${((s as any).pcs_nickname ?? 0)}," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} murmurs. "I want to fuck your ass."`);
       }
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_ask'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_ask'] }]);
     } else {
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_no_ask'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_no_ask'] }]);
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['change_pos'] === 1) {
-      // TODO-QSP: xgt 'sex_ev_anal', 'anal_doggy_switch'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_doggy_switch'] }]);
     } else {
       if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
-        // TODO-QSP: xgt 'sex_ev_anal', 'anal_doggy_insert_slow'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_doggy_insert_slow'] }]);
       } else {
         if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== ''  &&  ((s as any).sex_ev ?? 0)?.['anal_fuck'] > 0) {
-          // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto2'
+          scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto2'] }]);
         } else {
           if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
             ((s as any).sex_ev ?? {})['speed'] = Math.floor(Math.random() * 3) + 1;
@@ -798,7 +797,7 @@ function enterAnalGoto(s: GameState, scene: SceneBuilder): void {
 
 function enterAnalGoto2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['first_anal_insertion'] === 0) {
-    // TODO-QSP: xgt 'sex_ev_anal', 'anal_goto'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto'] }]);
   } else {
     ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
     ((s as any).sex_ev ?? {})['position'] = 'anal';

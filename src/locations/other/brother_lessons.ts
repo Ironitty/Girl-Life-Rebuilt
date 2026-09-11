@@ -1374,8 +1374,7 @@ function enterAnatomylessonConception1(s: GameState, scene: SceneBuilder): void 
     scene.text('"Like what…?" he asks hesitantly, wide eyed.');
     scene.text('"Like…" You spread your legs a little wider. "We practice how it\'s done."');
     scene.text('"Is… uhh… is this safe?" he asks. "I mean, if we\'re practicing… y\'know… are you going to get pregnant?"');
-    // TODO-QSP: xgt 'brother_lessons', 'anatomylesson_conception_sex_bc'
-  } },
+  }, goto: ['brother_lessons', 'anatomylesson_conception_sex_bc'] },
   ]);
   scene.build();
 }
@@ -1546,9 +1545,9 @@ function enterAnatomylessonConceptionCum(s: GameState, scene: SceneBuilder): voi
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 1) >= 7) {
-      // TODO-QSP: xgt 'brother_lessons', 'anatomylesson_conception_pullout_fail'
+      scene.actions([{ label: 'Continue', goto: ['brother_lessons', 'anatomylesson_conception_pullout_fail'] }]);
     } else {
-      // TODO-QSP: xgt 'brother_lessons', 'anatomylesson_conception_pullout'
+      scene.actions([{ label: 'Continue', goto: ['brother_lessons', 'anatomylesson_conception_pullout'] }]);
     }
   } },
       ]);
@@ -1705,9 +1704,9 @@ function enterAnatomylessonConceptionCondomCum(s: GameState, scene: SceneBuilder
   scene.actions([
     { label: 'Pull apart', handler: (st: GameState) => {
     if ((!((s as any).condom_break ?? 0))) {
-      // TODO-QSP: xgt 'brother_lessons', 'anatomylesson_conception_condom_pull_apart'
+      scene.actions([{ label: 'Continue', goto: ['brother_lessons', 'anatomylesson_conception_condom_pull_apart'] }]);
     } else {
-      // TODO-QSP: xgt 'brother_lessons', 'anatomylesson_conception_condom_break'
+      scene.actions([{ label: 'Continue', goto: ['brother_lessons', 'anatomylesson_conception_condom_break'] }]);
     }
   } },
   ]);

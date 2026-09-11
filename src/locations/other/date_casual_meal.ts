@@ -219,7 +219,7 @@ function enterWaitDatePhone(s: GameState, scene: SceneBuilder): void {
     scene.text('With nothing else to do, you figure you can pass the time on your phone. So you do, tapping away on your feeds, checking all your favorite sites, and doing all your typical doom-scrolling.');
     // TODO-QSP: dynamic text: After a few minutes, <<$npcdesc>> shows up.
     scene.text(`After a few minutes, ${((s as any).npcdesc ?? 0)} shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
+    scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'wait_npc_arrive'] }]);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 5);
     // TODO-QSP: dynamic text: With nothing else to do, you figure you can pass the time on your phone. So you ...
@@ -235,8 +235,7 @@ function enterWaitDatePhone(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/wait_smoke.jpg');
     // TODO-QSP: dynamic text: You precede your next sigh with a deep drag on your fresh light, letting out a b...
     scene.text(`You precede your next sigh with a deep drag on your fresh light, letting out a breath of smoke. Puff after puff, it's not until you get towards the end of your cigarette, ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
     ]);
   } },
         { label: 'Have a smoke and keep scrolling', handler: (st: GameState) => {
@@ -248,8 +247,7 @@ function enterWaitDatePhone(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/wait_smoke_phone.jpg');
     // TODO-QSP: dynamic text: You precede your next sigh with a deep drag on your fresh light, letting out a b...
     scene.text(`You precede your next sigh with a deep drag on your fresh light, letting out a breath of smoke. Puff after puff, feed after feed scrolled, it's not until you get towards the end of your cigarette, ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
     ]);
   } },
       ]);
@@ -260,8 +258,7 @@ function enterWaitDatePhone(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>Whatever...</i>');
     // TODO-QSP: dynamic text: You keep scrolling. And scrolling. And scrolling and scrolling and scrolling and...
     scene.text(`You keep scrolling. And scrolling. And scrolling and scrolling and scrolling and then ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
     ]);
   }
   scene.build();
@@ -281,7 +278,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp ?? 0) <= 10) {
       // TODO-QSP: dynamic text: You browse all the feeds on your phone while puffing away on your cigarette, blo...
       scene.text(`You browse all the feeds on your phone while puffing away on your cigarette, blowing smoke with every swipe, tap, and scroll. As your cigarette is reaching the end of its life, ${((s as any).npcdesc ?? 0)} shows up.`);
-      // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
+      scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'wait_npc_arrive'] }]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 5);
       // TODO-QSP: dynamic text: You browse all the feeds on your phone while puffing away on your cigarette, blo...
@@ -293,16 +290,14 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/wait_smoke_phone.jpg');
     // TODO-QSP: dynamic text: With a sigh, you grind your last stub under your toe and pull out a fresh cigare...
     scene.text(`With a sigh, you grind your last stub under your toe and pull out a fresh cigarette from the pack. You keep scrolling. And smoking. And scrolling and smoking and scrolling and then ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
           { label: 'Put your phone away for another smoke', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'smoke');
     scene.img('images/shared/misc/wait_smoke.jpg');
     scene.text('With a sigh, you grind your last stub under your toe and put your phone away, taking the opportunity to pull out a fresh cigarette from the pack.');
     // TODO-QSP: dynamic text: Your next sigh turns into a breath of smoke after a deep drag on your fresh ligh...
     scene.text(`Your next sigh turns into a breath of smoke after a deep drag on your fresh light. Puff after puff, it's not until you get towards the end of your cigarette, ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
         ]);
       } else {
         scene.actions([
@@ -311,8 +306,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     scene.text('And you\'re all out of fucking cigarettes!');
     // TODO-QSP: dynamic text: With a growl, you grind the stub of your cigarette under your toe and start angr...
     scene.text(`With a growl, you grind the stub of your cigarette under your toe and start angrily doomscrolling your phone, fingers twitching in irritation for the smoke you wish could be between them. You keep scrolling. And scrolling. And scrolling and scrolling and scrolling and then ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
         ]);
       }
       scene.actions([
@@ -320,8 +314,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/wait_phone.jpg');
     // TODO-QSP: dynamic text: With a sigh, you grind the stub of your cigarette under your toe and just stick ...
     scene.text(`With a sigh, you grind the stub of your cigarette under your toe and just stick with doomscrolling your phone. You keep scrolling. And scrolling. And scrolling and scrolling and scrolling and then ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
       ]);
     }
   } },
@@ -335,7 +328,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp ?? 0) <= 10) {
       // TODO-QSP: dynamic text: You let time pass in a haze not unlike the smoke you blow out of your lips, in t...
       scene.text(`You let time pass in a haze not unlike the smoke you blow out of your lips, in that almost meditative trance-like state that only comes from smoking a cigarette. As your smoke is just about at the end of its life, ${((s as any).npcdesc ?? 0)} shows up.`);
-      // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
+      scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'wait_npc_arrive'] }]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 5);
       // TODO-QSP: dynamic text: You let time pass in a haze not unlike the smoke you blow out of your lips, in t...
@@ -348,15 +341,13 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     scene.text('With a sigh, you grind your last stub under your toe and pull out a fresh one from the pack.');
     // TODO-QSP: dynamic text: Your next sigh turns into a breath of smoke after a deep drag on your fresh ligh...
     scene.text(`Your next sigh turns into a breath of smoke after a deep drag on your fresh light. Puff after puff, it's not until you get towards the end of <i>this</i> cigarette that ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
           { label: 'Have another smoke and pull out your phone', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'smoke');
     scene.img('images/shared/misc/wait_smoke.jpg');
     // TODO-QSP: dynamic text: With a sigh, you grind your last stub under your toe and pull out a fresh cigare...
     scene.text(`With a sigh, you grind your last stub under your toe and pull out a fresh cigarette from the pack and your phone to go with it. You keep scrolling. And smoking. And scrolling and smoking and scrolling and it's not until you get towards the end of <i>this</i> cigarette that ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
         ]);
       } else {
         scene.actions([
@@ -365,8 +356,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     scene.text('And you\'re all out of fucking cigarettes!');
     // TODO-QSP: dynamic text: With a growl, you grind the stub of your cigarette under your toe and start angr...
     scene.text(`With a growl, you grind the stub of your cigarette under your toe and start angrily doomscrolling your phone, fingers twitching in irritation for the smoke you wish could be between them. You keep scrolling. And scrolling. And scrolling and scrolling and scrolling and then ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
         ]);
       }
       scene.actions([
@@ -374,8 +364,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/wait_phone.jpg');
     // TODO-QSP: dynamic text: With a sigh, you grind the stub of your cigarette under your toe and pull out yo...
     scene.text(`With a sigh, you grind the stub of your cigarette under your toe and pull out your phone for some doomscrolling instead. You keep scrolling. And scrolling. And scrolling and scrolling and scrolling and then ${((s as any).npcdesc ?? 0)} finally shows up.`);
-    // TODO-QSP: xgt 'date_casual_meal', 'wait_npc_arrive'
-  } },
+  }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
       ]);
     }
   } },
@@ -444,7 +433,7 @@ function enterWaitYoureLate(s: GameState, scene: SceneBuilder): void {
 function enterClothingReact(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'clothes_thin');
   if (((s as any).PCloStyle2 ?? 0) === 4  ||  ((s as any).PCloSchool ?? 0) === 1) {
-    // TODO-QSP: xgt 'date_casual_meal', 'clothing_react_school'
+    scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'clothing_react_school'] }]);
   }
   scene.build();
 }
@@ -493,7 +482,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
         { label: 'Get offended', handler: (st: GameState) => {
     scene.text('"You got a problem with the way I look?" you snap, instantly irate.');
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'clothes_thin_low') {
-      // TODO-QSP: xgt 'date_casual_meal', 'style_slut_reply'
+      scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'style_slut_reply'] }]);
     } else {
       if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'clothes_thin_medium') {
         if (((s as any).PCloThinness ?? 0) < 3) {
@@ -543,7 +532,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).PCloThinness ?? 0) > 4) {
-            // TODO-QSP: xgt 'date_casual_meal', 'style_slut_reply'
+            scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'style_slut_reply'] }]);
           }
         }
       } else {
@@ -785,13 +774,12 @@ function enterSitDown(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Oh! What a gentleman!" you coo, awarding ${((s as any).npcdesc ?? 0)} with a smile as he pushes your chair as you sit. "And they said chivalry was dead."`);
     scene.text('"Only as dead as men make it," he replies with a smile of his own and takes his seat.');
     qspCall(s, 'date_funcs', 'date_rate', 'like');
-    // TODO-QSP: xgt 'date_talk', 'talk_menu'
-  } },
+  }, goto: ['date_talk', 'talk_menu'] },
     ]);
   } else {
     scene.text('Someone comes by to lead the two of you to a table and you both take your seats.');
     scene.text('Here are some menus. I\'ll give you a minute," they say before departing.');
-    // TODO-QSP: xgt 'date_talk', 'talk_menu'
+    scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
   }
   scene.build();
 }
@@ -807,8 +795,7 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
       { label: 'Thank him', handler: (st: GameState) => {
     ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
     scene.text('"Thanks!" You smile sweetly back at him.');
-    // TODO-QSP: xgt 'date_casual_meal', 'food_menu'
-  } },
+  }, goto: ['date_casual_meal', 'food_menu'] },
       { label: 'Insist you pay', handler: (st: GameState) => {
     if (((s as any).npc_paid_date_last ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       scene.text('"No, no!" you say. "You paid for it last time! Let me pay this time!"');
@@ -822,8 +809,7 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
       ((s as any).date_ev ?? {})['pc_pay_meal'] = 1;
       scene.text('"Okay," he smiles and agrees to let you pay.');
     }
-    // TODO-QSP: xgt 'date_casual_meal', 'food_menu'
-  } },
+  }, goto: ['date_casual_meal', 'food_menu'] },
     ]);
   } else {
     scene.text('You realize you ought to look through the menu before the waiter arrives. Though, it occurs to you that you haven\'t really talked about how you\'re going to handle the bill...');
@@ -831,15 +817,13 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
       { label: 'Don\'t talk about payment', handler: (st: GameState) => {
     scene.text('Oh well. You don\'t bring up the money and neither does he.');
     scene.text('Something to figure out later.');
-    // TODO-QSP: xgt 'date_casual_meal', 'food_menu'
-  } },
+  }, goto: ['date_casual_meal', 'food_menu'] },
       { label: 'Suggest splitting the bill', handler: (st: GameState) => {
     qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
     ((s as any).date_ev ?? {})['split_meal'] = 1;
     scene.text('"We\'re splitting the bill, right?" you ask.');
     scene.text('"Yeah," he nods in agreement.');
-    // TODO-QSP: xgt 'date_casual_meal', 'food_menu'
-  } },
+  }, goto: ['date_casual_meal', 'food_menu'] },
     ]);
   }
   scene.build();
@@ -1036,7 +1020,7 @@ function enterPreConverse(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'waitress_ogle'] }]);
   } else {
     scene.text('The waiter takes your orders and heads off to the kitchen to get them started.');
-    // TODO-QSP: xgt 'date_casual_meal', 'boy_lead_pre_convo'
+    scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'boy_lead_pre_convo'] }]);
   }
   scene.build();
 }
@@ -1062,14 +1046,13 @@ function enterWaitressOgle(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just appreciating that fine piece of ass there," he grins, and unbelievably glances back for another look. "Is it a crime to look?"');
     scene.text('"It is when you\'re on a date with me," you snarl. He just shrugs.');
   }
-  // TODO-QSP: xgt 'date_talk', 'talk_menu'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
   // TODO-QSP: end !}
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
     scene.text('You sigh internally but otherwise ignore his wandering eyes. Boys will be boys after all.');
     scene.text('He turns back to you with a smile still on his face, either unaware or uncaring that he did anything wrong.');
-    // TODO-QSP: xgt 'date_talk', 'talk_menu'
-  } },
+  }, goto: ['date_talk', 'talk_menu'] },
     { label: 'Frown', handler: (st: GameState) => {
     scene.text('A flash of irritation passes through you and you\'re unable to keep yourself from frowning at his blatant ogling of another woman.');
     if (((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -1078,7 +1061,7 @@ function enterWaitressOgle(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'date_casual_meal', 'waitress_ogle2');
     } else {
       scene.text('He turns back to you with a smile still on his face, either unaware or uncaring that he did anything wrong.');
-      // TODO-QSP: xgt 'date_talk', 'talk_menu'
+      scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
     }
   } },
     { label: 'Get irritated', handler: (st: GameState) => {
@@ -1090,8 +1073,7 @@ function enterWaitressOgle(s: GameState, scene: SceneBuilder): void {
       scene.text('"Just appreciating that fine piece of ass there," he grins, and unbelievably glances back for another look. "Is it a crime to look?"');
       scene.text('"It is when you\'re on a date with me," you snarl. He just shrugs.');
     }
-    // TODO-QSP: xgt 'date_talk', 'talk_menu'
-  } },
+  }, goto: ['date_talk', 'talk_menu'] },
   ]);
   scene.build();
 }
@@ -1101,8 +1083,7 @@ function enterWaitressOgle2(s: GameState, scene: SceneBuilder): void {
     { label: 'Grit and grin', handler: (st: GameState) => {
     scene.text('You quickly turn the frown upside down and plaster a smile onto your face.');
     scene.text('"Nothing," you say through clenched teeth. He gives a smile back, though a lot more genuine than yours.');
-    // TODO-QSP: xgt 'date_talk', 'talk_menu'
-  } },
+  }, goto: ['date_talk', 'talk_menu'] },
   ]);
   scene.build();
 }
@@ -1112,7 +1093,7 @@ function enterAwkwardSilence(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'eating_menu');
   ((s as any).date_ev ?? {})['flash_arg'] = 'awkward_flash';
   ((s as any).date_ev ?? {})['talk_mood'] = 'awkward';
-  // TODO-QSP: xgt 'date_talk', 'awkward_start'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'awkward_start'] }]);
   scene.build();
 }
 
@@ -1122,7 +1103,7 @@ function enterCasualConversation(s: GameState, scene: SceneBuilder): void {
   scene.text(`You have a pleasant chat with ${((s as any).npcdesc ?? 0)} waiting for your food.`);
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'eating_menu');
   ((s as any).date_ev ?? {})['talk_mood'] = 'normal';
-  // TODO-QSP: xgt 'date_talk', 'talk_menu'
+  scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
   scene.build();
 }
 
@@ -1144,7 +1125,7 @@ function enterEatingNibble(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'food', 'small_meal_stats');
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You take small bites just nibbling at your food, in some ways moving it around the dish more than actually eating.');
-  // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo'
+  scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
   scene.build();
 }
 
@@ -1154,7 +1135,7 @@ function enterEatingFast(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   // TODO-QSP: dynamic text: You eat quickly, going through your plate much faster than <<$npcdesc>> does.
   scene.text(`You eat quickly, going through your plate much faster than ${((s as any).npcdesc ?? 0)} does.`);
-  // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo'
+  scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
   scene.build();
 }
 
@@ -1163,7 +1144,7 @@ function enterEatingBestFirst(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'food', 'medium_meal_stats');
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You dig into your food, eating the most delicious parts parts first.');
-  // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo'
+  scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
   scene.build();
 }
 
@@ -1172,7 +1153,7 @@ function enterEatingWorst(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'food', 'medium_meal_stats');
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You dig into your food, doing your best to clean the parts you don\'t find as exciting before saving the best parts for last.');
-  // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo'
+  scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
   scene.build();
 }
 
@@ -1195,9 +1176,9 @@ function enterMidMealConvo(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
-    // TODO-QSP: xgt 'date_casual_meal', 'eating_commentary'
+    scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'eating_commentary'] }]);
   } else {
-    // TODO-QSP: xgt 'date_casual_meal', 'food_ask'
+    scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'food_ask'] }]);
   }
   scene.build();
 }
@@ -1210,16 +1191,14 @@ function enterEatingCommentary(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Just a slow eater', handler: (st: GameState) => {
     scene.text('"I\'m just a slow eater," you reply, twisting your mouth in a small smile.');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
         { label: 'Get annoyed', handler: (st: GameState) => {
     scene.text('"Got a problem with the way I eat?" you frown irksomely.');
     if (((s as any).npc_argumentative ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       scene.text('"Fuck\'s sake, I was just making an observation," he snaps back.');
       qspCall(s, 'date_funcs', 'date_rate', 'dislike');
     }
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: "You sure eat slow," <<$npcdesc>> notes, watching you pick at your food.
@@ -1228,15 +1207,13 @@ function enterEatingCommentary(s: GameState, scene: SceneBuilder): void {
         { label: 'Yeah', handler: (st: GameState) => {
     scene.text('"Yeah," you shrug. "That a problem?"');
     scene.text('"Just observing," he replies noncommittally.');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
       ]);
     }
     scene.actions([
       { label: 'On a diet', handler: (st: GameState) => {
     scene.text('"I\'m on a diet," you reply, twisting your mouth in a small smile. "Trying not to overeat."');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
     ]);
   } else {
     if (((s as any).date_ev ?? 0)?.['eat_method'] === 'best_first') {
@@ -1244,8 +1221,7 @@ function enterEatingCommentary(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Of course', handler: (st: GameState) => {
     scene.text('"Of course I do. It\'s the best part!"');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
       ]);
     } else {
       if (((s as any).date_ev ?? 0)?.['eat_method'] === 'best_last') {
@@ -1253,8 +1229,7 @@ function enterEatingCommentary(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Of course', handler: (st: GameState) => {
     scene.text('"Of course," you smirk. "Save the best for last, that\'s what they say, isn\'t it?"');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
         ]);
       } else {
         if (((s as any).date_ev ?? 0)?.['eat_method'] === 'fast') {
@@ -1262,8 +1237,7 @@ function enterEatingCommentary(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'While it\'s hot', handler: (st: GameState) => {
     scene.text('"Gotta get it while it\'s hot, right?" you smile.');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
           ]);
         }
       }
@@ -1287,24 +1261,19 @@ function enterFoodAsk(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc>> makes a face but doesn't say anything else.
       scene.text(`${((s as any).npcdesc ?? 0)} makes a face but doesn't say anything else.`);
     }
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
     { label: 'Okay', handler: (st: GameState) => {
     scene.text('"It\'s okay," you shrug noncommittally.');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
     { label: 'It\'s fine', handler: (st: GameState) => {
     scene.text('"It\'s fine," you say casually.');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
     { label: 'Good', handler: (st: GameState) => {
     scene.text('"It\'s good," you smile.');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
     { label: 'Orgasmic', handler: (st: GameState) => {
     scene.text('"I might cum, it\'s so good," you grin through a mouthful.');
-    // TODO-QSP: xgt 'date_casual_meal', 'mid_meal_convo_menu'
-  } },
+  }, goto: ['date_casual_meal', 'mid_meal_convo_menu'] },
   ]);
   scene.build();
 }

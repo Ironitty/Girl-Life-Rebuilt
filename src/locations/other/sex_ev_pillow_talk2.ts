@@ -31,8 +31,7 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s so hot today," you pant. "I\'m sweating after that. And not just from the sex."');
     // TODO-QSP: dynamic text: "Yeah," <<$npcdesc>> nods. "I need a shower..."
     scene.text(`"Yeah," ${((s as any).npcdesc ?? 0)} nods. "I need a shower..."`);
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
       ]);
     } else {
       if (((s as any).temper ?? 0) <= 10) {
@@ -52,31 +51,26 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Smile', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You smile softly at <<$npcdesc>> who grins back confidently, wrapping his arm ar...
     scene.text(`You smile softly at ${((s as any).npcdesc ?? 0)} who grins back confidently, wrapping his arm around you.`);
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
       { label: 'Grin', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You grin at <<$npcdesc>> who grins back just as wide as he wraps his arm around ...
     scene.text(`You grin at ${((s as any).npcdesc ?? 0)} who grins back just as wide as he wraps his arm around you.`);
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
       { label: 'Demure', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You snuggle in closer to <<$npcdesc>> without further comment, letting the impli...
     scene.text(`You snuggle in closer to ${((s as any).npcdesc ?? 0)} without further comment, letting the implication of your words speak for itself. You figure he got the message when he grins as he wraps his arm around you.`);
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
     ]);
   } },
       { label: 'Sometimes', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Sometimes yes, sometimes no. I think I'm just like anybody else," you shrug, sn...
     scene.text(`"Sometimes yes, sometimes no. I think I'm just like anybody else," you shrug, snuggling closer into ${((s as any).npcdesc ?? 0)}'s warmth.`);
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
       { label: 'I\'m always cold', handler: (st: GameState) => {
     ((s as any).pc_gets_chilly ?? {})[String((s as any).npcID ?? 0)] = 1;
     // TODO-QSP: dynamic text: "I'm always cold," you shiver, snuggling as far as you can into <<$npcdesc>>'s w...
     scene.text(`"I'm always cold," you shiver, snuggling as far as you can into ${((s as any).npcdesc ?? 0)}'s warmth. "I would wear a jacket in the summer."`);
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
     ]);
   } },
         ]);
@@ -127,8 +121,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
         ]);
       } else {
         if (qspFunc(s, 'pcs_has_attr', 'body_tits_average')) {
@@ -193,20 +186,17 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
         { label: 'Glad you think so', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     // TODO-QSP: dynamic text: "Aww! Thanks," you smile fondly at <<$npcdesc>>. "Means a lot to me that you thi...
     scene.text(`"Aww! Thanks," you smile fondly at ${((s as any).npcdesc ?? 0)}. "Means a lot to me that you think so."`);
     scene.text('"Boobs are great," he grins. "And your boobs are especially great because you let me fuck you."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
         { label: 'I like them too', handler: (st: GameState) => {
     scene.text('"Me too," you grin. "I think they\'re my best asset."');
     scene.text('"Mhmm..." He nods and bows his head to kiss your nipple.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
       ]);
     } else {
       if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'ass') {
@@ -220,27 +210,23 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     scene.text('"Really?" you ask, surprised. "My ass? Not my boobs? Or my pussy?"');
     scene.text('"No way." He shakes his head. "Ass is the sexiest thing about a girl, and it\'s the sexiest thing about you."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
           { label: 'Glad you think so', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     // TODO-QSP: dynamic text: "Aww! Thanks," you smile fondly at <<$npcdesc>>. "Means a lot to me that you thi...
     scene.text(`"Aww! Thanks," you smile fondly at ${((s as any).npcdesc ?? 0)}. "Means a lot to me that you think so."`);
     scene.text('"There\'s something irresistible about a good ass," he grins, grabbing another handful of yours.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
           { label: 'I like it too', handler: (st: GameState) => {
     scene.text('"Me too," you grin. "It\'s my best <i>ass</i>et," you add with a wink.');
     scene.text('"Damn right," he says, unable to resist giving it another grab.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
           { label: 'Oh you\'re one of those', handler: (st: GameState) => {
     scene.text('"Oh," you say. "You\'re one of <i>those</i>."');
     scene.text('"One of what?"');
     scene.text('"An ass man," you say, rolling your eyes.');
     scene.text('"Damn right," he grins, unable to resist giving it another grab.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
         ]);
       } else {
         if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'pussy') {
@@ -272,8 +258,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
         scene.text(`${((s as any).npcdesc ?? 0)} grins shamelessly.`);
       }
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
             ]);
           } else {
             if (((s as any).sex_ev ?? 0)?.['virgin'] === 1  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
@@ -297,8 +282,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npcdesc>> grins shamelessly.
       scene.text(`${((s as any).npcdesc ?? 0)} grins shamelessly.`);
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
               ]);
             } else {
               if (((s as any).sex_ev ?? 0)?.['fuck_count'] === 0  &&  ((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -320,8 +304,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"That\'s not the <i>only</i> reason," he says. "There\'s just something hot about them. Even fingering you is fun."');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
                 ]);
               }
             }
@@ -336,8 +319,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your next words are interrupted by a gasp as <<$npcdesc>> drives a finger knuckl...
     scene.text(`Your next words are interrupted by a gasp as ${((s as any).npcdesc ?? 0)} drives a finger knuckle deep into your just-fucked pussy. Soft squelching sounds emanate from between your legs as he gently caresses your insides, forcing whimpers from your lips while he stares into your eyes.`);
     scene.text('"Yeah..." he says, giving a predatory smile as he draws his hand away trailing strands of your juices. "Your pussy is the best."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
             { label: 'Glad you think so', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     if (((s as any).sex_ev ?? 0)?.['fuck_count'] > 0  ||  ((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -347,8 +329,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Glad you think so," you smile at <<$npcdesc>>. "Always nice to get compliments....
       scene.text(`"Glad you think so," you smile at ${((s as any).npcdesc ?? 0)}. "Always nice to get compliments."`);
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
             { label: 'I like it too', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['fuck_count'] > 0  ||  ((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       // TODO-QSP: dynamic text: "Me too," you grin at <<$npcdesc>>. "I like the way it lets me fuck you."
@@ -358,8 +339,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Me too," you grin at ${((s as any).npcdesc ?? 0)}. "I've always thought my pussy was cute."`);
     }
     scene.text('"Glad we\'re in agreement," he grins back.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
           ]);
         } else {
           // TODO-QSP: gs 'arousal', 'foreplay', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
@@ -371,13 +351,11 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     scene.text('"Really?" you ask, startled. "I would have expected boobs or ass or pussy, but your favorite thing about me is my legs?"');
     scene.text('"Yeah," he shrugs. "There\'s something... enticing about them. Every girl has pussy and tits, but a girl\'s legs call to me for some reason."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
             { label: 'Me too', handler: (st: GameState) => {
     scene.text('"Me too," you grin, shamelessly admiring your own body.');
     scene.text('"Sleek or thicc," he says affectionately. "Long or toned... I just want to dive between them."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
           ]);
         }
       }
@@ -403,39 +381,32 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'It\'s pleasant', handler: (st: GameState) => {
     scene.text('"I like it too," you smile back. "There\'s just something... pleasant about missionary. I just love the feeling of a guy between my legs."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'It\'s intimate', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 0  &&  (((s as any).sex_ev ?? 0)?.['creampie_allowance'] > 0  ||  ((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] !== '')) {
       scene.text('"I like it too," you smile back. "I like how I can see your face when you come inside me."');
     } else {
       scene.text('"I like it too," you smile back. "I being able to see your face. Really emphasizes the \'love\' part of \'making love.\'"');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Like being on bottom', handler: (st: GameState) => {
     scene.text('"I like it too," you smile back. "."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Like being on your back', handler: (st: GameState) => {
     scene.text('"I like it too. But I think it\'s just because I like being on my back," you laugh.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Get to be lazy', handler: (st: GameState) => {
     scene.text('"I like it too. But I think it\'s just because I get to be lazy and just lay back," you laugh.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Like feeling his weight', handler: (st: GameState) => {
     scene.text('"I like it too," you smile back. "I love the <i>weight</i> of a guy on top of me. Pressing on my chest and my legs and through his cock into my pussy. There\'s something just so hot about it."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
         { label: 'It <i>is</i> basic', handler: (st: GameState) => {
     scene.text('"Really?" You give him a look. "I mean, you\'re not wrong. It <i>is</i> basic. Don\'t you ever want to spice it up?"');
     scene.text('"I can\'t help what I like," he shrugs back.');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       ]);
     } else {
       if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'doggy') {
@@ -446,24 +417,19 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Feels better', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "It feels better in doggy. Hits the inside of my pussy just right."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Goes deeper', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "Dick hits so much deeper in doggystyle."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Feels dirty', handler: (st: GameState) => {
     scene.text('"Me too," you grin back wickedly. "There\'s something weirdly hot about it. Like it\'s dirtier. Which is <i>such</i> a turnon for me."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Like getting pounded', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "Doggystyle is the best position to get pounded in."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Like getting your hair grabbed', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "I love it when a guy grabs me by the hair and <i>pulls me</i> onto his cock."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
         ]);
@@ -476,20 +442,16 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'It\'s fun', handler: (st: GameState) => {
     scene.text('"I love riding dick!" you grin back. "."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Feels better', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "I love bouncing on your dick! I can\'t get that feeling in any other position."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Good angle', handler: (st: GameState) => {
     scene.text('"Me too," you grin back. "Your cock rubs against the inside of my pussy in a whole different way. I can only get that when I\'m on top."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Like control', handler: (st: GameState) => {
     scene.text('"Me too," you grin back wickedly. "I like being in charge."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
           ]);
@@ -504,13 +466,11 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
       { label: 'Making guys feel good', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"I like making guys feel good. Hearing them moan and feeling them squirm between my lips and knowing that it\'s because of me..." You shiver involuntarily. "It makes me feel sexy."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'You\'re service oriented', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
     scene.text('"I think I just like making other people feel good. Like, pleasing them. Hearing a guy moan, knowing he\'s enjoying my head, I guess that just makes me feel good too."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'Oral fixation', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     if (((s as any).stat ?? 0)?.['cigarettes_smoked'] > 0) {
@@ -518,8 +478,7 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Oral fixation," you smirk. "Whether it\'s my thumb between my teeth, crunching carrots or chewing on the end of my pen, I just like having something in my mouth. But cock is the best."');
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
       { label: 'The taste', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"I like the taste of cock. There\'s something so <i>raw</i> and manly about it. The salty sweat, the smell, the texture on my tongue..." You shiver involuntarily. "Everything about it turns me on."');
@@ -531,8 +490,7 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Explains why you're so good at it," <<$npcdesc>> smirks, running his thumb acro...
       scene.text(`"Explains why you're so good at it," ${((s as any).npcdesc ?? 0)} smirks, running his thumb across your lips. "You were gobbling it up like it was your last meal."`);
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   } },
             ]);
@@ -542,8 +500,7 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'You like titjobs too', handler: (st: GameState) => {
     scene.text('"I like getting my tits fucked too. It\'s really hot."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
               ]);
             } else {
               if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === '69') {
@@ -551,8 +508,7 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'You like 69 too', handler: (st: GameState) => {
     scene.text('"Me too! It\'s really hot being able to suck cock and get eaten out at the same time."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
                 ]);
               } else {
                 if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'anal') {
@@ -560,8 +516,7 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'You like anal too', handler: (st: GameState) => {
     scene.text('"I like getting my ass fucked too. It\'s really hot."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
-  } },
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
                   ]);
                 }
               }
@@ -596,8 +551,7 @@ function enterDontHookup(s: GameState, scene: SceneBuilder): void {
         { label: 'Blush', handler: (st: GameState) => {
     scene.text('You gulp as your face grows hot.');
     scene.text('"I didn\'t realize people talked that much," you stammer."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
       ]);
     } else {
       scene.text('"Oh really? What made me the exception?"');
@@ -612,20 +566,17 @@ function enterDontHookup(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Glad I could be of help then," <<$npcdesc>> grins back.
       scene.text(`"Glad I could be of help then," ${((s as any).npcdesc ?? 0)} grins back.`);
     }
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
         ]);
       }
       scene.actions([
         { label: 'He\'s cute', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     scene.text('"I thought you were cute." You peck him on the cheek. "I couldn\'t resist."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
         { label: 'Really needed to get laid', handler: (st: GameState) => {
     scene.text('"I <i>really</i> needed a good lay," you grin. "Thought you\'d do in a pinch."');
-    // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
-  } },
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
       ]);
     }
   } },

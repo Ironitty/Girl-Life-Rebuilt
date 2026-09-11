@@ -163,19 +163,19 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'purse_attributes', $shop_utils_view['type'], shop_utils_view['number']
   // TODO-QSP: gs 'purses', 'descriptions', $shop_utils_view['type']
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
-    // TODO-QSP: xgt 'purse_view', 'view_item_shop'
+    scene.actions([{ label: 'Continue', goto: ['purse_view', 'view_item_shop'] }]);
   }
   if (qspFunc(s, 'purses', 'is_wearing', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
-    // TODO-QSP: xgt 'purse_view', 'view_item_wearing'
+    scene.actions([{ label: 'Continue', goto: ['purse_view', 'view_item_wearing'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'wardrobe') {
-    // TODO-QSP: xgt 'purse_view', 'view_item_wardrobe'
+    scene.actions([{ label: 'Continue', goto: ['purse_view', 'view_item_wardrobe'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'storage') {
-    // TODO-QSP: xgt 'purse_view', 'view_item_storage'
+    scene.actions([{ label: 'Continue', goto: ['purse_view', 'view_item_storage'] }]);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'unwanted') {
-    // TODO-QSP: xgt 'purse_view', 'view_item_unwanted'
+    scene.actions([{ label: 'Continue', goto: ['purse_view', 'view_item_unwanted'] }]);
   }
   return;
   scene.actions([

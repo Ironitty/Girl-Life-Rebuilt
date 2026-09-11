@@ -136,8 +136,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
-    // TODO-QSP: xgt 'kafeM', 'end'
-  } },
+  }, goto: ['kafeM', 'end'] },
         ]);
       }
       scene.actions([

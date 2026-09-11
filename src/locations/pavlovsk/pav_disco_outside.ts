@@ -66,8 +66,7 @@ function enterInviteBeer(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: <<$npcdesc>> offers you a disarming smile. "Alright, no problem! We can just cha...
     scene.text(`${((s as any).npcdesc ?? 0)} offers you a disarming smile. "Alright, no problem! We can just chat!"`);
-    // TODO-QSP: xgt 'pav_disco_outside', 'chat_menu'
-  } },
+  }, goto: ['pav_disco_outside', 'chat_menu'] },
     ]);
   }
   scene.actions([
@@ -79,9 +78,9 @@ function enterInviteBeer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You accept the beer and chat with <<$npcdesc>> as you drink it. He's amusing and...
     scene.text(`You accept the beer and chat with ${((s as any).npcdesc ?? 0)} as you drink it. He's amusing and tells you some hilarious stories.`);
     if ((Math.floor(Math.random() * 10) + 1) <= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  (Math.floor(Math.random() * 1000) + 1) < ((s as any).fame ?? 0)?.['pav_slut']) {
-      // TODO-QSP: xgt 'pav_disco_outside', 'boysex_options'
+      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_options'] }]);
     } else {
-      // TODO-QSP: xgt 'pav_disco_outside', 'chat_menu'
+      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'chat_menu'] }]);
     }
   } },
   ]);
@@ -101,14 +100,12 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $pcs_usedname[$npcID] = $pcs_firstname
     // TODO-QSP: dynamic text: "I'm <<$pcs_firstname>>," you smile back.
     scene.text(`"I'm ${((s as any).pcs_firstname ?? 0)}," you smile back.`);
-    // TODO-QSP: xgt 'pav_disco_outside', 'chat_menu'
-  } },
+  }, goto: ['pav_disco_outside', 'chat_menu'] },
       { label: 'I\'m <<$pcs_nickname>>', handler: (st: GameState) => {
     // TODO-QSP: $pcs_usedname[$npcID] = $pcs_nickname
     // TODO-QSP: dynamic text: "I'm <<$pcs_nickname>>," you smile back.
     scene.text(`"I'm ${((s as any).pcs_nickname ?? 0)}," you smile back.`);
-    // TODO-QSP: xgt 'pav_disco_outside', 'chat_menu'
-  } },
+  }, goto: ['pav_disco_outside', 'chat_menu'] },
     ]);
   } else {
     // TODO-QSP: dynamic text: You leave the disco with <<$npcdesc>> and walk into a quiet garden area.
@@ -144,7 +141,7 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: "It's good to see you again," <<$npcdesc>> says, giving you a small smile.
       scene.text(`"It's good to see you again," ${((s as any).npcdesc ?? 0)} says, giving you a small smile.`);
-      // TODO-QSP: xgt 'pav_disco_outside', 'chat_menu'
+      scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'chat_menu'] }]);
     }
   }
   scene.build();
@@ -152,7 +149,7 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
 
 function enterChatMenu(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
-    // TODO-QSP: xgt 'pav_disco_outside', 'boysex_options'
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_options'] }]);
   }
   if (((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] !== ((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]) {
     scene.actions([
@@ -162,8 +159,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s your name by the way?"');
     // TODO-QSP: dynamic text: "I'm <<$npc_firstname>>," he tells you.
     scene.text(`"I'm ${((s as any).npc_firstname ?? 0)}," he tells you.`);
-    // TODO-QSP: xgt 'pav_disco_outside', 'chat_menu'
-  } },
+  }, goto: ['pav_disco_outside', 'chat_menu'] },
     ]);
   }
   scene.actions([
@@ -208,8 +204,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'pav_disco_outside', 'chat_menu'
-  } },
+  }, goto: ['pav_disco_outside', 'chat_menu'] },
     { label: 'Make a move', handler: (st: GameState) => {
     // TODO-QSP: xgt 'pav_disco_outside', 'move_menu'
   } },
@@ -253,15 +248,13 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
           { label: 'Refuse', handler: (st: GameState) => {
     scene.text('"I just don\'t see this turning into anything like that," you shake your head. "Sorry."');
     scene.text('With that, you leave him alone.');
-    // TODO-QSP: xgt 'pav_disco_outside', 'exit_options'
-  } },
+  }, goto: ['pav_disco_outside', 'exit_options'] },
           { label: 'Give him your number', handler: (st: GameState) => {
     scene.text('"Sure," you smile back. "I\'d like that."');
     qspCall(s, 'lover', 'add_dating', ((s as any).npcID ?? 0));
     qspCall(s, 'stat', '');
     scene.text('Taking his phone, you input your contact information into it before waving goodbye and parting ways.');
-    // TODO-QSP: xgt 'pav_disco_outside', 'exit_options'
-  } },
+  }, goto: ['pav_disco_outside', 'exit_options'] },
         ]);
       }
     } else {
@@ -278,8 +271,7 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover', 'add_dating', ((s as any).npcID ?? 0));
     qspCall(s, 'stat', '');
     scene.text('Taking his phone, you input your contact information into it before waving goodbye and parting ways.');
-    // TODO-QSP: xgt 'pav_disco_outside', 'exit_options'
-  } },
+  }, goto: ['pav_disco_outside', 'exit_options'] },
       ]);
     }
   }
@@ -288,7 +280,7 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
-    // TODO-QSP: xgt 'pav_disco_outside', 'boysex_options'
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_options'] }]);
   }
   scene.actions([
     { label: 'Kiss him', handler: (st: GameState) => {
@@ -307,8 +299,7 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You keep making out with <<$npcdesc>>.
       scene.text(`You keep making out with ${((s as any).npcdesc ?? 0)}.`);
     }
-    // TODO-QSP: xgt 'pav_disco_outside', 'move_menu'
-  } },
+  }, goto: ['pav_disco_outside', 'move_menu'] },
     { label: 'Reach for his cock', handler: (st: GameState) => {
     if (((s as any).temp ?? 0)?.['curr_action'] === 'kissing') {
       // TODO-QSP: dynamic text: Reach down into <<$npcdesc>>'s pants, you feel a stiff, <<$npc_dick_desc[$npcID]...
@@ -317,8 +308,7 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You reach down into <<$npcdesc>>'s pants, feeling a stiff, <<$npc_dick_desc[$npc...
       scene.text(`You reach down into ${((s as any).npcdesc ?? 0)}'s pants, feeling a stiff, ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)]} shaft inside. You pull, releasing it from its confines and stroking it to diamond hardness`);
     }
-    // TODO-QSP: xgt 'pav_disco_sex', 'handjob'
-  } },
+  }, goto: ['pav_disco_sex', 'handjob'] },
     { label: 'Squat down (and blow him)', handler: (st: GameState) => {
     // TODO-QSP: xgt 'pav_disco_sex', 'blowjob'
   } },
@@ -352,8 +342,7 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Need to go', handler: (st: GameState) => {
     scene.text('"I need to get out of here," you say, hurrying away.');
-    // TODO-QSP: xgt 'pav_disco_outside', 'exit_options'
-  } },
+  }, goto: ['pav_disco_outside', 'exit_options'] },
       { label: 'It\'s okay', handler: (st: GameState) => {
     qspCall(s, 'pav_disco_outside', 'outside_img');
     scene.text('"It\'s okay," you say, taking a deep breath and calming down. "It was just... too fast, y\'know?"');

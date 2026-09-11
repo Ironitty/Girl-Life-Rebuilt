@@ -50,7 +50,7 @@ function enterDoggyGoto(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== ''  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
-                // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
+                scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_goto2'] }]);
               } else {
                 ((s as any).sex_ev ?? {})['position'] = 'doggy';
                 ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
@@ -116,19 +116,19 @@ function enterDoggyStart(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', handler: (st: GameState) => {
     if ((!((s as any).ar_vag_lube ?? 0))) {
       if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-        // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_spit_lube'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_spit_lube'] }]);
       } else {
         scene.text('He flips you over and pulls you to your knees.');
         scene.text('"I wanna fuck you from behind."');
-        // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_slow'] }]);
       }
     } else {
       if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         scene.text('He forces you onto your knees and gives you a slap on the ass before pressing himself inside your pussy.');
-        // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_slow'] }]);
       } else {
         scene.text('He rolls you onto your knees and you immediately feel him pressing inside you from behind again.');
-        // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_slow'] }]);
       }
     }
   } },
@@ -152,8 +152,7 @@ function enterDoggyStart(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_insert_slow'] },
             ]);
           }
         }
@@ -332,7 +331,7 @@ function enterDoggySwitch(s: GameState, scene: SceneBuilder): void {
     scene.text('"I want to try it from behind."');
   }
   if (((s as any).sex_ev ?? 0)?.['change_pos'] === 0) {
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_slow'] }]);
   } else {
     ((s as any).sex_ev ?? {})['change_pos'] = 0;
     scene.actions([
@@ -358,7 +357,7 @@ function enterDoggySwitch2(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('"I think it\'s time for some doggystyle."');
-  // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_slow'] }]);
   scene.build();
 }
 
@@ -379,7 +378,7 @@ function enterDoggyBendOver(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_spit_lube'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_spit_lube'] }]);
   } else {
     qspCall(s, 'sex_ev_doggy', 'doggy_insert_slow');
   }
@@ -435,7 +434,7 @@ function enterDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
   if (((s as any).sex_ev ?? 0)?.['first_insertion'] === 1) {
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_goto2'] }]);
   } else {
     ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
     ((s as any).sex_ev ?? {})['first_insertion'] = 1;
@@ -495,7 +494,7 @@ function enterDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_react'
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_react'] }]);
   }
   scene.build();
 }
@@ -522,28 +521,23 @@ function enterDoggyInsertReact(s: GameState, scene: SceneBuilder): void {
         scene.text('"Nngh~! <i>Fuck,</i> you\'re so big!" you groan loudly, grinning as you do.');
       }
     }
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       ]);
     }
     scene.actions([
       { label: 'Moan', handler: (st: GameState) => {
     scene.text('You let out a loud moan as heat fills up your insides and your pussy begins to salivate with just the insertion of his cock.');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       { label: 'Groan', handler: (st: GameState) => {
     scene.text('You let out a husky groan as an indescribable <i>ache</i> rocks through your insides. Like a crumb of bread to a woman starving to death, just the insertion of his cock sets your lustful hunger ablaze.');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       { label: 'Gasp', handler: (st: GameState) => {
     scene.text('You gasp as the pleasure of his insertion sends heat washing through your hips and electric tingles racing across your skin.');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       { label: 'Squeak!', handler: (st: GameState) => {
     scene.text('"Eep-!"');
     scene.text('A squeak escapes your lips he fills you with his shaft, your legs involuntarily kipping at the insertion.');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       { label: 'Say something sexy', handler: (st: GameState) => {
     if (((s as any).npc_last_sex ?? 0)?.[String((s as any).npcID ?? 0)] > ((s as any).daystart ?? 0) - 7) {
       if (((s as any).npc_dick_class ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'big'  ||  ((s as any).npc_dick_class ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'extra_big') {
@@ -577,8 +571,7 @@ function enterDoggyInsertReact(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
     ]);
   } },
     { label: 'Discomfort', handler: (st: GameState) => {
@@ -586,8 +579,7 @@ function enterDoggyInsertReact(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Groan', handler: (st: GameState) => {
     scene.text('You let out a painful groan as your insides <i>ache</i> as if you had been punched in the gut. Which in some ways, you have been...');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
         { label: 'He\'s big!', handler: (st: GameState) => {
     if (((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       if (((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
@@ -643,13 +635,11 @@ function enterDoggyInsertReact(s: GameState, scene: SceneBuilder): void {
       { label: 'Gasp', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: Your breath hitches in discomfort as <<$npcdesc>> cock pokes awkward spots in yo...
     scene.text(`Your breath hitches in discomfort as ${((s as any).npcdesc ?? 0)} cock pokes awkward spots in your pussy as he settles in behind you.`);
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       { label: 'Squeak!', handler: (st: GameState) => {
     scene.text('"Eep-!"');
     scene.text('A squeak escapes your lips he fills you from behind, your pussy involuntarily squeezing his shaft at the insertion.');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
     ]);
   } },
   ]);
@@ -685,8 +675,7 @@ function enterDoggyInsertOrgasm(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"It\'s your big cock," you pant giddily, head still swimming from orgasm. "The way you <i>fill</i> me. It\'s indescribable."');
     }
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       ]);
     }
     // TODO-QSP: dynamic text: "I'm that good, huh?" <<$npcdesc>> grins smugly.
@@ -696,16 +685,14 @@ function enterDoggyInsertOrgasm(s: GameState, scene: SceneBuilder): void {
         { label: '[Easy Orgasm trait]', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/smile1.jpg');
     scene.text('"I come easy," you smile tiredly at him, head still swimming from orgasm. "Sometimes just one thrust is all it takes for me."');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
       ]);
     }
     scene.actions([
       { label: 'Really horny', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/2.jpg');
     scene.text('"I\'m <i>really</i> horny," you moan, practically melting underneath him.');
-    // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
-  } },
+  }, goto: ['sex_ev_doggy', 'doggy_goto2'] },
     ]);
   } },
     ]);

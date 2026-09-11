@@ -1072,8 +1072,7 @@ function enterAnafight1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/ana/action.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'sandbaggingana');
-    // TODO-QSP: xgt 'fight', 'start'
-  } },
+  }, goto: ['fight', 'start'] },
   ]);
   scene.build();
 }
@@ -1175,8 +1174,7 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/ana/gopniks.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'anagopniks');
-    // TODO-QSP: xgt 'fight', 'start'
-  } },
+  }, goto: ['fight', 'start'] },
     { label: 'Talk calmly and try to retreat through the window.', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_persuas ?? 0)) {
       if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1209,8 +1207,7 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/ana/gopniks.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'anagopniks');
-    // TODO-QSP: xgt 'fight', 'start'
-  } },
+  }, goto: ['fight', 'start'] },
       ]);
     }
   } },
@@ -1556,8 +1553,7 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/ana/boss.jpg');
     qspCall(s, 'fight', 'initFight');
     qspCall(s, 'fight_npcdata', 'bossana');
-    // TODO-QSP: xgt 'fight', 'start'
-  } },
+  }, goto: ['fight', 'start'] },
   ]);
   scene.build();
 }

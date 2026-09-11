@@ -295,19 +295,19 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
 
 function enterResultCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['win_fights'] === 1) {
-    // TODO-QSP: xgt 'ender', 'win'
+    scene.actions([{ label: 'Continue', goto: ['ender', 'win'] }]);
   }
   if (qspFunc(s, 'fight', 'AvailableTargets', 'pcs') === 0) {
     scene.text('<b><font color = red> You lost!</font></b>');
-    // TODO-QSP: xgt 'ender', 'loss'
+    scene.actions([{ label: 'Continue', goto: ['ender', 'loss'] }]);
   } else {
     if (qspFunc(s, 'fight', 'AvailableTargets', 'opp') === 0) {
       scene.text('<b><font color = green> You won!</font></b>');
-      // TODO-QSP: xgt 'ender', 'win'
+      scene.actions([{ label: 'Continue', goto: ['ender', 'win'] }]);
     } else {
       if (((s as any).pcs_willpwr ?? 0) <= 0) {
         scene.text('<b><font color = red> You cannot summon the will to fight!</font></b>');
-        // TODO-QSP: xgt 'ender', 'loss'
+        scene.actions([{ label: 'Continue', goto: ['ender', 'loss'] }]);
       }
     }
   }

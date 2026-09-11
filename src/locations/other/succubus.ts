@@ -31,7 +31,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).sucself1 ?? 0)} continues rising toward the surface of your being.`);
       (s as any).succonfail = 1;
       (s as any).scpopt = 0;
-      // TODO-QSP: xgt 'succubus', 'init'
+      scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
     } else {
       qspCall(s, 'willpower', 'pay', 'resist');
       qspCall(s, 'stat', '');
@@ -86,16 +86,14 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).scpopt = 0;
     (s as any).succubusQW = 14;
-    // TODO-QSP: xgt 'succubus', 'init'
-  } },
+  }, goto: ['succubus', 'init'] },
     ]);
   } else {
     scene.actions([
       { label: 'Let go…', handler: (st: GameState) => {
     (s as any).scpopt = 0;
     (s as any).succubusQW = 14;
-    // TODO-QSP: xgt 'succubus', 'init'
-  } },
+  }, goto: ['succubus', 'init'] },
       { label: 'Push it back down', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You try to contain <<$sucself1>>…
     scene.text(`You try to contain ${((s as any).sucself1 ?? 0)}…`);
@@ -107,7 +105,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
       (s as any).succonfail = 1;
       (s as any).scpopt = 0;
       (s as any).succubusQW = 14;
-      // TODO-QSP: xgt 'succubus', 'init'
+      scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
     } else {
       qspCall(s, 'willpower', 'pay', 'resist');
       qspCall(s, 'stat', '');
