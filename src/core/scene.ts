@@ -20,13 +20,6 @@ export class SceneBuilder {
   hideMenu() { this.menuOff = true; return this; }
 
   build(): SceneState {
-    return {
-      mainText: this.mainText,
-      statText: this.statText,
-      curActs: [...this.curActs],
-      curobjs: this.curobjs,
-      backimage: this.backimage,
-      menuOff: this.menuOff,
-    };
+    return this;
   }
 }
