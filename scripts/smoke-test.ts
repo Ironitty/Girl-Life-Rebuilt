@@ -167,6 +167,38 @@ async function main() {
       check('Map button exists', false);
     }
 
+    // 8. Random location via shift+Q, then click a random button
+    await page.goto('http://localhost:4173', { waitUntil: 'networkidle' });
+    await sleep(500);
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('q');
+    await page.keyboard.up('Shift');
+    await sleep(1000);
+    const randBody = await page.textContent('body');
+    check('Random location loaded via shift+Q', (randBody?.length ?? 0) > 50);
+
+    const allButtons = await page.locator('button').all();
+    const actionBtns: { btn: any; text: string }[] = [];
+    for (const b of allButtons) {
+      const t = (await b.textContent())?.trim() ?? '';
+      const title = await b.getAttribute('title');
+      if (title) continue;
+      if (/^(Map|Back)$/i.test(t)) continue;
+      if (t.length > 0 && t.length < 80) actionBtns.push({ btn: b, text: t });
+    }
+    if (actionBtns.length > 0) {
+      const pick = actionBtns[Math.floor(Math.random() * actionBtns.length)];
+      const errsBefore = errors.length;
+      await pick.btn.click();
+      await sleep(500);
+      const afterBody = await page.textContent('body');
+      const newErrs = errors.slice(errsBefore);
+      check(`Random button "${pick.text}" works (no crash)`, (afterBody?.length ?? 0) > 50 && newErrs.length === 0);
+      if (newErrs.length) newErrs.forEach((e) => console.log(`  ${e}`));
+    } else {
+      check('Random action button found', false);
+    }
+
     console.log(`\n=== SMOKE TEST: ${passed} passed, ${failed} failed ===`);
     if (failed > 0) process.exitCode = 1;
   } catch (e: any) {
