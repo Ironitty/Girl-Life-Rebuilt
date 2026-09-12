@@ -515,6 +515,10 @@ function main() {
         const tsFuncName = qspLabel === '__preamble__' ? 'enterDefault' : qspLabelToTsFunc(qspLabel);
         let tsFuncBody = extractFunction(src, tsFuncName);
         if (!tsFuncBody && !hasSeparateFns) tsFuncBody = extractFunction(src, 'enter');
+        if (tsFuncName === 'enterDefault') {
+          const m2 = src.match(/function enterDefault2\s*\([^)]*\)\s*:\s*void\s*\{([\s\S]*?)\n\}/);
+          if (m2) tsFuncBody = (tsFuncBody || '') + m2[1];
+        }
         const tsActions = tsFuncBody ? extractTsActions(tsFuncBody) : [];
 
         const mismatches = compareSectionActions(qspActions, tsActions);
