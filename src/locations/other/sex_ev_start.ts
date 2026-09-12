@@ -1341,6 +1341,7 @@ function enterMeyKatjaSpot(s: GameState, scene: SceneBuilder): void {
     scene.text('And with that, she and Vayna continue on to some other part of the house.');
   }
   // TODO-QSP: end
+  // TODO-QSP: --- sex_ev_start ---------------------------------
   scene.build();
 }
 
@@ -1486,6 +1487,5 @@ export const sex_ev_start: LocationDef = {
   name: 'sex_ev_start',
   title: '"I was playing football when I saw your message," you shrug.',
   region: 'other',
-  locationType: 'event',
   enter: enter,
 };

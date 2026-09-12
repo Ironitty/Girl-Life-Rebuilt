@@ -2636,6 +2636,5 @@ export const traits: LocationDef = {
   name: 'traits',
   title: '<center><font size="2" color="#888888">Hover the mouse over ',
   region: 'other',
-  locationType: 'public_outdoors',
   enter: enter,
 };

@@ -816,6 +816,6 @@ export const gad_gphouse: LocationDef = {
   title: 'Your mother, Natasha <<$pcs_lastname>>',
   region: 'gadukino',
   locationType: 'public_indoors',
-  locclass: 'livingr',
+  locclass: 'kitchen',
   enter: enter,
 };

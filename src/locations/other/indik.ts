@@ -70,7 +70,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const indik: LocationDef = {
   name: 'indik',
-  title: '<<ARGS[2]>>',
   region: 'other',
   enter: enter,
 };

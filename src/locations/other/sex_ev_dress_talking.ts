@@ -1560,6 +1560,7 @@ function enterGrabThingsLeave(s: GameState, scene: SceneBuilder): void {
   scene.text('"This just isn\'t going to work," you say, cutting him off. "We\'re done."');
   scene.text('And with that, you head out the door.');
   // TODO-QSP: end
+  // TODO-QSP: --- sex_ev_dress_talking ---------------------------------
   scene.actions([
     { label: 'Leave', goto: ['sex_ev_leave', 'break_up'] },
   ]);

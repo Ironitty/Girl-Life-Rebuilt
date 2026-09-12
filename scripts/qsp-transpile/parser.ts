@@ -111,10 +111,22 @@ export function parseQsp(content: string, fileName: string): QspLocation {
 
   const bodyLines: string[] = [];
   let inBody = false;
+  let inBlockComment = false;
 
   for (const raw of lines) {
     const line = raw.replace(/\t/g, '  ');
     const trimmed = line.trim();
+
+    if (inBlockComment) {
+      if (trimmed.endsWith('!}') || trimmed.endsWith('!!}')) inBlockComment = false;
+      if (inBody) bodyLines.push(line);
+      continue;
+    }
+    if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
+      if (!trimmed.endsWith('!}')) inBlockComment = true;
+      if (inBody) bodyLines.push(line);
+      continue;
+    }
 
     if (trimmed.startsWith('# ') && !inBody) {
       inBody = true;

@@ -1022,7 +1022,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const hotel_anna: LocationDef = {
   name: 'hotel_anna',
-  title: '"Wait <<$pcs_nickname>>, i didn\'t finished. Since it seems you have a clear preference, i\'d like to give you some option to chose, anyway you could see and chose directly next time. So basically you can chose between a man, a woman or to delay your choice to our next encounter: but in that last case, with all the probability, i will not able to call an external performer and so all the route will be avaible and it will be between me and you… hehehe."',
+  title: 'You decide to check for Anna Igorevna. You think it\'s the be',
   region: 'other',
   locationType: 'event',
   enter: enter,
