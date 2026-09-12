@@ -254,7 +254,7 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
   for (let i = 0; i < lines.length; i++) {
     const raw = lines[i];
     if (/^[\t ]/.test(raw)) continue;
-    const m = raw.match(/if\s+\$ARGS\[0\]\s*=\s*'((?:[^']|'')*)'/);
+    const m = raw.match(/if\s+\$ARGS\[0\]\s*=\s*'((?:[^']|'')*)'/i);
     if (m) {
       const isMulti = /or\s+\$ARGS\[0\]/.test(raw) || /or\s+\$loc_arg/.test(raw);
       const label = isMulti ? '' : unescapeQsp(m[1]);
