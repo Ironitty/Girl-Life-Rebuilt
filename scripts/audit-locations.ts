@@ -251,8 +251,15 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
   const sections = new Map<string, QspAction[]>();
 
   const sectionStarts: { label: string; line: number }[] = [];
+  let inBlockComment = false;
   for (let i = 0; i < lines.length; i++) {
     const raw = lines[i];
+    const trimmed = raw.trim();
+    if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) { inBlockComment = true; continue; }
+    if (inBlockComment) {
+      if (trimmed.endsWith('!}') || trimmed === 'end}' || trimmed === '}') inBlockComment = false;
+      continue;
+    }
     if (/^[\t ]/.test(raw)) continue;
     const m = raw.match(/if\s+\$ARGS\[0\]\s*=\s*'((?:[^']|'')*)'/i);
     if (m) {
