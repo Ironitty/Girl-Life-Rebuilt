@@ -919,7 +919,6 @@ function enterPubesProblem(s: GameState, scene: SceneBuilder): void {
           if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_bush'  ||  ((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_pubes_untrimmed') {
             scene.text('"I think it\'s sexy too," he grins. "Too many girls feel peer pressured into shaving it off, but I love a nice full bush."');
             qspCall(s, 'sex_ev_body_talk', 'boy_likes_pubes');
-            // TODO-QSP: end}
           } else {
             // TODO-QSP: dynamic text: "Got a problem with my pubes?" you ask, giving <<$npcdesc>> a hard side-eye.
             scene.text(`"Got a problem with my pubes?" you ask, giving ${((s as any).npcdesc ?? 0)} a hard side-eye.`);

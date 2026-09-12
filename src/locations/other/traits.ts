@@ -2515,6 +2515,359 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumslut(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'minute') {
+    if (((s as any).cheatVars ?? 0)?.['cumslut_disabled']) {
+      // TODO-QSP: exit
+    }
+    ((s as any).temp_cumslut ?? {})['is_public'] = 0;
+    if (((s as any).location_type ?? 0) === 'public_outdoors'  ||  ((s as any).location_type ?? 0) === 'public_indoors') {
+      ((s as any).temp_cumslut ?? {})['is_public'] = 1;
+    }
+    ((s as any).temp_cumslut ?? {})['visible_cum'] = 0;
+    if (((s as any).cumloc ?? 0)[6] > 0) {
+      ((s as any).temp_cumslut ?? {})['visible_cum'] = (((s as any).temp_cumslut ?? {})['visible_cum'] ?? 0) + (1);
+    }
+    if (((s as any).cumloc ?? 0)[7] > 0) {
+      ((s as any).temp_cumslut ?? {})['visible_cum'] = (((s as any).temp_cumslut ?? {})['visible_cum'] ?? 0) + (1);
+    }
+    if (((s as any).cumloc ?? 0)[11] > 0) {
+      ((s as any).temp_cumslut ?? {})['visible_cum'] = (((s as any).temp_cumslut ?? {})['visible_cum'] ?? 0) + (1);
+    }
+    if (((s as any).cumloc ?? 0)[13] > 0) {
+      ((s as any).temp_cumslut ?? {})['visible_cum'] = (((s as any).temp_cumslut ?? {})['visible_cum'] ?? 0) + (1);
+    }
+    if (((s as any).cumloc ?? 0)[16] > 0) {
+      ((s as any).temp_cumslut ?? {})['visible_cum'] = (((s as any).temp_cumslut ?? {})['visible_cum'] ?? 0) + (1);
+    }
+    if (((s as any).temp_cumslut ?? 0)?.['visible_cum'] > 0) {
+      if (((s as any).trait_vars ?? 0)?.['cum_addict'] >= 2  &&  (Math.floor(Math.random() * 100) + 1) <= 40) {
+        // TODO-QSP: temp_cumslut['exp_gain'] *= 2
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['cum_addict'] >= 1  &&  (Math.floor(Math.random() * 100) + 1) <= 20) {
+          // TODO-QSP: temp_cumslut['exp_gain'] *= 2
+        }
+      }
+      ((s as any).trait_vars ?? {})['cumslut_exp'] = (((s as any).trait_vars ?? {})['cumslut_exp'] ?? 0) + (((s as any).temp_cumslut ?? 0)?.['exp_gain']);
+      if (((s as any).temp_cumslut ?? 0)?.['is_public'] === 1) {
+        ((s as any).trait_vars ?? {})['cumslut_exp_public'] = (((s as any).trait_vars ?? {})['cumslut_exp_public'] ?? 0) + (((s as any).temp_cumslut ?? 0)?.['exp_gain']);
+      }
+      if ((Math.floor(Math.random() * 100) + 1) <= 10) {
+        if (((s as any).trait_vars ?? 0)?.['cumslut'] === 2) {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
+          if (((s as any).temp_cumslut ?? 0)?.['is_public'] === 1) {
+            (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
+            qspCall(s, 'mood', 'raise', 'tiny');
+          }
+        } else {
+          if (((s as any).trait_vars ?? 0)?.['cumslut'] === 1) {
+            if (((s as any).temp_cumslut ?? 0)?.['is_public'] === 0) {
+              (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
+            }
+          }
+        }
+      }
+    }
+    ((s as any).trait_vars ?? {})['cumslut_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['cumslut_exp'], 0, 4000);
+    ((s as any).trait_vars ?? {})['cumslut_exp_public'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['cumslut_exp_public'], 0, 2000);
+    if (((s as any).trait_vars ?? 0)?.['cumslut_exp'] >= 2000  &&  ((s as any).trait_vars ?? 0)?.['cumslut_exp_public'] >= 1000) {
+      if (((s as any).trait_vars ?? 0)?.['cumslut'] !== 2) {
+        qspCall(s, 'traits', 'level', 'cumslut', 2);
+      }
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['cumslut_exp'] >= 300) {
+        if (((s as any).trait_vars ?? 0)?.['cumslut'] !== 1) {
+          qspCall(s, 'traits', 'level', 'cumslut', 1);
+        }
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['cumslut'] !== 0) {
+          qspCall(s, 'traits', 'level', 'cumslut', 0);
+        }
+      }
+    }
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'daily') {
+    if (((s as any).cheatVars ?? 0)?.['cumslut_disabled']) {
+      // TODO-QSP: exit
+    }
+    if (((s as any).trait_vars ?? 0)?.['cumslut_exp'] > 0) {
+      ((s as any).trait_vars ?? {})['cumslut_exp'] = (((s as any).trait_vars ?? {})['cumslut_exp'] ?? 0) - (qspUntranslated(s, "min(60, trait_vars['cumslut_exp'])", { location: "traits" }));
+      ((s as any).trait_vars ?? {})['cumslut_exp_public'] = (((s as any).trait_vars ?? {})['cumslut_exp_public'] ?? 0) - (qspUntranslated(s, "min(60, trait_vars['cumslut_exp_public'])", { location: "traits" }));
+    }
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'details') {
+    ((s as any).trait_temp ?? {})['icon'] = 'cumslut.png';
+    ((s as any).trait_temp ?? {})['hidden'] = 1;
+    ((s as any).trait_temp ?? {})['exp'] = ((s as any).trait_vars ?? 0)?.['cumslut_exp'];
+    if (((s as any).trait_vars ?? 0)?.['cumslut'] === 2) {
+      ((s as any).trait_temp ?? {})['name'] = 'Cumbucket';
+      ((s as any).trait_temp ?? {})['desc'] = 'You\'re addicted to being glazed. Wearing cum anywhere — public or private — gets you dripping. The humiliation of being seen with it only makes it better.';
+      ((s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Cumbucket</b>. You can\'t get enough of being seen covered in cum.';
+      ((s as any).trait_temp ?? {})['exp_down'] = 2000;
+      ((s as any).trait_temp ?? {})['exp_up'] = (-1);
+      ((s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + qspUntranslated(s, "trait_vars['cumslut_exp']>", { location: "traits" }) + '. ';
+      ((s as any).trait_temp ?? {})['tooltip'] = (((s as any).trait_temp ?? {})['tooltip'] ?? 0) + ('EXP decays by 60 daily.');
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['cumslut'] === 1) {
+        ((s as any).trait_temp ?? {})['name'] = 'Cumslut';
+        ((s as any).trait_temp ?? {})['desc'] = 'Being covered in cum turns you on — as long as no one else can see. The feeling of it on your skin is enough to get you going.';
+        ((s as any).trait_temp ?? {})['msg'] = 'You\'ve gained the trait <b>Cumslut</b>. Wearing cum in private makes you feel dirty — and you love it.';
+        ((s as any).trait_temp ?? {})['exp_down'] = 300;
+        ((s as any).trait_temp ?? {})['exp_up'] = 2000;
+        // TODO-QSP: $trait_temp['tooltip'] = 'EXP: <<trait_vars[''cumslut_exp'']>> (public: <<trait_vars[''cumslut_exp_public'']>>/1000). '
+        ((s as any).trait_temp ?? {})['tooltip'] = (((s as any).trait_temp ?? {})['tooltip'] ?? 0) + ('Wear cum in public to advance to Lv. 2. ');
+        ((s as any).trait_temp ?? {})['tooltip'] = (((s as any).trait_temp ?? {})['tooltip'] ?? 0) + ('EXP decays by 60 daily.');
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['cumslut'] === 0) {
+          ((s as any).trait_temp ?? {})['name'] = 'Cum Display';
+          ((s as any).trait_temp ?? {})['desc'] = 'You don\'t have strong feelings about visible cum. Most people would rather not walk around covered in it.';
+          ((s as any).trait_temp ?? {})['msg'] = 'You\'ve lost the trait <b>Cumslut</b>.';
+          ((s as any).trait_temp ?? {})['exp_down'] = (-1);
+          ((s as any).trait_temp ?? {})['exp_up'] = 300;
+          ((s as any).trait_temp ?? {})['tooltip'] = 'EXP: ' + qspUntranslated(s, "trait_vars['cumslut_exp']>", { location: "traits" }) + '. ';
+          ((s as any).trait_temp ?? {})['tooltip'] = (((s as any).trait_temp ?? {})['tooltip'] ?? 0) + ('Walk around with visible cum on you to gain EXP. ');
+          ((s as any).trait_temp ?? {})['tooltip'] = (((s as any).trait_temp ?? {})['tooltip'] ?? 0) + ('EXP decays by 60 daily.');
+        }
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
+      ((s as any).trait_temp ?? {})['desc'] = (((s as any).trait_temp ?? {})['desc'] ?? 0) + (((((s as any).trait_vars ?? 0)?.['cum_addict'] === 1) ? (' 20%') : (' 40%')));
+    }
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
+    if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
+      ((s as any).trait_vars ?? {})['cumslut_exp'] = 0;
+      ((s as any).trait_vars ?? {})['cumslut_exp_public'] = 0;
+      qspCall(s, 'traits', 'level', 'cumslut', 0);
+    } else {
+      if (((s as any).locArgs?.[2] ?? 0) === 1) {
+        ((s as any).trait_vars ?? {})['cumslut_exp'] = 1000;
+        ((s as any).trait_vars ?? {})['cumslut_exp_public'] = 0;
+        qspCall(s, 'traits', 'level', 'cumslut', 1);
+      } else {
+        if (((s as any).locArgs?.[2] ?? 0) === 2) {
+          ((s as any).trait_vars ?? {})['cumslut_exp'] = 4000;
+          ((s as any).trait_vars ?? {})['cumslut_exp_public'] = 2000;
+          qspCall(s, 'traits', 'level', 'cumslut', 2);
+        }
+      }
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumAddict(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'minute') {
+    if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0) {
+      // TODO-QSP: exit
+    }
+    if (((s as any).cumloc ?? 0)[0] > 0  ||  ((s as any).cumloc ?? 0)[3] > 0) {
+      ((s as any).trait_vars ?? {})['cum_addict_sensed'] = 1;
+    }
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'hourly') {
+    if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0) {
+      // TODO-QSP: exit
+    }
+    if (((s as any).trait_vars ?? 0)?.['cum_addict_sensed'] === 1) {
+      ((s as any).trait_vars ?? {})['cum_addict_sensed'] = 0;
+      qspCall(s, 'mood', 'raise', 'tiny');
+    } else {
+      (s as any).missCum = ((s as any).missCum ?? 0) + (1);
+    }
+    if (((s as any).missCum ?? 0) > ((s as any).timeTresh ?? 0)) {
+      if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 1) {
+        qspCall(s, 'mood', 'lower', 'tiny');
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      } else {
+        qspCall(s, 'mood', 'lower', 'small');
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+      }
+    }
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'daily') {
+    if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 1) {
+      (s as any).min_arousal = 0;
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 2) {
+        (s as any).min_arousal = 0;
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0  &&  ((s as any).missCum ?? 0) > ((s as any).timeTresh ?? 0)) {
+      (s as any).pcs_horny = 0;
+      if (((s as any).preziktype ?? 0) === 0  ||  ((s as any).preziktype ?? 0) === 2) {
+        if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] < (Math.floor(Math.random() * 2) + 2)) {
+          qspCall(s, 'din_bad', 'sabotage_a_condom', 'no_text');
+        }
+        if (((s as any).preziktype ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
+          qspCall(s, 'din_bad', 'set_condom_used', 'sabotaged');
+        }
+      }
+    }
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'details') {
+    ((s as any).trait_temp ?? {})['icon'] = 'cum_addict.png';
+    ((s as any).trait_temp ?? {})['hidden'] = 1;
+    if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 1) {
+      ((s as any).trait_temp ?? {})['name'] = 'Cum Craving';
+      ((s as any).trait_temp ?? {})['desc'] = 'You feel better with cum inside you. Going too long without it makes you restless and moody. You are always at least a bit aroused (minimum 30).';
+      ((s as any).trait_temp ?? {})['msg'] = 'You\'ve developed a <b>Cum Craving</b>. You feel incomplete without it.';
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 2) {
+        ((s as any).trait_temp ?? {})['name'] = 'Cum Addicted';
+        ((s as any).trait_temp ?? {})['desc'] = 'You need cum inside you. Without it, you can barely think straight — your mood crashes and your body aches for it. You are always aroused (minimum 50).';
+        ((s as any).trait_temp ?? {})['msg'] = 'You\'ve become <b>Cum Addicted</b>. You need it desperately.';
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0) {
+          ((s as any).trait_temp ?? {})['name'] = 'Cum Dependency';
+          ((s as any).trait_temp ?? {})['desc'] = 'You have no particular craving for cum.';
+          ((s as any).trait_temp ?? {})['msg'] = 'Your cum dependency has faded.';
+        }
+      }
+    }
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'hypno_grant') {
+    // TODO-QSP: gs 'traits', 'level', 'cum_addict', ARGS[2]
+  }
+  if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
+    if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
+      qspCall(s, 'traits', 'level', 'cum_addict', 0);
+    } else {
+      if (((s as any).locArgs?.[2] ?? 0) === 1  ||  ((s as any).locArgs?.[2] ?? 0) === 2) {
+        // TODO-QSP: gs 'traits', 'level', 'cum_addict', ARGS[2]
+      }
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCharming(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
+    if (((s as any).trait_vars ?? 0)?.['charming'] === 0) {
+      qspCall(s, 'traits', 'deregister_attskl', 'charming');
+    } else {
+      if (((s as any).trait_vars ?? 0)?.['charming'] > 0) {
+        qspCall(s, 'traits', 'register_attskl', 'charming');
+        ((s as any).trait_vars ?? {})['charming-humint-exp_gain'] = 10;
+        ((s as any).trait_vars ?? {})['charming-humint-deg_loss'] = (-10);
+        ((s as any).trait_vars ?? {})['charming-persuas-exp_gain'] = 10;
+        ((s as any).trait_vars ?? {})['charming-persuas-deg_loss'] = (-10);
+      } else {
+        qspCall(s, 'traits', 'register_attskl', 'charming');
+        ((s as any).trait_vars ?? {})['charming-humint-exp_gain'] = (-10);
+        ((s as any).trait_vars ?? {})['charming-humint-deg_loss'] = 10;
+        ((s as any).trait_vars ?? {})['charming-persuas-exp_gain'] = (-10);
+        ((s as any).trait_vars ?? {})['charming-persuas-deg_loss'] = 10;
+      }
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterFlexible(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
+    if (((s as any).trait_vars ?? 0)?.['flexible'] === 0) {
+      qspCall(s, 'traits', 'deregister_attskl', 'flexible');
+    } else {
+      qspCall(s, 'traits', 'register_attskl', 'flexible');
+      ((s as any).trait_vars ?? {})['flexible-dancero-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['flexible-dancero-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['flexible-dancpol-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['flexible-dancpol-deg_loss'] = (-10);
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterLogical(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
+    if (((s as any).trait_vars ?? 0)?.['logical'] === 0) {
+      qspCall(s, 'traits', 'deregister_attskl', 'logical');
+    } else {
+      qspCall(s, 'traits', 'register_attskl', 'logical');
+      ((s as any).trait_vars ?? {})['logical-compskl-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['logical-compskl-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['logical-comphckng-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['logical-comphckng-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['logical-chess-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['logical-chess-deg_loss'] = (-10);
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterNatAthlete(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
+    if (((s as any).trait_vars ?? 0)?.['nat_athlete'] === 0) {
+      qspCall(s, 'traits', 'deregister_attskl', 'nat_athlete');
+    } else {
+      qspCall(s, 'traits', 'register_attskl', 'nat_athlete');
+      ((s as any).trait_vars ?? {})['nat_athlete-run-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_athlete-run-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['nat_athlete-icesktng-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_athlete-icesktng-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['nat_athlete-wrstlng-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_athlete-wrstlng-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['nat_athlete-ftbll-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_athlete-ftbll-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['nat_athlete-bkbll-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_athlete-bkbll-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['nat_athlete-vbll-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_athlete-vbll-deg_loss'] = (-10);
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterNatDancer(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
+    if (((s as any).trait_vars ?? 0)?.['nat_dancer'] === 0) {
+      qspCall(s, 'traits', 'deregister_attskl', 'nat_dancer');
+    } else {
+      qspCall(s, 'traits', 'register_attskl', 'nat_dancer');
+      ((s as any).trait_vars ?? {})['nat_dancer-danc-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_dancer-danc-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['nat_dancer-dancero-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_dancer-dancero-deg_loss'] = (-10);
+      ((s as any).trait_vars ?? {})['nat_dancer-dancpol-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['nat_dancer-dancpol-deg_loss'] = (-10);
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterScholarly(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'level') {
+    if (((s as any).trait_vars ?? 0)?.['scholarly'] === 0) {
+      qspCall(s, 'traits', 'deregister_attskl', 'scholarly');
+    } else {
+      qspCall(s, 'traits', 'register_attskl', 'scholarly');
+      ((s as any).trait_vars ?? {})['scholarly-intel-exp_gain'] = 10;
+      ((s as any).trait_vars ?? {})['scholarly-intel-deg_loss'] = (-10);
+    }
+  }
+  return;
+  // TODO-QSP: end
+  // TODO-QSP: --- traits ---------------------------------
   scene.build();
 }
 
@@ -2625,6 +2978,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'doormat':
       enterDoormat(s, scene);
+      break;
+    case 'cumslut':
+      enterCumslut(s, scene);
+      break;
+    case 'cum_addict':
+      enterCumAddict(s, scene);
+      break;
+    case 'charming':
+      enterCharming(s, scene);
+      break;
+    case 'flexible':
+      enterFlexible(s, scene);
+      break;
+    case 'logical':
+      enterLogical(s, scene);
+      break;
+    case 'nat_athlete':
+      enterNatAthlete(s, scene);
+      break;
+    case 'nat_dancer':
+      enterNatDancer(s, scene);
+      break;
+    case 'scholarly':
+      enterScholarly(s, scene);
       break;
     default:
       enterDefault(s, scene);

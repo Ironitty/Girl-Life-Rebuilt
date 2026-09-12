@@ -202,17 +202,17 @@ interface ParseResult {
       const trimmed = raw.trim();
       if (!trimmed) { i++; continue; }
 
-      // QSP block comment: !{ ... !} (may span lines; text on marker lines is also comment)
-       if (inBlockComment) {
-         if (trimmed.endsWith('!}') || trimmed.endsWith('!!}')) inBlockComment = false;
-         i++;
-         continue;
-       }
-       if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
-         if (!trimmed.endsWith('!}')) inBlockComment = true;
-         i++;
-         continue;
-       }
+       // QSP block comment: !{ ... !} or !!{ ... end} (may span lines)
+        if (inBlockComment) {
+          if (trimmed.endsWith('!}') || trimmed.endsWith('!!}') || trimmed.endsWith('end}')) inBlockComment = false;
+          i++;
+          continue;
+        }
+        if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
+          if (!trimmed.endsWith('!}') && !trimmed.endsWith('end}')) inBlockComment = true;
+          i++;
+          continue;
+        }
 
       if (stopAtEnd && (trimmed === 'end' || trimmed === 'end ')) {
         return { nodes, endIdx: i + 1 };
@@ -917,7 +917,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Block comment markers
-  if (trimmed === '!{' || trimmed === '!!{' || trimmed === '!}' || trimmed === '!!}' || trimmed === '}') {
+  if (trimmed === '!{' || trimmed === '!!{' || trimmed === '!}' || trimmed === '!!}' || trimmed === '}' || trimmed === 'end}') {
     return { nodes, nextIdx: idx + 1 };
   }
 

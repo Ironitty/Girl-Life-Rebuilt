@@ -180,7 +180,6 @@ function enterExitSet(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).region ?? 0) === 'city_island') {
                           scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
-                          // TODO-QSP: end}
                         }
                       }
                     }
@@ -634,7 +633,6 @@ function enterFbInvitedStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"I was playing football when I saw your message," you shrug.');
     qspCall(s, 'sex_ev_start', 'fb_sweaty');
-    // TODO-QSP: end}
     if (((s as any).stat ?? 0)?.['volleyball_day'] === ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: 'Came from volleyball', handler: (st: GameState) => {

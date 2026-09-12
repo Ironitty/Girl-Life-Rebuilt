@@ -294,11 +294,98 @@ function enterDaytimeAfterMenu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'date_after', 'after_outside_image');
   }
   scene.text('"So, what do you want to do now?"');
+  // TODO-QSP: end
+  // TODO-QSP: end
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['date_after', 'goodbye_route'] },
     { label: 'Come over for coffee', goto: ['date_after', 'coffee_after_ask'] },
     { label: 'Hangout at his place', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_after', 'hangout_ask'
+  } },
+  ]);
+  scene.build();
+}
+
+function enterPcHomeLeavingEnd(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).date_ev ?? 0)?.['invite_today'] === 0  &&  ((s as any).date_ev ?? 0)?.['invite_tomorrow'] === 0) {
+    // TODO-QSP: dynamic text: <<$date_ev['leave_action1']>> <<$date_ev['leave_dialogue']>> <<$date_ev['leave_a...
+    scene.text(`${((s as any).date_ev ?? 0)?.['leave_action1']} ${((s as any).date_ev ?? 0)?.['leave_dialogue']} ${((s as any).date_ev ?? 0)?.['leave_action2']}`);
+  } else {
+    if (((s as any).date_ev ?? 0)?.['invite_today'] === 1) {
+      // TODO-QSP: dynamic text: <<$date_ev['leave_action1']>>
+      scene.text(`${((s as any).date_ev ?? 0)?.['leave_action1']}`);
+      scene.text('"Want to do this again later?" you ask.');
+      // TODO-QSP: dynamic text: <<$date_ev['leave_action2']>>
+      scene.text(`${((s as any).date_ev ?? 0)?.['leave_action2']}`);
+    } else {
+      if (((s as any).date_ev ?? 0)?.['invite_tomorrow'] === 1) {
+        // TODO-QSP: dynamic text: <<$date_ev['leave_action1']>>
+        scene.text(`${((s as any).date_ev ?? 0)?.['leave_action1']}`);
+        scene.text('"Want to do this again tomorrow?" you ask.');
+        // TODO-QSP: dynamic text: <<$date_ev['leave_action2']>>
+        scene.text(`${((s as any).date_ev ?? 0)?.['leave_action2']}`);
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave', goto: ['date_after', 'exit'] },
+  ]);
+  scene.build();
+}
+
+function enterHurryLeave(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).date_ev ?? 0)?.['type'] === 'hookup') {
+    scene.actions([
+      { label: 'Leave your number (fuckbuddy)', handler: (st: GameState) => {
+    ((s as any).date_ev ?? {})['fuckbuddy_invite'] = 1;
+    if (((s as any).date_ev ?? 0)?.['fuck_count'] > 0) {
+      ((s as any).date_ev ?? {})['leave_dialogue'] = ', stopping to scribble your number on a random piece of paper. "Text me if you want to fuck again!" you call over your shoulder as you dash out the door, slamming it behind you.';
+    } else {
+      ((s as any).date_ev ?? {})['leave_dialogue'] = ', stopping to scribble your number on a random piece of paper. "Text me if you want to fool around again!" you call over your shoulder as you dash out the door, slamming it behind you.';
+    }
+    qspCall(s, 'date_after', 'hurry_leave2');
+  } },
+      { label: 'Leave your number (date)', handler: (st: GameState) => {
+    ((s as any).date_ev ?? {})['date_invite'] = 1;
+    ((s as any).date_ev ?? {})['leave_dialogue'] = ', stopping to scribble your number on a random piece of paper. "Text me if you want to go out on a date some time!" you call over your shoulder as you dash out the door, slamming it behind you.';
+    qspCall(s, 'date_after', 'hurry_leave2');
+  } },
+    ]);
+  }
+  if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).date_ev ?? 0)?.['sleepover'] === 1  &&  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'husband') {
+    scene.actions([
+      { label: '"See you soon"', handler: (st: GameState) => {
+    ((s as any).date_ev ?? {})['leave_dialogue'] = ', shouting, "See you soon!" just before it slams behind you.';
+    qspCall(s, 'date_after', 'hurry_leave2');
+  } },
+    ]);
+  } else {
+    if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0) + 1) {
+      scene.actions([
+        { label: '"See you tomorrow"', handler: (st: GameState) => {
+    ((s as any).date_ev ?? {})['leave_dialogue'] = ', shouting, "See you tomorrow!" just before it slams behind you.';
+    qspCall(s, 'date_after', 'hurry_leave2');
+  } },
+      ]);
+    }
+  }
+  // TODO-QSP: end
+  // TODO-QSP: --- date_after ---------------------------------
+  scene.actions([
+    { label: 'No time for goodbyes', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
+    ((s as any).date_ev ?? {})['leave_dialogue'] = ' without even saying goodbye';
+    qspCall(s, 'date_after', 'hurry_leave2');
+  } },
+    { label: '"See you later!"', handler: (st: GameState) => {
+    ((s as any).date_ev ?? {})['leave_dialogue'] = ', calling, "See you later!" just before it slams behind you.';
+    qspCall(s, 'date_after', 'hurry_leave2');
+  } },
+    { label: '"Text me!"', handler: (st: GameState) => {
+    ((s as any).date_ev ?? {})['leave_dialogue'] = ', calling, "Text me!" just before it slams behind you.';
+    qspCall(s, 'date_after', 'hurry_leave2');
   } },
   ]);
   scene.build();
@@ -330,6 +417,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'daytime_after_menu':
       enterDaytimeAfterMenu(s, scene);
+      break;
+    case 'pc_home_leaving_end':
+      enterPcHomeLeavingEnd(s, scene);
+      break;
+    case 'hurry_leave':
+      enterHurryLeave(s, scene);
       break;
     default:
       enterDefault(s, scene);

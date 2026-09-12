@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -219,8 +219,6 @@ function enterStopHere2(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).sex_ev ?? 0)?.['position'] === 'miss'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'doggy'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
                   // TODO-QSP: dynamic text: "Can I just come real quick?" <<$npcdesc>> asks. "I'm really close."
                   scene.text(`"Can I just come real quick?" ${((s as any).npcdesc ?? 0)} asks. "I'm really close."`);
-                } else {
-                  // TODO-QSP: end}
                 }
                 // TODO-QSP: dynamic text: "Are you sure?" <<$npcdesc>> asks. "You haven't gotten to come yet."
                 scene.text(`"Are you sure?" ${((s as any).npcdesc ?? 0)} asks. "You haven't gotten to come yet."`);
@@ -1864,6 +1862,350 @@ function enterAfterSex2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['action_restricted'] === 0  &&  ((s as any).sex_ev ?? 0)?.['boy_asleep'] === 0) {
     qspCall(s, 'sex_ev_after', 'spend_night_ask');
   }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterAfterSexDressed(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
+    if (((s as any).sex_ev ?? 0)?.['type'] === 'hookup') {
+      qspCall(s, 'sex_ev_hookup_leave', 'gotta_go');
+    } else {
+      scene.actions([
+        { label: 'Prepare to leave', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'sex_ev_leave', 'leave_router'
+  } },
+      ]);
+    }
+    if (((s as any).sex_ev ?? 0)?.['leaving'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['cant_stay'] === 0) {
+      scene.actions([
+        { label: 'Hang out', goto: ['sex_ev_leave', 'hang_out_after'] },
+      ]);
+    }
+  } else {
+    scene.actions([
+      { label: 'Prepare to leave', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'sex_ev_leave', 'leave_router'
+  } },
+    ]);
+  }
+  qspCall(s, 'sex_ev_leave', 'breakup_start');
+  // TODO-QSP: end
+  // TODO-QSP: end
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Use the bathroom', goto: ['sex_ev_after', 'bathroom_after'] },
+  ]);
+  scene.build();
+}
+
+function enterSpendNight(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).npc_cheating_know ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    if ((Math.floor(Math.random() * 10) + 1) > 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).hour ?? 0) > 16) {
+      ((s as any).sex_ev ?? {})['cant_stay'] = 1;
+      if (((s as any).sex_ev ?? 0)?.['loc'] === 'npc_home') {
+        scene.text('"Sorry, can\'t. My girlfriend wanted to come over tonight. In fact, you should leave soon before she catches you."');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+          scene.text('"Sorry, can\'t. Booked the room for a date with my girlfriend. In fact, you should leave now before before she arrives."');
+        }
+      }
+      scene.text('"Ugh. <i>Bitch!</i>"');
+      scene.text('"Yeah, I know. Sucks."');
+      qspCall(s, 'sex_ev_after', 'after_sex2');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['loc'] === 'npc_home') {
+        scene.text('"Sure, my girlfriend isn\'t gonna be around for a while. You can crash here."');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+          scene.text('"Sure. The room is booked until tomorrow anyways."');
+        } else {
+          scene.text('"Of course," he smiles.');
+        }
+      }
+      qspCall(s, 'sex_ev_after', 'cuddle_up');
+    }
+  } else {
+    if ((Math.floor(Math.random() * 10) + 1) > 7  &&  ((s as any).hour ?? 0) < 22) {
+      ((s as any).sex_ev ?? {})['cant_stay'] = 1;
+      scene.text('"Sorry, can\'t. I have something to do in the morning."');
+      scene.text('"Ugh, really?"');
+      scene.text('"Yeah, I know. Sucks."');
+      qspCall(s, 'sex_ev_after', 'after_sex2');
+    } else {
+      if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).hour ?? 0) > 16) {
+        ((s as any).sex_ev ?? {})['cant_stay'] = 1;
+        ((s as any).npc_cheating_know ?? {})[String((s as any).npcID ?? 0)] = 1;
+        scene.text('"Sorry, my girlfriend is coming over soon. Can\'t let her catch you here."');
+        scene.text('"Ugh, really?"');
+        scene.text('"Yeah, I know. Sucks."');
+        qspCall(s, 'sex_ev_after', 'after_sex2');
+      } else {
+        scene.text('"Sure, I\'m not doing anything tomorrow. You can crash here."');
+        // TODO-QSP: dynamic text: "Thanks," you yawn, snuggling into <<$npcdesc>>. "Appreciate it."
+        scene.text(`"Thanks," you yawn, snuggling into ${((s as any).npcdesc ?? 0)}. "Appreciate it."`);
+        qspCall(s, 'sex_ev_after', 'cuddle_up');
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCuddleUp(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Cuddle up', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/cuddle1.jpg');
+    // TODO-QSP: dynamic text: "Thanks," you yawn, snuggling into <<$npcdesc>>. "Appreciate it."
+    scene.text(`"Thanks," you yawn, snuggling into ${((s as any).npcdesc ?? 0)}. "Appreciate it."`);
+    scene.text('He wraps his arms around you in return and you close your eyes, allowing yourself to drift off into sleep.');
+    scene.actions([
+      { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+    ]);
+  } },
+    { label: 'Get under the covers (separated)', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    if (((s as any).npc_cuddler ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      scene.text('"Thanks," you yawn, crawling under the covers. "Appreciate it."');
+      scene.text('You snuggle into their warmth and close your eyes, allowing yourself to drift off into sleep.');
+      scene.actions([
+        { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+      ]);
+    } else {
+      scene.text('"Thanks," you yawn, crawling under the covers. "Appreciate it."');
+      // TODO-QSP: dynamic text: You start to snuggle into their warmth and close your eyes when you feel <<$npcd...
+      scene.text(`You start to snuggle into their warmth and close your eyes when you feel ${((s as any).npcdesc ?? 0)}'s arm wrap around you.`);
+      scene.actions([
+        { label: 'Get closer', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/cuddle2.jpg');
+    // TODO-QSP: dynamic text: With a smile, you twist around and intertwine your legs with <<$npcdesc>>'s, get...
+    scene.text(`With a smile, you twist around and intertwine your legs with ${((s as any).npcdesc ?? 0)}'s, getting even closer. Your thighs hug his. His flaccid member presses against your pelvis. Your breasts smush into his chest.`);
+    scene.actions([
+      { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+    ]);
+  } },
+        { label: 'Uncomfortable', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/cuddle_reluctant1.mp4');
+    scene.text('"What are you doing?" you ask stiffly.');
+    scene.text('"Just getting close," he murmurs, pressing his body up against yours.');
+    // TODO-QSP: dynamic text: Uncomfortably, you turn away, stifling deep sighs of exasperation and try to fal...
+    scene.text(`Uncomfortably, you turn away, stifling deep sighs of exasperation and try to fall asleep. ${((s as any).npcdesc ?? 0)} pressing into your back with his flaccid member right between your ass cheeks make it a challenge, but <i>eventually</i> you manage to drift off into sleep.`);
+    scene.actions([
+      { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+    ]);
+  } },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterCuddleUp2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1  &&  ((s as any).sex_ev ?? 0)?.['action_restricted'] === 0  &&  ((s as any).sex_ev ?? 0)?.['morning_after'] === 0) {
+    // TODO-QSP: act'Watch <<$npc_usedname[$npcID]>> sleep':
+    qspCall(s, 'sex_ev_after', 'after_sex2');
+    scene.actions([
+      { label: 'Sleep with <<$npcdesc>>', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Nevermind', goto: ['sex_ev_after', 'after_sex2_w_picture'] },
+      { label: 'Cuddle up', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/cuddle1.jpg');
+    // TODO-QSP: dynamic text: With your eyelids growing heavy, you snuggle up with <<$npcdesc>>, sharing in hi...
+    scene.text(`With your eyelids growing heavy, you snuggle up with ${((s as any).npcdesc ?? 0)}, sharing in his warmth and close your eyes. Moments later, sleep takes you.`);
+    scene.actions([
+      { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+    ]);
+  } },
+      { label: 'Get under the covers', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('With your eyelids growing heavy, you decide to get under the covers, snuggling into their warmth and close your eyes. Moments later, sleep takes you.');
+    scene.actions([
+      { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBed(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'stat', '');
+  if (((s as any).pcs_pubes ?? 0) < 4) {
+    scene.img('images/shared/sex/after/sleep1.jpg');
+  } else {
+    scene.img('images/shared/sex/after/sleep2.jpg');
+  }
+  scene.text('Your eyelids feel so heavy right now. You should probably get up but... you just need to rest your eyes...');
+  scene.text('just... for... a minute...');
+  qspCall(s, 'willpower', 'misc', 'self');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Force yourself to get up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Force yourself to get up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['get_up'] = 1;
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('With tremendous effort, you force your eyes open and haul yourself out of bed. You can\'t fall asleep now, not yet.');
+    qspCall(s, 'sex_ev_after', 'after_sex2');
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Drift off into sleep', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['sleep_accident'] = 1;
+    if (((s as any).cum_loc ?? 0)?.['face'] > 0) {
+      scene.img(`images/shared/sex/cum/facial/sleep${Math.floor(Math.random() * 3) + 1}.jpg`);
+    } else {
+      if (((s as any).cum_loc ?? 0)?.['stomach'] > 0) {
+        scene.img('images/shared/sex/cum/stomach/sleep1.jpg');
+      } else {
+        if (((s as any).cum_loc ?? 0)?.['ass'] > 0  ||  ((s as any).cum_loc ?? 0)?.['back'] > 0) {
+          scene.img('images/shared/sex/cum/back1.jpg');
+        } else {
+          if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
+            scene.img('images/shared/sex/cum/vagcreampie/after2.jpg');
+          } else {
+            scene.img('images/shared/home/bedroom/son.jpg');
+          }
+        }
+      }
+    }
+    scene.text('<i>just... for... a minute...</i>');
+    scene.text('That\'s the last thing you remember before everything fading into darkness...');
+    scene.actions([
+      { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSorePussyMsg(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['fuck_time_total'] > ((s as any).pcs_vag ?? 0) * 3) {
+    if (((s as any).pain ?? 0)?.['vaginal'] + (((s as any).vgape ?? 0) * 8) > 70) {
+      scene.text('Your pussy throbs painfully, drawing involuntary winces every time. The way it feels, you seriously wonder if you\'ll be able to walk tomorrow.');
+    } else {
+      if (((s as any).pain ?? 0)?.['vaginal'] + (((s as any).vgape ?? 0) * 8) > 40) {
+        scene.text('Your pussy throbs sorely, hot and painfully like a bruise. It\'s a little hard to keep your legs together right now.');
+      } else {
+        if (((s as any).pain ?? 0)?.['vaginal'] > 10) {
+          scene.text('Your pussy throbs uncomfortably between your legs, pulsing like a well-worn-out muscle. Which, you suppose, it is right now.');
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSleep(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Fall asleep', handler: (st: GameState) => {
+    scene.text('You lay there, your eyelids slowly grow heavier until they close completely and your consciousness drifts slowly into darkness...');
+    scene.actions([
+      { label: '. . .', goto: ['sex_ev_after', 'sleep_function'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSleepFunction(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sex_ev_sex', 'session_reset');
+  qspCall(s, 'arousal', 'end');
+  if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)] - (((s as any).sex_ev ?? 0)?.['cum_count']/2) + ((s as any).npc_sleep_sex_okay ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)]  &&  (((s as any).stat ?? 0)?.['think_virgin'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0)  &&  ((s as any).sex_ev ?? 0)?.['sleep_fuck'] === 0  &&  ((s as any).sex_ev ?? 0)?.['lover_left'] !== 1) {
+    ((s as any).sex_ev ?? {})['sleepover'] = 1;
+    if ((Math.floor(Math.random() * 2) + 0) === 1) {
+      ((s as any).sex_ev ?? {})['extra_cum'] = (((s as any).sex_ev ?? {})['extra_cum'] ?? 0) + (5);
+      ((s as any).sex_ev ?? {})['sleep_time'] = Math.floor(Math.random() * 3) + 1;
+      (s as any).minut = ((s as any).minut ?? 0) + (60*((s as any).sex_ev ?? {})?.['sleep_time']);
+      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (15*((s as any).sex_ev ?? {})?.['sleep_time']);
+      (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5*((s as any).sex_ev ?? {})?.['sleep_time']);
+      qspCall(s, 'stat', '');
+      ((s as any).sex_ev ?? {})['sleep_fuck'] = 1;
+    } else {
+      if (((s as any).alko ?? 0) > 6) {
+        qspCall(s, 'sleep_simple', 'simple');
+        qspCall(s, 'pain', '', 3, 'head', 'ache');
+      } else {
+        qspCall(s, 'sleep_simple', 'simple');
+      }
+      ((s as any).sex_ev ?? {})['extra_cum'] = (((s as any).sex_ev ?? {})['extra_cum'] ?? 0) + (5);
+      ((s as any).sex_ev ?? {})['wake_fuck'] = 1;
+    }
+  } else {
+    ((s as any).sex_ev ?? {})['extra_cum'] = (((s as any).sex_ev ?? {})['extra_cum'] ?? 0) + (5);
+    ((s as any).sex_ev ?? {})['sleepover'] = 1;
+    if (((s as any).alko ?? 0) > 6) {
+      ((s as any).sex_ev ?? {})['hangover'] = 1;
+      qspCall(s, 'sleep_simple', 'simple');
+      qspCall(s, 'pain', '', 3, 'head', 'ache');
+    } else {
+      qspCall(s, 'sleep_simple', 'simple');
+    }
+    if (((s as any).vomit ?? 0)?.['daily_check'] === 0) {
+      ((s as any).vomit ?? {})['daily_check'] = 1;
+      if (((s as any).alko ?? 0) > 4) {
+        ((s as any).vomit ?? {})['hangover'] = 1;
+      } else {
+        if (((s as any).pregchem ?? 0) > 600  &&  ((s as any).pregchem ?? 0) < 2160  &&  (Math.floor(Math.random() * 4) + 1) === 4) {
+          ((s as any).vomit ?? {})['morning_sick'] = 1;
+        } else {
+          if ((Math.floor(Math.random() * 100) + 1) === 100) {
+            ((s as any).vomit ?? {})['unlucky'] = 1;
+          }
+        }
+      }
+    }
+    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
+      ((s as any).sveta_punishment ?? {})['no_come_home'] = 1;
+    }
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'start'] }]);
+  }
+  if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 4) + 1) < 4  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room') {
+    ((s as any).sex_ev ?? {})['boy_make_breakfast'] = 1;
+    if (((s as any).sex_ev ?? 0)?.['boy_shower'] === 1) {
+      ((s as any).sex_ev ?? {})['boy_shower'] = 0;
+    }
+  } else {
+    if (((s as any).npc_earlyriser ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['wake_fuck'] !== 1) {
+      if ((Math.floor(Math.random() * 2) + 1) === 1) {
+        ((s as any).sex_ev ?? {})['boy_in_shower'] = 1;
+      } else {
+        ((s as any).sex_ev ?? {})['boy_shower'] = 1;
+        ((s as any).sex_ev ?? {})['npc_morning_shower'] = 1;
+      }
+    }
+  }
+  if (((s as any).sex_ev ?? 0)?.['wake_fuck'] === 1) {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'wakeup_sex'] }]);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['sleep_fuck'] === 1) {
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_sex', 'sleep_sex'] }]);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['sleep_fuck'] === 0) {
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'start'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'start'] }]);
+      }
+    }
+  }
+  // TODO-QSP: end
+  // TODO-QSP: --- sex_ev_after ---------------------------------
   scene.build();
 }
 
@@ -1983,6 +2325,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'after_sex2':
       enterAfterSex2(s, scene);
+      break;
+    case 'after_sex_dressed':
+      enterAfterSexDressed(s, scene);
+      break;
+    case 'spend_night':
+      enterSpendNight(s, scene);
+      break;
+    case 'cuddle_up':
+      enterCuddleUp(s, scene);
+      break;
+    case 'cuddle_up2':
+      enterCuddleUp2(s, scene);
+      break;
+    case 'bed':
+      enterBed(s, scene);
+      break;
+    case 'sore_pussy_msg':
+      enterSorePussyMsg(s, scene);
+      break;
+    case 'sleep':
+      enterSleep(s, scene);
+      break;
+    case 'sleep_function':
+      enterSleepFunction(s, scene);
       break;
     default:
       enterDefault(s, scene);

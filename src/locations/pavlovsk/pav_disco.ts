@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -1281,8 +1281,310 @@ function enterKnownPartner(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_disco', ''] },
+  ]);
+  scene.build();
+}
+
+function enterFamiliarFb(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterKatjaTooDrunk(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Disco</b></center>');
+  scene.img('images/locations/pavlovsk/community/disco/school_kids/katja_help.jpg');
+  // TODO-QSP: dynamic text: Katja approaches you. "<<$pcs_nickname>>, are you drunk?! Let's get you home. I'...
+  scene.text(`Katja approaches you. "${((s as any).pcs_nickname ?? 0)}, are you drunk?! Let's get you home. I'll help you."`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go with Katja', goto: ['pav_disco_coolkids', 'katja_walkhome'] },
+  ]);
+  scene.build();
+}
+
+function enterSoniaTooDrunk(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Disco</b></center>');
+  scene.img('images/characters/shared/headshots_main/big25.jpg');
+  // TODO-QSP: dynamic text: Sonia approaches you and smiles. "<<$pcs_nickname>>, you're pretty drunk. Let's ...
+  scene.text(`Sonia approaches you and smiles. "${((s as any).pcs_nickname ?? 0)}, you're pretty drunk. Let's get you home, I'll walk with you."`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go with Sonia', goto: ['pav_disco_coolkids', 'sonia_walkhome'] },
+  ]);
+  scene.build();
+}
+
+function enterAnushkaTooDrunk(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Disco</b></center>');
+  scene.img('images/characters/shared/headshots_main/big144.jpg');
+  scene.text('Anushka approaches and pokes you, which causes you to jerk away. This causes you to stumble and nearly fall, but Anushka catches you by the arm to help steady you.');
+  scene.text('"Someone\'s partied pretty hard tonight, haven\'t they? Maybe a little too hard. Let\'s get you home before someone tries to take advantage of you."');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go with Anushka', goto: ['pav_disco_gopniks', 'anushka_walkhome'] },
+  ]);
+  scene.build();
+}
+
+function enterAlbinaTooDrunk(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Disco</b></center>');
+  scene.img('images/characters/shared/headshots_main/big23.jpg');
+  scene.text('You\'re barely able to stand upright and stumble right into a nearby girl. It takes you a few seconds to realize that your face is firmly buried in her cleavage and you quickly jerk away, much to the disappointment of the boys around you.');
+  scene.text('"Someone\'s had a little too much fun it seems." You look up and notice that it\'s Albina. "Let\'s get you home before you do something you regret."');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go with Albina', goto: ['pav_disco_jocks', 'albina_walkhome'] },
+  ]);
+  scene.build();
+}
+
+function enterHookupAggressive(s: GameState, scene: SceneBuilder): void {
+  ((s as any).hookup ?? {})['pickup'] = 'pav_disco';
+  qspCall(s, 'fame', 'pav', 'sex', 1);
+  scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
+  if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'city_center'  ||  ((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'city_residential') {
+    scene.text('"Hey, let\'s go back to my place in St.Petersburg and fuck!"');
+  } else {
+    scene.text('"Hey, let\'s go back to my place and fuck!"');
+  }
+  if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
+    scene.actions([
+      { label: 'Take him home', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/dk_night.jpg');
+    // TODO-QSP: dynamic text: "How about mine instead?" you ask. With a sultry smirk, you lean in to whisper i...
+    scene.text(`"How about mine instead?" you ask. With a sultry smirk, you lean in to whisper in ${((s as any).npcdesc ?? 0)}'s ear.`);
+    scene.text('"<i>My parents aren\'t home tonight...</i>"');
+    scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_start', 'hookup_pc_home_start'] },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'No thanks', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
+    scene.text('"No thanks. I\'m not interested in having a one night stand," you reply.');
+    // TODO-QSP: dynamic text: "Huh?!" <<$npcdesc>> looks at you with anger on his face. "After the way you wer...
+    scene.text(`"Huh?!" ${((s as any).npcdesc ?? 0)} looks at you with anger on his face. "After the way you were dancing with me, you're not gonna give it up?"`);
+    scene.text('He makes a show of your rejection, hissing at you and spitting on the ground, narrowly missing your shoes before storming off. You roll your eyes and wait until he\'s gone before leaving yourself.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      { label: 'Return to the dance', goto: ['pav_disco', ''] },
+    ]);
+  } },
+    { label: 'Fuck off', handler: (st: GameState) => {
+    scene.img('images/pc/reactions/fuckoff3.jpg');
+    scene.text('"You have no chance with me, so why don\'t you just fuck off?" you say with a sting.');
+    // TODO-QSP: dynamic text: "Huh?!" <<$npcdesc>> looks at you with anger on his face. "After the way you wer...
+    scene.text(`"Huh?!" ${((s as any).npcdesc ?? 0)} looks at you with anger on his face. "After the way you were dancing with me, you're not gonna give it up?"`);
+    scene.text('He makes a show of your rejection, hissing at you and spitting on the ground, narrowly missing your shoes before storming off. You roll your eyes and wait until he\'s gone before leaving yourself.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      { label: 'Return to the dance', goto: ['pav_disco', ''] },
+    ]);
+  } },
+    { label: 'That sounds nice', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
+    scene.text('"That sounds nice," you say with a smile.');
+    // TODO-QSP: dynamic text: He leans in and gives you a quick, yet passionate kiss. "Great!" ' + $apartment_...
+    scene.text('He leans in and gives you a quick, yet passionate kiss. "Great!" \' + $apartment_txt + \', whispering obscenities in your ear along the way.');
+    qspCall(s, 'arousal', 'kiss', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+    ]);
+  } },
+    { label: 'That sounds great', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
+    scene.text('"Fuck yeah, that sounds awesome." you say back to him.');
+    // TODO-QSP: dynamic text: He leans in and gives you a quick, yet passionate kiss. "I knew I liked you." ' ...
+    scene.text('He leans in and gives you a quick, yet passionate kiss. "I knew I liked you." \' + $apartment_txt + \'.');
+    qspCall(s, 'arousal', 'kiss', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterHookupNice(s: GameState, scene: SceneBuilder): void {
+  ((s as any).hookup ?? {})['pickup'] = 'pav_disco';
+  scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
+  // TODO-QSP: dynamic text: "Hey," <<$npcdesc>> says. "I had a really good time dancing with you tonight and...
+  scene.text(`"Hey," ${((s as any).npcdesc ?? 0)} says. "I had a really good time dancing with you tonight and I was wondering... would you maybe want to come back to my place? I could get you a drink and maybe..."`);
+  qspCall(s, 'family_schedule', '');
+  if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
+    scene.actions([
+      { label: 'Invite him home (hookup)', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 1);
+    scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
+    scene.text('"You want to come back to my place?" you ask, whispering in his ear. "<i>My parents aren\'t home tonight.</i>"');
+    scene.text('The look in his eyes is all you need to know and the two of you rush back to the estate together.');
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_start', 'hookup_pc_home_start'] },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Sorry', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
+    scene.text('"Oh, uhh... I uhh... I don\'t know if I\'m really up for that. Sorry..."');
+    // TODO-QSP: dynamic text: "Oh, sure. That's okay. You don't have to be sorry," <<$npcdesc>> says with a hi...
+    scene.text(`"Oh, sure. That's okay. You don't have to be sorry," ${((s as any).npcdesc ?? 0)} says with a hint of disappointment. "Well at least I gave it my best shot. Who knows, maybe I'll see you here again."`);
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      { label: 'Return to the dance', goto: ['pav_disco', ''] },
+    ]);
+  } },
+    { label: 'No thanks', handler: (st: GameState) => {
+    scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
+    scene.text('"No thanks, I\'m not interested," you reply');
+    scene.text('"Oh, sure. That\'s okay. Uhh, sorry I asked," he says with a slight hint of disappointment.');
+    scene.text('You shrug and walk away.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      { label: 'Return to the dance', goto: ['pav_disco', ''] },
+    ]);
+  } },
+    { label: 'Go home with him', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 1);
+    scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
+    scene.text('"That sounds nice," you smile.');
+    scene.text('"Great! So, shall we..."');
+    scene.text('You follow him back to his home in a nearby apartment complex');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Go to his place', goto: ['date_hangout', 'start', '\'disco\''] },
+    ]);
+  } },
+    { label: 'Want to fuck?', handler: (st: GameState) => {
+    qspCall(s, 'fame', 'pav', 'sex', 5);
+    scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
+    scene.text('"... fuck?" you ask.');
+    scene.text('He looks dumbfounded by your words. "Uhh..."');
+    scene.text('"Fuck," you repeat. "Wanna go back to your place and fuck? We can skip the drinks too."');
+    // TODO-QSP: dynamic text: <<$npcdesc>> seems stunned by your straightforwardness, but eventually answers. ...
+    scene.text(`${((s as any).npcdesc ?? 0)} seems stunned by your straightforwardness, but eventually answers. "Yes!"`);
+    scene.text('"Great! Lead the way!" you grin before the two of you hurry through the streets together to a nearby apartment complex.');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Go to his place', goto: ['sex_ev_start', 'npc_home_start', '\'hookup\''] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterArtemDisco(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Disco</b></center>');
+  scene.img('images/pc/activities/phone/text_indoor.jpg');
+  scene.text('You look around and wish Artem was here with you, so you pull out your phone and text him. "What are you doing?"');
+  scene.text('He texts back a few seconds later. "Just playing some games. Why?"');
+  scene.text('You text back. "I\'m at the disco, come dance with me please."');
+  scene.text('There\'s a bit of a pause before he finally he texts back. "Okay, omw."');
+  scene.text('You stand around and listen to the music before Artem finally shows up.');
+  scene.text('He smiles and waves when he sees you before walking over and giving you a hug.');
+  scene.text('"Not really my place, but if my girl wants to dance, then let\'s dance," he says as he leads you out onto the dance floor.');
+  // TODO-QSP: end
+  // TODO-QSP: --- pav_disco ---------------------------------
+  scene.actions([
+    { label: 'Dance with him', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
+    if (((s as any).hour ?? 0) > 0) {
+      (s as any).minut = ((s as any).minut ?? 0) + ((24 -((s as any).hour ?? 0))*60 -((s as any).minut ?? 0));
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/community/disco/club_dance3.jpg');
+    scene.text('The two of you dance for the whole night, occasionally stopping to rest and drink something before going back out onto the dance floor.');
+    scene.text('The gopniks make snide remarks and the cool kids make comments about how bad of a dancer he is, but he does his best to ignore them and make the night as fun as he can for you.');
+    scene.text('As the lights go up and everyone is told to go home, the two of you laugh and talk on your way outside.');
+    scene.text('"I\'m glad you called. I had a lot more fun than I thought I would," he says with a smile.');
+    scene.text('You nod at him. "I\'m glad you had fun."');
+    if (((s as any).anushkaQW ?? 0)?.['artem_dom'] >= 1) {
+      scene.text('Artem hugs you close. "Let me walk you home."');
+      scene.text('As the two of you start walking, you notice Anushka splitting off from the other gopniks. You wonder if Artem would be willing to walk her home as well.');
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
+        scene.text('Artem hugs you close. "Let me walk you home."');
+        scene.text('As the two of you start to walking, you notice Anushka splitting off from the other gopniks. You wonder if you could ever make Artem feel confident enough to walk with her as well...');
+      } else {
+        scene.text('Artem hugs you close. "Let me walk you home."');
+        scene.text('As the two of you start walking, you notice Anushka splitting off from the other gopniks. Given that you don\'t know her that well, you decide to let her continue on her way.');
+      }
+    }
+    if (((s as any).anushkaQW ?? 0)?.['artem_dom'] >= 1) {
+      scene.actions([
+        { label: 'Walk with Anushka', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big144.jpg');
+    scene.text('You point out Anushka heading off on her own. "We could walk Nush home..."');
+    scene.text('Artem looks at her before he glances at you. "Uh... Sure, I guess..."');
+    scene.text('You give his arm a squeeze and try dropping some hints. "Yeah, the three of us walking together alone in the middle of the night with no else around..."');
+    scene.text('"Yeah, I guess... Unless we run into someone else," he shrugs, seemingly not getting your hint.');
+    scene.text('At this point, you decide to lay on the hints pretty thick. "Maybe we take the alleyways so no one would be around... Who knows what might happen..."');
+    scene.text('He stares at you for a moment and you can see the gears slowly starting to turn before the realization finally hits him. "OH!"');
+    scene.text('He glances at Anushka. "Do you think she would?"');
+    scene.actions([
+      { label: 'Only one way to find out', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
+    scene.img('images/characters/shared/headshots_main/big2.jpg');
+    scene.text('You shrug. "Only one way to find out."');
+    scene.text('He glances at her again before he grins. "You\'re right. Let\'s go find out."');
+    scene.text('The two of you hurry up to catch up to Anushka. As you get close, she turns to look back and arches a slender brow, clearly wondering why the two of you are in such a hurry.');
+    scene.text('"We thought we would walk you home. Make sure you get there safely," Artem says with a smile.');
+    scene.text('She glances past Artem and looks at you. You just smile pleasantly back at her.');
+    scene.text('"Sure... But I don\'t really need a nerd chaperon..."');
+    scene.text('Artem ignores her jab. "There might be a nerd lurking in a dark corner and we wouldn\'t want some nerd jumping out at you. You might get all submissive on them and let them take advantage of you or something..."');
+    scene.text('You can see her shaking her head, but she doesn\'t say anything and lets him have his fun. "I, I mean <i>we</i> all know how you\'ll let any nerd that comes along make you into his personal bitch and let him own your ass."');
+    scene.text('She doesn\'t dispute his words and just shakes her head again. "Whatever..."');
+    scene.actions([
+      { label: 'Walk Anushka home', goto: ['artem_nush_sex', 'artem_nush_disco_walk'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Just walk home with Artem', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/walking.jpg');
+    scene.text('You and Artem hold hands while talking about how much fun the two of you had tonight.');
+    scene.text('Artem walks you all the way to your apartment door, where you smile and kiss him. "Good night, honey."');
+    scene.text('He hugs you. "See you later, babe."');
+    scene.text('He kisses you again before you go into your apartment.');
+    scene.actions([
+      { label: 'Go home', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 4;
+    (st as any).pavhome_enter = 1;
+  }, goto: ['korrPar', ''] },
+    ]);
+  } },
+    ]);
+  } },
   ]);
   scene.build();
 }
@@ -1334,6 +1636,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'known_partner':
       enterKnownPartner(s, scene);
+      break;
+    case 'familiar_fb':
+      enterFamiliarFb(s, scene);
+      break;
+    case 'katja_too_drunk':
+      enterKatjaTooDrunk(s, scene);
+      break;
+    case 'sonia_too_drunk':
+      enterSoniaTooDrunk(s, scene);
+      break;
+    case 'anushka_too_drunk':
+      enterAnushkaTooDrunk(s, scene);
+      break;
+    case 'albina_too_drunk':
+      enterAlbinaTooDrunk(s, scene);
+      break;
+    case 'hookup_aggressive':
+      enterHookupAggressive(s, scene);
+      break;
+    case 'hookup_nice':
+      enterHookupNice(s, scene);
+      break;
+    case 'artem_disco':
+      enterArtemDisco(s, scene);
       break;
     default:
       enterDefault(s, scene);

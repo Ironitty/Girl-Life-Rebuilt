@@ -646,6 +646,7 @@ function enterSexFilmForceStop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexFilmAccept(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him film', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['phone_film'] = 2;
@@ -702,6 +703,713 @@ function enterSexFilmAccept(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterSexFilmEnd(s: GameState, scene: SceneBuilder): void {
+  if ((((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_indiscreet ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  (Math.floor(Math.random() * 3) + 1) === 1)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] < 1  &&  ((s as any).sex_ev ?? 0)?.['phone_film'] !== -1) {
+    qspCall(s, 'fame', '', ((s as any).region ?? 0), 'sex', 5);
+  }
+  if (((s as any).sex_ev ?? 0)?.['phone_film'] !== -1) {
+    (s as any).i = 0;
+    // TODO-QSP: $sex_video[i] = $sex_ev['video_media']
+    // TODO-QSP: $sex_video_author[i] = $sex_ev['video_author']
+    // TODO-QSP: $sex_video_dialogue[i] = $sex_ev['video_dialogue']
+  }
+  qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieAskEv(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['creampie_ask_ev'] = 1;
+  if (((s as any).sex_ev ?? 0)?.['position'] !== 'cowgirl') {
+    // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," <<$npcdesc>> grunts as he plows you. "Can I cum inside ...
+    scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," ${((s as any).npcdesc ?? 0)} grunts as he plows you. "Can I cum inside you today?"`);
+  } else {
+    // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," <<$npcdesc>> grunts as you bounce up and down on his co...
+    scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," ${((s as any).npcdesc ?? 0)} grunts as you bounce up and down on his cock. "Can I cum inside you today?"`);
+  }
+  if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
+    scene.actions([
+      { label: 'It\'s too risky (danger day)', handler: (st: GameState) => {
+    scene.text('"You can\'t," you say, shaking your head. "I could get pregnant if you do it today."');
+    scene.text('"Come on, what\'s the harm? You can just get a morning after pill."');
+    scene.actions([
+      { label: 'Refuse', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'sex_ev_events', 'creampie_ask_ev_ma_pill_deny'
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).sex_ev ?? 0)?.['promise_no_creampie'] === 1) {
+    scene.actions([
+      { label: 'Already told you no (mad)', handler: (st: GameState) => {
+    scene.text('"I\'m pretty sure I already told you no," you frown.');
+    scene.text('"Yeah you did, but..." he says. "I figured what\'s the harm in asking again?"');
+    scene.actions([
+      { label: 'Firmly deny him', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'sex_ev_events', 'creampie_ask_ev_annoyed_deny'
+  } },
+      { label: 'Acquiesce', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'sex_ev_events', 'creampie_ask_ev_annoyed_allow'
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieAskEvMaPillDeny(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: dynamic text: "No way! <<$npcdesc>>, do <i>not</i> cum inside me, do you hear me?"
+  scene.text(`"No way! ${((s as any).npcdesc ?? 0)}, do <i>not</i> cum inside me, do you hear me?"`);
+  scene.text('"Okay okay, fine," he sighs.');
+  qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieAskEvMaPillAllow(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['position'] !== 'cowgirl') {
+    // TODO-QSP: dynamic text: You think about it for a few moments while <<$npcdesc>> keeps thrusting into you...
+    scene.text(`You think about it for a few moments while ${((s as any).npcdesc ?? 0)} keeps thrusting into you.`);
+  } else {
+    // TODO-QSP: dynamic text: You think about it for a few moments while rolling your hips over <<$npcdesc>>'s...
+    scene.text(`You think about it for a few moments while rolling your hips over ${((s as any).npcdesc ?? 0)}'s cock.`);
+  }
+  scene.text('"Okay," you smile. "You can do it today. I\'ll get a pill later."');
+  // TODO-QSP: dynamic text: "You're the best, <<$pcs_nickname>>," he grins and starts moving his hips with r...
+  scene.text(`"You're the best, ${((s as any).pcs_nickname ?? 0)}," he grins and starts moving his hips with renewed enthusiasm.`);
+  qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieAskEvAnnoyedDeny(s: GameState, scene: SceneBuilder): void {
+  scene.text('"Well I\'ll tell you now," you growl. "Fucking <i>don\'t</i>."');
+  scene.text('"Fine, fine. Yeesh, I was just asking."');
+  qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieAskEvAnnoyedAllow(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['must_creampie'] = 1;
+  ((s as any).sex_ev ?? {})['creampie_allowance'] = 1;
+  scene.text('"<i>Ugh</i>. If I tell you no, you\'re just gonna ask again aren\'t you?" You sigh in exasperation and he returns it with a bratty grin. You glare at him but end up saying, "<i>Fine</i>. Just this once, okay?"');
+  // TODO-QSP: dynamic text: "You're the best, <<$pcs_nickname>>," he grins and starts moving his hips with r...
+  scene.text(`"You're the best, ${((s as any).pcs_nickname ?? 0)}," he grins and starts moving his hips with renewed enthusiasm.`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Roll your eyes', handler: (st: GameState) => {
+    scene.text('"Yeah, yeah, whatever," you say with a wave. "Just remember it\'s your fault if you knock me up."');
+    qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  } },
+    { label: 'Smile', handler: (st: GameState) => {
+    scene.text('Unable to help yourself, you end up smiling back. His childish persistence is strangely endearing, even if it\'s just about wanting to bust a nut inside you.');
+    qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterFuckPunchLink(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).crime_placeholder ?? 0) > 0  &&  ((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl'  &&  ((s as any).pcs_punch ?? 0) > 30) {
+    scene.text('With you riding on top, it\'s the perfect opportunity for you to <a href="exec: gs \'sex_ev_events\', \'fuck_punch1\'">knock him out</a> right now if you wanted to.');
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterFuckPunch1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Cancel', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_sex', 'fuck_continue');
+  } },
+    { label: '"Night night"', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['punchout'] = 1;
+    scene.img('images/shared/sex/misc/fuck_punch1.mp4');
+    // TODO-QSP: dynamic text: "Night night, <<$npc_usedname[$npcID]>>," you smile and punch him in the face, k...
+    scene.text(`"Night night, ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}," you smile and punch him in the face, knocking him out cold.`);
+    // TODO-QSP: act'Call it in': gt 'sex_ev_events', 'fuck_punch2'
+  } },
+  ]);
+  scene.build();
+}
+
+function enterFuckPunch2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $sex_ev['bed_room']
+  scene.text('You pick up your phone and call your boss.');
+  scene.text('"It\'s done. Come get him."');
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Get dressed', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_leave', 'dress');
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('You get dressed while you wait for the boys to show up.');
+    // TODO-QSP: dynamic text: It doesn't take long and a few minutes later they arrive to tow <<$npc_usedname[...
+    scene.text(`It doesn't take long and a few minutes later they arrive to tow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s unconscious body out.`);
+  } },
+    { label: 'Just wait', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    scene.text('You don\'t bother getting dressed and wait for the boys to show up.');
+    // TODO-QSP: dynamic text: It doesn't take long and within a few minutes They shamelessly ogle you, grinnin...
+    scene.text(`It doesn't take long and within a few minutes They shamelessly ogle you, grinning at you as they tow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s unconscious body out.`);
+    // TODO-QSP: act'Give them the finger':
+    scene.text('You sneer back at them with a look that says, <i>shut the fuck up</i> and put your finger up at them. This is the job.');
+    scene.actions([
+      { label: 'Ignore them', handler: (st: GameState) => {
+    scene.text('Doesn\'t matter to you. Let them look if you want. You know your role in this.');
+  } },
+    ]);
+  } },
+    { label: 'Smile back', handler: (st: GameState) => {
+    scene.text('Doesn\'t matter to you if they look. Let them. You know your role in this. And that\'s being a hot piece of ass. If they\'re looking, it means you\'re working.');
+    scene.text('You smile back.');
+    scene.text('Besides. It\'s a compliment.');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterOfferCiga1(s: GameState, scene: SceneBuilder): void {
+  scene.text('"You want one?" he asks, holding the open packet towards you.');
+  if (((s as any).drugVars ?? 0)?.['cigarettes_used'] > 20) {
+    qspCall(s, 'willpower', 'drugs', 'self', 'medium');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Trying to quit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Trying to quit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/bed_smoke2.jpg');
+    scene.text('"I\'m trying to quit," you reply ruefully.');
+    // TODO-QSP: dynamic text: <<$npcdesc>> nods and pulls one out for himself to light up. As the end catches ...
+    scene.text(`${((s as any).npcdesc ?? 0)} nods and pulls one out for himself to light up. As the end catches fire, he takes a long pull before exhaling a cloud of smoke in deep satisfaction`);
+    qspCall(s, 'sex_ev_after', 'after_sex2');
+  } },
+      ]);
+    }
+  } else {
+    scene.actions([
+      { label: 'No thanks', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/bed_smoke2.jpg');
+    scene.text('"No thanks," you reply politely. "I\'m good."');
+    // TODO-QSP: dynamic text: <<$npcdesc>> nods and pulls one out for himself instead and lights up.
+    scene.text(`${((s as any).npcdesc ?? 0)} nods and pulls one out for himself instead and lights up.`);
+    qspCall(s, 'sex_ev_after', 'after_sex2');
+  } },
+    ]);
+  }
+  if (((s as any).drugVars ?? 0)?.['cigarettes_used'] === 0) {
+    scene.actions([
+      { label: 'I don\'t smoke', handler: (st: GameState) => {
+    if (((s as any).stat ?? 0)?.['cigarettes_smoked'] > 20  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      scene.img('images/shared/sex/after/pillow_talk2.jpg');
+      scene.text('"No thanks," you reply politely. "I don\'t smoke anymore."');
+      if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+        // TODO-QSP: dynamic text: "Oh, sorry. I didn't realize," <<$npcdesc>> blinks. "I just won't then. Don't wa...
+        scene.text(`"Oh, sorry. I didn't realize," ${((s as any).npcdesc ?? 0)} blinks. "I just won't then. Don't want to tempt you."`);
+        scene.actions([
+          { label: 'How sweet', handler: (st: GameState) => {
+    scene.text('A swell of affection warms your chest as he puts away his pack. It\'s so sweet how thoughtful he is!');
+    qspCall(s, 'sex_ev_after', 'after_sex2');
+  } },
+          { label: 'It\'s okay', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+    scene.img('images/shared/sex/after/bed_smoke2.jpg');
+    scene.text('You shake your head.');
+    scene.text('"No, it\'s okay. Don\'t stop yourself on my account."');
+    scene.text('"You sure?" he asks.');
+    scene.text('"I\'m sure," you insist. "Go ahead. I\'ll be fine."');
+    scene.text('At your insistence, he goes ahead and lights up, taking a long drag before exhaling a cloud of smoke in deep satisfaction.');
+    qspCall(s, 'sex_ev_after', 'after_sex2');
+  } },
+        ]);
+      } else {
+        qspCall(s, 'sex_ev_after', 'after_sex2');
+      }
+    } else {
+      scene.img('images/shared/sex/after/bed_smoke2.jpg');
+      scene.text('"No thanks. I don\'t smoke," you tell him.');
+      // TODO-QSP: dynamic text: <<$npcdesc>> nods and pulls one out for himself to light up. As the end catches ...
+      scene.text(`${((s as any).npcdesc ?? 0)} nods and pulls one out for himself to light up. As the end catches fire, he takes a long drag before exhaling a cloud of smoke in deep satisfaction`);
+      qspCall(s, 'sex_ev_after', 'after_sex2');
+    }
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Yes please', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['bum_cigarette'] = 1;
+    scene.img('images/shared/sex/after/bed_smoke0.jpg');
+    // TODO-QSP: dynamic text: "Sure," you smile. <<$npcdesc>> hands over one with his lighter and you accept g...
+    scene.text(`"Sure," you smile. ${((s as any).npcdesc ?? 0)} hands over one with his lighter and you accept gratefully, lighting up and inhaling deeply.`);
+    qspCall(s, 'sex_ev_after', 'smoke_ciga_act');
+  } },
+    { label: 'Love one', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['bum_cigarette'] = 1;
+    scene.img('images/shared/sex/after/bed_smoke0.jpg');
+    // TODO-QSP: dynamic text: "I'd love one," you smile. <<$npcdesc>> hands over one with his lighter and you ...
+    scene.text(`"I'd love one," you smile. ${((s as any).npcdesc ?? 0)} hands over one with his lighter and you accept gratefully, lighting up and inhaling deeply.`);
+    qspCall(s, 'sex_ev_after', 'smoke_ciga_act');
+  } },
+    { label: 'Read my mind', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['bum_cigarette'] = 1;
+    scene.img('images/shared/sex/after/bed_smoke0.jpg');
+    // TODO-QSP: dynamic text: "You read my mind," you grin as <<$npcdesc>> hands over one with his lighter and...
+    scene.text(`"You read my mind," you grin as ${((s as any).npcdesc ?? 0)} hands over one with his lighter and you accept gratefully, lighting up and inhaling deeply.`);
+    qspCall(s, 'sex_ev_after', 'smoke_ciga_act');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBrushingTeeth(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/shared/home/bathroom/brush_teeth_watch.jpg');
+  // TODO-QSP: dynamic text: You catch <<$npc_usedname[$npcID]>> watching you brush your teeth.
+  scene.text(`You catch ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} watching you brush your teeth.`);
+  // TODO-QSP: act'"What?"':
+  scene.text('"What?" you mumble around the brush and toothpaste in your mouth.');
+  if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'ass') {
+    scene.text('"I\'m just enjoying the view," he grins and you realize he\'s ogling your naked ass.');
+  } else {
+    scene.text('"Nothing," he says, smiling at you.');
+  }
+  qspCall(s, 'sex_ev_events', 'brush_teeth_roll_eyes');
+  qspCall(s, 'sex_ev_events', 'brush_teeth_ass_shake');
+  // TODO-QSP: end
+  qspCall(s, 'sex_ev_events', 'brush_teeth_roll_eyes');
+  qspCall(s, 'sex_ev_events', 'brush_teeth_ass_shake');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBrushTeethRollEyes(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: act'Roll your eyes':
+  scene.text('You roll your eyes to yourself, continuing what you\'re doing.');
+  scene.text('<i>Boys...</i>');
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] },
+  ]);
+  scene.build();
+}
+
+function enterBrushTeethAssShake(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: act'Shake your ass at him':
+  if (((s as any).npc_fav_body_part ?? 0)?.[String((s as any).npcID ?? 0)] === 'ass') {
+    scene.text('"I bet you are."');
+  } else {
+    scene.text('"Yeah. Sure."');
+  }
+  scene.text('You grin back, shaking your ass for him.');
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] },
+  ]);
+  scene.build();
+}
+
+function enterLongArgument(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 10);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: $sex_ev['bed_room']
+  scene.text('"What the fuck is your problem?" you snap.');
+  scene.text('"My problem?! What\'s <i>your</i> problem?"');
+  // TODO-QSP: dynamic text: You and <<$npcdesc>> end up getting into a long argument.
+  scene.text(`You and ${((s as any).npcdesc ?? 0)} end up getting into a long argument.`);
+  ((s as any).sex_ev ?? {})['angry_after'] = 1;
+  qspCall(s, 'sex_ev_after', 'quit');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Fume', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'hate');
+    qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
+    scene.text('Eventually, you are practically out of breath with your throats raw from shouting and both of you are fuming.');
+  }, goto: ['sex_ev_after', 'after_sex2'] },
+  ]);
+  scene.build();
+}
+
+function enterSneakPhone(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: msg'Placeholder - Event is WIP'
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRummageDrawersLink(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['drawer_rummage'] === 0  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home'  &&  ((s as any).sex_ev ?? 0)?.['action_restricted'] === 0) {
+    if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+      // TODO-QSP: dynamic text: <<$npcdesc>>'s <a href="exec: gs 'sex_ev_events','sneak_phone'">phone</a> lays o...
+      scene.text(`${((s as any).npcdesc ?? 0)}'s <a href="exec: gs 'sex_ev_events','sneak_phone'">phone</a> lays on top of the hotel room <a href="exec: gs 'sex_ev_events','rummage_drawers_start'">dresser</a> unattended.`);
+    } else {
+      // TODO-QSP: dynamic text: <<$npcdesc>>'s <a href="exec: gs 'sex_ev_events','sneak_phone'">phone</a> lays o...
+      scene.text(`${((s as any).npcdesc ?? 0)}'s <a href="exec: gs 'sex_ev_events','sneak_phone'">phone</a> lays on top of his <a href="exec: gs 'sex_ev_events','rummage_drawers_start'">dresser</a> unattended.`);
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRummageDrawersStart(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go back', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_after', 'after_sex2_w_picture');
+  } },
+    { label: 'Rummage through his dresser', goto: ['sex_ev_events', 'rummage_drawers1'] },
+  ]);
+  scene.build();
+}
+
+function enterRummageDrawers1(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['drawer_rummage'] = 1;
+  scene.img('images/pc/activities/misc/open_drawers1.mp4');
+  if ((Math.floor(Math.random() * 3) + 1) === 1) {
+    if (((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room') {
+      if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+        // TODO-QSP: dynamic text: Rummaging through <<$npcdesc>>'s drawers, you find rows of socks and underwear, ...
+        scene.text(`Rummaging through ${((s as any).npcdesc ?? 0)}'s drawers, you find rows of socks and underwear, all neatly folded. Seems he's very organized...`);
+      } else {
+        if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+          // TODO-QSP: dynamic text: Rummaging through <<$npcdesc>>'s drawers, you find a jumble of socks and underwe...
+          scene.text(`Rummaging through ${((s as any).npcdesc ?? 0)}'s drawers, you find a jumble of socks and underwear, all mixed in with each other like meat in a pasta. Seems like he's not very organized...`);
+        } else {
+          // TODO-QSP: dynamic text: You rummage through <<$npcdesc>>'s drawers and find some clothes. Nothing intere...
+          scene.text(`You rummage through ${((s as any).npcdesc ?? 0)}'s drawers and find some clothes. Nothing interesting.`);
+        }
+      }
+    } else {
+      // TODO-QSP: dynamic text: You rummage through <<$npcdesc>>'s drawers. You don't find anything of interest.
+      scene.text(`You rummage through ${((s as any).npcdesc ?? 0)}'s drawers. You don't find anything of interest.`);
+    }
+  } else {
+    ((s as any).sex_ev ?? {})['boy_money'] = Math.floor(Math.random() * 7) + 3;
+    if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      ((s as any).sex_ev ?? {})['boy_money'] = (((s as any).sex_ev ?? {})['boy_money'] ?? 0) + (Math.floor(Math.random() * 5) + 1);
+    }
+    if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+      ((s as any).sex_ev ?? {})['boy_money'] = ((s as any).sex_ev ?? {})?.['boy_money'] * 2;
+    }
+    // TODO-QSP: dynamic text: You rummage through <<$npcdesc>>'s drawers. You find <<sex_ev['boy_money'] * 100...
+    scene.text(`You rummage through ${((s as any).npcdesc ?? 0)}'s drawers. You find ${((s as any).sex_ev ?? {})?.['boy_money'] * 100} <b>₽</b> in various notes, along with some of his other things.`);
+    scene.actions([
+      { label: 'Steal it', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    ((s as any).sex_ev ?? {})['stole_money'] = 1;
+    if (((s as any).sex_ev ?? 0)?.['boy_in_shower'] === 1) {
+      qspCall(s, 'sex_ev_events', 'rummage_drawers_shower_route');
+    } else {
+      qspCall(s, 'sex_ev_events', 'rummage_drawers_sleeping_route');
+    }
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Close the drawer', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_events', 'rummage_drawers_end_route');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterRummageDrawersSleepingRoute(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: dynamic text: You take another cautious glance at <<$npcdesc>> but he is still slumbering away...
+  scene.text(`You take another cautious glance at ${((s as any).npcdesc ?? 0)} but he is still slumbering away. You decide to take your chance and grab the money, carefully close the drawer with minimal noise, and quietly stuff your stolen goods into your purse.`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_events', 'rummage_drawers_end_route');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterRummageDrawersShowerRoute(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
+    if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room'  ||  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2  ||  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
+      scene.text('You take a wary glance at the bathroom door. Right as you do, you hear the water shut off. Realizing there\'s only seconds, you take your chance and grab the cash out of the drawer and running back to your things to stuff it into your bag.');
+    } else {
+      // TODO-QSP: dynamic text: You take a wary glance at the door. Seems like <<$npcdesc>> is still showering s...
+      scene.text(`You take a wary glance at the door. Seems like ${((s as any).npcdesc ?? 0)} is still showering so it should be safe. But right as you pick up the cash, you hear footsteps in the hall. Panic shoots through you as you run back to stuff it into your bag.`);
+    }
+    scene.actions([
+      { label: 'Hide the money!', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_events', 'rummage_drawers_end_route');
+  } },
+    ]);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room'  ||  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2  ||  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
+      scene.text('You take a wary glance at the bathroom door. The water\'s still running. It doesn\'t seem like he\'s going to come out any time soon. You decide to take your chance and grab the cash, closing the drawer and stuffing it into your purse.');
+    } else {
+      // TODO-QSP: dynamic text: You take a wary glance at the door. You don't hear <<$npcdesc>> coming so you de...
+      scene.text(`You take a wary glance at the door. You don't hear ${((s as any).npcdesc ?? 0)} coming so you decide to take your chance and grab the cash, closing the drawer and stuffing it into your purse.`);
+    }
+    scene.actions([
+      { label: 'Wait for <<$npcdesc>> to finish', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room'  ||  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2  ||  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
+      // TODO-QSP: dynamic text: After hiding the money, you sit back on the bed and act natural. It's only a cou...
+      scene.text(`After hiding the money, you sit back on the bed and act natural. It's only a couple minutes before you hear the water shut off and ${((s as any).npcdesc ?? 0)} comes out with wet hair and a towel wrapped around his waist.`);
+    } else {
+      // TODO-QSP: dynamic text: After hiding the money, you sit back on the bed and act natural. It's only a cou...
+      scene.text(`After hiding the money, you sit back on the bed and act natural. It's only a couple minutes before ${((s as any).npcdesc ?? 0)} comes strolling back into the bedroom with wet hair and a towel wrapped around his waist.`);
+    }
+    qspCall(s, 'sex_ev_shower', 'boy_shower_finish_acts');
+  } },
+      { label: 'Join him in the shower', goto: ['sex_ev_shower', 'shower_join1'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRummageDrawersEndRoute(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['boy_in_shower'] === 1) {
+    qspCall(s, 'sex_ev_events', 'rummage_drawers_shower_end');
+  } else {
+    qspCall(s, 'sex_ev_after', 'after_sex2_w_picture');
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRummageDrawersShowerEnd(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $sex_ev['bed_room']
+  if (((s as any).sex_ev ?? 0)?.['stole_money'] === 1) {
+    (s as any).money = ((s as any).money ?? 0) + (((s as any).sex_ev ?? {})?.['boy_money'] * 100);
+    // TODO-QSP: dynamic text: You finish hiding the money in your bag just as <<$npcdesc>> comes into the room...
+    scene.text(`You finish hiding the money in your bag just as ${((s as any).npcdesc ?? 0)} comes into the room, hair wet from the shower, towel wrapped around his waist.`);
+  } else {
+    // TODO-QSP: dynamic text: You finish closing the drawer and step away just as <<$npcdesc>> comes into the ...
+    scene.text(`You finish closing the drawer and step away just as ${((s as any).npcdesc ?? 0)} comes into the room, hair wet from the shower, towel wrapped around his waist.`);
+  }
+  qspCall(s, 'sex_ev_shower', 'boy_shower_finish_acts');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBoyTimecheck(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).hour ?? 0) >= ((s as any).npc_work_start ?? 0)?.[String((s as any).npcID ?? 0)] - 1  &&  ((s as any).hour ?? 0) < ((s as any).npc_work_end ?? 0)?.[String((s as any).npcID ?? 0)]  &&  (Math.floor(Math.random() * 5) + 1) === 1) {
+    ((s as any).sex_ev ?? {})['npc_late'] = 1;
+    qspCall(s, 'sex_ev_events', 'boy_gotta_go');
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBoyGottaGo(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: $sex_ev['bed_room']
+    // TODO-QSP: dynamic text: <<$npcdesc>> checks the time.
+    scene.text(`${((s as any).npcdesc ?? 0)} checks the time.`);
+    if (((s as any).sex_ev ?? 0)?.['boy_shower'] === 1) {
+      // TODO-QSP: '"Shit, I gotta go," he says, dropping his towel and reaching for his clothes. ' + iif(hour >= npc_w...
+    } else {
+      // TODO-QSP: '"Shit, I gotta go," he says, hauling himself out of bed. ' + iif(hour >= npc_work_start[$npcID], '"...
+    }
+    qspCall(s, 'sex_ev_events', 'boy_gotta_go2');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBoyGottaGo2(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['breakfast_finished'] = (-1);
+  if (((s as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
+    scene.text('"Should I get dressed too then?" you ask.');
+  }
+  if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
+    ((s as any).sex_ev ?? {})['hotel_days'] = Math.floor(Math.random() * 3) + 1;
+    if (((s as any).sex_ev ?? 0)?.['hotel_days'] === 1) {
+      // TODO-QSP: '"No need to rush. The room is booked until tomorrow," <<$npcdesc>> grins. "Feel free to order room ...
+    } else {
+      // TODO-QSP: '"No need to rush. The room is booked for a few more days," <<$npcdesc>> grins. "Feel free to order ...
+    }
+    // TODO-QSP: dynamic text: With that, <<$npcdesc>> finishes getting dressed and heads out the door, leaving...
+    scene.text(`With that, ${((s as any).npcdesc ?? 0)} finishes getting dressed and heads out the door, leaving you in the hotel room all to yourself.`);
+    if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy'  &&  ((s as any).sex_ev ?? 0)?.['sugar_daddy_paid'] === 0) {
+      (s as any).money = ((s as any).money ?? 0) + (((s as any).npc_sugar_daddy_price ?? 0)?.[String((s as any).npcID ?? 0)]);
+    }
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_leave', 'exit');
+  } },
+    ]);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['loc'] === 'npc_home') {
+      if (((s as any).npc_lover_keys ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+        scene.text('"No, it\'s fine. You have a key right? Just lock up when you leave," he says, quickly getting dressed.');
+      } else {
+        scene.text('"Yeah, I need you to leave so I can lock up."');
+        // TODO-QSP: dynamic text: You hurry to get dressed beside <<$npcdesc>>.
+        scene.text(`You hurry to get dressed beside ${((s as any).npcdesc ?? 0)}.`);
+        qspCall(s, 'sex_ev_clothing', 'dress_loop_end');
+        qspCall(s, 'sex_ev_leave', 'leaving_dialogue_choices');
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSugarDaddyGift(s: GameState, scene: SceneBuilder): void {
+  ((s as any).npc_sugar_gifts ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_sugar_gifts ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  scene.img('images/shared/sex/after/pillow_talk2.jpg');
+  // TODO-QSP: dynamic text: "I got you something," <<$npcdesc>> smiles, handing you a gift wrapped box.
+  scene.text(`"I got you something," ${((s as any).npcdesc ?? 0)} smiles, handing you a gift wrapped box.`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Surprise', handler: (st: GameState) => {
+    scene.text('"For me?" you ask in bewilderment.');
+    scene.text('You eagerly untie the ribbon around the box, removing the contents and holding it up to the light as you inspect it from all sides.');
+    scene.text('"Oh wow, this is so pretty!" you almost scream out in excitement.');
+    // TODO-QSP: dynamic text: "A pretty thing for my pretty babygirl," <<$npcdesc>> retorts, basking in your j...
+    scene.text(`"A pretty thing for my pretty babygirl," ${((s as any).npcdesc ?? 0)} retorts, basking in your joy.`);
+    // TODO-QSP: dynamic text: You throw your arms around <<$npcdesc>>, smothering him with light kisses.
+    scene.text(`You throw your arms around ${((s as any).npcdesc ?? 0)}, smothering him with light kisses.`);
+    scene.text('"Thank you so much, daddy!"');
+    // TODO-QSP: dynamic text: "I would love to see you wear it next time we see each other," <<$npcdesc>> adds...
+    scene.text(`"I would love to see you wear it next time we see each other," ${((s as any).npcdesc ?? 0)} adds.`);
+    scene.text('"Absolutely," you reply, giving him one last kiss before returning your gift to its box and taking your place next to him.');
+    qspCall(s, 'sex_ev_events', 'sugar_daddy_gift_check');
+    ((s as any).sugar_gift_day ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_pillow_talk', 'start');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSugarDaddyGiftCheck(s: GameState, scene: SceneBuilder): void {
+  (s as any).newdress_loop = 0;
+  if ((Math.floor(Math.random() * 5) + 1) === 1) {
+    qspCall(s, 'clothing', 'totals', 'moncheri_dress');
+    (s as any).newdress_id = 0;
+    if (((s as any).moncheri_dress ?? 0)?.[String((s as any).newdress_id ?? 0)] === 0) {
+      ((s as any).moncheri_dress ?? {})[String((s as any).newdress_id ?? 0)] = 1;
+      ((s as any).moncheri_dress_h ?? {})[String((s as any).newdress_id ?? 0)] = 35;
+      ((s as any).moncheri_dress_b ?? {})[String((s as any).newdress_id ?? 0)] = ((s as any).pcs_hips ?? 0);
+      // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/moncheri/dress/<<newdress_id>>.jpg"></center>'
+    } else {
+      (s as any).newdress_loop = ((s as any).newdress_loop ?? 0) + (1);
+      if (((s as any).newdress_loop ?? 0) > 1000) {
+      } else {
+        qspCall(s, 'sex_ev_events', 'sugar_daddy_gift_check');
+      }
+    }
+  } else {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
+      qspCall(s, 'shoes', 'totals', 'moncheri_shoe');
+      (s as any).newdress_id = 0;
+      if (((s as any).moncheri_shoe ?? 0)?.[String((s as any).newdress_id ?? 0)] === 0) {
+        ((s as any).moncheri_shoe ?? {})[String((s as any).newdress_id ?? 0)] = 1;
+        qspCall(s, 'shoe_attributes', 'moncheri', ((s as any).newdress_id ?? 0));
+        ((s as any).moncheri_shoe_h ?? {})[String((s as any).newdress_id ?? 0)] = ((s as any).ShoMaxStrength ?? 0);
+        // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/moncheri/shoes/<<newdress_id>>.jpg"></center>'
+      } else {
+        (s as any).newdress_loop = ((s as any).newdress_loop ?? 0) + (1);
+        if (((s as any).newdress_loop ?? 0) > 1000) {
+        } else {
+          qspCall(s, 'sex_ev_events', 'sugar_daddy_gift_check');
+        }
+      }
+    } else {
+      if ((Math.floor(Math.random() * 3) + 1) === 1) {
+        qspCall(s, 'purses', 'totals', 'moncheri_purses');
+        (s as any).newdress_id = 0;
+        if (((s as any).moncheri_purses ?? 0)?.[String((s as any).newdress_id ?? 0)] === 0) {
+          ((s as any).moncheri_purses ?? {})[String((s as any).newdress_id ?? 0)] = 1;
+          ((s as any).moncheri_purses_h ?? {})[String((s as any).newdress_id ?? 0)] = 35;
+          // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/moncheri/purses/<<newdress_id>>.jpg"></center>'
+        } else {
+          (s as any).newdress_loop = ((s as any).newdress_loop ?? 0) + (1);
+          if (((s as any).newdress_loop ?? 0) > 1000) {
+          } else {
+            qspCall(s, 'sex_ev_events', 'sugar_daddy_gift_check');
+          }
+        }
+      } else {
+        if ((Math.floor(Math.random() * 2) + 1) === 1) {
+          qspCall(s, 'clothing', 'totals', 'coco_dress');
+          (s as any).newdress_id = 0;
+          if (((s as any).coco_dress ?? 0)?.[String((s as any).newdress_id ?? 0)] === 0) {
+            ((s as any).coco_dress ?? {})[String((s as any).newdress_id ?? 0)] = 1;
+            ((s as any).coco_dress_h ?? {})[String((s as any).newdress_id ?? 0)] = 90;
+            ((s as any).coco_dress_b ?? {})[String((s as any).newdress_id ?? 0)] = ((s as any).pcs_hips ?? 0);
+            // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/coco/dress/<<newdress_id>>.jpg"></center>'
+          } else {
+            (s as any).newdress_loop = ((s as any).newdress_loop ?? 0) + (1);
+            if (((s as any).newdress_loop ?? 0) > 1000) {
+            } else {
+              qspCall(s, 'sex_ev_events', 'sugar_daddy_gift_check');
+            }
+          }
+        } else {
+          qspCall(s, 'bras', 'totals', 'lusso_bras');
+          (s as any).newdress_id = 0;
+          if (((s as any).lusso_bras ?? 0)?.[String((s as any).newdress_id ?? 0)] === 0  &&  ((s as any).lusso_panties ?? 0)?.[String((s as any).newdress_id ?? 0)] === 0) {
+            ((s as any).lusso_bras ?? {})[String((s as any).newdress_id ?? 0)] = 1;
+            ((s as any).lusso_bras_h ?? {})[String((s as any).newdress_id ?? 0)] = 35;
+            // TODO-QSP: *P '<center><img height = 400 src="images/pc/items/lusso/bras/<<newdress_id>>.jpg"></center>'
+          } else {
+            (s as any).newdress_loop = ((s as any).newdress_loop ?? 0) + (1);
+            if (((s as any).newdress_loop ?? 0) > 1000) {
+            } else {
+              qspCall(s, 'sex_ev_events', 'sugar_daddy_gift_check');
+            }
+          }
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterGunEvStart(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).know_npc_gun ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+    // TODO-QSP: dynamic text: Your eyes go wide as you pull back on <<$npcdesc>>'s drawers and find a handgun ...
+    scene.text(`Your eyes go wide as you pull back on ${((s as any).npcdesc ?? 0)}'s drawers and find a handgun inside.`);
+  } else {
+    // TODO-QSP: dynamic text: You open up <<$npcdesc>>'s drawers to where you know his gun is stashed.
+    scene.text(`You open up ${((s as any).npcdesc ?? 0)}'s drawers to where you know his gun is stashed.`);
+  }
+  if (((s as any).sveta_is_cop ?? 0) === 1) {
+    scene.actions([
+      { label: 'Take note of the serial number', goto: ['sex_ev_events', 'gun_ev_serial1'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'What is this???', goto: ['sex_ev_events', 'gun_ev_start'] },
+    { label: 'Pull it out', goto: ['sex_ev_events', 'gun_ev_start'] },
+  ]);
+  scene.build();
+}
+
+function enterGunEvConfront1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  // TODO-QSP: --- sex_ev_events ---------------------------------
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -743,6 +1451,93 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'sex_film_accept':
       enterSexFilmAccept(s, scene);
+      break;
+    case 'sex_film_end':
+      enterSexFilmEnd(s, scene);
+      break;
+    case 'creampie_ask_ev':
+      enterCreampieAskEv(s, scene);
+      break;
+    case 'creampie_ask_ev_ma_pill_deny':
+      enterCreampieAskEvMaPillDeny(s, scene);
+      break;
+    case 'creampie_ask_ev_ma_pill_allow':
+      enterCreampieAskEvMaPillAllow(s, scene);
+      break;
+    case 'creampie_ask_ev_annoyed_deny':
+      enterCreampieAskEvAnnoyedDeny(s, scene);
+      break;
+    case 'creampie_ask_ev_annoyed_allow':
+      enterCreampieAskEvAnnoyedAllow(s, scene);
+      break;
+    case 'fuck_punch_link':
+      enterFuckPunchLink(s, scene);
+      break;
+    case 'fuck_punch1':
+      enterFuckPunch1(s, scene);
+      break;
+    case 'fuck_punch2':
+      enterFuckPunch2(s, scene);
+      break;
+    case 'offer_ciga1':
+      enterOfferCiga1(s, scene);
+      break;
+    case 'brushing_teeth':
+      enterBrushingTeeth(s, scene);
+      break;
+    case 'brush_teeth_roll_eyes':
+      enterBrushTeethRollEyes(s, scene);
+      break;
+    case 'brush_teeth_ass_shake':
+      enterBrushTeethAssShake(s, scene);
+      break;
+    case 'long_argument':
+      enterLongArgument(s, scene);
+      break;
+    case 'sneak_phone':
+      enterSneakPhone(s, scene);
+      break;
+    case 'rummage_drawers_link':
+      enterRummageDrawersLink(s, scene);
+      break;
+    case 'rummage_drawers_start':
+      enterRummageDrawersStart(s, scene);
+      break;
+    case 'rummage_drawers1':
+      enterRummageDrawers1(s, scene);
+      break;
+    case 'rummage_drawers_sleeping_route':
+      enterRummageDrawersSleepingRoute(s, scene);
+      break;
+    case 'rummage_drawers_shower_route':
+      enterRummageDrawersShowerRoute(s, scene);
+      break;
+    case 'rummage_drawers_end_route':
+      enterRummageDrawersEndRoute(s, scene);
+      break;
+    case 'rummage_drawers_shower_end':
+      enterRummageDrawersShowerEnd(s, scene);
+      break;
+    case 'boy_timecheck':
+      enterBoyTimecheck(s, scene);
+      break;
+    case 'boy_gotta_go':
+      enterBoyGottaGo(s, scene);
+      break;
+    case 'boy_gotta_go2':
+      enterBoyGottaGo2(s, scene);
+      break;
+    case 'sugar_daddy_gift':
+      enterSugarDaddyGift(s, scene);
+      break;
+    case 'sugar_daddy_gift_check':
+      enterSugarDaddyGiftCheck(s, scene);
+      break;
+    case 'gun_ev_start':
+      enterGunEvStart(s, scene);
+      break;
+    case 'gun_ev_confront1':
+      enterGunEvConfront1(s, scene);
       break;
     default:
       enterDefault(s, scene);
