@@ -6,6 +6,39 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOCATIONS_DIR = path.resolve(__dirname, '../src/locations');
 const QSP_DIR = path.resolve(__dirname, '../GL QSP/locations');
 
+interface QspAction {
+  label: string;
+  isDynamic: boolean;
+  goto: [string, string] | null;
+  gotoDynamic: boolean;
+  line: number;
+}
+
+interface TsAction {
+  label: string;
+  goto: [string, string] | null;
+  gotoDynamic: boolean;
+  line: number;
+}
+
+interface ActionMismatch {
+  type: 'missing' | 'extra' | 'goto_mismatch';
+  qspLabel?: string;
+  tsLabel?: string;
+  qspGoto?: [string, string] | null;
+  tsGoto?: [string, string] | null;
+  qspLine?: number;
+  tsLine?: number;
+}
+
+interface SectionResult {
+  qspLabel: string;
+  tsFuncName: string;
+  qspActions: QspAction[];
+  tsActions: TsAction[];
+  mismatches: ActionMismatch[];
+}
+
 interface AuditResult {
   file: string;
   hasImage: boolean;
@@ -17,6 +50,30 @@ interface AuditResult {
   qspHasActions: boolean;
   qspHasImage: boolean;
   qspFile: string | null;
+  sections: SectionResult[];
+  totalMismatches: number;
+}
+
+function toPascalCase(s: string): string {
+  return s.replace(/\[(\d+)\]/g, '$1').replace(/&/g, '_').replace(/-/g, '_')
+    .replace(/^(.)/, c => c.toUpperCase())
+    .replace(/_([a-z])/g, (_, c) => c.toUpperCase())
+    .replace(/ ([a-z])/g, (_, c) => c.toUpperCase())
+    .replace(/ /g, '')
+    .replace(/\./g, '_')
+    .replace(/[^a-zA-Z0-9_]/g, '_');
+}
+
+function qspLabelToTsFunc(label: string): string {
+  return label === '' ? 'enterDefault' : `enter${toPascalCase(label)}`;
+}
+
+function unescapeQsp(s: string): string {
+  return s.replace(/''/g, "'");
+}
+
+function unescapeTs(s: string): string {
+  return s.replace(/\\'/g, "'").replace(/\\\\/g, '\\');
 }
 
 function findLocationFiles(dir: string): string[] {
@@ -189,6 +246,220 @@ function analyzeQspScene(scene: string): { hasActions: boolean; hasImage: boolea
   return { hasActions, hasImage };
 }
 
+function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
+  const lines = qspSrc.split('\n');
+  const sections = new Map<string, QspAction[]>();
+
+  const sectionStarts: { label: string; line: number }[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    if (/^[\t ]/.test(raw)) continue;
+    const m = raw.match(/if\s+\$ARGS\[0\]\s*=\s*'((?:[^']|'')*)'/);
+    if (m) {
+      sectionStarts.push({ label: unescapeQsp(m[1]), line: i });
+    }
+  }
+
+  if (sectionStarts.length === 0) {
+    sections.set('', extractQspActions(lines, 0, lines.length));
+    return sections;
+  }
+
+  const preambleEnd = sectionStarts[0].line;
+  const preambleActions = extractQspActions(lines, 0, preambleEnd);
+  if (preambleActions.length > 0) {
+    sections.set('__preamble__', preambleActions);
+  }
+
+  for (let i = 0; i < sectionStarts.length; i++) {
+    const start = sectionStarts[i].line;
+    const end = i + 1 < sectionStarts.length ? sectionStarts[i + 1].line : lines.length;
+    const actions = extractQspActions(lines, start, end);
+    const label = sectionStarts[i].label;
+    if (!sections.has(label)) {
+      sections.set(label, actions);
+    } else {
+      sections.get(label)!.push(...actions);
+    }
+  }
+
+  return sections;
+}
+
+function extractQspActions(lines: string[], start: number, end: number): QspAction[] {
+  const actions: QspAction[] = [];
+
+  for (let i = start; i < end; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('!!')) continue;
+
+    const actMatch = line.match(/act\s+'((?:[^']|'')*)'(\s*\+\s*.*)?:/);
+    if (!actMatch) continue;
+
+    const label = unescapeQsp(actMatch[1]);
+    const isDynamic = !!actMatch[2];
+
+    const matchStart = line.indexOf(actMatch[0]);
+    const matchEnd = matchStart + actMatch[0].length;
+    const restOfLine = line.slice(matchEnd);
+
+    let goto: [string, string] | null = null;
+    let gotoDynamic = false;
+
+    const gotoMatch = restOfLine.match(/\bgt\s+'((?:[^']|'')*)'(?:\s*,\s*'((?:[^']|'')*)')?/);
+    if (gotoMatch) {
+      goto = [unescapeQsp(gotoMatch[1]), unescapeQsp(gotoMatch[2] || '')];
+    } else if (/\bgt\s+\$|\bgt\s+[a-z_]/.test(restOfLine)) {
+      gotoDynamic = true;
+    }
+
+    if (!goto && !gotoDynamic) {
+      for (let j = i + 1; j < Math.min(i + 20, end); j++) {
+        const nextTrimmed = lines[j].trim();
+        if (nextTrimmed === 'end' || nextTrimmed.startsWith('end ')) break;
+        if (nextTrimmed.startsWith('!!')) continue;
+
+        const nextGoto = nextTrimmed.match(/\bgt\s+'((?:[^']|'')*)'(?:\s*,\s*'((?:[^']|'')*)')?/);
+        if (nextGoto) {
+          goto = [unescapeQsp(nextGoto[1]), unescapeQsp(nextGoto[2] || '')];
+          break;
+        }
+        if (/\bgt\s+\$|\bgt\s+[a-z_]/.test(nextTrimmed)) {
+          gotoDynamic = true;
+          break;
+        }
+      }
+    }
+
+    actions.push({ label, isDynamic, goto, gotoDynamic, line: i + 1 });
+  }
+
+  return actions;
+}
+
+function extractTsActions(funcBody: string): TsAction[] {
+  const actions: TsAction[] = [];
+  const lines = funcBody.split('\n');
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    const labelMatch = line.match(/label:\s*'((?:[^'\\]|\\.)*)'/);
+    if (!labelMatch) continue;
+
+    const label = unescapeTs(labelMatch[1]);
+
+    let goto: [string, string] | null = null;
+    let gotoDynamic = false;
+
+    for (let j = i; j < Math.min(i + 8, lines.length); j++) {
+      const checkLine = lines[j];
+
+      if (j > i && /label:\s*'/.test(checkLine)) break;
+      if (j > i && /^\s*\]\)/.test(checkLine)) break;
+
+      const gotoMatch = checkLine.match(/goto:\s*\['((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\]/);
+      if (gotoMatch) {
+        goto = [unescapeTs(gotoMatch[1]), unescapeTs(gotoMatch[2])];
+        break;
+      }
+      if (/\bdynamicGoto\s*\(/.test(checkLine)) {
+        gotoDynamic = true;
+        break;
+      }
+    }
+
+    actions.push({ label, goto, gotoDynamic, line: i + 1 });
+  }
+
+  return actions;
+}
+
+function compareSectionActions(qspActions: QspAction[], tsActions: TsAction[]): ActionMismatch[] {
+  const mismatches: ActionMismatch[] = [];
+
+  const tsByLabel = new Map<string, TsAction[]>();
+  for (const a of tsActions) {
+    const key = a.label.toLowerCase();
+    if (!tsByLabel.has(key)) tsByLabel.set(key, []);
+    tsByLabel.get(key)!.push(a);
+  }
+
+  const matchedTsLabels = new Set<string>();
+
+  for (const qa of qspActions) {
+    const qaLower = qa.label.toLowerCase();
+
+    let tsMatch = tsByLabel.get(qaLower);
+
+    if (!tsMatch || tsMatch.length === 0) {
+      for (const [key, tsList] of tsByLabel) {
+        if (qa.isDynamic && key.startsWith(qaLower)) {
+          tsMatch = tsList;
+          break;
+        }
+      }
+    }
+
+    if (!tsMatch || tsMatch.length === 0) {
+      mismatches.push({
+        type: 'missing',
+        qspLabel: qa.label,
+        qspGoto: qa.goto,
+        qspLine: qa.line,
+      });
+      continue;
+    }
+
+    const ta = tsMatch[0];
+    matchedTsLabels.add(ta.label.toLowerCase());
+
+    if (qa.goto && !ta.gotoDynamic) {
+      if (!ta.goto) {
+        mismatches.push({
+          type: 'goto_mismatch',
+          qspLabel: qa.label,
+          tsLabel: ta.label,
+          qspGoto: qa.goto,
+          tsGoto: null,
+          qspLine: qa.line,
+          tsLine: ta.line,
+        });
+      } else if (qa.goto[0] !== ta.goto[0] || qa.goto[1] !== ta.goto[1]) {
+        mismatches.push({
+          type: 'goto_mismatch',
+          qspLabel: qa.label,
+          tsLabel: ta.label,
+          qspGoto: qa.goto,
+          tsGoto: ta.goto,
+          qspLine: qa.line,
+          tsLine: ta.line,
+        });
+      }
+    }
+  }
+
+  for (const ta of tsActions) {
+    if (!matchedTsLabels.has(ta.label.toLowerCase())) {
+      mismatches.push({
+        type: 'extra',
+        tsLabel: ta.label,
+        tsGoto: ta.goto,
+        tsLine: ta.line,
+      });
+    }
+  }
+
+  return mismatches;
+}
+
+function formatGoto(goto: [string, string] | null | undefined): string {
+  if (!goto) return 'none';
+  return goto[1] ? `${goto[0]}, ${goto[1]}` : goto[0];
+}
+
 function main() {
   const files = findLocationFiles(LOCATIONS_DIR);
   const results: AuditResult[] = [];
@@ -201,6 +472,9 @@ function main() {
     const qspFile = findQspFile(file);
     let qspHasActions = false;
     let qspHasImage = false;
+    const sections: SectionResult[] = [];
+    let totalMismatches = 0;
+
     if (qspFile) {
       const qspSrc = fs.readFileSync(qspFile, 'utf8');
       const qspScene = extractQspDefaultScene(qspSrc);
@@ -208,6 +482,25 @@ function main() {
         const qspAnalysis = analyzeQspScene(qspScene);
         qspHasActions = qspAnalysis.hasActions;
         qspHasImage = qspAnalysis.hasImage;
+      }
+
+      const qspSections = parseQspSections(qspSrc);
+      for (const [qspLabel, qspActions] of qspSections) {
+        if (qspActions.length === 0) continue;
+        const tsFuncName = qspLabel === '__preamble__' ? 'enterDefault' : qspLabelToTsFunc(qspLabel);
+        const tsFuncBody = extractFunction(src, tsFuncName);
+        const tsActions = tsFuncBody ? extractTsActions(tsFuncBody) : [];
+
+        const mismatches = compareSectionActions(qspActions, tsActions);
+        totalMismatches += mismatches.length;
+
+        sections.push({
+          qspLabel: qspLabel === '__preamble__' ? '(preamble)' : qspLabel,
+          tsFuncName,
+          qspActions,
+          tsActions,
+          mismatches,
+        });
       }
     }
 
@@ -223,6 +516,8 @@ function main() {
         qspHasActions,
         qspHasImage,
         qspFile: qspFile ? path.relative(path.resolve(__dirname, '..'), qspFile) : null,
+        sections,
+        totalMismatches,
       });
       continue;
     }
@@ -239,6 +534,8 @@ function main() {
       qspHasActions,
       qspHasImage,
       qspFile: qspFile ? path.relative(path.resolve(__dirname, '..'), qspFile) : null,
+      sections,
+      totalMismatches,
     });
   }
 
@@ -248,6 +545,19 @@ function main() {
   const tsMissingImage = results.filter(r => r.hasDefaultScene && r.qspHasImage && !r.hasImage);
   const tsMissingBoth = results.filter(r => r.hasDefaultScene && r.qspHasActions && r.qspHasImage && r.actionCount === 0 && !r.hasImage);
 
+  let totalMissing = 0;
+  let totalExtra = 0;
+  let totalGotoMismatch = 0;
+  for (const r of results) {
+    for (const sec of r.sections) {
+      for (const m of sec.mismatches) {
+        if (m.type === 'missing') totalMissing++;
+        else if (m.type === 'extra') totalExtra++;
+        else if (m.type === 'goto_mismatch') totalGotoMismatch++;
+      }
+    }
+  }
+
   console.log('=== LOCATION AUDIT (QSP cross-reference) ===\n');
   console.log(`Total locations: ${total}`);
   console.log(`With default scene: ${total - noDefault.length}`);
@@ -256,6 +566,11 @@ function main() {
   console.log(`QSP has actions but TS has zero actions: ${tsMissingActions.length}`);
   console.log(`QSP has image but TS missing image: ${tsMissingImage.length}`);
   console.log(`QSP has both but TS missing both: ${tsMissingBoth.length}`);
+  console.log('');
+  console.log('=== ACTION CROSS-REFERENCE ===');
+  console.log(`Missing actions (QSP has, TS missing): ${totalMissing}`);
+  console.log(`Extra actions (TS has, QSP missing): ${totalExtra}`);
+  console.log(`Goto mismatches: ${totalGotoMismatch}`);
 
   if (tsMissingBoth.length > 0) {
     console.log(`\n--- MISSING BOTH (QSP has, TS doesn't) (${tsMissingBoth.length}) ---`);
@@ -272,6 +587,29 @@ function main() {
   if (imageOnly.length > 0) {
     console.log(`\n--- MISSING IMAGE ONLY (${imageOnly.length}) ---`);
     for (const r of imageOnly) console.log(`  ${r.file} [TS actions: ${r.actionCount}]`);
+  }
+
+  const filesWithMismatches = results.filter(r => r.totalMismatches > 0);
+  if (filesWithMismatches.length > 0) {
+    console.log(`\n--- ACTION MISMATCHES (${filesWithMismatches.length} files, ${totalMissing + totalExtra + totalGotoMismatch} total) ---`);
+    for (const r of filesWithMismatches) {
+      console.log(`\n${r.file}:`);
+      for (const sec of r.sections) {
+        if (sec.mismatches.length === 0) continue;
+        console.log(`  [${sec.qspLabel} → ${sec.tsFuncName}]`);
+        for (const m of sec.mismatches) {
+          if (m.type === 'missing') {
+            const gotoStr = m.qspGoto ? ` → ${formatGoto(m.qspGoto)}` : '';
+            console.log(`    MISSING: '${m.qspLabel}'${gotoStr} (QSP:${m.qspLine})`);
+          } else if (m.type === 'extra') {
+            const gotoStr = m.tsGoto ? ` → ${formatGoto(m.tsGoto)}` : '';
+            console.log(`    EXTRA:   '${m.tsLabel}'${gotoStr} (TS:${m.tsLine})`);
+          } else if (m.type === 'goto_mismatch') {
+            console.log(`    GOTO:    '${m.qspLabel}' QSP→${formatGoto(m.qspGoto)} TS→${formatGoto(m.tsGoto)}`);
+          }
+        }
+      }
+    }
   }
 }
 
