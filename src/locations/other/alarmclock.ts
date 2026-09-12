@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -325,9 +325,11 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
   (s as any).numbud = 0;
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === 'fin') {
-    // TODO-QSP: gt $menu_loc, $menu_arg
-  }
+  scene.build();
+}
+
+function enterFin(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_loc', 'menu_arg'); } }]);
   scene.build();
 }
 
@@ -430,6 +432,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'Reset':
       enterReset(s, scene);
+      break;
+    case 'fin':
+      enterFin(s, scene);
       break;
     case 'build_table':
       enterBuildTable(s, scene);

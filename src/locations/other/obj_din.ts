@@ -37,9 +37,11 @@ function enterCheattabs(s: GameState, scene: SceneBuilder): void {
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === 'menu_disabled') {
-    // TODO-QSP: $func('wrap', 'neg b', 'Menu is disabled for this event')
-  }
+  scene.build();
+}
+
+function enterMenuDisabled(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Menu is disabled for this event</b></center>');
   scene.build();
 }
 
@@ -84,9 +86,11 @@ function enterShowTeeth(s: GameState, scene: SceneBuilder): void {
 function enterShowMissingTeeth(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: view 'images/pc/body/teeth/missing.jpg'
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === 'records') {
-    scene.actions([{ label: 'Continue', goto: ['journal', 'records'] }]);
-  }
+  scene.build();
+}
+
+function enterRecords(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['journal', 'records'] }]);
   scene.build();
 }
 
@@ -275,6 +279,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'menu_exit':
       enterMenuExit(s, scene);
       break;
+    case 'menu_disabled':
+      enterMenuDisabled(s, scene);
+      break;
     case 'show_tits':
       enterShowTits(s, scene);
       break;
@@ -286,6 +293,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'show_missing_teeth':
       enterShowMissingTeeth(s, scene);
+      break;
+    case 'records':
+      enterRecords(s, scene);
       break;
     case 'emergency':
       enterEmergency(s, scene);

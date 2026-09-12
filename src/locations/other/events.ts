@@ -26,12 +26,16 @@ function enterStreetCum(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === 'read') {
-    qspCall(s, 'library_functions', 'set_home_read_acts');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'read_porn') {
-    qspCall(s, 'library_functions', 'set_read_porn_act');
-  }
+  scene.build();
+}
+
+function enterRead(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'library_functions', 'set_home_read_acts');
+  scene.build();
+}
+
+function enterReadPorn(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'library_functions', 'set_read_porn_act');
   scene.build();
 }
 
@@ -221,6 +225,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'street_cum':
       enterStreetCum(s, scene);
+      break;
+    case 'read':
+      enterRead(s, scene);
+      break;
+    case 'read_porn':
+      enterReadPorn(s, scene);
       break;
     case 'snkayf':
       enterSnkayf(s, scene);

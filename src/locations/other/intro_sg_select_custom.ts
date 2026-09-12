@@ -4,59 +4,153 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'start') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'start'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modgrup') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modgrup'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_fam') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_fam'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_pop') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_pop'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_ath') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_ath'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_ner') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_ner'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_gop') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_gop'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_out') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_out'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_tea') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_tea'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_oth') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_oth'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'none') {
-    qspCall(s, 'intro_character_custom', 'none');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setval') {
-    qspCall(s, 'intro_character_custom', 'setval');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setval2') {
-    qspCall(s, 'intro_character_custom', 'setval2');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setval3') {
-    qspCall(s, 'intro_character_custom', 'setval3');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_setup') {
-    qspCall(s, 'intro_character_custom', 'modrel_setup', ((s as any).locArgs?.[1] ?? 0));
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'pol_grup_set') {
-    // TODO-QSP: gs 'intro_character_custom', 'pol_grup_set', ARGS[1], ARGS[2], ARGS[3]
-  }
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'start'] }]);
+  scene.build();
+}
+
+function enterModgrup(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modgrup'] }]);
+  scene.build();
+}
+
+function enterModrel(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel'] }]);
+  scene.build();
+}
+
+function enterModrelFam(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_fam'] }]);
+  scene.build();
+}
+
+function enterModrelPop(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_pop'] }]);
+  scene.build();
+}
+
+function enterModrelAth(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_ath'] }]);
+  scene.build();
+}
+
+function enterModrelNer(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_ner'] }]);
+  scene.build();
+}
+
+function enterModrelGop(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_gop'] }]);
+  scene.build();
+}
+
+function enterModrelOut(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_out'] }]);
+  scene.build();
+}
+
+function enterModrelTea(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_tea'] }]);
+  scene.build();
+}
+
+function enterModrelOth(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modrel_oth'] }]);
+  scene.build();
+}
+
+function enterNone(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'none');
+  scene.build();
+}
+
+function enterSetval(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setval');
+  scene.build();
+}
+
+function enterSetval2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setval2');
+  scene.build();
+}
+
+function enterSetval3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setval3');
+  scene.build();
+}
+
+function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'modrel_setup', ((s as any).locArgs?.[1] ?? 0));
+  scene.build();
+}
+
+function enterPolGrupSet(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'intro_character_custom', 'pol_grup_set', ARGS[1], ARGS[2], ARGS[3]
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'modgrup':
+      enterModgrup(s, scene);
+      break;
+    case 'modrel':
+      enterModrel(s, scene);
+      break;
+    case 'modrel_fam':
+      enterModrelFam(s, scene);
+      break;
+    case 'modrel_pop':
+      enterModrelPop(s, scene);
+      break;
+    case 'modrel_ath':
+      enterModrelAth(s, scene);
+      break;
+    case 'modrel_ner':
+      enterModrelNer(s, scene);
+      break;
+    case 'modrel_gop':
+      enterModrelGop(s, scene);
+      break;
+    case 'modrel_out':
+      enterModrelOut(s, scene);
+      break;
+    case 'modrel_tea':
+      enterModrelTea(s, scene);
+      break;
+    case 'modrel_oth':
+      enterModrelOth(s, scene);
+      break;
+    case 'none':
+      enterNone(s, scene);
+      break;
+    case 'setval':
+      enterSetval(s, scene);
+      break;
+    case 'setval2':
+      enterSetval2(s, scene);
+      break;
+    case 'setval3':
+      enterSetval3(s, scene);
+      break;
+    case 'modrel_setup':
+      enterModrelSetup(s, scene);
+      break;
+    case 'pol_grup_set':
+      enterPolGrupSet(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const intro_sg_select_custom: LocationDef = {

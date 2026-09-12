@@ -233,6 +233,20 @@ interface ParseResult {
       continue;
     }
 
+    // Scene (one-liner): if $ARGS[0] = 'x': statement (only at top level, not indented)
+    const sceneOnelineMatch = trimmed.match(/^(?:if|elseif)\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*(.+)$/i);
+    if (sceneOnelineMatch && !rawLine.startsWith('\t') && !rawLine.startsWith(' ')) {
+      if (!stopAtEnd) {
+        return { nodes, endIdx: i };
+      }
+      const arg = sceneOnelineMatch[1];
+      const stmtResult = parseSingleLine(sceneOnelineMatch[2].trim(), lines, i, unsupported);
+      const scene: QspScene = { kind: 'scene', arg, body: stmtResult.nodes };
+      nodes.push(scene);
+      i = stmtResult.nextIdx;
+      continue;
+    }
+
     // Scene (multi-value): if $ARGS[0] = '' or $ARGS[0] = 'start' or $ARGS[0] = 'main': (only at top level)
     const sceneMultiMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s+(?:or\s+\$ARGS\[0\]\s*=\s*'[^']*'\s+)*or\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/i);
     if (sceneMultiMatch && !rawLine.startsWith('\t') && !rawLine.startsWith(' ')) {

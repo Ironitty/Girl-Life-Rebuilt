@@ -4,95 +4,249 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'start') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'start'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modclo_menu') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_menu'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modclo_tattoos') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modclo') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modapp') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modapp'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modite') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modite_cos') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_cos'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modite_pha') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_pha'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modite_mis') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_mis'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modatt') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modatt'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modskl') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modskl_men') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_men'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modskl_spo') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_spo'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modskl_com') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_com'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modskl_bea') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_bea'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modskl_art') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_art'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modskl_job') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_job'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'birthday') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'birthday'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setgenbsize') {
-    qspCall(s, 'intro_character_custom', 'setgenbsize');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_setup3') {
-    qspCall(s, 'intro_character_custom', 'modrel_setup3');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_setup4') {
-    qspCall(s, 'intro_character_custom', 'modrel_setup4');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setval') {
-    qspCall(s, 'intro_character_custom', 'setval');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setval2') {
-    qspCall(s, 'intro_character_custom', 'setval2');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setval3') {
-    qspCall(s, 'intro_character_custom', 'setval3');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'setbodymass') {
-    qspCall(s, 'intro_character_custom', 'setbodymass');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'none') {
-    qspCall(s, 'intro_character_custom', 'none');
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modclo_loop') {
-    // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', $ARGS[1], $ARGS[2], $ARGS[3]
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modpur') {
-    // TODO-QSP: gt 'intro_character_custom', 'modpur', $ARGS[1], ARGS[2]
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'modrel_setup2') {
-    qspCall(s, 'intro_character_custom', 'modrel_setup2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
-  }
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'start'] }]);
+  scene.build();
+}
+
+function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_menu'] }]);
+  scene.build();
+}
+
+function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+  scene.build();
+}
+
+function enterModclo(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo'] }]);
+  scene.build();
+}
+
+function enterModapp(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modapp'] }]);
+  scene.build();
+}
+
+function enterModite(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite'] }]);
+  scene.build();
+}
+
+function enterModiteCos(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_cos'] }]);
+  scene.build();
+}
+
+function enterModitePha(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_pha'] }]);
+  scene.build();
+}
+
+function enterModiteMis(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modite_mis'] }]);
+  scene.build();
+}
+
+function enterModatt(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modatt'] }]);
+  scene.build();
+}
+
+function enterModskl(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl'] }]);
+  scene.build();
+}
+
+function enterModsklMen(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_men'] }]);
+  scene.build();
+}
+
+function enterModsklSpo(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_spo'] }]);
+  scene.build();
+}
+
+function enterModsklCom(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_com'] }]);
+  scene.build();
+}
+
+function enterModsklBea(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_bea'] }]);
+  scene.build();
+}
+
+function enterModsklArt(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_art'] }]);
+  scene.build();
+}
+
+function enterModsklJob(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modskl_job'] }]);
+  scene.build();
+}
+
+function enterBirthday(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'birthday'] }]);
+  scene.build();
+}
+
+function enterSetgenbsize(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setgenbsize');
+  scene.build();
+}
+
+function enterModrelSetup3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'modrel_setup3');
+  scene.build();
+}
+
+function enterModrelSetup4(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'modrel_setup4');
+  scene.build();
+}
+
+function enterSetval(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setval');
+  scene.build();
+}
+
+function enterSetval2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setval2');
+  scene.build();
+}
+
+function enterSetval3(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setval3');
+  scene.build();
+}
+
+function enterSetbodymass(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'setbodymass');
+  scene.build();
+}
+
+function enterNone(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'none');
+  scene.build();
+}
+
+function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gt 'intro_character_custom', 'modclo_loop', $ARGS[1], $ARGS[2], $ARGS[3]
+  scene.build();
+}
+
+function enterModpur(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gt 'intro_character_custom', 'modpur', $ARGS[1], ARGS[2]
+  scene.build();
+}
+
+function enterModrelSetup2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'intro_character_custom', 'modrel_setup2', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'modclo_menu':
+      enterModcloMenu(s, scene);
+      break;
+    case 'modclo_tattoos':
+      enterModcloTattoos(s, scene);
+      break;
+    case 'modclo':
+      enterModclo(s, scene);
+      break;
+    case 'modapp':
+      enterModapp(s, scene);
+      break;
+    case 'modite':
+      enterModite(s, scene);
+      break;
+    case 'modite_cos':
+      enterModiteCos(s, scene);
+      break;
+    case 'modite_pha':
+      enterModitePha(s, scene);
+      break;
+    case 'modite_mis':
+      enterModiteMis(s, scene);
+      break;
+    case 'modatt':
+      enterModatt(s, scene);
+      break;
+    case 'modskl':
+      enterModskl(s, scene);
+      break;
+    case 'modskl_men':
+      enterModsklMen(s, scene);
+      break;
+    case 'modskl_spo':
+      enterModsklSpo(s, scene);
+      break;
+    case 'modskl_com':
+      enterModsklCom(s, scene);
+      break;
+    case 'modskl_bea':
+      enterModsklBea(s, scene);
+      break;
+    case 'modskl_art':
+      enterModsklArt(s, scene);
+      break;
+    case 'modskl_job':
+      enterModsklJob(s, scene);
+      break;
+    case 'birthday':
+      enterBirthday(s, scene);
+      break;
+    case 'setgenbsize':
+      enterSetgenbsize(s, scene);
+      break;
+    case 'modrel_setup3':
+      enterModrelSetup3(s, scene);
+      break;
+    case 'modrel_setup4':
+      enterModrelSetup4(s, scene);
+      break;
+    case 'setval':
+      enterSetval(s, scene);
+      break;
+    case 'setval2':
+      enterSetval2(s, scene);
+      break;
+    case 'setval3':
+      enterSetval3(s, scene);
+      break;
+    case 'setbodymass':
+      enterSetbodymass(s, scene);
+      break;
+    case 'none':
+      enterNone(s, scene);
+      break;
+    case 'modclo_loop':
+      enterModcloLoop(s, scene);
+      break;
+    case 'modpur':
+      enterModpur(s, scene);
+      break;
+    case 'modrel_setup2':
+      enterModrelSetup2(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const intro_customization: LocationDef = {

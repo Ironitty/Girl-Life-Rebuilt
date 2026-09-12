@@ -23,9 +23,11 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([{ label: 'Continue', goto: ['shop', 'main'] }]);
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === 'move') {
-    (s as any).minut = ((s as any).minut ?? 0) + (1);
-  }
+  scene.build();
+}
+
+function enterMove(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.build();
 }
 
@@ -844,6 +846,9 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'move':
+      enterMove(s, scene);
+      break;
     case 'main':
       enterMain(s, scene);
       break;

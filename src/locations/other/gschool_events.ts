@@ -1409,11 +1409,13 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === 'leave_break_events') {
-    scene.actions([
-      { label: 'Continue', goto: ['gschool_events', 'leave_break_events2'] },
-    ]);
-  }
+  scene.build();
+}
+
+function enterLeaveBreakEvents(s: GameState, scene: SceneBuilder): void {
+  scene.actions([
+    { label: 'Continue', goto: ['gschool_events', 'leave_break_events2'] },
+  ]);
   scene.build();
 }
 
@@ -2336,6 +2338,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'break_events':
       enterBreakEvents(s, scene);
+      break;
+    case 'leave_break_events':
+      enterLeaveBreakEvents(s, scene);
       break;
     case 'leave_break_events2':
       enterLeaveBreakEvents2(s, scene);
