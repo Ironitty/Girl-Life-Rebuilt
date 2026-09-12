@@ -1,0 +1,239 @@
+import { chromium } from 'playwright';
+import { setTimeout as sleep } from 'timers/promises';
+import { createServer, type Server } from 'http';
+import { readFileSync, readdirSync, statSync, mkdirSync, existsSync } from 'fs';
+import { join, basename } from 'path';
+
+const ROOT = '/home/depressedtsukasa/Documents/GL';
+
+const args = process.argv.slice(2);
+const filterIdx = args.indexOf('--filter');
+const filter = filterIdx !== -1 ? args[filterIdx + 1] : null;
+const screenshot = args.includes('--screenshot');
+const verbose = args.includes('--verbose');
+
+function startServer(): Server {
+  const html = readFileSync(join(ROOT, 'dist', 'index.html'));
+  const srv = createServer((req, res) => {
+    if (req.url === '/' || req.url === '/index.html') {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(html);
+    } else {
+      try {
+        const data = readFileSync(join(ROOT, 'public', req.url!));
+        const ext = req.url!.split('.').pop();
+        const ct = ext === 'jpg' || ext === 'png' ? 'image/*' : ext === 'mp3' ? 'audio/mpeg' : 'application/octet-stream';
+        res.writeHead(200, { 'Content-Type': ct });
+        res.end(data);
+      } catch {
+        res.writeHead(404);
+        res.end('Not found');
+      }
+    }
+  });
+  srv.listen(4173);
+  return srv;
+}
+
+function getLocations(): string[] {
+  const locDir = join(ROOT, 'src', 'locations');
+  const locations: string[] = [];
+  function scanDir(dir: string) {
+    const entries = readdirSync(dir);
+    for (const entry of entries) {
+      const fullPath = join(dir, entry);
+      const stat = statSync(fullPath);
+      if (stat.isDirectory()) {
+        if (entry === '_shared') continue;
+        scanDir(fullPath);
+      } else if (entry.endsWith('.ts')) {
+        const name = basename(entry, '.ts');
+        if (name.startsWith('_')) continue;
+        locations.push(name);
+      }
+    }
+  }
+  scanDir(locDir);
+  return locations.sort();
+}
+
+async function main() {
+  const srv = startServer();
+  await sleep(500);
+  const browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+  const page = await browser.newPage();
+
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
+  page.on('console', (msg) => {
+    if (msg.type() === 'error') errors.push(`console: ${msg.text()}`);
+  });
+
+  try {
+    await page.goto('http://localhost:4173', { waitUntil: 'networkidle' });
+    await sleep(500);
+
+    await page.locator('button', { hasText: /^Start$/ }).click();
+    await sleep(500);
+    await page.locator('button', { hasText: 'Quick Start' }).click();
+    await sleep(500);
+    await page.locator('input[placeholder="Elena"]').first().fill('Test');
+    await page.locator('button', { hasText: /^Continue$/ }).click();
+    await sleep(500);
+    await page.locator('button', { hasText: /^Continue$/ }).click();
+    await sleep(500);
+    await page.locator('button', { hasText: /End of August/ }).click();
+    await sleep(500);
+    await page.locator('button', { hasText: 'Pavlovsk' }).first().click();
+    await sleep(500);
+    await page.locator('button', { hasText: 'Popular' }).first().click();
+    await sleep(500);
+    await page.locator('button', { hasText: 'Sociable' }).first().click();
+    await sleep(500);
+    await page.locator('button', { hasText: /^Continue$/ }).click();
+    await sleep(500);
+    await page.locator('button', { hasText: 'Start Game' }).click();
+    await sleep(1000);
+
+    let locations = getLocations();
+    if (filter) {
+      const re = new RegExp(filter, 'i');
+      locations = locations.filter((l) => re.test(l));
+    }
+
+    console.log('=== RENDER AUDIT ===');
+    console.log(`Locations to check: ${locations.length}`);
+    if (filter) console.log(`Filter: ${filter}`);
+    console.log('');
+
+    const results: { loc: string; passed: boolean; issues: string[] }[] = [];
+    const startTime = Date.now();
+
+    for (let i = 0; i < locations.length; i++) {
+      const loc = locations[i];
+      const issues: string[] = [];
+
+      errors.length = 0;
+
+      try {
+        await page.evaluate((l) => {
+          const store = (window as any).__gameStore;
+          const state = store.getState();
+          (window as any).__goto(state, l, '');
+        }, loc);
+      } catch (e: any) {
+        issues.push(`goto threw: ${e.message}`);
+      }
+
+      await sleep(500);
+
+      const newErrors = errors.filter((e) => !/404|Failed to load resource/i.test(e));
+      if (newErrors.length > 0) {
+        issues.push(`JS errors: ${newErrors.slice(0, 3).join('; ')}`);
+      }
+
+      const imgInfo = await page.evaluate(() => {
+        const img = document.querySelector('img');
+        if (!img) return null;
+        return { src: img.src, naturalWidth: img.naturalWidth };
+      });
+      if (imgInfo) {
+        if (imgInfo.src.includes('undefined')) {
+          issues.push(`image src="${imgInfo.src}"`);
+        } else if (imgInfo.naturalWidth === 0) {
+          issues.push(`image not loaded (src="${imgInfo.src}")`);
+        }
+      }
+
+      const actionCount = await page.evaluate(() => {
+        const buttons = Array.from(document.querySelectorAll('button'));
+        const actions = buttons.filter((b) => {
+          const text = b.textContent?.trim() ?? '';
+          const title = b.getAttribute('title');
+          if (title) return false;
+          if (/^(Map|Back)$/i.test(text)) return false;
+          if (text.length === 0 || text.length >= 80) return false;
+          return true;
+        });
+        return actions.length;
+      });
+      if (actionCount === 0) {
+        issues.push('no actions found');
+      }
+
+      const bodyText = await page.textContent('body');
+      if ((bodyText?.length ?? 0) < 50) {
+        issues.push(`text too short (${bodyText?.length ?? 0} chars)`);
+      }
+
+      const passed = issues.length === 0;
+      results.push({ loc, passed, issues });
+
+      if (verbose) {
+        const status = passed ? '✓' : '✗';
+        const issueStr = issues.length > 0 ? ` [${issues.join(', ')}]` : '';
+        console.log(`${status} ${loc}${issueStr}`);
+      }
+
+      if (screenshot && !passed) {
+        const shotDir = '/tmp/render-audit';
+        if (!existsSync(shotDir)) mkdirSync(shotDir, { recursive: true });
+        await page.screenshot({ path: join(shotDir, `${loc}.png`), fullPage: true }).catch(() => {});
+      }
+
+      if ((i + 1) % 100 === 0) {
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        console.log(`  Progress: ${i + 1}/${locations.length} (${elapsed}s)`);
+      }
+    }
+
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    const passedCount = results.filter((r) => r.passed).length;
+    const failedCount = results.filter((r) => !r.passed).length;
+
+    console.log('');
+    console.log(`=== RESULTS (${elapsed}s) ===`);
+    console.log(`Total: ${results.length}`);
+    console.log(`Passed: ${passedCount}`);
+    console.log(`Failed: ${failedCount}`);
+
+    if (failedCount > 0) {
+      console.log('');
+      console.log('--- FAILURES ---');
+      for (const r of results.filter((r) => !r.passed)) {
+        console.log(`${r.loc}: ${r.issues.join(', ')}`);
+      }
+    }
+
+    const issueCounts: Record<string, number> = {};
+    for (const r of results) {
+      for (const issue of r.issues) {
+        const key = issue.startsWith('JS errors') ? 'JS errors' :
+          issue.startsWith('image') ? 'image issues' :
+          issue.startsWith('no actions') ? 'no actions' :
+          issue.startsWith('text') ? 'text issues' :
+          issue.startsWith('goto threw') ? 'goto threw' :
+          'other';
+        issueCounts[key] = (issueCounts[key] ?? 0) + 1;
+      }
+    }
+    if (Object.keys(issueCounts).length > 0) {
+      console.log('');
+      console.log('--- SUMMARY ---');
+      for (const [key, count] of Object.entries(issueCounts).sort((a, b) => b[1] - a[1])) {
+        console.log(`${key}: ${count}`);
+      }
+    }
+
+    if (failedCount > 0) process.exitCode = 1;
+  } catch (e: any) {
+    console.error(`✗ Audit crashed: ${e.message}`);
+    process.exitCode = 1;
+  } finally {
+    await browser.close();
+    srv.close();
+    process.exit(process.exitCode ?? 0);
+  }
+}
+
+main();

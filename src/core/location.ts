@@ -87,6 +87,8 @@ export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3
   }
 }
 
+(window as any).__goto = goto;
+
 export function call(s: GameState, loc: string, arg: string): void {
   s.stateStack.push({
     loc: s.loc,
