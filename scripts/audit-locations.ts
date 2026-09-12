@@ -288,13 +288,19 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
   return sections;
 }
 
-function extractQspActions(lines: string[], start: number, end: number): QspAction[] {
+ function extractQspActions(lines: string[], start: number, end: number): QspAction[] {
   const actions: QspAction[] = [];
+  let inBlockComment = false;
 
   for (let i = start; i < end; i++) {
     const line = lines[i];
     const trimmed = line.trim();
 
+    if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) { inBlockComment = true; continue; }
+    if (inBlockComment) {
+      if (trimmed.endsWith('!}') || trimmed === 'end}' || trimmed === '}') inBlockComment = false;
+      continue;
+    }
     if (trimmed.startsWith('!!')) continue;
 
     const actMatch = line.match(/act\s+'((?:[^']|'')*)'(\s*\+\s*.*)?:/);
