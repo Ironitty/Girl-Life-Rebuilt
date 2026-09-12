@@ -5,41 +5,44 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'start'  ||  ((s as any).loc_arg ?? 0) === 'start') {
-    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
-      if (((s as any).month ?? 0) >=11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >=1  &&  ((s as any).month ?? 0) <=3) {
-        if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
-        }
-        if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
-        }
-      } else {
-        if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
-        }
-        if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
-        }
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    if (((s as any).month ?? 0) >=11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >=1  &&  ((s as any).month ?? 0) <=3) {
+      if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
+      }
+      if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
+      }
+    } else {
+      if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
+      }
+      if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
       }
     }
-    qspCall(s, 'core_library', 'setloc', 'city_market', 'start');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'themes', 'outdoors');
-    scene.img('images/locations/city/residential/market/rinok.jpg');
-    scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="exec:cloc=2 & gt \'clothing_view\', \'view_lists_list\', \'sell\'">sell individual items</a> or <a href="exec:gs \'portnoi\'">all of your unwanted clothes here</a>.');
-    if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2) {
-      (s as any).nurand = Math.floor(Math.random() * 101) + 0;
-      if (((s as any).nurand ?? 0) >= 80) {
-        qspCall(s, 'mood', 'lower', 'tiny');
-        scene.text('You feel a hand gently pawing at <a href="exec:gt \'ETO_salon\', \'market_grope\'">your ass</a>.');
-        qspCall(s, 'arousal', 'foreplay', 3);
-        qspCall(s, 'stat', '');
-      }
+  }
+  qspCall(s, 'core_library', 'setloc', 'city_market', 'start');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'outdoors');
+  scene.img('images/locations/city/residential/market/rinok.jpg');
+  scene.text('One of the stalls has a sign attached to it that reads "Cash paid for secondhand clothes". You can <a href="exec:cloc=2 & gt \'clothing_view\', \'view_lists_list\', \'sell\'">sell individual items</a> or <a href="exec:gs \'portnoi\'">all of your unwanted clothes here</a>.');
+  if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2) {
+    (s as any).nurand = Math.floor(Math.random() * 101) + 0;
+    if (((s as any).nurand ?? 0) >= 80) {
+      qspCall(s, 'mood', 'lower', 'tiny');
+      scene.text('You feel a hand gently pawing at <a href="exec:gt \'ETO_salon\', \'market_grope\'">your ass</a>.');
+      qspCall(s, 'arousal', 'foreplay', 3);
+      qspCall(s, 'stat', '');
     }
-    if (((s as any).job_status ?? 0)?.['city_market_saleswoman'] === 'employed') {
-      if (((s as any).week ?? 0) === 2  ||  ((s as any).week ?? 0) === 4  ||  ((s as any).week ?? 0) === 6) {
-        if (((s as any).hour ?? 0) < 9) {
-          scene.text('Arthur is waiting to set up a stall for you.');
-          scene.actions([
-            { label: '<b>Set up stall</b>', handler: (st: GameState) => {
+  }
+  if (((s as any).job_status ?? 0)?.['city_market_saleswoman'] === 'employed') {
+    if (((s as any).week ?? 0) === 2  ||  ((s as any).week ?? 0) === 4  ||  ((s as any).week ?? 0) === 6) {
+      if (((s as any).hour ?? 0) < 9) {
+        scene.text('Arthur is waiting to set up a stall for you.');
+        scene.actions([
+          { label: '<b>Set up stall</b>', handler: (st: GameState) => {
     (s as any).hour = 9;
     (s as any).minut = 0;
     (s as any).prodpayum = 1200;
@@ -51,11 +54,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Start working', goto: ['city_marketwork', 'start'] },
     ]);
   } },
-          ]);
-        }
+        ]);
       }
-      scene.actions([
-        { label: 'Quit', handler: (st: GameState) => {
+    }
+    scene.actions([
+      { label: 'Quit', handler: (st: GameState) => {
     qspCall(s, 'jobs', 'set_terminated', 'city_market_saleswoman');
     qspCall(s, 'stat', '');
     scene.text('You quit your job at the market and collect your papers.');
@@ -63,13 +66,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_market', 'start'] },
     ]);
   } },
-      ]);
-    }
-    if (((s as any).job_status ?? 0)?.['city_market_saleswoman'] !== 'employed') {
-      // TODO-QSP: nl
-      scene.text('A messily written ad hangs from one of the stalls. "Need female market stall staff. Paychecks big."');
-      scene.actions([
-        { label: 'Approach the owner of the ad', handler: (st: GameState) => {
+    ]);
+  }
+  if (((s as any).job_status ?? 0)?.['city_market_saleswoman'] !== 'employed') {
+    // TODO-QSP: nl
+    scene.text('A messily written ad hangs from one of the stalls. "Need female market stall staff. Paychecks big."');
+    scene.actions([
+      { label: 'Approach the owner of the ad', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.text('Hi, my name is Arthur. I own many stalls here and I need a saleswoman. Want the job?');
     // TODO-QSP: dynamic text: Pay is a percentage of sales, paid at end of shift. Your shifts would be Tuesday...
@@ -87,15 +90,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
   }, goto: ['city_residential', ''] },
-      { label: 'Browse wares', goto: ['city_market', 'wares'] },
-      { label: 'Go to the book tray', handler: (st: GameState) => {
+    { label: 'Browse wares', goto: ['city_market', 'wares'] },
+    { label: 'Go to the book tray', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You walk up to the stall and inspect what's on sale. You see a fantasy book, a s...
@@ -105,11 +109,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_market', 'start'] },
     ]);
   } },
-      { label: 'View clothing', handler: (st: GameState) => {
+    { label: 'View clothing', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_market', 'clo'] },
-    ]);
-  }
+  ]);
   scene.build();
 }
 
@@ -201,6 +204,9 @@ function enterTailorActs(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'clo':
       enterClo(s, scene);
       break;
@@ -224,6 +230,5 @@ export const city_market: LocationDef = {
   title: 'Clothes.',
   region: 'city',
   locationType: 'public_outdoors',
-  description: ['Arthur is waiting to set up a stall for you.'],
   enter: enter,
 };

@@ -260,6 +260,20 @@ interface ParseResult {
       continue;
     }
 
+    // Scene (mixed multi-value): if $ARGS[0] = 'x' or $var = 'val': (only at top level)
+    const sceneMixedMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s+or\s+\$\w+\s*=\s*'[^']*'\s*:\s*$/i);
+    if (sceneMixedMatch && !rawLine.startsWith('\t') && !rawLine.startsWith(' ')) {
+      if (!stopAtEnd) {
+        return { nodes, endIdx: i };
+      }
+      const arg = sceneMixedMatch[1];
+      const inner = parseBlock(lines, i + 1, unsupported, false);
+      const scene: QspScene = { kind: 'scene', arg, body: inner.nodes };
+      nodes.push(scene);
+      i = inner.endIdx;
+      continue;
+    }
+
     // Act block: act 'label':
     const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/i);
     if (actBlockMatch) {

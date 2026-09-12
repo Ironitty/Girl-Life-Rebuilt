@@ -48,33 +48,45 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === 'shop'  ||  ((s as any).gas_shop_inside ?? 0) === 'yes') {
-    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
-    }
-    qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'shop');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/highway/gas_station_gp_117/gas_interior.jpg');
-    scene.text('The shop is stacked with some magazines, cigarettes, different things to eat and drink.');
-    if (((s as any).prostitute ?? 0)?.['tomas_timer'] === ((s as any).daystart ?? 0)) {
-      scene.text('Behind the counter stands Tomas. He\'s talking to another customer right now.');
+  scene.actions([
+    { label: 'Go inside the gas station', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['gas_station_gp_117', 'shop'] },
+    { label: 'Go to the public restroom', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['gas_station_gp_117', 'restroom'] },
+  ]);
+  scene.build();
+}
+
+function enterShop(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'shop');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/highway/gas_station_gp_117/gas_interior.jpg');
+  scene.text('The shop is stacked with some magazines, cigarettes, different things to eat and drink.');
+  if (((s as any).prostitute ?? 0)?.['tomas_timer'] === ((s as any).daystart ?? 0)) {
+    scene.text('Behind the counter stands Tomas. He\'s talking to another customer right now.');
+  } else {
+    if (((s as any).week ?? 0) < 7) {
+      // TODO-QSP: 'Behind the counter stands '+iif(prostitute['tomas'] = 0, 'a plump man.', 'Tomas.')
     } else {
-      if (((s as any).week ?? 0) < 7) {
-        // TODO-QSP: 'Behind the counter stands '+iif(prostitute['tomas'] = 0, 'a plump man.', 'Tomas.')
-      } else {
-        if (((s as any).prostitute ?? 0)?.['tomas'] > 0  &&  ((s as any).week ?? 0) === 7) {
-          scene.text('Tomas isn\'t working on Sundays. Another guy you don\'t know is standing behind the counter.');
-        }
+      if (((s as any).prostitute ?? 0)?.['tomas'] > 0  &&  ((s as any).week ?? 0) === 7) {
+        scene.text('Tomas isn\'t working on Sundays. Another guy you don\'t know is standing behind the counter.');
       }
     }
-    qspCall(s, 'themes', 'indoors');
-    qspCall(s, 'item_cart', 'shopping_aisle', 'prost_shop');
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Go outside', handler: (st: GameState) => {
+  }
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'item_cart', 'shopping_aisle', 'prost_shop');
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go outside', handler: (st: GameState) => {
     // TODO-QSP: $gas_shop_inside = 'no'
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['gas_station_gp_117', 'outside'] },
-      { label: 'Buy and eat a snack (0:05) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    { label: 'Buy and eat a snack (0:05) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -89,7 +101,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy and eat a healthy snack (0:05) [+$func(\'money\', \'get_cost_string\', 120)]', handler: (st: GameState) => {
+    { label: 'Buy and eat a healthy snack (0:05) [+$func(\'money\', \'get_cost_string\', 120)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 120) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -104,7 +116,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy and drink some water (0:05) [+$func(\'money\', \'get_cost_string\', 40)]', handler: (st: GameState) => {
+    { label: 'Buy and drink some water (0:05) [+$func(\'money\', \'get_cost_string\', 40)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 40) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -119,15 +131,6 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    ]);
-  }
-  scene.actions([
-    { label: 'Go inside the gas station', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 1;
-  }, goto: ['gas_station_gp_117', 'shop'] },
-    { label: 'Go to the public restroom', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 1;
-  }, goto: ['gas_station_gp_117', 'restroom'] },
   ]);
   scene.build();
 }
@@ -457,6 +460,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'outside':
       enterOutside(s, scene);
+      break;
+    case 'shop':
+      enterShop(s, scene);
       break;
     case 'restroom':
       enterRestroom(s, scene);
