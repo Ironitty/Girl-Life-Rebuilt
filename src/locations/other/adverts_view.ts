@@ -37,7 +37,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Enroll now'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
-  ((s as any).ml_guitarlesson ?? {})['advertisement'] = 1;
+  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['advertisement'] = 1;
   // TODO-QSP: end
   scene.build();
 }
@@ -79,7 +79,7 @@ function enterSecretary(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
   if (((s as any).job_hiring_step ?? 0)?.['city_office_secretary'] === 0) {
-    ((s as any).job_hiring_step ?? {})['city_office_secretary'] = 1;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_secretary'] = 1;
   }
   // TODO-QSP: end
   scene.build();
@@ -147,7 +147,7 @@ function enterHotelmaid(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] === 0) {
-    ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 1;
   }
   // TODO-QSP: end
   scene.build();

@@ -136,13 +136,13 @@ function enterWeeklyGradeUpdate(s: GameState, scene: SceneBuilder): void {
     if (((s as any).lernHome ?? 0) > 0  &&  ((s as any).petkaQW ?? 0)?.['homework'] === 1) {
       qspCall(s, 'grades', 'homework', 'school', 'yes', 0, 2, 'A6');
     }
-    ((s as any).trait_vars ?? {})['academic_exp'] = (((s as any).trait_vars ?? {})['academic_exp'] ?? 0) - (0);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) - (0);
     if (((s as any).lernHome ?? 0) <= 1) {
-      ((s as any).trait_vars ?? {})['academic_exp'] = (((s as any).trait_vars ?? {})['academic_exp'] ?? 0) + (((s as any).trait_vars ?? 0)?.['nerd_learn_home']);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) + (((s as any).trait_vars ?? 0)?.['nerd_learn_home']);
       if (((s as any).trait_vars ?? 0)?.['nerd_learn_home'] < 5) {
-        ((s as any).trait_vars ?? {})['nerd_learn_home'] = (((s as any).trait_vars ?? {})['nerd_learn_home'] ?? 0) + (1);
+        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nerd_learn_home'] = ((s as any).trait_vars['nerd_learn_home'] ?? 0) + (1);
       } else {
-        ((s as any).trait_vars ?? {})['nerd_learn_home'] = 0;
+        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nerd_learn_home'] = 0;
       }
     }
     (s as any).lernHome = 0;
@@ -172,11 +172,11 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sd_sched[4] = 'English, Geography, Science, Shop, Computer and Music.'
     // TODO-QSP: $sd_sched[5] = 'Math, Russian, Literature, Art, History and P.E.'
     if (((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) <= 5) {
-      ((s as any).stat_texts ?? {})['school_schedule'] = ' You have the following lessons today: ' + qspUntranslated(s, "sd_sched[week]>", { location: "gschool" }) + '';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['school_schedule'] = ' You have the following lessons today: ' + qspUntranslated(s, "sd_sched[week]>", { location: "gschool" }) + '';
     }
     if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).week ?? 0) < 6) {
       if (((s as any).hour ?? 0) < 9) {
-        ((s as any).stat_texts ?? {})['school'] = 'You have to be at school before ' + qspUntranslated(s, "func('time', 'get_time_string', 7, 55)>", { location: "gschool" }) + ' if you don\'t want to be late.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['school'] = 'You have to be at school before ' + qspUntranslated(s, "func('time', 'get_time_string', 7, 55)>", { location: "gschool" }) + ' if you don\'t want to be late.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'school', '', 'status/gschool', 4);
         if (((s as any).hour ?? 0) >= 7) {
           qspCall(s, 'stat_display_compute', 'queue_alert', 'School starts soon, be there by 7:55.', 'neg');
@@ -184,17 +184,17 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) < 15) {
           if (((s as any).gschoolVars ?? 0)?.['last_attendance'] !== ((s as any).daystart ?? 0)) {
-            ((s as any).stat_texts ?? {})['school'] = 'You have missed school.';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['school'] = 'You have missed school.';
             qspCall(s, 'stat_display_compute', 'queue_msg', 'school', '', 'status/gschool_red', 4);
           } else {
-            ((s as any).stat_texts ?? {})['school'] = ((s as any).stat_texts ?? 0)?.['school_schedule'];
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['school'] = ((s as any).stat_texts ?? 0)?.['school_schedule'];
             qspCall(s, 'stat_display_compute', 'queue_msg', 'school', '', 'status/gschool', 4);
           }
         }
       }
     } else {
       if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) < 9  &&  ((s as any).detention_set ?? 0) === 1  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
-        ((s as any).stat_texts ?? {})['school'] = 'You have detention this morning and must be at school before ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "gschool" }) + '.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['school'] = 'You have detention this morning and must be at school before ' + qspUntranslated(s, "func('time', 'get_time_string', 9, 0)>", { location: "gschool" }) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'school', '', 'status/gschool', 4);
         if (((s as any).hour ?? 0) >= 7) {
           qspCall(s, 'stat_display_compute', 'queue_alert', 'Detention this morning. You must be at school by 9:00.', 'neg');
@@ -205,11 +205,11 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).daystart ?? 0) === ((s as any).sisboyday ?? 0) + 1  &&  ((s as any).hour ?? 0) < 18) {
       if ((((s as any).npc_QW ?? 0)?.['A33'] === 3  ||  ((s as any).npc_QW ?? 0)?.['A33'] === 5  ||  ((s as any).npc_QW ?? 0)?.['A33'] === 7  ||  (((s as any).npc_QW ?? 0)?.['A33'] >= 9  &&  ((s as any).sisboytrioQW ?? 0) !== 1))) {
-        ((s as any).stat_texts ?? {})['sg_sisroom'] = 'You promised your sister not to go into your room at ' + qspUntranslated(s, "func('time', 'get_time_string', 16, 0, cheatVars['time_format'])>", { location: "gschool" }) + '.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sg_sisroom'] = 'You promised your sister not to go into your room at ' + qspUntranslated(s, "func('time', 'get_time_string', 16, 0, cheatVars['time_format'])>", { location: "gschool" }) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_sisroom');
       }
       if (((s as any).sisboytrioQW ?? 0) === 1) {
-        ((s as any).stat_texts ?? {})['sg_sistrio'] = 'You promised your sister you would meet her in your room at ' + qspUntranslated(s, "func('time', 'get_time_string', 16, 0, cheatVars['time_format'])>", { location: "gschool" }) + '.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sg_sistrio'] = 'You promised your sister you would meet her in your room at ' + qspUntranslated(s, "func('time', 'get_time_string', 16, 0, cheatVars['time_format'])>", { location: "gschool" }) + '.';
         qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_sistrio');
         if (((s as any).hour ?? 0) >= 14) {
           qspCall(s, 'stat_display_compute', 'queue_alert', 'Your sister is expecting you in your room at \' + $func(\'time\', \'get_time_string\', 16, 0) + \'.', 'neg');
@@ -217,7 +217,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).day ?? 0) === ((s as any).nyp_day ?? 0)  &&  ((s as any).month ?? 0) === 12  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).hour ?? 0) >= 5  &&  ((s as any).hour ?? 0) <= 14) {
-      ((s as any).stat_texts ?? {})['sg_ny_school'] = 'Your school\'s New Year\'s party will start at ' + qspUntranslated(s, "func('time', 'get_time_string', 14, 0, cheatVars['time_format'])>", { location: "gschool" }) + '.';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sg_ny_school'] = 'Your school\'s New Year\'s party will start at ' + qspUntranslated(s, "func('time', 'get_time_string', 14, 0, cheatVars['time_format'])>", { location: "gschool" }) + '.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_ny_school');
       if (((s as any).hour ?? 0) >= 12) {
         qspCall(s, 'stat_display_compute', 'queue_alert', 'School New Year party starts soon (\' + $func(\'time\', \'get_time_string\', 14, 0) + \').', 'neg');
@@ -232,14 +232,14 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).gopnik_initiation ?? 0) === 1  &&  ((s as any).gopnik_initiation_day ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 15  &&  ((s as any).hour ?? 0) < 21) {
-      ((s as any).stat_texts ?? {})['sg_gopnik'] = 'Meet Lena and Lera at the apartment garages at eight.';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sg_gopnik'] = 'Meet Lena and Lera at the apartment garages at eight.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_gopnik');
       if (((s as any).hour ?? 0) >= 18) {
         qspCall(s, 'stat_display_compute', 'queue_alert', 'Meet Lena and Lera at the garages at eight.', 'neg');
       }
     }
     if (((s as any).nerd_night_game ?? 0) === 1  &&  ((s as any).nerd_night_game_day ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 15  &&  ((s as any).hour ?? 0) < 21) {
-      ((s as any).stat_texts ?? {})['sg_nerd'] = 'Join nerds at the community center at eight.';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sg_nerd'] = 'Join nerds at the community center at eight.';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'sg_nerd');
       if (((s as any).hour ?? 0) >= 18) {
         qspCall(s, 'stat_display_compute', 'queue_alert', 'Join the nerds at the community center at eight.', 'neg');

@@ -146,8 +146,8 @@ function enterNightclubDateAsk(s: GameState, scene: SceneBuilder): void {
 
 function enterNightclubDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).NatbelQW ?? {})['uni_dates'] = (((s as any).NatbelQW ?? {})['uni_dates'] ?? 0) + (1);
-  ((s as any).NatbelQW ?? {})['uni_dates_nightclub_1'] = (((s as any).NatbelQW ?? {})['uni_dates_nightclub_1'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_nightclub_1'] = ((s as any).NatbelQW['uni_dates_nightclub_1'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/natdressing1.jpg');
   scene.text('You look up and see Natasha entering your room but she isn\'t ready yet.');
@@ -335,8 +335,8 @@ function enterNightclubDate1_3(s: GameState, scene: SceneBuilder): void {
 
 function enterMallDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['uni_dates'] = (((s as any).NatbelQW ?? {})['uni_dates'] ?? 0) + (1);
-  ((s as any).NatbelQW ?? {})['uni_dates_mall_1'] = (((s as any).NatbelQW ?? {})['uni_dates_mall_1'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_mall_1'] = ((s as any).NatbelQW['uni_dates_mall_1'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');
   scene.text('You spot Natasha sitting alone by the window and head over.');
@@ -424,7 +424,7 @@ function enterMallDate1(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 5000)  &&  ((s as any).NatbelQW ?? 0)?.['uni_fashionista_dress'] === 0) {
       scene.actions([
         { label: 'Natasha spots a really nice dress', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['uni_fashionista_dress'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_fashionista_dress'] = 1;
     qspCall(s, 'money', 'pay', 5000);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat17.jpg');
@@ -583,8 +583,8 @@ function enterMallDate1_2(s: GameState, scene: SceneBuilder): void {
 
 function enterLibraryDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['uni_dates'] = (((s as any).NatbelQW ?? {})['uni_dates'] ?? 0) + (1);
-  ((s as any).NatbelQW ?? {})['uni_dates_library_1'] = (((s as any).NatbelQW ?? {})['uni_dates_library_1'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_library_1'] = ((s as any).NatbelQW['uni_dates_library_1'] ?? 0) + (1);
   qspCall(s, 'beverage', 'coffee_stats');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');
@@ -766,8 +766,8 @@ function enterLibraryDate1_2(s: GameState, scene: SceneBuilder): void {
 
 function enterCafeDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['uni_dates'] = (((s as any).NatbelQW ?? {})['uni_dates'] ?? 0) + (1);
-  ((s as any).NatbelQW ?? {})['uni_dates_cafe_1'] = (((s as any).NatbelQW ?? {})['uni_dates_cafe_1'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_cafe_1'] = ((s as any).NatbelQW['uni_dates_cafe_1'] ?? 0) + (1);
   qspCall(s, 'beverage', 'coffee_stats');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat1.jpg');
@@ -886,8 +886,8 @@ function enterCafeDate1(s: GameState, scene: SceneBuilder): void {
 
 function enterBeachDate1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['uni_dates'] = (((s as any).NatbelQW ?? {})['uni_dates'] ?? 0) + (1);
-  ((s as any).NatbelQW ?? {})['uni_dates_beach_1'] = (((s as any).NatbelQW ?? {})['uni_dates_beach_1'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates'] = ((s as any).NatbelQW['uni_dates'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['uni_dates_beach_1'] = ((s as any).NatbelQW['uni_dates_beach_1'] ?? 0) + (1);
   qspCall(s, 'beverage', 'coffee_stats');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat4.jpg');

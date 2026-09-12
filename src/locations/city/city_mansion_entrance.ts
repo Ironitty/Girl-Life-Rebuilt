@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 500000);
-      ((s as any).ymanrem ?? {})[3] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[3] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You paid for the construction of the rooms. You can finally begin designing the interior of the mansion.');
@@ -169,7 +169,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[3] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[3] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the main hall is finished.');
@@ -189,7 +189,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 150000);
-      ((s as any).ymanrem ?? {})[3] = 3;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[3] = 3;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the main hall is finished.');
@@ -210,7 +210,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[4] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[4] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the bedroom is finished.');
@@ -230,7 +230,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300000);
-      ((s as any).ymanrem ?? {})[4] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[4] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the bedroom is finished.');
@@ -251,7 +251,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[5] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[5] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the bathroom is finished.');
@@ -271,7 +271,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[5] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[5] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the bathroom is finished.');
@@ -292,7 +292,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[6] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[6] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the kitchen is finished.');
@@ -312,7 +312,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[6] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[6] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the kitchen is finished.');
@@ -333,7 +333,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[7] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[7] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the living room is finished.');
@@ -353,9 +353,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[7] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[7] = 2;
       if (((s as any).mc_inventory ?? 0)?.['plasma_tv'] < 1) {
-        ((s as any).mc_inventory ?? {})['plasma_tv'] = 1;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['plasma_tv'] = 1;
       }
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
@@ -377,7 +377,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[8] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[8] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the fireplace room is finished.');
@@ -397,7 +397,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[8] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[8] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the fireplace room is finished.');
@@ -418,7 +418,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[9] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[9] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the nursery is finished.');
@@ -438,7 +438,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[9] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[9] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the nursery is finished.');
@@ -459,7 +459,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[10] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[10] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the library is finished.');
@@ -479,7 +479,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[10] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[10] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the library is finished.');
@@ -500,7 +500,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[11] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[11] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the gym is finished.');
@@ -520,7 +520,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[11] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[11] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the gym is finished.');
@@ -541,7 +541,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[12] = 1;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[12] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('The work on the office is finished.');
@@ -561,9 +561,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000);
-      ((s as any).ymanrem ?? {})[12] = 2;
+      if (!(s as any).ymanrem) (s as any).ymanrem = {}; (s as any).ymanrem[12] = 2;
       if (((s as any).mc_inventory ?? 0)?.['tech_computer'] < 1) {
-        ((s as any).mc_inventory ?? {})['tech_computer'] = 1;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_computer'] = 1;
       }
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');

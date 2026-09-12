@@ -5,27 +5,27 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = '';
+  if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = '';
   if (((s as any).film ?? 0) > 0) {
-    ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'The photo is a screenshot from one of your porn movies.';
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = 'The photo is a screenshot from one of your porn movies.';
   } else {
     if (((s as any).fotoyousuck ?? 0) === 1) {
-      ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'The picture shows you sucking two cocks at the same time.';
+      if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = 'The picture shows you sucking two cocks at the same time.';
     } else {
       if (((s as any).fotoCFNMsex ?? 0) > 0) {
-        ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you see yourself getting fucked from behind by a random guy. This must have been taken in the stripclub.';
+        if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = 'In the photo you see yourself getting fucked from behind by a random guy. This must have been taken in the stripclub.';
       } else {
         if (((s as any).fotoCFNMblowjobCum ?? 0) > 0) {
-          ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you are sitting in front of a guy, kissing his cock. There seems to be cum on your face. This photo must have been taken in the stripclub.';
+          if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = 'In the photo you are sitting in front of a guy, kissing his cock. There seems to be cum on your face. This photo must have been taken in the stripclub.';
         } else {
           if (((s as any).fotoCFNMblowjob ?? 0) > 0) {
-            ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you are giving a guy a blowjob. You can spot a group of women in the background and it seems like this photo was taken in the stripclub.';
+            if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = 'In the photo you are giving a guy a blowjob. You can spot a group of women in the background and it seems like this photo was taken in the stripclub.';
           } else {
             if (((s as any).strip_club ?? 0)?.['total_stripshows'] > 0) {
-              ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'In the photo you are dancing on a pole. Obviously someone photographed you, while you were on stage at the stripclub.';
+              if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = 'In the photo you are dancing on a pole. Obviously someone photographed you, while you were on stage at the stripclub.';
             } else {
               if (((s as any).modelfoto ?? 0)?.['erotic'] > 0) {
-                ((s as any).BurgerQW ?? {})['IlyQWBlackmailPhoto'] = 'The photo shows you naked, it is very well taken and must be from a shoot at the modeling agency.';
+                if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmailPhoto'] = 'The photo shows you naked, it is very well taken and must be from a shoot at the modeling agency.';
               }
             }
           }
@@ -222,8 +222,8 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 1) {
         (s as any).bosstiprand = Math.floor(Math.random() * 4) + 0;
         if ((!((s as any).bosstiprand ?? 0))) {
-          ((s as any).BurgerQW ?? {})['TerminalTask'] = 1;
-          ((s as any).BurgerQW ?? {})['TerminalTaskDay'] = ((s as any).daystart ?? 0);
+          if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['TerminalTask'] = 1;
+          if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['TerminalTaskDay'] = ((s as any).daystart ?? 0);
           // TODO-QSP: dynamic text: Anatoly comes out of the office, and asks, "<<$pcs_nickname>>, I know it's lunch...
           scene.text(`Anatoly comes out of the office, and asks, "${((s as any).pcs_nickname ?? 0)}, I know it's lunch time, but I really need these documents taken to the storage terminal in the city industrial area to be signed. I'll give you the rest of the day off if you take care of it for me," he finishes, with a smile.`);
           scene.actions([
@@ -254,8 +254,8 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).bosstiprand ?? 0) === 2) {
-              ((s as any).BurgerQW ?? {})['BankTask'] = 1;
-              ((s as any).BurgerQW ?? {})['BankTaskDay'] = ((s as any).daystart ?? 0);
+              if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['BankTask'] = 1;
+              if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['BankTaskDay'] = ((s as any).daystart ?? 0);
               // TODO-QSP: dynamic text: Anatoly comes out of the office, and says, "<<$pcs_nickname>>, please run these ...
               scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname ?? 0)}, please run these documents to the bank for me. I'll give you the rest of the day off if you take care of it for me," he finishes, with a smile.`);
               scene.actions([
@@ -272,11 +272,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       scene.text('A tall young man shows up, with a big bag of gear. He asks you what\'s broken, and you show him the boss\'s computer. He soon gets it working again, after fiddling around its insides.');
     } else {
       if (((s as any).neighborQW ?? 0)?.['stage'] > 0  &&  ((s as any).neighborQW ?? 0)?.['knows_work'] > 0) {
-        ((s as any).neighborQW ?? {})['knows_work'] = 1;
+        if (!(s as any).neighborQW) (s as any).neighborQW = {}; (s as any).neighborQW['knows_work'] = 1;
         scene.text('Your neighbor Timofei shows up to repair the computer. You give him a friendly hello, and show his to the boss\'s PC. It doesn\'t take him long to figure out that it was just unplugged.');
       } else {
         if (((s as any).neighborQW ?? 0)?.['stage'] > 0  &&  ((s as any).neighborQW ?? 0)?.['knows_work'] === 0) {
-          ((s as any).neighborQW ?? {})['knows_work'] = 1;
+          if (!(s as any).neighborQW) (s as any).neighborQW = {}; (s as any).neighborQW['knows_work'] = 1;
           scene.text('Your neighbor Timofei shows up to repair the computer. He is pleasantly surprised to see you. You chat cheerfully, while Timofei works on the boss\'s PC. He soon fixes whatever was wrong with it, and you send him on his way with a hug.');
         }
       }
@@ -377,7 +377,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let him down easy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).BurgerQW ?? {})['sergeyQW'] = 1;
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['sergeyQW'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/diner/kafe2.jpg');
     scene.text('You tell him that you have to be getting home, and the little brat takes that as an opportunity to grope you, before you leave.');
@@ -476,7 +476,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         { label: 'Go to the sauna', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).saunaWhore ?? 0) >= 1) {
-      ((s as any).BurgerQW ?? {})['SaunaWhoreKnown'] = 1;
+      if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SaunaWhoreKnown'] = 1;
       // TODO-QSP: dynamic text: When you enter the sauna you stop dead in your tracks when you see the madam. "<...
       scene.text(`When you enter the sauna you stop dead in your tracks when you see the madam. "${((s as any).pcs_nickname ?? 0)}, what a surprise, are you coming back to work for us?"`);
       scene.text('Anatoly says, "What\'s going on here?"');
@@ -595,11 +595,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       scene.text('A tall young man shows up, with a big bag of gear. He asks you whats broken, and you show him the boss\'s computer. He soon gets it working again, after fiddling around it\'s insides.');
     } else {
       if (((s as any).neighborQW ?? 0)?.['stage'] > 0  &&  ((s as any).neighborQW ?? 0)?.['knows_work'] > 0) {
-        ((s as any).neighborQW ?? {})['knows_work'] = 1;
+        if (!(s as any).neighborQW) (s as any).neighborQW = {}; (s as any).neighborQW['knows_work'] = 1;
         scene.text('Your neighbor Timofei shows up to repair the computer. You give him a friendly hello, and show his to the boss\'s PC. It doesn\'t take him long to figure out that it was just unplugged.');
       } else {
         if (((s as any).neighborQW ?? 0)?.['stage'] > 0  &&  ((s as any).neighborQW ?? 0)?.['knows_work'] === 0) {
-          ((s as any).neighborQW ?? {})['knows_work'] = 1;
+          if (!(s as any).neighborQW) (s as any).neighborQW = {}; (s as any).neighborQW['knows_work'] = 1;
           scene.text('Your neighbor Timofei shows up to repair the computer. He is pleasantly surprised to see you. You chat cheerfully, while Timofei works on the boss\'s PC. He soon fixes whatever was wrong with it, and you send him on his way with hug');
         }
       }
@@ -844,34 +844,34 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).bosstoirand = Math.floor(Math.random() * 11) + 0;
   if (((s as any).bosstoirand ?? 0) === 10) {
-    ((s as any).BurgerQW ?? {})['SlutReputation'] = (((s as any).BurgerQW ?? {})['SlutReputation'] ?? 0) + (1);
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
     scene.text('On your way to the toilet, you accidentally collide with Ilyushkin. He looks at you with a knowing little grin, before going about his business.');
     qspCall(s, 'BurgerTip', 'toilet_wash');
   } else {
     if (((s as any).bosstoirand ?? 0) === 9) {
-      ((s as any).BurgerQW ?? {})['SlutReputation'] = (((s as any).BurgerQW ?? {})['SlutReputation'] ?? 0) + (1);
+      if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
       scene.text('On your way to the toilet, you encounter Lena. The accountant notices the stain on your blouse and mutters "whore", before walking away.');
       qspCall(s, 'BurgerTip', 'toilet_wash');
     } else {
       if (((s as any).bosstoirand ?? 0) === 8) {
-        ((s as any).BurgerQW ?? {})['SlutReputation'] = (((s as any).BurgerQW ?? {})['SlutReputation'] ?? 0) + (1);
+        if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
         scene.text('On your way to the toilet, you accidentally collided with the personnel manager. Vic notices the cum stain, and her eyes widen in surprise. She wrinkles her nose in disgust, and walks away.');
         qspCall(s, 'BurgerTip', 'toilet_wash');
       } else {
         if (((s as any).bosstoirand ?? 0) === 7) {
-          ((s as any).BurgerQW ?? {})['SlutReputation'] = (((s as any).BurgerQW ?? {})['SlutReputation'] ?? 0) + (1);
+          if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
           scene.text('On your way to the toilet, you encounter Sergei. The pimply deputy manager notices the cum stain and laughs. "I thought you always swallowed everything, cocksucker", he says, as he walks away.');
           qspCall(s, 'BurgerTip', 'toilet_wash');
         } else {
           if (((s as any).bosstoirand ?? 0) < 7) {
             (s as any).bosstoirandin = Math.floor(Math.random() * 11) + 0;
             if (((s as any).bosstoirandin ?? 0) === 10) {
-              ((s as any).BurgerQW ?? {})['SlutReputation'] = (((s as any).BurgerQW ?? {})['SlutReputation'] ?? 0) + (1);
+              if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
               scene.text('You quietly slipped into the toilet, but come face to face with Lena. She notices the stain on your top and muttered "whore" before walking away.');
               qspCall(s, 'BurgerTip', 'toilet_wash2');
             } else {
               if (((s as any).bosstoirandin ?? 0) === 9) {
-                ((s as any).BurgerQW ?? {})['SlutReputation'] = (((s as any).BurgerQW ?? {})['SlutReputation'] ?? 0) + (1);
+                if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
                 scene.text('In the bathroom you come face to face with toilet faced nose to nose with Vik. The personnel manager notices what you are doing, and shakes her head with disdain, as she walks out.');
                 qspCall(s, 'BurgerTip', 'toilet_wash2');
               } else {
@@ -1256,7 +1256,7 @@ function enterIlyWork(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Plead with him not to show the pictures', goto: ['BurgerTip', 'ily_work2'] },
     { label: 'Keep silent', handler: (st: GameState) => {
-    ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = 1;
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmail'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/diner/work5.jpg');
@@ -1306,7 +1306,7 @@ function enterIlyWork2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Ilyushkin', handler: (st: GameState) => {
-    ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = 2;
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmail'] = 2;
     qspCall(s, 'stat', '');
     scene.text('When you enter his office, Ilyushkin locks the door. "Well baby, you can start by getting those clothes off," he orders.');
     qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
@@ -1326,12 +1326,12 @@ function enterIlyWork2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Undress', handler: (st: GameState) => {
-    ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = 2;
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmail'] = 2;
     qspCall(s, 'stat', '');
     scene.text('As you undress you feel Ilyushkin\'s gaze all over your body. When you are naked, he slowly walks across the room, staring at you. He reaches out with a hand and tweaks one of you nipples, saying, "Not bad, not bad, I think you and I will get along just fine. Now on your knees bitch, and open that cute fucking mouth of yours wide."');
     scene.actions([
       { label: 'Get on your knees and open your mouth', handler: (st: GameState) => {
-    ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = 2;
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmail'] = 2;
     qspCall(s, 'cum_call', 'face', 'A76', 1);
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -1362,7 +1362,7 @@ function enterIlyWork2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIlyWork3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = 1;
+  if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmail'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/diner/work7.jpg');
   scene.text('When you refuse to undress, Ilyushkin says, "I\'m tired of messing with you anyway, you stupid cunt. It\'s easier just to get rid of you once and for all." With that, he opens the door and orders you to exit.');
@@ -1384,7 +1384,7 @@ function enterIlyWork3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = 1;
+  if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['IlyQWBlackmail'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/diner/work7.jpg');
   scene.text('When you refuse, Ilyushkin says, "I\'m tired of messing with you anyway, you stupid cunt. It\'s easier just to get rid of you once and for all." With that, he turns and walks away.');

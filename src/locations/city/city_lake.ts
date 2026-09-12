@@ -109,7 +109,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
       scene.text('You lie on the beach and sunbathe for an hour.');
     } else {
-      ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
       (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
       scene.text('You apply sunblock to your body before sunbathing for an hour.');
     }
@@ -877,7 +877,7 @@ function enterWalklake2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A48', 'a');
     scene.img('images/locations/city/residential/lake/sex/walk2/walk2.jpg');
     scene.text('Looking directly at them, you pull off your panties and wave to them. Stasik and Valera almost run towards you as you pull off the rest of your clothes and kneel.');
-    ((s as any).npc_had_sex ?? {})['A48'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A48'] = 1;
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID ?? 0), 'group');
@@ -1079,8 +1079,8 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStasValera4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A47'] = 1;
-  ((s as any).npc_had_sex ?? {})['A48'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A47'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A48'] = 1;
   qspCall(s, 'npcStat', 'A47');
   qspCall(s, 'npcStat', 'A48', 'a');
   qspCall(s, 'stat', '');

@@ -26,18 +26,18 @@ function enterConvo(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).gp_chores ?? 0))) {
     scene.text('You approach your <relation> to ask if they have any jobs for you today.');
     if (((s as any).gp_chores ?? 0)?.['mood'] < 0) {
-      ((s as any).gp_chores ?? {})['bonus'] = 0;
+      if (!(s as any).gp_chores) (s as any).gp_chores = {}; (s as any).gp_chores['bonus'] = 0;
       scene.text('You are lazy {mc}, I am not sure if you can be trusted to do your share.');
     } else {
       if (((s as any).gp_chores ?? 0)?.['mood'] < 10) {
         scene.text('Your <relation gives you a hard stare, you are nothing about a layabout. Get out of my sight!');
       } else {
         if (((s as any).gp_chores ?? 0)?.['mood'] > 10) {
-          ((s as any).gp_chores ?? {})['bonus'] = 10;
+          if (!(s as any).gp_chores) (s as any).gp_chores = {}; (s as any).gp_chores['bonus'] = 10;
           scene.text('You have been so helpful {mc}, it is wonderful to have you with us. Here\'s a something little extra for you. ');
         } else {
           if (((s as any).gp_chores ?? 0)?.['mood'] > 20) {
-            ((s as any).gp_chores ?? {})['bonus'] = 20;
+            if (!(s as any).gp_chores) (s as any).gp_chores = {}; (s as any).gp_chores['bonus'] = 20;
             scene.text('Your <relation> face lights up when they see you. You have been such a hardworking girl, you\'re mother will be so proud of how diligant you become. Here have a little extra cash for your efforts.');
           }
         }
@@ -45,12 +45,12 @@ function enterConvo(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).gp_chores ?? 0)?.['active'] === -1) {
-    ((s as any).gp_chores ?? {})['failed'] = (((s as any).gp_chores ?? {})['failed'] ?? 0) + (1);
-    ((s as any).gp_chores ?? {})['mood'] = (((s as any).gp_chores ?? {})['mood'] ?? 0) - (1);
+    if (!(s as any).gp_chores) (s as any).gp_chores = {}; (s as any).gp_chores['failed'] = ((s as any).gp_chores['failed'] ?? 0) + (1);
+    if (!(s as any).gp_chores) (s as any).gp_chores = {}; (s as any).gp_chores['mood'] = ((s as any).gp_chores['mood'] ?? 0) - (1);
   }
   if (((s as any).gp_chores ?? 0)?.['active'] === 5) {
-    ((s as any).gp_chores ?? {})['completed'] = (((s as any).gp_chores ?? {})['completed'] ?? 0) + (1);
-    ((s as any).gp_chores ?? {})['mood'] = (((s as any).gp_chores ?? {})['mood'] ?? 0) + (1);
+    if (!(s as any).gp_chores) (s as any).gp_chores = {}; (s as any).gp_chores['completed'] = ((s as any).gp_chores['completed'] ?? 0) + (1);
+    if (!(s as any).gp_chores) (s as any).gp_chores = {}; (s as any).gp_chores['mood'] = ((s as any).gp_chores['mood'] ?? 0) + (1);
   }
   // TODO-QSP: end
   scene.build();

@@ -102,8 +102,8 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
   (s as any).same_day_offer_index = (-1);
   if (((s as any).same_day_window_end ?? 0) >= 0) {
     (s as any).same_day_offer_index = ((s as any).appointment_offer_count ?? 0);
-    ((s as any).appointment_offer_day ?? {})[String((s as any).same_day_offer_index ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).appointment_offer_window_end ?? {})[String((s as any).same_day_offer_index ?? 0)] = ((s as any).same_day_window_end ?? 0);
+    if (!(s as any).appointment_offer_day) (s as any).appointment_offer_day = {}; (s as any).appointment_offer_day[String((s as any).same_day_offer_index ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).appointment_offer_window_end) (s as any).appointment_offer_window_end = {}; (s as any).appointment_offer_window_end[String((s as any).same_day_offer_index ?? 0)] = ((s as any).same_day_window_end ?? 0);
   }
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
   if (((s as any).temp_rand ?? 0) === 1) {
@@ -451,7 +451,7 @@ function enterSetGeneralAct(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/city/residential/clinic/experiments/doc${Math.floor(Math.random() * 2) + 1}.jpg`);
     if ((((s as any).pcs_health ?? 0) < ((s as any).healthmax ?? 0) / 2  ||  ((s as any).pain ?? 0)?.['total'] >= 70)  &&  ((s as any).clinic ?? 0)?.['docheal'] !== ((s as any).daystart ?? 0)) {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
-      ((s as any).clinic ?? {})['docheal'] = ((s as any).daystart ?? 0);
+      if (!(s as any).clinic) (s as any).clinic = {}; (s as any).clinic['docheal'] = ((s as any).daystart ?? 0);
       qspCall(s, 'medical_din', 'healthTreatment');
       qspCall(s, 'stat', '');
       scene.text('After a quick discussion about your health, the doctor gives you an injection of a combined painkiller, steroid and vitamin shot which not only helps the pain, but speeds your recovery too, reducing your current pain and increasing your health. You immediately feel much better, and should recover health faster over the coming days.');
@@ -717,7 +717,7 @@ function enterSetOptometristActs(s: GameState, scene: SceneBuilder): void {
     if (((s as any).glassqw ?? 0) === 1  ||  ((s as any).glass ?? 0) > 0) {
       scene.text('He looks at you as if he has bad news for you. "Well, you probably already expected this, but your vision has deteriorated significantly. You\'re going to need glasses to be able to read. The prescription I\'m writing for you is for a simple set of rimmed glasses which you can pick up at the front desk before you leave."');
       scene.text('He hands you a piece of paper. "Of course you can get a different pair elsewhere if you want better looking ones, the details for which ones you need are on your prescription. You can also get laser vision correction if you really don\'t want to use glasses, but I\'m going to be honest with you: that\'s a very expensive procedure."');
-      ((s as any).trait_vars ?? {})['bookworm_exp'] = (((s as any).trait_vars ?? {})['bookworm_exp'] ?? 0) + (1);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['bookworm_exp'] = ((s as any).trait_vars['bookworm_exp'] ?? 0) + (1);
       (s as any).glassqw = 2;
       (s as any).glass = 1;
       (s as any).blizoruk = ((s as any).blizoruk ?? 0) + (1);
@@ -1308,9 +1308,9 @@ function enterEyeMin(s: GameState, scene: SceneBuilder): void {
 function enterLyposuction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'pay', 75000);
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  ((s as any).pcs_mass ?? {})['body'] = (((s as any).pcs_mass ?? {})['body'] ?? 0) - (40);
+  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (40);
   if (((s as any).pcs_mass ?? 0)?.['body'] < 11) {
-    ((s as any).pcs_mass ?? {})['body'] = 11;
+    if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = 11;
   }
   qspCall(s, 'body', 'softreset');
   qspCall(s, 'stat', '');
@@ -1370,7 +1370,7 @@ function enterBImplantA(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'money', 'pay', ((s as any).temp_pay_amount ?? 0));
-  ((s as any).bodyVars ?? {})['bust_silicone'] = ((s as any).temp_bust_size ?? 0);
+  if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_silicone'] = ((s as any).temp_bust_size ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/clinic/cosmeticsur.jpg');
   scene.text('The surgeon has you strip, put on a gown and lie down on the table, where he gives you a mask. "Just breathe in deeply… we\'ll be done before you know it."');
@@ -1387,7 +1387,7 @@ function enterBImplantA(s: GameState, scene: SceneBuilder): void {
 function enterBImplantB(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'drain') {
     qspCall(s, 'money', 'pay', 2000);
-    ((s as any).bodyVars ?? {})['bust_silicone'] = (((s as any).bodyVars ?? {})['bust_silicone'] ?? 0) - (10);
+    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) - (10);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'bag') {
       qspCall(s, 'money', 'pay', 500);

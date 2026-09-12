@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Greet her', handler: (st: GameState) => {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     scene.img('images/locations/city/industrial/police/sex/c2.jpg');
     scene.text('When you\'re about to open your mouth to greet her, she roughly grabs you by your hair and pulls you from your bunk to the floor.');
     scene.text('She quickly pulled her overall open at the same time, and you can\'t help but stare at the enormous strap-on directly in front of your face!');

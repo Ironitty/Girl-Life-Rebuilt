@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNotSpying(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sofiaQW ?? {})['spying_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).sofiaQW) (s as any).sofiaQW = {}; (s as any).sofiaQW['spying_day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
   scene.text('As you\'re about to open the door, the noises get louder and leave no question in your mind that somebody is having sex in the room.');
   // TODO-QSP: end
@@ -21,13 +21,13 @@ function enterNotSpying(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpying(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sofiaQW ?? {})['spying_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).sofiaQW) (s as any).sofiaQW = {}; (s as any).sofiaQW['spying_day'] = ((s as any).daystart ?? 0);
   if (((s as any).sofiaQW ?? 0)?.['maxim_know'] === 1) {
   } else {
     if (((s as any).sofiaQW ?? 0)?.['spying_times'] === 0) {
     }
   }
-  ((s as any).sofiaQW ?? {})['spying_times'] = (((s as any).sofiaQW ?? {})['spying_times'] ?? 0) + (1);
+  if (!(s as any).sofiaQW) (s as any).sofiaQW = {}; (s as any).sofiaQW['spying_times'] = ((s as any).sofiaQW['spying_times'] ?? 0) + (1);
   scene.actions([{ label: 'Continue', goto: ['sofia', 'spying_sex<<rand(1,6)>>'] }]);
   // TODO-QSP: end
   scene.build();

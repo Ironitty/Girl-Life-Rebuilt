@@ -155,35 +155,35 @@ function enterSelection2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEditf(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_firstname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  if (!(s as any).npc_firstname) (s as any).npc_firstname = {}; (s as any).npc_firstname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditn(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_nickname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditl(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_lastname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  if (!(s as any).npc_lastname) (s as any).npc_lastname = {}; (s as any).npc_lastname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditu(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_usedname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  if (!(s as any).npc_usedname) (s as any).npc_usedname = {}; (s as any).npc_usedname['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditd(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_dob ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  if (!(s as any).npc_dob) (s as any).npc_dob = {}; (s as any).npc_dob['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   // TODO-QSP: end
   scene.build();

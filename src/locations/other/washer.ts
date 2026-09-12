@@ -53,19 +53,19 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  ((s as any).washer_funcs ?? {})['washing_count'] = qspUntranslated(s, "{", { location: "washer" });
+  if (!(s as any).washer_funcs) (s as any).washer_funcs = {}; (s as any).washer_funcs['washing_count'] = qspUntranslated(s, "{", { location: "washer" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
     (s as any).washer_total_wash_count = ((s as any).washer_total_wash_count ?? 0) + (1);
   }
   // TODO-QSP: "
-  ((s as any).washer_funcs ?? {})['washing_cost'] = qspUntranslated(s, "{", { location: "washer" });
+  if (!(s as any).washer_funcs) (s as any).washer_funcs = {}; (s as any).washer_funcs['washing_cost'] = qspUntranslated(s, "{", { location: "washer" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
     (s as any).washer_total_wash_cost = ((s as any).washer_total_wash_cost ?? 0) + (10);
   }
   // TODO-QSP: "
-  ((s as any).washer_funcs ?? {})['wash'] = qspUntranslated(s, "{", { location: "washer" });
+  if (!(s as any).washer_funcs) (s as any).washer_funcs = {}; (s as any).washer_funcs['wash'] = qspUntranslated(s, "{", { location: "washer" });
   // TODO-QSP: dynamic "
   if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
     // TODO-QSP: <<$ARGS[0]>>_dirt[<<ARGS[1]>>] = 0
@@ -89,13 +89,13 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_count = 0;
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '';
   qspCall(s, 'washer', 'clothing_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bras';
   qspCall(s, 'washer', 'bras_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_panties';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_panties';
   qspCall(s, 'washer', 'panties_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
   // TODO-QSP: end
   scene.build();
@@ -103,26 +103,26 @@ function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckTotalCost(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_cost = 100;
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '';
   qspCall(s, 'washer', 'clothing_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bras';
   qspCall(s, 'washer', 'bras_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_panties';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_panties';
   qspCall(s, 'washer', 'panties_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterWashAll(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '';
   qspCall(s, 'washer', 'clothing_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bras';
   qspCall(s, 'washer', 'bras_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_panties';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_panties';
   qspCall(s, 'washer', 'panties_loop');
-  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -130,23 +130,23 @@ function enterWashAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_washerVars ?? {})['j_max'] = 0;
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['j_max'] = 0;
   if (((s as any).temp_washerVars ?? 0)?.['j_max'] === 0) {
     return;
   }
-  ((s as any).temp_washerVars ?? {})['j'] = 0;
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['j'] = 0;
   // TODO-QSP: :core_loop_outer
-  ((s as any).temp_washerVars ?? {})['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? {})?.['j']] + ((s as any).temp_washerVars ?? {})?.['array_postfix'];
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? {})?.['j']] + ((s as any).temp_washerVars ?? {})?.['array_postfix'];
   if (((s as any).temp_washerVars ?? 0)?.['type'] !== ((s as any).temp_washerVars ?? 0)?.['array_postfix']) {
-    ((s as any).temp_washerVars ?? {})['total'] = 0;
-    ((s as any).temp_washerVars ?? {})['number'] = 1;
+    if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['total'] = 0;
+    if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['number'] = 1;
     // TODO-QSP: :core_loop_inner
-    ((s as any).temp_washerVars ?? {})['number'] = (((s as any).temp_washerVars ?? {})['number'] ?? 0) + (1);
+    if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['number'] = ((s as any).temp_washerVars['number'] ?? 0) + (1);
     if (((s as any).temp_washerVars ?? 0)?.['number'] < ((s as any).temp_washerVars ?? 0)?.['total']) {
       // TODO-QSP: jump 'core_loop_inner'
     }
   }
-  ((s as any).temp_washerVars ?? {})['j'] = (((s as any).temp_washerVars ?? {})['j'] ?? 0) + (1);
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['j'] = ((s as any).temp_washerVars['j'] ?? 0) + (1);
   if (((s as any).temp_washerVars ?? 0)?.['j'] < ((s as any).temp_washerVars ?? 0)?.['j_max']) {
     // TODO-QSP: jump 'core_loop_outer'
   }

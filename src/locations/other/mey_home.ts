@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).day ?? 0) <= 25  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] > 40) {
-    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 40;
+    if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['mey_vika_qw'] = 40;
   }
   scene.build();
 }
@@ -108,8 +108,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).mey_tamara ?? 0)?.['help_day'] !== ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: 'Clean the house', handler: (st: GameState) => {
-    ((s as any).mey_tamara ?? {})['help_day'] = ((s as any).daystart ?? 0);
-    ((s as any).mey_tamara ?? {})['help_count'] = (((s as any).mey_tamara ?? {})['help_count'] ?? 0) + (1);
+    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_count'] = ((s as any).mey_tamara['help_count'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 21) + 50);
     qspCall(s, 'sweat', 'add', 3);
     qspCall(s, 'mood', 'lower', 'small');
@@ -194,8 +194,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 32  &&  ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).mey_tamara ?? 0)?.['help_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Cook for the whole family', handler: (st: GameState) => {
-    ((s as any).mey_tamara ?? {})['help_day'] = ((s as any).daystart ?? 0);
-    ((s as any).mey_tamara ?? {})['help_count'] = (((s as any).mey_tamara ?? {})['help_count'] ?? 0) + (1);
+    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_count'] = ((s as any).mey_tamara['help_count'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 21) + 50);
     qspCall(s, 'stat', '');
     scene.text('<br>You take out the food from the refrigerator and start cooking for the whole family. It takes you about an hour to finish.');
@@ -227,8 +227,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterKey(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/key.jpg');
-  ((s as any).mey_vika ?? {})['key'] = 1;
-  ((s as any).mey_vika ?? {})['mey_vika_qw'] = 32;
+  if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['key'] = 1;
+  if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['mey_vika_qw'] = 32;
   // TODO-QSP: dynamic text: <<$pcs_nickname>>,
   scene.text(`${((s as any).pcs_nickname ?? 0)},`);
   scene.text('  Here is the key to the house, Our home is your home. You can also clean out what remains in the guest bedroom and make it all yours. just put all of Roma\'s things in some boxes and I\'ll put them in storage.');
@@ -450,7 +450,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
       scene.text('You strip out of your clothes until you are naked, then lie down next to the pool to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You strip out of your clothes until you are naked, then put sunblock on your body and lie down next to the pool to sunbathe.');
       }
@@ -477,7 +477,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You put sunblock on your body and lie down next to the pool to sunbathe.');
       }

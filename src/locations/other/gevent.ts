@@ -117,7 +117,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   (s as any).spafinloc = 11;
   qspCall(s, 'cum_manage', '');
-  ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 8);
   qspCall(s, 'money', 'earn', 100);
   qspCall(s, 'stat', '');
@@ -141,7 +141,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 3);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 3);
   (s as any).guy = ((s as any).guy ?? 0) + (3);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'npcgeneratec', '', 0, 'Armenian Male', Math.floor(Math.random() * 7) + 19);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'npcgeneratec', '', 0, 'Armenian Male', Math.floor(Math.random() * 7) + 19);
@@ -197,7 +197,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   (s as any).spafinloc = 4;
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'money', 'earn', 200);
-  ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 3) + 2);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/5.jpg');
@@ -254,7 +254,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', ((s as any).guyondisco ?? 0));
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', ((s as any).guyondisco ?? 0));
   (s as any).guyondiscotime = 600 / ((s as any).guyondisco ?? 0);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   // TODO-QSP: :geventgondloop
   qspCall(s, 'npcgeneratec', '', 0, 'guy from the disco', Math.floor(Math.random() * 9) + 19, 0, 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
@@ -296,7 +296,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 2);
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 2);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'npcgeneratec', '', 0, 'Apartment Boy', Math.floor(Math.random() * 7) + 19);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'npcgeneratec', '', 0, 'Apartment Boy', Math.floor(Math.random() * 7) + 19);

@@ -25,15 +25,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get on your hands and knees for him', handler: (st: GameState) => {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
-      ((s as any).katjaQW ?? {})['horny'] = 0;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
       if (((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
-        ((s as any).katjaQW ?? {})['park_sex'] = 1;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['park_sex'] = 1;
       }
       if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-        ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
       }
-      ((s as any).katjaQW ?? {})['sex_in_the_park_comment'] = 5;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['sex_in_the_park_comment'] = 5;
     }
     (s as any).pose = 1;
     qspCall(s, 'stat', '');
@@ -66,21 +66,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Fuck him', handler: (st: GameState) => {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
-      ((s as any).katjaQW ?? {})['horny'] = 0;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
       if (((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
-        ((s as any).katjaQW ?? {})['park_sex'] = 1;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['park_sex'] = 1;
       }
       if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-        ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
-      ((s as any).katjaQW ?? {})['sex_in_the_park_comment'] = 4;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['sex_in_the_park_comment'] = 4;
     }
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/foursome.jpg');
@@ -117,21 +117,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
       qspCall(s, 'npcgeneratec', '', 0, 'Guy', Math.floor(Math.random() * 18) + 18);
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
-      ((s as any).katjaQW ?? {})['horny'] = 0;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
       if (((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
-        ((s as any).katjaQW ?? {})['park_sex'] = 1;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['park_sex'] = 1;
       }
       if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-        ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
-      ((s as any).katjaQW ?? {})['sex_in_the_park_comment'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['sex_in_the_park_comment'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.text('The boys leave to the bathroom to freshen up, leaving you by yourself.');
@@ -152,24 +152,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
       qspCall(s, 'npcgeneratec', '', 0, 'Guy', Math.floor(Math.random() * 18) + 18);
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (10);
-      ((s as any).katjaQW ?? {})['horny'] = 0;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (10);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
       if (((s as any).katjaQW ?? 0)?.['park_sex'] < 2) {
-        ((s as any).katjaQW ?? {})['park_sex'] = 2;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['park_sex'] = 2;
       }
       if (((s as any).katjaQW ?? 0)?.['simultanous_boys'] < 2) {
-        ((s as any).katjaQW ?? {})['simultanous_boys'] = 2;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_boys'] = 2;
       }
       if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-        ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
-      ((s as any).katjaQW ?? {})['sex_in_the_park_comment'] = 2;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['sex_in_the_park_comment'] = 2;
     }
     qspCall(s, 'stat', '');
     scene.text('The guy crashes down next to you and almost immediately falls asleep. Within minutes his snoring fills the room, and you\'re not quite sure… should you feel flattered for exhausting him so effectively, or insulted that he\'s no longer paying any attention to you?');
@@ -267,7 +267,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'npcgeneratec', '', 0, 'Guy', Math.floor(Math.random() * 18) + 18);
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/katja/doublebj.jpg');
     // TODO-QSP: dynamic text: Well, you are feeling great right now, and these boys are kinda cute… might as w...
@@ -398,24 +398,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'b');
     qspCall(s, 'boyStat', '', ((s as any).boy ?? 0), 'a');
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (10);
-      ((s as any).katjaQW ?? {})['horny'] = 0;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (10);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
       if (((s as any).katjaQW ?? 0)?.['park_sex'] < 3) {
-        ((s as any).katjaQW ?? {})['park_sex'] = 3;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['park_sex'] = 3;
       }
       if (((s as any).katjaQW ?? 0)?.['simultanous_boys'] < 2) {
-        ((s as any).katjaQW ?? {})['simultanous_boys'] = 2;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_boys'] = 2;
       }
       if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-        ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
-      ((s as any).katjaQW ?? {})['sex_in_the_park_comment'] = 4;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['sex_in_the_park_comment'] = 4;
     }
     scene.img('images/locations/pavlovsk/park/event/katja/dp.jpg');
     (s as any).pose = 3;

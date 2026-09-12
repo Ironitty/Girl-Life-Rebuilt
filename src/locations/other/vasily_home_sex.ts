@@ -207,7 +207,7 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A9', '3');
   qspCall(s, 'npcStat', 'A10', '1');
   qspCall(s, 'npcStat', 'A11', '2');
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   // TODO-QSP: npc_had_sex[$boy[1]] = 1
   // TODO-QSP: npc_had_sex[$boy[2]] = 1
   // TODO-QSP: npc_had_sex[$boy[3]] = 1
@@ -336,7 +336,7 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
 function enterSoniaLesBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).npc_had_sex ?? {})['A25'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A25'] = 1;
   (s as any).pcs_hairbsh = 0;
   (s as any).pcs_makeup = 1;
   (s as any).noshampoo = 1;
@@ -468,12 +468,12 @@ function enterSoniaBathroomSex2(s: GameState, scene: SceneBuilder): void {
 function enterVasily_3someSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A11');
   qspCall(s, 'npcStat', 'A25', 'a');
-  ((s as any).npc_had_sex ?? {})[String((s as any).npcID ?? 0)] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).npcID ?? 0)] = 1;
   (s as any).sexev_sonya_day = ((s as any).daystart ?? 0);
   (s as any).sexev_sonya_count = ((s as any).sexev_sonya_count ?? 0) - (1);
   (s as any).sh_sonya_sexev = ((s as any).sh_sonya_sexev ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})['A11'] = 1;
-  ((s as any).npc_had_sex ?? {})['A25'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A25'] = 1;
   qspCall(s, 'fame', 'pav', 'sex', 5);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/vanna/gr/ev1_1_\'+rand(1, 5)+\'.jpg');
   scene.text('"Sure, I bet Vasily would love having an extra girl around when he fucks me!" she grins. "Come on!"');
@@ -646,10 +646,10 @@ function enterGangSexRoomEv1_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A9', '3');
   qspCall(s, 'npcStat', 'A10', '1');
   qspCall(s, 'npcStat', 'A11', '2');
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})['A9'] = 1;
-  ((s as any).npc_had_sex ?? {})['A10'] = 1;
-  ((s as any).npc_had_sex ?? {})['A11'] = 1;
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
   // TODO-QSP: gs 'arousal', 'bj', 10, $npcID[1], 'group', 'gangbang'
   qspCall(s, 'stat', '');
   scene.text('The boys crowd around you, eager to be pleased. As Dan approaches from the front, you look up and give him a sultry smile.');
@@ -861,7 +861,7 @@ function enterDrunkenBodyMast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDrunkenSex(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'A9', '3');
   qspCall(s, 'npcStat', 'A10', '1');
   qspCall(s, 'npcStat', 'A11', '2');
@@ -898,9 +898,9 @@ function enterDrunkenSex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_call', $temp[rand(0, 2)], $boy[2], 1
     // TODO-QSP: gs 'cum_call', $temp[rand(0, 2)], $boy[1], 1
     // TODO-QSP: gs 'cum_call', $temp[rand(0, 2)], $boy[3], 1
-    ((s as any).npc_had_sex ?? {})['A9'] = 1;
-    ((s as any).npc_had_sex ?? {})['A10'] = 1;
-    ((s as any).npc_had_sex ?? {})['A11'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/sex/cum\'+rand(1, 9)+\'.jpg');
     (s as any).shulga_whore = ((s as any).daystart ?? 0) + 7;
@@ -1027,10 +1027,10 @@ function enterViewPornotvEvgr(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[3], 'group', 'sub'
     // TODO-QSP: gs 'arousal', 'bj', 2, $npcID[2], 'group'
     // TODO-QSP: gs 'arousal', 'bj', 3, $npcID[1], 'group'
-    ((s as any).npc_had_sex ?? {})['A9'] = 1;
-    ((s as any).npc_had_sex ?? {})['A10'] = 1;
-    ((s as any).npc_had_sex ?? {})['A11'] = 1;
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 5);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/tv_ev/sex_group/bj\'+rand(1, 13)+\'.jpg');
@@ -1179,7 +1179,7 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
       scene.actions([
         { label: 'Suck it', handler: (st: GameState) => {
-    ((s as any).npc_had_sex ?? {})['A11'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
@@ -1206,7 +1206,7 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] > 100) {
       scene.actions([
         { label: 'Get it wet', handler: (st: GameState) => {
-    ((s as any).npc_had_sex ?? {})['A11'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
@@ -1266,7 +1266,7 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
 function enterVasilyLernSexYes(s: GameState, scene: SceneBuilder): void {
   (s as any).shulga_lern_day = ((s as any).daystart ?? 0);
   (s as any).shulga_lern_count = ((s as any).shulga_lern_count ?? 0) - (1);
-  ((s as any).npc_had_sex ?? {})['A11'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
   qspCall(s, 'npcStat', 'A11');
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'arousal', 'cuni', 5);
@@ -1290,7 +1290,7 @@ function enterVasilyLernSexYes(s: GameState, scene: SceneBuilder): void {
         scene.text('"I didn\'t expect you to bring toys," he says cheerfully as he pulls out your butt plug. "You won\'t need this little thing anymore. I have something more substantial for you."');
       }
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
         (s as any).agape = 1;
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
         scene.text('"I want you in my ass, but please get the lube from my bag and help me get ready first," you say.');
@@ -1363,9 +1363,9 @@ function enterVasilyLernSexYes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVasilyVodkaBj(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A11'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
   qspCall(s, 'fame', 'pav', 'sex', 3);
-  ((s as any).vasily ?? {})['drunk_sex'] = (((s as any).vasily ?? {})['drunk_sex'] ?? 0) + (1);
+  if (!(s as any).vasily) (s as any).vasily = {}; (s as any).vasily['drunk_sex'] = ((s as any).vasily['drunk_sex'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'A11');
   scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/vodka/vodkabj1.jpg');
   scene.text('You\'re about to what he\'s doing, but you never get to finish what you were about to say. Almost as soon as you open your mouth, Vasily sticks his dick in it. In your drunken state, you start to instinctively suck it.');
@@ -1407,7 +1407,7 @@ function enterVasilyVodkaBj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVodkaRevenge(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A11'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/revenge/vodka9.jpg');
   scene.text('After he swallows the last swig, he leans forward and opens his mouth to take your dildo into his mouth. You reach around and grab him by the hair and shove it in until he starts to gag. You let him mostly guide himself while sucking your dildo, but occasionally force it deeper into his mouth to gag him.');
   qspCall(s, 'arousal', 'foreplay', 2, 'dom');
@@ -1469,7 +1469,7 @@ function enterVodkaRevenge(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVodkaRevenge1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A11'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
   qspCall(s, 'npcStat', 'D<<strapNumber>>');
   scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/revenge/vodka12.jpg');
   // TODO-QSP: dynamic text: You're having trouble going as deep as you want, so you change position. You rol...

@@ -10,42 +10,42 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $exp_docs[0] = 'Doctor Sokolnikov'
   // TODO-QSP: $exp_docs[1] = 'Doctor Ivanov'
   // TODO-QSP: $trial_names[0]    = 'Enhancement pill'
-  ((s as any).trial_pays ?? {})[0] = 500;
+  if (!(s as any).trial_pays) (s as any).trial_pays = {}; (s as any).trial_pays[0] = 500;
   // TODO-QSP: $trial_sections[0]  = 'enhancement_pill'
-  ((s as any).trial_maxs ?? {})[0] = (-1);
+  if (!(s as any).trial_maxs) (s as any).trial_maxs = {}; (s as any).trial_maxs[0] = (-1);
   // TODO-QSP: $trial_names[1]    = 'Breast Cream'
-  ((s as any).trial_pays ?? {})[1] = 5000;
+  if (!(s as any).trial_pays) (s as any).trial_pays = {}; (s as any).trial_pays[1] = 5000;
   // TODO-QSP: $trial_sections[1]  = 'breast_cream'
-  ((s as any).trial_maxs ?? {})[1] = 1;
-  ((s as any).trial_durations ?? {})[1] = 4;
+  if (!(s as any).trial_maxs) (s as any).trial_maxs = {}; (s as any).trial_maxs[1] = 1;
+  if (!(s as any).trial_durations) (s as any).trial_durations = {}; (s as any).trial_durations[1] = 4;
   // TODO-QSP: $trial_names[2]    = 'Hair Extension Shampoo'
-  ((s as any).trial_pays ?? {})[2] = 2500;
+  if (!(s as any).trial_pays) (s as any).trial_pays = {}; (s as any).trial_pays[2] = 2500;
   // TODO-QSP: $trial_sections[2]  = 'hair_cream'
-  ((s as any).trial_maxs ?? {})[2] = 1;
-  ((s as any).trial_durations ?? {})[2] = 5;
+  if (!(s as any).trial_maxs) (s as any).trial_maxs = {}; (s as any).trial_maxs[2] = 1;
+  if (!(s as any).trial_durations) (s as any).trial_durations = {}; (s as any).trial_durations[2] = 5;
   // TODO-QSP: $trial_names[3]    = 'Aphrodisiac pills'
-  ((s as any).trial_pays ?? {})[3] = 10000;
+  if (!(s as any).trial_pays) (s as any).trial_pays = {}; (s as any).trial_pays[3] = 10000;
   // TODO-QSP: $trial_sections[3]  = 'aphrodisiac_pill'
-  ((s as any).trial_maxs ?? {})[3] = 1;
-  ((s as any).trial_durations ?? {})[3] = 5;
+  if (!(s as any).trial_maxs) (s as any).trial_maxs = {}; (s as any).trial_maxs[3] = 1;
+  if (!(s as any).trial_durations) (s as any).trial_durations = {}; (s as any).trial_durations[3] = 5;
   // TODO-QSP: $trial_names[4]    = 'Butt Injection'
-  ((s as any).trial_pays ?? {})[4] = 10000;
+  if (!(s as any).trial_pays) (s as any).trial_pays = {}; (s as any).trial_pays[4] = 10000;
   // TODO-QSP: $trial_sections[4]  = 'butt_injection'
-  ((s as any).trial_maxs ?? {})[4] = 1;
-  ((s as any).trial_durations ?? {})[4] = 5;
+  if (!(s as any).trial_maxs) (s as any).trial_maxs = {}; (s as any).trial_maxs[4] = 1;
+  if (!(s as any).trial_durations) (s as any).trial_durations = {}; (s as any).trial_durations[4] = 5;
   // TODO-QSP: $trial_names[5]    = 'Fertility treatment'
-  ((s as any).trial_pays ?? {})[5] = 10000;
+  if (!(s as any).trial_pays) (s as any).trial_pays = {}; (s as any).trial_pays[5] = 10000;
   // TODO-QSP: $trial_sections[5]  = 'fertility_shot'
-  ((s as any).trial_maxs ?? {})[5] = 1;
-  ((s as any).trial_durations ?? {})[5] = 3;
+  if (!(s as any).trial_maxs) (s as any).trial_maxs = {}; (s as any).trial_maxs[5] = 1;
+  if (!(s as any).trial_durations) (s as any).trial_durations = {}; (s as any).trial_durations[5] = 3;
   if (((s as any).therapistQW ?? 0)?.['breast_cream'] === 1  &&  ((s as any).experimentQW ?? 0)?.['times_participated_1'] === 0  &&  ((s as any).locArgs?.[0] ?? 0) === 'see_trials') {
     // TODO-QSP: $trial_names[1] = '<b>Breast Cream</b>'
     (s as any).cetl_i = 0;
     // TODO-QSP: :therapist_overwrite_loop
     // TODO-QSP: $trial_names[cetl_i]  = $trial_names[1]
-    ((s as any).trial_pays ?? {})[String((s as any).cetl_i ?? 0)] = qspUntranslated(s, "trial_pays[1]", { location: "city_experimental_trials_list" });
+    if (!(s as any).trial_pays) (s as any).trial_pays = {}; (s as any).trial_pays[String((s as any).cetl_i ?? 0)] = qspUntranslated(s, "trial_pays[1]", { location: "city_experimental_trials_list" });
     // TODO-QSP: $trial_sections[cetl_i]  = $trial_sections[1]
-    ((s as any).trial_maxs ?? {})[String((s as any).cetl_i ?? 0)] = qspUntranslated(s, "trial_maxs[1]", { location: "city_experimental_trials_list" });
+    if (!(s as any).trial_maxs) (s as any).trial_maxs = {}; (s as any).trial_maxs[String((s as any).cetl_i ?? 0)] = qspUntranslated(s, "trial_maxs[1]", { location: "city_experimental_trials_list" });
     (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
     if (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length) {
       // TODO-QSP: jump 'therapist_overwrite_loop'
@@ -87,7 +87,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'city_experimental_trials_list', 'act_go_back');
     scene.actions([
       { label: 'Sign up', handler: (st: GameState) => {
-    ((s as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_names[0]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = qspUntranslated(s, "trial_names[0]", { location: "city_experimental_trials_list" });
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -101,59 +101,59 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc ?? 0)}'s private office, where you take a seat in one of the free chairs available.`);
     (s as any).temp_rand = Math.floor(Math.random() * 90) + 0;
     if (((s as any).temp_rand ?? 0) < 10) {
-      ((s as any).experimentQW ?? {})['trial_active'] = 'pill_cyan';
-      ((s as any).experimentQW ?? {})['pill_cyan_taken'] = (((s as any).experimentQW ?? {})['pill_cyan_taken'] ?? 0) + (1);
-      ((s as any).experimentQW ?? {})['trial_duration'] = Math.floor(Math.random() * 3) + 1;
+      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_cyan';
+      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_cyan_taken'] = ((s as any).experimentQW['pill_cyan_taken'] ?? 0) + (1);
+      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = Math.floor(Math.random() * 3) + 1;
     } else {
       if (((s as any).temp_rand ?? 0) < 20) {
-        ((s as any).experimentQW ?? {})['trial_active'] = 'pill_red';
-        ((s as any).experimentQW ?? {})['pill_red_taken'] = (((s as any).experimentQW ?? {})['pill_red_taken'] ?? 0) + (1);
-        ((s as any).experimentQW ?? {})['trial_duration'] = Math.floor(Math.random() * 3) + 2;
+        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_red';
+        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_red_taken'] = ((s as any).experimentQW['pill_red_taken'] ?? 0) + (1);
+        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = Math.floor(Math.random() * 3) + 2;
       } else {
         if (((s as any).temp_rand ?? 0) < 30) {
-          ((s as any).experimentQW ?? {})['trial_active'] = 'pill_blue';
-          ((s as any).experimentQW ?? {})['pill_blue_taken'] = (((s as any).experimentQW ?? {})['pill_blue_taken'] ?? 0) + (1);
-          ((s as any).experimentQW ?? {})['trial_duration'] = Math.floor(Math.random() * 3) + 2;
+          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_blue';
+          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_blue_taken'] = ((s as any).experimentQW['pill_blue_taken'] ?? 0) + (1);
+          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = Math.floor(Math.random() * 3) + 2;
         } else {
           if (((s as any).temp_rand ?? 0) < 40) {
-            ((s as any).experimentQW ?? {})['trial_active'] = 'pill_yellow';
-            ((s as any).experimentQW ?? {})['pill_yellow_taken'] = (((s as any).experimentQW ?? {})['pill_yellow_taken'] ?? 0) + (1);
-            ((s as any).experimentQW ?? {})['trial_duration'] = Math.floor(Math.random() * 4) + 2;
+            if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_yellow';
+            if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_yellow_taken'] = ((s as any).experimentQW['pill_yellow_taken'] ?? 0) + (1);
+            if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = Math.floor(Math.random() * 4) + 2;
           } else {
             if (((s as any).temp_rand ?? 0) < 50) {
-              ((s as any).experimentQW ?? {})['trial_active'] = 'pill_orange';
-              ((s as any).experimentQW ?? {})['pill_orange_taken'] = (((s as any).experimentQW ?? {})['pill_orange_taken'] ?? 0) + (1);
-              ((s as any).experimentQW ?? {})['trial_duration'] = Math.floor(Math.random() * 3) + 2;
+              if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_orange';
+              if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_orange_taken'] = ((s as any).experimentQW['pill_orange_taken'] ?? 0) + (1);
+              if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = Math.floor(Math.random() * 3) + 2;
             } else {
               if (((s as any).temp_rand ?? 0) < 60) {
-                ((s as any).experimentQW ?? {})['trial_active'] = 'pill_violet';
-                ((s as any).experimentQW ?? {})['pill_violet_taken'] = (((s as any).experimentQW ?? {})['pill_violet_taken'] ?? 0) + (1);
-                ((s as any).experimentQW ?? {})['trial_duration'] = 1;
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_violet';
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_violet_taken'] = ((s as any).experimentQW['pill_violet_taken'] ?? 0) + (1);
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = 1;
               } else {
                 if (((s as any).temp_rand ?? 0) < 65) {
-                  ((s as any).experimentQW ?? {})['trial_active'] = 'pill_brown';
-                  ((s as any).experimentQW ?? {})['pill_brown_taken'] = (((s as any).experimentQW ?? {})['pill_brown_taken'] ?? 0) + (1);
-                  ((s as any).experimentQW ?? {})['trial_duration'] = Math.floor(Math.random() * 3) + 2;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_brown';
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_brown_taken'] = ((s as any).experimentQW['pill_brown_taken'] ?? 0) + (1);
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = Math.floor(Math.random() * 3) + 2;
                 } else {
                   if (((s as any).temp_rand ?? 0) < 70) {
-                    ((s as any).experimentQW ?? {})['trial_active'] = 'pill_purple';
-                    ((s as any).experimentQW ?? {})['pill_purple_taken'] = (((s as any).experimentQW ?? {})['pill_purple_taken'] ?? 0) + (1);
-                    ((s as any).experimentQW ?? {})['trial_duration'] = Math.floor(Math.random() * 3) + 2;
+                    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_purple';
+                    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_purple_taken'] = ((s as any).experimentQW['pill_purple_taken'] ?? 0) + (1);
+                    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = Math.floor(Math.random() * 3) + 2;
                   } else {
                     if (((s as any).temp_rand ?? 0) < 80) {
-                      ((s as any).experimentQW ?? {})['trial_active'] = 'pill_green';
-                      ((s as any).experimentQW ?? {})['pill_green_taken'] = (((s as any).experimentQW ?? {})['pill_green_taken'] ?? 0) + (1);
-                      ((s as any).experimentQW ?? {})['trial_duration'] = 1;
+                      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_green';
+                      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_green_taken'] = ((s as any).experimentQW['pill_green_taken'] ?? 0) + (1);
+                      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = 1;
                     } else {
                       if (((s as any).temp_rand ?? 0) < 85) {
-                        ((s as any).experimentQW ?? {})['trial_active'] = 'pill_gray';
-                        ((s as any).experimentQW ?? {})['pill_gray_taken'] = (((s as any).experimentQW ?? {})['pill_gray_taken'] ?? 0) + (1);
-                        ((s as any).experimentQW ?? {})['trial_duration'] = 1;
+                        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_gray';
+                        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_gray_taken'] = ((s as any).experimentQW['pill_gray_taken'] ?? 0) + (1);
+                        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = 1;
                       } else {
                         if (((s as any).temp_rand ?? 0) < 90) {
-                          ((s as any).experimentQW ?? {})['trial_active'] = 'pill_pink';
-                          ((s as any).experimentQW ?? {})['pill_pink_taken'] = (((s as any).experimentQW ?? {})['pill_pink_taken'] ?? 0) + (1);
-                          ((s as any).experimentQW ?? {})['trial_duration'] = 1;
+                          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_pink';
+                          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['pill_pink_taken'] = ((s as any).experimentQW['pill_pink_taken'] ?? 0) + (1);
+                          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = 1;
                         }
                       }
                     }
@@ -165,7 +165,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).experimentQW ?? {})['times_participated_0'] = (((s as any).experimentQW ?? {})['times_participated_0'] ?? 0) + (1);
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_0'] = ((s as any).experimentQW['times_participated_0'] ?? 0) + (1);
     // TODO-QSP: dynamic text: <<$temp_doc>> briefly searches through a drawer, pulls out a nondescript <font c...
     scene.text(`${((s as any).temp_doc ?? 0)} briefly searches through a drawer, pulls out a nondescript <font color=${((s as any).temp_pill_color ?? 0)}>${((s as any).temp_pill_color ?? 0)} pill</font> and hands it to you. "Please swallow this, and you'll get paid."`);
     scene.actions([
@@ -190,11 +190,11 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'city_experimental_trials_list', 'act_go_back');
       scene.actions([
         { label: 'Sign up', handler: (st: GameState) => {
-    ((s as any).experimentQW ?? {})['times_participated_1'] = (((s as any).experimentQW ?? {})['times_participated_1'] ?? 0) + (1);
-    ((s as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[1]", { location: "city_experimental_trials_list" });
-    ((s as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[1]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_1'] = ((s as any).experimentQW['times_participated_1'] ?? 0) + (1);
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = qspUntranslated(s, "trial_sections[1]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = qspUntranslated(s, "trial_durations[1]", { location: "city_experimental_trials_list" });
     if (((s as any).therapistQW ?? 0)?.['breast_cream'] === 1) {
-      ((s as any).therapistQW ?? {})['breast_cream'] = 2;
+      if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['breast_cream'] = 2;
     }
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -232,9 +232,9 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'city_experimental_trials_list', 'act_go_back');
         scene.actions([
           { label: 'Sign up', handler: (st: GameState) => {
-    ((s as any).experimentQW ?? {})['times_participated_2'] = (((s as any).experimentQW ?? {})['times_participated_2'] ?? 0) + (1);
-    ((s as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[2]", { location: "city_experimental_trials_list" });
-    ((s as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[2]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_2'] = ((s as any).experimentQW['times_participated_2'] ?? 0) + (1);
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = qspUntranslated(s, "trial_sections[2]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = qspUntranslated(s, "trial_durations[2]", { location: "city_experimental_trials_list" });
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -271,9 +271,9 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'city_experimental_trials_list', 'act_go_back');
           scene.actions([
             { label: 'Sign up', handler: (st: GameState) => {
-    ((s as any).experimentQW ?? {})['times_participated_3'] = (((s as any).experimentQW ?? {})['times_participated_3'] ?? 0) + (1);
-    ((s as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[3]", { location: "city_experimental_trials_list" });
-    ((s as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[3]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_3'] = ((s as any).experimentQW['times_participated_3'] ?? 0) + (1);
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = qspUntranslated(s, "trial_sections[3]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = qspUntranslated(s, "trial_durations[3]", { location: "city_experimental_trials_list" });
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -310,9 +310,9 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'city_experimental_trials_list', 'act_go_back');
             scene.actions([
               { label: 'Sign up', handler: (st: GameState) => {
-    ((s as any).experimentQW ?? {})['times_participated_4'] = (((s as any).experimentQW ?? {})['times_participated_4'] ?? 0) + (1);
-    ((s as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[4]", { location: "city_experimental_trials_list" });
-    ((s as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[4]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_4'] = ((s as any).experimentQW['times_participated_4'] ?? 0) + (1);
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = qspUntranslated(s, "trial_sections[4]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = qspUntranslated(s, "trial_durations[4]", { location: "city_experimental_trials_list" });
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -347,9 +347,9 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'city_experimental_trials_list', 'act_go_back');
               scene.actions([
                 { label: 'Sign up', handler: (st: GameState) => {
-    ((s as any).experimentQW ?? {})['times_participated_5'] = (((s as any).experimentQW ?? {})['times_participated_5'] ?? 0) + (1);
-    ((s as any).experimentQW ?? {})['trial_active'] = qspUntranslated(s, "trial_sections[5]", { location: "city_experimental_trials_list" });
-    ((s as any).experimentQW ?? {})['trial_duration'] = qspUntranslated(s, "trial_durations[5]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_5'] = ((s as any).experimentQW['times_participated_5'] ?? 0) + (1);
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = qspUntranslated(s, "trial_sections[5]", { location: "city_experimental_trials_list" });
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = qspUntranslated(s, "trial_durations[5]", { location: "city_experimental_trials_list" });
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {

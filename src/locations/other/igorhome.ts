@@ -24,9 +24,9 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
       scene.text('Fedor\'s face hardens. "Then what is it? You\'re either cheating on me or you\'re not."');
       scene.actions([
         { label: 'Say you\'re not dating Igor', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['Love'] = (-1);
-    ((s as any).IgorQW ?? {})['Block'] = 1;
-    ((s as any).IgorQW ?? {})['Lover'] = (-1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = (-1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Block'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Lover'] = (-1);
     qspCall(s, 'npc_relationship', 'set', 'A4', 20);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Igor Kruglov</b></center>');
@@ -90,9 +90,9 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
       scene.text('Igor takes one last look at you before turning around and walking away.');
       scene.actions([
         { label: 'Go with Fedor', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['Love'] = (-1);
-    ((s as any).IgorQW ?? {})['Block'] = 1;
-    ((s as any).IgorQW ?? {})['Lover'] = (-1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = (-1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Block'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Lover'] = (-1);
   }, goto: ['FedorEv', 'Start'] },
       ]);
     } else {
@@ -299,7 +299,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
                       scene.text('You talk about the boys at school, which turns into you talking about which ones you think are cute. Igor happily joins in, though he thinks Dimka is the cutest boy in school.');
                     } else {
                       if (((s as any).i ?? 0) === 10) {
-                        ((s as any).IgorQW ?? {})['bi_curious'] = 1;
+                        if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bi_curious'] = 1;
                         scene.text('As you talk about various things, Igor suddenly asks what it\'s like being a girl. You start telling him and he ends up asking a lot of questions. More than a few of them are sexual in nature, but not in a weird way; he just seems really curious.');
                       }
                     }
@@ -376,9 +376,9 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['Love'] === 1) {
     scene.actions([
       { label: 'Break up with him', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['Love'] = (-1);
-    ((s as any).IgorQW ?? {})['Block'] = 1;
-    ((s as any).IgorQW ?? {})['Lover'] = (-1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = (-1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Block'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Lover'] = (-1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'npc_relationship', 'modify', 'A4', (-30));
     qspCall(s, 'stat', '');
@@ -445,7 +445,7 @@ function enterSisterroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).IgorQW ?? 0)?.['sis_meet'] === 0) {
       scene.actions([
         { label: 'Talk', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['sis_meet'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['sis_meet'] = 1;
     scene.img('images/locations/pavlovsk/resident/igorhome/sister.jpg');
     if (((s as any).IgorQW ?? 0)?.['with'] === 0) {
       scene.text('"Oh, hi! I didn\'t think anyone would be here," you say, not expecting anyone to be there.');
@@ -656,7 +656,7 @@ function enterLivingroom1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['met_dad'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_dad'] = 1;
     scene.img('images/locations/pavlovsk/resident/igorhome/father.jpg');
     scene.text('As you walk into the living room, Igor\'s father throws a glance at you, immediately turning down the volume on the TV as he turns his attention towards you.');
     scene.text('"Hi, I\'m Gemorgen. Who might you be? Are you Galina\'s university friend?"');
@@ -747,7 +747,7 @@ function enterLivingroom2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['met_dad'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_dad'] = 1;
     scene.img('images/locations/pavlovsk/resident/igorhome/father.jpg');
     scene.text('As you walk into the living room, Igor\'s father throws a glance at you and immediately turns down the volume on the TV as he turns his attention towards you.');
     scene.text('"Hi, I\'m Gemorgen. Who might you be? Are you Galina\'s university friend?"');
@@ -815,7 +815,7 @@ function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['met_dad'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_dad'] = 1;
     scene.text('As the two of you walk into the living room, the father turns his attention from the TV towards the two of you.');
     scene.text('"My my, who do we have here? Come on son, introduce me to your beautiful friend."');
     // TODO-QSP: dynamic text: Igor mumbles something to his father, so you take charge instead. "Hello, I'm <<...
@@ -910,7 +910,7 @@ function enterLivingroom4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['met_dad'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_dad'] = 1;
     scene.text('You greet each other, telling the father that you\'re here because Igor has promised to help you out with a school assignment.');
     scene.text('"Well, at least it\'s something…" Gemorgen sighs. "He usually doesn\'t bring  anyone over, especially girls. I\'ve only seen Dimka running around here."');
     scene.text('Igor, feeling ashamed, tries making his father stop, but Gemorgen doesn\'t listen. "I just want the best for you, son. I want you to become manlier and more confident."');
@@ -984,7 +984,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Talk', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/igorhome/mother.jpg');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     if (((s as any).IgorQW ?? 0)?.['with'] === 1) {
       if (((s as any).PCloBimbo ?? 0) === 1) {
         scene.actions([{ label: 'Continue', goto: ['igorhome', 'kitchen1'] }]);
@@ -1065,7 +1065,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
     scene.text('Inga sighs. "Who though my son would fall for someone like this… Well, I\'m not too keen on this relationship you\'ve developed, but if it makes my son happy, then I\'ll have to deal with it. I assume you\'ve already lost your virginity? Just remember to always use protection. I don\'t want you becoming a father at your age."');
     scene.text('Igor blushes and angerly answers that it\'s none of her business.');
     scene.text('"I\'m sure you have better things to do besides standing here talking with me," Inga scowls before returning to her tea.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1079,7 +1079,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
     scene.text('Igor, still looking down, mumbles that Dimka is fine and that he\'s been very busy at school.');
     scene.text('"You have to invite him over instead of girls that could mean trouble, but since it was Dimka that introduced you to each other, I\'m willing to give you the benefit of the doubt. Run along now. And no funny business, Igor! I know you\'re a good boy."');
     scene.text('Igor nods while you say your goodbye, thinking this woman could become troublesome and that you need to isolate Igor from her as much as you can.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1089,7 +1089,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Igor, we\'re going to have a talk about who you\'re befriending at school…"');
     scene.text('You don\'t want to get involved in their family business, so you keep quiet as they argue.');
     scene.text('Igor finishes talking and tells you to come with him. As you move away from the kitchen, you feel a bit turned on by how he defended you. While walking behind him, you quickly pinch his butt.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1098,7 +1098,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m a bit of an airhead and Igor offered to help me out with some schoolwork," you say while looking at Igor with a smile.');
     scene.text('"I expected as much of my little boy. He\'s always been quite sharp and with his heart of gold, he always helps out the less fortunate… Well, I guess that\'s okay as long as you\'re only helping her with her homework. Understood?"');
     scene.text('Both of you nod and quickly leave the kitchen before she changes her mind.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1144,7 +1144,7 @@ function enterKitchen2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Storm out', handler: (st: GameState) => {
     scene.text('You storm out of the kitchen, noticeably irritated that she got under your skin.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     qspCall(s, 'mood', 'lower', 'medium');
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
@@ -1181,7 +1181,7 @@ function enterKitchen2(s: GameState, scene: SceneBuilder): void {
     scene.text('You listen to her for a while, not daring to disturb her as she keeps talking about her family. As soon as she stops, you tell her that Igor is probably waiting for you and that you need to head back.');
     scene.text('"I really hope that you reconsider how you\'re presenting yourself. I think there\'s a beautiful girl somewhere underneath all those trashy clothes. Just a friendly warning; don\'t you <i>dare</i> do anything to Igor! He\'s a sweet boy, and he doesn\'t know much about women."');
     scene.text('You thank her for the advice, thinking she\'s an old woman that doesn\'t understand anything about today\'s youth, but she didn\'t stop you from seeing Igor, so you happily return to his room.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1232,7 +1232,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Well who am I to deny this sweet puppy love?" Inga says with a smile. "I want you to take extra good care of ${((s as any).pcs_nickname ?? 0)}. Remember to always use protection since I don't want you becoming a father at your age."`);
     scene.text('Both of you nod and promise her that you\'ll be safe if it ever comes to that. Igor hugs his mother and whispers something to her.');
     scene.text('She nods approvingly. "I\'m sure you have better things to do than stand here talking with me," she smiles before returning to her tea.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1248,7 +1248,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"You should call him over so all the three of you can hang out. Since it was Dimka that introduced you to each other, I'm sure the two of you will get along. Run along now. And no funny business, Igor! I know you're a good boy, so don't try anything funny with ${((s as any).pcs_nickname ?? 0)}, especially since you're still a virgin."`);
     scene.text('Igor immediately turns red. "Mother! You\'re embarrassing me!"');
     scene.text('You let out a smile and reassure Inga that nothing will happen.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1258,7 +1258,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m not surprised that my little Igor managed to impress a girl by doing a school assignment."');
     scene.text('You look at Igor and give him a hug, thanking him for his hard work while his mother looks on smiling.');
     scene.text('As the two of you start moving away, you think to yourself that you\'ve got the mother eating out of your hand and that you\'ll have no trouble with her…');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1269,7 +1269,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't worry, ${((s as any).pcs_nickname ?? 0)}. I'm sure Igor will take good care of you. I'm not saying that because he's my son, but he's very smart and has good grades."`);
     scene.text('"I guess I\'m in safe hands then," you reply and give Igor a little smile.');
     scene.text('"Run along now. I\'m sure you have a lot of work to get through."');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1304,7 +1304,7 @@ function enterKitchen4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, he\'s really nice and really good looking…" you reply and the two of you start laughing.');
     scene.text('"I know you\'re just kidding, but please be careful with my son. He\'s a delicate flower that doesn\'t have much experience with women."');
     scene.text('"Don\'t worry, I\'ll take good care him," you say with a smile. "I think it\'s time for me to go back to Igor. He\'s probably wondering where I am."');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1317,7 +1317,7 @@ function enterKitchen4(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Nothing to be ashamed of, ${((s as any).pcs_nickname ?? 0)}. It runs in the family." She's clearly referencing Igor's father. "But please be careful with Igor. He hasn't had lots of experience with women."`);
     scene.text('"I\'ll take good care of him. I\'ll make sure he doesn\'t stray off too much," you confidently reply. "I should head back. Igor is probably wondering where I am."');
     scene.text('"We\'ll talk about it later. Don\'t hesitate to ask if you\'re ever wondering about anything," Inga replies as you leave the kitchen.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1329,7 +1329,7 @@ function enterKitchen4(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at her, feeling a little discouraged. "I really hope so. I really need to get my grades up in this subject."');
     scene.text('"I\'m sure Igor won\'t let you fail. You should go back to him so you can plan the work you need to put in," she says with a smile.');
     scene.text('You nod and turn around before leaving the kitchen.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1353,7 +1353,7 @@ function enterKitchen5(s: GameState, scene: SceneBuilder): void {
     scene.text('Igor gazes at you with a lamblike expression, taking you by the hand and leading you away from the kitchen, begging for forgiveness about how his mother is behaving and telling you he\'ll have a talk with her and fix everything.');
     scene.text('"Igor! As soon as you\'ve shown her out, come back here. We have some things to discuss," you hear his mother loudly say as Igor pushes you out of the kitchen.');
     scene.text('As you stand in the hallway, Igor tells you to wait here, slamming the kitchen door behind him as he returns to the kitchen.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Wait', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1386,7 +1386,7 @@ function enterKitchen6(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just so we\'re clear, Igor is only going to help you out with your homework. Don\'t get any funny ideas because I\'m going to keep my eye on you," she says, keeping her composure stern.');
     scene.text('"Yeah, whatever," you nonchalantly reply. "Maybe you should relax a little? Nothing will happen to your precious little son."');
     scene.text('Before the situation escalates again, Igor tells you that you need to begin planning the schoolwork and that you should go to his room.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1415,7 +1415,7 @@ function enterKitchen7(s: GameState, scene: SceneBuilder): void {
     scene.text('You look her straight in the eye. "Make me."');
     scene.text('Inga is taken aback by your answer and glares at you in frustration before she starts yelling at you. "Get out of my house, <i>now</i>!"');
     scene.text('Laughing, you turn around and head back to Igor\'s room, thinking about how she can\'t do anything about you and Igor\'s relationship.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1424,7 +1424,7 @@ function enterKitchen7(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fine, I\'ll leave your precious little boy alone. If I knew it would be this much trouble I would never have befriended him," you reply, lying straight to her face.');
     scene.text('She calms down a little. "Good. I\'m glad you\'ve come to your senses. Now leave. I don\'t want to see you in my house ever again."');
     scene.text('As you walk away, you\'re even more determined that you and Igor are right for each other and that you\'ll need to sneak around instead.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);
@@ -1434,7 +1434,7 @@ function enterKitchen7(s: GameState, scene: SceneBuilder): void {
     scene.text('"Listen to me, you little good for nothing hoodlum! Get out, <i>now</i>! Neither my son nor I want to waste our time on you."');
     scene.text('She grabs you by the arm and shoves you outside the kitchen. "Don\'t ever come back here or talk to my son ever again!"');
     scene.text('As she turns back to sit down, you remain in the hall, contemplating your next move.');
-    ((s as any).IgorQW ?? {})['met_mother'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['met_mother'] = 1;
     scene.actions([
       { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
     ]);

@@ -257,7 +257,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: Once he finishes he looks up and directs his next words at you. "<<$pcs_nickname...
           scene.text(`Once he finishes he looks up and directs his next words at you. "${((s as any).pcs_nickname ?? 0)}, I would like to speak to you when you are done cleaning up the breakfast table."`);
           scene.text('"Of course, Master Nicholas." You reply as is expected of you.');
-          ((s as any).nichTanya ?? {})['Uni'] = 1;
+          if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 1;
           (s as any).nichAfterBFEvent = 1;
         } else {
           if (((s as any).nichGalaKnowsPT ?? 0) === 1  &&  (((s as any).nichRand ?? 0) <= 75  ||  ((s as any).nichDebug ?? 0) === 1)) {
@@ -348,7 +348,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
       scene.text('"The two of you seem to get along quite well. Maybe you could speak some sense into her?"');
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Uni'] = 11;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 11;
     scene.text('"I will try, Master Nicholas."');
     scene.text('He nods. "I won\'t expect more from you than that."');
     scene.text('He nods again, signaling you that you are dismissed for now.');

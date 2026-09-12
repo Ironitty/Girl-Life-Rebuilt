@@ -271,7 +271,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + 60;
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                ((s as any).drugVars ?? {})['cocaine_system'] = ((s as any).drugVars ?? {})?.['cocaine_system'] / 2;
+                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = ((s as any).drugVars ?? {})?.['cocaine_system'] / 2;
               }
               scene.text('The Nave is lit only with candles and small presence lights, and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely, and before you know it, more than an hour has passed, and you feel reborn and cleansed.');
             }

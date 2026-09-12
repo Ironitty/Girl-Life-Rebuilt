@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  if (!(s as any).camGirl) (s as any).camGirl = {}; (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   scene.text('One of the viewers asks: "Do you have a vibrator or dildo? I want to see your ass stuffed…"');
   qspCall(s, 'komp_cam_functions', 'check_available_anal_dildo');

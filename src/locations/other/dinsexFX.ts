@@ -135,7 +135,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_vag ?? 0) < ((s as any).dick ?? 0)) {
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   }
-  ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
   if (((s as any).protect ?? 0) < 2) {
     if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).pose ?? 0) === 3) {
       qspCall(s, 'cum_manage', '');

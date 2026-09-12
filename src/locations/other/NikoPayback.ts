@@ -763,7 +763,7 @@ function enterIvanHelp2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNushHelp(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['vs_niko'] = 2;
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['vs_niko'] = 2;
   (s as any).NikoPayback = 3;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
@@ -893,7 +893,7 @@ function enterVitekHelp2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbinaHelp(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['niko_help'] = 2;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['niko_help'] = 2;
   (s as any).NikoPayback = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');

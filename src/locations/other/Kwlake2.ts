@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
     scene.img('images/locations/city/residential/lake/sex/kwlake2/kwlake4.jpg');
     scene.text('After a few minutes the man pulls away from you. He makes you lie down on the sand, so he can fuck you.');
     scene.text('Kat is all for the idea and encourages you to do what he says. Meanwhile the man helps you down and brings his cock to your snatch, penetrating you with one fierce thrust.');

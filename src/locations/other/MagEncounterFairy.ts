@@ -80,7 +80,7 @@ function enterFairyChatNo1(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).pcs_skin = 1000;
       }
-      ((s as any).fairyQW ?? {})['skin_increase'] = (((s as any).fairyQW ?? {})['skin_increase'] ?? 0) + (1);
+      if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
       qspCall(s, 'stat', '');
       scene.text('The fairy bids you farewell. Just as she flies off, she returns fluttering in front of your face.');
@@ -158,8 +158,8 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).pcs_skin = 1000;
       }
-      ((s as any).fairyQW ?? {})['skin_increase'] = (((s as any).fairyQW ?? {})['skin_increase'] ?? 0) + (1);
-      ((s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
+      if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
+      if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       scene.text('The fairy bids you farewell.');
       qspCall(s, 'stat', '');
@@ -175,7 +175,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).fairyQW ?? 0)?.['skin_increase'] > 10  &&  ((s as any).fairyQW ?? 0)?.['day'] < ((s as any).daystart ?? 0)  &&  ((s as any).fairyshoo ?? 0) === 0  &&  ((s as any).pcs_magik ?? 0) >= 8  &&  ((s as any).fairychat ?? 0) > 9  &&  ((s as any).succubusQW ?? 0) < 1) {
         (s as any).succubusQW = 1;
         (s as any).pcs_horny = 0;
-        ((s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
+        if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['day'] = ((s as any).daystart ?? 0);
         qspCall(s, 'stat', '');
         scene.text('The fairy bids you farewell.');
         qspCall(s, 'stat', '');
@@ -189,7 +189,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).fairyQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  (((s as any).pcs_nips ?? 0) < 80  ||  ((s as any).clit_size ?? 0) < 80)) {
-          ((s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
+          if (!(s as any).fairyQW) (s as any).fairyQW = {}; (s as any).fairyQW['day'] = ((s as any).daystart ?? 0);
           scene.text('The fairy takes another quick look at you, rubs her chin, and says "Hmm, since you\'ve been a little nice to me, maybe I could be a little nice to you."');
           scene.actions([
             { label: 'Huh?', handler: (st: GameState) => {
@@ -346,8 +346,8 @@ function enterTeleport(s: GameState, scene: SceneBuilder): void {
     scene.text('The view outside the circle seems blurry and a little indistinct. The Fairy\'s face scrunches up in concentration as she incants "inla", and the world outside seems to shimmer a little. You feel like you understand how she did that. Though you can\'t tell exactly where you are now in the blurriness, it does look different.');
     scene.text('The Fairy says, "It\'s important to take the time to feel each Fairy Ring, that\'s how you can find your way back." She flies off.');
     scene.text('You decide it would be wise to memorize your surroundings.');
-    ((s as any).spellKnown ?? {})['teleport'] = 1;
-    ((s as any).tpKnown ?? {})['gad_forest'] = 1;
+    if (!(s as any).spellKnown) (s as any).spellKnown = {}; (s as any).spellKnown['teleport'] = 1;
+    if (!(s as any).tpKnown) (s as any).tpKnown = {}; (s as any).tpKnown['gad_forest'] = 1;
     scene.actions([
       { label: 'You step out of the circle…', goto: ['gad_forest', 'forest_edge'] },
     ]);

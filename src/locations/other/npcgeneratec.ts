@@ -9,51 +9,51 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === ''  ||  !isNaN(((s as any).locArgs?.[0] ?? 0)) && ((s as any).locArgs?.[0] ?? 0) !== '') {
     if (((s as any).locArgs?.[0] ?? 0) !== '') {
-      ((s as any).ARGS ?? {})[0] = qspUntranslated(s, "val(ARGS[0])", { location: "npcgeneratec" });
+      if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[0] = qspUntranslated(s, "val(ARGS[0])", { location: "npcgeneratec" });
     }
     (s as any).npcgen_lastrun = 1;
-    ((s as any).npcgeneratecVars ?? {})['gender'] = qspUntranslated(s, "ARGS[0]", { location: "npcgeneratec" });
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['gender'] = qspUntranslated(s, "ARGS[0]", { location: "npcgeneratec" });
     if (((s as any).locArgs?.[2] ?? 0) !== 0) {
-      ((s as any).npcgeneratecVars ?? {})['age'] = qspUntranslated(s, "ARGS[2]", { location: "npcgeneratec" });
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['age'] = qspUntranslated(s, "ARGS[2]", { location: "npcgeneratec" });
     } else {
-      ((s as any).npcgeneratecVars ?? {})['age'] = Math.floor(Math.random() * 18) + 18;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['age'] = Math.floor(Math.random() * 18) + 18;
     }
     if (((s as any).locArgs?.[1] ?? 0) !== '') {
-      ((s as any).npcgeneratecVars ?? {})['name'] = ((s as any).locArgs?.[1] ?? 0);
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['name'] = ((s as any).locArgs?.[1] ?? 0);
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
-        ((s as any).npcgeneratecVars ?? {})['name'] = 'A Male';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['name'] = 'A Male';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 1) {
-          ((s as any).npcgeneratecVars ?? {})['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 2) {
-            ((s as any).npcgeneratecVars ?? {})['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
           } else {
-            ((s as any).npcgeneratecVars ?? {})['name'] = 'A Male';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['name'] = 'A Male';
           }
         }
       }
     }
     if (((s as any).locArgs?.[3] ?? 0) !== 0) {
-      ((s as any).npcgeneratecVars ?? {})['loc'] = qspUntranslated(s, "ARGS[3]", { location: "npcgeneratec" });
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['loc'] = qspUntranslated(s, "ARGS[3]", { location: "npcgeneratec" });
     } else {
       if (((s as any).region ?? 0) === 'pav') {
-        ((s as any).npcgeneratecVars ?? {})['loc'] = 1;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['loc'] = 1;
       } else {
         if (((s as any).region ?? 0) === 'city') {
-          ((s as any).npcgeneratecVars ?? {})['loc'] = Math.floor(Math.random() * 2) + 3;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['loc'] = Math.floor(Math.random() * 2) + 3;
         }
       }
     }
-    ((s as any).npcgeneratecVars ?? {})['anonymous'] = qspUntranslated(s, "ARGS[4]", { location: "npcgeneratec" });
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['anonymous'] = qspUntranslated(s, "ARGS[4]", { location: "npcgeneratec" });
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('attracted') : -1) > 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('like') : -1) > 0) {
-      ((s as any).npcgeneratecVars ?? {})['attracted'] = 'like';
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['attracted'] = 'like';
     } else {
       if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unattracted') : -1) > 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('dislike') : -1) > 0) {
-        ((s as any).npcgeneratecVars ?? {})['attracted'] = 'dislike';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['attracted'] = 'dislike';
       } else {
-        ((s as any).npcgeneratecVars ?? {})['attracted'] = '';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['attracted'] = '';
       }
     }
     qspCall(s, 'npcgeneratec', 'init');
@@ -82,7 +82,7 @@ function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: :npcgencsanityloop
     (s as any).ngc_scheck = 0;
-    ((s as any).npcgeneratecVars ?? {})['npcID'] = 'C\' + \'' + ((s as any).carraynumber ?? 0)-1> + '';
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['npcID'] = 'C\' + \'' + ((s as any).carraynumber ?? 0)-1> + '';
     if (((s as any).npc_perstype ?? 0)[((s as any).npcgeneratecVars ?? 0)?.['npcID']] === ''  &&  ((s as any).carraynumber ?? 0) > 0) {
       (s as any).carraynumber = ((s as any).carraynumber ?? 0) - (1);
       (s as any).ngc_scheck = 1;
@@ -106,8 +106,8 @@ function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
 
 function enterAssignDob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'time', 'to_daystart', year - npcgeneratecVars['age'] - 1, month, day
-  ((s as any).npcgeneratecVars ?? {})['min_daystart'] = ((s as any).dateVars ?? {})?.['daystart'] + 1;
-  ((s as any).npcgeneratecVars ?? {})['birth_daystart'] = (Math.floor(Math.random() * (((s as any).npcgeneratecVars ?? {})?.['min_daystart'] + 364 - ((s as any).npcgeneratecVars ?? {})?.['min_daystart'] + 1)) + (((s as any).npcgeneratecVars ?? {})?.['min_daystart']));
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['min_daystart'] = ((s as any).dateVars ?? {})?.['daystart'] + 1;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['birth_daystart'] = (Math.floor(Math.random() * (((s as any).npcgeneratecVars ?? {})?.['min_daystart'] + 364 - ((s as any).npcgeneratecVars ?? {})?.['min_daystart'] + 1)) + (((s as any).npcgeneratecVars ?? {})?.['min_daystart']));
   // TODO-QSP: gs 'time', 'to_date', npcgeneratecVars['birth_daystart']
   // TODO-QSP: npc_dob[$ARGS[1]] = dateVars['year'] * 10000
   // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['month'] * 100
@@ -118,28 +118,28 @@ function enterAssignDob(s: GameState, scene: SceneBuilder): void {
 
 function enterAssignStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcgeneratecVars ?? 0)?.['age'] < 18) {
-    ((s as any).npcgeneratecVars ?? {})['virgin'] = Math.floor(Math.random() * 21) + 0;
-    ((s as any).npcgeneratecVars ?? {})['mind'] = Math.floor(Math.random() * 21) + 20;
-    ((s as any).npcgeneratecVars ?? {})['body'] = Math.floor(Math.random() * 21) + 40;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['virgin'] = Math.floor(Math.random() * 21) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['mind'] = Math.floor(Math.random() * 21) + 20;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body'] = Math.floor(Math.random() * 21) + 40;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['age'] < 22) {
-      ((s as any).npcgeneratecVars ?? {})['virgin'] = Math.floor(Math.random() * 13) + 10;
-      ((s as any).npcgeneratecVars ?? {})['mind'] = Math.floor(Math.random() * 21) + 25;
-      ((s as any).npcgeneratecVars ?? {})['body'] = Math.floor(Math.random() * 21) + 35;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['virgin'] = Math.floor(Math.random() * 13) + 10;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['mind'] = Math.floor(Math.random() * 21) + 25;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body'] = Math.floor(Math.random() * 21) + 35;
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['age'] < 30) {
-        ((s as any).npcgeneratecVars ?? {})['virgin'] = Math.floor(Math.random() * 6) + 19;
-        ((s as any).npcgeneratecVars ?? {})['mind'] = Math.floor(Math.random() * 21) + 30;
-        ((s as any).npcgeneratecVars ?? {})['body'] = Math.floor(Math.random() * 21) + 30;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['virgin'] = Math.floor(Math.random() * 6) + 19;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['mind'] = Math.floor(Math.random() * 21) + 30;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body'] = Math.floor(Math.random() * 21) + 30;
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['age'] < 35) {
-          ((s as any).npcgeneratecVars ?? {})['virgin'] = Math.floor(Math.random() * 8) + 19;
-          ((s as any).npcgeneratecVars ?? {})['mind'] = Math.floor(Math.random() * 21) + 35;
-          ((s as any).npcgeneratecVars ?? {})['body'] = Math.floor(Math.random() * 21) + 25;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['virgin'] = Math.floor(Math.random() * 8) + 19;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['mind'] = Math.floor(Math.random() * 21) + 35;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body'] = Math.floor(Math.random() * 21) + 25;
         } else {
-          ((s as any).npcgeneratecVars ?? {})['virgin'] = Math.floor(Math.random() * 12) + 19;
-          ((s as any).npcgeneratecVars ?? {})['mind'] = Math.floor(Math.random() * 21) + 40;
-          ((s as any).npcgeneratecVars ?? {})['body'] = Math.floor(Math.random() * 21) + 20;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['virgin'] = Math.floor(Math.random() * 12) + 19;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['mind'] = Math.floor(Math.random() * 21) + 40;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body'] = Math.floor(Math.random() * 21) + 20;
         }
       }
     }
@@ -165,23 +165,23 @@ function enterAssignStats(s: GameState, scene: SceneBuilder): void {
 
 function enterSetDetails(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
-    ((s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusMale');
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['firstname'] = qspFunc(s, 'npcrnamefile', 'rusMale');
     qspCall(s, 'npcgeneratec', 'gen_dick');
     qspCall(s, 'npcgeneratec', 'set_dick', ((s as any).locArgs?.[1] ?? 0));
     // TODO-QSP: npc_gender[$ARGS[1]] = 0
-    ((s as any).npcgeneratecVars ?? {})['av_height'] = 175;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_height'] = 175;
     // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-10, 10) + rand(-8, 8) + rand(-5, 5)
-    ((s as any).npcgeneratecVars ?? {})['av_weight'] = 68;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_weight'] = 68;
     // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_weight'] + rand(-23, 23)
     // TODO-QSP: $npc_notes[$ARGS[1]] = 'A male.'
     // TODO-QSP: npc_bust[$ARGS[1]] = 0
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 1) {
-      ((s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusFemale');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['firstname'] = qspFunc(s, 'npcrnamefile', 'rusFemale');
       // TODO-QSP: npc_gender[$ARGS[1]] = 1
-      ((s as any).npcgeneratecVars ?? {})['av_height'] = 165;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_height'] = 165;
       // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-10, 10) + rand(-8, 8) + rand(-5, 5)
-      ((s as any).npcgeneratecVars ?? {})['av_weight'] = 60;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_weight'] = 60;
       // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_weight'] + rand(-21, 21)
       // TODO-QSP: npc_spermpot[$ARGS[1]] = -1
       // TODO-QSP: npc_spermvol[$ARGS[1]] = -1
@@ -194,34 +194,34 @@ function enterSetDetails(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 2) {
-        ((s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusFemale');
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['firstname'] = qspFunc(s, 'npcrnamefile', 'rusFemale');
         qspCall(s, 'npcgeneratec', 'gen_dick');
         qspCall(s, 'npcgeneratec', 'set_dick', ((s as any).locArgs?.[1] ?? 0));
         // TODO-QSP: npc_gender[$ARGS[1]] = 1
-        ((s as any).npcgeneratecVars ?? {})['av_height'] = 165;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_height'] = 165;
         // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-15, 15)
-        ((s as any).npcgeneratecVars ?? {})['av_weight'] = 60;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_weight'] = 60;
         // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_weight'] + rand(-21, 21)
         // TODO-QSP: npc_spermpot[$ARGS[1]] = -1
         // TODO-QSP: $npc_thdick[$ARGS[1]] = 'clitoris'
         // TODO-QSP: $npc_notes[$ARGS[1]] = 'A female Hermaphrodite.'
         // TODO-QSP: npc_bust[$ARGS[1]] = rand(0, 15) + rand(0, 15) + rand(0, 15)
       } else {
-        ((s as any).npcgeneratecVars ?? {})['firstname'] = qspFunc(s, 'npcrnamefile', 'rusMale');
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['firstname'] = qspFunc(s, 'npcrnamefile', 'rusMale');
         qspCall(s, 'npcgeneratec', 'gen_dick');
         qspCall(s, 'npcgeneratec', 'set_dick', ((s as any).locArgs?.[1] ?? 0));
         // TODO-QSP: npc_gender[$ARGS[1]] = 0
-        ((s as any).npcgeneratecVars ?? {})['av_height'] = 175;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_height'] = 175;
         // TODO-QSP: npc_height[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-15, 15)
-        ((s as any).npcgeneratecVars ?? {})['av_weight'] = 68;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['av_weight'] = 68;
         // TODO-QSP: npc_weight[$ARGS[1]] = npcgeneratecVars['av_height'] + rand(-15, 15)
         // TODO-QSP: $npc_notes[$ARGS[1]] = 'A male Hermaphrodite.'
         // TODO-QSP: npc_bust[$ARGS[1]] = rand(0, 10)
       }
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['nickname'] = qspFunc(s, 'npcrnamefile', 'get_nickname', ((s as any).npcgeneratecVars ?? 0)?.['firstname']);
-  ((s as any).npcgeneratecVars ?? {})['lastname'] = qspFunc(s, 'npcrnamefile', 'rusSur');
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['nickname'] = qspFunc(s, 'npcrnamefile', 'get_nickname', ((s as any).npcgeneratecVars ?? 0)?.['firstname']);
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['lastname'] = qspFunc(s, 'npcrnamefile', 'rusSur');
   // TODO-QSP: npc_haircol[$ARGS[1]] = rand(1, 4)
   if (((s as any).npc_haircol ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
     // TODO-QSP: $npc_hair_desc[$ARGS[1]] = 'black'
@@ -252,108 +252,108 @@ function enterSetDetails(s: GameState, scene: SceneBuilder): void {
 
 function enterGenDick(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'tiny') {
-    ((s as any).npcgeneratecVars ?? {})['dick_length'] = 7;
-    ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 8;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 7;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 8;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'short') {
-      ((s as any).npcgeneratecVars ?? {})['dick_length'] = 7;
-      ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 10;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 7;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 10;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'chode') {
-        ((s as any).npcgeneratecVars ?? {})['dick_length'] = 7;
-        ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 12;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 7;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 12;
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'skinny') {
-          ((s as any).npcgeneratecVars ?? {})['dick_length'] = 12;
-          ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 9;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 12;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 9;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'normal') {
-            ((s as any).npcgeneratecVars ?? {})['dick_length'] = 7;
-            ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 11;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 7;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 11;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 'thick') {
-              ((s as any).npcgeneratecVars ?? {})['dick_length'] = 7;
-              ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 13;
+              if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 7;
+              if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 13;
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 'long') {
-                ((s as any).npcgeneratecVars ?? {})['dick_length'] = 17;
-                ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 10;
+                if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 17;
+                if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 10;
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 'huge') {
-                  ((s as any).npcgeneratecVars ?? {})['dick_length'] = 17;
-                  ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 12;
+                  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 17;
+                  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 12;
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 'enormous') {
-                    ((s as any).npcgeneratecVars ?? {})['dick_length'] = 17;
-                    ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 14;
+                    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 17;
+                    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 14;
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === 'lengthy') {
-                      ((s as any).npcgeneratecVars ?? {})['dick_length'] = 22;
-                      ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 11;
+                      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 22;
+                      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 11;
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) === 'gigantic') {
-                        ((s as any).npcgeneratecVars ?? {})['dick_length'] = 22;
-                        ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 13;
+                        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 22;
+                        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 13;
                       } else {
                         if (((s as any).locArgs?.[1] ?? 0) === 'monstrous') {
-                          ((s as any).npcgeneratecVars ?? {})['dick_length'] = 22;
-                          ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 15;
+                          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 22;
+                          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 15;
                         } else {
-                          ((s as any).npcgeneratecVars ?? {})['dick_length'] = 1 + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1);
+                          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 1 + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1);
                           if ((!(Math.floor(Math.random() * 7) + 0))) {
-                            ((s as any).npcgeneratecVars ?? {})['dick_length'] = (((s as any).npcgeneratecVars ?? {})['dick_length'] ?? 0) + (Math.floor(Math.random() * 8) + 1);
+                            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = ((s as any).npcgeneratecVars['dick_length'] ?? 0) + (Math.floor(Math.random() * 8) + 1);
                           }
                           if ((!(Math.floor(Math.random() * 5) + 0))) {
-                            ((s as any).npcgeneratecVars ?? {})['dick_length'] = (((s as any).npcgeneratecVars ?? {})['dick_length'] ?? 0) + (Math.floor(Math.random() * 6) + 1);
+                            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = ((s as any).npcgeneratecVars['dick_length'] ?? 0) + (Math.floor(Math.random() * 6) + 1);
                           }
                           if ((!(Math.floor(Math.random() * 3) + 0))) {
-                            ((s as any).npcgeneratecVars ?? {})['dick_length'] = (((s as any).npcgeneratecVars ?? {})['dick_length'] ?? 0) + (Math.floor(Math.random() * 4) + 1);
+                            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = ((s as any).npcgeneratecVars['dick_length'] ?? 0) + (Math.floor(Math.random() * 4) + 1);
                           }
                           if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] > 30) {
-                            ((s as any).npcgeneratecVars ?? {})['dick_length'] = 30;
+                            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_length'] = 30;
                           }
                           if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 8) {
-                            ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 10;
+                            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 10;
                           } else {
                             if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 11) {
-                              ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 11;
+                              if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 11;
                             } else {
                               if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 14) {
-                                ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 12;
+                                if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 12;
                               } else {
                                 if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 20) {
-                                  ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 13;
+                                  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 13;
                                 } else {
                                   if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 23) {
-                                    ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 14;
+                                    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 14;
                                   } else {
-                                    ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 15;
+                                    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = 15;
                                   }
                                 }
                               }
                             }
                           }
-                          ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 18) + 1;
+                          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 18) + 1;
                           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-                            ((s as any).npcgeneratecVars ?? {})['dick_girth'] = (((s as any).npcgeneratecVars ?? {})['dick_girth'] ?? 0) - (3);
+                            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = ((s as any).npcgeneratecVars['dick_girth'] ?? 0) - (3);
                           } else {
                             if (((s as any).npcgeneratecVars ?? 0)?.['rand'] <= 3) {
-                              ((s as any).npcgeneratecVars ?? {})['dick_girth'] = (((s as any).npcgeneratecVars ?? {})['dick_girth'] ?? 0) - (2);
+                              if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = ((s as any).npcgeneratecVars['dick_girth'] ?? 0) - (2);
                             } else {
                               if (((s as any).npcgeneratecVars ?? 0)?.['rand'] <= 6) {
-                                ((s as any).npcgeneratecVars ?? {})['dick_girth'] = (((s as any).npcgeneratecVars ?? {})['dick_girth'] ?? 0) - (1);
+                                if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = ((s as any).npcgeneratecVars['dick_girth'] ?? 0) - (1);
                               } else {
                                 if (((s as any).npcgeneratecVars ?? 0)?.['rand'] <= 7) {
-                                  ((s as any).npcgeneratecVars ?? {})['dick_girth'] = (((s as any).npcgeneratecVars ?? {})['dick_girth'] ?? 0) + (0);
+                                  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = ((s as any).npcgeneratecVars['dick_girth'] ?? 0) + (0);
                                 } else {
                                   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] <= 13) {
-                                    ((s as any).npcgeneratecVars ?? {})['dick_girth'] = (((s as any).npcgeneratecVars ?? {})['dick_girth'] ?? 0) + (1);
+                                    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = ((s as any).npcgeneratecVars['dick_girth'] ?? 0) + (1);
                                   } else {
                                     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] <= 16) {
-                                      ((s as any).npcgeneratecVars ?? {})['dick_girth'] = (((s as any).npcgeneratecVars ?? {})['dick_girth'] ?? 0) + (2);
+                                      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = ((s as any).npcgeneratecVars['dick_girth'] ?? 0) + (2);
                                     } else {
                                       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 18) {
-                                        ((s as any).npcgeneratecVars ?? {})['dick_girth'] = (((s as any).npcgeneratecVars ?? {})['dick_girth'] ?? 0) + (3);
+                                        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_girth'] = ((s as any).npcgeneratecVars['dick_girth'] ?? 0) + (3);
                                       }
                                     }
                                   }
@@ -374,24 +374,24 @@ function enterGenDick(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 9) {
-    ((s as any).npcgeneratecVars ?? {})['thdick'] = 'skinny';
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['thdick'] = 'skinny';
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] === 10) {
-      ((s as any).npcgeneratecVars ?? {})['thdick'] = 'slim';
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['thdick'] = 'slim';
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] === 11) {
-        ((s as any).npcgeneratecVars ?? {})['thdick'] = 'well proportioned';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['thdick'] = 'well proportioned';
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] === 12) {
-          ((s as any).npcgeneratecVars ?? {})['thdick'] = 'thicker than average';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['thdick'] = 'thicker than average';
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] === 13) {
-            ((s as any).npcgeneratecVars ?? {})['thdick'] = 'thick';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['thdick'] = 'thick';
           } else {
             if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] === 14) {
-              ((s as any).npcgeneratecVars ?? {})['thdick'] = 'massive';
+              if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['thdick'] = 'massive';
             } else {
-              ((s as any).npcgeneratecVars ?? {})['thdick'] = 'monstrous';
+              if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['thdick'] = 'monstrous';
             }
           }
         }
@@ -399,85 +399,85 @@ function enterGenDick(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 8) {
-    ((s as any).npcgeneratecVars ?? {})['dick_class'] = 'short';
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_class'] = 'short';
     if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 9) {
-      ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'tiny';
-      ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'micropenis';
-      ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 7501) + 4000;
-      ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 41) + 5;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'tiny';
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'micropenis';
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 7501) + 4000;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 41) + 5;
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 11) {
-        ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'short';
-        ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'short cock';
-        ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 7001) + 5000;
-        ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 41) + 10;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'short';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'short cock';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 7001) + 5000;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 41) + 10;
       } else {
-        ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'chode';
-        ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'chode';
-        ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6501) + 6000;
-        ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 41) + 15;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'chode';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'chode';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6501) + 6000;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 41) + 15;
       }
     }
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 14) {
-      ((s as any).npcgeneratecVars ?? {})['dick_class'] = 'average';
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_class'] = 'average';
       if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 10) {
-        ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'skinny';
-        ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'pencil dick';
-        ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6501) + 6000;
-        ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 41) + 15;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'skinny';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'pencil dick';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6501) + 6000;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 41) + 15;
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 12) {
-          ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'normal';
-          ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'dick';
-          ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 7000;
-          ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 41) + 20;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'normal';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'dick';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 7000;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 41) + 20;
         } else {
-          ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'thick';
-          ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'thick cock';
-          ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 7500;
-          ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 42) + 22;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'thick';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'thick cock';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 7500;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 42) + 22;
         }
       }
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['dick_length'] <= 19) {
-        ((s as any).npcgeneratecVars ?? {})['dick_class'] = 'big';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_class'] = 'big';
         if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 11) {
-          ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'long';
-          ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'long cock';
-          ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 7500;
-          ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 42) + 22;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'long';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'long cock';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 7500;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 42) + 22;
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 13) {
-            ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'huge';
-            ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'sizeable cock';
-            ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 8000;
-            ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 41) + 25;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'huge';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'sizeable cock';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 8000;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 41) + 25;
           } else {
-            ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'enormous';
-            ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'enormous cock';
-            ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 8500;
-            ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 42) + 27;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'enormous';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'enormous cock';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 8500;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 42) + 27;
           }
         }
       } else {
-        ((s as any).npcgeneratecVars ?? {})['dick_class'] = 'extra_big';
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_class'] = 'extra_big';
         if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 12) {
-          ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'lengthy';
-          ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'lengthy dick';
-          ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 8500;
-          ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 42) + 27;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'lengthy';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'lengthy dick';
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 8500;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 42) + 27;
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['dick_girth'] <= 14) {
-            ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'gigantic';
-            ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'gigantic cock';
-            ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 9000;
-            ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 41) + 30;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'gigantic';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'gigantic cock';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 9000;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 41) + 30;
           } else {
-            ((s as any).npcgeneratecVars ?? {})['dick_desc'] = 'monstrous';
-            ((s as any).npcgeneratecVars ?? {})['dick_noun'] = 'monster cock';
-            ((s as any).npcgeneratecVars ?? {})['potency'] = Math.floor(Math.random() * 6001) + 9500;
-            ((s as any).npcgeneratecVars ?? {})['volume'] = Math.floor(Math.random() * 42) + 32;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_desc'] = 'monstrous';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['dick_noun'] = 'monster cock';
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['potency'] = Math.floor(Math.random() * 6001) + 9500;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['volume'] = Math.floor(Math.random() * 42) + 32;
           }
         }
       }
@@ -519,7 +519,7 @@ function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
       // TODO-QSP: npc_start_free_time[$ARGS[1]] = 8
       // TODO-QSP: npc_end_free_time[$ARGS[1]] = 12
@@ -619,16 +619,16 @@ function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['home_path'] = 'images/shared/romance/lovers/homes';
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['home_path'] = 'images/shared/romance/lovers/homes';
   if (((s as any).npc_apt_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 6) {
     // TODO-QSP: $npc_apt_type_label[$ARGS[1]] = 'mansion'
     if (((s as any).npc_style ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3) {
-      ((s as any).npcgeneratecVars ?? {})['spare_room'] = 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['spare_room'] = 1;
     } else {
       if (((s as any).npc_style ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2  ||  ((s as any).npc_style ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 4) {
-        ((s as any).npcgeneratecVars ?? {})['spare_room'] = 2;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['spare_room'] = 2;
       } else {
-        ((s as any).npcgeneratecVars ?? {})['spare_room'] = Math.floor(Math.random() * 2) + 1;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['spare_room'] = Math.floor(Math.random() * 2) + 1;
       }
     }
     if (((s as any).npcgeneratecVars ?? 0)?.['spare_room'] === 1) {
@@ -653,12 +653,12 @@ function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_apt_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 4  ||  ((s as any).npc_apt_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 5) {
       // TODO-QSP: $npc_apt_type_label[$ARGS[1]] = 'multi_bedroom'
       if (((s as any).npc_style ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3) {
-        ((s as any).npcgeneratecVars ?? {})['spare_room'] = 1;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['spare_room'] = 1;
       } else {
         if (((s as any).npc_style ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2  ||  ((s as any).npc_style ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 4) {
-          ((s as any).npcgeneratecVars ?? {})['spare_room'] = 2;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['spare_room'] = 2;
         } else {
-          ((s as any).npcgeneratecVars ?? {})['spare_room'] = Math.floor(Math.random() * 2) + 1;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['spare_room'] = Math.floor(Math.random() * 2) + 1;
         }
       }
       if (((s as any).npcgeneratecVars ?? 0)?.['spare_room'] === 1) {
@@ -728,11 +728,11 @@ function enterSetOccupation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPoorJobs(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 16) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 16) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: npc_criminal[$ARGS[1]] = 1
     // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 4) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 4) + 0;
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
       // TODO-QSP: $npc_occupation[$ARGS[1]] = 'pimp'
       // TODO-QSP: npc_gun[$ARGS[1]] = rand(0, 1)
@@ -828,7 +828,7 @@ function enterPoorJobs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiddleJobs(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 11) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 11) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: $npc_occupation[$ARGS[1]] = 'masseuse'
   } else {
@@ -859,7 +859,7 @@ function enterMiddleJobs(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 9) {
                       // TODO-QSP: npc_criminal[$ARGS[1]] = 1
                       // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
-                      ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 4) + 0;
+                      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 4) + 0;
                       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
                         // TODO-QSP: $npc_occupation[$ARGS[1]] = 'pimp'
                       } else {
@@ -890,7 +890,7 @@ function enterMiddleJobs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRichJobs(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 7) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 7) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: $npc_occupation[$ARGS[1]] = 'personal_trainer'
   } else {
@@ -900,7 +900,7 @@ function enterRichJobs(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
         // TODO-QSP: npc_criminal[$ARGS[1]] = 1
         // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
-        ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
           // TODO-QSP: $npc_occupation[$ARGS[1]] = 'pimp'
         } else {
@@ -915,7 +915,7 @@ function enterRichJobs(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: $npc_police_type[$ARGS[1]] = 'undercover'
           // TODO-QSP: npc_criminal[$ARGS[1]] = 1
           // TODO-QSP: npc_criminal_open[$ARGS[1]] = rand(0, 1)
-          ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
           if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
             // TODO-QSP: $npc_occupation[$ARGS[1]] = 'enforcer'
           } else {
@@ -962,15 +962,15 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   }
   if (((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((3)-1, ((3)-1)+(1))) === 'T') {
     if (((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
-      ((s as any).npcgeneratecVars ?? {})['humor'] = Math.floor(Math.random() * 2) + 2;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = Math.floor(Math.random() * 2) + 2;
     } else {
-      ((s as any).npcgeneratecVars ?? {})['humor'] = 3;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = 3;
     }
   } else {
     if (((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
-      ((s as any).npcgeneratecVars ?? {})['humor'] = Math.floor(Math.random() * 2) + 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = Math.floor(Math.random() * 2) + 1;
     } else {
-      ((s as any).npcgeneratecVars ?? {})['humor'] = 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = 1;
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['humor'] === 1) {
@@ -985,7 +985,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: npc_smoker[$ARGS[1]] = rand(0, 2)
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 50) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 50) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 9) {
     // TODO-QSP: npc_sexdrive[$ARGS[1]] = rand(1, 3)
   } else {
@@ -996,7 +996,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_sexdrive ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 5) {
-    ((s as any).npc_energetic ?? {})[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 2) + 0;
+    if (!(s as any).npc_energetic) (s as any).npc_energetic = {}; (s as any).npc_energetic[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 2) + 0;
   }
   if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'perverted'  &&  ((s as any).npc_sexdrive ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 3) {
     // TODO-QSP: npc_pervert[$ARGS[1]] = 1
@@ -1011,7 +1011,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $npc_door_pref[$ARGS[1]] = 'indoor'
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 1;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 1;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
     // TODO-QSP: $npc_rel_goal[$ARGS[1]] = 'sex'
   } else {
@@ -1078,7 +1078,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: npc_earlyriser[$ARGS[1]] = 1
     // TODO-QSP: npc_latesleeper[$ARGS[1]] = 0
@@ -1088,7 +1088,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_latesleeper[$ARGS[1]] = 1
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: npc_generous[$ARGS[1]] = 1
     // TODO-QSP: npc_selfish[$ARGS[1]] = 0
@@ -1098,7 +1098,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_selfish[$ARGS[1]] = 1
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: npc_gentle[$ARGS[1]] = 1
     // TODO-QSP: npc_rough[$ARGS[1]] = 0
@@ -1108,7 +1108,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_rough[$ARGS[1]] = 1
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: npc_diligent[$ARGS[1]] = 1
     // TODO-QSP: npc_risktaker[$ARGS[1]] = 0
@@ -1118,7 +1118,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_risktaker[$ARGS[1]] = 1
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 9) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 9) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2 + 2 * ((s as any).npc_diligent ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: npc_messy[$ARGS[1]] = 0
     // TODO-QSP: npc_neat[$ARGS[1]] = 1
@@ -1128,7 +1128,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_neat[$ARGS[1]] = 0
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0) - ((s as any).npc_neat ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = (Math.floor(Math.random() * 3) + 0) - ((s as any).npc_neat ?? 0)[((s as any).locArgs?.[1] ?? 0)];
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 1) {
     // TODO-QSP: $npc_pubes[$ARGS[1]] = 'shaved'
   } else {
@@ -1141,7 +1141,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: npc_argumentative[$ARGS[1]] = iif(rand(0, 2) = 0, 1, 0)
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 9) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 9) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2 + 2 * ((s as any).npc_diligent ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     // TODO-QSP: npc_shy[$ARGS[1]] = 0
     // TODO-QSP: npc_assertive[$ARGS[1]] = 1
@@ -1260,7 +1260,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 7) + 1;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 7) + 1;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
     // TODO-QSP: $npc_fav_pos[$ARGS[1]] = 'miss'
   } else {
@@ -1292,7 +1292,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: npc_sex_speed[$ARGS[1]] = rand(1, 3)
   // TODO-QSP: npc_sex_volume[$ARGS[1]] = rand(0, 3)
   if ((!(Math.floor(Math.random() * 3) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 4) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 4) + 0;
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0  &&  ((s as any).npc_sex_speed ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
       // TODO-QSP: npc_gentle_lover[$ARGS[1]] = 1
     } else {
@@ -1305,7 +1305,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 6) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 6) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
     // TODO-QSP: $npc_cum_pref[$ARGS[1]] = 'creampie'
   } else {
@@ -1332,7 +1332,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_dislikes_facials[$ARGS[1]] = 1
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 4) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 4) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
     // TODO-QSP: $npc_fav_body_part[$ARGS[1]] = 'pussy'
   } else {
@@ -1396,7 +1396,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((((s as any).npc_door_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'indoor'  &&  (Math.floor(Math.random() * 3) + 0) !== 0)  ||  (((s as any).npc_door_pref ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'outdoor'  &&  (Math.floor(Math.random() * 3) + 0) === 0)) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 5) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 5) + 0;
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
       // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'casual_meal'
     } else {
@@ -1415,7 +1415,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 6) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 6) + 0;
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
       // TODO-QSP: $npc_fav_date[$ARGS[1]] = 'casual_meal'
     } else {
@@ -1438,7 +1438,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 50) + 0;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 50) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 15) {
     // TODO-QSP: $npc_fav_genre[$ARGS[1]] = 'action'
   } else {
@@ -1465,60 +1465,60 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pref_ids ?? {})['body_tits_small'] = 1;
-  ((s as any).pref_ids ?? {})['body_tits_average'] = 2;
-  ((s as any).pref_ids ?? {})['body_tits_big'] = 3;
-  ((s as any).pref_ids ?? {})['body_tits_huge'] = 4;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 5) + 0;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_tits_small'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_tits_average'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_tits_big'] = 3;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_tits_huge'] = 4;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 5) + 0;
   if ((Math.floor(Math.random() * 10) + 0) < 3) {
     if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_tits');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_tits');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['hair_pubes_shaven'] = 1;
-  ((s as any).pref_ids ?? {})['hair_pubes_stubble'] = 2;
-  ((s as any).pref_ids ?? {})['hair_pubes_patch'] = 2;
-  ((s as any).pref_ids ?? {})['hair_pubes_trimmed'] = 2;
-  ((s as any).pref_ids ?? {})['hair_pubes_bush'] = 3;
-  ((s as any).pref_ids ?? {})['hair_pubes_untrimmed'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 4) + 0;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_pubes_shaven'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_pubes_stubble'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_pubes_patch'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_pubes_trimmed'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_pubes_bush'] = 3;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_pubes_untrimmed'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 4) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_pube_length');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_pube_length');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['body_bmi_starving'] = 1;
-  ((s as any).pref_ids ?? {})['body_bmi_underweight'] = 1;
-  ((s as any).pref_ids ?? {})['body_bmi_normal'] = 2;
-  ((s as any).pref_ids ?? {})['body_bmi_overweight'] = 3;
-  ((s as any).pref_ids ?? {})['body_bmi_obese'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
-  ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 4) + 0;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_bmi_starving'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_bmi_underweight'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_bmi_normal'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_bmi_overweight'] = 3;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_bmi_obese'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 4) + 0;
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_bmi');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_bmi');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
@@ -1527,50 +1527,50 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   }
   if ((Math.floor(Math.random() * 10) + 0) < 3) {
     if (((s as any).npc_pervert ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (!(Math.floor(Math.random() * (1 + (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 2 - 0 + 1)) + (0))))) {
-      ((s as any).npcgeneratecVars ?? {})['CloTypePref'] = 4;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTypePref'] = 4;
     } else {
       if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-        ((s as any).npcgeneratecVars ?? {})['CloTypePref'] = 0;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTypePref'] = 0;
       } else {
         if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-          ((s as any).npcgeneratecVars ?? {})['CloTypePref'] = Math.floor(Math.random() * 3) + 1;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTypePref'] = Math.floor(Math.random() * 3) + 1;
         } else {
-          ((s as any).npcgeneratecVars ?? {})['CloTypePref'] = Math.floor(Math.random() * 2) + 2;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTypePref'] = Math.floor(Math.random() * 2) + 2;
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] === 1) {
-    ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = 1;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = 1;
   } else {
     if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] === 2) {
-      ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = Math.floor(Math.random() * 2) + 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = Math.floor(Math.random() * 2) + 1;
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] === 3) {
-        ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = 2;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = 2;
         qspCall(s, 'npc_set_preference', '', ((s as any).locArgs?.[1] ?? 0), 'clothes_style_wealthy', 'like');
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] === 4) {
-          ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = 1;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = 1;
           qspCall(s, 'npc_set_preference', '', ((s as any).locArgs?.[1] ?? 0), 'clothes_style_fetish', 'like');
         }
       }
     }
   }
-  ((s as any).pref_ids ?? {})['clothes_quality_low'] = 1;
-  ((s as any).pref_ids ?? {})['clothes_quality_medium'] = 1;
-  ((s as any).pref_ids ?? {})['clothes_quality_high'] = 2;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_quality_low'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_quality_medium'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_quality_high'] = 2;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloQualPref'] === 0) {
     if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-      ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = 1;
     } else {
       if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-        ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = Math.floor(Math.random() * 2) + 1;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = Math.floor(Math.random() * 2) + 1;
       } else {
         if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2) {
           if ((!(Math.floor(Math.random() * 3) + 0))) {
-            ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = 2;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = 2;
           }
         }
       }
@@ -1578,11 +1578,11 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_quality');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_quality');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['CloQualPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloQualPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
@@ -1590,135 +1590,135 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcgeneratecVars ?? 0)?.['CloQualPref'] > 0) {
   }
   if (((s as any).npc_pervert ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (!(Math.floor(Math.random() * (1 + ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] - 0 + 1)) + (0)))) {
-    ((s as any).npcgeneratecVars ?? {})['slutconstant'] = 1;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['slutconstant'] = 1;
   }
-  ((s as any).pref_ids ?? {})['clothes_cleavage_none'] = 1;
-  ((s as any).pref_ids ?? {})['clothes_cleavage_small'] = 2;
-  ((s as any).pref_ids ?? {})['clothes_cleavage_medium'] = 3;
-  ((s as any).pref_ids ?? {})['clothes_cleavage_large'] = 4;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_cleavage_none'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_cleavage_small'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_cleavage_medium'] = 3;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_cleavage_large'] = 4;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
-      ((s as any).npcgeneratecVars ?? {})['CloTopPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTopPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 4  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
-        ((s as any).npcgeneratecVars ?? {})['CloTopPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTopPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
-          ((s as any).npcgeneratecVars ?? {})['CloTopPref'] = 3;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTopPref'] = 3;
         }
       }
     }
     if (((s as any).npcgeneratecVars ?? 0)?.['CloTopPref'] !== 0  &&  ((s as any).npc_bust ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2) {
-      ((s as any).npcgeneratecVars ?? {})['CloTopPref'] = (((s as any).npcgeneratecVars ?? {})['CloTopPref'] ?? 0) + (1);
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTopPref'] = ((s as any).npcgeneratecVars['CloTopPref'] ?? 0) + (1);
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_cleavage');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_cleavage');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['CloTopPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloTopPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['CloTopPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['clothes_pants_long'] = 1;
-  ((s as any).pref_ids ?? {})['clothes_skirt_long'] = 1;
-  ((s as any).pref_ids ?? {})['clothes_pants_normal'] = 2;
-  ((s as any).pref_ids ?? {})['clothes_skirt_normal'] = 2;
-  ((s as any).pref_ids ?? {})['clothes_pants_short'] = 3;
-  ((s as any).pref_ids ?? {})['clothes_skirt_short'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_pants_long'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_skirt_long'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_pants_normal'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_skirt_normal'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_pants_short'] = 3;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_skirt_short'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
-      ((s as any).npcgeneratecVars ?? {})['PanShorPref'] = 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['PanShorPref'] = 1;
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 4) {
-        ((s as any).npcgeneratecVars ?? {})['PanShorPref'] = 2;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['PanShorPref'] = 2;
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
-          ((s as any).npcgeneratecVars ?? {})['PanShorPref'] = 3;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['PanShorPref'] = 3;
         }
       }
     }
     if (((s as any).npcgeneratecVars ?? 0)?.['slutconstant'] === 1  &&  (Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] === 4) {
-      ((s as any).npcgeneratecVars ?? {})['PanShorPref'] = 3;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['PanShorPref'] = 3;
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
       if (((s as any).PCloSkirt ?? 0) > 0) {
-        ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_skirt');
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_skirt');
       } else {
-        ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_pants');
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_pants');
       }
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['PanShorPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['PanShorPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['PanShorPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['clothes_thin_low'] = 1;
-  ((s as any).pref_ids ?? {})['clothes_thin_medium'] = 2;
-  ((s as any).pref_ids ?? {})['clothes_thin_high'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_thin_low'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_thin_medium'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['clothes_thin_high'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2) {
-      ((s as any).npcgeneratecVars ?? {})['CloThinPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloThinPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 4) {
-        ((s as any).npcgeneratecVars ?? {})['CloThinPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloThinPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
-          ((s as any).npcgeneratecVars ?? {})['CloThinPref'] = 3;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloThinPref'] = 3;
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_thin');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'clothes_thin');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['CloThinPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['CloThinPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['CloThinPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['shoes_heels_flat'] = 1;
-  ((s as any).pref_ids ?? {})['shoes_heels_low'] = 1;
-  ((s as any).pref_ids ?? {})['shoes_heels_medium'] = 2;
-  ((s as any).pref_ids ?? {})['shoes_heels_high'] = 3;
-  ((s as any).pref_ids ?? {})['shoes_heels_ultra'] = 4;
-  ((s as any).pref_ids ?? {})['shoes_heels_fetish'] = 4;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['shoes_heels_flat'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['shoes_heels_low'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['shoes_heels_medium'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['shoes_heels_high'] = 3;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['shoes_heels_ultra'] = 4;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['shoes_heels_fetish'] = 4;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
-      ((s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['ShoHeelPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 4  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
-        ((s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['ShoHeelPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 5  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
-          ((s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = 3 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['ShoHeelPref'] = 3 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
         } else {
           if (((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
-            ((s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = 4;
+            if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['ShoHeelPref'] = 4;
           }
         }
       }
@@ -1726,11 +1726,11 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'shoes_heels');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'shoes_heels');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['ShoHeelPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
@@ -1739,181 +1739,181 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   }
   if ((Math.floor(Math.random() * (2 + 8 * ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] - 0 + 1)) + (0)) === 0  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
     qspCall(s, 'npc_set_preference', '', ((s as any).locArgs?.[1] ?? 0), 'clothes_style_bimbo', 'like');
-    ((s as any).npcgeneratec ?? {})['bimbo_pref'] = 1;
+    if (!(s as any).npcgeneratec) (s as any).npcgeneratec = {}; (s as any).npcgeneratec['bimbo_pref'] = 1;
   }
-  ((s as any).pref_ids ?? {})['cosmetics_piercings_none'] = 1;
-  ((s as any).pref_ids ?? {})['cosmetics_piercings_few'] = 1;
-  ((s as any).pref_ids ?? {})['cosmetics_piercings_multiple'] = 2;
-  ((s as any).pref_ids ?? {})['cosmetics_piercings_lot'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_piercings_none'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_piercings_few'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_piercings_multiple'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_piercings_lot'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['pierPref'] = Math.min(3, (Math.floor(Math.random() * 3) + 1) + ((s as any).npcgeneratecVars ?? {})?.['slutconstant']);
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pierPref'] = Math.min(3, (Math.floor(Math.random() * 3) + 1) + ((s as any).npcgeneratecVars ?? {})?.['slutconstant']);
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_piercings');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_piercings');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['pierPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pierPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['pierPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['cosmetics_tattoos_none'] = 1;
-  ((s as any).pref_ids ?? {})['cosmetics_tattoos_few'] = 1;
-  ((s as any).pref_ids ?? {})['cosmetics_tattoos_multiple'] = 2;
-  ((s as any).pref_ids ?? {})['cosmetics_tattoos_lot'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_tattoos_none'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_tattoos_few'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_tattoos_multiple'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_tattoos_lot'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-      ((s as any).npcgeneratecVars ?? {})['tatPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['tatPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 1) {
-        ((s as any).npcgeneratecVars ?? {})['tatPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['tatPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-          ((s as any).npcgeneratecVars ?? {})['tatPref'] = 3;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['tatPref'] = 3;
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_tattoos');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_tattoos');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['tatPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['tatPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['tatPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['body_lips_normal'] = 1;
-  ((s as any).pref_ids ?? {})['body_lips_plump'] = 1;
-  ((s as any).pref_ids ?? {})['body_lips_big'] = 2;
-  ((s as any).pref_ids ?? {})['body_lips_pillowy'] = 2;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_lips_normal'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_lips_plump'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_lips_big'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['body_lips_pillowy'] = 2;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * (2 + ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] - 0 + 1)) + (0)))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 3) + 0;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 3) + 0;
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 0) {
-      ((s as any).npcgeneratecVars ?? {})['lipPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['lipPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] === 2) {
-        ((s as any).npcgeneratecVars ?? {})['lipPref'] = 2;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['lipPref'] = 2;
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_lips');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'body_lips');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['lipPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['lipPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['lipPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['cosmetics_makeup_light'] = 1;
-  ((s as any).pref_ids ?? {})['cosmetics_makeup_moderate'] = 2;
-  ((s as any).pref_ids ?? {})['cosmetics_makeup_heavy'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_makeup_light'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_makeup_moderate'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['cosmetics_makeup_heavy'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2) {
-      ((s as any).npcgeneratecVars ?? {})['makeupPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['makeupPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
       if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 4) {
-        ((s as any).npcgeneratecVars ?? {})['makeupPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['makeupPref'] = 2 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
       } else {
         if (((s as any).npcgeneratecVars ?? 0)?.['rand'] >= 4  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 3) {
-          ((s as any).npcgeneratecVars ?? {})['makeupPref'] = 3;
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['makeupPref'] = 3;
         }
       }
     }
     if (((s as any).npcgeneratecVars ?? 0)?.['bimbo_pref'] === 1) {
-      ((s as any).npcgeneratecVars ?? {})['makeupPref'] = 3;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['makeupPref'] = 3;
     }
   }
   if ((Math.floor(Math.random() * 10) + 0) < 3  &&  ((s as any).npcgeneratecVars ?? 0)?.['bimbo_pref'] === 0) {
     if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_makeup');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'cosmetics_makeup');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['makeupPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['makeupPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['makeupPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['hair_color_black'] = 1;
-  ((s as any).pref_ids ?? {})['hair_color_brown'] = 1;
-  ((s as any).pref_ids ?? {})['hair_color_red'] = 1;
-  ((s as any).pref_ids ?? {})['hair_color_blonde'] = 1;
-  ((s as any).pref_ids ?? {})['hair_color_dyed'] = 1;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_color_black'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_color_brown'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_color_red'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_color_blonde'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['hair_color_dyed'] = 1;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_color');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'hair_color');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
         // TODO-QSP: gs 'npc_set_preference', $ARGS[1], $npcgeneratecVars['pref_attr'], $npcgeneratecVars['attracted']
       }
     }
   }
-  ((s as any).pref_ids ?? {})['stats_intel_dumb'] = 1;
-  ((s as any).pref_ids ?? {})['stats_intel_normal'] = 2;
-  ((s as any).pref_ids ?? {})['stats_intel_smart'] = 3;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_intel_dumb'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_intel_normal'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_intel_smart'] = 3;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 3) + 0))) {
     if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-      ((s as any).npcgeneratecVars ?? {})['IQPref'] = Math.floor(Math.random() * 3) + 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['IQPref'] = Math.floor(Math.random() * 3) + 1;
     } else {
-      ((s as any).npcgeneratecVars ?? {})['IQPref'] = 0;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['IQPref'] = 0;
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'stats_intel');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'stats_intel');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['IQPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['IQPref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['IQPref'] > 0) {
   }
-  ((s as any).pref_ids ?? {})['stats_strength_weak'] = 1;
-  ((s as any).pref_ids ?? {})['stats_strength_normal'] = 2;
-  ((s as any).pref_ids ?? {})['stats_strength_athletic'] = 3;
-  ((s as any).pref_ids ?? {})['stats_strength_strong'] = 4;
-  ((s as any).pref_ids ?? {})['stats_strength_manly'] = 4;
-  ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_strength_weak'] = 1;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_strength_normal'] = 2;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_strength_athletic'] = 3;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_strength_strong'] = 4;
+  if (!(s as any).pref_ids) (s as any).pref_ids = {}; (s as any).pref_ids['stats_strength_manly'] = 4;
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 3) + 0))) {
     if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-      ((s as any).npcgeneratecVars ?? {})['MusclePref'] = Math.floor(Math.random() * 3) + 1;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['MusclePref'] = Math.floor(Math.random() * 3) + 1;
     } else {
-      ((s as any).npcgeneratecVars ?? {})['MusclePref'] = 0;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['MusclePref'] = 0;
     }
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
-      ((s as any).npcgeneratecVars ?? {})['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'stats_strength');
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['pref_attr'] = qspFunc(s, 'pcs_get_attr', 'stats_strength');
       if (((s as any).npcgeneratecVars ?? 0)?.['pref_attr'] !== '') {
-        ((s as any).npcgeneratecVars ?? {})['MusclePref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['MusclePref'] = ((s as any).pref_ids ?? 0)?.[((s as any).npcgeneratecVars ?? 0)?.['pref_attr']];
         if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] === 'dislike') {
-          ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin3 ?? 0);
+          if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['preftype'] = ((s as any).prefdin3 ?? 0);
         }
       }
     }
@@ -1926,40 +1926,40 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
 
 function enterSetApprnc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    ((s as any).npcgeneratecVars ?? {})['apprnc'] = Math.floor(Math.random() * 81) + 60;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = Math.floor(Math.random() * 81) + 60;
   } else {
     if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-      ((s as any).npcgeneratecVars ?? {})['apprnc'] = Math.floor(Math.random() * 71) + 90;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = Math.floor(Math.random() * 71) + 90;
     } else {
       if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2) {
-        ((s as any).npcgeneratecVars ?? {})['apprnc'] = Math.floor(Math.random() * 41) + 130;
+        if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = Math.floor(Math.random() * 41) + 130;
       }
     }
   }
   if (((s as any).npc_gentle ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    ((s as any).npcgeneratecVars ?? {})['apprnc'] = (((s as any).npcgeneratecVars ?? {})['apprnc'] ?? 0) - (Math.floor(Math.random() * 21) + 10);
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = ((s as any).npcgeneratecVars['apprnc'] ?? 0) - (Math.floor(Math.random() * 21) + 10);
   } else {
     if (((s as any).npc_rough ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-      ((s as any).npcgeneratecVars ?? {})['apprnc'] = (((s as any).npcgeneratecVars ?? {})['apprnc'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = ((s as any).npcgeneratecVars['apprnc'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     } else {
-      ((s as any).npcgeneratecVars ?? {})['apprnc'] = (((s as any).npcgeneratecVars ?? {})['apprnc'] ?? 0) + ((Math.floor(Math.random() * (10 - -10 + 1)) + (-10)));
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = ((s as any).npcgeneratecVars['apprnc'] ?? 0) + ((Math.floor(Math.random() * (10 - -10 + 1)) + (-10)));
     }
   }
   // TODO-QSP: npc_apprnc[$ARGS[1]] = npcgeneratecVars['apprnc']
   // TODO-QSP: npc_hotcat[$ARGS[1]] = func('AppearanceSystem', 'ConvertToHotcat', npcgeneratecVars['apprnc'])
   if (((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)] < ((s as any).npcgeneratecVars ?? 0)?.['av_height'] - 5) {
-    ((s as any).npcgeneratecVars ?? {})['body_type'] = 1;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body_type'] = 1;
     // TODO-QSP: $npc_height_desc[$ARGS[1]] = 'short'
   } else {
     if (((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= ((s as any).npcgeneratecVars ?? 0)?.['av_height'] + 5) {
-      ((s as any).npcgeneratecVars ?? {})['body_type'] = 2;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body_type'] = 2;
       // TODO-QSP: $npc_height_desc[$ARGS[1]] = 'average'
     } else {
-      ((s as any).npcgeneratecVars ?? {})['body_type'] = 3;
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['body_type'] = 3;
       // TODO-QSP: $npc_height_desc[$ARGS[1]] = 'tall'
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['bmi'] = 100000 * ((s as any).npc_weight ?? 0)[((s as any).locArgs?.[1] ?? 0)] / (((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)] * ((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)]);
+  if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['bmi'] = 100000 * ((s as any).npc_weight ?? 0)[((s as any).locArgs?.[1] ?? 0)] / (((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)] * ((s as any).npc_height ?? 0)[((s as any).locArgs?.[1] ?? 0)]);
   if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
     if (((s as any).npcgeneratecVars ?? 0)?.['bmi'] < 190) {
       // TODO-QSP: $npc_build_desc[$ARGS[1]] = 'thin'
@@ -1994,11 +1994,11 @@ function enterSetApprnc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 30) + 31;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 30) + 31;
     // TODO-QSP: $npc_icon[$ARGS[1]] = 'images/system/phone/icons/icon_bf<<npcgeneratecVars[''rand'']>>.png'
     // TODO-QSP: $npc_pic[$ARGS[1]] = 'images/characters/shared/headshots_generic/<<npcgeneratecVars[''rand'']>>.jpg'
   } else {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = Math.floor(Math.random() * 30) + 1;
+    if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['rand'] = Math.floor(Math.random() * 30) + 1;
     // TODO-QSP: $npc_icon[$ARGS[1]] = 'images/system/phone/icons/icon_bf<<npcgeneratecVars[''rand'']>>.png'
     // TODO-QSP: $npc_pic[$ARGS[1]] = 'images/characters/shared/headshots_generic/<<npcgeneratecVars[''rand'']>>.jpg'
   }

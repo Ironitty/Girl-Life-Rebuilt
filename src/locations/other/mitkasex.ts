@@ -61,7 +61,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
   (s as any).boyAsexa = 0;
   (s as any).boyBsexa = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).temp_ms = Math.floor(Math.random() * 2) + 1;
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     if (((s as any).temp_ms ?? 0) === 1) {
@@ -103,7 +103,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
 
 function enterForest3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).boyAsex = 0;
   (s as any).boyBsex = 0;
   (s as any).boyCsex = 0;
@@ -172,7 +172,7 @@ function enterGad2(s: GameState, scene: SceneBuilder): void {
   (s as any).dirty_dickA = 0;
   (s as any).dirty_dickB = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).temp_ms = Math.floor(Math.random() * 3) + 1;
   (s as any).horny_boyA = Math.floor(Math.random() * 91) + 0;
   (s as any).horny_boyB = Math.floor(Math.random() * 91) + 0;
@@ -410,7 +410,7 @@ function enterGadHandsCum2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).body_write = 1;
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
     scene.img('images/locations/gadukino/sex/mitka/mitkagadsexhandscum2.3.jpg');
     scene.text('When the guys finished, they painted on your body "fuck slut" and writing a couple of other obscene words, and went about their business. You are left to clean yourself up.');
     qspCall(s, 'arousal', 'end');

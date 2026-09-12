@@ -49,7 +49,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).FSbrona = 0;
     (s as any).FSweaponDam = 0;
     if (((s as any).FSpers ?? 0)?.['text'] === '') {
-      ((s as any).FSpers ?? {})['text'] = 'Player';
+      if (!(s as any).FSpers) (s as any).FSpers = {}; (s as any).FSpers['text'] = 'Player';
     }
     // TODO-QSP: dynamic text: Character Name <<$FSpers['text']>>
     scene.text(`Character Name ${((s as any).FSpers ?? 0)?.['text']}`);

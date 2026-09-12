@@ -678,10 +678,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$ev_name>> kisses the guy, and he begins to grope her body. She quickly whispe...
       scene.text(`${((s as any).ev_name ?? 0)} kisses the guy, and he begins to grope her body. She quickly whispers something in his ear, and you see him nod. Then ${((s as any).ev_name ?? 0)} turns to you: "Sorry ${((s as any).pcs_nickname ?? 0)}, ${((s as any).boydesc ?? 0)} promised me he'd show me his cool rock collection. His apartment is small though, there'd be no room for the both of us… I'll see you later?"`);
       if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
-        ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (10);
-        ((s as any).katjaQW ?? {})['horny'] = 0;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (10);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
         if (((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
-          ((s as any).katjaQW ?? {})['park_sex'] = 1;
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['park_sex'] = 1;
         }
       }
       scene.actions([

@@ -49,9 +49,9 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
+  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_end'] = '</td></tr></table></center>';
   (s as any).menu_page = 0;
   qspCall(s, '$menu_character', 'charactertabs', 'Character');
   qspCall(s, 'AppearanceSystem', '');
@@ -481,34 +481,34 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['skl_name'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).temp ?? {})['skl_popup'] = ((s as any).locArgs?.[2] ?? 0);
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_name'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_popup'] = ((s as any).locArgs?.[2] ?? 0);
   if (((s as any).locArgs?.[3] ?? 0) !== '') {
-    ((s as any).temp ?? {})['skl_desc'] = ((s as any).locArgs?.[3] ?? 0);
-    ((s as any).temp ?? {})['skl_only'] = qspUntranslated(s, "ARGS[4]", { location: "_menu_character" });
-    ((s as any).temp ?? {})['no_exp'] = qspUntranslated(s, "ARGS[5]", { location: "_menu_character" });
-    ((s as any).temp ?? {})['inverse'] = qspUntranslated(s, "ARGS[6]", { location: "_menu_character" });
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_desc'] = ((s as any).locArgs?.[3] ?? 0);
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_only'] = qspUntranslated(s, "ARGS[4]", { location: "_menu_character" });
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['no_exp'] = qspUntranslated(s, "ARGS[5]", { location: "_menu_character" });
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['inverse'] = qspUntranslated(s, "ARGS[6]", { location: "_menu_character" });
   } else {
-    ((s as any).temp ?? {})['skl_only'] = qspUntranslated(s, "ARGS[3]", { location: "_menu_character" });
-    ((s as any).temp ?? {})['no_exp'] = qspUntranslated(s, "ARGS[4]", { location: "_menu_character" });
-    ((s as any).temp ?? {})['inverse'] = qspUntranslated(s, "ARGS[5]", { location: "_menu_character" });
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_only'] = qspUntranslated(s, "ARGS[3]", { location: "_menu_character" });
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['no_exp'] = qspUntranslated(s, "ARGS[4]", { location: "_menu_character" });
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['inverse'] = qspUntranslated(s, "ARGS[5]", { location: "_menu_character" });
   }
   if (((s as any).temp ?? 0)?.['skl_desc'] === '') {
-    ((s as any).temp ?? {})['skl_desc'] = ((s as any).skl_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_desc'] = ((s as any).skl_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
   }
   if (((s as any).temp ?? 0)?.['skl_desc'] === '') {
-    ((s as any).temp ?? {})['skl_desc'] = ((s as any).att_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_desc'] = ((s as any).att_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
     // TODO-QSP: $temp['skl_desc'] = "<b><<$mid($temp['skl_desc'], 1, 3)>></b><<$mid($temp['skl_desc'], 4)>>"
   }
   if (((s as any).temp ?? 0)?.['skl_name'] === 'stren') {
-    ((s as any).temp ?? {})['skl_lvl'] = ((s as any).stren_lvl ?? 0) + ((s as any).stren_plus_lvl ?? 0);
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_lvl'] = ((s as any).stren_lvl ?? 0) + ((s as any).stren_plus_lvl ?? 0);
   } else {
-    ((s as any).temp ?? {})['skl_lvl'] = 0;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_lvl'] = 0;
   }
-  ((s as any).temp ?? {})['pcs_skl'] = 0;
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['pcs_skl'] = 0;
   if (((s as any).temp ?? 0)?.['inverse']) {
-    ((s as any).temp ?? {})['skl_lvl'] = 100 - ((s as any).temp ?? {})?.['skl_lvl'];
-    ((s as any).temp ?? {})['pcs_skl'] = 100 - ((s as any).temp ?? {})?.['pcs_skl'];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_lvl'] = 100 - ((s as any).temp ?? {})?.['skl_lvl'];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['pcs_skl'] = 100 - ((s as any).temp ?? {})?.['pcs_skl'];
   }
   if (((s as any).temp ?? 0)?.['no_exp'] === 0) {
     // TODO-QSP: $result += '<td align="left">'
@@ -537,22 +537,22 @@ function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp ?? 0)?.['skl_lvl'] >= 100) {
         if (((s as any).temp ?? 0)?.['skl_name'] === 'stren'  &&  ((s as any).stren_plus_lvl ?? 0) > 0  &&  ((s as any).temp ?? 0)?.['skl_lvl'] < 200) {
-          ((s as any).temp ?? {})['skl_name'] = 'stren_plus';
+          if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_name'] = 'stren_plus';
         } else {
           // TODO-QSP: $result += '<td align="center">Max&nbsp;Level</td><td>|</td></tr>'
           return;
         }
       }
     }
-    ((s as any).temp ?? {})['skl_exp'] = 0;
-    ((s as any).temp ?? {})['skl_xpprv'] = 0;
-    ((s as any).temp ?? {})['skl_xpnxt'] = 0;
-    ((s as any).temp ?? {})['exp_into_level'] = ((s as any).temp ?? {})?.['skl_exp']-((s as any).temp ?? {})?.['skl_xpprv'];
-    ((s as any).temp ?? {})['level_exp_width'] = ((s as any).temp ?? {})?.['skl_xpnxt']-((s as any).temp ?? {})?.['skl_xpprv'];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_exp'] = 0;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_xpprv'] = 0;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skl_xpnxt'] = 0;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['exp_into_level'] = ((s as any).temp ?? {})?.['skl_exp']-((s as any).temp ?? {})?.['skl_xpprv'];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['level_exp_width'] = ((s as any).temp ?? {})?.['skl_xpnxt']-((s as any).temp ?? {})?.['skl_xpprv'];
     if (((s as any).temp ?? 0)?.['level_exp_width'] === 0) {
-      ((s as any).temp ?? {})['exp_fraction'] = 0;
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['exp_fraction'] = 0;
     } else {
-      ((s as any).temp ?? {})['exp_fraction'] = ((s as any).temp ?? {})?.['exp_into_level'] * 100 / ((s as any).temp ?? {})?.['level_exp_width'];
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['exp_fraction'] = ((s as any).temp ?? {})?.['exp_into_level'] * 100 / ((s as any).temp ?? {})?.['level_exp_width'];
     }
     // TODO-QSP: $result += '<td align="center">' + $func('progressbar', 'mono:accent', temp['exp_into_level'], temp[...
     // TODO-QSP: $result += '<td>|</td>'
@@ -1758,7 +1758,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   (s as any).kidnumber = qspUntranslated(s, "ARGS[1]", { location: "_menu_character" });
   if (((s as any).kidage ?? 0)?.[String((s as any).kidnumber ?? 0)] < 1) {
     if ((((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)]) < 1  &&  (((s as any).day ?? 0)-((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)]) < 7) {
-      ((s as any).kiddaycalc ?? {})[String((s as any).kidnumber ?? 0)] = ((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)];
+      if (!(s as any).kiddaycalc) (s as any).kiddaycalc = {}; (s as any).kiddaycalc[String((s as any).kidnumber ?? 0)] = ((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)];
       if (((s as any).kiddaycalc ?? 0)?.[String((s as any).kidnumber ?? 0)] === 0) {
         // TODO-QSP: $kidagetext[kidnumber] = 'was born today'
       } else {
@@ -1770,14 +1770,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if ((((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)]) < 1) {
-        ((s as any).kiddaycalc ?? {})[String((s as any).kidnumber ?? 0)] = (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)]) / 7;
+        if (!(s as any).kiddaycalc) (s as any).kiddaycalc = {}; (s as any).kiddaycalc[String((s as any).kidnumber ?? 0)] = (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).kidnumber ?? 0)]) / 7;
         if (((s as any).kiddaycalc ?? 0)?.[String((s as any).kidnumber ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[kidnumber] = 'is <<kiddaycalc[kidnumber]>> week old'
         } else {
           // TODO-QSP: $kidagetext[kidnumber] = 'is <<kiddaycalc[kidnumber]>> weeks old'
         }
       } else {
-        ((s as any).kidmonthcalc ?? {})[String((s as any).kidnumber ?? 0)] = (((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)]);
+        if (!(s as any).kidmonthcalc) (s as any).kidmonthcalc = {}; (s as any).kidmonthcalc[String((s as any).kidnumber ?? 0)] = (((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).kidnumber ?? 0)]);
         if (((s as any).kidmonthcalc ?? 0)?.[String((s as any).kidnumber ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[kidnumber] = 'is <<kidmonthcalc[kidnumber]>> month old'
         } else {

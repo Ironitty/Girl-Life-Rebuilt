@@ -413,8 +413,8 @@ function enterAbdCustomerVirgin4(s: GameState, scene: SceneBuilder): void {
   scene.text('He pushes it in with a single long thrust that almost hits the bottom of your virgin cunt.');
   scene.text('Pain rips through your body, spreading like a fire as a trickle of blood runs down the shaft of his cock.');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
-  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (20);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (20);
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'maso', 'humiliation', 'rough', 'bound');
   // TODO-QSP: end
@@ -430,9 +430,9 @@ function enterAbdCustomerVirgin5(s: GameState, scene: SceneBuilder): void {
   scene.text('He then slams his cock back into you. The pain you feel is renewed while he grunts in pleasure.');
   // TODO-QSP: dynamic text: He feels accomplishment in his handiwork and sneers at you as he brutally thrust...
   scene.text(`He feels accomplishment in his handiwork and sneers at you as he brutally thrusts into your pussy over and over again. He often hits your cervix with his ${((s as any).dick ?? 0)} cm long thick ${((s as any).dick_girth ?? 0)} dick.`);
-  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (10);
-  ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (10);
-  ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (10);
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'maso', 'humiliation', 'rough', 'bound');
   // TODO-QSP: end
@@ -468,9 +468,9 @@ function enterAbdCustomerVirgin7(s: GameState, scene: SceneBuilder): void {
   scene.text('He then takes some pieces of duct tape and wraps them over your pussy to cover your lips and keep the dildo firmly stuck inside.');
   scene.text('He uncuffs you from the bench, but pulls your arms behind your back. This is probably to keep you from removing his \'gift\'.');
   scene.text('"Now run along and enjoy my gifts even more, slut!" he laughs before leaving.');
-  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (10);
-  ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (10);
-  ((s as any).pain ?? {})['belly'] = (((s as any).pain ?? {})['belly'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['belly'] = ((s as any).pain['belly'] ?? 0) + (20);
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'sub', 'maso', 'humiliation', 'rough', 'bound');
   // TODO-QSP: end
@@ -710,7 +710,7 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdCustomerSuckForceself(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (((s as any).throatDMG ?? 0));
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (((s as any).throatDMG ?? 0));
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 3) + 1;
   scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobselfforced${((s as any).i ?? 0)}.mp4`);
@@ -726,7 +726,7 @@ function enterAbdCustomerSuckForceself(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterAbdCustomerSuckForced(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (((s as any).throatDMG ?? 0) * 2);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (((s as any).throatDMG ?? 0) * 2);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 2);
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'rough', 'deepthroat', 'humiliation');
   qspCall(s, 'stat', '');
@@ -928,8 +928,8 @@ function enterAbdCustomerFuckAnal(s: GameState, scene: SceneBuilder): void {
   scene.text(`The customer puts some lubricant on his ${((s as any).dick_girth ?? 0)} cock and penetrates your ass.`);
   scene.text('He doesn\'t care much about your feelings, but he\'s also not exactly hurting you on purpose.');
   if (((s as any).dick ?? 0) > ((s as any).pcs_ass ?? 0)) {
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
-    ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (((s as any).assDMG ?? 0));
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (((s as any).assDMG ?? 0));
     qspCall(s, 'arousal', 'anal', 30, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -984,7 +984,7 @@ function enterAbdCustomerFuckAnalRough(s: GameState, scene: SceneBuilder): void 
     if (((s as any).assDMG ?? 0) <= 2) {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is too big for you and you suffer a lot of stretching p...
       scene.text(`His ${((s as any).dick_girth ?? 0)} dick is too big for you and you suffer a lot of stretching pain as it slams against your intestinal walls.`);
-      ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Continue', goto: ['abductionCustomer', 'abdCustomer-fuckAnalDeep'] },
@@ -993,8 +993,8 @@ function enterAbdCustomerFuckAnalRough(s: GameState, scene: SceneBuilder): void 
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is insanely big for you.
       scene.text(`His ${((s as any).dick_girth ?? 0)} dick is insanely big for you.`);
       scene.text('The tip of his cock repeatedly hits your intestinal walls and stretches your anus wide.');
-      ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
-      ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (((s as any).assDMG ?? 0));
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (((s as any).assDMG ?? 0));
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Continue', goto: ['abductionCustomer', 'abdCustomer-fuckAnalDeep'] },
@@ -1064,7 +1064,7 @@ function enterAbdCustomerFuckNormal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).vagDMG ?? 0) <= 2) {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is too big for you, and you suffer a lot of stretching ...
       scene.text(`His ${((s as any).dick_girth ?? 0)} dick is too big for you, and you suffer a lot of stretching pain as it slams against your vaginal walls.`);
-      ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
       qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'rough');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1074,8 +1074,8 @@ function enterAbdCustomerFuckNormal(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is insanely big for you.
       scene.text(`His ${((s as any).dick_girth ?? 0)} dick is insanely big for you.`);
       scene.text('The tip of his cock even penetrates your cervix, or at least it seems like it to you. The pain is almost unbearable!');
-      ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
-      ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (((s as any).vagDMG ?? 0));
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (((s as any).vagDMG ?? 0));
       qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'rough');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1111,7 +1111,7 @@ function enterAbdCustomerFuckRough(s: GameState, scene: SceneBuilder): void {
     if (((s as any).vagDMG ?? 0) <= 2) {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is too big for you, and you suffer a lot of stretching ...
       scene.text(`His ${((s as any).dick_girth ?? 0)} dick is too big for you, and you suffer a lot of stretching pain as it slams against your vaginal walls.`);
-      ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
       qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'bound', 'rough');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1122,8 +1122,8 @@ function enterAbdCustomerFuckRough(s: GameState, scene: SceneBuilder): void {
       scene.text(`His ${((s as any).dick_girth ?? 0)} dick is insanely big for you.`);
       scene.text('The tip of his cock even penetrates your cervix, or at least it seems like it to you. The pain is almost unbearable!');
       scene.text('He notices this too, realizing it\'s why you\'re groaning so loudly. Enjoying your suffering, he pushes his dick even deeper inside, and you squeal like a pig.');
-      ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0) * 2);
-      ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (((s as any).vagDMG ?? 0) * 2);
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0) * 2);
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (((s as any).vagDMG ?? 0) * 2);
       qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'bound', 'rough');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1275,7 +1275,7 @@ function enterAbdCustomerCumPussy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: As he pumps his cum into your vagina, you feel the tip of his <<$dick_girth>> co...
     scene.text(`As he pumps his cum into your vagina, you feel the tip of his ${((s as any).dick_girth ?? 0)} cock at your cervix and even inside it.`);
     scene.text('His cum penetrates through the cervix directly into your womb, which causes a warm, yet painful sensation to flow through you.');
-    ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (((s as any).vagDMG ?? 0));
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (((s as any).vagDMG ?? 0));
     qspCall(s, 'stat', '');
   }
   if (((s as any).cumVol ?? 0) === 3) {
@@ -1293,15 +1293,15 @@ function enterAbdCustomerCumPussy(s: GameState, scene: SceneBuilder): void {
         scene.text(`With his ${((s as any).dick_girth ?? 0)} dick buried very deep inside your pussy, his tip pushes against your cervix and even slides inside a little.`);
         scene.text('As he pumps his cum inside you, a lot of it shoots directly into your womb. It feels painful, but the warm sensation is nothing like what you\'ve felt before.');
         scene.text('When he pulls his cock out, his cum squirts out of your pussy.');
-        ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (20);
-        ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (40);
+        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (20);
+        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (40);
       } else {
         scene.text('The customer cums inside you. When he pulls his cock out, his cum slowly drips out of your pussy.');
       }
     }
   }
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
   (s as any).cumnostd = 1;
   qspCall(s, 'cum_call', 'pussy', 'customer', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
   qspCall(s, 'stat', '');
@@ -1319,7 +1319,7 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You can feel his <<$dick_girth>> cock slamming against your intestinal wall as h...
     scene.text(`You can feel his ${((s as any).dick_girth ?? 0)} cock slamming against your intestinal wall as he cums inside your ass.`);
     scene.text('His cum fills you, and feels as if it\'s flowed right up to your stomach.');
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
     qspCall(s, 'stat', '');
   }
   if (((s as any).cumVol ?? 0) === 3) {
@@ -1354,7 +1354,7 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
         }
         scene.text('You feel an increasing amount of pressure and stretching pain as he pumps your intestines full of cum.');
         scene.text('When he pulls his cock out, cum squirts out of your ravaged anus.');
-        ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (20);
+        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (20);
         qspCall(s, 'stat', '');
       } else {
         if (((s as any).buyout ?? 0) === 1) {
@@ -1376,7 +1376,7 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   (s as any).cumnostd = 1;
   qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 0);
-  ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).buyout ?? 0) === 1) {
     scene.actions([
@@ -1398,7 +1398,7 @@ function enterAbdCustomerCumMouth(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your aching throat is penetrated again as he buries his <<$dick_girth>> cock to ...
     scene.text(`Your aching throat is penetrated again as he buries his ${((s as any).dick_girth ?? 0)} cock to the hilt inside you.`);
     scene.text('When he shoots his load, you feel his member painfully stretching your already sore throat.');
-    ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (((s as any).throatDMG ?? 0));
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (((s as any).throatDMG ?? 0));
     qspCall(s, 'stat', '');
   }
   if (((s as any).cumVol ?? 0) === 3) {
@@ -1423,7 +1423,7 @@ function enterAbdCustomerCumMouth(s: GameState, scene: SceneBuilder): void {
   (s as any).mouth = ((s as any).mouth ?? 0) + (1);
   (s as any).cumnostd = 1;
   qspCall(s, 'cum_call', 'mouth', 'customer');
-  ((s as any).stat ?? {})['throat'] = (((s as any).stat ?? {})['throat'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['throat'] = ((s as any).stat['throat'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -1459,7 +1459,7 @@ function enterAbdCustomerCumFace(s: GameState, scene: SceneBuilder): void {
   (s as any).mouth = ((s as any).mouth ?? 0) + (1);
   (s as any).cumnostd = 1;
   qspCall(s, 'cum_call', 'face', 'customer');
-  ((s as any).stat ?? {})['mouth'] = (((s as any).stat ?? {})['mouth'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['mouth'] = ((s as any).stat['mouth'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([

@@ -137,7 +137,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Mother'] === 2) {
     if (((s as any).vanrPar_suction_dildo ?? 0) > 0) {
-      ((s as any).motherQW ?? {})['dildo_shower_discovery'] = 1;
+      if (!(s as any).motherQW) (s as any).motherQW = {}; (s as any).motherQW['dildo_shower_discovery'] = 1;
       scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildo_shriek1'] }]);
     }
     scene.actions([
@@ -231,8 +231,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
     if (((s as any).artemvbrosvid ?? 0) === 1  &&  ((s as any).artemhakday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] < 2  &&  ((s as any).mothervideotalk ?? 0) === 0  ||  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj'] === 1  &&  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj_day'] !== ((s as any).daystart ?? 0)  &&  (!((s as any).BJvideoPublic ?? 0))) {
       (s as any).BJvideoPublic = 1;
-      ((s as any).brotherQW ?? {})['refused_seeporn_bj'] = 0;
-      ((s as any).brotherQW ?? {})['refused_seeporn_bj_day'] = ((s as any).daystart ?? 0);
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['refused_seeporn_bj'] = 0;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['refused_seeporn_bj_day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'mood', 'lower', 'min');
       qspCall(s, 'npc_relationship', 'modify', 'A29', (-40));
       qspCall(s, 'stat', '');
@@ -320,7 +320,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (((s as any).abductionReturned ?? 0) > 0  ||  (((s as any).gschoolVars ?? 0)?.['absence_count'] > 2  &&  ((s as any).gschoolVars ?? 0)?.['expell_stage'] < 3))) {
       qspCall(s, 'stat', '');
       if (((s as any).abductionReturned ?? 0) > 0) {
-        ((s as any).gschoolVars ?? {})['absence_count'] = 0;
+        if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
         (s as any).GspravkaT = 2;
         (s as any).motherKnowSpravka = 1;
         qspCall(s, 'stat', '');
@@ -349,8 +349,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 0) {
-          ((s as any).gschoolVars ?? {})['expell_stage'] = 1;
-          ((s as any).gschoolVars ?? {})['absence_count'] = 0;
+          if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['expell_stage'] = 1;
+          if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
           qspCall(s, 'npc_relationship', 'set', 'A29', 0);
           qspCall(s, 'grades', 'grade_award', 'school', 'math', (-20));
           qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-20));
@@ -376,8 +376,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 1) {
-            ((s as any).gschoolVars ?? {})['expell_stage'] = 2;
-            ((s as any).gschoolVars ?? {})['absence_count'] = 0;
+            if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['expell_stage'] = 2;
+            if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
             qspCall(s, 'npc_relationship', 'set', 'A29', 0);
             qspCall(s, 'grades', 'grade_award', 'school', 'math', (-40));
             qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-40));
@@ -405,10 +405,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).gschoolVars ?? 0)?.['expell_stage'] === 2) {
-              ((s as any).gschoolVars ?? {})['expell_stage'] = 3;
-              ((s as any).gschoolVars ?? {})['absence_count'] = 0;
+              if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['expell_stage'] = 3;
+              if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = 0;
               qspCall(s, 'npc_relationship', 'set', 'A29', 0);
-              ((s as any).gschoolVars ?? {})['block'] = 1;
+              if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['block'] = 1;
               qspCall(s, 'archetypes', 'gain', 'punk', 'large', 'Expelled from school');
               qspCall(s, 'grades', 'grade_award', 'school', 'math', (-100));
               qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-100));
@@ -475,7 +475,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sleepVars ?? 0)?.['notathomesleep'] > 7  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
-    ((s as any).sleepVars ?? {})['notathomesleep'] = 0;
+    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['notathomesleep'] = 0;
     if (((s as any).npc_rel ?? 0)?.['A29'] < 40) {
       scene.text('You run into your mother in the hallway. "Well well, look who decided to come home for once."');
       scene.actions([

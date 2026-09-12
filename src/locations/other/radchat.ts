@@ -45,7 +45,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'So she caught you cheating?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] < 2) {
-      ((s as any).anushkaQW ?? {})['rad_date'] = 2;
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['rad_date'] = 2;
     }
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -98,7 +98,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about him still hooking up with Anushka', handler: (st: GameState) => {
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      ((s as any).anushkaQW ?? {})['rad_date'] = 1;
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['rad_date'] = 1;
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
@@ -138,7 +138,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['marspy'] === 1) {
     scene.actions([
       { label: 'Ask if he knows about Anushka and Marcus hooking up', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['marspyknow'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['marspyknow'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -193,7 +193,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ask about the band', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+    if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
     qspCall(s, 'calendar', 'add', 'band_practice_event');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Radomir\'s Room</b></center>');
@@ -273,7 +273,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).radomirQW ?? {})['nush_sex'] = 1;
+    if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['nush_sex'] = 1;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -352,7 +352,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about the future', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['Gerasim'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['Gerasim'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');

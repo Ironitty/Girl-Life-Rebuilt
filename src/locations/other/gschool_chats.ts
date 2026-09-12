@@ -21,7 +21,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'fame', 'pav', 'sex', (-1));
       }
       qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', 1);
-      ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
       if (((s as any).npc_rel ?? 0)?.['A142'] < 50) {
         qspCall(s, 'npc_relationship', 'modify', 'A142', 'like');
       }
@@ -34,7 +34,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
       if (((s as any).PCloSkirt ?? 0) > 5  ||  ((s as any).PCloThinness ?? 0) >= 5  ||  ((s as any).PCloBra ?? 0) === 2) {
         qspCall(s, 'fame', 'pav', 'sex', 3);
         qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-5));
-        ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (10);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
         qspCall(s, 'npc_relationship', 'modify', 'A16', 3);
         qspCall(s, 'npc_relationship', 'modify', 'A152', 3);
         if (((s as any).soniaQW ?? 0)?.['slut'] > 0) {
@@ -49,7 +49,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).PCloSkirt ?? 0) < 5) {
           if (((s as any).PCloInhibit ?? 0) >= 30  ||  ((s as any).PCloTopCut ?? 0) === 4) {
-            ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
             qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
             if (((s as any).soniaQW ?? 0)?.['slut'] > 0) {
               qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
@@ -63,9 +63,9 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'clothes_style_bimbo')) {
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
-              ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'outcasts', 1);
-              ((s as any).grupvalue ?? {})[5] = (((s as any).grupvalue ?? {})[5] ?? 0) + (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[5] = ((s as any).grupvalue[5] ?? 0) + (1);
               if (((s as any).grupTipe ?? 0) === 3) {
                 scene.text('You enter the classroom that you and your fellow nerds like to hang out in and find them, as usual, all gathered around a table talking and engaging in various hobby projects. A few of them look up as you walk closer. Feofan and Artem are struggling to conceal their disapproving stares at your chosen uniform, while Julia\'s eyes seem to linger on you a fraction longer. However, you can see that she\'s wary of you and doesn\'t approve of your attire, and her gaze isn\'t all that welcoming either.');
               } else {
@@ -74,7 +74,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'outcasts', 1);
-                ((s as any).grupvalue ?? {})[5] = (((s as any).grupvalue ?? {})[5] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[5] = ((s as any).grupvalue[5] ?? 0) + (1);
                 if (((s as any).grupTipe ?? 0) === 3) {
                   scene.text('You go to the classroom that you and your fellow nerds like to gather in and find them all clustered around a table talking and engaged in a variety of pet projects. You get several warm smiles and greetings from your fellow nerds.');
                 } else {
@@ -83,9 +83,9 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
-                  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'outcasts', (-1));
-                  ((s as any).grupvalue ?? {})[5] = (((s as any).grupvalue ?? {})[5] ?? 0) - (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[5] = ((s as any).grupvalue[5] ?? 0) - (1);
                   if (((s as any).grupTipe ?? 0) === 3) {
                     scene.text('You enter the classroom that you and your fellow nerds like to hang out in and find them, as usual, all gathered around a table talking and engaging in various hobby projects. A few of them look up as you walk closer. Feofan and Artem are struggling to conceal their disapproving stares at your chosen uniform, while Julia\'s eyes seem to linger on you a fraction longer. However, you can see that she\'s wary of you and doesn\'t approve of your attire, and her gaze isn\'t all that welcoming either.');
                   } else {
@@ -94,7 +94,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
-                    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
                     if (((s as any).grupTipe ?? 0) === 3) {
                       scene.text('You enter the classroom that you and your fellow nerds like to hang out in and find them, as usual, all gathered around a table talking and engaging in various hobby projects. A few of them look up as you walk closer. Feofan and Artem are struggling to conceal their disapproving stares at your chosen uniform, while Julia\'s eyes seem to linger on you a fraction longer. However, you can see that she\'s wary of you and doesn\'t approve of your attire, and her gaze isn\'t all that welcoming either.');
                     } else {
@@ -119,7 +119,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).PCloInhibit ?? 0) >= 35  ||  ((s as any).PCloTopCut ?? 0) === 4) {
-            ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
             qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
             if (((s as any).soniaQW ?? 0)?.['slut'] > 0) {
               qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
@@ -133,9 +133,9 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'clothes_style_bimbo')) {
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
-              ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'outcasts', 1);
-              ((s as any).grupvalue ?? {})[5] = (((s as any).grupvalue ?? {})[5] ?? 0) + (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[5] = ((s as any).grupvalue[5] ?? 0) + (1);
               if (((s as any).grupTipe ?? 0) === 3) {
                 scene.text('You enter the classroom that you and your fellow nerds like to hang out in and find them, as usual, all gathered around a table talking and engaging in various hobby projects. A few of them look up as you walk closer. Feofan and Artem are struggling to conceal their disapproving stares at your chosen uniform, while Julia\'s eyes seem to linger on you a fraction longer. However, you can see that she\'s wary of you and doesn\'t approve of your attire, and her gaze isn\'t all that welcoming either.');
               } else {
@@ -144,7 +144,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'outcasts', 1);
-                ((s as any).grupvalue ?? {})[5] = (((s as any).grupvalue ?? {})[5] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[5] = ((s as any).grupvalue[5] ?? 0) + (1);
                 if (((s as any).grupTipe ?? 0) === 3) {
                   scene.text('You go to the classroom that you and your fellow nerds like to gather in and find them all clustered around a table talking and engaged in a variety of pet projects. You get several warm smiles and greetings from your fellow nerds.');
                 } else {
@@ -153,9 +153,9 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
-                  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'outcasts', (-1));
-                  ((s as any).grupvalue ?? {})[5] = (((s as any).grupvalue ?? {})[5] ?? 0) - (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[5] = ((s as any).grupvalue[5] ?? 0) - (1);
                   if (((s as any).grupTipe ?? 0) === 3) {
                     scene.text('You enter the classroom that you and your fellow nerds like to hang out in and find them, as usual, all gathered around a table talking and engaging in various hobby projects. A few of them look up as you walk closer. Feofan and Artem are struggling to conceal their disapproving stares at your chosen uniform, while Julia\'s eyes seem to linger on you a fraction longer. However, you can see that she\'s wary of you and doesn\'t approve of your attire, and her gaze isn\'t all that welcoming either.');
                   } else {
@@ -164,7 +164,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
-                    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
                     if (((s as any).grupTipe ?? 0) === 3) {
                       scene.text('You enter the classroom that you and your fellow nerds like to hang out in and find them, as usual, all gathered around a table talking and engaging in various hobby projects. A few of them look up as you walk closer. Feofan and Artem are struggling to conceal their disapproving stares at your chosen uniform, while Julia\'s eyes seem to linger on you a fraction longer. However, you can see that she\'s wary of you and doesn\'t approve of your attire, and her gaze isn\'t all that welcoming either.');
                     } else {
@@ -172,7 +172,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
                     }
                   } else {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'nerds', (-1));
-                    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
                     if (((s as any).soniaQW ?? 0)?.['slut'] > 0) {
                       qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
                     }
@@ -215,13 +215,13 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloInhibit ?? 0) <= 5) {
       scene.text('<center><b>This uniform is very conservative. Only the nerds would approve of you wearing it.</b></center>');
       if (((s as any).grupTipe ?? 0) === 4) {
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (10);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (10);
         qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', (-5));
         qspCall(s, 'npc_relationship', 'modify', 'A189', 5);
         scene.text('You head to the stairwell that you and your fellow gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations.');
         scene.text('A few of them stare at you before Dan laughs and Lavrenti speaks up. "What are you wearing?" They seem stunned at your uniform as Anushka chimes in. "Please tell me you just lost some kind of bet?" Several others comment, all expressing displeasure at your choice of uniform. After a few minutes of ridicule, they finally lose interest in you, but you can tell you lost their respect and maybe more today.');
       } else {
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
         qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', (-2));
         scene.text('You head to the stairwell that the gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations.');
         scene.text('A few of them stare at you before Radomir speaks up. "Are you lost or something?" Pauline then chimes in, pointing back the way you came. "The nerds are back that way, loser." Several others also comment, all expressing displeasure at your choice of uniform. You feel very unwelcome among them, which makes you uneasy.');
@@ -229,13 +229,13 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).PCloSkirt ?? 0) > 5  ||  ((s as any).PCloThinness ?? 0) >= 5  ||  ((s as any).PCloBra ?? 0) === 2) {
         if (((s as any).grupTipe ?? 0) === 4) {
-          ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (3);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
           qspCall(s, 'fame', 'pav', 'sex', 1);
         }
         qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', (-1));
         qspCall(s, 'npc_relationship', 'modify', 'A189', 'like');
         if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).kotovLoveQW ?? 0)?.['clo_comment'] === 0) {
-          ((s as any).kotovLoveQW ?? {})['clo_comment'] = 1;
+          if (!(s as any).kotovLoveQW) (s as any).kotovLoveQW = {}; (s as any).kotovLoveQW['clo_comment'] = 1;
           qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
           qspCall(s, 'mood', 'lower', 'small');
           qspCall(s, 'stat', '');
@@ -257,7 +257,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
             if (((s as any).grupTipe ?? 0) === 4) {
               scene.text('You head to the stairwell that you and your fellow gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations. As you approach, Dan stands up and whistles. "Hey there, slut. Why don\'t you come over here and suck my dick?" Several of the other gopniks laugh and a few of the guys comment about being next in line. You feel yourself getting very nervous around them dressed the way you are and fear they might actually try something. No one comes down to this end of the school at this time of the day after all without a good reason.');
             } else {
-              ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
               qspCall(s, 'fame', 'pav', 'sex', 3);
               scene.text('You head to the stairwell that the gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations. As you approach, Dan stands up and whistles. "Hey there, slut. Why don\'t you come over here and suck my dick?" Several of the other gopniks laugh and a few of the guys comment as well. "Like she came to see you Dan! She obviously came to throw herself at me," Radomir says. You feel yourself getting very nervous around them dressed the way you are and fear they might actually try something. No one comes down to this end of the school at this time of the day after all without a good reason.');
             }
@@ -266,25 +266,25 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).PCloSkirt ?? 0) < 5) {
           if (((s as any).PCloInhibit ?? 0) >= 30  ||  ((s as any).PCloTopCut ?? 0) === 4) {
-            ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (5);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
             scene.text('You head to the stairwell that the gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations. As you approach, Dan stands up and whistles. "Hey it looks like there\'s a wannabe slut approaching. Maybe I\'ll ask you to you come over here and suck my dick?" Several of the other gopniks laugh and a few of the guys comment as well. "Hey Dan, it might be your lucky day! I\'m just surprised she\'s not heading my way," Radomir says. You feel yourself getting a little nervous around them dressed the way you are and think that they might actually try something. After all no one other than a gopnik comes down to this end of the school at this time of the day without a good reason so you\'d be on your own if they do.');
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'clothes_style_bimbo')) {
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', (-1));
-              ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
               scene.text('There are some shakes of disapproval and negative comments made about your pink uniform style.');
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', 1);
-                ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
                 scene.text('There are some nods of approval and positive comments made about your dark uniform style.');
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
-                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (5);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
                   scene.text('There are some nods of approval and positive comments made about your rebellious uniform style.');
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
-                    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
                     scene.text('There are some nods of approval and positive comments made about your rebellious uniform style.');
                   } else {
                     if (((s as any).grupTipe ?? 0) === 4) {
@@ -300,7 +300,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).PCloInhibit ?? 0) >= 35  ||  ((s as any).PCloTopCut ?? 0) === 4) {
             qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', 1);
-            ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (5);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
             if (((s as any).npc_rel ?? 0)?.['A143'] < 50) {
               qspCall(s, 'npc_relationship', 'modify', 'A143', 'like');
             }
@@ -314,17 +314,17 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'clothes_style_bimbo')) {
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', (-1));
-              ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
               scene.text('There are some shakes of disapproval and negative comments made about your pink uniform style.');
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', 1);
-                ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
                 scene.text('There are some nods of approval and positive comments made about your dark uniform style.');
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', 1);
-                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (10);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (10);
                   if (((s as any).npc_rel ?? 0)?.['A143'] < 50) {
                     qspCall(s, 'npc_relationship', 'modify', 'A143', 'like');
                   }
@@ -338,7 +338,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', 1);
-                    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (10);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (10);
                     if (((s as any).npc_rel ?? 0)?.['A143'] < 50) {
                       qspCall(s, 'npc_relationship', 'modify', 'A143', 'like');
                     }
@@ -351,7 +351,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
                     scene.text('There are some nods of approval and positive comments made about your rebellious uniform style.');
                   } else {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'gopniks', 1);
-                    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
                     if (((s as any).npc_rel ?? 0)?.['A143'] < 50) {
                       qspCall(s, 'npc_relationship', 'modify', 'A143', 'like');
                     }
@@ -403,8 +403,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
       if (((s as any).fame ?? 0)?.['pav_sex'] > 0) {
         qspCall(s, 'fame', 'pav', 'sex', (-1));
       }
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
-      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (3);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
       qspCall(s, 'npc_relationship', 'modify', 'A1', 'loathe');
       qspCall(s, 'npc_relationship', 'modify', 'A8', (-1));
       qspCall(s, 'npc_relationship', 'modify', 'A13', (-1));
@@ -436,9 +436,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
       if (((s as any).PCloSkirt ?? 0) > 5  ||  ((s as any).PCloThinness ?? 0) >= 5  ||  ((s as any).PCloBra ?? 0) === 2) {
         qspCall(s, 'fame', 'pav', 'sex', 5);
         qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
-        ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
         qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', (-1));
-        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
         qspCall(s, 'npc_relationship', 'modify', 'A1', 'hate');
         qspCall(s, 'npc_relationship', 'modify', 'A17', 'dislike');
         qspCall(s, 'npc_relationship', 'modify', 'A18', 'hate');
@@ -459,8 +459,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
           if (((s as any).PCloInhibit ?? 0) >= 30  ||  ((s as any).PCloTopCut ?? 0) === 4) {
             qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
             qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', (-1));
-            ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
-            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (2);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
             qspCall(s, 'fame', 'pav', 'sex', 2);
             qspCall(s, 'npc_relationship', 'modify', 'A1', 'hate');
             qspCall(s, 'npc_relationship', 'modify', 'A17', 'dislike');
@@ -480,7 +480,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'clothes_style_bimbo')) {
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', 1);
-              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
               if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
                 scene.text('Staysia greets you "Hey cutie, looking cool today." Bella looks over and nods in agreement smiling at you.');
                 // TODO-QSP: dynamic text: Dimka, Igor, Katja, Vicky, Irina, Albina, '+iif(npc_grupTipe['A25'] ! 5, 'Sonia,...
@@ -494,9 +494,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
-                ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', (-1));
-                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
                 scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look dark," Stasya says with a smirk.');
                 scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
                 // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
@@ -504,9 +504,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
-                  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', 1);
-                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                   scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look tough," Stasya says with a smirk.');
                   scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
                   // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
@@ -514,9 +514,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
-                    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', (-1));
-                    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
                     qspCall(s, 'npc_relationship', 'modify', 'A1', 'hate');
                     qspCall(s, 'npc_relationship', 'modify', 'A17', 'dislike');
                     qspCall(s, 'npc_relationship', 'modify', 'A18', 'hate');
@@ -532,8 +532,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                     scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
                   } else {
                     if (((s as any).PCloQuality ?? 0) >= 4) {
-                      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-                      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                       if (((s as any).npc_rel ?? 0)?.['A4'] < 50) {
                         qspCall(s, 'npc_relationship', 'modify', 'A4', 1);
                       }
@@ -580,8 +580,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
           if (((s as any).PCloInhibit ?? 0) >= 35  ||  ((s as any).PCloTopCut ?? 0) === 4) {
             qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
             qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', (-1));
-            ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
-            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
             qspCall(s, 'fame', 'pav', 'sex', 5);
             qspCall(s, 'npc_relationship', 'modify', 'A1', 'hate');
             qspCall(s, 'npc_relationship', 'modify', 'A17', 'dislike');
@@ -601,7 +601,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'clothes_style_bimbo')) {
               qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', 1);
-              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
               scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look cute," Stasya says with a smirk.');
               scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
               // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
@@ -609,9 +609,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
-                ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', (-1));
-                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
                 scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look dark," Stasya says with a smirk.');
                 scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
                 // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
@@ -619,9 +619,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
-                  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', 1);
-                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                   scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look tough," Stasya says with a smirk.');
                   scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
                   // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
@@ -629,9 +629,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
-                    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', (-1));
-                    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
                     qspCall(s, 'npc_relationship', 'modify', 'A1', 'hate');
                     qspCall(s, 'npc_relationship', 'modify', 'A17', 'dislike');
                     qspCall(s, 'npc_relationship', 'modify', 'A18', 'hate');
@@ -648,9 +648,9 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).PCloQuality ?? 0) >= 4) {
                       qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', 1);
-                      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (2);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
                       qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', 1);
-                      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                       if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
                         if (((s as any).npc_rel ?? 0)?.['A25'] < 50) {
                           qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
@@ -662,7 +662,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                       scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor \', \')+\'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
                     } else {
                       qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', 1, 'male');
-                      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                       if (((s as any).npc_rel ?? 0)?.['A3'] < 60) {
                         qspCall(s, 'npc_relationship', 'modify', 'A3', 'love');
                       }

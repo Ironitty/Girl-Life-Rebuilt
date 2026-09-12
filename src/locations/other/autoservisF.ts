@@ -49,9 +49,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
-      ((s as any).car ?? {})['new_condition'] = ((s as any).car ?? {})?.['new_condition'] / 2;
-      ((s as any).car ?? {})['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
-      ((s as any).car ?? {})['wreck'] = 0;
+      if (!(s as any).car) (s as any).car = {}; (s as any).car['new_condition'] = ((s as any).car ?? {})?.['new_condition'] / 2;
+      if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
+      if (!(s as any).car) (s as any).car = {}; (s as any).car['wreck'] = 0;
       qspCall(s, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
       scene.text('Since he tells you that it\'s not gonna take long - at first you think he is being sarcastic but then realize that his no-nonsense attitude doesn\'t leave much room for humour - you go into a waiting room with couches and a TV. After about an hour of flipping through channels, you are called back to the garage and can hardly believe your eyes.');
@@ -82,8 +82,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
-      ((s as any).car ?? {})['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
-      ((s as any).car ?? {})['wreck'] = 0;
+      if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
+      if (!(s as any).car) (s as any).car = {}; (s as any).car['wreck'] = 0;
       qspCall(s, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
       // TODO-QSP: dynamic text: Since he tells you that it's not gonna take long, you go into a waiting room wit...

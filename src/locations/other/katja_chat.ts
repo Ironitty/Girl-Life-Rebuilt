@@ -321,7 +321,7 @@ function enterChat1(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['katja_chat', 'first_meet'] }]);
   }
   if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  &&  ((s as any).katjaQW ?? 0)?.['knows_dorm_room_number'] === 0) {
-    ((s as any).katjaQW ?? {})['knows_dorm_room_number'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_dorm_room_number'] = 1;
     scene.text('Katja tells you where her dorm room is.');
   }
   qspCall(s, 'katja_procedural', 'face_color');
@@ -373,9 +373,9 @@ function enterChat1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
-  ((s as any).katjaQW ?? {})['know_katja_uni'] = 1;
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_katja_uni'] = 1;
   if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
-    ((s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
   }
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('"Are you studying at uni?" you ask.');
@@ -391,7 +391,7 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSofia1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sofiaQW ?? {})['QWstage'] = 1;
+  if (!(s as any).sofiaQW) (s as any).sofiaQW = {}; (s as any).sofiaQW['QWstage'] = 1;
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('"So, what do you think about my roommate?" Katja asks with a curious look on her face.');
   scene.text('"She seems nice," you answer. "But she sure does talk a lot."');
@@ -424,7 +424,7 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
-      ((s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
       scene.text('You approach Katja, who seems to be studying while drinking coffee and having brunch.');
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she waves when she notices you. "So you've also discove...
       scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," she waves when she notices you. "So you've also discovered this breathing hole. Have a seat," she says and starts making space for you by removing her backpack from the chair and packing away some papers from the table.`);
@@ -511,8 +511,8 @@ function enterBrunch(s: GameState, scene: SceneBuilder): void {
 function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).anushkaQW ?? 0)?.['coffee_hole'] === 1  &&  ((s as any).locat ?? 0)?.['A144'] === 9  &&  ((s as any).katjaQW ?? 0)?.['brunch_bought'] === 1  &&  ((s as any).katjaQW ?? 0)?.['nush_coffee_hole_talk_day'] !== ((s as any).daystart ?? 0)) {
-    ((s as any).katjaQW ?? {})['brunch_bought'] = 0;
-    ((s as any).katjaQW ?? {})['nush_coffee_hole_talk_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['brunch_bought'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['nush_coffee_hole_talk_day'] = ((s as any).daystart ?? 0);
     scene.text('You and Katja spend a few minutes chatting about school, what you\'ve both been up to and gossiping about your old schoolmates while waiting for Anushka to return with the order. Minutes later, Anushka comes back with a tray carrying the order.');
     if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
       scene.text('She sets the tray on a nearby empty table before sitting down next to you. "What\'s up, bitches?"');
@@ -586,11 +586,11 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    ((s as any).katjaQW ?? {})['brunch_bought'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['brunch_bought'] = 0;
     if (((s as any).katjaQW ?? 0)?.['first_time_in_nightclub'] > 0  &&  ((s as any).npc_had_sex ?? 0)?.['A14'] === 0) {
       scene.actions([{ label: 'Continue', goto: ['katja_chat', 'nightclub_sex_follow_up'] }]);
     }
-    ((s as any).katjaQW ?? {})['coffee_hole_rand'] = Math.floor(Math.random() * 21) + 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['coffee_hole_rand'] = Math.floor(Math.random() * 21) + 0;
     if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A16'] > 30  &&  ((s as any).npc_rel ?? 0)?.['A240'] > 30) {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole1.jpg');
       scene.text('While you are chatting with Katja she suddenly smiles and points to the door so you turn to have a look. You notice that both Natasha and Natalia are just entering.');
@@ -773,7 +773,7 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nerd_game ?? 0)?.['stage'] > 0) {
           scene.actions([
             { label: 'Tell Katja that you play with them', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['know_dandd'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_dandd'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
     scene.text('"It\'s called \'Dungeons and Dragons\' the game we play" you tell Katja, who looks at you a little surprised. "I\'m part of their group, it\'s a lot of fun," you says.');
     scene.text('"I didn\'t know that. How does it work, Julia told me you are taking on roles like in a fantasy movie. Do you dress up? How is that even a game?" Katja asks, and you spend time trying to explain how the game works.');
@@ -899,7 +899,7 @@ function enterCoffeeHoleKatjaNushSveta(s: GameState, scene: SceneBuilder): void 
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    ((s as any).katjaQW ?? {})['nush_girls_nigth_out'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['nush_girls_nigth_out'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('Katja and you agree it would be fun to have a girls night out. "Sure, that sounds like fun!" you say.');
@@ -938,7 +938,7 @@ function enterCoffeeHoleKatjaNushSveta(s: GameState, scene: SceneBuilder): void 
           { label: 'Convince Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    ((s as any).katjaQW ?? {})['nush_girls_nigth_out'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['nush_girls_nigth_out'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Come on, it\'ll be fun! You like to party and I\'m sure that going out with Nush will be even more fun. Please, for my sake," you plead with Katja, making your best puppy eyes before she finally relents. "Okay, we can do it, but you\'re responsible for anything that happens!" she says, not looking completely convinced that it\'s a good idea.');
@@ -1065,13 +1065,13 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  (((s as any).katjaQW ?? 0)?.['lazer_anal'] + ((s as any).katjaQW ?? 0)?.['lazer_pussy']) > 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).katjaQW ?? 0)?.['Lazar_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
       scene.actions([
         { label: 'Suggest that you call Lazar', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['Lazar_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['Lazar_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Why don\'t we call Lazar to see if he wants to have some fun?" you ask.');
     if (((s as any).katjaQW ?? 0)?.['horny'] <= 50) {
-      ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (1);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
       scene.text('"No, I need to study!" she says in a voice that makes it clear that you won\'t convince her otherwise.');
       scene.actions([
         { label: 'Go to the library with Katja', handler: (st: GameState) => {
@@ -1092,8 +1092,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1139,8 +1139,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1186,8 +1186,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1257,11 +1257,11 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-    ((s as any).locat ?? {})['katja_save1'] = 44;
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand1'] = ((s as any).daystart ?? 0);
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_save1'] = 44;
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Come on, Katja!" you plead. "There will be plenty of time for studying later. Please, it\'s going to be so much fun!" you say.');
     scene.text('After a little back and forth, Katja relents and agrees to go to the mall.');
@@ -1306,11 +1306,11 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-    ((s as any).locat ?? {})['katja_save1'] = 31;
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand1'] = ((s as any).daystart ?? 0);
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_save1'] = 31;
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Come on, Katja! There will be plenty time for studying later. Please, we should hang out more before you go," you say.');
     scene.text('After a little back and forth, Katja relents and agree to go to her room.');
@@ -1344,7 +1344,7 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Why don\'t we call Lazar to see if he wants to have some fun?" you ask.');
     if (((s as any).katjaQW ?? 0)?.['horny'] <= 50) {
-      ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (1);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
       scene.text('"No, I don\'t want to," Katja responds in a stern voice. You realize that you won\'t convince her otherwise.');
     } else {
       if (((s as any).katjaQW ?? 0)?.['horny'] <= 65) {
@@ -1359,8 +1359,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1395,8 +1395,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1433,7 +1433,7 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_coffee_hole', 'inner'] },
           ]);
         } else {
-          ((s as any).katjaQW ?? {})['Lazar_day'] = ((s as any).daystart ?? 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['Lazar_day'] = ((s as any).daystart ?? 0);
           scene.text('Katja looks very aroused. "Okay. Let\'s call him," she says while biting her lip.');
           scene.text('You call Lazar, and he quickly agrees to have you over.');
           scene.actions([
@@ -1467,8 +1467,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Let\'s go to the mall', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-    ((s as any).locat ?? {})['katja_save1'] = 44;
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand1'] = ((s as any).daystart ?? 0);
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_save1'] = 44;
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Let\'s go to the mall and try out clothes," you say.');
     scene.text('"Okay," she replies.');
@@ -1484,8 +1484,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Let\'s go to your room', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-    ((s as any).locat ?? {})['katja_save1'] = 31;
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand1'] = ((s as any).daystart ?? 0);
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_save1'] = 31;
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Let\'s go to your room. I\'m sure we can find something fun to do there," you say with a wink.');
     scene.text('"Okay," she says while blushing.');
@@ -1507,7 +1507,7 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Why don\'t we call Lazar to see if he wants to have some fun?" you ask.');
     if (((s as any).katjaQW ?? 0)?.['horny'] <= 50) {
-      ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (1);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
       scene.text('"No, I don\'t want to," Katja responds in a stern voice. You realize that you won\'t convince her otherwise.');
       scene.actions([
         { label: 'Continue talking', goto: ['katja_chat', 'coffee_hole_event'] },
@@ -1526,8 +1526,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1562,8 +1562,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1586,7 +1586,7 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_coffee_hole', 'inner'] },
           ]);
         } else {
-          ((s as any).katjaQW ?? {})['Lazar_day'] = ((s as any).daystart ?? 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['Lazar_day'] = ((s as any).daystart ?? 0);
           scene.text('Katja looks very aroused. "Okay. Let\'s call him," she says while biting her lip.');
           scene.text('You call him, and he quickly agrees to have you over.');
           scene.actions([
@@ -1600,8 +1600,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Let\'s go to the mall', handler: (st: GameState) => {
-    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-    ((s as any).locat ?? {})['katja_save1'] = 44;
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand1'] = ((s as any).daystart ?? 0);
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_save1'] = 44;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Let\'s go to the mall and try out clothes," you say.');
@@ -1614,8 +1614,8 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Let\'s go to your room', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
-    ((s as any).locat ?? {})['katja_save1'] = 31;
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand1'] = ((s as any).daystart ?? 0);
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_save1'] = 31;
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Let\'s go to your room. I\'m sure we can find something fun to do there," you say with a wink.');
     scene.text('"Okay," she says while blushing.');
@@ -1639,12 +1639,12 @@ function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNightclubSexFollowUp(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A14'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A14'] = 1;
   if (((s as any).katjaQW ?? 0)?.['first_time_in_nightclub'] < 3) {
-    ((s as any).katjaQW ?? {})['QWstage'] = 6;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['QWstage'] = 6;
   }
   if (((s as any).katjaQW ?? 0)?.['QWstage'] < 3) {
-    ((s as any).katjaQW ?? {})['QWstage'] = 3;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['QWstage'] = 3;
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1659,7 +1659,7 @@ function enterNightclubSexFollowUp(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).katjaQW ?? 0)?.['simultanous_girls'] === 0) {
-    ((s as any).katjaQW ?? {})['simultanous_girls'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_girls'] = 1;
     scene.text('You give her a moment before you ask her, "Was this the first time you were with a girl?"');
     // TODO-QSP: dynamic text: Katja answers with a shaking voice, "Yes… But '+iif(katjaQW['first_time_in_night...
     scene.text('Katja answers with a shaking voice, "Yes… But \'+iif(katjaQW[\'first_time_in_nightclub\'] = 2, \'definitely\', \'probably\')+\' not the last time."');
@@ -1669,7 +1669,7 @@ function enterNightclubSexFollowUp(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja answers with a shaking voice, "\'+iif(katjaQW[\'simultanous_girls\'] > 1, \'It happens not so rarely.\', \'I\'ve had sex with a few.\')+\' I like having sex with girls." Her face goes red again.');
   }
   if (((s as any).katjaQW ?? 0)?.['knows_dorm_room_number'] === 0) {
-    ((s as any).katjaQW ?? {})['knows_dorm_room_number'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_dorm_room_number'] = 1;
     scene.text('When she has collected herself, she says, "We should hang out more. My room number is 204. Just come by whenever you like."');
   } else {
     scene.text('After a few minutes, she is back to her old self.');

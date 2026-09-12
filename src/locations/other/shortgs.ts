@@ -157,12 +157,12 @@ function enterDoy(s: GameState, scene: SceneBuilder): void {
 
 function enterMk1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'saveposition', '');
-  ((s as any).mk_subst ?? {})['0'] = 'M';
-  ((s as any).mk_subst ?? {})['1'] = 'F';
-  ((s as any).mk_subst ?? {})['2'] = 'O';
-  ((s as any).mk_subst ?? {})['3'] = 'L';
-  ((s as any).mk_subst ?? {})['4'] = 'R';
-  ((s as any).mk_subst ?? {})['5'] = 'P';
+  if (!(s as any).mk_subst) (s as any).mk_subst = {}; (s as any).mk_subst['0'] = 'M';
+  if (!(s as any).mk_subst) (s as any).mk_subst = {}; (s as any).mk_subst['1'] = 'F';
+  if (!(s as any).mk_subst) (s as any).mk_subst = {}; (s as any).mk_subst['2'] = 'O';
+  if (!(s as any).mk_subst) (s as any).mk_subst = {}; (s as any).mk_subst['3'] = 'L';
+  if (!(s as any).mk_subst) (s as any).mk_subst = {}; (s as any).mk_subst['4'] = 'R';
+  if (!(s as any).mk_subst) (s as any).mk_subst = {}; (s as any).mk_subst['5'] = 'P';
   scene.text('<center><font face="courier" size=1>');
   scene.text('<table border = 1>');
   // TODO-QSP: '<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Mon</th...
@@ -251,9 +251,9 @@ function enterNcpUpdate(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   (s as any).j = 1;
   // TODO-QSP: :loopnpcupdate
-  ((s as any).npc_QW ?? {})[String((s as any).temp_npcID ?? 0)] = ((s as any).copy_npc_QW ?? 0)?.[String((s as any).temp_npcID ?? 0)];
-  ((s as any).npc_rel ?? {})[String((s as any).temp_npcID ?? 0)] = ((s as any).copy_npc_rel ?? 0)?.[String((s as any).temp_npcID ?? 0)];
-  ((s as any).npc_love ?? {})[String((s as any).temp_npcID ?? 0)] = ((s as any).copy_npc_love ?? 0)?.[String((s as any).temp_npcID ?? 0)];
+  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW[String((s as any).temp_npcID ?? 0)] = ((s as any).copy_npc_QW ?? 0)?.[String((s as any).temp_npcID ?? 0)];
+  if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel[String((s as any).temp_npcID ?? 0)] = ((s as any).copy_npc_rel ?? 0)?.[String((s as any).temp_npcID ?? 0)];
+  if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love[String((s as any).temp_npcID ?? 0)] = ((s as any).copy_npc_love ?? 0)?.[String((s as any).temp_npcID ?? 0)];
   // TODO-QSP: $npc_usedname[$temp_npcID] = $copy_npc_usedname[$temp_npcID]
   (s as any).j = ((s as any).j ?? 0) + (1);
   if (((s as any).j ?? 0) <= ((s as any).i ?? 0)) {
@@ -459,37 +459,37 @@ function enterClothingState(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothingStatus(s: GameState, scene: SceneBuilder): void {
-  ((s as any).apparel ?? {})['panty'] = '';
-  ((s as any).apparel ?? {})['bra'] = '';
-  ((s as any).apparel ?? {})['status'] = '';
+  if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['panty'] = '';
+  if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['bra'] = '';
+  if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = '';
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     if ((((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) !== 'none')) {
-      ((s as any).apparel ?? {})['status'] = 'underwear';
+      if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'underwear';
     } else {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
-        ((s as any).apparel ?? {})['status'] = 'panties';
+        if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'panties';
       } else {
         if (((s as any).braworntype ?? 0) !== 'none') {
-          ((s as any).apparel ?? {})['status'] = 'bra';
+          if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'bra';
         } else {
-          ((s as any).apparel ?? {})['status'] = 'nude';
+          if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'nude';
         }
       }
     }
   } else {
     if (((s as any).PSwim ?? 0)) {
-      ((s as any).apparel ?? {})['status'] = 'swim';
+      if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'swim';
     } else {
       if (((s as any).PSport ?? 0)) {
-        ((s as any).apparel ?? {})['status'] = 'sport';
+        if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'sport';
       } else {
         if (((s as any).clothingworntype ?? 0) === 'ballet_secrets'  &&  ((s as any).shoeworntype ?? 0) === 'ballet_secrets') {
-          ((s as any).apparel ?? {})['status'] = 'dance';
+          if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'dance';
         } else {
           if (((s as any).clothingworntype ?? 0) === 'moncheri_gown'  &&  ((s as any).shoeworntype ?? 0) === 'moncheri_shoes') {
-            ((s as any).apparel ?? {})['status'] = 'ballgown';
+            if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'ballgown';
           } else {
-            ((s as any).apparel ?? {})['status'] = 'clothed';
+            if (!(s as any).apparel) (s as any).apparel = {}; (s as any).apparel['status'] = 'clothed';
           }
         }
       }
@@ -528,7 +528,7 @@ function enterPayments(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).epayments ?? {})['paid'] = (-1);
+  if (!(s as any).epayments) (s as any).epayments = {}; (s as any).epayments['paid'] = (-1);
   return;
   // TODO-QSP: end
   scene.actions([
@@ -540,7 +540,7 @@ function enterPayments(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPaymentcomplete(s: GameState, scene: SceneBuilder): void {
-  ((s as any).epayments ?? {})['paid'] = 0;
+  if (!(s as any).epayments) (s as any).epayments = {}; (s as any).epayments['paid'] = 0;
   scene.text('Thank you for your purchase! We look forward to seeing you again.');
   // TODO-QSP: 'You paid ' + epayments['value'] + '<b>₽</b>' + iif($epayments['method'] = 'cash', ' in cash', ' wit...
   qspCall(s, 'stat', '');
@@ -810,18 +810,18 @@ function enterGetNumberSuffix(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterConvertDob(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_npcVars ?? {})['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
-  ((s as any).temp_npcVars ?? {})['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
-  ((s as any).temp_npcVars ?? {})['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
+  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
+  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
+  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDobToAge(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_npcVars ?? {})['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
-  ((s as any).temp_npcVars ?? {})['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
-  ((s as any).temp_npcVars ?? {})['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
+  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
+  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
+  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
   (s as any).result = qspFunc(s, 'time', 'get_age', ((s as any).temp_npcVars ?? 0)?.['year'], ((s as any).temp_npcVars ?? 0)?.['month'], ((s as any).temp_npcVars ?? 0)?.['day']);
   return;
   // TODO-QSP: end
@@ -830,17 +830,17 @@ function enterDobToAge(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateDickSizes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 100) {
-    ((s as any).ARGS ?? {})[1] = 100;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 100;
   }
-  ((s as any).shortgsVars ?? {})['maxi'] = qspUntranslated(s, "ARGS[1]", { location: "shortgs" });
-  ((s as any).shortgsVars ?? {})['i'] = 0;
+  if (!(s as any).shortgsVars) (s as any).shortgsVars = {}; (s as any).shortgsVars['maxi'] = qspUntranslated(s, "ARGS[1]", { location: "shortgs" });
+  if (!(s as any).shortgsVars) (s as any).shortgsVars = {}; (s as any).shortgsVars['i'] = 0;
   // TODO-QSP: $temp_table += '<tr><th>number</th><th>length</th><th>girth</th><th>thdick</th><th>class</th><th>des...
   // TODO-QSP: :gen_dicks_loop
   qspCall(s, 'npcgeneratec', 'gen_dick');
   // TODO-QSP: $temp_table +=  '<tr>'
   // TODO-QSP: $temp_table +=    '<td><<shortgsVars[''i'']+1>>:</td><td><<npcgeneratecVars[''dick_length'']>></td><...
   // TODO-QSP: $temp_table +=  '</tr>'
-  ((s as any).shortgsVars ?? {})['i'] = (((s as any).shortgsVars ?? {})['i'] ?? 0) + (1);
+  if (!(s as any).shortgsVars) (s as any).shortgsVars = {}; (s as any).shortgsVars['i'] = ((s as any).shortgsVars['i'] ?? 0) + (1);
   if (((s as any).shortgsVars ?? 0)?.['i'] < ((s as any).shortgsVars ?? 0)?.['maxi']) {
     // TODO-QSP: jump 'gen_dicks_loop'
   }

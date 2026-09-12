@@ -12,7 +12,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big55.jpg');
   if (((s as any).DjibrilQW ?? 0)?.['taxi'] === 1) {
-    ((s as any).DjibrilQW ?? {})['taxi'] = 0;
+    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['taxi'] = 0;
     if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
       scene.text('He sits back down on the bench and you walk over and take a seat next to him. "No luck finding customers?"');
       scene.text('He shakes his head, but smiles. "Not yet, but I will, you\'ll see. Some always take Olu up on offer." He seems confident and undeterred by being turned down.');
@@ -20,7 +20,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       scene.text(`Djibril smiles at you. He looks a lot like his uncle when he does that. "Hello again, ${((s as any).pcs_nickname ?? 0)}."`);
       scene.text('You can\'t help but smile back at him. "Hello, Djibril."');
     } else {
-      ((s as any).DjibrilQW ?? {})['meet'] = 1;
+      if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['meet'] = 1;
       scene.text('He sits back down on the bench and you walk over and take a seat next to him. "No luck finding customers?"');
       scene.text('He shakes his head, but smiles. "Not yet, but I will, you\'ll see. Some always take Olu up on offer." He seems confident and undeterred by being turned down. "This is my nephew, Djibril. He goes to the university in the city."');
       scene.text('Djibril smiles at you. He looks a lot like his uncle when he does that.');
@@ -228,7 +228,7 @@ function enterDjibrilTaxiSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).DjibrilQW ?? {})['invite'] = 1;
+    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/boy/djibril/taxi_chat.jpg');
     scene.text('You pull away from him, but he keeps kissing you while one hand cups one of your breasts. You put both your hands against his chest and push him hard enough that he pulls back. He looks at you in confusion. "Sorry, I thought this is what you wanted."');
@@ -321,7 +321,7 @@ function enterDjibrilTaxiSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Blow him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A82', 1);
-    ((s as any).npc_had_sex ?? {})['A82'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A82'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/boy/djibril/sex/taxi/taxi3.jpg');
     scene.text('You climb off him as he pulls down his pants and underwear, his massive cock springing free. He\'s not as big as his uncle, but he\'s not that much smaller either. You grab hold of it and can\'t even wrap your fingers all the way around it as you start jerking him off. You then lean over and start sucking on the head as you slowly work your mouth lower, his monstrous dick causing your jaw to stretch as you take him into your mouth.');
@@ -440,7 +440,7 @@ function enterDjibrilTaxiSexAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDjibrilSelfieAnal(s: GameState, scene: SceneBuilder): void {
-  ((s as any).djibrilphoto ?? {})[1] = 1;
+  if (!(s as any).djibrilphoto) (s as any).djibrilphoto = {}; (s as any).djibrilphoto[1] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/phone/djibril/1.jpg');
   scene.text('As Djibril violates your ass, you grab your phone out of your purse. You try to focus, but the hard pounding your ass is receiving makes that difficult. You finally manage to get the phone up in front of your face and take several selfies. Djibril is either unaware or just doesn\'t care.');
@@ -464,7 +464,7 @@ function enterDjibrilTaxiSexAnal1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).DjibrilQW ?? {})['invite'] = 1;
+    if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['invite'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/boy/djibril/sex/taxi/taxi8.jpg');

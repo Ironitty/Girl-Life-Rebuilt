@@ -344,7 +344,7 @@ function enterGirl3(s: GameState, scene: SceneBuilder): void {
       { label: 'Maybe later', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A20', 5);
     qspCall(s, 'npc_relationship', 'modify', 'A21', 5);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (3);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
     scene.text('<center><b>Girls bathroom</b></center>');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/nowkiss.mp4');
     scene.text('You step out of the stall and look the two girls up and down. You know the game they\'re playing, but you can play games too. You grab the cigarette from Lera and take a drag off it, blowing smoke in her face as you hand it back. "Maybe I\'m not the one that should be scared." Lera is momentarily stunned by your brazenness while Lena watches on in curiosity and amusement.');

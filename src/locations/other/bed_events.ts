@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
-    ((s as any).sleepVars ?? {})['events_done'] = 0;
+    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
     if ((((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 3)  &&  (Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).houserab ?? 0) === 1  &&  ((s as any).houserabday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).pcs_sleep ?? 0) < 50  &&  ((s as any).loc ?? 0) === 'nichBedroomServant') {
       // TODO-QSP: $sleep_events[] = 'gs ''bed_events'', ''rab'' '
     }
@@ -47,7 +47,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['events_done'] = (((s as any).sleepVars ?? {})['events_done'] ?? 0) + (1);
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
   } else {
@@ -65,16 +65,16 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['events_done'] = 0;
-  ((s as any).sleepVars ?? {})['stat_display'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
   (s as any).inSleep = 0;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['events_done'] = 0;
-  ((s as any).sleepVars ?? {})['stat_display'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
   scene.actions([{ label: 'Continue', goto: ['bed2', 'start'] }]);
   // TODO-QSP: end
   scene.build();
@@ -242,7 +242,7 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     scene.text('"Hey, sweet cheeks. Something tells me you like to fuck," the first one says.');
     scene.actions([
       { label: 'Plead', handler: (st: GameState) => {
@@ -302,7 +302,7 @@ function enterVorend(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     scene.text('They took your computer.');
-    ((s as any).mc_inventory ?? {})['tech_computer'] = 0;
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_computer'] = 0;
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -431,7 +431,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Want to see me do it in the ass too?" you offer.');
       if (((s as any).npc_pervert ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).boy ?? 0), 1);
-        ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
+        if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
         scene.text('"No, I think this is enough," he says as he sits on a chair and starts watching you. You continue to satisfy yourself rapidly and soon finish in front of him.');
         qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
         qspCall(s, 'arousal', 'end');
@@ -482,7 +482,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m sorry dear, but I really need it, and you\'ve been busy," you reply without stopping.');
       if (((s as any).npc_pervert ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).boy ?? 0), 1);
-        ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
+        if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
         scene.text('"You should have said something. Now open your mouth," he says while pulling out his cock and forcefully pushing it into your mouth.');
         scene.text('He holds you by the hair and fucks your mouth, telling you not to stop masturbating before he tires of your mouth. "Enough of this rubber shit! I\'m going to fuck you."');
         qspCall(s, 'arousal', 'vaginal_dildo', 10);

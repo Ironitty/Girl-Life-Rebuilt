@@ -185,7 +185,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).furibj ?? 0) < 150) {
               scene.text('"Oh, it\'s road head girl," he says as he blows out a waft of cigarette smoke from his nose. "Need another ride?"');
               if (((s as any).furi ?? 0)?.['road_head_girl'] === 0) {
-                ((s as any).furi ?? {})['road_head_girl'] = 1;
+                if (!(s as any).furi) (s as any).furi = {}; (s as any).furi['road_head_girl'] = 1;
                 scene.text('"Road head girl?" you say in confusion.');
                 scene.text('"Yeah, it\'s what we call you out here."');
                 scene.text('"We?"');

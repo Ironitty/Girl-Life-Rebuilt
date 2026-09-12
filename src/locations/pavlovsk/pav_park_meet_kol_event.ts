@@ -21,8 +21,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You see a group of teenagers sitting on a park bench, listening to some music.');
       if (((s as any).pcs_hotcat ?? 0) >= 5) {
         qspCall(s, 'placer', 'init');
-        ((s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 5) + 2;
-        ((s as any).placerParameter ?? {})['recognize_status'] = 1;
+        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 5) + 2;
+        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 1;
         (s as any).place = 1;
         qspCall(s, 'placer_man', '');
         scene.text('You don\'t think you\'ve ever seen them before as the guys walk towards you.');
@@ -59,8 +59,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('Some gopniks are sitting on their haunches just off to the side of one of the main paths, drinking beer. The area around them is littered with empty bottles.');
       if (((s as any).pcs_hotcat ?? 0) >= 5) {
         qspCall(s, 'placer', 'init');
-        ((s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 4) + 3;
-        ((s as any).placerParameter ?? {})['recognize_status'] = 2;
+        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 4) + 3;
+        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 2;
         (s as any).place = 1;
         qspCall(s, 'placer_man', '');
         scene.text('You don\'t think you\'ve ever seen them before as the guys walk towards you.');
@@ -83,8 +83,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('You don\'t think you\'ve ever seen them before as the guys walk towards you.');
           scene.text('"Hey there, good looking. Why don\'t you come to hang out with us?"');
           qspCall(s, 'placer', 'init');
-          ((s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 4) + 3;
-          ((s as any).placerParameter ?? {})['recognize_status'] = 2;
+          if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 4) + 3;
+          if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 2;
           (s as any).place = 1;
           qspCall(s, 'placer_man', '');
           scene.actions([

@@ -11,10 +11,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['campus_event_time'] > ((s as any).totminut ?? 0)) {
-    ((s as any).university ?? {})['campus_event_time'] = ((s as any).totminut ?? 0);
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['campus_event_time'] = ((s as any).totminut ?? 0);
   }
   if (((s as any).totminut ?? 0) > ((s as any).university ?? 0)?.['campus_event_time'] + 60  &&  ((s as any).sunWeather ?? 0) === 1  &&  (((s as any).hour ?? 0) !== 8  ||  ((s as any).minut ?? 0) <= 50)  &&  (((s as any).hour ?? 0) !== 9  ||  ((s as any).minut ?? 0) <= 20)  &&  (((s as any).hour ?? 0) !== 13  ||  ((s as any).minut ?? 0) <= 5)  &&  (((s as any).university ?? 0)?.['semester_week'] + ((s as any).university ?? 0)?.['exam_week']) > 0) {
-    ((s as any).university ?? {})['campus_event_time'] = ((s as any).totminut ?? 0);
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['campus_event_time'] = ((s as any).totminut ?? 0);
     if (((s as any).hour ?? 0) > 7  &&  (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3)) {
       if ((((s as any).hotornot_uni ?? 0) === 0  ||  ((s as any).fuckornot_uni ?? 0) === 0)  &&  ((s as any).yearstart ?? 0) === 2  &&  ((s as any).month ?? 0) >= 9  &&  ((s as any).day ?? 0) >= 11) {
         (s as any).fuckornot_uni = 1;

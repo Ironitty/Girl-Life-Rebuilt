@@ -218,7 +218,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
           scene.text('You lie down on your towel and enjoy the warm rays of the sun on your body. You move your straps around to try and prevent tan lines on your back.');
         } else {
-          ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
           scene.text('You apply sunscreen to yourself and lie down on the towel to work on your tan. You enjoy the warm rays of the sun on your body. You move your straps around to try and prevent tan lines on your back.');
         }
@@ -229,7 +229,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
           scene.text('You lie down on your towel and enjoy the warm rays of the sun on your naked body.');
         } else {
-          ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
           (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
           scene.text('You apply sunscreen to yourself and lie down on the towel to work on your tan. You enjoy the warm rays of the sun on your naked body.');
         }

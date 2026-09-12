@@ -397,7 +397,7 @@ function enterDimDrugs(s: GameState, scene: SceneBuilder): void {
 
 function enterDimkaPay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', ARGS[1] * 420
-  ((s as any).mc_inventory ?? {})['cocaine'] = (((s as any).mc_inventory ?? {})['cocaine'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "pav_disco_coolkids" }));
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "pav_disco_coolkids" }));
   qspCall(s, 'stat', '');
   scene.img('images/shared/drugs/cocainebag.jpg');
   scene.text('You nod your head and dig in your purse, pulling out the money and quickly handing it to him. He takes his time slowly counting it out, which seems like an eternity before he finally hands over a small baggy. You snatch it from him and then quickly leave.');
@@ -1486,7 +1486,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
       { label: 'Go out on the dance floor', handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A25'] >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 200) {
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
       }
       scene.img('images/characters/pavlovsk/school/girl/katja/katja_dance.jpg');
       scene.text('Her face lights up when she sees you and motions for you to come and dance with her.');
@@ -1506,7 +1506,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < ((s as any).katjaQW ?? 0)?.['slut'] + 150) {
             scene.img('images/characters/pavlovsk/school/girl/katja/katja_dance.jpg');
             if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-              ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+              if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
             }
             // TODO-QSP: dynamic text: She smiles when she sees you approaching, but looks around to see how everyone r...
             scene.text(`She smiles when she sees you approaching, but looks around to see how everyone reacts. "I don't know ${((s as any).pcs_nickname ?? 0)}… The others are looking! This might not be a good idea…"`);
@@ -1525,7 +1525,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.img('images/characters/pavlovsk/school/girl/katja/katja_dance.jpg');
           if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-            ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+            if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
           }
           scene.text('She smiles and doesn\'t seem to mind dancing with you.');
           scene.actions([
@@ -1579,7 +1579,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, are you having fun?" she asks and you nod in response.`);
         }
         if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-          ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
         }
         scene.text('"Have you seen the dress the girl over there is wearing?" she asks while pointing at a tall blonde you haven\'t seen before, who is wearing an elegant short dress with a low neckline and open back.');
         // TODO-QSP: dynamic text: "I love that dress '+iif(katjaQW['slut'] < 60, 'but I'm not sure I'd be brave en...
@@ -1609,7 +1609,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
           if (((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
             if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((s as any).fame ?? 0)?.['pav_slut'] < ((s as any).katjaQW ?? 0)?.['slut'] + 150) {
               if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-                ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+                if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
               }
               scene.text('Katja notices you approaching and gets up to intercept you before you reach the group. "You shouldn\'t be coming over here!" she says in a whispering voice so the others can\'t hear her.');
               scene.text('"Your reputation has gotten so bad that we can\'t meet in public." she continues. "It\'s not because I don\'t want be with you, but we need to do it privately. The others will start gossiping if we…" She trails off as you gently stroke her chin and look deep into her eyes.');
@@ -1640,7 +1640,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
               scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, are you having fun?" she asks and you nod in response.`);
             }
             if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-              ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+              if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
             }
             scene.text('"Have you seen the dress the girl over there is wearing?" she asks while pointing at a tall blonde you haven\'t seen before, who is wearing an elegant short dress with a low neckline and open back.');
             // TODO-QSP: dynamic text: "I love that dress '+iif(katjaQW['slut'] < 60, 'but I'm not sure I'd be brave en...
@@ -1700,7 +1700,7 @@ function enterKatjaDanceAsk(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 2;
     scene.text('Katja subtly applies some neutral tones, with a light application of makeup to bring out your natural beauty.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -1711,7 +1711,7 @@ function enterKatjaDanceAsk(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 3;
     scene.text('Katja applies some mildly vibrate tones and colors of makeup to cover your minor imperfections and enhance your best features.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -1722,7 +1722,7 @@ function enterKatjaDanceAsk(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 4;
     scene.text('Katja applies some deeper, richer shades of makeup that are thick enough to cover most imperfections while drawing attention to your eyes and lips.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -1740,7 +1740,7 @@ function enterKatjaDanceAsk(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
     }
     scene.text('She gets up and follows you to the dance floor.');
     scene.actions([
@@ -1769,13 +1769,13 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree to a threesome with Marcus', goto: ['pav_discoev1', 'katja_marcus_start'] },
       { label: 'You\'re not in the mood', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) - (30);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (30);
     scene.text('You tell Katja that you\'re not in the mood for a threesome. She looks extremely frustrated by your refusal, but accepts it and keep dancing.');
     if (((s as any).hour ?? 0) >= 20) {
       scene.actions([
         { label: 'Keep dancing', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
     }
   }, goto: ['pav_disco_coolkids', 'katja_dance'] },
       ]);
@@ -1806,7 +1806,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Keep dancing', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
     }
   }, goto: ['pav_disco_coolkids', 'katja_dance'] },
           ]);
@@ -1815,7 +1815,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
           { label: 'Expose Katja', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A14');
     (s as any).dancerand = Math.floor(Math.random() * 5) + 1;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     if (((s as any).dancerand ?? 0) === 1) {
       scene.text('<center><b>Disco</b></center>');
       scene.img('images/characters/pavlovsk/school/girl/katja/katja_dance2_2.jpg');
@@ -1838,7 +1838,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Keep dancing', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
     }
   }, goto: ['pav_disco_coolkids', 'katja_dance'] },
       ]);
@@ -1898,7 +1898,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Keep dancing', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
     }
   }, goto: ['pav_disco_coolkids', 'katja_dance'] },
       ]);
@@ -1919,7 +1919,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Keep dancing', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
     }
   }, goto: ['pav_disco_coolkids', 'katja_dance'] },
           ]);
@@ -1936,7 +1936,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
 
 function enterKatjaWalkhome(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  ((s as any).katjaQW ?? {})['drunk_help'] = 1;
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['drunk_help'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/school_kids/walkhome_katja.jpg');
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
@@ -2349,7 +2349,7 @@ function enterSoniaOutcastDance(s: GameState, scene: SceneBuilder): void {
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'hate', 1, 'pav_disco2');
     qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).discoenable ?? {})['A25'] = 0;
+    if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A25'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big25.jpg');

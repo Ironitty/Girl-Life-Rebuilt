@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kid ?? 0) > 0) {
     (s as any).kidI = 0;
     // TODO-QSP: :loop
-    ((s as any).kidSelected ?? {})[String((s as any).kidLoops ?? 0)] = ((s as any).kidI ?? 0);
+    if (!(s as any).kidSelected) (s as any).kidSelected = {}; (s as any).kidSelected[String((s as any).kidLoops ?? 0)] = ((s as any).kidI ?? 0);
     if (((s as any).kidage ?? 0)?.[String((s as any).kidI ?? 0)] < 1  &&  (((s as any).locclass ?? 0) === 'bedr'  ||  ((s as any).locclass ?? 0) === 'bedroom'  ||  ((s as any).locclass ?? 0) === 'singleroom')  &&  ( ((s as any).hour ?? 0) < 12  ||  ((s as any).hour ?? 0) > 18 )) {
       // TODO-QSP: dynamic text: <a href="exec:gt 'kid','start' ">In the crib lies <<$kidname[kidI]>>.</a>
       scene.text(`<a href="exec:gt 'kid','start' ">In the crib lies ${((s as any).kidname ?? 0)?.[String((s as any).kidI ?? 0)]}.</a>`);

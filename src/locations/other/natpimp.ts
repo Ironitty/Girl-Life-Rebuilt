@@ -12,13 +12,13 @@ function enterGoSeeOlu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take her to see Olu for 500', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['nat_inv'] = 1;
-    ((s as any).OluQW ?? {})['nat_count'] = (((s as any).OluQW ?? {})['nat_count'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nat_inv'] = 1;
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nat_count'] = ((s as any).OluQW['nat_count'] ?? 0) + (1);
     qspCall(s, 'boystat', 'A55');
-    ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 9) {
-      ((s as any).NatbelQW ?? {})['QWstage'] = 10;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 10;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big16.jpg');
@@ -48,7 +48,7 @@ function enterGoSeeOlu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Let the fun begin', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['anal'] = (((s as any).NatbelQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['anal'] = ((s as any).NatbelQW['anal'] ?? 0) + (1);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     (s as any).Olu_pay = ((s as any).Olu_pay ?? 0) + (1);
     qspCall(s, 'stat', '');

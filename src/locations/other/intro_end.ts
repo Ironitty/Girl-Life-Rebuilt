@@ -453,7 +453,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
       qspCall(s, 'homes_properties', 'give_access', 'parents_home');
-      ((s as any).gschoolVars ?? {})['school_diploma'] = 1;
+      if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['school_diploma'] = 1;
       qspCall(s, 'homes_properties', 'set_home', 'university_dorm');
       qspCall(s, 'npc_relationship', 'default_family_friends');
       scene.img('images/system/1_openings/6_uni/degree_choice.jpg');
@@ -589,7 +589,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     scene.text('Diane stays in the doorway, though you do notice the strange look she gives Vika. "We should let your parents know which room you\'re in so they can drop your stuff off while I show you around the campus."');
     scene.text('Once you get back out into the hallway, you ask why she doesn\'t like your roommate. "There are a lot of nasty rumors about her. I\'m not exactly a prude or anything, but if even <i>one</i> of those rumors is true, then she makes me look like a virgin that\'s been living under a rock my whole life."');
     if (((s as any).temp ?? 0) !== '') {
-      ((s as any).npc_nickname ?? {})['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
+      if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
     }
     scene.actions([
       { label: 'Find your parents', handler: (st: GameState) => {
@@ -764,7 +764,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m comfortable where I am right now. When I\'m ready, maybe I will."');
     scene.text('Rolling your eyes, you let her keep pulling on your arm.');
     if (((s as any).temp ?? 0) !== '') {
-      ((s as any).npc_nickname ?? {})['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
+      if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A29'] = '' + qspUntranslated(s, "temp>", { location: "intro_end" }) + '';
     }
     scene.actions([
       { label: 'Enter the apartment', handler: (st: GameState) => {

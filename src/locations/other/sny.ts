@@ -416,7 +416,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'wait', handler: (st: GameState) => {
-    ((s as any).npc_had_sex ?? {})['A1'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A1'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/dimkahome/newyear/sex/fuck.jpg');
     qspCall(s, 'dinSex', 'wear_condom');
@@ -427,11 +427,11 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck him', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A127', 'a');
-    ((s as any).npc_had_sex ?? {})['A4'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A4'] = 1;
     if (((s as any).protect ?? 0) === 1) {
       (s as any).condomDima = 1;
     }
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     scene.img('images/shared/sex/group/gang23.jpg');
     // TODO-QSP: dynamic text: You wrap your lips around Gosha's <<dick1>>cm <<$dick_girth1>> dick and start su...
     scene.text(`You wrap your lips around Gosha's ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick and start sucking it.`);

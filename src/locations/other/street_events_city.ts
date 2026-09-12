@@ -16,7 +16,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 360;
   (s as any).fingal = ((s as any).fingal ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (2);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (2);
   (s as any).shantpopala = ((s as any).shantpopala ?? 0) - (1);
   scene.img('images/locations/city/shared/sex/rape.jpg');
   scene.text('A black jeep suddenly hit the brakes on the street close to you. You turn your head to see what\'s happening and see two prominent men jump out of it and start running towards you. Before you can react, they grab you and drag you into the car.');

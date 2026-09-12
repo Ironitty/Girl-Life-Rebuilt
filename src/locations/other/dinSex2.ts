@@ -38,7 +38,7 @@ function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
 
 function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = (-1);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
   }
   (s as any).frost = 0;
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
@@ -89,7 +89,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = (-1);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
     (s as any).grange = 0;
@@ -138,7 +138,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
 function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = (-1);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
   }
   // TODO-QSP: dynamic text: <<$boydesc>> tucks a finger into your anus, then a second one.
   scene.text(`${((s as any).boydesc ?? 0)} tucks a finger into your anus, then a second one.`);
@@ -189,7 +189,7 @@ function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = (-1);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-1);
   }
   if (((s as any).analPlugIn ?? 0) === 1) {
     scene.text('You pull the plug out of your narrow and tight ass.');
@@ -239,7 +239,7 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   (s as any).totPain = 0;
   if (((s as any).locArgs?.[1] ?? 0) / 2 === 0) {
-    ((s as any).ARGS ?? {})[1] = (-2);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (-2);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
     (s as any).grange = 0;

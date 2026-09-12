@@ -778,7 +778,7 @@ function enterToiletBoysBj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID ?? 0), 'group', 'gangbang');
     qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group', 'gangbang');
     (s as any).guy = ((s as any).guy ?? 0) + (3);
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_11.jpg');
     scene.text('You try to service them both awkwardly, stroking them both while trying to lick the heads of their dick, in your drunken state you can\'t keep up any kind of rhythm with your hands. One of the guys tells you to just use your mouth.');

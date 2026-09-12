@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
       scene.text('You must first purchase a ticket from the hostess.');
     } else {
-      ((s as any).rasputin ?? {})['burlesque_ticket'] = 0;
+      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 0;
       scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', ''] }]);
     }
   } },
@@ -46,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
       scene.text('You must first purchase a ticket from the hostess.');
     } else {
-      ((s as any).rasputin ?? {})['burlesque_ticket'] = 0;
+      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 0;
       scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', ''] }]);
     }
   } },
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 0) {
       scene.text('You must first purchase a ticket from the hostess.');
     } else {
-      ((s as any).rasputin ?? {})['variety_ticket'] = 0;
+      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 0;
       scene.actions([{ label: 'Continue', goto: ['rasputin_show_var', ''] }]);
     }
   } },
@@ -85,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
       scene.text('You must first purchase a ticket from the hostess.');
     } else {
-      ((s as any).rasputin ?? {})['burlesque_ticket'] = 0;
+      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 0;
       scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', ''] }]);
     }
   } },
@@ -105,7 +105,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) > 30)  ||  (((s as any).hour ?? 0) === 20  &&  ((s as any).minut ?? 0) < 30)  &&  ((s as any).rasputin ?? 0)?.['burlesque_ticket'] > 0) {
         scene.actions([
           { label: 'Take a free drink', handler: (st: GameState) => {
-    ((s as any).rasputin ?? {})['free_drink'] = ((s as any).daystart ?? 0);
+    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['free_drink'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'champagne');
     qspCall(s, 'stat', '');
@@ -120,7 +120,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((((s as any).hour ?? 0) === 21  &&  ((s as any).minut ?? 0) > 30)  ||  ((s as any).hour ?? 0) > 21  ||  ((s as any).hour ?? 0) < 2  &&  ((s as any).rasputin ?? 0)?.['variety_ticket'] > 0) {
         scene.actions([
           { label: 'Take a free drink', handler: (st: GameState) => {
-    ((s as any).rasputin ?? {})['free_drink'] = ((s as any).daystart ?? 0);
+    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['free_drink'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'alcohol', 'champagne');
     qspCall(s, 'stat', '');

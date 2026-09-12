@@ -144,7 +144,7 @@ function enterFather1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    ((s as any).npc_rel ?? {})['A28'] = (((s as any).npc_rel ?? {})['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You profusely apologize to your stepfather, and after a while you can tell his attitude towards you is slightly milder.');
     scene.actions([
@@ -165,7 +165,7 @@ function enterFather2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Try to get on his good side', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    ((s as any).npc_rel ?? {})['A28'] = (((s as any).npc_rel ?? {})['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You spend some time trying to get on your stepfather\'s good side, and you feel like he likes you a bit more after you show interest in the things he enjoys.');
     scene.actions([
@@ -599,7 +599,7 @@ function enterWatchtv1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    ((s as any).npc_rel ?? {})['A28'] = (((s as any).npc_rel ?? {})['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim36.jpg');
     scene.text('You profusely apologize to your stepfather, and after a while you can tell his attitude towards you is slightly milder.');
@@ -621,7 +621,7 @@ function enterWatchtv2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Try to get on his good side', handler: (st: GameState) => {
     (s as any).sorryday = ((s as any).daystart ?? 0);
-    ((s as any).npc_rel ?? {})['A28'] = (((s as any).npc_rel ?? {})['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You spend some time trying to get on your stepfather\'s good side, and you feel like he likes you a bit more after you show interest in the things he enjoys.');
     scene.actions([

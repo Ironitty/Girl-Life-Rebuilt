@@ -21,7 +21,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The entrance fee is <<$func('money', 'string_price', 100)>> for the full day, bu...
   scene.text(`The entrance fee is ${qspFunc(s, 'money', 'string_price', 100)} for the full day, but students get a discount and it only costs them ${qspFunc(s, 'money', 'string_price', 60)}.`);
   if (((s as any).job_status ?? 0)?.['pav_pool_lifeguard'] !== 'employed') {
-    ((s as any).pav_swimpool ?? {})['entrancefee'] = ((((s as any).gschoolVars ?? 0)?.['school_diploma'] <= 0) ? (60) : (100));
+    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['entrancefee'] = ((((s as any).gschoolVars ?? 0)?.['school_diploma'] <= 0) ? (60) : (100));
   }
   if (((s as any).job_status ?? 0)?.['pav_pool_lifeguard'] !== 'employed'  &&  (((s as any).job_hiring_step ?? 0)?.['pav_pool_lifeguard'] === 1  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).job_hiring_step ?? 0)?.['pav_pool_lifeguard'] === 2  &&  ((s as any).week ?? 0) === 7)) {
     if (((s as any).hour ?? 0) === 8) {
@@ -83,7 +83,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 2;
       // TODO-QSP: gs 'money', 'pay', pav_swimpool['entrancefee']
-      ((s as any).pav_swimpool ?? {})['entrancepaid'] = ((s as any).daystart ?? 0);
+      if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['entrancepaid'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       scene.actions([{ label: 'Continue', goto: ['pav_pool', 'entrance'] }]);
     }
@@ -807,8 +807,8 @@ function enterExitpool(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Jump into the water after him', handler: (st: GameState) => {
-    ((s as any).pav_swimpool ?? {})['boystole'] = 1;
-    ((s as any).pav_swimpool ?? {})['toplost'] = 1;
+    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['boystole'] = 1;
+    if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['toplost'] = 1;
     scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
     scene.text('You jump bravely into the water after him. He swims off towards the other side of the pool and you attempt to follow, but the pool is full and many notice your lewdness. You suddenly realize, stop and cover yourself as a number of people stare at you.');
     scene.text('You could try to reach the edge of the pool, but you would have to get very close to other people. You could also wait and hope that the pool empties a little without calling attention to yourself.');
@@ -852,7 +852,7 @@ function enterLifeguardApply(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take the job', handler: (st: GameState) => {
-    ((s as any).job_hiring_step ?? {})['pav_pool_lifeguard'] = 1;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_pool_lifeguard'] = 1;
     qspCall(s, 'stat', '');
     scene.text('You nod. "Sounds good. When do I start?"');
     scene.text('"I don\'t see you actually needing to do anything other than make sure the swimmers behave themselves, but I need you to come by next Saturday when we open at 8 so I can give you some training. It will take a few hours over the course of two days, but I\'m not authorised to pay you for it."');

@@ -46,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).orgasm = ((s as any).orgasm ?? 0) + (1);
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-    ((s as any).virgin_stats ?? {})['orgasm'] = 1;
+    if (!(s as any).virgin_stats) (s as any).virgin_stats = {}; (s as any).virgin_stats['orgasm'] = 1;
   }
   if (Object.keys((s as any).stim ?? {}).length > 0) {
     (s as any).orgasm_i = 0;

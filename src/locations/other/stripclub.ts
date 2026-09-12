@@ -176,7 +176,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
       if (((s as any).age ?? 0) >= 21) {
         scene.actions([
           { label: 'Seriously?', handler: (st: GameState) => {
-    ((s as any).strip_club ?? {})['id_check'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['id_check'] = 1;
     scene.text('You roll your eyes. "Are you being serious? Do I look like some snot nosed teenager trying to sneak in and see some tits?"');
     scene.text('"Deadly," he replies. "ID or you\'re not getting in to \'see some tits.\'"');
     scene.text('You begrudingly rummage through your purse and pull out your passport. The bouncer takes a look at it and nods.');
@@ -189,7 +189,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
         if (((s as any).age ?? 0) >= 18  &&  ((s as any).age ?? 0) < 21) {
           scene.actions([
             { label: 'Show him your passport', handler: (st: GameState) => {
-    ((s as any).strip_club ?? {})['id_check'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['id_check'] = 1;
     scene.text('You rummage through your purse and pull out your passport, showing him you\'re of legal age. The bouncer takes a look at it and nods.');
     scene.text('"Okay, you check out."');
     qspCall(s, 'stripclub', 'pay_enter');
@@ -199,7 +199,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
           if (((s as any).fakepassport ?? 0) === 1) {
             scene.actions([
               { label: 'Show him your fake passport', handler: (st: GameState) => {
-    ((s as any).strip_club ?? {})['id_check'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['id_check'] = 1;
     scene.text('You rummage through your purse and pull out your fake passport, showing him you\'re of "legal age." The bouncer takes a long look at it before he nods.');
     scene.text('"Okay, you check out."');
     qspCall(s, 'stripclub', 'pay_enter');
@@ -241,7 +241,7 @@ function enterPayEnter(s: GameState, scene: SceneBuilder): void {
       scene.text('You dig through your purse a second time and pull out a small wad of cash. Handing it to the bouncer, he takes it from you and waves you inside.');
       qspCall(s, 'money', 'pay', 300, 'cash');
       (s as any).minut = ((s as any).minut ?? 0) + 1;
-      ((s as any).strip_club ?? {})['pay_fee'] = 1;
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['pay_fee'] = 1;
       (s as any).frost = 0;
       scene.actions([
         { label: 'Go inside', goto: ['stripclub', 'main_floor'] },
@@ -546,7 +546,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
 
 function enterPrivateSex(s: GameState, scene: SceneBuilder): void {
   (s as any).girl = ((s as any).girl ?? 0) + (2);
-  ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'money', 'pay', 2000);
   qspCall(s, 'arousal', 'cuni', 15, 'lesbian', 'group');
   qspCall(s, 'stat', '');
@@ -562,7 +562,7 @@ function enterPrivateSex(s: GameState, scene: SceneBuilder): void {
 
 function enterPrivateSex1(s: GameState, scene: SceneBuilder): void {
   (s as any).girl = ((s as any).girl ?? 0) + (2);
-  ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'arousal', 'cuni', 15, 'lesbian', 'group');
   qspCall(s, 'arousal', 'end');
   scene.img('images/locations/city/redlight/stripclub/private_dance_sex.jpg');
@@ -813,7 +813,7 @@ function enterStripperTryout2(s: GameState, scene: SceneBuilder): void {
     if (((((s as any).pubestyle ?? 0) >= 2  &&  ((s as any).pubestyle ?? 0) <=7)  ||  (((s as any).pubestyle ?? 0) >= 12  &&  ((s as any).pubestyle ?? 0) <= 14))  &&  ((s as any).pcs_pubes ?? 0) <= 25) {
       (s as any).strippermission = 1;
       scene.text('"Nice bush," he smirks. "I\'m sure the customers will love it."');
-      ((s as any).strip_club ?? {})['dancing_rounds'] = 3;
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['dancing_rounds'] = 3;
     } else {
       if (((s as any).pcs_leghair ?? 0) <= 3) {
         scene.text('"You\'ll need to shave this," he grunts, running his fingers through your thick bush. "Or at least trim it. Something cute."');
@@ -1048,7 +1048,7 @@ function enterManagerJobChange(s: GameState, scene: SceneBuilder): void {
 function enterAlbinaFirstDance1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  ((s as any).AlbinaQW ?? {})['seen_strip'] = 1;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['seen_strip'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/stripclub_show1.mp4');
   scene.text('After a few minutes, the DJ hypes the crowd up as he announces which of the strippers is performing.');
@@ -1274,7 +1274,7 @@ function enterAlbinaDance(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     qspCall(s, 'money', 'pay', 1000);
-    ((s as any).AlbinaQW ?? {})['special_lapdance'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['special_lapdance'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/alb_lapdance.jpg');
     scene.text('The DJ announces a special performance by Amber and Albina leads you out onto the stage. She pushes you down onto a chair placed on the stage and music starts playing as she starts her show. She seductively dances and twerks while slowly peeling her clothes off, all while giving you and the cheering audience a teasing smile and wiggling her hips.');
@@ -1309,7 +1309,7 @@ function enterAlbinaDance(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     qspCall(s, 'money', 'pay', 1000);
-    ((s as any).AlbinaQW ?? {})['special_lapdance'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['special_lapdance'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/alb_lapdance.jpg');
     scene.text('The DJ announces a special performance by Amber and Albina leads you out onto the stage. She pushes you down onto a chair placed on the stage and music starts playing as she starts her show. She seductively dances and twerks while slowly peeling her clothes off, all while giving you and the cheering audience a teasing smile and wiggling her hips.');
@@ -1357,13 +1357,13 @@ function enterFanApproach(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/city/redlight/stripclub/club_night_summer.jpg');
   }
-  ((s as any).temp ?? {})['strip_club_partner'] = Math.floor(Math.random() * 300) + 1;
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['strip_club_partner'] = Math.floor(Math.random() * 300) + 1;
   qspCall(s, 'npcgeneratec', '', 0, 'guy from the strip club', 0, Math.floor(Math.random() * 2) + 3, 'like');
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((s as any).npc_age ?? 0)?.[String((s as any).npcID ?? 0)] < 26) {
-    ((s as any).npc_age ?? {})[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 20) + 26;
+    if (!(s as any).npc_age) (s as any).npc_age = {}; (s as any).npc_age[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 20) + 26;
   }
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  ((s as any).temp ?? {})['strip_club_partner'] = Math.floor(Math.random() * 101) + 0;
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['strip_club_partner'] = Math.floor(Math.random() * 101) + 0;
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] < 2) {
     // TODO-QSP: dynamic text: A man dressed in <<$npc_outfit[$npcID]>> is trying to get your attention as you ...
     scene.text(`A man dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)]} is trying to get your attention as you exit through the staff door.`);

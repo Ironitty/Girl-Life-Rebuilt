@@ -100,7 +100,7 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRide(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['taxi_sex_pay'] = (((s as any).stat ?? {})['taxi_sex_pay'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['taxi_sex_pay'] = ((s as any).stat['taxi_sex_pay'] ?? 0) + (1);
   qspCall(s, 'fame', 'city', 'prostitute', 2);
   qspCall(s, 'stat', '');
   qspCall(s, 'npcgeneratec', '', 0, 'Taxi Driver', Math.floor(Math.random() * 17) + 30);
@@ -132,7 +132,7 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Chicken out', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['taxi_sex_pay'] = (((s as any).stat ?? {})['taxi_sex_pay'] ?? 0) - (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['taxi_sex_pay'] = ((s as any).stat['taxi_sex_pay'] ?? 0) - (1);
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
   ]);

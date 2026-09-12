@@ -43,9 +43,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) > 1  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
     if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
-      ((s as any).nataliaQW ?? {})['library_day_check'] = ((s as any).daystart ?? 0);
+      if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day_check'] = ((s as any).daystart ?? 0);
       if ((!(Math.floor(Math.random() * 4) + 0))) {
-        ((s as any).nataliaQW ?? {})['library_day'] = ((s as any).daystart ?? 0);
+        if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day'] = ((s as any).daystart ?? 0);
       }
     }
     if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
@@ -505,7 +505,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('You walk over to his table.');
   if (((s as any).npc_rel ?? 0)?.['A2'] >= 50) {
-    ((s as any).artemQW ?? {})['knows_dorm_room_number'] = 1;
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['knows_dorm_room_number'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.text('You sit next to Artem and talk about your classes, fellow students, roommates and life in general for a while.');
     scene.text('"I don\'t mean to be rude, but I really need to finish this," he says with a small smile. "Why don\'t you come to my dorm room sometime and we can hang out then? I\'m in room 209."');
@@ -538,7 +538,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('You walk over to her table.');
   if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
-    ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+    if (!(s as any).anushkaCityQW) (s as any).anushkaCityQW = {}; (s as any).anushkaCityQW['first_visit'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
@@ -589,7 +589,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       scene.text('"I prefer studying in private without any distractions. Now I\'d love to chat, but I need to get going."');
       scene.text('You just nod as she brushes past you.');
       if (((s as any).AlbinaQW ?? 0)?.['dorm_invite'] === 0) {
-        ((s as any).AlbinaQW ?? {})['dorm_invite'] = 1;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['dorm_invite'] = 1;
         scene.text('"Oh, one last thing," she says as she stops and turns back to face you. "It\'s insane that you haven\'t visited me at my dorm room yet!"');
         if (((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg') {
           scene.text('"Really?" you reply. "You want me to come to your room?"');
@@ -605,7 +605,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_showtext = 1;
         } else {
           if (((s as any).contactAnon ?? 0)?.[String((s as any).temp_index ?? 0)] !== 0) {
-            ((s as any).contactAnon ?? {})[String((s as any).temp_index ?? 0)] = 0;
+            if (!(s as any).contactAnon) (s as any).contactAnon = {}; (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
             (s as any).temp_showtext = 1;
           }
         }

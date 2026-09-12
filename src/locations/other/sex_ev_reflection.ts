@@ -163,7 +163,7 @@ function enterLostVirgin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGladDeflowered(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['thought_mood'] = 'happy';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['thought_mood'] = 'happy';
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'happy2', 'jpg');
   scene.text('Searching your heart you are startled to realize... you\'re <i>glad</i> this happened.');
   // TODO-QSP: dynamic text: As reluctant as you were at the start, you're actually happy that <<$npcdesc>> p...
@@ -178,7 +178,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Happy with it', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['thought_mood'] = 'happy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['thought_mood'] = 'happy';
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'happy2', 'jpg');
     scene.text('<i>I sold my virginity tonight,</i> you think to yourself.');
     scene.text('An uncontrollable smile cracks across your face as a giddy rush goes through you.');
@@ -187,7 +187,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     scene.text(`You got your cherry popped! You're a woman now! And not just that, but you got ${qspFunc(s, 'money', 'string_profit', ((s as any).sex_ev ?? 0)?.['prostitution_paid'])} on top of that? What a night!`);
   }, goto: ['sex_ev_reflection', 'top_menu'] },
     { label: 'Glad you got something for it', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['thought_mood'] = 'happy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['thought_mood'] = 'happy';
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'happy1', 'jpg');
     scene.text('<i>I sold my virginity tonight,</i> you think to yourself.');
     scene.text('<i>... and I actually got paid for it.</i>');
@@ -199,7 +199,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_reflection', 'top_menu'] },
     { label: 'You feel dirty', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'upset1', 'jpg');
-    ((s as any).sex_ev ?? {})['thought_mood'] = 'sad';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['thought_mood'] = 'sad';
     scene.text('<i>I sold my virginity tonight,</i> you think to yourself.');
     scene.text('<i>Whore.</i>');
     scene.text('The word flashes through your mind unbidden. Suddenly, it\'s as if you can feel every microscopic piece of bacteria in the room.');
@@ -217,7 +217,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('Because you sold your virginity. The knowledge that whatever else happens, you sold yourself from the very first time you had sex. Whatever happens, you\'ll always have been a whore from the start.');
   }, goto: ['sex_ev_reflection', 'top_menu'] },
     { label: 'You feel... <i>turned on</i>', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['thought_mood'] = 'happy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['thought_mood'] = 'happy';
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'happy2', 'jpg');
     scene.text('<i>I sold my virginity tonight,</i> you think to yourself.');
     scene.text('And immediately a heat blossoms in your womb. Your nipples perk up, warm and swollen, and you feel moisture pooling on the lips of your labia.');
@@ -271,14 +271,14 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['night_of_firsts'] === 0) {
       scene.actions([
         { label: 'A night of firsts...', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['night_of_firsts'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['night_of_firsts'] = 1;
     scene.text('Then again, nobody\'s ever fucked you either. Your first time getting fucked was also your first time getting filled.');
   }, goto: ['sex_ev_reflection', 'top_menu'] },
       ]);
     }
     scene.actions([
       { label: 'It was...', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['creampie_feel'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_feel'] = 1;
     scene.actions([
       { label: 'Gross', handler: (st: GameState) => {
     scene.text('It was... <i>so gross...</i>');
@@ -323,7 +323,7 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneralCreampieReflect(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['creampie_feel'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['creampie_feel'] = 1;
   if (((s as any).pcs_traits ?? 0)?.['creampie_fetish'] === 0) {
     scene.actions([
       { label: 'Gross', handler: (st: GameState) => {
@@ -395,19 +395,19 @@ function enterPregnancyMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPregnancyHopes(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['pregnant_thoughts'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pregnant_thoughts'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
-  ((s as any).sex_ev ?? {})['pregnant_thoughts'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pregnant_thoughts'] = 1;
   scene.text('<i>I wonder if I\'ll get pregnant?</i> you think idly.');
   if (((s as any).sex_ev ?? 0)?.['broken_condom'] > 0) {
     if (((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'That the condom broke in the first place is proof of that. Although you <i>also</i> kept going after it broke so maybe that one isn\'t to blame...';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'That the condom broke in the first place is proof of that. Although you <i>also</i> kept going after it broke so maybe that one isn\'t to blame...';
     } else {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'That the condom broke in the first place is proof of that.';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'That the condom broke in the first place is proof of that.';
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['no_condom'] > 0) {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'You weren\'t being particularly safe, going without a condom.';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'You weren\'t being particularly safe, going without a condom.';
     }
   }
   if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
@@ -428,17 +428,17 @@ function enterPregnancyHopes(s: GameState, scene: SceneBuilder): void {
 
 function enterPregnancyWonder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
-  ((s as any).sex_ev ?? {})['pregnant_thoughts'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pregnant_thoughts'] = 1;
   scene.text('<i>I wonder if I\'ll get pregnant?</i> you think idly.');
   if (((s as any).sex_ev ?? 0)?.['broken_condom'] > 0) {
     if (((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'That the condom broke in the first place is proof of that. Although you <i>also</i> kept going after it broke so maybe that one isn\'t to blame...';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'That the condom broke in the first place is proof of that. Although you <i>also</i> kept going after it broke so maybe that one isn\'t to blame...';
     } else {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'That the condom broke in the first place is proof of that.';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'That the condom broke in the first place is proof of that.';
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['no_condom'] > 0) {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'You weren\'t being particularly safe, going without a condom.';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'You weren\'t being particularly safe, going without a condom.';
     }
   }
   if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
@@ -459,17 +459,17 @@ function enterPregnancyWonder(s: GameState, scene: SceneBuilder): void {
 
 function enterPregnancyWorries(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
-  ((s as any).sex_ev ?? {})['pregnant_thoughts'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pregnant_thoughts'] = 1;
   scene.text('<i>I hope I don\'t get pregnant...</i> you think nervously to yourself.');
   if (((s as any).sex_ev ?? 0)?.['broken_condom'] > 0) {
     if (((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'It\'s not your fault that the condom broke. But that still doesn\'t help you feel any safer.';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'It\'s not your fault that the condom broke. But that still doesn\'t help you feel any safer.';
     } else {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'It\'s not your fault that the condom broke. But that still doesn\'t help you feel any safer. And then you kept going bareback afterwards! What were you thinking?!';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'It\'s not your fault that the condom broke. But that still doesn\'t help you feel any safer. And then you kept going bareback afterwards! What were you thinking?!';
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['no_condom'] > 0) {
-      ((s as any).sex_ev ?? {})['condom_thoughts'] = 'You really shouldn\'t have done it without a condom... What were you thinking?!';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['condom_thoughts'] = 'You really shouldn\'t have done it without a condom... What were you thinking?!';
     }
   }
   if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {

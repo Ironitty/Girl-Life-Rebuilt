@@ -9,8 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOlusex(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['sex'] = 1;
-  ((s as any).npc_had_sex ?? {})['A55'] = 1;
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['sex'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A55'] = 1;
   qspCall(s, 'boyStat', 'A55');
   scene.img('images/characters/pavlovsk/resident/olu/sex/firstbj1.jpg');
   scene.text('You return his kiss and feel yourself getting aroused as his hands start roaming around your body before you\'re suddenly lifted into the air as he carries you in his arms through the hallway and down to the bedroom. He tosses you onto the bed, where you bounce from the landing before he starts pulling your clothes off, quickly getting you naked. He then takes his pants off you\'re greeted by the sight of the largest dick you\'ve ever seen. The thing is massive and your eyes bulge as you wonder if it will even fit inside you.');
@@ -28,7 +28,7 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['vaginal'] = (((s as any).OluQW ?? {})['vaginal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['vaginal'] = ((s as any).OluQW['vaginal'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/olu/sex/firstvag1.jpg');
     scene.text('You shake your head. "No, I\'m not a virgin."');
     scene.text('He nods and smiles. "Good good, then more fun for us." He then lifts you up and lays you on the bed on your back before pulling you to the edge of the bed and spreads you legs. He grabs some lube from the night stand and lubes up his monster dick; seeing the size of that thing, you\'re not going to argue.');
@@ -47,7 +47,7 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Anal', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
     }
@@ -94,8 +94,8 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['think_virgin'] = 1;
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['think_virgin'] = 1;
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
     }
@@ -266,8 +266,8 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Suck his dick', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['sex'] = 1;
-    ((s as any).npc_had_sex ?? {})['A55'] = 1;
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['sex'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A55'] = 1;
     qspCall(s, 'boyStat', 'A55');
     scene.img('images/characters/pavlovsk/resident/olu/sex/seduction8.jpg');
     scene.text('You drop down to your knees in front of him and start kissing and licking the shaft of his cock before you part your lips and take the head of his monstrous cock into your mouth. Feeling your jaw stretching as you start sucking on it, you can\'t go very far down his shaft without gagging. He sits down as you keep sucking his dick.');
@@ -283,8 +283,8 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.actions([
         { label: 'Okay', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['think_virgin'] = 0;
-    ((s as any).OluQW ?? {})['vaginal'] = (((s as any).OluQW ?? {})['vaginal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['think_virgin'] = 0;
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['vaginal'] = ((s as any).OluQW['vaginal'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/seduction10.jpg');
     scene.text('You nod at him. "Okay."');
@@ -311,7 +311,7 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
       scene.text(`He pushes your legs up and apart before he guides his cock against your asshole. The pressure builds until he suddenly shoves his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock up your ass, the sudden sharp pain causing you to cry out.`);
       scene.text('You\'re able to relax as he slowly starts fucking your ass.');
     }
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
     }
@@ -375,7 +375,7 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
       scene.text(`He grabs your hands and places them on your ass cheeks, encouraging you to pull them apart. He then pushes your legs up and apart before he guides his cock against your asshole. The pressure builds until he suddenly shoves his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock in your ass, the sudden sharp pain causing you to cry out.`);
       scene.text('You\'re able to relax a little as he slowly starts fucking your ass.');
     }
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
     }
@@ -426,8 +426,8 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOlusex1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['sex'] = 1;
-  ((s as any).npc_had_sex ?? {})['A55'] = 1;
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['sex'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A55'] = 1;
   qspCall(s, 'boyStat', 'A55');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/olu/sex/sex1.jpg');
@@ -464,8 +464,8 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.actions([
         { label: 'Okay', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['think_virgin'] = 0;
-    ((s as any).OluQW ?? {})['vaginal'] = (((s as any).OluQW ?? {})['vaginal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['think_virgin'] = 0;
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['vaginal'] = ((s as any).OluQW['vaginal'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/sex6.jpg');
     scene.text('You nod at him. "Okay."');
@@ -483,7 +483,7 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Anal', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
     }
@@ -538,7 +538,7 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Just fuck my ass', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
       qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
     }
@@ -599,7 +599,7 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOluanya(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['anya_count'] = (((s as any).OluQW ?? {})['anya_count'] ?? 0) + (1);
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anya_count'] = ((s as any).OluQW['anya_count'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/characters/pavlovsk/resident/olu/sex/anya/anyaolu1.jpg');
   scene.text('After several minutes, you hear a knock at the door and get up to answer it. You see Anya standing there, glancing past you into the room.');
@@ -668,8 +668,8 @@ function enterOluanya(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnyaolusvet(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['threesome'] = (((s as any).OluQW ?? {})['threesome'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})['A55'] = 1;
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['threesome'] = ((s as any).OluQW['threesome'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A55'] = 1;
   qspCall(s, 'npcStat', 'A55');
   qspCall(s, 'npcStat', 'A33', 'a');
   scene.img('images/characters/pavlovsk/resident/olu/sex/anya/anyaolusvet1.jpg');
@@ -692,7 +692,7 @@ function enterAnyaolusvet(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Your turn', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/olu/sex/anya/anyaolusvet4.jpg');
     scene.text('He easily lifts her off him and his dick slides out of her ass. He places her to his side and she kneels on the couch as he grabs you and pushes you towards the couch. You stumble against it and kneel on it before he rubs some lube onto your anus and works first one and then two fingers up your ass, stretching you out a little.');
     scene.text('He then pulls his fingers out and you feel the head of his monstrous cock pressing against your asshole. It soon pops into your ass and the familiar pain shoots through you as your asshole is stretched wide. Anya watches intently as he starts fucking your ass.');
@@ -761,7 +761,7 @@ function enterOlunush(s: GameState, scene: SceneBuilder): void {
     scene.text('She walks over to him and strips down to her underwear before turning and rubbing her ass against his crotch. "I want you to tear up my tight little white holes with your monster black dick again. I want you to fuck me even harder and rougher than last time. I want you to rip my tight little holes up."');
     scene.text('He grins. "Okay, I fuck you even harder this time."');
   }
-  ((s as any).OluQW ?? {})['nush_count'] = (((s as any).OluQW ?? {})['nush_count'] ?? 0) + (1);
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nush_count'] = ((s as any).OluQW['nush_count'] ?? 0) + (1);
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -870,8 +870,8 @@ function enterOlunush(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNusholusvet(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['threesome'] = (((s as any).OluQW ?? {})['threesome'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})['A55'] = 1;
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['threesome'] = ((s as any).OluQW['threesome'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A55'] = 1;
   qspCall(s, 'npcStat', 'A55');
   qspCall(s, 'npcStat', 'A144', 'a');
   scene.img('images/characters/pavlovsk/resident/olu/sex/anushka/nusholusvet1.jpg');
@@ -1028,7 +1028,7 @@ function enterNusholusvet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOlunat(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['nat_count'] = (((s as any).OluQW ?? {})['nat_count'] ?? 0) + (1);
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nat_count'] = ((s as any).OluQW['nat_count'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/pavlovsk/resident/olu/sex/natasha/natolu1.jpg');
   scene.text('After a few minutes, you hear a knock on the door and get up to answer it. You see Natasha standing there, looking down. "Well? Come in, he\'s waiting for you."');
@@ -1097,9 +1097,9 @@ function enterOlunat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNatolusvet(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['threesome'] = (((s as any).OluQW ?? {})['threesome'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})['A55'] = 1;
-  ((s as any).OluQW ?? {})['vaginal'] = (((s as any).OluQW ?? {})['vaginal'] ?? 0) + (1);
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['threesome'] = ((s as any).OluQW['threesome'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A55'] = 1;
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['vaginal'] = ((s as any).OluQW['vaginal'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'A55');
   qspCall(s, 'npcStat', 'A16', 'a');
   scene.img('images/characters/pavlovsk/resident/olu/sex/natasha/natolusvet1.jpg');
@@ -1121,7 +1121,7 @@ function enterNatolusvet(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'In the ass', handler: (st: GameState) => {
-    ((s as any).OluQW ?? {})['anal'] = (((s as any).OluQW ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['anal'] = ((s as any).OluQW['anal'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/olu/sex/natasha/natolusvet3.jpg');
     scene.text('After a few minutes, he lifts Natasha off him and sets her aside before effortlessly lifting you. Your pussy suddenly feels empty without his massive dick inside you as he sets you down on the couch and wrangles you onto all fours before he pulls Natasha over. You glance back and see him fucking her mouth.');
     scene.text('As she sucks him, he grabs the lube and pours some onto your asshole before rubbing it around and into your ass with his finger.');

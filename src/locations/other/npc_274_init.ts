@@ -11,31 +11,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
-  ((s as any).locat ?? {})['maya'] = '';
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = '';
   if (((s as any).ballet_first_visit ?? 0) === 1) {
     if (((s as any).hour ?? 0) === 6) {
-      ((s as any).maya ?? {})['home'] = 1;
-      ((s as any).locat ?? {})['maya'] = 'bedroom';
+      if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 1;
+      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'bedroom';
     } else {
       if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16) {
-        ((s as any).maya ?? {})['home'] = 0;
+        if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 0;
         if (((s as any).hour ?? 0) === 12) {
-          ((s as any).locat ?? {})['maya'] = 'living_room';
+          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'living_room';
         } else {
-          ((s as any).locat ?? {})['maya_room'] = 'shops';
+          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya_room'] = 'shops';
         }
       } else {
         if (((s as any).hour ?? 0)=== 17  &&  ((s as any).hour ?? 0) < 18) {
-          ((s as any).locat ?? {})['maya'] = 'kitchen';
+          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'kitchen';
         } else {
           if (((s as any).hour ?? 0) === 18  &&  ((s as any).hour ?? 0) < 22) {
             (s as any).temp_locat_maya_roll = Math.floor(Math.random() * 2) + 1;
             if (((s as any).temp_locat_maya_roll ?? 0) === 1) {
-              ((s as any).maya ?? {})['home'] = 1;
-              ((s as any).locat ?? {})['maya'] = 'living_room';
+              if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 1;
+              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'living_room';
             } else {
-              ((s as any).maya ?? {})['home'] = 0;
-              ((s as any).locat ?? {})['maya'] = 'dance_school';
+              if (!(s as any).maya) (s as any).maya = {}; (s as any).maya['home'] = 0;
+              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['maya'] = 'dance_school';
             }
           }
         }
@@ -72,7 +72,7 @@ function enterGrave(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['StageTitle'] = 'Pushkin Graveyard';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Pushkin Graveyard';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "npc_274_init" }) + 'ballet_events/graveyard.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
@@ -103,7 +103,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Hug <<$npc_firstname[\'A274\']>>', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A274', 'like');
-    ((s as any).npc_trust ?? {})['A274'] = (((s as any).npc_trust ?? {})['A274'] ?? 0) + (5);
+    if (!(s as any).npc_trust) (s as any).npc_trust = {}; (s as any).npc_trust['A274'] = ((s as any).npc_trust['A274'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You step in, pulling her close to you. You smell the soft, floral fragrance she ...

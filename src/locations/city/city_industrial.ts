@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/city/industrial';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/city/industrial';
   // TODO-QSP: end
   scene.build();
 }
@@ -80,7 +80,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['StageTitle'] = 'St Petersburg - Industrial Region';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'St Petersburg - Industrial Region';
   qspCall(s, 'city_industrial', 'setup', '');
   qspCall(s, 'random_events', '');
   qspCall(s, 'jobs_gigs', 'disp_evt', 3);
@@ -99,8 +99,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text(`Your <a href="exec:minut += 5 & gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked at the car service center.`);
         } else {
           scene.text('It looks like the repair shop moved your car outside before they closed.');
-          ((s as any).car ?? {})['loc'] = 'city_industrial';
-          ((s as any).car ?? {})['loc_arg'] = '';
+          if (!(s as any).car) (s as any).car = {}; (s as any).car['loc'] = 'city_industrial';
+          if (!(s as any).car) (s as any).car = {}; (s as any).car['loc_arg'] = '';
         }
       } else {
         if (qspFunc(s, 'car_funcs', 'is_here', 'autotraidF', 'start')) {
@@ -109,8 +109,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.text(`Your <a href="exec:minut += 5 & gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked at the car dealership.`);
           } else {
             scene.text('It looks like the car dealership moved your car outside before they closed.');
-            ((s as any).car ?? {})['loc'] = 'city_industrial';
-            ((s as any).car ?? {})['loc_arg'] = '';
+            if (!(s as any).car) (s as any).car = {}; (s as any).car['loc'] = 'city_industrial';
+            if (!(s as any).car) (s as any).car = {}; (s as any).car['loc_arg'] = '';
           }
         }
       }

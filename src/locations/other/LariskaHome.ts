@@ -51,7 +51,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Ah, ${((s as any).pcs_nickname ?? 0)}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
         // TODO-QSP: dynamic text: "<<$text_home>>"
         scene.text(`"${((s as any).text_home ?? 0)}"`);
-        ((s as any).LariskaQW ?? {})['metAnna'] = 1;
+        if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['metAnna'] = 1;
       } else {
         // TODO-QSP: dynamic text: Lariska's mother opens the door. "Hello, <<$pcs_nickname>>. Come inside, <<$text...
         scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname ?? 0)}. Come inside, ${((s as any).text_home ?? 0)}"`);
@@ -95,7 +95,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Ah, ${((s as any).pcs_nickname ?? 0)}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
         // TODO-QSP: dynamic text: "<<$text_home>>"
         scene.text(`"${((s as any).text_home ?? 0)}"`);
-        ((s as any).LariskaQW ?? {})['metAnna'] = 1;
+        if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['metAnna'] = 1;
       } else {
         // TODO-QSP: dynamic text: Lariska's mother opens the door. "Hello, <<$pcs_nickname>>. <<$text_home>>"
         scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname ?? 0)}. ${((s as any).text_home ?? 0)}"`);
@@ -622,7 +622,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Flirt with her', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A13');
     if (((s as any).LariskaQW ?? 0)?.['story'] === 8) {
-      ((s as any).LariskaQW ?? {})['story'] = 9;
+      if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 9;
     }
     (s as any).lariskaroomfun = ((s as any).daystart ?? 0);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -651,7 +651,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
         (s as any).lariskalove = ((s as any).lariskalove ?? 0) + (1);
         if (((s as any).LariskaQW ?? 0)?.['story'] === 9) {
-          ((s as any).LariskaQW ?? {})['story'] = 10;
+          if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 10;
         }
         qspCall(s, 'arousal', 'kiss', 5, 'foreplay', 'lesbian');
         qspCall(s, 'stat', '');
@@ -737,7 +737,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   if (((s as any).LariskaQW ?? 0)?.['story'] === 6) {
-    ((s as any).LariskaQW ?? {})['story'] = 7;
+    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 7;
   }
   qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 1, 'A13');
   (s as any).lern = ((s as any).lern ?? 0) + (1);

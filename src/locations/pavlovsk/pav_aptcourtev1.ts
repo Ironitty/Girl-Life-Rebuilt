@@ -194,7 +194,7 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
     scene.text('"Magic!" you see with a giggle. "Why don\'t you put it in your mouth and see how real it tastes." She looks up at you from where she kneels in front of you, stroking your dick, which quickly get hard. "Go on, you know you are curious what a magic cock tastes like."');
     scene.actions([
       { label: 'Get a blowjob', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['magic_dick'] = (((s as any).anushkaQW ?? {})['magic_dick'] ?? 0) + (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick'] = ((s as any).anushkaQW['magic_dick'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/complex/penis_envy/blowjob1.jpg');
     scene.text('She opens her mouth and takes your dick in her mouth. She starts sucking it at once, she quickly becomes very enthusiastic while she sucks your dick. You quickly start to moan, as you feel her hot wet mouth sucking your dick. Her lips tightly wrapped around the shaft of your cock, as she bobs her head back and forth. You have a strong urge to just grab her head and shove your dick balls deep in her mouth.');
     qspCall(s, 'arousal', 'magicd_bj', 1);
@@ -275,7 +275,7 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMagicCumMouth(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = (((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] ?? 0) + (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/cum_mouth.jpg');
   qspCall(s, 'arousal', 'magicd_bj', 1);
   scene.text('As you fill her mouth with your cum, she pulls her mouth off your dick, but keeps stroking it. A couple of more spurts of cum land on her cheek. She sticks out her tongue to show you the cum coating it. "Now swallow it like a good little slut." You have heard that so many times in porno\'s and from girls at school, that guys love to say that.');

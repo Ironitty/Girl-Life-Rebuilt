@@ -65,7 +65,7 @@ function enterSharedBathroom(s: GameState, scene: SceneBuilder): void {
 function enterRustyPipes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).hostel ?? {})['status'] = 2;
+  if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Rusty Pipes</b></center>');
   scene.img('images/locations/pavlovsk/hostel/comm_tru.jpg');
@@ -81,7 +81,7 @@ function enterShed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (((s as any).hostel ?? 0)?.['status'] === 3) {
-    ((s as any).hostel ?? {})['status'] = 4;
+    if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 4;
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hostel Shed</b></center>');

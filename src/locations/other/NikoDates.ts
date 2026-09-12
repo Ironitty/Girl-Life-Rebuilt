@@ -134,7 +134,7 @@ function enterDate1_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStrangerDanger(s: GameState, scene: SceneBuilder): void {
-  ((s as any).YurikEv ?? {})['Stranger'] = 1;
+  if (!(s as any).YurikEv) (s as any).YurikEv = {}; (s as any).YurikEv['Stranger'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
@@ -1067,7 +1067,7 @@ function enterYurikIntro(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'See what Niko does', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).YurikEv ?? {})['Name'] = 'Yurik';
+    if (!(s as any).YurikEv) (s as any).YurikEv = {}; (s as any).YurikEv['Name'] = 'Yurik';
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/avatars/yurik1.jpg');
     scene.text('"What the fu… Oh shit! <i>Yurik</i>? You said you were going to be out all day!"');

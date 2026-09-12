@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'start');
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
-    ((s as any).anushkaQW ?? {})['dolls'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dolls'] = 1;
   }
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -58,7 +58,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   scene.text('Inside the store, shelves and racks of alternative clothes are crammed into every available space - anybody setting out to find an inch of wall would have their work cut out for them.');
   scene.text('The checkout counter is near the entrance.');
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
-    ((s as any).anushkaQW ?? {})['discount'] = (-10);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['discount'] = (-10);
   }
   // TODO-QSP: end
   scene.actions([
@@ -264,7 +264,7 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     scene.actions([
       { label: 'Anushka sent me', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['dolls'] = 3;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dolls'] = 3;
     qspCall(s, 'npc_relationship', 'modify', 'A205', 5);
     scene.img('images/characters/shared/headshots_main/big205.jpg');
     scene.text('"Anushka, a friend of mine, sent me," you tell her with a smile.');

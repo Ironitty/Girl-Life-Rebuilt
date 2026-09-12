@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/front.jpg');
   scene.text('"Hello, welcome to the Aurora Female Talent Agency! How may I help you?"');
   if (((s as any).casting ?? 0) === 3  &&  ((s as any).hour ?? 0) <= 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0)) {
-    ((s as any).audition ?? {})['room'] = 3;
+    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = 3;
     scene.text('"Oh? Are you here for the SMTV commercial? Please go to interview room 3. They\'re waiting for you inside.');
   } else {
     if (((s as any).casting ?? 0) === 3  &&  ((((s as any).hour ?? 0) > 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0))  ||  ((s as any).SMTV_commercial ?? 0) < ((s as any).daystart ?? 0))) {
@@ -168,8 +168,8 @@ function enterWrongRoom2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSMTVIntro(s: GameState, scene: SceneBuilder): void {
-  ((s as any).actresslife ?? {})['Yanovich'] = 1;
-  ((s as any).actresslife ?? {})['SMTV_commercial'] = 1;
+  if (!(s as any).actresslife) (s as any).actresslife = {}; (s as any).actresslife['Yanovich'] = 1;
+  if (!(s as any).actresslife) (s as any).actresslife = {}; (s as any).actresslife['SMTV_commercial'] = 1;
   scene.img('images/locations/city/citycenter/aurora/auditions/room.jpg');
   scene.text('You enter the interview room, and someone is there waiting for you.');
   // TODO-QSP: dynamic text: "Ahh! Hello! You must be Miss <<$pcs_lastname>>. I'm Artur Yanovich. But you can...
@@ -290,7 +290,7 @@ function enterSMTVShy(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>Holy crap! Acting is some serious money!</i>');
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (20);
     (s as any).casting = 1;
-    ((s as any).audition ?? {})['room'] = 0;
+    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = 0;
     scene.actions([
       { label: 'Leave', goto: ['talent_agency', 'end'] },
     ]);
@@ -388,7 +388,7 @@ function enterSMTVConfident(s: GameState, scene: SceneBuilder): void {
     scene.text(`Looking over at the desk, you see a wad of cash. You rush over, and when you finish counting, you realize that it's ${qspFunc(s, 'money', 'string_profit', ((s as any).actpayfin ?? 0))}!`);
     scene.text('<i>Holy crap! Acting is some serious money!</i>');
     (s as any).casting = 1;
-    ((s as any).audition ?? {})['room'] = 0;
+    if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = 0;
     scene.actions([
       { label: 'Leave', goto: ['talent_agency', 'end'] },
     ]);

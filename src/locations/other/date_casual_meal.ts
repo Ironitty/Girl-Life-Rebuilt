@@ -27,31 +27,31 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['at_home'] = 0;
-  ((s as any).date_ev ?? {})['loc'] = 'date_casual_meal';
-  ((s as any).date_ev ?? {})['loc_img'] = 'restauraunt_int_img';
-  ((s as any).date_ev ?? {})['talk_img'] = 'restaurant_talking_img';
-  ((s as any).date_ev ?? {})['genre'] = 'meal';
-  ((s as any).date_ev ?? {})['public'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['at_home'] = 0;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['loc'] = 'date_casual_meal';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['loc_img'] = 'restauraunt_int_img';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['talk_img'] = 'restaurant_talking_img';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['genre'] = 'meal';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['public'] = 1;
   if (((s as any).region ?? 0) === 'pav') {
     qspCall(s, 'date_funcs', 'first_time', 'del_parco');
   } else {
     qspCall(s, 'date_funcs', 'first_time', 'city_diner');
   }
   if (((s as any).hour ?? 0) <= 14) {
-    ((s as any).date_ev ?? {})['type'] = 'lunch_date';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['type'] = 'lunch_date';
     // TODO-QSP: $date_ev[] = 'lunch_date'
   } else {
     if (((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) <= 20) {
-      ((s as any).date_ev ?? {})['type'] = 'dinner_date';
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['type'] = 'dinner_date';
       // TODO-QSP: $date_ev[] = 'dinner_date'
     } else {
-      ((s as any).date_ev ?? {})['type'] = 'dinner_date';
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['type'] = 'dinner_date';
       // TODO-QSP: $date_ev[] = 'dinner_date'
     }
   }
-  ((s as any).date_ev ?? {})['meal_cost'] = Math.floor(Math.random() * 251) + 250;
-  ((s as any).date_ev ?? {})['activity_count'] = (((s as any).date_ev ?? {})['activity_count'] ?? 0) + (1);
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['meal_cost'] = Math.floor(Math.random() * 251) + 250;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
   // TODO-QSP: end
   scene.build();
 }
@@ -123,7 +123,7 @@ function enterRestaurauntExtImg(s: GameState, scene: SceneBuilder): void {
       if (((s as any).date_ev ?? 0)?.['rest_int_bug'] === 0) {
         // TODO-QSP: msg 'Please let hornguy6 know that $region is neither "pav" nor "city".'
       }
-      ((s as any).date_ev ?? {})['rest_int_bug'] = 1;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['rest_int_bug'] = 1;
     }
   }
   // TODO-QSP: end
@@ -141,7 +141,7 @@ function enterRestaurauntIntImg(s: GameState, scene: SceneBuilder): void {
       if (((s as any).date_ev ?? 0)?.['rest_int_bug'] === 0) {
         // TODO-QSP: msg 'Please let hornguy6 know that $region is neither "pav" nor "city".'
       }
-      ((s as any).date_ev ?? {})['rest_int_bug'] = 1;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['rest_int_bug'] = 1;
     }
   }
   // TODO-QSP: end
@@ -204,7 +204,7 @@ function enterArriveSeparate(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if ((Math.floor(Math.random() * 3) + 1) + ((s as any).npc_risktaker ?? 0)?.[String((s as any).npcID ?? 0)] > 1) {
-      ((s as any).date_ev ?? {})['npc_late'] = 1;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_late'] = 1;
       // TODO-QSP: dynamic text: You walk over to where you said you'd meet but <<$npcdesc>> isn't here yet.
       scene.text(`You walk over to where you said you'd meet but ${((s as any).npcdesc ?? 0)} isn't here yet.`);
       if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
@@ -768,7 +768,7 @@ function enterArriveTogether(s: GameState, scene: SceneBuilder): void {
 
 function enterSitDown(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'menu_read');
-  ((s as any).date_ev ?? {})['flash_arg'] = 'awkward_flash';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['flash_arg'] = 'awkward_flash';
   qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
   if (((s as any).region ?? 0) === 'pav') {
     scene.text('It\'s a small town cafe in the park that many teenagers often come to.');
@@ -815,7 +815,7 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Get whatever you want," ${((s as any).npcdesc ?? 0)} says. "I'm paying."`);
     scene.actions([
       { label: 'Thank him', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
     scene.text('"Thanks!" You smile sweetly back at him.');
   }, goto: ['date_casual_meal', 'food_menu'] },
       { label: 'Insist you pay', handler: (st: GameState) => {
@@ -825,10 +825,10 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
       scene.text('"No, no, you don\'t need to do that," you say. "Let me pay for it."');
     }
     if (((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-      ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
       scene.text('"I insist," he grins, brooking no argument from you.');
     } else {
-      ((s as any).date_ev ?? {})['pc_pay_meal'] = 1;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['pc_pay_meal'] = 1;
       scene.text('"Okay," he smiles and agrees to let you pay.');
     }
   }, goto: ['date_casual_meal', 'food_menu'] },
@@ -842,7 +842,7 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
   }, goto: ['date_casual_meal', 'food_menu'] },
       { label: 'Suggest splitting the bill', handler: (st: GameState) => {
     qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
-    ((s as any).date_ev ?? {})['split_meal'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['split_meal'] = 1;
     scene.text('"We\'re splitting the bill, right?" you ask.');
     scene.text('"Yeah," he nods in agreement.');
   }, goto: ['date_casual_meal', 'food_menu'] },
@@ -854,12 +854,12 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcOrder(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_diet ?? 0)?.[String((s as any).npcID ?? 0)] === 'vegetarian') {
-    ((s as any).date_ev ?? {})['npc_order'] = Math.floor(Math.random() * 2) + 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_order'] = Math.floor(Math.random() * 2) + 1;
   } else {
     if (((s as any).npc_diet ?? 0)?.[String((s as any).npcID ?? 0)] === 'protein') {
-      ((s as any).date_ev ?? {})['npc_order'] = 3;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_order'] = 3;
     } else {
-      ((s as any).date_ev ?? {})['npc_order'] = Math.floor(Math.random() * 6) + 2;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_order'] = Math.floor(Math.random() * 6) + 2;
     }
   }
   if (((s as any).date_ev ?? 0)?.['npc_order'] === 1) {
@@ -945,20 +945,20 @@ function enterNpcOrder(s: GameState, scene: SceneBuilder): void {
 
 function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
-    ((s as any).date_ev ?? {})['male_waiter'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['male_waiter'] = 1;
     scene.text('After a couple more minutes, a waiter comes.');
-    ((s as any).date_ev ?? {})['waiter'] = 'waiter';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['waiter'] = 'waiter';
   } else {
-    ((s as any).date_ev ?? {})['female_waiter'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['female_waiter'] = 1;
     scene.text('After a couple more minutes, a waitress comes.');
-    ((s as any).date_ev ?? {})['waiter'] = 'waitress';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['waiter'] = 'waitress';
   }
   scene.text('"What would you like to order?"');
   // TODO-QSP: end
   scene.actions([
     { label: 'Vinaigrette salad', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['food_order'] = 'salad';
-    ((s as any).date_ev ?? {})['food_size'] = 'small';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_order'] = 'salad';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_size'] = 'small';
     scene.text('"I\'ll have the salad, please."');
     qspCall(s, 'date_casual_meal', 'npc_order');
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev['waiter']>> heads off to kitchen to put ...
@@ -968,8 +968,8 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'A sandwich', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['food_order'] = 'sandwich';
-    ((s as any).date_ev ?? {})['food_size'] = 'medium';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_order'] = 'sandwich';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_size'] = 'medium';
     scene.text('"I\'ll have a sandwich, please."');
     qspCall(s, 'date_casual_meal', 'npc_order');
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev['waiter']>> heads off to kitchen to put ...
@@ -979,8 +979,8 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'A burger', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['food_order'] = 'burger';
-    ((s as any).date_ev ?? {})['food_size'] = 'large';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_order'] = 'burger';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_size'] = 'large';
     scene.text('"I\'ll have a burger, please."');
     qspCall(s, 'date_casual_meal', 'npc_order');
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev['waiter']>> heads off to kitchen to put ...
@@ -990,8 +990,8 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Shchi soup', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['food_order'] = 'shchi';
-    ((s as any).date_ev ?? {})['food_size'] = 'medium';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_order'] = 'shchi';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_size'] = 'medium';
     scene.text('"I\'ll have the shchi, please."');
     qspCall(s, 'date_casual_meal', 'npc_order');
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev['waiter']>> heads off to kitchen to put ...
@@ -1001,8 +1001,8 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Borscht soup', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['food_order'] = 'borscht';
-    ((s as any).date_ev ?? {})['food_size'] = 'medium';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_order'] = 'borscht';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_size'] = 'medium';
     scene.text('"I\'ll have the Borscht, please."');
     qspCall(s, 'date_casual_meal', 'npc_order');
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev['waiter']>> heads off to kitchen to put ...
@@ -1012,8 +1012,8 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Pelmeni dumplings', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['food_order'] = 'pelmeni';
-    ((s as any).date_ev ?? {})['food_size'] = 'medium';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_order'] = 'pelmeni';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_size'] = 'medium';
     scene.text('"I\'ll have the pelmeni, please."');
     qspCall(s, 'date_casual_meal', 'npc_order');
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev['waiter']>> heads off to kitchen to put ...
@@ -1023,8 +1023,8 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Beef stroganoff', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['food_order'] = 'stroganoff';
-    ((s as any).date_ev ?? {})['food_size'] = 'large';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_order'] = 'stroganoff';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['food_size'] = 'large';
     scene.text('"I\'ll have the stroganoff, please."');
     qspCall(s, 'date_casual_meal', 'npc_order');
     // TODO-QSP: dynamic text: "Okay, coming right up." The <<$date_ev['waiter']>> heads off to kitchen to put ...
@@ -1038,7 +1038,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPreConverse(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['dialogue_setting'] = 'until your food arrives';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['dialogue_setting'] = 'until your food arrives';
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'casual_conversation');
   qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
   if ((((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_wander_eyes ?? 0)?.[String((s as any).npcID ?? 0)]) > 0  &&  ((s as any).date_ev ?? 0)?.['female_waiter'] === 1) {
@@ -1110,8 +1110,8 @@ function enterWaitressOgle2(s: GameState, scene: SceneBuilder): void {
 function enterAwkwardSilence(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'eating_menu');
-  ((s as any).date_ev ?? {})['flash_arg'] = 'awkward_flash';
-  ((s as any).date_ev ?? {})['talk_mood'] = 'awkward';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['flash_arg'] = 'awkward_flash';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['talk_mood'] = 'awkward';
   scene.actions([{ label: 'Continue', goto: ['date_talk', 'awkward_start'] }]);
   // TODO-QSP: end
   scene.build();
@@ -1122,7 +1122,7 @@ function enterCasualConversation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You have a pleasant chat with <<$npcdesc>> waiting for your food.
   scene.text(`You have a pleasant chat with ${((s as any).npcdesc ?? 0)} waiting for your food.`);
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'eating_menu');
-  ((s as any).date_ev ?? {})['talk_mood'] = 'normal';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['talk_mood'] = 'normal';
   scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
   // TODO-QSP: end
   scene.build();
@@ -1131,7 +1131,7 @@ function enterCasualConversation(s: GameState, scene: SceneBuilder): void {
 function enterEatingMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your <<$date_ev['food_order']>> finally arrives, delivered by the wait staff and...
   scene.text(`Your ${((s as any).date_ev ?? 0)?.['food_order']} finally arrives, delivered by the wait staff and you both get to digging in.`);
-  ((s as any).date_ev ?? {})['dialogue_setting'] = 'between bites of food';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['dialogue_setting'] = 'between bites of food';
   // TODO-QSP: end
   scene.actions([
     { label: 'Pick at food', goto: ['date_casual_meal', 'eating_nibble'] },
@@ -1143,7 +1143,7 @@ function enterEatingMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatingNibble(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['eat_method'] = 'nibble';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['eat_method'] = 'nibble';
   qspCall(s, 'food', 'small_meal_stats');
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You take small bites just nibbling at your food, in some ways moving it around the dish more than actually eating.');
@@ -1153,7 +1153,7 @@ function enterEatingNibble(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatingFast(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['eat_method'] = 'fast';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['eat_method'] = 'fast';
   qspCall(s, 'food', 'medium_meal_stats');
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   // TODO-QSP: dynamic text: You eat quickly, going through your plate much faster than <<$npcdesc>> does.
@@ -1164,7 +1164,7 @@ function enterEatingFast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatingBestFirst(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['eat_method'] = 'best_first';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['eat_method'] = 'best_first';
   qspCall(s, 'food', 'medium_meal_stats');
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You dig into your food, eating the most delicious parts parts first.');
@@ -1174,7 +1174,7 @@ function enterEatingBestFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatingWorst(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['eat_method'] = 'best_last';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['eat_method'] = 'best_last';
   qspCall(s, 'food', 'medium_meal_stats');
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You dig into your food, doing your best to clean the parts you don\'t find as exciting before saving the best parts for last.');
@@ -1379,7 +1379,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
           { label: 'Suggest splitting the bill', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'pay', date_ev['meal_cost']
     qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
-    ((s as any).date_ev ?? {})['split_meal'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['split_meal'] = 1;
     scene.text('"We\'re splitting the bill, right?"');
     scene.text('"Yeah."');
     scene.text('The two of you split the bill, each paying half.');
@@ -1410,7 +1410,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).date_ev ?? 0)?.['meal_cost'] * 2, 'cash') === 0) {
         scene.text('"Uhh..." You look down awkwardly into your bag and see you don\'t have enough money.');
         if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-          ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+          if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
           // TODO-QSP: dynamic text: "Don't worry, I'll pay," <<$npcdesc>> says. And he does.
           scene.text(`"Don't worry, I'll pay," ${((s as any).npcdesc ?? 0)} says. And he does.`);
           scene.actions([
@@ -1418,14 +1418,14 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-            ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+            if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
             // TODO-QSP: dynamic text: <<$npcdesc>> pays for the meal, grumbling the whole time.
             scene.text(`${((s as any).npcdesc ?? 0)} pays for the meal, grumbling the whole time.`);
             scene.actions([
               { label: 'Leave the restaurant', goto: ['date_casual_meal', 'date_end'] },
             ]);
           } else {
-            ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+            if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
             // TODO-QSP: dynamic text: <<$npcdesc>> ends up paying for the date.
             scene.text(`${((s as any).npcdesc ?? 0)} ends up paying for the date.`);
             scene.text('Note: need to come up with more content here.');
@@ -1445,7 +1445,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).date_ev ?? 0)?.['meal_cost'] * 2, 'bank') === 0) {
         scene.text('That is, until your card gets swiped and declined.');
         if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-          ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+          if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
           // TODO-QSP: dynamic text: "Don't worry, I'll pay," <<$npcdesc>> says. And he does.
           scene.text(`"Don't worry, I'll pay," ${((s as any).npcdesc ?? 0)} says. And he does.`);
           scene.actions([
@@ -1453,14 +1453,14 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-            ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+            if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
             // TODO-QSP: dynamic text: <<$npcdesc>> pays for the meal, grumbling the whole time.
             scene.text(`${((s as any).npcdesc ?? 0)} pays for the meal, grumbling the whole time.`);
             scene.actions([
               { label: 'Leave the restaurant', goto: ['date_casual_meal', 'date_end'] },
             ]);
           } else {
-            ((s as any).date_ev ?? {})['npc_pay_meal'] = 1;
+            if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_pay_meal'] = 1;
             // TODO-QSP: dynamic text: <<$npcdesc>> ends up paying for the date.
             scene.text(`${((s as any).npcdesc ?? 0)} ends up paying for the date.`);
             scene.text('Note: need to come up with more content here.');
@@ -1548,14 +1548,14 @@ function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'date_funcs', 'date_tracker', 'city_diner');
   }
-  ((s as any).date_count_casual_meal ?? {})[String((s as any).npcID ?? 0)] = (((s as any).date_count_casual_meal ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  if (!(s as any).date_count_casual_meal) (s as any).date_count_casual_meal = {}; (s as any).date_count_casual_meal[String((s as any).npcID ?? 0)] = ((s as any).date_count_casual_meal[String((s as any).npcID ?? 0)] ?? 0) + (1);
   if (((s as any).date_ev ?? 0)?.['npc_pay_meal'] === 1) {
-    ((s as any).npc_date_pay_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_date_pay_count ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
-    ((s as any).npc_last_date_paid ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_date_pay_count) (s as any).npc_date_pay_count = {}; (s as any).npc_date_pay_count[String((s as any).npcID ?? 0)] = ((s as any).npc_date_pay_count[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_last_date_paid) (s as any).npc_last_date_paid = {}; (s as any).npc_last_date_paid[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   } else {
     if (((s as any).date_ev ?? 0)?.['pc_pay_meal'] === 1) {
-      ((s as any).pc_date_pay_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).pc_date_pay_count ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
-      ((s as any).pc_last_date_paid ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+      if (!(s as any).pc_date_pay_count) (s as any).pc_date_pay_count = {}; (s as any).pc_date_pay_count[String((s as any).npcID ?? 0)] = ((s as any).pc_date_pay_count[String((s as any).npcID ?? 0)] ?? 0) + (1);
+      if (!(s as any).pc_last_date_paid) (s as any).pc_last_date_paid = {}; (s as any).pc_last_date_paid[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     }
   }
   // TODO-QSP: end

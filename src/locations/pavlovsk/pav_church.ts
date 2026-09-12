@@ -468,11 +468,11 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
 function enterServiceEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/enterchurch.jpg');
   if (((s as any).fame ?? 0)?.['pav_prostitute'] > (Math.floor(Math.random() * 1000) + 1)) {
-    ((s as any).temp ?? {})['approach_type'] = 'prostitute';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['approach_type'] = 'prostitute';
     qspCall(s, 'pav_church', 'sex_approach1');
   } else {
     if (((s as any).fame ?? 0)?.['pav_slut'] > (Math.floor(Math.random() * 1000) + 1)) {
-      ((s as any).temp ?? {})['approach_type'] = 'slut';
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['approach_type'] = 'slut';
       qspCall(s, 'pav_church', 'sex_approach1');
     } else {
       scene.actions([{ label: 'Continue', goto: ['pav_church', 'start'] }]);
@@ -509,19 +509,19 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Answer (shy)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).temp ?? {})['prost_response'] = 'shy';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'shy';
     scene.text('"Yes, that\'s me," you mumble meekly.');
     qspCall(s, 'pav_church', 'sex_offer');
   } },
     { label: 'Answer (normal)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).temp ?? {})['prost_response'] = 'normal';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'normal';
     scene.text('"Yes, that\'s me," you answer naturally, meeting his eyes like any other conversation.');
     qspCall(s, 'pav_church', 'sex_offer');
   } },
     { label: 'Answer (slutty)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).temp ?? {})['prost_response'] = 'slutty';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'slutty';
     scene.text('"Sure am," you answer, stepping closer and returning his gaze with a lascivious smirk of your own.');
     qspCall(s, 'pav_church', 'sex_offer');
   } },
@@ -532,19 +532,19 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
 function enterSexOffer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
     if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'blowjob') {
-      ((s as any).temp ?? {})['offer_type'] = 'blowjob';
-      ((s as any).temp ?? {})['prost_money'] = 400;
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'blowjob';
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_money'] = 400;
       // TODO-QSP: dynamic text: "I'll give you ' + $func('money', 'string_profit', 400) + ' for a blowjob," he w...
       scene.text('"I\'ll give you \' + $func(\'money\', \'string_profit\', 400) + \' for a blowjob," he whispers.');
     } else {
       if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'miss'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'doggy'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'cowgirl') {
-        ((s as any).temp ?? {})['offer_type'] = 'fuck';
-        ((s as any).temp ?? {})['prost_money'] = 1000;
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'fuck';
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_money'] = 1000;
         // TODO-QSP: dynamic text: "I'll give you ' + $func('money', 'string_profit', 1000) + ' to fuck your pussy,...
         scene.text('"I\'ll give you \' + $func(\'money\', \'string_profit\', 1000) + \' to fuck your pussy," he whispers.');
       } else {
-        ((s as any).temp ?? {})['offer_type'] = 'handjob';
-        ((s as any).temp ?? {})['prost_money'] = 200;
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'handjob';
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_money'] = 200;
         // TODO-QSP: dynamic text: "I'll give you ' + $func('money', 'string_profit', 200) + ' for a handjob," he w...
         scene.text('"I\'ll give you \' + $func(\'money\', \'string_profit\', 200) + \' for a handjob," he whispers.');
       }
@@ -552,14 +552,14 @@ function enterSexOffer(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp ?? 0)?.['approach_type'] === 'slut') {
       if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'blowjob') {
-        ((s as any).temp ?? {})['offer_type'] = 'blowjob';
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'blowjob';
         scene.text('"How about you and I find somewhere private so you can suck my cock?" he whispers.');
       } else {
         if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'miss'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'doggy'  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).boy ?? 0)] === 'cowgirl') {
-          ((s as any).temp ?? {})['offer_type'] = 'fuck';
+          if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'fuck';
           scene.text('"How about you and I find somewhere private so I can fuck you silly?" he whispers.');
         } else {
-          ((s as any).temp ?? {})['offer_type'] = 'handjob';
+          if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['offer_type'] = 'handjob';
           scene.text('"How about you and I find somewhere private so you can jerk me off?" he whispers.');
         }
       }
@@ -654,7 +654,7 @@ function enterRestroomBlowjob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['orgasm'] = ((s as any).orgasm ?? 0);
   scene.img('images/locations/pavlovsk/church/supplycloset.jpg');
   if (((s as any).npc_condom_conscious ?? 0)?.[String((s as any).boy ?? 0)] > 0) {
     // TODO-QSP: 'Inside the restroom, the man pulls down his pants and wraps his cock in a condom as you ' + iif(PCl...
@@ -723,7 +723,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFuckBareback(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['condom_use'] = 0;
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['condom_use'] = 0;
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
   qspCall(s, 'pav_church', 'restroom_fuck_thoughts');
@@ -732,7 +732,7 @@ function enterRestroomFuckBareback(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomFuckCondom(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['condom_use'] = 1;
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['condom_use'] = 1;
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
   qspCall(s, 'pav_church', 'restroom_fuck_thoughts');
@@ -1278,7 +1278,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                ((s as any).drugVars ?? {})['cocaine_system'] = 3 * ((s as any).drugVars ?? {})?.['cocaine_system'] / 4;
+                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * ((s as any).drugVars ?? {})?.['cocaine_system'] / 4;
               }
               scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but you find it comforting. You get the urge to pray very intensely and before you know it, an hour has passed and you feel cleansed.');
             } else {
@@ -1296,7 +1296,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
                 (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
                 (s as any).minut = ((s as any).minut ?? 0) + 60;
                 if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                  ((s as any).drugVars ?? {})['cocaine_system'] = 3 * ((s as any).drugVars ?? {})?.['cocaine_system'] / 4;
+                  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * ((s as any).drugVars ?? {})?.['cocaine_system'] / 4;
                 }
                 scene.text('The Nave is lit only with candles and small presence lights and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely and before you know it, more than an hour has passed and you feel reborn and cleansed.');
               }

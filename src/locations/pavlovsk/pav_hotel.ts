@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'temp'
   }
   if (((s as any).daystart ?? 0) === ((s as any).hotelRoomDays ?? 0)?.['pav']  &&  ((s as any).hour ?? 0) > 11) {
-    ((s as any).HotelRoom ?? {})['pav'] = 0;
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = 0;
   }
   if (((s as any).daystart ?? 0) > ((s as any).hotelRoomDays ?? 0)?.['pav']) {
-    ((s as any).HotelRoom ?? {})['pav'] = 0;
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = 0;
   }
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[0] ?? 0) !== 'skip_resepevent') {
@@ -45,7 +45,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'schedule', 'A186');
   if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 2  &&  ((s as any).locat ?? 0)?.['A186'] === 2  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).therapistQW ?? 0)?.['hotel_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).therapistQW ?? 0)?.['escaped'] === 0) {
-    ((s as any).therapistQW ?? {})['hotel_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -130,7 +130,7 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   scene.text('Stepping closer to the poster, you see the hotel is looking to recruit cleaning staff.');
   scene.text('"<b>Maid Wanted!</b> The Pavlovsk Hotel is looking for a hardworking maid. No experience necessary. Flexible hours. Apply in person at the hotel reception."');
   scene.text('<i>It doesn\'t look like a glamorous job, but at least it\'s honest work.</i>');
-  ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
+  if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 1;
   return;
   // TODO-QSP: end
   scene.actions([

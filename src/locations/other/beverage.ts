@@ -147,7 +147,7 @@ function enterTeaStats(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
-  ((s as any).teeth ?? {})['caffe_or_tea'] = (((s as any).teeth ?? {})['caffe_or_tea'] ?? 0) + (2);
+  if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['caffe_or_tea'] = ((s as any).teeth['caffe_or_tea'] ?? 0) + (2);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();
@@ -245,7 +245,7 @@ function enterCoffeeStats(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
-  ((s as any).teeth ?? {})['caffe_or_tea'] = (((s as any).teeth ?? {})['caffe_or_tea'] ?? 0) + (5);
+  if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['caffe_or_tea'] = ((s as any).teeth['caffe_or_tea'] ?? 0) + (5);
   qspCall(s, 'drugs', 'caffeine', 4, 1);
   // TODO-QSP: end
   scene.build();

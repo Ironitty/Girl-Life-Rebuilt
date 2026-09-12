@@ -30,10 +30,10 @@ function enterWithBoyStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['at_home'] = 1;
-  ((s as any).date_ev ?? {})['type'] = 'home_date';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['at_home'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['type'] = 'home_date';
   // TODO-QSP: $date_ev[''] = 'home_date'
-  ((s as any).date_ev ?? {})['activity_count'] = (((s as any).date_ev ?? {})['activity_count'] ?? 0) + (1);
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
   qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
   // TODO-QSP: end
   scene.build();
@@ -168,7 +168,7 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDrinkMenuEnd(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['grab_drinks'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['grab_drinks'] = 1;
   if (((s as any).date_ev ?? 0)?.['his_drink'] === 0) {
     scene.actions([
       { label: 'Ask if he wants something', handler: (st: GameState) => {
@@ -226,7 +226,7 @@ function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterSnackMenuEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  ((s as any).date_ev ?? {})['grab_snacks'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['grab_snacks'] = 1;
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['date_chill', 'get_ready2'] }]);
   // TODO-QSP: end
@@ -351,7 +351,7 @@ function enterIntermission1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Wait until later', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['bj_later'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['bj_later'] = 1;
     qspCall(s, 'date_funcs', 'date_rate', 'dislike');
     scene.text('"Can this wait until later?" you say distractedly, still watching what\'s on the screen.');
     scene.actions([
@@ -420,7 +420,7 @@ function enterChillHj1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Seriously jerk him', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['sex_pos'] = 'handjob';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['sex_pos'] = 'handjob';
     qspCall(s, 'arousal', 'hj', 10);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/handjob/kotovhj.jpg');
@@ -438,7 +438,7 @@ function enterChillHj1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['sex_pos'] = 'handjob';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['sex_pos'] = 'handjob';
   qspCall(s, 'arousal', 'hj', 10);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/handjob/television1.mp4');
@@ -460,7 +460,7 @@ function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChillBj1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['sex_pos'] = 'blowjob';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['sex_pos'] = 'blowjob';
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
   scene.img('images/bj45.mp4');
@@ -479,7 +479,7 @@ function enterChillBj1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChillBjWatch1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['sex_pos'] = 'blowjob';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['sex_pos'] = 'blowjob';
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/blowjob/television1.jpg');
@@ -727,7 +727,7 @@ function enterFinishWatch(s: GameState, scene: SceneBuilder): void {
 function enterGoToSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   scene.text('Oh forget it. You just need to have sex already.');
-  ((s as any).date_ev ?? {})['npc_home_sex'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_home_sex'] = 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sex_ev_start', 'initiate_pre', 'npcID', 'npc_home'] },
@@ -736,7 +736,7 @@ function enterGoToSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_count_chill ?? {})[String((s as any).npcID ?? 0)] = (((s as any).date_count_chill ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  if (!(s as any).date_count_chill) (s as any).date_count_chill = {}; (s as any).date_count_chill[String((s as any).npcID ?? 0)] = ((s as any).date_count_chill[String((s as any).npcID ?? 0)] ?? 0) + (1);
   // TODO-QSP: end
   scene.build();
 }

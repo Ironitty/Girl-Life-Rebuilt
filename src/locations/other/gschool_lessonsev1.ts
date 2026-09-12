@@ -176,7 +176,7 @@ function enterFiz8(s: GameState, scene: SceneBuilder): void {
       { label: 'Kick him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('He starts to back up, but you manage to kick him hard in the shin, causing him to hop around on one leg while holding his shin in pain, which causes the others to laugh harder at him.');
     scene.text('A few of the other girls give the guys dirty looks and walk over to give you moral support and use their bodies to shield you from the rest of the class so you can peel your panties out of your ass and put everything back in its proper place.');
@@ -200,7 +200,7 @@ function enterFiz8(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (20);
     scene.img('images/locations/pavlovsk/school/gym/beathisass.jpg');
     scene.text('Your first kick catches him on the shin, causing him to hop around on one leg. Not expecting any more, his attention wanders and he doesn\'t see you charging him. You bash into him, knocking him to the floor, and quickly climb on top of him before you start furiously punching him.');
@@ -216,7 +216,7 @@ function enterFiz8(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t retaliate', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.text('You give Dan a dirty look, but otherwise don\'t retaliate as some of the other girls come over to shield you from the rest of the class so you can peel your panties out of your ass and put everything back in its proper place.');
     scene.actions([
@@ -304,7 +304,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'mood', 'lower', 'small');
           qspCall(s, 'stat', '');
           if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 0  &&  (((s as any).cum_loc ?? 0)?.['vagina'] > 0  ||  ((s as any).cum_loc ?? 0)?.['anus'] > 0)) {
-            ((s as any).pcs_memory ?? {})['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
+            if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
             scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
             scene.text('Before you can answer the question Miss Orlov poses, you have to clean the blackboard, but accidentally drop the cloth. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
             if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
@@ -324,14 +324,14 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
               qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 5) + 8);
-              ((s as any).pcs_memory ?? {})['school_no_panty_anal_plug_flash'] = ((s as any).daystart ?? 0);
+              if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty_anal_plug_flash'] = ((s as any).daystart ?? 0);
               scene.img('images/locations/pavlovsk/school/events/nopanties_buttplug.jpg');
               scene.text('You\'ve been called up to answer the question written on the blackboard. While solving it, you accidentally drop the cloth used to clean the board and totally forget that not only are you are not wearing any panties, but also have a butt plug stuffed in your ass. When you bend over, you feel your skirt rise up, exposing your bare pussy and ass to your classmates.');
               scene.text('Hearing the flurry of murmurs and whispers, you can\'t help but squeeze and clench around the toy. The boys sound both surprised and intrigued by the sight while the girls whisper to one another that you\'re a slut. From where Miss Orlov sits, she can\'t see what everyone is fussing over, so she starts to move to get a better look, but you quickly snap back up, adjust your skirt and start wiping away at the board as if nothing happened.');
             } else {
               if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
                 qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 4) + 1);
-                ((s as any).pcs_memory ?? {})['school_no_panty_flash'] = ((s as any).daystart ?? 0);
+                if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty_flash'] = ((s as any).daystart ?? 0);
                 scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
                 scene.text('Before you can answer the question Miss Orlov poses you, you have to clean the blackboard, but accidentally drop the cloth and totally forget that you\'re not wearing panties. The whistling and shouting from the boys and murmurs of disapproval from most of the girls behind you tell you that everyone has a clear view of your bare ass, and both of your holes are on display for everyone to see. Miss Orlov swiftly steps behind you, blocking the view of your ass as best she can.');
                 scene.text('"This is why you should wear panties to school," she softly whispers. "I won\'t report you, but I suggest you wear some in the future."');
@@ -361,10 +361,10 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (3);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-5));
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('You straighten up. "Yes. Dan is grabbing my breasts."');
@@ -390,8 +390,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (10);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Miss Orlov and turn around, slapping Dan with all the force you can muster. Dan recoils, his hand going to his cheek as students start murmuring about what happened, some of them even laughing.');
@@ -484,10 +484,10 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (3);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-5));
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('You straighten up. "Yes. Dan is snapping my bra."');
@@ -513,8 +513,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (10);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Miss Orlov and turn around, slapping Dan with all the force you can muster. Dan recoils, his hand going to his cheek as students start murmuring about what happened, some of them even laughing.');
@@ -855,7 +855,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'mood', 'lower', 'small');
           qspCall(s, 'stat', '');
           if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 0  &&  (((s as any).cum_loc ?? 0)?.['vagina'] > 0  ||  ((s as any).cum_loc ?? 0)?.['anus'] > 0)) {
-            ((s as any).pcs_memory ?? {})['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
+            if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
             scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
             scene.text('Before you can answer the question Miss Orlov poses, you have to clean the blackboard, but accidentally drop the cloth. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
             if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
@@ -876,7 +876,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
               qspCall(s, 'arousal', 'flash', (-5));
               qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 5) + 4);
-              ((s as any).pcs_memory ?? {})['school_no_panty__anal_plug_flash'] = ((s as any).daystart ?? 0);
+              if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty__anal_plug_flash'] = ((s as any).daystart ?? 0);
               scene.img('images/locations/pavlovsk/school/events/nopanties_buttplug.jpg');
               scene.text('You\'ve been called up to answer the question written on the blackboard, but while solving it, you need to erase something. You accidentally drop the cloth and hesitate to pick it up as you think about the fact that not only are you not wearing any panties, your ass is also stuffed with a butt plug.');
               // TODO-QSP: dynamic text: "Is there a problem, Miss <<$pcs_lastname>>?" Miss Orlov asks curiously.
@@ -886,7 +886,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
               if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
                 qspCall(s, 'arousal', 'flash', (-5));
                 qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 4) + 1);
-                ((s as any).pcs_memory ?? {})['school_no_panty_flash'] = ((s as any).daystart ?? 0);
+                if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty_flash'] = ((s as any).daystart ?? 0);
                 scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
                 scene.text('Before you can answer the question Miss Orlov poses you, you have to clean the blackboard, but accidentally drop the cloth and totally forget that you\'re not wearing panties. The whistling and shouting from the boys and murmurs of disapproval from most of the girls behind you tell you that everyone has a clear view of your bare ass, and both of your holes are on display for everyone to see. Miss Orlov comes over to help you back up and block the view of your ass as best she can.');
                 scene.text('"This is why you should wear panties to school," she says softly once you\'re back on your feet. "I won\'t report you, but I suggest you wear some in the future."');
@@ -1266,10 +1266,10 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (3);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-5));
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('You straighten up. "Yes. Vasily is grabbing my breasts."');
@@ -1295,8 +1295,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (10);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Mr. Ivanov and turn around, slapping Vasily with all the force you can muster. Vasily recoils, his hand going to his cheek as students start murmuring about what happened, some of them even laughing.');
@@ -1387,10 +1387,10 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (3);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-5));
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('You straighten up. "Yes. Vasily is snapping my bra strap."');
@@ -1416,8 +1416,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (10);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Mr. Ivanov and turn around, slapping Vasily with all the force you can muster. Vasily recoils, his hand going to his cheek as students start murmuring about what happened, some of them even laughing.');
@@ -1786,7 +1786,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/upskirt.jpg');
     scene.text('You pull your skirt over your legs so he can\'t look at you anymore. "Be careful, Mr. Ivanov. If you keep staring at me like that, your eyeballs might pop out of their sockets!"');
@@ -1843,8 +1843,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     qspCall(s, 'npc_relationship', 'modify', 'A129', (-1));
     scene.img('images/locations/pavlovsk/school/classroom/fuckoff.jpg');
@@ -2032,7 +2032,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
       if (((s as any).scooltiperand ?? 0) === 2) {
         qspCall(s, 'mood', 'lower', 'small');
         if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 0  &&  (((s as any).cum_loc ?? 0)?.['vagina'] > 0  ||  ((s as any).cum_loc ?? 0)?.['anus'] > 0)) {
-          ((s as any).pcs_memory ?? {})['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
+          if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty_cum_flash'] = ((s as any).daystart ?? 0);
           scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
           scene.text('Before you can answer the question Mr. Yenotin poses, you have to clean the blackboard, but accidentally drop the cloth. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
           if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
@@ -2053,7 +2053,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
             qspCall(s, 'arousal', 'flash', (-5));
             qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 5) + 4);
-            ((s as any).pcs_memory ?? {})['school_no_panty__anal_plug_flash'] = ((s as any).daystart ?? 0);
+            if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty__anal_plug_flash'] = ((s as any).daystart ?? 0);
             scene.img('images/locations/pavlovsk/school/events/nopanties_buttplug.jpg');
             scene.text('You\'ve been called up to answer the question written on the blackboard, but while solving it, you need to erase something. You accidentally drop the cloth and hesitate to pick it up as you think about the fact that not only are you not wearing any panties, your ass is stuffed with a butt plug.');
             scene.text('"Well?" Mr. Yenotin prods impatiently.');
@@ -2063,7 +2063,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).analPlugIn ?? 0))) {
               qspCall(s, 'arousal', 'flash', (-5));
               qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 5) + 1);
-              ((s as any).pcs_memory ?? {})['school_no_panty_flash'] = ((s as any).daystart ?? 0);
+              if (!(s as any).pcs_memory) (s as any).pcs_memory = {}; (s as any).pcs_memory['school_no_panty_flash'] = ((s as any).daystart ?? 0);
               scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
               scene.text('Before you can answer the question Mr. Yenotin poses, you have to clean the blackboard, but accidentally drop the cloth with and totally forget that you\'re not wearing panties. The whistling and shouting from the boys and murmurs of disapproval from most of the girls behind you tell you that everyone has a clear view of your bare ass and both of your holes are on display for everyone to see. Everyone but Mr. Yenotin that is, who has no clue why the class is so riled up and desperately tries to calm them down.');
             } else {
@@ -2419,8 +2419,8 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A143', (-11));
     qspCall(s, 'npc_relationship', 'modify', 'A146', 1);
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('Not wanting to partake in the bullying, you decide to speak up. "Shut up, Alyona. At least he has an excuse. What\'s yours? Drunk again?"');
     scene.text('Alyona reacts as expected. She leaps from her desk and heads straight towards you. "What the fuck did you say to me, bitch?! You don\'t know anything about me! Say something like that to me again and I\'ll fuck you up!"');
@@ -2435,7 +2435,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
                                     { label: 'Join in', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A143', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A146', (-1));
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('"What\'s wrong, Marcus? Cat got your tongue?" you teasingly say.');
     scene.text('Marcus murmurs something in English.');
@@ -2457,7 +2457,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
   } },
                                     { label: 'Take over reading', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A146', 1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('You hate seeing Marcus being bullied, but you don\'t want to piss off Alyona or the other gopniks either, so you wait for Marcus to stop again and start reading instead. You know it isn\'t your turn, but you don\'t care. Mr. Yenotin smiles at you and doesn\'t seem to mind. Marcus lets out a sigh of relief and gives you a grateful smile, while Alyona just rolls her eyes at you for ruining her fun.');
     scene.actions([
@@ -2497,7 +2497,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/upskirt.jpg');
     scene.text('You pull your skirt over your legs so he can\'t look at you anymore. "Be careful, Mr. Yenotin. If you keep staring at me like that, your eyeballs might pop out of their sockets!"');
     scene.text('A loud laughter erupts in the classroom and Mr. Yenotin looks embarrassed. He opens his mouth as if he wants to say something in defense, but thinks the better of it and just lets you have your win. After a while, he manages to get the class back under control and continues to teach, carefully avoiding your legs.');
@@ -2552,8 +2552,8 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (10);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (5);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (10);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A130', (-5));
     scene.img('images/locations/pavlovsk/school/classroom/fuckoff.jpg');
     scene.text('What a pervert! You squeeze your legs together and loudly clear your throat. When Mr. Yenotin looks at you, he\'s staring right at your extended middle finger. Everyone in class notices and all eyes are on you now.');

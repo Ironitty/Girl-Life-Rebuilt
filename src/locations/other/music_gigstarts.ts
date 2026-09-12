@@ -94,9 +94,9 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ml_venues ?? {})['del_parco'] = 1;
-  ((s as any).ml_delparcoQW ?? {})['Stage'] = 2;
-  ((s as any).ml_delparcoQW ?? {})['Next Date'] = ((s as any).daystart ?? 0) + (12 - ((s as any).week ?? 0));
+  if (!(s as any).ml_venues) (s as any).ml_venues = {}; (s as any).ml_venues['del_parco'] = 1;
+  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 2;
+  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Next Date'] = ((s as any).daystart ?? 0) + (12 - ((s as any).week ?? 0));
   scene.img('images/pc/activities/music/zariyah.jpg');
   scene.text('You look at the woman a bit surprised, then you smile back "Of course! I mean… you mean like a proper stage performance?"');
   if ((!((s as any).rules ?? 0))) {
@@ -117,8 +117,8 @@ function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDelparcoDecline(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ml_venues ?? {})['del_parco'] = 1;
-  ((s as any).ml_delparcoQW ?? {})['Stage'] = 1;
+  if (!(s as any).ml_venues) (s as any).ml_venues = {}; (s as any).ml_venues['del_parco'] = 1;
+  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 1;
   scene.img('images/pc/activities/music/zariyah.jpg');
   scene.text('You look at the woman a bit surprised - "I\'m… that\'s really nice but… I\'m not sure… "');
   if ((!((s as any).rules ?? 0))) {

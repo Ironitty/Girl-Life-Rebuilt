@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', '');
-  ((s as any).uni_dorm ?? {})['floor'] = '';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = '';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -208,7 +208,7 @@ function enterElevator(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'laundry');
-  ((s as any).uni_dorm ?? {})['floor'] = 'first_floor';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = 'first_floor';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
@@ -268,7 +268,7 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
 
 function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'second_floor');
-  ((s as any).uni_dorm ?? {})['floor'] = 'second_floor';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = 'second_floor';
   qspCall(s, 'katja_meynold_schedule', '');
   qspCall(s, 'artem_chebotarev_schedule', '');
   qspCall(s, 'stat', '');
@@ -435,7 +435,7 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
 
 function enterSixthFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'sixth_floor');
-  ((s as any).uni_dorm ?? {})['floor'] = 'sixth_floor';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = 'sixth_floor';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
   scene.text('Before you is the usual dorm hallway with the dilapidated walls of the sixth floor. You can hear music and loud talking from drunk students escaping from some rooms.');
@@ -534,7 +534,7 @@ function enterSixthFloor(s: GameState, scene: SceneBuilder): void {
 
 function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'seventh_floor');
-  ((s as any).uni_dorm ?? {})['floor'] = 'seventh_floor';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = 'seventh_floor';
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
@@ -743,7 +743,7 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
 
 function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'eighth_floor');
-  ((s as any).uni_dorm ?? {})['floor'] = 'eighth_floor';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = 'eighth_floor';
   qspCall(s, 'fame', 'city', 'bbc', 'tiny');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
@@ -959,7 +959,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) - (5);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (5);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
@@ -977,7 +977,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Get down', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) + (1);
     scene.img('images/characters/city/university/girl/kendra/kiss_boot.jpg');
     scene.text('You glance around and spot a few other students in the hallway watching, but obediently get down on your hands and knees in front of her and kiss her boot.');
     scene.text('You can hear some murmers from the others, as well as a few laughs.');
@@ -1016,7 +1016,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) - (5);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (5);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('You glance around and see a few other students in the hall and feel yourself already blushing at the idea of kissing her boots. You shake you head. "No, I can\'t…"');
@@ -1032,7 +1032,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Get down', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) + (1);
     scene.img('images/characters/city/university/girl/kendra/kiss_boot.jpg');
     scene.text('You glance around and spot a few other students in the hallway watching, but obediently get down on your hands and knees in front of her and kiss her boot.');
     scene.text('You can hear some murmers from the others, as well as a few laughs.');
@@ -1099,7 +1099,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) - (5);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (5);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
@@ -1117,7 +1117,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Get down', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) + (1);
     scene.img('images/characters/city/university/girl/kendra/kiss_boot.jpg');
     scene.text('You glance around and spot a few other students in the hallway watching, but obediently get down on your hands and knees in front of her and kiss her boot.');
     scene.text('You can hear some murmers from the others, as well as a few laughs.');
@@ -1156,7 +1156,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) - (5);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (5);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('You glance around and see a few other students in the hall and feel yourself already blushing at the idea of kissing her boots. You shake you head. "No, I can\'t…"');
@@ -1172,7 +1172,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Get down', handler: (st: GameState) => {
-    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) + (1);
     scene.img('images/characters/city/university/girl/kendra/kiss_boot.jpg');
     scene.text('You glance around and spot a few other students in the hallway watching, but obediently get down on your hands and knees in front of her and kiss her boot.');
     scene.text('You can hear some murmers from the others, as well as a few laughs.');
@@ -1230,7 +1230,7 @@ function enterEighthFloor(s: GameState, scene: SceneBuilder): void {
 
 function enterNinthFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'ninth_floor');
-  ((s as any).uni_dorm ?? {})['floor'] = 'ninth_floor';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = 'ninth_floor';
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Dormitory — Ninth Floor</b></center>');
@@ -1247,7 +1247,7 @@ function enterNinthFloor(s: GameState, scene: SceneBuilder): void {
 
 function enterTenthFloor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'tenth_floor');
-  ((s as any).uni_dorm ?? {})['floor'] = 'tenth_floor';
+  if (!(s as any).uni_dorm) (s as any).uni_dorm = {}; (s as any).uni_dorm['floor'] = 'tenth_floor';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
   if (qspFunc(s, 'uniutil', 'student', 'enrolled')) {

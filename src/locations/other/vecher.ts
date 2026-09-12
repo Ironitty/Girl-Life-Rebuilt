@@ -144,7 +144,7 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd5(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
   scene.img('images/locations/city/island/university/dorm/sex/party/itog5.jpg');
   scene.text('You wake up on the floor in the hallway, halfway to your room. Panting over your body is a pimply young man, dick inside you, trying to fuck your vagina carefully so you don\'t wake up. Noticing that you\'re awake, he quickly jumps to his feet and runs off, leaving you lying confused and naked on the dirty floor.');
   // TODO-QSP: end

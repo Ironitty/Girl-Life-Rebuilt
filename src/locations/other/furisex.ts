@@ -28,8 +28,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'dina', 'prezik');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
-        ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (1);
-        ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
         qspCall(s, 'dina', 'prezik');
       } else {
         scene.text('Your search through your pile of clothes becomes more and more frantic; you\'d swear you had a condom with you! When you turn to the trucker to tell him you can\'t find one, he wordlessly hands you one from his pocket before you can say anything.');

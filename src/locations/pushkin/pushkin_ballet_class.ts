@@ -12,10 +12,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_class', ((s as any).locArgs?.[0] ?? 0));
-  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pushkin/ballet_school/';
-  ((s as any).setloc ?? {})['StageTitle'] = 'Terpsichore Wing';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/pushkin/ballet_school/';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Terpsichore Wing';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/hall.jpg');
-  ((s as any).balletEv ?? {})['trigger'] = '';
+  if (!(s as any).balletEv) (s as any).balletEv = {}; (s as any).balletEv['trigger'] = '';
   (s as any).event_day_max = 0;
   qspCall(s, 'core_library', 'corridor');
   qspCall(s, 'core_library', 'stage_title');
@@ -56,7 +56,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'homes_properties', 'set_home', 'parents_home');
       scene.actions([
         { label: 'Return home', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['StarletsJoined'] = 0;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsJoined'] = 0;
   }, goto: ['pav_commcenter', ''] },
       ]);
     } else {
@@ -80,7 +80,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).month ?? 0) !== 7  ||  ((s as any).month ?? 0) === 7  &&  ((s as any).day ?? 0) === 9  &&  ((s as any).hour ?? 0) >= 8) {
-            ((s as any).ballet_grade_score ?? {})['class'] = (((s as any).ballet_grade_score ?? {})['class'] ?? 0) - (500);
+            if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['class'] = ((s as any).ballet_grade_score['class'] ?? 0) - (500);
             scene.text('You were late or did not attend the exam. You have failed the course.');
             scene.actions([
               { label: 'Return home', goto: ['pav_commcenter', ''] },
@@ -96,7 +96,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterPilates(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
-  ((s as any).setloc ?? {})['StageTitle'] = 'Pilates';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Pilates';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/pilates_2.jpg');
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_class', ((s as any).locArgs?.[0] ?? 0));
   (s as any).nclass = 1;
@@ -163,7 +163,7 @@ function enterPilates(s: GameState, scene: SceneBuilder): void {
 function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = (9 - ((s as any).hour ?? 0)) * 60;
   qspCall(s, 'themes', 'indoors');
-  ((s as any).setloc ?? {})['StageTitle'] = 'Dance Class';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Dance Class';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/ballet_class_002.jpg');
   qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_class', ((s as any).locArgs?.[0] ?? 0));
@@ -336,7 +336,7 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
 function enterShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_class', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat', '');
-  ((s as any).setloc ?? {})['StageTitle'] = 'School Showers';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'School Showers';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/shower_1.jpg');
   if (((s as any).nclass ?? 0) > 1) {
     qspCall(s, 'themes', 'indoors');
@@ -360,7 +360,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('You enter the school showers after your lesson. You and your classmates don\'t have much time to talk to each other, with you having little time until your next lesson.');
     qspCall(s, 'core_library', 'bathroom');
   } else {
-    ((s as any).setloc ?? {})['StageTitle'] = 'Residential Bathroom';
+    if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Residential Bathroom';
     scene.img('locations/pushkin/ballet_residence/residential_bathroom.jpg');
     qspCall(s, 'themes', 'indoors');
     qspCall(s, 'stat', '');
@@ -420,7 +420,7 @@ function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterMakeup(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = (11 - ((s as any).hour ?? 0)) * 60;
-  ((s as any).setloc ?? {})['StageTitle'] = 'Theatre Make Up';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Theatre Make Up';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/first_mua.jpg');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1);
@@ -483,7 +483,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
 
 function enterLunch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_class', ((s as any).locArgs?.[0] ?? 0));
-  ((s as any).setloc ?? {})['StageTitle'] = 'School Cafeteria';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'School Cafeteria';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/cafeteria.jpg');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
@@ -511,7 +511,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
   (s as any).nclass = 4;
   qspCall(s, 'pushkin_ballet_init', 'daily_assessment');
   qspCall(s, 'stat', '');
-  ((s as any).setloc ?? {})['StageTitle'] = 'Dance Practice';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Dance Practice';
   if (((s as any).mayaqw ?? 0)?.['grave'] === 4) {
     scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/mirror_ballet.jpg');
   } else {
@@ -610,7 +610,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish lesson', handler: (st: GameState) => {
-    ((s as any).setloc ?? {})['StageTitle'] = 'Reverance';
+    if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Reverance';
     scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/ballet_class_006.jpg');
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You perform a reverence to <<$npc_firstname['A274']>> in thanks for her help, sh...
@@ -628,7 +628,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
 
 function enterMusicTheory(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = (16 - ((s as any).hour ?? 0)) * 60 + 60;
-  ((s as any).setloc ?? {})['StageTitle'] = 'Music Theory';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Music Theory';
   scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'daily/ballet_class_004.jpg');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1);
@@ -708,7 +708,7 @@ function enterMusicTheory(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAssessment(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['StageTitle'] = 'Assessment Day';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Assessment Day';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'pushkin_ballet_init', 'daily_assessment');
   qspCall(s, 'exercise', 'tier4', 90, 'agil', 'stren', 'danc');
@@ -781,7 +781,7 @@ function enterAssessment(s: GameState, scene: SceneBuilder): void {
     scene.text('"Very well, let us begin." With that, she taps the table with something you can\'t see. Then, on the count of three, you start your performance. As the music starts, you perform the movements you have learned by rote over the last week. You feel you\'ve never performed so well in your life, and everything flows together in a way it never has before.');
     scene.text('At the end of the performance, you feel a sense of loss of something extraordinary. You realize the emotional high you\'ve been riding has come to a crashing end, and you barely retain your sense of poise and perform the great reverence to your examiners before you are given permission to leave.');
     qspCall(s, 'pushkin_ballet_init', 'daily_assessment', 'grade');
-    ((s as any).balletqw ?? {})['school'] = 1;
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['school'] = 1;
     scene.actions([
       { label: 'Finalé', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'start');

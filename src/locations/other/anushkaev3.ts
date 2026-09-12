@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGetpleasured(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  ((s as any).npc_had_sex ?? {})['A144'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/caughtmast/les3.jpg');
   scene.text('After a bit of heated kissing and fondling while exploring each other\'s naked bodies, you lie back on the bed and spread your legs. You place your hand on top of her head and gently guide her face toward your pussy. She really doesn\'t need any encouragement and dives straight in. She gives your pussy one long lick from taint to clit and then starts flicking your clit with her tongue, switching to sucking and giving it a quick nibble now and then, before plunging her tongue deep between your wet pussy lips.');
@@ -106,9 +106,9 @@ function enterButtplug(s: GameState, scene: SceneBuilder): void {
 
 function enterButtplug1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  ((s as any).npc_had_sex ?? {})['A144'] = 1;
-  ((s as any).anushkaQW ?? {})['strapon'] = 1;
-  ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['strapon'] = 1;
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/buttplug1.jpg');
   scene.text('"Turn around and bend over." you demand and she does as you ask. You squirt some lube on her asshole and work it around until it\'s lubed up, then squirt some lube onto the butt plug and coat it nicely until it is nice and slick. You kneel next to her and spread her ass while you hold up the butt plug, checking to make sure it\'s lubed properly. When you notice her looking back over her shoulder at you, you tell her. "That\'s right I\'m going to shove this thing right up your ass and work it until you\'re nice and loose like the butt slut you are."');
   qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
@@ -160,7 +160,7 @@ function enterButtplug1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Get her strap-on out of the nightstand', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) + (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/getstrapon.jpg');
     scene.text('You slap her on the ass and place the butt plug on her nightstand. As she gets back up on her knees and faces you, you reach inside and pull out her strap-on before holding it up. Her eyes grow a little wide and she bites her lower lip. "Now I\'m going to fuck you with this," you tell her.');
@@ -184,7 +184,7 @@ function enterButtplug1(s: GameState, scene: SceneBuilder): void {
 
 function enterBedstrapongive(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  ((s as any).npc_had_sex ?? {})['A144'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/getstrapon.jpg');
   scene.text('You hold the dildo up and her eyes drift towards it with a hungry lust. "That\'s right slut, I\'m going to fuck you with this and make you my bitch!" you tell her in a teasing tone.');
@@ -241,7 +241,7 @@ function enterBedstrapongive(s: GameState, scene: SceneBuilder): void {
 function enterBedstraponget(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
   qspCall(s, 'boyStat', 'D3');
-  ((s as any).npc_had_sex ?? {})['A144'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapme7.jpg');
   scene.text('You take the harness off and hand it over to her. "Okay, my turn."');
   scene.text('She smiles at you. "I\'m going to fuck you like a whore."');
@@ -281,14 +281,14 @@ function enterBedstraponget(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Roll over', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) - (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapme9.jpg');
     scene.text('You roll over onto your hands and knees and wiggle your ass at her. You look back to see her squirting some lube onto the shaft of the dildo before she rubs some lube onto your asshole until it is nice and slick as well. "That\'s right slut, give me that ass!" she says as she scoots up behind you and you feel the tip of the dildo rubbing against your asshole, followed by pressure until it finally pops into your ass. You groan slightly in pain and she stops to let you get adjust to it before she slowly starts ass fucking you. The more you moan, the deeper and faster she starts to fuck you.');
     qspCall(s, 'arousal', 'anal_strap', 3, 'lesbian', 'lube');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get butt fucked', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) - (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) - (1);
     qspCall(s, 'boyStat', 'D3');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapme10.jpg');
     scene.text('"Listen to you moan like a whore! You love my cock in your ass, don\'t you whore?" she teases and slaps your ass.');
@@ -324,7 +324,7 @@ function enterBedstraponget(s: GameState, scene: SceneBuilder): void {
 function enterBedstrapongetanal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
   qspCall(s, 'boyStat', 'D3');
-  ((s as any).npc_had_sex ?? {})['A144'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapme9.jpg');
   scene.text('You take the harness off and hand it over to her. "Okay, my turn."');
   scene.text('She smiles at you. "I\'m going to fuck you like a whore."');
@@ -332,13 +332,13 @@ function enterBedstrapongetanal(s: GameState, scene: SceneBuilder): void {
   scene.text('Once she has the harness firmly in place, she pushes you down on your stomach. "Spread your ass cheeks," she commands and you do as she says.');
   scene.text('You look back to see her squirting some lube onto the shaft of the dildo before she rubs some lube onto your asshole as well. "That\'s right slut, give me that ass!" she says as she scoots up behind you and you feel the tip of the dildo rubbing against your asshole, followed by pressure until it finally pops into your ass.');
   scene.text('You groan slightly in pain and she stops to let you adjust to it before she slowly starts ass fucking you. The more you moan, the deeper and faster she starts to fuck you.');
-  ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) - (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) - (1);
   qspCall(s, 'arousal', 'anal_strap', 3, 'lesbian', 'lube');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Get butt fucked', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) - (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) - (1);
     qspCall(s, 'boyStat', 'D3');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapme10.jpg');
     scene.text('"Listen to you moan like a whore! You love my cock in your ass, don\'t you whore?" she teases and slaps your ass.');
@@ -369,7 +369,7 @@ function enterBedstrapongetanal(s: GameState, scene: SceneBuilder): void {
 
 function enterBedstrapongiveanal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  ((s as any).npc_had_sex ?? {})['A144'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush8.jpg');
   scene.text('You smack her on the ass. "Turn around and get on your hands and knees bitch! I\'m going to fuck that ass like the dirty anal whore you are!" you demand.');
   scene.text('She turns around and gets down on her hands and knees, wiggling her ass at you as she giggles. Grabbing some lube, you make sure the dildo is well lubricated before you scoot up behind her and slide it into her ass. It slides in fairly easily, causing her to moan in ecstasy as you do.');
@@ -379,7 +379,7 @@ function enterBedstrapongiveanal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Rip her ass up', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) + (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
     qspCall(s, 'boyStat', 'D3');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush6.jpg');
     // TODO-QSP: dynamic text: You grab onto her hips with both hands and slam the <<dick>>cm <<$dick_girth>> d...
@@ -416,13 +416,13 @@ function enterBedstrapongiveanal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBedroomLesbian(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['sveta_love'] = (((s as any).anushkaQW ?? {})['sveta_love'] ?? 0) + (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sveta_love'] = ((s as any).anushkaQW['sveta_love'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'npcStat', 'A144');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/disco_bedroom1.jpg');
   scene.text('You walk back to Anushka\'s apartment from the disco together, chatting the whole way about a variety of stuff. She gets a little hands on at times along the way, grabbing and pushing you against a wall to deeply kiss you while her hand rubs your crotch. You\'re interrupted by someone walking by and scoffing at your actions, which only makes you both giggle and hurry the rest of the way to her apartment. Once there, you quickly make it to her room and sit on her bed.');
-  ((s as any).npc_had_sex ?? {})['A144'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
   qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end

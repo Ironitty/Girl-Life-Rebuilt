@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.actions([{ label: 'Continue', goto: ['metro_events', 'frot'] }]);
   } else {
@@ -862,7 +862,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                           ]);
                         } else {
                           if (((s as any).metrorand ?? 0) === 14) {
-                            ((s as any).metrorand ?? {})['rand'] = Math.floor(Math.random() * 2) + 1;
+                            if (!(s as any).metrorand) (s as any).metrorand = {}; (s as any).metrorand['rand'] = Math.floor(Math.random() * 2) + 1;
                             scene.img('images/locations/city/shared/metro/station/sex/fuck\' + metrorand[\'rand\'] + \'.jpg');
                             scene.text('As you head through the metro station, you see a couple leaning against one of the walls, the woman struggling to keep her moans quiet as the man hammers her for all he is worth. Several people gather around to watch, many of them pulling out their phones to record the scene. A few men try to join in, but are quickly shooed away.');
                             qspCall(s, 'arousal', 'voyeur_sex', 3);

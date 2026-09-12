@@ -61,14 +61,14 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: stat[$ARGS[8]] = daystart
       // TODO-QSP: stat[$ARGS[8] + '_' + $su_ld_variant] = daystart
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
-        ((s as any).stat ?? {})['last_sex_day_man'] = ((s as any).daystart ?? 0);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_man'] = ((s as any).daystart ?? 0);
         // TODO-QSP: stat['last_sex_day_man_' + $su_ld_variant] = daystart
       } else {
         if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 1) {
-          ((s as any).stat ?? {})['last_sex_day_woman'] = ((s as any).daystart ?? 0);
+          if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_woman'] = ((s as any).daystart ?? 0);
           // TODO-QSP: stat['last_sex_day_woman_' + $su_ld_variant] = daystart
         } else {
-          ((s as any).stat ?? {})['last_sex_day_herm'] = ((s as any).daystart ?? 0);
+          if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_herm'] = ((s as any).daystart ?? 0);
           // TODO-QSP: stat['last_sex_day_herm_' + $su_ld_variant] = daystart
         }
       }
@@ -91,12 +91,12 @@ function enterSetStatFucked(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    ((s as any).stat ?? {})['men_fucked'] = (((s as any).stat ?? {})['men_fucked'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['men_fucked'] = ((s as any).stat['men_fucked'] ?? 0) + (1);
   } else {
     if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-      ((s as any).stat ?? {})['women_fucked'] = (((s as any).stat ?? {})['women_fucked'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['women_fucked'] = ((s as any).stat['women_fucked'] ?? 0) + (1);
     } else {
-      ((s as any).stat ?? {})['herm_fucked'] = (((s as any).stat ?? {})['herm_fucked'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_fucked'] = ((s as any).stat['herm_fucked'] ?? 0) + (1);
     }
   }
   return;
@@ -112,12 +112,12 @@ function enterSetStatHiddenFucked(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    ((s as any).stat ?? {})['men_hidden_fucked'] = (((s as any).stat ?? {})['men_hidden_fucked'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['men_hidden_fucked'] = ((s as any).stat['men_hidden_fucked'] ?? 0) + (1);
   } else {
     if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-      ((s as any).stat ?? {})['women_hidden_fucked'] = (((s as any).stat ?? {})['women_hidden_fucked'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['women_hidden_fucked'] = ((s as any).stat['women_hidden_fucked'] ?? 0) + (1);
     } else {
-      ((s as any).stat ?? {})['herm_hidden_fucked'] = (((s as any).stat ?? {})['herm_hidden_fucked'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_hidden_fucked'] = ((s as any).stat['herm_hidden_fucked'] ?? 0) + (1);
     }
   }
   return;
@@ -141,80 +141,80 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).stim ?? 0)?.['lesbian'] === 1) {
-    ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['hidden_lesbian'] === 1) {
-    ((s as any).stat ?? {})['lesbian_unaware_count'] = (((s as any).stat ?? {})['lesbian_unaware_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_unaware_count'] = ((s as any).stat['lesbian_unaware_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['gangbang'] === 1) {
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['group'] === 1) {
-    ((s as any).stat ?? {})['groupsex_count'] = (((s as any).stat ?? {})['groupsex_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['groupsex_count'] = ((s as any).stat['groupsex_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['orgy'] === 1) {
-    ((s as any).stat ?? {})['orgy_count'] = (((s as any).stat ?? {})['orgy_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['orgy_count'] = ((s as any).stat['orgy_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['hidden_gang'] === 1) {
-    ((s as any).stat ?? {})['gangbang_unaware_count'] = (((s as any).stat ?? {})['gangbang_unaware_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_unaware_count'] = ((s as any).stat['gangbang_unaware_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['hidden_group'] === 1) {
-    ((s as any).stat ?? {})['groupsex_unaware_count'] = (((s as any).stat ?? {})['groupsex_unaware_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['groupsex_unaware_count'] = ((s as any).stat['groupsex_unaware_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['hidden_orgy'] === 1) {
-    ((s as any).stat ?? {})['orgy_unaware_count'] = (((s as any).stat ?? {})['orgy_unaware_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['orgy_unaware_count'] = ((s as any).stat['orgy_unaware_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['gloryhole'] === 1) {
-    ((s as any).stat ?? {})['gloryhole'] = (((s as any).stat ?? {})['gloryhole'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['hidden_gloryhole'] === 1) {
-    ((s as any).stat ?? {})['hidden_gloryhole'] = (((s as any).stat ?? {})['hidden_gloryhole'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hidden_gloryhole'] = ((s as any).stat['hidden_gloryhole'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['rape'] === 1) {
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
-    ((s as any).stat ?? {})['last_sex_day_rape'] = ((s as any).daystart ?? 0);
-    ((s as any).stat ?? {})['last_sex_day_rape_known'] = ((s as any).daystart ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_rape'] = ((s as any).daystart ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_rape_known'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).stim ?? 0)?.['hidden_rape'] === 1) {
-    ((s as any).stat ?? {})['rape_unaware_count'] = (((s as any).stat ?? {})['rape_unaware_count'] ?? 0) + (1);
-    ((s as any).stat ?? {})['last_sex_day_rape'] = ((s as any).daystart ?? 0);
-    ((s as any).stat ?? {})['last_sex_day_rape_hidden'] = ((s as any).daystart ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_unaware_count'] = ((s as any).stat['rape_unaware_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_rape'] = ((s as any).daystart ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_rape_hidden'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).stim ?? 0)?.['public'] === 1) {
     if (((s as any).count ?? 0)?.['hj'] === 1) {
-      ((s as any).stat ?? {})['public_hj'] = (((s as any).stat ?? {})['public_hj'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['public_hj'] = ((s as any).stat['public_hj'] ?? 0) + (1);
     }
     if (((s as any).count ?? 0)?.['bj'] === 1) {
-      ((s as any).stat ?? {})['public_bj'] = (((s as any).stat ?? {})['public_bj'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['public_bj'] = ((s as any).stat['public_bj'] ?? 0) + (1);
     }
     if (((s as any).count ?? 0)?.['titjob'] === 1) {
-      ((s as any).stat ?? {})['public_titjob'] = (((s as any).stat ?? {})['public_titjob'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['public_titjob'] = ((s as any).stat['public_titjob'] ?? 0) + (1);
     }
     if (((s as any).count ?? 0)?.['vaginal_finger'] === 1) {
-      ((s as any).stat ?? {})['public_fingering'] = (((s as any).stat ?? {})['public_fingering'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['public_fingering'] = ((s as any).stat['public_fingering'] ?? 0) + (1);
     }
     if (((s as any).count ?? 0)?.['vaginal'] === 1  ||  ((s as any).count ?? 0)?.['vaginal_strap'] === 1) {
-      ((s as any).stat ?? {})['public_sex'] = (((s as any).stat ?? {})['public_sex'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['public_sex'] = ((s as any).stat['public_sex'] ?? 0) + (1);
     }
     if (((s as any).count ?? 0)?.['anal'] === 1  ||  ((s as any).count ?? 0)?.['anal_strap'] === 1) {
-      ((s as any).stat ?? {})['public_anal'] = (((s as any).stat ?? {})['public_anal'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['public_anal'] = ((s as any).stat['public_anal'] ?? 0) + (1);
     }
   }
   if (((s as any).stim ?? 0)?.['shemale'] === 1) {
-    ((s as any).stat ?? {})['shemale_count'] = (((s as any).stat ?? {})['shemale_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['shemale_count'] = ((s as any).stat['shemale_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['hidden_shemale'] === 1) {
     (s as any).hidden_shemale = ((s as any).hidden_shemale ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['prostitution'] === 1) {
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     // TODO-QSP: npc_prostitution_count[$ARGS[1]] += 1
   }
   if (((s as any).stim ?? 0)?.['hidden_prostitution'] === 1) {
-    ((s as any).stat ?? {})['hidden_prostitution_count'] = (((s as any).stat ?? {})['hidden_prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hidden_prostitution_count'] = ((s as any).stat['hidden_prostitution_count'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['masturbate'] === 1) {
-    ((s as any).stat ?? {})['mast'] = (((s as any).stat ?? {})['mast'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['mast'] = ((s as any).stat['mast'] ?? 0) + (1);
   }
   if (((s as any).stim ?? 0)?.['rape'] === 0) {
     (s as any).temp_chastity_break = ((s as any).daystart ?? 0) - ((s as any).stat ?? 0)?.['last_sex_day'] >= ((s as any).arch_const ?? 0)?.['sex_chastity_days'];
@@ -275,28 +275,28 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :arousal_sexual_loop
     if (((s as any).npc_sexual ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
-        ((s as any).stat ?? {})['male_sexual_partners'] = (((s as any).stat ?? {})['male_sexual_partners'] ?? 0) + (1);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['male_sexual_partners'] = ((s as any).stat['male_sexual_partners'] ?? 0) + (1);
       } else {
         if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 1) {
-          ((s as any).stat ?? {})['female_sexual_partners'] = (((s as any).stat ?? {})['female_sexual_partners'] ?? 0) + (1);
+          if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['female_sexual_partners'] = ((s as any).stat['female_sexual_partners'] ?? 0) + (1);
         } else {
-          ((s as any).stat ?? {})['herm_sexual_partners'] = (((s as any).stat ?? {})['herm_sexual_partners'] ?? 0) + (1);
+          if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_sexual_partners'] = ((s as any).stat['herm_sexual_partners'] ?? 0) + (1);
         }
       }
     }
     if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
-      ((s as any).stat ?? {})['male_sexual_times'] = (((s as any).stat ?? {})['male_sexual_times'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['male_sexual_times'] = ((s as any).stat['male_sexual_times'] ?? 0) + (1);
     } else {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 1) {
-        ((s as any).stat ?? {})['female_sexual_times'] = (((s as any).stat ?? {})['female_sexual_times'] ?? 0) + (1);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['female_sexual_times'] = ((s as any).stat['female_sexual_times'] ?? 0) + (1);
       } else {
-        ((s as any).stat ?? {})['herm_sexual_times'] = (((s as any).stat ?? {})['herm_sexual_times'] ?? 0) + (1);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_sexual_times'] = ((s as any).stat['herm_sexual_times'] ?? 0) + (1);
       }
     }
-    ((s as any).npc_sexual ?? {})[String((s as any).arousal_temp_npcID ?? 0)] = (((s as any).npc_sexual ?? {})[String((s as any).arousal_temp_npcID ?? 0)] ?? 0) + (1);
-    ((s as any).npc_last_sexual ?? {})[String((s as any).arousal_temp_npcID ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
-    ((s as any).stat ?? {})['last_sex_day_known'] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_sexual) (s as any).npc_sexual = {}; (s as any).npc_sexual[String((s as any).arousal_temp_npcID ?? 0)] = ((s as any).npc_sexual[String((s as any).arousal_temp_npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_last_sexual) (s as any).npc_last_sexual = {}; (s as any).npc_last_sexual[String((s as any).arousal_temp_npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_known'] = ((s as any).daystart ?? 0);
     (s as any).arousal_i = ((s as any).arousal_i ?? 0) + (1);
     if (((s as any).arousal_i ?? 0) < ((s as any).arousal_maxi ?? 0)) {
       // TODO-QSP: jump 'arousal_sexual_loop'
@@ -308,27 +308,27 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :arousal_hidden_sexual_loop
     if (((s as any).npc_hidden_sexual ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
-        ((s as any).stat ?? {})['male_hidden_sexual_partners'] = (((s as any).stat ?? {})['male_hidden_sexual_partners'] ?? 0) + (1);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['male_hidden_sexual_partners'] = ((s as any).stat['male_hidden_sexual_partners'] ?? 0) + (1);
       } else {
         if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 1) {
-          ((s as any).stat ?? {})['female_hidden_sexual_partners'] = (((s as any).stat ?? {})['female_hidden_sexual_partners'] ?? 0) + (1);
+          if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['female_hidden_sexual_partners'] = ((s as any).stat['female_hidden_sexual_partners'] ?? 0) + (1);
         } else {
-          ((s as any).stat ?? {})['herm_hidden_sexual_partners'] = (((s as any).stat ?? {})['herm_hidden_sexual_partners'] ?? 0) + (1);
+          if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_hidden_sexual_partners'] = ((s as any).stat['herm_hidden_sexual_partners'] ?? 0) + (1);
         }
       }
     }
     if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
-      ((s as any).stat ?? {})['male_hidden_sexual_times'] = (((s as any).stat ?? {})['male_hidden_sexual_times'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['male_hidden_sexual_times'] = ((s as any).stat['male_hidden_sexual_times'] ?? 0) + (1);
     } else {
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 1) {
-        ((s as any).stat ?? {})['female_hidden_sexual_times'] = (((s as any).stat ?? {})['female_hidden_sexual_times'] ?? 0) + (1);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['female_hidden_sexual_times'] = ((s as any).stat['female_hidden_sexual_times'] ?? 0) + (1);
       } else {
-        ((s as any).stat ?? {})['herm_hidden_sexual_times'] = (((s as any).stat ?? {})['herm_hidden_sexual_times'] ?? 0) + (1);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_hidden_sexual_times'] = ((s as any).stat['herm_hidden_sexual_times'] ?? 0) + (1);
       }
     }
-    ((s as any).npc_hidden_sexual ?? {})[String((s as any).arousal_temp_npcID ?? 0)] = (((s as any).npc_hidden_sexual ?? {})[String((s as any).arousal_temp_npcID ?? 0)] ?? 0) + (1);
-    ((s as any).stat ?? {})['last_sex_day'] = ((s as any).daystart ?? 0);
-    ((s as any).stat ?? {})['last_sex_day_hidden'] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_hidden_sexual) (s as any).npc_hidden_sexual = {}; (s as any).npc_hidden_sexual[String((s as any).arousal_temp_npcID ?? 0)] = ((s as any).npc_hidden_sexual[String((s as any).arousal_temp_npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_hidden'] = ((s as any).daystart ?? 0);
     (s as any).arousal_i = ((s as any).arousal_i ?? 0) + (1);
     if (((s as any).arousal_i ?? 0) < ((s as any).arousal_maxi ?? 0)) {
       // TODO-QSP: jump 'arousal_hidden_sexual_loop'
@@ -394,7 +394,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'checks', 'shemale');
   qspCall(s, 'arousal_funcs', 'checks', 'hidden_shemale');
   qspCall(s, 'arousal_funcs', 'checks', 'masturbate');
-  ((s as any).stim ?? {})['event'] = 0;
+  if (!(s as any).stim) (s as any).stim = {}; (s as any).stim['event'] = 0;
   qspCall(s, 'arousal_funcs', 'count', 'foreplay');
   qspCall(s, 'arousal_funcs', 'count', 'foreplay_give');
   qspCall(s, 'arousal_funcs', 'count', 'kiss');

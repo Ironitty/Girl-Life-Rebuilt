@@ -57,7 +57,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 100);
-      ((s as any).mc_inventory ?? {})['scrunchies'] = (((s as any).mc_inventory ?? {})['scrunchies'] ?? 0) + (10);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) + (10);
       qspCall(s, 'stat', '');
       scene.text('"Only scrunchies today please!" you tell the cashier.');
       // TODO-QSP: dynamic text: "That'll be ' + $func('money', 'string_price', 100) + '!" the receptionist repli...
@@ -73,7 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 120);
-      ((s as any).mc_inventory ?? {})['kirbygrips'] = (((s as any).mc_inventory ?? {})['kirbygrips'] ?? 0) + (10);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['kirbygrips'] = ((s as any).mc_inventory['kirbygrips'] ?? 0) + (10);
       qspCall(s, 'stat', '');
       scene.text('"Only hair pins today please!" you tell the cashier.');
       // TODO-QSP: dynamic text: "That'll be ' + $func('money', 'string_price', 120) + '!" the receptionist repli...

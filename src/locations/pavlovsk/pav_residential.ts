@@ -106,9 +106,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['albina_election_events', 'start'] }]);
   }
   if (((s as any).locat ?? 0)?.['A23'] === 37) {
-    ((s as any).locat ?? {})['A23_save1'] = 1;
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A23_save1'] = 1;
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['walk_of_shame'] !== ((s as any).daystart ?? 0)) {
-      ((s as any).AlbinaQW ?? {})['walk_of_shame'] = ((s as any).daystart ?? 0);
+      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['walk_of_shame'] = ((s as any).daystart ?? 0);
       // TODO-QSP: dynamic text: As you walk down the street, you spot a rather disheveled looking <a href="exec:...
       scene.text('As you walk down the street, you spot a rather disheveled looking <a href="exec:minut += 5 & gt \'albina_events\',\'walk_of_shame\'">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
     }
@@ -292,7 +292,7 @@ function enterSetSuccubusHuntAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMeetMishaStreetEvents(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npcdaycheck ?? {})[54] = ((s as any).daystart ?? 0);
+  if (!(s as any).npcdaycheck) (s as any).npcdaycheck = {}; (s as any).npcdaycheck[54] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 21) {

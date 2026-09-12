@@ -12,13 +12,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGetClass(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_bmi ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_bmi ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).strenbuf ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).strenbuf ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    ((s as any).ARGS ?? {})[3] = ((s as any).pregChem ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).pregChem ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) < 2184) {
     (s as any).result = 0;
@@ -458,13 +458,13 @@ function enterDefaultSetClassTransform(s: GameState, scene: SceneBuilder): void 
 
 function enterBodyImg(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_bmi ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_bmi ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).strenbuf ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).strenbuf ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    ((s as any).ARGS ?? {})[3] = ((s as any).pregChem ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).pregChem ?? 0);
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }), qspUntranslated(s, "ARGS[2]", { location: "body_structure" }), qspUntranslated(s, "ARGS[3]", { location: "body_structure" }));
   if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1) {
@@ -479,7 +479,7 @@ function enterBodyImg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ARGS ?? {})[1] = qspFunc(s, 'body_structure', 'Body_img_transform', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }));
+  if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = qspFunc(s, 'body_structure', 'Body_img_transform', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }));
   // TODO-QSP: $result += '/'
   if (((s as any).locArgs?.[1] ?? 0) >= 1000) {
     // TODO-QSP: $result += '0/'
@@ -521,7 +521,7 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '.jpg'
     return;
   }
-  ((s as any).ARGS ?? {})[2] = (((s as any).ARGS ?? 0)[1] % 100);
+  if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = (((s as any).ARGS ?? 0)[1] % 100);
   if ((!((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: $result += '0_low_'
   } else {
@@ -657,7 +657,7 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).ARGS ?? 0)[1] / 100;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).ARGS ?? 0)[1] / 100;
     // TODO-QSP: $temp_base_folder += '/' + $cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_folder']
   } else {
     // TODO-QSP: bs_imgnum = rand(0, cheatVars['fix_biset_<<cheatVars[''fix_bi_set'']>>_imgnums_<<$cbi_class>>']-1)
@@ -676,13 +676,13 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
 
 function enterBodyDesc(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_bmi ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_bmi ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).strenbuf ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).strenbuf ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    ((s as any).ARGS ?? {})[3] = ((s as any).pregChem ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).pregChem ?? 0);
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }), qspUntranslated(s, "ARGS[2]", { location: "body_structure" }), qspUntranslated(s, "ARGS[3]", { location: "body_structure" }));
   if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1) {
@@ -780,7 +780,7 @@ function enterCustomBodyDesc(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).ARGS ?? 0)[1] / 100;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).ARGS ?? 0)[1] / 100;
   }
   if (((s as any).temp_bs_body_desc ?? 0) === '') {
   }
@@ -790,7 +790,7 @@ function enterCustomBodyDesc(s: GameState, scene: SceneBuilder): void {
 
 function enterBmiDesc(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_bmi ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_bmi ?? 0);
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }), 30, 0);
   // TODO-QSP: end
@@ -827,10 +827,10 @@ function enterBmiDescFromClass(s: GameState, scene: SceneBuilder): void {
 
 function enterAppearanceBonus(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_bmi ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_bmi ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).strenbuf ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).strenbuf ?? 0);
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }), qspUntranslated(s, "ARGS[2]", { location: "body_structure" }), 0);
   (s as any).result = qspFunc(s, 'body_structure', 'appearance_bonus_from_class', ((s as any).bs_temp_bs_class ?? 0));
@@ -839,7 +839,7 @@ function enterAppearanceBonus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ARGS ?? {})[1] = ((s as any).ARGS ?? 0)[1] % 1000;
+  if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).ARGS ?? 0)[1] % 1000;
   if (((s as any).locArgs?.[1] ?? 0) < 100) {
     (s as any).result = (-10);
   } else {
@@ -873,7 +873,7 @@ function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
-  ((s as any).ARGS ?? {})[2] = (((s as any).ARGS ?? 0)[1] % 100);
+  if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = (((s as any).ARGS ?? 0)[1] % 100);
   if ((!((s as any).locArgs?.[2] ?? 0))) {
     (s as any).result = ((s as any).result ?? 0) - (30);
   } else {

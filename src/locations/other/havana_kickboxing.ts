@@ -31,12 +31,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.text('You can take part in an amateur fight.');
           scene.actions([
             { label: 'Amateur fight', handler: (st: GameState) => {
-    ((s as any).kickbox ?? {})['amateur_fight_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateur_fight_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    ((s as any).kickbox ?? {})['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - -2 + 1)) + (-2)) / 2);
-    ((s as any).temp_kickboxVars ?? {})['fight_type'] = 1;
+    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - -2 + 1)) + (-2)) / 2);
+    if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['fight_type'] = 1;
     // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
   }, goto: ['havana_kickboxing', 'match'] },
           ]);
@@ -101,7 +101,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    ((s as any).temp_kickboxVars ?? {})['fight_type'] = 0;
+    if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['fight_type'] = 0;
     qspCall(s, 'kickboxing_funcs', 'generate_opponent', 'spar');
   }, goto: ['havana_kickboxing', 'match'] },
     ]);
@@ -137,7 +137,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
       scene.img(`images/locations/city/citycenter/gym/kickboxing/ring${((s as any).temp_kickboxVars ?? 0)?.['round']}.jpg`);
     }
     qspCall(s, 'kickboxing_funcs', 'display_header');
-    ((s as any).temp_kickboxVars ?? {})['time'] = (((s as any).temp_kickboxVars ?? {})['time'] ?? 0) + (1);
+    if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['time'] = ((s as any).temp_kickboxVars['time'] ?? 0) + (1);
     qspCall(s, 'kickboxing_funcs', 'set_initiative');
     if (((s as any).temp_kickboxVars ?? 0)?.['active_init'] === 0) {
       scene.text('You can attack');
@@ -207,12 +207,12 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSta(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_kickboxVars ?? {})['set_init'] = 0;
+  if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['set_init'] = 0;
   if (((s as any).temp_kickboxVars ?? 0)?.['time'] === 6) {
-    ((s as any).temp_kickboxVars ?? {})['time'] = 0;
+    if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['time'] = 0;
     // TODO-QSP: dynamic text: The bell rings, indicating the end of round <<temp_kickboxVars['round']>>.
     scene.text(`The bell rings, indicating the end of round ${((s as any).temp_kickboxVars ?? 0)?.['round']}.`);
-    ((s as any).temp_kickboxVars ?? {})['round'] = (((s as any).temp_kickboxVars ?? {})['round'] ?? 0) + (1);
+    if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['round'] = ((s as any).temp_kickboxVars['round'] ?? 0) + (1);
     if (((s as any).temp_kickboxVars ?? 0)?.['round'] <= ((s as any).temp_kickboxVars ?? 0)?.['max_rounds']) {
       scene.actions([
         { label: 'Back to the corner', handler: (st: GameState) => {
@@ -268,7 +268,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) < 10) {
     (s as any).pcs_health = 10;
   }
-  ((s as any).temp_kickboxVars ?? {})['result'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['result'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).temp_kickboxVars ?? 0)?.['fight_type'] === 0) {
     if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'win') {
       scene.img('images/locations/city/citycenter/gym/kickboxing/kickboxing_rival.jpg');
@@ -331,8 +331,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      ((s as any).kickbox ?? {})['amateurWin'] = (((s as any).kickbox ?? {})['amateurWin'] ?? 0) + (1);
-      ((s as any).kickbox ?? {})['advancement'] = (((s as any).kickbox ?? {})['advancement'] ?? 0) + (1);
+      if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateurWin'] = ((s as any).kickbox['amateurWin'] ?? 0) + (1);
+      if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['advancement'] = ((s as any).kickbox['advancement'] ?? 0) + (1);
       // TODO-QSP: gs 'money', 'earn', 500 + kickbox['money']
       (s as any).rikudo = ((s as any).rikudo ?? 0) + (5);
       // TODO-QSP: dynamic text: You're awarded a cash prize of <<$func('money', 'string_profit', 500 + kickbox['...
@@ -364,9 +364,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
-        ((s as any).kickbox ?? {})['amateurWin'] = (((s as any).kickbox ?? {})['amateurWin'] ?? 0) + (1);
-        ((s as any).kickbox ?? {})['amateurWinKO'] = (((s as any).kickbox ?? {})['amateurWinKO'] ?? 0) + (1);
-        ((s as any).kickbox ?? {})['advancement'] = (((s as any).kickbox ?? {})['advancement'] ?? 0) + (1);
+        if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateurWin'] = ((s as any).kickbox['amateurWin'] ?? 0) + (1);
+        if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateurWinKO'] = ((s as any).kickbox['amateurWinKO'] ?? 0) + (1);
+        if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['advancement'] = ((s as any).kickbox['advancement'] ?? 0) + (1);
         // TODO-QSP: gs 'money', 'earn', 500 + kickbox['money']
         (s as any).rikudo = ((s as any).rikudo ?? 0) + (10);
         // TODO-QSP: dynamic text: You're awarded a cash prize of <<$func('money', 'string_profit', 500 + kickbox['...
@@ -376,22 +376,22 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'loss') {
           scene.img('images/locations/city/citycenter/gym/kickboxing/kickboxing_loss.jpg');
           scene.text('The referee raises your opponent\'s arm. You\'ve lost.');
-          ((s as any).kickbox ?? {})['amateurLoss'] = (((s as any).kickbox ?? {})['amateurLoss'] ?? 0) + (1);
+          if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateurLoss'] = ((s as any).kickbox['amateurLoss'] ?? 0) + (1);
           if (((s as any).kickbox ?? 0)?.['advancement'] > 0) {
-            ((s as any).kickbox ?? {})['advancement'] = (((s as any).kickbox ?? {})['advancement'] ?? 0) - (1);
+            if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['advancement'] = ((s as any).kickbox['advancement'] ?? 0) - (1);
           }
         } else {
           if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'lossKO') {
             scene.img('images/locations/city/citycenter/gym/kickboxing/kickboxing_loss_ko.jpg');
             scene.text('The room suddenly goes dark around you…');
-            ((s as any).kickbox ?? {})['amateurLoss'] = (((s as any).kickbox ?? {})['amateurLoss'] ?? 0) + (1);
-            ((s as any).kickbox ?? {})['amateurLossKO'] = (((s as any).kickbox ?? {})['amateurLossKO'] ?? 0) + (1);
+            if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateurLoss'] = ((s as any).kickbox['amateurLoss'] ?? 0) + (1);
+            if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateurLossKO'] = ((s as any).kickbox['amateurLossKO'] ?? 0) + (1);
             if (((s as any).kickbox ?? 0)?.['advancement'] > 0) {
-              ((s as any).kickbox ?? {})['advancement'] = (((s as any).kickbox ?? {})['advancement'] ?? 0) - (1);
+              if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['advancement'] = ((s as any).kickbox['advancement'] ?? 0) - (1);
             }
           } else {
             scene.text('The referee raises both of your arms. It\'s a draw!');
-            ((s as any).kickbox ?? {})['amateurDraw'] = (((s as any).kickbox ?? {})['amateurDraw'] ?? 0) + (1);
+            if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateurDraw'] = ((s as any).kickbox['amateurDraw'] ?? 0) + (1);
           }
         }
       }
@@ -410,29 +410,29 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'win') {
       scene.img('images/locations/city/citycenter/gym/kickboxing/kickboxing_win.jpg');
       scene.text('The referee raises your arm. Congratulations! You\'ve won!');
-      ((s as any).kickbox ?? {})['proWin'] = (((s as any).kickbox ?? {})['proWin'] ?? 0) + (1);
+      if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['proWin'] = ((s as any).kickbox['proWin'] ?? 0) + (1);
       (s as any).rikudo = ((s as any).rikudo ?? 0) + (5);
     } else {
       if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'winKO') {
         scene.img('images/locations/city/citycenter/gym/kickboxing/kickboxing_win_ko.jpg');
         scene.text('The referee raises your arm. Congratulations! You\'ve won by knockout!');
-        ((s as any).kickbox ?? {})['proWin'] = (((s as any).kickbox ?? {})['proWin'] ?? 0) + (1);
-        ((s as any).kickbox ?? {})['proWinKO'] = (((s as any).kickbox ?? {})['proWinKO'] ?? 0) + (1);
+        if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['proWin'] = ((s as any).kickbox['proWin'] ?? 0) + (1);
+        if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['proWinKO'] = ((s as any).kickbox['proWinKO'] ?? 0) + (1);
         (s as any).rikudo = ((s as any).rikudo ?? 0) + (10);
       } else {
         if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'loss') {
           scene.img('images/locations/city/citycenter/gym/kickboxing/kickboxing_loss.jpg');
           scene.text('The referee raises your opponent\'s arm. You\'ve lost.');
-          ((s as any).kickbox ?? {})['proLoss'] = (((s as any).kickbox ?? {})['proLoss'] ?? 0) + (1);
+          if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['proLoss'] = ((s as any).kickbox['proLoss'] ?? 0) + (1);
         } else {
           if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'lossKO') {
             scene.img('images/locations/city/citycenter/gym/kickboxing/kickboxing_loss_ko.jpg');
             scene.text('The room suddenly goes dark around you…');
-            ((s as any).kickbox ?? {})['proLoss'] = (((s as any).kickbox ?? {})['proLoss'] ?? 0) + (1);
-            ((s as any).kickbox ?? {})['proLossKO'] = (((s as any).kickbox ?? {})['proLossKO'] ?? 0) + (1);
+            if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['proLoss'] = ((s as any).kickbox['proLoss'] ?? 0) + (1);
+            if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['proLossKO'] = ((s as any).kickbox['proLossKO'] ?? 0) + (1);
           } else {
             scene.text('The referee raises both of your arms. It\'s a draw!');
-            ((s as any).kickbox ?? {})['proDraw'] = (((s as any).kickbox ?? {})['proDraw'] ?? 0) + (1);
+            if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['proDraw'] = ((s as any).kickbox['proDraw'] ?? 0) + (1);
           }
         }
       }

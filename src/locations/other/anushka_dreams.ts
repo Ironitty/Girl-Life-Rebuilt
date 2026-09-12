@@ -62,7 +62,7 @@ function enterDreams(s: GameState, scene: SceneBuilder): void {
 
 function enterDream1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  ((s as any).anushkaQW ?? {})['dreams'] = 1;
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dreams'] = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Dream</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/1_hike.jpg');
@@ -235,7 +235,7 @@ function enterDream1Three(s: GameState, scene: SceneBuilder): void {
 
 function enterDream2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  ((s as any).anushkaQW ?? {})['dreams'] = 2;
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dreams'] = 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Dream</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/darkness1.jpg');
@@ -479,7 +479,7 @@ function enterDream2Five(s: GameState, scene: SceneBuilder): void {
 
 function enterDream3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  ((s as any).anushkaQW ?? {})['dreams'] = 3;
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dreams'] = 3;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Dream</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy1.jpg');
@@ -935,7 +935,7 @@ function enterDream3Fuck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['magic_dick'] = (((s as any).anushkaQW ?? {})['magic_dick'] ?? 0) + (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick'] = ((s as any).anushkaQW['magic_dick'] ?? 0) + (1);
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy5.jpg');
   scene.text('She bites her lower lip as you tell her what to do, then slowly walks over to you. Standing so close her face is just in front of yours. You can feel the tip of your dick brush against her thigh, then she slowly lowers down to her knees in front of you. Once she is down all the way, your dick is right in front of her face, she opens her mouth and takes your cock into her mouth. She looks up at you, meeting your eyes as she starts to suck your dick.');
@@ -1097,7 +1097,7 @@ function enterDream3Fuck3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = (((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] ?? 0) + (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy14.jpg');
@@ -1126,7 +1126,7 @@ function enterDream3Fuck4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck5(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = (((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] ?? 0) + (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy15.jpg');
@@ -1154,7 +1154,7 @@ function enterDream3Fuck5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDream3Fuck6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] = (((s as any).anushkaQW ?? {})['magic_dick_cum_mouth'] ?? 0) + (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['magic_dick_cum_mouth'] = ((s as any).anushkaQW['magic_dick_cum_mouth'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy15.jpg');

@@ -32,7 +32,7 @@ function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'booty_call', 'bc_npc_stat_update', ((s as any).temp_bc_id ?? 0));
         if (((s as any).daystart ?? 0) > ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)]  &&  (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 300) + 0) < (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] + 20 * ((s as any).npc_sexdrive ?? 0)?.[String((s as any).temp_bc_id ?? 0)]))) {
           if (((s as any).daystart ?? 0) >= (((s as any).npc_sugar_daddy_timer ?? 0)?.[String((s as any).temp_bc_id ?? 0)] - (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] - 40) / 6)) {
-            ((s as any).sugar_daddy_call ?? {})[String((s as any).temp_bc_id ?? 0)] = 1;
+            if (!(s as any).sugar_daddy_call) (s as any).sugar_daddy_call = {}; (s as any).sugar_daddy_call[String((s as any).temp_bc_id ?? 0)] = 1;
             qspCall(s, 'booty_call', 'schedule_sms', ((s as any).temp_bc_id ?? 0));
           }
         }
@@ -118,19 +118,19 @@ function enterBcNpcStatUpdate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBootyCallDate(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['set_date'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['set_date'] = 1;
   if (((s as any).sex_ev ?? 0)?.['invite_today'] === 1  ||  ((s as any).hour ?? 0) < 5) {
-    ((s as any).npc_booty_call_date ?? {})[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_booty_call_date) (s as any).npc_booty_call_date = {}; (s as any).npc_booty_call_date[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0);
   } else {
     if (((s as any).sex_ev ?? 0)?.['invite_tomorrow'] === 1) {
-      ((s as any).npc_booty_call_date ?? {})[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0) + 1;
+      if (!(s as any).npc_booty_call_date) (s as any).npc_booty_call_date = {}; (s as any).npc_booty_call_date[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0) + 1;
     }
   }
   if (((s as any).npc_booty_call_time ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
-    ((s as any).npc_booty_call_time ?? {})[String((s as any).boy ?? 0)] = ((s as any).npc_start_free_time ?? 0)?.[String((s as any).boy ?? 0)];
+    if (!(s as any).npc_booty_call_time) (s as any).npc_booty_call_time = {}; (s as any).npc_booty_call_time[String((s as any).boy ?? 0)] = ((s as any).npc_start_free_time ?? 0)?.[String((s as any).boy ?? 0)];
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).boy ?? 0)] === 'sugar_daddy') {
-    ((s as any).sugar_daddy_call ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).sugar_daddy_call) (s as any).sugar_daddy_call = {}; (s as any).sugar_daddy_call[String((s as any).boy ?? 0)] = 1;
   }
   // TODO-QSP: end
   scene.build();
@@ -138,12 +138,12 @@ function enterSetBootyCallDate(s: GameState, scene: SceneBuilder): void {
 
 function enterBlockBootyCalls(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['invite_today'] === 1) {
-    ((s as any).npc_booty_call_date ?? {})[String((s as any).boy ?? 0)] = 0;
-    ((s as any).npc_no_booty_call ?? {})[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).npc_booty_call_time ?? {})[String((s as any).boy ?? 0)] = 0;
+    if (!(s as any).npc_booty_call_date) (s as any).npc_booty_call_date = {}; (s as any).npc_booty_call_date[String((s as any).boy ?? 0)] = 0;
+    if (!(s as any).npc_no_booty_call) (s as any).npc_no_booty_call = {}; (s as any).npc_no_booty_call[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_booty_call_time) (s as any).npc_booty_call_time = {}; (s as any).npc_booty_call_time[String((s as any).boy ?? 0)] = 0;
   } else {
     if (((s as any).sex_ev ?? 0)?.['invite_tomorrow'] === 1) {
-      ((s as any).npc_no_booty_call ?? {})[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0) + 1;
+      if (!(s as any).npc_no_booty_call) (s as any).npc_no_booty_call = {}; (s as any).npc_no_booty_call[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0) + 1;
     }
   }
   // TODO-QSP: end
@@ -191,7 +191,7 @@ function enterText(s: GameState, scene: SceneBuilder): void {
     { label: 'What about?', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
     scene.text('<b><font color="pink">what were you thinking about?</font></b>');
-    ((s as any).booty_call ?? {})['text'] = Math.floor(Math.random() * 3) + 1;
+    if (!(s as any).booty_call) (s as any).booty_call = {}; (s as any).booty_call['text'] = Math.floor(Math.random() * 3) + 1;
     if (((s as any).booty_call ?? 0)?.['text'] === 1) {
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanted to know if you wanted to come over to my place')
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'have some fun?')
@@ -244,7 +244,7 @@ function enterText1(s: GameState, scene: SceneBuilder): void {
     { label: 'What about?', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
     scene.text('<b><font color="pink">what were you thinking about?</font></b>');
-    ((s as any).booty_call ?? {})['text'] = Math.floor(Math.random() * 3) + 1;
+    if (!(s as any).booty_call) (s as any).booty_call = {}; (s as any).booty_call['text'] = Math.floor(Math.random() * 3) + 1;
     if (((s as any).booty_call ?? 0)?.['text'] === 1) {
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanted to know if you wanted to come over to my place')
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'have some fun?')
@@ -309,10 +309,10 @@ function enterText2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'when?')
     scene.actions([
       { label: 'Pick a time', handler: (st: GameState) => {
-    ((s as any).npc_meetday ?? {})[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).npc_meethour ?? {})[String((s as any).boy ?? 0)] = 0;
+    if (!(s as any).npc_meetday) (s as any).npc_meetday = {}; (s as any).npc_meetday[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_meethour) (s as any).npc_meethour = {}; (s as any).npc_meethour[String((s as any).boy ?? 0)] = 0;
     if (((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] <= ((s as any).hour ?? 0)  ||  ((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] > 23) {
-      ((s as any).npc_meethour ?? {})[String((s as any).boy ?? 0)] = 20;
+      if (!(s as any).npc_meethour) (s as any).npc_meethour = {}; (s as any).npc_meethour[String((s as any).boy ?? 0)] = 20;
     }
     // TODO-QSP: dynamic text: <b><font color="pink">maybe around <<npc_meethour[$boy]>>:00?</font></b>
     scene.text(`<b><font color="pink">maybe around ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)]}:00?</font></b>`);
@@ -472,7 +472,7 @@ function enterDraw(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(s, 'booty_call_sms', 'start', ((s as any).lover_drawn ?? 0));
     }
-    ((s as any).booty_call ?? {})['A0'] = ((s as any).daystart ?? 0);
+    if (!(s as any).booty_call) (s as any).booty_call = {}; (s as any).booty_call['A0'] = ((s as any).daystart ?? 0);
   }
   // TODO-QSP: end
   scene.build();
@@ -485,8 +485,8 @@ function enterSMSRaiser(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'sugar_daddy') {
       if (((s as any).booty_call_time ?? 0)?.[String((s as any).temp_bc_id ?? 0)] < ((((s as any).hour ?? 0) * 60) + ((s as any).minut ?? 0))  &&  ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)] !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_last_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)] !== ((s as any).daystart ?? 0)) {
         qspCall(s, 'booty_call_sms', 'start', ((s as any).temp_bc_id ?? 0));
-        ((s as any).booty_call_time ?? {})[String((s as any).temp_bc_id ?? 0)] = 2399;
-        ((s as any).booty_call_invite ?? {})[String((s as any).temp_bc_id ?? 0)] = ((s as any).daystart ?? 0);
+        if (!(s as any).booty_call_time) (s as any).booty_call_time = {}; (s as any).booty_call_time[String((s as any).temp_bc_id ?? 0)] = 2399;
+        if (!(s as any).booty_call_invite) (s as any).booty_call_invite = {}; (s as any).booty_call_invite[String((s as any).temp_bc_id ?? 0)] = ((s as any).daystart ?? 0);
       }
     }
     (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);

@@ -235,7 +235,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask for more work', handler: (st: GameState) => {
     if (((s as any).job_hiring_step ?? 0)?.['city_office_toilet_cleaner'] === 0) {
-      ((s as any).job_hiring_step ?? {})['city_office_toilet_cleaner'] = 1;
+      if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_toilet_cleaner'] = 1;
     }
     // TODO-QSP: dynamic text: You ask Boris Ivanovich whether he has more work for you. He says that he needs ...
     scene.text(`You ask Boris Ivanovich whether he has more work for you. He says that he needs a cleaner to clean the toilets. You'll be almost able to work every day. Cleaning toilets for an hour earns you ${qspFunc(s, 'money', 'string_profit', 65)} upfront.`);
@@ -244,7 +244,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
       { label: 'Accept', handler: (st: GameState) => {
-    ((s as any).job_hiring_step ?? {})['city_office_toilet_cleaner'] = 2;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_toilet_cleaner'] = 2;
     qspCall(s, 'jobs', 'set_employed', 'city_office_toilet_cleaner');
     scene.text('You agree to work as a cleaner.');
     scene.actions([
@@ -265,7 +265,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
       { label: 'Accept', handler: (st: GameState) => {
-    ((s as any).job_hiring_step ?? {})['city_office_cleaner'] = 2;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_office_cleaner'] = 2;
     qspCall(s, 'jobs', 'set_employed', 'city_office_cleaner');
     scene.text('You agree to work as a cleaner.');
     scene.actions([

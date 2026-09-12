@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sounds great', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 3;
     qspCall(s, 'jobs', 'set_employed', 'pav_hotel_maid');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sounds great', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 3;
     qspCall(s, 'jobs', 'set_employed', 'pav_hotel_maid');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');

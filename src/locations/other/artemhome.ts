@@ -75,7 +75,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         if (((s as any).DoorOpenedBy ?? 0) === 1) {
           scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
           if (((s as any).artemQW ?? 0)?.['metArtemMom'] === 0) {
-            ((s as any).artemQW ?? {})['metArtemMom'] = 1;
+            if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['metArtemMom'] = 1;
             scene.text('You stand outside the Chebotarev household and knock on the door, which is quickly answered by Artem\'s mother, who has a friendly smile on her face. "Hello. Can I help you?"');
             scene.text('You return her smile. "Yes. Is Artem home?"');
             if (((s as any).fame ?? 0)?.['pav_slut'] >= 200  ||  ((s as any).grupTipe ?? 0) === 4) {
@@ -324,7 +324,7 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
           { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
     if (((s as any).artkissing ?? 0) !== ((s as any).daystart ?? 0)) {
-      ((s as any).artemQW ?? {})['artfall'] = (((s as any).artemQW ?? {})['artfall'] ?? 0) + (1);
+      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
       (s as any).artkissing = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'willpower', 'pay', 'self');
@@ -528,9 +528,9 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask to borrow a book', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    ((s as any).artemQW ?? {})['artfall'] = (((s as any).artemQW ?? {})['artfall'] ?? 0) + (1);
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
     (s as any).artem_borrowed_book = 1;
-    ((s as any).BookVars ?? {})['artem_pages'] = Math.floor(Math.random() * 201) + 400;
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = Math.floor(Math.random() * 201) + 400;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
     scene.text('You look through the books until you find one you like. "Do you mind if I borrow this?"');
@@ -548,7 +548,7 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
       { label: 'Return a book', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).artem_borrowed_book = 0;
-    ((s as any).BookVars ?? {})['artem_pages'] = 0;
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
     scene.text('"I brought your book back," you tell him as you take it out of your purse and put it back in place on the shelf, right where you got it from.');
@@ -778,7 +778,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
         { label: 'Play', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
     if (((s as any).artfalling ?? 0) !== ((s as any).daystart ?? 0)) {
-      ((s as any).artemQW ?? {})['artfall'] = (((s as any).artemQW ?? {})['artfall'] ?? 0) + (1);
+      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
       (s as any).artfalling = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'exp_gain', 'gaming', 1);
@@ -999,7 +999,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 200  ||  ((s as any).grupTipe ?? 0) === 4) {
       scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
       if (((s as any).artemQW ?? 0)?.['metArtemMom'] === 0) {
-        ((s as any).artemQW ?? {})['metArtemMom'] = 1;
+        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['metArtemMom'] = 1;
         scene.text('As Artem starts talking, she stops what she was doing. "This is the girl I was telling you about…"');
         scene.text('"Oh." She\'s a bit taken aback, but replies politely. "Hello, I\'m Glinina, Artem\'s mother. Pleasure to meet you."');
         // TODO-QSP: dynamic text: You greet her back. "Hi, my name is <<$pcs_firstname>>. Nice to meet you."
@@ -1044,7 +1044,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
       if (((s as any).artemQW ?? 0)?.['metArtemMom'] === 0) {
-        ((s as any).artemQW ?? {})['metArtemMom'] = 1;
+        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['metArtemMom'] = 1;
         // TODO-QSP: dynamic text: Noticing you, she stops and smiles. "You must be <<$pcs_firstname>>. Artem has t...
         scene.text(`Noticing you, she stops and smiles. "You must be ${((s as any).pcs_firstname ?? 0)}. Artem has told me a lot about you…"`);
         scene.text('"Hopefully only good things…" you joke and smile while looking at Artem.');

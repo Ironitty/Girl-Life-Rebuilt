@@ -697,7 +697,7 @@ function enterVcard(s: GameState, scene: SceneBuilder): void {
 
 function enterNavigation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((s as any).qstage ?? 0) === 1) {
-    ((s as any).npc_quest ?? {})['q_back'] = 'null';
+    if (!(s as any).npc_quest) (s as any).npc_quest = {}; (s as any).npc_quest['q_back'] = 'null';
   } else {
     if (((s as any).qstage ?? 0) > 1  &&  ((s as any).nav_click ?? 0) === 'next') {
       (s as any).qstage = ((s as any).qstage ?? 0) + (1);
@@ -705,7 +705,7 @@ function enterNavigation(s: GameState, scene: SceneBuilder): void {
       if (((s as any).qstage ?? 0) >= 2  &&  ((s as any).nav_click ?? 0) ==='back') {
         (s as any).qstage = ((s as any).qstage ?? 0) - (1);
       } else {
-        ((s as any).debug ?? {})['journal'] = 'Navigation failed to be set.';
+        if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['journal'] = 'Navigation failed to be set.';
       }
     }
   }

@@ -18,7 +18,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if ((Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).santehnikDolg ?? 0) === 0  &&  ((s as any).remkuhr ?? 0) === 0  &&  ((s as any).daystart ?? 0) > ((s as any).kransloman ?? 0)[1] + 90) {
     (s as any).kransloman = 1;
-    ((s as any).kransloman ?? {})[1] = ((s as any).daystart ?? 0);
+    if (!(s as any).kransloman) (s as any).kransloman = {}; (s as any).kransloman[1] = ((s as any).daystart ?? 0);
   }
   if (((s as any).kransloman ?? 0) === 1) {
     scene.actions([{ label: 'Continue', goto: ['kuhr', 'leak'] }]);

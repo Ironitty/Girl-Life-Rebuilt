@@ -93,7 +93,7 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell them to mind their own business', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
     scene.img('images/pc/reactions/fuckoff1.jpg');
     scene.text('You give them a look of disdain showing you\'re not impressed. "Mind your own fucking business," you reply and Artem tenses up beside you.');
@@ -409,7 +409,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Wait for Artem', handler: (st: GameState) => {
-    ((s as any).artemQW ?? {})['waited'] = 1;
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['waited'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/walk_save.jpg');
@@ -424,7 +424,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Call the police', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    ((s as any).artemQW ?? {})['called_police'] = 1;
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['called_police'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/police/patrol.jpg');
     scene.text('Once you\'re safe, you pull out your phone and call the police, telling them that the gopniks are assaulting Artem and tried to attack you as well. After you give them all the details you can, you hang up. Almost half an hour later, a police car pulls up at the entrance of the park and two officers get out. You hurry over to them and try and get them to hurry, but they write down your information and ask you several questions. They won\'t be hurried and each time you try, they just tell you to calm down and answer their questions. In frustration, you finally answer all their questions while they write it all down.');
@@ -583,8 +583,8 @@ function enterFightGang(s: GameState, scene: SceneBuilder): void {
 function enterGangRape(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'fame', 'pav', 'sex', 10);
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).lastwornclothingnumber = 0;
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     qspCall(s, 'panties', 'dispose');

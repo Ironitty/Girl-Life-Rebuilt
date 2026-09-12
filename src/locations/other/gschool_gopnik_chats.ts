@@ -149,7 +149,7 @@ function enterVitek(s: GameState, scene: SceneBuilder): void {
                 scene.text('You sit on the stairs near Vitek and listen to him, Dan and Vasily telling stories.');
                 scene.text('After a few questions, he starts telling you about some of his more exciting adventures and you\'re soon both laughing about them and telling them stories of your own.');
                 if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                  ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                  if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                   qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                   scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
                 }
@@ -167,7 +167,7 @@ function enterVitek(s: GameState, scene: SceneBuilder): void {
                   scene.text('"I just wanted to say hi and talk is all," you reply.');
                   scene.text('"Whatever," he shrugs before he goes back to telling stories and after a few questions, starts telling you about some of his more exciting adventures. You\'re soon both laughing about them.');
                   if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                    ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                    if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                     qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                     scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
                   }
@@ -224,7 +224,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
             scene.text('He gives you a wink when he sees you. "What\'s up, hot stuff?"');
             scene.text('You ask him how things are going for the band and he starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
             if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-              ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+              if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
               qspCall(s, 'calendar', 'add', 'band_practice_event');
               scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
               scene.text('You tell him you will and you both head to class.');
@@ -253,7 +253,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
               scene.text('Radomir is talking about the band\'s latest gig as you approach. Seeing you, he looks your body up and down. "Looking good girl, looking good…"');
               scene.text('You ask him how things are going for the band and he starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
               if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-                ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+                if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
                 qspCall(s, 'calendar', 'add', 'band_practice_event');
                 scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
                 scene.text('You tell him you will and you both head to class.');
@@ -273,7 +273,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
               scene.text('He notices you and gives you a wink as he looks your body up and down. "Nice to see all the working out is paying off. Looking good."');
               scene.text('You ask him how things are going for the band and he starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
               if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-                ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+                if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
                 qspCall(s, 'calendar', 'add', 'band_practice_event');
                 scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
                 scene.text('You tell him you will and you both head to class.');
@@ -302,7 +302,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
                 scene.text('Radomir is talking about the band\'s latest gig as you approach. He sees you and looks your body up and down. "Nice to see all the working out is paying off. Looking good."');
                 scene.text('You ignore his stares as you ask him how things are going for the band and he starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
                 if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-                  ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+                  if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
                   qspCall(s, 'calendar', 'add', 'band_practice_event');
                   scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
                   scene.text('You tell him you will and you both head to class.');
@@ -321,7 +321,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
                 scene.text('Radomir is talking about the band\'s latest gig as you approach. He gives you a wink when he sees you. "You know if you just dressed a little more sexy and showed off that hot little bod of yours more, you would be pretty good looking for a nerd."');
                 scene.text('You ask him how things are going for the band and he starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
                 if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-                  ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+                  if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
                   qspCall(s, 'calendar', 'add', 'band_practice_event');
                   scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
                   scene.text('You tell him you will and you both head to class.');
@@ -350,7 +350,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
                   scene.text('Radomir is talking about the band\'s latest gig as you approach. He sees you and starts looking your body up and down. "You know if you just dressed a little more sexy and showed off that hot little bod of yours more, you would be pretty good looking for a nerd."');
                   scene.text('You feel like a side of meat on display under his gaze, but do your best to ignore it and ask him how things are going for the band. He starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
                   if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-                    ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+                    if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
                     qspCall(s, 'calendar', 'add', 'band_practice_event');
                     scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
                     scene.text('You tell him you will and you both head to class.');
@@ -369,7 +369,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
                   scene.text('Radomir is talking about the band\'s latest gig as you approach. He gives you a wink when he sees you. "Damn, you make even a school uniform look sexy as hell!"');
                   scene.text('You ask him how things are going for the band and he starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
                   if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-                    ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+                    if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
                     qspCall(s, 'calendar', 'add', 'band_practice_event');
                     scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
                     scene.text('You tell him you will and you both head to class.');
@@ -396,7 +396,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
                     scene.text('Radomir is talking about the band\'s latest gig as you approach. When he sees you, he starts looking your body up and down. "Damn, you make even a school uniform look sexy as hell!"');
                     scene.text('You ignore his stares as you ask him how things are going for the band and he starts telling you about all the girls throwing their panties on stage. Asking him a few questions leads to the two of you talking about where the band\'s going and the success it will have.');
                     if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
-                      ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+                      if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
                       qspCall(s, 'calendar', 'add', 'band_practice_event');
                       scene.text('After the bell rings, you start to head to class when Radomir calls out to you. "Hey, you should stop by the garages sometime and listen to us."');
                       scene.text('You tell him you will and you both head to class.');
@@ -438,7 +438,7 @@ function enterRadInviteNo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRadInviteYes(s: GameState, scene: SceneBuilder): void {
-  ((s as any).radomirQW ?? {})['meet_after_school'] = 1;
+  if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['meet_after_school'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big154.jpg');
@@ -511,7 +511,7 @@ function enterRoman(s: GameState, scene: SceneBuilder): void {
               scene.text('"So listen to this, I was arguing with this old hag yesterday. She wouldn\'t let go that I was swearing." Roman is telling one of his crazy stories to the group again.');
               scene.text('You join in, listening and asking him a few questions, and soon the two of you are chatting about a variety of topics.');
               if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                 qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                 scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
               }
@@ -526,7 +526,7 @@ function enterRoman(s: GameState, scene: SceneBuilder): void {
                 scene.text('"Yeah, what about?"');
                 scene.text('You banter with him for a while about a variety of things. He\'s rude and often insulting, but at least he doesn\'t threaten you.');
                 if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                  ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                  if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                   qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                   scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
                 }
@@ -560,7 +560,7 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
     scene.text('"I bet that\'s rare. Not having your mouth full long enough to talk."');
     scene.text('You banter with him for a while. He rips on you a lot, but at least he talks to you.');
     if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-      ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+      if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
       qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
       scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
     }
@@ -572,7 +572,7 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "What's up, <<$pcs_nickname>>?" he replies and the two of you engage in a friend...
         scene.text(`"What's up, ${((s as any).pcs_nickname ?? 0)}?" he replies and the two of you engage in a friendly conversation.`);
         if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-          ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+          if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
           qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
           scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
         }
@@ -610,7 +610,7 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
             scene.text('"I\'m not in the mood."');
             scene.text('You persist and he relents. He briefly chats to you before making it clear that he\'s done talking, so you leave him in peace.');
             if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-              ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+              if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
               qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
               scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
             }
@@ -842,7 +842,7 @@ function enterShulga(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I'm surprised you don't walk bow-legged the number of times you've been fucked, ${((s as any).pcs_nickname ?? 0)}!" Vasily says with a laugh.`);
     scene.text('You flip him the bird as you sit next to him. The two of you talk about a variety of things, although he keeps asking about who you\'ve fucked or whose dick you just finished sucking.');
     if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-      ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+      if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
       qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
       scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
     }
@@ -855,7 +855,7 @@ function enterShulga(s: GameState, scene: SceneBuilder): void {
         scene.text('You smile at him. "Not much. I thought I\'d just come by and hang out with you."');
         scene.text('The two of you engage in a friendly conversation about what\'s been going on.');
         if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-          ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+          if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
           qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
           scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
         }
@@ -893,7 +893,7 @@ function enterShulga(s: GameState, scene: SceneBuilder): void {
             scene.text('You smile. "I thought I\'d just come by and hang out with you."');
             scene.text('The two of you engage in a friendly conversation, mostly about when you were both kids.');
             if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-              ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+              if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
               qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
               scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
             }
@@ -924,7 +924,7 @@ function enterArkadi(s: GameState, scene: SceneBuilder): void {
     scene.text('"I just wanted to talk is all," you reply.');
     scene.text('He snorts, but doesn\'t refute what you say as you talk to him.');
     if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-      ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+      if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
       qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
       scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
     }
@@ -1001,7 +1001,7 @@ function enterArkadi(s: GameState, scene: SceneBuilder): void {
                 scene.text('He scoots over and makes room for you on the step he\'s sitting on. "Sure, what do you want to talk about?"');
                 scene.text('You know he loves the city, so you ask him questions about it and you\'re soon both chatting away.');
                 if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                  ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                  if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                   qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                   scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
                 }
@@ -1015,7 +1015,7 @@ function enterArkadi(s: GameState, scene: SceneBuilder): void {
                   scene.text('He looks up at you from where he\'s sitting on the stairs. "Oh yeah? What about?"');
                   scene.text('You know he loves the city, so you ask him questions about it and soon you\'re both chatting away.');
                   if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                    ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                    if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                     qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                     scene.text('He comments how he has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
                   }
@@ -1258,7 +1258,7 @@ function enterKatyusha(s: GameState, scene: SceneBuilder): void {
         scene.text('She goes on to tell you about how some of the gopnik girls get together and fight each other to practice or just to kick the shit out of each other for fun.');
         scene.text('"You should come by sometime and go a few rounds."');
         if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-          ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+          if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
           qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
           scene.text('It happens on the third Saturday each month at eight PM.');
         }
@@ -1328,7 +1328,7 @@ function enterLera(s: GameState, scene: SceneBuilder): void {
         scene.text('"Nah," Lera says as she shakes her head.');
         scene.text('You both engage in a bit of banter back and forth about how the school day has been.');
         if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-          ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+          if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
           qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
           scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
         }
@@ -1360,7 +1360,7 @@ function enterLera(s: GameState, scene: SceneBuilder): void {
             scene.text('Seeing Lera sitting on the steps without Lena, you decide to approach her. "Hey, Lera! What are you up to?"');
             scene.text('She looks back at you and shrugs her shoulders. "Nothing much. Just waiting for Lena."');
             if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-              ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+              if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
               qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
               scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
             }
@@ -1520,7 +1520,7 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
               scene.text('You both sigh as you look at each other and almost simultaneously say "I was beginning to forget where we were."');
               scene.text('You laugh, then start walking towards your classroom.');
               if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                 qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                 scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
               }
@@ -1544,7 +1544,7 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
                 scene.text('You listen to the music for a few more minutes before Alyona takes the earbud back and stands up. "I\'ll show you some more bands next time, but right now I\'ve got some things to do."');
                 scene.text('With that, she walks away towards the others.');
                 if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                  ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                  if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                   qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                   scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
                 }
@@ -1584,14 +1584,14 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Alyona," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Alyona," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'alyona_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Alyona," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Alyona," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'alyona_tampon');
   } },
     ]);
@@ -1600,14 +1600,14 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Alyona," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Alyona," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'alyona_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Alyona," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Alyona," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'alyona_tampon');
   } },
       ]);
@@ -1713,7 +1713,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Go with it', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['lunch'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['lunch'] = 1;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
     qspCall(s, 'stat', '');
@@ -2085,14 +2085,14 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Anushka," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Anushka," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'anushka_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Anushka," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Anushka," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'anushka_tampon');
   } },
     ]);
@@ -2101,14 +2101,14 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Anushka," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Anushka," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'anushka_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Anushka," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Anushka," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_gopnik_chats', 'anushka_tampon');
   } },
       ]);
@@ -2205,7 +2205,7 @@ function enterLena(s: GameState, scene: SceneBuilder): void {
         scene.text(`She looks back at you and shrugs her shoulders. "Hey ${((s as any).pcs_nickname ?? 0)}, nothing much. Just waiting for this day to end."`);
         scene.text('The two of you talk for a while about how much school sucks and all the better things you could be doing with your time.');
         if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-          ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+          if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
           qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
           scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
         }
@@ -2244,7 +2244,7 @@ function enterLena(s: GameState, scene: SceneBuilder): void {
             scene.text('You shake your head. "I have a lot of friends. I just wanted to come over to see how you were and hang out."');
             scene.text('The two of you talk for a while about how much school sucks and all the better things you could be doing with your time.');
             if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-              ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+              if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
               qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
               scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
             }
@@ -2336,7 +2336,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
               scene.text(`She looks back at you and smiles. "Hey ${((s as any).pcs_nickname ?? 0)}, nothing much." She looks over at Anushka when she laughs while talking to Valentin. "Why the fuck we let that slut hang out with us is beyond me."`);
               scene.text('The two of you continue talking for a while about what it means to be a gopnik and how certain people shouldn\'t be allowed to hang out with them.');
               if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                 qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                 scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
               }
@@ -2352,7 +2352,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
                 scene.text(`She looks back at you and shrugs her shoulders. "Hey ${((s as any).pcs_nickname ?? 0)}, nothing much. Just waiting for this day to end."`);
                 scene.text('The two of you talk for a while about how much school sucks and all the better things you could be doing with your time.');
                 if (((s as any).gopnik_fight_nightQW ?? 0)?.['invite'] === 0) {
-                  ((s as any).gopnik_fight_nightQW ?? {})['invite'] = 1;
+                  if (!(s as any).gopnik_fight_nightQW) (s as any).gopnik_fight_nightQW = {}; (s as any).gopnik_fight_nightQW['invite'] = 1;
                   qspCall(s, 'calendar', 'add', 'gopnik_fight_night_event');
                   scene.text('She comments how she has not seen you at the fight night and tells you, you should come by and take part. It happens on the third Saturday each month at eight PM.');
                 }

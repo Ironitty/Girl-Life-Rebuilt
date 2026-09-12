@@ -65,7 +65,7 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
   if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).soniaQW ?? 0)?.['slut'] < 4  &&  (Math.floor(Math.random() * (1+((s as any).soniaQW ?? 0)?.['slut'] - 0 + 1)) + (0))=== 0) {
     if (((s as any).soniaQW ?? 0)?.['slut'] === 1) {
       if ((((s as any).soniaQW ?? 0)?.['slutdays']+7) < ((s as any).daystart ?? 0)) {
-        ((s as any).soniaQW ?? {})['slut'] = 2;
+        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 2;
         qspCall(s, 'array', 'remove_element', 'soniaQW', 'slutdays');
       }
       scene.text('"Did you hear what happened at the disco the other night? Sonia gave like five guys a blowjob, all at once!"');
@@ -120,8 +120,8 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
             scene.text('Several of the cool girls are talking to Zinaida. At first you think they might be bullying her, but it instead sounds like they\'re asking her a bunch of questions. Whatever they\'re talking about, they seem to come to an agreement.');
           } else {
             if (((s as any).cheerleadingQW ?? 0)?.['gossip'] === 0  &&  ((((s as any).month ?? 0) === 9  &&  ((s as any).day ?? 0) >= 19)  ||  ((s as any).month ?? 0) !== 9)) {
-              ((s as any).cheerleadingQW ?? {})['gossip'] = 1;
-              ((s as any).cheerleadingQW ?? {})['gossip_day'] = ((s as any).daystart ?? 0);
+              if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip'] = 1;
+              if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip_day'] = ((s as any).daystart ?? 0);
               scene.text('"Albina said that she knows Karine is skipping out on the squad to spend time with that dick she calls her boyfriend."');
               scene.text('"Karine, the youngest one who wears purple all the time? Never understood why Albina even considered someone from a junior class."');
               scene.text('"Yeah, her. Ever since she started dating that asshole, she\'s been skipping out on cheerleading practice and not caring about her grades. I don\'t know how Albina found out, but she\'s seriously pissed and threatening to kick her off the squad!"');
@@ -129,8 +129,8 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
               scene.text('"Girl, Albina will scratch her eyes out by the end of the week!"');
             } else {
               if (((s as any).cheerleadingQW ?? 0)?.['gossip_day'] < ((s as any).daystart ?? 0)  &&  ((s as any).cheerleadingQW ?? 0)?.['gossip'] === 1) {
-                ((s as any).cheerleadingQW ?? {})['gossip'] = 2;
-                ((s as any).cheerleadingQW ?? {})['gossip_day'] = ((s as any).daystart ?? 0) + (7-((s as any).week ?? 0));
+                if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip'] = 2;
+                if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip_day'] = ((s as any).daystart ?? 0) + (7-((s as any).week ?? 0));
                 scene.text('"I heard from Lizaveta that Albina and Karine were fighting at the game last Friday!"');
                 scene.text('"Albina and who?"');
                 scene.text('"Karine, the youngest one who\'s… well endowed shall we say?"');
@@ -141,8 +141,8 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
                 scene.text('The two boys fistbump each other and change the subject.');
               } else {
                 if (((s as any).cheerleadingQW ?? 0)?.['gossip_day'] < ((s as any).daystart ?? 0)  &&  ((s as any).cheerleadingQW ?? 0)?.['gossip'] === 2) {
-                  ((s as any).cheerleadingQW ?? {})['gossip'] = 3;
-                  ((s as any).cheerleadingQW ?? {})['gossip_day'] = ((s as any).daystart ?? 0);
+                  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip'] = 3;
+                  if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip_day'] = ((s as any).daystart ?? 0);
                   scene.text('"So is it true? Did Albina actually start throwing punches at Karine?"');
                   scene.text('"Damn straight. She just flew at her as soon as she saw her. Girl wouldn\'t be walking if Vicky didn\'t stop her."');
                   scene.text('"So she\'s off the squad then? I know I won\'t be signing up to replace her. Albina scares me."');
@@ -151,8 +151,8 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
                   scene.text('"Albina said it was because she had talent nobody in our year had, but I think it was the…" The girl cups her breasts in her hands and bounces them slightly as the other girl nods in agreement.');
                 } else {
                   if (((s as any).cheerleadingQW ?? 0)?.['gossip_day'] <= ((s as any).daystart ?? 0)  &&  ((s as any).cheerleadingQW ?? 0)?.['gossip'] === 3) {
-                    ((s as any).cheerleadingQW ?? {})['gossip'] = 4;
-                    ((s as any).cheerleadingQW ?? {})['gossip_day'] = ((s as any).daystart ?? 0);
+                    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip'] = 4;
+                    if (!(s as any).cheerleadingQW) (s as any).cheerleadingQW = {}; (s as any).cheerleadingQW['gossip_day'] = ((s as any).daystart ?? 0);
                     scene.text('Two boys are watching a video on a phone. You hear Albina\'s loud screaming echoing from the screen.');
                     scene.text('"Just look at Albina going all out on Karine at the last game. Vicky had to stop her from punching the girl\'s lights out!"');
                     scene.text('"I\'m guessing she\'s off the squad then?"');
@@ -1701,7 +1701,7 @@ function enterSoniaDiscoGossip(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).soniafall ?? {})['gossip'] = ((s as any).soniaQW ?? 0)?.['soniafall'];
+  if (!(s as any).soniafall) (s as any).soniafall = {}; (s as any).soniafall['gossip'] = ((s as any).soniaQW ?? 0)?.['soniafall'];
   // TODO-QSP: end
   scene.build();
 }

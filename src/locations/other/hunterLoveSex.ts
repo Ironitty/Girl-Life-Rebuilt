@@ -31,7 +31,7 @@ function enterDinMesec(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonusH1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus1.mp4');
   scene.text('You glide your tongue over the head of his member, gently flicking and poking at his urethra.');
@@ -52,7 +52,7 @@ function enterDinHuntersBjBonusH1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjH1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
   }
   scene.text('<center><h4>Hut</h4></center>');
@@ -170,7 +170,7 @@ function enterDinHuntersBjH1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonusH2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus2.mp4');
   scene.text('He shivers slightly as you gently bite the head of his cock with your pearly white teeth.');
@@ -192,7 +192,7 @@ function enterDinHuntersBjBonusH2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjH2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
   }
   scene.text('<center><h4>Hut</h4></center>');
@@ -310,7 +310,7 @@ function enterDinHuntersBjH2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonusH3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus3.mp4');
   scene.text('Looking into the eyes of your boyfriend, you use your tongue to tease one of the most erogenous zones of his member.');
@@ -326,7 +326,7 @@ function enterDinHuntersBjBonusH3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjH3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj3\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -441,7 +441,7 @@ function enterDinHuntersBjH3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonusH4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus4.mp4');
   scene.text('Grasping the base of his penis, you do as he asks, slapping his cock against your cheeks.');
@@ -462,7 +462,7 @@ function enterDinHuntersBjBonusH4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjH4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj4\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -550,7 +550,7 @@ function enterDinHuntersBjH4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonusH6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus6.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> slaps his member on your face.
@@ -570,7 +570,7 @@ function enterDinHuntersBjBonusH6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjH6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj6\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -684,7 +684,7 @@ function enterDinHuntersBjH6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonusH7(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus11.mp4');
   // TODO-QSP: dynamic text: You take his cock into your mouth, your cheeks bulging from his size. <<$boydesc...
@@ -701,7 +701,7 @@ function enterDinHuntersBjBonusH7(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBjH7(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj11\' + rand(0, 4) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -816,7 +816,7 @@ function enterDinHuntersBjH7(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBjBonusH8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/kotovbjbonus12.mp4');
   scene.text('You try to take his cock even deeper, but, unaccustomed to deepthroating, you gag and almost puked all over him.');
@@ -839,7 +839,7 @@ function enterDinHuntersBjBonusH8(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBjH8(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj12\' + rand(0, 2) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -957,7 +957,7 @@ function enterDinHuntersBj(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Kneel', handler: (st: GameState) => {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
-    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/blowjob/kotovbj\' + rand(0, 5) + \'.mp4');
     scene.text('You kneel down in front of him. He looks at you, waiting to see what you\'ll do. You don\'t make him wait long…');
@@ -1203,7 +1203,7 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1254,7 +1254,7 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1339,7 +1339,7 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1390,7 +1390,7 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1476,7 +1476,7 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1527,7 +1527,7 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1614,7 +1614,7 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1665,7 +1665,7 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1751,7 +1751,7 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1802,7 +1802,7 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1898,7 +1898,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -1949,7 +1949,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2031,7 +2031,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2082,7 +2082,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2169,7 +2169,7 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2220,7 +2220,7 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2303,7 +2303,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2354,7 +2354,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2433,7 +2433,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2484,7 +2484,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2568,7 +2568,7 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2619,7 +2619,7 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2703,7 +2703,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2754,7 +2754,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2833,7 +2833,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2884,7 +2884,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -2969,7 +2969,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3020,7 +3020,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3099,7 +3099,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3150,7 +3150,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3235,7 +3235,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3286,7 +3286,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3365,7 +3365,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3416,7 +3416,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3501,7 +3501,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3552,7 +3552,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3631,7 +3631,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3682,7 +3682,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3767,7 +3767,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3818,7 +3818,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3897,7 +3897,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -3948,7 +3948,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
         { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4032,7 +4032,7 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4083,7 +4083,7 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4166,7 +4166,7 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4217,7 +4217,7 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4300,7 +4300,7 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4351,7 +4351,7 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4442,7 +4442,7 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4493,7 +4493,7 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4580,7 +4580,7 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4631,7 +4631,7 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4714,7 +4714,7 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -4765,7 +4765,7 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
       { label: '<<$boydesc>>, you want more?', handler: (st: GameState) => {
     (s as any).dikos = ((s as any).dikos ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/oface/kotovecho.mp4');
@@ -6667,7 +6667,7 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Spread your legs for him', handler: (st: GameState) => {
-    ((s as any).hunterVars ?? {})['kuni'] = 1;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['kuni'] = 1;
     if ((!((s as any).silavag ?? 0))) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     }
@@ -6851,7 +6851,7 @@ function enterDinHuntersSexMisionary(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj14(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj14\' + rand(0, 2) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -6982,7 +6982,7 @@ function enterDinHuntersBj14(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj13(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj13\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -7113,7 +7113,7 @@ function enterDinHuntersBj13(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBjBonus12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/kotovbjbonus12.mp4');
   scene.text('You try to swallow his cock even deeper, but gag in the process. You barely avoid throwing up all over him.');
@@ -7140,7 +7140,7 @@ function enterDinHuntersBjBonus12(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBj12(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj12\' + rand(0, 2) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -7272,7 +7272,7 @@ function enterDinHuntersBj12(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus11(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus11.mp4');
   // TODO-QSP: dynamic text: You take his cock into your mouth and <<$boydesc>> starts roughly fucking your f...
@@ -7297,7 +7297,7 @@ function enterDinHuntersBjBonus11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj11(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj11\' + rand(0, 4) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -7430,7 +7430,7 @@ function enterDinHuntersBj11(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBj10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj1\' + rand(0, 3) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -7552,7 +7552,7 @@ function enterDinHuntersBj10(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBj9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj9\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -7673,10 +7673,10 @@ function enterDinHuntersBj9(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBjBonus8(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
-    ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
-    ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   }
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus8.mp4');
@@ -7704,7 +7704,7 @@ function enterDinHuntersBjBonus8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj8(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj8\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -7843,7 +7843,7 @@ function enterDinHuntersBj8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus7(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus7.mp4');
   // TODO-QSP: dynamic text: You continue to play with his balls hugging them <<$pc_desc['lips']>> lips. You ...
@@ -7860,7 +7860,7 @@ function enterDinHuntersBjBonus7(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBj7(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj7\' + rand(0, 4) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -7997,7 +7997,7 @@ function enterDinHuntersBj7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus6.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> slaps his cock against your tongue.
@@ -8018,7 +8018,7 @@ function enterDinHuntersBjBonus6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   (s as any).hja = ((s as any).hja ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj6\' + rand(0, 1) + \'.mp4');
@@ -8156,7 +8156,7 @@ function enterDinHuntersBj6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus5(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus5.mp4');
   scene.text('You spit on his dick, and using your hands smere your saliva all over his head and shaft.');
@@ -8172,7 +8172,7 @@ function enterDinHuntersBjBonus5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj5(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj5\' + rand(0, 3) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -8303,7 +8303,7 @@ function enterDinHuntersBj5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus4.mp4');
   scene.text('You grasp the base of the penis and, carrying out his request, slap his glistening cock head against your cheeks.');
@@ -8323,7 +8323,7 @@ function enterDinHuntersBjBonus4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj4\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -8455,7 +8455,7 @@ function enterDinHuntersBj4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus3.mp4');
   scene.text('Looking into the eyes of your boyfriend, you tease your tongue over one of the most erogenous zones of his member.');
@@ -8471,7 +8471,7 @@ function enterDinHuntersBjBonus3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj3\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
@@ -8603,7 +8603,7 @@ function enterDinHuntersBj3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus2.mp4');
   scene.text('He shivers slightly as you bite the head of his dick with your pearly white teeth.');
@@ -8626,8 +8626,8 @@ function enterDinHuntersBjBonus2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBj2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
   }
   scene.text('<center><h4>Hut</h4></center>');
@@ -8762,7 +8762,7 @@ function enterDinHuntersBj2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinHuntersBjBonus1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) - (1);
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) - (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus1.mp4');
   scene.text('You run your tongue along the tip of his penis, flicking at his urethra.');
@@ -8785,8 +8785,8 @@ function enterDinHuntersBjBonus1(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersBj1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).hunterVars ?? {})['bj_times'] = (((s as any).hunterVars ?? {})['bj_times'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = ((s as any).hunterVars['bj_times'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
   }
   scene.text('<center><h4>Hut</h4></center>');
@@ -8923,7 +8923,7 @@ function enterDinHuntersBj1(s: GameState, scene: SceneBuilder): void {
 function enterDinHuntersBj200(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).bja = ((s as any).bja ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbj\' + rand(0, 5) + \'.mp4');
@@ -8959,7 +8959,7 @@ function enterDinHuntersBj200(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersSub(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/dom/kotovsub.jpg');
@@ -9002,8 +9002,8 @@ function enterDinHuntersSub(s: GameState, scene: SceneBuilder): void {
 
 function enterDinHuntersFirstSex(s: GameState, scene: SceneBuilder): void {
   (s as any).sexa = ((s as any).sexa ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-  ((s as any).hunterVars ?? {})['VagSex'] = (((s as any).hunterVars ?? {})['VagSex'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['VagSex'] = ((s as any).hunterVars['VagSex'] ?? 0) + (1);
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/oface/kotovfirst.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> puts you on your back and spreads your legs, opening your virgin wo...
@@ -9053,9 +9053,9 @@ function enterDinHuntersFirstSex(s: GameState, scene: SceneBuilder): void {
 
 function enterIgor(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['IgorLove'] > 0  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] <= 50) {
-    ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 1;
     (s as any).boyonceA = 1;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     qspCall(s, 'boyStat', 'A173');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><h4>Hut</h4></center>');
@@ -9101,8 +9101,8 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Part with a guy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['IgorLove'] = 0;
-    ((s as any).hunterVars ?? {})['IgorQW'] = (((s as any).hunterVars ?? {})['IgorQW'] ?? 0) - (100);
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorLove'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (100);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/pc/reactions/embarrassed.mp4');
@@ -9158,12 +9158,12 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).hunterVars ?? 0)?.['IgorLove'] > 0  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] > 50) {
-      ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 0;
-      ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 0;
-      ((s as any).hunterVars ?? {})['bj_times'] = 0;
+      if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 0;
+      if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).boy ?? 0)] = 0;
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
       (s as any).boyonceA = 1;
       qspCall(s, 'boyStat', 'A173');
-      ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'stat', '');
       (s as any).ihls = Math.floor(Math.random() * 3) + 1;
       if (((s as any).pcs_horny ?? 0) >= 60) {
@@ -9322,9 +9322,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
 
 function enterAndrei(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['AndreiLove'] > 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-    ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 0;
-    ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 0;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 0;
+    if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).boy ?? 0)] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     (s as any).boyonceA = 1;
     qspCall(s, 'boyStat', 'A172');
     scene.text('<center><h4>Hut</h4></center>');
@@ -9350,8 +9350,8 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
       { label: 'To lose innocence', goto: ['hunterLoveSex', 'din_hunters_first_sex'] },
       { label: 'Part with a guy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['AndreiLove'] = 0;
-    ((s as any).hunterVars ?? {})['AndreiQw'] = (((s as any).hunterVars ?? {})['AndreiQw'] ?? 0) - (1);
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['AndreiLove'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['AndreiQw'] = ((s as any).hunterVars['AndreiQw'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/pc/reactions/embarrassed.mp4');
@@ -9373,12 +9373,12 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).hunterVars ?? 0)?.['AndreiLove'] > 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-      ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 0;
-      ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 0;
-      ((s as any).hunterVars ?? {})['bj_times'] = 0;
+      if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 0;
+      if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).boy ?? 0)] = 0;
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
       (s as any).boyonceA = 1;
       qspCall(s, 'boyStat', 'A172');
-      ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
       (s as any).ihls = Math.floor(Math.random() * 3) + 1;
       if (((s as any).pcs_horny ?? 0) >= 60) {
         scene.text('<center><h4>Hut</h4></center>');
@@ -9538,9 +9538,9 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
 
 function enterSergei(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['SergeiLove'] > 0  &&  ((s as any).hunterVars ?? 0)?.['SergeiQw'] <= 40) {
-    ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 0;
-    ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 0;
-    ((s as any).hunterVars ?? {})['bj_times'] = 0;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 0;
+    if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).boy ?? 0)] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
     (s as any).boyonceA = 1;
     qspCall(s, 'boyStat', 'A174');
     scene.text('<center><h4>Hut</h4></center>');
@@ -9586,8 +9586,8 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Part with a guy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars ?? {})['SergeiLove'] = 0;
-    ((s as any).hunterVars ?? {})['SergeiQw'] = (((s as any).hunterVars ?? {})['SergeiQw'] ?? 0) - (100);
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['SergeiLove'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (100);
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/pc/reactions/embarrassed.mp4');
@@ -9641,12 +9641,12 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).hunterVars ?? 0)?.['SergeiLove'] > 0  &&  ((s as any).hunterVars ?? 0)?.['SergeiQw'] > 40) {
-      ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 0;
-      ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 0;
-      ((s as any).hunterVars ?? {})['bj_times'] = 0;
+      if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 0;
+      if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).boy ?? 0)] = 0;
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['bj_times'] = 0;
       (s as any).boyonceA = 1;
       qspCall(s, 'boyStat', 'A174');
-      ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
       qspCall(s, 'stat', '');
       (s as any).ihls = Math.floor(Math.random() * 3) + 1;
       if (((s as any).pcs_horny ?? 0) >= 60) {

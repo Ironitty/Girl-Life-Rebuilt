@@ -216,10 +216,10 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 60);
       if ((!((s as any).preziktype ?? 0))) {
-        ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (1);
       } else {
         if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-          ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (1);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (1);
         }
       }
       scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
@@ -232,10 +232,10 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 300);
       if ((!((s as any).preziktype ?? 0))) {
-        ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (5);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (5);
       } else {
         if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-          ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (5);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (5);
         }
       }
       scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
@@ -248,10 +248,10 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       qspCall(s, 'money', 'pay', 600);
       if ((!((s as any).preziktype ?? 0))) {
-        ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (10);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (10);
       } else {
         if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-          ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (10);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (10);
         }
       }
       scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
@@ -359,7 +359,7 @@ function enterGas(s: GameState, scene: SceneBuilder): void {
         { label: 'Fill the tank with petrol', handler: (st: GameState) => {
     (s as any).zprbenz = ((s as any).car ?? {})?.['tank'] - ((s as any).car ?? {})?.['fuel'];
     (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
-    ((s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car ?? 0)?.['tank'];
     qspCall(s, 'money', 'pay', ((s as any).zprpay ?? 0));
     scene.img('images/locations/shared/gas/zapr1.jpg');
     // TODO-QSP: dynamic text: You fill the tank and pay <<$func('money', 'string_price', zprpay)>>.
@@ -385,7 +385,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('If you want, you can tell your clients a different name.');
     // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
-      ((s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
+      if (!(s as any).prostitute_names) (s as any).prostitute_names = {}; (s as any).prostitute_names[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
@@ -426,7 +426,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Remove the cum from your body (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).mc_inventory ?? {})['makeup_wipes'] = (((s as any).mc_inventory ?? {})['makeup_wipes'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
     qspCall(s, 'cum_cleanup', '', 20);
   }, goto: ['gas_station_gp_117', 'work'] },
       ]);
@@ -448,8 +448,8 @@ function enterEventCheck(s: GameState, scene: SceneBuilder): void {
 function enterBusEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 87;
   qspCall(s, 'money', 'pay', 75);
-  ((s as any).prostitute ?? {})['earnings_day'] = 0;
-  ((s as any).prostitute ?? {})['customer_day'] = 0;
+  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['earnings_day'] = 0;
+  if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['customer_day'] = 0;
   scene.actions([{ label: 'Continue', goto: ['pav_market', ''] }]);
   // TODO-QSP: end
   scene.build();

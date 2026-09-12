@@ -18,15 +18,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     if (((s as any).artbj ?? 0) > 0) {
       (s as any).artbj = 0;
-      ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     }
     if (((s as any).artsex ?? 0) > 0) {
       (s as any).artsex = 0;
-      ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
     }
     if (((s as any).artanal ?? 0) > 0) {
       (s as any).artanal = 0;
-      ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
@@ -38,11 +38,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
       if ((!((s as any).temp_rand ?? 0))) {
-        ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) + (20);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) + (20);
         scene.text('Arthur hands you a portable set of cosmetics.');
       } else {
         if (((s as any).temp_rand ?? 0) === 1) {
-          ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) + (20);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (20);
           scene.text('Arthur gives you a set of cosmetics.');
         } else {
           if (((s as any).temp_rand ?? 0) === 2) {

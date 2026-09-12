@@ -6,15 +6,15 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichTanya ?? 0)?.['FuckLast'] !== ((s as any).daystart ?? 0)) {
-    ((s as any).nichTanya ?? {})['FuckToday'] = 0;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckToday'] = 0;
   }
   scene.build();
 }
 
 function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).nichTanyaPic ?? 0)}`);
-  ((s as any).nichTanya ?? {})['PropDate'] = 0;
-  ((s as any).nichTanya ?? {})['PropSex'] = 0;
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropDate'] = 0;
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropSex'] = 0;
   if (((s as any).nichGalaKnowsPT ?? 0) === 10) {
     if (((s as any).nichTanya ?? 0)?.['Relationship'] === 0) {
       (s as any).nichGalaKnowsPT = 11;
@@ -32,7 +32,7 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
       scene.text('She hesitates for a second.');
       scene.text('"And I really don\'t want you to get into trouble with my mother. I think it would be for the best if stopped… well… whatever it is we are having."');
       scene.text('You are about to object but Tanya seems to have made up her mind. So you can only nod and turn away.');
-      ((s as any).nichTanya ?? {})['Relationship'] = 5;
+      if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 5;
       (s as any).nichGalaKnowsPT = 11;
       qspCall(s, 'npc_relationship', 'set', 'A218', 30);
       scene.actions([
@@ -47,7 +47,7 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
         scene.text('She hesitates for a second.');
         scene.text('"And I really don\'t want you to get into trouble with my mother. I think it would be for the best if stopped… well… whatever it is we are having."');
         scene.text('You are about to object but Tanya seems to have made up her mind. So you can only nod and turn away.');
-        ((s as any).nichTanya ?? {})['Relationship'] = 5;
+        if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 5;
         (s as any).nichGalaKnowsPT = 11;
         qspCall(s, 'npc_relationship', 'set', 'A218', 30);
         scene.actions([
@@ -64,7 +64,7 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
     scene.text('"Tanya, I think you mother is right. It would be for the best if we broke up."');
     scene.text('Hearing your words she pushes you away. Her eyes are watery but now she has an angry expression on her face.');
     scene.text('"How can you?!" she yells at you. "Do I mean so little to you?! Get out of my room! Right! Now!"');
-    ((s as any).nichTanya ?? {})['Relationship'] = 4;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 4;
     (s as any).nichGalaKnowsPT = 11;
     qspCall(s, 'npc_relationship', 'set', 'A218', 10);
     scene.actions([
@@ -126,7 +126,7 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
         (s as any).nichNTRelation = 10;
         scene.actions([
           { label: 'Sure', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Relationship'] = 6;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 6;
     qspCall(s, 'npc_relationship', 'set', 'A218', 50);
     qspCall(s, 'stat', '');
     scene.text('"Of course."');
@@ -134,10 +134,10 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Oh ${((s as any).pcs_nickname ?? 0)}, I hoped you'd say that." She hugs you.`);
     if (((s as any).nichTanya ?? 0)?.['Uni'] >= 100) {
       scene.text('"You will meet Vlad shortly. I\'m sure you will like him. He is a really nice guy."');
-      ((s as any).nichTanya ?? {})['BF'] = 1;
+      if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['BF'] = 1;
     } else {
       scene.text('"You will meet Grigory shortly. I\'m sure you will like him. You two have much in common."');
-      ((s as any).nichTanya ?? {})['BF'] = 2;
+      if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['BF'] = 2;
     }
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
@@ -148,8 +148,8 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.text('As you approach her she greets you with a smile.');
-        ((s as any).nichTanya ?? {})['PropSex'] = 1;
-        ((s as any).nichTanya ?? {})['PropDate'] = 1;
+        if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropSex'] = 1;
+        if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropDate'] = 1;
       }
     } else {
       if (((s as any).nichTanya ?? 0)?.['Relationship'] === 1) {
@@ -167,7 +167,7 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
     scene.text('She looks a tiny bit disappointed. "Oh, that\'s ok. So you wouldn\'t mind if I brought a boy over here?"');
     scene.text('"No, of course not."');
     scene.text('"Well… that\'s good… you have given me a lot to think about. Would you mind letting me think everything over?"');
-    ((s as any).nichTanya ?? {})['Relationship'] = 2;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 2;
     scene.actions([
       { label: 'Of course not (Leave her)', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -181,7 +181,7 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
     scene.text('Once she is able to talk again she jumps up and hugs you. "Oh, this is so great. I am so happy now. Does this mean you are my girlfriend now?"');
     scene.text('"I guess so."');
     scene.text('Tanya looks overjoyed. Unable to find any more words to express her emotions she starts to hug and kiss you again.');
-    ((s as any).nichTanya ?? {})['Relationship'] = 3;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 3;
     (s as any).nichNTRelation = 10;
     qspCall(s, 'npc_relationship', 'modify', 'A218', 'adore');
     scene.actions([
@@ -194,8 +194,8 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.text('As you approach her she greets you with a smile.');
-          ((s as any).nichTanya ?? {})['PropSex'] = 1;
-          ((s as any).nichTanya ?? {})['PropDate'] = 1;
+          if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropSex'] = 1;
+          if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropDate'] = 1;
         }
       } else {
         if (((s as any).nichTanya ?? 0)?.['Relationship'] === 3) {
@@ -208,8 +208,8 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
               scene.text('As you approach her she greets you with a smile. "Hello sweety. How are you doing?"');
             }
           }
-          ((s as any).nichTanya ?? {})['PropSex'] = 1;
-          ((s as any).nichTanya ?? {})['PropDate'] = 1;
+          if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropSex'] = 1;
+          if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropDate'] = 1;
         }
       }
     }
@@ -242,8 +242,8 @@ function enterBedroomTanya(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichTanya ?? 0)?.['PropDate'] === 1  &&  (((s as any).nichTanya ?? 0)?.['DateLast'] !== ((s as any).daystart ?? 0)  ||  ((s as any).nichDebug ?? 0) === 1)) {
     qspCall(s, 'nichTanya', 'date_proposal');
   }
-  ((s as any).nichTanya ?? {})['PropDate'] = 0;
-  ((s as any).nichTanya ?? {})['PropSex'] = 0;
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropDate'] = 0;
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['PropSex'] = 0;
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk with her', goto: ['nichTanya', 'chat'] },
@@ -259,8 +259,8 @@ function enterDateProposal(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Propose going on a date', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A218', 'like');
-    ((s as any).nichTanya ?? {})['DateCounter'] = (((s as any).nichTanya ?? {})['DateCounter'] ?? 0) + (1);
-    ((s as any).nichTanya ?? {})['DateLast'] = ((s as any).daystart ?? 0);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['DateCounter'] = ((s as any).nichTanya['DateCounter'] ?? 0) + (1);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['DateLast'] = ((s as any).daystart ?? 0);
     scene.text('"Hey Tanya. I was wondering if you would like to go out on a date."');
     scene.text('"Sure. That\'s a great idea. What would you like to do?"');
     if (((s as any).temper ?? 0) >= 20  &&  ((s as any).sunWeather ?? 0) === 1) {
@@ -881,7 +881,7 @@ function enterDateEnd(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I get that ${((s as any).pcs_nickname ?? 0)}, it's pretty much the same for me. I just thought that you might want to stay over sometimes going forward. It'd have to be a sneeky stay over though as it's probably best my parents don't know, at least for now especially my Mum."`);
     scene.actions([
       { label: 'Accept', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Date_stay'] = 1;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Date_stay'] = 1;
     scene.img('images/characters/city/tanya/sex/cuddle1.jpg');
     scene.text('"Wow Tanya, I didn\'t expect that either. That\'s very kind of you and yes I\'d love to." You lean in and give her another kiss.');
     scene.text('As you break the kiss Tanya continues. "I can\'t today but maybe next time if you want."');
@@ -1141,9 +1141,9 @@ function enterBathroomMolestSuccess(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Sorry, <<$pcs_nickname>>. That what fun but I can't risk being seen like this. ...
   scene.text(`"Sorry, ${((s as any).pcs_nickname ?? 0)}. That what fun but I can't risk being seen like this. Just talk to me in my room later. We have more privacy there."`);
   scene.text('With that she pushes you outside the bathroom once you are dressed.');
-  ((s as any).nichTanya ?? {})['Relationship'] = 1;
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A218', 'like');
-  ((s as any).nichTanya ?? {})['FuckLast'] = ((s as any).daystart ?? 0);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckLast'] = ((s as any).daystart ?? 0);
   qspCall(s, 'outfit', 'wear_last_worn');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1216,7 +1216,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichTanya ?? 0)?.['Date'] === 2) {
       if (((s as any).nichTanya ?? 0)?.['DateShopping'] === 0) {
         (s as any).minut = ((s as any).minut ?? 0) + 120;
-        ((s as any).nichTanya ?? {})['DateShopping'] = (((s as any).nichTanya ?? {})['DateShopping'] ?? 0) + (1);
+        if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['DateShopping'] = ((s as any).nichTanya['DateShopping'] ?? 0) + (1);
         scene.img('images/characters/city/tanya/date/shopping1.jpg');
         scene.text('The two of you go to a shop for young fashion. You take turns trying on clothes and posing for each other.');
         scene.text('You notice that the clothes Tanya puts on get skimpier every time. The last outfit she puts on only consists of high heels, a blue tanga and a skin tight white top.');
@@ -1252,7 +1252,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).nichTanya ?? 0)?.['DateShopping'] === 1) {
           (s as any).minut = ((s as any).minut ?? 0) + 60;
-          ((s as any).nichTanya ?? {})['DateShopping'] = (((s as any).nichTanya ?? {})['DateShopping'] ?? 0) + (1);
+          if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['DateShopping'] = ((s as any).nichTanya['DateShopping'] ?? 0) + (1);
           scene.img('images/characters/city/tanya/date/shopping2.jpg');
           scene.text('The two of you visit various shops in the mall. One of the shops appears to be aimed at lumberjacks and truckers.');
           scene.text('You take a look a the shirts and wonder why you are here. Then you realize that Tanya went missing. After a quick search you figure out that she must be in one of the changing rooms.');
@@ -1267,7 +1267,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).nichTanya ?? 0)?.['DateShopping'] === 2) {
             (s as any).minut = ((s as any).minut ?? 0) + 60;
-            ((s as any).nichTanya ?? {})['DateShopping'] = (((s as any).nichTanya ?? {})['DateShopping'] ?? 0) + (1);
+            if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['DateShopping'] = ((s as any).nichTanya['DateShopping'] ?? 0) + (1);
             scene.img('images/characters/city/tanya/date/shopping3a.jpg');
             scene.text('The two of you visit various shops in the mall. The last shop is an expensive boutique.');
             scene.text('Tanya goes straight to the lingerie department. She collects some items, then she takes you by the hand and leads you to a changing room.');
@@ -1336,7 +1336,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
     scene.text('She takes one of the strap-ons in her hand. "This one is called Vlad. How do you like it? Wait, there is one that\'s called Igor. It\'s a little bigger. Do you think you could handle it? Or how about this one? \'Labaan\'. Sounds African. Look how big it is. It\'s nearly as long and thick as my arm." She laughs out. "Which one would you prefer?"');
     scene.actions([
       { label: 'Vlad (15 cm)', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Strapon'] = 15;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Strapon'] = 15;
     scene.text('"I think I like Vlad best."');
     if (((s as any).pcs_vag ?? 0) >= 25) {
       scene.text('"Really? I thought you might prefer a bigger one. But okay, I will buy this one then."');
@@ -1350,7 +1350,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Igor (25 cm)', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Strapon'] = 25;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Strapon'] = 25;
     scene.text('"I think I like Igor best."');
     if (((s as any).pcs_vag ?? 0) >= 35) {
       scene.text('"Really? I thought you might prefer a bigger one. But okay, I will buy this one then."');
@@ -1364,7 +1364,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Labaan (35 cm)', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Strapon'] = 35;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Strapon'] = 35;
     scene.text('"I think I like Labaan best."');
     if (((s as any).pcs_vag ?? 0) <= 25) {
       scene.text('"Really? Are you sure? I didn\'t think… well, it\'s your choice. I will buy it then. Just don\'t complain afterwards."');
@@ -1431,7 +1431,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
                   scene.actions([
                     { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
-    ((s as any).nichTanya ?? {})['Date'] = 0;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Date'] = 0;
   }, goto: ['nichBedroomTanja', ''] },
                   ]);
                 }
@@ -1599,11 +1599,11 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexL(s: GameState, scene: SceneBuilder): void {
-  ((s as any).nichTanya ?? {})['FuckLast'] = ((s as any).daystart ?? 0);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckLast'] = ((s as any).daystart ?? 0);
   if (((s as any).nichTanya ?? 0)?.['FuckToday'] === 0) {
-    ((s as any).nichTanya ?? {})['FuckCounter'] = (((s as any).nichTanya ?? {})['FuckCounter'] ?? 0) + (1);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckCounter'] = ((s as any).nichTanya['FuckCounter'] ?? 0) + (1);
   }
-  ((s as any).nichTanya ?? {})['FuckToday'] = (((s as any).nichTanya ?? {})['FuckToday'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckToday'] = ((s as any).nichTanya['FuckToday'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sex/undress\' + rand(0, 3) + \'.jpg');
   scene.text('Tanya slowly undresses and poses seductively for you. "Now you."');
   scene.text('You make a show or striping out of your clothes, it takes some effort not to rush but the anticipation already has you turned on and the rewards are greater if you take your time.');
@@ -1614,7 +1614,7 @@ function enterSexL(s: GameState, scene: SceneBuilder): void {
 
 function enterRepeat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).nichTanya ?? {})['FuckToday'] = (((s as any).nichTanya ?? {})['FuckToday'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckToday'] = ((s as any).nichTanya['FuckToday'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sex/pose\' + rand(0, 1) + \'.jpg');
   scene.text('Tanya smiles at you and poses seductively and purrs, "Ready to go for another round?"');
   scene.text('She hasn\'t mastered the sultry act but the flawed effort is both sexy and cute so you are not about to complain.');
@@ -1635,7 +1635,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
 
 function enterAeatout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
-  ((s as any).nichTanya ?? {})['FuckPositions'] = (((s as any).nichTanya ?? {})['FuckPositions'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sexL/aeatout/aeatout\' + rand(0, 3) + \'.jpg');
   scene.text('You begin by kissing her breasts, moving gradually down her body, lower and lower until you are facing her pussy. You start by gently caressing her swollen lips with up and down tongue lapping, up and down the swollen mound and moist slit, and getting ready to focus the tip of your tongue directly on her clitoris. You part her outer lips with your fingers, spreading her pouty inner lips giving you full access to her puffy pink clitoris.');
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
@@ -1647,7 +1647,7 @@ function enterAeatout(s: GameState, scene: SceneBuilder): void {
 
 function enterPeatout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
-  ((s as any).nichTanya ?? {})['FuckPositions'] = (((s as any).nichTanya ?? {})['FuckPositions'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sexL/peatout/peatout\' + rand(0, 6) + \'.jpg');
   scene.text('Tanya begins by dragging her tongue up your thighs to your crotch and plants light kisses from the top of your slit down to the opening of your vagina. Her tongue pushes into your slickened hole a few times, then slides back up your cunny to caress your tingling clitoris again.');
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
@@ -1658,7 +1658,7 @@ function enterPeatout(s: GameState, scene: SceneBuilder): void {
 
 function enterArimjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
-  ((s as any).nichTanya ?? {})['FuckPositions'] = (((s as any).nichTanya ?? {})['FuckPositions'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sexL/arimjob/arimjob\' + rand(0, 3) + \'.jpg');
   scene.text('You kiss her buttocks in ever decreasing circles, eventually getting to the center where her puckered anus is waiting. Reaching your goal, you lick all around the tender star to get it plenty moist, then firmly push your tongue forward, penetrating her ass with just the tip. You retract it, again licking all around her anus, and repeating your tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming_give', 5, 'lesbian');
@@ -1669,7 +1669,7 @@ function enterArimjob(s: GameState, scene: SceneBuilder): void {
 
 function enterPrimjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
-  ((s as any).nichTanya ?? {})['FuckPositions'] = (((s as any).nichTanya ?? {})['FuckPositions'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sexL/primjob/primjob\' + rand(0, 2) + \'.jpg');
   scene.text('Tanya kisses your buttocks in ever decreasing circles, eventually getting to the center where your puckered anus is waiting. Reaching her goal, she licks all around the tender star to get it plenty moist, then firmly pushes her tongue forward, penetrating your ass with just the tip. She retracts it, again licking all around your anus, and repeats her tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming', 5, 'lesbian');
@@ -1680,7 +1680,7 @@ function enterPrimjob(s: GameState, scene: SceneBuilder): void {
 
 function enterPsovaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
-  ((s as any).nichTanya ?? {})['FuckPositions'] = (((s as any).nichTanya ?? {})['FuckPositions'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sexL/pstrapon/pstrapon\' + rand(0, 3) + \'.jpg');
   scene.text('You watch as Tanya puts on the strap-on, adjusting it to her hips and centering the fake cock, and then she moves to you and inserts it slowly into your pussy. You moan and grind back at her while she fucks you with it.');
   (s as any).dick = ((s as any).nichTanya ?? 0)?.['Strapon'];
@@ -1692,7 +1692,7 @@ function enterPsovaginal(s: GameState, scene: SceneBuilder): void {
 
 function enterAsovaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A218');
-  ((s as any).nichTanya ?? {})['FuckPositions'] = (((s as any).nichTanya ?? {})['FuckPositions'] ?? 0) + (1);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckPositions'] = ((s as any).nichTanya['FuckPositions'] ?? 0) + (1);
   scene.img('images/characters/city/tanya/sexL/astrapon/astrapon\' + rand(0, 5) + \'.jpg');
   scene.text('You put on the strap-on, adjusting it to your hips and centering it. You let Tanya suck on it to moisten it up, then you insert it slowly into her pussy. She moans and grinds back at you while you fuck her with it.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian');
@@ -1890,8 +1890,8 @@ function enterUniversity(s: GameState, scene: SceneBuilder): void {
     scene.text('"I love you and I only want the best for you. And I know that going to university is the best decision for your future."');
     scene.text('She bites down on her lip and hesitates for a few seconds.');
     scene.text('"I love you too. You know I do. And maybe you are right. I think I will give university another shot."');
-    ((s as any).nichTanya ?? {})['Uni'] = 100;
-    ((s as any).nichTanya ?? {})['UniStart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 100;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['UniStart'] = ((s as any).daystart ?? 0);
     scene.actions([
       { label: 'Another topic', goto: ['nichTanya', 'chat'] },
     ]);
@@ -1909,8 +1909,8 @@ function enterUniversity(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Because I tell you to [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay');
-    ((s as any).nichTanya ?? {})['Uni'] = 100;
-    ((s as any).nichTanya ?? {})['UniStart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 100;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['UniStart'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('"Because I tell you to."');
     scene.text('She bites down on her lip and hesitates for a few seconds.');
@@ -1924,8 +1924,8 @@ function enterUniversity(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'uniutil', 'student', 'enrolled')) {
       scene.actions([
         { label: 'I know what I am talking about (student)', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Uni'] = 100;
-    ((s as any).nichTanya ?? {})['UniStart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 100;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['UniStart'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('"I know what I am talking about. I am a student myself."');
     scene.text('She bites down on her lip and hesitates for a few seconds.');
@@ -1939,8 +1939,8 @@ function enterUniversity(s: GameState, scene: SceneBuilder): void {
     if (((s as any).persuas_lvl ?? 0) >= 50) {
       scene.actions([
         { label: 'Just trust me (persuasion)', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Uni'] = 100;
-    ((s as any).nichTanya ?? {})['UniStart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 100;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['UniStart'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('"Just believe me. It will be the best for you in the long run."');
     scene.text('She bites down on her lip and hesitates for a few seconds.');
@@ -1958,7 +1958,7 @@ function enterUniversity(s: GameState, scene: SceneBuilder): void {
     { label: 'You should quit university', handler: (st: GameState) => {
     scene.text('"I agree with you. University is not for everybody. I think you will be happier without it."');
     scene.text('Tanya beams at you. "Exactly! Thank you for your advise. I guess I will take it to heart."');
-    ((s as any).nichTanya ?? {})['Uni'] = 50;
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 50;
     scene.actions([
       { label: 'Another topic', goto: ['nichTanya', 'chat'] },
     ]);
@@ -2059,7 +2059,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A218', 'hate');
-    ((s as any).nichTanya ?? {})['FuckLast'] = ((s as any).daystart ?? 0);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckLast'] = ((s as any).daystart ?? 0);
     scene.text('"I don\'t know about this, Tanya", you say carefully. "I mean, can you imagine me cleaning up and cooking, day in and day out? It doesn\'t sound like me."');
     scene.text('Her joyful expression falters and is quickly replaced with a cold, angry stare. "You just don\'t want to be around me."');
     scene.text('"No!", you exclaim, "No, of course I\'d love to be around yo-"');
@@ -2089,8 +2089,8 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think you should clean it yourself from now on."');
     if (((s as any).nichTanya ?? 0)?.['Dominance'] <= -30) {
       scene.text('"Well, I guess you are right. I will try to keep the room clean from now on."');
-      ((s as any).nichTanya ?? {})['Room'] = 1;
-      ((s as any).nichChoreState ?? {})[5] = 0;
+      if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Room'] = 1;
+      if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[5] = 0;
     } else {
       // TODO-QSP: dynamic text: "Sorry, <<$pcs_nickname>>, but Nicholas pays you to clean it. Therefore you will...
       scene.text(`"Sorry, ${((s as any).pcs_nickname ?? 0)}, but Nicholas pays you to clean it. Therefore you will be the one cleaning it."`);
@@ -2123,7 +2123,7 @@ function enterHire(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/tanya/idle/idle\' + rand(0, 5) + \'.jpg');
   qspCall(s, 'npc_relationship', 'modify', 'A218', 'love');
   (s as any).nichWork = 1;
-  ((s as any).job_hiring_step ?? {})['nich_maid'] = 1;
+  if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['nich_maid'] = 1;
   scene.text('Her offer sounds too good to be true: Living with her, here, in this huge luxury apartment, right in the city center? And big paycheck every month for basically doing nothing? You know your answer immediately: "Okay."');
   scene.text('"Okay?", she asks, making sure she didn\'t misunderstand.');
   scene.text('"Yes, I\'ll take your offer. If your stepfather wants to hire m-" You are cut off by Tanya\'s fierce hug and kiss.');

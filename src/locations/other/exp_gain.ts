@@ -26,48 +26,48 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   return;
   // TODO-QSP: end
   if (((';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf((';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1 > 0) {
-    ((s as any).expgainVars ?? {})['statName'] = 'vball';
-    ((s as any).expgainVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
+    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = 'vball';
+    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
   } else {
     if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
-      ((s as any).expgainVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
-      ((s as any).expgainVars ?? {})['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
+      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
+      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
     } else {
       if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
-        ((s as any).expgainVars ?? {})['statName'] = ((s as any).locArgs?.[0] ?? 0);
-        ((s as any).expgainVars ?? {})['attrArray'] = '';
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = '';
       } else {
         scene.text(`Error in gs 'exp_gain': ${((s as any).locArgs?.[0] ?? 0)} is neither a skill nor an attribute`);
         return;
       }
     }
   }
-  ((s as any).expgainVars ?? {})['exp_gain_mult'] = qspFunc(s, '_difficulty', 'get_exp_gain');
-  ((s as any).expgainVars ?? {})['trait_index'] = 0;
+  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = qspFunc(s, '_difficulty', 'get_exp_gain');
+  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait_index'] = 0;
   // TODO-QSP: :trait_loop
-  ((s as any).expgainVars ?? {})['trait'] = qspUntranslated(s, "traitattskl[expgainVars['trait_index']]", { location: "exp_gain" });
+  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait'] = qspUntranslated(s, "traitattskl[expgainVars['trait_index']]", { location: "exp_gain" });
   if (((s as any).expgainVars ?? 0)?.['trait'] !== '') {
-    ((s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).expgainVars ?? {})?.['trait'] + '-' + ((s as any).expgainVars ?? {})?.['statName'] + '-exp_gain']);
-    ((s as any).expgainVars ?? {})['exp_gain_mult'] = (((s as any).expgainVars ?? {})['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $expgainVars[\'statName\'] + \'-exp_gain']);
+    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).expgainVars ?? {})?.['trait'] + '-' + ((s as any).expgainVars ?? {})?.['statName'] + '-exp_gain']);
+    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $expgainVars[\'statName\'] + \'-exp_gain']);
   }
-  ((s as any).expgainVars ?? {})['trait_index'] = (((s as any).expgainVars ?? {})['trait_index'] ?? 0) + (1);
+  if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait_index'] = ((s as any).expgainVars['trait_index'] ?? 0) + (1);
   if (((s as any).expgainVars ?? 0)?.['trait_index'] < Object.keys((s as any).traitattskl ?? {}).length) {
     // TODO-QSP: jump 'trait_loop'
   }
   if (((s as any).pcs_stam ?? 0) <= 0) {
     if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-      ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 50 / 400;
+      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 50 / 400;
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-        ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 100 / 400;
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 100 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-          ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 150 / 400;
+          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 150 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-            ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 180 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 180 / 400;
           } else {
-            ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 200 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 200 / 400;
           }
         }
       }
@@ -75,36 +75,36 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-        ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 75 / 400;
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 75 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-          ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 150 / 400;
+          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 150 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-            ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 225 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 225 / 400;
           } else {
             if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-              ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 270 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 270 / 400;
             } else {
-              ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 300 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 300 / 400;
             }
           }
         }
       }
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-        ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 100 / 400;
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 100 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-          ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 200 / 400;
+          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 200 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-            ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 300 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 300 / 400;
           } else {
             if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-              ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 360 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 360 / 400;
             } else {
-              ((s as any).expgainVars ?? {})['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 400 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 400 / 400;
             }
           }
         }
@@ -134,11 +134,11 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
     if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_bonus') : -1) < 0) {
     }
     if (((s as any).expgainVars ?? 0)?.['attrArray'] !== '') {
-      ((s as any).expgainVars ?? {})['i'] = 0;
-      ((s as any).expgainVars ?? {})['maxi'] = 0;
+      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['i'] = 0;
+      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['maxi'] = 0;
       if (((s as any).expgainVars ?? 0)?.['maxi'] > 0) {
         // TODO-QSP: :attrib_loop
-        ((s as any).expgainVars ?? {})['attr'] = 0;
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attr'] = 0;
         if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).expgainVars ?? 0)?.['attr']) : -1) >= 0) {
           // TODO-QSP: dynamic "
           if (((s as any).expgainVars ?? 0)?.['attr']((s as any)._lvl ?? 0) < 100 + ((s as any).expgainVars ?? 0)?.['attr']((s as any)._muta ?? 0)) {
@@ -148,7 +148,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
           }
           // TODO-QSP: "
         }
-        ((s as any).expgainVars ?? {})['i'] = (((s as any).expgainVars ?? {})['i'] ?? 0) + (1);
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['i'] = ((s as any).expgainVars['i'] ?? 0) + (1);
         if (((s as any).expgainVars ?? 0)?.['i'] < ((s as any).expgainVars ?? 0)?.['maxi']) {
           // TODO-QSP: jump 'attrib_loop'
         }

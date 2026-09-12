@@ -14,21 +14,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).FSexp = 0;
   }
   if (((s as any).FSfemin ?? 0) < 45) {
-    ((s as any).FSfemin ?? {})['text'] = 'Men';
+    if (!(s as any).FSfemin) (s as any).FSfemin = {}; (s as any).FSfemin['text'] = 'Men';
   } else {
     if (((s as any).FSfemin ?? 0) <= 55) {
-      ((s as any).FSfemin ?? {})['text'] = 'Androgynous';
+      if (!(s as any).FSfemin) (s as any).FSfemin = {}; (s as any).FSfemin['text'] = 'Androgynous';
     } else {
-      ((s as any).FSfemin ?? {})['text'] = 'Female';
+      if (!(s as any).FSfemin) (s as any).FSfemin = {}; (s as any).FSfemin['text'] = 'Female';
     }
   }
   if (((s as any).FSfigur ?? 0) < 45) {
-    ((s as any).FSfigur ?? {})['text'] = 'Male figure';
+    if (!(s as any).FSfigur) (s as any).FSfigur = {}; (s as any).FSfigur['text'] = 'Male figure';
   } else {
     if (((s as any).FSfigur ?? 0) <= 55) {
-      ((s as any).FSfigur ?? {})['text'] = 'Androgynous figure';
+      if (!(s as any).FSfigur) (s as any).FSfigur = {}; (s as any).FSfigur['text'] = 'Androgynous figure';
     } else {
-      ((s as any).FSfigur ?? {})['text'] = 'Female figure';
+      if (!(s as any).FSfigur) (s as any).FSfigur = {}; (s as any).FSfigur['text'] = 'Female figure';
     }
   }
   if (((s as any).FScolor ?? 0) < 0) {
@@ -39,51 +39,51 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((!((s as any).FScolor ?? 0))) {
-    ((s as any).FScolor ?? {})['text'] = 'Black hair';
-    ((s as any).FSsherst ?? {})['text'] = 'Black';
+    if (!(s as any).FScolor) (s as any).FScolor = {}; (s as any).FScolor['text'] = 'Black hair';
+    if (!(s as any).FSsherst) (s as any).FSsherst = {}; (s as any).FSsherst['text'] = 'Black';
   } else {
     if (((s as any).FScolor ?? 0) === 1) {
-      ((s as any).FScolor ?? {})['text'] = 'Brown hair';
-      ((s as any).FSsherst ?? {})['text'] = 'Brown';
+      if (!(s as any).FScolor) (s as any).FScolor = {}; (s as any).FScolor['text'] = 'Brown hair';
+      if (!(s as any).FSsherst) (s as any).FSsherst = {}; (s as any).FSsherst['text'] = 'Brown';
     } else {
       if (((s as any).FScolor ?? 0) === 2) {
-        ((s as any).FScolor ?? {})['text'] = 'Foxy hair';
-        ((s as any).FSsherst ?? {})['text'] = 'Redhead';
+        if (!(s as any).FScolor) (s as any).FScolor = {}; (s as any).FScolor['text'] = 'Foxy hair';
+        if (!(s as any).FSsherst) (s as any).FSsherst = {}; (s as any).FSsherst['text'] = 'Redhead';
       } else {
         if (((s as any).FScolor ?? 0) === 3) {
-          ((s as any).FScolor ?? {})['text'] = 'Blonde hair';
-          ((s as any).FSsherst ?? {})['text'] = ((s as any).pcs_nickname ?? 0);
+          if (!(s as any).FScolor) (s as any).FScolor = {}; (s as any).FScolor['text'] = 'Blonde hair';
+          if (!(s as any).FSsherst) (s as any).FSsherst = {}; (s as any).FSsherst['text'] = ((s as any).pcs_nickname ?? 0);
         } else {
           if (((s as any).FScolor ?? 0) === 4) {
-            ((s as any).FScolor ?? {})['text'] = 'Pink hair';
-            ((s as any).FSsherst ?? {})['text'] = 'Pink';
+            if (!(s as any).FScolor) (s as any).FScolor = {}; (s as any).FScolor['text'] = 'Pink hair';
+            if (!(s as any).FSsherst) (s as any).FSsherst = {}; (s as any).FSsherst['text'] = 'Pink';
           } else {
-            ((s as any).FScolor ?? {})['text'] = 'White hair';
-            ((s as any).FSsherst ?? {})['text'] = 'White';
+            if (!(s as any).FScolor) (s as any).FScolor = {}; (s as any).FScolor['text'] = 'White hair';
+            if (!(s as any).FSsherst) (s as any).FSsherst = {}; (s as any).FSsherst['text'] = 'White';
           }
         }
       }
     }
   }
   if (((s as any).FSface ?? 0) <= 0) {
-    ((s as any).FSface ?? {})['text'] = 'person';
+    if (!(s as any).FSface) (s as any).FSface = {}; (s as any).FSface['text'] = 'person';
   } else {
     if (((s as any).FSface ?? 0) === 1) {
-      ((s as any).FSface ?? {})['text'] = 'a person with cat ears and a cat-like nose';
+      if (!(s as any).FSface) (s as any).FSface = {}; (s as any).FSface['text'] = 'a person with cat ears and a cat-like nose';
     } else {
       if (((s as any).FSface ?? 0) === 2) {
-        ((s as any).FSface ?? {})['text'] = 'a person with dog ears and a dog-like nose';
+        if (!(s as any).FSface) (s as any).FSface = {}; (s as any).FSface['text'] = 'a person with dog ears and a dog-like nose';
       } else {
         if (((s as any).FSface ?? 0) === 3) {
-          ((s as any).FSface ?? {})['text'] = 'a person with fox ears and a fox-like nose';
+          if (!(s as any).FSface) (s as any).FSface = {}; (s as any).FSface['text'] = 'a person with fox ears and a fox-like nose';
         } else {
           if (((s as any).FSface ?? 0) === 4) {
-            ((s as any).FSface ?? {})['text'] = 'a person with protruding ears and nose';
+            if (!(s as any).FSface) (s as any).FSface = {}; (s as any).FSface['text'] = 'a person with protruding ears and nose';
           } else {
             if (((s as any).FSface ?? 0) === 5) {
-              ((s as any).FSface ?? {})['text'] = 'a person with cow\'s ears and nose';
+              if (!(s as any).FSface) (s as any).FSface = {}; (s as any).FSface['text'] = 'a person with cow\'s ears and nose';
             } else {
-              ((s as any).FSface ?? {})['text'] = 'a person with reptile-like ears and nose';
+              if (!(s as any).FSface) (s as any).FSface = {}; (s as any).FSface['text'] = 'a person with reptile-like ears and nose';
             }
           }
         }
@@ -91,33 +91,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).FSskin ?? 0) <= 0) {
-    ((s as any).FSskin ?? {})['text'] = 'Normal skin';
+    if (!(s as any).FSskin) (s as any).FSskin = {}; (s as any).FSskin['text'] = 'Normal skin';
   } else {
     if (((s as any).FSskin ?? 0) === 1) {
-      ((s as any).FSskin ?? {})['text'] = '' + qspUntranslated(s, "FSsherst['text']>", { location: "FSstat" }) + ' fur on the body';
+      if (!(s as any).FSskin) (s as any).FSskin = {}; (s as any).FSskin['text'] = '' + qspUntranslated(s, "FSsherst['text']>", { location: "FSstat" }) + ' fur on the body';
     } else {
-      ((s as any).FSskin ?? {})['text'] = 'Scales on body';
+      if (!(s as any).FSskin) (s as any).FSskin = {}; (s as any).FSskin['text'] = 'Scales on body';
     }
   }
   if (((s as any).FShvost ?? 0) <= 0) {
-    ((s as any).FShvost ?? {})['text'] = '';
+    if (!(s as any).FShvost) (s as any).FShvost = {}; (s as any).FShvost['text'] = '';
   } else {
     if (((s as any).FShvost ?? 0) === 1) {
-      ((s as any).FShvost ?? {})['text'] = 'Cat\'s tail';
+      if (!(s as any).FShvost) (s as any).FShvost = {}; (s as any).FShvost['text'] = 'Cat\'s tail';
     } else {
       if (((s as any).FShvost ?? 0) === 2) {
-        ((s as any).FShvost ?? {})['text'] = 'Dog\'s tail';
+        if (!(s as any).FShvost) (s as any).FShvost = {}; (s as any).FShvost['text'] = 'Dog\'s tail';
       } else {
         if (((s as any).FShvost ?? 0) === 3) {
-          ((s as any).FShvost ?? {})['text'] = 'Foxtail';
+          if (!(s as any).FShvost) (s as any).FShvost = {}; (s as any).FShvost['text'] = 'Foxtail';
         } else {
           if (((s as any).FShvost ?? 0) === 4) {
-            ((s as any).FShvost ?? {})['text'] = 'Horse\'s tail';
+            if (!(s as any).FShvost) (s as any).FShvost = {}; (s as any).FShvost['text'] = 'Horse\'s tail';
           } else {
             if (((s as any).FShvost ?? 0) === 5) {
-              ((s as any).FShvost ?? {})['text'] = 'Cow\'s Tail';
+              if (!(s as any).FShvost) (s as any).FShvost = {}; (s as any).FShvost['text'] = 'Cow\'s Tail';
             } else {
-              ((s as any).FShvost ?? {})['text'] = 'Reptile tail';
+              if (!(s as any).FShvost) (s as any).FShvost = {}; (s as any).FShvost['text'] = 'Reptile tail';
             }
           }
         }
@@ -125,18 +125,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).dicktipe ?? 0) <= 0) {
-    ((s as any).dicktipe ?? {})['text'] = 'Normal male';
+    if (!(s as any).dicktipe) (s as any).dicktipe = {}; (s as any).dicktipe['text'] = 'Normal male';
   } else {
     if (((s as any).dicktipe ?? 0) === 1) {
-      ((s as any).dicktipe ?? {})['text'] = 'Conical, covered with soft spines';
+      if (!(s as any).dicktipe) (s as any).dicktipe = {}; (s as any).dicktipe['text'] = 'Conical, covered with soft spines';
     } else {
       if (((s as any).dicktipe ?? 0) === 2) {
-        ((s as any).dicktipe ?? {})['text'] = 'Red, large dog-like at the base';
+        if (!(s as any).dicktipe) (s as any).dicktipe = {}; (s as any).dicktipe['text'] = 'Red, large dog-like at the base';
       } else {
         if (((s as any).dicktipe ?? 0) === 3) {
-          ((s as any).dicktipe ?? {})['text'] = 'Covered with coarse black leather';
+          if (!(s as any).dicktipe) (s as any).dicktipe = {}; (s as any).dicktipe['text'] = 'Covered with coarse black leather';
         } else {
-          ((s as any).dicktipe ?? {})['text'] = 'Powerful horse';
+          if (!(s as any).dicktipe) (s as any).dicktipe = {}; (s as any).dicktipe['text'] = 'Powerful horse';
         }
       }
     }
@@ -144,38 +144,38 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FSdick ?? 0) > 0) {
     // TODO-QSP: $FSdick['text'] = '<<$dicktipe[''text'']>> long dick <<FSdick>>'
   } else {
-    ((s as any).FSdick ?? {})['text'] = '';
+    if (!(s as any).FSdick) (s as any).FSdick = {}; (s as any).FSdick['text'] = '';
   }
   if (((s as any).FSvagina ?? 0) > 0) {
-    ((s as any).FSvagina ?? {})['text'] = 'A snatch between the legs';
+    if (!(s as any).FSvagina) (s as any).FSvagina = {}; (s as any).FSvagina['text'] = 'A snatch between the legs';
   } else {
-    ((s as any).FSvagina ?? {})['text'] = '';
+    if (!(s as any).FSvagina) (s as any).FSvagina = {}; (s as any).FSvagina['text'] = '';
   }
   if (((s as any).FStits ?? 0) <= 0) {
-    ((s as any).FStitrazm ?? {})['text'] = '';
+    if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = '';
   } else {
     if (((s as any).FStits ?? 0) === 1) {
-      ((s as any).FStitrazm ?? {})['text'] = 'AA';
+      if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'AA';
     } else {
       if (((s as any).FStits ?? 0) === 2) {
-        ((s as any).FStitrazm ?? {})['text'] = 'A';
+        if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'A';
       } else {
         if (((s as any).FStits ?? 0) === 3) {
-          ((s as any).FStitrazm ?? {})['text'] = 'Size B';
+          if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'Size B';
         } else {
           if (((s as any).FStits ?? 0) === 4) {
-            ((s as any).FStitrazm ?? {})['text'] = 'Size C';
+            if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'Size C';
           } else {
             if (((s as any).FStits ?? 0) === 5) {
-              ((s as any).FStitrazm ?? {})['text'] = 'Size D';
+              if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'Size D';
             } else {
               if (((s as any).FStits ?? 0) === 6) {
-                ((s as any).FStitrazm ?? {})['text'] = 'Size E';
+                if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'Size E';
               } else {
                 if (((s as any).FStits ?? 0) === 7) {
-                  ((s as any).FStitrazm ?? {})['text'] = 'Size F';
+                  if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'Size F';
                 } else {
-                  ((s as any).FStitrazm ?? {})['text'] = 'size F +';
+                  if (!(s as any).FStitrazm) (s as any).FStitrazm = {}; (s as any).FStitrazm['text'] = 'size F +';
                 }
               }
             }
@@ -185,22 +185,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).FStits ?? 0) <= 0) {
-    ((s as any).FStits ?? {})['text'] = '';
+    if (!(s as any).FStits) (s as any).FStits = {}; (s as any).FStits['text'] = '';
   } else {
     if ((!((s as any).FStitsLine ?? 0))) {
-      ((s as any).FStits ?? {})['text'] = 'Female breast ' + qspUntranslated(s, "FStitrazm['text']>", { location: "FSstat" }) + '';
+      if (!(s as any).FStits) (s as any).FStits = {}; (s as any).FStits['text'] = 'Female breast ' + qspUntranslated(s, "FStitrazm['text']>", { location: "FSstat" }) + '';
     } else {
       if (((s as any).FStitsLine ?? 0) === 1) {
-        ((s as any).FStits ?? {})['text'] = 'Two pairs of women\'s breasts ' + qspUntranslated(s, "FStitrazm['text']>", { location: "FSstat" }) + '';
+        if (!(s as any).FStits) (s as any).FStits = {}; (s as any).FStits['text'] = 'Two pairs of women\'s breasts ' + qspUntranslated(s, "FStitrazm['text']>", { location: "FSstat" }) + '';
       } else {
         if (((s as any).FStitsLine ?? 0) >= 2) {
-          ((s as any).FStits ?? {})['text'] = 'Three pairs of nipples ' + qspUntranslated(s, "FStitrazm['text']>", { location: "FSstat" }) + '';
+          if (!(s as any).FStits) (s as any).FStits = {}; (s as any).FStits['text'] = 'Three pairs of nipples ' + qspUntranslated(s, "FStitrazm['text']>", { location: "FSstat" }) + '';
         }
       }
     }
   }
   if (((s as any).FSpers ?? 0) <= 0) {
-    ((s as any).FSpers ?? {})['text'] = 'You have no character';
+    if (!(s as any).FSpers) (s as any).FSpers = {}; (s as any).FSpers['text'] = 'You have no character';
   } else {
     // TODO-QSP: $FSpers['text'] = '<<$FSname[''text'']>>. <<$FSfemin[''text'']>> <<$FSface[''text'']>> <<$FScolor[''text'']>> <<$FSfigur[''text'']>> <<$FStits[''text'']>> <<$FSskin[''text'']>> <<$FShvost[''text'']>> <<$FSdick[''text'']>> <<$FSvagina[''text'']>>'
   }

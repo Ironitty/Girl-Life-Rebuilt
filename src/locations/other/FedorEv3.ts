@@ -957,7 +957,7 @@ function enterRestroomEscape(s: GameState, scene: SceneBuilder): void {
 function enterRestroomRape(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (10);
   qspCall(s, 'mood', 'lower', 'medium');
-  ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (15);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (15);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/rape.jpg');
   scene.text('You carefully move your hand under the tap and fill your hand with water and then splash it in the attackers face but sadly it only makes him angrier, he then slams you against the wall and then punches you in the stomach as he strips you. The man grabs you by the throat as he exclaims "STUPID BITCH! I warned you but you had to be a brave little bitch! now I\'m going to take my time with you!"');
@@ -976,7 +976,7 @@ function enterRestroomRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Do as he says', handler: (st: GameState) => {
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensrape1.mp4');
     scene.text('You start preparing to stand up when he lifts you up by your shoulders and then unzips his pants and you can feel his dick pressing against your anus. You plead with him "Please at least lube…" He then drives his cock into your ass causing a sharp pain. You scream loudly but then he places his hand over your mouth and whispers in your ear "No screaming for you. The only thing I want to hear out of your mouth is "Fuck me harder."');
@@ -984,14 +984,14 @@ function enterRestroomRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Let him fuck you', handler: (st: GameState) => {
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensrape1.mp4');
     scene.text('You continue to give in knowing that there is nothing more you can do. Feeling both pain and fear not knowing what will happen next, how long will this last or if he will even let you go after he is done. You can only try your best to distract yourself from the almost unbearable pain.');
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     (s as any).PyotrPhoto = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/mensrestroom.jpg');

@@ -37,10 +37,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 5);
     qspCall(s, 'stat', '');
     if ((!((s as any).preziktype ?? 0))) {
-      ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
     if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-      ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
     (s as any).prezikday = ((s as any).daystart ?? 0);
     (s as any).prezikProver = 0;
@@ -159,7 +159,7 @@ function enterMomtoyPlay(s: GameState, scene: SceneBuilder): void {
     (s as any).selfmomtoyplay = 1;
   }, goto: ['selfplay', 'start'] },
       { label: 'Steal the dildo and leave', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['dildo_small'] = 1;
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['dildo_small'] = 1;
     (s as any).tookmomdildo = 1;
     (s as any).selfmomtoyplay = 1;
     dynamicGoto(st, 'loc', 'loc_arg');

@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterClearAll(s: GameState, scene: SceneBuilder): void {
   (s as any).clothingwornnumber = 0;
-  ((s as any).underwear ?? {})['type'] = 0;
+  if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['type'] = 0;
   (s as any).bodysuitwornnumber = 0;
   (s as any).brawornnumber = 0;
   (s as any).pantywornnumber = 0;
@@ -120,7 +120,7 @@ function enterSetDerivedVars(s: GameState, scene: SceneBuilder): void {
 
 function enterUndress(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = 'backup';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 'backup';
   }
   qspCall(s, 'outfit', 'backup', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'outfit', 'strip_all');
@@ -131,7 +131,7 @@ function enterUndress(s: GameState, scene: SceneBuilder): void {
 
 function enterDress(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = 'backup';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 'backup';
   }
   if (((s as any).lastwornclothingtype ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== ''  &&  ((s as any).lastwornclothingtype ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 'nude') {
     qspCall(s, 'outfit', 'restore', ((s as any).locArgs?.[1] ?? 0));
@@ -526,7 +526,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['clothes_dirt']) {
     // TODO-QSP: exit
   }
-  ((s as any).temp_outfitVars ?? {})['time_diff'] = qspUntranslated(s, "ARGS[1]", { location: "outfit" });
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['time_diff'] = qspUntranslated(s, "ARGS[1]", { location: "outfit" });
   if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).clothingworntype ?? 0) === '') {
     (s as any).PCloDirt = 0;
   } else {
@@ -540,25 +540,25 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
           (s as any).PCloDirt = 0;
         } else {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-            ((s as any).temp_outfitVars ?? {})['sweat_penal'] = 100;
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = 100;
             if (((s as any).PCloStyle2 ?? 0) !== 6  &&  (!((s as any).PSwim ?? 0))) {
-              ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
             }
-            ((s as any).temp_outfitVars ?? {})['cum_penal'] = 2 * ((s as any).sparrvol ?? 0)[6] + 2 * ((s as any).sparrvol ?? 0)[7];
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = 2 * ((s as any).sparrvol ?? 0)[6] + 2 * ((s as any).sparrvol ?? 0)[7];
             if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).bodysuitworntype ?? 0) === 'none') {
-              ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
-              ((s as any).temp_outfitVars ?? {})['cum_penal'] = (((s as any).temp_outfitVars ?? {})['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4]);
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4]);
             }
             if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).bodysuitworntype ?? 0) === 'none') {
-              ((s as any).temp_outfitVars ?? {})['cum_penal'] = (((s as any).temp_outfitVars ?? {})['cum_penal'] ?? 0) + (qspUntranslated(s, "sparrvol[15]", { location: "outfit" }));
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (qspUntranslated(s, "sparrvol[15]", { location: "outfit" }));
             }
             if (((s as any).bodysuitworntype ?? 0) === 'none'  &&  ((((s as any).clothingworntype ?? 0)).indexOf(('bikinis'))) + 1 <= 0) {
-              ((s as any).temp_outfitVars ?? {})['cum_penal'] = (((s as any).temp_outfitVars ?? {})['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14]);
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14]);
             }
-            ((s as any).temp_outfitVars ?? {})['cum_penal'] = (((s as any).temp_outfitVars ?? {})['cum_penal'] ?? 0) + (Math.max(0, 6 - Math.max(((s as any).PCloSkirt ?? 0), ((s as any).PCloPants ?? 0))) * ((s as any).sparrvol ?? 0)[9] / 6);
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (Math.max(0, 6 - Math.max(((s as any).PCloSkirt ?? 0), ((s as any).PCloPants ?? 0))) * ((s as any).sparrvol ?? 0)[9] / 6);
             // TODO-QSP: temp_outfitVars['cum_penal'] /= 2
-            ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-            ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
             if ((!((s as any).PCloBorrowed ?? 0))) {
               // TODO-QSP: gs 'clothing', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
             } else {
@@ -583,14 +583,14 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
           (s as any).PPanDirt = 0;
         } else {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-            ((s as any).temp_outfitVars ?? {})['sweat_penal'] = 100;
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = 100;
             if (((s as any).PBraFun ?? 0) === 1  &&  ((s as any).PPanFun ?? 0) === 1) {
-              ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
             }
-            ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
-            ((s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).sparrvol ?? 0)[2] + ((s as any).sparrvol ?? 0)[5] + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4] + ((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14] + ((s as any).sparrvol ?? 0)[15]) / 2;
-            ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-            ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).sparrvol ?? 0)[2] + ((s as any).sparrvol ?? 0)[5] + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4] + ((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14] + ((s as any).sparrvol ?? 0)[15]) / 2;
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
             if ((!((s as any).PPanBorrowed ?? 0))) {
               // TODO-QSP: gs 'underwear_bodysuits', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
             } else {
@@ -614,13 +614,13 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
             (s as any).PBraDirt = 0;
           } else {
             if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-              ((s as any).temp_outfitVars ?? {})['sweat_penal'] = 100;
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = 100;
               if (((s as any).PBraFun ?? 0) === 1) {
-                ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
+                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
               }
-              ((s as any).temp_outfitVars ?? {})['cum_penal'] = qspUntranslated(s, "sparrvol[14]", { location: "outfit" });
-              ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-              ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = qspUntranslated(s, "sparrvol[14]", { location: "outfit" });
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
               if ((!((s as any).PBraBorrowed ?? 0))) {
                 // TODO-QSP: gs 'bras', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
               } else {
@@ -643,14 +643,14 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
             (s as any).PPanDirt = 0;
           } else {
             if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-              ((s as any).temp_outfitVars ?? {})['sweat_penal'] = 100;
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = 100;
               if (((s as any).PPanFun ?? 0) === 1) {
-                ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
+                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (((s as any).pcs_sweat ?? 0));
               }
-              ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
-              ((s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).sparrvol ?? 0)[2] + ((s as any).sparrvol ?? 0)[5] + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4]) / 2;
-              ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-              ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sweat_penal'] = ((s as any).temp_outfitVars['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).sparrvol ?? 0)[2] + ((s as any).sparrvol ?? 0)[5] + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4]) / 2;
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
               if ((!((s as any).PPanBorrowed ?? 0))) {
                 // TODO-QSP: gs 'panties', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
               } else {
@@ -677,7 +677,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).inSleep ?? 0)) {
     // TODO-QSP: exit
   }
-  ((s as any).temp_outfitVars ?? {})['time_diff'] = qspUntranslated(s, "ARGS[1]", { location: "outfit" });
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['time_diff'] = qspUntranslated(s, "ARGS[1]", { location: "outfit" });
   if (((s as any).shoeworntype ?? 0) === 'none'  ||  ((s as any).shoeworntype ?? 0) === '') {
     (s as any).PShoStrength = 0;
   } else {
@@ -688,7 +688,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
         (s as any).PShoStrength = 100000;
       } else {
         if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-          ((s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
           if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
             // TODO-QSP: temp_outfitVars['strength_cost'] *= 2
           }
@@ -704,7 +704,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).temp_outfitVars ?? {})['outer_layer_done'] = 0;
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['outer_layer_done'] = 0;
   if (((s as any).coatworntype ?? 0) === 'none'  ||  ((s as any).coatworntype ?? 0) === '') {
     (s as any).PCoatStrength = 0;
   } else {
@@ -715,11 +715,11 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
         (s as any).PCoatStrength = 100000;
       } else {
         if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-          ((s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
           if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
-            ((s as any).temp_outfitVars ?? {})['outer_layer_done'] = 1;
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['outer_layer_done'] = 1;
             if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
-              ((s as any).temp_outfitVars ?? {})['strength_cost'] = 3 * ((s as any).temp_outfitVars ?? {})?.['strength_cost'] / 2;
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = 3 * ((s as any).temp_outfitVars ?? {})?.['strength_cost'] / 2;
             }
           }
           if ((!((s as any).PCoatBorrowed ?? 0))) {
@@ -747,9 +747,9 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           (s as any).PCloStrength = 100000;
         } else {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-            ((s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
-              ((s as any).temp_outfitVars ?? {})['outer_layer_done'] = 1;
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['outer_layer_done'] = 1;
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 2
               if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
                 // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
@@ -782,7 +782,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           (s as any).PPanStrength = 100000;
         } else {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-            ((s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
               if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
@@ -814,7 +814,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           (s as any).PBraStrength = 100000;
         } else {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-            ((s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
               if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
@@ -843,7 +843,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           (s as any).PPanStrength = 100000;
         } else {
           if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
-            ((s as any).temp_outfitVars ?? {})['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
               if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
@@ -875,7 +875,7 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).totminut ?? 0) < ((s as any).heelsminut ?? 0) + 30) {
     // TODO-QSP: exit
   }
-  ((s as any).temp_outfitVars ?? {})['heels_time'] = ((s as any).totminut ?? 0) - ((s as any).heelsminut ?? 0);
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = ((s as any).totminut ?? 0) - ((s as any).heelsminut ?? 0);
   (s as any).heelsminut = ((s as any).totminut ?? 0);
   if (((s as any).inSleep ?? 0) !== 0) {
     // TODO-QSP: exit
@@ -937,47 +937,47 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['heel_preference'] < 0  &&  ((s as any).trait_vars ?? 0)?.['heel_preference_daily_limit'] > 0) {
     (s as any).temp_time = qspUntranslated(s, "min(temp_outfitVars['heels_time'], trait_vars['heel_preference_daily_limit'])", { location: "outfit" });
     if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['severe']) {
-      ((s as any).trait_vars ?? {})['heel_preference_exp'] = (((s as any).trait_vars ?? {})['heel_preference_exp'] ?? 0) + (((s as any).temp_time ?? 0));
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) + (((s as any).temp_time ?? 0));
     } else {
       if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['medium']) {
-        ((s as any).trait_vars ?? {})['heel_preference_exp'] = (((s as any).trait_vars ?? {})['heel_preference_exp'] ?? 0) + (3 * ((s as any).temp_time ?? 0) / 2);
+        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) + (3 * ((s as any).temp_time ?? 0) / 2);
       } else {
         if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild']) {
-          ((s as any).trait_vars ?? {})['heel_preference_exp'] = (((s as any).trait_vars ?? {})['heel_preference_exp'] ?? 0) + (((s as any).temp_time ?? 0) / 2);
+          if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) + (((s as any).temp_time ?? 0) / 2);
         } else {
           if (((s as any).PShoHeels ?? 0) >= 6) {
-            ((s as any).trait_vars ?? {})['heel_preference_exp'] = (((s as any).trait_vars ?? {})['heel_preference_exp'] ?? 0) + (((s as any).temp_time ?? 0) / 5);
+            if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = ((s as any).trait_vars['heel_preference_exp'] ?? 0) + (((s as any).temp_time ?? 0) / 5);
           }
         }
       }
     }
-    ((s as any).trait_vars ?? {})['heel_preference_daily_limit'] = Math.max(0, ((s as any).trait_vars ?? {})?.['heel_preference_daily_limit'] - ((s as any).temp_time ?? 0));
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_daily_limit'] = Math.max(0, ((s as any).trait_vars ?? {})?.['heel_preference_daily_limit'] - ((s as any).temp_time ?? 0));
   }
   if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['severe']) {
-    ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(5, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 10);
+    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = Math.min(Math.max(5, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 10);
     if (((s as any).pain ?? 0)?.['feet'] < 80) {
       qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 2 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5)), 'feet', 'ache');
     }
   } else {
     if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['medium']) {
-      ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(7, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 8 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15))), 12);
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = Math.min(Math.max(7, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 8 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15))), 12);
       if (((s as any).pain ?? 0)?.['feet'] < 60) {
         qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10)), 'feet', 'ache');
       }
     } else {
       if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild']) {
-        ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 6);
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 6);
         if (((s as any).pain ?? 0)?.['feet'] < 40) {
           qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20)), 'feet', 'ache');
         }
       } else {
         if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild'] + 10) {
-          ((s as any).temp_outfitVars ?? {})['heels_time'] = (Math.floor(Math.random() * (0 - -3 + 1)) + (-3)) + Math.min(Math.max(6, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10))), 9);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - -3 + 1)) + (-3)) + Math.min(Math.max(6, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10))), 9);
         } else {
           if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild'] + 20) {
-            ((s as any).temp_outfitVars ?? {})['heels_time'] = (Math.floor(Math.random() * (0 - -5 + 1)) + (-5)) + Math.min(Math.max(4, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 6);
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - -5 + 1)) + (-5)) + Math.min(Math.max(4, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 6);
           } else {
-            ((s as any).temp_outfitVars ?? {})['heels_time'] = (Math.floor(Math.random() * (0 - -7 + 1)) + (-7)) + Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 4);
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - -7 + 1)) + (-7)) + Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 4);
           }
         }
       }
@@ -996,45 +996,45 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat_texts ?? {})['clothes_tooltip'] = '';
-  ((s as any).stat_texts ?? {})['clothes'] = '';
-  ((s as any).stat_texts ?? {})['clothes_color'] = 'none';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'none';
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       if (((s as any).braworntype ?? 0) === 'none') {
-        ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'underwear1';
-        ((s as any).stat_texts ?? {})['clothes'] = 'You are only wearing your ' + ((((s as any).PPanThinness ?? 0) >= 5) ? ('see-through ') : ('')) + 'panties, and your breasts sway invitingly as you walk.';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'underwear1';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are only wearing your ' + ((((s as any).PPanThinness ?? 0) >= 5) ? ('see-through ') : ('')) + 'panties, and your breasts sway invitingly as you walk.';
       } else {
         if (((s as any).PBraThinness ?? 0) >= 5) {
-          ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'underwear0';
-          ((s as any).stat_texts ?? {})['clothes'] = 'You are only wearing your see-through ' + ((((s as any).PPanThinness ?? 0) >= 5) ? ('underwear.') : ('bra and panties.')) + '';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'underwear0';
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are only wearing your see-through ' + ((((s as any).PPanThinness ?? 0) >= 5) ? ('underwear.') : ('bra and panties.')) + '';
         } else {
-          ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'underwear0';
-          ((s as any).stat_texts ?? {})['clothes'] = 'You are only wearing your ' + ((((s as any).PPanThinness ?? 0) >= 5) ? ('see-through panties and a regular bra.') : ('underwear.')) + '';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'underwear0';
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are only wearing your ' + ((((s as any).PPanThinness ?? 0) >= 5) ? ('see-through panties and a regular bra.') : ('underwear.')) + '';
         }
       }
-      ((s as any).stat_texts ?? {})['clothes_color'] = 'v_neg';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'v_neg';
     } else {
       if (((s as any).braworntype ?? 0) !== 'none') {
-        ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'underwear2';
-        ((s as any).stat_texts ?? {})['clothes'] = 'You are only wearing your bra, leaving your pussy and ass completely exposed.';
-        ((s as any).stat_texts ?? {})['clothes_color'] = 'v_neg';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'underwear2';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are only wearing your bra, leaving your pussy and ass completely exposed.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'v_neg';
       } else {
-        ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'nude';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'nude';
         if (((s as any).pcs_inhib ?? 0) < 5) {
-          ((s as any).stat_texts ?? {})['clothes'] = 'You are completely naked, which makes you feel nervous and ashamed.';
-          ((s as any).stat_texts ?? {})['clothes_color'] = 'v_neg';
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are completely naked, which makes you feel nervous and ashamed.';
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'v_neg';
         } else {
           if (((s as any).pcs_inhib ?? 0) < 20) {
-            ((s as any).stat_texts ?? {})['clothes'] = 'You are completely naked. You\'re not too comfortable with nudity, but it is a little exciting.';
-            ((s as any).stat_texts ?? {})['clothes_color'] = 'neutral';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are completely naked. You\'re not too comfortable with nudity, but it is a little exciting.';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'neutral';
           } else {
             if (((s as any).pcs_inhib ?? 0) >= 90) {
-              ((s as any).stat_texts ?? {})['clothes'] = 'You are completely naked, which is far better than having to wear clothes.';
-              ((s as any).stat_texts ?? {})['clothes_color'] = 'accent';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are completely naked, which is far better than having to wear clothes.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'accent';
             } else {
-              ((s as any).stat_texts ?? {})['clothes'] = 'You are completely naked. It\'s exciting, and you feel tingly inside.';
-              ((s as any).stat_texts ?? {})['clothes_color'] = 'bimbo';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are completely naked. It\'s exciting, and you feel tingly inside.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'bimbo';
             }
           }
         }
@@ -1042,40 +1042,40 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).clothingworntype ?? 0) === 'misc_outfits'  &&  ((s as any).clothingwornnumber ?? 0) === 1) {
-      ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'clothes';
-      ((s as any).stat_texts ?? {})['clothes'] = 'You are wearing an old hessian sack the hunters gave you.';
-      ((s as any).stat_texts ?? {})['clothes_color'] = 'neutral';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'clothes';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are wearing an old hessian sack the hunters gave you.';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_color'] = 'neutral';
     } else {
       if (((s as any).PCloSport ?? 0)) {
-        ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'gym outfit';
-        ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'exercise';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'gym outfit';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'exercise';
       } else {
         if (((s as any).PCloSwim ?? 0)) {
-          ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'swimsuit';
-          ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'swimsuit';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'swimsuit';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'swimsuit';
         } else {
           if (((s as any).PCloOffice ?? 0)) {
-            ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'office dress';
-            ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'office';
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'office dress';
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'office';
           } else {
             if (((s as any).PCloSchool ?? 0)) {
-              ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'school uniform';
-              ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'school';
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'school uniform';
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'school';
             } else {
               if (((s as any).PCloStrip ?? 0)) {
-                ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'stripper outfit';
-                ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'stripper';
+                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'stripper outfit';
+                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'stripper';
               } else {
                 if (((s as any).PCloServer ?? 0)) {
-                  ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'server outfit';
-                  ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'server';
+                  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'server outfit';
+                  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'server';
                 } else {
                   if (((s as any).PCloMaid ?? 0)) {
-                    ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'maid outfit';
-                    ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'maid';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'maid outfit';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'maid';
                   } else {
-                    ((s as any).temp_outfitVars ?? {})['clothes_type'] = 'outfit';
-                    ((s as any).temp_outfitVars ?? {})['clothes_style'] = 'clothes';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_type'] = 'outfit';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = 'clothes';
                   }
                 }
               }
@@ -1083,82 +1083,82 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      ((s as any).temp_outfitVars ?? {})['tt'] = '';
-      ((s as any).temp_outfitVars ?? {})['sd_list'] = '';
-      ((s as any).temp_outfitVars ?? {})['style_code'] = '';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['tt'] = '';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = '';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['style_code'] = '';
       if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
-        ((s as any).temp_outfitVars ?? {})['tt'] = (((s as any).temp_outfitVars ?? {})['tt'] ?? 0) + ('/Prostitute');
-        ((s as any).temp_outfitVars ?? {})['sd_list'] = (((s as any).temp_outfitVars ?? {})['sd_list'] ?? 0) + (', prostitute');
-        ((s as any).temp_outfitVars ?? {})['style_code'] = 'p';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['tt'] = ((s as any).temp_outfitVars['tt'] ?? 0) + ('/Prostitute');
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = ((s as any).temp_outfitVars['sd_list'] ?? 0) + (', prostitute');
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['style_code'] = 'p';
       } else {
         if (((s as any).PCloInhibit ?? 0) >= 40  ||  ((s as any).PCloThinness ?? 0) === 6) {
-          ((s as any).temp_outfitVars ?? {})['tt'] = (((s as any).temp_outfitVars ?? {})['tt'] ?? 0) + ('/Exhibitionist');
-          ((s as any).temp_outfitVars ?? {})['sd_list'] = (((s as any).temp_outfitVars ?? {})['sd_list'] ?? 0) + (', exhibitionist');
-          ((s as any).temp_outfitVars ?? {})['style_code'] = 'e';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['tt'] = ((s as any).temp_outfitVars['tt'] ?? 0) + ('/Exhibitionist');
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = ((s as any).temp_outfitVars['sd_list'] ?? 0) + (', exhibitionist');
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['style_code'] = 'e';
         }
       }
       if (((s as any).PCloBimbo ?? 0) === 1) {
-        ((s as any).temp_outfitVars ?? {})['tt'] = (((s as any).temp_outfitVars ?? {})['tt'] ?? 0) + ('/Bimbo');
-        ((s as any).temp_outfitVars ?? {})['sd_list'] = (((s as any).temp_outfitVars ?? {})['sd_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', 'bimbo'));
-        ((s as any).temp_outfitVars ?? {})['style_code'] = (((s as any).temp_outfitVars ?? {})['style_code'] ?? 0) + ('b');
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['tt'] = ((s as any).temp_outfitVars['tt'] ?? 0) + ('/Bimbo');
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = ((s as any).temp_outfitVars['sd_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'bimbo', 'bimbo'));
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['style_code'] = ((s as any).temp_outfitVars['style_code'] ?? 0) + ('b');
       }
       if (((s as any).PCloGoth ?? 0) === 1) {
-        ((s as any).temp_outfitVars ?? {})['tt'] = (((s as any).temp_outfitVars ?? {})['tt'] ?? 0) + ('/Goth');
-        ((s as any).temp_outfitVars ?? {})['sd_list'] = (((s as any).temp_outfitVars ?? {})['sd_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'goth', 'goth'));
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['tt'] = ((s as any).temp_outfitVars['tt'] ?? 0) + ('/Goth');
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = ((s as any).temp_outfitVars['sd_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'goth', 'goth'));
       }
       if (((s as any).PCloPunk ?? 0) === 1) {
-        ((s as any).temp_outfitVars ?? {})['tt'] = (((s as any).temp_outfitVars ?? {})['tt'] ?? 0) + ('/Punk');
-        ((s as any).temp_outfitVars ?? {})['sd_list'] = (((s as any).temp_outfitVars ?? {})['sd_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'punk', 'punk'));
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['tt'] = ((s as any).temp_outfitVars['tt'] ?? 0) + ('/Punk');
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = ((s as any).temp_outfitVars['sd_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'punk', 'punk'));
       }
       if (((s as any).temp_outfitVars ?? 0)?.['tt'] !== '') {
-        ((s as any).stat_texts ?? {})['clothes_tooltip'] = ((((s as any).temp_outfitVars ?? 0)?.['tt']).slice((2)-1)) + ' ' + ((s as any).temp_outfitVars ?? {})?.['clothes_type'] + '.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = ((((s as any).temp_outfitVars ?? 0)?.['tt']).slice((2)-1)) + ' ' + ((s as any).temp_outfitVars ?? {})?.['clothes_type'] + '.';
       } else {
         if (((s as any).PCloInhibit ?? 0) < 20) {
-          ((s as any).stat_texts ?? {})['clothes_tooltip'] = 'Normal \' + $temp_outfitVars[\'clothes_type\'] + \'.';
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = 'Normal \' + $temp_outfitVars[\'clothes_type\'] + \'.';
         } else {
           if (((s as any).PCloInhibit ?? 0) < 25) {
-            ((s as any).stat_texts ?? {})['clothes_tooltip'] = 'Slightly revealing \' + $temp_outfitVars[\'clothes_type\'] + \'.';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = 'Slightly revealing \' + $temp_outfitVars[\'clothes_type\'] + \'.';
           } else {
             if (((s as any).PCloInhibit ?? 0) < 30) {
-              ((s as any).stat_texts ?? {})['clothes_tooltip'] = 'Revealing \' + $temp_outfitVars[\'clothes_type\'] + \'.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = 'Revealing \' + $temp_outfitVars[\'clothes_type\'] + \'.';
             } else {
-              ((s as any).stat_texts ?? {})['clothes_tooltip'] = 'Very revealing \' + $temp_outfitVars[\'clothes_type\'] + \'.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = 'Very revealing \' + $temp_outfitVars[\'clothes_type\'] + \'.';
             }
           }
         }
       }
       if (((s as any).temp_outfitVars ?? 0)?.['style_code'] !== '') {
-        ((s as any).temp_outfitVars ?? {})['clothes_style'] = (((s as any).temp_outfitVars ?? {})['clothes_style'] ?? 0) + ('_' + ((s as any).temp_outfitVars ?? {})?.['style_code']);
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = ((s as any).temp_outfitVars['clothes_style'] ?? 0) + ('_' + ((s as any).temp_outfitVars ?? {})?.['style_code']);
       } else {
         if (((s as any).PCloInhibit ?? 0) >= 20) {
-          ((s as any).temp_outfitVars ?? {})['clothes_style'] = (((s as any).temp_outfitVars ?? {})['clothes_style'] ?? 0) + ('_s');
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clothes_style'] = ((s as any).temp_outfitVars['clothes_style'] ?? 0) + ('_s');
         }
       }
       if (((s as any).temp_outfitVars ?? 0)?.['sd_list'] !== '') {
-        ((s as any).temp_outfitVars ?? {})['sd_list'] = qspUntranslated(s, "mid(temp_outfitVars['sd_list'], 3)", { location: "outfit" });
-        ((s as any).temp_outfitVars ?? {})['sd_list_pre'] = ((((((s as any).temp_outfitVars ?? 0)?.['sd_list']).slice((1)-1, ((1)-1)+(1))) === 'e') ? ('an') : ('a'));
-        ((s as any).stat_texts ?? {})['clothes'] = 'You are wearing \' + $temp_outfitVars[\'sd_list_pre\'] + \' \' + $temp_outfitVars[\'sd_list\'] + \' \' + $temp_outfitVars[\'clothes_type\'] + \'.';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = qspUntranslated(s, "mid(temp_outfitVars['sd_list'], 3)", { location: "outfit" });
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list_pre'] = ((((((s as any).temp_outfitVars ?? 0)?.['sd_list']).slice((1)-1, ((1)-1)+(1))) === 'e') ? ('an') : ('a'));
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are wearing \' + $temp_outfitVars[\'sd_list_pre\'] + \' \' + $temp_outfitVars[\'sd_list\'] + \' \' + $temp_outfitVars[\'clothes_type\'] + \'.';
       }
     }
   }
   if (((s as any).pcs_horny ?? 0) >= 50) {
-    ((s as any).temp_outfitVars ?? {})['nipple_text'] = 'aroused nipples';
+    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['nipple_text'] = 'aroused nipples';
   } else {
     if (((s as any).temper ?? 0) < 14) {
-      ((s as any).temp_outfitVars ?? {})['nipple_text'] = 'chilly nipples';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['nipple_text'] = 'chilly nipples';
     } else {
       if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-        ((s as any).temp_outfitVars ?? {})['nipple_text'] = 'stiff nipples';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['nipple_text'] = 'stiff nipples';
       } else {
-        ((s as any).temp_outfitVars ?? {})['nipple_text'] = '';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['nipple_text'] = '';
       }
     }
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     if (((s as any).PCloBra ?? 0) === 1) {
-      ((s as any).stat_texts ?? {})['bra'] = 'Your top is replacing your bra.';
-      ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neutral';
-      ((s as any).temp_outfitVars ?? {})['bra_icon'] = '';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your top is replacing your bra.';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neutral';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = '';
     } else {
       if (((s as any).PCloThinness ?? 0) === 6  &&  ((s as any).braworntype ?? 0) === 'none') {
         if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
@@ -1182,303 +1182,303 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
-        ((s as any).temp_outfitVars ?? {})['bra_color'] = 'bimbo';
-        ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'bimbo';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
       } else {
         if (((s as any).PCloThinness ?? 0) === 6) {
           if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
             if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-              ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \'.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \'.';
             } else {
-              ((s as any).stat_texts ?? {})['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \'.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \'.';
             }
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
               if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', lightly bouncing for anybody who cares to look.';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', lightly bouncing for anybody who cares to look.';
               } else {
-                ((s as any).stat_texts ?? {})['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see the slight bounce of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts inside the cups as you walk.';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see the slight bounce of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts inside the cups as you walk.';
               }
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'body_tits_b_cup')) {
                 if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                  ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', lightly bouncing for anybody who cares to look.';
+                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', lightly bouncing for anybody who cares to look.';
                 } else {
-                  ((s as any).stat_texts ?? {})['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see the light bounce of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts inside the cups as you walk.';
+                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see the light bounce of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts inside the cups as you walk.';
                 }
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'body_tits_c_cup')) {
                   if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', softly bouncing inside them for anybody who cares to look.';
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', softly bouncing inside them for anybody who cares to look.';
                   } else {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see the softly bounce of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts inside the cups as you walk.';
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see the softly bounce of your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts inside the cups as you walk.';
                   }
                 } else {
                   if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_d_cup', 'body_tits_e_cup')) {
                     if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', jiggling inside them for anybody who cares to look.';
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', jiggling inside them for anybody who cares to look.';
                     } else {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts jiggle inside the cups as you walk.';
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts jiggle inside the cups as you walk.';
                     }
                   } else {
                     if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', dramatically jiggling for anybody who cares to look.';
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are poking through your bra and transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \', dramatically jiggling for anybody who cares to look.';
                     } else {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts dramatically jiggle inside the cups with every step.';
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is clearly showing through your transparent \' + iif(PCloDress = 1, \'dress\', \'top\') + \' and anyone who looks can see your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts dramatically jiggle inside the cups with every step.';
                     }
                   }
                 }
               }
             }
           }
-          ((s as any).temp_outfitVars ?? {})['bra_color'] = 'bimbo';
-          ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'bimbo';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
         } else {
           if (((s as any).PCloCoverTop ?? 0) === 4) {
             if (((s as any).braworntype ?? 0) !== 'none') {
-              ((s as any).stat_texts ?? {})['bra'] = 'Your bra is fully on display, doing little to hide your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts.';
-              ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is fully on display, doing little to hide your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts.';
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
             } else {
-              ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are completely exposed.';
-              ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are completely exposed.';
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
             }
-            ((s as any).temp_outfitVars ?? {})['bra_color'] = 'v_neg';
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'v_neg';
           } else {
             if (((s as any).PCloThinness ?? 0) === 5  &&  ((s as any).braworntype ?? 0) === 'none') {
               if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
-                ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your flat chest' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your flat chest' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
-                  ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your petite breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
+                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your petite breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
                 } else {
                   if (qspFunc(s, 'pcs_has_attr', 'body_tits_b_cup')) {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your pert breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your pert breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
                   } else {
                     if (qspFunc(s, 'pcs_has_attr', 'body_tits_c_cup')) {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your shapely breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your shapely breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
                     } else {
                       if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_d_cup', 'body_tits_e_cup')) {
-                        ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your large breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
+                        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your large breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
                       } else {
-                        ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your huge breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
+                        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your huge breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are visible, rubbing distractingly on the thin fabric.', '  &&  outline of your nipples is visible through the thin fabric.');
                       }
                     }
                   }
                 }
               }
-              ((s as any).temp_outfitVars ?? {})['bra_color'] = 'bimbo';
-              ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'bimbo';
+              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
             } else {
               if (((s as any).PCloThinness ?? 0) === 5) {
                 if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
                   if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your flat chest' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your flat chest' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
                   } else {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your flat chest' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your flat chest' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
                   }
                 } else {
                   if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
                     if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your petite breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your petite breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
                     } else {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your petite breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your petite breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
                     }
                   } else {
                     if (qspFunc(s, 'pcs_has_attr', 'body_tits_b_cup')) {
                       if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                        ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your pert breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
+                        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your pert breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
                       } else {
-                        ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your pert breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
+                        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your pert breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
                       }
                     } else {
                       if (qspFunc(s, 'pcs_has_attr', 'body_tits_c_cup')) {
                         if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                          ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your shapely breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
+                          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your shapely breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
                         } else {
-                          ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your shapely breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
+                          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your shapely breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
                         }
                       } else {
                         if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_d_cup', 'body_tits_e_cup')) {
                           if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                            ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your large breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
+                            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your large breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
                           } else {
-                            ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your large breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
+                            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your large breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
                           }
                         } else {
                           if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                            ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your huge breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
+                            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your huge breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  the outline of your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' is visible, poking through the cups of your bra', '  &&  outline of your nipples is visible, poking through the cups of your bra.');
                           } else {
-                            ((s as any).stat_texts ?? {})['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your huge breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
+                            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ' drapes revealingly over your huge breasts' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ', the color of your bra is visible through the thin material,  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '  &&  the color of your bra is visible through the thin material.');
                           }
                         }
                       }
                     }
                   }
                 }
-                ((s as any).temp_outfitVars ?? {})['bra_color'] = 'bimbo';
-                ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'bimbo';
+                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
               } else {
                 if (((s as any).PCloCoverTop ?? 0) === 3) {
                   if (((s as any).braworntype ?? 0) !== 'none') {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Your bra is clearly visible through your clothing.';
-                    ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is clearly visible through your clothing.';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
                   } else {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are clearly visible through your clothing.';
-                    ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are clearly visible through your clothing.';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
                   }
-                  ((s as any).temp_outfitVars ?? {})['bra_color'] = 'v_neg';
+                  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'v_neg';
                 } else {
                   if (((s as any).PCloTopCut ?? 0) === 4  &&  ((s as any).braworntype ?? 0) !== 'none') {
-                    ((s as any).stat_texts ?? {})['bra'] = 'Parts of your bra are visible due to your \' + iif(PCloDress = 1, \'dress\'s\', \'top\'s\') + \' cut.';
-                    ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neutral';
-                    ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Parts of your bra are visible due to your \' + iif(PCloDress = 1, \'dress\'s\', \'top\'s\') + \' cut.';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neutral';
+                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
                   } else {
                     if (((s as any).PCloTopCut ?? 0) === 4) {
-                      ((s as any).stat_texts ?? {})['bra'] = 'Your top\'s low cut barely contains your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts, leaving little to the imagination.';
-                      ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neutral';
-                      ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your top\'s low cut barely contains your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts, leaving little to the imagination.';
+                      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neutral';
+                      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
                     } else {
                       if (((s as any).PCloThinness ?? 0) === 4  &&  ((s as any).braworntype ?? 0) === 'none') {
                         if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
-                          ((s as any).stat_texts ?? {})['bra'] = 'Your flat chest is vaguely outlined by your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly on the bare fabric.', '  &&  your nipples making are making small bumps the fabric.');
+                          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your flat chest is vaguely outlined by your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly on the bare fabric.', '  &&  your nipples making are making small bumps the fabric.');
                         } else {
                           if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
-                            ((s as any).stat_texts ?? {})['bra'] = 'Your petite breasts are vaguely outlined by your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are showing through the fabric, rubbing distractingly on the inside.', '  &&  your nipples are showing through the fabric.');
+                            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your petite breasts are vaguely outlined by your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are showing through the fabric, rubbing distractingly on the inside.', '  &&  your nipples are showing through the fabric.');
                           } else {
                             if (qspFunc(s, 'pcs_has_attr', 'body_tits_b_cup')) {
-                              ((s as any).stat_texts ?? {})['bra'] = 'Your pert breasts are outlined by your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ', bouncing lightly with every step ' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ' &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly on the bare fabric.', 'your nipples are making small bumps the fabric.');
+                              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your pert breasts are outlined by your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ', bouncing lightly with every step ' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ' &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly on the bare fabric.', 'your nipples are making small bumps the fabric.');
                             } else {
                               if (qspFunc(s, 'pcs_has_attr', 'body_tits_c_cup')) {
-                                ((s as any).stat_texts ?? {})['bra'] = 'Your full breasts \' + iif($temp_outfitVars[\'nipple_text\'] <> \', \'and ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are making attractive outlines, rubbing distractingly on the bare fabric of \', \'your nipples are making small bumps the fabric of your \') + iif(PCloDress = 1, \'dress\', \'top\') + \' and bouncing with every step.';
+                                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your full breasts \' + iif($temp_outfitVars[\'nipple_text\'] <> \', \'and ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are making attractive outlines, rubbing distractingly on the bare fabric of \', \'your nipples are making small bumps the fabric of your \') + iif(PCloDress = 1, \'dress\', \'top\') + \' and bouncing with every step.';
                               } else {
                                 if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_d_cup', 'body_tits_e_cup')) {
-                                  ((s as any).stat_texts ?? {})['bra'] = 'Your sizeable breasts \' + iif($temp_outfitVars[\'nipple_text\'] <> \', \'and ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are pushing out against the bare fabric of your \', \'and bare nipples are pushing out against the fabric of your \') + iif(PCloDress = 1, \'dress\', \'top\') + \', making visible bumps on the surface and freely bounce with every step.';
+                                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your sizeable breasts \' + iif($temp_outfitVars[\'nipple_text\'] <> \', \'and ' + qspUntranslated(s, "temp_outfitVars['nipple_text']>", { location: "outfit" }) + ' are pushing out against the bare fabric of your \', \'and bare nipples are pushing out against the fabric of your \') + iif(PCloDress = 1, \'dress\', \'top\') + \', making visible bumps on the surface and freely bounce with every step.';
                                 } else {
-                                  ((s as any).stat_texts ?? {})['bra'] = 'Your huge breasts are straining tight against your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ', bouncing with every step' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ',  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' tent the fabric as they rub distractingly on the inside.', ',  &&  your bare nipples are tenting the fabric.');
+                                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your huge breasts are straining tight against your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ', bouncing with every step' + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', ',  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' tent the fabric as they rub distractingly on the inside.', ',  &&  your bare nipples are tenting the fabric.');
                                 }
                               }
                             }
                           }
                         }
-                        ((s as any).temp_outfitVars ?? {})['bra_color'] = 'bimbo';
-                        ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+                        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'bimbo';
+                        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
                       } else {
                         if (((s as any).PCloThinness ?? 0) === 4) {
                           if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
                             if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                              ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through the thin material of your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric.', '.');
+                              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through the thin material of your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric.', '.');
                             } else {
-                              ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through the thin material of your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '.');
+                              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through the thin material of your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric.', '.');
                             }
                           } else {
                             if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
                               if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                                ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each light bounce of your petite breasts.', '.');
+                                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each light bounce of your petite breasts.', '.');
                               } else {
-                                ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric with each jiggle of your petite breasts.', '.');
+                                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the fabric with each jiggle of your petite breasts.', '.');
                               }
                             } else {
                               if (qspFunc(s, 'pcs_has_attr', 'body_tits_b_cup')) {
                                 if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                                  ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each light bounce of your pert breasts.', '.');
+                                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each light bounce of your pert breasts.', '.');
                                 } else {
-                                  ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each light bounce of your pert breasts.', '.');
+                                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each light bounce of your pert breasts.', '.');
                                 }
                               } else {
                                 if (qspFunc(s, 'pcs_has_attr', 'body_tits_c_cup')) {
                                   if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                                    ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are creating visible bumps in both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each bounce of your full breasts.', '.');
+                                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are creating visible bumps in both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each bounce of your full breasts.', '.');
                                   } else {
-                                    ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each bounce of your full breasts.', '.');
+                                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each bounce of your full breasts.', '.');
                                   }
                                 } else {
                                   if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_d_cup', 'body_tits_e_cup')) {
                                     if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                                      ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is pushing out through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each bounce of your sizeable breasts.', '.');
+                                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is pushing out through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each bounce of your sizeable breasts.', '.');
                                     } else {
-                                      ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each bounce of your sizeable breasts.', '.');
+                                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each bounce of your sizeable breasts.', '.');
                                     }
                                   } else {
                                     if (((s as any).trait_vars ?? 0)?.['pokies'] === 1) {
-                                      ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each bounce of your huge breasts.', '.');
+                                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are poking through both' + ((s as any).iif ?? 0)(((s as any).pcs_horny ?? 0) >= 50, ' as they rub distractingly on the inside of the fabric with each bounce of your huge breasts.', '.');
                                     } else {
-                                      ((s as any).stat_texts ?? {})['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each bounce of your huge breasts.', '.');
+                                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'The outline of your bra is showing through your ' + ((s as any).iif ?? 0)(((s as any).PCloDress ?? 0) === 1, 'dress', 'top') + ((s as any).iif ?? 0)(((s as any).temp_outfitVars ?? 0)?.['nipple_text'] !== '', '  &&  your ' + ((s as any).temp_outfitVars ?? 0)?.['nipple_text'] + ' are rubbing distractingly against the inside of the cup with each bounce of your huge breasts.', '.');
                                     }
                                   }
                                 }
                               }
                             }
                           }
-                          ((s as any).temp_outfitVars ?? {})['bra_color'] = 'bimbo';
-                          ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+                          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'bimbo';
+                          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
                         } else {
                           if (((s as any).PCloCoverTop ?? 0) === 2) {
                             if (((s as any).braworntype ?? 0) !== 'none') {
-                              ((s as any).stat_texts ?? {})['bra'] = 'Your bra is visible through your clothing.';
-                              ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+                              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is visible through your clothing.';
+                              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
                             } else {
-                              ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are visible through your clothing.';
-                              ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+                              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are visible through your clothing.';
+                              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
                             }
-                            ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neg';
+                            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neg';
                           } else {
                             if (((s as any).PCloTopCut ?? 0) === 3  &&  ((s as any).braworntype ?? 0) !== 'none') {
-                              ((s as any).stat_texts ?? {})['bra'] = 'Some glimpses of your bra are visible due to your plunging neckline.';
-                              ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neutral';
-                              ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+                              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Some glimpses of your bra are visible due to your plunging neckline.';
+                              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neutral';
+                              if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
                             } else {
                               if (((s as any).PCloTopCut ?? 0) === 3) {
-                                ((s as any).stat_texts ?? {})['bra'] = 'Your plunging neckline offers glimpses of your bare chest.';
-                                ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neutral';
-                                ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+                                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your plunging neckline offers glimpses of your bare chest.';
+                                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neutral';
+                                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
                               } else {
                                 if (((s as any).PCloCoverTop ?? 0) === 1) {
                                   if (((s as any).braworntype ?? 0) !== 'none') {
-                                    ((s as any).stat_texts ?? {})['bra'] = 'Your bra is barely visible through your clothing.';
-                                    ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/bra';
+                                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your bra is barely visible through your clothing.';
+                                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/bra';
                                   } else {
-                                    ((s as any).stat_texts ?? {})['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are barely visible through your clothing.';
-                                    ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+                                    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'Your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts are barely visible through your clothing.';
+                                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
                                   }
-                                  ((s as any).temp_outfitVars ?? {})['bra_color'] = 'accent';
+                                  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'accent';
                                 } else {
                                   if (((s as any).braworntype ?? 0) === 'none') {
                                     if (((s as any).pcs_horny ?? 0) >= 50) {
-                                      ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your aroused nipples are rock-hard.';
-                                      ((s as any).temp_outfitVars ?? {})['bra_color'] = 'bimbo';
+                                      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your aroused nipples are rock-hard.';
+                                      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'bimbo';
                                     } else {
                                       if (((s as any).temper ?? 0) < 14) {
-                                        ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your nipples are freezing cold.';
-                                        ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neg';
+                                        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your nipples are freezing cold.';
+                                        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neg';
                                       } else {
                                         if (qspFunc(s, 'pcs_has_attr', 'body_tits_aa_cup')) {
-                                          ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts feel comfortable against the inside of your clothes.';
+                                          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts feel comfortable against the inside of your clothes.';
                                         } else {
                                           if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
-                                            ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts ever so slightly bounce as you walk.';
+                                            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts ever so slightly bounce as you walk.';
                                           } else {
                                             if (qspFunc(s, 'pcs_has_attr', 'body_tits_b_cup')) {
-                                              ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts jiggle softly as you walk.';
+                                              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts jiggle softly as you walk.';
                                             } else {
                                               if (qspFunc(s, 'pcs_has_attr', 'body_tits_c_cup')) {
-                                                ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts bounce with every step.';
-                                                ((s as any).temp_outfitVars ?? {})['bra_imp'] = 1;
+                                                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts bounce with every step.';
+                                                if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_imp'] = 1;
                                               } else {
                                                 if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_d_cup', 'body_tits_e_cup')) {
-                                                  ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts bounce with every step.';
-                                                  ((s as any).temp_outfitVars ?? {})['bra_imp'] = 1;
+                                                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts bounce with every step.';
+                                                  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_imp'] = 1;
                                                 } else {
-                                                  ((s as any).stat_texts ?? {})['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts bounce dramatically with every step.';
-                                                  ((s as any).temp_outfitVars ?? {})['bra_imp'] = 1;
+                                                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra'] = 'You are not wearing a bra and your ' + qspUntranslated(s, "pcdesc_breasts>", { location: "outfit" }) + ' breasts bounce dramatically with every step.';
+                                                  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_imp'] = 1;
                                                 }
                                               }
                                             }
                                           }
                                         }
-                                        ((s as any).temp_outfitVars ?? {})['bra_color'] = 'neutral';
+                                        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_color'] = 'neutral';
                                       }
                                     }
-                                    ((s as any).temp_outfitVars ?? {})['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
+                                    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['bra_icon'] = 'status/clothing/boobs_black|status/clothing/boobs_white';
                                   }
                                 }
                               }
@@ -1499,58 +1499,58 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'bra', $temp_outfitVars['bra_color'], $temp_outfitVars['bra_...
     }
   }
-  ((s as any).stat_texts ?? {})['panties'] = '';
-  ((s as any).stat_texts ?? {})['panties_color'] = 'none';
-  ((s as any).temp_outfitvars ?? {})['panties_imp'] = 0;
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'none';
+  if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 0;
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      ((s as any).temp_outfitVars ?? {})['panty_garment'] = ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : (((((s as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('pants'))));
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['panty_garment'] = ((((s as any).PCloDress ?? 0) === 1) ? ('dress') : (((((s as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('pants'))));
       if (((s as any).PCloThinness ?? 0) === 6) {
         if (((s as any).PCloSkirt ?? 0) === 6) {
-          ((s as any).stat_texts ?? {})['panties'] = 'Your dress is so short that your panties are clearly visible.';
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your dress is so short that your panties are clearly visible.';
         } else {
           if (((s as any).PCloSkirt ?? 0) === 5) {
-            ((s as any).stat_texts ?? {})['panties'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + ' is short and transparent, so anyone can see your panties.';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + ' is short and transparent, so anyone can see your panties.';
           } else {
-            ((s as any).stat_texts ?? {})['panties'] = 'Your panties are clearly showing through your transparent ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + '.';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your panties are clearly showing through your transparent ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + '.';
           }
         }
-        ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
       } else {
         if (((s as any).PCloThinness ?? 0) === 5) {
           if (((s as any).PCloSkirt ?? 0) === 6) {
-            ((s as any).stat_texts ?? {})['panties'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + ' is so short that your panties are clearly visible.';
-            ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + ' is so short that your panties are clearly visible.';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
           } else {
             if (((s as any).PCloSkirt ?? 0) === 5) {
-              ((s as any).stat_texts ?? {})['panties'] = 'The outline of your panties can be seen and often exposed by your short ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + '.';
-              ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'The outline of your panties can be seen and often exposed by your short ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + '.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
             } else {
               if (((s as any).PCloPants ?? 0) === 6) {
-                ((s as any).stat_texts ?? {})['panties'] = 'Your short shorts expose your panties and are so thin the outline of the rest of your panties can be seen.';
-                ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your short shorts expose your panties and are so thin the outline of the rest of your panties can be seen.';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
               } else {
-                ((s as any).stat_texts ?? {})['panties'] = 'The outline of your panties is visible through your ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + '.';
-                ((s as any).stat_texts ?? {})['panties_color'] = 'accent';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'The outline of your panties is visible through your ' + qspUntranslated(s, "temp_outfitVars['panty_garment']>", { location: "outfit" }) + '.';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'accent';
               }
             }
           }
         } else {
           if (((s as any).PCloSkirt ?? 0) === 6) {
-            ((s as any).stat_texts ?? {})['panties'] = 'Your dress is so short that your panties are clearly visible.';
-            ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your dress is so short that your panties are clearly visible.';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
           } else {
             if (((s as any).PCloPants ?? 0) === 6) {
-              ((s as any).stat_texts ?? {})['panties'] = 'Your short shorts expose your panties.';
-              ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your short shorts expose your panties.';
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
             } else {
               if (((s as any).PCloSkirt ?? 0) === 5) {
-                ((s as any).stat_texts ?? {})['panties'] = 'Your dress is short and your panties can often be seen.';
-                ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your dress is short and your panties can often be seen.';
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
               } else {
                 if (((s as any).PCloSkirt ?? 0) === 4) {
-                  ((s as any).stat_texts ?? {})['panties'] = 'Your dress is short enough that your panties can be seen when you bend over.';
-                  ((s as any).stat_texts ?? {})['panties_color'] = 'accent';
+                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your dress is short enough that your panties can be seen when you bend over.';
+                  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'accent';
                 }
               }
             }
@@ -1559,105 +1559,105 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).PCloPanties ?? 0) === 1) {
-      ((s as any).stat_texts ?? {})['panties'] = 'Your outfit is replacing your panties.';
-      ((s as any).stat_texts ?? {})['panties_color'] = 'neg';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your outfit is replacing your panties.';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'neg';
     } else {
       if (((s as any).pantyworntype ?? 0) === 'none') {
-        ((s as any).stat_texts ?? {})['panties'] = 'You are not wearing any panties.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'You are not wearing any panties.';
         if (((s as any).pcs_inhib ?? 0) < 30) {
-          ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
-          ((s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
+          if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 1;
         } else {
           if (((s as any).pcs_inhib ?? 0) < 70) {
-            ((s as any).stat_texts ?? {})['panties_color'] = 'accent';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'accent';
           } else {
-            ((s as any).stat_texts ?? {})['panties_color'] = 'neg';
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'neg';
           }
         }
       }
     }
     if (((s as any).PCloCoverFront ?? 0) > 0  &&  ((s as any).PCloCoverBack ?? 0) > 0) {
       if (((s as any).PCloCoverFront ?? 0) <= 1) {
-        ((s as any).temp_outfitVars ?? {})['sdp_f'] = 'barely visible';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_f'] = 'barely visible';
       } else {
         if (((s as any).PCloCoverFront ?? 0) === 2) {
-          ((s as any).temp_outfitVars ?? {})['sdp_f'] = 'visible';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_f'] = 'visible';
         } else {
           if (((s as any).PCloCoverFront ?? 0) === 3) {
-            ((s as any).temp_outfitVars ?? {})['sdp_f'] = 'clearly visible';
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_f'] = 'clearly visible';
           } else {
-            ((s as any).temp_outfitVars ?? {})['sdp_f'] = 'completely exposed';
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_f'] = 'completely exposed';
           }
         }
       }
       if (((s as any).PCloCoverBack ?? 0) <= 1) {
-        ((s as any).temp_outfitVars ?? {})['sdp_b'] = 'barely visible';
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_b'] = 'barely visible';
       } else {
         if (((s as any).PCloCoverBack ?? 0) === 2) {
-          ((s as any).temp_outfitVars ?? {})['sdp_b'] = 'visible';
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_b'] = 'visible';
         } else {
           if (((s as any).PCloCoverBack ?? 0) === 3) {
-            ((s as any).temp_outfitVars ?? {})['sdp_b'] = 'clearly visible';
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_b'] = 'clearly visible';
           } else {
-            ((s as any).temp_outfitVars ?? {})['sdp_b'] = 'completely exposed';
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sdp_b'] = 'completely exposed';
           }
         }
       }
       if (((s as any).PCloCoverFront ?? 0) === ((s as any).PCloCoverBack ?? 0)) {
-        ((s as any).stat_texts ?? {})['panties'] = 'Your pussy and ass are ' + qspUntranslated(s, "temp_outfitVars['sdp_f']>", { location: "outfit" }) + ' through your clothing.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'Your pussy and ass are ' + qspUntranslated(s, "temp_outfitVars['sdp_f']>", { location: "outfit" }) + ' through your clothing.';
       } else {
         // TODO-QSP: $stat_texts['panties'] = 'Your pussy is <<$temp_outfitVars[''sdp_f'']>> and your ass is <<$temp_outfitVars[''sdp_b'']>> through your clothing.'
       }
       if (((s as any).PCloCoverFront ?? 0) === 1  ||  ((s as any).PCloCoverBack ?? 0) === 1) {
-        ((s as any).stat_texts ?? {})['panties_color'] = 'accent';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'accent';
       }
       if (((s as any).PCloCoverFront ?? 0) === 2  ||  ((s as any).PCloCoverBack ?? 0) === 2) {
-        ((s as any).stat_texts ?? {})['panties_color'] = 'neg';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'neg';
       } else {
         if (((s as any).PCloCoverFront ?? 0) >= 3  ||  ((s as any).PCloCoverBack ?? 0) >= 3) {
-          ((s as any).stat_texts ?? {})['panties_color'] = 'v_neg';
-          ((s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_color'] = 'v_neg';
+          if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 1;
         }
       }
     }
     if (((s as any).pantyworntype ?? 0) !== 'none'  &&  (((s as any).isprok ?? 0) === 0  &&  ((s as any).isprokp ?? 0) === 0  &&  ((s as any).mesec ?? 0) > 0  &&  ((s as any).preg ?? 0) === 0  &&  ((s as any).loc ?? 0) !== 'gad_gpyard'  &&  (((s as any).isprok_lastday ?? 0) === 0  ||  (((s as any).hour ?? 0) > 4  &&  ((s as any).isprok_lastday ?? 0) === 1)))) {
-      ((s as any).stat_texts ?? {})['panties'] = 'You\'re not using any menstrual products during your period and blood is soaking your panties!';
-      ((s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties'] = 'You\'re not using any menstrual products during your period and blood is soaking your panties!';
+      if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 1;
     }
   }
-  ((s as any).stat_texts ?? {})['outfit_clean'] = '';
-  ((s as any).stat_texts ?? {})['outfit_strength'] = '';
-  ((s as any).temp_outfitVars ?? {})['wash_sum'] = 0;
-  ((s as any).temp_outfitVars ?? {})['wash_max'] = 0;
-  ((s as any).temp_outfitVars ?? {})['repair_sum'] = 0;
-  ((s as any).temp_outfitVars ?? {})['repair_max'] = 0;
-  ((s as any).stat_texts ?? {})['clothes_clean'] = '';
-  ((s as any).stat_texts ?? {})['clothes_repair'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_clean'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_strength'] = '';
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_sum'] = 0;
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_max'] = 0;
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_sum'] = 0;
+  if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_max'] = 0;
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = '';
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
-    ((s as any).stat_texts ?? {})['clothes_clean'] = 'Your clothes are ';
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = 'Your clothes are ';
     if (((s as any).cheatVars ?? 0)?.['clothes_dirt'] === 1) {
-      ((s as any).stat_texts ?? {})['clothes_clean'] = (((s as any).stat_texts ?? {})['clothes_clean'] ?? 0) + ('clean.');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = ((s as any).stat_texts['clothes_clean'] ?? 0) + ('clean.');
       qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_clean', 'neutral', 'pos');
     } else {
       if (qspFunc(s, 'clothing', 'is_immutable')) {
-        ((s as any).stat_texts ?? {})['clothes_clean'] = (((s as any).stat_texts ?? {})['clothes_clean'] ?? 0) + ('as clean as they can be.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = ((s as any).stat_texts['clothes_clean'] ?? 0) + ('as clean as they can be.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_clean', 'neutral', 'const');
       } else {
-        ((s as any).temp_outfitVars ?? {})['wash_sum'] = (((s as any).temp_outfitVars ?? {})['wash_sum'] ?? 0) + (0);
-        ((s as any).temp_outfitVars ?? {})['wash_max'] = (((s as any).temp_outfitVars ?? {})['wash_max'] ?? 0) + (2640);
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_sum'] = ((s as any).temp_outfitVars['wash_sum'] ?? 0) + (0);
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_max'] = ((s as any).temp_outfitVars['wash_max'] ?? 0) + (2640);
         if (((s as any).PCloDirt ?? 0) <= 480) {
-          ((s as any).stat_texts ?? {})['clothes_clean'] = (((s as any).stat_texts ?? {})['clothes_clean'] ?? 0) + ('clean.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = ((s as any).stat_texts['clothes_clean'] ?? 0) + ('clean.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_clean', 'v_pos', 'pos');
         } else {
           if (((s as any).PCloDirt ?? 0) <= 1440) {
-            ((s as any).stat_texts ?? {})['clothes_clean'] = (((s as any).stat_texts ?? {})['clothes_clean'] ?? 0) + ('slightly dirty.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = ((s as any).stat_texts['clothes_clean'] ?? 0) + ('slightly dirty.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_clean', 'v_neg');
           } else {
             if (((s as any).PCloDirt ?? 0) <= 2400) {
-              ((s as any).stat_texts ?? {})['clothes_clean'] = (((s as any).stat_texts ?? {})['clothes_clean'] ?? 0) + ('dirty.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = ((s as any).stat_texts['clothes_clean'] ?? 0) + ('dirty.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_clean', 'v_neg');
             } else {
-              ((s as any).stat_texts ?? {})['clothes_clean'] = (((s as any).stat_texts ?? {})['clothes_clean'] ?? 0) + ('filthy.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_clean'] = ((s as any).stat_texts['clothes_clean'] ?? 0) + ('filthy.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_clean', 'v_neg');
               // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['clothes_clean'], 'v_neg'
             }
@@ -1665,337 +1665,337 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).stat_texts ?? {})['clothes_repair'] = 'Your clothes are ';
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = 'Your clothes are ';
     if (((s as any).cheatVars ?? 0)?.['clothes_strength'] === 1) {
-      ((s as any).stat_texts ?? {})['clothes_repair'] = (((s as any).stat_texts ?? {})['clothes_repair'] ?? 0) + ('in perfect shape.');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('in perfect shape.');
       qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_repair', 'neutral', 'pos');
     } else {
       if (qspFunc(s, 'clothing', 'is_immutable')) {
-        ((s as any).stat_texts ?? {})['clothes_repair'] = (((s as any).stat_texts ?? {})['clothes_repair'] ?? 0) + ('in as good a shape as they can be.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('in as good a shape as they can be.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_repair', 'neutral', 'const');
       } else {
-        ((s as any).temp_outfitVars ?? {})['repair_sum'] = (((s as any).temp_outfitVars ?? {})['repair_sum'] ?? 0) + (0);
-        ((s as any).temp_outfitVars ?? {})['repair_max'] = (((s as any).temp_outfitVars ?? {})['repair_max'] ?? 0) + (((s as any).PCloMaxStrength ?? 0));
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_sum'] = ((s as any).temp_outfitVars['repair_sum'] ?? 0) + (0);
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_max'] = ((s as any).temp_outfitVars['repair_max'] ?? 0) + (((s as any).PCloMaxStrength ?? 0));
         if (((s as any).PCloStrength ?? 0) < ((s as any).PCloMaxStrength ?? 0) / 10) {
-          ((s as any).stat_texts ?? {})['clothes_repair'] = (((s as any).stat_texts ?? {})['clothes_repair'] ?? 0) + ('in bad shape.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('in bad shape.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_repair', 'v_neg');
           // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['clothes_repair'], 'v_neg'
         } else {
           if (((s as any).PCloStrength ?? 0) < ((s as any).PCloMaxStrength ?? 0) / 2) {
-            ((s as any).stat_texts ?? {})['clothes_repair'] = (((s as any).stat_texts ?? {})['clothes_repair'] ?? 0) + ('starting to show wear and tear.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('starting to show wear and tear.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_repair', 'v_neg');
           } else {
             if (((s as any).PCloStrength ?? 0) < 3 * ((s as any).PCloMaxStrength ?? 0) / 4) {
-              ((s as any).stat_texts ?? {})['clothes_repair'] = (((s as any).stat_texts ?? {})['clothes_repair'] ?? 0) + ('in good shape.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('in good shape.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_repair', 'neutral', 'pos');
             } else {
-              ((s as any).stat_texts ?? {})['clothes_repair'] = (((s as any).stat_texts ?? {})['clothes_repair'] ?? 0) + ('in perfect shape.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_repair'] = ((s as any).stat_texts['clothes_repair'] ?? 0) + ('in perfect shape.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_repair', 'v_pos', 'pos');
             }
           }
         }
       }
     }
-    ((s as any).stat_texts ?? {})['outfit_clean'] = (((s as any).stat_texts ?? {})['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['clothes_clean'] + ' ');
-    ((s as any).stat_texts ?? {})['outfit_repair'] = (((s as any).stat_texts ?? {})['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['clothes_repair'] + ' ');
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_clean'] = ((s as any).stat_texts['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['clothes_clean'] + ' ');
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_repair'] = ((s as any).stat_texts['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['clothes_repair'] + ' ');
   }
-  ((s as any).stat_texts ?? {})['bra_clean'] = '';
-  ((s as any).stat_texts ?? {})['panties_clean'] = '';
-  ((s as any).stat_texts ?? {})['bra_repair'] = '';
-  ((s as any).stat_texts ?? {})['panties_repair'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = '';
   if (((s as any).underwear ?? 0)?.['type'] === 2) {
     if (((s as any).bodysuitworntype ?? 0) !== 'none'  &&  ((s as any).bodysuitworntype ?? 0) !== '') {
-      ((s as any).stat_texts ?? {})['panties_clean'] = 'Your bodysuit is ';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = 'Your bodysuit is ';
       if (((s as any).cheatVars ?? 0)?.['clothes_dirt'] === 1) {
-        ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('clean.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('clean.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'neutral', 'pos');
       } else {
         if (qspFunc(s, 'underwear_bodysuits', 'is_immutable')) {
-          ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('as clean as it can be.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('as clean as it can be.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'neutral', 'const');
         } else {
-          ((s as any).temp_outfitVars ?? {})['wash_sum'] = (((s as any).temp_outfitVars ?? {})['wash_sum'] ?? 0) + (0);
-          ((s as any).temp_outfitVars ?? {})['wash_max'] = (((s as any).temp_outfitVars ?? {})['wash_max'] ?? 0) + (2640);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_sum'] = ((s as any).temp_outfitVars['wash_sum'] ?? 0) + (0);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_max'] = ((s as any).temp_outfitVars['wash_max'] ?? 0) + (2640);
           if (((s as any).PPanDirt ?? 0) <= 480) {
-            ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('clean.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('clean.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_pos', 'pos');
           } else {
             if (((s as any).PPanDirt ?? 0) <= 1440) {
-              ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('slightly dirty.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('slightly dirty.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
             } else {
               if (((s as any).PPanDirt ?? 0) <= 2400) {
-                ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('dirty.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('dirty.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
-                ((s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
+                if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 1;
               } else {
-                ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('filthy.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('filthy.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
                 // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_clean'], 'v_neg'
-                ((s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
+                if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 1;
               }
             }
           }
         }
       }
-      ((s as any).stat_texts ?? {})['panties_repair'] = 'Your bodysuit is ';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = 'Your bodysuit is ';
       if (((s as any).cheatVars ?? 0)?.['clothes_strength'] === 1) {
-        ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in perfect shape.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in perfect shape.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'neutral', 'pos');
       } else {
         if (qspFunc(s, 'underwear_bodysuits', 'is_immutable')) {
-          ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in as good a shape as it can be.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in as good a shape as it can be.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'neutral', 'const');
         } else {
-          ((s as any).temp_outfitVars ?? {})['repair_sum'] = (((s as any).temp_outfitVars ?? {})['repair_sum'] ?? 0) + (0);
-          ((s as any).temp_outfitVars ?? {})['repair_max'] = (((s as any).temp_outfitVars ?? {})['repair_max'] ?? 0) + (((s as any).PBraMaxStrength ?? 0));
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_sum'] = ((s as any).temp_outfitVars['repair_sum'] ?? 0) + (0);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_max'] = ((s as any).temp_outfitVars['repair_max'] ?? 0) + (((s as any).PBraMaxStrength ?? 0));
           if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 10) {
-            ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in bad shape.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in bad shape.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_neg');
             // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_repair'], 'v_neg'
           } else {
             if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 2) {
-              ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('starting to show wear and tear.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('starting to show wear and tear.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_neg');
             } else {
               if (((s as any).PBraStrength ?? 0) < 3 * ((s as any).PBraMaxStrength ?? 0) / 4) {
-                ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in good shape.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in good shape.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'neutral', 'pos');
               } else {
-                ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in perfect shape.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in perfect shape.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_pos', 'pos');
               }
             }
           }
         }
       }
-      ((s as any).stat_texts ?? {})['outfit_clean'] = (((s as any).stat_texts ?? {})['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_clean'] + ' ');
-      ((s as any).stat_texts ?? {})['outfit_repair'] = (((s as any).stat_texts ?? {})['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_repair'] + ' ');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_clean'] = ((s as any).stat_texts['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_clean'] + ' ');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_repair'] = ((s as any).stat_texts['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_repair'] + ' ');
     }
   } else {
     if (((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) !== '') {
-      ((s as any).stat_texts ?? {})['bra_clean'] = 'Your bra is ';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = 'Your bra is ';
       if (((s as any).cheatVars ?? 0)?.['clothes_dirt'] === 1) {
-        ((s as any).stat_texts ?? {})['bra_clean'] = (((s as any).stat_texts ?? {})['bra_clean'] ?? 0) + ('clean.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = ((s as any).stat_texts['bra_clean'] ?? 0) + ('clean.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_clean', 'neutral', 'pos');
       } else {
         if (qspFunc(s, 'bras', 'is_immutable')) {
-          ((s as any).stat_texts ?? {})['bra_clean'] = (((s as any).stat_texts ?? {})['bra_clean'] ?? 0) + ('as clean as it can be.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = ((s as any).stat_texts['bra_clean'] ?? 0) + ('as clean as it can be.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_clean', 'neutral', 'const');
         } else {
-          ((s as any).temp_outfitVars ?? {})['wash_sum'] = (((s as any).temp_outfitVars ?? {})['wash_sum'] ?? 0) + (0);
-          ((s as any).temp_outfitVars ?? {})['wash_max'] = (((s as any).temp_outfitVars ?? {})['wash_max'] ?? 0) + (2640);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_sum'] = ((s as any).temp_outfitVars['wash_sum'] ?? 0) + (0);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_max'] = ((s as any).temp_outfitVars['wash_max'] ?? 0) + (2640);
           if (((s as any).PBraDirt ?? 0) <= 480) {
-            ((s as any).stat_texts ?? {})['bra_clean'] = (((s as any).stat_texts ?? {})['bra_clean'] ?? 0) + ('clean.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = ((s as any).stat_texts['bra_clean'] ?? 0) + ('clean.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_clean', 'v_pos', 'pos');
           } else {
             if (((s as any).PBraDirt ?? 0) <= 1440) {
-              ((s as any).stat_texts ?? {})['bra_clean'] = (((s as any).stat_texts ?? {})['bra_clean'] ?? 0) + ('slightly dirty.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = ((s as any).stat_texts['bra_clean'] ?? 0) + ('slightly dirty.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_clean', 'v_neg');
             } else {
               if (((s as any).PBraDirt ?? 0) <= 2400) {
-                ((s as any).stat_texts ?? {})['bra_clean'] = (((s as any).stat_texts ?? {})['bra_clean'] ?? 0) + ('dirty.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = ((s as any).stat_texts['bra_clean'] ?? 0) + ('dirty.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_clean', 'v_neg');
-                ((s as any).temp_outfitvars ?? {})['bra_imp'] = 1;
+                if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['bra_imp'] = 1;
               } else {
-                ((s as any).stat_texts ?? {})['bra_clean'] = (((s as any).stat_texts ?? {})['bra_clean'] ?? 0) + ('filthy.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_clean'] = ((s as any).stat_texts['bra_clean'] ?? 0) + ('filthy.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_clean', 'v_neg');
                 // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['bra_clean'], 'v_neg'
-                ((s as any).temp_outfitvars ?? {})['bra_imp'] = 1;
+                if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['bra_imp'] = 1;
               }
             }
           }
         }
       }
-      ((s as any).stat_texts ?? {})['bra_repair'] = 'Your bra is ';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = 'Your bra is ';
       if (((s as any).cheatVars ?? 0)?.['clothes_strength'] === 1) {
-        ((s as any).stat_texts ?? {})['bra_repair'] = (((s as any).stat_texts ?? {})['bra_repair'] ?? 0) + ('in perfect shape.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('in perfect shape.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_repair', 'neutral', 'pos');
       } else {
         if (qspFunc(s, 'bras', 'is_immutable')) {
-          ((s as any).stat_texts ?? {})['bra_repair'] = (((s as any).stat_texts ?? {})['bra_repair'] ?? 0) + ('in as good a shape as it can be.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('in as good a shape as it can be.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_repair', 'neutral', 'const');
         } else {
-          ((s as any).temp_outfitVars ?? {})['repair_sum'] = (((s as any).temp_outfitVars ?? {})['repair_sum'] ?? 0) + (0);
-          ((s as any).temp_outfitVars ?? {})['repair_max'] = (((s as any).temp_outfitVars ?? {})['repair_max'] ?? 0) + (((s as any).PBraMaxStrength ?? 0));
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_sum'] = ((s as any).temp_outfitVars['repair_sum'] ?? 0) + (0);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_max'] = ((s as any).temp_outfitVars['repair_max'] ?? 0) + (((s as any).PBraMaxStrength ?? 0));
           if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 10) {
-            ((s as any).stat_texts ?? {})['bra_repair'] = (((s as any).stat_texts ?? {})['bra_repair'] ?? 0) + ('in bad shape.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('in bad shape.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_repair', 'v_neg');
             // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['bra_repair'], 'v_neg'
           } else {
             if (((s as any).PBraStrength ?? 0) < ((s as any).PBraMaxStrength ?? 0) / 2) {
-              ((s as any).stat_texts ?? {})['bra_repair'] = (((s as any).stat_texts ?? {})['bra_repair'] ?? 0) + ('starting to show wear and tear.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('starting to show wear and tear.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_repair', 'v_neg');
             } else {
               if (((s as any).PBraStrength ?? 0) < 3 * ((s as any).PBraMaxStrength ?? 0) / 4) {
-                ((s as any).stat_texts ?? {})['bra_repair'] = (((s as any).stat_texts ?? {})['bra_repair'] ?? 0) + ('in good shape.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('in good shape.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_repair', 'neutral', 'pos');
               } else {
-                ((s as any).stat_texts ?? {})['bra_repair'] = (((s as any).stat_texts ?? {})['bra_repair'] ?? 0) + ('in perfect shape.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bra_repair'] = ((s as any).stat_texts['bra_repair'] ?? 0) + ('in perfect shape.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'bra_repair', 'v_pos', 'pos');
               }
             }
           }
         }
       }
-      ((s as any).stat_texts ?? {})['outfit_clean'] = (((s as any).stat_texts ?? {})['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['bra_clean'] + ' ');
-      ((s as any).stat_texts ?? {})['outfit_repair'] = (((s as any).stat_texts ?? {})['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['bra_repair'] + ' ');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_clean'] = ((s as any).stat_texts['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['bra_clean'] + ' ');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_repair'] = ((s as any).stat_texts['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['bra_repair'] + ' ');
     }
     if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== '') {
-      ((s as any).stat_texts ?? {})['panties_clean'] = 'Your panties are ';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = 'Your panties are ';
       if (((s as any).cheatVars ?? 0)?.['clothes_dirt'] === 1) {
-        ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('clean.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('clean.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'neutral', 'pos');
       } else {
         if (qspFunc(s, 'panties', 'is_immutable')) {
-          ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('as clean as they can be.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('as clean as they can be.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'neutral', 'const');
         } else {
-          ((s as any).temp_outfitVars ?? {})['wash_sum'] = (((s as any).temp_outfitVars ?? {})['wash_sum'] ?? 0) + (0);
-          ((s as any).temp_outfitVars ?? {})['wash_max'] = (((s as any).temp_outfitVars ?? {})['wash_max'] ?? 0) + (2640);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_sum'] = ((s as any).temp_outfitVars['wash_sum'] ?? 0) + (0);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_max'] = ((s as any).temp_outfitVars['wash_max'] ?? 0) + (2640);
           if (((s as any).PPanDirt ?? 0) <= 480) {
-            ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('clean.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('clean.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_pos', 'pos');
           } else {
             if (((s as any).PPanDirt ?? 0) <= 1440) {
-              ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('slightly dirty.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('slightly dirty.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
             } else {
               if (((s as any).PPanDirt ?? 0) <= 2400) {
-                ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('dirty.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('dirty.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
-                ((s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
+                if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 1;
               } else {
-                ((s as any).stat_texts ?? {})['panties_clean'] = (((s as any).stat_texts ?? {})['panties_clean'] ?? 0) + ('filthy.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_clean'] = ((s as any).stat_texts['panties_clean'] ?? 0) + ('filthy.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_clean', 'v_neg');
                 // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_clean'], 'v_neg'
-                ((s as any).temp_outfitvars ?? {})['panties_imp'] = 1;
+                if (!(s as any).temp_outfitvars) (s as any).temp_outfitvars = {}; (s as any).temp_outfitvars['panties_imp'] = 1;
               }
             }
           }
         }
       }
-      ((s as any).stat_texts ?? {})['panties_repair'] = 'Your panties are ';
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = 'Your panties are ';
       if (((s as any).cheatVars ?? 0)?.['clothes_strength'] === 1) {
-        ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in perfect shape.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in perfect shape.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'neutral', 'pos');
       } else {
         if (qspFunc(s, 'panties', 'is_immutable')) {
-          ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in as good a shape as they can be.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in as good a shape as they can be.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'neutral', 'const');
         } else {
-          ((s as any).temp_outfitVars ?? {})['repair_sum'] = (((s as any).temp_outfitVars ?? {})['repair_sum'] ?? 0) + (0);
-          ((s as any).temp_outfitVars ?? {})['repair_max'] = (((s as any).temp_outfitVars ?? {})['repair_max'] ?? 0) + (((s as any).PPanMaxStrength ?? 0));
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_sum'] = ((s as any).temp_outfitVars['repair_sum'] ?? 0) + (0);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_max'] = ((s as any).temp_outfitVars['repair_max'] ?? 0) + (((s as any).PPanMaxStrength ?? 0));
           if (((s as any).PPanStrength ?? 0) < ((s as any).PPanMaxStrength ?? 0) / 10) {
-            ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in bad shape.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in bad shape.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_neg');
             // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['panties_repair'], 'v_neg'
           } else {
             if (((s as any).PPanStrength ?? 0) < ((s as any).PPanMaxStrength ?? 0) / 2) {
-              ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('starting to show wear and tear.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('starting to show wear and tear.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_neg');
             } else {
               if (((s as any).PPanStrength ?? 0) < 3 * ((s as any).PPanMaxStrength ?? 0) / 4) {
-                ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in good shape.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in good shape.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'neutral', 'pos');
               } else {
-                ((s as any).stat_texts ?? {})['panties_repair'] = (((s as any).stat_texts ?? {})['panties_repair'] ?? 0) + ('in perfect shape.');
+                if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_repair'] = ((s as any).stat_texts['panties_repair'] ?? 0) + ('in perfect shape.');
                 qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_repair', 'v_pos', 'pos');
               }
             }
           }
         }
       }
-      ((s as any).stat_texts ?? {})['outfit_clean'] = (((s as any).stat_texts ?? {})['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_clean'] + ' ');
-      ((s as any).stat_texts ?? {})['outfit_repair'] = (((s as any).stat_texts ?? {})['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_repair'] + ' ');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_clean'] = ((s as any).stat_texts['outfit_clean'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_clean'] + ' ');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_repair'] = ((s as any).stat_texts['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['panties_repair'] + ' ');
     }
   }
-  ((s as any).stat_texts ?? {})['shoes_repair'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = '';
   if (((s as any).shoeworntype ?? 0) !== 'none'  &&  ((s as any).shoeworntype ?? 0) !== '') {
-    ((s as any).stat_texts ?? {})['shoes_repair'] = 'Your shoes are ';
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = 'Your shoes are ';
     if (((s as any).cheatVars ?? 0)?.['clothes_strength'] === 1) {
-      ((s as any).stat_texts ?? {})['shoes_repair'] = (((s as any).stat_texts ?? {})['shoes_repair'] ?? 0) + ('in good shape.');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('in good shape.');
       qspCall(s, 'stat_display_compute', 'queue_msg', 'shoes_repair', 'neutral', 'pos');
     } else {
       if (qspFunc(s, 'shoes', 'is_immutable')) {
-        ((s as any).stat_texts ?? {})['shoes_repair'] = (((s as any).stat_texts ?? {})['shoes_repair'] ?? 0) + ('in as good a shape as they can be.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('in as good a shape as they can be.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'shoes_repair', 'neutral', 'const');
       } else {
-        ((s as any).temp_outfitVars ?? {})['repair_sum'] = (((s as any).temp_outfitVars ?? {})['repair_sum'] ?? 0) + (0);
-        ((s as any).temp_outfitVars ?? {})['repair_max'] = (((s as any).temp_outfitVars ?? {})['repair_max'] ?? 0) + (((s as any).PShoMaxStrength ?? 0));
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_sum'] = ((s as any).temp_outfitVars['repair_sum'] ?? 0) + (0);
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_max'] = ((s as any).temp_outfitVars['repair_max'] ?? 0) + (((s as any).PShoMaxStrength ?? 0));
         if (((s as any).PShoStrength ?? 0) < ((s as any).PShoMaxStrength ?? 0) / 10) {
-          ((s as any).stat_texts ?? {})['shoes_repair'] = (((s as any).stat_texts ?? {})['shoes_repair'] ?? 0) + ('in bad shape.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('in bad shape.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'shoes_repair', 'v_neg');
           // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['shoes_repair'], 'v_neg'
         } else {
           if (((s as any).PShoStrength ?? 0) < ((s as any).PShoMaxStrength ?? 0) / 2) {
-            ((s as any).stat_texts ?? {})['shoes_repair'] = (((s as any).stat_texts ?? {})['shoes_repair'] ?? 0) + ('starting to show wear and tear.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('starting to show wear and tear.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'shoes_repair', 'v_neg');
           } else {
             if (((s as any).PShoStrength ?? 0) < 3 * ((s as any).PShoMaxStrength ?? 0) / 4) {
-              ((s as any).stat_texts ?? {})['shoes_repair'] = (((s as any).stat_texts ?? {})['shoes_repair'] ?? 0) + ('in good shape.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('in good shape.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'shoes_repair', 'neutral', 'pos');
             } else {
-              ((s as any).stat_texts ?? {})['shoes_repair'] = (((s as any).stat_texts ?? {})['shoes_repair'] ?? 0) + ('in perfect shape.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shoes_repair'] = ((s as any).stat_texts['shoes_repair'] ?? 0) + ('in perfect shape.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'shoes_repair', 'v_pos', 'pos');
             }
           }
         }
       }
     }
-    ((s as any).stat_texts ?? {})['outfit_repair'] = (((s as any).stat_texts ?? {})['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['shoes_repair'] + ' ');
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_repair'] = ((s as any).stat_texts['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['shoes_repair'] + ' ');
   }
-  ((s as any).stat_texts ?? {})['coat_repair'] = '';
+  if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = '';
   if (((s as any).coatworntype ?? 0) !== 'none'  &&  ((s as any).coatworntype ?? 0) !== '') {
-    ((s as any).stat_texts ?? {})['coat_repair'] = 'Your coat is ';
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = 'Your coat is ';
     if (((s as any).cheatVars ?? 0)?.['clothes_strength'] === 1) {
-      ((s as any).stat_texts ?? {})['coat_repair'] = (((s as any).stat_texts ?? {})['coat_repair'] ?? 0) + ('in good shape.');
+      if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('in good shape.');
       qspCall(s, 'stat_display_compute', 'queue_msg', 'coat_repair', 'neutral', 'pos');
     } else {
       if (qspFunc(s, 'coats', 'is_immutable')) {
-        ((s as any).stat_texts ?? {})['coat_repair'] = (((s as any).stat_texts ?? {})['coat_repair'] ?? 0) + ('in as good a shape as it can be.');
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('in as good a shape as it can be.');
         qspCall(s, 'stat_display_compute', 'queue_msg', 'coat_repair', 'neutral', 'const');
       } else {
-        ((s as any).temp_outfitVars ?? {})['repair_sum'] = (((s as any).temp_outfitVars ?? {})['repair_sum'] ?? 0) + (0);
-        ((s as any).temp_outfitVars ?? {})['repair_max'] = (((s as any).temp_outfitVars ?? {})['repair_max'] ?? 0) + (((s as any).PCoatMaxStrength ?? 0));
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_sum'] = ((s as any).temp_outfitVars['repair_sum'] ?? 0) + (0);
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_max'] = ((s as any).temp_outfitVars['repair_max'] ?? 0) + (((s as any).PCoatMaxStrength ?? 0));
         if (((s as any).PCoatStrength ?? 0) < ((s as any).PCoatMaxStrength ?? 0) / 10) {
-          ((s as any).stat_texts ?? {})['coat_repair'] = (((s as any).stat_texts ?? {})['coat_repair'] ?? 0) + ('in bad shape.');
+          if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('in bad shape.');
           qspCall(s, 'stat_display_compute', 'queue_msg', 'coat_repair', 'v_neg');
           // TODO-QSP: gs 'stat_display_compute', 'queue_alert', $stat_texts['coat_repair'], 'v_neg'
         } else {
           if (((s as any).PCoatStrength ?? 0) < ((s as any).PCoatMaxStrength ?? 0) / 2) {
-            ((s as any).stat_texts ?? {})['coat_repair'] = (((s as any).stat_texts ?? {})['coat_repair'] ?? 0) + ('starting to show wear and tear.');
+            if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('starting to show wear and tear.');
             qspCall(s, 'stat_display_compute', 'queue_msg', 'coat_repair', 'v_neg');
           } else {
             if (((s as any).PCoatStrength ?? 0) < 3 * ((s as any).PCoatMaxStrength ?? 0) / 4) {
-              ((s as any).stat_texts ?? {})['coat_repair'] = (((s as any).stat_texts ?? {})['coat_repair'] ?? 0) + ('in good shape.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('in good shape.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'coat_repair', 'neutral', 'pos');
             } else {
-              ((s as any).stat_texts ?? {})['coat_repair'] = (((s as any).stat_texts ?? {})['coat_repair'] ?? 0) + ('in perfect shape.');
+              if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['coat_repair'] = ((s as any).stat_texts['coat_repair'] ?? 0) + ('in perfect shape.');
               qspCall(s, 'stat_display_compute', 'queue_msg', 'coat_repair', 'v_pos', 'pos');
             }
           }
         }
       }
     }
-    ((s as any).stat_texts ?? {})['outfit_repair'] = (((s as any).stat_texts ?? {})['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['coat_repair'] + ' ');
+    if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['outfit_repair'] = ((s as any).stat_texts['outfit_repair'] ?? 0) + (((s as any).stat_texts ?? {})?.['coat_repair'] + ' ');
   }
   if (((s as any).stat_texts ?? 0)?.['outfit_repair'] !== '') {
     if (((s as any).temp_outfitVars ?? 0)?.['repair_max'] === 0) {
-      ((s as any).temp_outfitVars ?? {})['repair_icon'] = 'repair11';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_icon'] = 'repair11';
     } else {
-      ((s as any).temp_outfitVars ?? {})['repair_index'] = (11 * ((s as any).temp_outfitVars ?? {})?.['repair_sum'] + ((s as any).temp_outfitVars ?? {})?.['repair_max'] / 2) / ((s as any).temp_outfitVars ?? {})?.['repair_max'];
-      ((s as any).temp_outfitVars ?? {})['repair_index'] = qspUntranslated(s, "min(max(0, temp_outfitVars['repair_index']), 11)", { location: "outfit" });
-      ((s as any).temp_outfitVars ?? {})['repair_icon'] = 'repair' + String(((s as any).temp_outfitVars ?? 0)?.['repair_index']);
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_index'] = (11 * ((s as any).temp_outfitVars ?? {})?.['repair_sum'] + ((s as any).temp_outfitVars ?? {})?.['repair_max'] / 2) / ((s as any).temp_outfitVars ?? {})?.['repair_max'];
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_index'] = qspUntranslated(s, "min(max(0, temp_outfitVars['repair_index']), 11)", { location: "outfit" });
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['repair_icon'] = 'repair' + String(((s as any).temp_outfitVars ?? 0)?.['repair_index']);
     }
   }
   if (((s as any).stat_texts ?? 0)?.['outfit_clean'] !== '') {
     if (((s as any).temp_outfitVars ?? 0)?.['wash_max'] === 0) {
-      ((s as any).temp_outfitVars ?? {})['clean_icon'] = 'wash11';
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clean_icon'] = 'wash11';
     } else {
-      ((s as any).temp_outfitVars ?? {})['wash_index'] = 11 - (11 * ((s as any).temp_outfitVars ?? {})?.['wash_sum'] + ((s as any).temp_outfitVars ?? {})?.['wash_max'] / 2) / ((s as any).temp_outfitVars ?? {})?.['wash_max'];
-      ((s as any).temp_outfitVars ?? {})['wash_index'] = qspUntranslated(s, "min(max(0, temp_outfitVars['wash_index']), 11)", { location: "outfit" });
-      ((s as any).temp_outfitVars ?? {})['clean_icon'] = 'wash' + String(((s as any).temp_outfitVars ?? 0)?.['wash_index']);
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_index'] = 11 - (11 * ((s as any).temp_outfitVars ?? {})?.['wash_sum'] + ((s as any).temp_outfitVars ?? {})?.['wash_max'] / 2) / ((s as any).temp_outfitVars ?? {})?.['wash_max'];
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['wash_index'] = qspUntranslated(s, "min(max(0, temp_outfitVars['wash_index']), 11)", { location: "outfit" });
+      if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clean_icon'] = 'wash' + String(((s as any).temp_outfitVars ?? 0)?.['wash_index']);
     }
   }
   if (((s as any).stat_texts ?? 0)?.['clothes'] !== ''  ||  ((s as any).temp_outfitVars ?? 0)?.['clothes_style'] !== '') {
@@ -2013,7 +2013,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] !== 2) {
-    ((s as any).temp_outfitVars ?? {})['clo_paired'] = '';
+    if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['clo_paired'] = '';
     if (((s as any).temp_outfitVars ?? 0)?.['clean_icon'] !== '') {
       // TODO-QSP: $temp_outfitVars['clo_paired'] += '<a href="exec: msg $stat_texts[''outfit_clean'']"><img src="images/system/icons/status/clothing/' + $temp_outfitVars['clean_icon'] + '.png" title="<<$stat_texts[''outfit_clean'']>>" height="<<stat_cfg[''menu_icon_height'']>>"></a>'
     }

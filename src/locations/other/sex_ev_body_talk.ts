@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['boy_like_hair_talk'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_like_hair_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
   // TODO-QSP: dynamic text: "I love your hair," <<$npc_usedname[$npcID]>> murmurs, running his fingers throu...
   scene.text(`"I love your hair," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} murmurs, running his fingers through your locks.`);
@@ -55,7 +55,7 @@ function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoobFondle(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['boob_fondle'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boob_fondle'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/boobs1.mp4');
   // TODO-QSP: dynamic text: One thing leads to another and you find yourself with <<$npcdesc>> on top of you...
@@ -81,7 +81,7 @@ function enterBoobFondle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTitsAdmire(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['boob_fondle'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boob_fondle'] = 1;
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_tits');
   qspCall(s, 'arousal', 'foreplay', Math.floor(Math.random() * 3) + 3);
   scene.img('images/shared/sex/after/boobs1.mp4');
@@ -101,11 +101,11 @@ function enterTitsAdmire(s: GameState, scene: SceneBuilder): void {
     scene.text('"I can\'t help it," he says before repeating himself, "They\'re so soft."');
   }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     { label: 'Giggle', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['react_desc'] = 'laughing';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react_desc'] = 'laughing';
     scene.text('You can\'t help but giggle at his fascination with your boobs.');
   }, goto: ['sex_ev_body_talk', 'tits_admire_menu'] },
     { label: 'Roll your eyes', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['react_desc'] = 'dryly';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['react_desc'] = 'dryly';
     scene.text('You can\'t help but roll your eyes at the way he\'s practically drooling over your boobs.');
   }, goto: ['sex_ev_body_talk', 'tits_admire_menu'] },
   ]);
@@ -237,8 +237,8 @@ function enterBoyPubeTalkStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyPubeTalkFirst(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['boy_pube_talk'] = 1;
-  ((s as any).sex_ev ?? {})['boy_topics'] = (((s as any).sex_ev ?? {})['boy_topics'] ?? 0) - (1);
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_pube_talk'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
   if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_shaven')) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'pubes_shaved_response'] }]);
   } else {
@@ -276,7 +276,7 @@ function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_body_talk', 'pubes_other_lovers');
     scene.actions([
       { label: 'I like it this way', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['like_pubes'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['like_pubes'] = 1;
     scene.actions([
       { label: 'You just like it', handler: (st: GameState) => {
     scene.text('"Yeah," you say. "I just like it this way. Why do you ask?"');
@@ -293,7 +293,7 @@ function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'When I feel like it', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['lazy_shave'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 11) {
       scene.text('"Sometimes," you shrug. "I\'ll give it a shave when it starts turning into bush, but I\'ll live with the stubble for a few days at a time. Why do you ask?"');
     } else {
@@ -340,7 +340,7 @@ function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wanted to but I didn\'t have time this morning," you reply.');
   }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
       { label: 'I\'m lazy', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['lazy_shave'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 11) {
       scene.text('"I\'m just lazy," you sigh. "Too much work to keep it smooth down there all the time. I\'ll do it when it gets to be too annoying. Why do you ask?"');
     } else {
@@ -377,7 +377,7 @@ function enterPubesTrimmedResponse(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_body_talk', 'pubes_other_lovers');
     scene.actions([
       { label: 'I like it this way', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['like_pubes'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['like_pubes'] = 1;
     scene.actions([
       { label: 'You just like it', handler: (st: GameState) => {
     scene.text('"Yeah," you say. "I just like it this way. Why do you ask?"');
@@ -419,7 +419,7 @@ function enterPubesBushResponse(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I like it this way', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['like_pubes'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['like_pubes'] = 1;
     scene.actions([
       { label: 'You just like it', handler: (st: GameState) => {
     scene.text('"Yeah," you say. "I just like it this way. Why do you ask?"');
@@ -436,7 +436,7 @@ function enterPubesBushResponse(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Lazy', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['lazy_shave'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 10) {
       scene.text('"I\'m just lazy," you shrug. "I\'ll trim it back if it starts getting out of hand, but it\'s too much hassle to maintain a landing strip or anything like that. Why do you ask?"');
     } else {
@@ -444,7 +444,7 @@ function enterPubesBushResponse(s: GameState, scene: SceneBuilder): void {
     }
   }, goto: ['sex_ev_body_talk', 'boy_pubes_response'] },
       { label: 'Hate shaving', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['lazy_shave'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['lazy_shave'] = 1;
     if (((s as any).pubestyle ?? 0) === 10) {
       scene.text('"I hate shaving," you sigh. "I\'ll trim it back if it starts getting out of hand, but it\'s such a pain in the ass to do anything more than that. Why do you ask?"');
     } else {
@@ -682,31 +682,31 @@ function enterChangePubesForBoy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'I\'ll think about it', handler: (st: GameState) => {
-    ((s as any).npc_shave_think ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_shave_think) (s as any).npc_shave_think = {}; (s as any).npc_shave_think[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.img('images/shared/sex/after/pillow_talk3.mp4');
     scene.text('"I\'ll think about it," you say. "But no promises."');
   }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
     { label: 'Sure', handler: (st: GameState) => {
-    ((s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     // TODO-QSP: dynamic text: "Sure," you smile at <<$npcdesc>>. "I could give it a try..."
     scene.text(`"Sure," you smile at ${((s as any).npcdesc ?? 0)}. "I could give it a try..."`);
     // TODO-QSP: dynamic text: <<$npcdesc>> grins back eagerly at you.
     scene.text(`${((s as any).npcdesc ?? 0)} grins back eagerly at you.`);
   }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
     { label: 'I guess I could', handler: (st: GameState) => {
-    ((s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"Well..." you say. "I guess I could give it a try..."');
     // TODO-QSP: dynamic text: <<$npcdesc>> grins back eagerly at you.
     scene.text(`${((s as any).npcdesc ?? 0)} grins back eagerly at you.`);
   }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
     { label: 'For you (hesitant)', handler: (st: GameState) => {
-    ((s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"Well..." you say. "I guess I could try it? For you."');
     // TODO-QSP: dynamic text: You punctuate your promise with an affectionate smile, returned with an eager gr...
     scene.text(`You punctuate your promise with an affectionate smile, returned with an eager grin from ${((s as any).npcdesc ?? 0)}.`);
   }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
     { label: 'For you (affectionate)', handler: (st: GameState) => {
-    ((s as any).npc_shave_promise ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_shave_promise) (s as any).npc_shave_promise = {}; (s as any).npc_shave_promise[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     scene.text('"If it will make you happy, then of course I\'ll do it."');
     // TODO-QSP: dynamic text: You smile affectionately at <<$npcdesc>>, who returns it with an eager grin.
     scene.text(`You smile affectionately at ${((s as any).npcdesc ?? 0)}, who returns it with an eager grin.`);
@@ -768,7 +768,7 @@ function enterBoyLikesPubes(s: GameState, scene: SceneBuilder): void {
     scene.text(`You give him an apologetic smile and though ${((s as any).npcdesc ?? 0)} still seems a little annoyed with you, he mostly calms down as well.`);
   }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
         { label: 'I didn\'t ask!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['angry_after'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['angry_after'] = 1;
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"Well I didn\'t ask for your opinion!" you snap back. "It\'s my body and my bush, I can do whatever I want without hearing how you feel about it!"');
     scene.text('<i>Ugh! Men!</i> you grumble internally.');
@@ -786,7 +786,7 @@ function enterBoyLikesPubes(s: GameState, scene: SceneBuilder): void {
     scene.text(`You give him an embarrassed smile and ${((s as any).npcdesc ?? 0)} smiles back, letting you know he accepts your apology.`);
   }, goto: ['sex_ev_body_talk', 'pube_talk_end'] },
         { label: 'I didn\'t ask for a man\'s opinion!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['angry_after'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['angry_after'] = 1;
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"Well I didn\'t ask for your opinion!" you snap back. "It\'s my body and my bush, I can do whatever I want without hearing how a man feels about it!"');
     scene.text('<i>Ugh! Men!</i> you grumble internally.');

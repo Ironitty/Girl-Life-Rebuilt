@@ -39,9 +39,9 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'compskl', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'comp', ((s as any).pcs_intel ?? 0));
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
-    ((s as any).trait_vars ?? {})['academic_lessons'] = (((s as any).trait_vars ?? {})['academic_lessons'] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You listen attentively to Mr. Ivanov for the duration of the class. Today\'s lesson was interesting and informative, and you feel you learned something from taking part.');
@@ -508,9 +508,9 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('"Oh please do continue your super fascinating lesson! I don\'t think there\'s enough condescending arrogance in your voice though," you answer boldly.');
     scene.text('Some of your classmates burst into loud laughter while others are stunned into silence. Mr. Ivanov turns and gives the rest of class a hard look. "SILENCE!" he loudly booms before turning back to you.');
@@ -529,8 +529,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/bathroom/eartwist.jpg');
     scene.text('"I\'m not the one interrupting your class. That would be you. Just leave me alone. I\'m having… girl problems. Would you like me to talk about them?" you answer brashly, having no intention of getting up.');
     scene.text('He leans in close to you. "Get out of my classroom right now or I\'ll drag you out!"');
@@ -588,8 +588,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Try to focus on the lesson', handler: (st: GameState) => {
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'comp', ((s as any).pcs_intel ?? 0));
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'compskl', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
     scene.img('images/locations/pavlovsk/school/classroom/payattention.jpg');
@@ -670,9 +670,9 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/caughtonphone.jpg');
     scene.text('You ignore him and keep playing with your phone as he walks over to your desk.');
@@ -745,8 +745,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/takephone.jpg');
     scene.text('You decide it\'s not worth the conflict, and silently hand your phone to Mr. Ivanov.');
     // TODO-QSP: dynamic text: "I'll be holding onto this, <<$pcs_lastname>>. Now pay attention and you might a...
@@ -763,8 +763,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (3);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (3);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. Mr. Ivanov gives you one final hard look before continuing with the lesson.');
     scene.actions([
@@ -808,10 +808,10 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'sci', ((s as any).pcs_intel ?? 0));
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
-    ((s as any).trait_vars ?? {})['academic_lessons'] = (((s as any).trait_vars ?? {})['academic_lessons'] ?? 0) + (1);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You listen attentively to Miss Orlov for the duration of the class. Today\'s lesson was interesting and informative, and you feel you learned something from taking part.');
@@ -1104,9 +1104,9 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('"Maybe if you spoke louder and with more confidence, I might not fall asleep!" you answer boldly.');
     scene.text('Miss Orlov seems a bit stunned by your comment and takes a minute to regain her composure.');
@@ -1125,8 +1125,8 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bitchflip.jpg');
     scene.text('"What good would that do?" you reply. "It\'s not like I\'m the one interrupting your class. That would be you. Just leave me alone."');
     scene.text('Miss Orlov doesn\'t know what to say and looks like she\'s going to cry. After composing herself, she decides to just continue her lesson. You hear one of the boys behind you call you a bitch, so you turn around and flip him off.');
@@ -1230,7 +1230,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
     scene.text('You ignore her and keep using your phone as she walks over to your desk.');
@@ -1295,8 +1295,8 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/takephone.jpg');
     scene.text('You decide it\'s not worth it and silently hand your phone to Miss Orlov.');
     scene.text('She tries her best to give you a stern look before returning to the front of the class, placing your phone on her desk and resuming the lesson.');
@@ -1312,8 +1312,8 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. Miss Orlov gives you an appreciative smile before continuing with the lesson.');
     scene.actions([
@@ -1357,13 +1357,13 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'mus', ((s as any).pcs_intel ?? 0));
     qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    ((s as any).trait_vars ?? {})['academic_lessons'] = (((s as any).trait_vars ?? {})['academic_lessons'] ?? 0) + (1);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You listen attentively to Mr. Vasilyev for the duration of the class. Today\'s lesson was interesting and informative, and you feel you learned a lot about the history of music and famous artists.');
@@ -1809,9 +1809,9 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/payattention.jpg');
     scene.text('"Of course. Please continue your incredibly fascinating speech about how music is your passion. Remind me why I should care?" you answer boldly.');
     scene.text('The whole class is stunned into silence at you insulting Mr. Vasilyev, who just stares at you unimpressed with his arms folded.');
@@ -1830,8 +1830,8 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/payattention.jpg');
     scene.text('"What good would that do? I\'m not interrupting your class. Go back to your boring lecture and leave me alone!" you answer brashly, having no intention of getting up.');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, you will get out of my class NOW!" he demands while poi...
@@ -1922,9 +1922,9 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/caughtonphone.jpg');
     scene.text('You ignore him and continue using your phone as he walks over to your desk.');
@@ -1983,8 +1983,8 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (3);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (3);
     scene.img('images/locations/pavlovsk/school/classroom/takephone.jpg');
     scene.text('You decide it\'s not worth it and silently hand your phone to Mr. Vasilyev.');
     scene.text('He tuts and shakes his head before walking back to the front of the class. "You can have it back after class. Now pay attention please."');
@@ -2000,8 +2000,8 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. Mr. Vasilyev looks at you gratefully before continuing the lesson.');
     scene.actions([
@@ -2044,11 +2044,11 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
     qspCall(s, 'grades', 'class_activity_attributes', 'school', 'bio', ((s as any).pcs_intel ?? 0));
-    ((s as any).trait_vars ?? {})['academic_lessons'] = (((s as any).trait_vars ?? {})['academic_lessons'] ?? 0) + (1);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/attention.jpg');
     scene.text('You listen attentively to Miss Orlov for the duration of the class. Today\'s lesson was interesting and informative and you feel you learned from taking part in class.');
@@ -2339,9 +2339,9 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('"Maybe if you spoke louder and with more confidence, I might not fall asleep!" you answer boldly.');
     scene.text('Miss Orlov is stunned by your comment and takes a minute to regain her composure.');
@@ -2360,8 +2360,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/classroom/bitchflip.jpg');
     scene.text('"What good would that do?" you reply. "It\'s not like I\'m the one interrupting your class. That would be you. Just leave me alone!"');
     scene.text('Miss Orlov doesn\'t know what to say and looks like she\'s going to cry. After composing herself, she decides to just continue her lesson. You hear one of the boys behind you call you a bitch, so you turn around and flip him off.');
@@ -2465,8 +2465,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
     scene.text('You ignore her and keep playing with your phone as she walks over to your desk.');
@@ -2534,8 +2534,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over the phone', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big26.jpg');
     scene.text('You decide it\'s not worth it and silently hand your phone to Miss Orlov.');
@@ -2550,8 +2550,8 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Put your phone away', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
     scene.text('You decide not to aggravate the situation and put your phone away. Miss Orlov gives you appreciative smile before continuing with the lesson.');
     scene.actions([

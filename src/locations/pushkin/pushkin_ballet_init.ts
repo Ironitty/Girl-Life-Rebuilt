@@ -29,7 +29,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).loc ?? 0) === 'pushkin_ballet_res'  &&  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) >= 30)) {
-      ((s as any).balletEv ?? {})['trigger'] = 'late';
+      if (!(s as any).balletEv) (s as any).balletEv = {}; (s as any).balletEv['trigger'] = 'late';
       qspCall(s, 'npc_274_init', 'summer_school');
     } else {
       if (((s as any).loc ?? 0) === 'pushkin_ballet_res'  &&  ((s as any).loc_arg ?? 0) === 'hallway'  &&  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 8)  &&  (((s as any).day ?? 0) >= 1  ||  ((s as any).day ?? 0) <= 6)) {
@@ -114,121 +114,121 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ballet_debug ?? 0) === 1) {
       // TODO-QSP: if nclass > 0: $ballet_class_debug += nclass + ' - ' + $loc_arg + iif(nclass = 5, ' -|- <br>', ', ')
     }
-    ((s as any).ballet_grade_attendance ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_attendance ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
+    if (!(s as any).ballet_grade_attendance) (s as any).ballet_grade_attendance = {}; (s as any).ballet_grade_attendance[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance[String((s as any).week ?? 0)] ?? 0) + (1);
     if (((s as any).pcs_makeup ?? 0) > 1) {
-      ((s as any).ballet_grade_mua ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_mua ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
+      if (!(s as any).ballet_grade_mua) (s as any).ballet_grade_mua = {}; (s as any).ballet_grade_mua[String((s as any).week ?? 0)] = ((s as any).ballet_grade_mua[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
-      ((s as any).ballet_grade_mua ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_mua ?? {})[String((s as any).week ?? 0)] ?? 0) - (1);
+      if (!(s as any).ballet_grade_mua) (s as any).ballet_grade_mua = {}; (s as any).ballet_grade_mua[String((s as any).week ?? 0)] = ((s as any).ballet_grade_mua[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).hbraids ?? 0) > 0  ||  ((s as any).hpingripw ?? 0) > 0  ||  ((s as any).pcs_hairlng ?? 0) <= 80) {
-      ((s as any).ballet_grade_braids ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_braids ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
+      if (!(s as any).ballet_grade_braids) (s as any).ballet_grade_braids = {}; (s as any).ballet_grade_braids[String((s as any).week ?? 0)] = ((s as any).ballet_grade_braids[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
       if (((s as any).hscrunchw ?? 0) > 0) {
-        ((s as any).ballet_grade_braids ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_braids ?? {})[String((s as any).week ?? 0)] ?? 0) - (1);
+        if (!(s as any).ballet_grade_braids) (s as any).ballet_grade_braids = {}; (s as any).ballet_grade_braids[String((s as any).week ?? 0)] = ((s as any).ballet_grade_braids[String((s as any).week ?? 0)] ?? 0) - (1);
       }
     }
     if (((s as any).pcs_pubes ?? 0) < 4  &&  ((s as any).pcs_leghair ?? 0) < 4) {
-      ((s as any).ballet_grade_shave ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_shave ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
+      if (!(s as any).ballet_grade_shave) (s as any).ballet_grade_shave = {}; (s as any).ballet_grade_shave[String((s as any).week ?? 0)] = ((s as any).ballet_grade_shave[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
-      ((s as any).ballet_grade_shave ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_shave ?? {})[String((s as any).week ?? 0)] ?? 0) - (1);
+      if (!(s as any).ballet_grade_shave) (s as any).ballet_grade_shave = {}; (s as any).ballet_grade_shave[String((s as any).week ?? 0)] = ((s as any).ballet_grade_shave[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).apparel ?? 0)?.['status'] === 'sport'  ||  ((s as any).apparel ?? 0)?.['status'] === 'dance') {
-      ((s as any).ballet_grade_uniform ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_uniform ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
+      if (!(s as any).ballet_grade_uniform) (s as any).ballet_grade_uniform = {}; (s as any).ballet_grade_uniform[String((s as any).week ?? 0)] = ((s as any).ballet_grade_uniform[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
-      ((s as any).ballet_grade_uniform ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_uniform ?? {})[String((s as any).week ?? 0)] ?? 0) - (1);
+      if (!(s as any).ballet_grade_uniform) (s as any).ballet_grade_uniform = {}; (s as any).ballet_grade_uniform[String((s as any).week ?? 0)] = ((s as any).ballet_grade_uniform[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).pcs_cupsize ?? 0) > 20) {
-      ((s as any).ballet_grade_appearance ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_appearance ?? {})[String((s as any).week ?? 0)] ?? 0) - (1);
+      if (!(s as any).ballet_grade_appearance) (s as any).ballet_grade_appearance = {}; (s as any).ballet_grade_appearance[String((s as any).week ?? 0)] = ((s as any).ballet_grade_appearance[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).thinkpreg ?? 0) > 1  ||  ((s as any).knowpreg ?? 0) > 1) {
-      ((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] ?? 0) - (200);
+      if (!(s as any).ballet_grade_discipline) (s as any).ballet_grade_discipline = {}; (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (200);
     }
     if (((s as any).pcs_missing_teeth ?? 0) > 0  ||  ((s as any).pcs_teeth ?? 0) !== -1) {
-      ((s as any).ballet_grade_appearance ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_appearance ?? {})[String((s as any).week ?? 0)] ?? 0) - (5);
+      if (!(s as any).ballet_grade_appearance) (s as any).ballet_grade_appearance = {}; (s as any).ballet_grade_appearance[String((s as any).week ?? 0)] = ((s as any).ballet_grade_appearance[String((s as any).week ?? 0)] ?? 0) - (5);
     }
     if (((s as any).pcs_brace ?? 0) > 1) {
-      ((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] ?? 0) - (1);
+      if (!(s as any).ballet_grade_discipline) (s as any).ballet_grade_discipline = {}; (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).drugVars ?? 0)?.['cigarettes_used'] > 1) {
-      ((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] ?? 0) - (5);
+      if (!(s as any).ballet_grade_discipline) (s as any).ballet_grade_discipline = {}; (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (5);
     }
     if (((s as any).alko ?? 0) > 1) {
-      ((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] ?? 0) - (1);
+      if (!(s as any).ballet_grade_discipline) (s as any).ballet_grade_discipline = {}; (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['cocaine_system'] > 0  ||  ((s as any).drugVars ?? 0)?.['amphetamine_high'] > 0) {
-      ((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_grade_discipline ?? {})[String((s as any).week ?? 0)] ?? 0) - (50);
+      if (!(s as any).ballet_grade_discipline) (s as any).ballet_grade_discipline = {}; (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (50);
     }
   }
   if (((s as any).nclass ?? 0) === 5  &&  ((s as any).school_daily_check ?? 0) !== ((s as any).daystart ?? 0)) {
-    ((s as any).ballet_daily_score ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_mua ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_braids ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_shave ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] - ((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).week ?? 0)];
-    ((s as any).ballet_grade_score ?? {})['class'] = (((s as any).ballet_grade_score ?? {})['class'] ?? 0) + (((s as any).ballet_daily_score ?? 0)?.[String((s as any).week ?? 0)]);
+    if (!(s as any).ballet_daily_score) (s as any).ballet_daily_score = {}; (s as any).ballet_daily_score[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_mua ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_braids ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_shave ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] - ((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).week ?? 0)];
+    if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['class'] = ((s as any).ballet_grade_score['class'] ?? 0) + (((s as any).ballet_daily_score ?? 0)?.[String((s as any).week ?? 0)]);
   }
   if (((s as any).locArgs?.[1] ?? 0)=== 'grade') {
-    ((s as any).ballet_grade_score ?? {})['total'] = 100 * (((s as any).ballet_grade_score ?? {})?.['class'] + ((s as any).ballet_grade_score ?? {})?.['homework'] + ((s as any).ballet_grade_health ?? 0) + (((s as any).danc_lvl ?? 0) / 10)) / 210;
+    if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['total'] = 100 * (((s as any).ballet_grade_score ?? {})?.['class'] + ((s as any).ballet_grade_score ?? {})?.['homework'] + ((s as any).ballet_grade_health ?? 0) + (((s as any).danc_lvl ?? 0) / 10)) / 210;
     if (((s as any).ballet_grade_score ?? 0)?.['total'] <= 40) {
-      ((s as any).balletqw ?? {})['school'] = 0;
+      if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['school'] = 0;
     } else {
       if (((s as any).ballet_grade_score ?? 0)?.['total'] >= 41  &&  ((s as any).ballet_grade_score ?? 0)?.['total'] < 70) {
-        ((s as any).balletqw ?? {})['school'] = 2;
-        ((s as any).balletqw ?? {})['rank'] = 1;
+        if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['school'] = 2;
+        if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['rank'] = 1;
       } else {
         if (((s as any).ballet_grade_score ?? 0)?.['total'] >= 70  &&  ((s as any).ballet_grade_score ?? 0)?.['total'] <= 90) {
-          ((s as any).balletqw ?? {})['school'] = 2;
-          ((s as any).balletqw ?? {})['rank'] = 1;
+          if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['school'] = 2;
+          if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['rank'] = 1;
         } else {
           if (((s as any).ballet_grade_score ?? 0)?.['total'] >= 91) {
             // TODO-QSP: gs 'pushkin_ballet_init', 'famemodifier', ballet_grade_score['total']
-            ((s as any).balletqw ?? {})['school'] = 5;
-            ((s as any).balletqw ?? {})['rank'] = 1;
+            if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['school'] = 5;
+            if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['rank'] = 1;
           }
         }
       }
     }
-    ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('<centre><h2> Pushkin Ballet School - Performance Report </h2></centre>');
-    ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('<br>');
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<centre><h2> Pushkin Ballet School - Performance Report </h2></centre>');
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<br>');
     if (((s as any).ballet_grade_score ?? 0)?.['class'] < 125) {
-      ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('Was it even worth your time to attend the school? You did not attend all lessons or had discipline concerns. It is obvious you have no interest in a ballet or the Arts.');
+      if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('Was it even worth your time to attend the school? You did not attend all lessons or had discipline concerns. It is obvious you have no interest in a ballet or the Arts.');
     } else {
       if (((s as any).ballet_grade_score ?? 0)?.['class'] >= 125) {
-        ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('You attended all your assigned classes, and showed no discipline issues. Your continued dedication and focus to the Arts is commendable.');
+        if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('You attended all your assigned classes, and showed no discipline issues. Your continued dedication and focus to the Arts is commendable.');
       } else {
-        ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('<font color="red"><b>Class attendance bug:</b></font> ' + qspUntranslated(s, "ballet_grade_score['class'] >", { location: "pushkin_ballet_init" }) + '');
+        if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Class attendance bug:</b></font> ' + qspUntranslated(s, "ballet_grade_score['class'] >", { location: "pushkin_ballet_init" }) + '');
       }
     }
-    ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('<br>');
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<br>');
     if (((s as any).ballet_grade_score ?? 0)?.['homework'] >=6  &&  ((s as any).ballet_grade_score ?? 0)?.['homework'] <= 14) {
-      ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('Your dedication and discipline in completing all your assigned homework is admirable in a student, but we expect to see more effort from you in future if you wish to become a Principle Dancer.');
+      if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('Your dedication and discipline in completing all your assigned homework is admirable in a student, but we expect to see more effort from you in future if you wish to become a Principle Dancer.');
     } else {
       if (((s as any).ballet_grade_score ?? 0)?.['homework'] >= 15) {
-        ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('You showed an exceptional aptitude and discipline going beyond what was expected of you for your homework assignments. This is exactly what we expect from our dancers who aspire and dedicate themselves to becoming a Principle Dancer.');
+        if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('You showed an exceptional aptitude and discipline going beyond what was expected of you for your homework assignments. This is exactly what we expect from our dancers who aspire and dedicate themselves to becoming a Principle Dancer.');
       } else {
         if (((s as any).ballet_grade_score ?? 0)?.['homework'] <= 5) {
-          ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('You did not complete all the homework assigned to you, you lack the discipline and aptitude to become part of our school\'s Coryphée.');
+          if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('You did not complete all the homework assigned to you, you lack the discipline and aptitude to become part of our school\'s Coryphée.');
         } else {
-          ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('<font color="red"><b>Homework debug message:</b></font> ' + qspUntranslated(s, "ballet_grade_score['homework']>", { location: "pushkin_ballet_init" }) + ' ');
+          if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Homework debug message:</b></font> ' + qspUntranslated(s, "ballet_grade_score['homework']>", { location: "pushkin_ballet_init" }) + ' ');
         }
       }
     }
-    ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('<br><br>');
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<br><br>');
     if (((s as any).balletqw ?? 0)?.['school'] === 5) {
-      ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('Your skill and dedication has given us great pleasure to award you a Distinction and you have been accepted as an apprentice with sponsorship to our Conservatoire.');
+      if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('Your skill and dedication has given us great pleasure to award you a Distinction and you have been accepted as an apprentice with sponsorship to our Conservatoire.');
     } else {
       if (((s as any).balletqw ?? 0)?.['school'] === 3  ||  ((s as any).balletqw ?? 0)?.['school'] === 4) {
-        ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('After much consideration we are pleased to offer you a place at our school. Unfortunately your performance at the school was not sufficient to grant you an sponsorship. You will need to attend a placement interview with Rudolph at the appointed date to discuss additional training before your acceptance into the Coryphée.');
+        if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('After much consideration we are pleased to offer you a place at our school. Unfortunately your performance at the school was not sufficient to grant you an sponsorship. You will need to attend a placement interview with Rudolph at the appointed date to discuss additional training before your acceptance into the Coryphée.');
       } else {
         if (((s as any).balletqw ?? 0)?.['school'] === 2) {
-          ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('We are pleased to offer you a place at our school, unfortunately your performance at the school was not sufficient to grant you a sponsorship. You will attend the Conservatoire as indicated by your instructor. ');
+          if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('We are pleased to offer you a place at our school, unfortunately your performance at the school was not sufficient to grant you a sponsorship. You will attend the Conservatoire as indicated by your instructor. ');
         } else {
           if (((s as any).balletqw ?? 0)?.['school'] === 1) {
-            ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('Your performance and discipline as severely lacking and was disappointing. Your attitude towards the Arts was a disgrace and we have never had a student who showed such callous disregard for the privileges you were granted. Therefore you will not be granted a place in the school\'s coryphée nor will be invited to further opportunities.');
+            if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('Your performance and discipline as severely lacking and was disappointing. Your attitude towards the Arts was a disgrace and we have never had a student who showed such callous disregard for the privileges you were granted. Therefore you will not be granted a place in the school\'s coryphée nor will be invited to further opportunities.');
           } else {
-            ((s as any).balletqw ?? {})['final_report'] = (((s as any).balletqw ?? {})['final_report'] ?? 0) + ('<font color="red"><b>Award debug message:</b></font> ' + qspUntranslated(s, "balletqw['school']>", { location: "pushkin_ballet_init" }) + '');
+            if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['final_report'] = ((s as any).balletqw['final_report'] ?? 0) + ('<font color="red"><b>Award debug message:</b></font> ' + qspUntranslated(s, "balletqw['school']>", { location: "pushkin_ballet_init" }) + '');
           }
         }
       }
     }
     // TODO-QSP: gs $loc, 'cleanup_var'
-    ((s as any).balletqw ?? {})['letter'] = 1;
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['letter'] = 1;
   }
   // TODO-QSP: end
   scene.build();

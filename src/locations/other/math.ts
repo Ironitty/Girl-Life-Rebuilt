@@ -90,7 +90,7 @@ function enterIntPower(s: GameState, scene: SceneBuilder): void {
 
 function enterConvertToLong(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
   // TODO-QSP: end
   scene.build();
@@ -98,7 +98,7 @@ function enterConvertToLong(s: GameState, scene: SceneBuilder): void {
 
 function enterConvertToInt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== '') {
-    ((s as any).ARGS ?? {})[1] = qspUntranslated(s, "val(ARGS[1])", { location: "math" });
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = qspUntranslated(s, "val(ARGS[1])", { location: "math" });
   }
   (s as any).result = qspUntranslated(s, "ARGS[1]", { location: "math" });
   // TODO-QSP: end
@@ -107,7 +107,7 @@ function enterConvertToInt(s: GameState, scene: SceneBuilder): void {
 
 function enterTrimLong(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
   // TODO-QSP: :trim_long_loop
   if (((((s as any).result ?? 0)).length) > 1) {
@@ -121,11 +121,11 @@ function enterTrimLong(s: GameState, scene: SceneBuilder): void {
 
 function enterPadLong(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
   // TODO-QSP: :pad_long_loop
   if (((s as any).locArgs?.[2] ?? 0) > 0) {
-    ((s as any).ARGS ?? {})[2] = (((s as any).ARGS ?? {})[2] ?? 0) - (1);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).ARGS[2] ?? 0) - (1);
     // TODO-QSP: jump 'pad_long_loop'
   }
   // TODO-QSP: end
@@ -134,17 +134,17 @@ function enterPadLong(s: GameState, scene: SceneBuilder): void {
 
 function enterLongAdd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
   }
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_add_sign ?? {})[1] = 1;
+    if (!(s as any).temp_add_sign) (s as any).temp_add_sign = {}; (s as any).temp_add_sign[1] = 1;
     // TODO-QSP: $ARGS[1] = $mid($ARGS[1], 2)
   }
   if (((((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_add_sign ?? {})[2] = 1;
+    if (!(s as any).temp_add_sign) (s as any).temp_add_sign = {}; (s as any).temp_add_sign[2] = 1;
     // TODO-QSP: $ARGS[2] = $mid($ARGS[2], 2)
   }
   if (((s as any).temp_add_sign ?? 0)[1] !== ((s as any).temp_add_sign ?? 0)[2]) {
@@ -153,7 +153,7 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'long_add_cleanup'
   } else {
     if (((s as any).temp_add_sign ?? 0)[1] === 1) {
-      ((s as any).temp_add_sign ?? {})[0] = 1;
+      if (!(s as any).temp_add_sign) (s as any).temp_add_sign = {}; (s as any).temp_add_sign[0] = 1;
     }
   }
   if (((((s as any).locArgs?.[1] ?? 0)).length) < ((((s as any).locArgs?.[2] ?? 0)).length)) {
@@ -187,17 +187,17 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterLongSub(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
   }
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_sub_sign ?? {})[1] = 1;
+    if (!(s as any).temp_sub_sign) (s as any).temp_sub_sign = {}; (s as any).temp_sub_sign[1] = 1;
     // TODO-QSP: $ARGS[1] = $mid($ARGS[1], 2)
   }
   if (((((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_sub_sign ?? {})[2] = 1;
+    if (!(s as any).temp_sub_sign) (s as any).temp_sub_sign = {}; (s as any).temp_sub_sign[2] = 1;
     // TODO-QSP: $ARGS[2] = $mid($ARGS[2], 2)
   }
   if (((s as any).temp_sub_sign ?? 0)[1] === 0) {
@@ -220,7 +220,7 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_flip_know ?? 0) === 1) {
     // TODO-QSP: $ARGS[2] = $ARGS[1]
     // TODO-QSP: $ARGS[1] = $temp_sub_res
-    ((s as any).temp_sub_sign ?? {})[0] = 1;
+    if (!(s as any).temp_sub_sign) (s as any).temp_sub_sign = {}; (s as any).temp_sub_sign[0] = 1;
   }
   (s as any).math_i = 0;
   // TODO-QSP: :long_sub_loop2
@@ -236,7 +236,7 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'long_sub_loop2'
   }
   if (((s as any).temp_sub_carry ?? 0) > 0) {
-    ((s as any).temp_sub_sign ?? {})[0] = 1 - ((s as any).temp_sub_sign ?? 0)[0];
+    if (!(s as any).temp_sub_sign) (s as any).temp_sub_sign = {}; (s as any).temp_sub_sign[0] = 1 - ((s as any).temp_sub_sign ?? 0)[0];
     (s as any).math_i = qspUntranslated(s, "len(result)", { location: "math" });
     (s as any).temp_sub_carry = 1;
     // TODO-QSP: $ARGS[1] = $result
@@ -261,20 +261,20 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
 
 function enterLongMult(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
   }
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_mult_sign ?? {})[1] = 1;
+    if (!(s as any).temp_mult_sign) (s as any).temp_mult_sign = {}; (s as any).temp_mult_sign[1] = 1;
     // TODO-QSP: $ARGS[1] = $mid($ARGS[1], 2)
   }
   if (((((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_mult_sign ?? {})[2] = 1;
+    if (!(s as any).temp_mult_sign) (s as any).temp_mult_sign = {}; (s as any).temp_mult_sign[2] = 1;
     // TODO-QSP: $ARGS[2] = $mid($ARGS[1], 2)
   }
-  ((s as any).temp_mult_sign ?? {})[0] = ((((s as any).temp_mult_sign ?? 0)[1] + ((s as any).temp_mult_sign ?? 0)[2]) % 2);
+  if (!(s as any).temp_mult_sign) (s as any).temp_mult_sign = {}; (s as any).temp_mult_sign[0] = ((((s as any).temp_mult_sign ?? 0)[1] + ((s as any).temp_mult_sign ?? 0)[2]) % 2);
   (s as any).math_i = 0;
   // TODO-QSP: :long_mult_loop1
   (s as any).math_j = 0;
@@ -292,7 +292,7 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :long_mult_loop3
   if (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] > 9) {
     // TODO-QSP: long[math_i-1] += long[math_i] / 10
-    ((s as any).long ?? {})[String((s as any).math_i ?? 0)] = (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] % 10);
+    if (!(s as any).long) (s as any).long = {}; (s as any).long[String((s as any).math_i ?? 0)] = (((s as any).long ?? 0)?.[String((s as any).math_i ?? 0)] % 10);
   }
   (s as any).math_i = ((s as any).math_i ?? 0) - (1);
   if (((s as any).math_i ?? 0) > 0) {
@@ -306,23 +306,23 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
 
 function enterLongDiv(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = '' + qspUntranslated(s, "ARGS[2]>", { location: "math" }) + '';
   }
   if (((s as any).strpos ?? 0)(!(((s as any).locArgs?.[2] ?? 0), '1|2|3|4|5|6|7|8|9'))) {
     return;
   }
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_div_sign ?? {})[1] = 1;
+    if (!(s as any).temp_div_sign) (s as any).temp_div_sign = {}; (s as any).temp_div_sign[1] = 1;
     // TODO-QSP: $ARGS[1] = $mid($ARGS[1], 2)
   }
   if (((((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '-') {
-    ((s as any).temp_div_sign ?? {})[2] = 1;
+    if (!(s as any).temp_div_sign) (s as any).temp_div_sign = {}; (s as any).temp_div_sign[2] = 1;
     // TODO-QSP: $ARGS[2] = $mid($ARGS[1], 2)
   }
-  ((s as any).temp_div_sign ?? {})[0] = ((((s as any).temp_div_sign ?? 0)[1] + ((s as any).temp_div_sign ?? 0)[2]) % 2);
+  if (!(s as any).temp_div_sign) (s as any).temp_div_sign = {}; (s as any).temp_div_sign[0] = ((((s as any).temp_div_sign ?? 0)[1] + ((s as any).temp_div_sign ?? 0)[2]) % 2);
   (s as any).temp_n = ((((s as any).locArgs?.[1] ?? 0)).length) - ((((s as any).locArgs?.[2] ?? 0)).length);
   if (((s as any).temp_n ?? 0) < 0) {
     // TODO-QSP: jump 'long_div_cleanup'

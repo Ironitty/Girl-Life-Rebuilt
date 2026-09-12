@@ -109,7 +109,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 60);
-      ((s as any).mc_inventory ?? {})['scrunchies'] = (((s as any).mc_inventory ?? {})['scrunchies'] ?? 0) + (10);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) + (10);
       scene.text('You pay Mr. Syomin and buy the small box.');
       scene.actions([
         { label: 'Move away', goto: ['barbershop', 'start'] },
@@ -121,7 +121,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 80);
-      ((s as any).mc_inventory ?? {})['kirbygrips'] = (((s as any).mc_inventory ?? {})['kirbygrips'] ?? 0) + (10);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['kirbygrips'] = ((s as any).mc_inventory['kirbygrips'] ?? 0) + (10);
       scene.text('You pay Mr. Syomin and buy the small box.');
       scene.actions([
         { label: 'Move away', goto: ['barbershop', 'start'] },

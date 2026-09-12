@@ -300,7 +300,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
     scene.text('"No. I\'m sorry, but I just want to go home… Maybe some other time."');
     scene.text('Vadim looks at you with a serious stare. "You\'re lucky I\'m in a good mood today. I\'ll let it slide this time."');
     scene.text('You quickly gather your stuff before he has a change of heart and run outside the sauna.');
-    ((s as any).npc_QW ?? {})['A113'] = 2;
+    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['city_sauna', ''] },
     ]);
@@ -351,7 +351,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
         scene.text('You have a yeast infection. The cure for this disease is very expensive, but it\'s not that harmful and can easily be suppressed.');
         if ((!((s as any).KandidNapr ?? 0))) {
           (s as any).KandidNapr = 1;
-          ((s as any).mc_inventory ?? {})['antibiotics'] = (((s as any).mc_inventory ?? {})['antibiotics'] ?? 0) + (5);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) + (5);
           scene.text('Here\'s some pills, the drug company rep gives these away so I won\'t add anything to your debt. When you have it in remission you must take vitamins to keep it that way.');
         }
         if (((s as any).Kandidoz ?? 0) < 30) {
@@ -426,7 +426,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).workDolg ?? 0) > 0) {
       if (((s as any).mc_inventory ?? 0)?.['razor'] <= 0) {
-        ((s as any).mc_inventory ?? {})['razor'] = 5;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = 5;
       }
       qspCall(s, 'din_van', 'brit');
     } else {

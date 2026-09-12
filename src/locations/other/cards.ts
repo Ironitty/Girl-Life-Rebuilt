@@ -54,11 +54,11 @@ function enterShell(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
-  ((s as any).card_in ?? {})['icon'] = ((((s as any).locArgs?.[2] ?? 0) > 0) ? ('images/characters/shared/headshots_main/\' + $str(ARGS[2]) + \'.jpg') : (''));
-  ((s as any).card_in ?? {})['icon_size'] = 90;
-  ((s as any).card_in ?? {})['title'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).card_in ?? {})['border'] = ((s as any).theme_hex ?? 0)?.['accent'];
-  ((s as any).card_in ?? {})['bg'] = qspFunc(s, 'themes', 'alt_color', '');
+  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['icon'] = ((((s as any).locArgs?.[2] ?? 0) > 0) ? ('images/characters/shared/headshots_main/\' + $str(ARGS[2]) + \'.jpg') : (''));
+  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['icon_size'] = 90;
+  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['title'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['border'] = ((s as any).theme_hex ?? 0)?.['accent'];
+  if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['bg'] = qspFunc(s, 'themes', 'alt_color', '');
   qspCall(s, 'cards', 'shell_open');
   // TODO-QSP: dynamic text: $result
   scene.text('$result');

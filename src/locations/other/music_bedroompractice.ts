@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGuitar(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  ((s as any).ml_performance ?? {})['performed_minutes'] = (((s as any).ml_performance ?? {})['performed_minutes'] ?? 0) + (15);
-  ((s as any).ml_performance ?? {})['total_time_performed'] = (((s as any).ml_performance ?? {})['total_time_performed'] ?? 0) + (15);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['performed_minutes'] = ((s as any).ml_performance['performed_minutes'] ?? 0) + (15);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['total_time_performed'] = ((s as any).ml_performance['total_time_performed'] ?? 0) + (15);
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/music/guitarpractice_1.jpg');
@@ -60,8 +60,8 @@ function enterVocals(s: GameState, scene: SceneBuilder): void {
 function enterRehearse(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'tiny');
-  ((s as any).ml_performance ?? {})['performed_minutes'] = (((s as any).ml_performance ?? {})['performed_minutes'] ?? 0) + (30);
-  ((s as any).ml_performance ?? {})['total_time_performed'] = (((s as any).ml_performance ?? {})['total_time_performed'] ?? 0) + (30);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['performed_minutes'] = ((s as any).ml_performance['performed_minutes'] ?? 0) + (30);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['total_time_performed'] = ((s as any).ml_performance['total_time_performed'] ?? 0) + (30);
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/music/guitarpractice_1.jpg');
   scene.text('You run through your set, playing guitar and singing along to work both into a routine.');
@@ -89,8 +89,8 @@ function enterRehearse(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 3) + 1);
     }
   }
-  ((s as any).ml_performance ?? {})['set_quality'] = (((s as any).ml_performance ?? {})['set_quality'] ?? 0) + (((s as any).rand ?? 0)(1, (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0))/10));
-  ((s as any).ml_performance ?? {})['set_lastpracticeday'] = ((s as any).daystart ?? 0);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['set_quality'] = ((s as any).ml_performance['set_quality'] ?? 0) + (((s as any).rand ?? 0)(1, (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0))/10));
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['set_lastpracticeday'] = ((s as any).daystart ?? 0);
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish practice', handler: (st: GameState) => {

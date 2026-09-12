@@ -73,8 +73,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Don\'t interfere', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'set', 'A5', 50);
-    ((s as any).npc_hotcat ?? {})['A5'] = 6;
-    ((s as any).npc_grupTipe ?? {})['A5'] = 5;
+    if (!(s as any).npc_hotcat) (s as any).npc_hotcat = {}; (s as any).npc_hotcat['A5'] = 6;
+    if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A5'] = 5;
     (s as any).fedorKozlovQW = (-10);
     (s as any).FedorKozHome = 0;
     (s as any).fedormasha = 1;

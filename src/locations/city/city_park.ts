@@ -112,7 +112,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('"Either tell me how many you want to buy or get lost!"');
       } else {
         // TODO-QSP: gs 'money', 'pay', temp_doses * 360
-        ((s as any).mc_inventory ?? {})['cocaine'] = (((s as any).mc_inventory ?? {})['cocaine'] ?? 0) + (((s as any).temp_doses ?? 0));
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (((s as any).temp_doses ?? 0));
         scene.text('You quickly pull your purse out and pay him, hoping nobody saw you giving him money, and he passes you the doses you\'ve paid for. You can safely sniff the stuff at home.');
       }
       scene.actions([
@@ -553,7 +553,7 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).whrand ?? 0) > 5  &&  ((s as any).whrand ?? 0) <= 60) {
         (s as any).minut = ((s as any).minut ?? 0) + 15;
-        ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
         (s as any).guy = ((s as any).guy ?? 0) + (1);
         qspCall(s, 'money', 'earn', 500);
         qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -613,7 +613,7 @@ function enterProst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRape1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 23) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   scene.img('images/locations/city/centralpark/sex/rape.jpg');
@@ -634,7 +634,7 @@ function enterRape1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Just let it happen', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
     scene.img('images/locations/city/centralpark/sex/rapean.jpg');
     scene.text('It doesn\'t take long for the rapist to realize you\'re not resisting.');
     scene.text('"Good girl!" he says as he pushes you onto all fours so that he can take you doggy-style.');
@@ -668,7 +668,7 @@ function enterRape1(s: GameState, scene: SceneBuilder): void {
 
 function enterJunkies(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  ((s as any).drugVars ?? {})['city_drugden'] = 1;
+  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['city_drugden'] = 1;
   scene.text('The junkies look at you with an apprehensive gaze. They probably think you\'re a police officer.');
   scene.text('"We don\'t sell no drugs! Go to the Drug House, ye can get some there!"');
   // TODO-QSP: end

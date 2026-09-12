@@ -8,14 +8,14 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
-    ((s as any).trait_vars ?? {})['sensitivity_override'] = 1;
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 1;
   }
   scene.build();
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-    ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
   }
   // TODO-QSP: gt $ARGS[1], $ARGS[2]
   // TODO-QSP: end
@@ -173,7 +173,7 @@ function enterCook(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPreSleep(s: GameState, scene: SceneBuilder): void {
-  ((s as any).therapistQW ?? {})['hotel_sleep_flag'] = 1;
+  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_sleep_flag'] = 1;
   scene.actions([{ label: 'Continue', goto: ['therapist_home', 'pre_sleep2'] }]);
   scene.build();
 }
@@ -189,7 +189,7 @@ function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
     }
     qspCall(s, 'pre_sleep_events', 'event_end');
   } },
@@ -250,7 +250,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
     }
     qspCall(s, 'shortgs', 'autosave');
   }, goto: ['pre_sleep', 'start'] },
@@ -265,7 +265,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstNight(s: GameState, scene: SceneBuilder): void {
-  ((s as any).therapistQW ?? {})['hotel_firstnight'] = 1;
+  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_firstnight'] = 1;
   scene.img('images/characters/pavlovsk/resident/therapist/naked1.jpg');
   scene.text('You lay down on the bed, as you have done all your life, ready to sleep the night away, when your husband joins you.');
   // TODO-QSP: end
@@ -294,7 +294,7 @@ function enterFirstNight(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
     }
     qspCall(s, 'pre_sleep_events', 'event_end');
   } },
@@ -309,7 +309,7 @@ function enterFirstNight(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstMorning(s: GameState, scene: SceneBuilder): void {
-  ((s as any).therapistQW ?? {})['hotel_firstnight'] = 2;
+  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_firstnight'] = 2;
   (s as any).pcs_energy = 100;
   (s as any).pcs_hydra = 100;
   scene.img('images/characters/pavlovsk/resident/therapist/naked1.jpg');

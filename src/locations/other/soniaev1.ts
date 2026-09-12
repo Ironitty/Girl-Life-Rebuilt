@@ -214,7 +214,7 @@ function enterEatsonia(s: GameState, scene: SceneBuilder): void {
       { label: 'Afterglow', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    ((s as any).soniaQW ?? {})['sex'] = 1;
+    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sex'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/walkhome/walksex16.jpg');
     if (((s as any).home ?? 0)?.['current'] !== 'parents_home') {
       scene.text('Once your orgasms have passed, she climbs off you and lies down next to you to cuddle. The two of you lie intertwined, basking together in the afterglow. As much as you\'d like to stay, you know you can\'t. You know you need to get home.');
@@ -301,7 +301,7 @@ function enterStraponFucked(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Aftermath', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).soniaQW ?? {})['sex'] = 1;
+    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sex'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/livingroom/strapon/strapon1.jpg');
     if (((s as any).home ?? 0)?.['current'] !== 'parents_home') {
       scene.text('Once you\'re both fully dressed, you both sit on the couch and giggle a little at almost getting caught having sex. Sonia leans forward and gives you a long, slow kiss on the lips.');
@@ -515,7 +515,7 @@ function enterStraponEaten(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).soniaQW ?? {})['sex'] = 1;
+    if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sex'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/selfie.jpg');
     scene.text('Sonia grabs her phone and takes a selfie of the two of you, your faces still glistening with each other\'s pussy juices before the two of you get dressed.');
@@ -639,7 +639,7 @@ function enterShowerSex(s: GameState, scene: SceneBuilder): void {
 
 function enterShowerSexCuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
-  ((s as any).showerSexTemp ?? {})['cuni'] = 1;
+  if (!(s as any).showerSexTemp) (s as any).showerSexTemp = {}; (s as any).showerSexTemp['cuni'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bathroom/shower/join9.jpg');
   scene.text('You lay down on your back on the floor and spread your legs, inviting Sonia with your pussy.');
   scene.text('Sonia grins at your antics and gets down on all four between your legs before she leans forward to kiss you on the lips. She then leans back and lowers her head down between your legs, where she proceeds to kiss your other lips before slipping her tongue between them as she starts to eat you out.');
@@ -679,7 +679,7 @@ function enterShowerSexCuni(s: GameState, scene: SceneBuilder): void {
 
 function enterShowerSexCuniGive(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
-  ((s as any).showerSexTemp ?? {})['cuni_give'] = 1;
+  if (!(s as any).showerSexTemp) (s as any).showerSexTemp = {}; (s as any).showerSexTemp['cuni_give'] = 1;
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bathroom/shower/join12.jpg');
   scene.text('You have Sonia lay back on the floor and spread her legs as you get down on all fours beside her and dip your head between them.');
   scene.text('She moans softly and her hand reaches for the back of your head, her fingers entwined in your hair as you suckle her clit and lick her wet pussy lips.');
@@ -1034,7 +1034,7 @@ function enterStraponMagicBedroomAnalCum(s: GameState, scene: SceneBuilder): voi
 function enterStraponMagicBedroomAfterglow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A25');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).soniaQW ?? {})['sex'] = 1;
+  if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sex'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/home/bedroom/strapon/selfie.jpg');
   scene.text('You unbuckle the harness, breaking the magic. You can feel the magic flow away and lose the sensation of your magic dick as it turns back into a normal dildo.');

@@ -196,7 +196,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Join track team', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).runnerQW ?? {})['joined_team'] = 1;
+    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['joined_team'] = 1;
     scene.text('You sign up for the track team.');
     scene.actions([
       { label: 'Leave', goto: ['havana', 'dressing_room'] },
@@ -266,7 +266,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -386,10 +386,10 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
 function enterTanyaIntroduction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'wear_last_worn');
   qspCall(s, 'panties', 'dispose');
-  ((s as any).nichTanya ?? {})['Relationship'] = 1;
-  ((s as any).nichTanya ?? {})['Known'] = 1;
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 1;
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Known'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A218', 5);
-  ((s as any).nichTanya ?? {})['FuckLast'] = ((s as any).daystart ?? 0);
+  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckLast'] = ((s as any).daystart ?? 0);
   qspCall(s, 'arousal', 'end');
   scene.img('images/characters/city/tanya/gym/shower1.jpg');
   scene.text('Just as you\'re about to go further, a group of women enter the showers. The girl is clearly afraid of being spotted with you and takes the first opportunity to quietly return to the dressing room.');
@@ -924,7 +924,7 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterFMR(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).Fit ?? {})['FMR'] = 1;
+  if (!(s as any).Fit) (s as any).Fit = {}; (s as any).Fit['FMR'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {

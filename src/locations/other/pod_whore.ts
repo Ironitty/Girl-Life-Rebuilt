@@ -238,7 +238,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: end & !! --- pod_whore_analPlugIn ---
     if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_lubri') {
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
         (s as any).agape = 1;
         qspCall(s, 'arousal', 'anal_finger', 1);
       } else {
@@ -852,7 +852,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev1') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 11) + 5, 'prostitution');
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/bj\' + rand(1, 17) + \'.mp4');
@@ -865,7 +865,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev2') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 9) + 7, 'prostitution');
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex\' + rand(1, 7) + \'.mp4');
@@ -879,7 +879,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev3') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'anal', Math.floor(Math.random() * 9) + 7, 'prostitution');
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex\' + rand(8, 14) + \'.mp4');
@@ -892,7 +892,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev4') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 10) + 3, 'prostitution');
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/bj\' + rand(1, 17) + \'.mp4');
@@ -922,7 +922,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev6') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 11) + 5, 'prostitution');
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/bj\' + rand(1, 17) + \'.mp4');
@@ -944,7 +944,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev7') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 11) + 5, 'prostitution');
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/bj\' + rand(1, 17) + \'.mp4');
@@ -994,10 +994,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_groupsexev1') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '1');
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'npcgeneratec', '', 0, 'client', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '2');
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[1], 'prostitution', 'group'
         // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[2], 'prostitution', 'group'
         qspCall(s, 'stat', '');
@@ -1061,10 +1061,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_groupsexev2') {
         qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '1');
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         qspCall(s, 'npcgeneratec', '', 0, 'client', Math.floor(Math.random() * 23) + 18);
         qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), '2');
-        ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+        if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
         // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[1], 'prostitution', 'group'
         // TODO-QSP: gs 'arousal', 'bj', rand(3, 5), $npcID[2], 'prostitution', 'group'
         qspCall(s, 'stat', '');

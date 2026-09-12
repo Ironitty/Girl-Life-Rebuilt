@@ -66,7 +66,7 @@ function enterMinorDidntDeliverDisk(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).konvert ?? 0))) {
     qspCall(s, 'money', 'debt_add', 'workDolg', 200000);
     (s as any).workDolgDay = 7;
-    ((s as any).job_termination_reason ?? {})['city_pornstudio_delivery'] = 'blacklisted';
+    if (!(s as any).job_termination_reason) (s as any).job_termination_reason = {}; (s as any).job_termination_reason['city_pornstudio_delivery'] = 'blacklisted';
     qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_delivery');
     scene.text('"It was stolen."');
     // TODO-QSP: dynamic text: "WHAT! But how could this happen! Do you realize what you have done?! You owe me...

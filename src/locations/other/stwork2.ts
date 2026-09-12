@@ -11,15 +11,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripShowStart(s: GameState, scene: SceneBuilder): void {
-  ((s as any).strip_club ?? {})['cust_boos'] = 0;
-  ((s as any).strip_club ?? {})['strip_tips'] = 0;
-  ((s as any).strip_club ?? {})['dancing_rounds'] = 3;
-  ((s as any).strip_club ?? {})['bra_type'] = ((s as any).braworntype ?? 0);
-  ((s as any).strip_club ?? {})['bra_number'] = ((s as any).brawornnumber ?? 0);
-  ((s as any).strip_club ?? {})['panty_type'] = ((s as any).pantyworntype ?? 0);
-  ((s as any).strip_club ?? {})['panty_number'] = ((s as any).pantywornnumber ?? 0);
-  ((s as any).strip_club ?? {})['clothing_type'] = ((s as any).clothingworntype ?? 0);
-  ((s as any).strip_club ?? {})['clothing_number'] = ((s as any).clothingwornnumber ?? 0);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['cust_boos'] = 0;
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = 0;
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['dancing_rounds'] = 3;
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['bra_type'] = ((s as any).braworntype ?? 0);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['bra_number'] = ((s as any).brawornnumber ?? 0);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['panty_type'] = ((s as any).pantyworntype ?? 0);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['panty_number'] = ((s as any).pantywornnumber ?? 0);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['clothing_type'] = ((s as any).clothingworntype ?? 0);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['clothing_number'] = ((s as any).clothingwornnumber ?? 0);
   (s as any).countmoney = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Stage</b></center>');
@@ -102,7 +102,7 @@ function enterStripHub2(s: GameState, scene: SceneBuilder): void {
   }
   if ((((s as any).hour ?? 0) > 2  ||  ((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) > 45)  &&  (((s as any).hour ?? 0) < 17  ||  (((s as any).hour ?? 0) === 17  &&  ((s as any).minut ?? 0) < 30))) {
     (s as any).pcs_hairbsh = 0;
-    ((s as any).strip_club ?? {})['total_stripshows'] = (((s as any).strip_club ?? {})['total_stripshows'] ?? 0) + (1);
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['total_stripshows'] = ((s as any).strip_club['total_stripshows'] ?? 0) + (1);
     scene.text('Your shift is over for tonight. Time to head home.');
   } else {
     if (((s as any).strip_club ?? 0)?.['dancing_rounds'] === 3) {
@@ -152,7 +152,7 @@ function enterStripHub2(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(s, 'sweat', 'add', 5);
       (s as any).pcs_hairbsh = 0;
-      ((s as any).strip_club ?? {})['total_stripshows'] = (((s as any).strip_club ?? {})['total_stripshows'] ?? 0) + (1);
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['total_stripshows'] = ((s as any).strip_club['total_stripshows'] ?? 0) + (1);
       if (((s as any).strip_club ?? 0)?.['strip_tips'] >= 150) {
         if ((Math.floor(Math.random() * 100) + 0) < 25) {
           if (((s as any).strip_club ?? 0)?.['manager_bonus'] === 0) {
@@ -172,7 +172,7 @@ function enterStripHub2(s: GameState, scene: SceneBuilder): void {
           scene.text('As you enter the back stage area, a security guard approaches and tells you that you have a customer requesting a private show.');
           scene.actions([
             { label: 'Perform a private dance', handler: (st: GameState) => {
-    ((s as any).strip_club ?? {})['lapdance_chance'] = 0;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['lapdance_chance'] = 0;
   }, goto: ['stwork2', 'privatdance'] },
             { label: 'Turn the request down', goto: ['stwork2', 'strip_show_end'] },
           ]);
@@ -190,10 +190,10 @@ function enterStripHub2(s: GameState, scene: SceneBuilder): void {
 function enterSetCustomerMood(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_bmi_overweight', 'body_bmi_obese')) {
     if ((Math.floor(Math.random() * 101) + 0) >= 60) {
-      ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) - (Math.floor(Math.random() * 6) + 5);
-      ((s as any).strip_club ?? {})['cust_angry'] = 1;
-      ((s as any).strip_club ?? {})['cust_boos'] = (((s as any).strip_club ?? {})['cust_boos'] ?? 0) + (1);
-      ((s as any).strip_club ?? {})['rand'] = Math.floor(Math.random() * 4) + 0;
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) - (Math.floor(Math.random() * 6) + 5);
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['cust_angry'] = 1;
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['cust_boos'] = ((s as any).strip_club['cust_boos'] ?? 0) + (1);
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['rand'] = Math.floor(Math.random() * 4) + 0;
       if (((s as any).strip_club ?? 0)?.['rand'] === 0) {
         scene.text('You overhear some of the customers sitting next to the stage.');
         scene.text('"Look at her fat hanging out. Her gut and ass are shaking like jelly!"');
@@ -212,7 +212,7 @@ function enterSetCustomerMood(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      ((s as any).strip_club ?? {})['cust_angry'] = 0;
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['cust_angry'] = 0;
       if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.text('A few customers are catcalling.');
         scene.text('"Get those fat titties out!" one of them yells.');
@@ -222,7 +222,7 @@ function enterSetCustomerMood(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    ((s as any).strip_club ?? {})['cust_angry'] = 0;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['cust_angry'] = 0;
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('Several customers are catcalling. They want to see more.');
       scene.text('"Get those tits out!" one of them yells.');
@@ -237,12 +237,12 @@ function enterSetCustomerMood(s: GameState, scene: SceneBuilder): void {
 
 function enterSetCustomerMoodPole(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_bmi_overweight', 'body_bmi_obese')) {
-    ((s as any).strip_club ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['rand'] = Math.floor(Math.random() * 100) + 0;
     if (((s as any).strip_club ?? 0)?.['rand'] < 25) {
       scene.text('Performing another trick on the pole, you can\'t support your weight and fall flat on your face as the crowd laughs.');
       scene.text('"Hey hippopotamus, stomp back to the swamp where you came from!"');
-      ((s as any).strip_club ?? {})['cust_boos'] = (((s as any).strip_club ?? {})['cust_boos'] ?? 0) + (1);
-      ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) - (40);
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['cust_boos'] = ((s as any).strip_club['cust_boos'] ?? 0) + (1);
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) - (40);
       if ((Math.floor(Math.random() * 101) + 0) >= 75) {
         (s as any).fingal = ((s as any).fingal ?? 0) + (Math.floor(Math.random() * 4) + 2);
         qspCall(s, 'pain', '', 4, 'cheeks', 'Slam');
@@ -251,8 +251,8 @@ function enterSetCustomerMoodPole(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).strip_club ?? 0)?.['rand'] < 50) {
-        ((s as any).strip_club ?? {})['cust_boos'] = (((s as any).strip_club ?? {})['cust_boos'] ?? 0) + (1);
-        ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) - (Math.floor(Math.random() * 16) + 15);
+        if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['cust_boos'] = ((s as any).strip_club['cust_boos'] ?? 0) + (1);
+        if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) - (Math.floor(Math.random() * 16) + 15);
         scene.text('You overhear some of the customers sitting next to the stage.');
         scene.text('"Look at her fat hanging out. Her gut and ass are shaking like jelly!"');
       }
@@ -267,7 +267,7 @@ function enterDanceClothed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 5);
   (s as any).fat = ((s as any).fat ?? 0) - (1);
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 10);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 10);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You dance seductively around the pole at the center of the stage.');
@@ -287,7 +287,7 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 7);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 7);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You start moving seductively around the pole at the center of the stage.');
@@ -339,7 +339,7 @@ function enterStripBra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 5);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 5);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show1.jpg');
   scene.text('You start moving seductively around the pole in the center of the stage wearing just your underwear.');
@@ -375,7 +375,7 @@ function enterStripPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 5);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 5);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show3.jpg');
   scene.text('You dance seductively in just your panties, teasing the crowd.');
@@ -409,7 +409,7 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 3);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 3);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show5.jpg');
   qspCall(s, 'stwork2', 'set_customer_mood');
@@ -420,9 +420,9 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
     scene.text('When the music starts winding down, you collect your tips and pick up your clothes, blowing a few kisses to your audience before going backstage.');
     qspCall(s, 'arousal', 'striptease', 5);
     qspCall(s, 'arousal', 'end');
-    ((s as any).strip_club ?? {})['lapdance_chance'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['lapdance_chance'] = 1;
     (s as any).pcs_hairbsh = 0;
-    ((s as any).strip_club ?? {})['total_stripshows'] = (((s as any).strip_club ?? {})['total_stripshows'] ?? 0) + (1);
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['total_stripshows'] = ((s as any).strip_club['total_stripshows'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave the stage', goto: ['stwork2', 'strip_show_end'] },
@@ -435,9 +435,9 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
     scene.text('Before the music even stops, you start collecting your meager tips and clothes and flee backstage.');
     qspCall(s, 'arousal', 'striptease', 5);
     qspCall(s, 'arousal', 'end');
-    ((s as any).strip_club ?? {})['lapdance_chance'] = 0;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['lapdance_chance'] = 0;
     (s as any).pcs_hairbsh = 0;
-    ((s as any).strip_club ?? {})['total_stripshows'] = (((s as any).strip_club ?? {})['total_stripshows'] ?? 0) + (1);
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['total_stripshows'] = ((s as any).strip_club['total_stripshows'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave the stage', goto: ['stwork2', 'strip_show_end'] },
@@ -449,14 +449,14 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
 
 function enterPoleUnderwear(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).strip_club ?? {})['dancing_rounds'] = (((s as any).strip_club ?? {})['dancing_rounds'] ?? 0) - (1);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['dancing_rounds'] = ((s as any).strip_club['dancing_rounds'] ?? 0) - (1);
   qspCall(s, 'sweat', 'add', 5);
   (s as any).fat = ((s as any).fat ?? 0) - (2);
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'exp_gain', 'dancpol', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancpol - pcs_dancpol + 1)) + (pcs_dancpol)) / 3);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancpol - pcs_dancpol + 1)) + (pcs_dancpol)) / 3);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/pole_panties.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your underwear.');
@@ -470,14 +470,14 @@ function enterPoleUnderwear(s: GameState, scene: SceneBuilder): void {
 
 function enterPolePanties(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).strip_club ?? {})['dancing_rounds'] = (((s as any).strip_club ?? {})['dancing_rounds'] ?? 0) - (1);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['dancing_rounds'] = ((s as any).strip_club['dancing_rounds'] ?? 0) - (1);
   qspCall(s, 'sweat', 'add', 5);
   (s as any).fat = ((s as any).fat ?? 0) - (2);
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'exp_gain', 'dancpol', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancpol - pcs_dancpol + 1)) + (pcs_dancpol)) / 3);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancpol - pcs_dancpol + 1)) + (pcs_dancpol)) / 3);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/pole_topless.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your panties.');
@@ -516,7 +516,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).strip_club ?? {})['manager_bonus'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['manager_bonus'] = 1;
     qspCall(s, 'stat', '');
     if (((s as any).tits ?? 0) >= 4) {
       scene.img('images/locations/city/redlight/studio_porn/sex/titfuck.mp4');
@@ -620,7 +620,7 @@ function enterPrivatdance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', 400);
   qspCall(s, 'arousal', 'foreplay', 10);
   qspCall(s, 'stat', '');
-  ((s as any).strip_club ?? {})['rand'] = Math.floor(Math.random() * 26) + 0;
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['rand'] = Math.floor(Math.random() * 26) + 0;
   if (((s as any).strip_club ?? 0)?.['rand'] === 0) {
     scene.actions([{ label: 'Continue', goto: ['stwork2', 'pr1'] }]);
   } else {
@@ -804,7 +804,7 @@ function enterPr3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
     qspCall(s, 'money', 'earn', 1000);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -969,7 +969,7 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).pornstudio ?? 0))) {
         (s as any).pornstudio = 1;
       }
-      ((s as any).strip_club ?? {})['porn_scout'] = 1;
+      if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['porn_scout'] = 1;
       qspCall(s, 'stat', '');
     } else {
       if (((s as any).strip_club ?? 0)?.['porn_scout'] === 1  &&  ((s as any).strip_club ?? 0)?.['porn_scout_pickup'] === 0  &&  (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6)) {
@@ -993,7 +993,7 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'money', 'earn', 1000);
-    ((s as any).strip_club ?? {})['porn_scout_pickup'] = (-1);
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['porn_scout_pickup'] = (-1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/private_room.jpg');
     scene.text('"Sorry, but I\'m not interested," you reply.');
@@ -1005,7 +1005,7 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Accept', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 2000);
-    ((s as any).strip_club ?? {})['porn_scout_pickup'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['porn_scout_pickup'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/private_room.jpg');
     scene.text('That\'s quite the pay day for one small video, even if it is <i>very</i> risky. "Okay, when do you want to do it?" you ask.');
@@ -1042,7 +1042,7 @@ function enterPrivatdanceEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) - (5);
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 3) + 2);
-  ((s as any).strip_club ?? {})['total_stripshows'] = (((s as any).strip_club ?? {})['total_stripshows'] ?? 0) + (1);
+  if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['total_stripshows'] = ((s as any).strip_club['total_stripshows'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([

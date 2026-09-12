@@ -1077,24 +1077,24 @@ function enterCycleGroup(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_group_idx = (((s as any).temp_group_idx ?? 0) + ((s as any).ARGS ?? 0)[1] + 5) % 5;
   if ((!((s as any).temp_group_idx ?? 0))) {
-    ((s as any).start_type ?? {})['group'] = 'nerd';
-    ((s as any).start_type ?? {})['cat'] = 'nerdqueen';
+    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'nerd';
+    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'nerdqueen';
   } else {
     if (((s as any).temp_group_idx ?? 0) === 1) {
-      ((s as any).start_type ?? {})['group'] = 'jock';
-      ((s as any).start_type ?? {})['cat'] = 'volleyball';
+      if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'jock';
+      if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'volleyball';
     } else {
       if (((s as any).temp_group_idx ?? 0) === 2) {
-        ((s as any).start_type ?? {})['group'] = 'cool';
-        ((s as any).start_type ?? {})['cat'] = 'socialite';
+        if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'cool';
+        if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'socialite';
       } else {
         if (((s as any).temp_group_idx ?? 0) === 3) {
-          ((s as any).start_type ?? {})['group'] = 'gopnik';
-          ((s as any).start_type ?? {})['cat'] = 'gopnikstart';
+          if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'gopnik';
+          if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'gopnikstart';
         } else {
           if (((s as any).temp_group_idx ?? 0) === 4) {
-            ((s as any).start_type ?? {})['group'] = 'outcast';
-            ((s as any).start_type ?? {})['cat'] = 'friendless';
+            if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'outcast';
+            if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'friendless';
           }
         }
       }
@@ -1112,16 +1112,16 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['group'] === 'nerd') {
     if (((s as any).start_type ?? 0)?.['cat'] === 'nerdqueen') {
-      ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodstudent') : ('chessplayer'));
+      if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodstudent') : ('chessplayer'));
     } else {
       if (((s as any).start_type ?? 0)?.['cat'] === 'goodstudent') {
-        ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('computergeek') : ('nerdqueen'));
+        if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('computergeek') : ('nerdqueen'));
       } else {
         if (((s as any).start_type ?? 0)?.['cat'] === 'computergeek') {
-          ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('chessplayer') : ('goodstudent'));
+          if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('chessplayer') : ('goodstudent'));
         } else {
           if (((s as any).start_type ?? 0)?.['cat'] === 'chessplayer') {
-            ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('nerdqueen') : ('computergeek'));
+            if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('nerdqueen') : ('computergeek'));
           }
         }
       }
@@ -1129,16 +1129,16 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).start_type ?? 0)?.['group'] === 'jock') {
       if (((s as any).start_type ?? 0)?.['cat'] === 'volleyball') {
-        ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('dancer') : ('football'));
+        if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('dancer') : ('football'));
       } else {
         if (((s as any).start_type ?? 0)?.['cat'] === 'dancer') {
-          ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('runner') : ('volleyball'));
+          if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('runner') : ('volleyball'));
         } else {
           if (((s as any).start_type ?? 0)?.['cat'] === 'runner') {
-            ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('football') : ('dancer'));
+            if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('football') : ('dancer'));
           } else {
             if (((s as any).start_type ?? 0)?.['cat'] === 'football') {
-              ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('volleyball') : ('runner'));
+              if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('volleyball') : ('runner'));
             }
           }
         }
@@ -1146,16 +1146,16 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).start_type ?? 0)?.['group'] === 'cool') {
         if (((s as any).start_type ?? 0)?.['cat'] === 'socialite') {
-          ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('beautiful') : ('bimbo'));
+          if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('beautiful') : ('bimbo'));
         } else {
           if (((s as any).start_type ?? 0)?.['cat'] === 'beautiful') {
-            ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('anorexic') : ('socialite'));
+            if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('anorexic') : ('socialite'));
           } else {
             if (((s as any).start_type ?? 0)?.['cat'] === 'anorexic') {
-              ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('bimbo') : ('beautiful'));
+              if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('bimbo') : ('beautiful'));
             } else {
               if (((s as any).start_type ?? 0)?.['cat'] === 'bimbo') {
-                ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('socialite') : ('anorexic'));
+                if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('socialite') : ('anorexic'));
               }
             }
           }
@@ -1163,23 +1163,23 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).start_type ?? 0)?.['group'] === 'gopnik') {
           if (((s as any).start_type ?? 0)?.['cat'] === 'gopnikstart') {
-            ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('troublemaker') : ('alternative'));
+            if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('troublemaker') : ('alternative'));
           } else {
             if (((s as any).start_type ?? 0)?.['cat'] === 'troublemaker') {
               if (((s as any).locArgs?.[1] ?? 0) === 1) {
-                ((s as any).start_type ?? {})['cat'] = ((((s as any).tsg ?? 0) === 1) ? ('vitekgf') : ('alternative'));
+                if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).tsg ?? 0) === 1) ? ('vitekgf') : ('alternative'));
               } else {
-                ((s as any).start_type ?? {})['cat'] = 'gopnikstart';
+                if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'gopnikstart';
               }
             } else {
               if (((s as any).start_type ?? 0)?.['cat'] === 'vitekgf') {
-                ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('alternative') : ('troublemaker'));
+                if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('alternative') : ('troublemaker'));
               } else {
                 if (((s as any).start_type ?? 0)?.['cat'] === 'alternative') {
                   if (((s as any).locArgs?.[1] ?? 0) === 1) {
-                    ((s as any).start_type ?? {})['cat'] = 'gopnikstart';
+                    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'gopnikstart';
                   } else {
-                    ((s as any).start_type ?? {})['cat'] = ((((s as any).tsg ?? 0) === 1) ? ('vitekgf') : ('troublemaker'));
+                    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).tsg ?? 0) === 1) ? ('vitekgf') : ('troublemaker'));
                   }
                 }
               }
@@ -1188,22 +1188,22 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).start_type ?? 0)?.['group'] === 'outcast') {
             if (((s as any).start_type ?? 0)?.['cat'] === 'friendless') {
-              ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('uglyduckling') : ('poor'));
+              if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('uglyduckling') : ('poor'));
             } else {
               if (((s as any).start_type ?? 0)?.['cat'] === 'uglyduckling') {
-                ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodgirl') : ('friendless'));
+                if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodgirl') : ('friendless'));
               } else {
                 if (((s as any).start_type ?? 0)?.['cat'] === 'goodgirl') {
-                  ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('slut') : ('uglyduckling'));
+                  if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('slut') : ('uglyduckling'));
                 } else {
                   if (((s as any).start_type ?? 0)?.['cat'] === 'slut') {
-                    ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goth') : ('goodgirl'));
+                    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goth') : ('goodgirl'));
                   } else {
                     if (((s as any).start_type ?? 0)?.['cat'] === 'goth') {
-                      ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('poor') : ('slut'));
+                      if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('poor') : ('slut'));
                     } else {
                       if (((s as any).start_type ?? 0)?.['cat'] === 'poor') {
-                        ((s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('friendless') : ('goth'));
+                        if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('friendless') : ('goth'));
                       }
                     }
                   }
@@ -1258,13 +1258,13 @@ function enterCycleSgTime(s: GameState, scene: SceneBuilder): void {
 function enterSetPortraitMode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
-      ((s as any).face_style ?? {})['avatar_path'] = 0;
+      if (!(s as any).face_style) (s as any).face_style = {}; (s as any).face_style['avatar_path'] = 0;
       if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
-        ((s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
+        if (!(s as any).face_style) (s as any).face_style = {}; (s as any).face_style['avatar_path'] = 'images/avatar.jpg';
       }
     }
   }
-  ((s as any).face_style ?? {})['type'] = qspUntranslated(s, "ARGS[1]", { location: "intro_overview" });
+  if (!(s as any).face_style) (s as any).face_style = {}; (s as any).face_style['type'] = qspUntranslated(s, "ARGS[1]", { location: "intro_overview" });
   return;
   // TODO-QSP: end
   scene.build();

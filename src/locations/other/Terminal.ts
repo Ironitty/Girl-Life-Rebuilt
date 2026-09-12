@@ -110,7 +110,7 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get a kebab', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).trfatherQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).trfatherQW) (s as any).trfatherQW = {}; (s as any).trfatherQW['day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_17.jpg');
     scene.text('Sitting at the table, you order food and drinks, and dad starts asking you about everything.');

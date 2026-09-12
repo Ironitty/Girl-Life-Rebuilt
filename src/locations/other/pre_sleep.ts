@@ -9,16 +9,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['slept_in'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['slept_in'] = 0;
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'start'] }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['stat_display'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
   if (((s as any).clo_flag ?? 0)?.['bed'] === 0) {
-    ((s as any).clo_flag ?? {})['bed'] = 1;
+    if (!(s as any).clo_flag) (s as any).clo_flag = {}; (s as any).clo_flag['bed'] = 1;
     qspCall(s, 'outfit', 'backup', 'bed');
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       (s as any).strip_here = 1;
@@ -53,9 +53,9 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pcs_hairbsh = 0;
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).loc ?? 0) !== 'bedrPar'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
-    ((s as any).sleepVars ?? {})['notathomesleep'] = (((s as any).sleepVars ?? {})['notathomesleep'] ?? 0) + (1);
+    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['notathomesleep'] = ((s as any).sleepVars['notathomesleep'] ?? 0) + (1);
   } else {
-    ((s as any).sleepVars ?? {})['notathomesleep'] = 0;
+    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['notathomesleep'] = 0;
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucwalkday ?? 0) <= ((s as any).daystart ?? 0)  &&  ((((s as any).succhungry ?? 0) > ((s as any).succublvl ?? 0)/2 + (Math.floor(Math.random() * 3) + 1))  ||  ((s as any).pcs_willpwr ?? 0) < ((((s as any).succublvl ?? 0) * ((s as any).willpowermax ?? 0)) / 13)  ||  ((s as any).sucpowzeroed ?? 0) >= 3)) {
     qspCall(s, 'succubus', 'sucwalkinginit');
@@ -149,7 +149,7 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
     scene.text('You went to bed wearing your makeup, which will smear your face as you sleep; your skin will age faster from this!');
   }
   if (((s as any).fat ?? 0) > 5  &&  ((s as any).stringimplant ?? 0) === 1) {
-    ((s as any).bodyVars ?? {})['bust_silicone'] = (((s as any).bodyVars ?? {})['bust_silicone'] ?? 0) + (1);
+    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) + (1);
     (s as any).fat = ((s as any).fat ?? 0) - (5);
   }
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'mod_sleeptriggers'] }]);
@@ -168,7 +168,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sleep…', handler: (st: GameState) => {
-    ((s as any).clo_flag ?? {})['bed'] = 0;
+    if (!(s as any).clo_flag) (s as any).clo_flag = {}; (s as any).clo_flag['bed'] = 0;
     (s as any).inSleep = 1;
     qspCall(s, 'stat', '');
     qspCall(s, 'mood', 'reset');

@@ -181,7 +181,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
       scene.text('She turns and leaves with the rest of the troupe, her comments leaving you feeling slightly insulted.');
     } else {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).stat ?? 0)?.['vaginal'] === 0) {
-        ((s as any).AlbinaQW ?? {})['starlets_virgin'] = 1;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['starlets_virgin'] = 1;
         scene.text('"Well? Am I good enough to join?" you ask.');
         scene.text('She thinks about it and looks at the other girls; some nod, others shrug.');
         scene.text('Finally, she answers. "Okay, we\'ll take a shot. Maybe you\'ll learn something by training with <i>actual</i> dancers. We practice every day except Tuesday and Thursday, so don\'t be late."');
@@ -195,7 +195,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_showtext = 1;
         } else {
           if (((s as any).contactAnon ?? 0)?.[String((s as any).temp_index ?? 0)] !== 0) {
-            ((s as any).contactAnon ?? {})[String((s as any).temp_index ?? 0)] = 0;
+            if (!(s as any).contactAnon) (s as any).contactAnon = {}; (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
             (s as any).temp_showtext = 1;
           }
         }
@@ -203,7 +203,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
           scene.text('She then pulls out her phone. "Here\'s my number so I can keep in contact with you."');
           scene.text('You add each other\'s numbers to your phones before you say goodbye and she walks away.');
         }
-        ((s as any).AlbinaQW ?? {})['StarletsJoined'] = 1;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsJoined'] = 1;
         qspCall(s, 'calendar', 'pack', 'add', 'starlets');
       } else {
         scene.text('"Well, am I good enough to join?" you ask.');
@@ -216,7 +216,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_showtext = 1;
         } else {
           if (((s as any).contactAnon ?? 0)?.[String((s as any).temp_index ?? 0)] !== 0) {
-            ((s as any).contactAnon ?? {})[String((s as any).temp_index ?? 0)] = 0;
+            if (!(s as any).contactAnon) (s as any).contactAnon = {}; (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
             (s as any).temp_showtext = 1;
           }
         }
@@ -224,7 +224,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
           scene.text('She then pulls out her phone. "Here\'s my number so I can keep in contact with you."');
           scene.text('You add each other\'s numbers to your phones before you say goodbye and she walks away.');
         }
-        ((s as any).AlbinaQW ?? {})['StarletsJoined'] = 1;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsJoined'] = 1;
         qspCall(s, 'calendar', 'pack', 'add', 'starlets');
       }
     }
@@ -274,13 +274,13 @@ function enterAlbina5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'I\'m a Starlet?!', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).AlbinaQW ?? {})['StarletsJoined'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsJoined'] = 1;
     qspCall(s, 'calendar', 'pack', 'add', 'starlets');
     qspCall(s, 'stat', '');
     scene.text('"You… mean… I\'m a… Starlet?" you ask as you continue panting.');
     scene.text('"Well of course you are! I can\'t let someone as good as you go to waste on these bow-legged amateurs! We practice every day except for Tuesday and Thursday, so don\'t be late!" she replies.');
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).stat ?? 0)?.['vaginal'] === 0) {
-      ((s as any).AlbinaQW ?? {})['starlets_virgin'] = 1;
+      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['starlets_virgin'] = 1;
       scene.text('When the other girls leave, she pulls you aside. "Hey, are you \'pure\'?" she whispers.');
       scene.text('"Why would you want to know such a personal thing?" you reply as you blush, giving her the answer to her question.');
       scene.text('"Oh, it\'s… nothing. I just… look out for my girls is all…" she says with hesitation.');
@@ -291,7 +291,7 @@ function enterAlbina5(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'telefon', 'AddContact', 'A23', 'images/characters/shared/headshots_main/23.jpg', 0);
     } else {
       if (((s as any).contactAnon ?? 0)?.[String((s as any).temp_index ?? 0)] !== 0) {
-        ((s as any).contactAnon ?? {})[String((s as any).temp_index ?? 0)] = 0;
+        if (!(s as any).contactAnon) (s as any).contactAnon = {}; (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
       }
     }
     scene.text('You add each other\'s numbers to your phones before you say goodbye and she walks away.');
@@ -310,7 +310,7 @@ function enterAlbina5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStarlets(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['startletsday'] = ((s as any).daystart ?? 0);
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['startletsday'] = ((s as any).daystart ?? 0);
   (s as any).starlets_practice = 0;
   qspCall(s, 'gdksport', 'jocks_acceptance');
   qspCall(s, 'exercise', 'tier2', 120, 'agil', 'dancero');
@@ -343,12 +343,12 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).AlbinaQW ?? {})['ShowTriggerCount'] = (((s as any).AlbinaQW ?? {})['ShowTriggerCount'] ?? 0) + (1);
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['ShowTriggerCount'] = ((s as any).AlbinaQW['ShowTriggerCount'] ?? 0) + (1);
   if (((s as any).AlbinaQW ?? 0)?.['ShowTriggerCount'] >= 6) {
     if (((((s as any).month ?? 0) === 10  &&  ((s as any).day ?? 0) > 20)  ||  (((s as any).month ?? 0) === 11  &&  ((s as any).day ?? 0) < 16))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).AlbinaQW ?? 0)?.['ParkRally'] === 2) {
       scene.actions([{ label: 'Continue', goto: ['albina_starlets', 'parkrally'] }]);
     }
-    ((s as any).AlbinaQW ?? {})['ShowTriggerCount'] = 0;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['ShowTriggerCount'] = 0;
     (s as any).albpayrand = Math.floor(Math.random() * 5) + 1;
     scene.text('After you finish training, Albina gathers you and the girls round.');
     // TODO-QSP: dynamic text: "We have a small show planned. It will last for a few hours and each of you will...
@@ -384,57 +384,57 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).AlbinaQW ?? 0)?.['starlets_virgin'] === 0) {
       if (((s as any).pcs_hotcat ?? 0) < 8) {
-        ((s as any).AlbinaQW ?? {})['StarletCustomer'] = Math.floor(Math.random() * 16) + 1;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletCustomer'] = Math.floor(Math.random() * 16) + 1;
       } else {
         if (((s as any).pcs_hotcat ?? 0) < 9) {
-          ((s as any).AlbinaQW ?? {})['StarletCustomer'] = Math.floor(Math.random() * 13) + 1;
+          if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletCustomer'] = Math.floor(Math.random() * 13) + 1;
         } else {
-          ((s as any).AlbinaQW ?? {})['StarletCustomer'] = Math.floor(Math.random() * 11) + 1;
+          if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletCustomer'] = Math.floor(Math.random() * 11) + 1;
         }
       }
       if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 1) {
-        ((s as any).AlbinaQW ?? {})['StarletsCustomerCount'] = 1;
-        ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 3;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsCustomerCount'] = 1;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 3;
         scene.text('You see a greasy and balding middle aged Armenian man wearing an expensive suit approach Albina and start talking to her. She avoids eye contact and looks rather uncomfortable talking to him.');
       } else {
         if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 2) {
-          ((s as any).AlbinaQW ?? {})['StarletsCustomerCount'] = 2;
-          ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 6;
+          if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsCustomerCount'] = 2;
+          if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 6;
           scene.text('You see two well dressed middle aged Armenian men approach Albina and start to talking to her.');
         } else {
           if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 3) {
-            ((s as any).AlbinaQW ?? {})['StarletsCustomerCount'] = 2;
-            ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 6;
+            if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsCustomerCount'] = 2;
+            if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 6;
             scene.text('You see two young men awkwardly approach Albina and start talking to her.');
           } else {
             if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 4) {
-              ((s as any).AlbinaQW ?? {})['StarletsCustomerCount'] = 1;
-              ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 3;
+              if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsCustomerCount'] = 1;
+              if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 3;
               scene.text('You see a bald old man approach Albina and start talking to her.');
             } else {
               if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 5) {
-                ((s as any).AlbinaQW ?? {})['StarletsCustomerCount'] = 2;
-                ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 6;
+                if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsCustomerCount'] = 2;
+                if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 6;
                 scene.text('You see two old men approach Albina and start talking to her.');
               } else {
                 if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 6) {
-                  ((s as any).AlbinaQW ?? {})['StarletsCustomerCount'] = 1;
-                  ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 3;
+                  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsCustomerCount'] = 1;
+                  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 3;
                   scene.text('You see a well groomed man in a modest suit approach Albina and start talking to her.');
                 } else {
                   if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 7) {
-                    ((s as any).AlbinaQW ?? {})['StarletCustomerCount'] = 12;
+                    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletCustomerCount'] = 12;
                     scene.text('You see an older man with greying hair wearing an expensive shirt with the sleeves rolled up to his elbows talking to Albina.');
-                    ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 6;
+                    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 6;
                   } else {
                     if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 8) {
-                      ((s as any).AlbinaQW ?? {})['StarletCustomerCount'] = 1;
-                      ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 3;
+                      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletCustomerCount'] = 1;
+                      if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 3;
                       scene.text('You see an older blonde haired woman wearing a skirt and blouse talking to Albina.');
                     } else {
                       if (((s as any).AlbinaQW ?? 0)?.['StarletCustomer'] === 9) {
-                        ((s as any).AlbinaQW ?? {})['StarletCustomerCount'] = 1;
-                        ((s as any).AlbinaQW ?? {})['StarletPay'] = Math.floor(Math.random() * 4) + 3;
+                        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletCustomerCount'] = 1;
+                        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletPay'] = Math.floor(Math.random() * 4) + 3;
                         scene.text('You see a somewhat muscular bald man talking to Albina.');
                       }
                     }
@@ -489,7 +489,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'earn', AlbinaQW['StarletPay'] * 1000
-    ((s as any).AlbinaQW ?? {})['StarletsWhore'] = (((s as any).AlbinaQW ?? {})['StarletsWhore'] ?? 0) + (1);
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsWhore'] = ((s as any).AlbinaQW['StarletsWhore'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You agree to be \'nice\' and Albina reluctantly hands over the money.');
     scene.text('As you\'re led away, Albina looks like she\'s about to say something, but instead just looks at the floor, disheartened as you hear her muttering to herself.');
@@ -591,8 +591,8 @@ function enterAfterShow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterParkrally(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['ParkRally'] = 3;
-  ((s as any).AlbinaQW ?? {})['ShowTriggerCount'] = 0;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['ParkRally'] = 3;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['ShowTriggerCount'] = 0;
   scene.text('After practice, Albina walks up to the group, furious. "My father wants us to perform at his stupid rally!" she huffs.');
   scene.text('She directs you to follow her, saying someone dropped off special outfits for you to wear. As you walk into the changing room, a box sits on the bench.');
   scene.text('Albina reads a note before she pulls a lycra leotard out. Her fist clenches around it as she sees how skimpy it is, but resigns herself and hands them out to the reluctant girls.');

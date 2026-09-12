@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('"You have a nice apartment, Lariska." You say, looking around with interest.');
       scene.text('"Thank you. Mother makes a good living, although she is usually only home on the weekends," she says a bit sadly.');
       scene.text('You follow Lariska to her room.');
-      ((s as any).LariskaQW ?? {})['story'] = 6;
+      if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 6;
     } else {
       scene.text('You go into the japanese styled apartment, then follow Lariska to her room.');
     }

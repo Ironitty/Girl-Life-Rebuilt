@@ -58,7 +58,7 @@ function enterRapeTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('She stops and you both start crying again as you hug each other for a while longer.');
     scene.actions([
       { label: 'You don\'t know', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['morning_after_pill'] = (((s as any).mc_inventory ?? {})['morning_after_pill'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['morning_after_pill'] = ((s as any).mc_inventory['morning_after_pill'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -258,7 +258,7 @@ function enterLostVirginityTalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get your stuff and leave (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(s, 'homes_properties', 'block_access', 'parents_home');
-    ((s as any).mother ?? {})['kickedout_timer'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_timer'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/resident/mom/walking.jpg');
     scene.text('"If you don\'t want me at home, then I won\'t be!" you scream.');
     qspCall(s, 'mother', 'get_belongings');
@@ -287,7 +287,7 @@ function enterLostVirginityTalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave home (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(s, 'homes_properties', 'block_access', 'parents_home');
-    ((s as any).mother ?? {})['kickedout_timer'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_timer'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/resident/mom/walking.jpg');
     scene.text('"I\'m done with taking all this crap! Until you can treat me with respect, you\'ve just lost a daughter!"');
     qspCall(s, 'mother', 'get_belongings');
@@ -326,7 +326,7 @@ function enterLostVirginityTalk1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get your stuff and leave (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(s, 'homes_properties', 'block_access', 'parents_home');
-    ((s as any).mother ?? {})['kickedout_timer'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_timer'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/resident/mom/walking.jpg');
     scene.text('"If you don\'t want me at home, then I won\'t be!" you scream.');
     qspCall(s, 'mother', 'get_belongings');
@@ -355,7 +355,7 @@ function enterLostVirginityTalk1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave home (You will not be permanently banned from parents home)', handler: (st: GameState) => {
     qspCall(s, 'homes_properties', 'block_access', 'parents_home');
-    ((s as any).mother ?? {})['kickedout_timer'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_timer'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/resident/mom/walking.jpg');
     scene.text('"I\'m done with taking all this crap! Until you can treat me with respect, you\'ve just lost a daughter!"');
     qspCall(s, 'mother', 'get_belongings');
@@ -409,7 +409,7 @@ function enterReconciliationTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Approach your <<$npc_nickname[\'A29\']>>', handler: (st: GameState) => {
-    ((s as any).mother ?? {})['kickedout_timer'] = 0;
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_timer'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', 'love');
     qspCall(s, 'stat', '');
@@ -421,7 +421,7 @@ function enterReconciliationTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('After a very brief pause, she continues before you can say anything. "I feel bad about what happened the other day and think that we really need to try and resolve our differences. Please come with me to the café so we can have a chat. Please."');
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
-    ((s as any).mother ?? {})['kickedout_pending'] = 1;
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_pending'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/stop_talk.jpg');
@@ -471,7 +471,7 @@ function enterReconciliationTalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mother_chats', 'reconciliation_replies');
   } },
       { label: 'You need to think about it', handler: (st: GameState) => {
-    ((s as any).mother ?? {})['kickedout_pending'] = 1;
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_pending'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/mum_gyno2.jpg');
@@ -537,7 +537,7 @@ function enterKnock(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost2.jpg');
     if (((s as any).mother ?? 0)?.['kickedout_visit'] === 0) {
-      ((s as any).mother ?? {})['kickedout_visit'] = 1;
+      if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_visit'] = 1;
       qspCall(s, 'npc_relationship', 'modify', 'A29', 10);
       // TODO-QSP: dynamic text: "I'm not moving back in, <<$npc_nickname['A29']>>. I have my own place now and j...
       scene.text(`"I'm not moving back in, ${((s as any).npc_nickname ?? 0)?.['A29']}. I have my own place now and just wanted to visit to see if we can at least get back on talking terms."`);
@@ -570,7 +570,7 @@ function enterKnock(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Move back in', handler: (st: GameState) => {
-    ((s as any).mother ?? {})['kickedout_pending'] = 0;
+    if (!(s as any).mother) (s as any).mother = {}; (s as any).mother['kickedout_pending'] = 0;
     qspCall(s, 'homes_properties', 'give_access', 'parents_home');
     qspCall(s, 'npc_relationship', 'modify', 'A29', 10);
     (s as any).minut = ((s as any).minut ?? 0) + 25;
@@ -625,8 +625,8 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Tell your <<$npc_nickname[\'A29\']>> about Natasha', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).NatbelQW ?? {})['mother_talk'] = 1;
-    ((s as any).NatbelQW ?? {})['mother_talkday'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['mother_talk'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['mother_talkday'] = ((s as any).daystart ?? 0);
     (s as any).motherKnowSpravka = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -656,7 +656,7 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: '<<$npc_nickname[\'A29\']>> reconciliation', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['mother_talk'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['mother_talk'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost2.jpg');
     // TODO-QSP: dynamic text: You see your <<$npc_nickname['A29']>> in the kitchen and try to continue the con...

@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).card_deck ?? 0))) {
     scene.actions([
       { label: 'Throw away your deck of vintage porn cards', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['vintage_card'] = 0;
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vintage_card'] = 0;
     (s as any).vcard_trash = 1;
     dynamicGoto(st, 'loc');
   } },
@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).card_deck ?? 0) === 1) {
       scene.actions([
         { label: 'Throw away your deck of new porn cards', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['card'] = 0;
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['card'] = 0;
     dynamicGoto(st, 'loc');
   } },
       ]);

@@ -229,7 +229,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
             (s as any).serge_sleep_sex_count = ((s as any).serge_sleep_sex_count ?? 0) - (1);
             (s as any).minut = ((s as any).minut ?? 0) + 2;
             (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-            ((s as any).npc_had_sex ?? {})['A112'] = 1;
+            if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
             qspCall(s, 'stat', '');
             scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/vert/pr1.mp4');
             scene.text('"I bet I could make you feel good, uncle Sergey… would you like that?" you whisper in his ear, with a devious smile on your face.');
@@ -240,7 +240,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
               (s as any).serge_sleep_sex_count = ((s as any).serge_sleep_sex_count ?? 0) - (1);
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-              ((s as any).npc_had_sex ?? {})['A112'] = 1;
+              if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
               qspCall(s, 'stat', '');
               scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/vert/pr1.mp4');
               scene.text('"I bet I could make you feel good, uncle Sergey… would you like that?" you whisper in his ear, with a devious smile on your face.');
@@ -251,7 +251,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                 (s as any).serge_sleep_sex_count = ((s as any).serge_sleep_sex_count ?? 0) - (1);
                 (s as any).minut = ((s as any).minut ?? 0) + 2;
                 (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-                ((s as any).npc_had_sex ?? {})['A112'] = 1;
+                if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/vert/pr2.mp4');
                 scene.text('"I bet you could make me feel good, uncle Sergey… I\'m so horny! Could you help me out, pretty please?" you whisper in his ear, with a devious smile on your face.');

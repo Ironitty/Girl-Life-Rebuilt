@@ -18,8 +18,8 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: view 'images/pc/activities/phone/selfies/<<$ARGS[1]>>/<<$ARGS[2]>>/<<$selfieFilePrefix[ARGS[3]]>><<A...
     }
   } else {
-    ((s as any).selfie_last_chosen ?? {})['location'] = ((s as any).locArgs?.[1] ?? 0);
-    ((s as any).selfie_last_chosen ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
+    if (!(s as any).selfie_last_chosen) (s as any).selfie_last_chosen = {}; (s as any).selfie_last_chosen['location'] = ((s as any).locArgs?.[1] ?? 0);
+    if (!(s as any).selfie_last_chosen) (s as any).selfie_last_chosen = {}; (s as any).selfie_last_chosen['type'] = ((s as any).locArgs?.[2] ?? 0);
     // TODO-QSP: gt $temp_ssh_ret_loc, $temp_ssh_ret_arg, 'images/pc/activities/phone/selfies/<<$ARGS[1]>>/<<$ARGS[2]...
   }
   // TODO-QSP: end

@@ -67,15 +67,15 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You successfully finish the workout <<$pcs_nickname>> in <<$resultstring>>
     scene.text(`You successfully finish the workout ${((s as any).pcs_nickname ?? 0)} in ${((s as any).resultstring ?? 0)}`);
     if (((s as any).personal_wod_record ?? 0)?.[String((s as any).todays_crossfit_wod ?? 0)] === 0) {
-      ((s as any).personal_wod_record ?? {})[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
+      if (!(s as any).personal_wod_record) (s as any).personal_wod_record = {}; (s as any).personal_wod_record[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
     } else {
       if (((s as any).current_wod_score ?? 0) < ((s as any).personal_wod_record ?? 0)?.[String((s as any).todays_crossfit_wod ?? 0)]) {
         scene.text('This is a new personal record!');
-        ((s as any).personal_wod_record ?? {})[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
+        if (!(s as any).personal_wod_record) (s as any).personal_wod_record = {}; (s as any).personal_wod_record[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
       }
     }
     if (((s as any).box_wod_record ?? 0)?.[String((s as any).todays_crossfit_wod ?? 0)] === 0) {
-      ((s as any).box_wod_record ?? {})[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
+      if (!(s as any).box_wod_record) (s as any).box_wod_record = {}; (s as any).box_wod_record[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
       // TODO-QSP: $box_wod_record_holder[$todays_crossfit_wod] = $pcs_nickname
     } else {
       if (((s as any).current_wod_score ?? 0) < ((s as any).box_wod_record ?? 0)?.[String((s as any).todays_crossfit_wod ?? 0)]) {
@@ -87,7 +87,7 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: You beat your own record of <<$prevrecordstring>>
           scene.text(`You beat your own record of ${((s as any).prevrecordstring ?? 0)}`);
         }
-        ((s as any).box_wod_record ?? {})[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
+        if (!(s as any).box_wod_record) (s as any).box_wod_record = {}; (s as any).box_wod_record[String((s as any).todays_crossfit_wod ?? 0)] = ((s as any).current_wod_score ?? 0);
         // TODO-QSP: $box_wod_record_holder[$todays_crossfit_wod] = $pcs_nickname
       }
     }

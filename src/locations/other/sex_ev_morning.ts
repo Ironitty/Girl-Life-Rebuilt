@@ -11,17 +11,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['morning_event_check'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['morning_event_check'] = 1;
   if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     if (((s as any).hour ?? 0) < 11) {
       if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 4) + 1) < 4  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room') {
-        ((s as any).sex_ev ?? {})['boy_make_breakfast'] = 1;
-        ((s as any).sex_ev ?? {})['boy_shower'] = 0;
-        ((s as any).sex_ev ?? {})['morning_event_go'] = 1;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_make_breakfast'] = 1;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_shower'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['morning_event_go'] = 1;
       } else {
         if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room'  &&  ((s as any).npc_selfish ?? 0) < 1  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
-          ((s as any).sex_ev ?? {})['room_service'] = 1;
-          ((s as any).sex_ev ?? {})['morning_event_go'] = 1;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['room_service'] = 1;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['morning_event_go'] = 1;
         }
       }
     }
@@ -29,10 +29,10 @@ function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_earlyriser ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       if (((s as any).sex_ev ?? 0)?.['wake_fuck'] !== 1) {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
-          ((s as any).sex_ev ?? {})['boy_in_shower'] = 1;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_in_shower'] = 1;
         } else {
-          ((s as any).sex_ev ?? {})['boy_shower'] = 1;
-          ((s as any).sex_ev ?? {})['npc_morning_shower'] = 1;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_shower'] = 1;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['npc_morning_shower'] = 1;
         }
       }
     }
@@ -85,7 +85,7 @@ function enterMorningEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcMorningShowerDesc(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['npc_morning_shower'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['npc_morning_shower'] = 1;
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2  ||  ((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
     scene.text('The bed next to you is empty and the bathroom door is closed. You can hear the water running behind it.');
   } else {
@@ -102,20 +102,20 @@ function enterNpcMorningShowerDesc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanSleepVars(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['sleep_cum_vagina'] = 0;
-  ((s as any).sex_ev ?? {})['sleep_cum_face'] = 0;
-  ((s as any).sex_ev ?? {})['sleep_cum_hair'] = 0;
-  ((s as any).sex_ev ?? {})['sleep_cum_tits'] = 0;
-  ((s as any).sex_ev ?? {})['sleep_cum_stomach'] = 0;
-  ((s as any).sex_ev ?? {})['sleep_cum_back'] = 0;
-  ((s as any).sex_ev ?? {})['sleep_cum_butt'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sleep_cum_vagina'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sleep_cum_face'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sleep_cum_hair'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sleep_cum_tits'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sleep_cum_stomach'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sleep_cum_back'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sleep_cum_butt'] = 0;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_morning', 'clean_sleep_vars');
-  ((s as any).sex_ev ?? {})['morning_after'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['morning_after'] = 1;
   if (((s as any).sex_ev ?? 0)?.['morning_event_check'] === 0) {
     qspCall(s, 'sex_ev_morning', 'morning_event_check');
   }
@@ -157,7 +157,7 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Use the bathroom', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['boy_in_shower'] !== 1  &&  (Math.floor(Math.random() * 3) + 1) === 1  &&  ((s as any).sex_ev ?? 0)?.['bathroom_check'] === 0) {
-      ((s as any).sex_ev ?? {})['bathroom_check'] = 1;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bathroom_check'] = 1;
       // TODO-QSP: $npc_bedroom[$npcID]
       // TODO-QSP: dynamic text: You get up to pad your way towards <<$npcdesc>>'s bathroom and he calls from beh...
       scene.text(`You get up to pad your way towards ${((s as any).npcdesc ?? 0)}'s bathroom and he calls from behind you.`);
@@ -213,7 +213,7 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      ((s as any).sex_ev ?? {})['bathroom_check'] = 1;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bathroom_check'] = 1;
       scene.actions([{ label: 'Continue', goto: ['sex_ev_after', 'bathroom_after'] }]);
     }
   } },
@@ -234,7 +234,7 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['morning_after_pill'] > 0  &&  ((s as any).sex_ev ?? 0)?.['ma_pill'] === 0  &&  ((s as any).birth_control ?? 0)?.['think_safe'] === 0) {
     scene.actions([
       { label: 'Take a morning after pill', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['ma_pill'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['ma_pill'] = 2;
     // TODO-QSP: $sex_ev['bed_room']
     if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((s as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
       scene.text('You reach down to your purse and pull out the morning after pill Luda gave you, popping it from the packaging and swallowing it dry.');
@@ -277,7 +277,7 @@ function enterMorningMenu2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShower(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['morning_shower'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['morning_shower'] = 1;
   // TODO-QSP: $sex_ev['bath_room']
   if (((s as any).sex_ev ?? 0)?.['out_of_bed'] === 0) {
     scene.text('You pull yourself out of bed and pad your way over to the bathroom, yawning again along the way.');
@@ -292,10 +292,10 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShower2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['morning_shower'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['morning_shower'] = 1;
   scene.img('images/shared/home/bathroom/dush.mp4');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).mc_inventory ?? {})['shampoo'] = (((s as any).mc_inventory ?? {})['shampoo'] ?? 0) + (1);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
   qspCall(s, 'din_van', 'showerdin');
   qspCall(s, 'stat', '');
   scene.text('You twist the faucet and hot water comes rushing out, pouring over you, soaking into your skin. Slowly over time, your sleepiness washes away and clarity comes back.');
@@ -319,7 +319,7 @@ function enter2ndShower(s: GameState, scene: SceneBuilder): void {
     { label: 'Shower', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/dush.mp4');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).mc_inventory ?? {})['shampoo'] = (((s as any).mc_inventory ?? {})['shampoo'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You get into <<$npcdesc>>'s shower for the <i>second</i> time this morning, wash...
@@ -337,15 +337,15 @@ function enter2ndShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerLeave(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['out_of_bed'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['out_of_bed'] = 1;
   if (((s as any).sex_ev ?? 0)?.['morning_shower'] === 1) {
-    ((s as any).sex_ev ?? {})['morning_shower'] = 3;
-    ((s as any).sex_ev ?? {})['towel'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['morning_shower'] = 3;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['towel'] = 1;
     scene.img('images/shared/home/bathroom/towel_wet.jpg');
     scene.text('You leave the bathroom wrapped in a towel.');
   } else {
     if (((s as any).sex_ev ?? 0)?.['morning_shower'] === 2) {
-      ((s as any).sex_ev ?? {})['towel'] = 0;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['towel'] = 0;
       // TODO-QSP: $sex_ev['bed_room']
       scene.text('You leave the bathroom naked.');
     } else {
@@ -441,7 +441,7 @@ function enterBoyBreakfastOffer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['breakfast_finished'] = (-1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['breakfast_finished'] = (-1);
     scene.actions([
       { label: 'No time', handler: (st: GameState) => {
     scene.text('"Sorry, I don\'t have time," you say. "I wish I could but I really need to get going."');
@@ -474,10 +474,10 @@ function enterBoyBreakfastOffer(s: GameState, scene: SceneBuilder): void {
 function enterWaitForBreakfast1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  ((s as any).sex_ev ?? {})['find_boy'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['find_boy'] = 1;
   // TODO-QSP: $sex_ev[] = 'coffee_make'
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
-    ((s as any).sex_ev ?? {})['room_service_breakfast'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['room_service_breakfast'] = 1;
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: You wait patiently in bed as <<$npcdesc>> rings up the hotel staff and orders br...
     scene.text(`You wait patiently in bed as ${((s as any).npcdesc ?? 0)} rings up the hotel staff and orders breakfast for two delivered to the room. Soon enough, there is a knock on the door with the announcement your meal has arrived and ${((s as any).npcdesc ?? 0)} retrieves it after donning a bathrobe.`);
@@ -501,7 +501,7 @@ function enterWaitForBreakfast1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBreakfastSearch(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['find_boy'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['find_boy'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/shared/romance/misc/nude_walk1.mp4');
@@ -521,7 +521,7 @@ function enterBreakfastSearch(s: GameState, scene: SceneBuilder): void {
 
 function enterBreakfastInBed(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['bed_room']
-  ((s as any).sex_ev ?? {})['b_i_b'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['b_i_b'] = 1;
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
     // TODO-QSP: dynamic text: "Hey sleepyhead," <<$npcdesc>> says as you finish rubbing the sleep from your ey...
     scene.text(`"Hey sleepyhead," ${((s as any).npcdesc ?? 0)} says as you finish rubbing the sleep from your eyes. "I just finished making breakfast."`);
@@ -615,7 +615,7 @@ function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
   } },
         { label: 'Maybe later', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['sex_after_breakfast'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sex_after_breakfast'] = 1;
     scene.text('"Maybe after breakfast," you say, twisting your mouth in a smirk before taking your first bite of egg. It\'s perfectly fried, the edges crispy but the yolk is runny and delicious.');
     qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
   } },
@@ -641,7 +641,7 @@ function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
   } },
         { label: 'Maybe later', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['sex_after_breakfast'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sex_after_breakfast'] = 1;
     scene.text('"Maybe after breakfast," you say, twisting your mouth in a smirk before biting into the sandwich. The bread is nice and soft, the cheese creamy, and the kolbasa salty and cheap but full of familiar comfort.');
     qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
   } },
@@ -717,7 +717,7 @@ function enterWantBreakfast(s: GameState, scene: SceneBuilder): void {
 function enterWantCoffeeResponse(s: GameState, scene: SceneBuilder): void {
   scene.text('He glances over at the clock.');
   if (((s as any).npc_end_free_time ?? 0) <= ((s as any).hour ?? 0) + 2) {
-    ((s as any).sex_ev ?? {})['npc_late_work'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['npc_late_work'] = 1;
     // TODO-QSP: dynamic text: "I don't have time," <<$npcdesc>> says, shaking his head. "I gotta get to work."
     scene.text(`"I don't have time," ${((s as any).npcdesc ?? 0)} says, shaking his head. "I gotta get to work."`);
     scene.text('You sigh in disappointment.');
@@ -754,7 +754,7 @@ function enterPcMakeBreakfast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['out_of_bed'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['out_of_bed'] = 1;
   if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) < 0) {
     scene.actions([
       { label: 'Coffee', handler: (st: GameState) => {
@@ -766,9 +766,9 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
       { label: 'Yes (2 minutes)', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['cooking_time'] = (((s as any).sex_ev ?? {})['cooking_time'] ?? 0) + (2);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (2);
     // TODO-QSP: $sex_ev[] = 'coffee_make'
-    ((s as any).sex_ev ?? {})['cooking_total'] = (((s as any).sex_ev ?? {})['cooking_total'] ?? 0) + (1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s as simple as throwing it in a toaster. Might as well.');
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
@@ -787,9 +787,9 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
       { label: 'Yes (2 minutes)', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['cooking_time'] = (((s as any).sex_ev ?? {})['cooking_time'] ?? 0) + (2);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (2);
     // TODO-QSP: $sex_ev[] = 'toast_make'
-    ((s as any).sex_ev ?? {})['cooking_total'] = (((s as any).sex_ev ?? {})['cooking_total'] ?? 0) + (1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s as simple as throwing it in a toaster. Might as well.');
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
@@ -808,9 +808,9 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
       { label: 'Yes (5 minutes)', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['cooking_time'] = (((s as any).sex_ev ?? {})['cooking_time'] ?? 0) + (5);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (5);
     // TODO-QSP: $sex_ev[] = 'eggs_make'
-    ((s as any).sex_ev ?? {})['cooking_total'] = (((s as any).sex_ev ?? {})['cooking_total'] ?? 0) + (1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('Eggs are basic. Easy as throwing them into a pan. You\'ll do it.');
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
@@ -829,9 +829,9 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
       { label: 'Yes (10 minutes)', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['cooking_time'] = (((s as any).sex_ev ?? {})['cooking_time'] ?? 0) + (10);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (10);
     // TODO-QSP: $sex_ev[] = 'kolbasa_make'
-    ((s as any).sex_ev ?? {})['cooking_total'] = (((s as any).sex_ev ?? {})['cooking_total'] ?? 0) + (1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('It\'s quick and simple. Might as well.');
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
@@ -850,9 +850,9 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
       { label: 'Yes (15 minutes)', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['cooking_time'] = (((s as any).sex_ev ?? {})['cooking_time'] ?? 0) + (15);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_time'] = ((s as any).sex_ev['cooking_time'] ?? 0) + (15);
     // TODO-QSP: $sex_ev[] = 'pancakes_make'
-    ((s as any).sex_ev ?? {})['cooking_total'] = (((s as any).sex_ev ?? {})['cooking_total'] ?? 0) + (1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_total'] = ((s as any).sex_ev['cooking_total'] ?? 0) + (1);
     scene.text('Who doesn\'t love pancakes in the morning? You <i>have</i> to make them!');
     qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
   } },
@@ -985,7 +985,7 @@ function enterPcMakeBreakfastDone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcCoffeMake(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['cooking_total'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cooking_total'] = 1;
   // TODO-QSP: $sex_ev[] = 'coffee_make'
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
     // TODO-QSP: $sex_ev['bed_room']
@@ -1086,7 +1086,7 @@ function enterCoffeeMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterCoffeeTogether(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'coffee_stats');
-  ((s as any).sex_ev ?? {})['breakfast_finished'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['breakfast_finished'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
   qspCall(s, 'sex_ev_morning', 'breakfast_image');
@@ -1103,9 +1103,9 @@ function enterEatBreakfast1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 1  &&  (Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'coffee_together'] }]);
   }
-  ((s as any).sex_ev ?? {})['breakfast_finished'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['breakfast_finished'] = 1;
   if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1) {
-    ((s as any).sex_ev ?? {})['boy_asleep'] = 0;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_asleep'] = 0;
   }
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
   if (((s as any).sex_ev ?? 0)?.['cooking_total'] > 1  ||  ((s as any).sex_ev ?? 0)?.['room_service_breakfast'] === 1) {
@@ -1134,7 +1134,7 @@ function enterEatBreakfast1(s: GameState, scene: SceneBuilder): void {
 
 function enterEatBreakfast2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).sex_ev ?? {})['light_breakfast'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['light_breakfast'] = 1;
   qspCall(s, 'food', 'small_meal_stats');
   if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
     qspCall(s, 'beverage', 'coffee_stats');
@@ -1197,7 +1197,7 @@ function enterEatBreakfast2(s: GameState, scene: SceneBuilder): void {
 
 function enterEatBreakfast3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).sex_ev ?? {})['medium_breakfast'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['medium_breakfast'] = 1;
   qspCall(s, 'food', 'medium_meal_stats');
   if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
     qspCall(s, 'beverage', 'coffee_stats');
@@ -1222,7 +1222,7 @@ function enterEatBreakfast3(s: GameState, scene: SceneBuilder): void {
 
 function enterEatBreakfast4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).sex_ev ?? {})['big_breakfast'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['big_breakfast'] = 1;
   qspCall(s, 'food', 'large_meal_stats');
   if ((Array.isArray((s as any).sex_ev) ? ((s as any).sex_ev as any[]).indexOf('coffee_make') : -1) >= 0) {
     qspCall(s, 'beverage', 'coffee_stats');
@@ -1246,7 +1246,7 @@ function enterEatBreakfast4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEatBreakfastCoffee(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['coffee_only'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['coffee_only'] = 1;
   qspCall(s, 'beverage', 'coffee_stats');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
@@ -1307,8 +1307,8 @@ function enterEatBreakfastCoffee(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBreakfastDishes(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['boy_asleep'] = 0;
-  ((s as any).sex_ev ?? {})['breakfast_finished'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_asleep'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['breakfast_finished'] = 1;
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
     // TODO-QSP: $sex_ev['bed_room']
     if (((s as any).sex_ev ?? 0)?.['coffee_only'] === 1) {
@@ -1429,9 +1429,9 @@ function enterAfterBreakfastSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Giggle', handler: (st: GameState) => {
     // TODO-QSP: gs 'arousal', 'foreplay', 1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
     if (((s as any).sex_ev ?? 0)?.['wake_fuck'] === 1) {
-      ((s as any).sex_ev ?? {})['extra_cum'] = (((s as any).sex_ev ?? {})['extra_cum'] ?? 0) + (5);
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['extra_cum'] = ((s as any).sex_ev['extra_cum'] ?? 0) + (5);
     } else {
-      ((s as any).sex_ev ?? {})['extra_cum'] = (((s as any).sex_ev ?? {})['extra_cum'] ?? 0) + (5);
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['extra_cum'] = ((s as any).sex_ev['extra_cum'] ?? 0) + (5);
     }
     if (((s as any).sex_ev ?? 0)?.['wake_fuck'] === 1  ||  ((s as any).sex_ev ?? 0)?.['morning_fuck'] === 1) {
       scene.actions([
@@ -1473,9 +1473,9 @@ function enterGiveLift(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['give_lift'] === 2) {
     scene.text('<center><b>Outside School</b></center>');
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
-      ((s as any).sex_ev ?? {})['drop_off_image'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "sex_ev_morning" }) + ' src="images/locations/pavlovsk/school/building/schoolwinter.jpg"></center>';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['drop_off_image'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "sex_ev_morning" }) + ' src="images/locations/pavlovsk/school/building/schoolwinter.jpg"></center>';
     } else {
-      ((s as any).sex_ev ?? {})['drop_off_image'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "sex_ev_morning" }) + ' src="images/locations/pavlovsk/school/building/gschool.jpg"></center>';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['drop_off_image'] = '<center><img ' + qspUntranslated(s, "set_imgh>", { location: "sex_ev_morning" }) + ' src="images/locations/pavlovsk/school/building/gschool.jpg"></center>';
     }
     // TODO-QSP: $sex_ev['drop_off_image']
     if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {

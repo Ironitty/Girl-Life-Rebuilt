@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pavlovsk/resident/apartment/home';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/pavlovsk/resident/apartment/home';
   (s as any).music_loop = 0;
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');

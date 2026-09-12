@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).post_vars ?? {})['qw_1'] = 3;
+  if (!(s as any).post_vars) (s as any).post_vars = {}; (s as any).post_vars['qw_1'] = 3;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/postoffice/events/postevent1-1.jpg');
   scene.text('You return to the man\'s house after you leave the post office and ring the doorbell. "Ah, you came back!" he smiles happily when he opens the door. "Please come in, this will only take a minute of your time."');
@@ -187,7 +187,7 @@ function enter1_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).post_vars ?? {})['qw_2'] = 3;
+  if (!(s as any).post_vars) (s as any).post_vars = {}; (s as any).post_vars['qw_2'] = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/shared/postoffice/events/postevent2-2.jpg');
   scene.text('You return to the apartment and climb the stairwell to the floor where you met Jenya. She\'s already waiting for you in the stairwell, bottle in hand.');
@@ -596,7 +596,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).post_vars ?? {})['qw_3'] = 3;
+  if (!(s as any).post_vars) (s as any).post_vars = {}; (s as any).post_vars['qw_3'] = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'boyStat', 'A108');
   scene.img('images/locations/shared/postoffice/sex/postevent3-2.jpg');
@@ -756,7 +756,7 @@ function enter3_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).post_vars ?? {})['qw_4'] = 3;
+  if (!(s as any).post_vars) (s as any).post_vars = {}; (s as any).post_vars['qw_4'] = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npcgeneratec', '', 0, 'Sleazy man', 38);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -770,7 +770,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use some lubricant to get him off faster', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/locations/shared/postoffice/sex/postevent4-6.jpg');
     scene.text('You stop jerking him off and reach for your things, quickly squirting some lube into the palm of your hand.');
     scene.text('The man is trying not to show you any emotions and tries to keep you here as long as possible, but when you put your hand back on his cock and start stroking it again, he can\'t help but groan. Initially from the cold touch of the lubricant, but immediately after because it feels so much better!');
@@ -825,7 +825,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Make him suffer', handler: (st: GameState) => {
-    ((s as any).post_vars ?? {})['qw_4'] = 1;
+    if (!(s as any).post_vars) (s as any).post_vars = {}; (s as any).post_vars['qw_4'] = 1;
     scene.text('"I don\'t want your money…" you reply and clench your fist as hard as you can.');
     scene.text('The man cries out in pain and you know one thing for sure: he\'ll never try to blackmail a girl again.');
     scene.text('You no longer care about getting his signature, you\'d be more than happy to explain to the postmaster why this one is missing. You give him a knee in the groin for good measure. "Asshole! Are you going to complain about this!?"');

@@ -602,8 +602,8 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 5);
     qspCall(s, 'npc_relationship', 'modify', 'A141', 5);
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (10);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (5);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (10);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
     qspCall(s, 'exp_gain', 'stren', 1);
     qspCall(s, 'exp_gain', 'agil', 1);
     qspCall(s, 'exp_gain', 'react', 1);
@@ -791,7 +791,7 @@ function enterBeachNude(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'inhib', 1);
   }
   if (((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     qspCall(s, 'outfit', 'backup', 'swim');
@@ -814,10 +814,10 @@ function enterBeachNude(s: GameState, scene: SceneBuilder): void {
 
 function enterSwim(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).pcs_makeup = 1;
   (s as any).cumspclnt = 4;
@@ -909,11 +909,11 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
   qspCall(s, 'mood', 'raise', 'tiny');
   if (((s as any).pcs_sweat ?? 0) < 35) {
     qspCall(s, 'sweat', 'add', 5);
@@ -968,11 +968,11 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).katjaQW ?? 0)?.['slut'] <= 20) {
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
@@ -1014,8 +1014,8 @@ function enterIvanAppeared(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go and talk with him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A14', (-1));
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1047,8 +1047,8 @@ function enterIvanAppeared(s: GameState, scene: SceneBuilder): void {
     scene.text('"I... don\'t know. Maybe?"');
     scene.text('Katja obviously isn\'t happy with your answer and sits there red-faced. After a few more awkward minutes, you finally realize that Ivan has left the area, and it\'s safe to leave the water.');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) - (5);
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) - (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'stat', '');
     if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
@@ -1107,7 +1107,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
     qspCall(s, 'mood', 'raise', 'tiny');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/KL9.jpg');
     if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -1183,7 +1183,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       scene.text('Ivan literally throatfucks Katja for several minutes, but that doesn\'t seems to make him cum; he takes his dick out and helps Katja to her feet before bending her over a bench.');
     }
     if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-      ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
     }
     scene.actions([
       { label: 'Some anal with Katja', handler: (st: GameState) => {
@@ -1192,7 +1192,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KIS2.jpg');
     if (((s as any).npc_ass ?? 0)?.['A14'] === 0) {
       if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 2) {
-        ((s as any).katjaQW ?? {})['anal_quest'] = 3;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
       }
       // TODO-QSP: dynamic text: "Ivan, that's... You're going to- <<$pcs_nickname>>!"
       scene.text(`"Ivan, that's... You're going to- ${((s as any).pcs_nickname ?? 0)}!"`);
@@ -1205,7 +1205,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).dick1 ?? 0) < ((s as any).npc_ass ?? 0)?.['A14']) {
         if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 2) {
-          ((s as any).katjaQW ?? {})['anal_quest'] = 3;
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
         }
         // TODO-QSP: dynamic text: Katja bites her lips as she looks transfixed at Ivan's <<dick>>cm <<$dick_girth>...
         scene.text(`Katja bites her lips as she looks transfixed at Ivan's ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock. "I can't believe I'm letting you put that in me!"`);
@@ -1216,7 +1216,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
         scene.text('You obey her command and start fingering her wet pussy as Ivan slowly fucks her asshole. The room quickly fills with the sound of the aroused moans coming from between your linked tongues.');
       } else {
         if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 2) {
-          ((s as any).katjaQW ?? {})['anal_quest'] = 3;
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
         }
         // TODO-QSP: dynamic text: "Ivan, please... I'm not exactly... experienced back there..." Katja blushes as ...
         scene.text(`"Ivan, please... I'm not exactly... experienced back there..." Katja blushes as she takes a long look at his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock.`);
@@ -1227,10 +1227,10 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).npc_ass ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      ((s as any).npc_ass ?? {})['A14'] = (((s as any).npc_ass ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_ass ?? 0)?.['A14'] * 2 < ((s as any).dick ?? 0)) {
-      ((s as any).npc_ass ?? {})['A14'] = (((s as any).npc_ass ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     scene.actions([
       { label: 'A happy ending', handler: (st: GameState) => {
@@ -1243,11 +1243,11 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Afterglow', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).katjaQW ?? {})['horny'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth', 'A3', 1);
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -1261,7 +1261,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.text('"That was great, girls! We need to do this more often."');
     scene.text('He then kisses you both and, after checking that nobody is looking, walks out, leaving you and Katja alone.');
     if (((s as any).katjaQW ?? 0)?.['ivan_anal'] === 0) {
-      ((s as any).katjaQW ?? {})['ivan_anal'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['ivan_anal'] = 1;
       // TODO-QSP: dynamic text: "You've done this with him before, <<$pcs_nickname>>. That made us..."
       scene.text(`"You've done this with him before, ${((s as any).pcs_nickname ?? 0)}. That made us..."`);
       scene.text('"Ivan\'s anal harem sisters?"');
@@ -1302,7 +1302,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     }
     if (((s as any).katjaQW ?? 0)?.['knows_BJ'] === 0) {
-      ((s as any).katjaQW ?? {})['knows_BJ'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_BJ'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/shower6.mp4');
@@ -1334,7 +1334,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).katjaQW ?? 0)?.['knows_anal'] === 0) {
-      ((s as any).katjaQW ?? {})['knows_anal'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_anal'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KIS5.jpg');
@@ -1361,13 +1361,13 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Afterglow', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     (s as any).kiss = ((s as any).kiss ?? 0) + (1);
-    ((s as any).npc_had_sex ?? {})['A3'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A3'] = 1;
     qspCall(s, 'cum_call', 'mouth', 'A3', 1);
     qspCall(s, 'cum_call', 'breasts', 'A3', 1);
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -1527,8 +1527,8 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Go ice dipping', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     qspCall(s, 'stat', '');
   }, goto: ['katja_lake', 'ice_dipping'] },
             ]);
@@ -1537,7 +1537,7 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Shower and leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
   }, goto: ['katjaEv', 'kathan'] },
@@ -1645,7 +1645,7 @@ function enterSaunaSex1(s: GameState, scene: SceneBuilder): void {
         { label: 'Make her eat you', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'arousal', 'cuni_give', 10, 'exhibitionism', 'dom');
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KS11.jpg');
@@ -1663,7 +1663,7 @@ function enterSaunaSex1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Eat her', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'cuni_give', 10, 'exhibitionism', 'sub');
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KS10.jpg');
@@ -1725,8 +1725,8 @@ function enterSaunaSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'exhibitionism', 'lesbian');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'mood', 'raise', 'tiny');
-  ((s as any).npc_had_sex ?? {})['A14'] = 1;
-  ((s as any).katjaQW ?? {})['horny'] = 0;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A14'] = 1;
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
   qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 3) + 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/sex/KS12.jpg');

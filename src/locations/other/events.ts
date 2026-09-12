@@ -85,7 +85,7 @@ function enterAskPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).drugVars ?? {})['pav_dropoff'] = 1;
+    if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['pav_dropoff'] = 1;
     scene.text('<center><b>Shooting galleries</b></center>');
     scene.img('images/locations/city/residential/den/narkopriton.jpg');
     scene.text('You gulp and stammer "I assure you there will be no problems"');
@@ -148,7 +148,7 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy enough cocaine for 5 lines ( [+$func(\'money\', \'string_price\', 2100) + \'...]', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 2100, 'cash');
-    ((s as any).mc_inventory ?? {})['cocaine'] = (((s as any).mc_inventory ?? {})['cocaine'] ?? 0) + (5);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
   }, goto: ['events', 'pav_drug_dropoff'] },
     ]);
@@ -159,7 +159,7 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy 5 Amphetamine ( [+$func(\'money\', \'string_price\', 600) + \')...]', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 600, 'cash');
-    ((s as any).mc_inventory ?? {})['amphetamine'] = (((s as any).mc_inventory ?? {})['amphetamine'] ?? 0) + (5);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (5);
   }, goto: ['events', 'pav_drug_dropoff'] },
     ]);
   } else {
@@ -170,7 +170,7 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
       { label: 'Buy enough weed for 5 joints ( [+$func(\'money\', \'string_price\', 300) + \')...]', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 300, 'cash');
     (s as any).drugUser = 1;
-    ((s as any).mc_inventory ?? {})['joints'] = (((s as any).mc_inventory ?? {})['joints'] ?? 0) + (5);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
   }, goto: ['events', 'pav_drug_dropoff'] },
     ]);

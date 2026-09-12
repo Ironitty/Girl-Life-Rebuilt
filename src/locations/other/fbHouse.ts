@@ -66,16 +66,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Brush up', handler: (st: GameState) => {
     if (((s as any).ppbj ?? 0) > 0) {
-      ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     }
     if (((s as any).pphj ?? 0) > 0) {
-      ((s as any).stat ?? {})['hj'] = (((s as any).stat ?? {})['hj'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hj'] = ((s as any).stat['hj'] ?? 0) + (1);
     }
     if (((s as any).ppsex ?? 0) > 0) {
-      ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
     }
     if (((s as any).ppanal ?? 0) > 0) {
-      ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');

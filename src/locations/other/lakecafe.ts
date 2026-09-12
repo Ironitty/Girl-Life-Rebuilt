@@ -175,7 +175,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_QW ?? 0)?.['A89'] === 0) {
       scene.actions([
         { label: 'Chat with the barmaid', handler: (st: GameState) => {
-    ((s as any).npc_QW ?? {})['A89'] = 1;
+    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A89'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/bbq/lakebarmensha.jpg');
@@ -361,7 +361,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
     scene.text('You press for more information, but Eugene seems to be hurt by your insistence. She begs you not to ask any more.');
     scene.actions([
       { label: 'Refuse to relent', handler: (st: GameState) => {
-    ((s as any).npc_love ?? {})['A89'] = (((s as any).npc_love ?? {})['A89'] ?? 0) - (5);
+    if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love['A89'] = ((s as any).npc_love['A89'] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-20));
     // TODO-QSP: dynamic text: You refuse to relent and Eugene sighs. "All our regulars know that we 'arrange m...
     scene.text(`You refuse to relent and Eugene sighs. "All our regulars know that we 'arrange meetings' every Monday between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+'. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means, but I beg you, please don't do it ${((s as any).pcs_nickname ?? 0)}!"`);
@@ -393,7 +393,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    ((s as any).npc_love ?? {})['A89'] = (((s as any).npc_love ?? {})['A89'] ?? 0) - (30);
+    if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love['A89'] = ((s as any).npc_love['A89'] ?? 0) - (30);
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-40));
     (s as any).LCworkwork = 1;
     (s as any).LCwork = 1;
@@ -441,7 +441,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    ((s as any).npc_love ?? {})['A89'] = (((s as any).npc_love ?? {})['A89'] ?? 0) - (5);
+    if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love['A89'] = ((s as any).npc_love['A89'] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-20));
     (s as any).LCworkwork = 1;
     (s as any).LCwork = 1;
@@ -494,7 +494,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: "Did you come to brag about how much of a slut you are, <<$pcs_firstname>>? If y...
           scene.text(`"Did you come to brag about how much of a slut you are, ${((s as any).pcs_firstname ?? 0)}? If you want to whore yourself out, come here on Monday night between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+' and show the men here what kind of a person you are. Just don't lose us any customers."`);
           scene.text('She turns around and walks away from you.');
-          ((s as any).npc_love ?? {})['A89'] = (-5);
+          if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love['A89'] = (-5);
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -551,7 +551,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A89', 1);
     scene.img('images/characters/shared/headshots_main/big89.jpg');
     scene.text('She smiles when you nod. "Okay, how about you follow me and we have some fun?" she says as she grabs your hand and leads you out to the back room.');
-    ((s as any).npc_horny ?? {})['A89'] = 49;
+    if (!(s as any).npc_horny) (s as any).npc_horny = {}; (s as any).npc_horny['A89'] = 49;
   }, goto: ['eugeneev1', 'sex_work'] },
     ]);
   } else {

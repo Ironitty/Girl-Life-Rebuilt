@@ -128,7 +128,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for some cosmetics (Add <<$func(\'money\', \'string_debt\', 1200)>> to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 1200);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) + (20);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (20);
   }, goto: ['city_sauna', 'saunaroom'] },
       ]);
     }
@@ -136,7 +136,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for some shampoo (Add <<$func(\'money\', \'string_debt\', 400)>> to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 400);
-    ((s as any).mc_inventory ?? {})['shampoo'] = (((s as any).mc_inventory ?? {})['shampoo'] ?? 0) + (20);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (20);
   }, goto: ['city_sauna', 'saunaroom'] },
       ]);
     }
@@ -144,7 +144,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for some razors (Add <<$func(\'money\', \'string_debt\', 700)>> to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 700);
-    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) + (20);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) + (20);
   }, goto: ['city_sauna', 'saunaroom'] },
       ]);
     }
@@ -152,7 +152,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for some tampons (Add <<$func(\'money\', \'string_debt\', 400)>> to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 400);
-    ((s as any).mc_inventory ?? {})['tampons'] = (((s as any).mc_inventory ?? {})['tampons'] ?? 0) + (20);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) + (20);
   }, goto: ['city_sauna', 'saunaroom'] },
       ]);
     }
@@ -160,7 +160,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for some deodorant (Add <<$func(\'money\', \'string_debt\', 200)>> to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 200);
-    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) + (20);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) + (20);
   }, goto: ['city_sauna', 'saunaroom'] },
       ]);
     }
@@ -168,7 +168,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask for some vitamins (Add <<$func(\'money\', \'string_debt\', 150)>> to debt)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_add', 'workDolg', 150);
-    ((s as any).mc_inventory ?? {})['vitamins'] = (((s as any).mc_inventory ?? {})['vitamins'] ?? 0) + (30);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (30);
   }, goto: ['city_sauna', 'saunaroom'] },
       ]);
     }

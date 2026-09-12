@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $loc_clothestypes[45] = 'nerdvana_outfits'
   // TODO-QSP: $loc_clothestypes[46] = 'nerdvana_bikinis'
   // TODO-QSP: $loc_clothestypes[47] = 'nerdvana_swimsuit'
-  ((s as any).gm_school_w ?? {})[6] = 0;
+  if (!(s as any).gm_school_w) (s as any).gm_school_w = {}; (s as any).gm_school_w[6] = 0;
   (s as any).j = 1;
   // TODO-QSP: :loopclotype
   (s as any).i = 1;

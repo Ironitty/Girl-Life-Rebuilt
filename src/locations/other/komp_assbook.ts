@@ -52,9 +52,9 @@ function enterSignup(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Assbook</b></center>');
   scene.img('images/system/image_needed.png');
   scene.text('You consider which name you\'d like to register under.');
-  ((s as any).assbook ?? {})['account_name'] = 0;
+  if (!(s as any).assbook) (s as any).assbook = {}; (s as any).assbook['account_name'] = 0;
   if (((s as any).assbook ?? 0)?.['account_name'] === '') {
-    ((s as any).assbook ?? {})['account_name'] = '' + qspUntranslated(s, "pcs_nickname>", { location: "komp_assbook" }) + '';
+    if (!(s as any).assbook) (s as any).assbook = {}; (s as any).assbook['account_name'] = '' + qspUntranslated(s, "pcs_nickname>", { location: "komp_assbook" }) + '';
   }
   scene.text('You fill in your personal details and within a few moments you\'ve created an account. You can even upload photos to your own page.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;

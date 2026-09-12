@@ -14,7 +14,7 @@ function enterDMother1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
     (s as any).mothersorryday = ((s as any).daystart ?? 0);
-    ((s as any).npc_rel ?? {})['A29'] = (((s as any).npc_rel ?? {})['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A29'] = ((s as any).npc_rel['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You profusely apologize to your mother and promise you\'ll try to be a better person. Even though she\'s still upset with you, you can tell her attitude towards you is slightly milder than before.');
     scene.actions([
@@ -35,7 +35,7 @@ function enterDMother2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Try to get on her good side', handler: (st: GameState) => {
     (s as any).mothersorryday = ((s as any).daystart ?? 0);
-    ((s as any).npc_rel ?? {})['A29'] = (((s as any).npc_rel ?? {})['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A29'] = ((s as any).npc_rel['A29'] ?? 0) + ((((s as any).pcs_intel ?? 0)/10)+(((s as any).pcs_apprnc ?? 0)/20));
     qspCall(s, 'stat', '');
     scene.text('You cling onto your mother and try to butter her up a little, talking about things she enjoys. This actually gets her to engage in conversation with you and after a while she seems to be a bit friendlier towards you.');
     scene.actions([

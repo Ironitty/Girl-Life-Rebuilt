@@ -7,9 +7,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).razors_to_use ?? {})['all'] = Math.min(3, Math.max(1, (((s as any).pcs_leghair ?? 0)*4 + Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0)))/20));
-  ((s as any).razors_to_use ?? {})['pussy'] = Math.min(2, Math.max(1, (Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0)))/20));
-  ((s as any).razors_to_use ?? {})['legs'] = Math.min(3, Math.max(1, (((s as any).pcs_leghair ?? 0)*4)/20));
+  if (!(s as any).razors_to_use) (s as any).razors_to_use = {}; (s as any).razors_to_use['all'] = Math.min(3, Math.max(1, (((s as any).pcs_leghair ?? 0)*4 + Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0)))/20));
+  if (!(s as any).razors_to_use) (s as any).razors_to_use = {}; (s as any).razors_to_use['pussy'] = Math.min(2, Math.max(1, (Math.max(0, ((s as any).pcs_pubes ?? 0)-((s as any).shave_length ?? 0)))/20));
+  if (!(s as any).razors_to_use) (s as any).razors_to_use = {}; (s as any).razors_to_use['legs'] = Math.min(3, Math.max(1, (((s as any).pcs_leghair ?? 0)*4)/20));
   scene.build();
 }
 
@@ -29,13 +29,13 @@ function enterShowerdin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).frost ?? 0) > 0) {
     (s as any).frost = 0;
   }
-  ((s as any).lactation ?? {})['lactmess'] = 0;
+  if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['lactmess'] = 0;
   qspCall(s, 'sweat', 'shower');
   if ((!((s as any).noshampoo ?? 0))) {
-    ((s as any).mc_inventory ?? {})['shampoo'] = (((s as any).mc_inventory ?? {})['shampoo'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) - (1);
   }
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] < 0) {
-    ((s as any).mc_inventory ?? {})['shampoo'] = 0;
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = 0;
   }
   qspCall(s, 'body', 'SkinGain', 'CleanSelf');
   qspCall(s, 'stat', '');
@@ -92,7 +92,7 @@ function enterBteethDo(s: GameState, scene: SceneBuilder): void {
 function enterBrushTeeth(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 1;
-  ((s as any).teeth ?? {})['brushed'] = (((s as any).teeth ?? {})['brushed'] ?? 0) + (1);
+  if (!(s as any).teeth) (s as any).teeth = {}; (s as any).teeth['brushed'] = ((s as any).teeth['brushed'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();
@@ -186,15 +186,15 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).pain ?? 0)?.['nipples'] < 60  &&  ((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {
     if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0  &&  ((s as any).pcs_massagedherbreasts ?? 0) <= 0) {
       scene.text('As you clean your breasts, something catches your eye. White drops come from your nipples. It is milk.<br>Using the breast pump regularly probably made you lactate!');
-      ((s as any).lactation ?? {})['induced'] = 1;
+      if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
     } else {
       if (((s as any).pcs_usedbreastpumponherself ?? 0) <= 0  &&  ((s as any).pcs_massagedherbreasts ?? 0) > 0) {
         scene.text('As you clean your breasts, something catches your eye. White drops come from your nipples. It is milk. Regularly massaging your breasts probably made you lactate!<br>');
-        ((s as any).lactation ?? {})['induced'] = 1;
+        if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
       } else {
         if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0  &&  ((s as any).pcs_massagedherbreasts ?? 0) > 0) {
           scene.text('As you clean your breasts, something catches your eye. White drops come from your nipples. It is milk. All that pumping and massaging your breasts probably caused you to lactate!<br>');
-          ((s as any).lactation ?? {})['induced'] = 1;
+          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
         } else {
           scene.text('As you clean your breasts, something catches your eye. White drops come from your nipples. You find, to your surprise, that it is milk. You have started lactating!<br>');
           if (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1) {
@@ -202,13 +202,13 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.text('You should have this checked out by a doctor. You could be pregnant.');
           }
-          ((s as any).lactation ?? {})['induced'] = 0;
+          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 0;
         }
       }
     }
     (s as any).pcs_usedbreastpumponherself = 0;
     (s as any).pcs_massagedherbreasts = 0;
-    ((s as any).lactation ?? {})['pc_aware'] = 1;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
   }
   qspCall(s, 'din_van', 'dryOff');
   if (((s as any).rapeday ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).rape_shower ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -403,7 +403,7 @@ function enterCanSkincare(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSkincareDo(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mc_inventory ?? {})['moisturiser'] = (((s as any).mc_inventory ?? {})['moisturiser'] ?? 0) - (1);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['moisturiser'] = ((s as any).mc_inventory['moisturiser'] ?? 0) - (1);
   (s as any).moisturiser_time = ((s as any).totminut ?? 0) + 10 * 60;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/shared/home/bathroom/skincare.jpg');
@@ -483,14 +483,14 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).shave_txt12 ?? 0)}`);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).pcs_leghair = 0;
-    ((s as any).stat ?? {})['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
     (s as any).pcs_pubes = ((s as any).shave_length ?? 0);
-    ((s as any).stat ?? {})['pube_growth_timer'] = ((s as any).totminut ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['pube_growth_timer'] = ((s as any).totminut ?? 0);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     if (((s as any).pcs_shave ?? 0)?.['free_razor'] === 1) {
-      ((s as any).pcs_shave ?? {})['free_razor'] = 0;
+      if (!(s as any).pcs_shave) (s as any).pcs_shave = {}; (s as any).pcs_shave['free_razor'] = 0;
     } else {
-      ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
     }
     qspCall(s, 'traits', 'body_hair_attitude', 'on_shave');
     qspCall(s, 'din_van', 'dryOff', 'shave');
@@ -541,12 +541,12 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_pubes = ((s as any).shave_length ?? 0);
-    ((s as any).stat ?? {})['pube_growth_timer'] = ((s as any).totminut ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['pube_growth_timer'] = ((s as any).totminut ?? 0);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     if (((s as any).pcs_shave ?? 0)?.['free_razor'] === 1) {
-      ((s as any).pcs_shave ?? {})['free_razor'] = 0;
+      if (!(s as any).pcs_shave) (s as any).pcs_shave = {}; (s as any).pcs_shave['free_razor'] = 0;
     } else {
-      ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
     }
     // TODO-QSP: dynamic text: <<$shave_txt21>>
     scene.text(`${((s as any).shave_txt21 ?? 0)}`);
@@ -567,13 +567,13 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
         { label: 'Shave your legs (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_leghair = 0;
-    ((s as any).stat ?? {})['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     qspCall(s, 'traits', 'body_hair_attitude', 'on_shave');
     if (((s as any).pcs_shave ?? 0)?.['free_razor'] === 1) {
-      ((s as any).pcs_shave ?? {})['free_razor'] = 0;
+      if (!(s as any).pcs_shave) (s as any).pcs_shave = {}; (s as any).pcs_shave['free_razor'] = 0;
     } else {
-      ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
     }
     scene.img('images/shared/home/bathroom/shave.jpg');
     if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
@@ -638,7 +638,7 @@ function enterCanTampon(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTamponPadDo(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mc_inventory ?? {})['sanitary_pads'] = (((s as any).mc_inventory ?? {})['sanitary_pads'] ?? 0) - (1);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sanitary_pads'] = ((s as any).mc_inventory['sanitary_pads'] ?? 0) - (1);
   (s as any).isprokp = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'mood', 'lower', 'tiny');
@@ -655,7 +655,7 @@ function enterTamponPadDo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTamponTamponDo(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mc_inventory ?? {})['tampons'] = (((s as any).mc_inventory ?? {})['tampons'] ?? 0) - (1);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) - (1);
   (s as any).isprok = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'mood', 'lower', 'tiny');
@@ -1219,7 +1219,7 @@ function enterCanDeodorant(s: GameState, scene: SceneBuilder): void {
 
 function enterDeodorantDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
   qspCall(s, 'sweat', 'deo');
   qspCall(s, 'stat', '');
   // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
@@ -1497,7 +1497,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your disposable razors are good for <b><<mc_inventory['razor']>></b> more shaves...
     scene.text(`Your disposable razors are good for <b>${((s as any).mc_inventory ?? 0)?.['razor']}</b> more shaves. <a href="exec:gs 'din_van', 'shave_options'">Shave Options</a>`);
     if (((s as any).mc_inventory ?? 0)?.['razor'] <= 2  &&  ((s as any).razor ?? 0)?.['warning'] < ((s as any).daystart ?? 0)) {
-      ((s as any).razor ?? {})['warning'] = ((s as any).daystart ?? 0) + 5;
+      if (!(s as any).razor) (s as any).razor = {}; (s as any).razor['warning'] = ((s as any).daystart ?? 0) + 5;
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['chafing_cream'] > 0) {
@@ -1513,14 +1513,14 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).tampon ?? 0)?.['warning'] !== ((s as any).daystart ?? 0)) {
       if (((s as any).mc_inventory ?? 0)?.['tampons'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 1) {
-        ((s as any).tampon ?? {})['warning'] = ((s as any).daystart ?? 0);
+        if (!(s as any).tampon) (s as any).tampon = {}; (s as any).tampon['warning'] = ((s as any).daystart ?? 0);
         // TODO-QSP: $temp_tamp_text
       } else {
         if (((s as any).mc_inventory ?? 0)?.['tampons'] === 1) {
-          ((s as any).tampon ?? {})['warning'] = ((s as any).daystart ?? 0);
+          if (!(s as any).tampon) (s as any).tampon = {}; (s as any).tampon['warning'] = ((s as any).daystart ?? 0);
         } else {
           if (((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 1) {
-            ((s as any).tampon ?? {})['warning'] = ((s as any).daystart ?? 0);
+            if (!(s as any).tampon) (s as any).tampon = {}; (s as any).tampon['warning'] = ((s as any).daystart ?? 0);
           }
         }
       }
@@ -1642,7 +1642,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
       { label: 'Rub ointment onto your pussy (0:05)', handler: (st: GameState) => {
     (s as any).mosal_time = ((s as any).totminut ?? 0) + 600;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).mc_inventory ?? {})['chafing_cream'] = (((s as any).mc_inventory ?? {})['chafing_cream'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['chafing_cream'] = ((s as any).mc_inventory['chafing_cream'] ?? 0) - (1);
     (s as any).mosol = ((s as any).mosol ?? 0) - (5);
     qspCall(s, 'stat', '');
     scene.text('You take a tube of cream and rub it onto your itchy vulva.');
@@ -1659,7 +1659,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
       { label: 'Do a pregnancy test (0:05)', handler: (st: GameState) => {
     (s as any).last_pee = ((s as any).totminut ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).mc_inventory ?? {})['pregnancy_test'] = (((s as any).mc_inventory ?? {})['pregnancy_test'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['pregnancy_test'] = ((s as any).mc_inventory['pregnancy_test'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/birthcontrol/preg_test.jpg');
     scene.text('You sit down on the toilet and slip the test between your legs, carefully letting loose a stream of urine from your pussy onto the tip. Following the instructions, you then re-cap it and lay it flat on the sink, spending the next five minutes nervously fidgeting, waiting out the suggested time…');
@@ -1796,16 +1796,16 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
       if (((s as any).husID ?? 0) !== '') {
         if (((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['wash_day']) {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-          ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (1);
-          ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
+          if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
           scene.text('The washing machine washed your husband\'s dirty laundry.');
         }
       } else {
         if (((s as any).wifID ?? 0) !== '') {
           if (((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['wash_day']) {
             qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), 5);
-            ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (1);
-            ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
+            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
+            if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
             scene.text('The washing machine washed your wife\'s dirty laundry.');
           }
         }
@@ -1819,8 +1819,8 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-    ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
-    ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (2);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/apartment/stir.jpg');
     scene.text('You spend an hour washing your husband\'s dirty laundry.');
@@ -1838,7 +1838,7 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-    ((s as any).spouseVars ?? {})['clean_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['clean_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
@@ -1857,8 +1857,8 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), 5);
-    ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
-    ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (2);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/apartment/stir.jpg');
     scene.text('You spend an hour washing your wife\'s dirty laundry.');
@@ -1876,7 +1876,7 @@ function enterMisery(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), 5);
-    ((s as any).spouseVars ?? {})['clean_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['clean_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
@@ -1901,16 +1901,16 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).husID ?? 0) !== '') {
         if (((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['wash_day']) {
           qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-          ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (1);
-          ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
+          if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
           scene.text('The washing machine washed your husband\'s dirty laundry.');
         }
       } else {
         if (((s as any).wifID ?? 0) !== '') {
           if (((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['wash_day']) {
             qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), 5);
-            ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (1);
-            ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
+            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
+            if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
             scene.text('The washing machine washed your wife\'s dirty laundry.');
           }
         }
@@ -1924,8 +1924,8 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-    ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (2);
-    ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (2);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/apartment/stir.jpg');
     scene.text('You spend an hour washing your husband\'s dirty laundry.');
@@ -1943,7 +1943,7 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-    ((s as any).spouseVars ?? {})['clean_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['clean_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
@@ -1962,8 +1962,8 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), 5);
-    ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (2);
-    ((s as any).spouseVars ?? {})['wash_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (2);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['wash_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/apartment/stir.jpg');
     scene.text('You spend an hour washing your wife\'s dirty laundry.');
@@ -1981,7 +1981,7 @@ function enterMisery_2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'lower', 'medium');
     qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), 5);
-    ((s as any).spouseVars ?? {})['clean_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['clean_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('You take a rag and start cleaning the apartment.');
     scene.actions([
@@ -2266,7 +2266,7 @@ function enterPrvtPeeDo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['tampons'] > 0  &&  (((s as any).mesec ?? 0) > 0  ||  (((s as any).placebopart ?? 0) > 0  &&  ((s as any).pillcon ?? 0) < 40000))  &&  (((s as any).isprok ?? 0) === 1  ||  (((s as any).isprok ?? 0) === 0  &&  ((s as any).isprokp ?? 0) === 0))  &&  (!((s as any).knowpreg ?? 0))) {
     scene.actions([
       { label: 'Change tampon (0:02)', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['tampons'] = (((s as any).mc_inventory ?? {})['tampons'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) - (1);
     (s as any).isprok = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'mood', 'lower', 'tiny');
@@ -2280,7 +2280,7 @@ function enterPrvtPeeDo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).isprokp ?? 0) === 1  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] > 0  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
     scene.actions([
       { label: 'Change pad (0:02)', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['sanitary_pads'] = (((s as any).mc_inventory ?? {})['sanitary_pads'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sanitary_pads'] = ((s as any).mc_inventory['sanitary_pads'] ?? 0) - (1);
     (s as any).isprokp = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'mood', 'lower', 'tiny');
@@ -2448,7 +2448,7 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['tampons'] > 0  &&  (((s as any).mesec ?? 0) > 0  ||  (((s as any).placebopart ?? 0) > 0  &&  ((s as any).pillcon ?? 0) < 40000))  &&  (((s as any).isprok ?? 0) === 1  ||  (((s as any).isprok ?? 0) === 0  &&  ((s as any).isprokp ?? 0) === 0))  &&  (!((s as any).knowpreg ?? 0))) {
       scene.actions([
         { label: 'Change tampon (0:02)', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['tampons'] = (((s as any).mc_inventory ?? {})['tampons'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).mc_inventory['tampons'] ?? 0) - (1);
     (s as any).isprok = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'mood', 'lower', 'tiny');
@@ -2462,7 +2462,7 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mesec ?? 0) > 0  &&  (((s as any).isprokp ?? 0) === 1  ||  (((s as any).isprok ?? 0) === 0  &&  ((s as any).isprokp ?? 0) === 0))  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] > 0  &&  ((s as any).bag ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Change pad (0:02)', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['sanitary_pads'] = (((s as any).mc_inventory ?? {})['sanitary_pads'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sanitary_pads'] = ((s as any).mc_inventory['sanitary_pads'] ?? 0) - (1);
     (s as any).isprokp = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'mood', 'lower', 'tiny');

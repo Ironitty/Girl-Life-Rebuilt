@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('You can\'t do your lesson without fabric so there is nothing you can do here now.');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 60;
-        ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
         qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (pcs_intel/10 - pcs_intel/20 + 1)) + (pcs_intel/20)));
         scene.text('For an hour you learn more advanced techniques and practice cutting and sewing the fabric you purchased.');
         if (((s as any).pcs_sewng ?? 0) >= 60  &&  (!((s as any).poTalk ?? 0))) {

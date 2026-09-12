@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['rehearsals'] === 0) {
-    ((s as any).balletqw ?? {})['rehearsals'] = 1;
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['rehearsals'] = 1;
     scene.actions([{ label: 'Continue', goto: ['city_mariinsky_rehearsals', 'first_rehearsal'] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['city_mariinsky_rehearsals', 'rehearsals'] }]);

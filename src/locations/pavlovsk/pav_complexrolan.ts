@@ -27,7 +27,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You try to have a conversation with Rolan, but he dislikes you too much to even pretend to be interested in what you have to say.');
       scene.actions([
         { label: 'Chat anyway', handler: (st: GameState) => {
-    ((s as any).npc_rel ?? {})['A133'] = (((s as any).npc_rel ?? {})['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
     qspCall(s, 'stat', '');
     scene.text('You can tell his attitude towards you is slightly milder.');
     scene.actions([
@@ -41,7 +41,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('You have a nice chat with Rolan.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).npc_rel ?? {})['A133'] = (((s as any).npc_rel ?? {})['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
     qspCall(s, 'stat', '');
     scene.text('You can tell your friendship is growing.');
     scene.actions([
@@ -55,7 +55,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('Rolan likes you too much to even pretend to not stare at your boobs.');
           scene.actions([
             { label: 'Friendly chat', handler: (st: GameState) => {
-    ((s as any).npc_rel ?? {})['A133'] = (((s as any).npc_rel ?? {})['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A133'] = ((s as any).npc_rel['A133'] ?? 0) + ((((s as any).pcs_intel ?? 0) / 10) + (((s as any).pcs_apprnc ?? 0) / 20));
     qspCall(s, 'stat', '');
     scene.text('You can see the bulge in his crotch growing.');
     scene.actions([
@@ -338,14 +338,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
       { label: 'Ouch', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (30);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan starts beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (30);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
     scene.text('Your ass is red and painful, you are close to crying');
     scene.text('"I\'m sorry Rolan… I\'ve learned my lesson!"');
@@ -414,14 +414,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'ouch', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (30);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan start beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (30);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
     scene.text('Your ass is red and painful, you are close to crying');
     scene.text('"I\'m sorry Rolan… I\'ve learned my lesson!"');
@@ -487,14 +487,14 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
       { label: 'Ouch', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (30);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol2.jpg');
     scene.text('Rolan start beating your bare butt. There\'s no lust in his beating, but you can\'t say the same about anger…');
     scene.actions([
       { label: 'It hurts!', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (30);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (30);
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanapol3.jpg');
     scene.text('Your ass is red and painful, you are close to crying.');
     scene.text('"I\'m sorry Rolan… I\'ve learned my lesson!"');

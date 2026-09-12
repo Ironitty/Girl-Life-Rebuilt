@@ -32,14 +32,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  ((s as any).tempFetish ?? {})['i'] = 0;
-  ((s as any).tempFetish ?? {})['maxi'] = 0;
+  if (!(s as any).tempFetish) (s as any).tempFetish = {}; (s as any).tempFetish['i'] = 0;
+  if (!(s as any).tempFetish) (s as any).tempFetish = {}; (s as any).tempFetish['maxi'] = 0;
   // TODO-QSP: :fetish_cikl_loop
-  ((s as any).tempFetish ?? {})['name'] = qspUntranslated(s, "fetish_name[tempFetish['i']]", { location: "fetish" });
+  if (!(s as any).tempFetish) (s as any).tempFetish = {}; (s as any).tempFetish['name'] = qspUntranslated(s, "fetish_name[tempFetish['i']]", { location: "fetish" });
   // TODO-QSP: gs 'fetish', 'add_bonuses', $tempFetish['name']
   // TODO-QSP: fetishes[$tempFetish['name'] + '_pref'] = max(-100, min(fetishes[$tempFetish['name'] + '_pref'], 100...
   // TODO-QSP: gs 'fetish', 'check_for_traits', $tempFetish['name']
-  ((s as any).tempFetish ?? {})['i'] = (((s as any).tempFetish ?? {})['i'] ?? 0) + (1);
+  if (!(s as any).tempFetish) (s as any).tempFetish = {}; (s as any).tempFetish['i'] = ((s as any).tempFetish['i'] ?? 0) + (1);
   if (((s as any).tempFetish ?? 0)?.['i'] < ((s as any).tempFetish ?? 0)?.['maxi']) {
     // TODO-QSP: jump 'fetish_cikl_loop'
   }
@@ -49,20 +49,20 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 
 function enterAddBonuses(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_exp_bonus'] !== 0  ||  ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_pref_bonus'] !== 0) {
-    ((s as any).temp ?? {})['j'] = 0;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['j'] = 0;
     // TODO-QSP: :fetish_cikl_loop1
-    ((s as any).temp ?? {})['link'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_name'];
-    ((s as any).temp ?? {})['strength'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_strength'];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['link'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_name'];
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['strength'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_strength'];
     if (((s as any).temp ?? 0)?.['link'] !== '') {
-      ((s as any).temp ?? {})['exp_bonus'] = ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_exp_bonus'] * ((s as any).temp ?? {})?.['strength'] / 100;
-      ((s as any).temp ?? {})['pref_bonus'] = ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_pref_bonus'] * ((s as any).temp ?? {})?.['strength'] / 100;
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['exp_bonus'] = ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_exp_bonus'] * ((s as any).temp ?? {})?.['strength'] / 100;
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['pref_bonus'] = ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_pref_bonus'] * ((s as any).temp ?? {})?.['strength'] / 100;
       if (((s as any).temp ?? 0)?.['exp_bonus'] !== 0) {
         // TODO-QSP: gs 'fetish', 'add_exp', $temp['link'], temp['exp_bonus'], 'no_bonus'
       }
       if (((s as any).temp ?? 0)?.['pref_bonus'] !== 0) {
         // TODO-QSP: gs 'fetish', 'add_pref', $temp['link'], temp['pref_bonus'], 'no_bonus'
       }
-      ((s as any).temp ?? {})['j'] = (((s as any).temp ?? {})['j'] ?? 0) + (1);
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['j'] = ((s as any).temp['j'] ?? 0) + (1);
       // TODO-QSP: jump 'fetish_cikl_loop1'
     }
   }
@@ -90,7 +90,7 @@ function enterAddExp(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    ((s as any).ARGS ?? {})[2] = 1;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = 1;
   }
   // TODO-QSP: fetishes[$ARGS[1] + '_exp'] += ARGS[2]
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_bonus') : -1) < 0) {
@@ -135,7 +135,7 @@ function enterAddPref(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    ((s as any).ARGS ?? {})[2] = 1;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = 1;
   }
   // TODO-QSP: fetishes[$ARGS[1] + '_pref'] += ARGS[2]
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_bonus') : -1) < 0) {

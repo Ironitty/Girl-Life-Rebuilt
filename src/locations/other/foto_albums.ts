@@ -470,7 +470,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
     scene.text('They seem to be single pictures taken from past photo shoots.');
   } else {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      ((s as any).anushkaQW ?? {})['model'] = 1;
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 1;
       scene.text('You open up the ninth album and are surprised to see pictures of Anushka placed inside. It\'s not surprising that she\'d like being a model given that she loves attention, but you\'re surprised that nobody at school has ever mentioned it. Somebody else surely must know?');
       scene.text('They all seem to be single pictures taken from past photo shoots.');
     } else {

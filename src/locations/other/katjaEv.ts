@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['afterschool_hangout_day'] !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
   }
-  ((s as any).katjaQW ?? {})['afterschool_hangout_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['afterschool_hangout_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'katjaEvDin', '');
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   qspCall(s, 'stat', '');
@@ -87,7 +87,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 2;
     scene.text('Katja subtly applies some neutral tones, with a light application of makeup to bring out your natural beauty.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
       scene.text('Katja suddenly becomes aware that she\'s staring into your eyes and blushes.');
     }
     qspCall(s, 'stat', '');
@@ -99,7 +99,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 3;
     scene.text('Katja applies some mildly vibrate tones and colors of makeup to cover your minor imperfections and enhance your best features.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
       scene.text('Katja suddenly becomes aware that she\'s staring into your eyes and blushes.');
     }
     qspCall(s, 'stat', '');
@@ -111,7 +111,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 4;
     scene.text('Katja applies some deeper, richer shades of makeup that are thick enough to cover most imperfections while drawing attention to your eyes and lips.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
       scene.text('Katja suddenly becomes aware that she\'s staring into your eyes and blushes.');
     }
     qspCall(s, 'stat', '');
@@ -159,9 +159,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja asks you about your relationship with Vitek and expresses her opinion about it.');
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).katjaQW ?? 0)?.['know_Pirced_tongue'] === 0) {
-    ((s as any).katjaQW ?? {})['know_Pirced_tongue'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_Pirced_tongue'] = 1;
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     }
     scene.text('Katja notices that you have a pierced tongue and chatters all the way home, trying to find out all about it.');
   }
@@ -287,7 +287,7 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   if (((s as any).pcs_chrsm ?? 0) <= 45) {
     qspCall(s, 'exp_gain', 'chrsm', 1);
   }
@@ -393,7 +393,7 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
                 { label: 'Tease Natasha', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (20);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 6) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/KWS5.jpg');
@@ -581,7 +581,7 @@ function enterKathan15(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   qspCall(s, 'npc_relationship', 'modify', 'A16', 1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   if (((s as any).pcs_chrsm ?? 0) <= 45) {
     qspCall(s, 'exp_gain', 'chrsm', 1);
   }
@@ -699,7 +699,7 @@ function enterKathan17(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).willpower = ((s as any).willpower ?? 0) + (Math.floor(Math.random() * 10) + 1);
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/KWT3.jpg');
   scene.text('Sometimes, you don\'t want to walk, carouse, dance or do "archetypical teen stuff". Sometimes, you only want to sit and, well, smell the flowers. So you look for a nice place to sit and talk about your life, school, family. You know, normal stuff, until Katja starts talking about your classmates.');
@@ -863,7 +863,7 @@ function enterKathan18(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/KWT4.jpg');
   scene.text('Katja gives you a nudge in the ribs, puts a finger over her lips and signals towards a secluded corner.');
@@ -937,7 +937,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (10);
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big140.jpg');
   scene.text('"Hey girls! Just a moment!"');
@@ -1086,7 +1086,7 @@ function enterKathan20(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).random_event = Math.floor(Math.random() * 19) + 1;
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/KWT8.jpg');
   scene.text('Being young and pretty, attracting attention is inevitable. As you walk around Pavlovsk, the boys and girls like to talk. And some <i>really</i> talk.');
@@ -1185,7 +1185,7 @@ function enterKathan21(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
   (s as any).random_event = Math.floor(Math.random() * 19) + 1;
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/pc/reactions/disgust.jpg');
   scene.text('Being young and pretty, attracting attention is inevitable. As you walk around Pavlovsk, the boys and girls like to talk. And some <i>really</i> talk.');
@@ -1283,7 +1283,7 @@ function enterKathan22(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
   qspCall(s, 'stat', '');
   if ((Math.floor(Math.random() * 4) + 0) === 3  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 40  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((s as any).npc_rel ?? 0)?.['A14'] >= 80  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
     scene.img('images/characters/pavlovsk/school/girl/katja/KWT15.jpg');
@@ -1502,7 +1502,7 @@ function enterDiscountcosmetics(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) + (50);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan14'] }]);
     }
   } },
@@ -1516,7 +1516,7 @@ function enterDiscountcosmetics(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) + (50);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
     }
@@ -1543,7 +1543,7 @@ function enterDiscountvitamins(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).mc_inventory ?? {})['vitamins'] = (((s as any).mc_inventory ?? {})['vitamins'] ?? 0) + (20);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
       scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan14'] }]);
     }
@@ -1558,7 +1558,7 @@ function enterDiscountvitamins(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
-      ((s as any).mc_inventory ?? {})['vitamins'] = (((s as any).mc_inventory ?? {})['vitamins'] ?? 0) + (20);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
     }
@@ -1585,7 +1585,7 @@ function enterDiscountlipbalm(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).mc_inventory ?? {})['lipbalm'] = (((s as any).mc_inventory ?? {})['lipbalm'] ?? 0) + (30);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
       scene.actions([{ label: 'Continue', goto: ['katjaEv', 'kathan14'] }]);
     }
@@ -1599,7 +1599,7 @@ function enterDiscountlipbalm(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).mc_inventory ?? {})['lipbalm'] = (((s as any).mc_inventory ?? {})['lipbalm'] ?? 0) + (30);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (30);
       qspCall(s, 'money', 'pay', ((s as any).tovpay ?? 0));
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);

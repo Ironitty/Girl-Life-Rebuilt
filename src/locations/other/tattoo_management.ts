@@ -143,9 +143,9 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).pcs_tattoos ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
-  ((s as any).pcs_tattoos ?? {})['any'] = 1;
+  if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['any'] = 1;
   // TODO-QSP: pcs_tattoos[$ARGS[1]] = ARGS[2]
   if (((s as any).locArgs?.[1] ?? 0) === 'face'  ||  ((s as any).locArgs?.[1] ?? 0) === 'lip'  ||  ((s as any).locArgs?.[1] ?? 0) === 'neck'  ||  ((s as any).locArgs?.[1] ?? 0) === 'back'  ||  ((s as any).locArgs?.[1] ?? 0) === 'shoulder'  ||  ((s as any).locArgs?.[1] ?? 0) === 'chest'  ||  ((s as any).locArgs?.[1] ?? 0) === 'side'  ||  ((s as any).locArgs?.[1] ?? 0) === 'belly'  ||  ((s as any).locArgs?.[1] ?? 0) === 'arm'  ||  ((s as any).locArgs?.[1] ?? 0) === 'wrist'  ||  ((s as any).locArgs?.[1] ?? 0) === 'hand'  ||  ((s as any).locArgs?.[1] ?? 0) === 'leg'  ||  ((s as any).locArgs?.[1] ?? 0) === 'ankle') {
     qspCall(s, 'archetypes', 'gain', 'punk', 'tiny', 'Got a visible tattoo');
@@ -160,11 +160,11 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_tattoos ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 0) {
     // TODO-QSP: exit
   }
-  ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) - (1);
+  if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) - (1);
   // TODO-QSP: pcs_tattoos[$ARGS[1]] = -pcs_tattoos[$ARGS[1]]
   if (((s as any).pcs_tattoos ?? 0)?.['total'] <= 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = 0;
-    ((s as any).pcs_tattoos ?? {})['any'] = 0;
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = 0;
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['any'] = 0;
   }
   return;
   // TODO-QSP: end
@@ -178,64 +178,64 @@ function enterFullReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCount(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pcs_tattoos ?? {})['total'] = 0;
-  ((s as any).pcs_tattoos ?? {})['any'] = 0;
+  if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = 0;
+  if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['any'] = 0;
   if (((s as any).pcs_tattoos ?? 0)?.['ankle']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['arm']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ass']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['back']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['belly']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['breast']  > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['chest']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['face']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['hand']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['leg']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['lip']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['neck']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['pussy']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder']  > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['side']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['tramp']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['under']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['wrist']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['total'] = (((s as any).pcs_tattoos ?? {})['total'] ?? 0) + (1);
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['total'] = ((s as any).pcs_tattoos['total'] ?? 0) + (1);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['total']    > 0) {
-    ((s as any).pcs_tattoos ?? {})['any'] = 1;
+    if (!(s as any).pcs_tattoos) (s as any).pcs_tattoos = {}; (s as any).pcs_tattoos['any'] = 1;
   }
   return;
   // TODO-QSP: end
@@ -256,7 +256,7 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 4) {
-    ((s as any).ARGS ?? {})[4] = ((s as any).price ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[4] = ((s as any).price ?? 0);
   }
   // TODO-QSP: gs 'money', 'pay', ARGS[4]
   // TODO-QSP: gs 'tattoo_management', 'add', $ARGS[2], ARGS[3]
@@ -269,10 +269,10 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
 
 function enterAnkleImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['ankle'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['ankle'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -281,10 +281,10 @@ function enterAnkleImage(s: GameState, scene: SceneBuilder): void {
 
 function enterArmImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['arm'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['arm'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -293,10 +293,10 @@ function enterArmImage(s: GameState, scene: SceneBuilder): void {
 
 function enterAssImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['ass'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['ass'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -305,10 +305,10 @@ function enterAssImage(s: GameState, scene: SceneBuilder): void {
 
 function enterBackImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['back'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['back'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -317,10 +317,10 @@ function enterBackImage(s: GameState, scene: SceneBuilder): void {
 
 function enterBellyImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['belly'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['belly'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -329,10 +329,10 @@ function enterBellyImage(s: GameState, scene: SceneBuilder): void {
 
 function enterBreastImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['breast'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['breast'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -341,10 +341,10 @@ function enterBreastImage(s: GameState, scene: SceneBuilder): void {
 
 function enterChestImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['chest'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['chest'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -353,10 +353,10 @@ function enterChestImage(s: GameState, scene: SceneBuilder): void {
 
 function enterFaceImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['face'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['face'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -365,10 +365,10 @@ function enterFaceImage(s: GameState, scene: SceneBuilder): void {
 
 function enterHandImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['hand'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['hand'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -377,10 +377,10 @@ function enterHandImage(s: GameState, scene: SceneBuilder): void {
 
 function enterLegImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['leg'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['leg'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -389,10 +389,10 @@ function enterLegImage(s: GameState, scene: SceneBuilder): void {
 
 function enterLipImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['lip'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['lip'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -401,10 +401,10 @@ function enterLipImage(s: GameState, scene: SceneBuilder): void {
 
 function enterNeckImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['neck'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['neck'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -413,10 +413,10 @@ function enterNeckImage(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['pussy'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['pussy'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -425,10 +425,10 @@ function enterPussyImage(s: GameState, scene: SceneBuilder): void {
 
 function enterShoulderImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['shoulder'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['shoulder'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -437,10 +437,10 @@ function enterShoulderImage(s: GameState, scene: SceneBuilder): void {
 
 function enterSideImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['side'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['side'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -449,10 +449,10 @@ function enterSideImage(s: GameState, scene: SceneBuilder): void {
 
 function enterTrampImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['tramp'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['tramp'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -461,10 +461,10 @@ function enterTrampImage(s: GameState, scene: SceneBuilder): void {
 
 function enterUnderImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['under'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['under'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end
@@ -473,10 +473,10 @@ function enterUnderImage(s: GameState, scene: SceneBuilder): void {
 
 function enterWristImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_tattoos ?? 0)?.['wrist'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).pcs_tattoos ?? 0)?.['wrist'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   // TODO-QSP: end

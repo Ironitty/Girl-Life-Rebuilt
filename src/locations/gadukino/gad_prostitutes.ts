@@ -64,7 +64,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Make Mira your prostitute [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).MiraVars ?? {})['pimp'] = 1;
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['pimp'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'misc', 'force', 'hard');
     qspCall(s, 'willpower', 'pay', 'force');
@@ -95,7 +95,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiraRebels(s: GameState, scene: SceneBuilder): void {
-  ((s as any).MiraVars ?? {})['pimp'] = 2;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['pimp'] = 2;
   qspCall(s, 'prostitution_functions', 'set_gadukino_prostitute');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -131,9 +131,9 @@ function enterJustMira(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).temp_gadpro = Math.floor(Math.random() * 10) + 1;
     if (((s as any).temp_gadpro ?? 0) > 5) {
-      ((s as any).MiraVars ?? {})['prostitute'] = (((s as any).MiraVars ?? {})['prostitute'] ?? 0) + (1);
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['prostitute'] = ((s as any).MiraVars['prostitute'] ?? 0) + (1);
       if (((s as any).MiraVars ?? 0)?.['QW'] < 20) {
-        ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
+        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
       }
       scene.img('images/characters/gadukino/mira/miraprost.jpg');
       scene.text('It isn\'t long before a customer pulls up in a flashy car. Mira approaches the vehicle and starts talking to the driver.');
@@ -252,7 +252,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     scene.text('If you want, you can tell your clients a different name.');
     // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
-      ((s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
+      if (!(s as any).prostitute_names) (s as any).prostitute_names = {}; (s as any).prostitute_names[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
@@ -289,7 +289,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Remove the cum from your body (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).mc_inventory ?? {})['makeup_wipes'] = (((s as any).mc_inventory ?? {})['makeup_wipes'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
     (s as any).cumspclnt = 20;
     qspCall(s, 'cum_cleanup', '');
   }, goto: ['gad_prostitutes', 'work'] },

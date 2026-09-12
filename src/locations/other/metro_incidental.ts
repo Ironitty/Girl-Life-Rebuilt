@@ -9,14 +9,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  ((s as any).transportVars ?? {})['train_event_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_event_day'] = ((s as any).daystart ?? 0);
   if (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) < 7) {
-    ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 0;
+    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 2) + 0;
   } else {
     if ((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 16)  ||  (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22)) {
-      ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 1;
+      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 2) + 1;
     } else {
-      ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 2;
+      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 2) + 2;
     }
   }
   // TODO-QSP: gt 'metro_incidental', 'event<<temp_transportVars[''rand'']>>'

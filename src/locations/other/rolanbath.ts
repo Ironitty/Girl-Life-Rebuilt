@@ -68,7 +68,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowpreg ?? 0) !== 1  &&  ((s as any).mc_inventory ?? 0)?.['pregnancy_test'] > 0  &&  (((s as any).abortionbirthdate ?? 0) === 0  ||  ((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) > 100)) {
     scene.actions([
       { label: 'Do a pregnancy test', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['pregnancy_test'] = (((s as any).mc_inventory ?? {})['pregnancy_test'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['pregnancy_test'] = ((s as any).mc_inventory['pregnancy_test'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     if (((s as any).pregChem ?? 0) > 120) {
       (s as any).knowpreg = 1;
@@ -924,7 +924,7 @@ function enterSurprise(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).rolanknow = 1;
-    ((s as any).RolanLoc ?? {})[String((s as any).hour ?? 0)] = 6;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[String((s as any).hour ?? 0)] = 6;
     scene.text('<center><b>Surprise</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanheadbath1.jpg');
     scene.text('"Ah I see, your stepfather. That would make sense. He seems like a man who take cares of his property. But did he have the concrete, as well? I didn\'t have time to get any. But you fixed that crack in the wall?"');

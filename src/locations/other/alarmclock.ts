@@ -65,24 +65,24 @@ function enterClear(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTime(s: GameState, scene: SceneBuilder): void {
-  ((s as any).alarmVars ?? {})['alarmOn'] = 1;
+  if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['alarmOn'] = 1;
   if (((s as any).bud_weekend ?? 0) === 1) {
-    ((s as any).alarmVars ?? {})['timerEndH'] = ((s as any).bud1 ?? 0) * 10 + ((s as any).bud2 ?? 0);
-    ((s as any).alarmVars ?? {})['timerEndM'] = ((s as any).bud3 ?? 0) * 10 + ((s as any).bud4 ?? 0);
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndH'] = ((s as any).bud1 ?? 0) * 10 + ((s as any).bud2 ?? 0);
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndM'] = ((s as any).bud3 ?? 0) * 10 + ((s as any).bud4 ?? 0);
     if (((s as any).alarmVars ?? 0)?.['timerEndH'] > 23) {
-      ((s as any).alarmVars ?? {})['timerEndH'] = 0;
+      if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndH'] = 0;
     }
     if (((s as any).alarmVars ?? 0)?.['timerEndM'] > 60) {
-      ((s as any).alarmVars ?? {})['timerEndM'] = 0;
+      if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndM'] = 0;
     }
   } else {
-    ((s as any).alarmVars ?? {})['timerH'] = ((s as any).bud1 ?? 0) * 10 + ((s as any).bud2 ?? 0);
-    ((s as any).alarmVars ?? {})['timerM'] = ((s as any).bud3 ?? 0) * 10 + ((s as any).bud4 ?? 0);
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerH'] = ((s as any).bud1 ?? 0) * 10 + ((s as any).bud2 ?? 0);
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerM'] = ((s as any).bud3 ?? 0) * 10 + ((s as any).bud4 ?? 0);
     if (((s as any).alarmVars ?? 0)?.['timerH'] > 23) {
-      ((s as any).alarmVars ?? {})['timerH'] = 0;
+      if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerH'] = 0;
     }
     if (((s as any).alarmVars ?? 0)?.['timerM'] > 60) {
-      ((s as any).alarmVars ?? {})['timerM'] = 0;
+      if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerM'] = 0;
     }
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
@@ -312,11 +312,11 @@ function enter0(s: GameState, scene: SceneBuilder): void {
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bud_weekend ?? 0) === 1) {
-    ((s as any).alarmVars ?? {})['timerEndH'] = 0;
-    ((s as any).alarmVars ?? {})['timerEndM'] = 0;
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndH'] = 0;
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndM'] = 0;
   } else {
-    ((s as any).alarmVars ?? {})['timerH'] = 0;
-    ((s as any).alarmVars ?? {})['timerM'] = 0;
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerH'] = 0;
+    if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerM'] = 0;
   }
   (s as any).bud1 = 0;
   (s as any).bud2 = 0;

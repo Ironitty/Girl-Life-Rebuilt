@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0) {
     (s as any).knwn = qspUntranslated(s, "ARGS[1]", { location: "sexdvoe" });
     // TODO-QSP: :knownloop
-    ((s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
+    if (!(s as any).knownboy) (s as any).knownboy = {}; (s as any).knownboy[String((s as any).knwn ?? 0)] = 1;
     (s as any).knwn = ((s as any).knwn ?? 0) - (1);
     if (((s as any).knwn ?? 0) > 0) {
       // TODO-QSP: jump 'knownloop'

@@ -16,67 +16,67 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'core_library', 'setloc', 'pav_disco', '');
   (s as any).boynumBlock = 0;
-  ((s as any).stat ?? {})['last_disco'] = ((s as any).daystart ?? 0);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_disco'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'anushka_konstantinov_schedule', '');
   if (((s as any).social_check ?? 0)?.['disco'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6) {
-    ((s as any).social_check ?? {})['disco'] = ((s as any).daystart ?? 0);
+    if (!(s as any).social_check) (s as any).social_check = {}; (s as any).social_check['disco'] = ((s as any).daystart ?? 0);
     if (qspFunc(s, 'pcs_has_attr', 'clothes_pants_any')) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
       if (qspFunc(s, 'pcs_has_attr', 'clothes_quality_high')) {
-        ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
       }
     }
     if (qspFunc(s, 'pcs_has_attr', 'clothes_quality_low')) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
     } else {
       if (qspFunc(s, 'pcs_has_attr', 'clothes_quality_medium')) {
-        ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
       }
     }
     if (((s as any).PCloInhibit ?? 0) >= 35) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (3);
-      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
     } else {
       if (((s as any).PCloInhibit ?? 0) >= 20) {
-        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
       }
     }
     if (qspFunc(s, 'pcs_has_attr', 'shoes_quality_low')) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
     } else {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
     }
     if (qspFunc(s, 'pcs_has_attr', 'shoes_heels_flat')) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
     }
     if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_running')) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
-      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
-      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
     } else {
       if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_none')) {
-        ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
-        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (3);
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
       } else {
         if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_light')) {
-          ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
         } else {
           if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_moderate')) {
-            ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
           } else {
             if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_bimbo')) {
-              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (3);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (3);
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'cosmetics_makeup_goth')) {
-                ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (3);
-                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
               } else {
-                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-                ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
               }
             }
           }
@@ -192,12 +192,12 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
           scene.text('You\'re having a lot of fun out on the dance floor and barely pay attention to anyone else as you move around.');
         } else {
           if (((s as any).pcs_dancero ?? 0) <= 40) {
-            ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
             scene.text('You\'re having a lot of fun out on the dance floor, moving your body around in an erotic manner to the beat of the music.');
           } else {
-            ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (2);
-            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (2);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
             scene.text('You\'re having a lot of fun out on the dance floor, expertly moving your body around in a seductive manner to the beat of the music.');
           }
         }
@@ -218,12 +218,12 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
             scene.text('You\'re having a lot of fun out on the dance floor. You barely pay attention to anyone else as you move around on the dance floor, feeling a little buzzed.');
           } else {
             if (((s as any).pcs_dancero ?? 0) <= 40) {
-              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-              ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
               scene.text('You\'re having a lot of fun out on the dance floor and are dancing pretty well despite how buzzed you are. You move your body around in an erotic manner to the beat of the music.');
             } else {
-              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (2);
-              ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (2);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
               scene.text('You\'re having a lot of fun out on the dance floor. Most people would have a hard time telling you were buzzed as you expertly move your body around in a seductive manner to the beat of the music.');
             }
           }
@@ -244,12 +244,12 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
               scene.text('You\'re having a lot of fun out on the dance floor. You barely pay attention to anyone else as you move around on the dance floor, feeling a little tipsy.');
             } else {
               if (((s as any).pcs_dancero ?? 0) <= 40) {
-                ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                 scene.text('You\'re having a lot of fun out on the dance floor and are dancing pretty well despite how tipsy you are. You move your body around in an erotic manner to the beat of the music.');
               } else {
-                ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (2);
-                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
                 scene.text('You\'re having a lot of fun out on the dance floor. Most people would have a hard time telling you were tipsy as you expertly move your body in a seductive manner to the beat of the music.');
               }
             }
@@ -263,25 +263,25 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
               scene.text('You look around and smile. Nobody knows you\'re not wearing any panties and you feel a thrilling sensation rush through your body as you think about it.');
             }
             if (((s as any).pcs_danc ?? 0) <= 30) {
-              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (3);
-              ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (3);
-              ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
               scene.text('You\'re having a lot of fun out on the dance floor, even though you\'re a terrible dancer and being drunk doesn\'t help.');
               scene.text('Your awkward movements look more like a seizure than dancing, but you don\'t care. You\'re not paying attention to anyone else or even the music.');
             } else {
               if (((s as any).pcs_danc ?? 0) <= 60) {
-                ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
-                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (2);
-                ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+                if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
                 scene.text('You\'re having a lot of fun out on the dance floor. You barely pay attention to anyone else as you move around on the dance floor, feeling rather drunk.');
               } else {
                 if (((s as any).pcs_dancero ?? 0) <= 40) {
-                  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
                   scene.text('You\'re having a lot of fun out on the dance floor and are dancing pretty well despite how drunk you are. You move your body around in an erotic manner to the beat of the music');
                 } else {
-                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
                   scene.text('You\'re having a lot of fun out on the dance floor. Most people would have a hard time telling you were drunk as you expertly move your body in a seductive manner to the beat of the music.');
                 }
               }
@@ -294,26 +294,26 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
                 scene.text('<center><b>Disco</b></center>');
                 scene.img('images/locations/pavlovsk/community/disco/very_drunk_dance.mp4');
                 if (((s as any).pcs_danc ?? 0) <= 25) {
-                  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (6);
-                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (6);
-                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (2);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (6);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (6);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
                   scene.text('You\'re very drunk and forget that you don\'t have any panties on. As you awkwardly attempt to dance, you\'re too drunk to notice your skirt riding up, exposing your pussy to the observant people on the dance floor with you.');
                 } else {
                   if (((s as any).pcs_danc ?? 0) <= 40) {
-                    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
-                    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
-                    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (2);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
                     scene.text('You\'re very drunk and forget that you don\'t have any panties on. As you drunkenly dance around, your skirt rides up and exposes your pussy to the more observant people on the dance floor with you.');
                   } else {
                     if (((s as any).pcs_dancero ?? 0) <= 30) {
-                      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (4);
-                      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (4);
-                      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (2);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (4);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (4);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
                       scene.text('You\'re very drunk and forget that you don\'t have any panties on. You dance pretty well for how drunk you are, but are too drunk to notice your skirt riding up, exposing your pussy to the more observant people on the dance floor with you.');
                     } else {
-                      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (3);
-                      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (3);
-                      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (2);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
                       scene.text('You\'re very drunk and forget that you don\'t have any panties on.');
                       scene.text('Most people would have a hard time knowing you were very drunk as you expertly move your body around in a seductive manner, but you\'re too drunk to notice your skirt riding up, exposing your pussy to the more observant people on the dance floor with you.');
                     }
@@ -324,23 +324,23 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
                 scene.text('<center><b>Disco</b></center>');
                 scene.img('images/locations/pavlovsk/community/disco/very_drunk_dance.jpg');
                 if (((s as any).pcs_danc ?? 0) <= 25) {
-                  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (4);
-                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (4);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (4);
+                  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (4);
                   scene.text('You\'re very drunk, but are having a lot of fun out on the dance floor anyway. You\'re a terrible dancer, and being drunk doesn\'t help.');
                   scene.text('Your awkward movements look more like a seizure than dancing, but you don\'t care. You\'re not paying attention to anyone else or even the music.');
                 } else {
                   if (((s as any).pcs_danc ?? 0) <= 40) {
-                    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (3);
-                    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (3);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+                    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
                     scene.text('You\'re very drunk, but are having a lot of fun out on the dance floor anyway. As you dance around, you barely pay attention to anyone else.');
                   } else {
                     if (((s as any).pcs_dancero ?? 0) <= 30) {
-                      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (2);
-                      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (2);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
                       scene.text('You\'re very drunk, but are having a lot of fun out on the dance floor anyway. You dance pretty well for how drunk you are, and move your body around in an erotic manner to the beat of the music.');
                     } else {
-                      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-                      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+                      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
                       scene.text('You\'re very drunk, but are having a lot of fun out on the dance floor anyway. Most people would have a hard time knowing you were drunk as you expertly move your body around in a seductive manner to the beat of the music.');
                     }
                   }
@@ -348,9 +348,9 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'pav_disco', 'too_drunk_medium_chance');
               }
             } else {
-              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
-              ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
-              ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
+              if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
               scene.img('images/locations/pavlovsk/community/disco/wasted_dance.jpg');
               scene.text('You\'re far too drunk and are barely able to stay on your feet. You\'re mostly just drunkenly bumping into other people as you try and dance.');
               qspCall(s, 'pav_disco', 'too_drunk_high_chance');
@@ -470,22 +470,22 @@ function enterWallStand(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDancePartner(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['pav_disco_partner'] = Math.floor(Math.random() * 300) + 1;
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['pav_disco_partner'] = Math.floor(Math.random() * 300) + 1;
   if (((s as any).temp ?? 0)?.['pav_disco_partner'] > ((s as any).boynum ?? 0)  ||  (Object.keys((s as any).hookup_partners ?? {}).length === 0)) {
     qspCall(s, 'npcgeneratec', '', 0, 'guy from the disco', 0, Math.floor(Math.random() * 4) + 1, 1, 'like');
     if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((s as any).npc_age ?? 0)?.[String((s as any).npcID ?? 0)] < 26) {
-      ((s as any).npc_age ?? {})[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 20) + 26;
+      if (!(s as any).npc_age) (s as any).npc_age = {}; (s as any).npc_age[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 20) + 26;
     }
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).temp ?? {})['pav_disco_partner'] = Math.floor(Math.random() * 101) + 0;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['pav_disco_partner'] = Math.floor(Math.random() * 101) + 0;
     if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] < 2) {
       // TODO-QSP: dynamic text: A guy dressed in <<$npc_outfit[$npcID]>> dances his way over to you.
       scene.text(`A guy dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)]} dances his way over to you.`);
       if ((Math.floor(Math.random() * 101) + 0) > 70) {
-        ((s as any).temp ?? {})['drunk_guy'] = 1;
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['drunk_guy'] = 1;
         scene.text('He\'s clearly drunk.');
       } else {
-        ((s as any).temp ?? {})['drunk_guy'] = 0;
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['drunk_guy'] = 0;
       }
     } else {
       // TODO-QSP: dynamic text: A guy dressed in <<$npc_outfit[$npcID]>> dances his way over to you. His clothes...
@@ -722,7 +722,7 @@ function enterDanceBoy2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('<center><b>Disco</b></center>');
     if (((s as any).locArgs?.[1] ?? 0) === 'enjoy_react') {
-      ((s as any).temp ?? {})['disco_mood'] = 'enjoy_md';
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['disco_mood'] = 'enjoy_md';
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         qspCall(s, 'arousal_oneline', 'foreplay', 5);
         scene.img('images/shared/sex/grab/ass_grab1.mp4');
@@ -743,7 +743,7 @@ function enterDanceBoy2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'boring_react') {
-        ((s as any).temp ?? {})['disco_mood'] = 'bore_md';
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['disco_mood'] = 'bore_md';
       }
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         qspCall(s, 'arousal_oneline', 'foreplay', 5);
@@ -1006,7 +1006,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: $npc_residence[$npcID] = 'city_center'
-        ((s as any).npc_finance ?? {})[String((s as any).npcID ?? 0)] = 2;
+        if (!(s as any).npc_finance) (s as any).npc_finance = {}; (s as any).npc_finance[String((s as any).npcID ?? 0)] = 2;
         (s as any).bmtimeTipe = 2;
         (s as any).DrunkDPTrand = Math.floor(Math.random() * 101) + 0;
       }
@@ -1061,7 +1061,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'money', 'earn', 200);
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
     if (((s as any).stat ?? 0)?.['prostitution_count'] <= 10) {
@@ -1346,7 +1346,7 @@ function enterAlbinaTooDrunk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHookupAggressive(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hookup ?? {})['pickup'] = 'pav_disco';
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['pickup'] = 'pav_disco';
   qspCall(s, 'fame', 'pav', 'sex', 1);
   scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
   if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'city_center'  ||  ((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'city_residential') {
@@ -1425,7 +1425,7 @@ function enterHookupAggressive(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHookupNice(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hookup ?? {})['pickup'] = 'pav_disco';
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['pickup'] = 'pav_disco';
   scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
   // TODO-QSP: dynamic text: "Hey," <<$npcdesc>> says. "I had a really good time dancing with you tonight and...
   scene.text(`"Hey," ${((s as any).npcdesc ?? 0)} says. "I had a really good time dancing with you tonight and I was wondering... would you maybe want to come back to my place? I could get you a drink and maybe..."`);

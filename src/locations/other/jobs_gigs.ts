@@ -11,41 +11,41 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEvent(s: GameState, scene: SceneBuilder): void {
-  ((s as any).evt_transient ?? {})['type'] = qspUntranslated(s, "ARGS[1]", { location: "jobs_gigs" });
-  ((s as any).evt_transient ?? {})['subtype'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
-  ((s as any).evt_transient ?? {})['desc'] = ((s as any).locArgs?.[3] ?? 0);
-  ((s as any).evt_transient ?? {})['journal'] = ((s as any).locArgs?.[4] ?? 0);
-  ((s as any).evt_transient ?? {})['verbose'] = qspUntranslated(s, "ARGS[5]", { location: "jobs_gigs" });
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['type'] = qspUntranslated(s, "ARGS[1]", { location: "jobs_gigs" });
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['subtype'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['desc'] = ((s as any).locArgs?.[3] ?? 0);
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['journal'] = ((s as any).locArgs?.[4] ?? 0);
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['verbose'] = qspUntranslated(s, "ARGS[5]", { location: "jobs_gigs" });
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSetLocCode(s: GameState, scene: SceneBuilder): void {
-  ((s as any).evt_transient ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).evt_transient ?? {})['arg'] = ((s as any).locArgs?.[2] ?? 0);
-  ((s as any).evt_transient ?? {})['code'] = ((s as any).locArgs?.[3] ?? 0);
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['loc'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['arg'] = ((s as any).locArgs?.[2] ?? 0);
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['code'] = ((s as any).locArgs?.[3] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    ((s as any).evt_transient ?? {})['wage'] = 0;
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['wage'] = 0;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
-      ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 9) + 2) * 50;
+      if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['wage'] = (Math.floor(Math.random() * 9) + 2) * 50;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
-        ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 11) + 10) * 50;
+        if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['wage'] = (Math.floor(Math.random() * 11) + 10) * 50;
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {
-          ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 21) + 20) * 50;
+          if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['wage'] = (Math.floor(Math.random() * 21) + 20) * 50;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 4) {
-            ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 41) + 40) * 50;
+            if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['wage'] = (Math.floor(Math.random() * 41) + 40) * 50;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 5) {
-              ((s as any).evt_transient ?? {})['wage'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
+              if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['wage'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
             }
           }
         }
@@ -58,34 +58,34 @@ function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== '') {
-    ((s as any).evt_transient ?? {})['week_string'] = qspUntranslated(s, "ARGS[1]  else evt_transient['week_string']  = '1234567'", { location: "jobs_gigs" });
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['week_string'] = qspUntranslated(s, "ARGS[1]  else evt_transient['week_string']  = '1234567'", { location: "jobs_gigs" });
   }
   if (((s as any).locArgs?.[2] ?? 0) > 0  &&  ((s as any).locArgs?.[2] ?? 0) < 1440) {
-    ((s as any).evt_transient ?? {})['duration'] = ((s as any).ARGS ?? 0)[2];
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['duration'] = ((s as any).ARGS ?? 0)[2];
   }
   if (((s as any).locArgs?.[3] ?? 0) >= ((s as any).daystart ?? 0)) {
-    ((s as any).evt_transient ?? {})['search_day'] = ((s as any).ARGS ?? 0)[3];
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['search_day'] = ((s as any).ARGS ?? 0)[3];
   }
   if (((s as any).locArgs?.[4] ?? 0) >= ((s as any).evt_transient ?? 0)?.['search_day']) {
-    ((s as any).evt_transient ?? {})['search_limit'] = ((s as any).ARGS ?? 0)[4];
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['search_limit'] = ((s as any).ARGS ?? 0)[4];
   }
   if (((s as any).locArgs?.[5] ?? 0) > 0  &&  ((s as any).locArgs?.[5] ?? 0) < 1440) {
-    ((s as any).evt_transient ?? {})['start_time'] = ((s as any).ARGS ?? 0)[5];
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['start_time'] = ((s as any).ARGS ?? 0)[5];
   }
-  ((s as any).evt_transient ?? {})['time_overshoot'] = ((s as any).evt_transient ?? {})?.['duration'] + ((s as any).evt_transient ?? {})?.['start_time'] - 1380;
+  if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['time_overshoot'] = ((s as any).evt_transient ?? {})?.['duration'] + ((s as any).evt_transient ?? {})?.['start_time'] - 1380;
   if (((s as any).evt_transient ?? 0)?.['time_overshoot'] > 0) {
-    ((s as any).evt_transient ?? {})['start_time'] = (((s as any).evt_transient ?? {})['start_time'] ?? 0) - ((60 + ((s as any).evt_transient ?? {})?.['time_overshoot'] / 5 * 5));
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['start_time'] = ((s as any).evt_transient['start_time'] ?? 0) - ((60 + ((s as any).evt_transient ?? {})?.['time_overshoot'] / 5 * 5));
   }
   // TODO-QSP: :find_open_date_loop
   // TODO-QSP: gs 'time', 'to_date', evt_transient['search_day']
   if (((((s as any).evt_transient ?? 0)?.['week_string']).indexOf((((s as any).dateVars ?? 0)?.['week']))) + 1 <= 0) {
-    ((s as any).evt_transient ?? {})['search_day'] = (((s as any).evt_transient ?? {})['search_day'] ?? 0) + (1);
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['search_day'] = ((s as any).evt_transient['search_day'] ?? 0) + (1);
     if (((s as any).evt_transient ?? 0)?.['search_day'] <= ((s as any).evt_transient ?? 0)?.['search_limit']) {
       // TODO-QSP: jump 'find_open_date_loop'
     }
   } else {
-    ((s as any).evt_transient ?? {})['event_daystart'] = ((s as any).evt_transient ?? 0)?.['search_day'];
-    ((s as any).evt_transient ?? {})['event_dow'] = ((s as any).dateVars ?? 0)?.['week'];
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['event_daystart'] = ((s as any).evt_transient ?? 0)?.['search_day'];
+    if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['event_dow'] = ((s as any).dateVars ?? 0)?.['week'];
   }
   // TODO-QSP: end
   scene.build();
@@ -281,18 +281,18 @@ function enterDelEvt2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArrayInit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).evtVars ?? {})['verbose'] = qspUntranslated(s, "evt_verbose[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['event'] = qspUntranslated(s, "evt_event[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['event_sub'] = qspUntranslated(s, "evt_event_sub[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['dow'] = qspUntranslated(s, "evt_dow[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['starttime'] = qspUntranslated(s, "evt_starttime[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['duration'] = qspUntranslated(s, "evt_duration[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['wage'] = qspUntranslated(s, "evt_wages[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['journal'] = qspUntranslated(s, "evt_journal[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['loc'] = qspUntranslated(s, "evt_loc[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['loc_arg'] = qspUntranslated(s, "evt_loc_arg[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['content_code'] = qspUntranslated(s, "evt_content_code[ARGS[1]]", { location: "jobs_gigs" });
-  ((s as any).evtVars ?? {})['desc'] = qspUntranslated(s, "evt_desc[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['verbose'] = qspUntranslated(s, "evt_verbose[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['event'] = qspUntranslated(s, "evt_event[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['event_sub'] = qspUntranslated(s, "evt_event_sub[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['dow'] = qspUntranslated(s, "evt_dow[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['starttime'] = qspUntranslated(s, "evt_starttime[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['duration'] = qspUntranslated(s, "evt_duration[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['wage'] = qspUntranslated(s, "evt_wages[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['journal'] = qspUntranslated(s, "evt_journal[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['loc'] = qspUntranslated(s, "evt_loc[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['loc_arg'] = qspUntranslated(s, "evt_loc_arg[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['content_code'] = qspUntranslated(s, "evt_content_code[ARGS[1]]", { location: "jobs_gigs" });
+  if (!(s as any).evtVars) (s as any).evtVars = {}; (s as any).evtVars['desc'] = qspUntranslated(s, "evt_desc[ARGS[1]]", { location: "jobs_gigs" });
   // TODO-QSP: end
   scene.build();
 }

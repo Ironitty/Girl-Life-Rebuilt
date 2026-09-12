@@ -36,9 +36,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
         if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
-          ((s as any).nataliaQW ?? {})['library_day_check'] = ((s as any).daystart ?? 0);
+          if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day_check'] = ((s as any).daystart ?? 0);
           if ((!(Math.floor(Math.random() * 4) + 0))) {
-            ((s as any).nataliaQW ?? {})['library_day'] = ((s as any).daystart ?? 0);
+            if (!(s as any).nataliaQW) (s as any).nataliaQW = {}; (s as any).nataliaQW['library_day'] = ((s as any).daystart ?? 0);
           }
         }
         if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {

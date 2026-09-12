@@ -166,7 +166,7 @@ function enterProhorovSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     scene.img('images/characters/pavlovsk/school/girl/katja/kissing.jpg');
     scene.text('You pull Katja close and you begin to kiss each other, your tongues exploring each other\'s mouths as your hands roam over each other\'s bodies. You completely ignore Ivan.');
     qspCall(s, 'arousal', 'kiss', (-1), 'lesbian');
@@ -174,7 +174,7 @@ function enterProhorovSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 50) {
       scene.actions([
         { label: 'Kissing and more', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/morekissing.jpg');
     scene.text('You pull Katja close and you begin to kiss each other, your tongues exploring each other\'s mouths as your hands roam over each other\'s bodies. You completely ignore Ivan and start kissing her neck as you unbutton her top, exposing her naked breasts and kissing your way down to her breasts before you begin licking and sucking on her nipple.');
@@ -184,7 +184,7 @@ function enterProhorovSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 60  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 60) {
       scene.actions([
         { label: 'It\'s getting hot', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/nipplesuck.jpg');
     scene.text('Katja begins to unbutton your shirt and pulls it off you, forcing you to break contact with her breasts. Once your shirt is off, Katja immediately starts to kiss, lick and suck on your nipples and you bite your lower lip as you moan in pleasure. Ivan continues to watch as he rubs the large bulge in his pants.');
     qspCall(s, 'arousal', 'foreplay', (-1), 'lesbian');
@@ -192,7 +192,7 @@ function enterProhorovSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 70) {
       scene.actions([
         { label: 'Return to kissing', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/nakedkissing.jpg');
     scene.text('You pull her face up to yours and the two of you start kissing again. While your hands caress each other\'s breasts, Katja hooks one of her legs around yours and you become intertwined. You\'re so distracted that you don\'t even notice the heavy breathing coming from Ivan as he continues to watch.');
     qspCall(s, 'arousal', 'kiss', (-1), 'lesbian');
@@ -301,7 +301,7 @@ function enterProhorovSex(s: GameState, scene: SceneBuilder): void {
 
 function enterMarcusWait(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
   qspCall(s, 'npcStat', 'A146');
   qspCall(s, 'npcStat', 'A14', 'a');
   scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/marcuswait1.jpg');
@@ -390,7 +390,7 @@ function enterMarcusFirst(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You climb off Marcus and Katja takes your place. As she slowly lowers herself do...
     scene.text(`You climb off Marcus and Katja takes your place. As she slowly lowers herself down, you grab hold of his dick and line it up for her. As his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick starts to enter her, she inhales sharply and stops moving. After a few seconds, she lowers herself a bit more and then slowly starts to ride his cock, only taking about half his length inside her. You can't tell by her moans and groans how much she is enjoying herself, so to help out, you reach over and start rubbing her clit as she rides him slowly.`);
     if (((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 0) {
-      ((s as any).katjaQW ?? {})['marcus_pussy'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['marcus_pussy'] = 1;
     }
     qspCall(s, 'arousal', 'vaginal_finger_give', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'voyeur_sex', (-3), 'group');
@@ -400,25 +400,25 @@ function enterMarcusFirst(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/katvirg8.jpg');
     scene.text('With your fingers rubbing her clit, she sounds like she\'s enjoying it more now, so you lean over and start licking her clit as she continues riding Marcus. She moans even louder and seems to be enjoying it even more now, but she\'s still only taking about half his length and moving slowly.');
     if (((s as any).npc_vag ?? 0)?.['A14'] === 0) {
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) - (5);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) - (5);
       scene.text('After a few more minutes of this, she finally pulls up and off, you can see the blood on his dick from popping her cherry. She climbs off the bed and starts cleaning herself up. "No sorry I can\'t do it anymore, he is just too big and it hurts too much."');
       scene.text('Marcus smiles at her. "It\'s okay, we can try again some other time if you want." She bites her lower lip and nods. You can tell she\'s still turned on and wants to try again at some point.');
       scene.text('He reaches over and slaps you on the hip as he gets up on his knees. "Get up and turn around for me." He then reaches over to grab some tissues to clean the blood off his dick.');
     } else {
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
       scene.text('After a few more minutes of this, she finally pulls up and off of him, sitting on the bed beside the two of you. "No. Sorry, but I can\'t do it anymore! He\'s just too big!"');
       scene.text('Marcus smiles at her. "It\'s okay. We can try again some other time if you want." She bites her lower lip and nods. You can tell she\'s still turned on and wants to try again at some point.');
       scene.text('He reaches over and slaps you on the hip as he gets up on his knees. "Get up and turn around for me."');
     }
-    ((s as any).katjaQW ?? {})['horny'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
     if (((s as any).npc_vag ?? 0)?.['A14'] === 0) {
-      ((s as any).npc_vag ?? {})['A14'] = 20;
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = 20;
     } else {
       if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
       if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-        ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+        if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
       }
     }
     qspCall(s, 'arousal', 'cuni_give', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
@@ -503,13 +503,13 @@ function enterMarcusThreesome(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Katja straddles Marcus. As she slowly lowers herself down, you grab hold of his ...
     scene.text(`Katja straddles Marcus. As she slowly lowers herself down, you grab hold of his dick and line it up for her. As his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick starts to enter her, she inhales sharply and moans loudly. After a few seconds, she lowers herself a bit more and then slowly starts to ride his cock, only taking about half his length inside her. You reach over and start rubbing her clit as she rides him slowly before picking up the pace a little and going further down. It takes a few minutes, but she finally takes the full length of his shaft inside her.`);
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 0) {
-      ((s as any).katjaQW ?? {})['marcus_pussy'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['marcus_pussy'] = 1;
     }
     qspCall(s, 'arousal', 'vaginal_finger_give', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'voyeur_sex', (-3), ((s as any).npcID ?? 0), 'group');
@@ -520,10 +520,10 @@ function enterMarcusThreesome(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You keep rubbing her clit as she starts slamming herself down on him, moaning lo...
     scene.text(`You keep rubbing her clit as she starts slamming herself down on him, moaning louder and louder as she goes. She seems to really be enjoying herself, but just as it seems like she's starting to get close, Marcus suddenly lifts her off and places her gently aside. "You can't have all the fun. It's ${((s as any).pcs_nickname ?? 0)}'s turn." Katja gives a slightly pouty look before smiling.`);
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'vaginal_finger_give', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'voyeur_sex', (-3), 'group');
@@ -543,10 +543,10 @@ function enterMarcusThreesome(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/marcusmff/marcusmff3.jpg');
     scene.text('He slides his dick back in her and starts fucking her again. Since she\'s getting the dick again, you straddle her face and sit on her. She starts licking your wet pussy as you lean forward and start licking and sucking on her clit. You feel Marcus\'s stomach slam against the top of your head with each thrust he takes into Katja.');
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'cuni_give', (-3), ((s as any).npcID1 ?? 0), 'lesbian', 'group');
@@ -557,13 +557,13 @@ function enterMarcusThreesome(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/marcusmff/marcusmff4.jpg');
     scene.text('This continues for several minutes before Katja stops licking you and starts moaning loudly. You keep licking her clit as Marcus fucks her, her moans getting louder and louder until she finally cries out and her whole body shakes as she has an intense orgasm. He fucks her all the way through her orgasm and pulls out only once she stops shaking. He gets up to walk around you as Katja crawls out from under you, looking spent.');
     if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_vag ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
     }
-    ((s as any).katjaQW ?? {})['horny'] = 0;
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
     qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'cuni_give', (-3), ((s as any).npcID1 ?? 0), 'lesbian', 'group');
     qspCall(s, 'arousal', 'vaginal', (-3), ((s as any).npcID ?? 0), 'group');
@@ -649,16 +649,16 @@ function enterMarcusAftermatch(s: GameState, scene: SceneBuilder): void {
 function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
   qspCall(s, 'npcStat', 'A16', 'a');
-  ((s as any).NatbelQW ?? {})['training'] = (((s as any).NatbelQW ?? {})['training'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['training'] = ((s as any).NatbelQW['training'] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'adore');
   qspCall(s, 'npc_relationship', 'modify', 'A16', 'adore');
-  ((s as any).npc_had_sex ?? {})['A14'] = 1;
-  ((s as any).npc_had_sex ?? {})['A16'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A14'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A16'] = 1;
   if (((s as any).katjaQW ?? 0)?.['simultanous_girls'] < 2) {
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (10);
-    ((s as any).katjaQW ?? {})['simultanous_girls'] = 2;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_girls'] = 2;
   } else {
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
   }
   scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS6.jpg');
   scene.text('"Ok Slut, this is what is going to happen. You see cute little Katja here? Well, you are coming with us and will eat her pussy like there is no tomorrow. Do that and I will condone some of your debt. Understood?"');
@@ -706,7 +706,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Force the girls to eat you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS10.jpg');
     scene.text('You shove Natasha away and jump on the redhead who, faking surprise, lets your tongue ravage her mouth.');
     scene.text('"Now… Muach… you are… slurp… mine Katja! I am horny, so you two can do your job!"');
@@ -728,7 +728,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Your turn!', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS10.jpg');
     scene.text('You shove Natasha away and jump on the redhead who, faking surprise, lets your tongue ravage her mouth.');
     scene.text('"Now… Muach… you are… slurp… mine Katja! I am horny, so you two can do your job!"');
@@ -793,7 +793,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Force the girls to eat you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS10.jpg');
     scene.text('You shove Natasha away and jump on the redhead who, faking surprise, lets your tongue ravage her mouth.');
     scene.text('"Now… Muach… you are… slurp… mine Katja! I am horny, so you two can do your job!"');
@@ -816,7 +816,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'You', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS10.jpg');
     scene.text('You shove Natasha away and jump on the redhead who, faking surprise, lets your tongue ravage her mouth.');
     scene.text('"Now… Muach… you are… slurp… mine Katja! I am horny, so you two can do your job!"');
@@ -831,7 +831,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Too tired… cuddle with the girls', goto: ['katja_sex', 'katnatsex3'] },
       { label: 'Groaning help Katja', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS7.jpg');
     scene.text('You can only lick your lips as the ginger goddess smiles with grace and positions herself against the headboard. Then languidly, Katja opens her thighs so you can feast on her nectar, but as you kneel, the ginger grabs a spaced-out Natasha and makes her cuddle against her crotch.');
     // TODO-QSP: dynamic text: "Hm? Don't worry <<$pcs_nickname>>, Natasha is in good hands."
@@ -909,7 +909,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Natasha', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS8.jpg');
     scene.text('The redhead grabs Natasha and pushes her against the headboard. The nerd tries to get up, squirming under Katja\'s hands, but her weight immobilizes Natasha against the bed\'s headboard. At the same time, you force open Natasha\'s thighs. The nerd seems to be about to say something, but Katja stops her with a finger on the lips');
     // TODO-QSP: dynamic text: "Shh. Don't worry Natasha, you are too nervous. Let <<$pcs_nickname>> and I take...
@@ -948,7 +948,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
 function enterKatnatsex2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'arousal', 'voyeur', 5, 'lesbian');
-  ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
@@ -982,7 +982,7 @@ function enterKatnatsex2(s: GameState, scene: SceneBuilder): void {
 function enterKatnatsex3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'arousal', 'voyeur', 5, 'lesbian');
-  ((s as any).NatbelQW ?? {})['Debt'] = 0;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 0;
   qspCall(s, 'npc_relationship', 'modify', 'A14', (-5));
   if (((s as any).succubusflag ?? 0) === 1) {
     (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
@@ -1073,14 +1073,14 @@ function enterFirstFisting(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     if (((s as any).npc_vag ?? 0)?.['A14'] < 33) {
-      ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (3);
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (3);
     } else {
-      ((s as any).npc_vag ?? {})['A14'] = 36;
+      if (!(s as any).npc_vag) (s as any).npc_vag = {}; (s as any).npc_vag['A14'] = 36;
     }
-    ((s as any).katjaQW ?? {})['horny'] = 0;
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     if (((s as any).katjaQW ?? 0)?.['fisted_vag'] === 0) {
-      ((s as any).katjaQW ?? {})['fisted_vag'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['fisted_vag'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/home/fisting/fisting9.jpg');

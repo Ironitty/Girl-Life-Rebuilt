@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
-    ((s as any).sleepVars ?? {})['events_done'] = 0;
+    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 0  &&  ((s as any).MarishaQW ?? 0)?.['marisha_sleepover'] === 0) {
       // TODO-QSP: $sleep_events[] = "gs 'wakeup_events', 'mother_sextalk'"
     }
@@ -30,7 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).therapistQW ?? 0)?.['hotel_sleep_flag'] === 1) {
-      ((s as any).therapistQW ?? {})['hotel_sleep_flag'] = 0;
+      if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_sleep_flag'] = 0;
       // TODO-QSP: $sleep_events_priority[] = "gs 'therapist_home', 'wakeup'"
     }
     if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 8  &&  ((s as any).loc ?? 0) === 'natbelapt'  &&  ((s as any).loc_arg ?? 0) === 'natroom') {
@@ -75,7 +75,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['events_done'] = (((s as any).sleepVars ?? {})['events_done'] ?? 0) + (1);
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
   } else {
@@ -96,7 +96,7 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['events_done'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
   // TODO-QSP: end
@@ -104,7 +104,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sleepVars ?? {})['events_done'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_done'] = 0;
   scene.actions([{ label: 'Continue', goto: ['wakeup', 'get_out'] }]);
   // TODO-QSP: end
   scene.build();
@@ -140,9 +140,9 @@ function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
-  ((s as any).vomit ?? {})['morning_sick'] = 0;
-  ((s as any).vomit ?? {})['hangover'] = 0;
-  ((s as any).vomit ?? {})['unlucky'] = 0;
+  if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['morning_sick'] = 0;
+  if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['hangover'] = 0;
+  if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['unlucky'] = 0;
   // TODO-QSP: end
   scene.build();
 }
@@ -179,7 +179,7 @@ function enterMarishaEvMorning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   // TODO-QSP: dynamic text: You wake up feeling relaxed then look over to see Marisha already up. She gives ...
   scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname ?? 0)}. See you later." She then leaves as you continue getting up.`);
-  ((s as any).MarishaQW ?? {})['marisha_sleepover'] = 0;
+  if (!(s as any).MarishaQW) (s as any).MarishaQW = {}; (s as any).MarishaQW['marisha_sleepover'] = 0;
   qspCall(s, 'wakeup_events', 'event_end');
   // TODO-QSP: end
   scene.build();

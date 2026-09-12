@@ -19,8 +19,8 @@ function enterOnBookingMiss(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_obm_cost = 500;
   }
-  ((s as any).job_booking_debt ?? {})[String((s as any).temp_obm_job ?? 0)] = (((s as any).job_booking_debt ?? {})[String((s as any).temp_obm_job ?? 0)] ?? 0) + (((s as any).temp_obm_cost ?? 0));
-  ((s as any).job_last_miss_cost ?? {})[String((s as any).temp_obm_job ?? 0)] = ((s as any).temp_obm_cost ?? 0);
+  if (!(s as any).job_booking_debt) (s as any).job_booking_debt = {}; (s as any).job_booking_debt[String((s as any).temp_obm_job ?? 0)] = ((s as any).job_booking_debt[String((s as any).temp_obm_job ?? 0)] ?? 0) + (((s as any).temp_obm_cost ?? 0));
+  if (!(s as any).job_last_miss_cost) (s as any).job_last_miss_cost = {}; (s as any).job_last_miss_cost[String((s as any).temp_obm_job ?? 0)] = ((s as any).temp_obm_cost ?? 0);
   if (((s as any).job_booking_debt ?? 0)?.[String((s as any).temp_obm_job ?? 0)] > ((s as any).job_penalty_max_debt ?? 0)?.[String((s as any).temp_obm_job ?? 0)]) {
     // TODO-QSP: $job_termination_reason[$temp_obm_job] = 'blacklisted'
     qspCall(s, 'jobs', 'set_fired', ((s as any).temp_obm_job ?? 0));
@@ -38,10 +38,10 @@ function enterPornmiss(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).temp_pm_cost ?? 0))) {
     (s as any).temp_pm_cost = 500;
   }
-  ((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] = (((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] ?? 0) + (((s as any).temp_pm_cost ?? 0));
-  ((s as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = ((s as any).temp_pm_cost ?? 0);
+  if (!(s as any).job_booking_debt) (s as any).job_booking_debt = {}; (s as any).job_booking_debt['city_pornstudio_actress'] = ((s as any).job_booking_debt['city_pornstudio_actress'] ?? 0) + (((s as any).temp_pm_cost ?? 0));
+  if (!(s as any).job_last_miss_cost) (s as any).job_last_miss_cost = {}; (s as any).job_last_miss_cost['city_pornstudio_actress'] = ((s as any).temp_pm_cost ?? 0);
   if (((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] > ((s as any).job_penalty_max_debt ?? 0)?.['city_pornstudio_actress']) {
-    ((s as any).job_termination_reason ?? {})['city_pornstudio_actress'] = 'blacklisted';
+    if (!(s as any).job_termination_reason) (s as any).job_termination_reason = {}; (s as any).job_termination_reason['city_pornstudio_actress'] = 'blacklisted';
     qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_actress');
     (s as any).pfilmNO = 1;
   }
@@ -64,43 +64,43 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :moveschedule
   if (((s as any).porntaken ?? 0)[((s as any).days ?? 0)+1 + ',' + ((s as any).porns ?? 0)] === 0  &&  ((s as any).days ?? 0) >= 14) {
     if ((Math.floor(Math.random() * 100) + 1) === 1) {
-      ((s as any).pornplan ?? {})['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = 0;
+      if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = 0;
     }
   }
   if (((s as any).days ?? 0) === ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress']  ||  ((s as any).pornplan ?? 0)[((s as any).days ?? 0)+1 + ',' + ((s as any).porns ?? 0)] === 0) {
     (s as any).pornvariable = Math.floor(Math.random() * 91) + 0;
     if (((s as any).pornvariable ?? 0) <= 1) {
-      ((s as any).pornplan ?? {})['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = 14;
+      if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = 14;
     } else {
       if (((s as any).pornvariable ?? 0) <= 10) {
-        ((s as any).pornplan ?? {})['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 4) + 10;
+        if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 4) + 10;
       } else {
         if (((s as any).pornvariable ?? 0) <= 30) {
-          ((s as any).pornplan ?? {})['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 2) + 8;
+          if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 2) + 8;
         } else {
           if (((s as any).pornvariable ?? 0) <= 60) {
-            ((s as any).pornplan ?? {})['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 7) + 1;
+            if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 7) + 1;
           } else {
             if (((s as any).pornvariable ?? 0) <= 80) {
-              ((s as any).pornplan ?? {})['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 6) + 15;
+              if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = Math.floor(Math.random() * 6) + 15;
             } else {
-              ((s as any).pornplan ?? {})['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = 15;
+              if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days+1 || '') + ',' + String((s as any).porns || '') + ''] = 15;
             }
           }
         }
       }
     }
   }
-  ((s as any).pornplan ?? {})['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = ((s as any).pornplan ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
-  ((s as any).porntaken ?? {})['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = ((s as any).porntaken ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
+  if (!(s as any).pornplan) (s as any).pornplan = {}; (s as any).pornplan['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = ((s as any).pornplan ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
+  if (!(s as any).porntaken) (s as any).porntaken = {}; (s as any).porntaken['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = ((s as any).porntaken ?? 0)?.[String(((s as any).days ?? 0)+1) + ',' + String(((s as any).porns ?? 0))];
   if (((s as any).porntaken ?? 0)[((s as any).days ?? 0) + ',' + ((s as any).porns ?? 0)] === 0) {
     if ((Math.floor(Math.random() * (((s as any).days ?? 0)*3/2 - 1 + 1)) + (1)) === 1) {
-      ((s as any).porntaken ?? {})['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = 1;
+      if (!(s as any).porntaken) (s as any).porntaken = {}; (s as any).porntaken['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = 1;
     }
   }
   if (((s as any).porntaken ?? 0)[((s as any).days ?? 0) + ',' + ((s as any).porns ?? 0)] === 1) {
     if ((Math.floor(Math.random() * 100) + 1) === 1) {
-      ((s as any).porntaken ?? {})['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = 0;
+      if (!(s as any).porntaken) (s as any).porntaken = {}; (s as any).porntaken['' + String((s as any).days || '') + ',' + String((s as any).porns || '') + ''] = 0;
     }
   }
   if (((s as any).porns ?? 0) < 3) {
@@ -186,7 +186,7 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
   (s as any).m1 = ((s as any).month ?? 0);
   (s as any).ps_i = 1;
   // TODO-QSP: :pornopt
-  ((s as any).pcount ?? {})[String((s as any).ps_i ?? 0)] = ((s as any).ps_i ?? 0);
+  if (!(s as any).pcount) (s as any).pcount = {}; (s as any).pcount[String((s as any).ps_i ?? 0)] = ((s as any).ps_i ?? 0);
   (s as any).w1 = ((s as any).w1 ?? 0) + (1);
   if (((s as any).w1 ?? 0) > 7) {
     (s as any).w1 = 1;
@@ -288,7 +288,7 @@ function enterCanceling(s: GameState, scene: SceneBuilder): void {
   (s as any).m1 = ((s as any).month ?? 0);
   (s as any).ps_i = 1;
   // TODO-QSP: :nopornopt
-  ((s as any).pcount ?? {})[String((s as any).ps_i ?? 0)] = ((s as any).ps_i ?? 0);
+  if (!(s as any).pcount) (s as any).pcount = {}; (s as any).pcount[String((s as any).ps_i ?? 0)] = ((s as any).ps_i ?? 0);
   (s as any).w1 = ((s as any).w1 ?? 0) + (1);
   if (((s as any).w1 ?? 0) > 7) {
     (s as any).w1 = 1;
@@ -365,7 +365,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   scene.text(`<table border=0 cellpadding=1><tr><th colspan=7><b><i><font size=6 color="brown">${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)]}</font></i></b></th></tr>`);
   scene.text('<tr align="center"><th>   Monday    </th><th>   Tuesday   </th><th>Wednesday</th><th>  Thursday   </th><th>     Friday     </th><th>  Saturday   </th><th>    Sunday    </th></tr>');
   // TODO-QSP: :weekloop
-  ((s as any).selected ?? {})[String((s as any).p1 ?? 0)] = ((s as any).p1 ?? 0);
+  if (!(s as any).selected) (s as any).selected = {}; (s as any).selected[String((s as any).p1 ?? 0)] = ((s as any).p1 ?? 0);
   if (((s as any).w1 ?? 0) === 1) {
     scene.text('<tr>');
   }
@@ -401,9 +401,9 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).inversefilter ?? 0) === 1) {
     if (((s as any).datefilter ?? 0)[((s as any).selected ?? 0)?.[String((s as any).p1 ?? 0)]] === 1) {
-      ((s as any).datefilter ?? {})['' + String((s as any).selected[p1] || '') + ''] = 0;
+      if (!(s as any).datefilter) (s as any).datefilter = {}; (s as any).datefilter['' + String((s as any).selected[p1] || '') + ''] = 0;
     } else {
-      ((s as any).datefilter ?? {})['' + String((s as any).selected[p1] || '') + ''] = 1;
+      if (!(s as any).datefilter) (s as any).datefilter = {}; (s as any).datefilter['' + String((s as any).selected[p1] || '') + ''] = 1;
     }
   }
   if (((s as any).m1 ?? 0) === 1  &&  ((s as any).d1 ?? 0) >= 1  &&  ((s as any).d1 ?? 0) <= 8) {

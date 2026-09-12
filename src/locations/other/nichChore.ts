@@ -274,7 +274,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             return;
             scene.actions([
               { label: 'Comply', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Dominance'] = (((s as any).nichTanya ?? {})['Dominance'] ?? 0) + (2);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Dominance'] = ((s as any).nichTanya['Dominance'] ?? 0) + (2);
     scene.text('Once you are done cleaning up the first spot Tanya points you to another one. She obviously enjoys bossing you around, taking several opportunities to hit you on you butt again.');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.actions([
@@ -284,7 +284,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
               { label: 'Tell her to stop this', handler: (st: GameState) => {
-    ((s as any).nichTanya ?? {})['Dominance'] = (((s as any).nichTanya ?? {})['Dominance'] ?? 0) - (3);
+    if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Dominance'] = ((s as any).nichTanya['Dominance'] ?? 0) - (3);
     scene.text('She looks a little bit disappointed as you tell her that you are not in the mood for this right now and want to focus on your work.');
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
@@ -615,7 +615,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
     }
   }
-  ((s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = ((s as any).nichChoreResult ?? 0);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = ((s as any).nichChoreResult ?? 0);
   qspCall(s, 'stat', '');
   if ((!((s as any).nichChoreMode ?? 0))) {
     scene.actions([

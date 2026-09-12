@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
-  ((s as any).tempLCVars ?? {})['i'] = 0;
-  ((s as any).tempLCVars ?? {})['maxi'] = 0;
+  if (!(s as any).tempLCVars) (s as any).tempLCVars = {}; (s as any).tempLCVars['i'] = 0;
+  if (!(s as any).tempLCVars) (s as any).tempLCVars = {}; (s as any).tempLCVars['maxi'] = 0;
   if (((s as any).tempLCVars ?? 0)?.['maxi'] > 0) {
     // TODO-QSP: :loverloop2
     // TODO-QSP: gs 'lover_call', 'set_base_schedule', $lover[tempLCVars['i']], (rand(0, 2) = 0)
-    ((s as any).tempLCVars ?? {})['i'] = (((s as any).tempLCVars ?? {})['i'] ?? 0) + (1);
+    if (!(s as any).tempLCVars) (s as any).tempLCVars = {}; (s as any).tempLCVars['i'] = ((s as any).tempLCVars['i'] ?? 0) + (1);
     if (((s as any).tempLCVars ?? 0)?.['i'] < ((s as any).tempLCVars ?? 0)?.['maxi']) {
       // TODO-QSP: jump 'loverloop2'
     }
@@ -26,18 +26,18 @@ function enterScheduler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBaseSchedule(s: GameState, scene: SceneBuilder): void {
-  ((s as any).tempLCVars2 ?? {})['ID'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).tempLCVars2 ?? {})['type'] = qspUntranslated(s, "ARGS[2]", { location: "lover_call" });
+  if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['ID'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['type'] = qspUntranslated(s, "ARGS[2]", { location: "lover_call" });
   if (((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  ((((s as any).tempLCVars2 ?? 0)?.['ID']).length) > 1  &&  !isNaN(((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1))) && ((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1)) !== '') {
     if (((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'girlfriend') {
       // TODO-QSP: $tempLCVars2['OutCode'] = "gt 'lover_call', 'callingTheLover', '<<$tempLCVars2['ID']>>'"
-      ((s as any).tempLCVars2 ?? {})['OutSched'] = "((s as any).npc_meetday ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] < ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20";
+      if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['OutSched'] = "((s as any).npc_meetday ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] < ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20";
       if (((s as any).tempLCVars2 ?? 0)?.['type'] !== 0) {
         // TODO-QSP: $tempLCVars2['InCode'] = "gs 'lover_call', 'lover', '<<$tempLCVars2['ID']>>'"
-        ((s as any).tempLCVars2 ?? {})['InSched'] = "((s as any).totminut ?? 0) > ((s as any).totminut ?? 0) + (9 - ((s as any).hour ?? 0)) * 24 + (Math.floor(Math.random() * 601) + 0) - ((s as any).minut ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20";
+        if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['InSched'] = "((s as any).totminut ?? 0) > ((s as any).totminut ?? 0) + (9 - ((s as any).hour ?? 0)) * 24 + (Math.floor(Math.random() * 601) + 0) - ((s as any).minut ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20";
       } else {
-        ((s as any).tempLCVars2 ?? {})['InCode'] = '';
-        ((s as any).tempLCVars2 ?? {})['InSched'] = '0';
+        if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['InCode'] = '';
+        if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['InSched'] = '0';
       }
       // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', $tempLCVars2['ID'], $tempLCVars2['OutCode'], $tempLCVars2['OutSc...
       // TODO-QSP: gs 'telefon', 'SetInCallSchedule', $tempLCVars2['ID'], $tempLCVars2['InCode'], $tempLCVars2['InSched...
@@ -201,7 +201,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['parksvid', ''] },
     ]);
   } },
@@ -223,7 +223,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['billsvid', ''] },
     ]);
   } },
@@ -253,7 +253,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['kinosvid', ''] },
     ]);
   } },
@@ -271,7 +271,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['kafesvid', ''] },
     ]);
   } },
@@ -289,7 +289,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['kazinosvid', ''] },
     ]);
   } },
@@ -330,7 +330,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['svidboy', 'parksvid'] },
     ]);
   } },
@@ -352,7 +352,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['svidboy', 'billsvid'] },
     ]);
   } },
@@ -373,7 +373,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['svidboy', 'kinosvid'] },
     ]);
   } },
@@ -391,7 +391,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'wear_last_worn');
     }
     // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
-    ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_dates) (s as any).npc_dates = {}; (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }, goto: ['svidboy', 'kafesvid'] },
     ]);
   } },
@@ -405,7 +405,7 @@ function enterLover(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'lover_call', 'init_call4Date_lover', ((s as any).locArgs?.[1] ?? 0));
   (s as any).ring = 0;
-  ((s as any).call4Date ?? {})['lover_days'] = ((s as any).daystart ?? 0) - ((s as any).npc_eventday ?? 0)[((s as any).call4Date ?? {})?.['NPC']];
+  if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['lover_days'] = ((s as any).daystart ?? 0) - ((s as any).npc_eventday ?? 0)[((s as any).call4Date ?? {})?.['NPC']];
   qspCall(s, 'stat', '');
   qspCall(s, 'telefon', 'phone_call_receive');
   // TODO-QSP: gs 'telefon', 'ClearInCallSchedule', $call4Date["NPC"]
@@ -688,37 +688,37 @@ function enterNPCDate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'npcStat', $call4Date["NPC"]
   qspCall(s, 'mood', 'raise', 'tiny');
   // TODO-QSP: gs 'npc_relationship', 'modify', $call4Date["NPC"], rand(1, 2)
-  ((s as any).call4Date ?? {})['leave'] = 'killvar \'call4Date\' & ';
+  if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = 'killvar \'call4Date\' & ';
   if (((s as any).npc_gender ?? 0)[((s as any).call4Date ?? 0)?.['NPC']] === 0) {
     if (((s as any).call4Date ?? 0)?.['Location'] === 'city_park') {
-      ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateM\', \'datepark\' ');
+      if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateM\', \'datepark\' ');
     } else {
       if (((s as any).call4Date ?? 0)?.['Location'] === 'bar') {
-        ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateM\', \'datebar\' ');
+        if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateM\', \'datebar\' ');
       } else {
         if (((s as any).call4Date ?? 0)?.['Location'] === 'movie') {
-          ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateM\', \'datecinema\' ');
+          if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateM\', \'datecinema\' ');
         } else {
           if (((s as any).call4Date ?? 0)?.['Location'] === 'cafe') {
-            ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateM\', \'datecafe\' ');
+            if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateM\', \'datecafe\' ');
           } else {
-            ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateM\', \'datepark\' ');
+            if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateM\', \'datepark\' ');
           }
         }
       }
     }
   } else {
     if (((s as any).call4Date ?? 0)?.['Location'] === 'city_park') {
-      ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateF\', \'datepark\' ');
+      if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateF\', \'datepark\' ');
     } else {
       if (((s as any).call4Date ?? 0)?.['Location'] === 'bar') {
-        ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateF\', \'datebar\' ');
+        if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateF\', \'datebar\' ');
       } else {
         if (((s as any).call4Date ?? 0)?.['Location'] === 'movie') {
         } else {
           if (((s as any).call4Date ?? 0)?.['Location'] === 'cafe') {
           } else {
-            ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'dateF\', \'datepark\' ');
+            if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'dateF\', \'datepark\' ');
           }
         }
       }
@@ -733,7 +733,7 @@ function enterSvetaCallsNPC(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'phone_balance');
   qspCall(s, 'telefon', 'phone_call_receive');
   // TODO-QSP: call4Date["willAgree"] = (rand(0, 10) > 3)
-  ((s as any).call4Date ?? {})['leave'] = 'killvar \'call4Date\' & ';
+  if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = 'killvar \'call4Date\' & ';
   scene.text('"Yes, I\'m listening," says a voice from the speaker.');
   if (((s as any).month ?? 0) > 5  &&  ((s as any).temper ?? 0) > 20  &&  ((s as any).sunWeather ?? 0) === 1) {
     scene.actions([
@@ -744,11 +744,11 @@ function enterSvetaCallsNPC(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).call4Date ?? 0)?.['CallerName']}, "See you in the park in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
-    ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'city_park\' ');
+    if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'city_park\' ');
   } },
       ]);
     } else {
-      ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
+      if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
     }
   } },
     ]);
@@ -762,11 +762,11 @@ function enterSvetaCallsNPC(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).call4Date ?? 0)?.['CallerName']}, "See you at the bar in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
-    ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'bar\' ');
+    if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'bar\' ');
   } },
       ]);
     } else {
-      ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
+      if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
     }
   } },
     ]);
@@ -807,7 +807,7 @@ function enterSvetaCallsNPC(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s meet up."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'lover_call\', \'NPCCallsForDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + '');
+    if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'lover_call\', \'NPCCallsForDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + '');
   } },
     ]);
   } },
@@ -818,11 +818,11 @@ function enterSvetaCallsNPC(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).call4Date ?? 0)?.['CallerName']}, "See you at the movie theater in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
-    ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'movie\' ');
+    if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'movie\' ');
   } },
       ]);
     } else {
-      ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
+      if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
     }
   } },
     { label: 'Invite to the cafe', handler: (st: GameState) => {
@@ -832,11 +832,11 @@ function enterSvetaCallsNPC(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).call4Date ?? 0)?.['CallerName']}, "See you at the cafe in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
-    ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'cafe\' ');
+    if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gt \'lover_call\', \'NPCDate\', ' + qspUntranslated(s, "call4Date[\"ContactIndex\"]>", { location: "lover_call" }) + ', \'cafe\' ');
   } },
       ]);
     } else {
-      ((s as any).call4Date ?? {})['leave'] = (((s as any).call4Date ?? {})['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
+      if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = ((s as any).call4Date['leave'] ?? 0) + ('gs \'lover_call\', \'telotkaz\', \'' + qspUntranslated(s, "call4Date[\"CallerName\"]>", { location: "lover_call" }) + '\' ');
     }
   } },
     { label: 'Hangup', goto: ['lover_call', 'fin'] },
@@ -852,8 +852,8 @@ function enterNPCCallsForDate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $DateNickName[3] = 'baby'
   // TODO-QSP: $DateNickName[4] = 'hot stuff'
   // TODO-QSP: $DateNickName[5] = '<<$pcs_nickname>>'
-  ((s as any).call4Date ?? {})['SvetaName'] = ((s as any).DateNickName ?? 0)?.[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('DateNickName')-1)];
-  ((s as any).call4Date ?? {})['leave'] = 'killvar \'call4Date\' & ';
+  if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['SvetaName'] = ((s as any).DateNickName ?? 0)?.[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('DateNickName')-1)];
+  if (!(s as any).call4Date) (s as any).call4Date = {}; (s as any).call4Date['leave'] = 'killvar \'call4Date\' & ';
   // TODO-QSP: dynamic text: Hey <<$call4Date["SvetaName"]>>, it's me, <<$call4Date["CallerName"]>>. How's it...
   scene.text(`Hey ${((s as any).call4Date ?? 0)?.['SvetaName']}, it's me, ${((s as any).call4Date ?? 0)?.['CallerName']}. How's it going?`);
   // TODO-QSP: end

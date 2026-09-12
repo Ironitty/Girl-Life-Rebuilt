@@ -233,7 +233,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Show documents', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).BurgerQW ?? {})['BankTask'] = 2;
+    if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['BankTask'] = 2;
     qspCall(s, 'stat', '');
     scene.text('You enter the office and show the required documents to the manager.');
     scene.actions([
@@ -334,7 +334,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'npcgeneratec', '', 0, 'Mr. Karpenko, Loan Officer for VTB Bank', Math.floor(Math.random() * 7) + 21);
     // TODO-QSP: $npc_thdick[$npclastgenerated] = 'thick'
-    ((s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 21;
+    if (!(s as any).npc_dick) (s as any).npc_dick = {}; (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = 21;
     // TODO-QSP: $npc_firstname[$npclastgenerated] = 'Filip'
     // TODO-QSP: $npc_nickname[$npclastgenerated] = 'Mr. Karpenko'
     // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Karpenko'
@@ -464,7 +464,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
 
 function enterDepositCash(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = 100;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 100;
   }
   (s as any).kartaIN = 0;
   if (((s as any).kartaIN ?? 0) <= ((s as any).locArgs?.[1] ?? 0)  ||  ((s as any).kartaIN ?? 0) > ((s as any).money ?? 0)) {
@@ -484,10 +484,10 @@ function enterDepositCash(s: GameState, scene: SceneBuilder): void {
 
 function enterWithdrawCash(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = 0;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 0;
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    ((s as any).ARGS ?? {})[1] = 0;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 0;
   }
   (s as any).kartaOUT = 0;
   if (((s as any).kartaOUT ?? 0) <= ((s as any).locArgs?.[1] ?? 0)  ||  ((s as any).kartaOUT ?? 0) > ((s as any).karta ?? 0)) {
@@ -528,11 +528,11 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :kartaloop
     if (((s as any).kartatotal ?? 0) > 20000000) {
       (s as any).kartacount = ((s as any).kartacount ?? 0) + (1);
-      ((s as any).largekarta ?? {})[String((s as any).kartacount ?? 0)] = 20000000;
+      if (!(s as any).largekarta) (s as any).largekarta = {}; (s as any).largekarta[String((s as any).kartacount ?? 0)] = 20000000;
       (s as any).kartatotal = ((s as any).kartatotal ?? 0) - (20000000);
       // TODO-QSP: jump 'kartaloop'
     } else {
-      ((s as any).largekarta ?? {})[0] = ((s as any).kartatotal ?? 0);
+      if (!(s as any).largekarta) (s as any).largekarta = {}; (s as any).largekarta[0] = ((s as any).kartatotal ?? 0);
     }
     if (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) >= 2000000) {
       (s as any).intrate = 60;
@@ -546,7 +546,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :intloop
     if ((!((s as any).kartacount ?? 0))) {
       (s as any).smallmoneypos = ((s as any).smallmoneypos ?? 0) + ((((s as any).largekarta ?? 0)[0] * ((s as any).intrate ?? 0)));
-      ((s as any).largekarta ?? {})[0] = 0;
+      if (!(s as any).largekarta) (s as any).largekarta = {}; (s as any).largekarta[0] = 0;
       (s as any).kartacount = 0;
     } else {
       (s as any).smallmoneypos = ((s as any).smallmoneypos ?? 0) + ((((s as any).largekarta ?? 0)?.[String((s as any).kartacount ?? 0)] * ((s as any).intrate ?? 0)));
@@ -554,7 +554,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         (s as any).karta = ((s as any).karta ?? 0) + (((s as any).smallmoneypos ?? 0) / 1000000);
         (s as any).smallmoneypos = ((s as any).smallmoneypos ?? 0) % 1000000;
       }
-      ((s as any).largekarta ?? {})[String((s as any).kartacount ?? 0)] = 0;
+      if (!(s as any).largekarta) (s as any).largekarta = {}; (s as any).largekarta[String((s as any).kartacount ?? 0)] = 0;
       (s as any).kartacount = ((s as any).kartacount ?? 0) - (1);
       // TODO-QSP: jump 'intloop'
     }
@@ -621,7 +621,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <b><font color=green>Aunt Tamara gave you <<$func('money', 'string_profit', 1500...
         scene.text(`<b><font color=green>Aunt Tamara gave you ${qspFunc(s, 'money', 'string_profit', 15000)} for your efforts</font></b>`);
       }
-      ((s as any).mey_tamara ?? {})['help_count'] = 0;
+      if (!(s as any).mey_tamara) (s as any).mey_tamara = {}; (s as any).mey_tamara['help_count'] = 0;
     }
     if (((s as any).job_status ?? 0)?.['city_diner_secretary'] === 'employed'  &&  ((s as any).job_worked_count ?? 0)?.['city_diner_secretary'] > 0) {
       (s as any).pay = qspFunc(s, 'jobs', 'paycheck', 'city_diner_secretary', ((s as any).temp_pay_method ?? 0));

@@ -131,7 +131,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -166,7 +166,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
         { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -200,7 +200,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
           { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -236,7 +236,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
             { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;
@@ -272,7 +272,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
               { label: 'Agree', handler: (st: GameState) => {
     (s as any).borsexkol = ((s as any).borsexkol ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).bordelpay ?? 0));
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
     (s as any).bordelslutty = ((s as any).bordelslutty ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).zpprand = Math.floor(Math.random() * 101) + 0;

@@ -581,17 +581,17 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).soniaQW ?? 0)?.['sextime'] >= 3  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 3) {
-        ((s as any).soniaQW ?? {})['slut'] = 4;
-        ((s as any).soniaQW ?? {})['sextime'] = 0;
+        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 4;
+        if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = 0;
       } else {
         if (((s as any).soniaQW ?? 0)?.['sextime'] >= 5  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 4) {
-          ((s as any).soniaQW ?? {})['slut'] = 5;
-          ((s as any).soniaQW ?? {})['sextime'] = 0;
+          if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['slut'] = 5;
+          if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = 0;
         }
       }
       if (((s as any).soniasexrand ?? 0) === 1) {
         if (((s as any).soniaQW ?? 0)?.['slut'] < 5) {
-          ((s as any).soniaQW ?? {})['sextime'] = (((s as any).soniaQW ?? {})['sextime'] ?? 0) + (1);
+          if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = ((s as any).soniaQW['sextime'] ?? 0) + (1);
         }
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/school/bathroom/sex/soniabj.mp4');
@@ -660,7 +660,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
         if (((s as any).soniasexrand ?? 0) === 2) {
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
           if (((s as any).soniaQW ?? 0)?.['slut'] < 5) {
-            ((s as any).soniaQW ?? {})['sextime'] = (((s as any).soniaQW ?? {})['sextime'] ?? 0) + (1);
+            if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['sextime'] = ((s as any).soniaQW['sextime'] ?? 0) + (1);
           }
           qspCall(s, 'stat', '');
           scene.img('images/characters/pavlovsk/school/girl/sonia/sex/school/sonia.school1,\'+rand(0, 3)+\'.jpg');
@@ -1029,7 +1029,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'I just want to watch', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/alylav2.jpg');
     scene.text('You smile at them. "Oh, don\'t mind me. Just pretend I\'m not here. I thought I might be able to learn a thing or two."');
     scene.text('Lavrenti laughs a little. "Sure, whatever." He then turns his attention back to Alyona as she keeps sucking his dick.');
@@ -1202,7 +1202,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         qspCall(s, 'fame', 'pav', 'sex', 1);
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
         scene.text('You push the stall door open to get a better look. Lavrenti glances over and seems surprised to see you. Alyona also glances up and flips you off, but doesn\'t stop sucking Lavrenti\'s dick.');
         scene.text('Lavrenti gives you a dirty look. "What the fuck? Get lost, loser!" he shouts before he slams the stall door closed in your face.');
         scene.text('Knowing better than to try and spy again, you leave before things get worse.');
@@ -1256,7 +1256,7 @@ function enterAndreyCum(s: GameState, scene: SceneBuilder): void {
 function enterJoinAlylav(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A155', 2);
   qspCall(s, 'npc_relationship', 'modify', 'A143', 2);
-  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'npcStat', 'A155');
   qspCall(s, 'npcStat', 'A143', 'a');
@@ -1736,7 +1736,7 @@ function enterNakedBathroom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Tell her what happened', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (20);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (20);
     qspCall(s, 'npc_relationship', 'modify', 'A20', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A21', (-5));
     qspCall(s, 'npc_relationship', 'modify', 'A24', (-5));

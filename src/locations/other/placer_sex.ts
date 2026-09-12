@@ -74,8 +74,8 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
     scene.text('Once they have you naked, you hear the guys discussing among one another: "Alright, we got her here… that was easy! Whose turn is it to go first?"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).guy = ((s as any).guy ?? 0) + (((s as any).placerParameter ?? 0)?.['number_of_man']);
     (s as any).ciklkm = ((s as any).placerParameter ?? 0)?.['number_of_man'];
@@ -516,7 +516,7 @@ function enterPiano(s: GameState, scene: SceneBuilder): void {
     (s as any).sexpartkno = 1;
     (s as any).spafinloc = 3;
     qspCall(s, 'cum_manage', '');
-    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     qspCall(s, 'npcgeneratec', '', 0, 'Guy from the park', Math.floor(Math.random() * 18) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).sexpartkno = 1;
@@ -1032,7 +1032,7 @@ function enterCardSex(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).boydesc2 ?? 0)} eagerly rubs his cock against your wet folds, and thoroughly enjoys teasing you in this position. Meanwhile, his friend moves in front of you and says: "Don't worry baby, you can suck on this one" while he offers you his dick instead. You happily close your lips around his erection, and passionately begin to suck him off. You'll show ${((s as any).boydesc2 ?? 0)}… he's going to regret moving away from your mouth! ${((s as any).boydesc2 ?? 0)} decides in turn that he has teased you enough, and slowly slides his cock inside you.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     (s as any).spafinloc = 12;
     qspCall(s, 'cum_manage', '');
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -1193,7 +1193,7 @@ function enterCardStript(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     (s as any).sexpartkno = 1;
     (s as any).spafinloc = 11;
     qspCall(s, 'cum_manage', '');
@@ -1559,7 +1559,7 @@ function enterSleepSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     (s as any).vaginalOrgasm = ((s as any).vaginalOrgasm ?? 0) + (1);
-    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     (s as any).spafinloc = 12;
     qspCall(s, 'cum_manage', '');
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
@@ -1769,7 +1769,7 @@ function enterStay(s: GameState, scene: SceneBuilder): void {
 
 function enterSleep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shortgs', 'autosave');
-  ((s as any).sleepVars ?? {})['notathomesleep'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['notathomesleep'] = 0;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5);
   (s as any).pcs_hairbsh = 0;
   (s as any).inSleep = 1;
@@ -1789,7 +1789,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
     scene.text('Your make-up got smeared all over your face while you slept. You realize you really should\'ve removed it before going to bed, your skin ages much faster if you don\'t take good care of it.');
   }
   if (((s as any).fat ?? 0) > 5  &&  ((s as any).stringimplant ?? 0) === 1) {
-    ((s as any).bodyVars ?? {})['bust_silicone'] = (((s as any).bodyVars ?? {})['bust_silicone'] ?? 0) + (1);
+    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) + (1);
     (s as any).fat = ((s as any).fat ?? 0) - (5);
   }
   scene.text('You have a good night\'s rest. You did not dream of anything.');
@@ -1952,7 +1952,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mood = 0;
     (s as any).pcs_horny = 0;
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 2);
-    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 2);
     (s as any).facial = ((s as any).facial ?? 0) + (2);
     (s as any).guy = ((s as any).guy ?? 0) + (5);
@@ -1966,7 +1966,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'boyStat', $rapist[5]
     (s as any).spafinloc = 12;
     qspCall(s, 'cum_manage', '');
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     (s as any).vgape = 3;
     (s as any).agape = 3;
     qspCall(s, 'stat', '');
@@ -2047,7 +2047,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'huge');
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 2);
-    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     (s as any).guy = ((s as any).guy ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
@@ -2063,7 +2063,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'boyStat', $rapist[5]
     (s as any).spafinloc = 11;
     qspCall(s, 'cum_manage', '');
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     (s as any).vaginalOrgasm = ((s as any).vaginalOrgasm ?? 0) + (1);
     (s as any).DPorgasm = ((s as any).DPorgasm ?? 0) + (1);
     (s as any).vgape = 3;
@@ -2414,7 +2414,7 @@ function enterSleepingParkAlcoRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).cumprecheck = 1;
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'clothing', 'strip');
     qspCall(s, 'underwear', 'remove');

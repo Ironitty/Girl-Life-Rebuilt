@@ -14,7 +14,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
   if ((Math.floor(Math.random() * 10) + 1) === 1  &&  ((s as any).anushkaQW ?? 0)?.['dreams'] < 3  &&  ((s as any).anushkaQW ?? 0)?.['dreams_daystart'] > ((s as any).daystart ?? 0) + 7) {
-    ((s as any).anushkaQW ?? {})['dreams_daystart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dreams_daystart'] = ((s as any).daystart ?? 0);
     scene.actions([{ label: 'Continue', goto: ['anushka_dreams', 'dreams'] }]);
   } else {
     scene.text('The two of you sit on her bed and talk about a variety of topics.');
@@ -75,7 +75,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['radspy'] === 1) {
       scene.actions([
         { label: 'Ask about her hooking up with Radomir', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['rad_date'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['rad_date'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -127,7 +127,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['marspy'] === 1) {
       scene.actions([
         { label: 'Ask about her hooking up with Marcus', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['marspyknow'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['marspyknow'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -199,10 +199,10 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('You notice the clothes scattered around her room. Some are hanging up, others are draped over chairs while a few are lying on the floor. They\'re all of a similar style and you\'re curious where she gets them. None of the local stores carry clothes like the ones she wears, and you rarely even see them much in the city.  "Hey Nush, where do you buy your clothes? Online?"');
     scene.text('"Dolls, well Patchwork Dolls to be exact. It\'s near the university in the city." She proceeds to tell you how to find the place.');
     if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
-      ((s as any).anushkaQW ?? {})['dolls'] = 2;
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dolls'] = 2;
       scene.text('"If you stop by, tell Savva or Viola that I said they still owe me a round from the last time."');
     } else {
-      ((s as any).anushkaQW ?? {})['dolls'] = 2;
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['dolls'] = 2;
       scene.text('You tell her you\'ve been there before and she smiles. "Next time you\'re there, tell them that they still owe me a round."');
     }
     scene.actions([
@@ -220,7 +220,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['about_alyona'] === 0) {
       scene.actions([
         { label: 'Ask about Alyona', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['about_alyona'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['about_alyona'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -239,7 +239,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A144'] >= 60  &&  ((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).anushkaQW ?? 0)?.['vs_niko'] === 0) {
       scene.actions([
         { label: 'Ask for help with Niko', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['vs_niko'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['vs_niko'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -280,7 +280,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['model'] >= 1) {
       scene.actions([
         { label: 'Ask about modeling', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['model_referral'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model_referral'] = 1;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
@@ -290,7 +290,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         { label: 'Do something else', goto: ['anush_bedroom', 'anushroom'] },
       ]);
     } else {
-      ((s as any).anushkaQW ?? {})['model_referral'] = 1;
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model_referral'] = 1;
       scene.text('Knowing she\'s a model, you decide to ask her about it. "I was in the city and saw your photo album at Aphrodite…"');
       scene.text('She laughs. "Did you like what you saw?" she asks rather lewdly and nudges you in the side.');
       scene.text('You shake your head, but she has a nice laptop and a lot of clothes, as well as tattoos. None of these are cheap. "Does modeling pay well?"');
@@ -332,11 +332,11 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).anushkaQW ?? {})['kiss_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['kiss_day'] = ((s as any).daystart ?? 0);
     if (((s as any).anushkaQW ?? 0)?.['kiss'] <= 0) {
-      ((s as any).anushkaQW ?? {})['kiss'] = 1;
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['kiss'] = 1;
     } else {
-      ((s as any).anushkaQW ?? {})['kiss'] = (((s as any).anushkaQW ?? {})['kiss'] ?? 0) + (1);
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['kiss'] = ((s as any).anushkaQW['kiss'] ?? 0) + (1);
     }
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/brtkiss.jpg');
@@ -347,7 +347,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).anushkaQW ?? 0)?.['kiss'] > 5) {
         scene.actions([
           { label: 'Make out', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['sveta_love'] = (((s as any).anushkaQW ?? {})['sveta_love'] ?? 0) + (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sveta_love'] = ((s as any).anushkaQW['sveta_love'] ?? 0) + (1);
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/brtmakeout.jpg');
     scene.text('She wraps her arms around your neck and pulls you in close. The two of you are soon kissing passionately, the kisses full of eager lust and urgent need as you feel yourself getting more and more aroused.');
@@ -443,7 +443,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     if (((s as any).artemQW ?? 0)?.['nush3some'] === 0) {
-      ((s as any).artemQW ?? {})['nush3some'] = 1;
+      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some'] = 1;
       scene.text('You glance over at her. "I talked to Artem about a threesome and… he\'s up for it."');
       scene.text('She giggles. "Of course he is. Boys are so predictable."');
       scene.text('You briefly consider telling her how the conversation really went, but decide against it. She might tease Artem about it and you\'d like your boyfriend and friend get along, so you just agree with her and the two of you start talking about possible days and times.');
@@ -468,7 +468,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     if (((s as any).artemQW ?? 0)?.['rough_anal_nush'] === 2  ||  ((s as any).anushkaQW ?? 0)?.['artem_dom'] >= 1) {
-      ((s as any).artemQW ?? {})['nush3some_again'] = 3;
+      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 3;
       scene.text('You glance over at her. "I talked to Artem about having another threesome and… he wants to do it again."');
       scene.text('She giggles softly. "Yeah, I bet he does." She looks thoughtful for a moment. "I have to admit he really surprised me. He was way better than I was expecting and there was something about a nerd using me for his pleasure that was kind of a turn on."');
       scene.text('You giggle. "I know, right? Him getting all rough and dominant was a big turn on for me too."');
@@ -481,7 +481,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).artemQW ?? 0)?.['rough_anal_nush'] === 1) {
-      ((s as any).artemQW ?? {})['nush3some_again'] = 3;
+      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 3;
       scene.text('You glance over at her. "I talked to Artem about having another threesome and… he wants to do it again."');
       scene.text('Anushka giggles softly. "Yeah I bet he does." She looks thoughtful for a moment. "I have to admit he wasn\'t bad, not as bad as I was expecting anyway."');
       scene.text('She glances at you and looks you right in the eye. "Are you up for this?"');
@@ -505,7 +505,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).artemQW ?? {})['nush3some_again'] = 3;
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 3;
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -542,7 +542,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     if (((s as any).artemQW ?? 0)?.['rough_anal_nush'] === 2  ||  ((s as any).anushkaQW ?? 0)?.['artem_dom'] >= 1) {
-      ((s as any).artemQW ?? {})['nush3some_again'] = 5;
+      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 5;
       scene.text('You glance over at her. "I talked to Artem about having another threesome and… he\'s wants to do it again."');
       scene.text('She giggles softly. "Yeah, I bet he does." She looks thoughtful for a moment. "I have to admit, he really surprised me. He was way better than I was expecting and there was something about a nerd using me for his pleasure that was kind of a turn on."');
       scene.text('You giggle. "I know, right? Him getting all rough and dominant was a big turn on for me too."');
@@ -555,7 +555,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).artemQW ?? 0)?.['rough_anal_nush'] === 1) {
-        ((s as any).artemQW ?? {})['nush3some_again'] = 5;
+        if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 5;
         scene.text('You glance over at her. "I talked to Artem about having another threesome and… he\'s wants to do it again."');
         scene.text('She giggles softly. "Yeah, I bet he does." She looks thoughtful for a moment. "I have to admit, he wasn\'t bad. Not as bad as I was expecting anyway, but not as good as I like either."');
         scene.text('She glances at you and looks you right in the eye. "Are you up for this?"');
@@ -572,7 +572,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
         scene.text('You start to try and convince her, but she quickly interrupts you. "Noast time I let you talk me into this again and I regretted it, just drop it ok?"');
         scene.actions([
           { label: 'Drop it', handler: (st: GameState) => {
-    ((s as any).artemQW ?? {})['nush3some_again'] = (-1);
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = (-1);
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You frown but nod. You knew this would be a bit of a long shot, but it appears that she was more disappointed than you thought.');
@@ -594,7 +594,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     if (((s as any).artemQW ?? 0)?.['rough_anal_nush'] === 2  ||  ((s as any).anushkaQW ?? 0)?.['artem_dom'] >= 1) {
-      ((s as any).artemQW ?? {})['nush3some_again'] = 7;
+      if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = 7;
       scene.text('You glance over at her. "Artem and I talked again, and we both really enjoyed having fun with you last time."');
       scene.text('She giggles softly. "Yeah, I had fun too. Way more fun than I ever would have expected out of him."');
       scene.text('You smile at her. "Us as well, especially Artem. He really enjoyed fucking you like a slut and treating you like his bitch and well, we\'d like to make this a regular thing."');
@@ -613,7 +613,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       scene.text('You start to try and convince her, but she quickly interrupts you. "Sorry, but no. Last time I let you talk me into this again, I regretted it. Just drop it, okay?"');
       scene.actions([
         { label: 'Drop it', handler: (st: GameState) => {
-    ((s as any).artemQW ?? {})['nush3some_again'] = (-1);
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_again'] = (-1);
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You frown, but nod. You knew this would be a bit of a long shot, but it appears that she was more disappointed than you thought.');
@@ -738,7 +738,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Ask about the band', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+    if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['practice_invite'] = 1;
     qspCall(s, 'calendar', 'add', 'band_practice_event');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -893,10 +893,10 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Maybe', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 4;
-    ((s as any).anushkaQW ?? {})['sveta_love'] = (((s as any).anushkaQW ?? {})['sveta_love'] ?? 0) + (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sveta_love'] = ((s as any).anushkaQW['sveta_love'] ?? 0) + (1);
     if (((s as any).anushkaQW ?? 0)?.['kiss_day'] !== ((s as any).daystart ?? 0)) {
-      ((s as any).anushkaQW ?? {})['kiss_day'] = ((s as any).daystart ?? 0);
-      ((s as any).anushkaQW ?? {})['kiss'] = (((s as any).anushkaQW ?? {})['kiss'] ?? 0) + (1);
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['kiss_day'] = ((s as any).daystart ?? 0);
+      if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['kiss'] = ((s as any).anushkaQW['kiss'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
     qspCall(s, 'arousal', 'end');
@@ -940,7 +940,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhotoChat(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['photoshoot'] = 1;
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['photoshoot'] = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -951,7 +951,7 @@ function enterPhotoChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['model'] >= 1) {
     scene.text('You nod. "Deal."');
   } else {
-    ((s as any).anushkaQW ?? {})['model'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['model'] = 1;
     scene.text('You do a bit of a double take. "Wait, what? Your modelling portfolio?"');
     scene.text('She giggles at your reaction. "Yeah, I model at a place called Aphrodite in the city."');
     scene.text('You\'re a little surprised that you hadn\'t heard about this until now. "Oh. Uh yeah, sure I can do that."');
@@ -1030,7 +1030,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Maybe', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).anushkaQW ?? {})['fedor_3some'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['fedor_3some'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -1043,7 +1043,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'I\'ll ask him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).anushkaQW ?? {})['fedor_3some'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['fedor_3some'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -1126,7 +1126,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
         { label: 'Maybe', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-    ((s as any).artemQW ?? {})['nush3some_ask'] = 1;
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_ask'] = 1;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -1140,7 +1140,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
         { label: 'I\'ll ask him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-    ((s as any).artemQW ?? {})['nush3some_ask'] = 1;
+    if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['nush3some_ask'] = 1;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
@@ -1276,7 +1276,7 @@ function enterRadval(s: GameState, scene: SceneBuilder): void {
 
 function enterTellAboutOlu(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  ((s as any).OluQW ?? {})['tell'] = 1;
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['tell'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
   if (((s as any).anushkaQW ?? 0)?.['marspyknow'] === 1) {
@@ -1339,7 +1339,7 @@ function enterTellAboutOlu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInviteOlu(s: GameState, scene: SceneBuilder): void {
-  ((s as any).OluQW ?? {})['nush_inv'] = 1;
+  if (!(s as any).OluQW) (s as any).OluQW = {}; (s as any).OluQW['nush_inv'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
@@ -1358,7 +1358,7 @@ function enterInviteOlu(s: GameState, scene: SceneBuilder): void {
 
 function enterTellAboutDjibril(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  ((s as any).DjibrilQW ?? {})['tell'] = 1;
+  if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['tell'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
   scene.text('You smile as you look at her, which perks her interest. "Remember when I told you about Olu?" you ask and she nods while arching a brow.');
@@ -1427,7 +1427,7 @@ function enterTellAboutDjibril(s: GameState, scene: SceneBuilder): void {
 
 function enterTellAboutDjibril1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  ((s as any).DjibrilQW ?? {})['tell'] = 1;
+  if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['tell'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
   scene.text('You smile as you look at her, which perks her interest. "Remember when I told you about Olu, my aunt\'s boyfriend?" you ask and she nods while arching a brow slightly.');
@@ -1495,7 +1495,7 @@ function enterTellAboutDjibril1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInviteDjibril(s: GameState, scene: SceneBuilder): void {
-  ((s as any).DjibrilQW ?? {})['nush_inv'] = 1;
+  if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['nush_inv'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
@@ -1513,7 +1513,7 @@ function enterInviteDjibril(s: GameState, scene: SceneBuilder): void {
 
 function enterTellAboutDjibrilGangbang(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  ((s as any).DjibrilQW ?? {})['tell'] = 2;
+  if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['tell'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
   scene.text('You smile as you look at her, which perks her interest. "Remember when I told you about Djibril?" you ask and she nods while arching a brow slightly.');
@@ -1549,7 +1549,7 @@ function enterTellAboutDjibrilGangbang(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterInviteDjibrilGangbang(s: GameState, scene: SceneBuilder): void {
-  ((s as any).DjibrilQW ?? {})['nush_inv'] = 2;
+  if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['nush_inv'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
@@ -1608,7 +1608,7 @@ function enterPhotoshoot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhotoshoot1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anushkaQW ?? {})['photoshoot'] = (((s as any).anushkaQW ?? {})['photoshoot'] ?? 0) + (1);
+  if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['photoshoot'] = ((s as any).anushkaQW['photoshoot'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'stat', '');
@@ -1678,7 +1678,7 @@ function enterPhotoshoot1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Final photos', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
-    ((s as any).portfolio_people ?? {})[5] = 1;
+    if (!(s as any).portfolio_people) (s as any).portfolio_people = {}; (s as any).portfolio_people[5] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/pc/activities/photography/foto/people/5.jpg');
     scene.text('She sits in a variety of poses, some fully exposed and others not before you finally you think you have it. She\'s sitting on the outside of the fire escape, her knees together and ankles crossed with her arms wrapped around her knees, her nudity almost completely covered by her own body. Yet she looks so happy and alive, with a bustling Pavlovsk behind her. It\'s the perfect image for your portfolio.');

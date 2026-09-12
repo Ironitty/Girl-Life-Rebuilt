@@ -498,7 +498,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
       scene.actions([
         { label: 'Go to your Patient Care 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'patient_care_101'] },
       ]);
@@ -507,7 +507,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         scene.actions([
           { label: 'Go to your Anatomy and Physiology 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'anatomy_and_physiology_101'] },
         ]);
@@ -515,7 +515,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         scene.actions([
           { label: 'Go to your Examination and Treatment 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'examination_and_treatment_101'] },
         ]);
@@ -527,7 +527,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         scene.actions([
           { label: 'Go to your Patient Care 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'patient_care_102'] },
         ]);
@@ -536,7 +536,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your Anatomy and Physiology 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'anatomy_and_physiology_102'] },
           ]);
@@ -544,7 +544,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your Examination and Treatment 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'examination_and_treatment_102'] },
           ]);
@@ -556,7 +556,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your Patient Care 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'patient_care_201'] },
           ]);
@@ -565,7 +565,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your Anatomy and Physiology 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'anatomy_and_physiology_201'] },
             ]);
@@ -573,7 +573,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your Dosages and Pharmaceuticals 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'dosages_and_pharmaceuticals_101'] },
             ]);
@@ -584,7 +584,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your Patient Care 202 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'patient_care_202'] },
           ]);
@@ -593,7 +593,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your Anatomy and Physiology 202 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'anatomy_and_physiology_202'] },
             ]);
@@ -601,7 +601,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your Dosages and Pharmaceuticals 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'dosages_and_pharmaceuticals_102'] },
             ]);
@@ -629,7 +629,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Go to your General Education 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'general_education_101'] },
       ]);
@@ -637,7 +637,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Go to your Teaching Methods 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'teaching_methods_101'] },
       ]);
@@ -648,7 +648,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
         scene.actions([
           { label: 'Go to your General Education 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'general_education_102'] },
         ]);
@@ -656,7 +656,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
         scene.actions([
           { label: 'Go to your Teaching Methods 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'teaching_methods_102'] },
         ]);
@@ -667,7 +667,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your General Education 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'general_education_201'] },
           ]);
@@ -675,7 +675,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your Assessment_201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'assessment_201'] },
           ]);
@@ -686,7 +686,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             scene.actions([
               { label: 'Go to your General education 202 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'general_education_202'] },
             ]);
@@ -694,7 +694,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             scene.actions([
               { label: 'Go to your Assessment_201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (9 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['first'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['first'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'learning_theories_202'] },
             ]);
@@ -735,7 +735,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Go to your Anatomy and Physiology 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'anatomy_and_physiology_101'] },
       ]);
@@ -743,7 +743,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Go to your Patient Care 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'patient_care_101'] },
       ]);
@@ -754,7 +754,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
         scene.actions([
           { label: 'Go to your Anatomy and Physiology 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'anatomy_and_physiology_102'] },
         ]);
@@ -762,7 +762,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
         scene.actions([
           { label: 'Go to your Patient Care 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'patient_care_102'] },
         ]);
@@ -773,7 +773,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your Anatomy and Physiology 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'anatomy_and_physiology_201'] },
           ]);
@@ -781,7 +781,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your Patient Care 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'patient_care_201'] },
           ]);
@@ -793,7 +793,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
     if (((s as any).hour ?? 0) === 10) {
       (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
     }
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'anatomy_and_physiology_202'] },
           ]);
@@ -803,7 +803,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
     if (((s as any).hour ?? 0) === 10) {
       (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
     }
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'patient_care_202'] },
           ]);
@@ -829,7 +829,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
       scene.actions([
         { label: 'Go to your Teaching Methods 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'teaching_methods_101'] },
       ]);
@@ -837,7 +837,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
       scene.actions([
         { label: 'Go to your Learning Theories 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'learning_theories_101'] },
       ]);
@@ -848,7 +848,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
         scene.actions([
           { label: 'Go to your Teaching Methods 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'teaching_methods_102'] },
         ]);
@@ -856,7 +856,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
         scene.actions([
           { label: 'Go to your Psychology of a Student 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'psychology_of_a_student_101'] },
         ]);
@@ -867,7 +867,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
           scene.actions([
             { label: 'Go to your Assessment 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'assessment_201'] },
           ]);
@@ -875,7 +875,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
           scene.actions([
             { label: 'Go to your Learning Theories 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'learning_theories_201'] },
           ]);
@@ -886,7 +886,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
             scene.actions([
               { label: 'Go to your Learning Theories 202 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'learning_theories_202'] },
             ]);
@@ -894,7 +894,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
             scene.actions([
               { label: 'Go to your Psychology of a Student 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (11 - ((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    ((s as any).uni_period ?? {})['second'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['second'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'psychology_of_a_student_201'] },
             ]);
@@ -935,7 +935,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
       scene.actions([
         { label: 'Go to your elective <<$university[\'elective_semester_1_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_1_1']
   } },
@@ -945,7 +945,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         scene.actions([
           { label: 'Go to your elective <<$university[\'elective_semester_1_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_1_2']
   } },
@@ -955,7 +955,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your Anatomy and Physiology 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'anatomy_and_physiology_101'] },
           ]);
@@ -964,7 +964,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your elective <<$university[\'elective_semester_1_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_1_3']
   } },
@@ -979,7 +979,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
         scene.actions([
           { label: 'Go to your elective <<$university[\'elective_semester_2_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_2_1']
   } },
@@ -989,7 +989,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your elective <<$university[\'elective_semester_2_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_2_2']
   } },
@@ -999,7 +999,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your Anatomy and Physiology 102 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'anatomy_and_physiology_102'] },
             ]);
@@ -1008,7 +1008,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
               scene.actions([
                 { label: 'Go to your elective <<$university[\'elective_semester_2_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_2_3']
   } },
@@ -1023,7 +1023,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your elective <<$university[\'elective_semester_3_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_3_1']
   } },
@@ -1033,7 +1033,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your elective <<$university[\'elective_semester_3_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_3_2']
   } },
@@ -1043,7 +1043,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
               scene.actions([
                 { label: 'Go to your Anatomy and Physiology 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'anatomy_and_physiology_201'] },
               ]);
@@ -1052,7 +1052,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
                 scene.actions([
                   { label: 'Go to your elective <<$university[\'elective_semester_3_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_3_3']
   } },
@@ -1066,7 +1066,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
           scene.actions([
             { label: 'Go to your elective <<$university[\'elective_semester_4_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_4_1']
   } },
@@ -1076,7 +1076,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
             scene.actions([
               { label: 'Go to your elective <<$university[\'elective_semester_4_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_4_2']
   } },
@@ -1086,7 +1086,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
               scene.actions([
                 { label: 'Go to your Anatomy and Physiology 202 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'anatomy_and_physiology_202'] },
               ]);
@@ -1095,7 +1095,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
                 scene.actions([
                   { label: 'Go to your elective <<$university[\'elective_semester_4_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_4_3']
   } },
@@ -1125,7 +1125,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Go to your elective <<$university[\'elective_semester_1_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_1_1']
   } },
@@ -1135,7 +1135,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
         scene.actions([
           { label: 'Go to your elective <<$university[\'elective_semester_1_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_1_2']
   } },
@@ -1145,7 +1145,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your Learning Theories 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons1', 'learning_theories_101'] },
           ]);
@@ -1154,7 +1154,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             scene.actions([
               { label: 'Go to your elective <<$university[\'elective_semester_1_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_1_3']
   } },
@@ -1169,7 +1169,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
         scene.actions([
           { label: 'Go to your elective <<$university[\'elective_semester_2_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_2_1']
   } },
@@ -1179,7 +1179,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your elective <<$university[\'elective_semester_2_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_2_2']
   } },
@@ -1189,7 +1189,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             scene.actions([
               { label: 'Go to your Psychology of a Student 101 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons2', 'psychology_of_a_student_101'] },
             ]);
@@ -1198,7 +1198,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
               scene.actions([
                 { label: 'Go to your elective <<$university[\'elective_semester_2_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_2_3']
   } },
@@ -1213,7 +1213,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your elective <<$university[\'elective_semester_3_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_3_1']
   } },
@@ -1223,7 +1223,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             scene.actions([
               { label: 'Go to your elective <<$university[\'elective_semester_3_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_3_2']
   } },
@@ -1233,7 +1233,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
               scene.actions([
                 { label: 'Go to your Learning Theories 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons3', 'learning_theories_201'] },
               ]);
@@ -1242,7 +1242,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
                 scene.actions([
                   { label: 'Go to your elective <<$university[\'elective_semester_3_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_3_3']
   } },
@@ -1256,7 +1256,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
           scene.actions([
             { label: 'Go to your elective <<$university[\'elective_semester_4_1\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_4_1']
   } },
@@ -1266,7 +1266,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
             scene.actions([
               { label: 'Go to your elective <<$university[\'elective_semester_4_2\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_4_2']
   } },
@@ -1278,7 +1278,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
               scene.actions([
                 { label: 'Go to your Psychology of a Student 201 class', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
   }, goto: ['uni_lessons4', 'psychology_of_a_student_201'] },
               ]);
@@ -1287,7 +1287,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
                 scene.actions([
                   { label: 'Go to your elective <<$university[\'elective_semester_4_3\']>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (13 - ((s as any).hour ?? 0)) * 60 + (15 - ((s as any).minut ?? 0))));
-    ((s as any).uni_period ?? {})['third'] = ((s as any).daystart ?? 0);
+    if (!(s as any).uni_period) (s as any).uni_period = {}; (s as any).uni_period['third'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'uni_lessons_electives', $university['elective_semester_4_3']
   } },

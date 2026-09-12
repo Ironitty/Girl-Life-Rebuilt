@@ -460,7 +460,7 @@ function enterGirlTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexTalkAlbinaLead(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['chat_rand'] = Math.floor(Math.random() * 11) + 1;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['chat_rand'] = Math.floor(Math.random() * 11) + 1;
   if (((s as any).AlbinaQW ?? 0)?.['chat_rand'] === 1  &&  ((s as any).AlbinaQW ?? 0)?.['porno'] === 0  &&  ((s as any).region ?? 0) === 'city'  &&  (((s as any).month ?? 0) > 10  ||  ((s as any).year ?? 0) >= 2018)) {
     qspCall(s, 'albina_sex_chat', 'admit_porno');
   } else {
@@ -507,7 +507,7 @@ function enterSexTalkAlbinaLead(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdmitPorno(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['porno'] = 1;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['porno'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('She blushes heavily while seemingly struggling to form a sentence.');
@@ -1963,7 +1963,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'I was looking for some advice (shy)', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['knows_anal'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['knows_anal'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Well... I- I\'ve tried it a few times..." you stammer. "But it\'s always been... painful... So I thought could ask-"');
     scene.text('"The buttslut about it?" she asks, giving you a hard stare. You sputter, trying to come up with an answer that will get you out of this before she breaks into laughter.');
@@ -1972,7 +1972,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'albina_sex_chat', 'anal_questions_shy');
   } },
       { label: 'I was looking for some advice (open)', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['knows_anal'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['knows_anal'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"I\'ve tried anal a few times, but it\'s always painful and not very enjoyable," you explain. "So I thought-"');
     scene.text('"You could ask the buttslut about it and she\'d tell you all about how to get your asshole ravaged by cock?" she asks, glaring at you.');

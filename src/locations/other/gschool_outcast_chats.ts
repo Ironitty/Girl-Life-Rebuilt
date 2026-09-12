@@ -27,10 +27,10 @@ function enterLesco(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2  ||  ((s as any).grupTipe ?? 0) === 4) {
-        ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
         if (((s as any).npc_rel ?? 0)?.['A7'] >= 50) {
           scene.text('Lesco engages you in conversation, but he keeps his answers short. You can tell he\'s still afraid of you bullying him.');
           scene.text('"Why do even want to talk with me? Is this some sort of joke so everyone will laugh at me?"');
@@ -47,10 +47,10 @@ function enterLesco(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).grupTipe ?? 0) === 3) {
-          ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
           if (((s as any).npc_rel ?? 0)?.['A7'] >= 50) {
             scene.text('You see Lesco sitting quietly by himself as usual. Feeling sorry for him, you approach with a friendly smile.');
             scene.text('When he sees you, he relaxes and shyly looks up at you. "What do you want?"');
@@ -107,10 +107,10 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).grupTipe ?? 0) === 1) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-      ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
       if (((s as any).npc_rel ?? 0)?.['A159'] >= 50) {
         // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
         scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? 0)}, you're smoking hot, you know that? I might just let you date me if you ask nicely."`);
@@ -128,10 +128,10 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).grupTipe ?? 0) === 2) {
-        ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
         if (((s as any).npc_rel ?? 0)?.['A159'] >= 50) {
           // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
           scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? 0)}, did I mention that you have an amazing looking body and look so hot when you work out in gym class? You're too good looking for those jacked up monkeys and should hook up with me instead."`);
@@ -149,10 +149,10 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).grupTipe ?? 0) === 3) {
-          ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
           if (((s as any).pcs_hotcat ?? 0) >= 6) {
             // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
             scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? 0)}, you're pretty sexy for a nerd. How about we study together sometime?"`);
@@ -192,9 +192,9 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I thought we were friends… I\'m…"');
@@ -235,9 +235,9 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I… I\'m…"');
@@ -251,10 +251,10 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).grupTipe ?? 0) === 4) {
-            ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-            ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-            ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
             if (((s as any).npc_rel ?? 0)?.['A159'] >= 50) {
               // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
               scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? 0)}, did I tell you that I like bad girls? I think we should date."`);
@@ -305,9 +305,9 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I thought we were friends… I\'m…"');
@@ -339,9 +339,9 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I… I\'m…"');
@@ -411,10 +411,10 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).grupTipe ?? 0) === 1) {
-      ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-      ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
       if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
         // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
         scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? 0)}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
@@ -435,10 +435,10 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).grupTipe ?? 0) === 2) {
-        ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-        ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+        if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
         if (((s as any).npc_rel ?? 0)?.['A25'] >= 60) {
           // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
           scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? 0)}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
@@ -458,10 +458,10 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).grupTipe ?? 0) === 3) {
-          ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-          ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+          if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
           if (((s as any).npc_rel ?? 0)?.['A25'] >= 50) {
             // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
             scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? 0)}?" She then bites her lip and looks at the nerds on the other side of the classroom. You glance over and see several of them staring in disgust. "Aren't you worried what the others will say if they see you talking to me?"`);
@@ -483,10 +483,10 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).grupTipe ?? 0) === 4) {
-            ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (1);
-            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
-            ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
-            ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+            if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
             if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
               // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
               scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? 0)}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
@@ -529,14 +529,14 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_outcast_chats', 'sonia_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_outcast_chats', 'sonia_tampon');
   } },
     ]);
@@ -545,14 +545,14 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_outcast_chats', 'sonia_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_outcast_chats', 'sonia_tampon');
   } },
       ]);

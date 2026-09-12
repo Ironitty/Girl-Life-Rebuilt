@@ -48,7 +48,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_gr_ind = 1;
   // TODO-QSP: :generate_random_loop
   if (((s as any).temp_gr_ind ?? 0) <= ((s as any).locArgs?.[1] ?? 0)) {
-    ((s as any).temp_rand ?? {})[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - -2 + 1)) + (-2));
+    if (!(s as any).temp_rand) (s as any).temp_rand = {}; (s as any).temp_rand[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - -2 + 1)) + (-2));
     (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (((s as any).temp_rand ?? 0)?.[String((s as any).temp_gr_ind ?? 0)]);
     (s as any).temp_gr_ind = ((s as any).temp_gr_ind ?? 0) + (1);
     // TODO-QSP: jump 'generate_random_loop'
@@ -57,7 +57,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_tot_sum ?? 0) > 0) {
     (s as any).temp_rand = 0;
     if (((s as any).temp_rand ?? 0)?.[String((s as any).temp_rand ?? 0)] > -2) {
-      ((s as any).temp_rand ?? {})[String((s as any).temp_rand ?? 0)] = (((s as any).temp_rand ?? {})[String((s as any).temp_rand ?? 0)] ?? 0) - (1);
+      if (!(s as any).temp_rand) (s as any).temp_rand = {}; (s as any).temp_rand[String((s as any).temp_rand ?? 0)] = ((s as any).temp_rand[String((s as any).temp_rand ?? 0)] ?? 0) - (1);
       (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) - (1);
     }
     // TODO-QSP: jump 'generate_random_stat_loop'
@@ -65,7 +65,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_tot_sum ?? 0) < 0) {
       (s as any).temp_rand = 0;
       if (((s as any).temp_rand ?? 0)?.[String((s as any).temp_rand ?? 0)] < 2) {
-        ((s as any).temp_rand ?? {})[String((s as any).temp_rand ?? 0)] = (((s as any).temp_rand ?? {})[String((s as any).temp_rand ?? 0)] ?? 0) + (1);
+        if (!(s as any).temp_rand) (s as any).temp_rand = {}; (s as any).temp_rand[String((s as any).temp_rand ?? 0)] = ((s as any).temp_rand[String((s as any).temp_rand ?? 0)] ?? 0) + (1);
         (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (1);
       }
       // TODO-QSP: jump 'generate_random_stat_loop'
@@ -137,18 +137,18 @@ function enterInitTime(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'array', 'remove_element', 'locat', 'Fam_set_month_inGad');
     } else {
       if (((s as any).daystart_start ?? 0) === 214) {
-        ((s as any).locat ?? {})['Fam_set_month_inGad'] = 1;
+        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_set_month_inGad'] = 1;
       } else {
         if (((s as any).daystart_start ?? 0) === 183) {
-          ((s as any).locat ?? {})['Fam_set_month_inGad'] = 1;
+          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_set_month_inGad'] = 1;
         } else {
           if (((s as any).daystart_start ?? 0) === 153) {
-            ((s as any).locat ?? {})['Fam_set_month_inGad'] = 1;
+            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Fam_set_month_inGad'] = 1;
           }
         }
       }
     }
-    ((s as any).grandmaQW ?? {})['last_month_paid'] = ((s as any).month ?? 0);
+    if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['last_month_paid'] = ((s as any).month ?? 0);
     (s as any).kanicont = 245 - ((s as any).daystart_start ?? 0);
   }
   return;
@@ -159,16 +159,16 @@ function enterInitTime(s: GameState, scene: SceneBuilder): void {
 function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).fixed_prnd = Math.floor(Math.random() * 2147483647) + 0;
   if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-    ((s as any).trait_vars ?? {})['new_again_exp'] = 84;
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['new_again_exp'] = 84;
     qspCall(s, 'traits', 'level', 'new_again', 1);
-    ((s as any).trait_vars ?? {})['heel_preference_exp'] = (-20000);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = (-20000);
     qspCall(s, 'traits', 'level', 'heel_preference', (-1));
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     qspCall(s, 'intro_initialization', 'sg_settings');
     if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
-      ((s as any).mc_inventory ?? {})['equipped_condoms'] = 3;
-      ((s as any).mc_inventory ?? {})['mag_porn'] = 40;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = 3;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_porn'] = 40;
       qspCall(s, 'internet_mobile', 'top_up_metered', 'metered_calls', 240);
       (s as any).minut = 0;
       (s as any).hour = 9;
@@ -178,7 +178,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'mid');
   qspCall(s, 'intro_initialization', 'end');
   // TODO-QSP: showstat 1
-  ((s as any).cfg_vars ?? {})['debug'] = 1;
+  if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['debug'] = 1;
   // TODO-QSP: showobjs cfg_vars['debug']
   qspCall(s, 'obj_din', 'old');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
@@ -190,7 +190,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSgSettings(s: GameState, scene: SceneBuilder): void {
-  ((s as any).gm_school ?? {})[6] = 1;
+  if (!(s as any).gm_school) (s as any).gm_school = {}; (s as any).gm_school[6] = 1;
   (s as any).sisboyday = (-2);
   qspCall(s, 'homes_properties', 'block_access', 'city_apartment');
   (s as any).hcolmotherremember = ((s as any).pcs_haircol ?? 0);
@@ -203,9 +203,9 @@ function enterSgSettings(s: GameState, scene: SceneBuilder): void {
     (s as any).koldobtmp_y = ((s as any).koldobtmp_y ?? 0) + (1);
     (s as any).koldobtmp_m = ((s as any).koldobtmp_m ?? 0) - (12);
   }
-  ((s as any).npc_dob ?? {})['A34'] = ((s as any).koldobtmp_y ?? 0) * 10000;
-  ((s as any).npc_dob ?? {})['A34'] = (((s as any).npc_dob ?? {})['A34'] ?? 0) + (((s as any).koldobtmp_m ?? 0) * 100);
-  ((s as any).npc_dob ?? {})['A34'] = (((s as any).npc_dob ?? {})['A34'] ?? 0) + (((s as any).koldobtmp_d ?? 0));
+  if (!(s as any).npc_dob) (s as any).npc_dob = {}; (s as any).npc_dob['A34'] = ((s as any).koldobtmp_y ?? 0) * 10000;
+  if (!(s as any).npc_dob) (s as any).npc_dob = {}; (s as any).npc_dob['A34'] = ((s as any).npc_dob['A34'] ?? 0) + (((s as any).koldobtmp_m ?? 0) * 100);
+  if (!(s as any).npc_dob) (s as any).npc_dob = {}; (s as any).npc_dob['A34'] = ((s as any).npc_dob['A34'] ?? 0) + (((s as any).koldobtmp_d ?? 0));
   if (((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) >= 25) {
   }
   return;
@@ -216,10 +216,10 @@ function enterSgSettings(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).update_report_last = 99;
   if (((s as any).start_type ?? 0)?.['group']  === '') {
-    ((s as any).start_type ?? {})['group'] = 'custom';
+    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'custom';
   }
   if (((s as any).start_type ?? 0)?.['cat']  === '') {
-    ((s as any).start_type ?? {})['cat'] = 'custom';
+    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'custom';
   }
   if (((s as any).start_type ?? 0)?.['cat'] !== 'custom') {
     qspCall(s, 'intro_initialization', 'randomize_stats');
@@ -237,12 +237,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_pursetype ?? 0) !== '') {
     qspCall(s, 'purses', 'wear', ((s as any).temp_pursetype ?? 0), ((s as any).temp_pursenumber ?? 0));
   }
-  ((s as any).alarmVars ?? {})['timerEndH'] = 8;
-  ((s as any).alarmVars ?? {})['timerEndM'] = 0;
-  ((s as any).alarmVars ?? {})['timerH'] = 6;
-  ((s as any).alarmVars ?? {})['timerM'] = 30;
-  ((s as any).sleepVars ?? {})['events_active'] = 1;
-  ((s as any).sleepVars ?? {})['dreams_active'] = 1;
+  if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndH'] = 8;
+  if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerEndM'] = 0;
+  if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerH'] = 6;
+  if (!(s as any).alarmVars) (s as any).alarmVars = {}; (s as any).alarmVars['timerM'] = 30;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['events_active'] = 1;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['dreams_active'] = 1;
   (s as any).BDSMfilm = 0;
   (s as any).pornstudio = 0;
   (s as any).pfilmSTOP = 0;
@@ -288,10 +288,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_stam = 100;
   (s as any).pcs_faith = 100;
   (s as any).prezikProver = 3;
-  ((s as any).makeup ?? {})['base'] = 1;
+  if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['base'] = 1;
   (s as any).nathcol = ((s as any).pcs_haircol ?? 0);
   (s as any).pcs_pubecol = ((s as any).pcs_haircol ?? 0);
-  ((s as any).pcs_pubecol ?? {})[1] = 1;
+  if (!(s as any).pcs_pubecol) (s as any).pcs_pubecol = {}; (s as any).pcs_pubecol[1] = 1;
   (s as any).oldsavepcs_haircol = 1;
   qspCall(s, 'body', 'initial');
   qspCall(s, 'time', 'update_date');
@@ -302,7 +302,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).rikudootvet = 1415;
   qspCall(s, 'BanSexType', '');
   qspCall(s, 'outdoors', 'weather');
-  ((s as any).stat_cfg ?? {})['job_icon_themed'] = 1;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['job_icon_themed'] = 1;
   (s as any).menoage = Math.floor(Math.random() * 11) + 40;
   (s as any).temprand = Math.floor(Math.random() * 11) + 0;
   if ((!((s as any).temprand ?? 0))) {
@@ -364,9 +364,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).lastmens = ((s as any).daylastperiod ?? 0) + 4;
   }
-  ((s as any).cheatVars ?? {})['enema'] = 1;
-  ((s as any).cheatVars ?? {})['auto_tampons'] = 1;
-  ((s as any).cheatVars ?? {})['track_period'] = 1;
+  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['enema'] = 1;
+  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['auto_tampons'] = 1;
+  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
   (s as any).auto_anal_lube = 1;
   (s as any).pcs_horny = 0;
   qspCall(s, 'stat_sklattrib', 'init');
@@ -377,64 +377,64 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'daily');
   qspCall(s, 'stat', '');
   // TODO-QSP: showstat 0
-  ((s as any).cfg_vars ?? {})['debug'] = 0;
+  if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['debug'] = 0;
   // TODO-QSP: showobjs cfg_vars['debug']
   if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {
     (s as any).lastreadday = ((s as any).daystart ?? 0) - 1;
   }
-  ((s as any).ml_delparcoQW ?? {})['Stage'] = 0;
-  ((s as any).ml_delparcoQW ?? {})['Zariyah Trust'] = 50;
+  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 0;
+  if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Zariyah Trust'] = 50;
   qspCall(s, 'body', 'Update_Body');
   qspCall(s, 'body', 'DailyUpdate');
   (s as any).pcs_stam = ((s as any).stammax ?? 0);
   qspCall(s, 'calendar', 'pack', 'add', 'holidays');
   (s as any).calendar_temp_new_flag = 1;
-  ((s as any).stat_cfg ?? {})['skills_columns'] = 1;
-  ((s as any).stat_cfg ?? {})['relations_columns'] = 1;
-  ((s as any).stat_cfg ?? {})['icon_height'] = 54;
-  ((s as any).stat_cfg ?? {})['menu_icon_height'] = 54;
-  ((s as any).stat_cfg ?? {})['weather_height'] = 72;
-  ((s as any).stat_cfg ?? {})['show_positive_icons'] = 1;
-  ((s as any).stat_cfg ?? {})['image_columns'] = 1;
-  ((s as any).stat_cfg ?? {})['image_spacing'] = 1;
-  ((s as any).stat_cfg ?? {})['img_width'] = 220;
-  ((s as any).stat_cfg ?? {})['bar_width'] = 200;
-  ((s as any).stat_cfg ?? {})['overlay'] = 1;
-  ((s as any).stat_cfg ?? {})['cal_count'] = 3;
-  ((s as any).stat_cfg ?? {})['sec_headers'] = 2;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['skills_columns'] = 1;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['relations_columns'] = 1;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['icon_height'] = 54;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['menu_icon_height'] = 54;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['weather_height'] = 72;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['show_positive_icons'] = 1;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['image_columns'] = 1;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['image_spacing'] = 1;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['img_width'] = 220;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['bar_width'] = 200;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['overlay'] = 1;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['cal_count'] = 3;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['sec_headers'] = 2;
   if (((s as any).start_type ?? 0)?.['group'] !== 'custom') {
     if (((s as any).start_type ?? 0)?.['group'] !== 'nerd') {
-      ((s as any).stat_hide_rel_grp ?? {})['nerd'] = 1;
+      if (!(s as any).stat_hide_rel_grp) (s as any).stat_hide_rel_grp = {}; (s as any).stat_hide_rel_grp['nerd'] = 1;
     }
     if (((s as any).start_type ?? 0)?.['group'] !== 'jock') {
-      ((s as any).stat_hide_rel_grp ?? {})['jock'] = 1;
+      if (!(s as any).stat_hide_rel_grp) (s as any).stat_hide_rel_grp = {}; (s as any).stat_hide_rel_grp['jock'] = 1;
     }
     if (((s as any).start_type ?? 0)?.['group'] !== 'cool') {
-      ((s as any).stat_hide_rel_grp ?? {})['coolkid'] = 1;
+      if (!(s as any).stat_hide_rel_grp) (s as any).stat_hide_rel_grp = {}; (s as any).stat_hide_rel_grp['coolkid'] = 1;
     }
     if (((s as any).start_type ?? 0)?.['group'] !== 'gopnik') {
-      ((s as any).stat_hide_rel_grp ?? {})['gopnik'] = 1;
+      if (!(s as any).stat_hide_rel_grp) (s as any).stat_hide_rel_grp = {}; (s as any).stat_hide_rel_grp['gopnik'] = 1;
     }
     if (((s as any).start_type ?? 0)?.['group'] !== 'outcast') {
-      ((s as any).stat_hide_rel_grp ?? {})['staff'] = 1;
+      if (!(s as any).stat_hide_rel_grp) (s as any).stat_hide_rel_grp = {}; (s as any).stat_hide_rel_grp['staff'] = 1;
     }
   }
   if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
-    ((s as any).stat_hide_rel_grp ?? {})['pavlovsk'] = 1;
+    if (!(s as any).stat_hide_rel_grp) (s as any).stat_hide_rel_grp = {}; (s as any).stat_hide_rel_grp['pavlovsk'] = 1;
   } else {
-    ((s as any).stat_hide_rel_grp ?? {})['city'] = 1;
+    if (!(s as any).stat_hide_rel_grp) (s as any).stat_hide_rel_grp = {}; (s as any).stat_hide_rel_grp['city'] = 1;
   }
-  ((s as any).droutine ?? {})['morning_count'] = 6;
-  ((s as any).droutine ?? {})['morning_step_1'] = 'teeth';
-  ((s as any).droutine ?? {})['morning_step_2'] = 'shower';
-  ((s as any).droutine ?? {})['morning_step_3'] = 'outfit_restore';
-  ((s as any).droutine ?? {})['morning_step_4'] = 'deodorant';
-  ((s as any).droutine ?? {})['morning_step_5'] = 'apply_makeup';
-  ((s as any).droutine ?? {})['morning_step_6'] = 'brush_hair';
-  ((s as any).droutine ?? {})['evening_count'] = 3;
-  ((s as any).droutine ?? {})['evening_step_1'] = 'removemakeup';
-  ((s as any).droutine ?? {})['evening_step_2'] = 'teeth';
-  ((s as any).droutine ?? {})['evening_step_3'] = 'mouthwash';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['morning_count'] = 6;
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['morning_step_1'] = 'teeth';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['morning_step_2'] = 'shower';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['morning_step_3'] = 'outfit_restore';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['morning_step_4'] = 'deodorant';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['morning_step_5'] = 'apply_makeup';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['morning_step_6'] = 'brush_hair';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['evening_count'] = 3;
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['evening_step_1'] = 'removemakeup';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['evening_step_2'] = 'teeth';
+  if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['evening_step_3'] = 'mouthwash';
   return;
   // TODO-QSP: end
   scene.build();
@@ -446,7 +446,7 @@ function enterMid(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'intro_initialization_sg', '');
   } else {
     if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
-      ((s as any).gschoolVars ?? {})['school_diploma'] = 1;
+      if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['school_diploma'] = 1;
       qspCall(s, 'homes_properties', 'give_access', 'parents_home');
       qspCall(s, 'homes_properties', 'rent_property', 'city_apartment', 61);
       qspCall(s, 'homes_properties', 'set_home', 'city_apartment');
@@ -481,34 +481,34 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'fix_stat_inner', 'anal', 'men_anal_fucked', 'women_vaginal_fucked', 'herm_anal_fucked');
   (s as any).temp_stat_diff = ((s as any).stat ?? {})?.['men_fucked'] - Math.max(((s as any).stat ?? 0)?.['men_vaginal_fucked'], ((s as any).stat ?? 0)?.['men_anal_fucked']);
   if (((s as any).temp_stat_diff ?? 0) > 0) {
-    ((s as any).stat ?? {})['men_vaginal_fucked_times'] = (((s as any).stat ?? {})['men_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
-    ((s as any).stat ?? {})['men_vaginal_fucked'] = (((s as any).stat ?? {})['men_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['men_vaginal_fucked_times'] = ((s as any).stat['men_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['men_vaginal_fucked'] = ((s as any).stat['men_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     (s as any).temp_stats_changed = 1;
   } else {
     if (((s as any).temp_stat_diff ?? 0) < 0) {
-      ((s as any).stat ?? {})['men_fucked'] = (((s as any).stat ?? {})['men_fucked'] ?? 0) + (-((s as any).temp_stat_diff ?? 0));
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['men_fucked'] = ((s as any).stat['men_fucked'] ?? 0) + (-((s as any).temp_stat_diff ?? 0));
       (s as any).temp_stats_changed = 1;
     }
   }
   (s as any).temp_stat_diff = ((s as any).stat ?? {})?.['women_fucked'] - Math.max(((s as any).stat ?? 0)?.['women_vaginal_fucked'], ((s as any).stat ?? 0)?.['women_anal_fucked']);
   if (((s as any).temp_stat_diff ?? 0) > 0) {
-    ((s as any).stat ?? {})['women_vaginal_fucked_times'] = (((s as any).stat ?? {})['women_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
-    ((s as any).stat ?? {})['women_vaginal_fucked'] = (((s as any).stat ?? {})['women_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['women_vaginal_fucked_times'] = ((s as any).stat['women_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['women_vaginal_fucked'] = ((s as any).stat['women_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     (s as any).temp_stats_changed = 1;
   } else {
     if (((s as any).temp_stat_diff ?? 0) < 0) {
-      ((s as any).stat ?? {})['women_fucked'] = (((s as any).stat ?? {})['women_fucked'] ?? 0) + (-((s as any).temp_stat_diff ?? 0));
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['women_fucked'] = ((s as any).stat['women_fucked'] ?? 0) + (-((s as any).temp_stat_diff ?? 0));
       (s as any).temp_stats_changed = 1;
     }
   }
   (s as any).temp_stat_diff = ((s as any).stat ?? {})?.['herm_fucked'] - Math.max(((s as any).stat ?? 0)?.['herm_vaginal_fucked'], ((s as any).stat ?? 0)?.['herm_anal_fucked']);
   if (((s as any).temp_stat_diff ?? 0) > 0) {
-    ((s as any).stat ?? {})['herm_vaginal_fucked_times'] = (((s as any).stat ?? {})['herm_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
-    ((s as any).stat ?? {})['herm_vaginal_fucked'] = (((s as any).stat ?? {})['herm_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_vaginal_fucked_times'] = ((s as any).stat['herm_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_vaginal_fucked'] = ((s as any).stat['herm_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     (s as any).temp_stats_changed = 1;
   } else {
     if (((s as any).temp_stat_diff ?? 0) < 0) {
-      ((s as any).stat ?? {})['herm_fucked'] = (((s as any).stat ?? {})['herm_fucked'] ?? 0) + (-((s as any).temp_stat_diff ?? 0));
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_fucked'] = ((s as any).stat['herm_fucked'] ?? 0) + (-((s as any).temp_stat_diff ?? 0));
       (s as any).temp_stats_changed = 1;
     }
   }
@@ -516,12 +516,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_fix_loop_times ?? 0) < 10  &&  ((s as any).temp_stats_changed ?? 0) === 1) {
     // TODO-QSP: jump 'stat_fixing_loop'
   }
-  ((s as any).stat ?? {})['male_sexual_partners'] = qspUntranslated(s, "max(stat['male_sexual_partners'], stat['men_jerked'], stat['men_feetfucked'], stat['men_titfucked'], stat['men_blown'], stat['men_fucked'])", { location: "intro_initialization" });
-  ((s as any).stat ?? {})['male_sexual_times'] = qspUntranslated(s, "max(stat['male_sexual_times'], stat['men_jerked_times'], stat['men_feetfucked_times'], stat['men_titfucked_times'], stat['men_blown_times'], stat['men_fucked_times'])", { location: "intro_initialization" });
-  ((s as any).stat ?? {})['female_sexual_partners'] = qspUntranslated(s, "max(stat['female_sexual_partners'], stat['women_fingered'], stat['women_feetfucked'], stat['women_titfucked'], stat['women_munched'], stat['women_fucked'])", { location: "intro_initialization" });
-  ((s as any).stat ?? {})['female_sexual_times'] = qspUntranslated(s, "max(stat['female_sexual_times'], stat['women_fingered_times'], stat['women_feetfucked_times'], stat['women_titfucked_times'], stat['women_munched_times'], stat['women_fucked_times'])", { location: "intro_initialization" });
-  ((s as any).stat ?? {})['herm_sexual_partners'] = qspUntranslated(s, "max(stat['herm_sexual_partners'], stat['herm_jerked'], stat['herm_feetfucked'], stat['herm_titfucked'], stat['herm_blown'], stat['herm_fucked'])", { location: "intro_initialization" });
-  ((s as any).stat ?? {})['herm_sexual_times'] = qspUntranslated(s, "max(stat['herm_sexual_times'], stat['herm_jerked_times'], stat['herm_feetfucked_times'], stat['herm_titfucked_times'], stat['herm_blown_times'], stat['herm_fucked_times'])", { location: "intro_initialization" });
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['male_sexual_partners'] = qspUntranslated(s, "max(stat['male_sexual_partners'], stat['men_jerked'], stat['men_feetfucked'], stat['men_titfucked'], stat['men_blown'], stat['men_fucked'])", { location: "intro_initialization" });
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['male_sexual_times'] = qspUntranslated(s, "max(stat['male_sexual_times'], stat['men_jerked_times'], stat['men_feetfucked_times'], stat['men_titfucked_times'], stat['men_blown_times'], stat['men_fucked_times'])", { location: "intro_initialization" });
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['female_sexual_partners'] = qspUntranslated(s, "max(stat['female_sexual_partners'], stat['women_fingered'], stat['women_feetfucked'], stat['women_titfucked'], stat['women_munched'], stat['women_fucked'])", { location: "intro_initialization" });
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['female_sexual_times'] = qspUntranslated(s, "max(stat['female_sexual_times'], stat['women_fingered_times'], stat['women_feetfucked_times'], stat['women_titfucked_times'], stat['women_munched_times'], stat['women_fucked_times'])", { location: "intro_initialization" });
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_sexual_partners'] = qspUntranslated(s, "max(stat['herm_sexual_partners'], stat['herm_jerked'], stat['herm_feetfucked'], stat['herm_titfucked'], stat['herm_blown'], stat['herm_fucked'])", { location: "intro_initialization" });
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_sexual_times'] = qspUntranslated(s, "max(stat['herm_sexual_times'], stat['herm_jerked_times'], stat['herm_feetfucked_times'], stat['herm_titfucked_times'], stat['herm_blown_times'], stat['herm_fucked_times'])", { location: "intro_initialization" });
   return;
   // TODO-QSP: end
   scene.build();

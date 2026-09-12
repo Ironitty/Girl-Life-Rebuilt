@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSlyHouseIntro_1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).slyQW ?? {})['met'] = 2;
+  if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['met'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big248.jpg');
@@ -55,7 +55,7 @@ function enterSlyHouseIntro_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVirgin(s: GameState, scene: SceneBuilder): void {
-  ((s as any).slyQW ?? {})['virgin'] = 1;
+  if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['virgin'] = 1;
   scene.img('images/characters/shared/headshots_main/big248.jpg');
   scene.text('"I\'m a virgin."');
   scene.text('He smiles a bit wickedly. "Master."');
@@ -77,7 +77,7 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Insist', handler: (st: GameState) => {
-    ((s as any).slyQW ?? {})['virgin'] = 2;
+    if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['virgin'] = 2;
     scene.img('images/characters/shared/headshots_main/big248.jpg');
     if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('Cheeks turning red, you say "I don\'t have a choice. My mother makes me do regular check ups at the gynecologist. If she finds out I\'ve lost my virginity to you there will be a lot of trouble. For you."');
@@ -177,8 +177,8 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
         scene.actions([
           { label: 'Offer virginity', handler: (st: GameState) => {
-    ((s as any).slyQW ?? {})['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
-    ((s as any).slyQW ?? {})['virgin'] = 3;
+    if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['virgin'] = 3;
     scene.img('images/shared/sex/undress/kotovpre\'+rand(11, 14)+\'.mp4');
     if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
@@ -193,8 +193,8 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Offer virginity (Lie)', handler: (st: GameState) => {
-    ((s as any).slyQW ?? {})['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
-    ((s as any).slyQW ?? {})['virgin'] = 3;
+    if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['virgin'] = 3;
     scene.img('images/shared/sex/undress/kotovpre\'+rand(11, 14)+\'.mp4');
     if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
@@ -210,7 +210,7 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Offer yourself', handler: (st: GameState) => {
-    ((s as any).slyQW ?? {})['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
+    if (!(s as any).slyQW) (s as any).slyQW = {}; (s as any).slyQW['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
     scene.img('images/shared/sex/undress/kotovpre\'+rand(11, 14)+\'.mp4');
     if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');

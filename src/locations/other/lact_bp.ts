@@ -12,11 +12,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBuildBp(s: GameState, scene: SceneBuilder): void {
   (s as any).bp_i = 0;
-  ((s as any).bpID_arr ?? {})[String((s as any).bp_i ?? 0)] = ((s as any).bp_i ?? 0);
-  ((s as any).bpType_arr ?? {})[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[1]", { location: "lact_bp" });
-  ((s as any).bpLocID_arr ?? {})[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[2]", { location: "lact_bp" });
-  ((s as any).bpbID1_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
-  ((s as any).bpbID2_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
+  if (!(s as any).bpID_arr) (s as any).bpID_arr = {}; (s as any).bpID_arr[String((s as any).bp_i ?? 0)] = ((s as any).bp_i ?? 0);
+  if (!(s as any).bpType_arr) (s as any).bpType_arr = {}; (s as any).bpType_arr[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[1]", { location: "lact_bp" });
+  if (!(s as any).bpLocID_arr) (s as any).bpLocID_arr = {}; (s as any).bpLocID_arr[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[2]", { location: "lact_bp" });
+  if (!(s as any).bpbID1_arr) (s as any).bpbID1_arr = {}; (s as any).bpbID1_arr[String((s as any).bp_i ?? 0)] = (-1);
+  if (!(s as any).bpbID2_arr) (s as any).bpbID2_arr = {}; (s as any).bpbID2_arr[String((s as any).bp_i ?? 0)] = (-1);
   (s as any).result = ((s as any).bp_i ?? 0);
   // TODO-QSP: end
   scene.build();
@@ -33,7 +33,7 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
       qspCall(s, 'lact_bp', 'update_mbottle', ((s as any).vmb_i ?? 0));
       if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
-        ((s as any).mbarrfill ?? {})[String((s as any).vmb_i ?? 0)] = 0;
+        if (!(s as any).mbarrfill) (s as any).mbarrfill = {}; (s as any).mbarrfill[String((s as any).vmb_i ?? 0)] = 0;
         // TODO-QSP: dynamic text: <br><<vmb_i + 1>>. - An empty <<mbarrtype[vmb_i]/10>>ml bottle. You can use it t...
         scene.text(`<br>${((s as any).vmb_i ?? 0) + 1}. - An empty ${((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)]/10}ml bottle. You can use it to store your breast milk.`);
       } else {
@@ -607,7 +607,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/body/tits/pump_unboxing_bath.jpg');
       }
     }
-    ((s as any).mc_inventory ?? {})['bottle_s'] = (((s as any).mc_inventory ?? {})['bottle_s'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['bottle_s'] = ((s as any).mc_inventory['bottle_s'] ?? 0) + (1);
     qspCall(s, 'lact_bp', 'reg_bottle_count');
     if ((((s as any).pcs_inhib ?? 0) > 40  &&  ((s as any).location_type ?? 0) === 'private')  ||  ((s as any).location_type ?? 0) === 'bathroom') {
       scene.actions([
@@ -655,9 +655,9 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).pain ?? 0)?.['nipples'] < 60  &&  ((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {
-      ((s as any).lactation ?? {})['pc_aware'] = 1;
+      if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
       if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0) {
-        ((s as any).lactation ?? {})['induced'] = 1;
+        if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
         if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
           scene.text('All that pumping and massaging your breasts probably caused you to lactate!<br>');
         } else {
@@ -667,10 +667,10 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
-          ((s as any).lactation ?? {})['induced'] = 1;
+          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
           scene.text('Regularly massaging your breasts probably made you lactate!<br>');
         } else {
-          ((s as any).lactation ?? {})['induced'] = 0;
+          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 0;
           scene.text('To your surprise it is milk. You started lactating!<br>');
           if (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1) {
             scene.text('This is probably happening because you are pregnant.');
@@ -835,17 +835,17 @@ function enterRegBottleCount(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).mc_inventory ?? 0)?.['bottle_s'] - ((s as any).reg_bottles_count ?? 0)) > 0) {
       (s as any).reg_bottles_count = ((s as any).reg_bottles_count ?? 0) + (1);
       (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
-      ((s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 1500;
+      if (!(s as any).mbarrtype) (s as any).mbarrtype = {}; (s as any).mbarrtype[String((s as any).rbc_index ?? 0)] = 1500;
       qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).rbc_index ?? 0));
-      ((s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
+      if (!(s as any).mbarrloca) (s as any).mbarrloca = {}; (s as any).mbarrloca[String((s as any).rbc_index ?? 0)] = 1;
       // TODO-QSP: jump 'rbc_loop'
     }
     if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] - ((s as any).reg_bottlem_count ?? 0)) > 0) {
       (s as any).reg_bottlem_count = ((s as any).reg_bottlem_count ?? 0) + (1);
       (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
-      ((s as any).mbarrtype ?? {})[String((s as any).rbc_index ?? 0)] = 2500;
+      if (!(s as any).mbarrtype) (s as any).mbarrtype = {}; (s as any).mbarrtype[String((s as any).rbc_index ?? 0)] = 2500;
       qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).rbc_index ?? 0));
-      ((s as any).mbarrloca ?? {})[String((s as any).rbc_index ?? 0)] = 1;
+      if (!(s as any).mbarrloca) (s as any).mbarrloca = {}; (s as any).mbarrloca[String((s as any).rbc_index ?? 0)] = 1;
       // TODO-QSP: jump 'rbc_loop'
     }
   }
@@ -889,10 +889,10 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {
-        ((s as any).lactation ?? {})['pc_aware'] = 1;
+        if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
         scene.img('images/pc/body/tits/pump_milkdrops.jpg');
         if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0) {
-          ((s as any).lactation ?? {})['induced'] = 1;
+          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
           if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
             scene.text('You attach the pump but after a few pumps white liquid suddenly comes from your nipples. All that pumping and massaging your breasts probably caused you to lactate!<br>');
           } else {
@@ -900,10 +900,10 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
-            ((s as any).lactation ?? {})['induced'] = 1;
+            if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
             scene.text('You attach the pump but after a few pumps white liquid suddenly comes from your nipples. Regularly massaging your breasts probably made you lactate!<br>');
           } else {
-            ((s as any).lactation ?? {})['induced'] = 0;
+            if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 0;
             scene.text('You attach the pump and give it a few pumps. To your surprise white liquid suddenly comes from your nipples. You started lactating!<br>');
             if (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1) {
               scene.text('This is probably happening because you are pregnant.');
@@ -1321,10 +1321,10 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/body/tits/bathroom_milking.mp4');
       } else {
         if (((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {
-          ((s as any).lactation ?? {})['pc_aware'] = 1;
+          if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
           scene.img('images/pc/body/tits/lactate_start.jpg');
           if (((s as any).pcs_usedbreastpumponherself ?? 0) > 0) {
-            ((s as any).lactation ?? {})['induced'] = 1;
+            if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
             if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
               scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple. After a few squeezes white liquid suddenly starts flowing from your nipples. All that pumping and massaging your breasts probably caused you to lactate!<br>');
             } else {
@@ -1332,10 +1332,10 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).pcs_massagedherbreasts ?? 0) > 0) {
-              ((s as any).lactation ?? {})['induced'] = 1;
+              if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 1;
               scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple. After a few squeezes white liquid suddenly starts flowing from your nipples. Regularly massaging your breasts probably made you lactate!<br>');
             } else {
-              ((s as any).lactation ?? {})['induced'] = 0;
+              if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['induced'] = 0;
               scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple. To your surprise white liquid suddenly starts flowing from your nipples. You started lactating!<br>');
               if (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).knowpreg ?? 0) === 1) {
                 scene.text('This is probably happening because you are pregnant.');

@@ -66,14 +66,14 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Talk about sex', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
-    ((s as any).katjaQW ?? {})['knows_sex'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_sex'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You tell Katja about the times you\'ve had sex and how it felt. She blushes and bites her lip.');
     if (((s as any).katjaQW ?? 0)?.['pussy_sex'] > 0) {
       if (((s as any).npc_had_sex ?? 0)?.['A14']) {
-        ((s as any).katjaQW ?? {})['QWstage'] = 6;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['QWstage'] = 6;
       }
       scene.text('Katja also tells you a story of how she had sex with a boy she picked up as a one-night stand.');
     }
@@ -104,7 +104,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       scene.text('"That probably makes us the only non-nerds who haven\'t had sex! Vicky does it all the time with Vanya and won\'t shut up about it!"');
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A14']) {
-        ((s as any).katjaQW ?? {})['QWstage'] = 6;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['QWstage'] = 6;
       }
       scene.text('You tell Katja that you\'ve never had sex with a guy, and she\'s very surprised.');
       scene.text('"You\'ve never had sex with a guy?! Even I\'ve done that! I thought I was the last girl from school to lose my virginity. Vicky definitely make it seems like I was abnormal not finding somebody to fuck in school. She wouldn\'t stop pushing to find a guy. It was so annoying!"');
@@ -142,14 +142,14 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Talk about anal', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
-    ((s as any).katjaQW ?? {})['knows_anal'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_anal'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You tell Katja about the times you\'ve had anal sex and what it feels like. She blushes and bites her lip.');
     if (((s as any).katjaQW ?? 0)?.['anal_sex'] > 0) {
       if (((s as any).npc_had_sex ?? 0)?.['A14']) {
-        ((s as any).katjaQW ?? {})['anal_quest'] = 3;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
       }
       scene.text('Katja also tells you a story of anal sex she had with a boy you don\'t know who she picked up as a one night stand.');
     }
@@ -179,7 +179,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       scene.text('You tell Katja that you\'ve never had anal sex. She says that she heard that a lot of girls in your class do, some more than others.');
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A14']) {
-        ((s as any).katjaQW ?? {})['anal_quest'] = 3;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
       }
       scene.text('You tell Katja that you\'ve never had anal sex.');
       scene.text('"You haven\'t?" she asks rhetorically "It\'s actually quite good. You should try it."');
@@ -217,8 +217,8 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Talk about licking pussy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
-    ((s as any).katjaQW ?? {})['knows_cuni'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_cuni'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You tell Katja about the times you\'ve gone down on another girl and how it feels. She blushes and bites her lip.');
@@ -226,10 +226,10 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       scene.text('Katja asks you to show her how you lick pussy.');
       scene.actions([
         { label: 'Show her', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = 0;
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
-    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (2);
-    ((s as any).npc_had_sex ?? {})['A14'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A14'] = 1;
     qspCall(s, 'npcStat', 'A14');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/kuni2.jpg');
@@ -300,7 +300,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I\'ve thought about it', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (20);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
     scene.text('"I\'ve thought about it, it\'s just that the situation never came up," you reply.');
     scene.text('"So it\'s something you want to try" she asks.');
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] > 2  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 20) {
@@ -403,7 +403,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Tell her how you pushed your hand into your pussy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     // TODO-QSP: dynamic text: You tell Katja how you '+iif(stat['self_fisting'] = 1, 'once', 'sometimes')+' pu...
@@ -411,7 +411,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Katja looks '+iif(katjaQW['knows_self_fisting'] = 0, 'completely shocked, but', ...
     scene.text('Katja looks \'+iif(katjaQW[\'knows_self_fisting\'] = 0, \'completely shocked, but\', \'excited, and\')+\' her face turns even redder as she bites her lip.');
     if (((s as any).katjaQW ?? 0)?.['knows_self_fisting'] === 0) {
-      ((s as any).katjaQW ?? {})['knows_self_fisting'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_self_fisting'] = 1;
     }
     scene.actions([
       { label: 'Continue talking', handler: (st: GameState) => {
@@ -438,9 +438,9 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Tell her how you fisted your ass', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     if (((s as any).katjaQW ?? 0)?.['knows_self_fisting_anal'] === 0) {
-      ((s as any).katjaQW ?? {})['knows_self_fisting_anal'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_self_fisting_anal'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -466,8 +466,8 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Talk about masturbation', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
-    ((s as any).katjaQW ?? {})['knows_masturbation'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_masturbation'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You tell Katja how you masturbate in the bathroom and she blushes and bites her lip.');
@@ -490,7 +490,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Katja responds', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/mastr.jpg');
     scene.text('Katja tells you she also masturbates, right here in this room, fondling herself between her legs.');
@@ -610,8 +610,8 @@ function enterBjTalk1(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
-    ((s as any).katjaQW ?? {})['knows_BJ'] = 1;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['knows_BJ'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Yeah, I\'ve given a few," you admit.');
@@ -622,7 +622,7 @@ function enterBjTalk1(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).stat ?? 0)?.['bj'] > 0) {
         (s as any).minut = ((s as any).minut ?? 0) + 3;
-        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
         qspCall(s, 'katja_sex_talk', 'bj_talk2');
       }
     }
@@ -677,7 +677,7 @@ function enterBjTalk2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'It\'s fun', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     scene.text('"It\'s fun!" you grin. "I\'m not really sure what it is, but something about having a dick in your mouth is really entertaining. It\'s like, totally alive! And you can feel it making all these tiny movements when it\'s on your tongue. I really like giving head."');
     scene.text('Katja hangs on your every word, nodding excitedly for you to keep describing your experiences with oral sex to her.');
     scene.actions([
@@ -732,7 +732,7 @@ function enterBjTalk2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'It turns me on', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
     scene.text('"It turns me on so much," you admit, biting your lip in a lusty smile. "When someone\'s in your mouth, you can make them feel <i>really</i> good. And they\'ll respond to what you do. If you take their whole length, they\'ll squirm. If you lick the head, it\'ll twitch under your touch. Just knowing you can make someone else feel that way… Ugh, just <i>thinking</i> about it gets me wet!"');
     scene.text('Katja hangs on your every word, nodding along with wide eyes as you describe what it is you love so much about giving head. A faint blush also comes to her cheeks and you notice her unconsciously rubbing her thighs together.');
     scene.actions([

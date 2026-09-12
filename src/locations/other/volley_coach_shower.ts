@@ -27,7 +27,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenersexshower2.jpg');
     scene.text('Wiping the steam off the glass, you see only a vaguely outline of a man. The man quickly moves to the exit and leaves before you can tell who it was.');
     (s as any).voltrenerVoyeur = ((s as any).voltrenerVoyeur ?? 0) + (1);
-    ((s as any).vballVars ?? {})['coach_lust'] = (((s as any).vballVars ?? {})['coach_lust'] ?? 0) + (2);
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (2);
     scene.actions([
       { label: 'Finish shower', goto: ['gdksport', 'start'] },
     ]);
@@ -51,7 +51,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       { label: 'Carry on [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A69', 2);
-    ((s as any).vballVars ?? {})['coach_lust'] = (((s as any).vballVars ?? {})['coach_lust'] ?? 0) + (2);
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (2);
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenersexshower6.jpg');
     scene.text('You smile at Mikhail Nikolaevich and continue to wash, making a show of cleaning your bulging ass and breasts. The coach watches but stays perfectly still.');
     (s as any).voltrenerVoyeur = ((s as any).voltrenerVoyeur ?? 0) + (1);
@@ -98,7 +98,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: 'Masturbate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A69', 1);
-    ((s as any).vballVars ?? {})['coach_lust'] = (((s as any).vballVars ?? {})['coach_lust'] ?? 0) + (4);
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (4);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower8.jpg');
@@ -177,7 +177,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Comply', handler: (st: GameState) => {
     (s as any).voltrenerVoyeur = ((s as any).voltrenerVoyeur ?? 0) + (1);
-    ((s as any).vballVars ?? {})['coach_lust'] = (((s as any).vballVars ?? {})['coach_lust'] ?? 0) + (2);
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (2);
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower11.mp4');
     scene.text('You have no idea what he means, but a simple gesture makes it clear what he wants. You willingly grab your butt cheeks and stretch them apart, giving coach full view of your holes. The coach walks up to you his cock in his hand, and with just a few quick jerks, sprays his seed over your ass, his cum mixing with Ivan\'s as it dribbles out of your butt.');
     qspCall(s, 'arousal', 'flash', 10);
@@ -228,7 +228,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     (s as any).voltrenerVoyeur = ((s as any).voltrenerVoyeur ?? 0) + (1);
     (s as any).pcs_horny = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).vballVars ?? {})['coach_lust'] = (((s as any).vballVars ?? {})['coach_lust'] ?? 0) + (2);
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower17.jpg');
     scene.text('You turn to see the coach still looking, wide-eyed and with his jaw hanging open. Ivan finally notices this, and oblivious to the fact that your actions were only partially for his benefit, hastily covers up, grabs his things and jumps out of the shower. As soon as the door closes behind Ivan, the coach walks closer to you, pulls his member out of his pants and points it at you. Passion and lust overpower you and you immediately reach for his cock, but unfortunately, it seems the coach was already on the edge, and he begins to cum as soon as your hands envelop his shaft. He sprays your breasts with his spunk, then promptly pulls up his pants and leaves you in the shower. On your knees. Overflowing with arousal.');
@@ -313,7 +313,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     (s as any).pose = 0;
     (s as any).finrand = 1;
     if (((s as any).vballVars ?? 0)?.['coachsex'] < 1) {
-      ((s as any).vballVars ?? {})['coachsex'] = 1;
+      if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coachsex'] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     qspCall(s, 'stat', '');

@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  ((s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  if (!(s as any).camGirl) (s as any).camGirl = {}; (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[0] ?? 0) === 80) {
     scene.text('When one of your loyal viewers speaks up, you feel a weird knot in your throat. He\'s usually making rather insensitive comments and seems to enjoy watching you squirm, but he pays well.');
@@ -217,11 +217,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? 0)}! Show us something unusual! Anything!"`);
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
-                ((s as any).temp ?? {})[1] = 1;
+                if (!(s as any).temp) (s as any).temp = {}; (s as any).temp[1] = 1;
               }
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 1)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
-                ((s as any).temp ?? {})[1] = 1;
+                if (!(s as any).temp) (s as any).temp = {}; (s as any).temp[1] = 1;
               }
               if (((s as any).temp ?? 0)[1] > 0) {
                 scene.actions([

@@ -8,10 +8,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hotelRoomDays ?? 0)?.['pav'] === 0  &&  ((s as any).hour ?? 0) > 11) {
-    ((s as any).HotelRoom ?? {})['pav'] = 0;
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = 0;
   }
   if (((s as any).hotelRoomDays ?? 0)?.['pav'] < 0) {
-    ((s as any).HotelRoom ?? {})['pav'] = 0;
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = 0;
   }
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Hotel reception</h4></center>');
@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] === 1) {
     scene.actions([
       { label: 'Ask about the maid job', handler: (st: GameState) => {
-    ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 2;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/resep.girl0,\'+rand(0, 10)+\'.jpg');
     scene.text('You approach the reception desk. "Excuse me… I hear you\'re often looking for maids? I would like to come work as a maid here."');
@@ -66,7 +66,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pavhotprosQW ?? 0) === 6) {
       (s as any).pavhotprosQW = 7;
       (s as any).PavlinQW = 1;
-      ((s as any).prostitute ?? {})['active'] = 1;
+      if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['active'] = 1;
     }
     qspCall(s, 'stat', '');
     if (((s as any).pavlevent ?? 0) === 1) {
@@ -161,7 +161,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Luxury room - ${qspFunc(s, 'money', 'string_price', 1500)} a night`);
     scene.actions([
       { label: 'Normal room', handler: (st: GameState) => {
-    ((s as any).hotelRoomDays ?? {})['pav'] = 0;
+    if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = 0;
     if (((s as any).hotelRoomDays ?? 0)?.['pav'] > 0) {
       (s as any).totalCost = ((s as any).hotelRoomDays ?? {})?.['pav'] * 500;
       // TODO-QSP: dynamic text: "A normal room for <<hotelRoomDays['pav']>> days would be <<$func('money', 'stri...
@@ -172,7 +172,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'Luxury room', handler: (st: GameState) => {
-    ((s as any).hotelRoomDays ?? {})['pav'] = 0;
+    if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = 0;
     if (((s as any).hotelRoomDays ?? 0)?.['pav'] > 0) {
       (s as any).totalCost = ((s as any).hotelRoomDays ?? {})?.['pav'] * 1500;
       // TODO-QSP: dynamic text: "A luxury room for <<hotelRoomDays['pav']>> days will be <<$func('money', 'strin...
@@ -204,8 +204,8 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay (<<$func(\'money\', \'string_price\', totalCost)>>)', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).totalCost ?? 0));
-    ((s as any).HotelRoom ?? {})['pav'] = ((s as any).hotel_room_id ?? 0);
-    ((s as any).hotelRoomDays ?? {})['pav'] = ((s as any).daystart ?? 0) + ((s as any).hotelRoomDays ?? {})?.['pav'];
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = ((s as any).hotel_room_id ?? 0);
+    if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = ((s as any).daystart ?? 0) + ((s as any).hotelRoomDays ?? {})?.['pav'];
     // TODO-QSP: dynamic text: You pay <<$func('money', 'string_price', totalCost)>> for the room.
     scene.text(`You pay ${qspFunc(s, 'money', 'string_price', ((s as any).totalCost ?? 0))} for the room.`);
     // TODO-QSP: dynamic text: She gives you the key to your room in return. "Thank you ' + iif(pavHotelMaid = ...

@@ -12,16 +12,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterScheduleReset(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masseuse ?? 0)?.['shifts_required'] > 0) {
-    ((s as any).masseuse ?? {})['schedule_update'] = ((s as any).daystart ?? 0);
+    if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['schedule_update'] = ((s as any).daystart ?? 0);
     (s as any).ms_i = 1;
     // TODO-QSP: :loop_masseuse_sched_part
     (s as any).ms_j = 1;
     // TODO-QSP: :loop_masseuse_sched_inner
-    ((s as any).masseuse ?? {})['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = ((s as any).masseuse ?? 0)?.['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'];
+    if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = ((s as any).masseuse ?? 0)?.['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'];
     if (((s as any).masseuse ?? 0)[((s as any).ms_i ?? 0) + '_shift_' + ((s as any).ms_j ?? 0) + '_taken'] !== 1) {
-      ((s as any).masseuse ?? {})['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
+      if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
     }
-    ((s as any).masseuse ?? {})['next_' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
+    if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['next_' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
     (s as any).ms_j = ((s as any).ms_j ?? 0) + (1);
     if (((s as any).ms_j ?? 0) < 4) {
       // TODO-QSP: jump 'loop_masseuse_sched_inner'

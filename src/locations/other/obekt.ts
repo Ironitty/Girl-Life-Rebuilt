@@ -24,7 +24,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).obekt ?? 0)?.['open'] === 0) {
       if (((s as any).obekt ?? 0)?.['bil'] === 0) {
-        ((s as any).obekt ?? {})['bil'] = 1;
+        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['bil'] = 1;
         scene.text('Before you\'re able to enter, you hear a voice asking you what you\'re doing. It\'s the guard that caught you. He points towards the direction you should be heading instead.');
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
@@ -117,7 +117,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).obekt ?? 0)?.['openstateDM1'] === 0) {
         // TODO-QSP: :markanotherrand
-        ((s as any).obekt ?? {})['DMN'] = '' + ((String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4)))> + '';
+        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['DMN'] = '' + ((String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4)))> + '';
         if (((s as any).obekt ?? 0)?.['DMN'] === ((((s as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + ((((s as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
           // TODO-QSP: jump 'markanotherrand'
         }
@@ -157,24 +157,24 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).obekt ?? 0)?.['DMN'] === '5531') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        ((s as any).obekt ?? {})['i'] = 1;
-        ((s as any).obekt ?? {})['numdmr'] = 0;
+        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['i'] = 1;
+        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = 0;
         // TODO-QSP: :markdnm
         if (((s as any).strpos ?? 0)('69', ((((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1)))) > 0) {
-          ((s as any).obekt ?? {})['numdmr'] = (((s as any).obekt ?? {})['numdmr'] ?? 0) + (1);
+          if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (1);
         } else {
           if (((((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1))) === '8') {
-            ((s as any).obekt ?? {})['numdmr'] = (((s as any).obekt ?? {})['numdmr'] ?? 0) + (2);
+            if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (2);
           }
         }
-        ((s as any).obekt ?? {})['i'] = (((s as any).obekt ?? {})['i'] ?? 0) + (1);
+        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['i'] = ((s as any).obekt['i'] ?? 0) + (1);
         if (((s as any).obekt ?? 0)?.['i'] < 5) {
           // TODO-QSP: jump 'markdnm'
         }
-        ((s as any).obekt ?? {})['numberOSDM'] = 0;
+        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numberOSDM'] = 0;
         if (((s as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] !== ((s as any).obekt ?? 0)?.['numdmr']) {
         } else {
-          ((s as any).obekt ?? {})['openstateDM1'] = 1;
+          if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['openstateDM1'] = 1;
         }
         scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon2'] }]);
       }
@@ -234,9 +234,9 @@ function enterDungeon4(s: GameState, scene: SceneBuilder): void {
     scene.text('In another barrel you see a device where you can enter numbers.');
     scene.actions([
       { label: 'Enter the numbers', handler: (st: GameState) => {
-    ((s as any).obekt ?? {})['numberOSDM2'] = 0;
+    if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numberOSDM2'] = 0;
     if (((s as any).obekt ?? 0)?.['numberOSDM2'] === 1415) {
-      ((s as any).obekt ?? {})['openstateDM2'] = 2;
+      if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['openstateDM2'] = 2;
     }
     qspCall(s, 'array', 'remove_element', 'dungeon', 'numberOSDM2');
   }, goto: ['obekt', 'dungeon4'] },
@@ -253,7 +253,7 @@ function enterDungeon4(s: GameState, scene: SceneBuilder): void {
 
 function enterDungeon4Drums(s: GameState, scene: SceneBuilder): void {
   if (((s as any).obekt ?? 0)?.['openstateDM2'] === 0) {
-    ((s as any).obekt ?? {})['openstateDM2'] = 1;
+    if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['openstateDM2'] = 1;
   }
   qspCall(s, 'stat', '');
   scene.text('Chimes hear soon reconcile those who quarrel.');
@@ -280,8 +280,8 @@ function enterDungeon5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDungeon5Scroll(s: GameState, scene: SceneBuilder): void {
-  ((s as any).obekt ?? {})['svitokRTS'] = 1;
-  ((s as any).obekt ?? {})['heart'] = (((s as any).obekt ?? {})['heart'] ?? 0) + (1);
+  if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['svitokRTS'] = 1;
+  if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['heart'] = ((s as any).obekt['heart'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('You picked up the scroll and he crumbled. As if you breathed in the wind. You listen to the feelings and understand that you have something changed. You feel like somewhere, as if in another dimension another beating heart belongs to you, which will die for you in battle.');
   // TODO-QSP: end

@@ -21,7 +21,7 @@ function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
       { label: 'Take it into your mouth', handler: (st: GameState) => {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
     (s as any).dick = 16;
-    ((s as any).npc_had_sex ?? {})['A1'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A1'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksucker2.jpg');
     // TODO-QSP: dynamic text: You gently kiss the purple head of his member, hoping against hope that maybe yo...

@@ -125,7 +125,7 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).locat ?? 0)?.['Kolka_athome'] === 1  &&  ((s as any).brotherQW ?? 0)?.['bath_voyeur_day'] !== ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 5) + 0) < 2  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
-      ((s as any).brotherQW ?? {})['bath_voyeur_day'] = ((s as any).daystart ?? 0);
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['bath_voyeur_day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/resident/kolka/event/shower/spotkolka.jpg');
       scene.text('You hear the bathroom door creaking open over the sound of the running water and turn around, immediately spotting Kolka watching you through the crack in the door.');
@@ -405,7 +405,7 @@ function enterStepdadSexAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStepdadSexEnd(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A28'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A28'] = 1;
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([

@@ -54,12 +54,12 @@ function enterMissGoto(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== ''  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
                 scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_goto2'] }]);
               } else {
-                ((s as any).sex_ev ?? {})['position'] = 'miss';
-                ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+                if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
+                if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 1;
                 if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
-                  ((s as any).sex_ev ?? {})['speed'] = Math.floor(Math.random() * 3) + 1;
+                  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['speed'] = Math.floor(Math.random() * 3) + 1;
                 }
-                ((s as any).sex_ev ?? {})['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
+                if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
                 if (((s as any).sex_ev ?? 0)?.['mood_type'] === 'romantic'  &&  ((s as any).sex_ev ?? 0)?.['speed'] < 3) {
                   scene.actions([
                     { label: 'Make love to <<$npcdesc>>', handler: (st: GameState) => {
@@ -86,12 +86,12 @@ function enterMissGoto(s: GameState, scene: SceneBuilder): void {
 
 function enterMissGoto2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_count'] !== 0  ||  ((s as any).sex_ev ?? 0)?.['first_insertion'] === 1) {
-    ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 1;
     if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
-      ((s as any).sex_ev ?? {})['speed'] = Math.floor(Math.random() * 3) + 1;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['speed'] = Math.floor(Math.random() * 3) + 1;
     }
-    ((s as any).sex_ev ?? {})['position'] = 'miss';
-    ((s as any).sex_ev ?? {})['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
     if (((s as any).sex_ev ?? 0)?.['mood_type'] === 'romantic'  &&  ((s as any).sex_ev ?? 0)?.['speed'] < 3) {
       scene.actions([
         { label: 'Make love to <<$npcdesc>>', handler: (st: GameState) => {
@@ -175,7 +175,7 @@ function enterMissionaryStart(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Spread your legs', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['condom'] === 0) {
-      ((s as any).sex_ev ?? {})['no_condom'] = 1;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['no_condom'] = 1;
     }
     scene.img('images/shared/sex/foreplay/miss2.jpg');
     if (((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
@@ -209,7 +209,7 @@ function enterMissionaryStart(s: GameState, scene: SceneBuilder): void {
 
 function enterMissFirstInsertion(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_sex', 'speed_select');
-  ((s as any).sex_ev ?? {})['first_insertion'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['first_insertion'] = 1;
   scene.img('images/shared/sex/foreplay/miss3.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pushes you down onto the bed and puts his hands on your knees and s...
   scene.text(`${((s as any).npcdesc ?? 0)} pushes you down onto the bed and puts his hands on your knees and spreads your legs apart, placing his ${((s as any).dick_desc ?? 0)} cock right on top of your pussy as he prepares to fuck you.`);
@@ -315,7 +315,7 @@ function enterMissBigCockReact(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMissVirginPre(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
   scene.img('images/shared/sex/foreplay/miss3.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pushes you down onto the bed and puts his hands on your knees and s...
   scene.text(`${((s as any).npcdesc ?? 0)} pushes you down onto the bed and puts his hands on your knees and spreads your legs apart, preparing to fuck you.`);
@@ -331,7 +331,7 @@ function enterMissSwitch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['initiative'] === 'boy') {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_switch2'] }]);
   }
-  ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 1;
   scene.img('images/shared/sex/foreplay/miss2.jpg');
   if (((s as any).sex_ev ?? 0)?.['last_position'] === 'doggy') {
     // TODO-QSP: dynamic text: You lean forward, letting <<$npcdesc>>'s cock slip from your pussy. You flip ove...
@@ -343,13 +343,13 @@ function enterMissSwitch(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('"I want you on top," you whisper huskily.');
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
   if (((s as any).sex_ev ?? 0)?.['change_pos'] === 0) {
     scene.actions([
       { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
     ]);
   } else {
-    ((s as any).sex_ev ?? {})['change_pos'] = 0;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['change_pos'] = 0;
     scene.actions([
       { label: 'Fuck in missionary', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_miss', 'miss<<sex_ev[''speed'']>>.2'
@@ -361,7 +361,7 @@ function enterMissSwitch(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMissSwitch2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['change_pos'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['change_pos'] = 0;
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
     if (((s as any).sex_ev ?? 0)?.['last_position'] === 'doggy') {
       scene.img('images/shared/sex/foreplay/miss2.jpg');
@@ -386,7 +386,7 @@ function enterMissSwitch2(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} pushes you down onto your back and grabs your thighs, pulling you close with legs spread, and lays his cock across your snatch.`);
   }
   scene.text('"I think it\'s my turn to be on top," he grins.');
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
   // TODO-QSP: end
   scene.actions([
     { label: 'Insertion', goto: ['sex_ev_miss', 'miss_insert_slow'] },
@@ -396,7 +396,7 @@ function enterMissSwitch2(s: GameState, scene: SceneBuilder): void {
 
 function enterMissSpread(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['condom'] === 0) {
-    ((s as any).sex_ev ?? {})['no_condom'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['no_condom'] = 1;
   }
   scene.img('images/shared/sex/foreplay/miss2.jpg');
   if (((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
@@ -423,22 +423,22 @@ function enterMissSpread(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMissInsertSlow(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
   if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
     if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
       qspCall(s, 'sex_ev_sex', 'speed_select');
     }
-    ((s as any).sex_ev ?? {})['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
     scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_goto2'] }]);
   } else {
-    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
-    ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cock_inserted'] = 1;
     if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-      ((s as any).sex_ev ?? {})['no_condom'] = 1;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['no_condom'] = 1;
     }
     qspCall(s, 'sex_ev_sex', 'insertion_arousal_code');
     qspCall(s, 'stat', '');
-    ((s as any).sex_ev ?? {})['position'] = 'miss';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
     if (((s as any).sex_ev ?? 0)?.['condom'] === 1) {
       scene.img('images/shared/sex/vag/miss/enter_condom1.mp4');
     } else {
@@ -650,9 +650,9 @@ function enterMissInsertOrgasm(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['orgasm'] === ((s as any).orgasm ?? 0)) {
       // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
     }
-    ((s as any).sex_ev ?? {})['insertion_orgasm'] = 1;
-    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
-    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['insertion_orgasm'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm_count'] = ((s as any).sex_ev['orgasm_count'] ?? 0) + (1);
     scene.img('images/shared/sex/vag/miss/3.jpg');
     if (((s as any).trait_vars ?? 0)?.['sensitivity'] === 0) {
       scene.text('You\'re so turned on, just that one thrust is all it takes for you to come.');
@@ -720,8 +720,8 @@ function enterMissGirlOrgasmContinue(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('"I\'m not finished yet," he growls.');
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
-  ((s as any).sex_ev ?? {})['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
   // TODO-QSP: end
   scene.build();
@@ -735,7 +735,7 @@ function enterMissionaryChangePosition(s: GameState, scene: SceneBuilder): void 
     scene.text(`"I'm not really feeling missionary right now," you say, looking up at ${((s as any).npcdesc ?? 0)}. "Could we try another position for now?"`);
     scene.text('He pauses halfway out of you.');
     scene.text('"What did you have in mind?"');
-    ((s as any).sex_ev ?? {})['change_pos'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['change_pos'] = 1;
     qspCall(s, 'sex_ev_sex', 'position_change');
   } },
   ]);
@@ -746,7 +746,7 @@ function enterMissPain1(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 20) + 1) >= ((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)]) {
     scene.actions([
       { label: 'Ouch!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.text('Lances of pain have been piercing through your vagina from the very first thrust. Whether it\'s angle or technique or just the shape of your pussy and the shape of his cock, you can\'t say for certain. The only thing you are sure of is that this <i>hurts!</i>');
     // TODO-QSP: dynamic text: Every time <<$npcdesc>> moves it's like a knife in your pussy, stabbing your ins...
     scene.text(`Every time ${((s as any).npcdesc ?? 0)} moves it's like a knife in your pussy, stabbing your insides like the villain in a slasher flick.`);
@@ -756,8 +756,8 @@ function enterMissPain1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dick_desc ?? 0) === 'long'  ||  ((s as any).dick_desc ?? 0) === 'huge'  ||  ((s as any).dick_desc ?? 0) === 'enormous'  ||  ((s as any).dick_desc ?? 0) === 'lengthy'  ||  ((s as any).dick_desc ?? 0) === 'gigantic'  ||  ((s as any).dick_desc ?? 0) === 'monstrous') {
     scene.actions([
       { label: 'Dick is too big', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['dick_too_big'] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dick_too_big'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     // TODO-QSP: dynamic text: Every thrust of <<$npcdesc>>'s hips elicits a gasp of pain from your lips. His c...
     scene.text(`Every thrust of ${((s as any).npcdesc ?? 0)}'s hips elicits a gasp of pain from your lips. His cock is too much for your poor pussy and it's hard to enjoy.`);
     qspCall(s, 'sex_ev_miss', 'miss_pain2');
@@ -822,7 +822,7 @@ function enterMissPain3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Be irritated', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).npc_dislike ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dislike ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (2);
+    if (!(s as any).npc_dislike) (s as any).npc_dislike = {}; (s as any).npc_dislike[String((s as any).npcID ?? 0)] = ((s as any).npc_dislike[String((s as any).npcID ?? 0)] ?? 0) + (2);
     scene.img('images/shared/sex/vag/miss/1.jpg');
     scene.text('"Who taught you how to fuck?" you scowl. "Your dick is stabbing into me in all the worst ways!"');
     if (((s as any).npc_argumentative ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -837,7 +837,7 @@ function enterMissPain3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"How's that?" ${((s as any).npcdesc ?? 0)} asks.`);
     scene.actions([
       { label: 'Fine I guess', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
     scene.text('"Fine I guess," you sigh. It doesn\'t really feel good, but at least it doesn\'t hurt anymore.');
     // TODO-QSP: dynamic text: <<$npcdesc>> takes your response as approval and starts moving again.
     scene.text(`${((s as any).npcdesc ?? 0)} takes your response as approval and starts moving again.`);
@@ -848,7 +848,7 @@ function enterMissPain3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Better', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     scene.text('"<i>Finally</i>," you sigh. "Yes, that feels better. Try to remember this next time."');
     // TODO-QSP: dynamic text: <<$npcdesc>> seems to be a little ticked off by your attitude but starts moving ...
     scene.text(`${((s as any).npcdesc ?? 0)} seems to be a little ticked off by your attitude but starts moving again anyways.`);
@@ -862,11 +862,11 @@ function enterMissPain3(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Laugh it off', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).npc_like ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_like ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (2);
+    if (!(s as any).npc_like) (s as any).npc_like = {}; (s as any).npc_like[String((s as any).npcID ?? 0)] = ((s as any).npc_like[String((s as any).npcID ?? 0)] ?? 0) + (2);
     scene.img('images/shared/sex/vag/miss/4.jpg');
     if (((s as any).sex_ev ?? 0)?.['dick_too_big'] === 1) {
-      ((s as any).sex_ev ?? {})['dick_too_big'] = 2;
-      ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dick_too_big'] = 2;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
       (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
       scene.text('"Your dick is kind of big for me," you smile ruefully. "Can we just pause for a sec to let my poor pussy adjust?"');
       scene.text('"Oh. Yeah, sure."');
@@ -874,7 +874,7 @@ function enterMissPain3(s: GameState, scene: SceneBuilder): void {
       scene.text(`You spend a couple minutes with ${((s as any).npcdesc ?? 0)}'s entire length inside you, taking deep breaths as you slowly let it stretch your pussy. Eventually the pain fades to nothing more than a dull ache and even maybe feels a little good.`);
       scene.text('"Okay," you nod. "You can start moving again."');
     } else {
-      ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
       scene.text('"I\'m fine," you chuckle. "Your dick is kind of at an awkward angle though. Can we adjust a little?"');
       scene.text('"Oh. Yeah, sure."');
       scene.text('The two of you shuffle around a little finding a position for your hips that\'s a little more comfortable.');
@@ -911,18 +911,18 @@ function enterMissVid(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiss1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['miss_fuck'] = 1;
-  ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['miss_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-    ((s as any).sex_ev ?? {})['no_condom'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['no_condom'] = 1;
   }
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
-  ((s as any).sex_ev ?? {})['pos_speed'] = 'miss1';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss1';
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== '') {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss1.2'] }]);
   }
-  ((s as any).sex_ev ?? {})['missionary_fuck'] = 1;
-  ((s as any).sex_ev ?? {})['kiss'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['missionary_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['kiss'] = 0;
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_virgin', 'miss_virg_norm1'] }]);
   }
@@ -933,7 +933,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_miss', 'miss1_start_desc');
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: An uncontrollable gasp escapes your lips as <<$npcdesc>>'s hips meet yours in th...
       scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in the next thrust. You can feel how his movements react to yours, paying attention to your body's nonverbal signals, and making each thrust feeling better than the last. His dick may be small but <i>damn</i>, does he know how to use it.`);
@@ -956,14 +956,14 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: act'But you''re just not connecting':
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
     scene.text('But... for all his skill, somehow just isn\'t doing it for you.');
     scene.text('The pleasure is there but... the emotional connection--the <i>intimacy</i>--isn\'t, and it leaves you feeling strangely hollow and unsatisfied. Your bodies are joined together, but it seems without the soul, all you feel are bits of flesh smacking each other...');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
     scene.actions([
       { label: 'Enjoy yourself', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     scene.text('Your eyes roll back in your head as your pussy eagerly slurps up his cock again and again.');
     scene.text('<i>This is so goooooood...</i>');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
@@ -976,16 +976,16 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
     scene.actions([
       { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: Still, that's good enough and you don't mind the awkward hit now and then. You s...
     scene.text(`Still, that's good enough and you don't mind the awkward hit now and then. You smile back at ${((s as any).npcdesc ?? 0)}, determined to enjoy fucking him today.`);
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
       { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: He's good, but not good enough for you. Whatever effort he puts in can only go s...
       scene.text('He\'s good, but not good enough for you. Whatever effort he puts in can only go so far with such a small dick. Beyond that, his movements just aren\'t syncing up with yours\' + iif(npc_fuck_times[$npcID] > 0, \' today \', \' \') + \'and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
@@ -1018,7 +1018,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
       scene.text(`In a word, ${((s as any).npcdesc ?? 0)} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? 0)} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
       scene.actions([
         { label: 'Coach him to do better', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling and putting your ha...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your thighs a little wider as he pushes his <<$dick_desc>> cock into ...
@@ -1029,9 +1029,9 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1054,7 +1054,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'This hurts!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1080,7 +1080,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
       scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? 0)} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
       scene.actions([
         { label: 'Coach him to do better', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling and putting your ha...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your thighs a little wider as he pushes his <<$dick_desc>> cock into ...
@@ -1091,9 +1091,9 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1116,7 +1116,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'This hurts!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1141,7 +1141,7 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
     // TODO-QSP: act'His dick is so small!':
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: It takes all of your willpower not to audibly sigh as you keep letting <<$npc_us...
@@ -1157,14 +1157,14 @@ function enterMiss1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'This is too slow', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
     // TODO-QSP: dynamic text: Closing your eyes, you try to focus on the sensations, <<$npcdesc>> on top of yo...
     scene.text(`Closing your eyes, you try to focus on the sensations, ${((s as any).npcdesc ?? 0)} on top of you, his cock slowly moving inside you, going in and out... in and out... in and ou-`);
     scene.text('Your eyes snap open when you realize this isn\'t going to work and hold back a sigh. This is so slow! You don\'t want this dainty gentle lovemaking, you want him to <i>fuck</i> you!');
     scene.actions([
       { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['bored'] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bored'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/miss/slow2.mp4');
     // TODO-QSP: dynamic text: As much as you want <<$npcdesc>> to pick up the pace, you don't want to be a bit...
     scene.text(`As much as you want ${((s as any).npcdesc ?? 0)} to pick up the pace, you don't want to be a bitch about it so you bite your tongue, going back to trying to get off on this or at least derive some kind of enjoyment out of it, ultimately failing on both counts.`);
@@ -1218,7 +1218,7 @@ function enterMiss1_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps slowly fucking you. Finally, the sta...
@@ -1240,7 +1240,7 @@ function enterMiss1_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps slowly fucking you. Closing your eye...
@@ -1262,14 +1262,14 @@ function enterMiss1_2(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-      ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
       // TODO-QSP: dynamic text: Nevertheless, you try to move your hips in time with his, rolling them and doing...
       scene.text(`Nevertheless, you try to move your hips in time with his, rolling them and doing your best to make ${((s as any).npcdesc ?? 0)} feel good, hoping he'll come quickly.`);
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === -1) {
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk2');
         if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
@@ -1280,12 +1280,12 @@ function enterMiss1_2(s: GameState, scene: SceneBuilder): void {
           scene.text(`Your breath hitches as ${((s as any).npcdesc ?? 0)} continues to slowly thrust into your pussy. You aren't sure what changed, but somewhere along the line everything started feeling <i>really good</i>. When his cock stretches your pussy, you want to be stretched <i>more</i>. Your pussy clamps down on him, gripping his cock in the hopes it will never need to let go. But the juices flowing from your snatch make that impossible and every thrust that fills you leaves you tantalized for more. You <i>ache</i> for him to fill you, and every new thrust grants that wish again and again.`);
         }
         if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-          ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
           scene.text('As your pleasure increases, you try your best to bring his up as well, putting in the effort to try and make him come.');
         }
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-          ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
           qspCall(s, 'sex_ev_miss', 'miss1_boy_talk1');
           qspCall(s, 'sex_ev_miss', 'miss1_boy_talk2');
           // TODO-QSP: dynamic text: You widen your legs and try to roll your hips in time with <<$npcdesc>>'s, tryin...
@@ -1326,7 +1326,7 @@ function enterMiss1_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-        ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss1_boy_talk2');
         // TODO-QSP: dynamic text: You widen your legs and eagerly throw your hips back towards <<$npcdesc>> in tim...
@@ -1396,15 +1396,15 @@ function enterMiss1_bored(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiss2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['miss_fuck'] = 1;
-  ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['miss_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-    ((s as any).sex_ev ?? {})['no_condom'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['no_condom'] = 1;
   }
-  ((s as any).sex_ev ?? {})['kiss'] = 0;
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
-  ((s as any).sex_ev ?? {})['pos_speed'] = 'miss2';
-  ((s as any).sex_ev ?? {})['missionary_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['kiss'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss2';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['missionary_fuck'] = 1;
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_virgin', 'miss_virg_norm1'] }]);
   }
@@ -1415,7 +1415,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_miss', 'miss2_start_desc');
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: An uncontrollable gasp escapes your lips as <<$npcdesc>>'s hips meet yours in th...
       scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in the next thrust. You can feel how his movements react to yours, paying attention to your body's nonverbal signals, and making each thrust feeling better than the last. His dick may be small but <i>damn</i>, does he know how to use it.`);
@@ -1438,14 +1438,14 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: act'But you''re just not connecting':
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
     scene.text('But... for all his skill, somehow just isn\'t doing it for you.');
     scene.text('The pleasure is there but... the emotional connection--the <i>intimacy</i>--isn\'t, and it leaves you feeling strangely hollow and unsatisfied. Your bodies are joined together, but it seems without the soul, all you feel are bits of flesh smacking each other...');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
     scene.actions([
       { label: 'Enjoy yourself', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     scene.text('Your eyes roll back in your head as your pussy eagerly slurps up his cock again and again.');
     scene.text('<i>This is so goooooood...</i>');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
@@ -1458,16 +1458,16 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
     scene.actions([
       { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: Still, that's good enough and you don't mind the awkward hit now and then. You s...
     scene.text(`Still, that's good enough and you don't mind the awkward hit now and then. You smile back at ${((s as any).npcdesc ?? 0)}, determined to enjoy fucking him today.`);
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
       { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: He's good, but not good enough for you. Whatever effort he puts in can only go s...
       scene.text('He\'s good, but not good enough for you. Whatever effort he puts in can only go so far with such a small dick. Beyond that, his movements just aren\'t syncing up with yours\' + iif(npc_fuck_times[$npcID] > 0, \' today \', \' \') + \'and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
@@ -1500,7 +1500,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
       scene.text(`In a word, ${((s as any).npcdesc ?? 0)} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? 0)} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
       scene.actions([
         { label: 'Coach him to do better', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling and putting your ha...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your thighs a little wider as he pushes his <<$dick_desc>> cock into ...
@@ -1511,9 +1511,9 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1536,7 +1536,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'This hurts!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1562,7 +1562,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
       scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? 0)} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
       scene.actions([
         { label: 'Coach him to do better', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling and putting your ha...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your thighs a little wider as he pushes his <<$dick_desc>> cock into ...
@@ -1573,9 +1573,9 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1598,7 +1598,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'This hurts!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1623,7 +1623,7 @@ function enterMiss2(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
     // TODO-QSP: act'His dick is so small!':
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: It takes all of your willpower not to audibly sigh as you keep letting <<$npc_us...
@@ -1658,14 +1658,14 @@ function enterMiss2_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiss2_2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['miss_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['miss_fuck'] = 1;
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'miss', 2);
   qspCall(s, 'sex_ev_miss', 'miss_vid');
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_pain'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps steadily fucking you. Finally, the s...
@@ -1687,8 +1687,8 @@ function enterMiss2_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_pain'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps steadily fucking you. Closing your e...
@@ -1711,21 +1711,21 @@ function enterMiss2_2(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-      ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
       // TODO-QSP: dynamic text: Nevertheless, you try to move your hips in time with his, rolling them and doing...
       scene.text(`Nevertheless, you try to move your hips in time with his, rolling them and doing your best to make ${((s as any).npcdesc ?? 0)} feel good, hoping he'll come quickly.`);
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === -1) {
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk2');
         // TODO-QSP: dynamic text: Your breath hitches as <<$npcdesc>> continues to steadily thrust into your pussy...
         scene.text(`Your breath hitches as ${((s as any).npcdesc ?? 0)} continues to steadily thrust into your pussy. You aren't sure what changed, but it's like your body is waking up from a deep sleep. His cock stretches your walls, every thrust <i>fills</i> you in a way you didn't know you needed to be, and even now you can feel yourself get wetter and wetter, slicking up his cock and making it slide in and out of you with much greater, and pleasurable, force.`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-          ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
           qspCall(s, 'sex_ev_miss', 'miss2_boy_talk1');
           qspCall(s, 'sex_ev_miss', 'miss2_boy_talk2');
           scene.text('As your pleasure increases, you try your best to bring his up as well, putting in the effort to try and make him come.');
@@ -1757,7 +1757,7 @@ function enterMiss2_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-        ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk1');
         qspCall(s, 'sex_ev_miss', 'miss2_boy_talk2');
         // TODO-QSP: dynamic text: You widen your legs and eagerly throw your hips back towards <<$npcdesc>> in tim...
@@ -1805,10 +1805,10 @@ function enterMiss2_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiss2_bored(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['miss_fuck'] = 1;
-  ((s as any).sex_ev ?? {})['pos_speed'] = 'miss2';
-  ((s as any).sex_ev ?? {})['kiss'] = 0;
-  ((s as any).sex_ev ?? {})['boy_cum'] = 2;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['miss_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss2';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['kiss'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_cum'] = 2;
   scene.img('images/shared/sex/vag/miss/med3.mp4');
   // TODO-QSP: dynamic text: You moan along with <<$npcdesc>>'s thrusts, putting on your best oh-face and hop...
   scene.text(`You moan along with ${((s as any).npcdesc ?? 0)}'s thrusts, putting on your best oh-face and hoping that he doesn't see through it, just waiting for him to come already.`);
@@ -1819,16 +1819,16 @@ function enterMiss2_bored(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiss3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
-  ((s as any).sex_ev ?? {})['miss_fuck'] = 1;
-  ((s as any).sex_ev ?? {})['rough_check'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['miss_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['rough_check'] = 1;
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-    ((s as any).sex_ev ?? {})['no_condom'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['no_condom'] = 1;
   }
-  ((s as any).sex_ev ?? {})['position'] = 'miss';
-  ((s as any).sex_ev ?? {})['pos_speed'] = 'miss3';
-  ((s as any).sex_ev ?? {})['missionary_fuck'] = 1;
-  ((s as any).sex_ev ?? {})['kiss'] = 0;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['position'] = 'miss';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['pos_speed'] = 'miss3';
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['missionary_fuck'] = 1;
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['kiss'] = 0;
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_virgin', 'miss_virg_hard1'] }]);
   }
@@ -1843,7 +1843,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75) {
     scene.actions([
       { label: 'Enjoy it', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: An uncontrollable gasp escapes your lips as <<$npcdesc>>'s hips pound into yours...
     scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips pound into yours over and over again. He's incessant, smashing into your pussy over.`);
     scene.text('<i>And it\'s amazing.</i>');
@@ -1872,16 +1872,16 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
       scene.actions([
         { label: 'Enjoy it', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: Your eyes roll back in your head as <<$npcdesc>> incessantly pounds into you wit...
     scene.text(`Your eyes roll back in your head as ${((s as any).npcdesc ?? 0)} incessantly pounds into you with his ${((s as any).dick_desc ?? 0)} cock. Not every thrust is clean and every once in a while he bangs into you in a way that causes a sharp jab of pain inside you. But that's just part of going rough and you focus on the good ones, letting the bad ones roll on past.`);
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     // TODO-QSP: dynamic text: <i>Do people really enjoy this?</i> you think to yourself as <<$npcdesc>> keeps ...
     scene.text(`<i>Do people really enjoy this?</i> you think to yourself as ${((s as any).npcdesc ?? 0)} keeps pounding himself into your pussy. But for all the effort he's putting in, it's not bringing any pleasure. It doesn't <i>hurt</i> exactly, but it's definitely not getting you off.`);
     scene.text('Oh well. Not everyone can be a winner. But there\'s no need to make him feel bad about it and start voicing moans of pleasure. You\'ll probably have to fake an orgasm for him later too...');
@@ -1893,16 +1893,16 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
         scene.actions([
           { label: 'Enjoy it', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: Your eyes roll back in your head as <<$npcdesc>> incessantly pounds into you wit...
     scene.text(`Your eyes roll back in your head as ${((s as any).npcdesc ?? 0)} incessantly pounds into you with his ${((s as any).dick_desc ?? 0)} cock. Not every thrust is clean and every once in a while he bangs into you in a way that causes a sharp jab of pain inside you. But that's just part of going rough and you focus on the good ones, letting the bad ones roll on past.`);
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     // TODO-QSP: dynamic text: <i>Do people really enjoy this?</i> you think to yourself as <<$npcdesc>> keeps ...
     scene.text(`<i>Do people really enjoy this?</i> you think to yourself as ${((s as any).npcdesc ?? 0)} keeps pounding himself into your pussy. But for all the effort he's putting in, it's not bringing any pleasure. He's not paying any attention to your body's response, just thrusting wildly as fast as he can.`);
     scene.text('Oh well. Not everyone can be a winner. But there\'s no need to make him feel bad about it and start voicing moans of pleasure. You\'ll probably have to fake an orgasm for him later too...');
@@ -1910,7 +1910,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Does he think this is good?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy, just thrusting wildly and smashing his tiny cock into you without any care or attention. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1939,7 +1939,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
         scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? 0)} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
         scene.actions([
           { label: 'Coach him to do better', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling and putting your ha...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling and putting your hands on his sides and guiding him. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your thighs a little wider as he pushes his <<$dick_desc>> cock into ...
@@ -1950,9 +1950,9 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'Fake enjoyment', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
-    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['moan'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1975,7 +1975,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -2001,7 +2001,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
     // TODO-QSP: act'His dick is so small!':
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>'s hips are smacking into yours with an exceptional amo...
     scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s hips are smacking into yours with an exceptional amount of force but despite that, you can't feel <i>anything</i> inside you. You didn't even know it was possible for someone to fuck you this hard without pleasure or even pain to show for it.`);
@@ -2015,13 +2015,13 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['rough_enjoy'] !== 1) {
     scene.actions([
       { label: 'So rough!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
     scene.text('You want to scream as he pulls on your hair, feeling like he\'s going to rip it out and putting an awful strain on your neck. His cock is like a jackhammer, pounding into your pussy in the worst way, feeling more like he\'s punching your cervix than fucking you. It\'s so painful you feel like you\'re going to die.');
     scene.actions([
       { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['bored'] = 1;
-    ((s as any).sex_ev ?? {})['boy_cum'] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['bored'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_cum'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     scene.img('images/shared/sex/vag/miss/hard2.mp4');
     // TODO-QSP: dynamic text: For whatever reason, you can't bring yourself to say anything, and simply endure...
     scene.text(`For whatever reason, you can't bring yourself to say anything, and simply endure the rough treatment. You sigh in relief when ${((s as any).npcdesc ?? 0)} releases your hair but only for a brief moment when he uses his extra hand to grab hold of your ass and pound you even harder. You grab onto the edge of the bed and hang on for dear life, whimpering as he mercilessly fucks you.`);
@@ -2035,10 +2035,10 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Hurts fucking good doesn't it?" ${((s as any).npcdesc ?? 0)} grunts back, not even pausing for a single beat.`);
       scene.actions([
         { label: 'Please slow down!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
-    ((s as any).sex_ev ?? {})['rough_hurt'] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
-    ((s as any).sex_ev ?? {})['boy_cum'] = 2;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['rough_hurt'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_cum'] = 2;
     scene.text('"Please!" you beg, tears welling up in your eyes. "Please slow down! I can\'t-! Take-!');
     // TODO-QSP: dynamic text: But <<$npcdesc>> is heedless of your cries. He keeps a firm hold on your hair an...
     scene.text(`But ${((s as any).npcdesc ?? 0)} is heedless of your cries. He keeps a firm hold on your hair and pulls hard with every thrust, forcing unceasing cries of pain from your lips.`);
@@ -2047,9 +2047,9 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'If you slow down I will kill you', handler: (st: GameState) => {
     qspCall(s, 'sweat', 'add', 1);
-    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
-    ((s as any).sex_ev ?? {})['rough_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['rough_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: You scream another cry of agonizing pleasure and glare at <<$npcdesc>>.
     scene.text(`You scream another cry of agonizing pleasure and glare at ${((s as any).npcdesc ?? 0)}.`);
     scene.text('"If you slow down I will <i>fucking</i> kill you," you snarl, throwing your hips forward to slam into his for more force.');
@@ -2069,9 +2069,9 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'No (enjoy)', handler: (st: GameState) => {
-    ((s as any).npc_knows_pc_likes_rough ?? {})[String((s as any).npcID ?? 0)] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
-    ((s as any).sex_ev ?? {})['rough_enjoy'] = 1;
+    if (!(s as any).npc_knows_pc_likes_rough) (s as any).npc_knows_pc_likes_rough = {}; (s as any).npc_knows_pc_likes_rough[String((s as any).npcID ?? 0)] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['rough_enjoy'] = 1;
     scene.text('"No," you smile back at him. "I want you to pound me."');
     // TODO-QSP: dynamic text: In response, <<$npcdesc>> yanks you back by the hair even harder than before, sl...
     scene.text(`In response, ${((s as any).npcdesc ?? 0)} yanks you back by the hair even harder than before, slamming his cock into you to fulfil your request.`);
@@ -2080,14 +2080,14 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Yes, gentle please', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['too_rough'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['too_rough'] = 1;
     scene.text('"Yes please," you say, giving him a small smile. "A little more gently would be very nice..."');
     scene.actions([
       { label: 'Continue', goto: ['sex_ev_miss', 'miss1.1'] },
     ]);
   } },
         { label: 'Not <i>too</i> gentle', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['too_rough'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['too_rough'] = 1;
     scene.text('"You don\'t have to be <i>too</i> gentle with me," you giggle. "I just don\'t want to feel like I\'m having sex with Vlad the Impaler here."');
     scene.text('You sigh in relief as he picks up his pace again, this time without leaving you feel like you\'re being battered to bits.');
     scene.actions([
@@ -2098,7 +2098,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'Fake an orgasm', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['fake_orgasm_count'] = (((s as any).sex_ev ?? {})['fake_orgasm_count'] ?? 0) + (1);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fake_orgasm_count'] = ((s as any).sex_ev['fake_orgasm_count'] ?? 0) + (1);
     (s as any).fake_orgasm = ((s as any).fake_orgasm ?? 0) + (1);
     qspCall(s, 'sex_ev_sex', 'fuck_rough_no_cum_code');
     scene.img('images/shared/sex/vag/miss/hard2.mp4');
@@ -2140,7 +2140,7 @@ function enterMiss3(s: GameState, scene: SceneBuilder): void {
 function enterMiss3_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'miss', 3);
   if (((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (((s as any).npc_knows_pc_likes_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  ((s as any).sex_ev ?? 0)?.['rough_enjoy'] !== 1)) {
-    ((s as any).sex_ev ?? {})['rough_fuck'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['rough_fuck'] = 1;
     scene.img('images/shared/sex/vag/miss/rough1.mp4');
     // TODO-QSP: dynamic text: <<$npcdesc>> suddenly grabs your head, causing sharp pain at the back of your sc...
     scene.text(`${((s as any).npcdesc ?? 0)} suddenly grabs your head, causing sharp pain at the back of your scalp.`);
@@ -2149,16 +2149,16 @@ function enterMiss3_1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Yeah <i>bitch?!</i>" ${((s as any).npcdesc ?? 0)} snarls. "You want me to fuck you harder? Well, then take it you fucking slut!" and starts roughly fucking you in a way completely unlike his previous mannerisms.`);
     scene.actions([
       { label: 'Enjoy it', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['rough_enjoy'] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['rough_enjoy'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
     qspCall(s, 'sex_ev_miss', 'miss3.1_desc');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
       { label: 'Suffer', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_sex', 'fuck_rough_no_cum_code');
-    ((s as any).sex_ev ?? {})['rough_hurt'] = 1;
-    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['rough_hurt'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'painful';
     // TODO-QSP: dynamic text: Tears begin to well up in your eyes as he keeps fucking you roughly. It's all yo...
     scene.text(`Tears begin to well up in your eyes as he keeps fucking you roughly. It's all you can do not to sob, but ${((s as any).npcdesc ?? 0)} is unrelenting. He keeps a firm hold on your hair and pulls hard with every thrust, forcing cries of pain from your lips.`);
     scene.text('This isn\'t what you wanted...');
@@ -2186,8 +2186,8 @@ function enterMiss3_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_rough_no_cum_code');
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_pain'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps pounding his cock into you. Somehow,...
         scene.text(`You take deep breaths as ${((s as any).npcdesc ?? 0)} keeps pounding his cock into you. Somehow, the stabbing pain between your legs is starting to go away. It seems your virgin pussy is starting to adjust to getting jackhammered.`);
       } else {
@@ -2209,8 +2209,8 @@ function enterMiss3_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_pain'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps pounding his cock into you. You focu...
         scene.text(`You take deep breaths as ${((s as any).npcdesc ?? 0)} keeps pounding his cock into you. You focus hard, trying with all your might to squeeze <i>some</i> kind of pleasure from this. Anything to make the pain go away. And somehow, after several minutes, it does. ${((s as any).npcdesc ?? 0)} continues to jackhammer your pussy with his cock, but suddenly you feel able to tolerate it, even if it doesn't feel very good either.`);
       } else {
@@ -2232,7 +2232,7 @@ function enterMiss3_2(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-      ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
       // TODO-QSP: dynamic text: Nevertheless, you try to move your hips in time with his, rolling them and doing...
       scene.text(`Nevertheless, you try to move your hips in time with his, rolling them and doing your best to make ${((s as any).npcdesc ?? 0)} feel good. Maybe you can make him come soon and put an end to this agony...`);
     }
@@ -2240,12 +2240,12 @@ function enterMiss3_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
       qspCall(s, 'sex_ev_sex', 'fuck_rough_no_cum_code');
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === -1) {
-        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
         // TODO-QSP: dynamic text: Your breath hitches as <<$npcdesc>> continues to pound your pussy. You aren't su...
         scene.text(`Your breath hitches as ${((s as any).npcdesc ?? 0)} continues to pound your pussy. You aren't sure what changed, but it's like your body is coming alive. His cock stretches your walls, <i>filling</i> you in a way you didn't know you needed to be, and even now you can feel yourself get wetter and wetter, slicking up his cock and making it slam harder into you with every thrust.`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-          ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
           // TODO-QSP: dynamic text: You widen your legs and try to roll your hips in time with <<$npcdesc>>'s as he ...
           scene.text(`You widen your legs and try to roll your hips in time with ${((s as any).npcdesc ?? 0)}'s as he pounds you, trying to make him come faster.`);
         } else {
@@ -2270,7 +2270,7 @@ function enterMiss3_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-        ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
+        if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['cum_speed_up'] = 0;
         // TODO-QSP: dynamic text: You widen your legs and eagerly throw your hips back towards <<$npcdesc>> as he ...
         scene.text(`You widen your legs and eagerly throw your hips back towards ${((s as any).npcdesc ?? 0)} as he pounds your pussy. Maybe if you time it right, you can come together.`);
       } else {
@@ -2309,7 +2309,7 @@ function enterMissKiss(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No kissing', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['kiss_skip'] = 1;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['kiss_skip'] = 1;
     if (((s as any).npc_no_kiss ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
       scene.text('You turn your head, shying away from his lips.');
@@ -2319,7 +2319,7 @@ function enterMissKiss(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
         scene.text('"Hey!" you say, annoyedly jerking your head away. "I told you! No kissing!"');
       } else {
-        ((s as any).npc_no_kiss ?? {})[String((s as any).npcID ?? 0)] = 1;
+        if (!(s as any).npc_no_kiss) (s as any).npc_no_kiss = {}; (s as any).npc_no_kiss[String((s as any).npcID ?? 0)] = 1;
         scene.text('"Hey!" you say, jerking your head away. "No kissing!"');
       }
     }
@@ -2327,8 +2327,8 @@ function enterMissKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
     { label: 'Kiss him', handler: (st: GameState) => {
-    ((s as any).npc_like ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_like ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (2);
-    ((s as any).sex_ev ?? {})['kiss'] = 1;
+    if (!(s as any).npc_like) (s as any).npc_like = {}; (s as any).npc_like[String((s as any).npcID ?? 0)] = ((s as any).npc_like[String((s as any).npcID ?? 0)] ?? 0) + (2);
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['kiss'] = 1;
     // TODO-QSP: gs 'arousal', 'kiss', -rand(1, 2), 'no_orgasm_msg', $sex_ev['prostitution_flag']
     scene.img('images/shared/sex/vag/miss/kiss1.mp4');
     if (((s as any).sex_ev ?? 0)?.['cuni_count'] > 0) {
@@ -2346,8 +2346,8 @@ function enterMissKiss(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
       if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
         if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-          ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
-          ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_pain'] = 0;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
           // TODO-QSP: dynamic text: You kiss <<$npcdesc>> back with all your might, trying to find something to dist...
           scene.text(`You kiss ${((s as any).npcdesc ?? 0)} back with all your might, trying to find something to distract yourself from the pain. All your focus is on the kiss and his lips and his tongue and the taste. It comes to you with a start that after the kiss breaks, you're not in as much pain as you were before.`);
         } else {
@@ -2363,8 +2363,8 @@ function enterMissKiss(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-          ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
-          ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_pain'] = 0;
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
           // TODO-QSP: dynamic text: You kiss <<$npcdesc>> back with all your might, trying to find something to dist...
           scene.text(`You kiss ${((s as any).npcdesc ?? 0)} back with all your might, trying to find something to distract yourself from the pain. All your focus is on the kiss and his lips and his tongue and the taste. It comes to you with a start that after the kiss breaks, you're not in as much pain as you were before.`);
         } else {
@@ -2382,7 +2382,7 @@ function enterMissKiss(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
         if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === -1) {
-          ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
+          if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
           // TODO-QSP: dynamic text: A spark fires off somewhere inside you and suddenly find yourself kissing <<$npc...
           scene.text(`A spark fires off somewhere inside you and suddenly find yourself kissing ${((s as any).npcdesc ?? 0)} back with passion as heat spreads through your hips. Your arousal has been awakened and wetness spreads between your legs as you force your tongue into ${((s as any).npcdesc ?? 0)}'s mouth.`);
         } else {
@@ -2969,7 +2969,7 @@ function enterMiss1_2MoanDesc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiss1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sex_ev ?? {})['dirty_talk_count'] = (((s as any).sex_ev ?? {})['dirty_talk_count'] ?? 0) + (1);
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dirty_talk_count'] = ((s as any).sex_ev['dirty_talk_count'] ?? 0) + (1);
   if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
       // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fu...
@@ -3144,7 +3144,7 @@ function enterMiss1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sex_ev ?? 0)?.['dirty_talk_count'] > 1) {
-    ((s as any).sex_ev ?? {})['dirty_talk_count'] = 0;
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['dirty_talk_count'] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -3579,10 +3579,10 @@ function enterMiss2_1Desc(s: GameState, scene: SceneBuilder): void {
 
 function enterMiss2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['moan'] === 1) {
-    ((s as any).sex_ev ?? {})['moan_describe'] = 'softly';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan_describe'] = 'softly';
   } else {
     if (((s as any).sex_ev ?? 0)?.['moan'] === 2) {
-      ((s as any).sex_ev ?? {})['moan_describe'] = 'loudly';
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['moan_describe'] = 'loudly';
     }
   }
   if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {

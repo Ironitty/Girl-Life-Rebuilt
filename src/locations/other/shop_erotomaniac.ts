@@ -367,7 +367,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Stick a finger in the hole (serve a stranger)', handler: (st: GameState) => {
     (s as any).ghnow = ((s as any).ghnow ?? 0) + (1);
-    ((s as any).ghnow ?? {})['sexshop_total'] = (((s as any).ghnow ?? {})['sexshop_total'] ?? 0) + (1);
+    if (!(s as any).ghnow) (s as any).ghnow = {}; (s as any).ghnow['sexshop_total'] = ((s as any).ghnow['sexshop_total'] ?? 0) + (1);
     if (((s as any).ghnow ?? 0) < 5) {
       qspCall(s, 'money', 'earn', 300, 'cash');
     } else {
@@ -381,7 +381,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Guy at the gloryhole', Math.floor(Math.random() * 30) + 21);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).stat ?? {})['gloryhole'] = (((s as any).stat ?? {})['gloryhole'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
     (s as any).ghprand = Math.floor(Math.random() * 36) + 1;
     scene.img(`images/shared/sex/gloryhole/gloryhole${((s as any).ghprand ?? 0)}.jpg`);
@@ -870,7 +870,7 @@ function enterKendraanal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendrafinish(s: GameState, scene: SceneBuilder): void {
-  ((s as any).kendra ?? {})[1] = ((s as any).daystart ?? 0) + 6;
+  if (!(s as any).kendra) (s as any).kendra = {}; (s as any).kendra[1] = ((s as any).daystart ?? 0) + 6;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/erotomaniac/sex/shkend16.jpg');
   scene.text('As you stand up, she grabs you by the throat and pulls you in close. "Stick out your tongue."');
@@ -891,7 +891,7 @@ function enterKendrafinish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbina(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['sex_shop'] = ((s as any).daystart ?? 0);
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['sex_shop'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/event/browsing.jpg');
   scene.text('You approach Albina with a smile as she examines a cheap, tacky looking thong.');

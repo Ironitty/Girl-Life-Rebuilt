@@ -32,7 +32,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
     scene.actions([
       { label: 'Ask her about this place', handler: (st: GameState) => {
-    ((s as any).rasputin ?? {})['hostEv'] = 1;
+    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['hostEv'] = 1;
     scene.text('<center>Unknown Woman</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_2.jpg');
     scene.text('You ask the woman after you introduce yourself. "Excuse me, would you mind tell me a little bit about this place?"');
@@ -120,7 +120,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'money', 'pay', 3000);
-    ((s as any).rasputin ?? {})['burlesque_ticket'] = 1;
+    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -154,7 +154,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'money', 'pay', 4000);
-    ((s as any).rasputin ?? {})['variety_ticket'] = 1;
+    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -188,8 +188,8 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'money', 'pay', 7000);
-    ((s as any).rasputin ?? {})['burlesque_ticket'] = 1;
-    ((s as any).rasputin ?? {})['variety_ticket'] = 1;
+    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 1;
+    if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);

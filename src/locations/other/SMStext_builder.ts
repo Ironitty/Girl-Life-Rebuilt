@@ -40,7 +40,7 @@ function enterCheckIfSmsExistsFromId(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['reset_flag'] = 1;
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['reset_flag'] = 1;
   return;
   // TODO-QSP: end
   scene.build();
@@ -64,57 +64,57 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterSend(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_text_width = Math.max(10, 90 - 2 * ((((s as any).locArgs?.[1] ?? 0)).length));
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('<table width=80%><tr><td width=' + qspUntranslated(s, "temp_text_width>", { location: "SMStext_builder" }) + '%></td><td collspan=2 bgcolor=pink style="padding-top:5pt; padding-bottom:5pt; padding-left:10pt; padding-right:3pt"><font color=black>');
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('</font></td></tr></table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td width=' + qspUntranslated(s, "temp_text_width>", { location: "SMStext_builder" }) + '%></td><td collspan=2 bgcolor=pink style="padding-top:5pt; padding-bottom:5pt; padding-left:10pt; padding-right:3pt"><font color=black>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</font></td></tr></table>');
   scene.build();
 }
 
 function enterSendImg(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('<table width=80%><tr><td width=10%></td><td collspan=2 bgcolor=pink align=center style="white-space:pre-wrap">');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td width=10%></td><td collspan=2 bgcolor=pink align=center style="white-space:pre-wrap">');
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   // TODO-QSP: $SMSBuilderVars['text'] += '<br><img src="<<$ARGS[1]>>" alt="<<$ARGS[2]>>" style="horizontal-align:center; max-height:90%; max-width:90%"><br><br>'
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('</td></tr></table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</td></tr></table>');
   scene.build();
 }
 
 function enterSendVideo(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('<table width=80%><tr><td width=10%></td><td collspan=2 bgcolor=pink align=center style="white-space:pre-wrap">');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td width=10%></td><td collspan=2 bgcolor=pink align=center style="white-space:pre-wrap">');
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   // TODO-QSP: $SMSBuilderVars['text'] += '<br><video autoplay loop src="<<$ARGS[1]>>" alt="<<$ARGS[2]>>" style="horizontal-align:center; max-height:90%; max-width:90%"></video><br><br>'
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('</td></tr></table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</td></tr></table>');
   scene.build();
 }
 
 function enterReceive(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_text_width = Math.max(10, 90 - 2 * ((((s as any).locArgs?.[1] ?? 0)).length));
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" style="padding-top:5pt; padding-bottom:5pt; padding-left:10pt; padding-right:3pt"><font color=black>');
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('</font></td><td width=' + qspUntranslated(s, "temp_text_width>", { location: "SMStext_builder" }) + '%></td></tr></table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" style="padding-top:5pt; padding-bottom:5pt; padding-left:10pt; padding-right:3pt"><font color=black>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</font></td><td width=' + qspUntranslated(s, "temp_text_width>", { location: "SMStext_builder" }) + '%></td></tr></table>');
   scene.build();
 }
 
 function enterReceiveImg(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" align=center style="white-space:pre-wrap">');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" align=center style="white-space:pre-wrap">');
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   // TODO-QSP: $SMSBuilderVars['text'] += '<br><img src="<<$ARGS[1]>>" alt="<<$ARGS[2]>>" style="horizontal-align:center; max-height:90%; max-width:90%"><br><br>'
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('</td><td width=10%></td></tr></table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</td><td width=10%></td></tr></table>');
   scene.build();
 }
 
 function enterReceiveVideo(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" align=center style="white-space:pre-wrap">');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" align=center style="white-space:pre-wrap">');
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   // TODO-QSP: $SMSBuilderVars['text'] += '<br><video autoplay loop src="<<$ARGS[1]>>" alt="<<$ARGS[2]>>" style="horizontal-align:center; max-height:90%; max-width:90%"></video><br><br>'
-  ((s as any).SMSBuilderVars ?? {})['text'] = (((s as any).SMSBuilderVars ?? {})['text'] ?? 0) + ('</td><td width=10%></td></tr></table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</td><td width=10%></td></tr></table>');
   // TODO-QSP: end
   scene.build();
 }
@@ -138,16 +138,16 @@ function enterAddReply(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrivateSetReplies(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['replies'] = (((s as any).SMSBuilderVars ?? {})['replies'] ?? 0) + ('<table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = ((s as any).SMSBuilderVars['replies'] ?? 0) + ('<table>');
   (s as any).stb_maxi = 0;
   (s as any).stb_i = 0;
   // TODO-QSP: :SMS_reply_loop
-  ((s as any).SMSBuilderVars ?? {})['replies'] = (((s as any).SMSBuilderVars ?? {})['replies'] ?? 0) + ('<tr><td>\' + $SMSBuilderReplies[stb_i] + \'</td></tr>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = ((s as any).SMSBuilderVars['replies'] ?? 0) + ('<tr><td>\' + $SMSBuilderReplies[stb_i] + \'</td></tr>');
   (s as any).stb_i = ((s as any).stb_i ?? 0) + (1);
   if (((s as any).stb_i ?? 0) < ((s as any).stb_maxi ?? 0)) {
     // TODO-QSP: jump 'SMS_reply_loop'
   }
-  ((s as any).SMSBuilderVars ?? {})['replies'] = (((s as any).SMSBuilderVars ?? {})['replies'] ?? 0) + ('</table>');
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = ((s as any).SMSBuilderVars['replies'] ?? 0) + ('</table>');
   // TODO-QSP: end
   scene.build();
 }
@@ -221,16 +221,16 @@ function enterAddSms(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).SMSBuilderReplies ?? {}).length > 0) {
     qspCall(s, 'SMStext_builder', 'private_set_replies');
   } else {
-    ((s as any).SMSBuilderVars ?? {})['replies'] = '';
+    if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = '';
   }
   // TODO-QSP: gs 'telefon', 'add_sms', $ARGS[1], $SMSBuilderVars['text'], $SMSBuilderVars['replies'], $SMSBuilderI...
-  ((s as any).SMSBuilderVars ?? {})['reset_flag'] = 0;
-  ((s as any).SMSBuilderVars ?? {})['text'] = '';
-  ((s as any).SMSBuilderVars ?? {})['replies'] = '';
-  ((s as any).SMSBuilderVars ?? {})['SMSIdentifier'] = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
-  ((s as any).SMSBuilderVars ?? {})['SMSIndex'] = ((s as any).telefon ?? 0)?.['SMSIndex'];
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['reset_flag'] = 0;
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = '';
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = '';
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['SMSIdentifier'] = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['SMSIndex'] = ((s as any).telefon ?? 0)?.['SMSIndex'];
   if (((s as any).locArgs?.[2] ?? 0) !== 0  &&  ((s as any).locArgs?.[2] ?? 0) !== '') {
-    ((s as any).telefon ?? {})['UnreadSMS'] = (((s as any).telefon ?? {})['UnreadSMS'] ?? 0) - (1);
+    if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['UnreadSMS'] = ((s as any).telefon['UnreadSMS'] ?? 0) - (1);
     // TODO-QSP: SMSMessageRead[SMSBuilderVars['SMSIndex']] = 1
   }
   // TODO-QSP: end
@@ -243,14 +243,14 @@ function enterUpdateSmsFromId(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdateSms(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['SMSIndex'] = qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" });
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['SMSIndex'] = qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" });
   if (! qspFunc(s, 'SMStext_builder', 'does_index_exist', ((s as any).SMSBuilderVars ?? 0)?.['SMSIndex'])) {
     return;
   }
   if (Object.keys((s as any).SMSBuilderReplies ?? {}).length > 0) {
     qspCall(s, 'SMStext_builder', 'private_set_replies');
   } else {
-    ((s as any).SMSBuilderVars ?? {})['replies'] = '';
+    if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = '';
   }
   if (Object.keys((s as any).SMSBuilderImages ?? {}).length > 0) {
     // TODO-QSP: gs 'SMStext_builder', 'private_set_end_img', SMSBuilderVars['SMSIndex']
@@ -263,10 +263,10 @@ function enterUpdateSms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) !== 0  ||  ((s as any).locArgs?.[2] ?? 0) !== '') {
     // TODO-QSP: gs 'SMStext_builder', 'set_unread', SMSBuilderVars['SMSIndex']
   }
-  ((s as any).SMSBuilderVars ?? {})['reset_flag'] = 0;
-  ((s as any).SMSBuilderVars ?? {})['text'] = '';
-  ((s as any).SMSBuilderVars ?? {})['replies'] = '';
-  ((s as any).SMSBuilderVars ?? {})['SMSIdentifier'] = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['reset_flag'] = 0;
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = '';
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = '';
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['SMSIdentifier'] = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
   // TODO-QSP: end
   scene.build();
 }
@@ -277,7 +277,7 @@ function enterShowSmsFromId(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowSms(s: GameState, scene: SceneBuilder): void {
-  ((s as any).SMSBuilderVars ?? {})['SMSIndex'] = qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" });
+  if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['SMSIndex'] = qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" });
   if (! qspFunc(s, 'SMStext_builder', 'does_index_exist', ((s as any).SMSBuilderVars ?? 0)?.['SMSIndex'])) {
     return;
   }
@@ -298,7 +298,7 @@ function enterSetUnread(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).SMSMessageRead ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-    ((s as any).telefon ?? {})['UnreadSMS'] = (((s as any).telefon ?? {})['UnreadSMS'] ?? 0) + (1);
+    if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['UnreadSMS'] = ((s as any).telefon['UnreadSMS'] ?? 0) + (1);
     // TODO-QSP: SMSMessageRead[ARGS[1]] = 0
   }
   return;

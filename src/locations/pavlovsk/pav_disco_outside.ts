@@ -297,7 +297,7 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     if (((s as any).temp ?? 0)?.['curr_action'] !== 'kissing') {
-      ((s as any).temp ?? {})['curr_action'] = 'kissing';
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['curr_action'] = 'kissing';
       scene.text('<i>Fuck it,</i> you think and surge forward to press your lips against his.');
       if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex') {
         // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> matches your energy instantly, immediately responding ...
@@ -614,7 +614,7 @@ function enterBoysexTitslip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoysexTitsuck(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['curr_action'] = 'titsuck';
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['curr_action'] = 'titsuck';
   scene.img('images/locations/pavlovsk/community/tits.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pops your nipple into his mouth and starts sucking, rolling his ton...
   scene.text(`${((s as any).npcdesc ?? 0)} pops your nipple into his mouth and starts sucking, rolling his tongue across the tip and around your areola. His free hand releases your other breast from ' + iif(PCloDress > 0, 'your dress ', 'your top ') + 'to palm it, gently squeezing it in a pulsing pattern while he sucks on your other tit.`);
@@ -626,7 +626,7 @@ function enterBoysexTitsuck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoysexHandjob(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['curr_action'] = 'handjob';
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['curr_action'] = 'handjob';
   if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.img('images/shared/sex/handjob/hj.jpg');
     // TODO-QSP: dynamic text: "Feel how hard I am for you," <<$npcdesc>> growls in your ear, taking your hand ...
@@ -893,7 +893,7 @@ function enterBendOver(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I don\'t want to have sex', handler: (st: GameState) => {
-    ((s as any).gdk ?? {})['fuck'] = 2;
+    if (!(s as any).gdk) (s as any).gdk = {}; (s as any).gdk['fuck'] = 2;
     qspCall(s, 'pav_disco_outside', 'outside_img');
     scene.text('"I just don\'t want to!"');
     if (((s as any).pav_disco_bj ?? 0)?.[String((s as any).npcID ?? 0)] >= ((s as any).totminut ?? 0) - 20) {
@@ -1013,7 +1013,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/money.jpg');
     scene.text('You recoil in shock and disgust.');
     // TODO-QSP: '"I''m not a hooker!" you hiss. ' + iif(npc_prostitution_count[$npcID] = 0, '', '"I only did that wi...
-    ((s as any).temp ?? {})['prostitution_offer'] = 500;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prostitution_offer'] = 500;
     if (((s as any).npc_prostitution_count ?? 0)?.[String((s as any).npcID ?? 0)] >= 5) {
       if (((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
         // TODO-QSP: dynamic text: "You let me fuck you for money a whole lot more than 'one' time," <<$npcdesc>> g...

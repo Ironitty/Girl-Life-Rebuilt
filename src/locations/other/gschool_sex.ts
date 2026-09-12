@@ -101,13 +101,13 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (3);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (3);
     qspCall(s, 'npcStat', 'A11');
     qspCall(s, 'npcStat', 'A10', 'a');
     qspCall(s, 'npcStat', 'A9', 'b');
-    ((s as any).npc_had_sex ?? {})['A9'] = 1;
-    ((s as any).npc_had_sex ?? {})['A10'] = 1;
-    ((s as any).npc_had_sex ?? {})['A11'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/group/toiletbjtreesome.jpg');
     // TODO-QSP: dynamic text: You obediently squat and start stroking Vitek's dick with your hand, getting it ...
@@ -118,7 +118,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let them cum on your face', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (3);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (3);
     scene.img('images/shared/sex/group/toiletbjcum.jpg');
     if (((s as any).grupTipe ?? 0) !== 4) {
       scene.text('You close your eyes to fully focus on what you\'re doing, and a few minutes later you feel the dick that\'s currently in your mouth spasm. Several ropes of cum hit your tongue; it tastes rather bitter. Carefully opening one eye, you see that it\'s Vitek\'s. The other two tell you to keep your eyes closed, and Dan shoots his load across your face before you can even comply. Luckily, he didn\'t hit the eye that was open. You obediently close them, and a few seconds later you feel Vasily\'s cum splattering against your eye lids and cheek.');
@@ -161,7 +161,7 @@ function enterAfterschool(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).dick ?? 0) > ((s as any).npc_throat ?? 0)?.['A14']) {
-      ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
     }
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/afterschool/sex/katja_ivan1.jpg');
@@ -183,13 +183,13 @@ function enterAfterschool(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ivan fucks Katja', handler: (st: GameState) => {
     if (((s as any).npc_ass ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
-      ((s as any).npc_ass ?? {})['A14'] = (((s as any).npc_ass ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     if (((s as any).npc_ass ?? 0)?.['A14']*2 < ((s as any).dick ?? 0)) {
-      ((s as any).npc_ass ?? {})['A14'] = (((s as any).npc_ass ?? {})['A14'] ?? 0) + (1);
+      if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 2) {
-      ((s as any).katjaQW ?? {})['anal_quest'] = 3;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['anal_quest'] = 3;
     }
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/afterschool/sex/katja_ivan3.jpg');
@@ -214,8 +214,8 @@ function enterAfterschool(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Happy ending', handler: (st: GameState) => {
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (2);
-    ((s as any).katjaQW ?? {})['Horny'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['Horny'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/afterschool/sex/katja_ivan6.jpg');
     scene.text('Ivan redoubles his efforts and within minutes, he pulls out of her ass. Katja slides off the desk and you follow suit as he starts jerking off. You both kneel in front of him as he shoots spurts of cum all over both of you.');
@@ -287,8 +287,8 @@ function enterAnushPrivate(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
     qspCall(s, 'boyStat', 'D3');
-    ((s as any).npc_had_sex ?? {})['A144'] = 1;
-    ((s as any).anushkaQW ?? {})['sex'] = (((s as any).anushkaQW ?? {})['sex'] ?? 0) + (1);
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sex'] = ((s as any).anushkaQW['sex'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A144', 3);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/school/anules6.jpg');
@@ -376,7 +376,7 @@ function enterAnushPrivate2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take a drink', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
     scene.img('images/locations/pavlovsk/school/lunch/sex/adrink.jpg');
     scene.text('You take a swig of the vodka and feel it burn your throat. It\'s the cheap stuff. The others offer encouragement and Anushka even tips the bottle back up when you start lowering it to make you drink a little more. Afterwards, you pass the bottle to Anushka, who takes a much bigger swig before passing it back to the boys. "Hell yeah, this beats lunch or anything else about school any day!"');
@@ -439,7 +439,7 @@ function enterAnushPrivate2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/lunch/sex/adrink1.jpg');
     scene.text('You take the bottle again and take another drink. Anushka again tilts the bottle up and holds it up for longer, forcing you to drink even more to the hoots and calls of encouragement from the boys. Just when you can\'t take it anymore, she tilts the bottle down and takes it away from you, leaving you coughing to the boys laughter. She takes a big swig herself as you cough and feel your throat burning and your eyes watering slightly.');
     scene.text('Once she passes the bottle back to the boys, she leans in close and starts to feel you up and kiss you. You can hear one of the guys giving his encouragement to what he\'s seeing.');
@@ -501,9 +501,9 @@ function enterAnushKiss(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/lunch/sex/l4bj.jpg');
     scene.text('Once their clothes are removed, their dicks are already rock-hard and waiting. The two of you kneel down and start sucking, occasionally switching guys.');
-    ((s as any).npc_had_sex ?? {})['A144'] = 1;
-    ((s as any).npc_had_sex ?? {})['A158'] = 1;
-    ((s as any).npc_had_sex ?? {})['A156'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A144'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A158'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A156'] = 1;
     qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0), 'group');
     qspCall(s, 'arousal', 'bj', (-3), ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
@@ -539,7 +539,7 @@ function enterAnushKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['sex'] = (((s as any).anushkaQW ?? {})['sex'] ?? 0) + (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sex'] = ((s as any).anushkaQW['sex'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/lunch/sex/l4cum.jpg');
     scene.text('Before long both guys stop, Arkadi telling you both "Get up on your knees, bitches." Once you do, the boys start jerking off and they\'re both soon shooting streams of hot cum all over you and Anushka\'s breasts. Once the last drop has landed, they boys start to get dressed as Anushka uses some cloth she apparently found in the room to clean up before passing it to you, letting you get cleaned up as well.');
     scene.text('Once you\'re cleaned up and dressed, the two of you join the boys sitting on the floor leaning against the wall. The boys light up two more cigarettes and pass one of them to each of you. They don\'t seem to really care if you smoke it. Valentin speaks up "Fuck that was great. We need to do this more often." Arkadi merely grunts in agreement as Anushka laughs.');
@@ -676,7 +676,7 @@ function enterRandSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Take his load in your mouth', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
     qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal', 'end');
@@ -1132,9 +1132,9 @@ function enterVdLockerroom(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'fame', 'pav', 'sex', 10);
   }
-  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (3);
-  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (3);
-  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (5);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (3);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
   scene.img('images/locations/pavlovsk/school/gym/sex/vd3.jpg');
   scene.text('You drop to your knees in the shower with the water still pouring down on your head. The two boys walk up, one on each side of you and you take hold of both their dicks and start stroking them. One of them reaches up and turns off the water as you turn your head and start sucking on Dan\'s cock as you stroke Vitek\'s.');
   qspCall(s, 'arousal', 'hj', 3);
@@ -1264,7 +1264,7 @@ function enterPetkaLockerroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).strapNumber ?? 0) > 0) {
       scene.actions([
         { label: 'I have a strapon', handler: (st: GameState) => {
-    ((s as any).petkaQW ?? {})['blackmail'] = 1;
+    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['blackmail'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/femdomlocker1.jpg');
     scene.text('You step away from him and he stays on his knees, watching you. You walk over to your locker, pull out your strapon and show it to him. "I\'m going to fuck you with this."');
     scene.text('His eyes grow wide. "No!" he blurts out.');
@@ -1297,8 +1297,8 @@ function enterPetkaLockerroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Turn around', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'dislike');
-    ((s as any).petkaQW ?? {})['sub'] = (((s as any).petkaQW ?? {})['sub'] ?? 0) + (1);
-    ((s as any).petkaQW ?? {})['pegged'] = (((s as any).petkaQW ?? {})['pegged'] ?? 0) + (1);
+    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['sub'] = ((s as any).petkaQW['sub'] ?? 0) + (1);
+    if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['pegged'] = ((s as any).petkaQW['pegged'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/femdomlocker4.jpg');
     scene.text('You grab him and turn him around. With your manhandling, he quickly turns around so he\'s facing the lockers. When you start to reach for your bag, Albina seems to know you are going for the lube. "He doesn\'t need it. This is a punishment after all. If you lube it up, he might enjoy it too much," she says and spits on your dildo. You follow suit and spit on it as well, rubbing the saliva onto the dildo while she spits on his ass and lets it run down his crack. You step up behind him and slide the dildo between his ass cheeks.');
     scene.text('Albina helps out by spreading his ass so you can get a better look. You rub the tip of the dildo against his asshole rubbing the spit in and push forward. There\'s a lot of resistance before the dildo suddenly pops into his ass, causing him to cry out and Albina to giggle.');
@@ -1414,7 +1414,7 @@ function enterPetkaLockerroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
       scene.actions([
         { label: 'Use lube', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/pegging3.jpg');
     scene.text('You push him forward until he\'s bent over. "You\'re such a good little cock sucker! I\'m going to reward you and use some lube." You get some of your lube and lube up the dildo, then squirt some on his ass and lube it up. With his asshole and your dildo lubed up, you step up behind him and line the dildo up until it pushes against his asshole. You keep pushing against it as he tenses up before your dildo suddenly pops into his ass and he cries out in pain.');
     qspCall(s, 'arousal', 'anal_strap_give', 3, 'dom');
@@ -1511,7 +1511,7 @@ function enterPetkaStraponBj(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
       scene.actions([
         { label: 'Use lube', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/pegging3.jpg');
     scene.text('You push him forward until he\'s bent over. "You\'re such a good little cock sucker! I\'m going to reward you and use some lube." You get some of your lube and lube up the dildo, then squirt some on his ass and lube it up. With his asshole and your dildo lubed up, you step up behind him and line the dildo up until it pushes against his asshole. You keep pushing against it as he tenses up before your dildo suddenly pops into his ass and he cries out in pain.');
     qspCall(s, 'arousal', 'anal_strap_give', 3, 'dom');
@@ -1541,7 +1541,7 @@ function enterPetkaStraponBj(s: GameState, scene: SceneBuilder): void {
 
 function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
   (s as any).petkasub = ((s as any).petkasub ?? 0) + (1);
-  ((s as any).petkaQW ?? {})['pegged'] = (((s as any).petkaQW ?? {})['pegged'] ?? 0) + (1);
+  if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['pegged'] = ((s as any).petkaQW['pegged'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/pegging4.jpg');
   scene.text('As you fuck his ass with your strapon, his groans of pain slowly start giving way to moans of pleasure. You notice him reach between his legs and starts jerking off as you fuck his ass.');
   scene.text('You grin. "Tell me you like taking my cock up your ass."');
@@ -1642,7 +1642,7 @@ function enterPetkaMagicDick(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
       scene.actions([
         { label: 'Use lube', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/pegging3.jpg');
     scene.text('You push him forward until he\'s bent over. "You\'re such a good little cock sucker! I\'m going to reward you and use some lube."');
     scene.text('You get some of your lube and lube up the dildo, then squirt some on his ass and lube it up. With his asshole and your dildo lubed up, you step up behind him and line the dildo up until it pushes against his asshole.');
@@ -1674,7 +1674,7 @@ function enterPetkaMagicDick(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPetkaMagicDickAnal(s: GameState, scene: SceneBuilder): void {
-  ((s as any).petkaQW ?? {})['pegged'] = (((s as any).petkaQW ?? {})['pegged'] ?? 0) + (1);
+  if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['pegged'] = ((s as any).petkaQW['pegged'] ?? 0) + (1);
   (s as any).petkasub = ((s as any).petkasub ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/pegging4.jpg');
   scene.text('As you fuck his ass, his groans of pain slowly start giving way to moans of pleasure. You notice him reach between his legs and start jerking off as you fuck his ass.');
@@ -1859,7 +1859,7 @@ function enterPetkaTitcum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPetkaHomework(s: GameState, scene: SceneBuilder): void {
-  ((s as any).petkaQW ?? {})['homework'] = 1;
+  if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['homework'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/petka4.jpg');
   scene.text('You smile at him. "You\'re going to do my homework for <i>all</i> my classes from now on. You can drop it off in my locker every morning before school."');
   scene.text('He looks crestfallen. "All of it? Every day?" he says in a whiny voice.');
@@ -1877,7 +1877,7 @@ function enterPetkaHomework(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPetkaHome(s: GameState, scene: SceneBuilder): void {
-  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/petka3.jpg');
   scene.text('You cover up. "Get out of here before I shout the coach!"');
   scene.text('He nods and quickly starts getting dressed. "Thank you! And I\'m sorry I spied on you."');
@@ -1911,7 +1911,7 @@ function enterPetkaHomenaked(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPetkaHomeworkMagic(s: GameState, scene: SceneBuilder): void {
-  ((s as any).petkaQW ?? {})['homework'] = 1;
+  if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['homework'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/locker/petka4.jpg');
   scene.text('You smile at him. "You\'re going to do my homework for <i>all</i> my classes from now on. You can drop it off in my locker every morning before school."');
   scene.text('He looks crestfallen. "All of it? Every day? But I just let you fuck me in the ass." he says in a whiny voice.');

@@ -377,9 +377,9 @@ function enterCaress(s: GameState, scene: SceneBuilder): void {
 
 function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
   (s as any).blockBedrPar = 1;
-  ((s as any).locat ?? {})['Anya'] = 15;
-  ((s as any).locat ?? {})['Anya_rand1'] = ((s as any).daystart ?? 0);
-  ((s as any).locat ?? {})['Anya_save1'] = ((s as any).locat ?? 0)?.['Anya'];
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Anya'] = 15;
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Anya_rand1'] = ((s as any).daystart ?? 0);
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['Anya_save1'] = ((s as any).locat ?? 0)?.['Anya'];
   if (((s as any).hour ?? 0) === 17) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'npc_relationship', 'modify', 'A33', (-10));
@@ -408,9 +408,9 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
     (s as any).sisboytrioQW = (-1);
     (s as any).sisboytrioDayOtkaz = ((s as any).daystart ?? 0) + 3;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).sisterQW ?? {})['roma3block'] = 1;
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['roma3block'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A33', (-10));
-    ((s as any).npc_QW ?? {})['A33'] = 2;
+    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A33'] = 2;
     (s as any).sisThank = 0;
     qspCall(s, 'stat', '');
     scene.img('images/pc/activities/spy/peep4.jpg');

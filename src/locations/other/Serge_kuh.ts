@@ -204,7 +204,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He takes your hand and puts it on his penis, whispering: "Go on, <<$pcs_nickname...
     scene.text(`He takes your hand and puts it on his penis, whispering: "Go on, ${((s as any).pcs_nickname ?? 0)}. Rub it… suck on it… make me feel good."`);
     scene.text('You nod and squeeze it lightly, beginning by masturbating him slowly. His cock grows a bit further while you stroke it, and you feel it pulsing strongly between your fingers when it\'s fully erect. He\'s definitely ready for more now.');
-    ((s as any).npc_had_sex ?? {})['A112'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
     qspCall(s, 'boyStat', 'A112');
     qspCall(s, 'arousal', 'hj', 5, 'sub');
     qspCall(s, 'stat', '');
@@ -465,7 +465,7 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIzdev1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'boyStat', 'A112');
   qspCall(s, 'stat', '');
@@ -555,7 +555,7 @@ function enterIzdev1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIzdev2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'boyStat', 'A112');
   qspCall(s, 'stat', '');
@@ -616,7 +616,7 @@ function enterIzdev2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('With his cock still inside your pussy, he begins to finger your tight little asshole.');
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       if (((s as any).agape ?? 0) < 1) {
         (s as any).agape = 1;
       }
@@ -968,7 +968,7 @@ function enterIzdev7(s: GameState, scene: SceneBuilder): void {
 
 function enterIzdev8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex2-1.jpg');
@@ -1075,7 +1075,7 @@ function enterIzdev8(s: GameState, scene: SceneBuilder): void {
 
 function enterIzdev9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex3-1.jpg');
@@ -1137,7 +1137,7 @@ function enterIzdev9(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('He guides his hard cock to your anus and rubs it over your tight sphincter a few times.');
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       if (((s as any).agape ?? 0) < 1) {
         (s as any).agape = 1;
       }
@@ -1382,7 +1382,7 @@ function enterIzdev12(s: GameState, scene: SceneBuilder): void {
 function enterIzdev13(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex1-1.jpg');
@@ -1499,7 +1499,7 @@ function enterIzdev13(s: GameState, scene: SceneBuilder): void {
 function enterIzdev14(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex4-1.jpg');
@@ -1746,9 +1746,9 @@ function enterIzdev17(s: GameState, scene: SceneBuilder): void {
 
 function enterIzn1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).pcs_hairbsh = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj\' + rand(1, 11) + \'.mp4');
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -1845,9 +1845,9 @@ function enterIzn1(s: GameState, scene: SceneBuilder): void {
 
 function enterIzn2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).pcs_hairbsh = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/bj\' + rand(1, 3) + \'.mp4');
   // TODO-QSP: dynamic text: "You're such a slut, <<$pcs_nickname>>… you're not even wearing a bra! Everyone ...
@@ -1949,7 +1949,7 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
 
 function enterSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex1-1.jpg');
   // TODO-QSP: dynamic text: Sergey moves up to you and starts fondling your boobs, whispering how sexy and g...
@@ -1999,7 +1999,7 @@ function enterSex1(s: GameState, scene: SceneBuilder): void {
 
 function enterSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex2-1.jpg');
   scene.text('You see Sergey hesitate, and decide to take matters into your own hands.');
@@ -2067,7 +2067,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
 
 function enterSex3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A112');
-  ((s as any).npc_had_sex ?? {})['A112'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A112'] = 1;
   (s as any).serge_countsex = ((s as any).serge_countsex ?? 0) + (1);
   qspCall(s, 'mood', 'raise', 'tiny');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex3-1.jpg');

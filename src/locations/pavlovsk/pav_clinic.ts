@@ -63,7 +63,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Get urgent treatment', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    ((s as any).clinic ?? {})['docheal'] = ((s as any).daystart ?? 0);
+    if (!(s as any).clinic) (s as any).clinic = {}; (s as any).clinic['docheal'] = ((s as any).daystart ?? 0);
     qspCall(s, 'medical_din', 'healthTreatment');
     qspCall(s, 'stat', '');
     scene.text('The doctor guides you to a bed and tells you to lie down, after which she gives you a combined painkiller, steroid and vitamin shot.');
@@ -112,7 +112,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Read the job listing', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).job_hiring_step ?? {})['pav_clinic_cleaner'] = 1;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_clinic_cleaner'] = 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You notice a piece of paper on the wall near the entrance to the clinic - it's a...
     scene.text('You notice a piece of paper on the wall near the entrance to the clinic - it\'s a job listing which reads: "Cleaner wanted! One hour per day, any time between \'+func(\'time\', \'get_time_string\', 14, 0)+\' and \'+func(\'time\', \'get_time_string\', 21, 0)+\'. Payment: \'+$func(\'money\', \'string_profit\', 100)+\'."');
@@ -126,7 +126,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Ask the head doctor about the job', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).job_hiring_step ?? {})['pav_clinic_cleaner'] = 2;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_clinic_cleaner'] = 2;
     qspCall(s, 'jobs', 'set_employed', 'pav_clinic_cleaner');
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/clinic/poli.jpg');
@@ -1569,7 +1569,7 @@ function enterSpravkaArrangePale(s: GameState, scene: SceneBuilder): void {
 function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_know_mward = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).lact_ev ?? {})['gpoli_temp_var'] = 0;
+  if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_temp_var'] = 0;
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
     scene.img('images/locations/pavlovsk/clinic/mward/mward.jpg');
@@ -1585,7 +1585,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['pav_clinic', 'maternity_ward'] },
       { label: 'Donate your breast milk (0:15)', handler: (st: GameState) => {
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
     (s as any).pcs_gpoli_donationsessioncount = 0;
     scene.img('images/locations/pavlovsk/clinic/mward/pump_room.jpg');
     scene.text('You talk to the nurse and she leads you into the quiet room.');
@@ -1601,11 +1601,11 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.img('images/pc/body/nipples/sore_nipple.jpg');
       scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit more of the yellowish cream from it.');
       scene.text('She applies the cream to your nipples and they start hurting less as a soothing sensation tingles through your breasts.');
-      ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) - (20);
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
     } else {
       scene.text('The nurse grabs the nipple balm and applies it to your nipples. It feels nice as she rubs it in.');
     }
-    ((s as any).lactation ?? {})['nipple_cream_applied'] = 1;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
     scene.actions([
       { label: 'Continue', goto: ['pav_clinic', 'maternity_ward_donation'] },
     ]);
@@ -1717,9 +1717,9 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept her offer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_gpolimilkdonation = 2;
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 5, 1))/100;
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
-    ((s as any).lactation ?? {})['pc_aware'] = 1;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 5, 1))/100;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
     scene.img('images/locations/pavlovsk/clinic/mward/pump_room.jpg');
     scene.text('The nurse leads you into a quiet room containing a chair, a table and a breast pump.');
     scene.text('The nurse invites you to sit down and you reluctantly pull up your shirt and present your breasts to her.');
@@ -1764,7 +1764,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.text('"What\'s that?" you ask.');
       scene.text('The nurse looks up at you. "This is nipple balm. It helps with sore nipples during pumping. Don\'t you know this?"');
       scene.text('You shake your head and watch as the nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-      ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) - (20);
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       scene.text('"Where do I get this stuff?" you ask.');
       scene.text('"You can buy it in the pharmacy," she replies.');
       (s as any).pcs_knows_nipplecream = 1;
@@ -1773,16 +1773,16 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pain ?? 0)?.['nipples'] >= 60  &&  ((s as any).pcs_knows_nipplecream ?? 0) > 0) {
         scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit of the yellowish cream from it.');
         scene.text('The nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-        ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) - (20);
+        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       } else {
         scene.text('The nurse grabs the nipple balm and applies it to your nipples. It feels nice on your nipples as she rubs it in.');
       }
     }
-    ((s as any).lactation ?? {})['nipple_cream_applied'] = 1;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
     scene.text('"Okay, I\'m going to pump a sample first to check the quality and see if you\'re able to donate enough. You won\'t get paid this time."');
     scene.text('You nod and pull up your shirt as the nurse takes the pumps and puts them on your breasts. She flicks a switch and you can feel your nipples being sucked in with force as it slowly starts working your nipples.');
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
-    ((s as any).lactation ?? {})['breastpumped'] = 1;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
     (s as any).pcs_orphanfeed = 0;
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 1000) {
       scene.text('Your breasts are able to fill both small bottles easily and the nurse nods at you.');
@@ -1855,7 +1855,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.text('"What\'s that?" you ask.');
       scene.text('The nurse looks up at you. "This is nipple balm. It helps with sore nipples during pumping. Don\'t you know this?"');
       scene.text('You shake your head and watch as the nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-      ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) - (20);
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       scene.text('"Where do I get this stuff?" you ask.');
       scene.text('"You can buy it in the pharmacy," she replies.');
       (s as any).pcs_knows_nipplecream = 1;
@@ -1864,16 +1864,16 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pain ?? 0)?.['nipples'] >= 60  &&  ((s as any).pcs_knows_nipplecream ?? 0) > 0) {
         scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit of the yellowish cream from it.');
         scene.text('The nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-        ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) - (20);
+        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       } else {
         scene.text('The nurse grabs the nipple balm and applies it to your nipples. It feels nice on your nipples as she rubs it in.');
       }
     }
-    ((s as any).lactation ?? {})['nipple_cream_applied'] = 1;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
     scene.text('"Okay, I\'m going to pump a sample first to check the quality and see if you\'re able to donate enough. You won\'t get paid this time."');
     scene.text('You nod and pull up your shirt as the nurse takes the pumps and puts them on your breasts. She flicks a switch and you can feel your nipples being sucked in with force as it slowly starts working your nipples.');
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
-    ((s as any).lactation ?? {})['breastpumped'] = 1;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
     (s as any).pcs_orphanfeed = 0;
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 1000) {
       scene.text('Your breasts are able to fill both small bottles easily and the nurse nods at you.');
@@ -1944,7 +1944,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       scene.text('"What\'s that?" you ask.');
       scene.text('The nurse looks up at you. "This is nipple balm. It helps with sore nipples during pumping. Don\'t you know this?"');
       scene.text('You shake your head and watch as the nurse applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-      ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) - (20);
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       scene.text('"Where do I get this stuff?" you ask.');
       scene.text('"You can buy it in the pharmacy," she replies.');
       (s as any).pcs_knows_nipplecream = 1;
@@ -1953,7 +1953,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pain ?? 0)?.['nipples'] >= 60) {
         scene.text('The nurse looks at your sore nipples and frowns before she grabs a small tin and takes a bit of the yellowish cream from it.');
         scene.text('She applies the cream to your nipples. It feels nice and your nipples start hurting less as a soothing sensation tingles through your breasts.');
-        ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) - (20);
+        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) - (20);
       } else {
         if (((s as any).pcs_knows_nipplecream ?? 0) <= 0) {
           scene.text('The nurse grabs a small tin and takes a bit of yellowish cream from it.');
@@ -1969,11 +1969,11 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).lactation ?? {})['nipple_cream_applied'] = 1;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
     scene.text('"Okay, I\'m going to pump a sample first to check the quality and see if you\'re able to donate enough. You won\'t get paid this time."');
     scene.text('You nod and pull up your shirt as the nurse takes the pumps and puts them on your breasts. She flicks a switch and you can feel your nipples being sucked in with force as it slowly starts working your nipples.');
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
-    ((s as any).lactation ?? {})['breastpumped'] = 1;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = (qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15))/100;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
     (s as any).pcs_orphanfeed = 0;
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 1000) {
       scene.text('Your breasts are able to fill both small bottles easily and the nurse nods at you.');
@@ -2047,7 +2047,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
 function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-    ((s as any).lactation ?? {})['nipple_cream_applied'] = 1;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 1;
     scene.img('images/locations/pavlovsk/clinic/mward/pumping.jpg');
     scene.text('The nurse attaches the pumps and switches them on.');
     if (((s as any).lactation ?? 0)?.['breastmv'] >= 0) {
@@ -2057,12 +2057,12 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
-    ((s as any).lactation ?? {})['breastpumped'] = 1;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = qspFunc(s, 'lact_lib', '$get_breastmilk', 4, 15);
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['breastpumped'] = 1;
     scene.text('After 15 minutes, the nurse detaches the pumps from your breasts.');
     if (((s as any).lact_ev ?? 0)?.['gpoli_milkedvolume'] >= 50000) {
       (s as any).pcs_gpoli_donationsessioncount = ((s as any).pcs_gpoli_donationsessioncount ?? 0) + (((s as any).lact_ev ?? {})?.['gpoli_milkedvolume']/10000);
-      ((s as any).lact_ev ?? {})['gpoli_temp_var'] = (((s as any).lact_ev ?? {})?.['gpoli_milkedvolume']/50000);
+      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_temp_var'] = (((s as any).lact_ev ?? {})?.['gpoli_milkedvolume']/50000);
       (s as any).pcs_gpoli_totalmilkdonation_count = ((s as any).pcs_gpoli_totalmilkdonation_count ?? 0) + (1);
       (s as any).pcs_gpoli_totalmilkdonation = ((s as any).pcs_gpoli_totalmilkdonation ?? 0) + ((((s as any).lact_ev ?? {})?.['gpoli_temp_var']*50));
       if (((s as any).lact_ev ?? 0)?.['gpoli_temp_var'] >= 12) {
@@ -2113,13 +2113,13 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
         scene.text('"Mhmm… I\'m sorry, but this isn\'t enough milk for a valid donation. You provided no breast milk at all."');
       }
     }
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
     if (((s as any).pcs_gpoli_donationsessioncount ?? 0) > 0) {
       (s as any).mward_donatemoney = (((s as any).pcs_gpoli_donationsessioncount ?? 0) * 3) / 10 * 10;
     } else {
       (s as any).mward_donatemoney = 0;
     }
-    ((s as any).lactation ?? {})['nipple_cream_applied'] = 0;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['nipple_cream_applied'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).lactation ?? 0)?.['breastmv'] > ((s as any).lactation ?? 0)?.['breastmm']/2  &&  ((s as any).lactation ?? 0)?.['breastmv'] >= 100000) {
       scene.text('The nurse looks at your breasts.');
@@ -2144,7 +2144,7 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    ((s as any).lact_ev ?? {})['gpoli_milkedvolume'] = 0;
+    if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['gpoli_milkedvolume'] = 0;
   }, goto: ['pav_clinic', 'maternity_ward'] },
     ]);
   } },

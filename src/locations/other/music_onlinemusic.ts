@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ml_online ?? {})['account'] = 1;
+  if (!(s as any).ml_online) (s as any).ml_online = {}; (s as any).ml_online['account'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   // TODO-QSP: gs 'internet_mobile', 'use_internet', $access['subscription'], 10
   qspCall(s, 'stat', '');
@@ -24,7 +24,7 @@ function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLiveStream(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ml_streaming ?? {})['times_streamed'] = (((s as any).ml_streaming ?? {})['times_streamed'] ?? 0) + (1);
+  if (!(s as any).ml_streaming) (s as any).ml_streaming = {}; (s as any).ml_streaming['times_streamed'] = ((s as any).ml_streaming['times_streamed'] ?? 0) + (1);
   qspCall(s, 'music_onlinemusic', 'stream_interruptions');
   if (((s as any).ml_no_interruption ?? 0) !== 0) {
     (s as any).ml_streamtime = 60;
@@ -53,7 +53,7 @@ function enterLiveStream(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop the stream and transfer the money to your bank account', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'earn', ml_streaming['unclaimed_earnings'], 'bank'
-    ((s as any).ml_streaming ?? {})['unclaimed_earnings'] = 0;
+    if (!(s as any).ml_streaming) (s as any).ml_streaming = {}; (s as any).ml_streaming['unclaimed_earnings'] = 0;
     qspCall(s, 'music_onlinemusic', 'finish', 'streaming');
   } },
     ]);
@@ -132,19 +132,19 @@ function enterEditSong(s: GameState, scene: SceneBuilder): void {
   if (((s as any).musicprod_lvl ?? 0) < 35) {
     qspCall(s, 'exp_gain', 'musicprod', Math.floor(Math.random() * 3) + 1);
   }
-  ((s as any).ml_performance ?? {})['performed_minutes'] = (((s as any).ml_performance ?? {})['performed_minutes'] ?? 0) + (15);
-  ((s as any).ml_performance ?? {})['total_time_performed'] = (((s as any).ml_performance ?? {})['total_time_performed'] ?? 0) + (15);
-  ((s as any).ml_onlinesong_hotcat ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_hotcat ?? 0);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['performed_minutes'] = ((s as any).ml_performance['performed_minutes'] ?? 0) + (15);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['total_time_performed'] = ((s as any).ml_performance['total_time_performed'] ?? 0) + (15);
+  if (!(s as any).ml_onlinesong_hotcat) (s as any).ml_onlinesong_hotcat = {}; (s as any).ml_onlinesong_hotcat[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_hotcat ?? 0);
   if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1) {
-    ((s as any).ml_onlinesong_skilllevel ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0);
-    ((s as any).ml_onlinesong_freshness ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
+    if (!(s as any).ml_onlinesong_skilllevel) (s as any).ml_onlinesong_skilllevel = {}; (s as any).ml_onlinesong_skilllevel[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0);
+    if (!(s as any).ml_onlinesong_freshness) (s as any).ml_onlinesong_freshness = {}; (s as any).ml_onlinesong_freshness[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
     qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);
   } else {
-    ((s as any).ml_onlinesong_skilllevel ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0);
-    ((s as any).ml_onlinesong_freshness ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
+    if (!(s as any).ml_onlinesong_skilllevel) (s as any).ml_onlinesong_skilllevel = {}; (s as any).ml_onlinesong_skilllevel[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0);
+    if (!(s as any).ml_onlinesong_freshness) (s as any).ml_onlinesong_freshness = {}; (s as any).ml_onlinesong_freshness[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
   }
-  ((s as any).ml_onlinesong_lastcalcday ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).daystart ?? 0);
-  ((s as any).ml_onlinesong_uploaded ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = 0;
+  if (!(s as any).ml_onlinesong_lastcalcday) (s as any).ml_onlinesong_lastcalcday = {}; (s as any).ml_onlinesong_lastcalcday[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).daystart ?? 0);
+  if (!(s as any).ml_onlinesong_uploaded) (s as any).ml_onlinesong_uploaded = {}; (s as any).ml_onlinesong_uploaded[String((s as any).ml_onlinesongcount ?? 0)] = 0;
   (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) + (1);
   (s as any).ml_onlinesongcount = ((s as any).ml_onlinesongcount ?? 0) + (1);
   if (((s as any).ml_online ?? 0)?.['account'] === 0  ||  ((s as any).access ?? 0) === 'denied') {
@@ -234,7 +234,7 @@ function enterUploadallmusic(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     // TODO-QSP: gs 'internet_mobile', 'use_internet', $access['subscription'], 5
     qspCall(s, 'stat', '');
-    ((s as any).ml_onlinesong_uploaded ?? {})[String((s as any).i ?? 0)] = 1;
+    if (!(s as any).ml_onlinesong_uploaded) (s as any).ml_onlinesong_uploaded = {}; (s as any).ml_onlinesong_uploaded[String((s as any).i ?? 0)] = 1;
     (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) - (1);
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
@@ -269,11 +269,11 @@ function enterDeleting(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :deletemusic
   if ((((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)] === 1)  ||  (((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)] === 0  &&  ((s as any).ml_onlinesong_skilllevel ?? 0)?.[String((s as any).i ?? 0)] > ((s as any).ml_threshold_skilllevel ?? 0))) {
     (s as any).j = ((s as any).j ?? 0) + (1);
-    ((s as any).ml_tempsong_freshness ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_freshness ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_lastcalcday ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_lastcalcday ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_hotcat ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_hotcat ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_skilllevel ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_skilllevel ?? 0)?.[String((s as any).i ?? 0)];
-    ((s as any).ml_tempsong_uploaded ?? {})[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)];
+    if (!(s as any).ml_tempsong_freshness) (s as any).ml_tempsong_freshness = {}; (s as any).ml_tempsong_freshness[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_freshness ?? 0)?.[String((s as any).i ?? 0)];
+    if (!(s as any).ml_tempsong_lastcalcday) (s as any).ml_tempsong_lastcalcday = {}; (s as any).ml_tempsong_lastcalcday[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_lastcalcday ?? 0)?.[String((s as any).i ?? 0)];
+    if (!(s as any).ml_tempsong_hotcat) (s as any).ml_tempsong_hotcat = {}; (s as any).ml_tempsong_hotcat[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_hotcat ?? 0)?.[String((s as any).i ?? 0)];
+    if (!(s as any).ml_tempsong_skilllevel) (s as any).ml_tempsong_skilllevel = {}; (s as any).ml_tempsong_skilllevel[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_skilllevel ?? 0)?.[String((s as any).i ?? 0)];
+    if (!(s as any).ml_tempsong_uploaded) (s as any).ml_tempsong_uploaded = {}; (s as any).ml_tempsong_uploaded[String((s as any).j ?? 0)] = ((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).i ?? 0)];
   } else {
     (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) - (1);
   }
@@ -285,11 +285,11 @@ function enterDeleting(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_uploadablemusic = 0;
   if (((s as any).j ?? 0) >= 0) {
     // TODO-QSP: :looprebuildsongs
-    ((s as any).ml_onlinesong_freshness ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_freshness ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_hotcat ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_hotcat ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_lastcalcday ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_lastcalcday ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_skilllevel ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_skilllevel ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
-    ((s as any).ml_onlinesong_uploaded ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_uploaded ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
+    if (!(s as any).ml_onlinesong_freshness) (s as any).ml_onlinesong_freshness = {}; (s as any).ml_onlinesong_freshness[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_freshness ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
+    if (!(s as any).ml_onlinesong_hotcat) (s as any).ml_onlinesong_hotcat = {}; (s as any).ml_onlinesong_hotcat[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_hotcat ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
+    if (!(s as any).ml_onlinesong_lastcalcday) (s as any).ml_onlinesong_lastcalcday = {}; (s as any).ml_onlinesong_lastcalcday[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_lastcalcday ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
+    if (!(s as any).ml_onlinesong_skilllevel) (s as any).ml_onlinesong_skilllevel = {}; (s as any).ml_onlinesong_skilllevel[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_skilllevel ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
+    if (!(s as any).ml_onlinesong_uploaded) (s as any).ml_onlinesong_uploaded = {}; (s as any).ml_onlinesong_uploaded[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).ml_tempsong_uploaded ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)];
     if ((((s as any).ml_onlinesong_uploaded ?? 0)?.[String((s as any).ml_onlinesongcount ?? 0)] === 0)) {
       (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) + (1);
     }
@@ -344,12 +344,12 @@ function enterStreamingStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).perform_lvl ?? 0) < 35) {
     qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 3) + 1);
   }
-  ((s as any).ml_streaming ?? {})['livestreamcount'] = (((s as any).ml_streaming ?? {})['livestreamcount'] ?? 0) + (1);
-  ((s as any).ml_streaming ?? {})['lastday'] = ((s as any).daystart ?? 0);
-  ((s as any).ml_performance ?? {})['performed_minutes'] = (((s as any).ml_performance ?? {})['performed_minutes'] ?? 0) + (((s as any).ml_streamtime ?? 0));
-  ((s as any).ml_performance ?? {})['total_time_performed'] = (((s as any).ml_performance ?? {})['total_time_performed'] ?? 0) + (((s as any).ml_streamtime ?? 0));
-  ((s as any).ml_streaming ?? {})['total_earnings'] = (((s as any).ml_streaming ?? {})['total_earnings'] ?? 0) + (((s as any).ml_superchats ?? 0));
-  ((s as any).ml_streaming ?? {})['unclaimed_earnings'] = (((s as any).ml_streaming ?? {})['unclaimed_earnings'] ?? 0) + (((s as any).ml_superchats ?? 0));
+  if (!(s as any).ml_streaming) (s as any).ml_streaming = {}; (s as any).ml_streaming['livestreamcount'] = ((s as any).ml_streaming['livestreamcount'] ?? 0) + (1);
+  if (!(s as any).ml_streaming) (s as any).ml_streaming = {}; (s as any).ml_streaming['lastday'] = ((s as any).daystart ?? 0);
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['performed_minutes'] = ((s as any).ml_performance['performed_minutes'] ?? 0) + (((s as any).ml_streamtime ?? 0));
+  if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['total_time_performed'] = ((s as any).ml_performance['total_time_performed'] ?? 0) + (((s as any).ml_streamtime ?? 0));
+  if (!(s as any).ml_streaming) (s as any).ml_streaming = {}; (s as any).ml_streaming['total_earnings'] = ((s as any).ml_streaming['total_earnings'] ?? 0) + (((s as any).ml_superchats ?? 0));
+  if (!(s as any).ml_streaming) (s as any).ml_streaming = {}; (s as any).ml_streaming['unclaimed_earnings'] = ((s as any).ml_streaming['unclaimed_earnings'] ?? 0) + (((s as any).ml_superchats ?? 0));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();
@@ -362,19 +362,19 @@ function enterRecordingStats(s: GameState, scene: SceneBuilder): void {
     if (((s as any).perform_lvl ?? 0) < 35) {
       qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 3) + 1);
     }
-    ((s as any).ml_performance ?? {})['performed_minutes'] = (((s as any).ml_performance ?? {})['performed_minutes'] ?? 0) + (((s as any).performed_minutes ?? 0));
-    ((s as any).ml_performance ?? {})['total_time_performed'] = (((s as any).ml_performance ?? {})['total_time_performed'] ?? 0) + (((s as any).performed_minutes ?? 0));
-    ((s as any).ml_onlinesong_hotcat ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_hotcat ?? 0);
+    if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['performed_minutes'] = ((s as any).ml_performance['performed_minutes'] ?? 0) + (((s as any).performed_minutes ?? 0));
+    if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['total_time_performed'] = ((s as any).ml_performance['total_time_performed'] ?? 0) + (((s as any).performed_minutes ?? 0));
+    if (!(s as any).ml_onlinesong_hotcat) (s as any).ml_onlinesong_hotcat = {}; (s as any).ml_onlinesong_hotcat[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_hotcat ?? 0);
     if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  (((s as any).ml_guitar ?? 0)?.['carried'] === 1  ||  ((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0))) {
-      ((s as any).ml_onlinesong_skilllevel ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0);
-      ((s as any).ml_onlinesong_freshness ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
+      if (!(s as any).ml_onlinesong_skilllevel) (s as any).ml_onlinesong_skilllevel = {}; (s as any).ml_onlinesong_skilllevel[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0);
+      if (!(s as any).ml_onlinesong_freshness) (s as any).ml_onlinesong_freshness = {}; (s as any).ml_onlinesong_freshness[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
       qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);
     } else {
-      ((s as any).ml_onlinesong_skilllevel ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0);
-      ((s as any).ml_onlinesong_freshness ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
+      if (!(s as any).ml_onlinesong_skilllevel) (s as any).ml_onlinesong_skilllevel = {}; (s as any).ml_onlinesong_skilllevel[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0);
+      if (!(s as any).ml_onlinesong_freshness) (s as any).ml_onlinesong_freshness = {}; (s as any).ml_onlinesong_freshness[String((s as any).ml_onlinesongcount ?? 0)] = (((s as any).pcs_vokal ?? 0) * 2) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*10);
     }
-    ((s as any).ml_onlinesong_lastcalcday ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).ml_onlinesong_uploaded ?? {})[String((s as any).ml_onlinesongcount ?? 0)] = 0;
+    if (!(s as any).ml_onlinesong_lastcalcday) (s as any).ml_onlinesong_lastcalcday = {}; (s as any).ml_onlinesong_lastcalcday[String((s as any).ml_onlinesongcount ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).ml_onlinesong_uploaded) (s as any).ml_onlinesong_uploaded = {}; (s as any).ml_onlinesong_uploaded[String((s as any).ml_onlinesongcount ?? 0)] = 0;
     (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) + (1);
     (s as any).ml_onlinesongcount = ((s as any).ml_onlinesongcount ?? 0) + (1);
   }

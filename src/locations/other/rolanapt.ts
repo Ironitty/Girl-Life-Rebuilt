@@ -124,7 +124,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
     (s as any).rolan_steal_count = 0;
   }
   if (((s as any).rolanworker ?? 0) === 4  &&  ((s as any).rolanknow ?? 0) === 1) {
-    ((s as any).RolanLoc ?? {})[String((s as any).hour ?? 0)] = 6;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[String((s as any).hour ?? 0)] = 6;
     qspCall(s, 'stat', '');
     scene.text('You should check on Rolan, he seems really upset…');
     scene.actions([
@@ -2100,56 +2100,56 @@ function enterWorker(s: GameState, scene: SceneBuilder): void {
 
 function enterRolanroute(s: GameState, scene: SceneBuilder): void {
   if (((s as any).RolanLocSet ?? 0) !== ((s as any).daystart ?? 0)) {
-    ((s as any).RolanLoc ?? {})[0] = 3;
-    ((s as any).RolanLoc ?? {})[1] = 3;
-    ((s as any).RolanLoc ?? {})[2] = 3;
-    ((s as any).RolanLoc ?? {})[3] = 3;
-    ((s as any).RolanLoc ?? {})[4] = 3;
-    ((s as any).RolanLoc ?? {})[5] = 3;
-    ((s as any).RolanLoc ?? {})[6] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
-    ((s as any).RolanLoc ?? {})[7] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
-    ((s as any).RolanLoc ?? {})[8] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
-    ((s as any).RolanLoc ?? {})[9] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
-    ((s as any).RolanLoc ?? {})[10] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
-    ((s as any).RolanLoc ?? {})[11] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
-    ((s as any).RolanLoc ?? {})[12] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[0] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[1] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[2] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[3] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[4] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[5] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[6] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[7] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[8] = ((((s as any).week ?? 0) !== 7) ? (0) : (3));
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[9] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[10] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[11] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[12] = ((((s as any).week ?? 0) !== 7) ? (0) : (1));
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      ((s as any).RolanLoc ?? {})[13] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[13] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc ?? {})[13] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[13] = 0;
     }
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      ((s as any).RolanLoc ?? {})[14] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[14] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc ?? {})[14] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[14] = 0;
     }
-    ((s as any).RolanLoc ?? {})[15] = Math.floor(Math.random() * 4) + 4;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[15] = Math.floor(Math.random() * 4) + 4;
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      ((s as any).RolanLoc ?? {})[16] = Math.floor(Math.random() * 7) + 2;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[16] = Math.floor(Math.random() * 7) + 2;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc ?? {})[16] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[16] = 0;
     }
     if (((s as any).week ?? 0) !== 6  &&  ((s as any).week ?? 0) !== 7) {
-      ((s as any).RolanLoc ?? {})[17] = Math.floor(Math.random() * 7) + 2;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[17] = Math.floor(Math.random() * 7) + 2;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7) {
-      ((s as any).RolanLoc ?? {})[17] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[17] = 0;
     }
     if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 11) {
-      ((s as any).RolanLoc ?? {})[18] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[18] = 0;
     }
     if (((s as any).week ?? 0) !== 6) {
-      ((s as any).RolanLoc ?? {})[19] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[19] = 0;
     }
     if (((s as any).week ?? 0) !== 6) {
-      ((s as any).RolanLoc ?? {})[20] = 0;
+      if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[20] = 0;
     }
-    ((s as any).RolanLoc ?? {})[21] = Math.floor(Math.random() * 4) + 4;
-    ((s as any).RolanLoc ?? {})[22] = 3;
-    ((s as any).RolanLoc ?? {})[23] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[21] = Math.floor(Math.random() * 4) + 4;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[22] = 3;
+    if (!(s as any).RolanLoc) (s as any).RolanLoc = {}; (s as any).RolanLoc[23] = 3;
     (s as any).RolanLocSet = ((s as any).daystart ?? 0);
   }
   // TODO-QSP: end

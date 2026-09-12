@@ -283,7 +283,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
 
 function enterNatDebtTimer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 2  &&  ((s as any).NatbelQW ?? 0)?.['Debt'] > 0) {
-    ((s as any).NatbelQW ?? {})['DebtTimeLeft'] = ((s as any).NatbelQW ?? {})?.['DebtDay'] - ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtTimeLeft'] = ((s as any).NatbelQW ?? {})?.['DebtDay'] - ((s as any).daystart ?? 0);
     if (((s as any).NatbelQW ?? 0)?.['DebtTimeLeft'] > 0) {
       // TODO-QSP: dynamic text: Natasha has promised to pay you back in <<NatbelQW['DebtTimeLeft']>> day(s).
       scene.text(`Natasha has promised to pay you back in ${((s as any).NatbelQW ?? 0)?.['DebtTimeLeft']} day(s).`);
@@ -310,10 +310,10 @@ function enterMakeHerDoHomework(s: GameState, scene: SceneBuilder): void {
       { label: 'Make her do your homework', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A16');
-    ((s as any).NatbelQW ?? {})['homework_day'] = ((s as any).daystart ?? 0);
-    ((s as any).NatbelQW ?? {})['homework'] = (((s as any).NatbelQW ?? {})['homework'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['homework_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['homework'] = ((s as any).NatbelQW['homework'] ?? 0) + (1);
     if (((s as any).NatbelQW ?? 0)?.['homework'] >= 3  &&  ((s as any).NatbelQW ?? 0)?.['QWstage'] === 3) {
-      ((s as any).NatbelQW ?? {})['QWstage'] = 4;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 4;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/study.jpg');
@@ -345,10 +345,10 @@ function enterMakeHerDoHomework(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Make her write some lines', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    ((s as any).NatbelQW ?? {})['homework_day'] = ((s as any).daystart ?? 0);
-    ((s as any).NatbelQW ?? {})['homework'] = (((s as any).NatbelQW ?? {})['homework'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['homework_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['homework'] = ((s as any).NatbelQW['homework'] ?? 0) + (1);
     if (((s as any).NatbelQW ?? 0)?.['homework'] >= 3  &&  ((s as any).NatbelQW ?? 0)?.['QWstage'] === 3) {
-      ((s as any).NatbelQW ?? {})['QWstage'] = 4;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 4;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/study.jpg');
@@ -375,7 +375,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 4;
   qspCall(s, 'stat', '');
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 4) {
-    ((s as any).NatbelQW ?? {})['QWstage'] = 5;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 5;
   }
   scene.img('images/characters/pavlovsk/school/girl/natasha/natgetreadyschool.jpg');
   scene.text('When you head over to Natasha\'s apartment to pick her up her mother opens the door and tells you she\'s in her room getting ready so you go there.');
@@ -404,7 +404,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.actions([
       { label: 'Stuff her panties', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['panty_stuff_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['panty_stuff_day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/stuffpanties.mp4');
     scene.text('You stop playing with her pussy and grab her panties, handing them over to her. "Put them inside your pussy."');
     scene.text('Natasha looks at you in confusion for a second but then starts to slowly push them into her pussy.');
@@ -466,7 +466,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
 function enterSchoolwalk(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 5) + 0))) {
     if (((s as any).NatbelQW ?? 0)?.['KolkaTease'] === 0) {
-      ((s as any).NatbelQW ?? {})['KolkaTease'] = 1;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['KolkaTease'] = 1;
     }
     scene.img('images/characters/pavlovsk/school/girl/natasha/tease.jpg');
     scene.text('As you reach the bottom of the stairs, you notice Kolka coming down as well.');
@@ -497,15 +497,15 @@ function enterHwundress(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell her to strip [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).NatbelQW ?? {})['doingHW'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['doingHW'] = 1;
     scene.text('"You know, I\'m not feeling properly entertained over here." You say, feeling a bit bored. "I think you should lose some clothes, so I have something to look at."');
     scene.text('"B-But what if my mom walks in?" Natasha asks in a trembling voice.');
     if (((s as any).NatbelQW ?? 0)?.['nakedHW'] > 3) {
       scene.actions([
         { label: 'Strip down completely', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    ((s as any).NatbelQW ?? {})['nakedHW'] = (((s as any).NatbelQW ?? {})['nakedHW'] ?? 0) + (1);
-    ((s as any).NatbelQW ?? {})['underwear'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['nakedHW'] = ((s as any).NatbelQW['nakedHW'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['underwear'] = 0;
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/nakedhomework2.jpg');
     scene.text('"Then your mom will see you naked, this is what happens when you borrow money from people and can\'t pay them back. You pay it back in other ways. Now do as you\'re told and take off your clothes, all of your clothes."');
     scene.text('Natasha looks as if she wants to object but then hangs her head and begins to remove her clothing. Once she\'s completely naked, she shyly walks over to her desk and sits down as she starts in on your homework. Though after a while you think she\'s actually enjoying it.');
@@ -520,8 +520,8 @@ function enterHwundress(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'You can keep your bra and panties on', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    ((s as any).NatbelQW ?? {})['underwear'] = 1;
-    ((s as any).NatbelQW ?? {})['nakedHW'] = (((s as any).NatbelQW ?? {})['nakedHW'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['underwear'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['nakedHW'] = ((s as any).NatbelQW['nakedHW'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/nakedhomework1.jpg');
     scene.text('"Fine, you can keep your bra and panties on, but the rest comes off." You say, clearly letting your disappointment show in your voice.');
     qspCall(s, 'arousal', 'erotic', 10);
@@ -642,9 +642,9 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
         { label: 'Make her wear the lingerie [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/natasha/seethrough00.jpg');
-    ((s as any).NatbelQW ?? {})['seethroughwearing'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethroughwearing'] = 1;
     if (((s as any).NatbelQW ?? 0)?.['seethroughworn'] === 0) {
-      ((s as any).NatbelQW ?? {})['seethroughworn'] = (((s as any).NatbelQW ?? {})['seethroughworn'] ?? 0) + (1);
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethroughworn'] = ((s as any).NatbelQW['seethroughworn'] ?? 0) + (1);
       scene.text('"No, I don\'t think so. For the rest of the day, you\'re going to wear this." You say as you pull the see-through lingerie from your bag. "I just couldn\'t resist buying it for you."');
       scene.text('Natasha\'s eyes fall on what you\'re actually holding. She immediately notices that you can see right through the fabric.');
       scene.text('"B-But… It hides nothing. I\'d be practically naked." She stammers');
@@ -665,7 +665,7 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).NatbelQW ?? 0)?.['seethroughworn'] < 5) {
-        ((s as any).NatbelQW ?? {})['seethroughworn'] = (((s as any).NatbelQW ?? {})['seethroughworn'] ?? 0) + (1);
+        if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethroughworn'] = ((s as any).NatbelQW['seethroughworn'] ?? 0) + (1);
         scene.text('"No, I don\'t think so. Remember the lingerie I gave you? You\'re going to wear it again." You say as you enjoy the look on her face. It seems to be a mixture of shame and arousal.');
         if (((s as any).NatbelQW ?? 0)?.['underwear'] === 1) {
           scene.text('"O-Ok." She says as she takes off her own underwear. She pulls the lingerie from her drawer and sighs deeply before putting it on.');
@@ -682,7 +682,7 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
   }, goto: ['natbelapt', 'natroom'] },
         ]);
       } else {
-        ((s as any).NatbelQW ?? {})['seethroughworn'] = (((s as any).NatbelQW ?? {})['seethroughworn'] ?? 0) + (1);
+        if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethroughworn'] = ((s as any).NatbelQW['seethroughworn'] ?? 0) + (1);
         scene.text('"No, I don\'t think so. I want you to put the lingerie on again. You know, your favorite." You say as you enjoy the look on her face. She\'s gotten a bit red in the face from arousal.');
         if (((s as any).NatbelQW ?? 0)?.['underwear'] === 1) {
           scene.text('"Ok." She says a bit too eagerly as she takes off her own underwear and makes a show of walking over to her underwear drawer. She bends over and sticks her naked ass out, wiggling it sexily before pulling the lingerie from her drawer and putting it on.');
@@ -706,7 +706,7 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Allow her to dress', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['underwear'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['underwear'] = 0;
   }, goto: ['natbelapt', 'natroom'] },
   ]);
   scene.build();
@@ -714,8 +714,8 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
 
 function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['Debt'] <= 0) {
-    ((s as any).NatbelQW ?? {})['Debt'] = 0;
-    ((s as any).NatbelQW ?? {})['demand_repayment'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['demand_repayment'] = 0;
     return;
   }
   if (((s as any).NatbelQW ?? 0)?.['MoneyGivenTimes'] < 4  &&  ((s as any).daystart ?? 0) < ((s as any).NatbelQW ?? 0)?.['DebtDay']) {
@@ -823,7 +823,7 @@ function enterLickFeet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 5) {
-    ((s as any).NatbelQW ?? {})['QWstage'] = 6;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 6;
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/sex/lickfeet1.jpg');
@@ -833,7 +833,7 @@ function enterLickFeet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Let her suffer for a bit', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/lickfeet1.jpg');
     scene.text('"Open your mouth." You tell her as you grab her by the hair to hold her at your feet. "Suck on my toes."');
@@ -848,7 +848,7 @@ function enterLickFeet(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Lie back and enjoy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/lickfeet2.jpg');
     scene.text('You lie back and gently caress your pussy while you relish the feeling of her tongue on your feet. She alternates between licking your feet in long strokes of her tongue and gently sucking on your toes.');
     scene.text('After a while, you get bored and get up.');
@@ -868,7 +868,7 @@ function enterLickFeet(s: GameState, scene: SceneBuilder): void {
 function enterSpitFace(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 6) {
-    ((s as any).NatbelQW ?? {})['QWstage'] = 7;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 7;
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natknee.jpg');
@@ -877,7 +877,7 @@ function enterSpitFace(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Spit in her face', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natknee.jpg');
     scene.text('You collect the saliva in your mouth and, with relish, spit in Natasha\'s face. She jerks and squeezes her eyes shut but makes no move to wipe the spit away even as some drips into her open mouth.');
@@ -895,23 +895,23 @@ function enterSpitFace(s: GameState, scene: SceneBuilder): void {
 function enterLickPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
-  ((s as any).npc_had_sex ?? {})['A16'] = 1;
-  ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
-  ((s as any).NatbelQW ?? {})['lesbian'] = (((s as any).NatbelQW ?? {})['lesbian'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A16'] = 1;
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['lesbian'] = ((s as any).NatbelQW['lesbian'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natlick.jpg');
   scene.text('You force Natasha to undress you and then watch as she undresses herself before she returns to kneeling at your feet. You pull her face into your pussy and snarl at her, "Now lick!". Natasha fearfully starts to work.');
   if (((s as any).NatbelQW ?? 0)?.['training'] > 3  ||  ((s as any).NatbelQW ?? 0)?.['QWstage'] >= 8) {
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 7) {
-      ((s as any).NatbelQW ?? {})['QWstage'] = 8;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 8;
     }
     scene.actions([
       { label: 'Lie down and open your legs', goto: ['natbel_cp_1', 'openlegs'] },
       { label: 'Straddle her face', goto: ['natbel_cp_1', 'straddleface'] },
     ]);
   } else {
-    ((s as any).NatbelQW ?? {})['training'] = (((s as any).NatbelQW ?? {})['training'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['training'] = ((s as any).NatbelQW['training'] ?? 0) + (1);
     scene.text('This useless cunt can\'t even find your clitoris and only sluggishly works her mouth on your pussy without any enthusiasm.');
     if (((s as any).NatbelQW ?? 0)?.['Debt'] >= 500) {
       qspCall(s, 'willpower', 'pee', 'force');
@@ -927,8 +927,8 @@ function enterLickPussy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'arousal', 'pee_give', 5, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
-    ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
-    ((s as any).NatbelQW ?? {})['pee'] = (((s as any).NatbelQW ?? {})['pee'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['pee'] = ((s as any).NatbelQW['pee'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natpee.jpg');
     scene.text('You are angry at this bitch, so you release your urine in Natasha\'s face. She closes her eyes and bows her head down but does not recoil and silently accepts your golden shower, continuing to swallow until the very end.');
@@ -1153,9 +1153,9 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
       { label: 'Make her play with a cucumber [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 10) {
-      ((s as any).NatbelQW ?? {})['QWstage'] = 11;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 11;
     }
-    ((s as any).NatbelQW ?? {})['cucumber'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['cucumber'] = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natashacucumber01.jpg');
     scene.text('You move over and make her sit on top of it.');
     scene.text('"I thought we could have some fun in here. The noise from the washer should prevent anyone from hearing." You tell her as you hand her the cucumber.');

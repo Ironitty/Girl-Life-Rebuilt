@@ -12,7 +12,7 @@ function enterFirstModelTalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
     scene.actions([
       { label: 'I do some modelling', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['know_model'] = ((s as any).daystart ?? 0);
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['know_model'] = ((s as any).daystart ?? 0);
     if (((s as any).fame ?? 0)?.['pav_modelling'] >= 400  &&  ((s as any).stat ?? 0)?.['school_knows_model'] === 0) {
       scene.text('"I… Do some modelling in the city…" you admit slowly.');
       scene.text('Her eyes go wide. "Holy shit! The rumors are true!" she shouts gleefully, suddenly punching you in the arm.');
@@ -244,7 +244,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).model ?? 0)?.['nickname'] === ((s as any).pcs_firstname ?? 0)  ||  ((s as any).model ?? 0)?.['nickname'] === ((s as any).pcs_nickname ?? 0)  ||  ((s as any).model ?? 0)?.['firstname'] === ((s as any).pcs_nickname ?? 0)  ||  ((s as any).model ?? 0)?.['firstname'] === ((s as any).pcs_nickname ?? 0)) {
     scene.actions([
       { label: 'It\'s not my name (lie)', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_no_look'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_no_look'] = 2;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"You\'re not gonna find anything just Yandexing my name," you tell her, dramatically rolling your eyes. "Do you really think I\'m stupid enough to use my real name for nude modelling?"');
     scene.text('She stops and turns to look at you with a frown. You snicker internally, but manage to maintain a straight face, hoping she won\'t see through your bluff.');
@@ -292,7 +292,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'It\'s not my name', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_no_look'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_no_look'] = 2;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"You\'re not gonna find anything just Yandexing my name," you tell her, dramatically rolling your eyes. "Do you really think I\'m stupid enough to use my real name for nude modelling?"');
     scene.text('She stops and turns to look at you with a frown. You give her a stare and she stares back.');
@@ -314,7 +314,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     { label: 'Stop her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"No!" you squeal, grabbing her by the arm to stop her. Albina back looks at you, bewildered.');
-    ((s as any).AlbinaQW ?? {})['model_no_look'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_no_look'] = 1;
     scene.text('"I don\'t mind that you know what I do, but I don\'t want you to look. Please…" you say, looking deep into your friend\'s eyes. Albina stares back tenderly, putting her other hand on top of yours.');
     scene.text('"Okay, I won\'t," she says. "I\'m sorry. I was just teasing you. I didn\'t think- No, it doesn\'t matter what I thought. I promise, I won\'t go looking for naked pictures of you on the internet for everyone to see."');
     scene.text('The twinkle in her eye lets you know she\'s kidding and she really won\'t go looking, but Albina being Albina means that she has to pretend nothing serious happened.');
@@ -522,11 +522,11 @@ function enterFirstModelTalkNude3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['model_shave'] = 1;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_shave'] = 1;
   if (((s as any).modelfoto ?? 0)?.['nude_shave_no'] === 1) {
     scene.actions([
       { label: 'They made me (liked bush)', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_shave'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_shave'] = 2;
     scene.text('"They made me do it," you sigh. "This is my nude debut. The studio\'s policy is that models have to go cleanshaven for their first nude set. I didn\'t want to do it, but they refused to do the shoot unless I did. I really liked my bush! I was so annoyed at how long it took to grow back!"');
     scene.text('Albina\'s grin fades and takes on a more somber expression as she scrolls through the pictures of you with new eyes.');
     if (((s as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
@@ -540,7 +540,7 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
     qspCall(s, 'albina_chat', 'small_talk');
   } },
       { label: 'They made me (pressured)', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_shave'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_shave'] = 2;
     scene.text('"They made me do it," you sigh. "This is my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set. I didn\'t want to do it, but they refused to do the shoot unless I did."');
     scene.text('Albina\'s grin fades and takes on a more somber expression as she scrolls through the pictures of you with new eyes.');
     if (((s as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
@@ -774,7 +774,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).model ?? 0)?.['nickname'] === ((s as any).pcs_firstname ?? 0)  ||  ((s as any).model ?? 0)?.['nickname'] === ((s as any).pcs_nickname ?? 0)  ||  ((s as any).model ?? 0)?.['firstname'] === ((s as any).pcs_nickname ?? 0)  ||  ((s as any).model ?? 0)?.['firstname'] === ((s as any).pcs_nickname ?? 0)) {
     scene.actions([
       { label: 'It\'s not my name (lie)', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_no_look'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_no_look'] = 2;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"You\'re not gonna find anything just Yandexing my name," you tell her, dramatically rolling your eyes. "Do you really think I\'m stupid enough to use my real name for nude modelling?"');
     scene.text('She turns to look at you with a frown. You cringe internally but manage to maintain a straight face, hoping she won\'t see through your bluff.');
@@ -830,7 +830,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'It\'s not my name', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_no_look'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_no_look'] = 2;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"You\'re not gonna find anything just Yandexing my name," you tell her, dramatically rolling your eyes. "Do you really think I\'m stupid enough to use my real name for nude modelling?"');
     scene.text('She turns to look at you with a frown. You give her a stare and she stares back.');
@@ -871,7 +871,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
     scene.text('"No!" you squeal, grabbing her by the arm to stop her. Albina looks at you, bewildered.');
     scene.actions([
       { label: 'Beg her', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_no_look'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_no_look'] = 1;
     scene.text('"Please…" you say, looking deep into your friend\'s eyes. Albina stares back tenderly, putting her other hand on top of yours.');
     scene.text('"Okay, I won\'t," she says. "I\'m sorry. I was just teasing you. I didn\'t think- No, it doesn\'t matter. I promise, I won\'t go looking for naked pictures of you on the internet for everyone to see."');
     scene.text('The twinkle in her eye lets you know she\'s kidding and she really won\'t go looking, but Albina being Albina means that she has to pretend nothing serious happened.');
@@ -941,11 +941,11 @@ function enterFirstModelTalkNudeShy2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstModelTalkNudeShyPubesShaved(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['model_shave'] = 1;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_shave'] = 1;
   if (((s as any).modelfoto ?? 0)?.['nude_shave_no'] === 1) {
     scene.actions([
       { label: 'They made me', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['model_shave'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['model_shave'] = 2;
     scene.text('"They made me do it," you mumble shyly. "This is my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set. I didn\'t want to do it, but they refused to do the shoot unless I did."');
     scene.text('Her grin fades and takes on a more somber expression as she scrolls through the pictures of you with new eyes.');
     if (((s as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
@@ -1011,7 +1011,7 @@ function enterRecurrentPornTalk1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'albina_chat2', 'recurrent_porn_talk_casual');
   } },
     { label: '"We don\'t have to talk about this"', handler: (st: GameState) => {
-    ((s as any).AlbinaQW ?? {})['no_porn_talk'] = 1;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['no_porn_talk'] = 1;
     scene.text('"Albina," you say gently. "If you\'re uncomfortable with what I do for money, then we don\'t have to talk about it."');
     scene.text('She nods back, looking grateful before quickly changing the subject.');
     qspCall(s, 'albina_chat', 'small_talk');

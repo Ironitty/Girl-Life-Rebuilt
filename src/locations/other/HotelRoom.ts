@@ -6,10 +6,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? 0) <= 0  &&  ((s as any).hour ?? 0) > 11) {
-    ((s as any).HotelRoom ?? {})[String((s as any).region ?? 0)] = 0;
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom[String((s as any).region ?? 0)] = 0;
   }
   if (((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? 0) < 0) {
-    ((s as any).HotelRoom ?? {})[String((s as any).region ?? 0)] = 0;
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom[String((s as any).region ?? 0)] = 0;
   }
   scene.build();
 }
@@ -265,7 +265,7 @@ function enterTherapist(s: GameState, scene: SceneBuilder): void {
 
 function enterShower1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  ((s as any).hotelmc_inventory ?? {})['shampoo'] = 1;
+  if (!(s as any).hotelmc_inventory) (s as any).hotelmc_inventory = {}; (s as any).hotelmc_inventory['shampoo'] = 1;
   qspCall(s, 'core_library', 'setloc', 'HotelRoom', 'shower1');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
@@ -298,7 +298,7 @@ function enterShower1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Return to your room', handler: (st: GameState) => {
-    ((s as any).hotelmc_inventory ?? {})['shampoo'] = 0;
+    if (!(s as any).hotelmc_inventory) (s as any).hotelmc_inventory = {}; (s as any).hotelmc_inventory['shampoo'] = 0;
     if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
       scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'therapist'] }]);
     } else {

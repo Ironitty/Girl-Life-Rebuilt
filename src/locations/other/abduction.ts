@@ -64,15 +64,15 @@ function enterAbdRoomFirstChaining(s: GameState, scene: SceneBuilder): void {
   (s as any).shampoo_bak = ((s as any).mc_inventory ?? 0)?.['shampoo'];
   (s as any).stanok_bak = ((s as any).mc_inventory ?? 0)?.['razor'];
   (s as any).deodorant_bak = ((s as any).mc_inventory ?? 0)?.['deodorant'];
-  ((s as any).mc_inventory ?? {})['painkillers'] = 0;
-  ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
-  ((s as any).mc_inventory ?? {})['vitamins'] = 0;
-  ((s as any).mc_inventory ?? {})['cosmetics'] = 0;
-  ((s as any).mc_inventory ?? {})['lipbalm'] = 0;
-  ((s as any).mc_inventory ?? {})['tampons'] = 0;
-  ((s as any).mc_inventory ?? {})['shampoo'] = 0;
-  ((s as any).mc_inventory ?? {})['razor'] = 0;
-  ((s as any).mc_inventory ?? {})['deodorant'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['painkillers'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = 0;
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = 0;
   if (((s as any).bag ?? 0) === 1) {
     (s as any).bag = 0;
     (s as any).bagtaken = 1;
@@ -318,7 +318,7 @@ function enterAbdBrokenGiveTools(s: GameState, scene: SceneBuilder): void {
   scene.text('He puts them down next to your bed and leaves without saying another word.');
   if (((s as any).lactation ?? 0)?.['active'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['breast_pump'] === 0) {
-      ((s as any).mc_inventory ?? {})['breast_pump'] = 1;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['breast_pump'] = 1;
     }
     scene.text('In the bottom of the box, under the various dildos, you also find a working breast pump.');
     if (((s as any).lact_engorgement ?? 0) > 3) {
@@ -423,7 +423,7 @@ function enterAbdBrokenGivePainkillerYes(s: GameState, scene: SceneBuilder): voi
   (s as any).painkillerGive = Math.floor(Math.random() * 100) + 1;
   if (((s as any).painkillerGive ?? 0) > 20  &&  ((s as any).broken ?? 0) >= 10) {
     scene.text('Your master nods in approval and hands you a small pack of painkillers.');
-    ((s as any).mc_inventory ?? {})['painkillers'] = (((s as any).mc_inventory ?? {})['painkillers'] ?? 0) + (6);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) + (6);
   }
   // TODO-QSP: end
   scene.actions([
@@ -442,9 +442,9 @@ function enterAbdBrokenGivePainkillerNo(s: GameState, scene: SceneBuilder): void
   scene.text('You have been forced to swallow the pill, but your master still looks very angry.');
   qspCall(s, 'drugs', 'painkiller', 'gift');
   (s as any).broken = ((s as any).broken ?? 0) - (5);
-  ((s as any).pain ?? {})['tongue'] = (((s as any).pain ?? {})['tongue'] ?? 0) + (5);
-  ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (5);
-  ((s as any).pain ?? {})['nose'] = (((s as any).pain ?? {})['nose'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tongue'] = ((s as any).pain['tongue'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nose'] = ((s as any).pain['nose'] ?? 0) + (5);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -537,7 +537,7 @@ function enterAbdBreak2FuckB1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdBreak2FuckB2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (1);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (1);
   scene.img('images/locations/shared/abduction/sex/brokenb2.jpg');
   scene.text('Surprisingly, his dick is not wearing out. He moves behind you and starts to penetrate your ass.');
   scene.text('You relax your anus as much as you can, so he enters you quite easily. Just a small hint of pain pulses through you.');
@@ -662,15 +662,15 @@ function enterAbdEscapeWindow3(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (50);
   }
   qspCall(s, 'stat', '');
-  ((s as any).mc_inventory ?? {})['painkillers'] = ((s as any).painkiller_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['vitamins'] = ((s as any).vitamin_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['tampons'] = ((s as any).tampon_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['shampoo'] = ((s as any).shampoo_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['razor'] = ((s as any).stanok_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['deodorant'] = ((s as any).deodorant_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['painkillers'] = ((s as any).painkiller_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).vitamin_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).tampon_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).shampoo_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).stanok_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).deodorant_bak ?? 0);
   // TODO-QSP: end
   scene.actions([
     { label: 'Turn and run the opposite direction', goto: ['road', '12'] },
@@ -823,13 +823,13 @@ function enterAbdexercise(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdRape(s: GameState, scene: SceneBuilder): void {
   (s as any).rapeCount = ((s as any).rapeCount ?? 0) + (1);
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).rapeType = Math.floor(Math.random() * 5) + 1;
   if (((s as any).broken ?? 0) < 10) {
     qspCall(s, 'mood', 'lower', 'min');
   }
   if (((s as any).rapeType ?? 0) === 1) {
-    ((s as any).pain ?? {})['mouth'] = (((s as any).pain ?? {})['mouth'] ?? 0) + (3);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (3);
     (s as any).cumnostd = 1;
     qspCall(s, 'cum_call', 'mouth', 'Master');
     (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -848,7 +848,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).rapeType ?? 0) === 2  &&  qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-      ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (10);
+      if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
       (s as any).cumnostd = 1;
       qspCall(s, 'cum_call', '', '', 'Master');
       (s as any).i = Math.floor(Math.random() * 5) + 1;
@@ -862,7 +862,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).rapeType ?? 0) === 3) {
-        ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (10);
+        if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (10);
         (s as any).cumnostd = 1;
         qspCall(s, 'cum_call', 'anus', 'Master');
         (s as any).gifornot = 0;
@@ -880,7 +880,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).rapeType ?? 0) === 4) {
-          ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (8);
+          if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (8);
           qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
           scene.img('images/locations/shared/abduction/sex/fistanal\'+rand(1, 5)+\'.jpg');
           scene.text('Your hands and feet are bound as you hang upside down with your ass in the air.');
@@ -895,8 +895,8 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).rapeType ?? 0) === 5  &&  qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-            ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (5);
-            ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (10);
+            if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
+            if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (10);
             qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
             scene.img('images/locations/shared/abduction/sex/fistvaginal\'+rand(1, 5)+\'.jpg');
             scene.text('Your hands and feet are tied with your ass raised higher than your head.');
@@ -912,7 +912,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-            ((s as any).pain ?? {})['mouth'] = (((s as any).pain ?? {})['mouth'] ?? 0) + (5);
+            if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
             (s as any).cumnostd = 1;
             qspCall(s, 'cum_call', 'mouth', 'Master');
             (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -968,8 +968,8 @@ function enterAbdTorture(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTortureA1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['feet'] = (((s as any).pain ?? {})['feet'] ?? 0) + (5);
-  ((s as any).pain ?? {})['hands'] = (((s as any).pain ?? {})['hands'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['feet'] = ((s as any).pain['feet'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['hands'] = ((s as any).pain['hands'] ?? 0) + (5);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/abduction/sex/torturea1.jpg');
@@ -984,7 +984,7 @@ function enterAbdTortureA1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTortureA2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (5);
   scene.img('images/locations/shared/abduction/sex/torturea2.jpg');
   scene.text('Your tormentor secures a rope around your neck and starts to play with your idle nipples.');
   scene.text('As your nipples harden, he firmly attaches the rope to them and tightens it around your neck.');
@@ -1000,7 +1000,7 @@ function enterAbdTortureA2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTortureA3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   scene.img('images/locations/shared/abduction/sex/torturea3.jpg');
   scene.text('After a while, the tormentor returns with a dildo attached to a long stick.');
@@ -1018,7 +1018,7 @@ function enterAbdTortureA3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTortureA4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (5);
   scene.img('images/locations/shared/abduction/sex/torturea4.jpg');
   scene.text('After what seems like an eternity, the tormentor returns.');
   scene.text('Pleased to find you with tears and saliva all over your breasts and stomach, he unscrews the stick.');
@@ -1047,7 +1047,7 @@ function enterAbdTortureB1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTortureB2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (10);
   scene.img('images/locations/shared/abduction/sex/tortureb2.jpg');
   scene.text('You hear your tormentor returning.');
   scene.text('"Uummmphh!" is the sound your gagged mouth makes as the cane suddenly strikes your ass.');
@@ -1062,8 +1062,8 @@ function enterAbdTortureB2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTortureB3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (2);
-  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (2);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (2);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (2);
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   scene.img('images/locations/shared/abduction/sex/tortureb3.jpg');
   scene.text('As soon as the whipping stops, you feel a new source of pain in both your pussy and your ass - something is being pushed inside both your holes.');
@@ -1105,12 +1105,12 @@ function enterAbdTortureC1(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdTortureC2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (60);
-  ((s as any).pain ?? {})['back'] = (((s as any).pain ?? {})['back'] ?? 0) + (50);
-  ((s as any).pain ?? {})['thighs'] = (((s as any).pain ?? {})['thighs'] ?? 0) + (25);
-  ((s as any).pain ?? {})['chest'] = (((s as any).pain ?? {})['chest'] ?? 0) + (25);
-  ((s as any).pain ?? {})['breasts'] = (((s as any).pain ?? {})['breasts'] ?? 0) + (50);
-  ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (25);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (60);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (50);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['thighs'] = ((s as any).pain['thighs'] ?? 0) + (25);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['chest'] = ((s as any).pain['chest'] ?? 0) + (25);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (50);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (25);
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/abduction/sex/torturec2.jpg');
   scene.text('Twenty minutes of thorough whipping leaves your body trembling and severely bruised.');
@@ -1180,8 +1180,8 @@ function enterAbdTortureD4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTortureD5(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
-  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   (s as any).cumnostd = 1;
@@ -1243,15 +1243,15 @@ function enterAbdSoldSauna(s: GameState, scene: SceneBuilder): void {
     (s as any).bag = 1;
     (s as any).bagtaken = 0;
   }
-  ((s as any).mc_inventory ?? {})['painkillers'] = ((s as any).painkiller_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['vitamins'] = ((s as any).vitamin_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['tampons'] = ((s as any).tampon_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['shampoo'] = ((s as any).shampoo_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['razor'] = ((s as any).stanok_bak ?? 0);
-  ((s as any).mc_inventory ?? {})['deodorant'] = ((s as any).deodorant_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['painkillers'] = ((s as any).painkiller_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['vitamins'] = ((s as any).vitamin_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tampons'] = ((s as any).tampon_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = ((s as any).shampoo_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).stanok_bak ?? 0);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).deodorant_bak ?? 0);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_sauna', 'saunaroom'] },
@@ -1286,7 +1286,7 @@ function enterAbdFailedCustomer1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomer2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (2);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (2);
   scene.img('images/locations/shared/abduction/sex/slavewhorefailed2.mp4');
   scene.text('He then forces a considerable plug into your anus with little warning. Being tied up, you can\'t resist in any way.');
   qspCall(s, 'arousal', 'anal_dildo', 5, 'sub', 'bound', 'maso', 'humiliation');
@@ -1299,8 +1299,8 @@ function enterAbdFailedCustomer2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomer3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['mouth'] = (((s as any).pain ?? {})['mouth'] ?? 0) + (5);
-  ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (10);
   scene.img('images/locations/shared/abduction/sex/slavewhorefailed3.mp4');
   scene.text('Continuing, he blindfolds you and attaches a ring gag, which stops you from closing your mouth. Now completely helpless, you hear him walking away, leaving you to wonder what he has planned next.');
   scene.text('After some time of relative quiet, you hear someone approaching. In a matter of seconds, someone grabs your head. He pushes his warm cock into your mouth and down your throat, making it impossible to breathe.');
@@ -1331,9 +1331,9 @@ function enterAbdFailedCustomer3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomerElectro1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['pubic'] = (((s as any).pain ?? {})['pubic'] ?? 0) + (20);
-  ((s as any).pain ?? {})['nipples'] = (((s as any).pain ?? {})['nipples'] ?? 0) + (20);
-  ((s as any).pain ?? {})['breasts'] = (((s as any).pain ?? {})['breasts'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['pubic'] = ((s as any).pain['pubic'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nipples'] = ((s as any).pain['nipples'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['breasts'] = ((s as any).pain['breasts'] ?? 0) + (20);
   scene.img('images/locations/shared/abduction/sex/slavewhorefailedelectro1.mp4');
   scene.text('Your restraints are removed, but you\'re led to a wall to be chained anew to a different device.');
   scene.text('This time, you can see everything - but you wish you couldn\'t.');
@@ -1350,8 +1350,8 @@ function enterAbdFailedCustomerElectro1(s: GameState, scene: SceneBuilder): void
 }
 
 function enterAbdFailedCustomerElectro2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (20);
-  ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (20);
   scene.img('images/locations/shared/abduction/sex/slavewhorefailedelectro2.mp4');
   scene.text('Your legs are pulled into the air and restrained to a wall. You hang by your hands with both of your holes fully at their disposal.');
   scene.text('The first plug is violently taken out with a loud "SCHLOP".');
@@ -1368,9 +1368,9 @@ function enterAbdFailedCustomerElectro2(s: GameState, scene: SceneBuilder): void
 
 function enterAbdFailedCustomerElectro3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 240;
-  ((s as any).pain ?? {})['feet'] = (((s as any).pain ?? {})['feet'] ?? 0) + (10);
-  ((s as any).pain ?? {})['hands'] = (((s as any).pain ?? {})['hands'] ?? 0) + (10);
-  ((s as any).pain ?? {})['back'] = (((s as any).pain ?? {})['back'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['feet'] = ((s as any).pain['feet'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['hands'] = ((s as any).pain['hands'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['back'] = ((s as any).pain['back'] ?? 0) + (10);
   qspCall(s, 'mood', 'lower', 'min');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/abduction/sex/slavewhorefailedelectro3.jpg');
@@ -1388,7 +1388,7 @@ function enterAbdFailedCustomerElectro3(s: GameState, scene: SceneBuilder): void
 }
 
 function enterAbdFailedCustomerHook1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
   scene.img('images/locations/shared/abduction/sex/slavewhorefailedhook1.mp4');
   scene.text('You\'re put on all fours and chained. Your ass is high in the air, showing both your holes to anyone standing behind you.');
   scene.text('Somebody you don\'t see approaches from behind to remove the buttplug with a loud "SCHLOP" and immediately, and very violently, shoves something cold inside your anus.');
@@ -1403,8 +1403,8 @@ function enterAbdFailedCustomerHook1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomerHook2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['labia'] = (((s as any).pain ?? {})['labia'] ?? 0) + (20);
-  ((s as any).pain ?? {})['clitoris'] = (((s as any).pain ?? {})['clitoris'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['labia'] = ((s as any).pain['labia'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['clitoris'] = ((s as any).pain['clitoris'] ?? 0) + (20);
   scene.img('images/locations/shared/abduction/sex/slavewhorefailedhook2.mp4');
   scene.text('Trying to look behind you, you see your master bring something in his hands.');
   scene.text('He puts it up against your pussy and it suddenly starts to vibrate.');
@@ -1420,8 +1420,8 @@ function enterAbdFailedCustomerHook2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomerHook3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (10);
-  ((s as any).pain ?? {})['cervix'] = (((s as any).pain ?? {})['cervix'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (20);
   scene.img('images/locations/shared/abduction/sex/slavewhorefailedhook3.mp4');
   scene.text('Your pussy is very sensitive after the vibrator treatment, and your master knows that all too well.');
   scene.text('He slams his dick deep inside you to hit your cervix. It seems like he\'s doing it on purpose.');
@@ -1437,7 +1437,7 @@ function enterAbdFailedCustomerHook3(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdFailedCustomerHook4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 240;
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (30);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (30);
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'mood', 'lower', 'min');
   qspCall(s, 'stat', '');
@@ -1456,8 +1456,8 @@ function enterAbdFailedCustomerHook4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomerWhip1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['labia'] = (((s as any).pain ?? {})['labia'] ?? 0) + (5);
-  ((s as any).pain ?? {})['clitoris'] = (((s as any).pain ?? {})['clitoris'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['labia'] = ((s as any).pain['labia'] ?? 0) + (5);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['clitoris'] = ((s as any).pain['clitoris'] ?? 0) + (5);
   scene.img('images/locations/shared/abduction/sex/slavewhorewhip1.mp4');
   scene.text('Your master removes your bondage and in anger pushes you on the ground before spreading your legs.');
   scene.text('"You fucking whore! You\'re going to learn how to be more fucking obedient!"');
@@ -1472,9 +1472,9 @@ function enterAbdFailedCustomerWhip1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomerWhip2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['labia'] = (((s as any).pain ?? {})['labia'] ?? 0) + (10);
-  ((s as any).pain ?? {})['clitoris'] = (((s as any).pain ?? {})['clitoris'] ?? 0) + (10);
-  ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['labia'] = ((s as any).pain['labia'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['clitoris'] = ((s as any).pain['clitoris'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (20);
   scene.img('images/locations/shared/abduction/sex/slavewhorewhip2.mp4');
   scene.text('After a while, he cools down, but your pussy is already red and stinging.');
   scene.text('He grabs you by your hair and leads you to another device. You have to lie down on your shoulders and put your ass high in the air before he affixes you into this uncomfortable position with some straps.');
@@ -1491,9 +1491,9 @@ function enterAbdFailedCustomerWhip2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomerWhip3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['labia'] = (((s as any).pain ?? {})['labia'] ?? 0) + (10);
-  ((s as any).pain ?? {})['clitoris'] = (((s as any).pain ?? {})['clitoris'] ?? 0) + (10);
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['labia'] = ((s as any).pain['labia'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['clitoris'] = ((s as any).pain['clitoris'] ?? 0) + (10);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (10);
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   scene.img('images/locations/shared/abduction/sex/slavewhorewhip3.mp4');
   scene.text('As if the baton wasn\'t enough, your master reaches for a long dildo attached to a stick.');
@@ -1510,9 +1510,9 @@ function enterAbdFailedCustomerWhip3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdFailedCustomerWhip4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).pain ?? {})['labia'] = (((s as any).pain ?? {})['labia'] ?? 0) + (20);
-  ((s as any).pain ?? {})['clitoris'] = (((s as any).pain ?? {})['clitoris'] ?? 0) + (20);
-  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['labia'] = ((s as any).pain['labia'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['clitoris'] = ((s as any).pain['clitoris'] ?? 0) + (20);
+  if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (20);
   qspCall(s, 'mood', 'lower', 'min');
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   scene.img('images/locations/shared/abduction/sex/slavewhorewhip4.mp4');
@@ -1630,7 +1630,7 @@ function enterAbdTrainDildosSmallUse(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/abduction/sex/slavewhoredildossmallhurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
@@ -1678,7 +1678,7 @@ function enterAbdTrainDildosRegularUse(s: GameState, scene: SceneBuilder): void 
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosregularhurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
@@ -1726,7 +1726,7 @@ function enterAbdTrainDildosBigUse(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosbighurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
@@ -1774,7 +1774,7 @@ function enterAbdTrainDildosHorseUse(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/abduction/sex/slavewhoredildoshorsehurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     qspCall(s, 'arousal', 'vaginal_dildo', 60, 'rough');
   }
@@ -1813,7 +1813,7 @@ function enterAbdTrainDildosAnalSmallUse(s: GameState, scene: SceneBuilder): voi
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosanalsmallhurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
@@ -1861,7 +1861,7 @@ function enterAbdTrainDildosAnalRegularUse(s: GameState, scene: SceneBuilder): v
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosanalregularhurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
@@ -1909,7 +1909,7 @@ function enterAbdTrainDildosAnalBigUse(s: GameState, scene: SceneBuilder): void 
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosanalbighurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
@@ -1957,7 +1957,7 @@ function enterAbdTrainDildosAnalHorseUse(s: GameState, scene: SceneBuilder): voi
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosanalhorsehurt.mp4');
     scene.text('You start to fuck yourself with this dildo, knowing it is bigger than what you can handle.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     qspCall(s, 'arousal', 'anal_dildo', 60, 'rough');
   }
@@ -1996,7 +1996,7 @@ function enterAbdTrainDildosMouthSmallUse(s: GameState, scene: SceneBuilder): vo
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosmouthsmallhurt.mp4');
     scene.text('You start to suck the dildo, knowing it is bigger than what you can handle and pushing it as deep as possible while trying not to suffocate.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }
@@ -2044,7 +2044,7 @@ function enterAbdTrainDildosMouthRegularUse(s: GameState, scene: SceneBuilder): 
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosmouthregularhurt.mp4');
     scene.text('You start to suck the dildo, knowing it is bigger than what you can handle and pushing it as deep as possible while trying not to suffocate.');
     scene.text('It hurts but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }
@@ -2092,7 +2092,7 @@ function enterAbdTrainDildosMouthBigUse(s: GameState, scene: SceneBuilder): void
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosmouthbighurt.mp4');
     scene.text('You start to suck the dildo, knowing it is bigger than what you can handle and pushing it as deep as possible while trying not to suffocate.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }
@@ -2141,7 +2141,7 @@ function enterAbdTrainDildosMouthHorseUse(s: GameState, scene: SceneBuilder): vo
     scene.img('images/locations/shared/abduction/sex/slavewhoredildosmouthhorsehurt.mp4');
     scene.text('You start to suck the dildo, knowing it is bigger than what you can handle and pushing it as deep as possible while trying not to suffocate.');
     scene.text('It hurts, but you can feel that some progress was made.');
-    ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (5);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (5);
     qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     qspCall(s, 'arousal', 'dildo_suck', 60, 'rough');
   }

@@ -110,7 +110,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let me try another approach, what do you think you have seen?"');
     scene.actions([
       { label: 'A-a sado service?', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/annaintrob1.jpg');
@@ -120,7 +120,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'hotel_anna', '2a');
   } },
       { label: 'A perverted game?', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/annaintrob1.jpg');
@@ -132,7 +132,7 @@ function enterMeeting(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'hotel_anna', '2a');
   } },
       { label: 'I saw nothing!', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/annaintrob1.jpg');
@@ -153,7 +153,7 @@ function enter2a(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((s as any).locArgs?.[0] ?? 0) === 3) {
     (s as any).IgorevnaBDSM = ((s as any).IgorevnaBDSM ?? 0) + (1);
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna1toy0.jpg');
@@ -166,7 +166,7 @@ function enter2a(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Cover your eyes', handler: (st: GameState) => {
     (s as any).annaToy = 1;
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna1toy1a.jpg');
@@ -178,7 +178,7 @@ function enter2a(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Wow! You got two really big boobs!', handler: (st: GameState) => {
     (s as any).annaToy = 2;
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna1toy1b.jpg');
@@ -192,7 +192,7 @@ function enter2a(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Stare at her boobs', handler: (st: GameState) => {
     (s as any).annaToy = 3;
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna1toy1c.jpg');
@@ -318,7 +318,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
       { label: 'Test her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr1.jpg');
     scene.text('"It seems to be working great, perhaps you should see if it works for someone else to make sure it is safe?"');
     scene.text('Are you asking to try it? I told you, you cannot, it has to be tested."');
@@ -328,14 +328,14 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
       { label: 'She is the leader', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr1.jpg');
     scene.text('"I understand you are the leader here."');
     scene.text('"The leader… hahaha… maybe a \'mentor\' but not a leader. I\'m not making any political movements. Anyway I\'ll give you few tips on fisting and the swing… they have a role in BDSM after all.');
     qspCall(s, 'hotel_anna', '4a');
   } },
       { label: 'A swing for fisting? Come on', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr1.jpg');
@@ -370,7 +370,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Choose a toy for a demonstration', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/ztoy.jpg');
     scene.text('Anna presents you some toys to choose from:');
@@ -467,8 +467,8 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
       { label: 'Leather', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['dress'] = 1;
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dress'] = 1;
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/pc/items/eroto/dress/49.jpg');
     scene.text('"My My! A classic one! You look stunning! Here let me help you a bit." Anna fusses about you getting the dress smoothed out and straight.');
     scene.text('"Thank you Anna, I\'m not used to wearing clothes like this."');
@@ -489,8 +489,8 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
       { label: 'Rubber', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['dress'] = 1;
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dress'] = 1;
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/pc/items/eroto/dress/12.jpg');
     scene.text('"You look stunning! Does the rubber bother you? Here let me help you a bit." Anna fusses about you getting the dress smoothed out and straight.');
     scene.text('"Thank you Anna, I\'m not used to wearing clothes like this."');
@@ -613,7 +613,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
     if (((s as any).AnnaQW ?? 0)?.['sub'] > 1) {
       scene.actions([
         { label: 'Free her', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract05b1c.jpg');
@@ -631,7 +631,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
     if (((s as any).AnnaQW ?? 0)?.['dom'] > 1) {
       scene.actions([
         { label: 'Fix her bindings', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract05b1c.jpg');
@@ -664,7 +664,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
     scene.text('"Babushka always tells me \'If you find a stray dog on a leash never let it free, you will never know\' " You quote to her. It is an odd saying but common enough to the area that she will understand.');
     scene.actions([
       { label: 'Finally', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract03b.jpg');
@@ -714,7 +714,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Choose something for a demonstration', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/zrestr.jpg');
     scene.text('A set of items stand in front of you');
@@ -778,7 +778,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
     scene.text('There are two leather dresses in front of you one is red the other black and they look heavy.');
     scene.actions([
       { label: 'Red hobble skirt', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/eroto/dress/4.jpg');
@@ -793,7 +793,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Black hobble skirt', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/eroto/dress/26.jpg');

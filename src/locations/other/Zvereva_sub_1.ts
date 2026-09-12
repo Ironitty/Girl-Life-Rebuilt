@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChrisSub(s: GameState, scene: SceneBuilder): void {
-  ((s as any).socialchg ?? {})['tChristina_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).socialchg) (s as any).socialchg = {}; (s as any).socialchg['tChristina_day'] = ((s as any).daystart ?? 0);
   if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       scene.img('images/characters/shared/headshots_main/big18.jpg');
@@ -36,11 +36,11 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
-    ((s as any).LariskaQW ?? {})['story'] = 4;
+    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
     (s as any).sauna_stripped = 0;
     qspCall(s, 'outfit', 'strip_all');
-    ((s as any).christinaQW ?? {})['subpath'] = 2;
-    ((s as any).christinaQW ?? {})['submit'] = 1;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -64,7 +64,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You cry out when Christina suddenly kicks you hard in the crotch. Tears start running down your cheeks as you grab your crotch and roll onto your side with your legs squeezed closed. "Then say it! Say you\'re a little cunt and will do anything I say, anytime I say it!" she demands as she towers over you.');
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot. She and Lina then walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can before get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      ((s as any).trait_vars ?? {})['doormat_exp'] = (((s as any).trait_vars ?? {})['doormat_exp'] ?? 0) + (2);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -103,9 +103,9 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel the blood drain from your face as you realize she\'s serious, and will likely torment you for the rest of the school year. It will save your reputation though.');
     scene.text('"Will you tell Lariska she can hang out with me outside of school if I do?"');
     scene.text('"Sure, she can help train you…" she says evilly.');
-    ((s as any).christinaQW ?? {})['submit'] = 1;
-    ((s as any).christinaQW ?? {})['subpath'] = 2;
-    ((s as any).LariskaQW ?? {})['story'] = 4;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
+    if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
@@ -118,7 +118,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You cry out when Christina suddenly kicks you hard in the crotch. Tears start running down your cheeks as you grab your crotch and roll onto your side with your legs squeezed closed. "Then say it! Say you\'re a little cunt and will do anything I say, anytime I say it!" she demands as she towers over you.');
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot. She and Lina then walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can before get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      ((s as any).trait_vars ?? {})['doormat_exp'] = (((s as any).trait_vars ?? {})['doormat_exp'] ?? 0) + (2);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -160,8 +160,8 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sauna_stripped = 0;
     qspCall(s, 'outfit', 'strip_all');
-    ((s as any).christinaQW ?? {})['subpath'] = 2;
-    ((s as any).christinaQW ?? {})['submit'] = 1;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
     qspCall(s, 'fame', 'pav', 'sex', 3);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -186,7 +186,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot.');
     scene.text('"Oh, I\'m going to train you, but not to be a runner. You\'re going to be my new pet instead." She laughs before her and Lina walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can, get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      ((s as any).trait_vars ?? {})['doormat_exp'] = (((s as any).trait_vars ?? {})['doormat_exp'] ?? 0) + (2);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -225,8 +225,8 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel the blood drain from your face as you realize she\'s serious, and will likely torment you for the rest of the school year. It will save your reputation though.');
     scene.text('"Will you tell Lariska she can hang out with me outside of school if I do?"');
     scene.text('"Sure, she can help train you…" she says evilly.');
-    ((s as any).christinaQW ?? {})['submit'] = 1;
-    ((s as any).christinaQW ?? {})['subpath'] = 2;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['submit'] = 1;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 2;
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
@@ -239,7 +239,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
     scene.text('You cry out when Christina suddenly kicks you hard in the crotch. Tears start running down your cheeks as you grab your crotch and roll onto your side with your legs squeezed closed. "Then say it! Say you\'re a little cunt and will do anything I say, anytime I say it!" she demands as she towers over you.');
     scene.text('"I\'m a little cunt… that will do anything you say… anytime you say it…" you croak out and Christina laughs mockingly. She seems to be enjoying herself a lot. She and Lina then walk off, leaving you lying on the beach, naked and in pain. Once they\'re gone, you dry your tears as best as you can before get up and get dressed.');
     if (((s as any).cheatVars ?? 0)?.['doormat_disabled'] === 0) {
-      ((s as any).trait_vars ?? {})['doormat_exp'] = (((s as any).trait_vars ?? {})['doormat_exp'] ?? 0) + (2);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = ((s as any).trait_vars['doormat_exp'] ?? 0) + (2);
       if (((s as any).trait_vars ?? 0)?.['doormat'] < 1) {
         qspCall(s, 'traits', 'level', 'doormat', 1);
       }
@@ -273,7 +273,7 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
       scene.text('Getting right in your face she says, "Want me to fuck you up again? Do as you\'re told from now on, or else!"');
       scene.text('You quickly lay a hand on her arm. "O-Ok," is all you can manage to get out.');
     }
-    ((s as any).christinaQW ?? {})['subpath'] = 3;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 3;
   }
   // TODO-QSP: end
   scene.actions([
@@ -773,7 +773,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
 function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   if (((s as any).christinaQW ?? 0)?.['subpath'] === 3) {
-    ((s as any).christinaQW ?? {})['subpath'] = 4;
+    if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['subpath'] = 4;
     scene.text('Christina grins as you walk up to her meekly, expecting your punishment. "Sorry bitch, I\'m busy right now. Meet me after school, we will continue this at my house."');
     scene.text('She quickly heads into the showers, and for a second you feel unsure as to what to do. The other girls in the room smirk at your behaviour; you\'d gotten so used to Christina\'s abuse that you have no idea how to posture yourself when she\'s not here. You\'re deeply embarrassed when you try to imagine what they must think of you, and you do your best to ignore them.');
   } else {

@@ -17,10 +17,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
     if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 2) {
-      ((s as any).rasputin ?? {})['burlesque_ticket'] = 0;
+      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['burlesque_ticket'] = 0;
     }
     if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
-      ((s as any).rasputin ?? {})['variety_ticket'] = 0;
+      if (!(s as any).rasputin) (s as any).rasputin = {}; (s as any).rasputin['variety_ticket'] = 0;
     }
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   }, goto: ['pushkin_sq', ''] },

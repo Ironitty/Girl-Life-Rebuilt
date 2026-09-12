@@ -38,7 +38,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 1;
   qspCall(s, 'dinSex', 'std_trigger_oral');
   (s as any).protect = 0;
-  ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) - (1);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
   (s as any).tmppicrand = Math.floor(Math.random() * 7) + 1;

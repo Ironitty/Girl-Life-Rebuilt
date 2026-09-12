@@ -12,7 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   (s as any).girl = ((s as any).girl ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   scene.actions([{ label: 'Continue', goto: ['podrsex', 'var'] }]);
   // TODO-QSP: end

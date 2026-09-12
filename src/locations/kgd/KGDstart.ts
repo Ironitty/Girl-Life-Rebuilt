@@ -31,12 +31,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Play a new game', handler: (st: GameState) => {
     scene.text('<center><b>Disopl</b></center>');
-    ((s as any).KGD ?? {})['save'] = 1;
-    ((s as any).KGD ?? {})['money'] = 1000;
-    ((s as any).KGD ?? {})['HP'] = 100;
-    ((s as any).KGD ?? {})['lvl'] = 1;
-    ((s as any).KGD ?? {})['damage'] = 10;
-    ((s as any).KGD ?? {})['day'] = 1;
+    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['save'] = 1;
+    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['money'] = 1000;
+    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['HP'] = 100;
+    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['lvl'] = 1;
+    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['damage'] = 10;
+    if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['day'] = 1;
   }, goto: ['KGDgame', ''] },
   ]);
   scene.build();

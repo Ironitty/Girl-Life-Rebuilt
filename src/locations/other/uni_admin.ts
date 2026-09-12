@@ -106,7 +106,7 @@ function enterEnrollment(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_teaching', 1);
     scene.text('You tell her you would like to pursue a teaching degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take. She hands over your ID, along with all of your paperwork, stating that you\'re officially enrolled as a student at Saint Petersburg University and reminding you that classes will start in the week that includes September 1st.');
     if ((((s as any).day ?? 0) - ((s as any).week ?? 0)) >= 27  &&  ((s as any).month ?? 0) === 8) {
-      ((s as any).university ?? {})['semester_week'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = 1;
       scene.text('She tells you that you\'ve enrolled at the last minute, and that classes have already started.');
     }
     scene.text('She informs you that the university offers several elective classes that can broaden your education.');
@@ -130,7 +130,7 @@ function enterEnrollment(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_nursing', 1);
     scene.text('You tell her you would like to pursue a nursing degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take. She hands over your ID, along with all of your paperwork, stating that you\'re officially enrolled as a student at Saint Petersburg University and reminding you that classes will start in the week that includes September 1st.');
     if ((((s as any).day ?? 0) - ((s as any).week ?? 0)) >= 27  &&  ((s as any).month ?? 0) === 8) {
-      ((s as any).university ?? {})['semester_week'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = 1;
       scene.text('She tells you that you\'ve enrolled at the last minute, and that classes have already started.');
     }
     scene.text('She informs you that the university offers several elective classes that can broaden your education.');
@@ -143,7 +143,7 @@ function enterEnrollment(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      ((s as any).university ?? {})['entrance_information'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['entrance_information'] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.text('She looks over the information and fills in some data. Several minutes later, she turns to you and frowns, telling you that you\'re not eligible to enroll at the university since your grades from secondary school weren\'t good enough. She informs you that with so many students applying, they can only take those with better grades, but you can still get in if you take the preparatory classes and pass them with a high enough grade.');
       // TODO-QSP: dynamic text: The classes cost ' + $func('money', 'string_price', 15000) + '.
@@ -190,11 +190,11 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
       scene.text('She looks over your information and fills in some data. Several minutes later she turns to you and smiles, telling you that you since you passed your last semester you can register for the \' + $func(\'string\', \'parse_number\', university[\'enrolled_in_semester\'], \'ordinal\') + \' of the Teaching Studies Program. She gives you the paperwork and you spend some time filling it all out.');
       scene.actions([
         { label: 'Enroll', handler: (st: GameState) => {
-    ((s as any).university ?? {})['enrolled_in_semester'] = (((s as any).university ?? {})['enrolled_in_semester'] ?? 0) + (1);
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['enrolled_in_semester'] = ((s as any).university['enrolled_in_semester'] ?? 0) + (1);
     // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_teaching', university['enrolled_in_semester']
     scene.text('You tell her you would like to continue pursuing a teaching degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take.');
     if ((((s as any).day ?? 0) - ((s as any).week ?? 0)) >= 27  &&  ((s as any).month ?? 0) === 8) {
-      ((s as any).university ?? {})['semester_week'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = 1;
       scene.text('She tells you that you\'ve enrolled at the last minute, and that classes have already started.');
     }
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] % 2 === 1) {
@@ -215,11 +215,11 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
         scene.text('She looks over your information and fills in some data. Several minutes later she turns to you and smiles, telling you that you since you passed your last semester you can register for the \' + $func(\'string\', \'parse_number\', university[\'enrolled_in_semester\'], \'ordinal\') + \' of the Nursing Program. She gives you the paperwork and you spend some time filling it all out.');
         scene.actions([
           { label: 'Enroll', handler: (st: GameState) => {
-    ((s as any).university ?? {})['enrolled_in_semester'] = (((s as any).university ?? {})['enrolled_in_semester'] ?? 0) + (1);
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['enrolled_in_semester'] = ((s as any).university['enrolled_in_semester'] ?? 0) + (1);
     // TODO-QSP: gs 'uni_admin', 'courses', 'enroll_nursing', university['enrolled_in_semester']
     scene.text('You tell her you would like to continue pursuing a nursing degree. She smiles and nods, then finishes filling out some more paperwork about the courses you can expect to take.');
     if ((((s as any).day ?? 0) - ((s as any).week ?? 0)) >= 27  &&  ((s as any).month ?? 0) === 8) {
-      ((s as any).university ?? {})['semester_week'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['semester_week'] = 1;
       scene.text('She tells you that you\'ve enrolled at the last minute, and that classes have already started.');
     }
     if (((s as any).university ?? 0)?.['enrolled_in_semester'] % 2 === 1) {
@@ -360,7 +360,7 @@ function enterPrepPay(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       qspCall(s, 'money', 'pay', 15000);
       qspCall(s, 'stat', '');
-      ((s as any).university ?? {})['prep_enrolled'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['prep_enrolled'] = 1;
       scene.text('<center><b>Enrollment Office</b></center>');
       scene.img('images/locations/city/island/university/admin/payment.jpg');
       // TODO-QSP: dynamic text: You pay ' + $func('money', 'string_price', 15000) + ' for the preparatory classe...
@@ -376,7 +376,7 @@ function enterPrepPay(s: GameState, scene: SceneBuilder): void {
 
 function enterTakePrep(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  ((s as any).university ?? {})['prep_counter'] = (((s as any).university ?? {})['prep_counter'] ?? 0) + (1);
+  if (!(s as any).university) (s as any).university = {}; (s as any).university['prep_counter'] = ((s as any).university['prep_counter'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'intel', 1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Preparatory Class</b></center>');
@@ -397,14 +397,14 @@ function enterTakeTest(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/admin/prepcourse1.jpg');
   scene.text('You enter the exam room and take your seat. A professor comes out and talks about the different parts of the exam you will be taking and what is required to pass. Once he\'s finished, he passes out the papers and starts the clock. You have one hour to complete the test.');
   if (((s as any).pcs_intel ?? 0) +((s as any).university ?? 0)?.['prep_counter'] >= 100) {
-    ((s as any).university ?? {})['entrance_exam_passed'] = 1;
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['entrance_exam_passed'] = 1;
     scene.text('You completed the entrance examination and passed with a perfect score.');
   } else {
     if (((s as any).pcs_intel ?? 0) + ((s as any).university ?? 0)?.['prep_counter'] >= 80) {
-      ((s as any).university ?? {})['entrance_exam_passed'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['entrance_exam_passed'] = 1;
       scene.text('You completed the entrance examination and passed.');
     } else {
-      ((s as any).university ?? {})['entrance_exam_passed'] = (-1);
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['entrance_exam_passed'] = (-1);
       scene.text('You completed the entrance exam, but failed to pass.');
     }
   }
@@ -417,16 +417,16 @@ function enterTakeTest(s: GameState, scene: SceneBuilder): void {
 
 function enterCourses(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '_enroll_core') {
-    ((s as any).university ?? {})['prep_counter'] = 0;
-    ((s as any).university ?? {})['prep_enrolled'] = 0;
-    ((s as any).university ?? {})['student'] = 1;
-    ((s as any).university ?? {})['enrolled_in_semester'] = 1;
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['prep_counter'] = 0;
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['prep_enrolled'] = 0;
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['student'] = 1;
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['enrolled_in_semester'] = 1;
     qspCall(s, 'homes_properties', 'give_access', 'university_dorm');
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'enroll_teaching') {
     if (((s as any).university ?? 0)?.['student'] === 0) {
       qspCall(s, 'uni_admin', 'courses', '_enroll_core');
-      ((s as any).university ?? {})['enrolled_in'] = 'teaching_studies';
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['enrolled_in'] = 'teaching_studies';
     }
     if (((s as any).locArgs?.[2] ?? 0) === 1) {
       qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_1', 'general education 101', 3, 2, 'no', 'no', 1, 12);
@@ -468,7 +468,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'enroll_nursing') {
     if (((s as any).university ?? 0)?.['student'] === 0) {
       qspCall(s, 'uni_admin', 'courses', '_enroll_core');
-      ((s as any).university ?? {})['enrolled_in'] = 'nursing';
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['enrolled_in'] = 'nursing';
     }
     if (((s as any).locArgs?.[2] ?? 0) === 1) {
       qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_1', 'patient care 101', 4, 2, 'no', 'no', 1, 12);
@@ -508,45 +508,45 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'enroll_elective_african') {
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2] || '') + '_3'] = 'African Studies 101';
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_3'] = 'African Studies 102';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2] || '') + '_3'] = 'African Studies 101';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_3'] = 'African Studies 102';
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'enroll_elective_art') {
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2] || '') + '_2'] = 'Art 101';
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_2'] = 'Art 102';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2] || '') + '_2'] = 'Art 101';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_2'] = 'Art 102';
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'enroll_elective_asian') {
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2] || '') + '_1'] = 'Asian Studies 101';
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_1'] = 'Asian Studies 102';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2] || '') + '_1'] = 'Asian Studies 101';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_1'] = 'Asian Studies 102';
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'enroll_elective_computer') {
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2] || '') + '_1'] = 'Computers 101';
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_1'] = 'Computers 102';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2] || '') + '_1'] = 'Computers 101';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_1'] = 'Computers 102';
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'enroll_elective_psychology') {
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2] || '') + '_3'] = 'Psychology 101';
-    ((s as any).university ?? {})['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_3'] = 'Psychology 102';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2] || '') + '_3'] = 'Psychology 101';
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['elective_semester_' + String((s as any).ARGS[2]+1 || '') + '_3'] = 'Psychology 102';
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'has_been_enrolled_in') {
     (s as any).result = 0;
-    ((s as any).temp_uni_funcs ?? {})['i'] = 1;
+    if (!(s as any).temp_uni_funcs) (s as any).temp_uni_funcs = {}; (s as any).temp_uni_funcs['i'] = 1;
     // TODO-QSP: :is_enrolled_outer_loop
-    ((s as any).temp_uni_funcs ?? {})['j'] = 1;
+    if (!(s as any).temp_uni_funcs) (s as any).temp_uni_funcs = {}; (s as any).temp_uni_funcs['j'] = 1;
     // TODO-QSP: :is_enrolled_inner_loop
     if (((s as any).university ?? 0)['elective_semester_' + ((s as any).temp_uni_funcs ?? 0)?.['i'] + '_' + ((s as any).temp_uni_funcs ?? 0)?.['j']] === ((s as any).locArgs?.[2] ?? 0)) {
       (s as any).result = 1;
       return;
     }
-    ((s as any).temp_uni_funcs ?? {})['j'] = (((s as any).temp_uni_funcs ?? {})['j'] ?? 0) + (1);
+    if (!(s as any).temp_uni_funcs) (s as any).temp_uni_funcs = {}; (s as any).temp_uni_funcs['j'] = ((s as any).temp_uni_funcs['j'] ?? 0) + (1);
     if (((s as any).temp_uni_funcs ?? 0)?.['j'] < 4) {
       // TODO-QSP: jump 'is_enrolled_inner_loop'
     }
-    ((s as any).temp_uni_funcs ?? {})['i'] = (((s as any).temp_uni_funcs ?? {})['i'] ?? 0) + (1);
+    if (!(s as any).temp_uni_funcs) (s as any).temp_uni_funcs = {}; (s as any).temp_uni_funcs['i'] = ((s as any).temp_uni_funcs['i'] ?? 0) + (1);
     if (((s as any).temp_uni_funcs ?? 0)?.['i'] < 5) {
       // TODO-QSP: jump 'is_enrolled_outer_loop'
     }

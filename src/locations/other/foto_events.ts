@@ -13,8 +13,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterFame(s: GameState, scene: SceneBuilder): void {
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + ((Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0))/2);
   // TODO-QSP: :reroll_1
-  ((s as any).special_model ?? {})['roll'] = 2000;
-  ((s as any).special_skill_model ?? {})['roll'] = 2000;
+  if (!(s as any).special_model) (s as any).special_model = {}; (s as any).special_model['roll'] = 2000;
+  if (!(s as any).special_skill_model) (s as any).special_skill_model = {}; (s as any).special_skill_model['roll'] = 2000;
   if (((s as any).first_fame_event ?? 0) < 1) {
     scene.actions([{ label: 'Continue', goto: ['foto_events', 'topless1'] }]);
   } else {
@@ -44,8 +44,8 @@ function enterFame(s: GameState, scene: SceneBuilder): void {
 function enterSkill(s: GameState, scene: SceneBuilder): void {
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + ((Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0))/2);
   // TODO-QSP: :reroll_2
-  ((s as any).special_model ?? {})['roll'] = 2000;
-  ((s as any).special_skill_model ?? {})['roll'] = 2000;
+  if (!(s as any).special_model) (s as any).special_model = {}; (s as any).special_model['roll'] = 2000;
+  if (!(s as any).special_skill_model) (s as any).special_skill_model = {}; (s as any).special_skill_model['roll'] = 2000;
   (s as any).mdlng_skill_event = Math.floor(Math.random() * 5) + 1;
   if (((s as any).mdlng_skill_event ?? 0) === 1  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).daystage ?? 0) < 3) {
     scene.actions([{ label: 'Continue', goto: ['foto_events', 'topless2'] }]);
@@ -371,9 +371,9 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).practice_session ?? 0))) {
     (s as any).model_job_week = ((s as any).model_job_week ?? 0) + (1);
     (s as any).model_week = (((s as any).daystart ?? 0) - ((s as any).week ?? 0)) / 7;
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
   } else {
     (s as any).practice_session = 0;
   }
@@ -401,8 +401,8 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
       { label: '"Sure! I\'ve always wanted to be an actress!"', handler: (st: GameState) => {
     scene.text('"Sure!" you say. "I\'ve always wanted to be an actress, I just never thought I\'d get a chance like this. When do we shoot?"');
     if (((s as any).actress_stats ?? 0)?.['firstname'] === '') {
-      ((s as any).actress_stats ?? {})['firstname'] = ((s as any).model ?? 0)?.['firstname'];
-      ((s as any).actress_stats ?? {})['lastname'] = ((s as any).model ?? 0)?.['lastname'];
+      if (!(s as any).actress_stats) (s as any).actress_stats = {}; (s as any).actress_stats['firstname'] = ((s as any).model ?? 0)?.['firstname'];
+      if (!(s as any).actress_stats) (s as any).actress_stats = {}; (s as any).actress_stats['lastname'] = ((s as any).model ?? 0)?.['lastname'];
     }
     (s as any).casting = 3;
     if (((s as any).week ?? 0) >= 6) {
@@ -432,8 +432,8 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
       { label: '"Triple rate?! Hell yeah!"', handler: (st: GameState) => {
     (s as any).casting = 3;
     if (((s as any).actress_stats ?? 0)?.['firstname'] === '') {
-      ((s as any).actress_stats ?? {})['firstname'] = ((s as any).model ?? 0)?.['firstname'];
-      ((s as any).actress_stats ?? {})['lastname'] = ((s as any).model ?? 0)?.['lastname'];
+      if (!(s as any).actress_stats) (s as any).actress_stats = {}; (s as any).actress_stats['firstname'] = ((s as any).model ?? 0)?.['firstname'];
+      if (!(s as any).actress_stats) (s as any).actress_stats = {}; (s as any).actress_stats['lastname'] = ((s as any).model ?? 0)?.['lastname'];
     }
     scene.text('"Triple rate?! Hell yeah! Who cares about being naked in public when I\'m getting paid that much! I\'d let them gangbang me for that kind of money!"');
     scene.text('"I\'m sure they\'d be happy to arrange that with you some other time," he says with a shit eating grin.');
@@ -475,8 +475,8 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     scene.text('"I guess so," you say. "Since they\'re paying so much, it\'s hard to turn down. Besides, it might be worth it to break into acting, right?"');
     (s as any).casting = 3;
     if (((s as any).actress_stats ?? 0)?.['firstname'] === '') {
-      ((s as any).actress_stats ?? {})['firstname'] = ((s as any).model ?? 0)?.['firstname'];
-      ((s as any).actress_stats ?? {})['lastname'] = ((s as any).model ?? 0)?.['lastname'];
+      if (!(s as any).actress_stats) (s as any).actress_stats = {}; (s as any).actress_stats['firstname'] = ((s as any).model ?? 0)?.['firstname'];
+      if (!(s as any).actress_stats) (s as any).actress_stats = {}; (s as any).actress_stats['lastname'] = ((s as any).model ?? 0)?.['lastname'];
     }
     if (((s as any).week ?? 0) >= 6) {
       (s as any).SMTV_commercial = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
@@ -571,7 +571,7 @@ function enterFashionPersuasion(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).foto_persuade = 1;
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, but I think I\'d be more comfortable just sticking to the catalogues for now."');
     scene.text('"Oh. Okay…"');
@@ -579,7 +579,7 @@ function enterFashionPersuasion(s: GameState, scene: SceneBuilder): void {
     scene.text('"So clothing or swimsuits today?"');
     scene.actions([
       { label: 'Clothing', handler: (st: GameState) => {
-    ((s as any).modelfoto ?? {})['catalog'] = (((s as any).modelfoto ?? {})['catalog'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['catalog'] = ((s as any).modelfoto['catalog'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 2);
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     qspCall(s, 'money', 'earn', 450);
@@ -592,7 +592,7 @@ function enterFashionPersuasion(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Swimsuits', handler: (st: GameState) => {
-    ((s as any).modelfoto ?? {})['catalog'] = (((s as any).modelfoto ?? {})['catalog'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['catalog'] = ((s as any).modelfoto['catalog'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 4) + 2);
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     qspCall(s, 'money', 'earn', 450);
@@ -666,7 +666,7 @@ function enterLingeriePersuasion(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, but I think I\'ll keep on doing regular fashion shoots for now."');
     scene.text('"Oh. Okay…"');
@@ -751,7 +751,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, but I think I\'ll stick to the lingerie shoot today."');
     scene.text('"Oh. Okay."');
@@ -811,7 +811,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, but I think I\'ll stick to the lingerie shoot today."');
     scene.text('"Oh. Okay…"');
@@ -849,7 +849,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).foto_persuade = 3;
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"No, I\'m not doing anything like that. I\'m just going to stick to my lingerie shoot today."');
     // TODO-QSP: dynamic text: "Oh, okay. That's fine <<$model['firstname']>>. Maybe another time."
@@ -971,7 +971,7 @@ function enterTransPersuasion(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, but I think I\'ll stick to the basic glamour shoot today."');
     scene.text('"Oh. Okay…"');
@@ -1077,7 +1077,7 @@ function enterToplessPersuasion(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, but I think I\'ll stick to what I\'m doing for now."');
     scene.text('"Oh. Okay…"');
@@ -1180,7 +1180,7 @@ function enterNudePersuasion(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
-    ((s as any).foto ?? {})['suborn'] = (((s as any).foto ?? {})['suborn'] ?? 0) + (1);
+    if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, that\'s really kind, but I think I\'ll stick to what I\'m doing for now."');
     scene.text('"Oh. Okay…"');
@@ -1352,8 +1352,8 @@ function enterHighFashion(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/special1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     (s as any).modelpayfin = 1800 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 1);
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -1361,7 +1361,7 @@ function enterHighFashion(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fame', 'city', 'modelling', 'small');
     }
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     scene.text('You spend the duration of the shoot changing in and out of designer bodices, corsets, and other tops, all of which conspicuously lack any kind of bottom, leaving your pussy exposed.');
     scene.text('Your manager was right. <i>Definitely</i> not suited for every day use.');
     // TODO-QSP: dynamic text: Two hours later, you've modelled and been photographed in every item of clothing...
@@ -1559,10 +1559,10 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).dick = 34;
   (s as any).modelpayfin = 2000 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
-  ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-  ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
-  ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
-  ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
+  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
+  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+  if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 11) + 10);
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
     qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -1580,11 +1580,11 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
     scene.text('The scan continues but at the edge of your hearing you can perceive a faint scratching sound. After a few minutes, you sink into despair when you realize that it\'s the sound of drawing. She expects you to hold this position, hold this monstrously huge cock in your pussy without flinching. You want to whimper but fearing retribution you just bite down on your lip harder.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
     (s as any).model_week = (((s as any).daystart ?? 0) - ((s as any).week ?? 0)) / 7;
     if (((s as any).fine_art_deal ?? 0) === 1) {
       qspCall(s, 'money', 'earn', 30000);
-      ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 30000);
+      if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 30000);
     }
     if (((s as any).art_resign ?? 0) === 1) {
       qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
@@ -1621,9 +1621,9 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).fine_art_deal ?? 0) === 3) {
-      ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
+      if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
       qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-      ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+      if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
       (s as any).minut = ((s as any).minut ?? 0) + 90;
       scene.img('images/locations/city/citycenter/photo/special/art1.jpg');
       scene.text('You hold the position with Alexander, feeling his thick cock extending out under you, brushing against your thighs and stomach. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.');
@@ -1642,9 +1642,9 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).fine_art_deal ?? 0) === 4) {
         qspCall(s, 'arousal', 'vaginal', 1);
         qspCall(s, 'stat', '');
-        ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
+        if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
         // TODO-QSP: gs 'money', 'earn', modelpayfin + 2000
-        ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 2000);
+        if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 2000);
         (s as any).minut = ((s as any).minut ?? 0) + 90;
         scene.img('images/locations/city/citycenter/photo/special/art1.jpg');
         if (((s as any).pcs_vag ?? 0) <= 10) {
@@ -1720,10 +1720,10 @@ function enterModernArt(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 90;
     (s as any).modelpayfin = 2000 + (50+(Math.floor(Math.random() * 9) + 1)*(Math.floor(Math.random() * 8) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 9);
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -1768,10 +1768,10 @@ function enterAphroditeAdvert(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     (s as any).modelpayfin = 1000;
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 10) + 1);
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'large');
@@ -1813,9 +1813,9 @@ function enterIndependentArt(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).modelpayfin = 1600 + (((s as any).modelpay ?? 0)) + (35*(Math.floor(Math.random() * 6) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 7) + 2);
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -1852,10 +1852,10 @@ function enterDesignerWedding(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).modelpayfin = 1200 + (((s as any).modelpay ?? 0)) + (35*(Math.floor(Math.random() * 6) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 2);
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -2022,10 +2022,10 @@ function enterTopless1_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'foto');
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 8);
     qspCall(s, 'fame', 'city', 'modelling', 'medium');
     qspCall(s, 'stat', '');
@@ -2149,10 +2149,10 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 180;
     (s as any).modelpayfin = 3000 + ((s as any).modelpay ?? 0) + (50*(Math.floor(Math.random() * 8) + 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', 10);
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -2165,7 +2165,7 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     qspCall(s, 'outfit', 'restore', 'foto');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/down.jpg');
@@ -2288,10 +2288,10 @@ function enterTennis(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', 8);
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -2381,12 +2381,12 @@ function enterTopless2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).modelpayfin = 2000 + (((s as any).modelpay ?? 0) * 2) + (35*(Math.floor(Math.random() * 6) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     qspCall(s, 'fame', 'city', 'modelling', 'medium');
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 8);
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
     qspCall(s, 'outfit', 'restore', 'foto');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/down.jpg');
@@ -2483,13 +2483,13 @@ function enterBeach2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     // TODO-QSP: gs 'money', 'earn', modelpayfin + 1000
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 1000);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 1000);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
     qspCall(s, 'fame', 'city', 'modelling', 'medium');
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 8);
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     qspCall(s, 'outfit', 'restore', 'foto');
     qspCall(s, 'outfit', 'remove_backup', 'foto');
@@ -2574,12 +2574,12 @@ function enterPool2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     qspCall(s, 'fame', 'city', 'modelling', 'medium');
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 8);
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['topless'] = ((s as any).modelfoto['topless'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
     qspCall(s, 'outfit', 'restore', 'foto');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/down.jpg');
@@ -2714,9 +2714,9 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fame', 'city', 'modelling', 'small');
     }
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 8);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
     qspCall(s, 'stat', '');
-    ((s as any).model ?? {})['runway_outfit'] = Math.floor(Math.random() * 5) + 1;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['runway_outfit'] = Math.floor(Math.random() * 5) + 1;
     if (((s as any).model ?? 0)?.['runway_outfit'] === 1) {
       scene.img('images/locations/city/citycenter/photo/skill/runway/1.mp4');
       scene.text('As soon as they send you down the runway you realize something\'s gone wrong. The loose cleavage of the dress you\'re wearing is <i>too</i> loose. With the kind of purposeful steps you\'re taking and your breasts jiggling underneath, the fabric falls to the sides and your breasts are left completely exposed. You try your best to recover but the dress is just too loose and skimpy and no matter what you do your breasts end up coming loose.');
@@ -2756,8 +2756,8 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).hour = ((s as any).hour ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).age ?? 0) < 18) {
@@ -2853,12 +2853,12 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/wet/wet1.jpg');
     (s as any).modelpayfin = 1000 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['fullnude'] = (((s as any).modelfoto ?? {})['fullnude'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['wet_shoot'] = 1;
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['fullnude'] = ((s as any).modelfoto['fullnude'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['wet_shoot'] = 1;
     if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
       (s as any).pcs_makeup = 0;
     }
@@ -2869,7 +2869,7 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fame', 'city', 'modelling', 'small');
     }
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     // TODO-QSP: dynamic text: Eventually, the shoot is over and they leave you with chattering teeth, really h...
     scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in your shiving hands. But you have to admit photos do look pretty nice.`);
     scene.actions([
@@ -2926,12 +2926,12 @@ function enterWet2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/wet/wet1.jpg');
     (s as any).modelpayfin = 1000 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['fullnude'] = (((s as any).modelfoto ?? {})['fullnude'] ?? 0) + (1);
-    ((s as any).modelfoto ?? {})['wet_shoot'] = 1;
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['fullnude'] = ((s as any).modelfoto['fullnude'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['wet_shoot'] = 1;
     if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
       (s as any).pcs_makeup = 0;
     }
@@ -2942,7 +2942,7 @@ function enterWet2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fame', 'city', 'modelling', 'small');
     }
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     // TODO-QSP: dynamic text: Eventually, the shoot is over and they leave you with chattering teeth, really h...
     scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in your shiving hands. But you have to admit photos do look pretty nice.`);
     scene.actions([

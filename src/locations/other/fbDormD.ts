@@ -76,8 +76,8 @@ function enterDFbdStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Drink some more', handler: (st: GameState) => {
     (s as any).dormrape = 0;
-    ((s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 12) + 5;
-    ((s as any).placerStringParameter ?? {})['text_someone'] = 'guys';
+    if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 12) + 5;
+    if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_someone'] = 'guys';
     qspCall(s, 'drugs', 'alcohol', 'vodka', 4);
   }, goto: ['placer_sex', 'meet'] },
     ]);
@@ -298,16 +298,16 @@ function enterDFbdAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDFbdEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ppbj ?? 0) > 0) {
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
   }
   if (((s as any).pphj ?? 0) > 0) {
-    ((s as any).stat ?? {})['hj'] = (((s as any).stat ?? {})['hj'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hj'] = ((s as any).stat['hj'] ?? 0) + (1);
   }
   if (((s as any).ppsex ?? 0) > 0) {
-    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
   }
   if (((s as any).ppanal ?? 0) > 0) {
-    ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -324,7 +324,7 @@ function enterDFbdEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterDFbdMass(s: GameState, scene: SceneBuilder): void {
   (s as any).boy = ((s as any).boy ?? 0) + (2);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).parkfuckboy = ((s as any).parkfuckboy ?? 0) + (1);
   (s as any).fbdormtimes = ((s as any).fbdormtimes ?? 0) + (1);
   (s as any).pphj = 0;

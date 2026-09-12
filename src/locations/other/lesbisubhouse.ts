@@ -647,7 +647,7 @@ function enterEvent5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBDSMUnlock(s: GameState, scene: SceneBuilder): void {
-  ((s as any).bdsmclub ?? {})['unlocked'] = 1;
+  if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['unlocked'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/sex/sub199.jpg');
   scene.text('There\'s a BDSM club near the city, where people with interest in our lifestyle can go to explore their interests. I think you would enjoy going there."');

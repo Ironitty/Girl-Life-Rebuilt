@@ -449,7 +449,7 @@ function enterBoy3(s: GameState, scene: SceneBuilder): void {
 function enterBoy3Kiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A149');
   qspCall(s, 'npc_relationship', 'modify', 'A149', 3);
-  ((s as any).npc_had_sex ?? {})['A149'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A149'] = 1;
   scene.text('<center><b>Boy\'s bathroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/lazar/sex/school/boy2bj.jpg');
   // TODO-QSP: dynamic text: You can't resist and kiss him back passionately as his hands continue roaming yo...
@@ -543,7 +543,7 @@ function enterBoy4(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Help him out', handler: (st: GameState) => {
-    ((s as any).npc_had_sex ?? {})['A146'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A146'] = 1;
     qspCall(s, 'npcStat', 'A146');
     qspCall(s, 'npc_relationship', 'modify', 'A146', 3);
     scene.text('<center><b>Boy\'s bathroom</b></center>');
@@ -956,7 +956,7 @@ function enterBoy6Not(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.text('<center><b>School Hall</b></center>');
     scene.img('images/locations/pavlovsk/school/building/gschool_hall02.jpg');
     scene.text('Without another word, you walk out the door. You hear the guys grumbling and calling you names, but you don\'t listen. You manage to sneak into the girls\' bathroom and the rest of the period passes with you trying not to think about how the gopniks might treat you now. You\'ll find out the next time you run into them.');
@@ -974,7 +974,7 @@ function enterBoy6Not(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoy6Sub(s: GameState, scene: SceneBuilder): void {
-  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (3);
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (3);
   if (((s as any).grupTipe ?? 0) === 4) {
     qspCall(s, 'fame', 'pav', 'sex', 2);
   } else {
@@ -1327,7 +1327,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'group');
     scene.actions([
       { label: 'Your turn', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['toilet'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['toilet'] = 1;
     qspCall(s, 'npcStat', 'A156');
     qspCall(s, 'npcStat', 'A144', 'a');
     scene.text('<center><b>Boy\'s bathroom</b></center>');
@@ -1339,7 +1339,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['sex'] = (((s as any).anushkaQW ?? {})['sex'] ?? 0) + (1);
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['sex'] = ((s as any).anushkaQW['sex'] ?? 0) + (1);
     qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
     qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
@@ -1380,7 +1380,7 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Just watch', handler: (st: GameState) => {
-    ((s as any).anushkaQW ?? {})['toilet'] = 1;
+    if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['toilet'] = 1;
     qspCall(s, 'npcStat', 'A156');
     scene.text('<center><b>Boy\'s bathroom</b></center>');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/coupleturn.jpg');

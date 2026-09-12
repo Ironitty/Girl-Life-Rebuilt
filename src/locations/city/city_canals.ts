@@ -19,7 +19,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'core_library', 'setloc', 'city_canals', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'stat', '');
-  ((s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/city/canals/';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + 'locations/city/canals/';
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 9) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
       scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'city_canals_day_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
@@ -65,7 +65,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterContent(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc ?? {})['StageTitle'] = 'St Petersburg Canals';
+  if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'St Petersburg Canals';
   qspCall(s, 'city_canals', 'setup', 'start');
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 12) {
     scene.text('You stand gazing at St. Petersburg\'s famous Canals of the North, the hustle and bustle of people on the streets against a backdrop of elegant Russian buildings. You see the boatmen plying their trade on the waters below and working on their tour boats.');

@@ -89,8 +89,8 @@ function enterInitiation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWalkoff(s: GameState, scene: SceneBuilder): void {
-  ((s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 600;
-  ((s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = Math.floor(Math.random() * 51) + 600;
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
@@ -131,7 +131,7 @@ function enterAgreesteal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Steal', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/events/gopnikinvite/steal.jpg');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (50);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (50);
     qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -162,8 +162,8 @@ function enterAgreesteal(s: GameState, scene: SceneBuilder): void {
       { label: 'Stay silent', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
     scene.text('You stay silent and watch them walk away. You know you just painted a target on your back, but you couldn\'t bring yourself to steal. Sighing, you walk back to the street.');
-    ((s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 600;
-    ((s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = Math.floor(Math.random() * 51) + 600;
+    if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
     qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
     qspCall(s, 'stat', '');
     scene.actions([
@@ -206,8 +206,8 @@ function enterNoslut(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/events/gopnikinvite/liqstoreout.jpg');
   scene.text('You shake your head. "I\'m not a slut."');
   scene.text('They turn around and start walking away again. "Then fuck you bitch!" You know you\'re a target for the gopniks now, but it\'s better than being their personal slut. You turn and make your way back to the street.');
-  ((s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 600;
-  ((s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = Math.floor(Math.random() * 51) + 600;
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', (-10));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -218,24 +218,24 @@ function enterNoslut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnikParty(s: GameState, scene: SceneBuilder): void {
-  ((s as any).grupvalue ?? {})[1] = 0;
-  ((s as any).grupvalue ?? {})[2] = 0;
-  ((s as any).grupvalue ?? {})[3] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 0;
   if (((s as any).grupTipe ?? 0) === 1) {
-    ((s as any).grupvalue ?? {})[1] = Math.floor(Math.random() * 101) + 500;
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 2) {
-    ((s as any).grupvalue ?? {})[2] = Math.floor(Math.random() * 101) + 500;
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 3) {
-    ((s as any).grupvalue ?? {})[3] = Math.floor(Math.random() * 101) + 500;
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = Math.floor(Math.random() * 101) + 500;
   }
-  ((s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   (s as any).grupTipe = 4;
-  ((s as any).grupTipe ?? {})['joined_gopnik'] = 1;
+  if (!(s as any).grupTipe) (s as any).grupTipe = {}; (s as any).grupTipe['joined_gopnik'] = 1;
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 10);
   scene.img('images/locations/pavlovsk/school/oldschool/hall.jpg');
   scene.text('You follow Lena and Lera, who talk the whole way about how you did such a good job. Upon arriving at the old school, Lena and Lera slip through the busted front door and down the main hallway to see Vitek, who is waiting in the old school offices with the rest of the gopniks.');
@@ -406,7 +406,7 @@ function enterTDan(s: GameState, scene: SceneBuilder): void {
     scene.text('You can hear Lavrenti and Vasily laughing before Vasily rubs salt in the wound. "She has a point, Dan. I\'ve never seen that place empty." Dan turns and gives Vasily a dirty look before turning it on you, but he doesn\'t say anything more.');
     scene.text('You stick out your tongue as you move away from him, feeling very satisfied that you managed to put Dan in his place. You know you scored some points with some of them, even if it pissed off Dan, but he\'ll get over it.');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
@@ -1208,22 +1208,22 @@ function enterGopnikSlut(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   (s as any).gopnik_slut = 1;
-  ((s as any).grupvalue ?? {})[1] = 0;
-  ((s as any).grupvalue ?? {})[2] = 0;
-  ((s as any).grupvalue ?? {})[3] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 0;
   if (((s as any).grupTipe ?? 0) === 1) {
-    ((s as any).grupvalue ?? {})[1] = Math.floor(Math.random() * 101) + 500;
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 2) {
-    ((s as any).grupvalue ?? {})[2] = Math.floor(Math.random() * 101) + 500;
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = Math.floor(Math.random() * 101) + 500;
   }
   if (((s as any).grupTipe ?? 0) === 3) {
-    ((s as any).grupvalue ?? {})[3] = Math.floor(Math.random() * 101) + 500;
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = Math.floor(Math.random() * 101) + 500;
   }
-  ((s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
-  ((s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[1] = qspUntranslated(s, "grupvalue[1]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[2] = qspUntranslated(s, "grupvalue[2]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[3] = qspUntranslated(s, "grupvalue[3]", { location: "gopnik_initiation" });
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = qspUntranslated(s, "grupvalue[4]", { location: "gopnik_initiation" });
   (s as any).grupTipe = 4;
   qspCall(s, 'gopnik_initiation', 'group_rel_change', 'gopniks', 5);
   scene.img('images/locations/pavlovsk/school/oldschool/hall.jpg');

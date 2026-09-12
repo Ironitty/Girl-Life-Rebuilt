@@ -118,11 +118,11 @@ function enterLoanEventsChat(s: GameState, scene: SceneBuilder): void {
           { label: 'Lend Natasha the <<$func(\'money\', \'format\', 5000)>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'money', 'pay', qspFunc(s, 'money', 'base_price', 5000));
-    ((s as any).NatbelQW ?? {})['Debt'] = 5000;
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtDay'] = ((s as any).daystart ?? 0) + 30;
-    ((s as any).NatbelQW ?? {})['MoneyGivenTimes'] = (((s as any).NatbelQW ?? {})['MoneyGivenTimes'] ?? 0) + (1);
-    ((s as any).NatbelQW ?? {})['QWstage'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 5000;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtDay'] = ((s as any).daystart ?? 0) + 30;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MoneyGivenTimes'] = ((s as any).NatbelQW['MoneyGivenTimes'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
     scene.text('"Hmmm. Ok, but you have to do my homework whenever I ask, and you still have to pay me back."');
@@ -155,10 +155,10 @@ function enterLoanEventsChat(s: GameState, scene: SceneBuilder): void {
                 { label: 'Don\'t give her the money', goto: ['natbel_chat', 'chat'] },
                 { label: 'Give her the money (<<$func(\'money\', \'format\', 2000)>>)', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', qspFunc(s, 'money', 'base_price', 2000));
-    ((s as any).NatbelQW ?? {})['Debt'] = 2000;
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtDay'] = ((s as any).daystart ?? 0) + 14;
-    ((s as any).NatbelQW ?? {})['MoneyGivenTimes'] = (((s as any).NatbelQW ?? {})['MoneyGivenTimes'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 2000;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtDay'] = ((s as any).daystart ?? 0) + 14;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MoneyGivenTimes'] = ((s as any).NatbelQW['MoneyGivenTimes'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
     if (((s as any).NatbelQW ?? 0)?.['MoneyGivenTimes'] < 4) {
@@ -206,8 +206,8 @@ function enterDemandDebtRepayment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 2) {
     scene.actions([
       { label: 'Demand repayment  [+$func(\'wrap\', \'neg\', \'(This option will ...]', handler: (st: GameState) => {
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 1;
-    ((s as any).NatbelQW ?? {})['QWstage'] = 3;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 3;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
@@ -229,7 +229,7 @@ function enterDemandDebtRepayment(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Demand repayment', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 1;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
     if (((s as any).NatbelQW ?? 0)?.['MoneyGivenTimes'] >= 4) {
@@ -270,10 +270,10 @@ function enterForgiveChat(s: GameState, scene: SceneBuilder): void {
     { label: 'Give her the money (<<$func(\'money\', \'format\', 2000)>>)', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
     qspCall(s, 'money', 'pay', qspFunc(s, 'money', 'base_price', 2000));
-    ((s as any).NatbelQW ?? {})['Debt'] = 2000;
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtDay'] = ((s as any).daystart ?? 0) + 14;
-    ((s as any).NatbelQW ?? {})['MoneyGivenTimes'] = (((s as any).NatbelQW ?? {})['MoneyGivenTimes'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 2000;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtDay'] = ((s as any).daystart ?? 0) + 14;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MoneyGivenTimes'] = ((s as any).NatbelQW['MoneyGivenTimes'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You look at her questioningly but as she gives no indication that she is going to say anything else so you sigh but decide to agree to her request. "Well okay but as before, you have to do my homework whenever I ask, and you still have to pay me back."');
     // TODO-QSP: dynamic text: Natasha smiles and nods her acceptance and says. "Of course <<$pcs_nickname>>, b...
@@ -308,10 +308,10 @@ function enterForgiveChat2(s: GameState, scene: SceneBuilder): void {
       { label: 'Lend her the <<$func(\'money\', \'format\', 2000)>> <br> [+$func(\'wrap\', \'neg\', \'This option will b...]', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
     qspCall(s, 'money', 'pay', qspFunc(s, 'money', 'base_price', 2000));
-    ((s as any).NatbelQW ?? {})['Debt'] = 2000;
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtDay'] = ((s as any).daystart ?? 0) + 14;
-    ((s as any).NatbelQW ?? {})['MoneyGivenTimes'] = (((s as any).NatbelQW ?? {})['MoneyGivenTimes'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 2000;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtDay'] = ((s as any).daystart ?? 0) + 14;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['MoneyGivenTimes'] = ((s as any).NatbelQW['MoneyGivenTimes'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You get your purse and give Natasha the money. Natasha is delighted and says that she will pay it back in a month.');
     scene.actions([
@@ -333,10 +333,10 @@ function enterDebtForgive(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Forgive Natasha\'s debt', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['Debt'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtDay'] = 0;
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtForgiven'] = (((s as any).NatbelQW ?? {})['DebtForgiven'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtDay'] = 0;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtForgiven'] = ((s as any).NatbelQW['DebtForgiven'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A16', 'adore');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha1.jpg');
@@ -358,10 +358,10 @@ function enterDebtForgive(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Forgive Natasha\'s debt', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['Debt'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtDay'] = 0;
-    ((s as any).NatashaQW ?? {})['demand_repayment'] = 0;
-    ((s as any).NatbelQW ?? {})['DebtForgiven'] = (((s as any).NatbelQW ?? {})['DebtForgiven'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Debt'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtDay'] = 0;
+    if (!(s as any).NatashaQW) (s as any).NatashaQW = {}; (s as any).NatashaQW['demand_repayment'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtForgiven'] = ((s as any).NatbelQW['DebtForgiven'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha1.jpg');
     scene.text('You decide to forgive Natasha\'s debt. She is delighted and thanks you with all her heart.');
@@ -378,7 +378,7 @@ function enterDebtForgive(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDebtForgive2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).NatbelQW ?? {})['FriendLover'] = 1;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if (((s as any).NatbelQW ?? 0)?.['MoneyGivenTimes'] === 1) {
@@ -407,8 +407,8 @@ function enterDebtForgive2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let her deal with the last debt', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 1;
-    ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha2.jpg');
     scene.text('"Okay, well, that\'s not too bad. I think you can handle that one by yourself," you say.');
     scene.text('She nods her head slowly.');
@@ -418,7 +418,7 @@ function enterDebtForgive2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Offer to repay Christina', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 2;
     qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha3.jpg');
@@ -439,7 +439,7 @@ function enterChrisChatSub(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'As her sub you cannot stop Christina bullying Natasha', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 7;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 7;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha5.jpg');
@@ -468,7 +468,7 @@ function enterChrisChat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Christina has been dealt with', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 6;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 6;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha3.jpg');
@@ -546,7 +546,7 @@ function enterLoverEventsChat(s: GameState, scene: SceneBuilder): void {
     scene.text('A worried looking Natasha pleads with you. "Don\'t do anything and get hurt because of me."');
     scene.text('Giving her a reassuring smile you reply. "Don\'t worry about me with Christina, she\'s my problem to deal with. Okay?"');
     scene.text('Natasha nods in confirmation.');
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 4;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 4;
     scene.actions([
       { label: 'Return to her room', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -558,7 +558,7 @@ function enterLoverEventsChat(s: GameState, scene: SceneBuilder): void {
         { label: 'You paid the debt to Christina', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 4;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 4;
     qspCall(s, 'npc_relationship', 'modify', 'A16', 'adore');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha4.jpg');
@@ -603,7 +603,7 @@ function enterFirstKiss(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['FriendLover'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 2;
     qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha5.jpg');
     scene.text('Seeing her so vulnerable and knowing that she needs some love and affection, you kiss Natasha on impulse.');
@@ -728,8 +728,8 @@ function enterArrangeShopTrip1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Arrange a shopping trip for a new school uniform', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['FriendLover'] = 4;
-    ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 4;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha6.jpg');
@@ -779,8 +779,8 @@ function enterArrangeShopTrip2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Arrange a shopping trip for an outfit', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['FriendLover'] = 6;
-    ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 6;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha6.jpg');
@@ -903,8 +903,8 @@ function enterJobQuestions(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: "One second <<$pcs_nickname>>, I'l be back in a moment. Just need to go to the k...
     scene.text(`"One second ${((s as any).pcs_nickname ?? 0)}, I'l be back in a moment. Just need to go to the kitchen quickly. I left something on the stove…"`);
-    ((s as any).NatbelQW ?? {})['StP_trip_daystart'] = ((s as any).daystart ?? 0) + 14 + (13 - ((s as any).week ?? 0)) % 7;
-    ((s as any).NatbelQW ?? {})['shopping'] = 3;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['StP_trip_daystart'] = ((s as any).daystart ?? 0) + 14 + (13 - ((s as any).week ?? 0)) % 7;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['shopping'] = 3;
     if (((s as any).temp_runner ?? 0) === 1) {
       qspCall(s, 'natbel_chat', 'job_questions_runner');
     } else {
@@ -1309,7 +1309,7 @@ function enterSnacks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNatknows(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_pregtalk ?? {})['A16'] = 1;
+  if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 1;
   if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
     scene.text('"So, do you know who the father is?"');
   } else {
@@ -1340,7 +1340,7 @@ function enterNatknows(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNatknows1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_pregtalk ?? {})['A16'] = 1;
+  if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 1;
   if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
     scene.text('"Do you know if it\'s the same father as last time?"');
   } else {
@@ -1407,7 +1407,7 @@ function enterPregChat(s: GameState, scene: SceneBuilder): void {
         if (((s as any).NatbelQW ?? 0)?.['QWstage'] <= 5  &&  ((s as any).pregChem ?? 0) > 0  &&  ((s as any).knowpreg ?? 0) === 1) {
           scene.actions([
             { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    ((s as any).npc_pregtalk ?? {})['A16'] = 1;
+    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you're," she pauses momentarily before continuing in a tone ...
     scene.text(`"${((s as any).pcs_nickname ?? 0)}, you're," she pauses momentarily before continuing in a tone of shock mixed with disgust, "pregnant? Have you been sleeping around? This will definitely impact your studies."`);
@@ -1420,7 +1420,7 @@ function enterPregChat(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pregChem ?? 0) > 0  &&  ((s as any).knowpreg ?? 0) === 1) {
             scene.actions([
               { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    ((s as any).npc_pregtalk ?? {})['A16'] = 1;
+    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
     scene.text('"You\'re pregnant? Who\'s the father?"');
     if (((s as any).wombthfath ?? 0) === ''  ||  ((s as any).wombthfathID ?? 0) === 'unknown') {
@@ -1466,7 +1466,7 @@ function enterPregChat(s: GameState, scene: SceneBuilder): void {
         if (((s as any).NatbelQW ?? 0)?.['QWstage'] <= 5  &&  ((s as any).pregChem ?? 0) > 0  &&  ((s as any).knowpreg ?? 0) === 1) {
           scene.actions([
             { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    ((s as any).npc_pregtalk ?? {})['A16'] = 1;
+    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 1;
     scene.text('"Really? You\'re pregnant again? You should really try to be more careful."');
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
@@ -1477,7 +1477,7 @@ function enterPregChat(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pregChem ?? 0) > 0  &&  ((s as any).knowpreg ?? 0) === 1) {
             scene.actions([
               { label: 'Tell her you\'re pregnant', handler: (st: GameState) => {
-    ((s as any).npc_pregtalk ?? {})['A16'] = 1;
+    if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A16'] = 1;
     scene.text('"You got pregnant again. It must be wonderful…" She trails off, clearly envious.');
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },

@@ -83,8 +83,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.text(`Your <a href="exec:minut += 5 & gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked at the car service center.`);
         } else {
           scene.text('It looks like the repair shop moved your car outside before they closed.');
-          ((s as any).car ?? {})['loc'] = 'city_industrial';
-          ((s as any).car ?? {})['loc_arg'] = '';
+          if (!(s as any).car) (s as any).car = {}; (s as any).car['loc'] = 'city_industrial';
+          if (!(s as any).car) (s as any).car = {}; (s as any).car['loc_arg'] = '';
         }
       } else {
         if (qspFunc(s, 'car_funcs', 'is_here', 'autotraidF', 'start')) {
@@ -93,8 +93,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             scene.text(`Your <a href="exec:minut += 5 & gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked at the car dealership.`);
           } else {
             scene.text('It looks like the car dealership moved your car outside before they closed.');
-            ((s as any).car ?? {})['loc'] = 'city_industrial';
-            ((s as any).car ?? {})['loc_arg'] = '';
+            if (!(s as any).car) (s as any).car = {}; (s as any).car['loc'] = 'city_industrial';
+            if (!(s as any).car) (s as any).car = {}; (s as any).car['loc_arg'] = '';
           }
         }
       }
@@ -140,7 +140,7 @@ function enterCityCopyShop(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives you a hard stare. "A fake passport will cost you \' + $func(\'money\', \'string_price\', 30000) + \'," he says quietly.');
   }
   if (((s as any).university ?? 0)?.['fakediplom'] === 2) {
-    ((s as any).university ?? {})['fakediplom'] = 0;
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['fakediplom'] = 0;
     // TODO-QSP: dynamic text: "A diploma for a bachelor's degree will cost you ' + $func('money', 'string_pric...
     scene.text('"A diploma for a bachelor\'s degree will cost you \' + $func(\'money\', \'string_price\', 100000) + \'," he says quietly.');
   }
@@ -170,7 +170,7 @@ function enterCityCopyShop(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', 100000, 'cash');
-      ((s as any).university ?? {})['fakediplom'] = 1;
+      if (!(s as any).university) (s as any).university = {}; (s as any).university['fakediplom'] = 1;
       scene.img('images/locations/city/redlight/bm_seller.jpg');
       scene.text('You buy a fake diploma.');
       scene.actions([

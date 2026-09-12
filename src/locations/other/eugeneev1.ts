@@ -51,8 +51,8 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
     qspCall(s, 'boyStat', 'A89');
     (s as any).LCEugenefirst = 1;
-    ((s as any).npc_QW ?? {})['A89'] = 2;
-    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A89'] = 2;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.img('images/characters/city/eugene/sex/firsttimebj1.jpg');
     scene.text('You smile as you walk over to her, and she bites her lip as you drop to your knees and start sucking her cock. You feel it rapidly growing and stiffening in your mouth as you suck on it, and it\'s soon rock-hard and completely filling your mouth.');
     qspCall(s, 'arousal', 'bj', 2);
@@ -454,7 +454,7 @@ function enterPhotography(s: GameState, scene: SceneBuilder): void {
     scene.text('You think about it before nodding. "Okay, sure. You can fuck me however you want after I get the photo I want. Now go put on something sexy for me." She laughs before trying on a few different outfits until she finds something she likes. She then starts posing for you, and you take a few photos until you\'re sure you have the one. With the photograph you want having been shot, you put the camera aside. "Okay, I\'ve got it."');
     scene.text('She smiles at you and beckons you over. "Well, get that sexy body of yours over here. I\'m going to do all sorts of things to it."');
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-    ((s as any).portfolio_people ?? {})[6] = 1;
+    if (!(s as any).portfolio_people) (s as any).portfolio_people = {}; (s as any).portfolio_people[6] = 1;
     qspCall(s, 'arousal', 'erotic_nudity', 10);
     qspCall(s, 'stat', '');
     scene.actions([

@@ -297,7 +297,7 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Break up with him', handler: (st: GameState) => {
     (s as any).kotovLoveQW = (-1);
     qspCall(s, 'npc_relationship', 'set', 'A9', 0);
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (50);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (50);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');

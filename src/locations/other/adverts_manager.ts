@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) > 8) {
-    ((s as any).adv_chance ?? {})['guitar'] = 50;
+    if (!(s as any).adv_chance) (s as any).adv_chance = {}; (s as any).adv_chance['guitar'] = 50;
   }
   // TODO-QSP: end
   scene.build();
@@ -146,9 +146,9 @@ function enterAppearanceChance(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :appearance_loop
     if (((s as any).adv_chance ?? 0)[((s as any).adv_list ?? 0)?.[String((s as any).i ?? 0)]] > (Math.floor(Math.random() * 100) + 0)) {
-      ((s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 1;
+      if (!(s as any).adv_appearance) (s as any).adv_appearance = {}; (s as any).adv_appearance[String((s as any).i ?? 0)] = 1;
     } else {
-      ((s as any).adv_appearance ?? {})[String((s as any).i ?? 0)] = 0;
+      if (!(s as any).adv_appearance) (s as any).adv_appearance = {}; (s as any).adv_appearance[String((s as any).i ?? 0)] = 0;
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0)) {

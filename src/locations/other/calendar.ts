@@ -149,23 +149,23 @@ function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
   if (((s as any).calCycleOpts ?? 0)?.['rebuild_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).locArgs?.[1] ?? 0) !== 1) {
     // TODO-QSP: exit
   }
-  ((s as any).calCycleOpts ?? {})['rebuild_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).calCycleOpts) (s as any).calCycleOpts = {}; (s as any).calCycleOpts['rebuild_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'calendar', 'pack', 'remove', 'cycle_phases');
   if (((s as any).succubusflag ?? 0) === 1  ||  ((s as any).cycle ?? 0) >= 4  ||  ((s as any).calCycleOpts ?? 0)['phase_start_' + ((s as any).cycle ?? 0)] === 0  ||  ((s as any).calCycleOpts ?? 0)?.['show_0'] + ((s as any).calCycleOpts ?? 0)?.['show_1'] + ((s as any).calCycleOpts ?? 0)?.['show_2'] + ((s as any).calCycleOpts ?? 0)?.['show_3'] === 0) {
     // TODO-QSP: exit
   }
-  ((s as any).cal_cycle ?? {})['dur_0'] = 5;
-  ((s as any).cal_cycle ?? {})['dur_1'] = 9;
-  ((s as any).cal_cycle ?? {})['dur_2'] = 2;
-  ((s as any).cal_cycle ?? {})['dur_3'] = 12;
+  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_0'] = 5;
+  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_1'] = 9;
+  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_2'] = 2;
+  if (!(s as any).cal_cycle) (s as any).cal_cycle = {}; (s as any).cal_cycle['dur_3'] = 12;
   (s as any).chain_end = ((s as any).calCycleOpts ?? {})?.['phase_start_'] - 1;
   (s as any).ph_n = 0;
   // TODO-QSP: :phase_loop
   (s as any).ph_idx = (((s as any).cycle ?? 0) + ((s as any).ph_n ?? 0)) % 4;
   qspCall(s, 'calendar_list', 'init_event_vars');
   // TODO-QSP: gs 'calendar_list', 'cycle_phase_' + ph_idx
-  ((s as any).event_vars ?? {})['daystart'] = ((s as any).chain_end ?? 0) + 1;
-  ((s as any).event_vars ?? {})['recur_end'] = Math.max(((s as any).chain_end ?? 0) + ((s as any).cal_cycle ?? {})?.['dur_'], ((s as any).daystart ?? 0));
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).chain_end ?? 0) + 1;
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['recur_end'] = Math.max(((s as any).chain_end ?? 0) + ((s as any).cal_cycle ?? {})?.['dur_'], ((s as any).daystart ?? 0));
   if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).ph_idx ?? 0)] === 1) {
     // TODO-QSP: gs 'calendar_events', 'new_event', $event_vars['id']
   }

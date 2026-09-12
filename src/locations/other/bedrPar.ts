@@ -5,14 +5,14 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  ((s as any).motherworry ?? {})[1] = ((s as any).daystart ?? 0);
+  if (!(s as any).motherworry) (s as any).motherworry = {}; (s as any).motherworry[1] = ((s as any).daystart ?? 0);
   qspCall(s, 'core_library', 'setloc', 'bedrPar', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
   if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] === 0) {
-    ((s as any).ml_performance ?? {})['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
+    if (!(s as any).ml_performance) (s as any).ml_performance = {}; (s as any).ml_performance['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
   }
   if (((s as any).locat ?? 0)?.['Mother'] === 26  &&  ((s as any).prevloc ?? 0) === 'bedrPar'  &&  qspFunc(s, 'homes_properties', 'can_live_here')) {
     scene.img('images/characters/pavlovsk/resident/mom/prost1.jpg');
@@ -39,8 +39,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ParrotQW ?? 0)?.['Level'] === 2  &&  qspFunc(s, 'homes_properties', 'is_current_home')) {
       // TODO-QSP: dynamic text: As soon as you enter the room, you rush over to <<$ParrotQW['Name2']>>'s cage an...
       scene.text(`As soon as you enter the room, you rush over to ${((s as any).ParrotQW ?? 0)?.['Name2']}'s cage and pour the contents of the vial into his water bowl. You hope this will work and keep him from spilling you and your sister's bedroom secrets.`);
-      ((s as any).ParrotQW ?? {})['Level'] = 3;
-      ((s as any).ParrotQW ?? {})['Day'] = 3;
+      if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Level'] = 3;
+      if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Day'] = 3;
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -52,10 +52,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: When you enter the room, you notice <<$ParrotQW['Name2']>>'s cage is open and he...
         scene.text(`When you enter the room, you notice ${((s as any).ParrotQW ?? 0)?.['Name2']}'s cage is open and he's gone.`);
         scene.text('Anya must have released him since you weren\'t able to find a solution in time.');
-        ((s as any).ParrotQW ?? {})['Owned2'] = 0;
-        ((s as any).ParrotQW ?? {})['Level'] = 0;
-        ((s as any).ParrotQW ?? {})['Day'] = 2;
-        ((s as any).ParrotQW ?? {})['Failed'] = 0;
+        if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Owned2'] = 0;
+        if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Level'] = 0;
+        if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Day'] = 2;
+        if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Failed'] = 0;
         qspCall(s, 'stat', '');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
@@ -77,13 +77,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.text('"I went to the mall and bought this bird. Isn\'t he the cutest?"');
               if (((s as any).npc_rel ?? 0)?.['A33'] > 50) {
                 scene.text('"Not really, but I can see this is something you really want. As long as he doesn\'t make too much noise, I don\'t really care."');
-                ((s as any).ParrotQW ?? {})['SisKeepParrot'] = 1;
+                if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['SisKeepParrot'] = 1;
               }
               if (((s as any).npc_rel ?? 0)?.['A33'] <= 50) {
                 scene.text('"No he isn\'t cute, and I suggest you get it out of here. I\'m not sharing my room with a bird!"');
                 scene.text('You\'re somewhat upset, but you understand. You should have asked her before buying it.');
                 scene.text('You go to the window, open it and release the bird.');
-                ((s as any).ParrotQW ?? {})['Owned2'] = 0;
+                if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Owned2'] = 0;
               }
               qspCall(s, 'stat', '');
               scene.actions([
@@ -214,7 +214,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   scene.text('Your <a href="exec: gt \'komp\',\'start\'">computer</a> is on your desk.');
                 }
                 if (((s as any).npc_QW ?? 0)?.['A33'] > 10) {
-                  ((s as any).npc_QW ?? {})['A33'] = 10;
+                  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A33'] = 10;
                 }
               }
               if (((s as any).locat ?? 0)?.['Anya_Gad'] === 0) {

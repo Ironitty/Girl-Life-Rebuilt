@@ -147,7 +147,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <center><table><TR BGCOLOR="' + $theme_hex['table_bg'] + '"><td><b></b>You alrea...
       scene.text('<center><table><TR BGCOLOR="\' + $theme_hex[\'table_bg\'] + \'"><td><b></b>You already own today\'s newspaper.</td></tr></table></center>');
     } else {
-      ((s as any).mc_inventory ?? {})['newspaper'] = 1;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['newspaper'] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 100);
       qspCall(s, 'stat', '');

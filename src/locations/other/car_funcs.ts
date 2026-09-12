@@ -36,13 +36,13 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    ((s as any).ARGS ?? {})[3] = ((s as any).region ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).region ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['loc_arg']  &&  ((s as any).locArgs?.[3] ?? 0) === ((s as any).car ?? 0)?.['region']) {
     (s as any).result = 1;
@@ -58,10 +58,10 @@ function enterIsHereArea(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).region ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).region ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['region']) {
     (s as any).result = 1;
@@ -76,30 +76,30 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    ((s as any).ARGS ?? {})[3] = ((s as any).region ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).region ?? 0);
   }
-  ((s as any).car ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).car ?? {})['loc_arg'] = ((s as any).locArgs?.[2] ?? 0);
-  ((s as any).car ?? {})['region'] = ((s as any).locArgs?.[3] ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['loc'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['loc_arg'] = ((s as any).locArgs?.[2] ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['region'] = ((s as any).locArgs?.[3] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterAddCar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'car_attributes', ARGS[1]
-  ((s as any).car ?? {})['ID'] = qspUntranslated(s, "ARGS[1]", { location: "car_funcs" });
-  ((s as any).car ?? {})['name'] = ((s as any).CarName ?? 0);
-  ((s as any).car ?? {})['new_condition'] = ((s as any).CarCondition ?? 0);
-  ((s as any).car ?? {})['current_condition'] = ((s as any).CarCondition ?? 0);
-  ((s as any).car ?? {})['tank'] = ((s as any).CarTank ?? 0);
-  ((s as any).car ?? {})['fuel'] = ((s as any).CarTank ?? 0);
-  ((s as any).car ?? {})['wreck'] = 0;
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['ID'] = qspUntranslated(s, "ARGS[1]", { location: "car_funcs" });
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['name'] = ((s as any).CarName ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['new_condition'] = ((s as any).CarCondition ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).CarCondition ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['tank'] = ((s as any).CarTank ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).CarTank ?? 0);
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['wreck'] = 0;
   // TODO-QSP: end
   scene.build();
 }
@@ -163,9 +163,9 @@ function enterAvt(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_condition'] = ((s as any).tehT ?? 0);
-  ((s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_condition_desc'] = ((s as any).tehT_desc ?? 0);
-  ((s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_price'] = ((s as any).bupay ?? 0);
+  if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['' + String((s as any).autotraidF_carnum || '') + '_condition'] = ((s as any).tehT ?? 0);
+  if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['' + String((s as any).autotraidF_carnum || '') + '_condition_desc'] = ((s as any).tehT_desc ?? 0);
+  if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['' + String((s as any).autotraidF_carnum || '') + '_price'] = ((s as any).bupay ?? 0);
   // TODO-QSP: end
   scene.build();
 }

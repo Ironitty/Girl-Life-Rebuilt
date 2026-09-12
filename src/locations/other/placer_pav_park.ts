@@ -36,24 +36,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).encounter ?? 0) === 5) {
               if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14  &&  ((s as any).katjaQW ?? 0)?.['park_sex'] === 0) {
-                ((s as any).placerParameter ?? {})['number_of_man'] = 1;
+                if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 1;
               } else {
                 if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14  &&  ((s as any).katjaQW ?? 0)?.['park_sex'] === 1) {
-                  ((s as any).placerParameter ?? {})['number_of_man'] = 0;
+                  if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 0;
                 } else {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
-                    ((s as any).placerParameter ?? {})['number_of_man'] = 1;
+                    if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 1;
                   } else {
                     if ((!(Math.floor(Math.random() * 2) + 0))) {
-                      ((s as any).placerParameter ?? {})['number_of_man'] = 2;
+                      if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 2;
                     } else {
                       if ((!(Math.floor(Math.random() * 2) + 0))) {
-                        ((s as any).placerParameter ?? {})['number_of_man'] = 3;
+                        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 3;
                       } else {
                         if ((Math.floor(Math.random() * 3) + 0) > 0) {
-                          ((s as any).placerParameter ?? {})['number_of_man'] = 4;
+                          if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 4;
                         } else {
-                          ((s as any).placerParameter ?? {})['number_of_man'] = 5;
+                          if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = 5;
                         }
                       }
                     }
@@ -70,7 +70,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
               if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 5) {
               }
-              ((s as any).placerParameter ?? {})['recognize_status'] = 1;
+              if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 1;
               (s as any).met_someone = 1;
             } else {
               if (((s as any).encounter ?? 0) === 6) {
@@ -99,13 +99,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     }
                   } else {
                     if (((s as any).encounter ?? 0) === 9) {
-                      ((s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 5) + 2;
-                      ((s as any).placerParameter ?? {})['recognize_status'] = 1;
+                      if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 5) + 2;
+                      if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 1;
                       (s as any).met_someone = 1;
                     } else {
                       if (((s as any).encounter ?? 0) === 10) {
-                        ((s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 4) + 3;
-                        ((s as any).placerParameter ?? {})['recognize_status'] = 2;
+                        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['number_of_man'] = Math.floor(Math.random() * 4) + 3;
+                        if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['recognize_status'] = 2;
                         (s as any).met_someone = 1;
                       }
                     }
@@ -208,10 +208,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`You arrive at one of the smaller plazas in the park, together with ${((s as any).placerStringParameter ?? 0)?.['ev_name_om']}. ${((s as any).textEvent ?? 0)}`);
     if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 0) {
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1  &&  ((s as any).placerStringParameter ?? 0)?.['text_start_meet'] === '') {
-        ((s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
+        if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
       }
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1  &&  ((s as any).placerStringParameter ?? 0)?.['text_start_meet'] === '') {
-        ((s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
+        if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
       }
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 0) {
         // TODO-QSP: 'You give the <<$textSomeone>> a cute smile as you walk past. You don''t think you''ve ever seen him...
@@ -254,7 +254,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Say goodbye to your friend and stay', handler: (st: GameState) => {
-    ((s as any).placerParameter ?? {})['friend_index'] = 0;
+    if (!(s as any).placerParameter) (s as any).placerParameter = {}; (s as any).placerParameter['friend_index'] = 0;
   }, goto: ['placer_act', ''] },
         ]);
       }
@@ -287,10 +287,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 0  &&  ((s as any).placerParameter ?? 0)?.['number_of_man'] > 0) {
           if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
-            ((s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
+            if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
           }
           if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1) {
-            ((s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
+            if (!(s as any).placerStringParameter) (s as any).placerStringParameter = {}; (s as any).placerStringParameter['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
           }
           // TODO-QSP: dynamic text: You give the <<$textSomeone>> a cute smile as you walk past.' & '<<$textRefuse>>
           scene.text(`You give the ${((s as any).textSomeone ?? 0)} a cute smile as you walk past.' & '${((s as any).textRefuse ?? 0)}`);

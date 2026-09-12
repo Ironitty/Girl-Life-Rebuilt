@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
-  ((s as any).katjaQW ?? {})['kitchen_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['kitchen_day'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like', 'kitchen', 1);
   if ((((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 3  ||  (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 3  &&  ((s as any).katjaQW ?? 0)?.['slut'] < 65))  &&  ((s as any).katjaQW ?? 0)?.['take_of_panties_day'] !== ((s as any).daystart ?? 0)) {
@@ -24,9 +24,9 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         { label: 'Show her you\'re not wearing panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
-    ((s as any).katjaQW ?? {})['no_panties_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
     if (((s as any).PCloSkirt ?? 0) >= 1) {
       if (((s as any).analPlugIn ?? 0) === 1) {
         scene.img('images/characters/pavlovsk/school/girl/katja/tanga1_7.mp4');
@@ -65,8 +65,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] > 0) {
       qspCall(s, 'arousal', 'erotic', (-2));
       qspCall(s, 'arousal', 'end');
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
       scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting_showing_panties1.jpg');
       scene.text('Katja looks to see if anybody else is around. "I really shouldn\'t be doing this…" she says with some hesitation.');
       scene.text('"Come on, I showed you mine; it\'s only fair that you do it, too," you reply.');
@@ -80,11 +80,11 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         scene.text('"I\'m not some slut that goes around flashing my panties to everyone! Panties which, by the way, I am wearing," she says with a firm, yet still affectionate, tone.');
         scene.text('"Sorry I asked. But I do think that you could stand to loosen up a little," you reply.');
       } else {
-        ((s as any).katjaQW ?? {})['pantiesQWstage'] = 1;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 1;
         qspCall(s, 'arousal', 'erotic', (-2));
         qspCall(s, 'arousal', 'end');
-        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-        ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting_showing_panties1.jpg');
         scene.text('Katja looks to see if anybody else is around. "I don\'t know. We really shouldn\'t be doing such things…" she says.');
         scene.text('"Come on! I showed you mine, now it\'s only fair that you do it, too," you reply.');
@@ -113,9 +113,9 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
           { label: 'Show her you\'re not wearing panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
-    ((s as any).katjaQW ?? {})['no_panties_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
     if (((s as any).PCloSkirt ?? 0) > 1) {
       if (((s as any).analPlugIn ?? 0) === 1) {
         scene.img('images/characters/pavlovsk/school/girl/katja/tanga1_7.mp4');
@@ -141,8 +141,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 4) {
       qspCall(s, 'arousal', 'erotic', (-2));
       qspCall(s, 'stat', '');
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
       scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting_showing_panties2.jpg');
       scene.text('Katja spreads her legs and hikes up her skirt, showing you her simple, white panties.');
       scene.text('"Why are you wearing panties again?" you ask.');
@@ -151,8 +151,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         { label: 'Get her to remove her panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting_taking_of_panties.jpg');
     if (((s as any).katjaQW ?? 0)?.['slut'] < 80) {
       scene.text('"Come oooon, Katja," you plead. "Take those off! You\'ve done it before!"');
@@ -160,16 +160,16 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       scene.text('Then she gets up, turns her butt towards you, and slowly takes off her panties; pausing to look back at you just before her pussy is visible.');
       scene.text('"Happy now?" she asks after she\'s fully taken them off.');
     } else {
-      ((s as any).katjaQW ?? {})['pantiesQWstage'] = 5;
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 5;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
       scene.text('"I\'m getting really annoyed that I have to keep telling you to take off your panties. You have to learn that proper girls like us don\'t wear these to Uni," you say in a fake angry voice.');
       scene.text('She looks around and sighs. "Fine, you pervert."');
       scene.text('She gets up, turns her butt towards you, and slowly takes off her panties; pausing to look back at you just before her pussy is visible.');
       // TODO-QSP: dynamic text: After, she hands you her panties. "Here, ' + iif(lazarQW['your_prize_panties_kat...
       scene.text('After, she hands you her panties. "Here, \' + iif(lazarQW[\'your_prize_panties_katja\'] = 0, \'you can have them\', \'another pair for your collection\') + \' since you insist that I have to be a slut; I don\'t need them anymore."');
       if (((s as any).lazarQW ?? 0)?.['your_prize_panties_katja'] === 0) {
-        ((s as any).lazarQW ?? {})['your_prize_panties_katja'] = 1;
+        if (!(s as any).lazarQW) (s as any).lazarQW = {}; (s as any).lazarQW['your_prize_panties_katja'] = 1;
       }
     }
     scene.actions([
@@ -180,8 +180,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'arousal', 'erotic', (-2));
       qspCall(s, 'stat', '');
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
       scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting_showing_panties2.jpg');
       scene.text('Katja spreads her legs and hikes up her skirt, showing you her simple, white panties.');
       scene.text('"Happy now?" she asks.');
@@ -199,9 +199,9 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       { label: 'Katja finally relents', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['pantiesQWstage'] = 4;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 4;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting_taking_of_panties.jpg');
     scene.text('She gets up, turns her butt towards you, and slowly takes off her panties, pausing to look back at you just before her pussy is visible.');
     scene.text('"Happy now?" she says when they\'re completely off.');
@@ -230,7 +230,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         scene.text('"I \' + iif($ARGS[1] = \'from_room\', \'came looking for you\', \'was just looking around\') + \'. What are you doing?" you ask back.');
         scene.text('"I\'m staring to cook my dinner," she answers.');
       } else {
-        ((s as any).katjaQW ?? {})['drinks'] = (((s as any).katjaQW ?? {})['drinks'] ?? 0) + (2);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (2);
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_standing_with_drink.jpg');
         // TODO-QSP: dynamic text: You find Katja standing at the kitchen table drinking a glass of white wine. "Hi...
         scene.text(`You find Katja standing at the kitchen table drinking a glass of white wine. "Hi, ' + iif( katjaQW['couple'] = 0, '${((s as any).pcs_nickname ?? 0)}', 'my love') + '. What are you doing here?" Katja asks when she sees you.`);
@@ -250,7 +250,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         { label: 'Show her you\'re not wearing panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['no_panties_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
     if (((s as any).PCloSkirt ?? 0) > 1) {
       if (((s as any).analPlugIn ?? 0) === 1) {
         scene.img('images/characters/pavlovsk/school/girl/katja/tanga1_7.mp4');
@@ -274,8 +274,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'arousal', 'erotic', (-5));
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_standing_showing_pussy2.jpg');
     scene.text('You recall that you got Katja to take off her panties earlier today and wonder if she\'s still not wearing them. After all, she has changed her clothes since then.');
     scene.text('So you try to discreetly bend down to see up her skirt when she has her back to you.');
@@ -300,7 +300,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
           { label: 'Show her you\'re not wearing panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['no_panties_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
     if (((s as any).PCloSkirt ?? 0) > 1) {
       if (((s as any).analPlugIn ?? 0) === 1) {
         scene.img('images/characters/pavlovsk/school/girl/katja/tanga1_7.mp4');
@@ -324,8 +324,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'arousal', 'erotic', (-2));
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_standing_showing_pussy2.jpg');
     scene.text('You recall that you got Katja to take off her panties earlier today and wonder if she\'s still not wearing them. After all, she has changed her clothes since then.');
     scene.text('So you try to discreetly bend down to see up her skirt when she has her back to you.');
@@ -354,8 +354,8 @@ function enterKitchenShowPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'arousal', 'erotic', (-5));
   qspCall(s, 'arousal', 'end');
-  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
-  ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
   scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_standing_showing_pussy1.jpg');
   scene.text('"Your turn, Katja. Show me that you\'re not wearing panties," you demand.');
   // TODO-QSP: dynamic text: "Really, <<$pcs_nickname>>! This again? It's like you don't trust me," Katja say...
@@ -372,7 +372,7 @@ function enterKitchenShowPussy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUniHallway(s: GameState, scene: SceneBuilder): void {
-  ((s as any).katjaQW ?? {})['uni_hallway_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['uni_hallway_day'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like', 'hallway', 1);
   scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway.jpg');
@@ -384,9 +384,9 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
       { label: 'Show her you\'re not wearing panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
-    ((s as any).katjaQW ?? {})['no_panties_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
     if (((s as any).PCloSkirt ?? 0) > 1) {
       if (((s as any).analPlugIn ?? 0) === 1) {
         scene.img('images/characters/pavlovsk/school/girl/katja/tanga1_7.mp4');
@@ -431,8 +431,8 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
       if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5) {
         qspCall(s, 'arousal', 'erotic', (-5));
         qspCall(s, 'arousal', 'end');
-        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-        ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_naked_pussy.jpg');
         scene.text('Katja just puts her arms behind her head and spreads her legs without any hesitation, giving you a good look at her smoothly shaven pussy.');
         // TODO-QSP: dynamic text: "See? It's perfectly smooth, ' + iif( pcs_pubes > 3, 'like yours should be as we...
@@ -445,8 +445,8 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
         if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 4) {
           qspCall(s, 'arousal', 'erotic', (-2));
           qspCall(s, 'stat', '');
-          ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-          ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
           scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_standing_panties.jpg');
           scene.text('Katja stands up and moves her skirt away so that you can see her elegant panties.');
           scene.text('"Why are you wearing those again?" you ask.');
@@ -455,24 +455,24 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
             { label: 'Have her take off her panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_taking_off_panties.jpg');
     if (((s as any).katjaQW ?? 0)?.['slut'] < 80) {
       scene.text('"Come ooooon, Katja," you plead. "Take those off! You done it before!"');
       scene.text('She looks around before sighing, "Fine, you pervert."');
       scene.text('Then she quickly reaches up under her skirt, pulls down her panties and puts them in her purse. "Happy now?"');
     } else {
-      ((s as any).katjaQW ?? {})['pantiesQWstage'] = 5;
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 5;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
       scene.text('"I\'m getting really annoyed that I have to keep telling you to take off your panties. You have to learn that proper girls like us don\'t wear these to Uni," you say in a fake angry voice.');
       scene.text('She looks around and sighs. "Fine, you pervert."');
       scene.text('She quick reaches up under her skirt and pulls down her panties.');
       // TODO-QSP: dynamic text: After, she hands you her panties. "Here, ' + iif(lazarQW['your_prize_panties_kat...
       scene.text('After, she hands you her panties. "Here, \' + iif(lazarQW[\'your_prize_panties_katja\'] = 0, \'you can have them\', \'another pair for your collection\') + \' since you insist that I have to be a slut; I don\'t need them anymore."');
       if (((s as any).lazarQW ?? 0)?.['your_prize_panties_katja'] === 0) {
-        ((s as any).lazarQW ?? {})['your_prize_panties_katja'] = 1;
+        if (!(s as any).lazarQW) (s as any).lazarQW = {}; (s as any).lazarQW['your_prize_panties_katja'] = 1;
       }
     }
     qspCall(s, 'uni_lessons', 'schedule');
@@ -484,8 +484,8 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'arousal', 'erotic', (-2));
           qspCall(s, 'stat', '');
-          ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-          ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
           scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_stitting_panties.jpg');
           scene.text('She looks around and when she\'s sure that nobody else can see, she spreads her legs and lifts her skirt so that you can see her elegant panties.');
           if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 3) {
@@ -507,9 +507,9 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
       { label: 'Katja finally relents', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['pantiesQWstage'] = 4;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 4;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_taking_off_panties.jpg');
     scene.text('She takes another look around, then quickly reaches up under her skirt and pulls down her panties. She stashes them in her purse. "Happy now?"');
     // TODO-QSP: dynamic text: "Yes! This is going to be so much fun! Think about how thrilling it will be, kno...
@@ -529,8 +529,8 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
                 { label: 'See what Katja does', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_showing_pussy.jpg');
     scene.text('She looks around again before pulling her panties slightly to the side, giving you a clear view of her smoothly shaved pussy.');
     scene.text('"Very nice!" you exclaim.');
@@ -553,9 +553,9 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
                 { label: 'See what Katja does', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['pantiesQWstage'] = 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 3;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_showing_pussy.jpg');
     scene.text('She looks around very carefully, then pulls her panties slightly to the side, giving you a clear view of her smoothly shaved pussy.');
     scene.text('"Very nice!" you exclaim.');
@@ -582,11 +582,11 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
         scene.text('"I\'m not some slut that goes around flashing my panties to everyone! Panties which, by the way, I am wearing," she says with a firm, yet still affectionate, tone.');
         scene.text('"Sorry I asked. But I do think that you could stand to loosen up a little…" you reply.');
       } else {
-        ((s as any).katjaQW ?? {})['pantiesQWstage'] = 1;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 1;
         qspCall(s, 'arousal', 'erotic', (-2));
         qspCall(s, 'arousal', 'end');
-        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-        ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_hallway_stitting_panties.jpg');
         scene.text('Katja looks around and when she\'s sure that nobody else can see you two, she says, "I don\'t know. We really shouldn\'t be doing such things…"');
         scene.text('"Come ooooon, I showed you mine. It\'s only fair that you do it, too," you reply.');
@@ -612,7 +612,7 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUniExit(s: GameState, scene: SceneBuilder): void {
-  ((s as any).katjaQW ?? {})['uni_hallway_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['uni_hallway_day'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like', 'hallway', 1);
   scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_exit.jpg');
@@ -624,9 +624,9 @@ function enterUniExit(s: GameState, scene: SceneBuilder): void {
       { label: 'Show her you\'re not wearing panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
-    ((s as any).katjaQW ?? {})['no_panties_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
     if (((s as any).PCloSkirt ?? 0) > 1) {
       if (((s as any).analPlugIn ?? 0) === 1) {
         scene.img('images/characters/pavlovsk/school/girl/katja/tanga1_7.mp4');
@@ -657,8 +657,8 @@ function enterUniExit(s: GameState, scene: SceneBuilder): void {
       { label: 'Katja\'s turn', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_exit_showing_panties.jpg');
     scene.text('Katja looks around to see if anybody can see the both of you. When she is sure that nobody can, she turns around, pulls up her skirt a little, and bends over to show you her panty-clad pussy from behind.');
     scene.text('"See? I\'m wearing panties, like any good girl should," she says in a mocking tone.');
@@ -667,14 +667,14 @@ function enterUniExit(s: GameState, scene: SceneBuilder): void {
       { label: 'See how she reacts', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'stat', '');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
     if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 1) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 10);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
-      ((s as any).katjaQW ?? {})['pantiesQWstage'] = 2;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 10);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 2;
     } else {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     }
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/uni_exit_showing_panties.jpg');
     scene.text('"Well, I\'m not a completely good girl. I\'m not wearing a bra," Katja says.');
@@ -715,9 +715,9 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
 function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'flash', 2);
   qspCall(s, 'stat', '');
-  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-  ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
-  ((s as any).katjaQW ?? {})['no_panties_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['no_panties_day'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_player_flashing.jpg');
   scene.text('You look around to check if anyone is watching you and Katja before spreading your legs so that your short skirt will give Katja a full view of your pussy.');
   scene.text('"Like what you see?" you say to Katja with a sly smile.');
@@ -755,8 +755,8 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
       if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5) {
         qspCall(s, 'arousal', 'erotic', (-5));
         qspCall(s, 'arousal', 'end');
-        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-        ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_naked_pussy.jpg');
         scene.text('She looks around to check if anyone else is looking your way before she gets up from her chair and bends over to hike up her skirt so that you can clearly see her pussy.');
         // TODO-QSP: dynamic text: "See? It's perfectly smooth, ' + iif( pcs_pubes > 3, 'like yours should be as we...
@@ -768,8 +768,8 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
         if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 4) {
           qspCall(s, 'arousal', 'erotic', (-2));
           qspCall(s, 'stat', '');
-          ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-          ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
           scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_showing_panties.jpg');
           scene.text('Katja looks around before lifting up the front of her skirt so you can see her panties.');
           scene.text('"Why are you wearing panties again?" you ask.');
@@ -778,8 +778,8 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
             { label: 'Have her take off her panties', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_taking_off_panties.jpg');
     if (((s as any).katjaQW ?? 0)?.['slut'] < 80) {
       scene.text('"Come ooooon, Katja. Take those panties off! You\'ve done it before," you whine.');
@@ -787,16 +787,16 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
       scene.text('She stands up and quickly reaches up under her skirt and pulls down her panties.');
       scene.text('"Happy now?" she asks as she sits down and places her underwear in her purse.');
     } else {
-      ((s as any).katjaQW ?? {})['pantiesQWstage'] = 5;
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 5;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
       scene.text('"I\'m getting annoyed that I have to keep telling you to take off your panties. You have to learn that proper girls like us don\'t wear panties when we go out," you say in a fake angry voice.');
       scene.text('She looks around and sighs. "Fine, you pervert."');
       scene.text('She stands up and quickly reaches up under her skirt and pulls down her panties.');
       // TODO-QSP: dynamic text: After, she hands you her panties. "Here, ' + iif(lazarQW['your_prize_panties_kat...
       scene.text('After, she hands you her panties. "Here, \' + iif(lazarQW[\'your_prize_panties_katja\'] = 0, \'you can have them\', \'another pair for your collection\') + \' since you insist that I have to be a slut; I don\'t need them anymore."');
       if (((s as any).lazarQW ?? 0)?.['your_prize_panties_katja'] === 0) {
-        ((s as any).lazarQW ?? {})['your_prize_panties_katja'] = 1;
+        if (!(s as any).lazarQW) (s as any).lazarQW = {}; (s as any).lazarQW['your_prize_panties_katja'] = 1;
       }
     }
     scene.actions([
@@ -807,8 +807,8 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'arousal', 'erotic', (-2));
           qspCall(s, 'stat', '');
-          ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-          ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+          if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
           scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_showing_panties.jpg');
           scene.text('Katja looks around and then lifts up the front of her skirt so you can see her panties.');
           if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 3) {
@@ -830,9 +830,9 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
       { label: 'Katja finally relents', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['pantiesQWstage'] = 4;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 4;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_taking_off_panties.jpg');
     scene.text('She looks around once more, then stands up and quickly reaches up under her skirt, which makes it rest on her butt, and pulls down her panties. Then, she puts them in her purse. "Happy now?" she says as she sits down');
     // TODO-QSP: dynamic text: "Yes! This is going to be so much fun. Think about how thrilling it will be bein...
@@ -851,8 +851,8 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
                 { label: 'See what Katja does', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_showing_pussy.jpg');
     scene.text('She looks around again then lets her skirt fall so that you can still see her panties, and puts her right foot on the table, and with her left hand, pulls her panties to the side so you can see her smoothly shaved pussy.');
     scene.text('"Very nice!" you exclaim.');
@@ -875,9 +875,9 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
                 { label: 'See what Katja does', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW ?? {})['pantiesQWstage'] = 3;
-    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 3;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_showing_pussy.jpg');
     scene.text('She looks around again then lets her skirt fall so that you can still see her panties, and puts her right foot on the table, and with her left hand, pulls her panties to the side so you can see her smoothly shaved pussy.');
     scene.text('"Very nice!" you exclaim.');
@@ -904,11 +904,11 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
         scene.text('"I\'m not some slut that goes around flashing my panties. Which, by the way, I am wearing, of course," Katja says in a firm voice, but she does not look to be really angry.');
         scene.text('"Sorry I asked. But I do think that you could stand to loosen up a little…" you reply.');
       } else {
-        ((s as any).katjaQW ?? {})['pantiesQWstage'] = 1;
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['pantiesQWstage'] = 1;
         qspCall(s, 'arousal', 'erotic', (-2));
         qspCall(s, 'arousal', 'end');
-        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
-        ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/coffee_hole_showing_panties.jpg');
         scene.text('Katja looks around and when she\'s sure that nobody else can see you two, she says, "I don\'t know. We really shouldn\'t be doing such things…"');
         scene.text('"Come ooooon, I showed you mine. It\'s only fair that you do it, too," you reply.');

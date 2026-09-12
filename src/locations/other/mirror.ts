@@ -30,54 +30,54 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).hpigtail = 0;
     }
     if (((s as any).pcs_hairbsh ?? 0) < 1) {
-      ((s as any).serv ?? {})['hairbrush'] = '<a href="exec: xgt \'mirror\', \'brush\'"><img src="images/system/icons/action/hairbrush.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['hairbrush'] = '<a href="exec: xgt \'mirror\', \'brush\'"><img src="images/system/icons/action/hairbrush.png"></a>';
     } else {
       if (((s as any).pcs_hairlng ?? 0) > 80  &&  (!((s as any).hbraids ?? 0))) {
         if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-          ((s as any).serv ?? {})['ponytail'] = '<a href="exec:hscrunchw = 1 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/scrunchy.png"></a>';
-          ((s as any).serv ?? {})['ponytail desc'] = 'As you have a scrunchy, you can arrange your hair into a <a href="exec:hscrunchw = 1 & gs \'mirror\', \'start\'">ponytail</a>. You have <b>' + qspUntranslated(s, "mc_inventory['scrunchies']>", { location: "mirror" }) + '</b> scrunchies left.';
+          if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['ponytail'] = '<a href="exec:hscrunchw = 1 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/scrunchy.png"></a>';
+          if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['ponytail desc'] = 'As you have a scrunchy, you can arrange your hair into a <a href="exec:hscrunchw = 1 & gs \'mirror\', \'start\'">ponytail</a>. You have <b>' + qspUntranslated(s, "mc_inventory['scrunchies']>", { location: "mirror" }) + '</b> scrunchies left.';
         }
         if (((s as any).pcs_hairlng ?? 0) <= 400  &&  ((s as any).mc_inventory ?? 0)?.['kirbygrips'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-          ((s as any).serv ?? {})['bun'] = '<a href="exec:hpingripw = 1 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/clips_pins_grips.png"></a>';
-          ((s as any).serv ?? {})['bun desc'] = 'You have several clips, pins and grips for you hair. Hence, you can <a href="exec:hpingripw = 1 & gs \'mirror\', \'start\'">updo your hair</a>. You have <b>' + qspUntranslated(s, "mc_inventory['kirbygrips']>", { location: "mirror" }) + '</b> hair accessories at your disposal.';
+          if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['bun'] = '<a href="exec:hpingripw = 1 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/clips_pins_grips.png"></a>';
+          if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['bun desc'] = 'You have several clips, pins and grips for you hair. Hence, you can <a href="exec:hpingripw = 1 & gs \'mirror\', \'start\'">updo your hair</a>. You have <b>' + qspUntranslated(s, "mc_inventory['kirbygrips']>", { location: "mirror" }) + '</b> hair accessories at your disposal.';
         }
         if (((s as any).pcs_hairlng ?? 0) <= 800  &&  ((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1) {
           if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 2  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
-            ((s as any).serv ?? {})['pigtails'] = '<a href="exec:hpigtail = 1 & hscrunchw = 2 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/hair_ties.png"></a>';
-            ((s as any).serv ?? {})['pigtails desc'] = 'You can use two hair ties to make yourself some <a href="exec:hpigtail = 1 & hscrunchw = 2 & gs \'mirror\', \'start\'">pigtails</a>.';
+            if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['pigtails'] = '<a href="exec:hpigtail = 1 & hscrunchw = 2 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/hair_ties.png"></a>';
+            if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['pigtails desc'] = 'You can use two hair ties to make yourself some <a href="exec:hpigtail = 1 & hscrunchw = 2 & gs \'mirror\', \'start\'">pigtails</a>.';
           }
           if (((s as any).canBraidHair ?? 0) === 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) + ((s as any).hpigtail ?? 0) === 0) {
-            ((s as any).serv ?? {})['braid'] = '<a href="exec:minut += pcs_hairlng/10 & hbraids = 15 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/braiding.png"></a>';
-            ((s as any).serv ?? {})['braid desc'] = 'You can spend ' + ((s as any).pcs_hairlng ?? 0)/10> + ' minutes <a href="exec:minut += pcs_hairlng/10 & hbraids = 15 & gs \'mirror\', \'start\'">braiding</a> your hair, just the way your sister taught you.';
+            if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['braid'] = '<a href="exec:minut += pcs_hairlng/10 & hbraids = 15 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/braiding.png"></a>';
+            if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['braid desc'] = 'You can spend ' + ((s as any).pcs_hairlng ?? 0)/10> + ' minutes <a href="exec:minut += pcs_hairlng/10 & hbraids = 15 & gs \'mirror\', \'start\'">braiding</a> your hair, just the way your sister taught you.';
           }
         }
       }
     }
     if (((s as any).hscrunchw ?? 0) === 1) {
-      ((s as any).serv ?? {})['ponytail'] = '<a href="exec:hscrunchw = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/ponytail.png"></a>';
-      ((s as any).serv ?? {})['ponytail desc'] = 'Remove the <a href="exec:hscrunchw = 0 & gs \'mirror\', \'start\'">scrunchie</a> to get rid of the ponytail.';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['ponytail'] = '<a href="exec:hscrunchw = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/ponytail.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['ponytail desc'] = 'Remove the <a href="exec:hscrunchw = 0 & gs \'mirror\', \'start\'">scrunchie</a> to get rid of the ponytail.';
     }
     if (((s as any).hscrunchw ?? 0) === 2) {
-      ((s as any).serv ?? {})['pigtails'] = '<a href="exec:hpigtail = 0 & hscrunchw = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/pigtails.png"></a>';
-      ((s as any).serv ?? {})['pigtails desc'] = '<a href="exec:hpigtail = 0 & hscrunchw = 0 & gs \'mirror\', \'start\'">Remove</a> your scrunchies and let your hair flow free again.';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['pigtails'] = '<a href="exec:hpigtail = 0 & hscrunchw = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/pigtails.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['pigtails desc'] = '<a href="exec:hpigtail = 0 & hscrunchw = 0 & gs \'mirror\', \'start\'">Remove</a> your scrunchies and let your hair flow free again.';
     }
     if (((s as any).hpingripw ?? 0) === 1) {
-      ((s as any).serv ?? {})['bun'] = '<a href="exec:hpingripw = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/bun.png"></a>';
-      ((s as any).serv ?? {})['bun desc'] = 'Let your hair <a href="exec:hpingripw = 0 & gs \'mirror\', \'start\'">flow free</a>.';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['bun'] = '<a href="exec:hpingripw = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/bun.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['bun desc'] = 'Let your hair <a href="exec:hpingripw = 0 & gs \'mirror\', \'start\'">flow free</a>.';
     }
     if (((s as any).hbraids ?? 0) > 0) {
-      ((s as any).serv ?? {})['braid'] = '<a href="exec:minut += hbraids*2+pcs_hairlng/50 & hbraids = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/braid.png"></a>';
-      ((s as any).serv ?? {})['braid desc'] = 'Take ' + ((s as any).hbraids ?? 0)*2+((s as any).pcs_hairlng ?? 0)/50> + ' minutes removing your <a href="exec:minut += hbraids*2+pcs_hairlng/50 & hbraids = 0 & gs \'mirror\', \'start\'">braid</a>.';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['braid'] = '<a href="exec:minut += hbraids*2+pcs_hairlng/50 & hbraids = 0 & gs \'mirror\', \'start\'"><img src="images/system/icons/action/braid.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['braid desc'] = 'Take ' + ((s as any).hbraids ?? 0)*2+((s as any).pcs_hairlng ?? 0)/50> + ' minutes removing your <a href="exec:minut += hbraids*2+pcs_hairlng/50 & hbraids = 0 & gs \'mirror\', \'start\'">braid</a>.';
     }
-    ((s as any).serv ?? {})['back'] = '<a href="exec: gt \'mirror\',\'fin\'"><img src="images/system/icons/action/back.png"></a>';
+    if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['back'] = '<a href="exec: gt \'mirror\',\'fin\'"><img src="images/system/icons/action/back.png"></a>';
     if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
-      ((s as any).serv ?? {})['lipbalm'] = '<a href="exec: cla & gs \'mirror\',\'applyLipbalm\' & act \'View results\':gt \'mirror\', \'start\'"><img src="images/system/icons/action/lipbalm.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['lipbalm'] = '<a href="exec: cla & gs \'mirror\',\'applyLipbalm\' & act \'View results\':gt \'mirror\', \'start\'"><img src="images/system/icons/action/lipbalm.png"></a>';
     }
     if (((s as any).mc_inventory ?? 0)?.['eyelash_fake'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 3  &&  ((s as any).lashextensionstyle ?? 0) <= 0) {
-      ((s as any).serv ?? {})['falselashes'] = '<a href="exec: cla & gs \'mirror\',\'applyLashesplain\' & act \'View results\':gt \'mirror\', \'start\'"><img src="images/system/icons/action/falselashes.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['falselashes'] = '<a href="exec: cla & gs \'mirror\',\'applyLashesplain\' & act \'View results\':gt \'mirror\', \'start\'"><img src="images/system/icons/action/falselashes.png"></a>';
     }
     if (((s as any).mc_inventory ?? 0)?.['eyelash_mink'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 4  &&  ((s as any).lashextensionstyle ?? 0) <= 0) {
-      ((s as any).serv ?? {})['minklashes'] = '<a href="exec: cla & gs \'mirror\',\'applyLashesmink\' & act \'View results\':gt \'mirror\', \'start\'"><img src="images/system/icons/action/minklashes.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['minklashes'] = '<a href="exec: cla & gs \'mirror\',\'applyLashesmink\' & act \'View results\':gt \'mirror\', \'start\'"><img src="images/system/icons/action/minklashes.png"></a>';
     }
     if (((s as any).pcs_makeup ?? 0) === ((s as any).makeup ?? 0)?.['base']  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src=""images/pc/activities/routine/1.jpg""></center>
@@ -88,7 +88,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Light make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
     (s as any).pcs_makeup = 2;
     // TODO-QSP: dynamic text: <<$makeupLight>>
     scene.text(`${((s as any).makeupLight ?? 0)}`);
@@ -103,7 +103,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Vibrant make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (2);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (2);
     (s as any).pcs_makeup = 3;
     // TODO-QSP: dynamic text: <<$makeupNatural>>
     scene.text(`${((s as any).makeupNatural ?? 0)}`);
@@ -119,7 +119,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             { label: 'Thick make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
     (s as any).pcs_makeup = 4;
     // TODO-QSP: dynamic text: <<$makeupHeavy>>
@@ -135,7 +135,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             { label: 'Bimbo make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
     (s as any).pcs_makeup = 6;
     // TODO-QSP: dynamic text: <<$makeupBimbo>>
@@ -151,7 +151,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             { label: 'Goth make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
     (s as any).pcs_makeup = 7;
     // TODO-QSP: dynamic text: <<$makeupGoth>>
@@ -166,7 +166,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Smeared make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).pcs_makeup = 0;
     // TODO-QSP: dynamic text: <<$makeupSmeared>>
     scene.text(`${((s as any).makeupSmeared ?? 0)}`);
@@ -177,7 +177,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       // TODO-QSP: "
-      ((s as any).serv ?? {})['makeup'] = '<a href="exec: dynamic $serv4"><img src="images/system/icons/action/makeup.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['makeup'] = '<a href="exec: dynamic $serv4"><img src="images/system/icons/action/makeup.png"></a>';
       scene.actions([
         { label: 'Change your mind', goto: ['mirror', 'start'] },
       ]);
@@ -207,20 +207,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$pc_descFull['skin']>>
     scene.text(`${((s as any).pc_descFull ?? 0)?.['skin']}`);
     if (((s as any).curly ?? 0) > 0  &&  (!((s as any).defcurly ?? 0))) {
-      ((s as any).serv ?? {})['hhair'] = 'Your curly hair will last for another <b>' + qspUntranslated(s, "curly>", { location: "mirror" }) + '</b> days.';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['hhair'] = 'Your curly hair will last for another <b>' + qspUntranslated(s, "curly>", { location: "mirror" }) + '</b> days.';
     }
     if (((s as any).straight ?? 0) > 0  &&  ((s as any).defcurly ?? 0) === 1) {
-      ((s as any).serv ?? {})['hhair'] = 'Your straightened hair will last for another <b>' + qspUntranslated(s, "straight>", { location: "mirror" }) + '</b> days.';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['hhair'] = 'Your straightened hair will last for another <b>' + qspUntranslated(s, "straight>", { location: "mirror" }) + '</b> days.';
     }
     if (((s as any).hbraids ?? 0) > 0) {
-      ((s as any).serv ?? {})['hbraids'] = 'Your braided hair will last for another <b>' + qspUntranslated(s, "hbraids>", { location: "mirror" }) + '</b> days.';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['hbraids'] = 'Your braided hair will last for another <b>' + qspUntranslated(s, "hbraids>", { location: "mirror" }) + '</b> days.';
     }
     if (((s as any).pcs_haircol ?? 0) !== ((s as any).nathcol ?? 0)) {
       if (((s as any).dyefade ?? 0) > 0  &&  ((s as any).dyefade ?? 0) < 7) {
-        ((s as any).serv ?? {})['hdye'] = 'Your hair dye is beginning to fade and your roots are showing.';
+        if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['hdye'] = 'Your hair dye is beginning to fade and your roots are showing.';
       }
       if ((!((s as any).dyefade ?? 0))) {
-        ((s as any).serv ?? {})['hdye'] = 'Your hair dye has faded and looks terrible.';
+        if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['hdye'] = 'Your hair dye has faded and looks terrible.';
       }
     }
     if (((s as any).serv ?? 0)?.['hhair'] !== '') {
@@ -373,7 +373,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Light make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
     (s as any).pcs_makeup = 2;
     // TODO-QSP: dynamic text: <<$makeupLight>>
     scene.text(`${((s as any).makeupLight ?? 0)}`);
@@ -388,7 +388,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Vibrant make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (2);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (2);
     (s as any).pcs_makeup = 3;
     // TODO-QSP: dynamic text: <<$makeupNatural>>
     scene.text(`${((s as any).makeupNatural ?? 0)}`);
@@ -404,7 +404,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Thick make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
     (s as any).pcs_makeup = 4;
     // TODO-QSP: dynamic text: <<$makeupHeavy>>
@@ -420,7 +420,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Bimbo make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
     (s as any).pcs_makeup = 6;
     // TODO-QSP: dynamic text: <<$makeupBimbo>>
@@ -436,7 +436,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           { label: 'Goth make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
     (s as any).pcs_makeup = 7;
     // TODO-QSP: dynamic text: <<$makeupGoth>>
@@ -451,7 +451,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Smeared make-up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (s as any).pcs_makeup = 0;
     // TODO-QSP: dynamic text: <<$makeupSmeared>>
     scene.text(`${((s as any).makeupSmeared ?? 0)}`);
@@ -590,11 +590,11 @@ function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Exit', goto: ['mirror', 'start'] },
     { label: 'Save routine', handler: (st: GameState) => {
-    ((s as any).makeup ?? {})['routine_' + String((s as any).temp_routine_index || '') + '_makeup'] = ((s as any).makeupSetting ?? 0);
-    ((s as any).makeup ?? {})['routine_' + String((s as any).temp_routine_index || '') + '_lipbalm'] = ((s as any).cust_lipbalm ?? 0);
-    ((s as any).makeup ?? {})['routine_' + String((s as any).temp_routine_index || '') + '_lashes'] = ((s as any).custlashes ?? 0);
-    ((s as any).makeup ?? {})['routine_' + String((s as any).temp_routine_index || '') + ''] = ((s as any).routine ?? 0);
-    ((s as any).makeup ?? {})['routine_' + String((s as any).temp_routine_index || '') + '_name'] = 'routine ' + qspUntranslated(s, "temp_routine_index>", { location: "mirror" }) + '';
+    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).temp_routine_index || '') + '_makeup'] = ((s as any).makeupSetting ?? 0);
+    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).temp_routine_index || '') + '_lipbalm'] = ((s as any).cust_lipbalm ?? 0);
+    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).temp_routine_index || '') + '_lashes'] = ((s as any).custlashes ?? 0);
+    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).temp_routine_index || '') + ''] = ((s as any).routine ?? 0);
+    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).temp_routine_index || '') + '_name'] = 'routine ' + qspUntranslated(s, "temp_routine_index>", { location: "mirror" }) + '';
     qspCall(s, 'mirror', 'routine_manage');
   } },
     { label: '<<temp_routine_index>>. Remove ""<<$temp_routine_name>>""', handler: (st: GameState) => {
@@ -603,7 +603,7 @@ function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mirror', 'routine_manage');
   } },
     { label: '<<temp_routine_index>>. Rename ""<<$temp_routine_name>>""', handler: (st: GameState) => {
-    ((s as any).makeup ?? {})['routine_' + String((s as any).temp_routine_index || '') + '_name'] = 0;
+    if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).temp_routine_index || '') + '_name'] = 0;
     qspCall(s, 'mirror', 'routine_manage');
   } },
   ]);
@@ -711,10 +711,10 @@ function enterRoutineCheck(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: lashextensionstyle <= 0 and
   // TODO-QSP: pcs_lashes < makeup['routine_<<ARGS[1]>>_lashes'] + 2 and
   // TODO-QSP: ((
-  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 1;
+  if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 1;
   // TODO-QSP: mc_inventory['eyelash_fake'] >= 1
   // TODO-QSP: ) or (
-  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 2;
+  if (!(s as any).makeup) (s as any).makeup = {}; (s as any).makeup['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 2;
   // TODO-QSP: mc_inventory['eyelash_mink'] >= 1
   // TODO-QSP: ))
   scene.build();
@@ -745,12 +745,12 @@ function enterBrush(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.min(15, Math.max(1, ((s as any).pcs_hairlng ?? 0) / 80)));
   (s as any).pcs_hairbsh = 1;
   if (((s as any).newstylemirror ?? 0) === 1) {
-    ((s as any).serv ?? {})['noaction'] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "mirror" }) + ' src="images/system/icons/blank.png">';
+    if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['noaction'] = '<img ' + qspUntranslated(s, "set_imgh>", { location: "mirror" }) + ' src="images/system/icons/blank.png">';
     // TODO-QSP: $serv['avatar'] = '<img <<$set_imgh>> src="<<func(''$face_image'')>>">'
     if (((s as any).mirrorloc ?? 0) === 'mirror') {
-      ((s as any).serv ?? {})['back'] = '<a href="exec: gt \'mirror\',\'start\'"><img src="images/system/icons/action/back.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['back'] = '<a href="exec: gt \'mirror\',\'start\'"><img src="images/system/icons/action/back.png"></a>';
     } else {
-      ((s as any).serv ?? {})['back'] = '<a href="exec: gt \'mirror\',\'fin\'"><img src="images/system/icons/action/back.png"></a>';
+      if (!(s as any).serv) (s as any).serv = {}; (s as any).serv['back'] = '<a href="exec: gt \'mirror\',\'fin\'"><img src="images/system/icons/action/back.png"></a>';
     }
     // TODO-QSP: dynamic text: <center><table align=center cellspacing=0 cellpadding=0><tr><td align=center col...
     scene.text(`<center><table align=center cellspacing=0 cellpadding=0><tr><td align=center colspan=15><center>${((s as any).serv ?? 0)?.['avatar']}</center></td></tr><tr><td colspan=15><hr></td></tr><tr><td colspan=10></td><td>${((s as any).serv ?? 0)?.['back']}</td><td colspan=4></td></tr></table></center>`);
@@ -799,21 +799,21 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
           scene.text('You subtly apply some neutral tones, with a light application of makeup to bring out your natural beauty.');
           (s as any).minut = ((s as any).minut ?? 0) + 3;
           qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-          ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (1);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
           (s as any).pcs_makeup = 2;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 2  &&  ((s as any).pcs_makeup ?? 0) < 3) {
             scene.text('You apply some mildly vibrant tones and colors of makeup to cover your minor imperfections and enhance your best features.');
             (s as any).minut = ((s as any).minut ?? 0) + 5;
             qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-            ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (2);
+            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (2);
             (s as any).pcs_makeup = 3;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 3  &&  ((s as any).pcs_makeup ?? 0) < 4) {
               scene.text('You apply some deeper, richer shades of makeup, thick enough to cover most imperfections, while drawing attention to your eyes and lips.');
               (s as any).minut = ((s as any).minut ?? 0) + 10;
               qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-              ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+              if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
               (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
               (s as any).pcs_makeup = 4;
             } else {
@@ -821,7 +821,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
                 scene.text('You apply some bright, seductive makeup, thick enough to cover most imperfections, while drawing attention in a way only a bimbo can.');
                 (s as any).minut = ((s as any).minut ?? 0) + 10;
                 qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-                ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+                if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
                 (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
                 (s as any).pcs_makeup = 6;
               } else {
@@ -829,7 +829,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
                   scene.text('You apply some makeup thick enough to cover most imperfections, while drawing attention in a way only a goth can.');
                   (s as any).minut = ((s as any).minut ?? 0) + 10;
                   qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-                  ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+                  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
                   (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
                   (s as any).pcs_makeup = 7;
                 } else {
@@ -837,7 +837,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
                     scene.text('You deliberately smear cosmetics across your face in a messy, smudged pattern.');
                     (s as any).minut = ((s as any).minut ?? 0) + 5;
                     qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
-                    ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+                    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
                     (s as any).pcs_makeup = 0;
                   }
                 }
@@ -879,7 +879,7 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
 function enterApplyLipbalm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory ?? {})['lipbalm'] = (((s as any).mc_inventory ?? {})['lipbalm'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) - (1);
     (s as any).lipkoef = ((s as any).lipkoef ?? 0) + (Math.floor(Math.random() * 2) + 0);
     if (((s as any).lipkoef ?? 0) > 50) {
       (s as any).lipkoef = 0;
@@ -895,7 +895,7 @@ function enterApplyLipbalm(s: GameState, scene: SceneBuilder): void {
 function enterApplyLashesmink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['eyelash_mink'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 4) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).mc_inventory ?? {})['eyelash_mink'] = (((s as any).mc_inventory ?? {})['eyelash_mink'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['eyelash_mink'] = ((s as any).mc_inventory['eyelash_mink'] ?? 0) - (1);
     if (((s as any).false_lashes ?? 0) >= 1  &&  ((s as any).pcs_lashes ?? 0) === 3) {
       scene.text('You remove your old, plain lashes first.');
     }
@@ -910,7 +910,7 @@ function enterApplyLashesmink(s: GameState, scene: SceneBuilder): void {
 function enterApplyLashesplain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['eyelash_fake'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 3) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).mc_inventory ?? {})['eyelash_fake'] = (((s as any).mc_inventory ?? {})['eyelash_fake'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['eyelash_fake'] = ((s as any).mc_inventory['eyelash_fake'] ?? 0) - (1);
     (s as any).false_lashes = 1;
     (s as any).pcs_lashes = 3;
     scene.text('You spend a fair bit of time carefully trimming and affixing your flirtatious false lashes.');
@@ -1029,37 +1029,37 @@ function enterDBagMirror(s: GameState, scene: SceneBuilder): void {
 function enterKosmetitkaFix(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Compact Mirror</h1></center>');
   scene.img('images/pc/activities/routine/4.jpg');
-  ((s as any).mc_inventory ?? {})['makeup_wipes'] = (((s as any).mc_inventory ?? {})['makeup_wipes'] ?? 0) - (1);
+  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
   qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
   if (((s as any).makeupSetting ?? 0) === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) - (1);
     (s as any).pcs_makeup = 2;
     scene.text('<center>You carefully fix your makeup and restore the neutral and light tones that bring out your natural beauty.</center>');
   } else {
     if (((s as any).makeupSetting ?? 0) === 2) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (2);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) - (2);
       (s as any).pcs_makeup = 3;
       scene.text('<center>You carefully fix your makeup and restore the mildly vibrant tones and colors that cover your minor imperfections and enhance your best features.</center>');
     } else {
       if (((s as any).makeupSetting ?? 0) === 3) {
         (s as any).minut = ((s as any).minut ?? 0) + 10;
-        ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (3);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) - (3);
         (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
         (s as any).pcs_makeup = 4;
         scene.text('<center>You carefully fix your makeup and restore the deeper, richer shades, thick enough to cover most imperfections, while drawing attention to your eyes and lips.</center>');
       } else {
         if (((s as any).makeupSetting ?? 0) === 5) {
           (s as any).minut = ((s as any).minut ?? 0) + 10;
-          ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (3);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) - (3);
           (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
           (s as any).pcs_makeup = 6;
           scene.text('<center>You carefully fix your makeup and restore the bright, seductive shades, thick enough to cover most imperfections, while drawing attention in a way only a bimbo can.</center>');
         } else {
           if (((s as any).makeupSetting ?? 0) === 6) {
             (s as any).minut = ((s as any).minut ?? 0) + 10;
-            ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (3);
+            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) - (3);
             (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
             (s as any).pcs_makeup = 7;
             scene.text('<center>You carefully fix your makeup and restore the makeup thick enough to cover most imperfections, while drawing attention in a way only a goth can.</center>');

@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).inSleep = 0;
-  ((s as any).sleepVars ?? {})['stat_display'] = 0;
-  ((s as any).sleepVars ?? {})['slept_in'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['stat_display'] = 0;
+  if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['slept_in'] = 0;
   (s as any).strip_here = 0;
   (s as any).SleepHorny = 0;
   scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'mod_sleeptriggers'] }]);

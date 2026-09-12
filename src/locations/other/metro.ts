@@ -509,9 +509,9 @@ function enterSuburbsTickets(s: GameState, scene: SceneBuilder): void {
 function enterIslandCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 1;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 9) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -539,9 +539,9 @@ function enterIslandCenter(s: GameState, scene: SceneBuilder): void {
 function enterIslandArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -569,9 +569,9 @@ function enterIslandArtisan(s: GameState, scene: SceneBuilder): void {
 function enterIslandResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -599,9 +599,9 @@ function enterIslandResidential(s: GameState, scene: SceneBuilder): void {
 function enterIslandIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -629,9 +629,9 @@ function enterIslandIndustrial(s: GameState, scene: SceneBuilder): void {
 function enterIslandSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -660,9 +660,9 @@ function enterIslandSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterCenterIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -690,9 +690,9 @@ function enterCenterIsland(s: GameState, scene: SceneBuilder): void {
 function enterCenterArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -720,9 +720,9 @@ function enterCenterArtisan(s: GameState, scene: SceneBuilder): void {
 function enterCenterResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -748,9 +748,9 @@ function enterCenterResidential(s: GameState, scene: SceneBuilder): void {
 function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -778,9 +778,9 @@ function enterCenterIndustrial(s: GameState, scene: SceneBuilder): void {
 function enterCenterSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'center', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -809,9 +809,9 @@ function enterCenterSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterArtisanIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -839,9 +839,9 @@ function enterArtisanIsland(s: GameState, scene: SceneBuilder): void {
 function enterArtisanCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -869,9 +869,9 @@ function enterArtisanCenter(s: GameState, scene: SceneBuilder): void {
 function enterArtisanResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -899,9 +899,9 @@ function enterArtisanResidential(s: GameState, scene: SceneBuilder): void {
 function enterArtisanIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -929,9 +929,9 @@ function enterArtisanIndustrial(s: GameState, scene: SceneBuilder): void {
 function enterArtisanSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'artisan', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -960,9 +960,9 @@ function enterArtisanSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterResidentialIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -990,9 +990,9 @@ function enterResidentialIsland(s: GameState, scene: SceneBuilder): void {
 function enterResidentialCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1020,9 +1020,9 @@ function enterResidentialCenter(s: GameState, scene: SceneBuilder): void {
 function enterResidentialArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1050,9 +1050,9 @@ function enterResidentialArtisan(s: GameState, scene: SceneBuilder): void {
 function enterResidentialIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1080,9 +1080,9 @@ function enterResidentialIndustrial(s: GameState, scene: SceneBuilder): void {
 function enterResidentialSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'residential', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1111,9 +1111,9 @@ function enterResidentialSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterIndustrialIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1141,9 +1141,9 @@ function enterIndustrialIsland(s: GameState, scene: SceneBuilder): void {
 function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1171,9 +1171,9 @@ function enterIndustrialCenter(s: GameState, scene: SceneBuilder): void {
 function enterIndustrialArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1201,9 +1201,9 @@ function enterIndustrialArtisan(s: GameState, scene: SceneBuilder): void {
 function enterIndustrialResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1231,9 +1231,9 @@ function enterIndustrialResidential(s: GameState, scene: SceneBuilder): void {
 function enterIndustrialSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'suburbs');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'suburbs') + ((s as any).transportVars ?? {})?.['metro_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1262,9 +1262,9 @@ function enterIndustrialSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsIsland(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'island');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'island') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1292,9 +1292,9 @@ function enterSuburbsIsland(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'center');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'center') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1322,9 +1322,9 @@ function enterSuburbsCenter(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsArtisan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'artisan');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'artisan') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1352,9 +1352,9 @@ function enterSuburbsArtisan(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsResidential(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'residential');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'industrial', 'residential') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {
@@ -1382,9 +1382,9 @@ function enterSuburbsResidential(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsIndustrial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'metro', 'industrial');
   qspCall(s, 'transport_functions', 'set_metro_wait_time');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', 'industrial') + ((s as any).transportVars ?? {})?.['metro_wait_island'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'events'] }]);
   } else {

@@ -158,7 +158,7 @@ function enterDiploma(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).university ?? 0)?.['diploma'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).university ?? {})['diploma'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['diploma'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_obtained') {
     qspCall(s, 'uniutil', 'diploma', 'set', 1);
@@ -185,7 +185,7 @@ function enterFakeDiploma(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).university ?? 0)?.['fakediplom'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).university ?? {})['fakediplom'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).university) (s as any).university = {}; (s as any).university['fakediplom'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_aware_needed') {
     qspCall(s, 'uniutil', 'fake_diploma', 'set', 2);
@@ -219,7 +219,7 @@ function enterAttendance(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['lectures_attendad'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats ?? {})['lectures_attendad'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['lectures_attendad'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update') {
     // TODO-QSP: gs 'uniutil', 'attendance', 'set', func('uniutil', 'attendance', 'get') + 1
@@ -246,7 +246,7 @@ function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignment_progress'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats ?? {})['assignment_progress'] = ((((s as any).locArgs?.[2] ?? 0) <= 100) ? (qspUntranslated(s, "ARGS[2]", { location: "uniutil" })) : (100));
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['assignment_progress'] = ((((s as any).locArgs?.[2] ?? 0) <= 100) ? (qspUntranslated(s, "ARGS[2]", { location: "uniutil" })) : (100));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update') {
     qspCall(s, 'uniutil', 'assignment_progress', 'set', qspFunc(s, 'uniutil', 'assignment_progress', 'get') + (Math.floor(Math.random() * (pcs_intel / 10 - pcs_intel / 20 + 1)) + (pcs_intel / 20)));
@@ -270,7 +270,7 @@ function enterAssignmentsDone(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignments_done'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats ?? {})['assignments_done'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['assignments_done'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update') {
     qspCall(s, 'uniutil', 'assignment_progress', 'reset');
@@ -301,7 +301,7 @@ function enterScholarship(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['scholarship'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats ?? {})['scholarship'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['scholarship'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'reset') {
     qspCall(s, 'uniutil', 'scholarship', 'set', 0);
@@ -409,7 +409,7 @@ function enterSemester(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['num'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats ?? {})['num'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['num'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'next') {
     (s as any).result = (qspFunc(s, 'uniutil', 'semester', 'get') % qspFunc(s, 'uniutil', 'semester', 'total')) + 1;
@@ -424,7 +424,7 @@ function enterSemester(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['year'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update_year') {
-    ((s as any).unisemestrstats ?? {})['year'] = ((s as any).year ?? 0);
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['year'] = ((s as any).year ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'is_active') {
     (s as any).result = qspFunc(s, 'uniutil', 'lecture', 'offered_this_month')  ||  qspFunc(s, 'uniutil', 'exam', 'offered_this_month');
@@ -451,7 +451,7 @@ function enterSemesterResult(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['is_passed'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats ?? {})['is_passed'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['is_passed'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_passed') {
     qspCall(s, 'uniutil', 'semester_result', 'set', 1);
@@ -499,7 +499,7 @@ function enterPassedSemesters(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? {})?.['prev_passed_count'] + ((qspFunc(s, 'uniutil', 'semester_result', 'is_passed')) ? (1) : (0));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    ((s as any).unisemestrstats ?? {})['prev_passed_count'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
+    if (!(s as any).unisemestrstats) (s as any).unisemestrstats = {}; (s as any).unisemestrstats['prev_passed_count'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update') {
     qspCall(s, 'uniutil', 'passed_semesters', 'set', qspFunc(s, 'uniutil', 'passed_semesters', 'get'));

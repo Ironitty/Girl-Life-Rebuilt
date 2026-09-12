@@ -583,8 +583,8 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 500);
-      ((s as any).NatbelQW ?? {})['chrispaid'] = 3;
-      ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 3;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       scene.img('images/characters/shared/headshots_main/big18.jpg');
       scene.text('You see Christina chatting with Lina as you approach. When she notices you, she glares at you before turning to Lina.');
@@ -616,8 +616,8 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).christinaQW ?? 0)?.['blackmail'] === 1) {
         if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
-          ((s as any).LariskaQW ?? {})['story'] = 4;
-          ((s as any).christinaQW ?? {})['blackmail'] = 2;
+          if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
+          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['blackmail'] = 2;
           scene.text('"I need to talk to you," you quietly say as you approach Christina.');
           scene.text('"What do you want? I\'m busy," she says, not even looking at you.');
           scene.text('You take a deep breath. "Lariska. I want Lariska."');
@@ -630,7 +630,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
           scene.text('"Oh, you won\'t. So long as you keep your word…" you say with a fake smile that doesn\'t quite reach your eyes. "Now do be a dear and let her know she\'s free to do whatever she wants outside of school, will you?"');
           scene.text('"Oh, and if you try and punish her for this, I will know," the threat clear on your face. Turning on your heels, you head off to your next class, smiling.');
         } else {
-          ((s as any).christinaQW ?? {})['blackmail'] = 2;
+          if (!(s as any).christinaQW) (s as any).christinaQW = {}; (s as any).christinaQW['blackmail'] = 2;
           scene.text('"I need to talk to you," you quietly say as you approach Christina.');
           scene.text('"What do you want? I\'m busy," she says, not even looking at you.');
           scene.text('"Oh, I just wanted you to know I have something you should see." Pulling out your phone and checking to make sure nobody is looking, you show her a picture of her blowing the coach.');
@@ -644,7 +644,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).christinaQW ?? 0)?.['blackmail'] === 2) {
           if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
-            ((s as any).LariskaQW ?? {})['story'] = 4;
+            if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
           }
           scene.text('Christina takes one look at you coming over to talk with her. "What now?"');
           scene.text('"Nothing," you say cheerfully. "Just came over to say hi."');
@@ -654,7 +654,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).christinaQW ?? 0)?.['fight'] === 1) {
             if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
-              ((s as any).LariskaQW ?? {})['story'] = 4;
+              if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
             }
             scene.text('Seeing you walking towards her, she tenses up and whispers "What do you need?"');
             scene.text('"Nothing," you say cheerfully. "Just came over to say hi."');
@@ -686,7 +686,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
     if (((s as any).christinaQW ?? 0)?.['fight'] === 1) {
       scene.actions([
         { label: 'Talk to Christina about Natasha', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 5;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 5;
     scene.text('You see Christina chatting with Lina as you approach. When Christina notices you, she glares at you and then turns to Lina.');
     scene.text('"Later, Lina," she says. Lina smiles at Christina and leaves before Christina turns back to you. "What do you want?"');
     scene.text('You ignore her attitude. "I wanted to talk about how you treat Natasha."');
@@ -700,7 +700,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
       if (((s as any).christinaQW ?? 0)?.['blackmail'] === 2) {
         scene.actions([
           { label: 'Talk to Christina about Natasha', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['chrispaid'] = 5;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['chrispaid'] = 5;
     scene.text('You see Christina chatting with Lina when as approach. When Christina notices you, she glares at you and then turns to Lina.');
     scene.text('"Later, Lina," she says. Lina smiles at Christina and leaves before Christina turns back to you. "What do you want?"');
     scene.text('You ignore her attitude. "I wanted to talk about how you treat Natasha."');
@@ -728,14 +728,14 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"My… my period started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"My… my period started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'christina_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"My… my period started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"My… my period started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'christina_tampon');
   } },
     ]);
@@ -744,14 +744,14 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'christina_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'christina_tampon');
   } },
       ]);
@@ -818,7 +818,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 1) {
-        ((s as any).AlbinaQW ?? {})['Friends'] = 2;
+        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Friends'] = 2;
         qspCall(s, 'npc_relationship', 'set', 'A23', 100);
         qspCall(s, 'stat', '');
         if (((s as any).npc_had_sex ?? 0)?.['A23']) {
@@ -905,12 +905,12 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
                         scene.text('She grins. "Both holes, morning and night. I could barely walk home afterwards!"');
                         scene.text('"Slut…" you smile.');
                         scene.text('"Takes one to know one!" she grins.');
-                        ((s as any).AlbinaQW ?? {})['know_walk_of_shame'] = 2;
+                        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['know_walk_of_shame'] = 2;
                       } else {
                         scene.text('"I might have went home with him from the disco the other night and let him fuck my brains out…" she whispers. "Then fucked him again the next morning."');
                         scene.text('"Oh my god!" you gasp. "You slut!"');
                         scene.text('"Takes one to know one!" she grins.');
-                        ((s as any).AlbinaQW ?? {})['know_walk_of_shame'] = 1;
+                        if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['know_walk_of_shame'] = 1;
                       }
                     }
                   } else {
@@ -956,7 +956,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
                           scene.text('She grins. "Both holes, morning and night. I could barely walk home afterwards!"');
                           scene.text('"Slut…" you smile.');
                           scene.text('"Takes one to know one!" she grins.');
-                          ((s as any).AlbinaQW ?? {})['know_walk_of_shame'] = 2;
+                          if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['know_walk_of_shame'] = 2;
                         } else {
                           scene.text('"I might have went home with him from the disco the other night and let him fuck my brains out…" she whispers. "Then fucked him again the next morning."');
                           scene.text('"Oh my god!" you gasp. "You slut!"');
@@ -1076,14 +1076,14 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Albina," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'albina_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Albina," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'albina_tampon');
   } },
     ]);
@@ -1092,14 +1092,14 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Albina," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'albina_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Albina," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Albina," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'albina_tampon');
   } },
       ]);
@@ -1330,14 +1330,14 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Veronika," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'veronika_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Veronika," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'veronika_tampon');
   } },
     ]);
@@ -1346,14 +1346,14 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Veronika," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'veronika_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Veronika," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Veronika," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'veronika_tampon');
   } },
       ]);
@@ -1580,14 +1580,14 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lina," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lina_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lina," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lina_tampon');
   } },
     ]);
@@ -1596,14 +1596,14 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lina," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lina_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lina," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lina," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lina_tampon');
   } },
       ]);
@@ -1671,7 +1671,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
     if (((s as any).LariskaQW ?? 0)?.['story'] === 2) {
       if (((s as any).christinaQW ?? 0)?.['fight'] === 1) {
         qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
-        ((s as any).LariskaQW ?? {})['story'] = 4;
+        if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
         scene.text('Pulling out the volleyball she dropped outside your parents apartment the other day, you hand it to her. "You dropped this, Lariska."');
         scene.text('When she sees the ball, her eyes grow wide and she looks around fearfully. Seeing that Christina is engrossed in her conversation with Lina, she snatches the ball and stuffs it out of sight.');
         // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>. If Christina finds out I was there instead of the...
@@ -1684,7 +1684,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).christinaQW ?? 0)?.['blackmail'] >= 2  ||  ((s as any).christinaQW ?? 0)?.['subpath'] >= 2) {
           qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
-          ((s as any).LariskaQW ?? {})['story'] = 4;
+          if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 4;
           scene.text('Pulling out the volleyball she dropped outside your parents apartment the other day, you hand it to her. "You dropped this, Lariska."');
           scene.text('When she sees the ball, her eyes grow wide and she looks around fearfully. Seeing that Christina is engrossed in her conversation with Lina, she snatches the ball and stuffs it out of sight.');
           // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>. If Christina finds out I was there instead of the...
@@ -1695,7 +1695,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
           scene.text('She looks at you, a bit dazed, but manages to nod.');
           scene.text('Giving her a soft smile, you head off to your next class.');
         } else {
-          ((s as any).LariskaQW ?? {})['story'] = 3;
+          if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 3;
           qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
           scene.text('Pulling out the volleyball she dropped outside your parents apartment the other day, you hand it to her. "You dropped this, Lariska."');
           scene.text('When she sees the ball, her eyes go wide and she looks around fearfully. Seeing that Christina is engrossed in her conversation with Lina, she snatches the ball and stuffs it out of sight.');
@@ -1715,7 +1715,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
         qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
         if (((s as any).christinaQW ?? 0)?.['blackmail'] >= 2  ||  ((s as any).christinaQW ?? 0)?.['subpath'] >= 2  ||  ((s as any).christinaQW ?? 0)?.['fight'] === 1) {
-          ((s as any).LariskaQW ?? {})['story'] = 5;
+          if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 5;
           qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
           // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>. I guess Christina won't stop me from hanging out with ...
           scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}. I guess Christina won't stop me from hanging out with you now," she smiles shyly. "Do you want to come over after school and work on our homework together?"`);
@@ -1733,7 +1733,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).LariskaQW ?? 0)?.['story'] === 4) {
-          ((s as any).LariskaQW ?? {})['story'] = 5;
+          if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['story'] = 5;
           qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
           // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>. I guess Christina won't stop me from hanging out with y...
           scene.text(`"Okay ${((s as any).pcs_nickname ?? 0)}. I guess Christina won't stop me from hanging out with you now," she smiles shyly. "Do you want to come over after school and work on our homework together?"`);
@@ -1905,14 +1905,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lariska," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lariska_tampon');
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lariska," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lariska_tampon');
   } },
     ]);
@@ -1921,14 +1921,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lariska," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lariska_tampon');
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['tampon_ask'] = '"Lariska," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['tampon_ask'] = '"Lariska," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
     qspCall(s, 'gschool_jock_chats', 'lariska_tampon');
   } },
       ]);
@@ -2096,7 +2096,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Teach me to box', handler: (st: GameState) => {
-    ((s as any).ivanQW ?? {})['ivan_boxing_invite'] = 1;
+    if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['ivan_boxing_invite'] = 1;
     scene.img('images/characters/shared/headshots_main/big3.jpg');
     scene.text('You stop as you start to walk away. "Hey, do you think you could show me some boxing moves, for real?"');
     scene.text('He stops and seems to think about it. "Sure, stop by the gym at the community center just before it closes. I train after it closes some nights and I can show you some stuff then."');
@@ -2183,7 +2183,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Teach me to box', handler: (st: GameState) => {
-    ((s as any).ivanQW ?? {})['ivan_boxing_invite'] = 1;
+    if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['ivan_boxing_invite'] = 1;
     scene.img('images/characters/shared/headshots_main/big3.jpg');
     scene.text('You stop as you start to walk away. "Hey, do you think you could show me some boxing moves, for real?"');
     scene.text('He stops and seems to think about it. "Sure, stop by the gym at the community center just before it closes. I train after it closes some nights and I can show you some stuff then."');
@@ -2340,7 +2340,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
                 }
                 scene.actions([
                   { label: 'Teach me to box', handler: (st: GameState) => {
-    ((s as any).ivanQW ?? {})['ivan_boxing_invite'] = 1;
+    if (!(s as any).ivanQW) (s as any).ivanQW = {}; (s as any).ivanQW['ivan_boxing_invite'] = 1;
     scene.img('images/characters/shared/headshots_main/big3.jpg');
     scene.text('You stop as you start to walk away. "Hey, do you think you could show me some boxing moves, for real?"');
     scene.text('He stops and seems to think about it. "Sure, stop by the gym at the community center just before it closes. I train after it closes some nights and I can show you some stuff then."');

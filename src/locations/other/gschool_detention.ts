@@ -24,8 +24,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gschool_detention', 'anushka_wedgie'] }]);
     } else {
       (s as any).demerit = ((s as any).demerit ?? 0) - (20);
-      ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (2);
-      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (2);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (2);
+      if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
       qspCall(s, 'archetypes', 'gain', 'punk', 'small', 'Served detention', 7);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
@@ -131,7 +131,7 @@ function enterWedgie(s: GameState, scene: SceneBuilder): void {
       { label: 'Smack her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/slap.jpg');
     scene.text('Seeing the smug look on her face is too much and you slap her hard across her face. She\'s surprised by your move as several of the other students start yelling.');
     scene.text('"Fight, fight, fight!"');
@@ -183,7 +183,7 @@ function enterBackDown(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Back down', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
     scene.text('You\'re about to say something, but realize it will only make matters worse, so you meekly ignore her and all the laughing. You barely even notice the teacher raising his voice as he comes in late, ordering everyone to calm down.');
     scene.text('You take a seat at one of the tables and the teacher sits down, calling out names to make sure that everyone who should be here is present.');
@@ -220,7 +220,7 @@ function enterReturnFavor(s: GameState, scene: SceneBuilder): void {
     if (((s as any).grupTipe ?? 0) === 2  ||  ((s as any).grupTipe ?? 0) === 4) {
       scene.actions([
         { label: 'Return the favor', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/detention/wedgierev.jpg');
     scene.text('You quickly step forward and snake your arms around her. Reaching into the back of her pants, you grab her panties. She realizes what you\'re going to do a moment too late as she reaches back to stop you, but by then you already have a good hold of her panties. You yank up on them and lean back, lifting her off her feet.');
     scene.text('She grabs your panties again and starts yanking at them as well. The two of you give each other wedgies, trying to force the other to relent first as the other students hoot and encourage the two of you.');
@@ -924,7 +924,7 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).npc_had_sex ?? {})['A146'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A146'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A146', 1);
     scene.img('images/locations/pavlovsk/school/detention/detention.jpg');
     scene.text('You grin and leave him waiting, pretending you\'re not sure how to answer him. You know exactly what meeting him would be about and you would like that very much.');

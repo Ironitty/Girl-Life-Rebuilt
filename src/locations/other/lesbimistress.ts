@@ -103,7 +103,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).mistsevere ?? 0)?.[String((s as any).i ?? 0)] === 1) {
           // TODO-QSP: jump 'mistsevere'
         }
-        ((s as any).mistsevere ?? {})[String((s as any).i ?? 0)] = 1;
+        if (!(s as any).mistsevere) (s as any).mistsevere = {}; (s as any).mistsevere[String((s as any).i ?? 0)] = 1;
         scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'severe_<<i>>'] }]);
       } else {
         if (((s as any).MistressObedience ?? 0) === 2) {
@@ -112,7 +112,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           if (((s as any).mistpunish ?? 0)?.[String((s as any).i ?? 0)] === 1) {
             // TODO-QSP: jump 'mistpunish'
           }
-          ((s as any).mistpunish ?? {})[String((s as any).i ?? 0)] = 1;
+          if (!(s as any).mistpunish) (s as any).mistpunish = {}; (s as any).mistpunish[String((s as any).i ?? 0)] = 1;
           scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'punish_<<i>>'] }]);
         } else {
           if (((s as any).MistressObedience ?? 0) === 3) {
@@ -121,7 +121,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             if (((s as any).mistneutral ?? 0)?.[String((s as any).i ?? 0)] === 1) {
               // TODO-QSP: jump 'mistneutral'
             }
-            ((s as any).mistneutral ?? {})[String((s as any).i ?? 0)] = 1;
+            if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[String((s as any).i ?? 0)] = 1;
             scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'neutral_<<i>>'] }]);
           } else {
             if (((s as any).MistressObedience ?? 0) === 4) {
@@ -130,7 +130,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               if (((s as any).misttreat ?? 0)?.[String((s as any).i ?? 0)] === 1) {
                 // TODO-QSP: jump 'misttreat'
               }
-              ((s as any).misttreat ?? {})[String((s as any).i ?? 0)] = 1;
+              if (!(s as any).misttreat) (s as any).misttreat = {}; (s as any).misttreat[String((s as any).i ?? 0)] = 1;
               scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'treat_<<i>>'] }]);
             } else {
               if (((s as any).MistressObedience ?? 0) >= 5) {
@@ -139,7 +139,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).mistamazing ?? 0)?.[String((s as any).i ?? 0)] === 1) {
                   // TODO-QSP: jump 'mistamazing'
                 }
-                ((s as any).mistamazing ?? {})[String((s as any).i ?? 0)] = 1;
+                if (!(s as any).mistamazing) (s as any).mistamazing = {}; (s as any).mistamazing[String((s as any).i ?? 0)] = 1;
                 scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'amazing_<<i>>'] }]);
               }
             }
@@ -227,7 +227,7 @@ function enterGholepunish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSevere_1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistsevere ?? {})[1] = 1;
+  if (!(s as any).mistsevere) (s as any).mistsevere = {}; (s as any).mistsevere[1] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 150;
   qspCall(s, 'mood', 'lower', 'min');
   if (((s as any).pcs_vag ?? 0) < 10) {
@@ -283,7 +283,7 @@ function enterSevere_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSevere_2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistsevere ?? {})[2] = 1;
+  if (!(s as any).mistsevere) (s as any).mistsevere = {}; (s as any).mistsevere[2] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   if (((s as any).pcs_ass ?? 0) < 10) {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 4);
@@ -336,7 +336,7 @@ function enterSevere_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSevere_3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistsevere ?? {})[3] = 1;
+  if (!(s as any).mistsevere) (s as any).mistsevere = {}; (s as any).mistsevere[3] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   if (((s as any).pcs_ass ?? 0) < 10) {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 4);
@@ -398,7 +398,7 @@ function enterSevere_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSevere_4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistsevere ?? {})[4] = 1;
+  if (!(s as any).mistsevere) (s as any).mistsevere = {}; (s as any).mistsevere[4] = 1;
   if (((s as any).pcs_ass ?? 0) < 10) {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 3);
     (s as any).agape = 3;
@@ -461,7 +461,7 @@ function enterSevere_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPunish_1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistpunish ?? {})[1] = 1;
+  if (!(s as any).mistpunish) (s as any).mistpunish = {}; (s as any).mistpunish[1] = 1;
   qspCall(s, 'arousal', 'foreplay', 20, 'sub', 'lesbian', 'bound');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/sex/sub52.jpg');
@@ -539,7 +539,7 @@ function enterPunish_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPunish_2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistpunish ?? {})[2] = 1;
+  if (!(s as any).mistpunish) (s as any).mistpunish = {}; (s as any).mistpunish[2] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 150;
   (s as any).pcs_horny = 0;
   (s as any).MistressObedience = ((s as any).MistressObedience ?? 0) + (1);
@@ -559,7 +559,7 @@ function enterPunish_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPunish_3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistpunish ?? {})[3] = 1;
+  if (!(s as any).mistpunish) (s as any).mistpunish = {}; (s as any).mistpunish[3] = 1;
   (s as any).temp_lesbimistress = Math.floor(Math.random() * 4) + 0;
   if ((!((s as any).temp_lesbimistress ?? 0))) {
     scene.img('images/characters/city/natalya/sex/sub58.jpg');
@@ -659,7 +659,7 @@ function enterPunish_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPunish_4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistpunish ?? {})[4] = 1;
+  if (!(s as any).mistpunish) (s as any).mistpunish = {}; (s as any).mistpunish[4] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).pcs_horny = 0;
   (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
@@ -687,7 +687,7 @@ function enterPunish_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPunish_5(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistpunish ?? {})[5] = 1;
+  if (!(s as any).mistpunish) (s as any).mistpunish = {}; (s as any).mistpunish[5] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = 0;
   qspCall(s, 'stat', '');
@@ -764,7 +764,7 @@ function enterPunish_5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPunish_6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistpunish ?? {})[6] = 1;
+  if (!(s as any).mistpunish) (s as any).mistpunish = {}; (s as any).mistpunish[6] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'stat', '');
@@ -910,7 +910,7 @@ function enterPunish_6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[1] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[1] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 150;
   qspCall(s, 'exp_gain', 'vital', Math.floor(Math.random() * 3) + 0);
   qspCall(s, 'stat', '');
@@ -976,7 +976,7 @@ function enterNeutral_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[2] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[2] = 1;
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/sex/sub49.jpg');
@@ -1033,7 +1033,7 @@ function enterNeutral_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[3] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[3] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/sex/sub208.jpg');
@@ -1070,7 +1070,7 @@ function enterNeutral_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[4] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[4] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 150;
   (s as any).pcs_horny = 0;
   (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
@@ -1095,7 +1095,7 @@ function enterNeutral_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_5(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[5] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[5] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).pcs_horny = 0;
   qspCall(s, 'sweat', 'add', 30);
@@ -1134,7 +1134,7 @@ function enterNeutral_5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[6] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[6] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).pcs_horny = 0;
   qspCall(s, 'sweat', 'add', 10);
@@ -1169,7 +1169,7 @@ function enterNeutral_6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_7(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[7] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[7] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
   (s as any).mistressqwest = 1;
@@ -1191,7 +1191,7 @@ function enterNeutral_7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_8(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[8] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[8] = 1;
   qspCall(s, 'exp_gain', 'vital', Math.floor(Math.random() * 2) + 0);
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (2);
@@ -1239,7 +1239,7 @@ function enterNeutral_8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNeutral_9(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistneutral ?? {})[9] = 1;
+  if (!(s as any).mistneutral) (s as any).mistneutral = {}; (s as any).mistneutral[9] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/sex/sub225.jpg');
@@ -1334,7 +1334,7 @@ function enterNeutral_9(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTreat_1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).misttreat ?? {})[1] = 1;
+  if (!(s as any).misttreat) (s as any).misttreat = {}; (s as any).misttreat[1] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
@@ -1390,7 +1390,7 @@ function enterTreat_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTreat_2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).misttreat ?? {})[2] = 1;
+  if (!(s as any).misttreat) (s as any).misttreat = {}; (s as any).misttreat[2] = 1;
   qspCall(s, 'arousal', 'foreplay', 30, 'sub', 'bound');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/sex/sub55.jpg');
@@ -1437,7 +1437,7 @@ function enterTreat_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTreat_3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).misttreat ?? {})[3] = 1;
+  if (!(s as any).misttreat) (s as any).misttreat = {}; (s as any).misttreat[3] = 1;
   qspCall(s, 'arousal', 'cuni_give', 10, 'sub', 'lesbian');
   qspCall(s, 'arousal', 'rimming_give', 5, 'sub', 'lesbian');
   qspCall(s, 'stat', '');
@@ -1578,7 +1578,7 @@ function enterTreat_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTreat_4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).misttreat ?? {})[4] = 1;
+  if (!(s as any).misttreat) (s as any).misttreat = {}; (s as any).misttreat[4] = 1;
   (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
   (s as any).MistressObedience = ((s as any).MistressObedience ?? 0) - (1);
   qspCall(s, 'stat', '');
@@ -1613,7 +1613,7 @@ function enterTreat_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAmazing_1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistamazing ?? {})[1] = 1;
+  if (!(s as any).mistamazing) (s as any).mistamazing = {}; (s as any).mistamazing[1] = 1;
   qspCall(s, 'arousal', 'pee', 10, 'sub', 'humiliation', 'lesbian');
   qspCall(s, 'sweat', 'add', 30);
   (s as any).MistressObedience = 3;
@@ -1724,7 +1724,7 @@ function enterAmazing_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAmazing_2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistamazing ?? {})[2] = 1;
+  if (!(s as any).mistamazing) (s as any).mistamazing = {}; (s as any).mistamazing[2] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (50);
   qspCall(s, 'stat', '');
@@ -1790,7 +1790,7 @@ function enterAmazing_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAmazing_3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mistamazing ?? {})[3] = 1;
+  if (!(s as any).mistamazing) (s as any).mistamazing = {}; (s as any).mistamazing[3] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/natalya/lesbi.jpg');

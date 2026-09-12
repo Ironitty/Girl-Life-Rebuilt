@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPickFromArray(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_randomVars ?? {})['start'] = 0;
-  ((s as any).temp_randomVars ?? {})['end'] = 0;
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['start'] = 0;
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['end'] = 0;
   if (((s as any).temp_randomVars ?? 0)?.['start'] > ((s as any).temp_randomVars ?? 0)?.['end']) {
     return;
   }
-  ((s as any).temp_randomVars ?? {})['i'] = qspUntranslated(s, "rand(temp_randomVars['start'], temp_randomVars['end'])", { location: "random" });
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = qspUntranslated(s, "rand(temp_randomVars['start'], temp_randomVars['end'])", { location: "random" });
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
   } else {
     (s as any).result = 0;
@@ -27,19 +27,19 @@ function enterPickFromArray(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPickFromDelimitedString(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_randomVars ?? {})['string'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).temp_randomVars ?? {})['delimiter'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? ('|') : (((s as any).locArgs?.[2] ?? 0)));
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['string'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['delimiter'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? ('|') : (((s as any).locArgs?.[2] ?? 0)));
   if (((((s as any).temp_randomVars ?? 0)?.['string']).indexOf((((s as any).temp_randomVars ?? 0)?.['delimiter']))) + 1 <= 0) {
     return;
   }
   // TODO-QSP: :pick_from_delimited_string_loop
-  ((s as any).temp_randomVars ?? {})['i'] = qspUntranslated(s, "instr(temp_randomVars['string'], temp_randomVars['delimiter'])", { location: "random" });
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = qspUntranslated(s, "instr(temp_randomVars['string'], temp_randomVars['delimiter'])", { location: "random" });
   if (((s as any).temp_randomVars ?? 0)?.['i'] > 0) {
     // TODO-QSP: $temp_pick_from_delimited_string_array[] = $mid($temp_randomVars['string'], 1, temp_randomVars['i'] ...
-    ((s as any).temp_randomVars ?? {})['string'] = ((((s as any).temp_randomVars ?? 0)?.['string']).slice((((s as any).temp_randomVars ?? {})?.['i'] + 1)-1));
+    if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['string'] = ((((s as any).temp_randomVars ?? 0)?.['string']).slice((((s as any).temp_randomVars ?? {})?.['i'] + 1)-1));
     // TODO-QSP: jump 'pick_from_delimited_string_loop'
   }
-  ((s as any).temp_randomVars ?? {})['result'] = qspFunc(s, 'random', 'pick_from_array', '$temp_pick_from_delimited_string_array');
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['result'] = qspFunc(s, 'random', 'pick_from_array', '$temp_pick_from_delimited_string_array');
   if (((s as any).locArgs?.[3] ?? 0)) {
   } else {
     if (!isNaN(((s as any).temp_randomVars ?? 0)?.['result']) && ((s as any).temp_randomVars ?? 0)?.['result'] !== '') {
@@ -54,7 +54,7 @@ function enterPickFromDelimitedString(s: GameState, scene: SceneBuilder): void {
 function enterPickFrom(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
   }
-  ((s as any).temp_randomVars ?? {})['i'] = ((s as any).rand ?? 0)(1, ((s as any).arrsize ?? 0)('ARGS') - 1);
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = ((s as any).rand ?? 0)(1, ((s as any).arrsize ?? 0)('ARGS') - 1);
   if (((s as any).ARGS ?? 0)[((s as any).temp_randomVars ?? 0)?.['i']] === '') {
     (s as any).result = qspUntranslated(s, "ARGS[temp_randomVars['i']]", { location: "random" });
   }
@@ -64,20 +64,20 @@ function enterPickFrom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRoll(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_randomVars ?? {})['roll'] = 0;
-  ((s as any).temp_randomVars ?? {})['i'] = 1;
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['roll'] = 0;
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = 1;
   // TODO-QSP: :roll_loop
-  ((s as any).temp_randomVars ?? {})['rand'] = 0;
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['rand'] = 0;
   if (((s as any).locArgs?.[1] ?? 0) === 'lucky'  ||  ((s as any).locArgs?.[1] ?? 0) === 'max') {
     if (((s as any).temp_randomVars ?? 0)?.['rand'] > ((s as any).temp_randomVars ?? 0)?.['roll']) {
-      ((s as any).temp_randomVars ?? {})['roll'] = ((s as any).temp_randomVars ?? 0)?.['rand'];
+      if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['roll'] = ((s as any).temp_randomVars ?? 0)?.['rand'];
     }
   } else {
     if (((s as any).temp_randomVars ?? 0)?.['rand'] < ((s as any).temp_randomVars ?? 0)?.['roll']) {
-      ((s as any).temp_randomVars ?? {})['roll'] = ((s as any).temp_randomVars ?? 0)?.['rand'];
+      if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['roll'] = ((s as any).temp_randomVars ?? 0)?.['rand'];
     }
   }
-  ((s as any).temp_randomVars ?? {})['i'] = (((s as any).temp_randomVars ?? {})['i'] ?? 0) + (1);
+  if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = ((s as any).temp_randomVars['i'] ?? 0) + (1);
   if (((s as any).temp_randomVars ?? 0)?.['i'] < ((s as any).locArgs?.[4] ?? 0)) {
     // TODO-QSP: jump 'roll_loop'
   }

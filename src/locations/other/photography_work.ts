@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === "((s as any).evt_stage ?? 0)"  ||  ((s as any).locArgs?.[0] ?? 0) === '') {
-    ((s as any).photography ?? {})['experience'] = (((s as any).photography ?? {})['experience'] ?? 0) + (1);
+    if (!(s as any).photography) (s as any).photography = {}; (s as any).photography['experience'] = ((s as any).photography['experience'] ?? 0) + (1);
     // TODO-QSP: gs 'money', 'earn', evtVars['wage']
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'photography_work', 'stage_' + evtVars['event_sub']

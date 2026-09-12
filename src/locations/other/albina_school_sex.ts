@@ -183,7 +183,7 @@ function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['julia_sex'] = 1;
+  if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['julia_sex'] = 1;
   qspCall(s, 'npcStat', 'A23');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/threesome1.jpg');

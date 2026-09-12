@@ -45,13 +45,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['init'] < ((s as any).totminut ?? 0) - 60) {
-    ((s as any).date_ev ?? {})['init'] = ((s as any).totminut ?? 0);
-    ((s as any).date_ev ?? {})['at_home'] = 1;
-    ((s as any).date_ev ?? {})['type'] = 'home_date';
-    ((s as any).date_ev ?? {})['loc'] = 'date_hangout';
-    ((s as any).date_ev ?? {})['loc_img'] = 'loc_img';
-    ((s as any).date_ev ?? {})['talk_img'] = 'talk_img';
-    ((s as any).date_ev ?? {})['activity_count'] = (((s as any).date_ev ?? {})['activity_count'] ?? 0) + (1);
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['init'] = ((s as any).totminut ?? 0);
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['at_home'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['type'] = 'home_date';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['loc'] = 'date_hangout';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['loc_img'] = 'loc_img';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['talk_img'] = 'talk_img';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
   }
   // TODO-QSP: end
   scene.build();
@@ -99,7 +99,7 @@ function enterSettleIn(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sit on the couch', handler: (st: GameState) => {
-    ((s as any).date_ev ?? {})['hangout_loc'] = 'living_couch';
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['hangout_loc'] = 'living_couch';
     qspCall(s, 'date_hangout', 'loc_img');
     if (((s as any).coatworntype ?? 0) !== 'none') {
       if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -276,8 +276,8 @@ function enterActivityMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChatTop(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['chat_count'] = (((s as any).date_ev ?? {})['chat_count'] ?? 0) + (1);
-  ((s as any).date_ev ?? {})['last_active'] = 'chatting';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['chat_count'] = ((s as any).date_ev['chat_count'] ?? 0) + (1);
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['last_active'] = 'chatting';
   qspCall(s, 'date_hangout', 'loc_img');
   qspCall(s, 'date_funcs', 'set_continue', 'date_hangout', 'chat_top');
   qspCall(s, 'date_hangout', 'activity_menu');
@@ -291,8 +291,8 @@ function enterChatTop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFlirtTop(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['chat_count'] = (((s as any).date_ev ?? {})['chat_count'] ?? 0) + (1);
-  ((s as any).date_ev ?? {})['last_active'] = 'flirting';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['chat_count'] = ((s as any).date_ev['chat_count'] ?? 0) + (1);
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['last_active'] = 'flirting';
   qspCall(s, 'date_hangout', 'loc_img');
   qspCall(s, 'date_funcs', 'set_continue', 'date_hangout', 'flirt_top');
   // TODO-QSP: dynamic text: You're flirting with <<$npcdesc>>
@@ -339,7 +339,7 @@ function enterWatchHangMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWatchPart1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['cont_arg'] = 'watch_part2';
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cont_arg'] = 'watch_part2';
   qspCall(s, 'date_hangout', 'watching_image');
   if (((s as any).locArgs?.[1] ?? 0) === 'romantic') {
     scene.text('You watch something romantic.');
@@ -368,18 +368,18 @@ function enterWatchSexScene(s: GameState, scene: SceneBuilder): void {
 
 function enterTurnonBottomDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none') {
-    ((s as any).temp ?? {})['turnon_desc'] = 'seeping into your panties. ';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['turnon_desc'] = 'seeping into your panties. ';
   } else {
     if (((s as any).PCloPantsShortness ?? 0) >= 3) {
-      ((s as any).temp ?? {})['turnon_desc'] = 'seeping into the crotch of your pants. ';
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['turnon_desc'] = 'seeping into the crotch of your pants. ';
     } else {
       if (((s as any).PCloPantsShortness ?? 0) > 0) {
-        ((s as any).temp ?? {})['turnon_desc'] = 'seeping into the crotch of your shorts. ';
+        if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['turnon_desc'] = 'seeping into the crotch of your shorts. ';
       } else {
         if (((s as any).PCloSkirtShortness ?? 0) > 0) {
-          ((s as any).temp ?? {})['turnon_desc'] = 'wetting your thighs beneath your skirt. ';
+          if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['turnon_desc'] = 'wetting your thighs beneath your skirt. ';
         } else {
-          ((s as any).temp ?? {})['turnon_desc'] = 'wetting your thighs. ';
+          if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['turnon_desc'] = 'wetting your thighs. ';
         }
       }
     }
@@ -398,7 +398,7 @@ function enterWatchTurnon(s: GameState, scene: SceneBuilder): void {
     scene.text(`The characters on the screen keep rubbing their bodies together, a writhing mass of sensual flesh, and a heat blossoms inside you. Your brain knows its fake, but your body can't tell the difference. With a start, you realize you're squirming in your seat. Your nipples are hard, you're rubbing your legs together, and a hot moisture is ${((s as any).temp ?? 0)?.['turnon_desc']}`);
   }
   if ((Math.floor(Math.random() * 5) + 1) <= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
-    ((s as any).date_ev ?? {})['boy_turned_on'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['boy_turned_on'] = 1;
     if (((s as any).date_ev ?? 0)?.['cuddle_active'] === 1) {
       // TODO-QSP: dynamic text: <<$npcdesc>> is faring no better and you can feel his <<$npc_dick_desc[$npcID]>>...
       scene.text(`${((s as any).npcdesc ?? 0)} is faring no better and you can feel his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)]} cock hardening against your ass, consciously or unconsciously grinding his hips into yours a little bit.`);
@@ -598,7 +598,7 @@ function enterBoyMakingMoves(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Excited!', handler: (st: GameState) => {
-    ((s as any).sex_ev ?? {})['starting_mood'] = 'excited';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['starting_mood'] = 'excited';
     if (((s as any).pcs_think ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Oh this is going to feel sooooooo gooood...</i> as your eyes roll into the back of your head with pleasure.');
     } else {
@@ -614,7 +614,7 @@ function enterBoyMakingMoves(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Let it escalate (reluctant sex)', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
-    ((s as any).sex_ev ?? {})['starting_mood'] = 'reluctant';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['starting_mood'] = 'reluctant';
     scene.text('An itch in your spine starts to build as you realize you don\'t like where this is going. But the pressure is too much for you to say no, you don\'t feel like you can talk him out of it. And if you can\'t say no, then he\'s just going to get to do whatever he wants...');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -642,7 +642,7 @@ function enterBoyMakingMovesPress(s: GameState, scene: SceneBuilder): void {
     { label: 'Let it happen', handler: (st: GameState) => {
     scene.img('images/shared/sex/foreplay/necking2.mp4');
     scene.text('Deaf to your pleas, he\'s plucking at your clothes now, and you realize with reluctance, you\'re just going to have to let him do this...');
-    ((s as any).sex_ev ?? {})['starting_mood'] = 'reluctant';
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['starting_mood'] = 'reluctant';
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_hangout', 'go_to_sex'
@@ -686,12 +686,12 @@ function enterCuddleUp(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Feeling close to <<$npcdesc>>, you want to feel even closer and start snuggling ...
       scene.text(`Feeling close to ${((s as any).npcdesc ?? 0)}, you want to feel even closer and start snuggling up to him. Unfortunately, he doesn't seem to feel the same way as he visibly stiffens and backs off more to his side of the furniture.`);
     } else {
-      ((s as any).date_ev ?? {})['cuddle_active'] = 1;
+      if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cuddle_active'] = 1;
       // TODO-QSP: dynamic text: Feeling close to <<$npcdesc>>, you want to feel even closer and start snuggling ...
       scene.text(`Feeling close to ${((s as any).npcdesc ?? 0)}, you want to feel even closer and start snuggling up to him. You feel him stiffen awkwardly, but he doesn't move away. Maybe he doesn't share your feelings...`);
     }
   } else {
-    ((s as any).date_ev ?? {})['cuddle_active'] = 1;
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cuddle_active'] = 1;
     // TODO-QSP: dynamic text: Feeling close to <<$npcdesc>>, you want to feel even closer and start snuggling ...
     scene.text(`Feeling close to ${((s as any).npcdesc ?? 0)}, you want to feel even closer and start snuggling up to him. He smiles and does the same, wrapping his arm around you and pulling you into his warmth.`);
   }
@@ -701,7 +701,7 @@ function enterCuddleUp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCuddleStop(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_ev ?? {})['cuddle_active'] = 0;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['cuddle_active'] = 0;
   scene.actions([{ label: 'Continue', goto: ['date_hangout', 'activity_menu'] }]);
   // TODO-QSP: end
   scene.build();
@@ -750,14 +750,14 @@ function enterKissToSex(s: GameState, scene: SceneBuilder): void {
 
 function enterGoToSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_hangout', 'date_end_stats');
-  ((s as any).date_ev ?? {})['npc_home_sex'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['npc_home_sex'] = 1;
   scene.actions([{ label: 'Continue', goto: ['sex_ev_start', 'npc_home_start'] }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
-  ((s as any).date_count_hangout ?? {})[String((s as any).npcID ?? 0)] = (((s as any).date_count_hangout ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  if (!(s as any).date_count_hangout) (s as any).date_count_hangout = {}; (s as any).date_count_hangout[String((s as any).npcID ?? 0)] = ((s as any).date_count_hangout[String((s as any).npcID ?? 0)] ?? 0) + (1);
   // TODO-QSP: end
   // TODO-QSP: --- date_hangout ---------------------------------
   scene.build();

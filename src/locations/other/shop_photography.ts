@@ -24,7 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He smiles at you. "Yes yes, I remember. You're <<$pcs_nickname>>, right? Let me ...
     scene.text(`He smiles at you. "Yes yes, I remember. You're ${((s as any).pcs_nickname ?? 0)}, right? Let me check."`);
     scene.text('He opens a laptop sitting on the counter next to him and taps on the keys before he looks up at you.');
-    ((s as any).photography ?? {})['datecheck'] = ((s as any).daystart ?? 0);
+    if (!(s as any).photography) (s as any).photography = {}; (s as any).photography['datecheck'] = ((s as any).daystart ?? 0);
     qspCall(s, 'photography_work', 'job_init');
     qspCall(s, 'jobs_gigs', 'disp_evt', 1);
   } },

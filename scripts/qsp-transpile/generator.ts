@@ -195,21 +195,22 @@ function generateSceneBody(
            break;
          }
           if (lhs === "setloc['imagepath']" && node.op === '=') {
-           out.push(`((s as any).setloc ?? {})['imagepath'] = 'images/' + ${val};`);
-           stateWrites.push(varName);
-           break;
-         }
+            out.push(`if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + ${val};`);
+            stateWrites.push(varName);
+            break;
+          }
         const bracketIdx = lhs.indexOf('[');
         if (bracketIdx !== -1) {
           const objName = lhs.slice(0, bracketIdx);
           const rest = lhs.slice(bracketIdx);
-          const guarded = `((s as any).${objName} ?? {})${rest}`;
+          const init = `if (!(s as any).${objName}) (s as any).${objName} = {};`;
+          const guarded = `(s as any).${objName}${rest}`;
           if (node.op === '=') {
-            out.push(`${guarded} = ${val};`);
+            out.push(`${init} ${guarded} = ${val};`);
           } else if (node.op === '+=') {
-            out.push(`${guarded} = (${guarded} ?? 0) + (${val});`);
+            out.push(`${init} ${guarded} = (${guarded} ?? 0) + (${val});`);
           } else {
-            out.push(`${guarded} = (${guarded} ?? 0) - (${val});`);
+            out.push(`${init} ${guarded} = (${guarded} ?? 0) - (${val});`);
           }
         } else if (node.op === '=') {
           out.push(`(s as any).${lhs} = ${val};`);

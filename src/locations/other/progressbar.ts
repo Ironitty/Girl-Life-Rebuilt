@@ -23,19 +23,19 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).color_thresholds ?? 0) !== '') {
     (s as any).color_thr_pos = qspUntranslated(s, "instr(color_thr_work, ',')", { location: "progressbar" });
-    ((s as any).color_thr ?? {})[0] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[0] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
     (s as any).color_thr_pos = qspUntranslated(s, "instr(color_thr_work, ',')", { location: "progressbar" });
-    ((s as any).color_thr ?? {})[1] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[1] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
     (s as any).color_thr_pos = qspUntranslated(s, "instr(color_thr_work, ',')", { location: "progressbar" });
-    ((s as any).color_thr ?? {})[2] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
-    ((s as any).color_thr ?? {})[3] = qspUntranslated(s, "val(color_thr_work)", { location: "progressbar" });
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[2] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[3] = qspUntranslated(s, "val(color_thr_work)", { location: "progressbar" });
     // TODO-QSP: killvar 'color_thr_work'
     // TODO-QSP: killvar 'color_thr_pos'
   } else {
-    ((s as any).color_thr ?? {})[0] = 15;
-    ((s as any).color_thr ?? {})[1] = 35;
-    ((s as any).color_thr ?? {})[2] = 65;
-    ((s as any).color_thr ?? {})[3] = 85;
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[0] = 15;
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[1] = 35;
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[2] = 65;
+    if (!(s as any).color_thr) (s as any).color_thr = {}; (s as any).color_thr[3] = 85;
   }
   if (((s as any).color_gradient ?? 0) === 'positive') {
     if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[0]) {
@@ -95,11 +95,11 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: $color_stop_hex[2] = $theme_hex['neutral']
             // TODO-QSP: $color_stop_hex[3] = $theme_hex['pos']
             // TODO-QSP: $color_stop_hex[4] = $theme_hex['v_pos']
-            ((s as any).color_stop_at ?? {})[0] = 0;
-            ((s as any).color_stop_at ?? {})[1] = ((s as any).color_thr ?? 0)[0] + (((s as any).color_thr ?? 0)[1] - ((s as any).color_thr ?? 0)[0]) / 2;
-            ((s as any).color_stop_at ?? {})[2] = ((s as any).color_thr ?? 0)[1] + (((s as any).color_thr ?? 0)[2] - ((s as any).color_thr ?? 0)[1]) / 2;
-            ((s as any).color_stop_at ?? {})[3] = ((s as any).color_thr ?? 0)[2] + (((s as any).color_thr ?? 0)[3] - ((s as any).color_thr ?? 0)[2]) / 2;
-            ((s as any).color_stop_at ?? {})[4] = 100;
+            if (!(s as any).color_stop_at) (s as any).color_stop_at = {}; (s as any).color_stop_at[0] = 0;
+            if (!(s as any).color_stop_at) (s as any).color_stop_at = {}; (s as any).color_stop_at[1] = ((s as any).color_thr ?? 0)[0] + (((s as any).color_thr ?? 0)[1] - ((s as any).color_thr ?? 0)[0]) / 2;
+            if (!(s as any).color_stop_at) (s as any).color_stop_at = {}; (s as any).color_stop_at[2] = ((s as any).color_thr ?? 0)[1] + (((s as any).color_thr ?? 0)[2] - ((s as any).color_thr ?? 0)[1]) / 2;
+            if (!(s as any).color_stop_at) (s as any).color_stop_at = {}; (s as any).color_stop_at[3] = ((s as any).color_thr ?? 0)[2] + (((s as any).color_thr ?? 0)[3] - ((s as any).color_thr ?? 0)[2]) / 2;
+            if (!(s as any).color_stop_at) (s as any).color_stop_at = {}; (s as any).color_stop_at[4] = 100;
             if (((s as any).color_gradient ?? 0) === 'smooth_negative') {
               // TODO-QSP: $color_stop_hex[0] = $theme_hex['v_pos']
               // TODO-QSP: $color_stop_hex[1] = $theme_hex['pos']
@@ -154,51 +154,51 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   }
   return;
   // TODO-QSP: end
-  ((s as any).progressbar ?? {})['gradient'] = ((s as any).locArgs?.[0] ?? 0);
-  ((s as any).progressbar ?? {})['raw_value'] = qspUntranslated(s, "ARGS[1]", { location: "progressbar" });
-  ((s as any).progressbar ?? {})['max_value'] = qspUntranslated(s, "ARGS[2]", { location: "progressbar" });
-  ((s as any).progressbar ?? {})['phantom_raw'] = qspUntranslated(s, "ARGS[3]", { location: "progressbar" });
-  ((s as any).progressbar ?? {})['overlay'] = 0;
-  ((s as any).progressbar ?? {})['overlay_gradient'] = ((((s as any).locArgs?.[5] ?? 0) === '') ? ('accent') : (((s as any).locArgs?.[5] ?? 0)));
-  ((s as any).progressbar ?? {})['label_pos'] = ((((s as any).locArgs?.[6] ?? 0) === '') ? ('auto') : (((s as any).locArgs?.[6] ?? 0)));
-  ((s as any).progressbar ?? {})['thresholds'] = ((s as any).locArgs?.[7] ?? 0);
-  ((s as any).progressbar ?? {})['bar_width_val'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200));
-  ((s as any).progressbar ?? {})['bar_width_css'] = String(((s as any).progressbar ?? 0)?.['bar_width_val']) + 'px';
-  ((s as any).progressbar ?? {})['bar_width_attr'] = qspUntranslated(s, "str(progressbar['bar_width_val'])", { location: "progressbar" });
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['gradient'] = ((s as any).locArgs?.[0] ?? 0);
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['raw_value'] = qspUntranslated(s, "ARGS[1]", { location: "progressbar" });
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['max_value'] = qspUntranslated(s, "ARGS[2]", { location: "progressbar" });
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['phantom_raw'] = qspUntranslated(s, "ARGS[3]", { location: "progressbar" });
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['overlay'] = 0;
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['overlay_gradient'] = ((((s as any).locArgs?.[5] ?? 0) === '') ? ('accent') : (((s as any).locArgs?.[5] ?? 0)));
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = ((((s as any).locArgs?.[6] ?? 0) === '') ? ('auto') : (((s as any).locArgs?.[6] ?? 0)));
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['thresholds'] = ((s as any).locArgs?.[7] ?? 0);
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['bar_width_val'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200));
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['bar_width_css'] = String(((s as any).progressbar ?? 0)?.['bar_width_val']) + 'px';
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['bar_width_attr'] = qspUntranslated(s, "str(progressbar['bar_width_val'])", { location: "progressbar" });
   if (((s as any).progressbar ?? 0)?.['max_value'] > 0) {
-    ((s as any).progressbar ?? {})['value'] = Math.min(100, ((s as any).progressbar ?? {})?.['raw_value'] * 100 / ((s as any).progressbar ?? {})?.['max_value']);
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['value'] = Math.min(100, ((s as any).progressbar ?? {})?.['raw_value'] * 100 / ((s as any).progressbar ?? {})?.['max_value']);
   } else {
-    ((s as any).progressbar ?? {})['value'] = qspUntranslated(s, "min(max(0, progressbar['raw_value']), 100)", { location: "progressbar" });
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['value'] = qspUntranslated(s, "min(max(0, progressbar['raw_value']), 100)", { location: "progressbar" });
   }
-  ((s as any).progressbar ?? {})['phantom'] = Math.min(Math.max(((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['phantom_raw']), 100) - ((s as any).progressbar ?? {})?.['value'];
-  ((s as any).progressbar ?? {})['label'] = qspUntranslated(s, "str(progressbar['raw_value'])", { location: "progressbar" });
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['phantom'] = Math.min(Math.max(((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['phantom_raw']), 100) - ((s as any).progressbar ?? {})?.['value'];
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label'] = qspUntranslated(s, "str(progressbar['raw_value'])", { location: "progressbar" });
   if (((s as any).progressbar ?? 0)?.['phantom_raw'] > 0  &&  ((s as any).progressbar ?? 0)?.['phantom_raw'] !== ((s as any).progressbar ?? 0)?.['raw_value']) {
-    ((s as any).progressbar ?? {})['label'] = (((s as any).progressbar ?? {})['label'] ?? 0) + (' (' + qspUntranslated(s, "progressbar['phantom_raw']>", { location: "progressbar" }) + ')');
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label'] = ((s as any).progressbar['label'] ?? 0) + (' (' + qspUntranslated(s, "progressbar['phantom_raw']>", { location: "progressbar" }) + ')');
   }
-  ((s as any).progressbar ?? {})['label_raw'] = ((s as any).progressbar ?? 0)?.['label'];
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_raw'] = ((s as any).progressbar ?? 0)?.['label'];
   if (((s as any).progressbar ?? 0)?.['label_raw'] !== ''  &&  ((s as any).sd_font_pct ?? 0) !== 100) {
-    ((s as any).progressbar ?? {})['label'] = '<span style="font-size:\' + $str(sd_font_pct) + \'%;">\' + $progressbar[\'label_raw\'] + \'</span>';
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label'] = '<span style="font-size:\' + $str(sd_font_pct) + \'%;">\' + $progressbar[\'label_raw\'] + \'</span>';
   }
   if (((s as any).stat_cfg ?? 0)?.['font_size'] > 0) {
-    ((s as any).progressbar ?? {})['label_px'] = ((((s as any).progressbar ?? 0)?.['label']).length) * (((s as any).stat_cfg ?? {})?.['font_size'] + 2);
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_px'] = ((((s as any).progressbar ?? 0)?.['label']).length) * (((s as any).stat_cfg ?? {})?.['font_size'] + 2);
   } else {
-    ((s as any).progressbar ?? {})['label_px'] = ((((s as any).progressbar ?? 0)?.['label']).length) * 9;
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_px'] = ((((s as any).progressbar ?? 0)?.['label']).length) * 9;
   }
-  ((s as any).progressbar ?? {})['label_width_pct'] = ((s as any).progressbar ?? {})?.['label_px'] * 100 / ((s as any).progressbar ?? {})?.['bar_width_val'];
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_width_pct'] = ((s as any).progressbar ?? {})?.['label_px'] * 100 / ((s as any).progressbar ?? {})?.['bar_width_val'];
   if (((s as any).progressbar ?? 0)?.['label'] === ''  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'none') {
-    ((s as any).progressbar ?? {})['label_pos'] = 'none';
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'none';
   } else {
     if (((s as any).progressbar ?? 0)?.['label_pos'] === 'outside'  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'right') {
-      ((s as any).progressbar ?? {})['label_pos'] = 'bg';
+      if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'bg';
     } else {
       if (((s as any).progressbar ?? 0)?.['label_pos'] === 'auto'  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'inside') {
         if (((s as any).progressbar ?? 0)?.['value'] >= ((s as any).progressbar ?? 0)?.['label_width_pct']) {
-          ((s as any).progressbar ?? {})['label_pos'] = 'bar';
+          if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'bar';
         } else {
           if (((s as any).progressbar ?? 0)?.['phantom'] > 0  &&  ((s as any).progressbar ?? 0)?.['phantom'] >= ((s as any).progressbar ?? 0)?.['label_width_pct']) {
-            ((s as any).progressbar ?? {})['label_pos'] = 'phantom';
+            if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'phantom';
           } else {
-            ((s as any).progressbar ?? {})['label_pos'] = 'bg';
+            if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'bg';
           }
         }
       }
@@ -206,20 +206,20 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).progressbar ?? 0)?.['label_pos'] === 'bg'  &&  (((s as any).progressbar ?? 0)?.['value'] + ((s as any).progressbar ?? 0)?.['phantom']) >= 100) {
     if (((s as any).progressbar ?? 0)?.['phantom'] > 0) {
-      ((s as any).progressbar ?? {})['label_pos'] = 'phantom';
+      if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'phantom';
     } else {
-      ((s as any).progressbar ?? {})['label_pos'] = 'bar';
+      if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'bar';
     }
   }
-  ((s as any).progressbar ?? {})['bar_color'] = qspFunc(s, 'progressbar', 'color', ((s as any).progressbar ?? 0)?.['gradient'], ((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['thresholds']);
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['bar_color'] = qspFunc(s, 'progressbar', 'color', ((s as any).progressbar ?? 0)?.['gradient'], ((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['thresholds']);
   if (((s as any).progressbar ?? 0)?.['overlay'] > 0) {
-    ((s as any).progressbar ?? {})['overlay_color'] = qspFunc(s, 'progressbar', 'color', ((s as any).progressbar ?? 0)?.['overlay_gradient'], ((s as any).progressbar ?? 0)?.['overlay']);
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['overlay_color'] = qspFunc(s, 'progressbar', 'color', ((s as any).progressbar ?? 0)?.['overlay_gradient'], ((s as any).progressbar ?? 0)?.['overlay']);
   }
   if (((s as any).progressbar ?? 0)?.['phantom'] > 0) {
     if (((s as any).theme ?? 0)?.['is_dark']) {
-      ((s as any).progressbar ?? {})['phantom_color'] = qspFunc(s, 'math', 'color_mix', ((s as any).progressbar ?? 0)?.['bar_color'], '#000000', 50);
+      if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['phantom_color'] = qspFunc(s, 'math', 'color_mix', ((s as any).progressbar ?? 0)?.['bar_color'], '#000000', 50);
     } else {
-      ((s as any).progressbar ?? {})['phantom_color'] = qspFunc(s, 'math', 'color_mix', ((s as any).progressbar ?? 0)?.['bar_color'], '#FFFFFF', 50);
+      if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['phantom_color'] = qspFunc(s, 'math', 'color_mix', ((s as any).progressbar ?? 0)?.['bar_color'], '#FFFFFF', 50);
     }
   }
   if (((s as any).progressbar ?? 0)?.['label_pos'] === 'bar'  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'phantom') {
@@ -241,9 +241,9 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).progressbar ?? 0)?.['label_pos'] === 'bar') {
-      ((s as any).progressbar ?? {})['label_on_color'] = ((s as any).pb_lc_result ?? 0);
+      if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_on_color'] = ((s as any).pb_lc_result ?? 0);
     } else {
-      ((s as any).progressbar ?? {})['phantom_on_color'] = ((s as any).pb_lc_result ?? 0);
+      if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['phantom_on_color'] = ((s as any).pb_lc_result ?? 0);
     }
     // TODO-QSP: killvar 'pb_lc_hex'
     // TODO-QSP: killvar 'pb_lc_bar_r'
@@ -258,7 +258,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'pb_lc_bg_hex'
     // TODO-QSP: killvar 'pb_lc_result'
   }
-  ((s as any).progressbar ?? {})['mode'] = ((((s as any).locArgs?.[8] ?? 0) > 0) ? (((s as any).ARGS ?? 0)[8] - 1) : (0));
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['mode'] = ((((s as any).locArgs?.[8] ?? 0) > 0) ? (((s as any).ARGS ?? 0)[8] - 1) : (0));
   if (((s as any).progressbar ?? 0)?.['mode'] === 2) {
     if (((s as any).progressbar ?? 0)?.['bar_color'] !== '') {
     }

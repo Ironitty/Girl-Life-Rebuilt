@@ -10,17 +10,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
-  ((s as any).stat ?? {})['hookup'] = (((s as any).stat ?? {})['hookup'] ?? 0) + (1);
-  ((s as any).npc_hookup ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_hookup ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
-  ((s as any).npc_last_sex ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hookup'] = ((s as any).stat['hookup'] ?? 0) + (1);
+  if (!(s as any).npc_hookup) (s as any).npc_hookup = {}; (s as any).npc_hookup[String((s as any).npcID ?? 0)] = ((s as any).npc_hookup[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  if (!(s as any).npc_last_sex) (s as any).npc_last_sex = {}; (s as any).npc_last_sex[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   if (((s as any).hookup ?? 0)?.['virgin'] === 1  &&  ((s as any).hookup ?? 0)?.['fuck'] > 0) {
-    ((s as any).npc_virgin_take ?? {})[String((s as any).npcID ?? 0)] = 1;
+    if (!(s as any).npc_virgin_take) (s as any).npc_virgin_take = {}; (s as any).npc_virgin_take[String((s as any).npcID ?? 0)] = 1;
   }
   qspCall(s, 'hookup_after', 'dress');
   if (((s as any).hookup ?? 0)?.['fuckbuddy'] > 0) {
-    ((s as any).know_virgin ?? {})[String((s as any).npcID ?? 0)] = ((s as any).hookup ?? 0)?.['virgin'];
+    if (!(s as any).know_virgin) (s as any).know_virgin = {}; (s as any).know_virgin[String((s as any).npcID ?? 0)] = ((s as any).hookup ?? 0)?.['virgin'];
     qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
-    ((s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_no_booty_call) (s as any).npc_no_booty_call = {}; (s as any).npc_no_booty_call[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'pav_residential') {
@@ -295,8 +295,8 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     if (((s as any).orgasm ?? 0) === ((s as any).hookup ?? 0)?.['orgasm']) {
       scene.actions([
         { label: 'Come', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['cum_together'] = 1;
-    ((s as any).hookup ?? {})['creampie_surprise_cum'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cum_together'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['creampie_surprise_cum'] = 1;
     qspCall(s, 'arousal', 'vaginal', (-1), 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
@@ -339,7 +339,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'hookup_after', 'creampie_mad');
   } },
       { label: 'Take it in stride', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['take_in_stride'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['take_in_stride'] = 1;
     if (((s as any).hookup ?? 0)?.['creampie_exit'] === 0) {
       scene.text('You\'re a bit surprised, but you manage to take it in stride, letting him ride out his orgasm inside of you.');
       scene.actions([
@@ -383,7 +383,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hookup ?? 0)?.['creampie_ask'] === 0) {
     scene.actions([
       { label: 'Did you just cum inside me?', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['did_you_cum_inside'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['did_you_cum_inside'] = 1;
     if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/cum/vagcreampie/oops.jpg');
       // TODO-QSP: dynamic text: <<$npcdesc>> pulls out of you and you feel something trickle from your pussy.
@@ -783,11 +783,11 @@ function enterLightCigarette(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_smoker ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       // TODO-QSP: dynamic text: The moment you pull away from each other, <<$npcdesc>> reaches over and pulls ou...
       scene.text(`The moment you pull away from each other, ${((s as any).npcdesc ?? 0)} reaches over and pulls out a pack of cigarettes, lighting one for himself and inhaling deeply.`);
-      ((s as any).hookup ?? {})['cigarette'] = (-1);
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = (-1);
       if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
         scene.actions([
           { label: 'Have a smoke', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['cigarette'] = 5;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 5;
     scene.img('images/shared/sex/after/bed_smoke0.jpg');
     scene.text('You decide to grab a smoke too, pulling one from your purse. You place it in your mouth, sparking it with your lighter while you inhale.');
     scene.actions([
@@ -804,7 +804,7 @@ function enterLightCigarette(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Ask to bum a cigarette', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['cigarette'] = 5;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 5;
     scene.img('images/shared/sex/after/bed_smoke2.jpg');
     scene.text('"Any chance I could get one of those?" you ask in the most sultry way you can.');
     // TODO-QSP: dynamic text: "Cost is one fuck per," <<$npcdesc>> says, grinning.
@@ -825,7 +825,7 @@ function enterLightCigarette(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
       scene.actions([
         { label: 'Have a smoke', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['cigarette'] = 4;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 4;
     scene.img('images/shared/sex/after/bed_smoke0.jpg');
     scene.text('Pulling a cigarette from your purse, you place it in your mouth, sparking it with your lighter while you inhale.');
     scene.actions([
@@ -849,7 +849,7 @@ function enterLightCigarette2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
     scene.actions([
       { label: 'Have a smoke', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['cigarette'] = 5;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 5;
     scene.img('images/shared/sex/after/bed_smoke0.jpg');
     scene.text('You decide to grab a smoke too, pulling one from your purse. You place it in your mouth, sparking it with your lighter while you inhale.');
     scene.actions([
@@ -867,7 +867,7 @@ function enterLightCigarette2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask to bum a cigarette', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['cigarette'] = 5;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 5;
     scene.img('images/shared/sex/after/bed_smoke2.jpg');
     scene.text('"Any chance I could get one of those?" you ask in the most sultry way you can.');
     // TODO-QSP: dynamic text: "Cost is one fuck per," <<$npcdesc>> says, grinning.
@@ -951,9 +951,9 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
         scene.text(`<center><b>${((s as any).npcdesc ?? 0)}'s Bedroom</b></center>`);
         // TODO-QSP: $npc_apt_bedroom[$npcID]
         if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
-          ((s as any).mc_inventory ?? {})['makeup_wipes'] = (((s as any).mc_inventory ?? {})['makeup_wipes'] ?? 0) - (1);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
         } else {
-          ((s as any).hookup ?? {})['wipes'] = 2;
+          if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 2;
         }
         if (((s as any).hookup ?? 0)?.['wipes'] === 2) {
           scene.text('"Hey, got anything I can use to clean up?" you smirk, pointing at your sperm-glazed face.');
@@ -1049,7 +1049,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
           { label: 'Take a shower', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.img('images/shared/home/bathroom/dush.mp4');
-    ((s as any).hookup ?? {})['shower'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['shower'] = 1;
     qspCall(s, 'din_van', 'showerdin');
     // TODO-QSP: dynamic text: You turn on the faucet, relaxing as the hot water pours down over your skin. Aft...
     scene.text(`You turn on the faucet, relaxing as the hot water pours down over your skin. After a few minutes, you turn the tap off and step out, walking back to ${((s as any).npcdesc ?? 0)}'s room wet and dripping. ${((s as any).npcdesc ?? 0)} is still there, relaxing in his bed.`);
@@ -1200,13 +1200,13 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
         { label: 'Have a smoke', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/bed_smoke0.jpg');
     scene.text('Pulling a cigarette from your purse, you place it in your mouth, sparking it with your lighter while you inhale.');
-    ((s as any).hookup ?? {})['cigarette'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 1;
     scene.actions([
       { label: 'Smoke', goto: ['hookup_after', 'start'] },
     ]);
   } },
         { label: 'Have a smoke and play with your phone', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['cigarette'] = 3;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 3;
     qspCall(s, 'hookup_after', 'start');
   } },
       ]);
@@ -1215,14 +1215,14 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
         scene.actions([
           { label: 'Clean yourself up (use your own wipes)', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['wipes'] = 1;
-    ((s as any).mc_inventory ?? {})['makeup_wipes'] = (((s as any).mc_inventory ?? {})['makeup_wipes'] ?? 0) - (1);
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 1;
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
   }, goto: ['hookup_after', 'wipes'] },
         ]);
       }
       scene.actions([
         { label: 'Clean yourself up (ask him for wipes)', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['wipes'] = 2;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 2;
   }, goto: ['hookup_after', 'wipes'] },
       ]);
     }
@@ -1265,7 +1265,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'hookup_after', 'start');
   } },
       { label: 'Get up', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['get_up'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['get_up'] = 1;
     scene.text(`<center><b>${((s as any).npcdesc ?? 0)}'s Bedroom</b></center>`);
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     qspCall(s, 'hookup_after', 'start');
@@ -1280,7 +1280,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hookup ?? 0)?.['cum_choice'] === 'stomach') {
         // TODO-QSP: dynamic text: Rolling over onto your stomach, you feel <<$npcdesc>>'s cum smear across your st...
         scene.text(`Rolling over onto your stomach, you feel ${((s as any).npcdesc ?? 0)}'s cum smear across your stomach and the sheets as you reach down to your purse. Pulling out your phone, you take a scroll through your feeds, zoning out in the mindless social media and relaxing as you wind down.`);
-        ((s as any).hookup ?? {})['wipes'] = 0;
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 0;
       } else {
         if (((s as any).hookup ?? 0)?.['cum_choice'] === 'ass'  ||  ((s as any).hookup ?? 0)?.['cum_choice'] === 'back') {
           scene.text('Scooching over to the edge of the bed, you reach down to your purse, pulling out your phone. You scrolling through your feeds, zoning out in the mindless social media and relaxing as you wind down.');
@@ -1322,7 +1322,7 @@ function enterWipes(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You carefully wipe the cum from your face, making sure to get every last drop. About a minute later, you can still feel a faintly sticky layer over the top of your skin, but at least nobody is going to give you funny looks walking down the street.');
     }
-    ((s as any).hookup ?? {})['wipes'] = 0;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 0;
   } else {
     if (((s as any).cum_loc ?? 0)?.['stomach'] > 0  ||  ((s as any).hookup ?? 0)?.['cum_choice'] === 'stomach') {
       scene.img('images/shared/sex/cum/stomach/bellycum3.jpg');
@@ -1333,7 +1333,7 @@ function enterWipes(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You really need to clean yourself after up after that. Reaching down to your purse, you pull some wipes out of your purse.');
       }
-      ((s as any).hookup ?? {})['wipes'] = 0;
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 0;
     } else {
       if (((s as any).cum_loc ?? 0)?.['butt'] > 0  ||  ((s as any).hookup ?? 0)?.['cum_choice'] === 'ass'  ||  ((s as any).hookup ?? 0)?.['cum_choice'] === 'back') {
         scene.img('images/shared/sex/cum/back1.jpg');
@@ -1344,7 +1344,7 @@ function enterWipes(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('You really need to clean yourself after up after that. Reaching down to your purse, you pull some wipes out of your purse, awkwardly wiping your ass and back with it.');
         }
-        ((s as any).hookup ?? {})['wipes'] = 0;
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 0;
       } else {
         if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  ||  ((s as any).hookup ?? 0)?.['cum_choice'] === 'creampie') {
           if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
@@ -1382,7 +1382,7 @@ function enterWipes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cum_loc ?? 0)?.['hands'] > 0) {
     scene.text('Once you\'re satisfied that the rest of your body is clean, you wipe your hands off and toss the wipes into the trash.');
   }
-  ((s as any).hookup ?? {})['wipes'] = 0;
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['wipes'] = 0;
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'hookup_after', 'start');
   // TODO-QSP: end
@@ -1457,7 +1457,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask to bum a cigarette', handler: (st: GameState) => {
     scene.text('He pulls another cigarette out the pack and places it in your lips, flicking his lighter until the tip catches fire and you draw smoke in through your mouth.');
-    ((s as any).hookup ?? {})['cigarette'] = 2;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['cigarette'] = 2;
     scene.actions([
       { label: 'Smoke together', goto: ['hookup_after', 'start'] },
     ]);
@@ -1480,7 +1480,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a shower', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.img('images/shared/home/bathroom/dush.mp4');
-    ((s as any).hookup ?? {})['shower'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['shower'] = 1;
     qspCall(s, 'din_van', 'showerdin');
     // TODO-QSP: dynamic text: You turn on the faucet, relaxing as the hot water pours down over your skin. Aft...
     scene.text(`You turn on the faucet, relaxing as the hot water pours down over your skin. After a few minutes, you turn the tap off, toweling off using what you can only assume to be ${((s as any).npcdesc ?? 0)}'s towel and walk naked back into his room. ${((s as any).npcdesc ?? 0)} is still there, relaxing in his bed`);
@@ -1541,7 +1541,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Force yourself to get up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['get_up'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['get_up'] = 1;
     // TODO-QSP: $npc_apt_bedroom[$npcID]
     scene.text('With tremendous effort, you force your eyes open and haul yourself out of bed. You can\'t fall asleep now, not yet.');
     qspCall(s, 'hookup_after', 'start');
@@ -1551,7 +1551,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Drift off into sleep', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['sleep_accident'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['sleep_accident'] = 1;
     if (((s as any).hookup ?? 0)?.['cum_choice'] === 'face') {
       scene.img(`images/shared/sex/cum/facial/sleep${Math.floor(Math.random() * 3) + 1}.jpg`);
     } else {
@@ -1580,7 +1580,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCuddle(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hookup ?? {})['bed'] = 1;
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['bed'] = 1;
   scene.img('images/shared/sex/after/cuddle1.jpg');
   if (((s as any).hookup ?? 0)?.['shower'] === 1) {
     // TODO-QSP: dynamic text: Hair still wet from the shower, you crawl back into bed with <<$npcdesc>> and cu...
@@ -1606,17 +1606,17 @@ function enterCuddle(s: GameState, scene: SceneBuilder): void {
 
 function enterGottaGo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hookup ?? 0)?.['fuck'] > 0) {
-    ((s as any).hookup ?? {})['fun'] = 'fuck';
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fun'] = 'fuck';
   } else {
-    ((s as any).hookup ?? {})['fun'] = 'fun';
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fun'] = 'fun';
   }
   if (((s as any).hookup ?? 0)?.['continuation'] === 0) {
-    ((s as any).hookup ?? {})['continuation'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['continuation'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'I should go', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['i_should_go'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['i_should_go'] = 1;
     scene.img('images/pc/activities/misc/dress_1.mp4');
     if (((s as any).hookup ?? 0)?.['bed'] === 1) {
       // TODO-QSP: dynamic text: As nice as this is, you really can't stay and you heave yourself up and away fro...
@@ -1629,7 +1629,7 @@ function enterGottaGo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'hookup_after', 'hookup_continuation');
   } },
     { label: 'Thanks for the <<$hookup[\'fun\']>>', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['thank_for_fun'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['thank_for_fun'] = 1;
     qspCall(s, 'hookup_after', 'dress_loop');
     scene.img('images/pc/activities/misc/dress_1.mp4');
     if (((s as any).hookup ?? 0)?.['bed'] === 1) {
@@ -1685,11 +1685,11 @@ function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpendTheNight(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hookup ?? {})['npc_can_spend_the_night'] = 1;
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['npc_can_spend_the_night'] = 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['npc_can_spend_the_night'] = 2;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['npc_can_spend_the_night'] = 2;
     scene.text('"Thanks but no thanks," you smile wistfully. "I really need to get home tonight."');
     qspCall(s, 'hookup_after', 'hookup_continuation');
   } },
@@ -1754,7 +1754,7 @@ function enterPcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Once you're done, you grab your things and leave. <<$npcdesc>> doesn't say a wor...
       scene.text(`Once you're done, you grab your things and leave. ${((s as any).npcdesc ?? 0)} doesn't say a word as you close the door behind you.`);
     } else {
-      ((s as any).hookup ?? {})['fuckbuddy'] = 1;
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fuckbuddy'] = 1;
       scene.text('"What, like fuckbuddies?"');
       scene.text('"Why not?" you smirk.');
       scene.text('"Sure, I\'ll sleep with you again if you\'re offering."');
@@ -1795,7 +1795,7 @@ function enterPcDateRequest(s: GameState, scene: SceneBuilder): void {
       scene.text('For a moment you feel intensely awkward as you wait for his response, but when you turn to look at him he\'s smiling.');
       scene.text('"A date... Yeah, I\'d like to take you on a date sometime." Your expression bursts into a smile as well, unable to contain yourself.');
       scene.text('You tell him your number while you finished getting dressed and he taps it into his phone. A few moments later, a notification pings in your messages:');
-      ((s as any).hookup ?? {})['text_message'] = Math.floor(Math.random() * 2) + 1;
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['text_message'] = Math.floor(Math.random() * 2) + 1;
       if (((s as any).hookup ?? 0)?.['text_message'] === 1) {
         // TODO-QSP: '  ' + $func('wrap', 'accent b', 'hey cutie')
         scene.text('"Hey yourself," you say aloud, looking up at him. "Anyways, see you around."');
@@ -1838,12 +1838,12 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
-    ((s as any).hookup ?? {})['fuckbuddy'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fuckbuddy'] = 1;
     (s as any).fuckbuddy_total = ((s as any).fuckbuddy_total ?? 0) + (1);
     // TODO-QSP: dynamic text: "Sure, sounds fun," you smile, <<$hookup['dress_describe']>>.
     scene.text(`"Sure, sounds fun," you smile, ${((s as any).hookup ?? 0)?.['dress_describe']}.`);
     scene.text('After finishing getting dressed, you tell him your number while he taps it into his phone. A few moments later, a notification pings in your messages:');
-    ((s as any).hookup ?? {})['text_message'] = Math.floor(Math.random() * 2) + 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['text_message'] = Math.floor(Math.random() * 2) + 1;
     if (((s as any).hookup ?? 0)?.['text_message'] === 1) {
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'hey fuck buddy')
       scene.text('"Hey yourself," you say aloud, looking up at him. "Anyways, see you around."');
@@ -1870,7 +1870,7 @@ function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
     { label: 'Sure', handler: (st: GameState) => {
     scene.text('"Yeah, I think I\'d like that," you smile gently.');
     scene.text('After finishing getting dressed, you tell him your number while he taps it into his phone. A few moments later, a notification pings in your messages:');
-    ((s as any).hookup ?? {})['text_message'] = Math.floor(Math.random() * 2) + 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['text_message'] = Math.floor(Math.random() * 2) + 1;
     if (((s as any).hookup ?? 0)?.['text_message'] === 1) {
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'hey cutie')
       scene.text('"Hey yourself," you say aloud, looking up at him. "Anyways, see you around."');
@@ -1903,7 +1903,7 @@ function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
       { label: 'If we were fuckbuddies...', handler: (st: GameState) => {
     scene.text('"If it were something purely physical, like fuckbuddies or something, I wouldn\'t mind getting together for some fun, but I\'m just not interested in dating."');
     if ((Math.floor(Math.random() * 10) + 1) > 7  &&  ((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] !== 'serious') {
-      ((s as any).hookup ?? {})['fuckbuddy'] = 1;
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fuckbuddy'] = 1;
       // TODO-QSP: dynamic text: "Well... If it means I can see you again, then sure I guess." <<$npcdesc>> doesn...
       scene.text(`"Well... If it means I can see you again, then sure I guess." ${((s as any).npcdesc ?? 0)} doesn't really seem satisfied with the results, but he still tells you his number while you tap it into your contact list.`);
       scene.text('"So uhh, yeah... Call me sometime?"');
@@ -1945,8 +1945,8 @@ function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckbuddyText(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hookup ?? {})['fuckbuddy'] = 1;
-  ((s as any).hookup ?? {})['text_message'] = Math.floor(Math.random() * 2) + 1;
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fuckbuddy'] = 1;
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['text_message'] = Math.floor(Math.random() * 2) + 1;
   if (((s as any).hookup ?? 0)?.['text_message'] === 1) {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'hey fuck buddy')
     scene.text('"Hey yourself," you say aloud, smiling at him. "Anyways, see you around."');
@@ -1971,9 +1971,9 @@ function enterLater(s: GameState, scene: SceneBuilder): void {
 
 function enterJustAHookup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 9) {
-    ((s as any).hookup ?? {})['just_a'] = 'one night stand';
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['just_a'] = 'one night stand';
   } else {
-    ((s as any).hookup ?? {})['just_a'] = 'random hookup';
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['just_a'] = 'random hookup';
   }
   // TODO-QSP: end
   scene.actions([
@@ -2003,7 +2003,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
     scene.actions([
       { label: 'I have a boyfriend', handler: (st: GameState) => {
-    ((s as any).npc_know_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 0;
+    if (!(s as any).npc_know_girlfriend) (s as any).npc_know_girlfriend = {}; (s as any).npc_know_girlfriend[String((s as any).npcID ?? 0)] = 0;
     scene.img('images/shared/romance/misc/depart_annoyed1.mp4');
     scene.text('"I have a boyfriend," you say, giving him a look.');
     if (((s as any).npc_fidelity_label ?? 0)?.[String((s as any).npcID ?? 0)] === 'faithful') {
@@ -2027,7 +2027,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'So long as you know', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
-    ((s as any).hookup ?? {})['fuckbuddy'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fuckbuddy'] = 1;
     scene.text('"So long as you know," you smirk back. You exchange numbers with him and a moment later a notification pings in your messages.');
     qspCall(s, 'hookup_after', 'fuckbuddy_text');
     scene.actions([
@@ -2054,7 +2054,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['girlfriends_current'] > 0) {
     scene.actions([
       { label: 'I have a girlfriend', handler: (st: GameState) => {
-    ((s as any).npc_know_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
+    if (!(s as any).npc_know_girlfriend) (s as any).npc_know_girlfriend = {}; (s as any).npc_know_girlfriend[String((s as any).npcID ?? 0)] = 1;
     scene.img('images/shared/romance/misc/depart_annoyed1.mp4');
     scene.text('"I have a girlfriend," you say, giving him a look.');
     if (((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 6) {
@@ -2070,7 +2070,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'So long as you know', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
-    ((s as any).hookup ?? {})['fuckbuddy'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fuckbuddy'] = 1;
     scene.text('"So long as you know," you smirk back. You exchange numbers with him and a moment later a notification pings in your messages.');
     qspCall(s, 'hookup_after', 'fuckbuddy_text');
     scene.actions([
@@ -2112,42 +2112,42 @@ function enterDressImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDressLoop(s: GameState, scene: SceneBuilder): void {
-  ((s as any).hookup ?? {})['dress_describe'] = '';
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = '';
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     if (((s as any).lastwornpantytype ?? 0)?.['hookup'] !== 'none') {
-      ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + ('pulling your panties up your legs');
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('pulling your panties up your legs');
       if (((s as any).lastwornbratype ?? 0)?.['hookup'] !== 'none'  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
-        ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + (' and ');
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' and ');
       }
     }
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['hookup'], lastwornpantynumber['hookup']
     if (((s as any).lastwornbratype ?? 0)?.['hookup'] !== 'none') {
-      ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + ('fastening your bra around your chest');
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('fastening your bra around your chest');
       if (((s as any).clothingworntype ?? 0) === 'nude') {
-        ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + (' then ');
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' then ');
       }
     }
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['hookup'], lastwornbranumber['hookup']
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['hookup'], lastwornclothingnumber['hookup'], 'force'
     if (((s as any).CloDress ?? 0) === 1) {
-      ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + ('pulling your dress over your shoulders');
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('pulling your dress over your shoulders');
     } else {
       if (((s as any).CloSkirtShortness ?? 0) > 0) {
-        ((s as any).hookup ?? {})['dress_describe'] = 'slipping your skirt up your legs';
-        ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + (' and pulling your top over your breasts');
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = 'slipping your skirt up your legs';
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' and pulling your top over your breasts');
       } else {
-        ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + ('tugging your pants over your hips');
-        ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + (' and pulling your top over your breasts');
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('tugging your pants over your hips');
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + (' and pulling your top over your breasts');
       }
     }
   } else {
     if (((s as any).CloDress ?? 0) === 1) {
-      ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + ('checking your dress');
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('checking your dress');
     } else {
       if (((s as any).CloSkirtShortness ?? 0) > 0) {
-        ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + ('smoothing your skirt');
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('smoothing your skirt');
       } else {
-        ((s as any).hookup ?? {})['dress_describe'] = (((s as any).hookup ?? {})['dress_describe'] ?? 0) + ('checking your clothes');
+        if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['dress_describe'] = ((s as any).hookup['dress_describe'] ?? 0) + ('checking your clothes');
       }
     }
   }
@@ -2185,16 +2185,16 @@ function enterFinishDressing(s: GameState, scene: SceneBuilder): void {
 function enterPantyGift(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).hookup ?? 0)?.['mad'] === 0  &&  ((s as any).hookup ?? 0)?.['fuck'] > 0) {
     if (((s as any).hookup ?? 0)?.['continuation'] > 0  &&  ((s as any).hookup ?? 0)?.['sleepover'] === 1) {
-      ((s as any).hookup ?? {})['panty_give_act'] = '';
-      ((s as any).hookup ?? {})['panty_give_desc'] = 'Which reminds me...';
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['panty_give_act'] = '';
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['panty_give_desc'] = 'Which reminds me...';
     } else {
-      ((s as any).hookup ?? {})['panty_give_act'] = '';
-      ((s as any).hookup ?? {})['panty_give_desc'] = 'Before I go...';
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['panty_give_act'] = '';
+      if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['panty_give_desc'] = 'Before I go...';
     }
     scene.actions([
       { label: 'Give him your panties', handler: (st: GameState) => {
     qspCall(s, 'hookup_after', 'dress_loop');
-    ((s as any).npc_panty_give ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_panty_give ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_panty_give) (s as any).npc_panty_give = {}; (s as any).npc_panty_give[String((s as any).npcID ?? 0)] = ((s as any).npc_panty_give[String((s as any).npcID ?? 0)] ?? 0) + (1);
     qspCall(s, 'panties', 'dispose');
     scene.img('images/shared/romance/misc/panty_gift.mp4');
     scene.text('Just after you put on your panties, a sexy thought pops into your head.');
@@ -2229,7 +2229,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"For making me come," you smile, ${((s as any).hookup ?? 0)?.['dress_describe']}. "That deserves an award."`);
     if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       if (((s as any).pc_know_npc_has_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        ((s as any).pc_know_npc_has_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
+        if (!(s as any).pc_know_npc_has_girlfriend) (s as any).pc_know_npc_has_girlfriend = {}; (s as any).pc_know_npc_has_girlfriend[String((s as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
       qspCall(s, 'hookup_after', 'panty_gift_girlfriend');
@@ -2245,7 +2245,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"For making me come," you smile, ${((s as any).hookup ?? 0)?.['dress_describe']}. "I always give a boy my panties if he makes me come."`);
     if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       if (((s as any).pc_know_npc_has_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        ((s as any).pc_know_npc_has_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
+        if (!(s as any).pc_know_npc_has_girlfriend) (s as any).pc_know_npc_has_girlfriend = {}; (s as any).pc_know_npc_has_girlfriend[String((s as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
       qspCall(s, 'hookup_after', 'panty_gift_girlfriend');
@@ -2265,7 +2265,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"You did a good job," you smile, ${((s as any).hookup ?? 0)?.['dress_describe']}. "Consider that your reward."`);
     if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       if (((s as any).pc_know_npc_has_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        ((s as any).pc_know_npc_has_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
+        if (!(s as any).pc_know_npc_has_girlfriend) (s as any).pc_know_npc_has_girlfriend = {}; (s as any).pc_know_npc_has_girlfriend[String((s as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
       qspCall(s, 'hookup_after', 'panty_gift_girlfriend');
@@ -2287,7 +2287,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       if (((s as any).pc_know_npc_has_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        ((s as any).pc_know_npc_has_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
+        if (!(s as any).pc_know_npc_has_girlfriend) (s as any).pc_know_npc_has_girlfriend = {}; (s as any).pc_know_npc_has_girlfriend[String((s as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
       qspCall(s, 'hookup_after', 'panty_gift_girlfriend');
@@ -2303,7 +2303,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Consider it a trophy," you smile, ${((s as any).hookup ?? 0)?.['dress_describe']}. "A remembrance of conquest."`);
     if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       if (((s as any).pc_know_npc_has_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        ((s as any).pc_know_npc_has_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
+        if (!(s as any).pc_know_npc_has_girlfriend) (s as any).pc_know_npc_has_girlfriend = {}; (s as any).pc_know_npc_has_girlfriend[String((s as any).npcID ?? 0)] = 1;
       }
       scene.text('"And what am I supposed to do with these when my girlfriend comes home?" he asks, looking at them amusedly.');
       qspCall(s, 'hookup_after', 'panty_gift_girlfriend');
@@ -2382,16 +2382,16 @@ function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
 
 function enterSleep(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: savegame 'autosave_loverbed_sleep.sav'
-  ((s as any).hookup ?? {})['sleepover'] = 1;
+  if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['sleepover'] = 1;
   if (((s as any).alko ?? 0) > 6) {
-    ((s as any).hookup ?? {})['hangover'] = 1;
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['hangover'] = 1;
     qspCall(s, 'sleep_simple', 'simple');
     qspCall(s, 'pain', '', 3, 'head', 'ache');
   } else {
     qspCall(s, 'sleep_simple', 'simple');
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
-    ((s as any).sveta_punishment ?? {})['no_come_home'] = 1;
+    if (!(s as any).sveta_punishment) (s as any).sveta_punishment = {}; (s as any).sveta_punishment['no_come_home'] = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['hookup_morning', 'morning'] }]);
   // TODO-QSP: end

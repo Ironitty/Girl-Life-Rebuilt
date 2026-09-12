@@ -96,7 +96,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m sorry, but I can\'t help you without a passport. Come back when you get one."');
     scene.text('Dimitri waves you out of his office and you leave the studio.');
     (s as any).bomzQW = 3;
-    ((s as any).job_hiring_step ?? {})['city_pornstudio_delivery'] = 1;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['city_pornstudio_delivery'] = 1;
     scene.actions([
       { label: 'Leave', goto: ['city_industrial', ''] },
     ]);
@@ -428,7 +428,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0));
     qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0));
     qspCall(s, 'cum_call', 'face', ((s as any).npcID2 ?? 0));
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

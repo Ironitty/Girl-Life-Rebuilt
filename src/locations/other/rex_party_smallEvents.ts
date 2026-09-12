@@ -589,7 +589,7 @@ function enterSisterTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Anya</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/party_sister_1.jpg');
   if (((s as any).sisterQW ?? 0)?.['AnyaRomaQW'] === 1) {
-    ((s as any).sisterQW ?? {})['partytalk'] = (((s as any).sisterQW ?? {})['partytalk'] ?? 0) + (1);
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['partytalk'] = ((s as any).sisterQW['partytalk'] ?? 0) + (1);
     if (((s as any).sisterQW ?? 0)?.['partytalk'] === 1) {
       scene.text('"It is strange seeing you back together with Roma."');
       scene.text('"We talked things out and decided to give it another chance.');
@@ -635,13 +635,13 @@ function enterSisterTalk(s: GameState, scene: SceneBuilder): void {
                         scene.text('"Oh, what a naughty girl! Well then, how about we lure him together?"');
                       } else {
                         if (((s as any).sisterQW ?? 0)?.['partytalk'] === 10  &&  ((s as any).rex_love ?? 0) === 1) {
-                          ((s as any).sisterQW ?? {})['AnyaRomaQW'] = 2;
+                          if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['AnyaRomaQW'] = 2;
                           scene.text('You huff and pout, but realize she has a point. "OK fine, but I\'m not sure Rex would agree. You and Roma both agreed ahead of time."');
                           // TODO-QSP: dynamic text: "The main thing is that you are not opposed to it <<$pcs_nickname>>. Besides, al...
                           scene.text(`"The main thing is that you are not opposed to it ${((s as any).pcs_nickname ?? 0)}. Besides, all men are the same. You really think Rex could withstand both our charms?"`);
                         } else {
                           if (((s as any).sisterQW ?? 0)?.['partytalk'] === 10  &&  (!((s as any).rex_love ?? 0))) {
-                            ((s as any).sisterQW ?? {})['AnyaRomaQW'] = 2;
+                            if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['AnyaRomaQW'] = 2;
                             scene.text('"You want to seduce Rex? Haha, I\'ve already fucked him! You have no idea what he is like in bed.');
                             scene.text('"Wow! What a saucy little minx you are! So that\'s why you are always running around in his room? Well then, that will make this easier."');
                           }

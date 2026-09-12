@@ -31,7 +31,7 @@ function enterCommunityAlleys(s: GameState, scene: SceneBuilder): void {
 function enterForestArea(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  ((s as any).forest ?? {})['rand'] = Math.floor(Math.random() * 100) + 1;
+  if (!(s as any).forest) (s as any).forest = {}; (s as any).forest['rand'] = Math.floor(Math.random() * 100) + 1;
   scene.img('images/locations/suburban/1fores.jpg');
   scene.text('Leafy forest.');
   if (((s as any).forest ?? 0)?.['rand'] < 30) {
@@ -174,7 +174,7 @@ function enterNeighborCottage(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Approach neighbors', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).exhib ?? {})['status'] = 10;
+    if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 10;
     qspCall(s, 'stat', '');
     scene.img('images/locations/suburban/kuzmich.jpg');
     // TODO-QSP: dynamic text: You: "Hello! My name is <<$pcs_nickname>>, I'm your new neighbor. We haven't met...
@@ -212,7 +212,7 @@ function enterSawNoise(s: GameState, scene: SceneBuilder): void {
     scene.text(`Worker: "For some shoveling work, ${qspFunc(s, 'money', 'string_profit', 3000)}."`);
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).exhib ?? {})['status'] = 11;
+    if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 11;
     qspCall(s, 'stat', '');
     scene.img('images/locations/suburban/dachastroy.jpg');
     scene.text('You agree to the price and ask them to clean your vegetable garden.');
@@ -232,7 +232,7 @@ function enterGardenCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).temp = ((s as any).daystart ?? 0);
-  ((s as any).exhib ?? {})['status'] = 12;
+  if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 12;
   qspCall(s, 'stat', '');
   scene.img('images/locations/suburban/dachabust.jpg');
   scene.text('You go out into the garden and ask:');
@@ -247,7 +247,7 @@ function enterGardenCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterHangingClothes(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  ((s as any).exhib ?? {})['status'] = 13;
+  if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 13;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).temp = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
@@ -281,7 +281,7 @@ function enterWorkerConversation(s: GameState, scene: SceneBuilder): void {
     scene.text('Worker: "Sorry, young lady. Some motivation would help us work harder."');
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
-    ((s as any).exhib ?? {})['status'] = 15;
+    if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 15;
     (s as any).temp = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/suburban/dachabust3.jpg');
@@ -292,7 +292,7 @@ function enterWorkerConversation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Accept and give half the amount', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 1500);
-    ((s as any).exhib ?? {})['status'] = 14;
+    if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 14;
     (s as any).temp = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/suburban/dachabust3.jpg');
@@ -350,7 +350,7 @@ function enterGardenStrip(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'butt', ((s as any).npcID1 ?? 0));
     qspCall(s, 'cum_call', '', '', ((s as any).npcID2 ?? 0));
     qspCall(s, 'cum_call', 'anus', ((s as any).npcID3 ?? 0));
-    ((s as any).exhib ?? {})['status'] = 16;
+    if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 16;
     qspCall(s, 'stat', '');
     scene.text('When it\'s over, you pick up your clothes, put them on, and go back into the house.');
     scene.actions([
@@ -404,7 +404,7 @@ function enterWorkerAssault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'butt', ((s as any).npcID1 ?? 0));
     qspCall(s, 'cum_call', '', '', ((s as any).npcID2 ?? 0));
     qspCall(s, 'cum_call', 'anus', ((s as any).npcID3 ?? 0));
-    ((s as any).exhib ?? {})['status'] = 16;
+    if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 16;
     qspCall(s, 'stat', '');
     scene.text('When it\'s over, you pick up your clothes, put them on, and run into the house.');
     scene.actions([

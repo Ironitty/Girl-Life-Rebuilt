@@ -120,7 +120,7 @@ function enterPavCommcenter(s: GameState, scene: SceneBuilder): void {
 function enterPartyanswer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'anya') {
     if (((s as any).mesec ?? 0) > 0  ||  ((s as any).pcs_mood ?? 0) < 25  ||  ((s as any).alko ?? 0) >= 3  ||  ((s as any).cumloc ?? 0)[11] === 1  ||  ((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1) {
-      ((s as any).sisterQW ?? {})['party'] = (-1);
+      if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = (-1);
       if (((s as any).mesec ?? 0) > 0) {
         scene.text('"Sorry Anya, but I\'m not in the mood today. You go without me."');
         scene.text('"What, are you on the rag today? You should have told me! Alright, go home and get some rest."');
@@ -162,7 +162,7 @@ function enterPartyanswer(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).sisterQW ?? {})['party'] = (-1);
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = (-1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_sister_1.jpg');
     scene.text('"I\'d love to, but I have a lot of homework to do. I\'m sorry."');
@@ -232,7 +232,7 @@ function enterPartyanswer(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Decline', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).sisterQW ?? {})['party'] = (-1);
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = (-1);
     qspCall(s, 'stat', '');
     scene.text('"Sorry, Rex. I\'d love to come, but I have a lot of homework to do and don\'t want to fail my exams."');
     scene.text('"Okay, go on then. But you\'re definitely coming next time, okay?"');
@@ -261,7 +261,7 @@ function enterScene1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Meet your sister\'s boyfriend', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).npc_QW ?? {})['A33'] = 2;
+    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A33'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/anya/community/sisboyqw_02.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you wanted to meet my boyfriend, right? Well, this is Roma. ...
@@ -617,13 +617,13 @@ function enterScene1(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).week ?? 0) < 5  &&  ((s as any).week ?? 0) > 1  &&  ((s as any).odd_week ?? 0) === 1  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  (((s as any).sisterQW ?? 0)?.['party'] === 0  ||  ((s as any).sisterQW ?? 0)?.['party'] === 2)  &&  ((s as any).daystart ?? 0) - ((s as any).sisterQW ?? 0)?.['partyday'] > 3) {
                   // TODO-QSP: dynamic text: Roma looks up at you, suddenly remembering something. "<<$pcs_nickname>>, Rex is...
                   scene.text(`Roma looks up at you, suddenly remembering something. "${((s as any).pcs_nickname ?? 0)}, Rex is having a party on Friday. Do you want to come?"`);
-                  ((s as any).sisterQW ?? {})['partyday'] = ((s as any).daystart ?? 0);
+                  if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['partyday'] = ((s as any).daystart ?? 0);
                   (s as any).minut = ((s as any).minut ?? 0) + 5;
                   qspCall(s, 'stat', '');
                   if (((s as any).runnerQW ?? 0)?.['prof_stage'] > 0) {
                     scene.actions([
                       { label: 'No (training)', handler: (st: GameState) => {
-    ((s as any).sisterQW ?? {})['party'] = (-1);
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = (-1);
     scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_4.jpg');
     scene.text('You turn down the invitation. "I\'d love to, but I have a competition to prepare for and have to train."');
     scene.actions([
@@ -635,7 +635,7 @@ function enterScene1(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
                     scene.actions([
                       { label: 'No (volleyball)', handler: (st: GameState) => {
-    ((s as any).sisterQW ?? {})['party'] = (-1);
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = (-1);
     scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_5.jpg');
     scene.text('You turn down the invitation. "Sorry, but I can\'t. Coach doesn\'t allow me to stay out late, and drinking is also prohibited."');
     scene.actions([
@@ -646,7 +646,7 @@ function enterScene1(s: GameState, scene: SceneBuilder): void {
                   }
                   scene.actions([
                     { label: 'No (study)', handler: (st: GameState) => {
-    ((s as any).sisterQW ?? {})['party'] = (-1);
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = (-1);
     scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_3.jpg');
     scene.text('You turn down the invitation. "I\'d love to, but I can\'t get behind at school. I have homework to do and books to read. You know what it\'s like."');
     scene.actions([
@@ -654,7 +654,7 @@ function enterScene1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                     { label: 'Yes', handler: (st: GameState) => {
-    ((s as any).sisterQW ?? {})['party'] = 1;
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = 1;
     scene.img('images/characters/pavlovsk/resident/anya/community/anyaroma1.jpg');
     scene.text('You agree to go to the party.');
     // TODO-QSP: dynamic text: "Awesome! It'll be fun. Just be here before ' + func('time', 'get_time_string', ...

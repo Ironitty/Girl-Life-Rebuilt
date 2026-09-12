@@ -104,7 +104,7 @@ function enter1_2ndPart(s: GameState, scene: SceneBuilder): void {
     scene.text(`Uncle Misha takes a minute to catch his breath and admire his handiwork on your face before leaning down and kissing you on the forehead. He throws a couple of crumpled bills on the floor. "Very nice, ${((s as any).pcs_nickname ?? 0)}. Here, take these for your efforts," he says as you scramble to pick them up, indicating he's done with you now and expects you to leave.`);
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'money', 'earn', 200);
-    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave Uncle Misha\'s apartment', goto: ['pod_ezd', 'etaj_2'] },
@@ -130,7 +130,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).fatherandmisha = 1;
     // TODO-QSP: npc_had_sex[$boy[1]] = 1
     // TODO-QSP: npc_had_sex[$boy[2]] = 1
-    ((s as any).npc_rel ?? {})['A28'] = (((s as any).npc_rel ?? {})['A28'] ?? 0) + (3);
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A28'] = ((s as any).npc_rel['A28'] ?? 0) + (3);
     scene.img(`images/locations/pavlovsk/resident/apartment/garage/father/sex/father.misha0,${Math.floor(Math.random() * 2) + 0}.jpg`);
     scene.text('You meekly nod and fall to your knees in front of them, reaching for their hard dicks.');
     scene.text('Since they have been talking about "punishment" non-stop, you do your best to keep them happy. Maybe they\'ll go easy on you? You obediently put your lips around your stepfather\'s dick, diligently sucking him off while you massage your uncle\'s rod with your hand at the same time. A while later, the roles are reversed, and Uncle Misha\'s dick is deep down your throat as you try to keep your stepfather happy.');
@@ -377,7 +377,7 @@ function enterTakeWallet(s: GameState, scene: SceneBuilder): void {
     { label: 'Turn around and leave', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).mishaQW ?? {})['caught'] = 1;
+    if (!(s as any).mishaQW) (s as any).mishaQW = {}; (s as any).mishaQW['caught'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/misha/sex/wallet/wallet4.jpg');
     scene.text('As you turn and walk to the hallway, you see him standing their watching you and your heart drops. You took too long or he just had a sixth sense what you might be up to. Maybe he didn\'t notice! You do your best to smile and walk past him, handing him the pack of smokes. He takes the pack from you and, for a moment, you think you got away with it. But just as you start to walk past him, he grabs you by the clothes right where his wallet is. He looks down at it and then at you. He doesn\'t look nearly as mad as you thought he would. Maybe this won\'t be so bad. "I trusted you, young lady. I think we need to have a talk," he says as he leads you back into his living room.');
@@ -420,7 +420,7 @@ function enterTakeWallet(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).mishaQW ?? {})['maid'] = 1;
+    if (!(s as any).mishaQW) (s as any).mishaQW = {}; (s as any).mishaQW['maid'] = 1;
     qspCall(s, 'stat', '');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/misha/sex/wallet/wallet6.jpg');
@@ -444,7 +444,7 @@ function enterTakeWallet(s: GameState, scene: SceneBuilder): void {
 function enterMaidAgree(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).mishaQW ?? {})['maid'] = 1;
+  if (!(s as any).mishaQW) (s as any).mishaQW = {}; (s as any).mishaQW['maid'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/misha/sex/wallet/wallet_maid.jpg');
   // TODO-QSP: $agreeText
@@ -458,7 +458,7 @@ function enterMaidAgree(s: GameState, scene: SceneBuilder): void {
 
 function enterWalletBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A54');
-  ((s as any).mishaQW ?? {})['dirty_girl'] = 1;
+  if (!(s as any).mishaQW) (s as any).mishaQW = {}; (s as any).mishaQW['dirty_girl'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/misha/sex/wallet/wallet8.jpg');
   scene.text('As you slide off of the chair in front of him, he undoes his belt and unbuttons his pants. His pants fall down around his ankles, exposing his fairly long and very thick cock in front of you as you squat in front of him. You take his soft dick into your mouth and you feel it quickly start to harden as you suck on it. "Ohh yeah, you are a dirty little girl. Bet you\'ve had a lot of cocks in your mouth, haven\'t you?" You can tell by how he said it that he isn\'t expecting a response.');
@@ -576,7 +576,7 @@ function enterWalletAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDirtyBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A54');
-  ((s as any).mishaQW ?? {})['dirty_girl'] = (((s as any).mishaQW ?? {})['dirty_girl'] ?? 0) + (1);
+  if (!(s as any).mishaQW) (s as any).mishaQW = {}; (s as any).mishaQW['dirty_girl'] = ((s as any).mishaQW['dirty_girl'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/misha/sex/dirty_girl/dirty4.jpg');
   scene.text('As you stand there, he strips off all your clothes, then turns you around to get a nice view of your ass. He delivers a firm slap to your ass, hard enough to make you give a little yelp. "Damn, you are such a dirty girl." As you turn back to face him, he grabs and lifts you. He is surprisingly strong for his age, as he has no problems lifting you up and setting you on the counter. As you sit on the counter naked, he pushes your legs apart, exposing your moist pussy to him. He then slowly gets down on his knees in front of you.');

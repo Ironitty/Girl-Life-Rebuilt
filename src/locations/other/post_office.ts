@@ -221,10 +221,10 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Pay off your fine(s)', handler: (st: GameState) => {
     qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']');
-    ((s as any).policeQW ?? {})['legal_fine'] = 0;
-    ((s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
-    ((s as any).policeQW ?? {})['fine_deadline'] = 0;
-    ((s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
+    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['legal_fine'] = 0;
+    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['missed_fine_deadlines'] = 0;
+    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['fine_deadline'] = 0;
+    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['arrest_gameover_flag'] = 0;
     qspCall(s, 'stat', '');
     scene.text('<center><b>Counter</b></center>');
     scene.img('images/locations/shared/postoffice/counter.jpg');
@@ -247,10 +247,10 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).fineIN ?? 0) >= ((s as any).policeQW ?? 0)?.['legal_fine']) {
         if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).policeQW ?? 0)?.['legal_fine'])) {
           qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']');
-          ((s as any).policeQW ?? {})['legal_fine'] = 0;
-          ((s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
-          ((s as any).policeQW ?? {})['fine_deadline'] = 0;
-          ((s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
+          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['legal_fine'] = 0;
+          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['missed_fine_deadlines'] = 0;
+          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['fine_deadline'] = 0;
+          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['arrest_gameover_flag'] = 0;
           scene.text('<br>You pay the full amount of your outstanding fine(s) to the cashier and they print out a receipt to say that it\'s paid off.');
         } else {
           scene.text('<br>You don\'t have enough money to pay that amount.');
@@ -347,7 +347,7 @@ function enterPickupMail(s: GameState, scene: SceneBuilder): void {
 
 function enterAddMail(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = 'all';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = 'all';
   }
   // TODO-QSP: $mail_region[] = $ARGS[1]
   // TODO-QSP: $mail_code[] = $ARGS[2]

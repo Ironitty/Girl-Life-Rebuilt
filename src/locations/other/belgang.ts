@@ -65,7 +65,7 @@ function enterWorkofdebt(s: GameState, scene: SceneBuilder): void {
       scene.text('A few minutes later you arrive at an apartment block, it isn\'t is great shape but Vadim leads you inside and up to a second floor apartment.');
       scene.text('The apartment is actually in decent shape. The minimal amount of furniture and decorations don\'t make it look very hospitable though, and you assume this might just be one of the places Vadim rented for business or pleasure, not for living in.');
       scene.text('Noticing you\'re spending too much time looking around and aren\'t following him swiftly enough, he grabs you by your hair and pulls your face to his, roughly shoving his tongue in your mouth. You can smell the tobacco on his breath, and do your best to ignore the taste as he kisses you.');
-      ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
       scene.actions([
         { label: 'Kiss him', goto: ['BelSex', 'sex'] },
       ]);
@@ -238,7 +238,7 @@ function enterPayremaining(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'debt_pay', 'belgangPay', 0, 'cash');
   qspCall(s, 'calendar', 'remove', 'belgang_payment_deadline');
-  ((s as any).npc_QW ?? {})['A113'] = 2;
+  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 2;
   scene.img('images/characters/pavlovsk/vadim/belymoney.jpg');
   scene.text('No, today you won\'t work for him, you will never work for him again, today you will finally be free. "Here is everything. My debts are paid." You hand it over to Vadim while his henchmen keep a lookout. Once again, he gives you an awkward smile, very pleased how things have turned out. "It\'s all there, right? I would hate to have to come back for the rest."');
   scene.text('You nod at him, reassuring him. "It\'s all there, mister Bely. Count it if you don\'t believe me."');
@@ -292,7 +292,7 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheatmenuStart(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_QW ?? {})['A113'] = 1;
+  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 1;
   (s as any).daybelisex = ((s as any).daystart ?? 0);
   qspCall(s, 'money', 'debt_add', 'belgangPay', 50000);
   (s as any).belgangday = ((s as any).daystart ?? 0);
@@ -317,7 +317,7 @@ function enterCheatmenuStart(s: GameState, scene: SceneBuilder): void {
 function enterCheatmenuClear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'debt_pay', 'belgangPay', 0, 'none');
   qspCall(s, 'calendar', 'remove', 'belgang_payment_deadline');
-  ((s as any).npc_QW ?? {})['A113'] = 2;
+  if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A113'] = 2;
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'story'] }]);
   // TODO-QSP: end
   scene.build();

@@ -358,7 +358,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You lay down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You put the sunblock on your body and lay down on the roof to sunbathe.');
       }
@@ -1274,7 +1274,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept and fuck them', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).rnd_money_sex ?? 0));
     qspCall(s, 'fame', 'pav', 'prostitute', Math.floor(Math.random() * 7) + 3);
-    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
   }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
         ]);
       } else {
@@ -1877,7 +1877,7 @@ function enterGopnikGroupChat(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Decline the beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
@@ -1892,7 +1892,7 @@ function enterGopnikGroupChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take the beer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/gopniks.jpg');
@@ -2288,7 +2288,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['tampons'] === 1) {
       scene.text('He runs his hand over your ass and down to your pussy, feeling the string from the tampon he pulls his hand away. "Fuck man, she\'s got a tampon plugging up her twat." You feel yourself blushing. His friend looks over, shrugs and says. "She\'s got another hole, use that one." The one standing behind you slaps you hard on the ass. "Hell yeah! You hear that slut? We\'re going to fuck you up the ass," he says as he gives your ass another hard slap.');
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
         scene.text('You realize he\'s going to fuck your ass!');
         scene.text('You quickly interrupt him: "Wait! I have some lubricant in my purse, use that! It\'ll feel better for both of us!" you say in a pleading voice.');
         // TODO-QSP: dynamic text: <<$boydesc[2]>> grunts and grabs the lube out of your purse and he spreads some ...
@@ -2310,7 +2310,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
     scene.text(`After a couple of minutes of fucking you roughly, ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} turns to his friend and says, "Man, I'm not feeling anything, it's so loose. It feels like her pussy has been ploughed by every cock in town."`);
     scene.text('His friend walks over to you and roughly grabs your chin with his hand, forcing you to look up at him as he asks you in a firm voice, "Do you fuck guys every day?" Without waiting for an answer, he nods and absentmindedly waves his hand at his friend, "Try her other hole, it should be tighter."');
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       (s as any).pod_ezd_lube = 1;
       scene.text('You realize he\'s going to fuck your ass!');
       scene.text('You quickly interrupt him: "Wait! I have some lubricant in my purse, use that! It\'ll feel better for both of us!" you say in a pleading voice.');
@@ -2634,7 +2634,7 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
       scene.text('He closes his fingers around your butt plug and gives it a few exploratory tugs, before pulling it out slowly. He mutters, "I hope this thing didn\'t loosen your ass too much, whore."');
     }
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-      ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
       (s as any).agape = 1;
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
       scene.text('You quickly interrupt him: "Wait! I have some lubricant, use that! It\'ll feel better for both of us!"');

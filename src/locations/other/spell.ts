@@ -27,12 +27,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (s as any).CasterNumber = qspUntranslated(s, "ARGS[4]", { location: "spell" });
     }
   }
-  ((s as any).spellFunc ?? {})['UpdateAttrib'] = qspUntranslated(s, "{", { location: "spell" });
-  ((s as any).SpellFuncVar ?? {})['BaseArray'] = ((s as any).locArgs?.[0] ?? 0);
-  ((s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).SpellFuncVar ?? {})['TargetNum'] = qspUntranslated(s, "ARGS[2]", { location: "spell" });
-  ((s as any).SpellFuncVar ?? {})['Operation'] = ((s as any).locArgs?.[3] ?? 0);
-  ((s as any).SpellFuncVar ?? {})['Amount'] = qspUntranslated(s, "ARGS[4]", { location: "spell" });
+  if (!(s as any).spellFunc) (s as any).spellFunc = {}; (s as any).spellFunc['UpdateAttrib'] = qspUntranslated(s, "{", { location: "spell" });
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['BaseArray'] = ((s as any).locArgs?.[0] ?? 0);
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['TargetNum'] = qspUntranslated(s, "ARGS[2]", { location: "spell" });
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['Operation'] = ((s as any).locArgs?.[3] ?? 0);
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['Amount'] = qspUntranslated(s, "ARGS[4]", { location: "spell" });
   if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '===') {
     // TODO-QSP: !"opp_fog[0] = 0"
     // TODO-QSP: dynamic "<<$SpellFuncVar['TargetType']>>_<<$SpellFuncVar['BaseArray']>>[<<SpellFuncVar['TargetNum']>...
@@ -45,12 +45,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('Invalid Operator, must be "+", "-", or "=".');
     }
   }
-  ((s as any).spellFunc ?? {})['GetCombatantName'] = qspUntranslated(s, "{", { location: "spell" });
-  ((s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
-  ((s as any).SpellFuncVar ?? {})['TargetNum'] = qspUntranslated(s, "ARGS[1]", { location: "spell" });
-  ((s as any).spellFunc ?? {})['ApplyDamageToAll'] = qspUntranslated(s, "{", { location: "spell" });
-  ((s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
-  ((s as any).SpellFuncVar ?? {})['Damage'] = qspUntranslated(s, "ARGS[1]", { location: "spell" });
+  if (!(s as any).spellFunc) (s as any).spellFunc = {}; (s as any).spellFunc['GetCombatantName'] = qspUntranslated(s, "{", { location: "spell" });
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['TargetNum'] = qspUntranslated(s, "ARGS[1]", { location: "spell" });
+  if (!(s as any).spellFunc) (s as any).spellFunc = {}; (s as any).spellFunc['ApplyDamageToAll'] = qspUntranslated(s, "{", { location: "spell" });
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
+  if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['Damage'] = qspUntranslated(s, "ARGS[1]", { location: "spell" });
   // TODO-QSP: dynamic "
   // TODO-QSP: :DamageAllLoop1
   if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).SpellFuncVar ?? 0)?.['TargetType'] + '_health')) {
@@ -98,7 +98,7 @@ function enterRegenerate(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).regenVal ?? 0));
   (s as any).regenArrIdx = qspUntranslated(s, "arrpos('spellTimeName', 'regenerate')", { location: "spell" });
   if (((s as any).regenArrIdx ?? 0) >= 0) {
-    ((s as any).spellComplete ?? {})[String((s as any).regenArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
+    if (!(s as any).spellComplete) (s as any).spellComplete = {}; (s as any).spellComplete[String((s as any).regenArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
     // TODO-QSP: $spellCompExec[regenArrIdx] = 'pcs_health += (5 * <<regenVal>>)'
     // TODO-QSP: $spellTickExec[regenArrIdx] = 'pcs_health += <<regenVal>>'
   } else {
@@ -121,16 +121,16 @@ function enterPainblock(s: GameState, scene: SceneBuilder): void {
 function enterCuredisease(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     qspCall(s, 'cheatmenu_din', 'std_cure');
-    ((s as any).pain ?? {})['head'] = (((s as any).pain ?? {})['head'] ?? 0) + (10);
-    ((s as any).pain ?? {})['nose'] = (((s as any).pain ?? {})['nose'] ?? 0) + (10);
-    ((s as any).pain ?? {})['mouth'] = (((s as any).pain ?? {})['mouth'] ?? 0) + (10);
-    ((s as any).pain ?? {})['lips'] = (((s as any).pain ?? {})['lips'] ?? 0) + (10);
-    ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (10);
-    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (10);
-    ((s as any).pain ?? {})['chest'] = (((s as any).pain ?? {})['chest'] ?? 0) + (10);
-    ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (10);
-    ((s as any).pain ?? {})['urethra'] = (((s as any).pain ?? {})['urethra'] ?? 0) + (10);
-    ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['nose'] = ((s as any).pain['nose'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['lips'] = ((s as any).pain['lips'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['chest'] = ((s as any).pain['chest'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['urethra'] = ((s as any).pain['urethra'] ?? 0) + (10);
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'stat', '');
   }
@@ -163,9 +163,9 @@ function enterBerserk(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).spellArrIdx = qspUntranslated(s, "arrpos('spellTimeName', 'berserk')", { location: "spell" });
   qspCall(s, 'drugs', 'painkiller', 'spell');
-  ((s as any).drugVars ?? {})['painkiller_points'] = (((s as any).drugVars ?? {})['painkiller_points'] ?? 0) + (50);
+  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['painkiller_points'] = ((s as any).drugVars['painkiller_points'] ?? 0) + (50);
   if (((s as any).spellArrIdx ?? 0) >= 0) {
-    ((s as any).spellComplete ?? {})[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
+    if (!(s as any).spellComplete) (s as any).spellComplete = {}; (s as any).spellComplete[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
   } else {
     (s as any).healthPercent = ((s as any).pcs_health ?? 0) * 100 / ((s as any).healthmax ?? 0);
     (s as any).staminPercent = ((s as any).pcs_stam ?? 0) * 100 / ((s as any).stammax ?? 0);
@@ -208,7 +208,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).body_write = 0;
     (s as any).face_write = 0;
-    ((s as any).lactation ?? {})['lactmess'] = 0;
+    if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['lactmess'] = 0;
     (s as any).pcs_sweat = 10;
     (s as any).pcs_breath = 1;
     qspCall(s, 'stat', '');
@@ -223,7 +223,7 @@ function enterGlamour(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).spellArrIdx = qspUntranslated(s, "arrpos('spellTimeName', 'glamour')", { location: "spell" });
   if (((s as any).spellArrIdx ?? 0) >= 0) {
-    ((s as any).spellComplete ?? {})[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
+    if (!(s as any).spellComplete) (s as any).spellComplete = {}; (s as any).spellComplete[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
   } else {
     (s as any).glamouractive = 1;
     qspCall(s, 'spellTimer', 'add', 'glamour', 120, 'glamouractive = 0');
@@ -244,11 +244,11 @@ function enterAlterself(s: GameState, scene: SceneBuilder): void {
 function enterMakeup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     if (((s as any).locArgs?.[2] ?? 0) === '') {
-      ((s as any).ARGS ?? {})[2] = '210';
+      if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = '210';
     }
-    ((s as any).MakeupArg ?? {})[0] = 0;
-    ((s as any).MakeupArg ?? {})[1] = 0;
-    ((s as any).MakeupArg ?? {})[2] = 0;
+    if (!(s as any).MakeupArg) (s as any).MakeupArg = {}; (s as any).MakeupArg[0] = 0;
+    if (!(s as any).MakeupArg) (s as any).MakeupArg = {}; (s as any).MakeupArg[1] = 0;
+    if (!(s as any).MakeupArg) (s as any).MakeupArg = {}; (s as any).MakeupArg[2] = 0;
     (s as any).pcs_hairbsh = 1;
     (s as any).pcs_makeup = ((s as any).MakeupArg ?? 0)[0] + 1;
     (s as any).pcs_lipbalm = ((s as any).pcs_lipbalm ?? 0) + (8 * ((s as any).MakeupArg ?? 0)[1]);
@@ -275,7 +275,7 @@ function enterCosmetica(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 18;
   }
   qspCall(s, 'cum_cleanup', '');
-  ((s as any).lactation ?? {})['lactmess'] = 0;
+  if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['lactmess'] = 0;
   (s as any).pcs_sweat = 10;
   (s as any).pcs_breath = 1;
   (s as any).body_write = 0;
@@ -321,7 +321,7 @@ function enterPenisenvy(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).spellArrIdx = qspUntranslated(s, "arrpos('spellTimeName', 'penisenvy')", { location: "spell" });
   if (((s as any).spellArrIdx ?? 0) >= 0) {
-    ((s as any).spellComplete ?? {})[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 30;
+    if (!(s as any).spellComplete) (s as any).spellComplete = {}; (s as any).spellComplete[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 30;
   } else {
     (s as any).penisEnvyVariable = 1;
     qspCall(s, 'spellTimer', 'add', 'penisenvy', 30, 'penisEnvyVariable = 0', '');

@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHomework(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brotherQW ?? {})['last_day_homework'] = ((s as any).daystart ?? 0);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_day_homework'] = ((s as any).daystart ?? 0);
   if (((s as any).npc_rel ?? 0)?.['A34'] < 50) {
     qspCall(s, 'npc_relationship', 'modify', 'A34', 1);
   }
@@ -30,7 +30,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/kiss/kiss.mp4');
     scene.text('You chew on your lip for a moment, enjoying the feeling of your brother\'s caresses. Turning towards him, you lean in slowly and give him a delicate kiss while he continues to stroke your leg.');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    ((s as any).brotherQW ?? {})['kiss'] = (((s as any).brotherQW ?? {})['kiss'] ?? 0) + (1);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['kiss'] = ((s as any).brotherQW['kiss'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A34', 3);
     scene.actions([
       { label: 'End the kiss', handler: (st: GameState) => {
@@ -76,7 +76,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
     scene.text('Lust takes control of your mind as you force your tongue down your brother\'s throat, slipping your hand into his pants to grab hold of his already hardened cock. You yank it out to begin vigorously jerking him off, never stopping your kiss for a moment. He groans into your mouth but you just keep working your hand on his cock.');
     (s as any).brotherhj = ((s as any).brotherhj ?? 0) + (1);
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 5) {
-      ((s as any).brotherQW ?? {})['Sex'] = 5;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 5;
     }
     qspCall(s, 'npc_relationship', 'modify', 'A34', 3);
     if (((s as any).motherhw ?? 0) === 5) {
@@ -115,7 +115,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth_swallow', 'A34', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A34', 3);
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-      ((s as any).brotherQW ?? {})['Sex'] = 6;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
     }
     scene.img('images/characters/pavlovsk/resident/kolka/event/homework/swallow.mp4');
     scene.text('You jerk him off a little faster, waiting for him to stiffen up and the signs that he\'s about to cum. Right at the last moment, you break away from the kiss and wrap your lips around the tip of his cock. You immediately feel him explode inside your mouth, the hot salty taste of his cum pouring out over your tongue.');
@@ -143,7 +143,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/kiss/kiss.mp4');
     scene.text('Turning slowly, you meet Kolka\'s eyes. The feeling of his hand on your leg makes you blush and your heart quicken. Before you know what you\'re doing, you lean forward and feel your brother\'s lips pressing against your own. You close your eyes and melt into the kiss, an endless moment of bliss passing by as you do.');
     scene.text('As your eyes flicker open and see the shocked expression on your brother\'s face, the realization of what you\'ve done suddenly hits you all at once. You pull back immediately, blushing even harder than before and swiftly avert your gaze back to the table with loose pieces of homework scattered about it. Not knowing what else to do, you frantically try to go back to the last thing you were helping him with. For the rest of the hour, your brother seems be stuttering and making a lot more mistakes than before. Eventually, you call your study session with him quits and awkwardly get up to leave, neither of you acknowledging what happened.');
-    ((s as any).brotherQW ?? {})['kiss'] = (((s as any).brotherQW ?? {})['kiss'] ?? 0) + (1);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['kiss'] = ((s as any).brotherQW['kiss'] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A34', 5);
     scene.actions([
       { label: 'Finish', goto: ['sitrPar', ''] },
@@ -226,7 +226,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ignore and continue', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A34'] < 3) {
-      ((s as any).npc_QW ?? {})['A34'] = 3;
+      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A34'] = 3;
     }
     qspCall(s, 'npc_relationship', 'modify', 'A34', 2);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 6) + 5);
@@ -405,7 +405,7 @@ function enterAnatomylesson1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['sex_ed'] > 0) {
     scene.actions([{ label: 'Continue', goto: ['brother_lessons', 'anatomylesson2'] }]);
   }
-  ((s as any).brotherQW ?? {})['sex_ed'] = (((s as any).brotherQW ?? {})['sex_ed'] ?? 0) + (1);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['sex_ed'] = ((s as any).brotherQW['sex_ed'] ?? 0) + (1);
   qspCall(s, 'outfit', 'strip_all');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/kolka/event/homework/anatomylesson/1.jpg');
@@ -559,11 +559,11 @@ function enterAnatomylesson2(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).brotherQW ?? 0)?.['know_pc_lact'] === 2  &&  ((s as any).brotherQW ?? 0)?.['know_pc_milk_taste'] >= 1) {
                 scene.text('During writing Kolka licks his lips and adds "I didn\'t know you had milk again…"');
-                ((s as any).brotherQW ?? {})['know_pc_lact'] = 1;
+                if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_lact'] = 1;
               } else {
                 if (((s as any).brotherQW ?? 0)?.['know_pc_lact'] === 2  &&  ((s as any).brotherQW ?? 0)?.['know_pc_milk_taste'] <= 0) {
                   scene.text('During writing Kolka licks his lips and adds "I didn\'t know you had milk again… and it tastes really good."');
-                  ((s as any).brotherQW ?? {})['know_pc_lact'] = 1;
+                  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_lact'] = 1;
                 } else {
                   scene.text('During writing Kolka licks his lips and adds "Hmm - I didn\'t think your milk would taste so good…".');
                 }
@@ -575,7 +575,7 @@ function enterAnatomylesson2(s: GameState, scene: SceneBuilder): void {
       scene.text('You slap him on the back of his head playfully. "shh - stop that now."');
       scene.text('<i><b>sigh</b> Boys…</i>');
       scene.text('Looking at the next part of the homework it talks about the anatomy of the vulva but doesn\'t go on to the internals. At least you\'ll be able to use your arousal for the lesson now…');
-      ((s as any).brotherQW ?? {})['know_pc_milk_taste'] = 1;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_milk_taste'] = 1;
     } else {
       if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).milkedvolume ?? 0) < 5) {
         scene.img('images/characters/pavlovsk/resident/kolka/event/homework/anatomylesson/7.jpg');
@@ -620,7 +620,7 @@ function enterAnatomylesson2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).brotherQW ?? 0)?.['know_pc_lact'] === 1) {
           scene.text('Kolka looks up at you for a moment "Did you stop having milk?"');
           scene.text('You nod at Kolka and tell him to concentrate on the studies.');
-          ((s as any).brotherQW ?? {})['know_pc_lact'] = 2;
+          if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_lact'] = 2;
         }
         scene.text('<i><b>sigh</b> Boys…</i>');
         scene.text('Looking at the next part of the homework it talks about the anatomy of the vulva but doesn\'t go on to the internals. At least you\'ll be able to use your arousal for the lesson now…');
@@ -648,8 +648,8 @@ function enterAnatomylesson2(s: GameState, scene: SceneBuilder): void {
           scene.text('He goes on "… and there is so much of it!"');
         }
         scene.text('Then he notices your heavy breathing. "Hey, are you okay? Is there something wrong with you?"');
-        ((s as any).brotherQW ?? {})['know_pc_lact'] = 1;
-        ((s as any).brotherQW ?? {})['breastfeed_by_pc'] = 1;
+        if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_lact'] = 1;
+        if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['breastfeed_by_pc'] = 1;
       } else {
         if (((s as any).brotherQW ?? 0)?.['know_pc_lact'] === 1  &&  ((s as any).brotherQW ?? 0)?.['breastfeed_by_pc'] <= 0) {
           scene.img('images/characters/pavlovsk/resident/kolka/event/homework/anatomylesson/8.jpg');
@@ -676,7 +676,7 @@ function enterAnatomylesson2(s: GameState, scene: SceneBuilder): void {
               scene.text('He goes on "… and you probably can make enough milk for that!"');
             }
             scene.text('Then he notices your heavy breathing. "Hey, are you okay? Is there something wrong with you?"');
-            ((s as any).brotherQW ?? {})['know_pc_lact'] = 1;
+            if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_lact'] = 1;
           } else {
             scene.img('images/characters/pavlovsk/resident/kolka/event/homework/anatomylesson/8.jpg');
             scene.text('"Kolk-! Ahh~! Wai- Uh~! Sto-… Ohh~!" you try to voice protests but they get lost in your stifled moans.');
@@ -707,9 +707,9 @@ function enterAnatomylesson2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You sigh again. Taking a look in the textbook, it says the next part of the homework is about the external female organs: the vulva. You slyly smile to yourself.');
     scene.text('<i>Well, at least I didn\'t get wet for nothing.</i>');
-    ((s as any).brotherQW ?? {})['know_pc_lact'] = 1;
-    ((s as any).brotherQW ?? {})['breastfeed_by_pc'] = 1;
-    ((s as any).brotherQW ?? {})['know_pc_milk_taste'] = 1;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_lact'] = 1;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['breastfeed_by_pc'] = 1;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_milk_taste'] = 1;
     scene.actions([
       { label: 'Continue the lesson', goto: ['brother_lessons', 'anatomylesson3'] },
     ]);
@@ -727,7 +727,7 @@ function enterAnatomylesson2(s: GameState, scene: SceneBuilder): void {
         scene.text('"Ahh~!" A cry briefly escapes your lips before you clamp your own hand over them to make sure the rest of your family doesn\'t overhear you. You can only imagine your mother\'s reaction if she came in to find your brother sucking on your tits like this.');
         // TODO-QSP: dynamic text: After another minute of sucking and squirming, your brother finally relents. "<<...
         scene.text(`After another minute of sucking and squirming, your brother finally relents. "${((s as any).pcs_nickname ?? 0)}, I thought your milk will come out. I've been sucking all this time and nothing's come out. Why's that?" Then he notices your heavy breathing. "Hey, are you okay? Is there something wrong with you?"`);
-        ((s as any).brotherQW ?? {})['know_pc_lact'] = 2;
+        if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_pc_lact'] = 2;
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/kolka/event/homework/anatomylesson/7.jpg');
@@ -786,7 +786,7 @@ function enterAnatomylesson2_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 5);
   scene.img('images/characters/pavlovsk/resident/kolka/event/homework/f (1).jpg');
   if (((s as any).npc_QW ?? 0)?.['A34'] <= 4) {
-    ((s as any).npc_QW ?? {})['A34'] = 4;
+    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A34'] = 4;
     // TODO-QSP: dynamic text: You check to see if the door to the hall is closed, then silently but quickly ta...
     scene.text(`You check to see if the door to the hall is closed, then silently but quickly take off your clothes. Feeling a bit embarrassed as you sit in a chair, you cover your ${((s as any).titsize ?? 0)} breasts with your hands and close your legs tightly.`);
     scene.text('You feel your brother\'s eyes staring at your body. This situation isn\'t getting any easier so you may as well start, "Well, Kolka, what do you need explained?"');
@@ -928,7 +928,7 @@ function enterAnatomylesson2_4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 5);
   scene.img('images/characters/pavlovsk/resident/kolka/event/homework/f (4).jpg');
   if (((s as any).npc_QW ?? 0)?.['A34'] === 4) {
-    ((s as any).npc_QW ?? {})['A34'] = 5;
+    if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A34'] = 5;
     // TODO-QSP: dynamic text: You turn and sit down in the chair then spread your legs wide apart. Using the t...
     scene.text(`You turn and sit down in the chair then spread your legs wide apart. Using the tips of your fingers, you gently pull at your labia, revealing your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy to Kolka.`);
     scene.text('"Oh…" your brother gasps, voice trembling.');
@@ -1035,14 +1035,14 @@ function enterAnatomylesson2_4(s: GameState, scene: SceneBuilder): void {
 function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A34', Math.floor(Math.random() * 2) + 2);
   (s as any).ivrand = Math.floor(Math.random() * 2) + 1;
-  ((s as any).brotherQW ?? {})['confidence'] = (((s as any).brotherQW ?? {})['confidence'] ?? 0) + (4);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['confidence'] = ((s as any).brotherQW['confidence'] ?? 0) + (4);
   if (((s as any).brotherQW ?? 0)?.['confidence'] < 10  &&  ((s as any).brotherQW ?? 0)?.['Sex'] < 4) {
     qspCall(s, 'cum_call', 'stomach', 'A34', 1, 0, 0, Math.floor(Math.random() * 11) + 20);
     qspCall(s, 'cum_call', 'breasts', 'A34', 1, 0, 0, Math.floor(Math.random() * 21) + 10);
     qspCall(s, 'cum_call', 'labia', 'A34', 1, 0, 0, Math.floor(Math.random() * 21) + 10);
     qspCall(s, 'stat', '');
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 4) {
-      ((s as any).brotherQW ?? {})['Sex'] = 4;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 4;
     }
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
@@ -1064,7 +1064,7 @@ function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/characters/pavlovsk/resident/kolka/event/homework/f (7.${((s as any).picrand ?? 0)}).jpg`);
     if (((s as any).npc_QW ?? 0)?.['A34'] === 5) {
       if (((s as any).npc_QW ?? 0)?.['A34'] === 5) {
-        ((s as any).npc_QW ?? {})['A34'] = 6;
+        if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A34'] = 6;
       }
       scene.text('You lie there, breathless. You suddenly pop up, the taboo nature of what just occurred between you and your sibling hitting you hard.');
       scene.text('Kolka is the first to break the silence. He eyes your cum stained body. His eyes slowly make their way up to yours. "Whoa!" he exclaims, almost too loudly.');
@@ -1097,8 +1097,8 @@ function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
     if (((s as any).brotherQW ?? 0)?.['Sex'] >= 4) {
       qspCall(s, 'boyStat', 'A34');
       qspCall(s, 'cum_call', 'mouth_swallow', 'A34', 1, 0, 0, Math.floor(Math.random() * 11) + 20);
-      ((s as any).brotherQW ?? {})['sex_count_today'] = (((s as any).brotherQW ?? {})['sex_count_today'] ?? 0) - (1);
-      ((s as any).brotherQW ?? {})['last_sex_day_evening'] = ((s as any).daystart ?? 0);
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['sex_count_today'] = ((s as any).brotherQW['sex_count_today'] ?? 0) - (1);
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_evening'] = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
       (s as any).picrand = Math.floor(Math.random() * 2) + 1;
       scene.img(`images/characters/pavlovsk/resident/kolka/event/homework/f (6.${((s as any).picrand ?? 0)}).jpg`);
@@ -1134,10 +1134,10 @@ function enterAnatomylesson2_5(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'boyStat', 'A34');
         qspCall(s, 'cum_call', 'mouth_swallow', 'A34', 1, 0, 0, Math.floor(Math.random() * 11) + 20);
         if (((s as any).brotherQW ?? 0)?.['Sex'] < 4) {
-          ((s as any).brotherQW ?? {})['Sex'] = 4;
+          if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 4;
         }
-        ((s as any).brotherQW ?? {})['sex_count_today'] = (((s as any).brotherQW ?? {})['sex_count_today'] ?? 0) - (1);
-        ((s as any).brotherQW ?? {})['last_sex_day_evening'] = ((s as any).daystart ?? 0);
+        if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['sex_count_today'] = ((s as any).brotherQW['sex_count_today'] ?? 0) - (1);
+        if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_evening'] = ((s as any).daystart ?? 0);
         qspCall(s, 'stat', '');
         (s as any).picrand = Math.floor(Math.random() * 2) + 1;
         scene.img(`images/characters/pavlovsk/resident/kolka/event/homework/f (6.${((s as any).picrand ?? 0)}).jpg`);
@@ -1400,7 +1400,7 @@ function enterAnatomylessonConceptionSexBc(s: GameState, scene: SceneBuilder): v
   if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
     scene.actions([
       { label: 'You\'re on birth control', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['creampie_allowance'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['creampie_allowance'] = ((s as any).daystart ?? 0);
     // TODO-QSP: dynamic text: "Don't worry," you coo. "I'm on the <<$birth_control['type']>>."
     scene.text(`"Don't worry," you coo. "I'm on the ${((s as any).birth_control ?? 0)?.['type']}."`);
     scene.actions([
@@ -1412,7 +1412,7 @@ function enterAnatomylessonConceptionSexBc(s: GameState, scene: SceneBuilder): v
     if (((s as any).thinkpreg ?? 0) + ((s as any).knowpreg ?? 0) >= 1) {
       scene.actions([
         { label: 'You\'re already pregnant', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['creampie_allowance'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['creampie_allowance'] = ((s as any).daystart ?? 0);
     scene.text('"It might be kind of difficult for you to get me pregnant," you say with a wry smile.');
     scene.text('"Huh? Why?"');
     scene.text('"Cause I\'m already pregnant," you grin and Kolka\'s jaw drops. "Some extra sperm isn\'t going to make a difference."');
@@ -1464,7 +1464,7 @@ function enterAnatomylessonConceptionSexBc(s: GameState, scene: SceneBuilder): v
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
         scene.actions([
           { label: 'It\'s a safe day', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['creampie_allowance'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['creampie_allowance'] = ((s as any).daystart ?? 0);
     scene.text('"Don\'t worry," you coo. "It\'s a safe day in my cycle. I won\'t get pregnant."');
     scene.actions([
       { label: 'Continue with the lesson', goto: ['brother_lessons', 'anatomylesson_conception_sex1'] },
@@ -1474,7 +1474,7 @@ function enterAnatomylessonConceptionSexBc(s: GameState, scene: SceneBuilder): v
       }
       scene.actions([
         { label: 'You\'ll have to pull out', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['pullout_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['pullout_day'] = ((s as any).daystart ?? 0);
     scene.text('"You\'ll just have to pull out," you smirk. He seems pretty nervous about that.');
     scene.actions([
       { label: 'Continue with the lesson', goto: ['brother_lessons', 'anatomylesson_conception_sex1'] },

@@ -19,9 +19,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Entering the studio, you head to the back room to strip down.');
   }
-  ((s as any).special_model ?? {})['roll'] = Math.floor(Math.random() * 1371) + 30;
-  ((s as any).special_skill_model ?? {})['roll'] = Math.floor(Math.random() * 500) + 1;
-  ((s as any).foto ?? {})['documentary'] = Math.floor(Math.random() * 100) + 1;
+  if (!(s as any).special_model) (s as any).special_model = {}; (s as any).special_model['roll'] = Math.floor(Math.random() * 1371) + 30;
+  if (!(s as any).special_skill_model) (s as any).special_skill_model = {}; (s as any).special_skill_model['roll'] = Math.floor(Math.random() * 500) + 1;
+  if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['documentary'] = Math.floor(Math.random() * 100) + 1;
   if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).pcs_inhib ?? 0) < 60  &&  ((s as any).studio_strip ?? 0) <= 1  &&  ((s as any).underwear ?? 0)?.['type'] !== 2) {
     if (((s as any).studio_strip_talk ?? 0) < 3) {
       scene.actions([
@@ -29,10 +29,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       qspCall(s, 'clothing', 'strip');
     }
-    ((s as any).lastwornpantytype ?? {})['foto'] = ((s as any).pantyworntype ?? 0);
-    ((s as any).lastwornpantynumber ?? {})['foto'] = ((s as any).pantywornnumber ?? 0);
-    ((s as any).lastwornbratype ?? {})['foto'] = ((s as any).braworntype ?? 0);
-    ((s as any).lastwornbranumber ?? {})['foto'] = ((s as any).brawornnumber ?? 0);
+    if (!(s as any).lastwornpantytype) (s as any).lastwornpantytype = {}; (s as any).lastwornpantytype['foto'] = ((s as any).pantyworntype ?? 0);
+    if (!(s as any).lastwornpantynumber) (s as any).lastwornpantynumber = {}; (s as any).lastwornpantynumber['foto'] = ((s as any).pantywornnumber ?? 0);
+    if (!(s as any).lastwornbratype) (s as any).lastwornbratype = {}; (s as any).lastwornbratype['foto'] = ((s as any).braworntype ?? 0);
+    if (!(s as any).lastwornbranumber) (s as any).lastwornbranumber = {}; (s as any).lastwornbranumber['foto'] = ((s as any).brawornnumber ?? 0);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     if ((!((s as any).studio_strip_talk ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['foto_events', 'studio_strip_talk1'] }]);
@@ -190,36 +190,36 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   if (((s as any).fame ?? 0)?.['city_modelling'] < 200  ||  ((s as any).modelfoto ?? 0)?.['nude'] <= 0) {
-    ((s as any).model ?? {})['rank'] = 0;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 0;
   } else {
     if (((s as any).fame ?? 0)?.['city_modelling'] < 240) {
-      ((s as any).model ?? {})['rank'] = 1;
+      if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 1;
     } else {
       if (((s as any).fame ?? 0)?.['city_modelling'] < 280) {
-        ((s as any).model ?? {})['rank'] = 2;
+        if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 2;
       } else {
         if (((s as any).fame ?? 0)?.['city_modelling'] < 320) {
-          ((s as any).model ?? {})['rank'] = 3;
+          if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 3;
         } else {
           if (((s as any).fame ?? 0)?.['city_modelling'] < 360) {
-            ((s as any).model ?? {})['rank'] = 4;
+            if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 4;
           } else {
             if (((s as any).fame ?? 0)?.['city_modelling'] < 400) {
-              ((s as any).model ?? {})['rank'] = 5;
+              if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 5;
             } else {
               if (((s as any).fame ?? 0)?.['city_modelling'] < 440) {
-                ((s as any).model ?? {})['rank'] = 6;
+                if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 6;
               } else {
                 if (((s as any).fame ?? 0)?.['city_modelling'] < 560) {
-                  ((s as any).model ?? {})['rank'] = 7;
+                  if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 7;
                 } else {
                   if (((s as any).fame ?? 0)?.['city_modelling'] < 620) {
-                    ((s as any).model ?? {})['rank'] = 8;
+                    if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 8;
                   } else {
                     if (((s as any).fame ?? 0)?.['city_modelling'] < 700) {
-                      ((s as any).model ?? {})['rank'] = 9;
+                      if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 9;
                     } else {
-                      ((s as any).model ?? {})['rank'] = 10;
+                      if (!(s as any).model) (s as any).model = {}; (s as any).model['rank'] = 10;
                     }
                   }
                 }
@@ -326,7 +326,7 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).temp_ok_to_shoot ?? 0)) {
       if (((s as any).model ?? 0)?.['spcial_job_day'] !== ((s as any).daystart ?? 0)) {
-        ((s as any).model ?? {})['spcial_job_day'] = ((s as any).daystart ?? 0);
+        if (!(s as any).model) (s as any).model = {}; (s as any).model['spcial_job_day'] = ((s as any).daystart ?? 0);
         if (((s as any).special_model ?? 0)?.['roll'] < Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700)  &&  ((s as any).modelfoto ?? 0)?.['topless'] > 0  &&  ((s as any).hour ?? 0) < 15) {
           scene.actions([{ label: 'Continue', goto: ['foto_events', 'fame'] }]);
         }
@@ -391,7 +391,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -445,14 +445,14 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 function enterShowers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'foto', 'showers');
   qspCall(s, 'stat', '');
-  ((s as any).krystal ?? {})['shower_sex'] = Math.floor(Math.random() * 7) + 1;
+  if (!(s as any).krystal) (s as any).krystal = {}; (s as any).krystal['shower_sex'] = Math.floor(Math.random() * 7) + 1;
   if (((s as any).krystal ?? 0)?.['shower_sex'] === 7  &&  ((s as any).krystal ?? 0)?.['status'] >= 3) {
     scene.actions([{ label: 'Continue', goto: ['model_krystal', 'krystalshower'] }]);
   }
   scene.img('images/locations/city/citycenter/photo/shower.jpg');
   scene.text('In the center of the studio you find the staff shower room. This is where the models go if they need to clean up. There\'s no real privacy here. Anybody walking past can see right in, the only modesty being some panes of slightly frosted glass. Still, none of the other models seem to mind very much and sometimes converse or share shower stalls with each other.');
   scene.text('A little bit away are bathroom stalls with a line of sinks and mirrors on the wall opposite as well as several tampon dispensers and a bin full of disposable razors.');
-  ((s as any).pcs_shave ?? {})['free_razor'] = 1;
+  if (!(s as any).pcs_shave) (s as any).pcs_shave = {}; (s as any).pcs_shave['free_razor'] = 1;
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] <= 0) {
     scene.text('You\'ve run out of shampoo and will have to buy some more before you can wash yourself.');
   } else {
@@ -534,7 +534,7 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -605,7 +605,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -637,7 +637,7 @@ function enterManagerTalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Back to the studio', goto: ['foto', 'studio'] },
     { label: 'Change your model name', handler: (st: GameState) => {
-    ((s as any).modelfoto ?? {})['change_name'] = (((s as any).modelfoto ?? {})['change_name'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['change_name'] = ((s as any).modelfoto['change_name'] ?? 0) + (1);
     scene.text('"I want to change my name in the listings," you say.');
     scene.text('"Okay, what do you want to be called instead?" he replies, pulling up your profile on a computer.');
     scene.actions([
@@ -652,13 +652,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).practice_session ?? 0))) {
     (s as any).model_job_week = ((s as any).model_job_week ?? 0) + (1);
     (s as any).model_week = (((s as any).daystart ?? 0) - ((s as any).week ?? 0)) / 7;
-    ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     if (((s as any).model_job_week ?? 0) >= 2) {
       qspCall(s, 'jobs', 'suspend_job', 'city_aphrodite_model');
     }
-    ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
-    ((s as any).stat ?? {})['last_model'] = ((s as any).daystart ?? 0);
+    if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_model'] = ((s as any).daystart ?? 0);
   } else {
     (s as any).practice_session = 0;
   }
@@ -1085,7 +1085,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fakepassport ?? 0) === 1) {
       scene.actions([
         { label: 'Show him your fake passport', handler: (st: GameState) => {
-    ((s as any).model ?? {})['age'] = 18;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['age'] = 18;
     scene.text('He takes it from you and begins copying the information onto his computer. As he types he occasionally glances at you, like he can\'t wait to see you naked again. Finally, he hits a key on his keyboard with an air of finality and holds up the fake passport one more time to compare the information he just typed in. Satisfied that it has been entered accurately, he nods and clicks a few more times to save the data.');
     scene.actions([
       { label: 'Continue', goto: ['foto', 'model_name1'] },
@@ -1340,9 +1340,9 @@ function enterModelName2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Use your real name', handler: (st: GameState) => {
-    ((s as any).model ?? {})['firstname'] = ((s as any).pcs_firstname ?? 0);
-    ((s as any).model ?? {})['nickname'] = ((s as any).pcs_nickname ?? 0);
-    ((s as any).model ?? {})['lastname'] = ((s as any).pcs_lastname ?? 0);
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['firstname'] = ((s as any).pcs_firstname ?? 0);
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['nickname'] = ((s as any).pcs_nickname ?? 0);
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['lastname'] = ((s as any).pcs_lastname ?? 0);
     scene.text('"My real name is fine," you say.');
     scene.text('"Fine by me," he replies, glancing between his screen and your passport to make sure he copies it down correctly.');
     scene.actions([
@@ -1357,9 +1357,9 @@ function enterModelName2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModelName3(s: GameState, scene: SceneBuilder): void {
-  ((s as any).model ?? {})['firstname'] = 0;
-  ((s as any).model ?? {})['nickname'] = 0;
-  ((s as any).model ?? {})['lastname'] = 0;
+  if (!(s as any).model) (s as any).model = {}; (s as any).model['firstname'] = 0;
+  if (!(s as any).model) (s as any).model = {}; (s as any).model['nickname'] = 0;
+  if (!(s as any).model) (s as any).model = {}; (s as any).model['lastname'] = 0;
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>…" he mutters, slowly typing. "<<$model['lastname']>>… O...
   scene.text(`"${((s as any).model ?? 0)?.['firstname']}…" he mutters, slowly typing. "${((s as any).model ?? 0)?.['lastname']}… Okay, there. Is this correct?"`);
@@ -1400,12 +1400,12 @@ function enterModelProfile(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).model ?? {})['likes1'] = 0;
-    ((s as any).model ?? {})['likes2'] = 0;
-    ((s as any).model ?? {})['likes3'] = 0;
-    ((s as any).model ?? {})['dislikes1'] = 0;
-    ((s as any).model ?? {})['dislikes2'] = 0;
-    ((s as any).model ?? {})['dislikes3'] = 0;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['likes1'] = 0;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['likes2'] = 0;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['likes3'] = 0;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['dislikes1'] = 0;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['dislikes2'] = 0;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['dislikes3'] = 0;
     scene.actions([
       { label: 'Continue', goto: ['foto', 'gave_passport'] },
     ]);
@@ -1422,11 +1422,11 @@ function enterGavePassport(s: GameState, scene: SceneBuilder): void {
   scene.text('"Welcome to Aphrodite."');
   qspCall(s, 'jobs', 'set_employed', 'city_aphrodite_model');
   if (((s as any).age ?? 0) < 18) {
-    ((s as any).model ?? {})['age'] = 18;
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['age'] = 18;
   } else {
-    ((s as any).model ?? {})['age'] = ((s as any).age ?? 0);
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['age'] = ((s as any).age ?? 0);
   }
-  ((s as any).model ?? {})['start_year'] = ((s as any).year ?? 0);
+  if (!(s as any).model) (s as any).model = {}; (s as any).model['start_year'] = ((s as any).year ?? 0);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the studio', handler: (st: GameState) => {
@@ -1578,7 +1578,7 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Open your mouth', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'boyStat', '', ((s as any).boy1 ?? 0));
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy1 ?? 0));
     qspCall(s, 'boyStat', '', ((s as any).boy2 ?? 0));
@@ -1697,25 +1697,25 @@ function enterUnderwear(s: GameState, scene: SceneBuilder): void {
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).modelfoto ?? 0)?.['erotic'] >= 10  ||  (((s as any).modelfoto ?? 0)?.['erotic'] > ((s as any).modelfoto ?? 0)?.['fashion']  &&  ((s as any).modelfoto ?? 0)?.['erotic'] > ((s as any).modelfoto ?? 0)?.['fitness']  &&  ((s as any).modelfoto ?? 0)?.['erotic'] > ((s as any).modelfoto ?? 0)?.['glamour']  &&  ((s as any).modelfoto ?? 0)?.['erotic'] > ((s as any).modelfoto ?? 0)?.['lingerie']  &&  ((s as any).modelfoto ?? 0)?.['erotic'] > ((s as any).modelfoto ?? 0)?.['catalog']  &&  ((s as any).modelfoto ?? 0)?.['erotic'] > ((s as any).modelfoto ?? 0)?.['nude'])) {
-    ((s as any).model ?? {})['type'] = 'erotic';
+    if (!(s as any).model) (s as any).model = {}; (s as any).model['type'] = 'erotic';
   } else {
     if (((s as any).modelfoto ?? 0)?.['nude'] > ((s as any).modelfoto ?? 0)?.['fashion']  &&  ((s as any).modelfoto ?? 0)?.['nude'] > ((s as any).modelfoto ?? 0)?.['fitness']  &&  ((s as any).modelfoto ?? 0)?.['nude'] > ((s as any).modelfoto ?? 0)?.['glamour']  &&  ((s as any).modelfoto ?? 0)?.['nude'] > ((s as any).modelfoto ?? 0)?.['lingerie']  &&  ((s as any).modelfoto ?? 0)?.['nude'] > ((s as any).modelfoto ?? 0)?.['catalog']) {
-      ((s as any).model ?? {})['type'] = 'artistic nude';
+      if (!(s as any).model) (s as any).model = {}; (s as any).model['type'] = 'artistic nude';
     } else {
       if (((s as any).modelfoto ?? 0)?.['fitness'] > ((s as any).modelfoto ?? 0)?.['fashion']  &&  ((s as any).modelfoto ?? 0)?.['fitness'] > ((s as any).modelfoto ?? 0)?.['nude']  &&  ((s as any).modelfoto ?? 0)?.['fitness'] > ((s as any).modelfoto ?? 0)?.['glamour']  &&  ((s as any).modelfoto ?? 0)?.['fitness'] > ((s as any).modelfoto ?? 0)?.['lingerie']  &&  ((s as any).modelfoto ?? 0)?.['fitness'] > ((s as any).modelfoto ?? 0)?.['catalog']) {
-        ((s as any).model ?? {})['type'] = 'fitness';
+        if (!(s as any).model) (s as any).model = {}; (s as any).model['type'] = 'fitness';
       } else {
         if (((s as any).modelfoto ?? 0)?.['glamour'] > ((s as any).modelfoto ?? 0)?.['fashion']  &&  ((s as any).modelfoto ?? 0)?.['glamour'] > ((s as any).modelfoto ?? 0)?.['nude']  &&  ((s as any).modelfoto ?? 0)?.['glamour'] > ((s as any).modelfoto ?? 0)?.['fitness']  &&  ((s as any).modelfoto ?? 0)?.['glamour'] > ((s as any).modelfoto ?? 0)?.['lingerie']  &&  ((s as any).modelfoto ?? 0)?.['glamour'] > ((s as any).modelfoto ?? 0)?.['catalog']) {
-          ((s as any).model ?? {})['type'] = 'glamour';
+          if (!(s as any).model) (s as any).model = {}; (s as any).model['type'] = 'glamour';
         } else {
           if (((s as any).modelfoto ?? 0)?.['lingerie'] > ((s as any).modelfoto ?? 0)?.['fashion']  &&  ((s as any).modelfoto ?? 0)?.['lingerie'] > ((s as any).modelfoto ?? 0)?.['nude']  &&  ((s as any).modelfoto ?? 0)?.['lingerie'] > ((s as any).modelfoto ?? 0)?.['fitness']  &&  ((s as any).modelfoto ?? 0)?.['lingerie'] > ((s as any).modelfoto ?? 0)?.['glamour']  &&  ((s as any).modelfoto ?? 0)?.['lingerie'] > ((s as any).modelfoto ?? 0)?.['catalog']) {
-            ((s as any).model ?? {})['type'] = 'lingerie';
+            if (!(s as any).model) (s as any).model = {}; (s as any).model['type'] = 'lingerie';
           } else {
             if (((s as any).modelfoto ?? 0)?.['fashion'] > ((s as any).modelfoto ?? 0)?.['lingerie']  &&  ((s as any).modelfoto ?? 0)?.['fashion'] > ((s as any).modelfoto ?? 0)?.['nude']  &&  ((s as any).modelfoto ?? 0)?.['fashion'] > ((s as any).modelfoto ?? 0)?.['fitness']  &&  ((s as any).modelfoto ?? 0)?.['fashion'] > ((s as any).modelfoto ?? 0)?.['glamour']  &&  ((s as any).modelfoto ?? 0)?.['fashion'] > ((s as any).modelfoto ?? 0)?.['catalog']) {
-              ((s as any).model ?? {})['type'] = 'fashion';
+              if (!(s as any).model) (s as any).model = {}; (s as any).model['type'] = 'fashion';
             } else {
               if (((s as any).modelfoto ?? 0)?.['catalog'] > 0) {
-                ((s as any).model ?? {})['type'] = 'catalog';
+                if (!(s as any).model) (s as any).model = {}; (s as any).model['type'] = 'catalog';
               }
             }
           }

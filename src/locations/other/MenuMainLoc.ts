@@ -9,14 +9,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat_cfg ?? {})['render_mode'] = 0;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['render_mode'] = 0;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat_cfg ?? {})['render_mode'] = 2;
+  if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['render_mode'] = 2;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();

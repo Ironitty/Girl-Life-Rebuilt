@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).month ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).month ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).weatherMeanTemp = (-48);
@@ -109,11 +109,11 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).weatherDay = ((s as any).daystart ?? 0);
   if (((s as any).totminut ?? 0) < ((s as any).sunWeather ?? 0)[1]-240) {
-    ((s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0);
+    if (!(s as any).sunWeather) (s as any).sunWeather = {}; (s as any).sunWeather[1] = ((s as any).totminut ?? 0);
     // TODO-QSP: !! Time cheat
   }
   if (((s as any).totminut ?? 0) > ((s as any).sunWeather ?? 0)[1]) {
-    ((s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0) + (Math.floor(Math.random() * 121) + 30);
+    if (!(s as any).sunWeather) (s as any).sunWeather = {}; (s as any).sunWeather[1] = ((s as any).totminut ?? 0) + (Math.floor(Math.random() * 121) + 30);
     (s as any).sunWeather = (((Math.floor(Math.random() * 100) + 0) < ((s as any).weatherFall ?? 0)) ? (0) : (1));
   }
   (s as any).temper = (((s as any).totminut ?? 0) % 1440);
@@ -127,11 +127,11 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temper = ((s as any).weatherTemper ?? 0) + (((s as any).weatherTempDelta ?? 0) * ((s as any).temper ?? 0)) / 360;
-  ((s as any).temper ?? {})[1] = ((s as any).temper ?? 0) % 10;
+  if (!(s as any).temper) (s as any).temper = {}; (s as any).temper[1] = ((s as any).temper ?? 0) % 10;
   if (((s as any).temper ?? 0)[1] < 0) {
     // TODO-QSP: temper[1] *= -1
   }
-  ((s as any).temper ?? {})[0] = ((s as any).temper ?? 0) / 10;
+  if (!(s as any).temper) (s as any).temper = {}; (s as any).temper[0] = ((s as any).temper ?? 0) / 10;
   if (((s as any).temper ?? 0) < -5) {
     if (((s as any).weatherFall ?? 0) < 30) {
       if (((s as any).sunWeather ?? 0) === 1) {
@@ -299,7 +299,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $weatherImage += '.jpg">'
   if (((s as any).location_type ?? 0) === 'public_outdoors'  ||  ((s as any).location_type ?? 0) === 'secluded'  ||  ((s as any).location_type ?? 0) === 'event_outdoors') {
-    ((s as any).location_type ?? {})['is_outdoors'] = 1;
+    if (!(s as any).location_type) (s as any).location_type = {}; (s as any).location_type['is_outdoors'] = 1;
     qspCall(s, 'themes', 'outdoors');
     if (((s as any).sunWeather ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['umbrella'] === 0) {
       // TODO-QSP: *NL 'It is raining and you do not have an umbrella.'
@@ -439,7 +439,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    ((s as any).location_type ?? {})['is_outdoors'] = 0;
+    if (!(s as any).location_type) (s as any).location_type = {}; (s as any).location_type['is_outdoors'] = 0;
     qspCall(s, 'themes', 'indoors');
   }
   // TODO-QSP: end

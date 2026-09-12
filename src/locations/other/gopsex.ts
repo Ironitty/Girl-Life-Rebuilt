@@ -251,7 +251,7 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
       (s as any).gopsex_n_npc = 0;
       (s as any).shgopsex_den_day = ((s as any).daystart ?? 0);
       (s as any).shgopsex_den_count = ((s as any).shgopsex_den_count ?? 0) - (1);
-      ((s as any).npc_had_sex ?? {})['A10'] = 1;
+      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
       qspCall(s, 'npcStat', 'A10');
       qspCall(s, 'gopsex', 'shgopsex');
     }
@@ -267,7 +267,7 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
       (s as any).gopsex_n_npc = 2;
       (s as any).shgopsex_vitya_day = ((s as any).daystart ?? 0);
       (s as any).shgopsex_vitya_count = ((s as any).shgopsex_vitya_count ?? 0) - (1);
-      ((s as any).npc_had_sex ?? {})['A9'] = 1;
+      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
       qspCall(s, 'npcStat', 'A9');
       qspCall(s, 'gopsex', 'shgopsex');
     }
@@ -303,7 +303,7 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
       (s as any).gopsex_n_npc = 1;
       (s as any).shgopsex_vasya_day = ((s as any).daystart ?? 0);
       (s as any).shgopsex_vasya_count = ((s as any).shgopsex_vasya_count ?? 0) - (1);
-      ((s as any).npc_had_sex ?? {})['A11'] = 1;
+      if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
       qspCall(s, 'npcStat', 'A11');
       qspCall(s, 'gopsex', 'shgopsex');
     }
@@ -772,18 +772,18 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: end & !! --- gop_sex_analPlugIn ---
           if (((s as any).locArgs?.[1] ?? 0) === 'group_sex_start') {
             if (((s as any).shgopsex_gr_day ?? 0) !== ((s as any).daystart ?? 0)) {
-              ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+              if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
             }
             (s as any).shgopsex_gr_day = ((s as any).daystart ?? 0);
             (s as any).shgopsex_gr_count = ((s as any).shgopsex_gr_count ?? 0) - (1);
-            ((s as any).npc_had_sex ?? {})['A9'] = 1;
-            ((s as any).npc_had_sex ?? {})['A10'] = 1;
-            ((s as any).npc_had_sex ?? {})['A11'] = 1;
+            if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
+            if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
+            if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
             // TODO-QSP: end & !! --- group_sex_start ---
             if (((s as any).locArgs?.[1] ?? 0) === 'gop_sex_lubri') {
               if ((!((s as any).gop_sex_lubri ?? 0))) {
                 if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-                  ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+                  if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
                   if (((s as any).agape ?? 0) > 1) {
                     (s as any).agape = 1;
                   }
@@ -812,7 +812,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).locArgs?.[1] ?? 0) === 'gop_groupsex_lubri') {
                   if ((!((s as any).gop_groupsex_lubri ?? 0))) {
                     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-                      ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
+                      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
                       if (((s as any).agape ?? 0) > 1) {
                         (s as any).agape = 1;
                       }
@@ -1518,7 +1518,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                         }
                                                                         if (((s as any).temp_rand ?? 0) === 4) {
                                                                           if (((s as any).brotherQW ?? 0)?.['know_slut'] < 2) {
-                                                                            ((s as any).brotherQW ?? {})['know_slut'] = 2;
+                                                                            if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['know_slut'] = 2;
                                                                           }
                                                                         }
                                                                         if (((s as any).temp_rand ?? 0) === 5) {
@@ -2144,16 +2144,16 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                       }
                                                                                                                                                       // TODO-QSP: end & !! --- group_sex_text ---
                                                                                                                                                       if (((s as any).locArgs?.[1] ?? 0) === 'rndorder3') {
-                                                                                                                                                        ((s as any).rndorder ?? {})[1] = 9;
-                                                                                                                                                        ((s as any).rndorder ?? {})[2] = 10;
-                                                                                                                                                        ((s as any).rndorder ?? {})[3] = 11;
+                                                                                                                                                        if (!(s as any).rndorder) (s as any).rndorder = {}; (s as any).rndorder[1] = 9;
+                                                                                                                                                        if (!(s as any).rndorder) (s as any).rndorder = {}; (s as any).rndorder[2] = 10;
+                                                                                                                                                        if (!(s as any).rndorder) (s as any).rndorder = {}; (s as any).rndorder[3] = 11;
                                                                                                                                                         (s as any).irndorder = 1;
                                                                                                                                                         // TODO-QSP: :rndorderjump
                                                                                                                                                         if (((s as any).irndorder ?? 0) < 4) {
                                                                                                                                                           (s as any).jrndorder = Math.floor(Math.random() * 3) + 1;
                                                                                                                                                           (s as any).krndorder = ((s as any).rndorder ?? 0)?.[String((s as any).irndorder ?? 0)];
-                                                                                                                                                          ((s as any).rndorder ?? {})[String((s as any).irndorder ?? 0)] = ((s as any).rndorder ?? 0)?.[String((s as any).jrndorder ?? 0)];
-                                                                                                                                                          ((s as any).rndorder ?? {})[String((s as any).jrndorder ?? 0)] = ((s as any).krndorder ?? 0);
+                                                                                                                                                          if (!(s as any).rndorder) (s as any).rndorder = {}; (s as any).rndorder[String((s as any).irndorder ?? 0)] = ((s as any).rndorder ?? 0)?.[String((s as any).jrndorder ?? 0)];
+                                                                                                                                                          if (!(s as any).rndorder) (s as any).rndorder = {}; (s as any).rndorder[String((s as any).jrndorder ?? 0)] = ((s as any).krndorder ?? 0);
                                                                                                                                                           (s as any).irndorder = ((s as any).irndorder ?? 0) + (1);
                                                                                                                                                           // TODO-QSP: jump 'rndorderjump'
                                                                                                                                                         }

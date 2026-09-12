@@ -74,8 +74,8 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((s as any).pcs_nickname ?? 0)}, I'm going to head home now, but we can hang out again later," Mira said as she began walking out of the forest.`);
     scene.actions([
       { label: 'Convince her to stay with you', handler: (st: GameState) => {
-    ((s as any).MiraVars ?? {})['follower'] = 1;
-    ((s as any).MiraVars ?? {})['follow_time'] = ((((s as any).minut ?? 0) > 30) ? (2) : (1));
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = ((((s as any).minut ?? 0) > 30) ? (2) : (1));
   }, goto: ['gad_forest', 'forest_edge'] },
       { label: 'Say goodbye', goto: ['gad_forest', 'forest_edge'] },
     ]);
@@ -266,21 +266,21 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).forestcaughtrand ?? 0) >= 9) {
-        ((s as any).grandmaQW ?? {})['nudity_trouble'] = (((s as any).grandmaQW ?? {})['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 4) + 7);
+        if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 4) + 7);
         scene.img('images/locations/gadukino/forest/gadukino_old_woman.jpg');
         scene.text('You\'ve been spotted walking home naked by all the village\'s women. So, naturally, they scold you as you walk by. Your grandparents are definitely going to find out about this.');
       } else {
         if (((s as any).forestcaughtrand ?? 0) >= 7) {
-          ((s as any).grandmaQW ?? {})['nudity_trouble'] = (((s as any).grandmaQW ?? {})['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 4);
+          if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 4);
           scene.img('images/locations/gadukino/forest/gadukino_old_woman\'+rand(1, 5)+\'.jpg');
           scene.text('You\'ve been spotted walking home naked by a woman from the village. You hope she doesn\'t tell your grandmother.');
         } else {
           if (((s as any).forestcaughtrand ?? 0) >= 5) {
-            ((s as any).grandmaQW ?? {})['nudity_trouble'] = (((s as any).grandmaQW ?? {})['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
             scene.img('images/locations/gadukino/forest/gadukino_old_man\'+rand(1, 5)+\'.jpg');
             scene.text('You\'ve been spotted walking home naked by a man from the village. You hope he doesn\'t tell your grandfather.');
           } else {
-            ((s as any).grandmaQW ?? {})['nudity_trouble'] = (((s as any).grandmaQW ?? {})['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+            if (!(s as any).grandmaQW) (s as any).grandmaQW = {}; (s as any).grandmaQW['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
             scene.img('images/locations/gadukino/grandparents/gaddvor_nude.jpg');
             scene.text('No one saw you outside naked, but there\'s a thrill in almost getting caught.');
           }
@@ -560,11 +560,11 @@ function enterStripping(s: GameState, scene: SceneBuilder): void {
     }
     if ((!((s as any).swamp_clothes ?? 0))) {
       qspCall(s, 'outfit', 'strip_all', ((s as any).forest_args1 ?? 0));
-      ((s as any).MiraVars ?? {})['strip_loc'] = ((s as any).forest_args1 ?? 0);
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['strip_loc'] = ((s as any).forest_args1 ?? 0);
     } else {
       if (((s as any).swamp_clothes ?? 0) === 1) {
         qspCall(s, 'outfit', 'strip_all', 'gad_forest');
-        ((s as any).MiraVars ?? {})['strip_loc'] = 'gad_forest';
+        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['strip_loc'] = 'gad_forest';
         qspCall(s, 'clothing', 'gad_swamp_clothes', 0);
       }
     }

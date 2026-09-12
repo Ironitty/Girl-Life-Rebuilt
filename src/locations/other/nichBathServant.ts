@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichWork ?? 0) === 2) {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] === 0) {
       scene.text('Since you are allowed to use some of the families shampoo for yourself you open up a new bottle and place it inside your shower.');
-      ((s as any).mc_inventory ?? {})['shampoo'] = 15;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['shampoo'] = 15;
     }
     qspCall(s, 'nichChore', 'inspect', 'bathServant');
     scene.actions([

@@ -6,8 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).vladimirQW ?? {})['stage'] = 25;
-  ((s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['stage'] = 25;
+  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vladimir</b></center>');
   scene.img('images/characters/city/vladimir/001.jpg');
@@ -330,7 +330,7 @@ function enterQwpaluba(s: GameState, scene: SceneBuilder): void {
 
 function enterQwbereg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A108');
-  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.text('<center><b>The boat</b></center>');
@@ -466,8 +466,8 @@ function enterQwbereg(s: GameState, scene: SceneBuilder): void {
 
 function enterQwbereg2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  ((s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
-  ((s as any).vladimirQW ?? {})['stage'] = 35;
+  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['stage'] = 35;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/vladimir/car.jpg');
   scene.text('After you\'ve finished fucking with Vladimir, you notice the familiar Audi drive up. Glory comes out of it and invites you to get in the car.');
@@ -521,8 +521,8 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).pcs_energy = 100;
     (s as any).pcs_hydra = 100;
-    ((s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
-    ((s as any).vladimirQW ?? {})['stage'] = 35;
+    if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['stage'] = 35;
     qspCall(s, 'stat', '');
     scene.text('The restaurant is the same one from your last meeting with Vladimir. He takes you to a specially reserved table. You drink and eat with Vladimir, who speaks little, mostly restrainting himself to complimenting you.');
     if ((!((s as any).VladimirKnowAboutHusband ?? 0))) {
@@ -534,15 +534,15 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A108');
     (s as any).NoGuy = 1;
     (s as any).InYouHome = 1;
-    ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 1;
-    ((s as any).npc_finance ?? {})[String((s as any).boy ?? 0)] = 2;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_finance) (s as any).npc_finance = {}; (s as any).npc_finance[String((s as any).boy ?? 0)] = 2;
     if (((s as any).vladimirQW ?? 0)?.['money_given'] === 0) {
       (s as any).temp_money = 5000;
     } else {
       (s as any).temp_money = 2000;
     }
     qspCall(s, 'money', 'earn', ((s as any).temp_money ?? 0), 'cash');
-    ((s as any).vladimirQW ?? {})['money_given'] = (((s as any).vladimirQW ?? {})['money_given'] ?? 0) + (((s as any).temp_money ?? 0));
+    if (!(s as any).vladimirQW) (s as any).vladimirQW = {}; (s as any).vladimirQW['money_given'] = ((s as any).vladimirQW['money_given'] ?? 0) + (((s as any).temp_money ?? 0));
     // TODO-QSP: dynamic text: You walk with Vladimir into the bedroom. Vladimir sceptically cast his gaze abou...
     scene.text(`You walk with Vladimir into the bedroom. Vladimir sceptically cast his gaze about your humble abode and takes out his wallet. "I hope you will not mind if I give you some money?" He hands you ${qspFunc(s, 'money', 'string_profit', ((s as any).temp_money ?? 0))}. You take the money you are offered.`);
     scene.actions([
@@ -578,8 +578,8 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'boyStat', 'A108');
     (s as any).NoGuy = 1;
-    ((s as any).npc_gentle ?? {})[String((s as any).boy ?? 0)] = 1;
-    ((s as any).npc_finance ?? {})[String((s as any).boy ?? 0)] = 2;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_finance) (s as any).npc_finance = {}; (s as any).npc_finance[String((s as any).boy ?? 0)] = 2;
     (s as any).GoToGuy = 2;
     scene.text('Glory drives you to an apartment Vladimir rents. You get out of the car and go up to the apartment.');
     scene.text('Once through the door you go with Vladimir to the bedroom.');

@@ -40,7 +40,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).letter_delay ?? 0) === 0  ||  ((s as any).daystart ?? 0) >= ((s as any).letter_delay ?? 0) + 7) {
       scene.actions([
         { label: 'Accept the opportunity', handler: (st: GameState) => {
-    ((s as any).balletqw ?? {})['letter'] = 1;
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['letter'] = 1;
   }, goto: ['kuhrPar', ''] },
       ]);
     }
@@ -54,7 +54,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Reject the opportunity', handler: (st: GameState) => {
     qspCall(s, 'pushkin_ballet_init', 'cleanup_var');
-    ((s as any).balletqw ?? {})['blocker'] = 1;
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['blocker'] = 1;
   }, goto: ['kuhrpar', ''] },
     ]);
   } },
@@ -139,7 +139,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
     scene.text('Albina stands staring at you with a frown, "Fine. I know you\'ve worked hard for this, ", she pauses, "but don\'t expect to get back into the Starlets when you\'re finished. I need 100% commitment from my dancers. When do you leave?"');
     scene.text('"I\'ll be leaving in the first weekend in July. Thank you for being understanding," you say with a sigh of relief, realizing you had been holding your breath. You\'re relieved that Albina hasn\'t started one of her famous tirades against you.');
     scene.text('As you are about to leave Albina calls out, "Good luck!" before turning back to her dancers.');
-    ((s as any).AlbinaQW ?? {})['StarletsJoined'] = (-1);
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsJoined'] = (-1);
     qspCall(s, 'calendar', 'pack', 'remove', 'starlets');
     scene.actions([
       { label: 'Leave', goto: ['gdksport', 'start'] },
@@ -181,7 +181,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $grid_text += '</table></center>'
     // TODO-QSP: dynamic text: <<$grid_text>>
     scene.text(`${((s as any).grid_text ?? 0)}`);
-    ((s as any).balletqw ?? {})['res_mg'] = 1;
+    if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['res_mg'] = 1;
     scene.actions([
       { label: 'Leave communal room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -189,7 +189,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'kitchen_birthday') {
-    ((s as any).birthday_party ?? {})['events'] = 2;
+    if (!(s as any).birthday_party) (s as any).birthday_party = {}; (s as any).birthday_party['events'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img(`${((s as any).npc_img_path ?? 0)?.['A279']}/279.jpg`);
@@ -213,7 +213,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'birthday') {
     if (((s as any).locArgs?.[2] ?? 0) === 'card') {
-      ((s as any).birthday_party ?? {})['events'] = 1;
+      if (!(s as any).birthday_party) (s as any).birthday_party = {}; (s as any).birthday_party['events'] = 1;
       scene.img('images/locations/pushkin/ballet_residence/gasha_card.jpg');
       // TODO-QSP: dynamic text: You enter the halls after classes, and <<$npc_firstname['A279']>> sees you, grab...
       scene.text(`You enter the halls after classes, and ${((s as any).npc_firstname ?? 0)?.['A279']} sees you, grabbing your arm and looking around. "${((s as any).pcs_nickname ?? 0)}, do you have a moment?"`);
@@ -235,7 +235,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).birthday_party ?? {})['events'] = 2;
+      if (!(s as any).birthday_party) (s as any).birthday_party = {}; (s as any).birthday_party['events'] = 2;
       scene.img(`${((s as any).npc_img_path ?? 0)?.['A279']}/279.jpg`);
       qspCall(s, 'money', 'pay', 500);
       (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -261,7 +261,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Hand card back', handler: (st: GameState) => {
-    ((s as any).birthday_party ?? {})['events'] = 3;
+    if (!(s as any).birthday_party) (s as any).birthday_party = {}; (s as any).birthday_party['events'] = 3;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img(`${((s as any).npc_img_path ?? 0)?.['A279']}/279.jpg`);
     // TODO-QSP: dynamic text: You hand the card back to <<$npc_firstname['A279']>> after signing it, and she l...
@@ -277,7 +277,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'prep') {
-        ((s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
+        if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Communal Room';
         scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/communal.jpg');
         qspCall(s, 'core_library', 'stage_title');
         (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -299,7 +299,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'party') {
-          ((s as any).setloc ?? {})['StageTitle'] = 'Communal Room';
+          if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Communal Room';
           scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + '/ballet_residence/gasha_birthday.jpg');
           qspCall(s, 'core_library', 'stage_title');
           (s as any).minut = ((s as any).minut ?? 0) + 90;
@@ -376,8 +376,8 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBarreExercise(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
-  ((s as any).ballet_grade_score ?? {})['homework'] = (((s as any).ballet_grade_score ?? {})['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
+  if (!(s as any).ballet_homework) (s as any).ballet_homework = {}; (s as any).ballet_homework[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
+  if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
   qspCall(s, 'exercise', 'tier1', 30, 'agil', 'stren');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/ballet_residence/residence_barre_single.jpg');
@@ -392,7 +392,7 @@ function enterBarreExercise(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntro_274(s: GameState, scene: SceneBuilder): void {
-  ((s as any).mayaqw ?? {})['path'] = 1;
+  if (!(s as any).mayaqw) (s as any).mayaqw = {}; (s as any).mayaqw['path'] = 1;
   scene.img(`${((s as any).npc_img_path ?? 0)?.['A274']}/274-1.jpg`);
   // TODO-QSP: dynamic text: You walk over to a tall willowly blonde girl, "Hi I'm <<$pcs_nickname>>". The gi...
   scene.text(`You walk over to a tall willowly blonde girl, "Hi I'm ${((s as any).pcs_nickname ?? 0)}". The girl gives you a warm smile, "I'm ${((s as any).npc_firstname ?? 0)?.['A274']} pleased to meet you. Where you from?" 'Pavlosk' you reply, 'Yourself?'`);
@@ -572,7 +572,7 @@ function enterRudolphqw(s: GameState, scene: SceneBuilder): void {
 
 function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '0') {
-    ((s as any).setloc ?? {})['StageTitle'] = 'The Chess Match';
+    if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'The Chess Match';
     scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg');
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You enter the communal room you see the twins <<$npc_firstname['A281']>> and <<$...
@@ -582,7 +582,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === '1') {
-      ((s as any).setloc ?? {})['StageTitle'] = 'TV Night';
+      if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'TV Night';
       scene.img('' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_evt" }) + 'ballet_events/chess.jpg');
       // TODO-QSP: dynamic text: You enter the common room and see <<$npc_firstname['A280']>> relaxing in front o...
       scene.text(`You enter the common room and see ${((s as any).npc_firstname ?? 0)?.['A280']} relaxing in front of the TV watching a ballet rehearsal. She is nibbling a small plate of fruit pieces and looks towards you as you enter.`);
@@ -593,8 +593,8 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
         scene.text(`Hi, you come to join us?", one of the girls asks, whilst the other girl says, "She's in ${((s as any).npc_firstname ?? 0)?.['A286']}'s class", her eyes light up, "can you help teach us? We'd love to learn from you!"`);
         scene.actions([
           { label: 'Practice with the girls', handler: (st: GameState) => {
-    ((s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = (((s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] ?? 0) + (1);
-    ((s as any).ballet_grade_score ?? {})['homework'] = (((s as any).ballet_grade_score ?? {})['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
+    if (!(s as any).ballet_homework) (s as any).ballet_homework = {}; (s as any).ballet_homework[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
+    if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
     qspCall(s, 'exercise', 'tier1', 60, 'agil', 'stren');
     scene.text('You spend an hour helping the girls through the various forms, giving tips and advice. At the end of it they thank you ethuastically for your time and teaching.');
     // TODO-QSP: dynamic text: You feel teaching the girls has deepened your own understanding and appreciation...
@@ -616,7 +616,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
           scene.text('WIP - tbc');
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === '4') {
-            ((s as any).setloc ?? {})['StageTitle'] = 'TV Night';
+            if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'TV Night';
             // TODO-QSP: dynamic text: You enter the communal room and see <<$npc_firstname['A280']>> at her favorite p...
             scene.text(`You enter the communal room and see ${((s as any).npc_firstname ?? 0)?.['A280']} at her favorite place watching TV. She looks at you nervously as you enter and you ask if you could join her.`);
             scene.text('"Are you going to bully me too?", she asks, her voice trembling..');
@@ -631,7 +631,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Support <<$npc_firstname[\'A280\']>>', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A280', 'like');
-    ((s as any).npc_trust ?? {})['A280'] = (((s as any).npc_trust ?? {})['A280'] ?? 0) + (2);
+    if (!(s as any).npc_trust) (s as any).npc_trust = {}; (s as any).npc_trust['A280'] = ((s as any).npc_trust['A280'] ?? 0) + (2);
     qspCall(s, 'stat', '');
     scene.text('"Okay, but I\'m not willing to let this rest.", you say your voice tinged with anger.');
     // TODO-QSP: dynamic text: You grab a blanket to cover yourself and settle down to watch TV beside. After a...

@@ -101,10 +101,10 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_exceptions') {
-    ((s as any).shop_display_exceptions ?? {})['gm_panties-7'] = 1;
-    ((s as any).shop_display_exceptions ?? {})['gm_panties-9'] = 1;
-    ((s as any).shop_display_exceptions ?? {})['gm_panties-21'] = 1;
-    ((s as any).shop_display_exceptions ?? {})['gm_panties-37'] = 1;
+    if (!(s as any).shop_display_exceptions) (s as any).shop_display_exceptions = {}; (s as any).shop_display_exceptions['gm_panties-7'] = 1;
+    if (!(s as any).shop_display_exceptions) (s as any).shop_display_exceptions = {}; (s as any).shop_display_exceptions['gm_panties-9'] = 1;
+    if (!(s as any).shop_display_exceptions) (s as any).shop_display_exceptions = {}; (s as any).shop_display_exceptions['gm_panties-21'] = 1;
+    if (!(s as any).shop_display_exceptions) (s as any).shop_display_exceptions = {}; (s as any).shop_display_exceptions['gm_panties-37'] = 1;
     return;
   }
   return;
@@ -219,10 +219,10 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewItem(s: GameState, scene: SceneBuilder): void {
-  ((s as any).shop_utils_view ?? {})['link'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).shop_utils_view ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
-  ((s as any).shop_utils_view ?? {})['number'] = qspUntranslated(s, "ARGS[3]", { location: "panty_view" });
-  ((s as any).shop_utils_view ?? {})['discount'] = qspUntranslated(s, "ARGS[4]", { location: "panty_view" });
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['link'] = ((s as any).locArgs?.[1] ?? 0);
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['type'] = ((s as any).locArgs?.[2] ?? 0);
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['number'] = qspUntranslated(s, "ARGS[3]", { location: "panty_view" });
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['discount'] = qspUntranslated(s, "ARGS[4]", { location: "panty_view" });
   qspCall(s, 'stat', '');
   scene.img(`${qspFunc(s, '$panty_image', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number'])}`);
   // TODO-QSP: gs 'underwear_attributes', $shop_utils_view['type'] + '_panties', shop_utils_view['number']
@@ -264,14 +264,14 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.text('You already own this item.');
     return;
   }
-  ((s as any).shop_utils_view ?? {})['pan_discount'] = Math.min(Math.max(0, ((s as any).shop_utils_view ?? {})?.['discount'] + ((s as any).shop_utils_view ?? {})?.['discount']), 100);
-  ((s as any).shop_utils_view ?? {})['pan_price'] = ((s as any).PanPrice ?? 0);
-  ((s as any).shop_utils_view ?? {})['price'] = ((s as any).shop_utils_view ?? {})?.['pan_price'] * Math.max(0, 100 - ((s as any).shop_utils_view ?? {})?.['pan_discount']) / 100;
-  ((s as any).shop_utils_view ?? {})['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['pan_discount'] = Math.min(Math.max(0, ((s as any).shop_utils_view ?? {})?.['discount'] + ((s as any).shop_utils_view ?? {})?.['discount']), 100);
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['pan_price'] = ((s as any).PanPrice ?? 0);
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['pan_price'] * Math.max(0, 100 - ((s as any).shop_utils_view ?? {})?.['pan_discount']) / 100;
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
   if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['pan_price']) {
-    ((s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
+    if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
   } else {
-    ((s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['pan_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
+    if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['pan_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
     // TODO-QSP: 'Now ' + shop_utils_view['pan_discount'] + '% off' + iif(shop_utils_view['pan_discount'] <= 10, '', ...
   }
   // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
@@ -292,13 +292,13 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You do not own the matching bra, you can buy it and these panties together as a set.');
       // TODO-QSP: gs 'underwear_attributes', $shop_utils_view['type'] + '_bras', underwear['pair']
-      ((s as any).shop_utils_view ?? {})['bra_discount'] = Math.min(Math.max(0, ((s as any).shop_utils_view ?? {})?.['discount'] + ((s as any).shop_utils_view ?? {})?.['discount']), 100);
-      ((s as any).shop_utils_view ?? {})['bra_price'] = ((s as any).BraPrice ?? 0);
-      ((s as any).shop_utils_view ?? {})['set_price'] = 9 * (((s as any).shop_utils_view ?? {})?.['bra_price'] * (100 - ((s as any).shop_utils_view ?? {})?.['bra_discount']) + ((s as any).shop_utils_view ?? {})?.['pan_price'] * (100 - ((s as any).shop_utils_view ?? {})?.['pan_discount'])) / 1000;
-      ((s as any).shop_utils_view ?? {})['set_price'] = ((s as any).shop_utils_view ?? {})?.['set_price'] / 50 * 50;
-      ((s as any).shop_utils_view ?? {})['base_price'] = ((s as any).shop_utils_view ?? {})?.['bra_price'] + ((s as any).shop_utils_view ?? {})?.['pan_price'];
-      ((s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['set_price']);
-      ((s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['set_price']) + '</b>';
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['bra_discount'] = Math.min(Math.max(0, ((s as any).shop_utils_view ?? {})?.['discount'] + ((s as any).shop_utils_view ?? {})?.['discount']), 100);
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['bra_price'] = ((s as any).BraPrice ?? 0);
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['set_price'] = 9 * (((s as any).shop_utils_view ?? {})?.['bra_price'] * (100 - ((s as any).shop_utils_view ?? {})?.['bra_discount']) + ((s as any).shop_utils_view ?? {})?.['pan_price'] * (100 - ((s as any).shop_utils_view ?? {})?.['pan_discount'])) / 1000;
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['set_price'] = ((s as any).shop_utils_view ?? {})?.['set_price'] / 50 * 50;
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['base_price'] = ((s as any).shop_utils_view ?? {})?.['bra_price'] + ((s as any).shop_utils_view ?? {})?.['pan_price'];
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['set_price']);
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['set_price']) + '</b>';
       // TODO-QSP: 'Price for set: ' + $shop_utils_view['price_string']
       if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['set_price']) === 0) {
         scene.text('You cannot afford this set.');

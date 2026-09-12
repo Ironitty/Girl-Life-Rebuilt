@@ -360,7 +360,7 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk away', goto: ['gadukino', ''] },
       { label: 'Help her', handler: (st: GameState) => {
-    ((s as any).npc_known ?? {})['A60'] = 1;
+    if (!(s as any).npc_known) (s as any).npc_known = {}; (s as any).npc_known['A60'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A60', 10);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
@@ -409,8 +409,8 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for a car…', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
-    ((s as any).MiraVars ?? {})['prostitute'] = (((s as any).MiraVars ?? {})['prostitute'] ?? 0) + (1);
-    ((s as any).MiraVars ?? {})['QW'] = 16;
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['prostitute'] = ((s as any).MiraVars['prostitute'] ?? 0) + (1);
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 16;
     scene.img('images/characters/gadukino/mira/miraprost.jpg');
     scene.text('It isn\'t long before Mira\'s first customer pulls up in an excellent vehicle. She takes a deep breath, looks you in the eyes, winks, approaches the car, and starts talking to the driver.');
     scene.text('You can\'t hear what she is saying, but after only a few minutes, the door opens, and Mira steps into the vehicle. It pulls away but doesn\'t go far. You see it pull off the main road and head down a dirt road. Smiling and wanting to see the action, you run into the woods, trying to head off the vehicle.');
@@ -490,7 +490,7 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).MiraVars ?? 0)?.['QW'] >= 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
-        ((s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
+        if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
         if (((s as any).pcs_horny ?? 0) > 50  &&  (!(Math.floor(Math.random() * 2) + 0))) {
           qspCall(s, 'miroslava', 'miraclothes');
           scene.text('You meet Mira, heading to the river to get some water. Seeing you, she decides to stop and chat with you for a few minutes.');
@@ -618,7 +618,7 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).MiraVars ?? 0)?.['QW'] >= 4  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
-          ((s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
+          if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
           if (((s as any).MiraVars ?? 0)?.['QW'] >= 6) {
             scene.img('images/characters/gadukino/mira/sex/mirasexgad2.jpg');
             scene.text('Walking through the village, you happen to notice Mira fucking Mitka. Mitka slowly grinds his cock deep into Mira\'s pussy. You see Mira shudder under him as she climaxes. She moaned and raked his back with her fingernails as she squirted and continued to cum. Mitka increased his pace and roughly hammered his cock into her dripping pussy. With his left hand, he reached for Mira\'s right tit and squeezed it without mercy; Mira just squealed and laughed.');

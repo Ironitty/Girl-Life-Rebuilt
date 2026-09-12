@@ -6,14 +6,14 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
-    ((s as any).trait_vars ?? {})['sensitivity_override'] = 1;
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 1;
   }
   scene.build();
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-    ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
   }
   // TODO-QSP: gt $ARGS[1]
   // TODO-QSP: end
@@ -155,7 +155,7 @@ function enterEvent1PostShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW ?? {})['hotel_visits'] = 1;
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_visits'] = 1;
     qspCall(s, 'sleep_simple', 'simple');
     if (((s as any).hour ?? 0) < 7) {
       qspCall(s, 'sleep_simple', 'forced', 7, 0);
@@ -261,7 +261,7 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Bite down hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).therapistQW ?? {})['escaped'] = 1;
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['escaped'] = 1;
     qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'outfit', 'wear_last_worn');
@@ -293,7 +293,7 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
     scene.text('He places you on the bed and quickly pushes you back into his body. You moan as you feel everything happening to you. Your mind is still foggy but you are aware of the sensations. His actions make you moan and groan on the bed. You squirm over the covers as he takes you relentlessly. His lips on your breasts, his hands on your hips, he gives you a fuck you won\'t forget. It\'s not long before you hear him groan and feel your body warming up with his seed. "Fuck, Wife, I\'ll never tire of you, now sleep" he says and your mind returns back to the black room as you feel him start up again, realizing he will fuck you in your sleep.');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW ?? {})['hotel_visits'] = 2;
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_visits'] = 2;
     qspCall(s, 'sleep_simple', 'simple');
     if (((s as any).hour ?? 0) < 7) {
       qspCall(s, 'sleep_simple', 'forced', 7, 0);
@@ -337,12 +337,12 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You feel his eyes on you the entire time. "So, I have a friend in St. Petersberg, works in a clinic, that sells a cream that can make your breasts grow larger. I want you to go there and buy some and use it" he suggests. "It will help you relax and help you with that issue you told me about while you were under hypnosis a few weeks back" he lies and you nod your head. "If you think it will help." You tell him.');
       if (((s as any).experimentQW ?? 0)?.['discovered'] < 2) {
-        ((s as any).experimentQW ?? {})['discovered'] = 10;
+        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['discovered'] = 10;
       }
       if (((s as any).experimentQW ?? 0)?.['times_participated_1'] > 0) {
-        ((s as any).therapistQW ?? {})['breast_cream'] = 3;
+        if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['breast_cream'] = 3;
       } else {
-        ((s as any).therapistQW ?? {})['breast_cream'] = 1;
+        if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['breast_cream'] = 1;
       }
     }
     scene.actions([
@@ -384,7 +384,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     scene.text('You moan when he pushes his entire size inside you. You really want this. You push back and help him push deeper inside you. He grabs a hold of your waist and starts to push in and pull out of you. This carries on for several minutes before you feel him cum inside you and he holds you tight to his own body. "Mmmm, dear, your pussy is so perfect" he says giving you another compliment. He holds you on his cock and falls to his side and stays inside you as he pulls the blanket over you and spoons you as you both fall asleep.');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW ?? {})['hotel_visits'] = 3;
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_visits'] = 3;
     qspCall(s, 'sleep_simple', 'simple');
     if (((s as any).hour ?? 0) < 7) {
       qspCall(s, 'sleep_simple', 'forced', 7, 0);
@@ -428,7 +428,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_intel ?? 0) >= 90) {
       scene.actions([
         { label: 'Look around the room', handler: (st: GameState) => {
-    ((s as any).therapistQW ?? {})['hotel_hypno_study'] = (((s as any).therapistQW ?? {})['hotel_hypno_study'] ?? 0) + (1);
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_hypno_study'] = ((s as any).therapistQW['hotel_hypno_study'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_wait_tv.jpg');
@@ -457,7 +457,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).therapistQW ?? {})['hotel_left'] = (((s as any).therapistQW ?? {})['hotel_left'] ?? 0) + (1);
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_left'] = ((s as any).therapistQW['hotel_left'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'medium');
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'outfit', 'wear_last_worn');
@@ -483,7 +483,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Submit', handler: (st: GameState) => {
-    ((s as any).therapistQW ?? {})['hotel_submit'] = (((s as any).therapistQW ?? {})['hotel_submit'] ?? 0) + (1);
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_submit'] = ((s as any).therapistQW['hotel_submit'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_wait_tv.jpg');
@@ -506,7 +506,7 @@ function enterEvent4PostWait(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW ?? {})['hotel_visits'] = (((s as any).therapistQW ?? {})['hotel_visits'] ?? 0) + (1);
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_visits'] = ((s as any).therapistQW['hotel_visits'] ?? 0) + (1);
     qspCall(s, 'sleep_simple', 'simple');
     if (((s as any).hour ?? 0) < 7) {
       qspCall(s, 'sleep_simple', 'forced', 7, 0);
@@ -542,7 +542,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
-    ((s as any).therapistQW ?? {})['hotel_submit'] = 10;
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_submit'] = 10;
     qspCall(s, 'arousal', 'vaginal_finger', 15, 'sub');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_undressed_knee.jpg');
@@ -591,7 +591,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).therapistQW ?? {})['hotel_visits'] = (((s as any).therapistQW ?? {})['hotel_visits'] ?? 0) + (1);
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_visits'] = ((s as any).therapistQW['hotel_visits'] ?? 0) + (1);
     qspCall(s, 'din_van', 'showerdin');
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'outfit', 'wear_last_worn');
@@ -610,7 +610,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Break free', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).therapistQW ?? {})['escaped'] = 2;
+    if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['escaped'] = 2;
     qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You come to and see that you are naked. "WHAT THE HELL?" you yell and slap the t...
@@ -636,7 +636,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
 function enterEvent6Submit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A186');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  ((s as any).therapistQW ?? {})['hotel_visits'] = (((s as any).therapistQW ?? {})['hotel_visits'] ?? 0) + (1);
+  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_visits'] = ((s as any).therapistQW['hotel_visits'] ?? 0) + (1);
   qspCall(s, 'outfit', 'strip_all');
   qspCall(s, 'din_van', 'showerdin');
   qspCall(s, 'stat', '');
@@ -811,9 +811,9 @@ function enterEvent6Submit4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'underwear', 'wear');
   qspCall(s, 'outfit', 'wear_last_worn');
   qspCall(s, 'stat', '');
-  ((s as any).HotelRoom ?? {})['pav'] = 0;
-  ((s as any).hotelRoomDays ?? {})['pav'] = 0;
-  ((s as any).therapistQW ?? {})['hotel_key'] = 3;
+  if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = 0;
+  if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = 0;
+  if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_key'] = 3;
   qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
   qspCall(s, 'homes_properties', 'set_home', 'hotel_therapist');
   qspCall(s, 'therapist_hotel', 'leave', 'pav_hotel');

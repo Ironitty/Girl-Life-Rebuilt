@@ -1220,7 +1220,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'rand_boy_arg1', 1, 1, 1, 1, 0, 0);
     qspCall(s, 'npcStat', '', ((s as any).school_static_num ?? 0));
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
-    ((s as any).npc_had_sex ?? {})[String((s as any).npcID ?? 0)] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {

@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBed2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clo_flag ?? 0)?.['bed'] === 1) {
-    ((s as any).clo_flag ?? {})['bed'] = 0;
+    if (!(s as any).clo_flag) (s as any).clo_flag = {}; (s as any).clo_flag['bed'] = 0;
     qspCall(s, 'outfit', 'restore', 'bed');
   }
   qspCall(s, 'stat', '');

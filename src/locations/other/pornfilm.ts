@@ -74,7 +74,7 @@ function enterPornactor(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).aksex ?? 0)?.[String((s as any).akrand ?? 0)] === 0) {
-      ((s as any).aksex ?? {})[String((s as any).akrand ?? 0)] = 1;
+      if (!(s as any).aksex) (s as any).aksex = {}; (s as any).aksex[String((s as any).akrand ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).num = ((s as any).num ?? 0) - (1);
@@ -133,7 +133,7 @@ function enterPornactress(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).aksex ?? 0)?.[String((s as any).akrand ?? 0)] === 0) {
-      ((s as any).aksex ?? {})[String((s as any).akrand ?? 0)] = 1;
+      if (!(s as any).aksex) (s as any).aksex = {}; (s as any).aksex[String((s as any).akrand ?? 0)] = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
     (s as any).num = ((s as any).num ?? 0) - (1);
@@ -515,7 +515,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -609,7 +609,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -788,7 +788,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).porngang = ((s as any).porngang ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
@@ -901,7 +901,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1061,7 +1061,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1221,7 +1221,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1359,7 +1359,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1483,7 +1483,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -1607,7 +1607,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 40);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (50);
   qspCall(s, 'stat', '');
   scene.text('The set is already bustling with assistants preparing for the shoot.');
@@ -1635,7 +1635,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     (s as any).gb_sex_count = 0;
     // TODO-QSP: :gb_main_loop
     (s as any).gb_counter = ((s as any).gb_counter ?? 0) + (1);
-    ((s as any).arousal_overcall ?? {})['args'] = '';
+    if (!(s as any).arousal_overcall) (s as any).arousal_overcall = {}; (s as any).arousal_overcall['args'] = '';
     qspCall(s, 'npcgeneratec', '', 0, 'Porn Fan', Math.floor(Math.random() * 17) + 22, 0, 1);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).gb_roll = Math.floor(Math.random() * 6) + 1;
@@ -1666,10 +1666,10 @@ function enter14(s: GameState, scene: SceneBuilder): void {
     if (((s as any).gb_counter ?? 0) < 50) {
       // TODO-QSP: jump 'gb_main_loop'
     }
-    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (((s as any).gb_sex_count ?? 0));
-    ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (((s as any).gb_anal_count ?? 0));
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0));
-    ((s as any).stat ?? {})['hj'] = (((s as any).stat ?? {})['hj'] ?? 0) + (((s as any).gb_hj_count ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (((s as any).gb_sex_count ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (((s as any).gb_anal_count ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0));
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['hj'] = ((s as any).stat['hj'] ?? 0) + (((s as any).gb_hj_count ?? 0));
     if (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0) > 5) {
       (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
     }
@@ -2152,7 +2152,7 @@ function enter19(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactressID[1], 'a'
@@ -2237,7 +2237,7 @@ function enter20(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactressID[1]

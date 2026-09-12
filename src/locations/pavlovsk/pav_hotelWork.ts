@@ -29,10 +29,10 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Change into the maid outfit', handler: (st: GameState) => {
-    ((s as any).lastwornclothingtype ?? {})['maid'] = ((s as any).clothingworntype ?? 0);
-    ((s as any).lastwornclothingnumber ?? {})['maid'] = ((s as any).clothingwornnumber ?? 0);
+    if (!(s as any).lastwornclothingtype) (s as any).lastwornclothingtype = {}; (s as any).lastwornclothingtype['maid'] = ((s as any).clothingworntype ?? 0);
+    if (!(s as any).lastwornclothingnumber) (s as any).lastwornclothingnumber = {}; (s as any).lastwornclothingnumber['maid'] = ((s as any).clothingwornnumber ?? 0);
     qspCall(s, 'clothing', 'wear', 'gm_maid', 21, 'borrowed');
-    ((s as any).gm_maid_dirt ?? {})[21] = 0;
+    if (!(s as any).gm_maid_dirt) (s as any).gm_maid_dirt = {}; (s as any).gm_maid_dirt[21] = 0;
     if (((s as any).pcs_inhib ?? 0) < 30) {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
     }
@@ -100,7 +100,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     (s as any).maidrand = Math.floor(Math.random() * 121) + 0;
   }
   if (((s as any).job_rank ?? 0)?.['pav_hotel_maid'] < 100) {
-    ((s as any).job_rank ?? {})['pav_hotel_maid'] = (((s as any).job_rank ?? {})['pav_hotel_maid'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).job_rank) (s as any).job_rank = {}; (s as any).job_rank['pav_hotel_maid'] = ((s as any).job_rank['pav_hotel_maid'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
   }
   (s as any).chai1 = ((s as any).rand ?? 0)(0, 100 - (((s as any).job_rank ?? {})?.['pav_hotel_maid'] / 2));
   if (((s as any).chai1 ?? 0) < 25) {
@@ -116,21 +116,21 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         if (((s as any).maidcheck ?? 0)[1] === ((s as any).daystart ?? 0)) {
           // TODO-QSP: jump 'new_maid_event'
         }
-        ((s as any).maidcheck ?? {})[1] = ((s as any).daystart ?? 0);
+        if (!(s as any).maidcheck) (s as any).maidcheck = {}; (s as any).maidcheck[1] = ((s as any).daystart ?? 0);
         scene.actions([{ label: 'Continue', goto: ['pav_hotelWork', 'work2'] }]);
       } else {
         if (((s as any).maidrand ?? 0) <= 25) {
           if (((s as any).maidcheck ?? 0)[2] === ((s as any).daystart ?? 0)) {
             // TODO-QSP: jump 'new_maid_event'
           }
-          ((s as any).maidcheck ?? {})[2] = ((s as any).daystart ?? 0);
+          if (!(s as any).maidcheck) (s as any).maidcheck = {}; (s as any).maidcheck[2] = ((s as any).daystart ?? 0);
           scene.actions([{ label: 'Continue', goto: ['pav_hotelWork', 'work3'] }]);
         } else {
           if (((s as any).maidrand ?? 0) <= 35) {
             if (((s as any).maidcheck ?? 0)[3] === ((s as any).daystart ?? 0)) {
               // TODO-QSP: jump 'new_maid_event'
             }
-            ((s as any).maidcheck ?? {})[3] = ((s as any).daystart ?? 0);
+            if (!(s as any).maidcheck) (s as any).maidcheck = {}; (s as any).maidcheck[3] = ((s as any).daystart ?? 0);
             scene.actions([{ label: 'Continue', goto: ['pav_hotelWork', 'work4'] }]);
           } else {
             if (((s as any).maidrand ?? 0) <= 55) {
@@ -158,7 +158,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).maidcheck ?? 0)[4] === ((s as any).daystart ?? 0)) {
                               // TODO-QSP: jump 'new_maid_event'
                             }
-                            ((s as any).maidcheck ?? {})[4] = ((s as any).daystart ?? 0);
+                            if (!(s as any).maidcheck) (s as any).maidcheck = {}; (s as any).maidcheck[4] = ((s as any).daystart ?? 0);
                             scene.actions([{ label: 'Continue', goto: ['pav_hotelWork', 'work12'] }]);
                           } else {
                             if (((s as any).maidrand ?? 0) <= 140) {
@@ -266,7 +266,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'This is none of your business', handler: (st: GameState) => {
     if (((s as any).job_rank ?? 0)?.['pav_hotel_maid'] < 100) {
-      ((s as any).job_rank ?? {})['pav_hotel_maid'] = (((s as any).job_rank ?? {})['pav_hotel_maid'] ?? 0) + (1);
+      if (!(s as any).job_rank) (s as any).job_rank = {}; (s as any).job_rank['pav_hotel_maid'] = ((s as any).job_rank['pav_hotel_maid'] ?? 0) + (1);
     }
     scene.actions([
       { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
@@ -776,7 +776,7 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
     scene.text('"I-I…" you stammer, quickly trying to come up with an excuse.');
     // TODO-QSP: iif(LariskaQW['metAnna'] = 1, 'Anna', 'The brunette') + ' looks at you. "I understand. You''re worri...
     if (((s as any).LariskaQW ?? 0)?.['metAnna'] === 0) {
-      ((s as any).LariskaQW ?? {})['metAnna'] = 1;
+      if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['metAnna'] = 1;
       scene.text('By the way, I\'m Lariska\'s mother. I\'ve seen you at the school."');
       scene.text('You blush deeply at this revelation.');
     }
@@ -1489,7 +1489,7 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'On to the main event', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Black guy', Math.floor(Math.random() * 23) + 18, 0, 1);
-    ((s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = Math.floor(Math.random() * 7) + 20;
+    if (!(s as any).npc_dick) (s as any).npc_dick = {}; (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = Math.floor(Math.random() * 7) + 20;
     // TODO-QSP: $npc_thdick[$npclastgenerated] = 'massive'
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'npcStat', 'A217', 1);

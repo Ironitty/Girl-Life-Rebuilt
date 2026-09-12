@@ -27,16 +27,16 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBackup(s: GameState, scene: SceneBuilder): void {
-  ((s as any).lastwornunderwear ?? {})['backup'] = ((s as any).underwear ?? 0)?.['type'];
+  if (!(s as any).lastwornunderwear) (s as any).lastwornunderwear = {}; (s as any).lastwornunderwear['backup'] = ((s as any).underwear ?? 0)?.['type'];
   if (((s as any).underwear ?? 0)?.['type'] === 2) {
-    ((s as any).lastwornbodysuittype ?? {})['backup'] = ((s as any).bodysuitworntype ?? 0);
-    ((s as any).lastwornbodysuitnumber ?? {})['backup'] = ((s as any).bodysuitwornnumber ?? 0);
+    if (!(s as any).lastwornbodysuittype) (s as any).lastwornbodysuittype = {}; (s as any).lastwornbodysuittype['backup'] = ((s as any).bodysuitworntype ?? 0);
+    if (!(s as any).lastwornbodysuitnumber) (s as any).lastwornbodysuitnumber = {}; (s as any).lastwornbodysuitnumber['backup'] = ((s as any).bodysuitwornnumber ?? 0);
     qspCall(s, 'underwear_bodysuits', 'remove');
   } else {
-    ((s as any).lastwornpantytype ?? {})['backup'] = ((s as any).pantyworntype ?? 0);
-    ((s as any).lastwornpantynumber ?? {})['backup'] = ((s as any).pantywornnumber ?? 0);
-    ((s as any).lastwornbratype ?? {})['backup'] = ((s as any).braworntype ?? 0);
-    ((s as any).lastwornbranumber ?? {})['backup'] = ((s as any).brawornnumber ?? 0);
+    if (!(s as any).lastwornpantytype) (s as any).lastwornpantytype = {}; (s as any).lastwornpantytype['backup'] = ((s as any).pantyworntype ?? 0);
+    if (!(s as any).lastwornpantynumber) (s as any).lastwornpantynumber = {}; (s as any).lastwornpantynumber['backup'] = ((s as any).pantywornnumber ?? 0);
+    if (!(s as any).lastwornbratype) (s as any).lastwornbratype = {}; (s as any).lastwornbratype['backup'] = ((s as any).braworntype ?? 0);
+    if (!(s as any).lastwornbranumber) (s as any).lastwornbranumber = {}; (s as any).lastwornbranumber['backup'] = ((s as any).brawornnumber ?? 0);
     qspCall(s, 'panties', 'remove');
     qspCall(s, 'bras', 'remove');
   }

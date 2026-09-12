@@ -21,7 +21,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['bookworm'] > 0) {
       (s as any).lastread = ((s as any).totminut ?? 0);
       (s as any).lastreadday = ((s as any).daystart ?? 0);
-      ((s as any).trait_vars ?? {})['bookworm_exp'] = (((s as any).trait_vars ?? {})['bookworm_exp'] ?? 0) + (1);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['bookworm_exp'] = ((s as any).trait_vars['bookworm_exp'] ?? 0) + (1);
     }
     if (((s as any).locArgs?.[1] ?? 0) !== '') {
       // TODO-QSP: dynamic "
@@ -69,7 +69,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'library_functions', 'read_book');
     qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 4) + 3);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (2);
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/books/tolstoy.jpg');
     scene.text('You read the book for an hour. Tolstoy is certainly a classic writer, but he used a <i>lot</i> of words.');
@@ -86,7 +86,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     { label: 'Read an adventure novel (1:00)', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_book');
     qspCall(s, 'mood', 'raise', 'small');
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/books/fiction\' + rand(1, 2) + \'.jpg');
     scene.text('You spend an hour reading an adventure novel, immersing yourself in daring deeds and awesome twists.');
@@ -99,7 +99,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     { label: 'Read a fantasy novel (1:00)', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_book');
     qspCall(s, 'mood', 'raise', 'small');
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/books/fantasy\' + rand(1, 9) + \'.jpg');
     scene.text('You spend an hour reading a fantasy novel, rescuing damsels from dragons, digging for jewels with dwarves and performing word changing magic alongside elves and druids.');
@@ -125,7 +125,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     { label: 'Read a book on science (1:00)', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_book');
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 4) + 3);
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/books/science1.jpg');
     scene.text('You spend an hour reading, trying to make sense of all the clever propositions written inside and understand the subject it describes.');
@@ -138,7 +138,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     { label: 'Read a science fiction novel (1:00)', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_book');
     qspCall(s, 'mood', 'raise', 'small');
-    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/items/accessories/books/scifi\' + rand(1, 6) + \'.jpg');
     scene.text('You spend an hour reading a science fiction novel - flying off into space, travelling though time, running from rogue AI and creating monsters with your hunchbacked assistant.');
@@ -205,8 +205,8 @@ function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
         if (((s as any).lib_book_loaned ?? 0) === 'an adventure novel'  &&  (!((s as any).lib_book_read ?? 0))) {
           (s as any).lib_book_read = 1;
         }
-        ((s as any).BookVars ?? {})['adventure_pages'] = Math.floor(Math.random() * 201) + 400;
-        ((s as any).mc_inventory ?? {})['adventure_books'] = (((s as any).mc_inventory ?? {})['adventure_books'] ?? 0) - (1);
+        if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['adventure_pages'] = Math.floor(Math.random() * 201) + 400;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['adventure_books'] = ((s as any).mc_inventory['adventure_books'] ?? 0) - (1);
       }
       if (((s as any).mc_inventory ?? 0)?.['adventure_books'] > 0) {
         // TODO-QSP: $book_text[] = '<<mc_inventory[''adventure_books'']>> adventure novel' + iif(mc_inventory['adventure...
@@ -222,8 +222,8 @@ function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
         if (((s as any).lib_book_loaned ?? 0) === 'a fantasy novel'  &&  (!((s as any).lib_book_read ?? 0))) {
           (s as any).lib_book_read = 1;
         }
-        ((s as any).BookVars ?? {})['fantasy_pages'] = Math.floor(Math.random() * 201) + 400;
-        ((s as any).mc_inventory ?? {})['fantasy_books'] = (((s as any).mc_inventory ?? {})['fantasy_books'] ?? 0) - (1);
+        if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['fantasy_pages'] = Math.floor(Math.random() * 201) + 400;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['fantasy_books'] = ((s as any).mc_inventory['fantasy_books'] ?? 0) - (1);
       }
       if (((s as any).mc_inventory ?? 0)?.['fantasy_books'] > 0) {
         // TODO-QSP: $book_text[] = '<<mc_inventory[''fantasy_books'']>> fantasy novel' + iif(mc_inventory['fantasy_books...
@@ -239,8 +239,8 @@ function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
         if (((s as any).lib_book_loaned ?? 0) === 'a romance novel'  &&  (!((s as any).lib_book_read ?? 0))) {
           (s as any).lib_book_read = 1;
         }
-        ((s as any).BookVars ?? {})['romance_pages'] = Math.floor(Math.random() * 201) + 400;
-        ((s as any).mc_inventory ?? {})['romance_books'] = (((s as any).mc_inventory ?? {})['romance_books'] ?? 0) - (1);
+        if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['romance_pages'] = Math.floor(Math.random() * 201) + 400;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['romance_books'] = ((s as any).mc_inventory['romance_books'] ?? 0) - (1);
       }
       if (((s as any).mc_inventory ?? 0)?.['romance_books'] > 0) {
         // TODO-QSP: $book_text[] = '<<mc_inventory[''romance_books'']>> romance novel' + iif(mc_inventory['romance_books...
@@ -256,8 +256,8 @@ function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
         if (((s as any).lib_book_loaned ?? 0) === 'a science book'  &&  (!((s as any).lib_book_read ?? 0))) {
           (s as any).lib_book_read = 1;
         }
-        ((s as any).BookVars ?? {})['science_pages'] = Math.floor(Math.random() * 201) + 400;
-        ((s as any).mc_inventory ?? {})['science_books'] = (((s as any).mc_inventory ?? {})['science_books'] ?? 0) - (1);
+        if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['science_pages'] = Math.floor(Math.random() * 201) + 400;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['science_books'] = ((s as any).mc_inventory['science_books'] ?? 0) - (1);
       }
       if (((s as any).mc_inventory ?? 0)?.['science_books'] > 0) {
         // TODO-QSP: $book_text[] = '<<mc_inventory[''science_books'']>> science book' + iif(mc_inventory['science_books'...
@@ -273,8 +273,8 @@ function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
         if (((s as any).lib_book_loaned ?? 0) === 'a science fiction novel'  &&  (!((s as any).lib_book_read ?? 0))) {
           (s as any).lib_book_read = 1;
         }
-        ((s as any).BookVars ?? {})['scifi_pages'] = Math.floor(Math.random() * 201) + 400;
-        ((s as any).mc_inventory ?? {})['scifi_books'] = (((s as any).mc_inventory ?? {})['scifi_books'] ?? 0) - (1);
+        if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['scifi_pages'] = Math.floor(Math.random() * 201) + 400;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scifi_books'] = ((s as any).mc_inventory['scifi_books'] ?? 0) - (1);
       }
       if (((s as any).mc_inventory ?? 0)?.['scifi_books'] > 0) {
         // TODO-QSP: $book_text[] = '<<mc_inventory[''scifi_books'']>> science fiction novel' + iif(mc_inventory['scifi_b...
@@ -344,9 +344,9 @@ function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): vo
     scene.actions([
       { label: 'Read Adventure Novel. There are <<BookVars[\'adventure_pages\']>> pages left (1:00)', handler: (st: GameState) => {
     (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
-    ((s as any).BookVars ?? {})['adventure_pages'] = (((s as any).BookVars ?? {})['adventure_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['adventure_pages'] = ((s as any).BookVars['adventure_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['adventure_pages'] <= 0) {
-      ((s as any).BookVars ?? {})['adventure_pages'] = 0;
+      if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['adventure_pages'] = 0;
       (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
       if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'an adventure novel') {
         (s as any).lib_book_read = 2;
@@ -405,9 +405,9 @@ function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void
     scene.actions([
       { label: 'Read fantasy book. There are <<BookVars[\'fantasy_pages\']>> pages left (1:00)', handler: (st: GameState) => {
     (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
-    ((s as any).BookVars ?? {})['fantasy_pages'] = (((s as any).BookVars ?? {})['fantasy_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['fantasy_pages'] = ((s as any).BookVars['fantasy_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['fantasy_pages'] <= 0) {
-      ((s as any).BookVars ?? {})['fantasy_pages'] = 0;
+      if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['fantasy_pages'] = 0;
       (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
       if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a fantasy novel') {
         (s as any).lib_book_read = 2;
@@ -464,9 +464,9 @@ function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void
     scene.actions([
       { label: 'Read Romance Novel. There are <<BookVars[\'romance_pages\']>> pages left (1:00)', handler: (st: GameState) => {
     (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
-    ((s as any).BookVars ?? {})['romance_pages'] = (((s as any).BookVars ?? {})['romance_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['romance_pages'] = ((s as any).BookVars['romance_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['romance_pages'] <= 0) {
-      ((s as any).BookVars ?? {})['romance_pages'] = 0;
+      if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['romance_pages'] = 0;
       (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
       if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a romance novel') {
         (s as any).lib_book_read = 2;
@@ -525,9 +525,9 @@ function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void
     scene.actions([
       { label: 'Read Science Book. There are <<BookVars[\'science_pages\']>> pages left (1:00)', handler: (st: GameState) => {
     (s as any).temp_pages_read = (70 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 10);
-    ((s as any).BookVars ?? {})['science_pages'] = (((s as any).BookVars ?? {})['science_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['science_pages'] = ((s as any).BookVars['science_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['science_pages'] <= 0) {
-      ((s as any).BookVars ?? {})['science_pages'] = 0;
+      if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['science_pages'] = 0;
       (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
       if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a science book') {
         (s as any).lib_book_read = 2;
@@ -587,9 +587,9 @@ function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read Science Fiction Novel. There are <<BookVars[\'scifi_pages\']>> pages left (1:00)', handler: (st: GameState) => {
     (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
-    ((s as any).BookVars ?? {})['scifi_pages'] = (((s as any).BookVars ?? {})['scifi_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['scifi_pages'] = ((s as any).BookVars['scifi_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['scifi_pages'] <= 0) {
-      ((s as any).BookVars ?? {})['scifi_pages'] = 0;
+      if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['scifi_pages'] = 0;
       (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
       if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a science fiction novel') {
         (s as any).lib_book_read = 2;
@@ -648,9 +648,9 @@ function enterSetHomeReadArtemBookAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read the book you borrowed from Artem. There are <<BookVars[\'artem_pages\']>> pages left (1:00) ', handler: (st: GameState) => {
     (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
-    ((s as any).BookVars ?? {})['artem_pages'] = (((s as any).BookVars ?? {})['artem_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = ((s as any).BookVars['artem_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['artem_pages'] <= 0) {
-      ((s as any).BookVars ?? {})['artem_pages'] = 0;
+      if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = 0;
       (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
     }
     qspCall(s, 'library_functions', 'read_book');
@@ -704,7 +704,7 @@ function enterSetMagazineActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read your cooking magazine', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_magazine');
-    ((s as any).mc_inventory ?? {})['mag_cooking'] = (((s as any).mc_inventory ?? {})['mag_cooking'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_cooking'] = ((s as any).mc_inventory['mag_cooking'] ?? 0) - (1);
     scene.text('You relax for half an hour reading your cooking magazine.');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
@@ -718,7 +718,7 @@ function enterSetMagazineActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read your fashion magazine', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_magazine');
-    ((s as any).mc_inventory ?? {})['mag_fashion'] = (((s as any).mc_inventory ?? {})['mag_fashion'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_fashion'] = ((s as any).mc_inventory['mag_fashion'] ?? 0) - (1);
     qspCall(s, 'exp_gain', 'makupskl', 1);
     scene.text('You relax for half an hour reading your fashion magazine.');
     scene.actions([
@@ -733,7 +733,7 @@ function enterSetMagazineActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read your computing magazine', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_magazine');
-    ((s as any).mc_inventory ?? {})['mag_computer'] = (((s as any).mc_inventory ?? {})['mag_computer'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_computer'] = ((s as any).mc_inventory['mag_computer'] ?? 0) - (1);
     qspCall(s, 'exp_gain', 'compskl', 1);
     scene.text('You relax for half an hour reading your computing magazine.');
     scene.actions([
@@ -748,7 +748,7 @@ function enterSetMagazineActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read your biographical magazine', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_magazine');
-    ((s as any).mc_inventory ?? {})['mag_biography'] = (((s as any).mc_inventory ?? {})['mag_biography'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_biography'] = ((s as any).mc_inventory['mag_biography'] ?? 0) - (1);
     scene.text('You relax for half an hour reading your biographical magazine.');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
@@ -762,7 +762,7 @@ function enterSetMagazineActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read your knitting magazine', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_magazine');
-    ((s as any).mc_inventory ?? {})['mag_knitting'] = (((s as any).mc_inventory ?? {})['mag_knitting'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_knitting'] = ((s as any).mc_inventory['mag_knitting'] ?? 0) - (1);
     if (((s as any).pcs_sewng ?? 0) <= 100) {
       qspCall(s, 'exp_gain', 'sewng', Math.floor(Math.random() * 3) + 1);
     }
@@ -779,7 +779,7 @@ function enterSetMagazineActs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Read your fitness magazine', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_magazine');
-    ((s as any).mc_inventory ?? {})['mag_fitness'] = (((s as any).mc_inventory ?? {})['mag_fitness'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_fitness'] = ((s as any).mc_inventory['mag_fitness'] ?? 0) - (1);
     scene.text('You relax for half an hour reading your fitness magazine.');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
@@ -809,7 +809,7 @@ function enterSetReadPornAct(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       scene.text('You flip through the porno magazine, reading the stories and looking at the pictures. A small excitement begins to cover your body.');
     }
-    ((s as any).mc_inventory ?? {})['mag_porn'] = (((s as any).mc_inventory ?? {})['mag_porn'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_porn'] = ((s as any).mc_inventory['mag_porn'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Put away', handler: (st: GameState) => {
@@ -835,7 +835,7 @@ function enterSetBookBuyActs(s: GameState, scene: SceneBuilder): void {
 
 function enterSetSingleBookBuyAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    ((s as any).ARGS ?? {})[3] = 350;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = 350;
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: act ""Buy <<$ARGS[1]>>"" + $func('money', 'get_cost_string', <<ARGS[3]>>):
@@ -844,7 +844,7 @@ function enterSetSingleBookBuyAct(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     // TODO-QSP: gs 'money', 'pay', <<ARGS[3]>>
-    ((s as any).mc_inventory ?? {})['' + String((s as any).$ARGS[2] || '') + '_books'] = (((s as any).mc_inventory ?? {})['' + String((s as any).$ARGS[2] || '') + '_books'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['' + String((s as any).$ARGS[2] || '') + '_books'] = ((s as any).mc_inventory['' + String((s as any).$ARGS[2] || '') + '_books'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You buy <<$ARGS[1]>> for <<$func('money', 'string_price', ARGS[3])>>.
     scene.text(`You buy ${((s as any).locArgs?.[1] ?? 0)} for ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "ARGS[3]", { location: "library_functions" }))}.`);
@@ -883,19 +883,19 @@ function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
       { label: 'Return your loaned book', handler: (st: GameState) => {
     if ((!((s as any).lib_book_read ?? 0))) {
       if (((s as any).lib_book_loaned ?? 0) === 'an adventure novel') {
-        ((s as any).mc_inventory ?? {})['adventure_books'] = (((s as any).mc_inventory ?? {})['adventure_books'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['adventure_books'] = ((s as any).mc_inventory['adventure_books'] ?? 0) - (1);
       } else {
         if (((s as any).lib_book_loaned ?? 0) === 'a fantasy novel') {
-          ((s as any).mc_inventory ?? {})['fantasy_books'] = (((s as any).mc_inventory ?? {})['fantasy_books'] ?? 0) - (1);
+          if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['fantasy_books'] = ((s as any).mc_inventory['fantasy_books'] ?? 0) - (1);
         } else {
           if (((s as any).lib_book_loaned ?? 0) === 'a romance novel') {
-            ((s as any).mc_inventory ?? {})['romance_books'] = (((s as any).mc_inventory ?? {})['romance_books'] ?? 0) - (1);
+            if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['romance_books'] = ((s as any).mc_inventory['romance_books'] ?? 0) - (1);
           } else {
             if (((s as any).lib_book_loaned ?? 0) === 'a science book') {
-              ((s as any).mc_inventory ?? {})['science_books'] = (((s as any).mc_inventory ?? {})['science_books'] ?? 0) - (1);
+              if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['science_books'] = ((s as any).mc_inventory['science_books'] ?? 0) - (1);
             } else {
               if (((s as any).lib_book_loaned ?? 0) === 'a science fiction novel') {
-                ((s as any).mc_inventory ?? {})['scifi_books'] = (((s as any).mc_inventory ?? {})['scifi_books'] ?? 0) - (1);
+                if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scifi_books'] = ((s as any).mc_inventory['scifi_books'] ?? 0) - (1);
               }
             }
           }
@@ -904,19 +904,19 @@ function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).lib_book_read ?? 0) === 1) {
         if (((s as any).lib_book_loaned ?? 0) === 'an adventure novel') {
-          ((s as any).BookVars ?? {})['adventure_pages'] = 0;
+          if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['adventure_pages'] = 0;
         } else {
           if (((s as any).lib_book_loaned ?? 0) === 'a fantasy novel') {
-            ((s as any).BookVars ?? {})['fantasy_pages'] = 0;
+            if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['fantasy_pages'] = 0;
           } else {
             if (((s as any).lib_book_loaned ?? 0) === 'a romance novel') {
-              ((s as any).BookVars ?? {})['romance_pages'] = 0;
+              if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['romance_pages'] = 0;
             } else {
               if (((s as any).lib_book_loaned ?? 0) === 'a science book') {
-                ((s as any).BookVars ?? {})['science_pages'] = 0;
+                if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['science_pages'] = 0;
               } else {
                 if (((s as any).lib_book_loaned ?? 0) === 'a science fiction novel') {
-                  ((s as any).BookVars ?? {})['scifi_pages'] = 0;
+                  if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['scifi_pages'] = 0;
                 }
               }
             }
@@ -960,7 +960,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lib_book_loaned ?? 0) === ''  &&  (!((s as any).lib_debt ?? 0))) {
     scene.actions([
       { label: 'Borrow an adventure novel', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['adventure_books'] = (((s as any).mc_inventory ?? {})['adventure_books'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['adventure_books'] = ((s as any).mc_inventory['adventure_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find an adventure novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -973,7 +973,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a fantasy novel', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['fantasy_books'] = (((s as any).mc_inventory ?? {})['fantasy_books'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['fantasy_books'] = ((s as any).mc_inventory['fantasy_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a fantasy novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -986,7 +986,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a romance novel', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['romance_books'] = (((s as any).mc_inventory ?? {})['romance_books'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['romance_books'] = ((s as any).mc_inventory['romance_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a fantasy novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -999,7 +999,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a science book', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['science_books'] = (((s as any).mc_inventory ?? {})['science_books'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['science_books'] = ((s as any).mc_inventory['science_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a science book that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -1012,7 +1012,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a science fiction novel', handler: (st: GameState) => {
-    ((s as any).mc_inventory ?? {})['scifi_books'] = (((s as any).mc_inventory ?? {})['scifi_books'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['scifi_books'] = ((s as any).mc_inventory['scifi_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a science fiction novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');

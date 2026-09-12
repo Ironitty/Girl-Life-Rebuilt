@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0) {
     (s as any).knwn = qspUntranslated(s, "ARGS[1]", { location: "paysex" });
     // TODO-QSP: :knownloop
-    ((s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
+    if (!(s as any).knownboy) (s as any).knownboy = {}; (s as any).knownboy[String((s as any).knwn ?? 0)] = 1;
     (s as any).knwn = ((s as any).knwn ?? 0) - (1);
     if (((s as any).knwn ?? 0) > 0) {
       // TODO-QSP: jump 'knownloop'
@@ -20,7 +20,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'sweat', 'add', 10);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   scene.actions([{ label: 'Continue', goto: ['paysex', 'var'] }]);

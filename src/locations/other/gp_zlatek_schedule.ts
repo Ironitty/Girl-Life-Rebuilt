@@ -8,10 +8,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
   }
   (s as any).result = qspFunc(s, 'gp_zlatek_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A32_loc'], ((s as any).locat ?? 0)?.['A32_arg']);
   return;
@@ -21,10 +21,10 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
 
 function enterWasHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
   }
   (s as any).result = qspFunc(s, 'gp_zlatek_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A32_loc_prev'], ((s as any).locat ?? 0)?.['A32_arg_prev']);
   return;
@@ -40,15 +40,15 @@ function enterHereCore(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  ((s as any).locat ?? {})['A32_rand'] = Math.floor(Math.random() * 240) + 0;
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_rand'] = Math.floor(Math.random() * 240) + 0;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).locat ?? {})['A32_loc_prev'] = ((s as any).locat ?? 0)?.['A32_loc'];
-  ((s as any).locat ?? {})['A32_arg_prev'] = ((s as any).locat ?? 0)?.['A32_arg'];
-  ((s as any).locat ?? {})['A32_arg1_prev'] = ((s as any).locat ?? 0)?.['A32_arg1'];
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc_prev'] = ((s as any).locat ?? 0)?.['A32_loc'];
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg_prev'] = ((s as any).locat ?? 0)?.['A32_arg'];
+  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1_prev'] = ((s as any).locat ?? 0)?.['A32_arg1'];
   qspCall(s, 'gp_zlatek_schedule', 'update_locat');
   // TODO-QSP: end
   scene.build();
@@ -218,64 +218,64 @@ function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
 
 function enterSetLocats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 100) {
-    ((s as any).locat ?? {})['A32_loc'] = 'gad_gphouse';
-    ((s as any).locat ?? {})['A32_arg'] = 'gp_room';
-    ((s as any).locat ?? {})['A32_arg1'] = '';
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gphouse';
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'gp_room';
+    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 110) {
-      ((s as any).locat ?? {})['A32_loc'] = 'gad_gphouse';
-      ((s as any).locat ?? {})['A32_arg'] = 'main';
-      ((s as any).locat ?? {})['A32_arg1'] = '';
+      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gphouse';
+      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'main';
+      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 111) {
-        ((s as any).locat ?? {})['A32_loc'] = 'gad_gphouse';
-        ((s as any).locat ?? {})['A32_arg'] = 'main';
-        ((s as any).locat ?? {})['A32_arg1'] = 'reading';
+        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gphouse';
+        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'main';
+        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = 'reading';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 112) {
-          ((s as any).locat ?? {})['A32_loc'] = 'gad_gphouse';
-          ((s as any).locat ?? {})['A32_arg'] = 'main';
-          ((s as any).locat ?? {})['A32_arg1'] = 'watching_tv';
+          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gphouse';
+          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'main';
+          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = 'watching_tv';
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 120) {
-            ((s as any).locat ?? {})['A32_loc'] = 'gad_gphouse';
-            ((s as any).locat ?? {})['A32_arg'] = 'kitchen';
-            ((s as any).locat ?? {})['A32_arg1'] = 'reading';
+            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gphouse';
+            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'kitchen';
+            if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = 'reading';
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 200) {
-              ((s as any).locat ?? {})['A32_loc'] = 'gad_gpyard';
-              ((s as any).locat ?? {})['A32_arg'] = 'garden';
-              ((s as any).locat ?? {})['A32_arg1'] = '';
+              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gpyard';
+              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'garden';
+              if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 210) {
-                ((s as any).locat ?? {})['A32_loc'] = 'gad_gpbath';
-                ((s as any).locat ?? {})['A32_arg'] = 'start';
-                ((s as any).locat ?? {})['A32_arg1'] = '';
+                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gpbath';
+                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'start';
+                if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 220) {
-                  ((s as any).locat ?? {})['A32_loc'] = 'gad_gpbarn';
-                  ((s as any).locat ?? {})['A32_arg'] = '';
-                  ((s as any).locat ?? {})['A32_arg1'] = '';
+                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_gpbarn';
+                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = '';
+                  if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 300) {
-                    ((s as any).locat ?? {})['A32_loc'] = 'gadukino';
-                    ((s as any).locat ?? {})['A32_arg'] = '';
-                    ((s as any).locat ?? {})['A32_arg1'] = '';
+                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gadukino';
+                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = '';
+                    if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === 310) {
-                      ((s as any).locat ?? {})['A32_loc'] = 'gad_church';
-                      ((s as any).locat ?? {})['A32_arg'] = 'start';
-                      ((s as any).locat ?? {})['A32_arg1'] = '';
+                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_church';
+                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'start';
+                      if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) === 320) {
-                        ((s as any).locat ?? {})['A32_loc'] = 'gad_river';
-                        ((s as any).locat ?? {})['A32_arg'] = 'start';
-                        ((s as any).locat ?? {})['A32_arg1'] = '';
+                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_river';
+                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'start';
+                        if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
                       } else {
                         if (((s as any).locArgs?.[1] ?? 0) === 330) {
-                          ((s as any).locat ?? {})['A32_loc'] = 'gad_field';
-                          ((s as any).locat ?? {})['A32_arg'] = 'field';
-                          ((s as any).locat ?? {})['A32_arg1'] = '';
+                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc'] = 'gad_field';
+                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg'] = 'field';
+                          if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1'] = '';
                         }
                       }
                     }
@@ -296,37 +296,37 @@ function enterGetLocation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gp_zlatek_schedule', 'update_locat');
   if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gphouse') {
     if (((s as any).locat ?? 0)?.['A32_arg'] === 'gp_room') {
-      ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is in his bedroom';
+      if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is in his bedroom';
     } else {
       if (((s as any).locat ?? 0)?.['A32_arg'] === 'main') {
-        ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is in his livingroom';
+        if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is in his livingroom';
       } else {
         if (((s as any).locat ?? 0)?.['A32_arg'] === 'kitchen') {
-          ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is in his kitchen';
+          if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is in his kitchen';
         }
       }
     }
   } else {
     if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpyard') {
-      ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is in his garden';
+      if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is in his garden';
     } else {
       if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpbath') {
-        ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is bathing in his sauna';
+        if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is bathing in his sauna';
       } else {
         if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpbarn') {
-          ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is at his stables';
+          if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is at his stables';
         } else {
           if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gpgadukino') {
-            ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is out and about in Gadukino';
+            if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is out and about in Gadukino';
           } else {
             if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_church') {
-              ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is at his church';
+              if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is at his church';
             } else {
               if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_river') {
-                ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is fishing at the river';
+                if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is fishing at the river';
               } else {
                 if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_field') {
-                  ((s as any).npcLocation ?? {})['A32'] = 'Your grandfather is at the field';
+                  if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is at the field';
                 }
               }
             }

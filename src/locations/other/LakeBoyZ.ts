@@ -43,7 +43,7 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'lover', 'add_boyfriend', ((s as any).boy ?? 0));
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).bmFrend ?? {})[String((s as any).Tboynum ?? 0)] = 1;
+    if (!(s as any).bmFrend) (s as any).bmFrend = {}; (s as any).bmFrend[String((s as any).Tboynum ?? 0)] = 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You give <<$boydesc>> your phone number and he adds it to his contact list.
     scene.text(`You give ${((s as any).boydesc ?? 0)} your phone number and he adds it to his contact list.`);

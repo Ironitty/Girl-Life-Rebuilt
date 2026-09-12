@@ -95,17 +95,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
   if (((s as any).reminderFreebee ?? 0) < 4) {
-    ((s as any).tempReminderVars ?? {})['CostLow'] = 10;
-    ((s as any).tempReminderVars ?? {})['CostHigh'] = 20;
+    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostLow'] = 10;
+    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostHigh'] = 20;
     (s as any).reminderMoodCostLow = 10;
     (s as any).reminderMoodCostHigh = 20;
   } else {
-    ((s as any).tempReminderVars ?? {})['Mult'] = ((s as any).reminderCount ?? 0);
+    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['Mult'] = ((s as any).reminderCount ?? 0);
     if (((s as any).reminderCount ?? 0) > 10) {
-      ((s as any).tempReminderVars ?? {})['Mult'] = 10;
+      if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['Mult'] = 10;
     }
-    ((s as any).tempReminderVars ?? {})['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * ((s as any).tempReminderVars ?? {})?.['Mult']);
-    ((s as any).tempReminderVars ?? {})['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * ((s as any).tempReminderVars ?? {})?.['Mult']);
+    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostLow'] = qspFunc(s, 'shortgs', 'sqrt', 30 * ((s as any).tempReminderVars ?? {})?.['Mult']);
+    if (!(s as any).tempReminderVars) (s as any).tempReminderVars = {}; (s as any).tempReminderVars['CostHigh'] = qspFunc(s, 'shortgs', 'sqrt', 90 * ((s as any).tempReminderVars ?? {})?.['Mult']);
   }
   qspCall(s, 'mood', 'lower', qspUntranslated(s, "rand(tempReminderVars['CostLow'], tempReminderVars['CostHigh'])", { location: "therapist_reminder" }));
   (s as any).daysSkippedHypno = ((s as any).daysSkippedHypno ?? 0) + (1);

@@ -384,7 +384,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/beach_chat.jpg');
   if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 1) {
-    ((s as any).AlbinaQW ?? {})['Friends'] = 2;
+    if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['Friends'] = 2;
     qspCall(s, 'npc_relationship', 'set', 'A23', 100);
     // TODO-QSP: dynamic text: Albina is relaxing in the sun and working on her tan as you approach. She lifts ...
     scene.text(`Albina is relaxing in the sun and working on her tan as you approach. She lifts her sunglasses and smiles gratefully when she notices you. "I just wanted to thank you again, ${((s as any).pcs_nickname ?? 0)}. There's some stupid shit about 'a friend in need' or something. I'm letting you know that I'm disbanding the Starlets as well. Too many bad memories you know?"`);
@@ -790,7 +790,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Thank her for taking you home', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    ((s as any).katjaQW ?? {})['drunk_help'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['drunk_help'] = 0;
     qspCall(s, 'stat', '');
     scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14']} ${((s as any).npc_lastname ?? 0)?.['A14']}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1067,7 +1067,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMarcus_KatjaTalk(s: GameState, scene: SceneBuilder): void {
-  ((s as any).katjaQW ?? {})['marcus_asked'] = 1;
+  if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['marcus_asked'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/marcus/beach_chat.jpg');
   scene.text('"So you know how we sometimes have fun together?" you ask him.');
   // TODO-QSP: dynamic text: "Yeah?" he answers and you smile. "Well, I have this friend who's ' + iif(katjaQ...

@@ -152,16 +152,16 @@ function enterPrezik(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['bad_condoms'] > 0) {
       if ((Math.floor(Math.random() * (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] - 1 + 1)) + (1)) <= ((s as any).mc_inventory ?? 0)?.['bad_condoms']) {
-        ((s as any).mc_inventory ?? {})['bad_condoms'] = (((s as any).mc_inventory ?? {})['bad_condoms'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['bad_condoms'] = ((s as any).mc_inventory['bad_condoms'] ?? 0) - (1);
         (s as any).noprotect = 1;
       }
     } else {
       (s as any).noprotect = 0;
     }
-    ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] < 0) {
-      ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = 0;
     }
   }
   // TODO-QSP: end
@@ -175,14 +175,14 @@ function enterFerteggfather(s: GameState, scene: SceneBuilder): void {
         if (((s as any).arrcomp ?? 0)('cumfthname', ((s as any).boy ?? 0)) === -1) {
           (s as any).i = 0;
           // TODO-QSP: $cumfthname[i] = $boy
-          ((s as any).cumtime ?? {})[String((s as any).i ?? 0)] = 1;
+          if (!(s as any).cumtime) (s as any).cumtime = {}; (s as any).cumtime[String((s as any).i ?? 0)] = 1;
         } else {
           (s as any).i = qspUntranslated(s, "arrpos('cumfthname', boy)", { location: "dina" });
-          ((s as any).cumtime ?? {})[String((s as any).i ?? 0)] = (((s as any).cumtime ?? {})[String((s as any).i ?? 0)] ?? 0) + (1);
+          if (!(s as any).cumtime) (s as any).cumtime = {}; (s as any).cumtime[String((s as any).i ?? 0)] = ((s as any).cumtime[String((s as any).i ?? 0)] ?? 0) + (1);
         }
       } else {
         if (((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 0) {
-          ((s as any).cumtime ?? {})[0] = (((s as any).cumtime ?? {})[0] ?? 0) + (1);
+          if (!(s as any).cumtime) (s as any).cumtime = {}; (s as any).cumtime[0] = ((s as any).cumtime[0] ?? 0) + (1);
         }
       }
     }

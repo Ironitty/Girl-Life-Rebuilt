@@ -9,8 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sisterQW ?? {})['partycount'] = (((s as any).sisterQW ?? {})['partycount'] ?? 0) + (1);
-  ((s as any).sisterQW ?? {})['party'] = 2;
+  if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['partycount'] = ((s as any).sisterQW['partycount'] ?? 0) + (1);
+  if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['party'] = 2;
   (s as any).sisboyparty = 1;
   (s as any).sisboypartyQW = ((s as any).sisboypartyQW ?? 0) + (1);
   (s as any).alkoParty = 0;

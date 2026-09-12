@@ -41,7 +41,7 @@ function enterAnastasia1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks, I guess." you carefully answer. "I\'m a bit overwhelmed right now so I\'m just trying to learn the ropes."');
     scene.text('Anastasia smiles and tells you, "Well, if you ever need anything just let me know and I\'ll be glad to help you out."');
     scene.text('You thank her for the welcome and watch on as she goes onto one of the sets…');
-    ((s as any).anastasia ?? {})['status'] = 2;
+    if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['status'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -73,7 +73,7 @@ function enterAnastasia2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks for asking but I\'m totally fine," you re-assure Anastasia.');
     scene.text('"Please don\'t be afraid to approach me with anything, even things outside work. Whatever it is I\'m all ears and I\'ll always have time for you," she says before wrapping you in her arms and giving you a big hug.');
     scene.text('"Mph-kay," you hear your muffled voice say, your face buried in her shoulder and her big breasts pressing against you. As she walks away, the memory of them are still implanted in your mind. They\'re really huge.');
-    ((s as any).anastasia ?? {})['status'] = 3;
+    if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['status'] = 3;
     qspCall(s, 'exp_gain', 'mdlng', 5);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -97,7 +97,7 @@ function enterAnastasia3(s: GameState, scene: SceneBuilder): void {
     scene.text('You realize you\'ve found the source of the fleshy slapping sounds as you watch Anastasia\'s ass and pussy mercilessly pounded with large cocks.');
     scene.text('"Ugh! Harder!" she grunts, as the man on bottom reaches up and twists her nipples. "Ahh! Yes! I\'m almost there!"');
     scene.text('You leave quietly, the groans of at least two people orgasming following your footsteps as a parting gift.');
-    ((s as any).anastasia ?? {})['status'] = 4;
+    if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['status'] = 4;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -107,7 +107,7 @@ function enterAnastasia3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnastasia4(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anastasia ?? {})['status'] = Math.floor(Math.random() * 3) + 4;
+  if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['status'] = Math.floor(Math.random() * 3) + 4;
   scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
   scene.text('Walking about the studio, you pass by Anastasia who is walking around naked but holding a pair of panties. You are unsure if they\'re hers and she\'s going home or if she\'s about to put them on for a shoot.');
   // TODO-QSP: end
@@ -134,9 +134,9 @@ function enterAnastasia4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnastasia5(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anastasia ?? {})['busy_cooldown_day'] = ((s as any).daystart ?? 0);
-  ((s as any).anastasia ?? {})['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
-  ((s as any).anastasia ?? {})['status'] = Math.floor(Math.random() * 3) + 4;
+  if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['busy_cooldown_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
+  if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['status'] = Math.floor(Math.random() * 3) + 4;
   scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/busy.jpg');
   scene.text('You\'re looking for Anastasia when you find her working on a set.');
   scene.text('"Now hold the pose just like that!" the photographer calls. Despite how awkward the pose looks, Anastasia doesn\'t move even a centimeter while she is illuminated by camera flashes and the air is filled with rapid shutter clicks.');
@@ -150,7 +150,7 @@ function enterAnastasia5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnastasia6(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anastasia ?? {})['status'] = Math.floor(Math.random() * 3) + 4;
+  if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['status'] = Math.floor(Math.random() * 3) + 4;
   scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/sex/1.jpg');
   scene.text('You are looking for Anastasia to ask her for some advice when you find her… in the bed of an unused being railed by two unknown men…');
   scene.text('"Ugh! Yes! Yes! Just like that!" she cries out.');
@@ -253,7 +253,7 @@ function enterChatPersonal(s: GameState, scene: SceneBuilder): void {
       scene.text('You blush as you think back to all the times you\'ve walked in on her being energetically fucked by multiple men.');
       scene.text('Before you can say anything she starts to elaborate.');
       scene.text('"Like I said, I rarely have time to go to the gym, fitting my exercise in with my work is one of the best ways to get it in. A woman can burn more than 150 calories per hour during sex, it\'s a great way to stay in shape. Even more if you\'re being vigorous in the cowgirl position. That one really helps tone your core you know."');
-      ((s as any).anastasia ?? {})['exercise'] = 1;
+      if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['exercise'] = 1;
     }
     qspCall(s, 'model_anastasia', 'chat_personal');
   } },
@@ -276,7 +276,7 @@ function enterModelTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anastasia ?? 0)?.['model_exp'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask for modelling advice', handler: (st: GameState) => {
-    ((s as any).anastasia ?? {})['model_exp'] = ((s as any).daystart ?? 0);
+    if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['model_exp'] = ((s as any).daystart ?? 0);
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/15.jpg');
     scene.text('"You must always stay calm, confident, and in control when modelling," she says, suddenly striking a pose. "Remember, you are a beautiful and graceful young woman. As long as you maintain confidence in yourself, that same confidence will shine through to your posture.');
     scene.text('You thank her for her advice and you\'ll try to keep it in mind.');
@@ -335,7 +335,7 @@ function enterSexTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnastasiasex(s: GameState, scene: SceneBuilder): void {
-  ((s as any).anastasia ?? {})['sex'] = 1;
+  if (!(s as any).anastasia) (s as any).anastasia = {}; (s as any).anastasia['sex'] = 1;
   scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
   scene.text('"Oh you saw that?" She barely even reacts to what you said. She doesn\'t appear to be surprised or embarrassed at all.');
   // TODO-QSP: end

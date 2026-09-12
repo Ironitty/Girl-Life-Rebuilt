@@ -61,16 +61,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).selobj ?? 0) === '<center>Remove debug info</center>') {
     (s as any).debug_warning_closed = 1;
-    ((s as any).cfg_vars ?? {})['debug'] = 0;
+    if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['debug'] = 0;
     // TODO-QSP: showobjs cfg_vars['debug']
     qspCall(s, 'stat', '');
   }
   if (((s as any).selobj ?? 0) === '<center>Toggle Call Trace</center>') {
     if (((s as any).debug ?? 0)?.['trace_shown'] === 0) {
-      ((s as any).debug ?? {})['trace_shown'] = 1;
+      if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_shown'] = 1;
       qspCall(s, 'stat_display', '');
     } else {
-      ((s as any).debug ?? {})['trace_shown'] = 0;
+      if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_shown'] = 0;
       qspCall(s, 'stat', '');
     }
   }

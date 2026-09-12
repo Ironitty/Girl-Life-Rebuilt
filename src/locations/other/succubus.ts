@@ -132,7 +132,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  ((s as any).cheatVars ?? {})['std'] = 1;
+  if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['std'] = 1;
   qspCall(s, 'cheatmenu_din', 'std_cure');
   if (((s as any).sucxpsnapshot ?? 0) >= ((s as any).succubxp ?? 0)) {
     (s as any).succhungry = ((s as any).succhungry ?? 0) + (1);
@@ -247,11 +247,11 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_ideal_body_mass = qspFunc(s, 'body', 'CalcOptBodyMass');
     if (((s as any).pcs_mass ?? 0)?.['body'] < ((s as any).temp_ideal_body_mass ?? 0) - 1) {
-      ((s as any).pcs_mass ?? {})['body'] = (((s as any).pcs_mass ?? {})['body'] ?? 0) + (2);
+      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (2);
       (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (10);
     } else {
       if (((s as any).pcs_mass ?? 0)?.['body'] > ((s as any).temp_ideal_body_mass ?? 0) + 1) {
-        ((s as any).pcs_mass ?? {})['body'] = (((s as any).pcs_mass ?? {})['body'] ?? 0) - (2);
+        if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (2);
         (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (10);
       }
     }
@@ -338,7 +338,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
       scene.text('');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).succubusQW ?? {})['rapist_cash'] = Math.floor(Math.random() * 251) + 50;
+    if (!(s as any).succubusQW) (s as any).succubusQW = {}; (s as any).succubusQW['rapist_cash'] = Math.floor(Math.random() * 251) + 50;
     (s as any).i = 0;
     // TODO-QSP: :sucfeeding_loop
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -764,7 +764,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopclonum
   if (qspFunc(s, 'clothing', 'can_wear', ((s as any).succlocat ?? 0)?.[String((s as any).temp_succubus_j ?? 0)], ((s as any).temp_succubus_i ?? 0))) {
     // TODO-QSP: $succlolistn[temp_succubus_x] = $succlocat[temp_succubus_j]
-    ((s as any).succlolisti ?? {})[String((s as any).temp_succubus_x ?? 0)] = ((s as any).temp_succubus_i ?? 0);
+    if (!(s as any).succlolisti) (s as any).succlolisti = {}; (s as any).succlolisti[String((s as any).temp_succubus_x ?? 0)] = ((s as any).temp_succubus_i ?? 0);
     (s as any).temp_succubus_x = ((s as any).temp_succubus_x ?? 0) + (1);
   }
   (s as any).temp_succubus_i = ((s as any).temp_succubus_i ?? 0) + (1);
@@ -793,7 +793,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing_attributes', $succlolistn[y], succlolisti[y]
     if (((s as any).CloBimbo ?? 0) === 1) {
       // TODO-QSP: $succlorandn[z] = $succlolistn[y]
-      ((s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+      if (!(s as any).succlorandi) (s as any).succlorandi = {}; (s as any).succlorandi[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
       (s as any).z = ((s as any).z ?? 0) + (1);
     }
   }
@@ -821,7 +821,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :randpoploop_full_inner
     if (((s as any).succlocat ?? 0)?.[String((s as any).scclocatcnt ?? 0)] === ((s as any).succlolistn ?? 0)?.[String((s as any).y ?? 0)]) {
       // TODO-QSP: $succlorandn[z] = $succlolistn[y]
-      ((s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+      if (!(s as any).succlorandi) (s as any).succlorandi = {}; (s as any).succlorandi[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
       (s as any).z = ((s as any).z ?? 0) + (1);
     }
     (s as any).y = ((s as any).y ?? 0) + (1);
@@ -862,7 +862,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hairbsh = 1;
   }
   if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
-    ((s as any).mc_inventory ?? {})['lipbalm'] = (((s as any).mc_inventory ?? {})['lipbalm'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) - (1);
     (s as any).lipkoef = ((s as any).lipkoef ?? 0) + (Math.floor(Math.random() * 2) + 0);
     if (((s as any).lipkoef ?? 0) > 50) {
       (s as any).lipkoef = 0;
@@ -882,14 +882,14 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_makeup = 1;
     } else {
       if (((s as any).pcs_makeup ?? 0) === 2) {
-        ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (1);
       }
       if (((s as any).pcs_makeup ?? 0) === 3) {
-        ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (2);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (2);
       }
       if (((s as any).pcs_makeup ?? 0) === 4) {
         (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
-        ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (3);
       }
     }
   }
@@ -910,7 +910,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (180 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0)));
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5 * (360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))));
   (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (15 * ((360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))) / 60));
-  ((s as any).pcs_condition ?? {})['lack_of_sleep'] = 0;
+  if (!(s as any).pcs_condition) (s as any).pcs_condition = {}; (s as any).pcs_condition['lack_of_sleep'] = 0;
   qspCall(s, 'stat', '');
   (s as any).inSleep = 0;
   (s as any).pcs_horny = 0;
@@ -944,15 +944,15 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
     if (((s as any).car ?? 0)?.['fuel'] < 5) {
       if (qspFunc(s, 'money', 'can_afford', (30 * (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'])), 'cash')) {
         // TODO-QSP: gs 'money', 'pay', (30 * (car['fuel'] - car['fuel'])), 'cash'
-        ((s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
+        if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car ?? 0)?.['tank'];
       } else {
         if (((s as any).kanistra ?? 0) > 0) {
-          ((s as any).car ?? {})['fuel'] = (((s as any).car ?? {})['fuel'] ?? 0) + (5);
+          if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) + (5);
           (s as any).kanistra = ((s as any).kanistra ?? 0) - (1);
         } else {
           qspCall(s, 'money', 'set', 0, 'cash');
           (s as any).scwalkmon = 0;
-          ((s as any).car ?? {})['fuel'] = (((s as any).car ?? {})['fuel'] ?? 0) + (qspUntranslated(s, "rand(10, car['tank'])", { location: "succubus" }));
+          if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) + (qspUntranslated(s, "rand(10, car['tank'])", { location: "succubus" }));
         }
       }
     }
@@ -998,8 +998,8 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).car ?? {})['fuel'] = (((s as any).car ?? {})['fuel'] ?? 0) - (Math.floor(Math.random() * 4) + 1);
-    ((s as any).car ?? {})['current_condition'] = (((s as any).car ?? {})['current_condition'] ?? 0) - (Math.floor(Math.random() * 4) + 3);
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (Math.floor(Math.random() * 4) + 1);
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - (Math.floor(Math.random() * 4) + 3);
     qspCall(s, 'carF', '');
     (s as any).sccarflag = 1;
   } else {

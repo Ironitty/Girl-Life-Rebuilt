@@ -18,16 +18,16 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if ((((s as any).policeQW ?? 0)?.['missed_court_dates'] + ((s as any).policeQW ?? 0)?.['missed_fine_deadlines']) > 1) {
     if ((((s as any).policeQW ?? 0)?.['tot_court_dates_missed'] + ((s as any).policeQW ?? 0)?.['tot_fines_deadlines_missed']) > 30  &&  ((s as any).policeQW ?? 0)?.['tot_arrested'] > 10) {
-      ((s as any).policeQW ?? {})['tot_arrested'] = (((s as any).policeQW ?? {})['tot_arrested'] ?? 0) + (1);
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['tot_arrested'] = ((s as any).policeQW['tot_arrested'] ?? 0) + (1);
       if (((s as any).policeQW ?? 0)?.['arrest_gameover_flag'] === 1) {
         scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest', '2'] }]);
       } else {
-        ((s as any).policeQW ?? {})['arrest_gameover_flag'] = 1;
+        if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['arrest_gameover_flag'] = 1;
         scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest', '1'] }]);
       }
     } else {
       if ((((s as any).policeQW ?? 0)?.['missed_court_dates'] + ((s as any).policeQW ?? 0)?.['missed_fine_deadlines']) > 3) {
-        ((s as any).policeQW ?? {})['tot_arrested'] = (((s as any).policeQW ?? {})['tot_arrested'] ?? 0) + (1);
+        if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['tot_arrested'] = ((s as any).policeQW['tot_arrested'] ?? 0) + (1);
         scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest', '0'] }]);
       }
     }
@@ -35,7 +35,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/mail/letter_open.jpg');
   if (((s as any).policeQW_courtletter_subjects ?? 0)[0] === 'fine') {
     if (((s as any).policeQW ?? 0)?.['courtletter_fine_counter'] < 10) {
-      ((s as any).policeQW ?? {})['courtletter_fine_counter'] = (((s as any).policeQW ?? {})['courtletter_fine_counter'] ?? 0) + (1);
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['courtletter_fine_counter'] = ((s as any).policeQW['courtletter_fine_counter'] ?? 0) + (1);
       qspCall(s, 'mood', 'lower', 'huge');
       qspCall(s, 'stat', '');
       scene.text('As you enter your home you notice an envelope from the court. You anxiously look at it and take a deep breath before opening the envelope.');
@@ -68,9 +68,9 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
-      ((s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
-      ((s as any).policeQW ?? {})['fine_deadline'] = 0;
-      ((s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['missed_fine_deadlines'] = 0;
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['fine_deadline'] = 0;
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['arrest_gameover_flag'] = 0;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You put the full amount of your outstanding fine/s in the envelope and seal it. No more than 5 minutes later you\'ve posted the letter and are back.');
@@ -86,7 +86,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).policeQW_courtletter_subjects ?? 0)[0] === 'missed_fine') {
       if (((s as any).policeQW ?? 0)?.['courtletter_fine_counter'] < 10) {
-        ((s as any).policeQW ?? {})['courtletter_fine_counter'] = (((s as any).policeQW ?? {})['courtletter_fine_counter'] ?? 0) + (1);
+        if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['courtletter_fine_counter'] = ((s as any).policeQW['courtletter_fine_counter'] ?? 0) + (1);
         qspCall(s, 'mood', 'lower', 'huge');
         qspCall(s, 'stat', '');
         scene.text('As you enter your home you notice an envelope from the court. You anxiously look at it and take a deep breath before opening the envelope.');
@@ -128,9 +128,9 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
-      ((s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
-      ((s as any).policeQW ?? {})['fine_deadline'] = 0;
-      ((s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['missed_fine_deadlines'] = 0;
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['fine_deadline'] = 0;
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['arrest_gameover_flag'] = 0;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You put the full amount of your outstanding fine/s in the envelope and seal it. No more than 5 minutes later you\'ve posted the letter and are back.');
@@ -156,7 +156,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
         }
         // TODO-QSP: $policeQW_courthearing_subjects[] = $mid($policeQW_courtletter_subjects[0], 14)
         if (((s as any).policeQW ?? 0)?.['courtletter_hearing_counter'] < 10) {
-          ((s as any).policeQW ?? {})['courtletter_hearing_counter'] = (((s as any).policeQW ?? {})['courtletter_hearing_counter'] ?? 0) + (1);
+          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['courtletter_hearing_counter'] = ((s as any).policeQW['courtletter_hearing_counter'] ?? 0) + (1);
           qspCall(s, 'mood', 'lower', 'huge');
           qspCall(s, 'stat', '');
           scene.text('As you enter your home you notice an envelope from the court. You anxiously look at it and take a deep breath before opening the envelope.');
@@ -192,7 +192,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
         }
         // TODO-QSP: $policeQW_courthearing_subjects[] = $policeQW_courtletter_subjects[0]
         if (((s as any).policeQW ?? 0)?.['courtletter_hearing_counter'] < 10) {
-          ((s as any).policeQW ?? {})['courtletter_hearing_counter'] = (((s as any).policeQW ?? {})['courtletter_hearing_counter'] ?? 0) + (1);
+          if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['courtletter_hearing_counter'] = ((s as any).policeQW['courtletter_hearing_counter'] ?? 0) + (1);
           qspCall(s, 'mood', 'lower', 'huge');
           qspCall(s, 'stat', '');
           scene.text('As you enter your home you notice an envelope from the court. You anxiously look at it and take a deep breath before opening the envelope.');

@@ -10,8 +10,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterMorning(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gschoolVars ?? 0)?.['last_attendance'] !== ((s as any).daystart ?? 0)) {
-    ((s as any).gschoolVars ?? {})['last_attendance'] = ((s as any).daystart ?? 0);
-    ((s as any).gschoolVars ?? {})['absence_count'] = (((s as any).gschoolVars ?? {})['absence_count'] ?? 0) - (1);
+    if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['last_attendance'] = ((s as any).daystart ?? 0);
+    if (!(s as any).gschoolVars) (s as any).gschoolVars = {}; (s as any).gschoolVars['absence_count'] = ((s as any).gschoolVars['absence_count'] ?? 0) - (1);
     (s as any).school_lunch = 0;
     if (((s as any).missing_class ?? 0) > 9) {
       (s as any).missing_class = ((s as any).missing_class ?? 0) - (9);
@@ -23,7 +23,7 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
     (s as any).lernSkill = ((s as any).lernSkill ?? 0) + (1);
     (s as any).lernHome = ((s as any).lernHome ?? 0) + (1);
     if (((s as any).runnerQW ?? 0)?.['pav_racetype'] === 1) {
-      ((s as any).runnerQW ?? {})['pav_racetype'] = 0;
+      if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 0;
     }
     if (((s as any).hour ?? 0) < 8) {
       qspCall(s, 'gschool_socialchg', 'test');
@@ -502,11 +502,11 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
-  ((s as any).class ?? {})['grade_check_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).class) (s as any).class = {}; (s as any).class['grade_check_day'] = ((s as any).daystart ?? 0);
   scene.text('<center><b>School Hallway</b></center>');
   scene.img(`images/locations/pavlovsk/school/building/grade_results${Math.floor(Math.random() * 2) + 1}.jpg`);
   if (((s as any).class ?? 0)?.['first_grade_check'] === 0) {
-    ((s as any).class ?? {})['first_grade_check'] = 1;
+    if (!(s as any).class) (s as any).class = {}; (s as any).class['first_grade_check'] = 1;
     scene.text('You walk to the wall where the grades are posted and check your grades. You see that your final grade from last year is still there. Grades are updated every Monday, but you note your grade down in your journal so you can always check it.');
   } else {
     scene.text('You walk over to the wall where the grades are posted and check your grades to see what has changed since last week. You note your grade down in your journal so you can check it later.');

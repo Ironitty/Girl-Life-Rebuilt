@@ -10,9 +10,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   if (((s as any).age ?? 0) < 18) {
-    ((s as any).ml_guitarlesson ?? {})['lessoncost'] = 300;
+    if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessoncost'] = 300;
   } else {
-    ((s as any).ml_guitarlesson ?? {})['lessoncost'] = 500;
+    if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessoncost'] = 500;
   }
   scene.text('You follow the directions from the receptionist and reach the room where the guitar lessons take place.');
   scene.text('The door is half open, and peeking in you see a dark haired man in his thirties sitting at a table, scribbling in a note book.');
@@ -26,7 +26,7 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: He looks at you "So, <<$pcs_firstname>>, do you think you would be interested in...
   scene.text(`He looks at you "So, ${((s as any).pcs_firstname ?? 0)}, do you think you would be interested in taking lessons?"`);
   qspCall(s, 'npc_relationship', 'set', 'ML1', 45);
-  ((s as any).ml_guitarlesson ?? {})['enquired'] = 1;
+  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['enquired'] = 1;
   // TODO-QSP: end
   scene.actions([
     { label: 'Sign up', handler: (st: GameState) => {
@@ -79,8 +79,8 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
 
 function enterLesson(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', ml_guitarlesson['lessoncost']
-  ((s as any).ml_guitarlesson ?? {})['nextlesson'] = 0;
-  ((s as any).ml_guitarlesson ?? {})['lessoncount'] = (((s as any).ml_guitarlesson ?? {})['lessoncount'] ?? 0) + (1);
+  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['nextlesson'] = 0;
+  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessoncount'] = ((s as any).ml_guitarlesson['lessoncount'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'npc_relationship', 'modify', 'ML1', 1);
   scene.img('images/locations/pavlovsk/community/guitarlesson/guitarteach_\'+ rand(1, 2) +\'.jpg');
@@ -104,8 +104,8 @@ function enterLesson(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGoodbye(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ml_guitarlesson ?? {})['nextlesson'] = ((s as any).daystart ?? 0) + (((s as any).ml_guitarlesson ?? {})?.['lessonday'] + 7 - ((s as any).week ?? 0));
-  ((s as any).ml_guitarlesson ?? {})['lessonhour'] = 15;
+  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['nextlesson'] = ((s as any).daystart ?? 0) + (((s as any).ml_guitarlesson ?? {})?.['lessonday'] + 7 - ((s as any).week ?? 0));
+  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['lessonhour'] = 15;
   if (((s as any).ml_guitarlesson ?? 0)?.['lessonday'] < 8) {
     qspCall(s, 'music_guitarlesson', 'getdate');
     // TODO-QSP: dynamic text: You agree to meet for your next lesson on <<$ml_guitarlesson['lessonday']>> at <...
@@ -122,7 +122,7 @@ function enterGoodbye(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdvertisement(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ml_guitarlesson ?? {})['advertisement'] = 1;
+  if (!(s as any).ml_guitarlesson) (s as any).ml_guitarlesson = {}; (s as any).ml_guitarlesson['advertisement'] = 1;
   scene.text('<center>As you pass by the community center door you see a new colour note screaming "Guitar Lessons!" in bright letters over the image of a guitar.<center>');
   scene.img('images/locations/shared/noticeboards/pav/flyer_music_guitar.jpg');
   // TODO-QSP: end

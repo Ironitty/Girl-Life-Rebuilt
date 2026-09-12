@@ -43,24 +43,24 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'nichUtil', 'clearVars');
               (s as any).abonement = 30;
               (s as any).nichWork = 0;
-              ((s as any).nichTanya ?? {})['Relationship'] = 0;
-              ((s as any).nichTanya ?? {})['FuckCounter'] = 0;
+              if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 0;
+              if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckCounter'] = 0;
               scene.actions([{ label: 'Continue', goto: ['havana', 'start'] }]);
             } else {
               if (((s as any).locArgs?.[2] ?? 0) === 'getHired') {
                 (s as any).nichWork = 0;
-                ((s as any).nichTanya ?? {})['Relationship'] = 1;
+                if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 1;
                 (s as any).nichJobRefused = 0;
-                ((s as any).nichTanya ?? {})['FuckCounter'] = 10;
+                if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckCounter'] = 10;
                 (s as any).hour = 16;
                 scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
               } else {
                 if (((s as any).locArgs?.[2] ?? 0) === 'tanyaDate100') {
                   (s as any).nichWork = 2;
-                  ((s as any).nichTanya ?? {})['Relationship'] = 1;
-                  ((s as any).nichTanya ?? {})['FuckCounter'] = 10;
-                  ((s as any).nichTanya ?? {})['Dominance'] = 30;
-                  ((s as any).nichTanya ?? {})['Strapon'] = 0;
+                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 1;
+                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['FuckCounter'] = 10;
+                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Dominance'] = 30;
+                  if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Strapon'] = 0;
                   (s as any).nichGalaKnowsPT = 0;
                   (s as any).hour = 16;
                   scene.actions([{ label: 'Continue', goto: ['nichTanya', 'bedroomTanya'] }]);
@@ -211,19 +211,19 @@ function enterStartWorkday(s: GameState, scene: SceneBuilder): void {
       (s as any).nichEvaluationLastReq = ((s as any).daystart ?? 0);
     }
   }
-  ((s as any).nichChoreState ?? {})[0] = (((s as any).nichChoreState ?? {})[0] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[1] = (((s as any).nichChoreState ?? {})[1] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[2] = (((s as any).nichChoreState ?? {})[2] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[3] = (((s as any).nichChoreState ?? {})[3] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[4] = (((s as any).nichChoreState ?? {})[4] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[0] = ((s as any).nichChoreState[0] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[1] = ((s as any).nichChoreState[1] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[2] = ((s as any).nichChoreState[2] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[3] = ((s as any).nichChoreState[3] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[4] = ((s as any).nichChoreState[4] ?? 0) + (5);
   if (((s as any).nichTanya ?? 0)?.['Room'] === 0) {
-    ((s as any).nichChoreState ?? {})[5] = (((s as any).nichChoreState ?? {})[5] ?? 0) + (5);
+    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[5] = ((s as any).nichChoreState[5] ?? 0) + (5);
   }
-  ((s as any).nichChoreState ?? {})[6] = (((s as any).nichChoreState ?? {})[6] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[7] = (((s as any).nichChoreState ?? {})[7] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[8] = (((s as any).nichChoreState ?? {})[8] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[9] = (((s as any).nichChoreState ?? {})[9] ?? 0) + (5);
-  ((s as any).nichChoreState ?? {})[10] = (((s as any).nichChoreState ?? {})[10] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[6] = ((s as any).nichChoreState[6] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[7] = ((s as any).nichChoreState[7] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[8] = ((s as any).nichChoreState[8] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[9] = ((s as any).nichChoreState[9] ?? 0) + (5);
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[10] = ((s as any).nichChoreState[10] ?? 0) + (5);
   if (((s as any).day ?? 0) === 1) {
     (s as any).nichSalaryOutstanding = ((s as any).nichSalaryOutstanding ?? 0) + (((s as any).nichSalaryNext ?? 0));
     (s as any).nichSalaryNext = ((s as any).nichSalaryBase ?? 0);
@@ -306,9 +306,9 @@ function enterHired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichMaidLivingItems = 0;
   (s as any).nichMaidLivingWindows = 0;
   (s as any).nichLastInspepection = (-1);
-  ((s as any).nichChoreState ?? {})[0] = 0;
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[0] = 0;
   (s as any).nichSalaryBase = 10000;
-  ((s as any).npc_nickname ?? {})['A52'] = 'Master '+((s as any).npc_firstname ?? {})?.['A52'];
+  if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A52'] = 'Master '+((s as any).npc_firstname ?? {})?.['A52'];
   // TODO-QSP: end
   scene.build();
 }
@@ -335,7 +335,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichMaidLivingItems = 0;
   (s as any).nichMaidLivingWindows = 0;
   (s as any).nichLastInspepection = (-1);
-  ((s as any).nichChoreState ?? {})[0] = 0;
+  if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[0] = 0;
   (s as any).nichSalaryBase = 10000;
   // TODO-QSP: end
   scene.build();
@@ -360,7 +360,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
         { label: '(<<nichtTimeQuick>> minutes) Clean quickly', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
-    ((s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
+    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
     qspCall(s, 'stat', '');
     scene.actions([
@@ -372,7 +372,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
         { label: '(<<nichTimeNormal>> minutes) Clean normally', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
-    ((s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
+    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -383,7 +383,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
         { label: '(<<nichTimeDiligently>> minutes) Clean diligently', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligently ?? 0));
-    ((s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
+    if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {

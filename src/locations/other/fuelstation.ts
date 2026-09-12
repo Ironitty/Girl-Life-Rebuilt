@@ -66,7 +66,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).zprbenz = ((s as any).car ?? {})?.['tank'] - ((s as any).car ?? {})?.['fuel'];
       (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
-      ((s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
+      if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car ?? 0)?.['tank'];
       qspCall(s, 'money', 'pay', ((s as any).zprpay ?? 0));
       scene.img('images/locations/shared/gas/zapr1.jpg');
       // TODO-QSP: dynamic text: You fill the tank and pay ' + $func('money', 'string_price', zprpay) + '.

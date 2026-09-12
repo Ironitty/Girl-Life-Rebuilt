@@ -41,9 +41,9 @@ function enterLookstabs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
+  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  if (!(s as any).settings) (s as any).settings = {}; (s as any).settings['table_end'] = '</td></tr></table></center>';
   (s as any).menu_page = 0;
   qspCall(s, '$menu_looks', 'lookstabs', 'Looks');
   scene.text('<center><h1>Looks</h1></center>');

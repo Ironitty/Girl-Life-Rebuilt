@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Watch the movie', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'large');
     (s as any).minut = ((s as any).minut ?? 0) + 100;
-    ((s as any).otnBoyFrend ?? {})[String((s as any).numnpc ?? 0)] = (((s as any).otnBoyFrend ?? {})[String((s as any).numnpc ?? 0)] ?? 0) + (5);
+    if (!(s as any).otnBoyFrend) (s as any).otnBoyFrend = {}; (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.text('You got a guy on the chair placed in the back row. Soon the lights dimmed and the movie started on the screen.');
     if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] < 80) {
@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Remove his hands [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).otnBoyFrend ?? {})[String((s as any).numnpc ?? 0)] = (((s as any).otnBoyFrend ?? {})[String((s as any).numnpc ?? 0)] ?? 0) - (20);
+    if (!(s as any).otnBoyFrend) (s as any).otnBoyFrend = {}; (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (20);
     qspCall(s, 'stat', '');
     scene.text('You have removed palm guy with his knees and continued to watch the movie. The movie finally ends, the lights come up in the hall and the credits roll on the screen.');
     scene.actions([
@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Ignore', handler: (st: GameState) => {
-    ((s as any).otnBoyFrend ?? {})[String((s as any).numnpc ?? 0)] = (((s as any).otnBoyFrend ?? {})[String((s as any).numnpc ?? 0)] ?? 0) + (5);
+    if (!(s as any).otnBoyFrend) (s as any).otnBoyFrend = {}; (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.text('You pretended that nothing happens and the guy started more actively stroking your leg. The movie finally ends, the lights come up in the hall and the credits roll on the screen.');
     scene.actions([

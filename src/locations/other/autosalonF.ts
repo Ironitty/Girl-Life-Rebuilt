@@ -160,7 +160,7 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
 function enterBuy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'car_funcs', 'add_car', ARGS[1]
   qspCall(s, 'money', 'pay', ((s as any).CarPrice ?? 0), 'bank');
-  ((s as any).car ?? {})['fuel'] = 3;
+  if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = 3;
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
   scene.text('The manager draws up a purchasing contract, and you inform the bank of the impending transaction. Once the bank has confirmed the write-off, the manager hands you the key to your new car.');
   scene.text('"It\'s waiting for you outside," he says. "The fuel tank is almost empty though, so you should stop by the gas station right away."');

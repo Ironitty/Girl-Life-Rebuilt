@@ -837,7 +837,7 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopgirls(s: GameState, scene: SceneBuilder): void {
-  ((s as any).gopniksev ?? {})['gopgirls'] = ((s as any).daystart ?? 0);
+  if (!(s as any).gopniksev) (s as any).gopniksev = {}; (s as any).gopniksev['gopgirls'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
   scene.text('Lena, Lera, Alyona and Anushka are sitting at a picnic table, drinking beers and smoking cigarettes and weed. They\'re getting wasted and having a good time, laughing and messing around.');
@@ -868,7 +868,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
@@ -894,7 +894,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Make an excuse and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, look at the time! I need to get going!"');
@@ -913,7 +913,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Lera laughs and hands you a beer.');
@@ -930,7 +930,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopboys(s: GameState, scene: SceneBuilder): void {
-  ((s as any).gopniksev ?? {})['gopboys'] = ((s as any).daystart ?? 0);
+  if (!(s as any).gopniksev) (s as any).gopniksev = {}; (s as any).gopniksev['gopboys'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
   scene.text('Vitek, Dan, Lavrenti, Niko, Roman, Arkadi, Vasily and Pauline are sitting at a picnic table, drinking beers and smoking cigarettes and weed. They\'re getting wasted and having a good time, laughing and messing around.');
@@ -958,7 +958,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
@@ -997,7 +997,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Make an excuse and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time! I need to get going!"');
@@ -1016,7 +1016,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Vasily laughs and hands you a beer.');
@@ -1040,7 +1040,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Make an excuse and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time! I need to get going!"');
@@ -1059,7 +1059,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Vasily laughs and hands you a beer.');
@@ -1077,7 +1077,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopniks(s: GameState, scene: SceneBuilder): void {
-  ((s as any).gopniksev ?? {})['gopniks'] = ((s as any).daystart ?? 0);
+  if (!(s as any).gopniksev) (s as any).gopniksev = {}; (s as any).gopniksev['gopniks'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
   scene.text('Vitek, Dan, Lavrenti, Roman, Arkadi, Niko, Valentin, Radomir, Vasily, Pauline, Lena, Lera, Anushka and Alyona are all sitting at a picnic table, drinking beers and smoking cigarettes & weed. They\'re getting wasted and having a good time, laughing and messing around.');
@@ -1105,7 +1105,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
@@ -1136,7 +1136,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Make an excuse and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time! I need to get going!"');
@@ -1155,7 +1155,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Vasily laughs and hands you a beer. As you take the beer, you notice Anushka\'s guitar propped up against the side of the picnic table. It\'s one of the few times you\'ve seen her take her dad\'s old guitar out of her room.');

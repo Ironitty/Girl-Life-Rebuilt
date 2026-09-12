@@ -11,13 +11,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterDinSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['htday'] !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'boyStat', 'A4');
-    ((s as any).IgorQW ?? {})['htday'] = ((s as any).daystart ?? 0);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['htday'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('Both of you quickly undress while kissing, pulling the clothes off each other.');
     if (((s as any).IgorQW ?? 0)?.['sex'] >= 2  &&  ((s as any).IgorQW ?? 0)?.['qwday'] !== ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: 'Lick my pussy', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['kuni'] = (((s as any).IgorQW ?? {})['kuni'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['kuni'] = ((s as any).IgorQW['kuni'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/kuni.mp4');
     scene.text('Both of you get undressed and start caressing each other before you tell him that you want him to please you instead.');
     scene.text('He nods and without a word drops down on his knees. He starts licking you, expertly working his tongue.');
@@ -34,7 +34,7 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Squat', handler: (st: GameState) => {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
-    ((s as any).npc_had_sex ?? {})['A4'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A4'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/tinydick.jpg');
     // TODO-QSP: dynamic text: You get down on your knees in front of him, playing with his small hard cock. Yo...
@@ -44,7 +44,7 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((s as any).IgorQW ?? 0)?.['sex'] >= 1) {
       scene.actions([
         { label: 'Tell him to fuck you in the pussy', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['sex'] = (((s as any).IgorQW ?? {})['sex'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['sex'] = ((s as any).IgorQW['sex'] ?? 0) + (1);
     (s as any).sexa = ((s as any).sexa ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/pussy.mp4');
     scene.text('Igor nervously spreads your legs and thrusts his cock into you.');
@@ -63,7 +63,7 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Start sucking', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['sex'] = (((s as any).IgorQW ?? {})['sex'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['sex'] = ((s as any).IgorQW['sex'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/suckdick.jpg');
     scene.text('You grab his small rock-hard cock and start sucking it. Igor groans and you feel a huge jet of cum spurt into your mouth.');
     qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
@@ -94,7 +94,7 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Have anal sex', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['sex'] = (((s as any).IgorQW ?? {})['sex'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['sex'] = ((s as any).IgorQW['sex'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/anal.jpg');
     scene.text('You lay down on your stomach and grab your ass cheeks with both hands, spreading them wide and presenting your ass to Igor. You look at him with lust in your eyes and he hesitantly grabs his little cock and tries to push it inside your asshole.');
     scene.text('Even though he only has a little cock, it gives you some pleasure and you let out a quiet whimper.');
@@ -113,11 +113,11 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    ((s as any).IgorQW ?? {})['qwday'] = ((s as any).daystart ?? 0);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['qwday'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Lick my pussy', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['kuni'] = (((s as any).IgorQW ?? {})['kuni'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['kuni'] = ((s as any).IgorQW['kuni'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/kuni.mp4');
     scene.text('Both of you get undressed and start caressing each other before you tell him that you want him to please you instead.');
     scene.text('You\'ve already had sex today.');
@@ -179,9 +179,9 @@ function enterDinKrossdresssex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ask Igor to lick your pussy', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['Horny'] = 0;
-    ((s as any).IgorQW ?? {})['kdsexday'] = ((s as any).day ?? 0);
-    ((s as any).IgorQW ?? {})['crossdressSex'] = (((s as any).IgorQW ?? {})['crossdressSex'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Horny'] = 0;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['kdsexday'] = ((s as any).day ?? 0);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['crossdressSex'] = ((s as any).IgorQW['crossdressSex'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/kdsex.mp4');
     scene.text('You ask him if he can lick your pussy. He nods and without a word drops down on his knees. He starts licking you, expertly working his tongue.');
@@ -218,8 +218,8 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show him the strap-on', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['net'] = (((s as any).IgorQW ?? {})['net'] ?? 0) + (1);
-    ((s as any).IgorQW ?? {})['napoit'] = (((s as any).IgorQW ?? {})['napoit'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['net'] = ((s as any).IgorQW['net'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['napoit'] = ((s as any).IgorQW['napoit'] ?? 0) + (1);
     qspCall(s, 'drugs', 'alcohol', 'wine');
     qspCall(s, 'stat', '');
     if (((s as any).PCLoSkirt ?? 0) > 0) {
@@ -274,7 +274,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     if (((s as any).strapNumber ?? 0) <= 4) {
       scene.actions([
         { label: 'It\'s time', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['strap'] = (((s as any).IgorQW ?? {})['strap'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['strap'] = ((s as any).IgorQW['strap'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/ygov1.mp4');
     scene.text('You put the wine glass down and take his away from him, placing it down as well before you lean in close to him. "Okay, I think you\'re ready for it. Let me show you an experience you\'ll never forget!"');
     scene.text('He nods, clearly nervous, thought he also looks very excited as well, almost eager.');
@@ -318,7 +318,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Fuck his ass', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/terpit.mp4');
     scene.text('You continue pressing a little harder before the strap-on slides into his ass. He groans loudly as you start pumping his ass.');
     // TODO-QSP: dynamic text: "Oh… Fuck <<$pcs_nickname>>, it hurts!!! Stop! Stop! You said you would take it ...
@@ -336,7 +336,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/rough1.mp4');
     scene.text('"Shut up and don\'t be a pussy! I know you love this!" You keep pounding him without stopping while laying on top on him.');
@@ -439,7 +439,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
       scene.text('His eyes widen, but you can tell he\'s turned on by you taking charge as he stares at the dildo.');
       scene.actions([
         { label: 'Take off your pants', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['strap'] = (((s as any).IgorQW ?? {})['strap'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['strap'] = ((s as any).IgorQW['strap'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/pulldown.mp4');
     scene.text('"Go ahead and take off your pants," you command.');
     scene.text('He gets up and eagerly starts taking off his pants.');
@@ -467,7 +467,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Fuck his ass', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/terpit.mp4');
     scene.text('You continue pressing a little harder before the strap-on slides into his ass. He groans loudly as you start pumping his ass.');
     // TODO-QSP: dynamic text: "Oh… Fuck <<$pcs_nickname>>, that feels so good! Fuck me baby, fuck me!" he crie...
@@ -485,7 +485,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/trahaet1.mp4');
     scene.text('You grab hold of his hips and pull him up until he\'s in a doggystyle position. Once he\'s in place, you start really hammering his ass and occasionally smacking him with one of your hands.');
@@ -514,7 +514,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Show him no mercy', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/trahaet1.mp4');
     scene.text('"Shut up and don\'t be a pussy! I know you love this!" You keep on pounding him without stopping while holding tightly to his hips so he can\'t pull away.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, please stop!" he begs as he tries to pull away, but you just...
@@ -705,8 +705,8 @@ function enterDinSisterkomKrossdress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['crossdressSex'] = (((s as any).IgorQW ?? {})['crossdressSex'] ?? 0) + (1);
-    ((s as any).IgorQW ?? {})['eqwtday'] = ((s as any).daystart ?? 0);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['crossdressSex'] = ((s as any).IgorQW['crossdressSex'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['eqwtday'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Igor\'s sister\'s room</b></center>');
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/face.jpg');
@@ -867,9 +867,9 @@ function enterStraponCrossdress(s: GameState, scene: SceneBuilder): void {
 function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A4');
   qspCall(s, 'npcStat', 'D<<strapNumber>>', 'a');
-  ((s as any).IgorQW ?? {})['net'] = (((s as any).IgorQW ?? {})['net'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['napoit'] = (((s as any).IgorQW ?? {})['napoit'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['strap'] = (((s as any).IgorQW ?? {})['strap'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['net'] = ((s as any).IgorQW['net'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['napoit'] = ((s as any).IgorQW['napoit'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['strap'] = ((s as any).IgorQW['strap'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd2.jpg');
   scene.text('You push your hips forward until the tip of the strap-on is against his lips. "Open your mouth and suck my dick."');
@@ -886,7 +886,7 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Fuck him on his back', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd4.jpg');
     scene.text('You pull away from him so your dildo slides out of his mouth before you point over to his chaise lounge. "Lay down on your back."');
     scene.text('He lays on his back on the chaise lounge as you see him biting his lip. You push up his dress and expose his panties, his little hard dick straining against the fabric. You pull his panties down and toss them aside before you grab some lube and lube up your dildo before getting on your knees between his legs.');
@@ -956,7 +956,7 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd10.jpg');
     scene.text('You push his hand away while gripping one of his hips with one hand as the other reaches up and grabs hold of his shoulder so he can\'t pull away at all.');
@@ -1020,9 +1020,9 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
 function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A4');
   qspCall(s, 'npcStat', 'D<<strapNumber>>', 'a');
-  ((s as any).IgorQW ?? {})['net'] = (((s as any).IgorQW ?? {})['net'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['napoit'] = (((s as any).IgorQW ?? {})['napoit'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['strap'] = (((s as any).IgorQW ?? {})['strap'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['net'] = ((s as any).IgorQW['net'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['napoit'] = ((s as any).IgorQW['napoit'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['strap'] = ((s as any).IgorQW['strap'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd2.jpg');
   scene.text('You push your hips forward until the tip of your dick is against his lips. "Open your mouth and suck my dick."');
@@ -1039,7 +1039,7 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Fuck him on his back', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd4.jpg');
     scene.text('You pull away from him so your dick slides out of his mouth before you point over to his chaise lounge. "Lay down on your back."');
     scene.text('He lays on his back on the chaise lounge as you see him biting his lip. You push up his dress and expose his panties, his little hard dick straining against the fabric. You pull his panties down and toss them aside before you grab some lube and lube up your dick before getting on your knees between his legs.');
@@ -1146,7 +1146,7 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd10.jpg');
     scene.text('You push his hand away while gripping one of his hips with one hand as the other reaches up and grabs hold of his shoulder so he can\'t pull away at all.');
@@ -1278,9 +1278,9 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
 function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A4');
   qspCall(s, 'npcStat', 'D<<strapNumber>>', 'a');
-  ((s as any).IgorQW ?? {})['net'] = (((s as any).IgorQW ?? {})['net'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['napoit'] = (((s as any).IgorQW ?? {})['napoit'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['strap'] = (((s as any).IgorQW ?? {})['strap'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['net'] = ((s as any).IgorQW['net'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['napoit'] = ((s as any).IgorQW['napoit'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['strap'] = ((s as any).IgorQW['strap'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd2.jpg');
   scene.text('His knees barely touch the floor before he has his mouth open for you. You push your hips forward, sliding the dildo into his mouth as he starts sucking on it. He looks to be doing an even better job than last time. You can only guess that he\'s been watching porn and practicing.');
@@ -1296,7 +1296,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Fuck him on his back', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd4.jpg');
     scene.text('You pull away from him so your dildo slides out of his mouth and point over to his chaise lounge. "Lay down on your back."');
     scene.text('He quickly gets up to lay on his back on the chaise lounge, eagerly lifting his legs up and spreading them slightly. You push up his dress and expose his panties, his little hard dick straining against the fabric. You grab some lube and lube up your dildo before getting on your knees between his legs.');
@@ -1343,7 +1343,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
     ]);
   } },
       { label: 'Fuck him doggy style', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd7.jpg');
     scene.text('You pull away from him so your dildo slides out of his mouth before you point over to his chaise lounge. "Get on your hands and knees."');
     scene.text('He almost leaps onto the chaise lounge in his eagerness before he bends forward and rests his elbows on the back of the lounge and sticks out his ass to present it to you. You push up his dress and pull his panties down before tossing them aside. You then grab some lube and lube up your dildo before getting on the lounge behind him. You scoot up close behind him as you stroke the slick dildo in your hand.');
@@ -1371,7 +1371,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd10.jpg');
     scene.text('You push his hand away while gripping one of his hips with one hand as the other reaches up and grabs hold of his shoulder so he can\'t pull away at all.');
@@ -1433,9 +1433,9 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
 function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A4');
   qspCall(s, 'npcStat', 'D<<strapNumber>>', 'a');
-  ((s as any).IgorQW ?? {})['net'] = (((s as any).IgorQW ?? {})['net'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['napoit'] = (((s as any).IgorQW ?? {})['napoit'] ?? 0) + (1);
-  ((s as any).IgorQW ?? {})['strap'] = (((s as any).IgorQW ?? {})['strap'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['net'] = ((s as any).IgorQW['net'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['napoit'] = ((s as any).IgorQW['napoit'] ?? 0) + (1);
+  if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['strap'] = ((s as any).IgorQW['strap'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd2.jpg');
   scene.text('His knees barely touch the floor before he has his mouth open for you. You push your hips forward, sliding your dick into his mouth as he starts sucking on it. It feels even better than last time. You guess that he\'s been watching porn and practicing.');
@@ -1451,7 +1451,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Fuck him on his back', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd4.jpg');
     scene.text('You pull away from him so your dildo slides out of his mouth and point over to his chaise lounge. "Lay down on your back."');
     scene.text('He quickly gets up to lay on his back on the chaise lounge, eagerly lifting his legs up and spreading them slightly. You push up his dress and expose his panties, his little hard dick straining against the fabric. You grab some lube and lube up your dildo before getting on your knees between his legs.');
@@ -1535,7 +1535,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
     ]);
   } },
       { label: 'Fuck him doggy style', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd7.jpg');
     scene.text('You pull away from him so your dildo slides out of his mouth before you point over to his chaise lounge. "Get on your hands and knees."');
     scene.text('He almost leaps onto the chaise lounge in his eagerness before he bends forward and rests his elbows on the back of the lounge and sticks out his ass to present it to you. You push up his dress and pull his panties down before tossing them aside. You then grab some lube and lube up your dick before getting on the lounge behind him. You scoot up close behind him as you stroke your slick dick in your hand.');
@@ -1563,7 +1563,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).IgorQW ?? {})['bottom'] = (((s as any).IgorQW ?? {})['bottom'] ?? 0) + (1);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['bottom'] = ((s as any).IgorQW['bottom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd10.jpg');
     scene.text('You push his hand away while gripping one of his hips with one hand as the other reaches up and grabs hold of his shoulder so he can\'t pull away at all.');

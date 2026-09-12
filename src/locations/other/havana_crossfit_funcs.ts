@@ -122,7 +122,7 @@ function enterBoxRecords(s: GameState, scene: SceneBuilder): void {
   if (((s as any).crossfit_record_it ?? 0) < Object.keys((s as any).crossfit_wods ?? {}).length) {
     (s as any).new_record_wod_time = Math.max(1, (100 - (100 * ((Math.floor(Math.random() * 61) + 40) + (Math.floor(Math.random() * 101) + 0) + (Math.floor(Math.random() * 101) + 0) + (Math.floor(Math.random() * 101) + 0)) / 400)));
     if (((s as any).box_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] === 0  ||  ((s as any).box_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] > ((s as any).new_record_wod_time ?? 0)) {
-      ((s as any).box_wod_record ?? {})[String((s as any).crossfit_wod ?? 0)] = ((s as any).new_record_wod_time ?? 0);
+      if (!(s as any).box_wod_record) (s as any).box_wod_record = {}; (s as any).box_wod_record[String((s as any).crossfit_wod ?? 0)] = ((s as any).new_record_wod_time ?? 0);
       if ((Math.floor(Math.random() * 3) + 0) === 0  ||  ((s as any).box_wod_record_holder ?? 0)?.[String((s as any).crossfit_wod ?? 0)] === ''  ||  ((s as any).box_wod_record_holder ?? 0)?.[String((s as any).crossfit_wod ?? 0)] === ((s as any).pcs_nickname ?? 0)) {
         // TODO-QSP: $box_wod_record_holder[$crossfit_wod] = func('npcrnamefile', 'rusFemale')
       }

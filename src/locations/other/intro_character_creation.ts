@@ -904,7 +904,7 @@ function enterSetupPersonality(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '<b>Confirm this starting option</b>', handler: (st: GameState) => {
-    ((s as any).start_type ?? {})['cat'] = ((s as any).temp_cat ?? 0);
+    if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = ((s as any).temp_cat ?? 0);
     // TODO-QSP: gs 'intro_character_templates', 'set_template', $start_type['cat']
   }, goto: ['intro_character_creation', 'appearance_hub'] },
     { label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },
@@ -969,10 +969,10 @@ function enterAppearanceHub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Meet her', handler: (st: GameState) => {
     if (((s as any).start_type ?? 0)?.['cat']   === '') {
-      ((s as any).start_type ?? {})['cat'] = 'goodgirl';
+      if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'goodgirl';
     }
     if (((s as any).start_type ?? 0)?.['group'] === '') {
-      ((s as any).start_type ?? {})['group'] = 'outcast';
+      if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'outcast';
     }
   }, goto: ['intro_overview', ''] },
     ]);

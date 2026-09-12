@@ -12,8 +12,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/break.jpg');
   if (((s as any).masseuse ?? 0)?.['break'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).salon ?? {})['work_minutes'] = (((s as any).salon ?? {})['work_minutes'] ?? 0) + (15);
-    ((s as any).masseuse ?? {})['break'] = 1;
+    if (!(s as any).salon) (s as any).salon = {}; (s as any).salon['work_minutes'] = ((s as any).salon['work_minutes'] ?? 0) + (15);
+    if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['break'] = 1;
   }
   qspCall(s, 'stat', '');
   scene.text('You\'re taking a break.');
@@ -57,7 +57,7 @@ function enterLeiTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masseuse ?? 0)?.['meet_lei'] === 1) {
     scene.actions([{ label: 'Continue', goto: ['masseuse_break', 'lei_talk2'] }]);
   }
-  ((s as any).masseuse ?? {})['meet_lei'] = 1;
+  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['meet_lei'] = 1;
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('You slide around the table to talk to the girl.');
   // TODO-QSP: dynamic text: "Hey, I don't think we've met before," you say. "I'm <<$pcs_firstname>>."
@@ -141,7 +141,7 @@ function enterLeiTalk3(s: GameState, scene: SceneBuilder): void {
 function enterLeiSmallTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   // TODO-QSP: :lei_talk_loop1
-  ((s as any).masseuse ?? {})['lei_talk'] = Math.floor(Math.random() * 6) + 1;
+  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_talk'] = Math.floor(Math.random() * 6) + 1;
   if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
     if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 1) {
       // TODO-QSP: jump 'lei_talk_loop1'
@@ -156,7 +156,7 @@ function enterLeiSmallTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).masseuse ?? 0)?.['lei_talk'] === 2) {
       if (((s as any).masseuse ?? 0)?.['lei_sisters'] >= 2) {
         if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 3) {
-          ((s as any).masseuse ?? {})['lei_sisters'] = 3;
+          if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_sisters'] = 3;
         }
         scene.text('"You said your mom was an immigrant right?"');
         scene.text('"Yeah."');
@@ -199,8 +199,8 @@ function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('"Do anything fun lately?" you ask conversationally.');
   // TODO-QSP: :lei_talk_loop2
-  ((s as any).masseuse ?? {})['lei_fun'] = ((s as any).daystart ?? 0);
-  ((s as any).masseuse ?? {})['lei_talk'] = Math.floor(Math.random() * 7) + 1;
+  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_fun'] = ((s as any).daystart ?? 0);
+  if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_talk'] = Math.floor(Math.random() * 7) + 1;
   if (((s as any).masseuse ?? 0)?.['lei_talk'] === 1) {
     scene.text('"I went to that fair in the park with some friends the other day."');
     scene.text('"That sounds nice. How was it?"');
@@ -303,7 +303,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sisters?', handler: (st: GameState) => {
     if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 2) {
-      ((s as any).masseuse ?? {})['lei_sisters'] = 2;
+      if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_sisters'] = 2;
     }
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"You mentioned something about your sisters working here?"');
@@ -342,7 +342,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Family business?', handler: (st: GameState) => {
     if (((s as any).masseuse ?? 0)?.['lei_sisters'] < 1) {
-      ((s as any).masseuse ?? {})['lei_sisters'] = 1;
+      if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['lei_sisters'] = 1;
     }
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
     scene.text('"So, you said this was a family business?"');

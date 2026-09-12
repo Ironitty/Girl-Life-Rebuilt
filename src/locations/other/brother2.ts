@@ -55,7 +55,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
             if (((s as any).brotherchat ?? 0) === 5) {
               scene.text('"… so science class is alright," he says. "I\'m really having trouble with my anatomy homework though. The diagrams in the book aren\'t very good, I don\'t understand it."');
               scene.text('"Hmm. Well maybe I could help you with it sometime? Do something to help you understand it better?"');
-              ((s as any).brotherQW ?? {})['anatomy_help'] = 1;
+              if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['anatomy_help'] = 1;
             } else {
               if (((s as any).brotherchat ?? 0) === 6) {
                 scene.text('… and then he sprayed milk all over his locker!" he says with a burst of laughter "It was <i>so</i> funny!"');
@@ -133,7 +133,7 @@ function enterDTR(s: GameState, scene: SceneBuilder): void {
     scene.text('Kolka considers for a moment before asking, "Would you get jealous if I started fucking other girls?"');
     scene.actions([
       { label: 'No', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['Sex'] = 9;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 9;
     scene.text('You ponder the question for a moment before deciding, "No. It wouldn\'t bother me. Will you get jealous if I fuck other guys?"');
     scene.text('The question makes him flinch, but he quickly blurts out, "No! Why would I get jealous?" His response seemed a little too fast, a little too defensive, and for a moment, you wonder if he wanted something more with you. But there\'s nothing else for it. You have to move forward.');
     scene.actions([
@@ -213,7 +213,7 @@ function enterDTRYes(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Get into it', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['Sex'] = 10;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 10;
     scene.img('images\\shared\\sex\\kiss\\kiss_lips.mp4');
     // TODO-QSP: dynamic text: You and Kolka makeout like the horny teenagers that you are. Your brother's hand...
     scene.text(`You and Kolka makeout like the horny teenagers that you are. Your brother's hands roam from your ${((s as any).pc_desc ?? 0)?.['breast']} chest to your thighs and you occasionally rub your hand across his crotch.`);
@@ -702,8 +702,8 @@ function enterNattalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['KolkaWantsNat'] === 0) {
     scene.actions([
       { label: 'Offer to set something up between them', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['KolkaTease'] = (((s as any).NatbelQW ?? {})['KolkaTease'] ?? 0) + (1);
-    ((s as any).NatbelQW ?? {})['KolkaWantsNat'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['KolkaTease'] = ((s as any).NatbelQW['KolkaTease'] ?? 0) + (1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['KolkaWantsNat'] = 1;
     scene.text('<center><b>Kolka</b></center>');
     scene.img('images/characters/shared/headshots_main/big34.jpg');
     if (((s as any).brotherQW ?? 0)?.['Sex'] > 6) {
@@ -750,7 +750,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boystat', 'A34');
   qspCall(s, 'arousal', 'kiss', Math.floor(Math.random() * 5) + 1, 'incest');
   qspCall(s, 'stat', '');
-  ((s as any).brotherQW ?? {})['kiss'] = (((s as any).brotherQW ?? {})['kiss'] ?? 0) + (1);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['kiss'] = ((s as any).brotherQW['kiss'] ?? 0) + (1);
   scene.img('images/shared/sex/kiss/kiss_lips.mp4');
   scene.text('With your stepfather gone, you take the opportunity you have and start kissing your brother.');
   scene.text('Your lips and tongues intertwine with pleasure and satisfaction.');
@@ -874,9 +874,9 @@ function enterCuni(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 5) + 1, 'incest');
     qspCall(s, 'stat', '');
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-      ((s as any).brotherQW ?? {})['Sex'] = 6;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
     }
-    ((s as any).brotherQW ?? {})['bj'] = (((s as any).brotherQW ?? {})['bj'] ?? 0) + (1);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['bj'] = ((s as any).brotherQW['bj'] ?? 0) + (1);
     scene.text('"Get that cock out and I\'ll return the favor," you tell him and he starts pulling his cock out.');
     scene.text('"I thought we were short of time?" he asks and you smile.');
     scene.text('"You won\'t take that long…"');
@@ -937,7 +937,7 @@ function enterHj2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'npc_relationship', 'modify', 'A34', 3);
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-      ((s as any).brotherQW ?? {})['Sex'] = 6;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
     }
     scene.img('images/characters/pavlovsk/resident/kolka/event/homework/swallow.mp4');
     scene.text('You break away from the kiss and moving quickly, you wrap your lips around the tip of his cock. The additional stimulus from your mouth enveloping him is more than he can handle and his cum explodes inside you, the taste of his hot salty cum filling your mouth.');
@@ -957,9 +957,9 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 5) + 1, 'incest');
   qspCall(s, 'stat', '');
   if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-    ((s as any).brotherQW ?? {})['Sex'] = 6;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
   }
-  ((s as any).brotherQW ?? {})['bj'] = (((s as any).brotherQW ?? {})['bj'] ?? 0) + (1);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['bj'] = ((s as any).brotherQW['bj'] ?? 0) + (1);
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none') {
     scene.img('images/characters/pavlovsk/resident/kolka/sex/bj1.mp4');
   } else {
@@ -1047,7 +1047,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['Sex'] >= 2  ||  ((s as any).pcs_inhib ?? 0) >= 35  ||  ((s as any).npc_rel ?? 0)?.['A34'] >= 75) {
     scene.actions([
       { label: 'Tell him you\'ll show him your tits', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
     scene.text('"I\'ll tell you what Kolka, if you get up now, I\'ll let you look at my tits."');
     qspCall(s, 'brother2', 'wakeupresponse', 'tits');
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -1072,7 +1072,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['Sex'] >= 3  ||  ((s as any).pcs_inhib ?? 0) >= 45  ||  ((s as any).npc_rel ?? 0)?.['A34'] >= 80) {
     scene.actions([
       { label: 'Tell him you\'ll show him your pussy', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
     scene.text('"I\'ll tell you what Kolka, if you get up now, I\'ll show you my pussy."');
     qspCall(s, 'brother2', 'wakeupresponse', 'pussy');
     if (((s as any).clothingworntype ?? 0) !== 'nude'  ||  ((s as any).pantyworntype ?? 0) !== 'none') {
@@ -1109,7 +1109,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell him you\'ll give him a handjob', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A34', 5);
-    ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
     (s as any).brotherwakeup = ((s as any).brotherwakeup ?? 0) + (1);
     (s as any).brother_hj_wakeup = ((s as any).brother_hj_wakeup ?? 0) + (1);
     // TODO-QSP: dynamic text: "I'll tell you what Kolka, if you get up now, I'll help you deal with your morni...
@@ -1123,7 +1123,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'hj', 5, 'incest');
     qspCall(s, 'cum_call', 'hands', ((s as any).boy ?? 0));
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 5) {
-      ((s as any).brotherQW ?? {})['Sex'] = 5;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 5;
     }
     scene.img('images/shared/sex/handjob/kotovhj.jpg');
     scene.text('Pulling down Kolka\'s pants, you get started immediately, gently working his member with your hand.');
@@ -1145,7 +1145,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['Sex'] >= 6  ||  ((s as any).pcs_inhib ?? 0) >= 50  ||  ((s as any).npc_rel ?? 0)?.['A34'] >= 85) {
     scene.actions([
       { label: 'Tell him you\'ll give him a blowjob', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
     (s as any).brotherwakeup = ((s as any).brotherwakeup ?? 0) + (1);
     (s as any).brother_bj_wakeup = ((s as any).brother_bj_wakeup ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A34', 5);
@@ -1159,9 +1159,9 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
       { label: 'Blow him', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'hj', 5, 'incest');
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
-    ((s as any).brotherQW ?? {})['bj'] = (((s as any).brotherQW ?? {})['bj'] ?? 0) + (1);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['bj'] = ((s as any).brotherQW['bj'] ?? 0) + (1);
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-      ((s as any).brotherQW ?? {})['Sex'] = 6;
+      if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
     }
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none') {
       scene.img('images/characters/pavlovsk/resident/kolka/sex/bj1.mp4');
@@ -1196,7 +1196,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Yank his blanket off', handler: (st: GameState) => {
-    ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
     scene.text('"Come on Kolka! Wake. UP!"');
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('With a mighty tug, you yank the blanket off of him, leaving him clutching himself and shivering on the couch. After a few moments, he forces his eyes open, blinking wearily as he sits up on the couch and shamelessly glances up and down your naked body.');
@@ -1283,7 +1283,7 @@ function enterWakeupresponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShow(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A34', 4);
   if (((s as any).whatshow ?? 0) === 'top') {
     scene.img(`images/characters/pavlovsk/resident/kolka/titflash${Math.floor(Math.random() * 4) + 1}.jpg`);
@@ -1321,7 +1321,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTrick(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
   (s as any).brotherwaketrick = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A34', (-5));
   scene.text('<center><b>Kolka</b></center>');
@@ -1353,14 +1353,14 @@ function enterTrick(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMorninghj(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
   (s as any).brotherwakeup = ((s as any).brotherwakeup ?? 0) + (1);
   (s as any).brother_hj_wakeup = ((s as any).brother_hj_wakeup ?? 0) + (1);
   qspCall(s, 'arousal', 'hj', 5, 'incest');
   qspCall(s, 'cum_call', 'hands', ((s as any).boy ?? 0));
   qspCall(s, 'npc_relationship', 'modify', 'A34', 5);
   if (((s as any).brotherQW ?? 0)?.['Sex'] < 5) {
-    ((s as any).brotherQW ?? {})['Sex'] = 5;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 5;
   }
   scene.img('images/shared/sex/handjob/kotovhj.jpg');
   scene.text('Kneeling down next to the sofa, you carefully pull back his blanket to see his morning erection sticking through his pants. Slipping his cock out, you wrap your hand around it and begin to gently work it up and down, feeling it harden even more under your grip.');
@@ -1381,15 +1381,15 @@ function enterMorninghj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMorningbj(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brotherQW ?? {})['last_sex_day_morning'] = ((s as any).daystart ?? 0);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['last_sex_day_morning'] = ((s as any).daystart ?? 0);
   (s as any).brotherwakeup = ((s as any).brotherwakeup ?? 0) + (1);
   (s as any).brother_bj_wakeup = ((s as any).brother_bj_wakeup ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 5, 'incest');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
-  ((s as any).brotherQW ?? {})['bj'] = (((s as any).brotherQW ?? {})['bj'] ?? 0) + (1);
+  if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['bj'] = ((s as any).brotherQW['bj'] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'modify', 'A34', 10);
   if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
-    ((s as any).brotherQW ?? {})['Sex'] = 6;
+    if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['Sex'] = 6;
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none') {
     scene.img('images/characters/pavlovsk/resident/kolka/sex/bj1.mp4');
@@ -1447,7 +1447,7 @@ function enterVideoGames2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).gaming_taunt ?? 0) >= 5) {
     if (((s as any).npc_QW ?? 0)?.['A34'] < 2) {
-      ((s as any).npc_QW ?? {})['A34'] = 2;
+      if (!(s as any).npc_QW) (s as any).npc_QW = {}; (s as any).npc_QW['A34'] = 2;
     }
     (s as any).gaming_rand = Math.floor(Math.random() * 10) + 1;
   } else {
@@ -1622,7 +1622,7 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) - (Math.floor(Math.random() * 5) + 1);
-    ((s as any).brother ?? {})['Confidence'] = (((s as any).brother ?? {})['Confidence'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['Confidence'] = ((s as any).brother['Confidence'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.text('<center><b><font color="RED">---------- YOU LOSE! ----------</font></b></center>');
     scene.actions([
       { label: 'Continue', goto: ['brother2', 'video_gaming_stop', '\'lose\''] },
@@ -1889,8 +1889,8 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).brother ?? {})['Confidence'] = (((s as any).brother ?? {})['Confidence'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
-    ((s as any).npc_rel ?? {})['A34'] = (((s as any).npc_rel ?? {})['A34'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
+    if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['Confidence'] = ((s as any).brother['Confidence'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A34'] = ((s as any).npc_rel['A34'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'stat', '');
     scene.img('images/pc/no.mp4');
     scene.text('"No way…" you tell him. Kolka ruffles his face into a scowl and answers with "Hurmf, wimp! Chicken!"');
@@ -1913,7 +1913,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['brother2', 'tit_flash_dare2'] }]);
     }
     if (((s as any).brother ?? 0)?.['SexQW'] < 2) {
-      ((s as any).brother ?? {})['SexQW'] = 2;
+      if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['SexQW'] = 2;
     }
     qspCall(s, 'brother_disc', 'arousal', 'strong');
     qspCall(s, 'arousal', 'flash', 2, 'incest');
@@ -1974,7 +1974,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'dance') {
         if (((s as any).brother ?? 0)?.['SexQW'] < 3) {
-          ((s as any).brother ?? {})['SexQW'] = 3;
+          if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['SexQW'] = 3;
         }
         if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).pcs_inhib ?? 0) >= 35) {
           (s as any).strip_img_temp = 3;
@@ -2030,7 +2030,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'lap') {
-          ((s as any).brother ?? {})['Confidence'] = (((s as any).brother ?? {})['Confidence'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+          if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['Confidence'] = ((s as any).brother['Confidence'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
           qspCall(s, 'brother_disc', 'arousal', 'light');
           (s as any).minut = ((s as any).minut ?? 0) + 2;
           qspCall(s, 'arousal', 'foreplay', (-2), 'incest');
@@ -2049,7 +2049,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 'hj') {
             qspCall(s, 'stat', '');
-            ((s as any).npc_rel ?? {})['A34'] = (((s as any).npc_rel ?? {})['A34'] ?? 0) + (2);
+            if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A34'] = ((s as any).npc_rel['A34'] ?? 0) + (2);
             scene.img(`images/characters/pavlovsk/school/boy/kolka/sex/jerk${Math.floor(Math.random() * 18) + 1}.mp4`);
             if (((s as any).brother ?? 0)?.['SexQW'] < 5) {
               scene.text('"Oh my god I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… n-… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and looked down at his penis. "You had better not tell any one about this!" you say threateningly. He nods.');
@@ -2061,7 +2061,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Let him cum', handler: (st: GameState) => {
     (s as any).cumnostd = 1;
-    ((s as any).brother ?? {})['cum'] = 1;
+    if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['cum'] = 1;
     qspCall(s, 'brother_disc', 'arousal');
     qspCall(s, 'cum_call', 'hands', 'A34', 1);
     scene.img('images/characters/pavlovsk/resident/kolka/event/homework/hjcum.mp4');
@@ -2077,8 +2077,8 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).locArgs?.[2] ?? 0) === 'bj') {
-              ((s as any).brother ?? {})['bj'] = (((s as any).brother ?? {})['bj'] ?? 0) + (1);
-              ((s as any).npc_rel ?? {})['A34'] = (((s as any).npc_rel ?? {})['A34'] ?? 0) + (3);
+              if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['bj'] = ((s as any).brother['bj'] ?? 0) + (1);
+              if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A34'] = ((s as any).npc_rel['A34'] ?? 0) + (3);
               if (((s as any).dare_blow ?? 0) === 1) {
                 (s as any).dareblowrand = Math.floor(Math.random() * 2) + 1;
               } else {
@@ -2105,7 +2105,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'hair', 'A34', 1);
     qspCall(s, 'cum_call', 'face', 'A34', 1);
     (s as any).cumnostd = 1;
-    ((s as any).brother ?? {})['cum'] = 1;
+    if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['cum'] = 1;
     qspCall(s, 'brother_disc', 'arousal');
     qspCall(s, 'cum_call', 'mouth_swallow', 'A34', 1);
     scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/blow/in.mp4');
@@ -2132,7 +2132,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'hair', 'A34', 1);
     qspCall(s, 'cum_call', 'face', 'A34', 1);
     (s as any).cumnostd = 1;
-    ((s as any).brother ?? {})['cum'] = 1;
+    if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['cum'] = 1;
     qspCall(s, 'brother_disc', 'arousal');
     qspCall(s, 'cum_call', 'mouth_swallow', 'A34', 1);
     scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/blow/in.mp4');
@@ -2149,9 +2149,9 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                   { label: 'Take his cock out of your mouth', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    ((s as any).npc_rel ?? {})['A34'] = (((s as any).npc_rel ?? {})['A34'] ?? 0) + (3);
+    if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel['A34'] = ((s as any).npc_rel['A34'] ?? 0) + (3);
     qspCall(s, 'boyStat', 'A34');
-    ((s as any).brother ?? {})['cum'] = 1;
+    if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['cum'] = 1;
     qspCall(s, 'cum_call', 'face', 'A34', 1);
     (s as any).facial = ((s as any).facial ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -2169,7 +2169,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).locArgs?.[2] ?? 0) === 'rub_butt') {
                 if (((s as any).brother ?? 0)?.['SexQW'] < 4) {
-                  ((s as any).brother ?? {})['SexQW'] = 4;
+                  if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['SexQW'] = 4;
                 }
                 if (((s as any).brother ?? 0)?.['but_rub'] < 4  ||  ((s as any).brother ?? 0)?.['but_rub'] >= 4  &&  ((s as any).brother ?? 0)?.['horny'] < 10  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
                   scene.actions([{ label: 'Continue', goto: ['brother2', 'lose_dares4', '\'rub_butt_start\''] }]);
@@ -2224,7 +2224,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'npcStat', 'A34');
                     scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((s as any).dare_location ?? 0)}/${((s as any).dare_location ?? 0)} ' + iif($dare_location <> 'kitchen', '(${Math.floor(Math.random() * 12) + 1})', '(${Math.floor(Math.random() * 38) + 1})') + '.mp4`);
                     if ((!((s as any).losedare_sexcount ?? 0))) {
-                      ((s as any).brother ?? {})['fuck'] = (((s as any).brother ?? {})['fuck'] ?? 0) + (1);
+                      if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['fuck'] = ((s as any).brother['fuck'] ?? 0) + (1);
                       qspCall(s, 'brother2', 'dare_condom_ask');
                       scene.text('You wast no time and quickly position yourself as your brother thrusts his penis into you.');
                       // TODO-QSP: dynamic text: Kolka's <<dick_length>>cm long <<$dick_girth>> cock is stiff, and is thrusting i...
@@ -2277,7 +2277,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                     scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/stairway/${((s as any).losedare_sexcount ?? 0)}.mp4`);
                     qspCall(s, 'boyStat', 'A34');
                     if (((s as any).losedare_sexcount ?? 0) === 1) {
-                      ((s as any).brother ?? {})['fuck'] = (((s as any).brother ?? {})['fuck'] ?? 0) + (1);
+                      if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['fuck'] = ((s as any).brother['fuck'] ?? 0) + (1);
                       scene.text('You wast no time and quickly position yourself as your brother bends down and starts licking your sex.');
                       // TODO-QSP: dynamic text: Kolka's <<dick_length>>cm long <<$dick_girth>> cock is stiff, as he eats you out...
                       scene.text(`Kolka's ${((s as any).dick_length ?? 0)}cm long ${((s as any).dick_girth ?? 0)} cock is stiff, as he eats you out.`);
@@ -2367,7 +2367,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
         scene.text('Letting out a long sigh "God… I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and look back at the buldge in his pants. You quickly tell him "Well come on lets get this over with."');
       }
       if (((s as any).pantyworntype ?? 0) === 'none') {
-        ((s as any).brother ?? {})['but_rub'] = (((s as any).brother ?? {})['but_rub'] ?? 0) + (1);
+        if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['but_rub'] = ((s as any).brother['but_rub'] ?? 0) + (1);
         scene.text('Just as you get into position you remember that you don\'t have any panties on but before you can say any thing he reaches over and places his hands on your butt cheeks.');
         scene.text('Slowly he starts running his hands up and down your butt cheeks basically giving you a massage.');
         // TODO-QSP: 'Several times his hands get very close to the outer lips of your sex. Being so caught up in moment ...
@@ -2394,7 +2394,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
         if (((s as any).brother ?? 0)?.['SexQW'] < 5) {
           scene.text('Letting out a long sigh "God… I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and look back at the buldge in his pants. You quickly tell him "Well come on lets get this over with."');
           if (((s as any).brother ?? 0)?.['but_rub'] === 1  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
-            ((s as any).brother ?? {})['but_rub'] = (((s as any).brother ?? {})['but_rub'] ?? 0) + (1);
+            if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['but_rub'] = ((s as any).brother['but_rub'] ?? 0) + (1);
             scene.text('This time before he starts he adds "This time you have to take your clothes off!"');
             scene.text('"What!?" you blert out. "That\'s not the dare!"');
             scene.text('He hesitates for a moment before saying "Are you… chicken?"');
@@ -2414,7 +2414,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          ((s as any).brother ?? {})['but_rub'] = 4;
+          if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['but_rub'] = 4;
         }
         scene.actions([
           { label: 'Further', handler: (st: GameState) => {
@@ -2445,7 +2445,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'clit_finger', (-2), 'masturbate');
       qspCall(s, 'arousal', 'end');
       qspCall(s, 'stat', '');
-      ((s as any).brother ?? {})['but_rub'] = (((s as any).brother ?? {})['but_rub'] ?? 0) + (1);
+      if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['but_rub'] = ((s as any).brother['but_rub'] ?? 0) + (1);
       scene.actions([
         { label: 'Stand up', goto: ['sitrPar', ''] },
       ]);
@@ -2486,7 +2486,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'clit_finger', (-2), 'masturbate');
       qspCall(s, 'arousal', 'end');
       qspCall(s, 'stat', '');
-      ((s as any).brother ?? {})['but_rub'] = (((s as any).brother ?? {})['but_rub'] ?? 0) + (1);
+      if (!(s as any).brother) (s as any).brother = {}; (s as any).brother['but_rub'] = ((s as any).brother['but_rub'] ?? 0) + (1);
       scene.actions([
         { label: 'Stand up', goto: ['sitrPar', ''] },
       ]);

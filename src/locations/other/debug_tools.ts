@@ -27,7 +27,7 @@ function enterTrace(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
-  ((s as any).debug ?? {})['trace_index'] = 0;
+  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_index'] = 0;
   // TODO-QSP: :trace_loc_change_loop
   if (((s as any).debug ?? 0)?.['trace_index'] < Object.keys((s as any).trace_args ?? {}).length) {
     if (((s as any).trace_args ?? 0)[((s as any).debug ?? 0)?.['trace_index']] !== '') {
@@ -36,13 +36,13 @@ function enterTrace(s: GameState, scene: SceneBuilder): void {
       if (((s as any).trace_args ?? 0)[((s as any).debug ?? 0)?.['trace_index']] !== 0) {
         // TODO-QSP: $debug['trace_line'] += ", <<trace_args[debug['trace_index']]>>"
       } else {
-        ((s as any).debug ?? {})['trace_line'] = (((s as any).debug ?? {})['trace_line'] ?? 0) + (', /DEF');
+        if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_line'] = ((s as any).debug['trace_line'] ?? 0) + (', /DEF');
       }
     }
-    ((s as any).debug ?? {})['trace_index'] = (((s as any).debug ?? {})['trace_index'] ?? 0) + (1);
+    if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_index'] = ((s as any).debug['trace_index'] ?? 0) + (1);
     // TODO-QSP: jump 'trace_loc_change_loop'
   }
-  ((s as any).debug ?? {})['' + String((s as any).$ARGS[1] || '') + '_trace'] = (((s as any).debug ?? {})['' + String((s as any).$ARGS[1] || '') + '_trace'] ?? 0) + (((s as any).debug ?? {})?.['trace_line'] + '<br>');
+  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['' + String((s as any).$ARGS[1] || '') + '_trace'] = ((s as any).debug['' + String((s as any).$ARGS[1] || '') + '_trace'] ?? 0) + (((s as any).debug ?? {})?.['trace_line'] + '<br>');
   if (((s as any).debug ?? 0)?.['trace_shown'] !== 0) {
     qspCall(s, 'stat_display', '');
   }
@@ -61,8 +61,8 @@ function enterTraceListLocs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
-  ((s as any).debug ?? {})['loc_change_trace'] = '';
-  ((s as any).debug ?? {})['direct_trace'] = '';
+  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['loc_change_trace'] = '';
+  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['direct_trace'] = '';
   // TODO-QSP: end
   scene.build();
 }

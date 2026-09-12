@@ -143,9 +143,9 @@ function enterMarcusAnal(s: GameState, scene: SceneBuilder): void {
 function enterAndreyStasyaMarcus(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   if (((s as any).hour ?? 0) > 19) {
-    ((s as any).discobloc ?? {})['A147'] = ((s as any).daystart ?? 0);
-    ((s as any).discobloc ?? {})['A139'] = ((s as any).daystart ?? 0);
-    ((s as any).discobloc ?? {})['A146'] = ((s as any).daystart ?? 0);
+    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A147'] = ((s as any).daystart ?? 0);
+    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A139'] = ((s as any).daystart ?? 0);
+    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A146'] = ((s as any).daystart ?? 0);
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/andreyhome/home.jpg');
@@ -662,7 +662,7 @@ function enterIgorDiscoBj(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
-    ((s as any).npc_had_sex ?? {})['A4'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A4'] = 1;
     qspCall(s, 'boyStat', 'A4');
     scene.img('images/shared/sex/blowjob/cocksucker5.jpg');
     scene.text('You sit on your haunches and Igor pulls his dick out of his pants. It takes all of your resolve to remain straight-faced. His penis is tiny! His small, thin member sticks out of his pubic hair like a mushroom in a meadow - that image alone is enough to almost make you burst into laughter, especially considering that you\'ve seen mushrooms bigger than that.');
@@ -689,7 +689,7 @@ function enterIgorDimaDiscoBj(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
-    ((s as any).npc_had_sex ?? {})['A4'] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A4'] = 1;
     qspCall(s, 'boyStat', 'A1');
     scene.img('images/shared/sex/group/cocksucker6.jpg');
     scene.text('You sit on your haunches and Igor pulls his dick out of his pants. It takes all of your resolve to remain straight-faced. His penis is tiny! His small, thin member sticks out of his pubic hair like a mushroom in a meadow - that image alone is enough to almost make you burst into laughter, especially considering that you\'ve seen mushrooms bigger than that. Dimka\'s dick looks like a tree trunk in comparison and only by focusing your eyes on him do you manage to maintain your composure.');
@@ -727,7 +727,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
       { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['Lover'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Lover'] = 1;
     scene.img('images/characters/shared/headshots_main/big4.jpg');
     // TODO-QSP: dynamic text: You agree to date Igor and a smile blossoms on his face as he hugs you tightly. ...
     scene.text(`You agree to date Igor and a smile blossoms on his face as he hugs you tightly. "I'm so happy, ${((s as any).pcs_nickname ?? 0)}! Now that we're a couple… Can we kiss?"`);
@@ -743,7 +743,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).IgorQW ?? {})['Domina'] = 1;
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Domina'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big4.jpg');
     scene.text('You tell Igor that you\'re not going to just give away kisses like that, and even though you\'re grinning, your demeanor is unmistakably dominant. So much so that Igor blushes and kneels before you.');
@@ -761,7 +761,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Make him submit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
-    ((s as any).IgorQW ?? {})['Love'] = (((s as any).IgorQW ?? {})['Love'] ?? 0) + (20);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (20);
     scene.img('images/shared/sex/dom/leg.jpg');
     scene.text('You smile at Igor, kneeling at your feet, right here in public, and tell him that he may kiss your foot. He immediately scrambles to perform the task with more enthusiasm than you thought possible. In no time at all, he\'s kissing your naked foot, caressing it with reverence and licking your toes, his tongue tickling you.');
     scene.text('He\'s hunched over, leaning on one elbow. At first, you don\'t understand why but simply enjoy this strange foot massage. It\'s not until he groans and you see a tiny jet of sperm hit the pavement that you realize he had been masturbating to your feet - literally - right here in front of you while he kissed and caressed your toes.');
@@ -778,7 +778,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let\'s not overdo it', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['Love'] = (((s as any).IgorQW ?? {})['Love'] ?? 0) + (10);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (10);
     scene.img('images/shared/sex/kiss/kiss.jpg');
     scene.text('You tell Igor to get back on his feet and, meeting his eyes, kiss him. He responds with such passion that you think your dominance has aroused him a little.');
     qspCall(s, 'arousal', 'kiss', 5, 'dom');
@@ -795,7 +795,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let him kiss you', handler: (st: GameState) => {
-    ((s as any).IgorQW ?? {})['Love'] = (((s as any).IgorQW ?? {})['Love'] ?? 0) + (5);
+    if (!(s as any).IgorQW) (s as any).IgorQW = {}; (s as any).IgorQW['Love'] = ((s as any).IgorQW['Love'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
     scene.text('You give in and give him a gentle kiss. He gives you a smile afterwards, but almost seems a little disappointed, although you can\'t tell why.');
@@ -817,7 +817,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
 
 function enterSonia(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
-    ((s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
+    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A25'] = ((s as any).daystart ?? 0);
   }
   qspCall(s, 'npcStat', 'A25');
   qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
@@ -903,8 +903,8 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDan(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})['A10'] = 1;
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
   (s as any).DansOralSlut = 1;
   qspCall(s, 'fame', 'pav', 'sex', 1);
   scene.img('images/characters/pavlovsk/school/boy/dan/sex/disco/disco1.jpg');
@@ -984,7 +984,7 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDanFuck(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A10'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
   qspCall(s, 'boyStat', 'A10');
   qspCall(s, 'fame', 'pav', 'sex', 1);
   scene.img('images/characters/pavlovsk/school/boy/dan/sex/disco/disco5.jpg');
@@ -1078,8 +1078,8 @@ function enterDanButtfuck(s: GameState, scene: SceneBuilder): void {
 
 function enterRadomir(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A154');
-  ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
-  ((s as any).npc_had_sex ?? {})['A154'] = 1;
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A154'] = 1;
   qspCall(s, 'fame', 'pav', 'sex', 1);
   scene.img('images/characters/pavlovsk/school/boy/radomir/sex/disco/radbj1.jpg');
   scene.text('Radomir leads you to the mens room and pulls you inside - luckily nobody is inside. He drags you to the last stall and pulls you inside, where he pulls out his semi erect cock as soon as you get inside.');
@@ -1152,7 +1152,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterValentin(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_had_sex ?? {})['A158'] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A158'] = 1;
   qspCall(s, 'core_library', 'setloc', 'gdktoilet', 'womens');
   scene.img('images/characters/pavlovsk/school/boy/valentin/sex/disco/watched_bj1.jpg');
   scene.text('Valentin leads you to the women\'s room, where he peeks in before pulling you inside with him. He drags you to the last stall and pulls out his dick once inside.');
@@ -1506,7 +1506,7 @@ function enterLera(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'That\'s mine', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
+    if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/lera/sex/disco/restroom4.jpg');
     scene.text('You grab her and shove her against the wall. "That\'s mine, bitch! I didn\'t say you could use it!" you scream as you snatch your lipstick out of her hand.');
@@ -1854,7 +1854,7 @@ function enterDimkaSex(s: GameState, scene: SceneBuilder): void {
 
 function enterKatjaMarcusStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
-    ((s as any).discobloc ?? {})['A14'] = ((s as any).daystart ?? 0);
+    if (!(s as any).discobloc) (s as any).discobloc = {}; (s as any).discobloc['A14'] = ((s as any).daystart ?? 0);
   }
   scene.img('images/characters/pavlovsk/school/girl/katja/katja_dance.jpg');
   if (((s as any).katjaQW ?? 0)?.['marcus_disco'] === 0) {
@@ -1877,7 +1877,7 @@ function enterKatjaMarcusStart(s: GameState, scene: SceneBuilder): void {
     scene.text('Grinding yourself against him, you lean in and whisper in his ear. "Up for some fun with me and Katja?"');
     scene.text('A huge grin appears on his face. "Always!"');
     if (((s as any).katjaQW ?? 0)?.['marcus_disco'] === 0) {
-      ((s as any).katjaQW ?? {})['marcus_disco'] = 1;
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['marcus_disco'] = 1;
       scene.text('You give him Katja\'s directions and he says he\'ll follow you in a few minutes so he doesn\'t raise any suspicion.');
     } else {
       scene.text('You tell him to meet you in the same place as last time and he says he\'ll follow you in a few minutes.');
@@ -1987,7 +1987,7 @@ function enterMarcusKatjaDisco(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Share cum', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).katjaQW ?? {})['horny'] = 0;
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = 0;
     scene.img('images/locations/pavlovsk/community/disco/sex/marcus_katja_sveta/mks13.jpg');
     scene.text('Instead of swallowing, she starts kissing you. You can taste his salty cum on her tongue before you open your mouth and she spits it into your mouth.');
     scene.text('"Fuck, that\'s hot as hell!" Marcus grins as you both swallow his cum.');

@@ -34,7 +34,7 @@ function enterNewspaperAd(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ve taken part in multiple trials now, and I haven\'t had any complaints! Best decision of my life!"');
   scene.text('Signup for a medical trial today, and help build a brighter future!');
   if (((s as any).experimentQW ?? 0)?.['discovered'] < 1) {
-    ((s as any).experimentQW ?? {})['discovered'] = 1;
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['discovered'] = 1;
   }
   return;
   // TODO-QSP: end
@@ -50,7 +50,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ve taken part in multiple trials now, and I haven\'t had any complaints! Best decision of my life!"');
   scene.text('Signup for a medical trial today at the St. Petersburg clinic, and help build a brighter future!');
   if (((s as any).experimentQW ?? 0)?.['discovered'] < 1) {
-    ((s as any).experimentQW ?? {})['discovered'] = 1;
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['discovered'] = 1;
   }
   return;
   // TODO-QSP: end
@@ -60,16 +60,16 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_cyan') {
     if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
       if ((Math.floor(Math.random() * 10) + 0) < 4) {
-        ((s as any).experimentQW ?? {})['random_option'] = 1;
+        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
       } else {
-        ((s as any).experimentQW ?? {})['random_option'] = 2;
+        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
       }
     }
     if (((s as any).experimentQW ?? 0)?.['random_option'] === 1) {
-      ((s as any).bodyVars ?? {})['bust_other'] = (((s as any).bodyVars ?? {})['bust_other'] ?? 0) - (2);
+      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_other'] = ((s as any).bodyVars['bust_other'] ?? 0) - (2);
       scene.text('You notice that your breasts have shrunk! This must have been that experimental pill you took.');
     } else {
-      ((s as any).bodyVars ?? {})['bust_other'] = (((s as any).bodyVars ?? {})['bust_other'] ?? 0) + (2);
+      if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_other'] = ((s as any).bodyVars['bust_other'] ?? 0) + (2);
       scene.text('You notice that your breasts have grown! This must have been that experimental pill you took.');
     }
   } else {
@@ -77,21 +77,21 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
       if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
         (s as any).temp_rand = Math.floor(Math.random() * 30) + 0;
         if (((s as any).temp_rand ?? 0) < 4) {
-          ((s as any).experimentQW ?? {})['random_option'] = 1;
+          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
         } else {
           if (((s as any).temp_rand ?? 0) < 10) {
-            ((s as any).experimentQW ?? {})['random_option'] = 2;
+            if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
           } else {
             if (((s as any).temp_rand ?? 0) < 14) {
-              ((s as any).experimentQW ?? {})['random_option'] = 3;
+              if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 3;
             } else {
               if (((s as any).temp_rand ?? 0) < 20) {
-                ((s as any).experimentQW ?? {})['random_option'] = 4;
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 4;
               } else {
                 if (((s as any).temp_rand ?? 0) < 24) {
-                  ((s as any).experimentQW ?? {})['random_option'] = 5;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 5;
                 } else {
-                  ((s as any).experimentQW ?? {})['random_option'] = 6;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 6;
                 }
               }
             }
@@ -145,27 +145,27 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
         if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
           (s as any).temp_rand = Math.floor(Math.random() * 40) + 0;
           if (((s as any).temp_rand ?? 0) < 4) {
-            ((s as any).experimentQW ?? {})['random_option'] = 1;
+            if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
           } else {
             if (((s as any).temp_rand ?? 0) < 10) {
-              ((s as any).experimentQW ?? {})['random_option'] = 2;
+              if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
             } else {
               if (((s as any).temp_rand ?? 0) < 14) {
-                ((s as any).experimentQW ?? {})['random_option'] = 3;
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 3;
               } else {
                 if (((s as any).temp_rand ?? 0) < 20) {
-                  ((s as any).experimentQW ?? {})['random_option'] = 4;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 4;
                 } else {
                   if (((s as any).temp_rand ?? 0) < 24) {
-                    ((s as any).experimentQW ?? {})['random_option'] = 5;
+                    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 5;
                   } else {
                     if (((s as any).temp_rand ?? 0) < 30) {
-                      ((s as any).experimentQW ?? {})['random_option'] = 6;
+                      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 6;
                     } else {
                       if (((s as any).temp_rand ?? 0) < 34) {
-                        ((s as any).experimentQW ?? {})['random_option'] = 7;
+                        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 7;
                       } else {
-                        ((s as any).experimentQW ?? {})['random_option'] = 8;
+                        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 8;
                       }
                     }
                   }
@@ -236,15 +236,15 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
           if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
             (s as any).temp_rand = Math.floor(Math.random() * 10) + 0;
             if (((s as any).temp_rand ?? 0) < 3) {
-              ((s as any).experimentQW ?? {})['random_option'] = 1;
+              if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
             } else {
               if (((s as any).temp_rand ?? 0) < 4) {
-                ((s as any).experimentQW ?? {})['random_option'] = 2;
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
               } else {
                 if (((s as any).temp_rand ?? 0) < 6) {
-                  ((s as any).experimentQW ?? {})['random_option'] = 3;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 3;
                 } else {
-                  ((s as any).experimentQW ?? {})['random_option'] = 4;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 4;
                 }
               }
             }
@@ -309,9 +309,9 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
           if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_orange') {
             if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
               if ((Math.floor(Math.random() * 10) + 0) < 5) {
-                ((s as any).experimentQW ?? {})['random_option'] = 1;
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
               } else {
-                ((s as any).experimentQW ?? {})['random_option'] = 2;
+                if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
               }
             }
             if (((s as any).experimentQW ?? 0)?.['random_option'] === 1) {
@@ -329,9 +329,9 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
             if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_violet') {
               if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
                 if ((Math.floor(Math.random() * 10) + 0) < 4) {
-                  ((s as any).experimentQW ?? {})['random_option'] = 1;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
                 } else {
-                  ((s as any).experimentQW ?? {})['random_option'] = 2;
+                  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
                 }
               }
               if (((s as any).experimentQW ?? 0)?.['random_option'] === 1) {
@@ -349,9 +349,9 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
               if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_brown') {
                 if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
                   if ((Math.floor(Math.random() * 10) + 0) < 4  &&  ((s as any).min_arousal ?? 0) > 0) {
-                    ((s as any).experimentQW ?? {})['random_option'] = 1;
+                    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
                   } else {
-                    ((s as any).experimentQW ?? {})['random_option'] = 2;
+                    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
                   }
                 }
                 if (((s as any).experimentQW ?? 0)?.['random_option'] === 1) {
@@ -370,15 +370,15 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_purple') {
                   if (((s as any).experimentQW ?? 0)?.['random_option'] === 0) {
                     if (((s as any).clit_size ?? 0) <= 0) {
-                      ((s as any).experimentQW ?? {})['random_option'] = 1;
+                      if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
                     } else {
                       if (((s as any).clit_size ?? 0) >= 100) {
-                        ((s as any).experimentQW ?? {})['random_option'] = 2;
+                        if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
                       } else {
                         if ((Math.floor(Math.random() * 20) + 0) < 11) {
-                          ((s as any).experimentQW ?? {})['random_option'] = 1;
+                          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 1;
                         } else {
-                          ((s as any).experimentQW ?? {})['random_option'] = 2;
+                          if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 2;
                         }
                       }
                     }
@@ -401,17 +401,17 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_green') {
                     if (((s as any).trait_vars ?? 0)?.['drinking'] === 1) {
-                      ((s as any).trait_vars ?? {})['drinking_exp'] = (-50);
+                      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = (-50);
                       qspCall(s, 'traits', 'level', 'drinking', (-1));
                       scene.text('You feel a sharp pain in your liver as the experimental treatment takes hold. It passes moments later, though you have no doubt that this will impede your ability to hold your liquor.');
                     } else {
-                      ((s as any).trait_vars ?? {})['drinking_exp'] = (((s as any).trait_vars ?? {})['drinking_exp'] ?? 0) + (100);
+                      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = ((s as any).trait_vars['drinking_exp'] ?? 0) + (100);
                       scene.text('You feel a soothing warmth in your liver as the experimental treatment takes hold. It lingers a while and you suspect that you can hold your liquor much better now.');
                     }
                   } else {
                     if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'pill_gray') {
                       if (((s as any).trait_vars ?? 0)?.['panty_preference'] < 3) {
-                        ((s as any).trait_vars ?? {})['panty_preference_exp'] = qspUntranslated(s, "max(trait_vars['panty_preference_exp'], 40000)", { location: "city_experimental_trials_events" });
+                        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference_exp'] = qspUntranslated(s, "max(trait_vars['panty_preference_exp'], 40000)", { location: "city_experimental_trials_events" });
                         qspCall(s, 'traits', 'level', 'panty_preference', 3);
                         scene.text('Your skin feels extremely sensitive. This must have been that experimental pill you took.');
                       } else {
@@ -449,19 +449,19 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat_sklattrib', '');
   }
   if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'breast_cream') {
-    ((s as any).bodyVars ?? {})['bust_other'] = (((s as any).bodyVars ?? {})['bust_other'] ?? 0) + (2);
+    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['bust_other'] = ((s as any).bodyVars['bust_other'] ?? 0) + (2);
     if (((s as any).experimentQW ?? 0)?.['trial_duration'] > 1) {
       scene.text('You notice that your breasts have grown! This must have been that experimental breast cream.');
     } else {
       if (((s as any).lactation ?? 0)?.['active'] <= 0) {
         qspCall(s, 'lact_lib', 'lact_on');
-        ((s as any).lactation ?? {})['milkprod_type'] = 0;
+        if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['milkprod_type'] = 0;
         scene.text('Your breasts have grown and have a fullness to them. This must have been that experimental breast cream.');
       } else {
         scene.text('Your breasts have grown and have become fuller. This must have been that experimental breast cream.');
       }
       if (((s as any).therapistQW ?? 0)?.['breast_cream'] === 2) {
-        ((s as any).therapistQW ?? {})['breast_cream'] = 3;
+        if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['breast_cream'] = 3;
       }
     }
   }
@@ -510,7 +510,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).experimentQW ?? 0)?.['trial_active'] === 'butt_injection') {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    ((s as any).bodyVars ?? {})['butt_other'] = (((s as any).bodyVars ?? {})['butt_other'] ?? 0) + (2);
+    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['butt_other'] = ((s as any).bodyVars['butt_other'] ?? 0) + (2);
     if (((s as any).experimentQW ?? 0)?.['trial_duration'] >= 4) {
       scene.text('You feel a warmth pulsing in your ass and can feel it growing in size. This must have been that experimental butt injection.');
     } else {
@@ -530,9 +530,9 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
       if (((s as any).ashrinkdays ?? 0) > 10) {
         (s as any).ashrinkdays = 10;
       }
-      ((s as any).agape ?? {})[4] = (((s as any).agape ?? {})[4] ?? 0) + ((Math.floor(Math.random() * 6) + 5) + (3 - ((s as any).experimentQW ?? {})?.['trial_duration']));
+      if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[4] = ((s as any).agape[4] ?? 0) + ((Math.floor(Math.random() * 6) + 5) + (3 - ((s as any).experimentQW ?? {})?.['trial_duration']));
       if (((s as any).agape ?? 0)[4] > 60) {
-        ((s as any).agape ?? {})[4] = 60;
+        if (!(s as any).agape) (s as any).agape = {}; (s as any).agape[4] = 60;
       }
       scene.text('You feel a warmth pulsing in your ass and heat radiates from your puckered hole. You can feel your ass expanding and you crave anal. This must have been that experimental butt injection.');
     }
@@ -577,11 +577,11 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).experimentQW ?? {})['trial_duration'] = (((s as any).experimentQW ?? {})['trial_duration'] ?? 0) - (1);
-  ((s as any).experimentQW ?? {})['event_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = ((s as any).experimentQW['trial_duration'] ?? 0) - (1);
+  if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['event_day'] = ((s as any).daystart ?? 0);
   if (((s as any).experimentQW ?? 0)?.['trial_duration'] <= 0) {
-    ((s as any).experimentQW ?? {})['trial_duration'] = 0;
-    ((s as any).experimentQW ?? {})['random_option'] = 0;
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_duration'] = 0;
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['random_option'] = 0;
   }
   qspCall(s, 'stat', '');
   scene.actions([

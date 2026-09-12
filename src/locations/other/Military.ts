@@ -245,7 +245,7 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
 function enterRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'rapist', Math.floor(Math.random() * 13) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.text('You suddenly feel a blow on the back of your head, and lose consciousness.');
   scene.text('…');

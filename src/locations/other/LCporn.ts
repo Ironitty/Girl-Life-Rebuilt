@@ -44,7 +44,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     (s as any).randlcpic = Math.floor(Math.random() * 7) + 1;
     qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
     qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
     scene.img(`images/locations/city/industrial/bbq/sex/${((s as any).randlcpic ?? 0)}.jpg`);
     scene.text('You smile encouragingly at Eugene and tell her that she is even hotter than you imagined. Eugene, emboldened by your reaction, starts to help you undress. Finally, she descends upon your naked body like a hungry predator…');
@@ -73,7 +73,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Fuck me, Eugene!', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
     qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
     (s as any).randlcpic = Math.floor(Math.random() * 7) + 1;
     scene.img(`images/locations/city/industrial/bbq/sex/${((s as any).randlcpic ?? 0)}.jpg`);
@@ -95,7 +95,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Let me pleasure you, Eugene!', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
     qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).randlcpic = Math.floor(Math.random() * 7) + 10;
     scene.img(`images/locations/city/industrial/bbq/sex/${((s as any).randlcpic ?? 0)}.jpg`);
     // TODO-QSP: dynamic text: You take your clothes off, give Eugene a deep kiss before drop to your knees in ...
@@ -115,7 +115,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Use me, Eugene', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
     qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).randlcpic = Math.floor(Math.random() * 4) + 1;
     scene.img(`images/locations/city/industrial/bbq/sex/anal${((s as any).randlcpic ?? 0)}.jpg`);
     if (((s as any).analPlugIn ?? 0) === 1) {
@@ -124,7 +124,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       (s as any).analPlugOut = 1;
     }
     scene.text('After some intense foreplay and stimulation, Eugene grabs some cooking oil and lubes up her cock and then does the same to your ass as well. With that done she bends you over and lifts one of your legs off the ground. You put your hands against the wall to help keep your balance. Then she slides her cock inside your ass and begins to thrust away as if her life depends on it.');
-    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) + (1);
     qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
     qspCall(s, 'arousal', 'anal', 40, 'shemale');
     scene.text('She pounds and enjoys your ass for a surprising amount of time, considering how hard and fast she is hammering it. She makes sure to reapply some of the cooking oil as needed, while greatly helps you enjoy the experience as well. Finally, a good half hour after she started fucking your ass, Eugene finally lets out a loud and girly scream and shoots her load deep inside your ass.');

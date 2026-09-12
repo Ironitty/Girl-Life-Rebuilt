@@ -31,7 +31,7 @@ function enterToysPaddle(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Uh? On me?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     // TODO-QSP: $anna_toys_image2
     scene.text('"Not necessarily. I\'m "quite open" to both when it comes to BDSM, hehehe. I don\'t mind if you want to try the paddle on your own butt and if you prefer to try it on a test subject, look no further."');
@@ -48,8 +48,8 @@ function enterToysPaddleOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing', 'strip');
     qspCall(s, 'underwear', 'remove');
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (2);
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (2);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/selfspankn.mp4');
     scene.text('You remove all your clothes and bend over on the table, preparing yourself for the task…');
@@ -78,7 +78,7 @@ function enterToysPaddleOptions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Try the paddle', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/selfspankc.mp4');
     if (((s as any).PCloSkirt ?? 0) > 0) {
@@ -107,7 +107,7 @@ function enterToysPaddleOptions(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'I would prefer to test on you… (dom)', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     // TODO-QSP: $anna_toys_image6
     // TODO-QSP: dynamic text: "OK <<$pcs_nickname>>, just try as hard as you can. It's a 'bit' difficult to le...
@@ -186,7 +186,7 @@ function enterToysVacuum(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'On me?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     // TODO-QSP: $anna_toys_image5
     scene.text('"Well if you are willing of course, but not without me being there. Nothing will go wrong I can promise you that, but this is edgeplay and I cannot allow you to this alone. I hope you can understand.');
     scene.text('I can make a practical demonstration on myself if you prefer but it\'s up to you. If you want to try by yourself you have to try with the manual cups, they are more difficult to use but they are safer and easier to control for inexperienced people. I\'ll put one on you and you\'ll follow my example with another one. Ready?"');
@@ -279,14 +279,14 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ok', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/Wattenarm.jpg');
     scene.text('You take the multi wheel and roll it on your arm. You start really softly and you can feel that if you use more strength it would be painful; nonetheless with the force you applied you have a tickling sensation for the most part. "That\'s a good starting point… can you feel what I mean about the different effects you can have? Not only does the strength allow to have different effects, but also the area you are stimulating is meaningful… just think if it\'s applied to the feet; if they are really into tickling when stimulated. While on the other hand applying this to the chest area the sensations will mainly register as pain, while genital area… well I told you : it\'s a mix… Mmm… about that… are willing to try how does it feel on your breast. We\'ll use the multi wheel; it will be easier for you to understand the meaning of "mix" between pain and pleasure… what do you say?"');
     scene.actions([
       { label: 'I-it\'s ok… just… go easy on me Anna…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/Wattenbreast.mp4');
     scene.text('Anna smiles at you in a reassuring way, you ; you are sure she has no intention of forcing anything on you that you don\'t want to. You give her the ok to proceed and remove your shirt givng her access to your breast. You lay on the bed and Anna gets to work. "Ahhhh… ohhhhh… hahahaha… Annaaaahhh… hhhahahaa… mmmm… aaahh… hahaha…"');
     scene.text('"Shhhh… just focus on the differences."');
@@ -360,7 +360,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     { label: 'Why don\'t I try it on you? It seems you are used to it…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     // TODO-QSP: $anna_toys_image2
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     // TODO-QSP: dynamic text: "Hehehe <<$pcs_nickname>>, you are right but the answer is: no. There's no point...
     scene.text(`"Hehehe ${((s as any).pcs_nickname ?? 0)}, you are right but the answer is: no. There's no point for me trying the wheel on myself; it's a matter of you understanding what this tool can offer. You can get the right idea using the multiwheel on your arm… unless you're scared."`);
     scene.actions([
@@ -383,7 +383,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
       { label: 'I can see the differences', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     // TODO-QSP: $anna_toys_image2
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"Well it has different uses, that\'s for sure."');
     scene.text('"Good! That was the main goal… Ok we\'ve done for today, let me show you out, you got have homework to do and I have to do some housework."');
     scene.actions([
@@ -420,7 +420,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
       { label: 'I can feel the differences', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     // TODO-QSP: $anna_toys_image2
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"Well it have different use, that\'s for sure."');
     scene.text('"Good! That was the goal… Ok we\'ve done for today, let show you out, you probably have dinner soon and I gotta get started on ours."');
     scene.actions([
@@ -476,14 +476,14 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ok', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/Wattenarm.jpg');
     scene.text('You take the multi wheel and roll it on your arm surface. You made a good choice starting really softly because you can feel that if you use more strength it could be painful; nonetheless with the force you have applied you get a tickling sensation. "That\'s a good starting point… can you feel what I mean about the different effects you can get? Not only does the strength allow you to have different effects, but also the area you are stimulating is meaningful… just think to the feet for example; if they are really into tickling when stimulated. On the other hand like the chest are the sensations will feel mainly as pain, while on the genital area… well like I told you: it\'s a mix… Mmm… about that… maybe you are willing to try how does it feel on your breast. If you agree I can let you feel on them… only one circle item that case; it will be easier for you to understand the meaning of "mix" between pain and pleasure… what do you say?"');
     scene.actions([
       { label: 'Well… if you think it could be useful…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/Wattenbreast.mp4');
     scene.text('Anna smiles at you in a reassuring way, not only do you have the feeling she won\'t do you any unnecessary harm; you are certain she has no intention of forcing this on you. You give her the ok to proceed and take of your shirt revealing breast… You lay on the bed and Anna starts to work on you. "Ahhhh… ohhhhh… hahahaha… Annaaaahhh… hhhahahaa… mmmm… aaahh… hahaha…"');
     scene.text('"Shhhh… just focus on the differences."');
@@ -574,7 +574,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ok', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/violetas.mp4');
     scene.text('You take the wand in your hand; Anna turns off the light in the room, she then begins to adjust the settings. "Put the tip of it near to your finger." You slowly move your fingers close to the wand. "Hey! It\'s… what\'s that?"');
@@ -593,7 +593,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nip…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"Mmm… I see. Anyway you have nothing to worry about. Stimulation has its purpose after all, and how sensations could be feels can be totally different from person to person. But we have done enough for today, I don\'t want to keep you here all evening. Let me show you out." You say thank you and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -603,7 +603,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Clit…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"Mmm… I see. Anyway there is nothing to worry about. Stimulation has its purpose after all, and how these sensations are felt are totally different from person to person. But we have done enough for today, you probably have some homework to do. Let me show you out." You say thank you and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -613,7 +613,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Both', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     // TODO-QSP: dynamic text: "Interesting… A friend of mine would be really interested in that… it's not ever...
     scene.text(`"Interesting… A friend of mine would be really interested in that… it's not everybody that gets so aroused by such a low current; I assume you got wet? Ok ${((s as any).pcs_nickname ?? 0)}, I want you to know that's normal and you shouldn't worry. You are very sensitive to electro stimulation, This is one of the purposes of the violet wand. Okay I think that's enough for today, let me show you out, we can continue this another time."`);
     scene.actions([
@@ -675,7 +675,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Why don\'t you try that for me?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     // TODO-QSP: $anna_toys_image2
     // TODO-QSP: dynamic text: "Well <<$pcs_nickname>> of course I can… The question is: What do you get out of...
     scene.text(`"Well ${((s as any).pcs_nickname ?? 0)} of course I can… The question is: What do you get out of that? You are the one who's supposed to know more about the violet wand… Maybe you are scared by this little tool and what it can do" She says with a smile.`);
@@ -694,7 +694,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'It was… interesting.', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     // TODO-QSP: $anna_toys_image2
     scene.text('"It\'s certainly a unique little thing with the pleasure it can bring. And it can offer more than this, this was only a little demonstration… But I think that\'s enough for today. Let me show you out, I have to do some laundry and you probably need to get home." You exchange an handshake and turn to your road.');
     scene.actions([
@@ -733,7 +733,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'It was certainly interesting…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     // TODO-QSP: $anna_toys_image2
     scene.text('"It\'s certainly a unique little thing with the pleasure it can bring. This was only a little taste of what it can give you. But I think you\'ve learned enough for today. Let me show you out, You need to get home before you mother starts to worry and I need to make some dinner." You shake her hand and leave the apartment.');
     scene.actions([
@@ -788,7 +788,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Try the wand on yourself', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/violetas.mp4');
     scene.text('You take the wand in your hand; Anna turns off the lights, she then grabs the controls and adjusts the settings. She pants as she says. "Put it near to your fingers."');
@@ -808,7 +808,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nip…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"Mmm… I can understand that… Anyway you have nothing to be worried about. Stimulation is the purpose after all, and how sensations are felt can be totally different from person to person. I think we\'ll end it for today, you probably have some chores to do. Let me show you out." You shake her hand and go outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -818,7 +818,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Clit…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"Mmm… feels nice dosen\'t it?… Anyway you have nothing to be worried about. Stimulation is the purpose after all, and how sensations feel totally different from person to person. But I thinks that\'s enough for today, I don\'t want to waste your time and I got to get started on dinner. Let me show you out." You shake her hand and head outside.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -828,7 +828,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Both', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     // TODO-QSP: dynamic text: "Interesting… A friend of mine would be really interested in that… I think you s...
     scene.text(`"Interesting… A friend of mine would be really interested in that… I think you saw her once… You showed arousal in both your nipples and clit… and I assume you were wet? Ok ${((s as any).pcs_nickname ?? 0)}, I want you to know that's normal and you shouldn't be embarrassed. You are really sensitive to electro stimulation, but do not forget that this is one of the purpose of the wand… I have to warn you that you can't play with this without the right tools. Alright, I think we should end it here, we can continue another time… you got to get home… and… emmmh… I got something else to take care of."`);
     scene.actions([
@@ -839,7 +839,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Lie', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     // TODO-QSP: $anna_toys_image2
     scene.text('"No no! My hair it\'s stands up! That\'s all!."You try to avoid being honest with Anna.');
     scene.text('"Well assuming you are telling the truth… that\'s totally normal it\'s not something that usually surprises people; it something that\'s expected from playing with the wand. Anyway, if you are telling the truth you are really impressionable, I have to say. But we\'re done for today. Let me show you out, you got homework to do and I have to do some laundry." You shake her hand and go outside');
@@ -899,7 +899,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Ok', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/violetas.mp4');
     scene.text('You take the violet wand in your hand; and Anna turns off the lights, then she starts to fiddle with the controls. "Put it near your finger."');
@@ -918,7 +918,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Nipples…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"That\'s nothing to worry about. Stimulation is the purpose after all, and how sensations feel can be completely different from person to person. But I believe that\'s enough for today. Let me show you to the door." Anna leads you to the door, you shake her hand and head outside to the residential area.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -928,7 +928,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Clit…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.text('"And do you like it?. Stimulation is the purpose after all. The sensations felt can be totally different from one person to another. But I think we\'ll end it at that for today. Let me show you out." Anna leads you to the door, you shake her hand and go outside and head towards the residential area.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -938,7 +938,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Both', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     // TODO-QSP: dynamic text: "Interesting… A friend of mine would be really interested to hear about this… no...
     scene.text(`"Interesting… A friend of mine would be really interested to hear about this… not everybody get's so aroused by a little shock; you seemed to show both on your breasts and you clitoris, did you get wet?. Ok ${((s as any).pcs_nickname ?? 0)}, I want you to know that's normal and you shouldn't worry. It just means you are really sensitive to electro stimulation, but don't forget that this is the purpose of the wand. I believe we should say that's enough for today, let me show you out, we can pick this up another time." Anna leads you to the door, you shake her hand and head out to the residential area.`);
     scene.actions([
@@ -1029,7 +1029,7 @@ function enterRestraintsRope(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'That sounds fun', handler: (st: GameState) => {
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
   }, goto: ['hotel_anna_gear', 'restraints_rope_dom'] },
     { label: 'Excuse yourself', handler: (st: GameState) => {
@@ -1050,7 +1050,7 @@ function enterRestraintsRope(s: GameState, scene: SceneBuilder): void {
 function enterRestraintsRopeDom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'BDSM_give', 5);
   qspCall(s, 'stat', '');
-  ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+  if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
   (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
   scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr5.jpg');
   scene.text('"Ropes can be dangerous so you have to follow my instructions to the letter."');
@@ -1104,7 +1104,7 @@ function enterRestraintsHarness(s: GameState, scene: SceneBuilder): void {
     { label: 'Ok', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/harnessn.jpg');
     // TODO-QSP: dynamic text: "Great! Here let me help you." Anna helps you disrobe. "Wow! Stunning. You have ...
@@ -1150,7 +1150,7 @@ function enterRestraintsHarness(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Why don\'t you try it on so I can see how it looks on you?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr5.jpg');
     scene.text('"The idea here is that you wear the harness to get the idea of how it feels. So there\'s no particular point in me wearing it"');
     scene.actions([
@@ -1174,7 +1174,7 @@ function enterRestraintsHarness(s: GameState, scene: SceneBuilder): void {
       { label: 'Turn and tease', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'arousal', 'end');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/harness1.jpg');
     // TODO-QSP: dynamic text: You slowly turn swinging your back to tease Anna. "Mmmm… there's no need to put ...
     scene.text(`You slowly turn swinging your back to tease Anna. "Mmmm… there's no need to put a show on… but… ok: if that make you feel comfortable by all means… go on. Just remember, we don't have all day ${((s as any).pcs_nickname ?? 0)}."`);
@@ -1300,7 +1300,7 @@ function enterRestraintsCuff(s: GameState, scene: SceneBuilder): void {
       { label: 'O-ok…', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/cuff0.jpg');
     scene.text('You do what Anna orders you to. "L-like… t-this?"');
@@ -1317,7 +1317,7 @@ function enterRestraintsCuff(s: GameState, scene: SceneBuilder): void {
       { label: 'I-i…', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'arousal', 'end');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/cuff1.jpg');
     scene.text('"I-i…"');
     scene.text('"Well… if that left you speechless you felt something for sure. I won\'t push things though the main thing is to improve your knowledge, so I think we\'ll end it there. Just let me free you now." Anna smiles at you in a reassuring way; once free and with your panties on, you chat a little bit with Anna before you say goodbye and leave');
@@ -1366,7 +1366,7 @@ function enterRestraintsCuff(s: GameState, scene: SceneBuilder): void {
       { label: 'I-i…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).Anna_see_asub ?? 0) >= 10) {
-      ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+      if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     }
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/cuff2.jpg');
     scene.text('"I-i…"');
@@ -1448,7 +1448,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'OK', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/collnomean.mp4');
     scene.text('You strip down; Anna puts the collar on you and closes it around your neck, she has you kneel down so she can attach the leash. "Some collars can be worn as a jewelry you know. You look wonderful dear."');
@@ -1464,7 +1464,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow Anna\'s lead…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/leash.mp4');
     scene.text('Anna walks you around the room a little, you feel exposed and a little humiliated."');
     // TODO-QSP: dynamic text: "How is it going so far <<$pcs_nickname>>?"
@@ -1526,7 +1526,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
       { label: 'Follow Anna\'s lead…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).Anna_see_adom ?? 0) >= 10) {
-      ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+      if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     }
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/leash.mp4');
     // TODO-QSP: dynamic text: Anna lets you walk in the room a little; understanding the aspects of being on d...
@@ -1571,7 +1571,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
       { label: 'Change your mind', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).Anna_see_asub ?? 0) <= 10) {
-      ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
+      if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
     }
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/leashownoend.jpg');
     scene.text('"I can\'t I\'m sorry Anna."');
@@ -1609,7 +1609,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow Anna\'s lead…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/leashling.mp4');
     // TODO-QSP: dynamic text: Anna lets you walk in the room for a little bit; you can understand the meaning ...
     scene.text(`Anna lets you walk in the room for a little bit; you can understand the meaning of being the submissive to a dominant partner. "How are you doing ${((s as any).pcs_nickname ?? 0)}?"`);
@@ -1617,7 +1617,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
       { label: 'It\'s not so bad', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).Anna_see_adom ?? 0) <= 10) {
-      ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+      if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     }
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/leashlingfine.jpg');
     // TODO-QSP: dynamic text: "I'm happy to hear it wasn't a problem for you. Ok <<$pcs_nickname>> I hope it w...
@@ -1661,7 +1661,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Follow Anna\'s lead…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/leashling.mp4');
     // TODO-QSP: dynamic text: Anna lets you walk in the room a little; you start to understand what she means ...
     scene.text(`Anna lets you walk in the room a little; you start to understand what she means about being the submissive. "How are you doing ${((s as any).pcs_nickname ?? 0)}, everything okay so far?"`);
@@ -1669,7 +1669,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
       { label: 'It\'s not that bad', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).Anna_see_adom ?? 0) <= 10) {
-      ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+      if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
     }
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/leashlingfine.jpg');
     scene.text('"Glad to hear it wasn\'t too bad for you, let\'s end it here for today." The walk ends. "Now, as you already know this is a learning session, this dosen\'t mean anything between us. what you take from this is entirely up to you, but I hope you\'ve learned a little bit about what it\'s like for the submissive to be led by their master or mistress. Anyways, let\'s get that collar off so you can get dressed." You put your clothes back on and after a brief talk about the role of being submissive you say goodbye and leave.');
@@ -1725,7 +1725,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    if (!(s as any).AnnaQW) (s as any).AnnaQW = {}; (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/anna2restr5.jpg');
     scene.text('"Fine it\'s better than nothing but you won\'t really understand the meaning. Wait here, i\'ll be back." Anna leaves you alone.');
     scene.actions([

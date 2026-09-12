@@ -123,7 +123,7 @@ function enterBuyProperty(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties', 'set_home', ((s as any).locArgs?.[1] ?? 0));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'village_cottage') {
-    ((s as any).exhib ?? {})['status'] = 0;
+    if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 0;
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Real Estate Agency</b></center>');

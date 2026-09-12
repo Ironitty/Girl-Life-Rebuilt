@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
   (s as any).spellCompSize = 0;
-  ((s as any).spellComplete ?? {})[String((s as any).spellCompSize ?? 0)] = ((s as any).totminut ?? 0) + ((s as any).ARGS ?? 0)[2];
+  if (!(s as any).spellComplete) (s as any).spellComplete = {}; (s as any).spellComplete[String((s as any).spellCompSize ?? 0)] = ((s as any).totminut ?? 0) + ((s as any).ARGS ?? 0)[2];
   // TODO-QSP: $spellTimeName[spellCompSize] = $ARGS[1]
   // TODO-QSP: $spellCompExec[spellCompSize] = $ARGS[3]
   // TODO-QSP: $spellTickExec[spellCompSize] = $ARGS[4]

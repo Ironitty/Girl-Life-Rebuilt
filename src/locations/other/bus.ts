@@ -797,9 +797,9 @@ function enterSuburbsTickets(s: GameState, scene: SceneBuilder): void {
 function enterCommunityPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pavstation');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -827,9 +827,9 @@ function enterCommunityPavstation(s: GameState, scene: SceneBuilder): void {
 function enterCommunityPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pushkin');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -857,9 +857,9 @@ function enterCommunityPushkin(s: GameState, scene: SceneBuilder): void {
 function enterCommunityConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'construction');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -887,9 +887,9 @@ function enterCommunityConstruction(s: GameState, scene: SceneBuilder): void {
 function enterCommunityGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'community');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'community', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -918,9 +918,9 @@ function enterCommunityGadukino(s: GameState, scene: SceneBuilder): void {
 function enterPavstationCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'community');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -948,9 +948,9 @@ function enterPavstationCommunity(s: GameState, scene: SceneBuilder): void {
 function enterPavstationPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pushkin');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -978,9 +978,9 @@ function enterPavstationPushkin(s: GameState, scene: SceneBuilder): void {
 function enterPavstationConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'construction');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1008,9 +1008,9 @@ function enterPavstationConstruction(s: GameState, scene: SceneBuilder): void {
 function enterPavstationGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pavstation', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1039,9 +1039,9 @@ function enterPavstationGadukino(s: GameState, scene: SceneBuilder): void {
 function enterPushkinCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'community');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1069,9 +1069,9 @@ function enterPushkinCommunity(s: GameState, scene: SceneBuilder): void {
 function enterPushkinPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pavstation');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1099,9 +1099,9 @@ function enterPushkinPavstation(s: GameState, scene: SceneBuilder): void {
 function enterPushkinConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'construction');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1129,9 +1129,9 @@ function enterPushkinConstruction(s: GameState, scene: SceneBuilder): void {
 function enterPushkinGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pushkin');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'pushkin', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1160,9 +1160,9 @@ function enterPushkinGadukino(s: GameState, scene: SceneBuilder): void {
 function enterConstructionCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1190,9 +1190,9 @@ function enterConstructionCommunity(s: GameState, scene: SceneBuilder): void {
 function enterConstructionPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pavstation');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1220,9 +1220,9 @@ function enterConstructionPavstation(s: GameState, scene: SceneBuilder): void {
 function enterConstructionPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pushkin');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1250,9 +1250,9 @@ function enterConstructionPushkin(s: GameState, scene: SceneBuilder): void {
 function enterConstructionGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'construction');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'construction', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1281,9 +1281,9 @@ function enterConstructionGadukino(s: GameState, scene: SceneBuilder): void {
 function enterGadukinoCommunity(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'community');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'community') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1311,9 +1311,9 @@ function enterGadukinoCommunity(s: GameState, scene: SceneBuilder): void {
 function enterGadukinoPavstation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pavstation');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'pavstation') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1341,9 +1341,9 @@ function enterGadukinoPavstation(s: GameState, scene: SceneBuilder): void {
 function enterGadukinoPushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'pushkin');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'pushkin') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1371,9 +1371,9 @@ function enterGadukinoPushkin(s: GameState, scene: SceneBuilder): void {
 function enterGadukinoConstruction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'construction');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'construction') + ((s as any).transportVars ?? {})?.['bus_wait_pavlovsk'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1401,9 +1401,9 @@ function enterGadukinoConstruction(s: GameState, scene: SceneBuilder): void {
 function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'communal');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'communal') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'communal') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1431,9 +1431,9 @@ function enterGadukinoCommunal(s: GameState, scene: SceneBuilder): void {
 function enterGadukinoGraveyard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'graveyard');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'graveyard') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'graveyard') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1461,9 +1461,9 @@ function enterGadukinoGraveyard(s: GameState, scene: SceneBuilder): void {
 function enterGadukinoSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'suburbs');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'gadukino');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'suburbs') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', 'suburbs') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1492,9 +1492,9 @@ function enterGadukinoSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'communal');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1522,9 +1522,9 @@ function enterCommunalGadukino(s: GameState, scene: SceneBuilder): void {
 function enterCommunalGraveyard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'graveyard');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'communal');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'graveyard') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'graveyard') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1552,9 +1552,9 @@ function enterCommunalGraveyard(s: GameState, scene: SceneBuilder): void {
 function enterCommunalSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'suburbs');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'communal');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'suburbs') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', 'suburbs') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1583,9 +1583,9 @@ function enterCommunalSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterGraveyardGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'graveyard');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1613,9 +1613,9 @@ function enterGraveyardGadukino(s: GameState, scene: SceneBuilder): void {
 function enterGraveyardCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'communal');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'graveyard');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'communal') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'communal') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1643,9 +1643,9 @@ function enterGraveyardCommunal(s: GameState, scene: SceneBuilder): void {
 function enterGraveyardSuburbs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'suburbs');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'graveyard');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'suburbs') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'graveyard', 'suburbs') + ((s as any).transportVars ?? {})?.['bus_wait_suburbs'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1674,9 +1674,9 @@ function enterGraveyardSuburbs(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'gadukino');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'suburbs');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'gadukino') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1704,9 +1704,9 @@ function enterSuburbsGadukino(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsCommunal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'communal');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'suburbs');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'communal') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'communal') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {
@@ -1734,9 +1734,9 @@ function enterSuburbsCommunal(s: GameState, scene: SceneBuilder): void {
 function enterSuburbsGraveyard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bus', 'graveyard');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'suburbs');
-  ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'graveyard') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', 'graveyard') + ((s as any).transportVars ?? {})?.['bus_wait_gadukino'];
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
-  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 25) {
     scene.actions([{ label: 'Continue', goto: ['bus_incidental', 'events'] }]);
   } else {

@@ -50,7 +50,7 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'money', 'earn', ((s as any).temp_tip ?? 0));
       }
     }
-    ((s as any).experimentQW ?? {})['trial_active'] = '';
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = '';
     scene.actions([
       { label: 'Continue', goto: ['city_experimental_trials', 'front_desk'] },
     ]);
@@ -94,7 +94,7 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
     scene.text('At the bottom of the document is an area where you need to write down your full name, age and add your signature.');
     scene.actions([
       { label: 'Sign the document', handler: (st: GameState) => {
-    ((s as any).experimentQW ?? {})['signed'] = 1;
+    if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['signed'] = 1;
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\desk1.jpg');
     scene.text('You hand the signed document back to the woman.');
     // TODO-QSP: dynamic text: "Thank you Miss… <<$pcs_lastname>>," she says as she looks it over. "We'll add y...

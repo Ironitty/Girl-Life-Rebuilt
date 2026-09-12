@@ -124,7 +124,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk back to the forest', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
-      ((s as any).MiraVars ?? {})['follower'] = 1;
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 1;
     }
   }, goto: ['gad_forest', 'forest_edge'] },
     ]);
@@ -197,7 +197,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wow! This place is awesome. My family and I have only been in the village for a few months, but I have never heard anyone talk about this place." Mira tells you. "Now I know where I can come to when I want to be alone. You don\'t mind, do you?"');
     scene.actions([
       { label: 'You allow her to come here on her own', handler: (st: GameState) => {
-    ((s as any).MiraVars ?? {})['meadow'] = 2;
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['meadow'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     qspCall(s, 'miroslava', 'miraclothes');
@@ -208,7 +208,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Sorry, I want to keep this meadow private', handler: (st: GameState) => {
-    ((s as any).MiraVars ?? {})['meadow'] = 3;
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['meadow'] = 3;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     qspCall(s, 'miroslava', 'miraclothes');
@@ -219,7 +219,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
       scene.text('Mira then asks if you could help cheer up her father. He has been depressed ever since her mother\'s death nearly two years ago.');
       scene.actions([
         { label: 'Maybe', handler: (st: GameState) => {
-    ((s as any).MiraVars ?? {})['meadow'] = 4;
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['meadow'] = 4;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (40);
     qspCall(s, 'stat', '');
@@ -238,7 +238,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['gad_meadow', 'start'] },
       ]);
     } else {
-      ((s as any).MiraVars ?? {})['meadow'] = 5;
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['meadow'] = 5;
       scene.text('You and Mira speak for a while. Her mood is a little down, but a smile slowly creeps onto her face as you chat.');
       scene.text('"I saw you meeting with my father. I want to thank you for attending to him. He had been depressed since my mother died two years ago. Being with you has really cheered him up."');
       (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -285,7 +285,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Mira, come here and stick that tongue of your in my wet pussy!', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['cuni_given'] === 0) {
-      ((s as any).MiraVars ?? {})['cuni_given'] = 1;
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['cuni_given'] = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
     qspCall(s, 'npcStat', 'A64');
@@ -508,7 +508,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['QW'] === 2) {
-      ((s as any).MiraVars ?? {})['QW'] = 3;
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 3;
     }
     scene.img('images/characters/gadukino/mira/mirameadowsex2.jpg');
     scene.text('Fifteen minutes Mitka finally cums in Mira and leaves. Mira cleans up and then leaves as well.');
@@ -661,7 +661,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter7(s: GameState, scene: SceneBuilder): void {
-  ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
   if (((s as any).temper ?? 0) < 15) {
     scene.img('images/characters/gadukino/mira/sex/mirameadowbj11.jpg');
     scene.text('Mira squats in front of one of the boys and takes his cock in her mouth while another gets ready for his turn.');
@@ -688,7 +688,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter8(s: GameState, scene: SceneBuilder): void {
-  ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
   scene.img('images/characters/gadukino/mira/sex/mirameadowbj12.jpg');
   scene.text('Mira is almost invisible with all the bodies around her. You can only see her naked ass and feet swaying in the air. You spend half an hour watching as the men take turns fucking Mira until they are all tired.');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
@@ -732,9 +732,9 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['QW'] === 2) {
-      ((s as any).MiraVars ?? {})['QW'] = 3;
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 3;
     }
-    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
     scene.img('images/characters/gadukino/mira/mirameadowsex2.jpg');
     scene.text('Fifteen minutes Mitka finally cums in Mira and leaves. Mira cleans up and then leaves as well.');
     qspCall(s, 'arousal', 'voyeur_sex', 15);
@@ -752,8 +752,8 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiraGang(s: GameState, scene: SceneBuilder): void {
-  ((s as any).MiraVars ?? {})['QW'] = 31;
-  ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 31;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
   scene.img('images/characters/gadukino/mira/sex/mirameadowbj12.jpg');
   scene.text('Mira is almost invisible with all the bodies around her. You can only see her naked ass and feet swaying in the air. You spend half an hour watching as the men take turns fucking Mira until they are all tired.');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
@@ -770,7 +770,7 @@ function enterMiraGang(s: GameState, scene: SceneBuilder): void {
 function enterMiraperversion11(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  ((s as any).MiraVars ?? {})['QW'] = 12;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 12;
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('You don\'t know where to begin, so you stay silent, staring at Mira. At the same time, Mira is looking at her feet and blushing hard.');
@@ -788,8 +788,8 @@ function enterMiraperversion11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLesbMira(s: GameState, scene: SceneBuilder): void {
-  ((s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
-  ((s as any).MiraVars ?? {})['arousal'] = Math.floor(Math.random() * 81) + 0;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['arousal'] = Math.floor(Math.random() * 81) + 0;
   qspCall(s, 'npcStat', 'A64');
   scene.img('images/characters/gadukino/mira/mirakiss1.jpg');
   scene.text('"I\'m glad you came, Mira," you say.');
@@ -811,8 +811,8 @@ function enterLesbMira(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiraLesb(s: GameState, scene: SceneBuilder): void {
-  ((s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
-  ((s as any).MiraVars ?? {})['arousal'] = Math.floor(Math.random() * 41) + 40;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['arousal'] = Math.floor(Math.random() * 41) + 40;
   qspCall(s, 'npcStat', 'A64');
   scene.img('images/characters/gadukino/mira/mirakiss4.jpg');
   scene.text('In the meadow, Mira walks up to you, smiling mischievously.');
@@ -879,7 +879,7 @@ function enterLesbTalkMira1(s: GameState, scene: SceneBuilder): void {
 function enterLesbTalkMira2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-  ((s as any).MiraVars ?? {})['had_sex'] = 2;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['had_sex'] = 2;
   qspCall(s, 'miroslava', 'miraclothes');
   qspCall(s, 'stat', '');
   scene.text('You walk up to Mira with a malicious smile on your face.');
@@ -916,7 +916,7 @@ function enterLesbTalkMira3(s: GameState, scene: SceneBuilder): void {
 function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-  ((s as any).MiraVars ?? {})['arousal'] = Math.floor(Math.random() * 81) + 0;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['arousal'] = Math.floor(Math.random() * 81) + 0;
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/mira_lesb_talk.jpg');
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
@@ -980,8 +980,8 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
 function enterMiraLesbTalk2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-  ((s as any).MiraVars ?? {})['had_sex'] = 2;
-  ((s as any).MiraVars ?? {})['arousal'] = Math.floor(Math.random() * 81) + 0;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['had_sex'] = 2;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['arousal'] = Math.floor(Math.random() * 81) + 0;
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/mira_lesb_talk2.jpg');
   scene.text('Mira walks up to you with a malicious smile on her face.');
@@ -1004,8 +1004,8 @@ function enterMiraLesbTalk2(s: GameState, scene: SceneBuilder): void {
 function enterMiraLesbTalk3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-  ((s as any).MiraVars ?? {})['arousal'] = Math.floor(Math.random() * 41) + 40;
-  ((s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['arousal'] = Math.floor(Math.random() * 41) + 40;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/mira_lesb_talk3.jpg');
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
@@ -1028,8 +1028,8 @@ function enterMiraLesbTalk3(s: GameState, scene: SceneBuilder): void {
 function enterMiraLesbTalk4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-  ((s as any).MiraVars ?? {})['arousal'] = Math.floor(Math.random() * 41) + 40;
-  ((s as any).MiraVars ?? {})['event_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['arousal'] = Math.floor(Math.random() * 41) + 40;
+  if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['event_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('Walking through the village, you meet Mira. Seeing you, she immediately approaches you with an excited face.');
@@ -1211,9 +1211,9 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['QW'] === 2) {
-      ((s as any).MiraVars ?? {})['QW'] = 3;
+      if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = 3;
     }
-    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
     scene.img('images/characters/gadukino/mira/mirameadowsex2.jpg');
     scene.text('Fifteen minutes Mitka finally cums in Mira and leaves. Mira cleans up and then leaves as well.');
     qspCall(s, 'arousal', 'voyeur', 5);
@@ -1243,7 +1243,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Watch', handler: (st: GameState) => {
-    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
     scene.img('images/characters/gadukino/mira/sex/mirameadowanal2.jpg');
     scene.text('After a couple of minutes, Mitka slaps her ass and pulls out of Mira. She gets up on her knees before him and sticks her tongue out as his warm cum shoots all over her face.');
     qspCall(s, 'arousal', 'voyeur', 5);
@@ -1264,7 +1264,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             scene.actions([
               { label: 'Watch', handler: (st: GameState) => {
-    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
     scene.img('images/characters/gadukino/mira/sex/mirameadowbj1.jpg');
     scene.text('But, apparently, you\'re a little late because, after a couple minutes, Kolyamba puts a hand on the back of Mira\'s head and holds her while he cums down her throat. At first, she gags but eventually obediently swallows his cum…');
     qspCall(s, 'arousal', 'voyeur', 5);
@@ -1277,7 +1277,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+            if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
             scene.img('images/characters/gadukino/mira/sex/mirameadowbj2.jpg');
             scene.text('All Mira has on is some flip-flops with her face on the ground and her ass in the air. She moans loudly as Kolyamba pounds her pussy and cums inside of her…');
             qspCall(s, 'arousal', 'voyeur', 5);
@@ -1292,7 +1292,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_md ?? 0) === 4  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 11) {
             qspCall(s, 'stat', '');
             if (((s as any).temper ?? 0) < 20) {
-              ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+              if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
               scene.img('images/characters/gadukino/mira/sex/mirameadowbj5.jpg');
               scene.text('Mira is tied to a tree as Vasyan enthusiastically drives his cock in her mouth. She gags and coughs, but simultaneously, she moves her head farther down his member. Finally, after a couple of minutes, Vasyan tilts back his head and, with a blissful roar cums in her mouth…');
               qspCall(s, 'arousal', 'voyeur', 5);
@@ -1303,7 +1303,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_meadow', 'start'] },
               ]);
             } else {
-              ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+              if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
               scene.img('images/characters/gadukino/mira/sex/mirameadowbj6.jpg');
               scene.text('Mira is completely naked and bent over in front of Vasyan. She is really enjoying it as he thrusts into her ass. After a few minutes, he pulls out and sprays cum over her back.');
               qspCall(s, 'arousal', 'voyeur', 5);
@@ -1318,7 +1318,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
             if (((s as any).temp_md ?? 0) === 5  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 11) {
               qspCall(s, 'stat', '');
               if (((s as any).temper ?? 0) < 20) {
-                ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+                if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
                 scene.img('images/characters/gadukino/mira/sex/mirameadowbj3.jpg');
                 scene.text('They are completely naked, and Mira sticks her ass up in the air as she deepthroats Vasyan. After a few minutes, you see Mira gulp down his sperm without removing her mouth from his cock.');
                 qspCall(s, 'arousal', 'voyeur', 5);
@@ -1341,7 +1341,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
               }
             } else {
               if (((s as any).temp_md ?? 0) === 6  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 11) {
-                ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+                if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
                 if (((s as any).temper ?? 0) < 20) {
                   scene.img('images/characters/gadukino/mira/sex/mirameadowbj7.jpg');
                   scene.text('Mira is kneeling between the three friends and sucking their cocks with great pleasure. They are all crowded around her, so you can\'t determine who is in her mouth, who is grabbing her tits, and who is getting a handjob.');
@@ -1360,7 +1360,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).temp_md ?? 0) === 7  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 11) {
                   if (((s as any).MiraVars ?? 0)?.['QW'] < 20) {
-                    ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
+                    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
                   }
                   if (((s as any).temper ?? 0) < 20) {
                     scene.img('images/characters/gadukino/mira/sex/mirameadowbj11.jpg');
@@ -1385,8 +1385,8 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
                   ]);
                 } else {
                   if (((s as any).temp_md ?? 0) === 8  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 30) {
-                    ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
-                    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
+                    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+                    if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
                     scene.img('images/characters/gadukino/mira/sex/mirameadowbj12.jpg');
                     scene.text('Mira is almost invisible with all the bodies around her. You can only see her naked ass and feet swaying in the air. You spend half an hour watching as the men take turns fucking Mira until they are all tired.');
                     qspCall(s, 'arousal', 'voyeur', 30);

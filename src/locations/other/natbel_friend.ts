@@ -10,24 +10,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterBreakup(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length  === 1) {
-    ((s as any).ARGS ?? {})[1] = 14;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 14;
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = 'slut';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = 'slut';
   }
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] > 0) {
-    ((s as any).NatbelQW ?? {})['FriendLover'] = -((s as any).NatbelQW ?? {})?.['FriendLover'];
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = -((s as any).NatbelQW ?? {})?.['FriendLover'];
   }
-  ((s as any).NatbelQW ?? {})['blocked'] = 1;
-  ((s as any).NatbelQW ?? {})['block_day'] = ((s as any).daystart ?? 0) + ((s as any).ARGS ?? 0)[1];
-  ((s as any).NatbelQW ?? {})['block_reason'] = ((s as any).locArgs?.[2] ?? 0);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['blocked'] = 1;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['block_day'] = ((s as any).daystart ?? 0) + ((s as any).ARGS ?? 0)[1];
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['block_reason'] = ((s as any).locArgs?.[2] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterReconcile(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 0) {
-    ((s as any).NatbelQW ?? {})['FriendLover'] = -((s as any).NatbelQW ?? {})?.['FriendLover'];
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = -((s as any).NatbelQW ?? {})?.['FriendLover'];
   }
   qspCall(s, 'array', 'remove_element', 'NatbelQW', 'blocked');
   qspCall(s, 'array', 'remove_element', 'NatbelQW', 'block_day');
@@ -38,13 +38,13 @@ function enterReconcile(s: GameState, scene: SceneBuilder): void {
 
 function enterInitSlutfameCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)?.['pav_slut'] <= 75) {
-    ((s as any).NatbelQW ?? {})['pav_slutfame_limit'] = 175;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['pav_slutfame_limit'] = 175;
   } else {
     if (((s as any).fame ?? 0)?.['pav_slut'] <= 175) {
-      ((s as any).NatbelQW ?? {})['pav_slutfame_limit'] = ((s as any).fame ?? {})?.['pav_slut'] + 100;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['pav_slutfame_limit'] = ((s as any).fame ?? {})?.['pav_slut'] + 100;
     } else {
-      ((s as any).NatbelQW ?? {})['pav_slutfame_limit'] = 275;
-      ((s as any).NatbelQW ?? {})['know_slut'] = 1;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['pav_slutfame_limit'] = 275;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['know_slut'] = 1;
     }
   }
   // TODO-QSP: end
@@ -63,7 +63,7 @@ function enterSlutfameCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterSlutBreakup(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['know_slut'] = 1;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['know_slut'] = 1;
   qspCall(s, 'natbel_friend', 'breakup', 14, 'slut');
   qspCall(s, 'npc_relationship', 'set', 'A16', 50);
   qspCall(s, 'stat', '');
@@ -172,7 +172,7 @@ function enterSlutReconcileSchoolEvent(s: GameState, scene: SceneBuilder): void 
 function enterKissAndBecomeLovers(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 4;
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 3) {
-    ((s as any).NatbelQW ?? {})['FriendLover'] = 3;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 3;
     qspCall(s, 'natbel_friend', 'init_slutfame_check');
   }
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
@@ -202,8 +202,8 @@ function enterKissAndBecomeLovers(s: GameState, scene: SceneBuilder): void {
 
 function enterSetupShoppingSpree(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  ((s as any).NatbelQW ?? {})['shopping'] = 1;
-  ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['shopping'] = 1;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha6.jpg');
   scene.text('You give Natasha a supportive hug and an encouraging smile. Wanting to change the subject, your eyes wander around her room and you notice some magazines on her desk. "Oh, what are these?" you ask as you walk over and take a closer look.');
@@ -267,8 +267,8 @@ function enterSetupShoppingSpree(s: GameState, scene: SceneBuilder): void {
 
 function enterShoppingSpree(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
-  ((s as any).NatbelQW ?? {})['shopping'] = 2;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['shopping'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha8.jpg');
   scene.text('"So, Natasha," you start. "Have you decided on which hairstyle you\'d like?"');
@@ -395,8 +395,8 @@ function enterShoppingSpree(s: GameState, scene: SceneBuilder): void {
 
 function enterLoveJct(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
-  ((s as any).NatbelQW ?? {})['disco_invite'] = 1;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['disco_invite'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha15.jpg');
   scene.text('You smile at Natasha, "Okay, first off, I really like you and enjoyed our shopping trip. Hopefully, you did too?"');
@@ -418,7 +418,7 @@ function enterLoveJct(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss her to confirm she\'s your girlfriend', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
     if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 3) {
-      ((s as any).NatbelQW ?? {})['FriendLover'] = 3;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 3;
       qspCall(s, 'natbel_friend', 'init_slutfame_check');
     }
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
@@ -467,8 +467,8 @@ function enterLoveJct(s: GameState, scene: SceneBuilder): void {
 
 function enterDisco_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
-  ((s as any).NatbelQW ?? {})['disco_invite'] = 2;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['disco_invite'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha18.jpg');
   scene.text('After some general chat, you ask Natasha to go to the disco next Saturday so you can see her in her new dress. "So Natasha, how about I pick you up next Saturday evening, and we go to the disco together?"');
@@ -514,8 +514,8 @@ function enterDisco_1(s: GameState, scene: SceneBuilder): void {
 
 function enterDisco_2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
-  ((s as any).NatbelQW ?? {})['disco_invite'] = 3;
-  ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['disco_invite'] = 3;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha19.jpg');
   scene.text('You see that Natasha is wearing her dress. "Yep, that was definitely the right choice, Natasha. It looks great on you."');
@@ -574,7 +574,7 @@ function enterDisco_2Cont(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 7) {
     scene.actions([
       { label: 'Kiss your girlfriend (take things further)', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['evt_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['evt_day'] = ((s as any).daystart ?? 0);
   }, goto: ['natbel_kissinggames', 'natbelapt_kiss'] },
     ]);
   } else {
@@ -582,7 +582,7 @@ function enterDisco_2Cont(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss her to confirm she\'s your girlfriend', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
     if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 3) {
-      ((s as any).NatbelQW ?? {})['FriendLover'] = 3;
+      if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 3;
       qspCall(s, 'natbel_friend', 'init_slutfame_check');
     }
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
@@ -634,7 +634,7 @@ function enterDisco_2Cont(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShoppingTrip(s: GameState, scene: SceneBuilder): void {
-  ((s as any).NatbelQW ?? {})['FriendLover'] = 5;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 5;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha8.jpg');
@@ -783,7 +783,7 @@ function enterShoppingTrip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShoppingTrip2(s: GameState, scene: SceneBuilder): void {
-  ((s as any).NatbelQW ?? {})['FriendLover'] = 7;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 7;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha9.jpg');
@@ -1195,12 +1195,12 @@ function enterCityDate1Sporthub(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Enter the amateur fight', handler: (st: GameState) => {
-    ((s as any).kickbox ?? {})['amateur_fight_day'] = ((s as any).daystart ?? 0);
+    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['amateur_fight_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    ((s as any).kickbox ?? {})['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - -2 + 1)) + (-2)) / 2);
-    ((s as any).temp_kickboxVars ?? {})['fight_type'] = 1;
+    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - -2 + 1)) + (-2)) / 2);
+    if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['fight_type'] = 1;
     // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
   }, goto: ['havana_kickboxing', 'match'] },
             ]);
@@ -1264,7 +1264,7 @@ function enterCityDate1Sporthub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -1672,8 +1672,8 @@ function enterCityDate1Fashionblog(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Reflect', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['FriendLover'] = 9;
-    ((s as any).npc_had_sex ?? {})['A16'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['FriendLover'] = 9;
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A16'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha48.jpg');
     scene.text('You both slowly come down from your high and sit back on the bed cuddling and kissing each other as you both catch your breath.');
@@ -1745,7 +1745,7 @@ function enterCityDate2Start(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
     qspCall(s, 'arousal', 'massage', (-5), 'lesbian');
     qspCall(s, 'stat', '');
-    ((s as any).NatbelQW ?? {})['horny'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 0;
     (s as any).nat_org = 0;
     qspCall(s, 'natbel_friend', 'city_date2_morningsex');
   } },
@@ -1757,7 +1757,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_used ?? 0) !== 'boobkiss') {
     scene.actions([
       { label: 'Boob kiss', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['horny'] = (((s as any).NatbelQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha52.jpg');
     scene.text('You crawl on top of her and tweak her nipples at first.');
     scene.text('Slowly you begin kissing, licking and sucking them then letting her nipple pop out before recommencing as you keep your eyes focused directly on hers.');
@@ -1770,7 +1770,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_used ?? 0) !== 'scissoring') {
     scene.actions([
       { label: 'Scissoring', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['horny'] = (((s as any).NatbelQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha53.jpg');
     scene.text('As both of your passion builds neither of you can resist moving so that your legs are intertwined.');
     scene.text('You both begin rocking back and forth slowly at first but gradually increasing in speed and intensity bring you both higher and higher.');
@@ -1783,7 +1783,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_last_used ?? 0) !== 'special') {
     scene.actions([
       { label: 'Special play', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['horny'] = (((s as any).NatbelQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = ((s as any).NatbelQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha54.jpg');
     scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
     scene.text('Slowly moving your body up and down you start edging her using your boob, your hard erect nipple gliding over her soaking wet slit.');
@@ -1798,7 +1798,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).NatbelQW ?? 0)?.['horny'] % 10000) >= 100) {
     scene.actions([
       { label: 'Making Natasha cum', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['horny'] = (((s as any).NatbelQW ?? {})?.['horny'] / 10000) * 10000 + 10000;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = (((s as any).NatbelQW ?? {})?.['horny'] / 10000) * 10000 + 10000;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha55.jpg');
     scene.text('After you lie back and spread your legs for Natasha to lick you out. However, she smiles and shakes her head and instead climbs on top of you and slowly kisses your body as she gradually works her way down and begins licking you from above after kissing your pussy.');
     scene.text('Her own is directly above your face and you can see it glistening with arousal with the odd drip forming.');
@@ -1814,7 +1814,7 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['horny'] >= 10000) {
     scene.actions([
       { label: 'Natasha makes you cum', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['horny'] = 0;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['horny'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha56.mp4');
     scene.text('Your excitement has been building a while but you managed to contain it and keep yourself on the edge, however, all of a sudden Natasha starts changing the pace and her tongue hits just the right spot!');
@@ -1963,7 +1963,7 @@ function enterCityDate2Palace(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Discuss an open relationship', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['rel_type'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['rel_type'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha1.jpg');
     // TODO-QSP: dynamic text: A now distraught Natasha replies. "NO <<$pcs_nickname>>! No! I love being your g...
@@ -1995,7 +1995,7 @@ function enterCityDate2Palace(s: GameState, scene: SceneBuilder): void {
     scene.text('Now almost in a whisper she replies "I want you for my girlfriend and only you."');
     scene.actions([
       { label: 'Confirm sole GF relationship', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['rel_type'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['rel_type'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
@@ -2014,7 +2014,7 @@ function enterCityDate2Palace(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Confirm open GF relationship', handler: (st: GameState) => {
-    ((s as any).NatbelQW ?? {})['rel_type'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['rel_type'] = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
@@ -2132,7 +2132,7 @@ function enterIsabellaEnters(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Natasha is concerned', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['Isabella'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['Isabella'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha5.jpg');
     scene.text('As she leaves Natasha also thanks you again for your help and gives you a hug.');
@@ -2155,7 +2155,7 @@ function enterEndOfGschool(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'We need a chat about the future', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['end_of_gschool_chat'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['end_of_gschool_chat'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha18.jpg');
     scene.text('While chatting you notice Natasha suddenly looks quite sertious so you raise a questioning eyebrow and wait for her to start.');
@@ -2240,11 +2240,11 @@ function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Accept (you\'ll give  [+$func(\'money\', \'string_price\', 1000) + \'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['bday_invite'] = 1;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['bday_invite'] = 1;
     qspCall(s, 'money', 'pay', 1000);
     qspCall(s, 'time', 'to_daystart', ((s as any).year ?? 0), 7, 6);
     // TODO-QSP: gs 'time', 'to_date', dateVars['daystart']
-    ((s as any).NatbelQW ?? {})['bday_day'] = ((s as any).dateVars ?? {})?.['daystart'] + ((13 - ((s as any).dateVars ?? {})?.['week']) % 7);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['bday_day'] = ((s as any).dateVars ?? {})?.['daystart'] + ((13 - ((s as any).dateVars ?? {})?.['week']) % 7);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha7.jpg');
     scene.text('"Yes, of course Natasha, I\'d love to come and thanks for the invitation. What time do you want me to arrive?"');
@@ -2268,7 +2268,7 @@ function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Decline (you\'ll give  [+$func(\'money\', \'string_price\', 1000) + \'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW ?? {})['bday_invite'] = (-1);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['bday_invite'] = (-1);
     qspCall(s, 'money', 'pay', 1000);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha8.jpg');
@@ -2334,7 +2334,7 @@ function enterBdayDelParco(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    ((s as any).NatbelQW ?? {})['bday_invite'] = 2;
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['bday_invite'] = 2;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/cafe/caffe_del_parco_night.jpg');
     scene.text('Following the meal the three of you leave Del Parco and make your way back to Natasha\'s apartment.');
@@ -2361,7 +2361,7 @@ function enterBdayDelParco(s: GameState, scene: SceneBuilder): void {
 
 function enterBirthdayMissed(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).NatbelQW ?? {})['bday_invite'] = 3;
+  if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['bday_invite'] = 3;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
   scene.text('As you enter her room you see Natasha looks a bit sad but before you can say anything she asks "Is everything is okay as you missed my birthday meal?"');

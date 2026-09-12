@@ -39,7 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    ((s as any).strip_club ?? {})['guard_sex'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['guard_sex'] = 1;
     scene.text('He soon pulls up to a red light and glances over at you. "Fuck it. I\'m not waiting any longer."');
     scene.text('As soon as the light turns green, he quickly turns down a side street and parks up behind one of the many abandoned factories in the area. He switches off the engine and looks over at you. "Well?"');
     // TODO-QSP: dynamic text: You smile at him as you unbuckle your seatbelt and shift into position. You bite...
@@ -542,7 +542,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
     scene.text('You check your phone. It reads:');
     scene.text('You lazily roll over and spend a few minutes just relaxing in the comfort of Viktor\'s bed.');
   } else {
-    ((s as any).strip_club ?? {})['viktor_present'] = 1;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['viktor_present'] = 1;
     scene.text('You glance over and see him still snoozing away before checking your phone.');
     scene.text('It reads:');
     scene.text('You lazily roll over and spend a few minutes just relaxing in the comfort of Viktor\'s bed.');
@@ -815,14 +815,14 @@ function enterWakeupCleanupAlone(s: GameState, scene: SceneBuilder): void {
     scene.text('You make your way back into the bedroom, where you toss the towel aside and get dressed before giving your hair a quick brush. Feeling clean and refreshed, you grab your belongings and prepare to leave.');
     scene.actions([
       { label: 'Leave Viktor a note', handler: (st: GameState) => {
-    ((s as any).strip_club ?? {})['viktor_present'] = 0;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['viktor_present'] = 0;
     scene.text('You quickly write a note for Viktor, thanking him for a good time last night and for letting you stay over. Placing it on the bedside table, you give yourself a quick check over in the mirror before leaving his apartment.');
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    ((s as any).strip_club ?? {})['viktor_present'] = 0;
+    if (!(s as any).strip_club) (s as any).strip_club = {}; (s as any).strip_club['viktor_present'] = 0;
     scene.text('You give yourself a quick check over in the mirror before leaving his apartment.');
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },

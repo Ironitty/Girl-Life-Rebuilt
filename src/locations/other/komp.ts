@@ -256,7 +256,7 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
       scene.img('images/pc/items/accessories/computer/komp.jpg');
       scene.text('You go to a porn site and browse through videos for a few minutes.');
       if (((s as any).porn_studio ?? 0)?.['pickup_porn'] === 1  &&  ((s as any).porn_studio ?? 0)?.['pickup_porn_seen'] === 0  &&  (Math.floor(Math.random() * 5) + 1) === 1) {
-        ((s as any).porn_studio ?? {})['pickup_porn_seen'] = 1;
+        if (!(s as any).porn_studio) (s as any).porn_studio = {}; (s as any).porn_studio['pickup_porn_seen'] = 1;
         scene.actions([{ label: 'Continue', goto: ['pickup_porn', 'discover_video'] }]);
       }
       if (((s as any).strip_club ?? 0)?.['porn_scout_pickup'] === 2) {
@@ -463,7 +463,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hostel ?? 0)?.['status'] === 8) {
     scene.actions([
       { label: 'Pick someone suitable for Eugenia', handler: (st: GameState) => {
-    ((s as any).hostel ?? {})['status'] = 9;
+    if (!(s as any).hostel) (s as any).hostel = {}; (s as any).hostel['status'] = 9;
     scene.text('You click through dozens of profiles before choosing a guy you think would be a good match for Eugenia and sending him a message, asking if he wants to meet up somewhere.');
     scene.text('Now the waiting game begins! Let\'s hope you picked a nice guy for her…');
     scene.actions([
@@ -481,8 +481,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
         { label: 'Look for a kind man', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).npc_gentle ?? {})[String((s as any).npcID ?? 0)] = 1;
-    ((s as any).npc_rough ?? {})[String((s as any).npcID ?? 0)] = 0;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 1;
+    if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).npcID ?? 0)] = 0;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
@@ -493,8 +493,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
         { label: 'Look for a normal guy', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).npc_gentle ?? {})[String((s as any).npcID ?? 0)] = 0;
-    ((s as any).npc_rough ?? {})[String((s as any).npcID ?? 0)] = 0;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 0;
+    if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).npcID ?? 0)] = 0;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
@@ -505,8 +505,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
         { label: 'Look for a strong man', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).npc_gentle ?? {})[String((s as any).npcID ?? 0)] = 0;
-    ((s as any).npc_rough ?? {})[String((s as any).npcID ?? 0)] = 1;
+    if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 0;
+    if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
@@ -786,7 +786,7 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
                   scene.img('images/shared/newspaper/hotelmaidoffer.jpg');
                   scene.text('You find a listing on a local jobs board: "<b>Maid Wanted!</b> The Pavlovsk Hotel is looking for a hardworking maid. No experience necessary. Flexible hours. Apply in person at the hotel reception."');
                   scene.text('<i>It doesn\'t look like a glamorous job, but at least it\'s honest work. You make a mental note of the hotel\'s location at the Pavlovsk market.</i>');
-                  ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
+                  if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 1;
                 } else {
                   scene.text('Unfortunately, you don\'t find any jobs you would consider doing.');
                 }

@@ -230,16 +230,16 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
 
 function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    ((s as any).ARGS ?? {})[1] = ((s as any).will_cost ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).will_cost ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) <= 0) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    ((s as any).ARGS ?? {})[2] = ((s as any).pcs_willpwr ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).pcs_willpwr ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    ((s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
   }
   if (((s as any).locArgs?.[3] ?? 0) === 1) {
   } else {
@@ -1128,7 +1128,7 @@ function enterSkill(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pcs_') {
-    ((s as any).ARGS ?? {})[1] = 0;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 0;
   }
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[4] ?? 0));
   if ((0 as any) >= 100) {
@@ -1149,7 +1149,7 @@ function enterSkillBase(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((((s as any).locArgs?.[1] ?? 0)).slice((((((s as any).locArgs?.[1] ?? 0)).length)-3)-1)) === '_lvl') {
-    ((s as any).ARGS ?? {})[1] = ((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(((((s as any).locArgs?.[1] ?? 0)).length)-4)));
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(((((s as any).locArgs?.[1] ?? 0)).length)-4)));
   }
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[4] ?? 0));
   if ((0 as any) >= 100) {

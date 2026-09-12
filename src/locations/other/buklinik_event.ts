@@ -955,7 +955,7 @@ function enterEvent2NannyAct4(s: GameState, scene: SceneBuilder): void {
     scene.text('You suddenly wanted him to make you a pussy.');
     scene.actions([
       { label: 'Want Cunnilingus', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['cuni'] = (((s as any).stat ?? {})['cuni'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['cuni'] = ((s as any).stat['cuni'] ?? 0) + (1);
     scene.img('images/locations/city/industrial/mercyclinic/sex/facesitting.mp4');
     scene.text('You told him about it. He immediately agreed. You sat on his face and began to slowly move your hips. Arousal gushed on, and you reached…');
     scene.actions([

@@ -56,14 +56,14 @@ function enterAddEventPages(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 10) + 0) < 4) {
     }
     // TODO-QSP: $randname += ' ' + $func('npcrnamefile', 'rusSur')
-    ((s as any).NewspaperVars ?? {})['gad_missing_name'] = ((s as any).randname ?? 0);
-    ((s as any).NewspaperVars ?? {})['gad_missing_age'] = Math.floor(Math.random() * 61) + 9;
+    if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_name'] = ((s as any).randname ?? 0);
+    if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_age'] = Math.floor(Math.random() * 61) + 9;
     if (((s as any).NewspaperVars ?? 0)?.['gad_missing_counter'] === 0) {
-      ((s as any).NewspaperVars ?? {})['gad_missing_counter'] = Math.floor(Math.random() * 5) + 12;
-      ((s as any).NewspaperVars ?? {})['gad_missing_counter'] = ((s as any).daystart ?? 0) / 35;
+      if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_counter'] = Math.floor(Math.random() * 5) + 12;
+      if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_counter'] = ((s as any).daystart ?? 0) / 35;
     }
-    ((s as any).NewspaperVars ?? {})['gad_missing_counter'] = (((s as any).NewspaperVars ?? {})['gad_missing_counter'] ?? 0) + (1);
-    ((s as any).NewspaperVars ?? {})['gad_missing_day'] = ((s as any).daystart ?? 0) + 15 + (Math.floor(Math.random() * (((s as any).NewspaperVars ?? {})?.['gad_missing_counter'] / 2 - 0 + 1)) + (0));
+    if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_counter'] = ((s as any).NewspaperVars['gad_missing_counter'] ?? 0) + (1);
+    if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_day'] = ((s as any).daystart ?? 0) + 15 + (Math.floor(Math.random() * (((s as any).NewspaperVars ?? {})?.['gad_missing_counter'] / 2 - 0 + 1)) + (0));
     // TODO-QSP: $np_pages[] = "gs 'newspaper_pages', 'gad_missing'"
   }
   // TODO-QSP: end
@@ -367,7 +367,7 @@ function enterAdvert_1(s: GameState, scene: SceneBuilder): void {
   scene.text('<i>You stumble across an ad in the job listings. You find the picture funny and a little bit sexy.</i>');
   scene.text('<i>Maybe it\'s something for you? There\'s an address listed at the market in Pavlovsk. Maybe you should just stop by and ask?</i>');
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] === 0) {
-    ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
+    if (!(s as any).job_hiring_step) (s as any).job_hiring_step = {}; (s as any).job_hiring_step['pav_hotel_maid'] = 1;
   }
   // TODO-QSP: end
   scene.build();

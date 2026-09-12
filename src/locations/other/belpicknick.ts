@@ -317,7 +317,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/pavlovsk/vadim/sex/round.jpg');
     scene.text('You get down on your knees as the four men surround you, slapping their cocks against your cheeks and forehead. Dutifully keeping your hands behind your back, you do your best to serve them with your mouth alone as you suck on them in turns, licking the heads and teasing the balls as good as you can while trying to not make anyone feel left out.');
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     (s as any).belsexpayment = 900;
     qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
     qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
@@ -396,7 +396,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   qspCall(s, 'dinsex', 'sexcum');
   qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'prostitution');
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).times_picknick ?? 0) <= 0) {
     scene.actions([
@@ -464,7 +464,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'vaginal_sex', 10);
     qspCall(s, 'dinsex', 'sexcum');
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough', 'prostitution');
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
   } else {
     (s as any).spafinloc = 3;

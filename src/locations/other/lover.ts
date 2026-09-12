@@ -16,15 +16,15 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), (-15));
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).husID ?? 0)] > 0  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 11) {
-      ((s as any).spouseVars ?? {})['drink'] = Math.floor(Math.random() * 11) + 0;
+      if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['drink'] = Math.floor(Math.random() * 11) + 0;
     }
-    ((s as any).spouseVars ?? {})['sexday'] = 0;
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['sexday'] = 0;
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
-      ((s as any).npc_pervert ?? {})[String((s as any).husID ?? 0)] = 1;
+      if (!(s as any).npc_pervert) (s as any).npc_pervert = {}; (s as any).npc_pervert[String((s as any).husID ?? 0)] = 1;
     }
     if (((s as any).spouseVars ?? 0)?.['gentle_add'] > 10) {
-      ((s as any).npc_gentle ?? {})[String((s as any).husID ?? 0)] = 1;
-      ((s as any).npc_rough ?? {})[String((s as any).husID ?? 0)] = 0;
+      if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).husID ?? 0)] = 1;
+      if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).husID ?? 0)] = 0;
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).husID ?? 0)] <= 10) {
       qspCall(s, 'lover_love', 'divorce');
@@ -36,31 +36,31 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), (-15));
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).wifID ?? 0)] > 0  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 11) {
-      ((s as any).spouseVars ?? {})['drink'] = Math.floor(Math.random() * 11) + 0;
+      if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['drink'] = Math.floor(Math.random() * 11) + 0;
     }
-    ((s as any).spouseVars ?? {})['sexday'] = 0;
+    if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['sexday'] = 0;
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
-      ((s as any).npc_pervert ?? {})[String((s as any).wifID ?? 0)] = 1;
+      if (!(s as any).npc_pervert) (s as any).npc_pervert = {}; (s as any).npc_pervert[String((s as any).wifID ?? 0)] = 1;
     }
     if (((s as any).spouseVars ?? 0)?.['gentle_add'] > 10) {
-      ((s as any).npc_gentle ?? {})[String((s as any).wifID ?? 0)] = 1;
-      ((s as any).npc_rough ?? {})[String((s as any).wifID ?? 0)] = 0;
+      if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).wifID ?? 0)] = 1;
+      if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).wifID ?? 0)] = 0;
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).wifID ?? 0)] <= 10) {
       qspCall(s, 'lover_love', 'divorce');
       scene.text('<center><b>Your wife has filed for a divorce.</b></center>');
     }
   }
-  ((s as any).sd_cm ?? {})['lover_max'] = 0;
+  if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['lover_max'] = 0;
   if (((s as any).sd_cm ?? 0)?.['lover_max'] > 0) {
-    ((s as any).sd_cm ?? {})['li'] = 0;
+    if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['li'] = 0;
     // TODO-QSP: :cikl_lover_meet_loop
-    ((s as any).sd_cm ?? {})['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "lover" });
+    if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "lover" });
     if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] > 0  &&  ((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] < ((s as any).daystart ?? 0)) {
       // TODO-QSP: gs 'npc_relationship', 'modify', $sd_cm['npcid'], -10
       // TODO-QSP: npc_meetday[$sd_cm['npcid']] = 0
     }
-    ((s as any).sd_cm ?? {})['li'] = (((s as any).sd_cm ?? {})['li'] ?? 0) + (1);
+    if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['li'] = ((s as any).sd_cm['li'] ?? 0) + (1);
     if (((s as any).sd_cm ?? 0)?.['li'] < ((s as any).sd_cm ?? 0)?.['lover_max']) {
       // TODO-QSP: jump 'cikl_lover_meet_loop'
     }
@@ -99,7 +99,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'telefon', 'ClearSMSSchedule', ((s as any).locArgs?.[1] ?? 0));
     (s as any).telefon_index = qspUntranslated(s, "arrpos('contact', ARGS[1])", { location: "lover" });
     if (((s as any).telefon_index ?? 0) >= 0) {
-      ((s as any).contactAnon ?? {})[String((s as any).telefon_index ?? 0)] = 1;
+      if (!(s as any).contactAnon) (s as any).contactAnon = {}; (s as any).contactAnon[String((s as any).telefon_index ?? 0)] = 1;
     }
   }
   return;
@@ -117,8 +117,8 @@ function enterAddDating(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
   // TODO-QSP: $npc_rel_type[$npcID] = 'dating'
-  ((s as any).stat ?? {})['dating_current'] = (((s as any).stat ?? {})['dating_current'] ?? 0) + (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['dating_current'] = ((s as any).stat['dating_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -133,8 +133,8 @@ function enterAddBoyfriend(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
   // TODO-QSP: $npc_rel_type[$npcID] = 'boyfriend'
-  ((s as any).stat ?? {})['boyfriends_current'] = (((s as any).stat ?? {})['boyfriends_current'] ?? 0) + (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['boyfriends_current'] = ((s as any).stat['boyfriends_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -149,8 +149,8 @@ function enterAddGirlfriend(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lover_call', 'set_base_schedule', ((s as any).npcID ?? 0));
   // TODO-QSP: $npc_rel_type[$npcID] = 'girlfriend'
-  ((s as any).stat ?? {})['girlfriends_current'] = (((s as any).stat ?? {})['girlfriends_current'] ?? 0) + (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['girlfriends_current'] = ((s as any).stat['girlfriends_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -164,8 +164,8 @@ function enterAddFuckbuddy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
   }
   // TODO-QSP: $npc_rel_type[$npcID] = 'fuckbuddy'
-  ((s as any).stat ?? {})['fuckbuddies_current'] = (((s as any).stat ?? {})['fuckbuddies_current'] ?? 0) + (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['fuckbuddies_current'] = ((s as any).stat['fuckbuddies_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -179,8 +179,8 @@ function enterAddSugarDaddy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover', 'change_<<$npc_rel_type[$npcID]>>', ((s as any).npcID ?? 0));
   }
   // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
-  ((s as any).stat ?? {})['sugardaddies_current'] = (((s as any).stat ?? {})['sugardaddies_current'] ?? 0) + (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['sugardaddies_current'] = ((s as any).stat['sugardaddies_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -195,8 +195,8 @@ function enterAddHusband(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $npc_rel_type[$husID] = 'husband'
   qspCall(s, 'npc_relationship', 'set', ((s as any).husID ?? 0), 100);
-  ((s as any).stat ?? {})['husbands_current'] = (((s as any).stat ?? {})['husbands_current'] ?? 0) + (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['husbands_current'] = ((s as any).stat['husbands_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -211,8 +211,8 @@ function enterAddWife(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $npc_rel_type[$wifID] = 'wife'
   qspCall(s, 'npc_relationship', 'set', ((s as any).wifID ?? 0), 100);
-  ((s as any).stat ?? {})['wifes_current'] = (((s as any).stat ?? {})['wifes_current'] ?? 0) + (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['wifes_current'] = ((s as any).stat['wifes_current'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) + (1);
   return;
   // TODO-QSP: end
   scene.build();
@@ -221,7 +221,7 @@ function enterAddWife(s: GameState, scene: SceneBuilder): void {
 function enterRemoveBoyfriend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'remove', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'lover', 'change_boyfriend');
-  ((s as any).stat ?? {})['ex_boyfriends'] = (((s as any).stat ?? {})['ex_boyfriends'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['ex_boyfriends'] = ((s as any).stat['ex_boyfriends'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -229,7 +229,7 @@ function enterRemoveBoyfriend(s: GameState, scene: SceneBuilder): void {
 function enterRemoveGirlfriend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'remove', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'lover', 'change_girlfriend');
-  ((s as any).stat ?? {})['ex_girlfriends'] = (((s as any).stat ?? {})['ex_girlfriends'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['ex_girlfriends'] = ((s as any).stat['ex_girlfriends'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -237,7 +237,7 @@ function enterRemoveGirlfriend(s: GameState, scene: SceneBuilder): void {
 function enterRemoveFuckbuddy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'remove', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'lover', 'change_fuckbuddy');
-  ((s as any).stat ?? {})['ex_fuckbuddies'] = (((s as any).stat ?? {})['ex_fuckbuddies'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['ex_fuckbuddies'] = ((s as any).stat['ex_fuckbuddies'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -245,7 +245,7 @@ function enterRemoveFuckbuddy(s: GameState, scene: SceneBuilder): void {
 function enterRemoveSugarDaddy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'remove', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'lover', 'change_sugar_daddy');
-  ((s as any).stat ?? {})['ex_sugardaddies'] = (((s as any).stat ?? {})['ex_sugardaddies'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['ex_sugardaddies'] = ((s as any).stat['ex_sugardaddies'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -254,7 +254,7 @@ function enterRemoveHusband(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'remove', ((s as any).husID ?? 0));
   qspCall(s, 'npc_relationship', 'set', ((s as any).husID ?? 0), 0);
   qspCall(s, 'lover', 'change_husband');
-  ((s as any).stat ?? {})['ex_husbands'] = (((s as any).stat ?? {})['ex_husbands'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['ex_husbands'] = ((s as any).stat['ex_husbands'] ?? 0) + (1);
   return;
   scene.build();
 }
@@ -263,50 +263,50 @@ function enterRemoveWife(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'remove', ((s as any).wifID ?? 0));
   qspCall(s, 'npc_relationship', 'set', ((s as any).wifID ?? 0), 0);
   qspCall(s, 'lover', 'change_wife');
-  ((s as any).stat ?? {})['ex_wifes'] = (((s as any).stat ?? {})['ex_wifes'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['ex_wifes'] = ((s as any).stat['ex_wifes'] ?? 0) + (1);
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterChangeBoyfriend(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['boyfriends_current'] = (((s as any).stat ?? {})['boyfriends_current'] ?? 0) - (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['boyfriends_current'] = ((s as any).stat['boyfriends_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
   return;
   scene.build();
 }
 
 function enterChangeGirlfriend(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['girlfriends_current'] = (((s as any).stat ?? {})['girlfriends_current'] ?? 0) - (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['girlfriends_current'] = ((s as any).stat['girlfriends_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
   return;
   scene.build();
 }
 
 function enterChangeFuckbuddy(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['fuckbuddies_current'] = (((s as any).stat ?? {})['fuckbuddies_current'] ?? 0) - (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['fuckbuddies_current'] = ((s as any).stat['fuckbuddies_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
   return;
   scene.build();
 }
 
 function enterChangeSugarDaddy(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['sugardaddies_current'] = (((s as any).stat ?? {})['sugardaddies_current'] ?? 0) - (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['sugardaddies_current'] = ((s as any).stat['sugardaddies_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
   return;
   scene.build();
 }
 
 function enterChangeHusband(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['husbands_current'] = (((s as any).stat ?? {})['husbands_current'] ?? 0) - (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['husbands_current'] = ((s as any).stat['husbands_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
   return;
   scene.build();
 }
 
 function enterChangeWife(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat ?? {})['wifes_current'] = (((s as any).stat ?? {})['wifes_current'] ?? 0) - (1);
-  ((s as any).stat ?? {})['total_lovers_current'] = (((s as any).stat ?? {})['total_lovers_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['wifes_current'] = ((s as any).stat['wifes_current'] ?? 0) - (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_lovers_current'] = ((s as any).stat['total_lovers_current'] ?? 0) - (1);
   return;
   // TODO-QSP: end
   scene.build();

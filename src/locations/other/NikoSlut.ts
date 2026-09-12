@@ -1390,7 +1390,7 @@ function enterBikerAttack(s: GameState, scene: SceneBuilder): void {
     scene.text('You slowly approach Yurik and slowly place your hand on his shoulder. Yurik quickly turns, causing you to flinch and brace yourself, but to your relief he doesn\'t hit you and climbs off the biker. He takes a few seconds to catch his breath and looks at his brother on the floor before quickly kicking the downed biker one last time. "If I ever see you around here again, I will bury you alive." The biker seems to be unconscious, so you turn to see Niko trying to get up.');
     scene.actions([
       { label: 'Help Niko up', handler: (st: GameState) => {
-    ((s as any).npc_grupTipe ?? {})['A189'] = 600;
+    if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A189'] = 600;
     (s as any).NikoEv = 21;
     (s as any).NikoSlut = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1444,7 +1444,7 @@ function enterDinerExterior(s: GameState, scene: SceneBuilder): void {
 
 function enterDinerInterior(s: GameState, scene: SceneBuilder): void {
   if (((s as any).YurikEv ?? 0)?.['Name'] === '') {
-    ((s as any).YurikEv ?? {})['Name'] = 'a burly bearded man';
+    if (!(s as any).YurikEv) (s as any).YurikEv = {}; (s as any).YurikEv['Name'] = 'a burly bearded man';
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/interior1.jpg');
@@ -1649,7 +1649,7 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
 
 function enterTruckers(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).BorisDiner ?? {})['Trucker'] = ((s as any).hour ?? 0);
+  if (!(s as any).BorisDiner) (s as any).BorisDiner = {}; (s as any).BorisDiner['Trucker'] = ((s as any).hour ?? 0);
   qspCall(s, 'stat', '');
   (s as any).VK = 0;
   if (((s as any).VK ?? 0) === 1) {
@@ -1728,7 +1728,7 @@ function enterTruckers(s: GameState, scene: SceneBuilder): void {
 
 function enterBikers(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  ((s as any).BorisDiner ?? {})['Biker'] = ((s as any).hour ?? 0);
+  if (!(s as any).BorisDiner) (s as any).BorisDiner = {}; (s as any).BorisDiner['Biker'] = ((s as any).hour ?? 0);
   qspCall(s, 'stat', '');
   (s as any).VK = 0;
   if (((s as any).VK ?? 0) === 1) {

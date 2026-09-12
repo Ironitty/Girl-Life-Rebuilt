@@ -369,10 +369,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).danilovich_outfits ?? 0)[155] > 0  ||  ((s as any).danilovich_outfits ?? 0)[49] > 0) {
-    ((s as any).danilovich_outfits ?? {})[81] = 0;
+    if (!(s as any).danilovich_outfits) (s as any).danilovich_outfits = {}; (s as any).danilovich_outfits[81] = 0;
   }
   if (((s as any).allure_bikinis ?? 0)[6] > 0  ||  ((s as any).danilovich_swimsuit ?? 0)[19] > 0) {
-    ((s as any).danilovich_swimsuit ?? {})[3] = 0;
+    if (!(s as any).danilovich_swimsuit) (s as any).danilovich_swimsuit = {}; (s as any).danilovich_swimsuit[3] = 0;
   }
   scene.build();
 }

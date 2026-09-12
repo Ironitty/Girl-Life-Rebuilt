@@ -25,7 +25,7 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A172', 1);
   qspCall(s, 'npcStat', 'A173', 2);
   qspCall(s, 'npcStat', 'A174', 3);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   // TODO-QSP: npc_had_sex[$boy[1]] = 1
   // TODO-QSP: npc_had_sex[$boy[2]] = 1
   // TODO-QSP: npc_had_sex[$boy[3]] = 1
@@ -115,7 +115,7 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/sex/dance/dancesexoi4.jpg');
     scene.text('Andrei greased your ass with vaseline…');
     scene.text('- Well, even so, not dry, " you thought with relief.');
-    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) + (1);
+    if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) + (1);
     qspCall(s, 'arousal', 'anal_finger', 5, 'lube', 'gangbang');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -177,19 +177,19 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'large');
     (s as any).huntdanceslut = 1;
     if (((s as any).hunterVars ?? 0)?.['IgorLove'] > 0) {
-      ((s as any).hunterVars ?? {})['IgorLove'] = 0;
-      ((s as any).hunterVars ?? {})['IgorQW'] = (((s as any).hunterVars ?? {})['IgorQW'] ?? 0) - (100);
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorLove'] = 0;
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['IgorQW'] = ((s as any).hunterVars['IgorQW'] ?? 0) - (100);
       if (((s as any).hunterVars ?? 0)?.['IgorLove'] === 3) {
         qspCall(s, 'lover_love', 'divorce');
       }
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 1) {
-      ((s as any).hunterVars ?? {})['SergeiLove'] = 0;
-      ((s as any).hunterVars ?? {})['SergeiQw'] = (((s as any).hunterVars ?? {})['SergeiQw'] ?? 0) - (100);
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['SergeiLove'] = 0;
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['SergeiQw'] = ((s as any).hunterVars['SergeiQw'] ?? 0) - (100);
     }
     if (((s as any).hunterVars ?? 0)?.['AndreiLove'] === 1) {
-      ((s as any).hunterVars ?? {})['AndreiLove'] = 0;
-      ((s as any).hunterVars ?? {})['AndreiQw'] = (((s as any).hunterVars ?? {})['AndreiQw'] ?? 0) - (100);
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['AndreiLove'] = 0;
+      if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['AndreiQw'] = ((s as any).hunterVars['AndreiQw'] ?? 0) - (100);
     }
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel1.jpg');
     scene.text('You don\'t know how long you were asleep for, but your head is pounding when you wake up and your whole body hurts.');
@@ -236,7 +236,7 @@ function enterSexafterstrip3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A172', 1);
   qspCall(s, 'npcStat', 'A173', 2);
   qspCall(s, 'npcStat', 'A174', 3);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   // TODO-QSP: npc_had_sex[$boy[1]] = 1
   // TODO-QSP: npc_had_sex[$boy[2]] = 1
   // TODO-QSP: npc_had_sex[$boy[3]] = 1
@@ -287,11 +287,11 @@ function enterHuntersexnude(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A172', 1);
   qspCall(s, 'boyStat', 'A173', 2);
   qspCall(s, 'boyStat', 'A174', 3);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   // TODO-QSP: npc_had_sex[$boy[1]] = 1
   // TODO-QSP: npc_had_sex[$boy[2]] = 1
   // TODO-QSP: npc_had_sex[$boy[3]] = 1
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   (s as any).dirty_dickA = 0;
   (s as any).dirty_dickB = 0;
   (s as any).dirty_dickC = 0;
@@ -380,10 +380,10 @@ function enterDoublelovesex(s: GameState, scene: SceneBuilder): void {
     (s as any).huntslutsex = ((s as any).huntslutsex ?? 0) + (Math.floor(Math.random() * 4) + 6);
   }
   if (((s as any).doublelovesex ?? 0) === 1) {
-    ((s as any).hunterVars ?? {})['Andreisex'] = (((s as any).hunterVars ?? {})['Andreisex'] ?? 0) + (Math.floor(Math.random() * 19) + 6);
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['Andreisex'] = ((s as any).hunterVars['Andreisex'] ?? 0) + (Math.floor(Math.random() * 19) + 6);
   }
   if (((s as any).doublelovesex ?? 0) === 1) {
-    ((s as any).hunterVars ?? {})['Sergeisex'] = (((s as any).hunterVars ?? {})['Sergeisex'] ?? 0) + (Math.floor(Math.random() * 22) + 9);
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['Sergeisex'] = ((s as any).hunterVars['Sergeisex'] ?? 0) + (Math.floor(Math.random() * 22) + 9);
   }
   (s as any).huntsexa = Math.floor(Math.random() * 5) + 1;
   scene.img('images/locations/gadukino/sex/hunter/doublelovesex.jpg');
@@ -1334,7 +1334,7 @@ function enterDoubleloveSideCum2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    ((s as any).hunterVars ?? {})['forest_sex'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['forest_sex'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
@@ -1408,7 +1408,7 @@ function enterDoubleloveCowCum1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    ((s as any).hunterVars ?? {})['forest_sex'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['forest_sex'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
@@ -1485,7 +1485,7 @@ function enterDoubleloveOralCum1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    ((s as any).hunterVars ?? {})['forest_sex'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['forest_sex'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
@@ -1574,7 +1574,7 @@ function enterDoubleloveOralCum2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    ((s as any).hunterVars ?? {})['forest_sex'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['forest_sex'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
@@ -1609,7 +1609,7 @@ function enterDoubleloveOralCum12(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    ((s as any).hunterVars ?? {})['forest_sex'] = 0;
+    if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['forest_sex'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
@@ -3478,7 +3478,7 @@ function enterHuntersgr1As(s: GameState, scene: SceneBuilder): void {
   scene.text('Sergei quickened his pace and you feel him cum deep inside of you.');
   scene.text('Sergei gets up and walks away.');
   qspCall(s, 'boyStat', 'A174');
-  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+  if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
   // TODO-QSP: end

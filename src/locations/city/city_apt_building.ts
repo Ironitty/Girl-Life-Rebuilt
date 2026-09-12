@@ -222,7 +222,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You strip out of your clothes and lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You strip out of your clothes, put sunblock on your body and lie down on the roof to sunbathe.');
       }
@@ -249,7 +249,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You put sunblock on your body and lie down on the roof to sunbathe.');
       }
@@ -927,7 +927,7 @@ function enterFloor3Event_11(s: GameState, scene: SceneBuilder): void {
 
 function enterFloor3Event_12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  ((s as any).porn_studio ?? {})['know_alli_home'] = 1;
+  if (!(s as any).porn_studio) (s as any).porn_studio = {}; (s as any).porn_studio['know_alli_home'] = 1;
   scene.img('images/locations/city/residential/apartment/stairs/event/floor3_nudedoor.jpg');
   if (((s as any).film ?? 0) > 0) {
     scene.text('As you get to the stairwell landing, the door of one of the apartments suddenly opens and you see a naked Alli standing there, her perky breasts and neatly trimmed bush on full display.');
@@ -1196,7 +1196,7 @@ function enterFloor4Event_13(s: GameState, scene: SceneBuilder): void {
     scene.text('You see a young man, around your sister\'s age, in the hallway. You can\'t help but notice that he\'s pretty good looking. He looks up at you as you get close and gives you a pleasant smile. "You\'ve moved into apartment 69, right?"');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    ((s as any).tryndinQW ?? {})['stairwell_chat'] = (((s as any).tryndinQW ?? {})['stairwell_chat'] ?? 0) + (1);
+    if (!(s as any).tryndinQW) (s as any).tryndinQW = {}; (s as any).tryndinQW['stairwell_chat'] = ((s as any).tryndinQW['stairwell_chat'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big77.jpg');

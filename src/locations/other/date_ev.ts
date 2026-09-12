@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = ((s as any).npcID ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).npcID ?? 0);
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = ((s as any).npc_date_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = ((s as any).npc_date_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   }
   if (((s as any).locArgs?.[2] ?? 0) === 'movie_date') {
     scene.actions([{ label: 'Continue', goto: ['date_movie', 'start'] }]);
@@ -32,13 +32,13 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
 
 function enterInviteCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[1] = ((s as any).npcID ?? 0);
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((s as any).npcID ?? 0);
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    ((s as any).ARGS ?? {})[2] = 'movie_date';
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[2] = 'movie_date';
   }
   if ((!((s as any).locArgs?.[3] ?? 0))) {
-    ((s as any).ARGS ?? {})[3] = ((s as any).hour ?? 0) + 1;
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = ((s as any).hour ?? 0) + 1;
   }
   // TODO-QSP: npc_date_invite[$ARGS[1]] = daystart
   // TODO-QSP: npc_date_meethour[$ARGS[1]] = ARGS[3]
@@ -69,16 +69,16 @@ function enterInviteCode(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'calendar_list', 'init_event_vars');
-  ((s as any).event_vars ?? {})['id'] = 'date_' + ((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).daystart ?? 0);
-  ((s as any).event_vars ?? {})['title'] = 'Date with ' + ((s as any).npc_usedname ?? 0)[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars ?? {})['loc'] = ((s as any).temp_date_loc ?? 0);
-  ((s as any).event_vars ?? {})['desc'] = 'You have a date scheduled with \' + $npc_usedname[$ARGS[1]] + \' at \' + func(\'time\', \'get_time_string\', $ARGS[3], 0) + \'.';
-  ((s as any).event_vars ?? {})['daystart'] = ((s as any).npc_date_invite ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  ((s as any).event_vars ?? {})['flex_type'] = 1;
-  ((s as any).event_vars ?? {})['window_start_ts'] = ((s as any).npc_date_meethour ?? 0)[((s as any).locArgs?.[1] ?? 0)] * 4;
-  ((s as any).event_vars ?? {})['window_end_ts'] = ((s as any).event_vars ?? {})?.['window_start_ts'] + 4;
-  ((s as any).event_vars ?? {})['duration_ts'] = 8;
-  ((s as any).event_vars ?? {})['color'] = 13;
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'date_' + ((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).daystart ?? 0);
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = 'Date with ' + ((s as any).npc_usedname ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['loc'] = ((s as any).temp_date_loc ?? 0);
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['desc'] = 'You have a date scheduled with \' + $npc_usedname[$ARGS[1]] + \' at \' + func(\'time\', \'get_time_string\', $ARGS[3], 0) + \'.';
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).npc_date_invite ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['flex_type'] = 1;
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_start_ts'] = ((s as any).npc_date_meethour ?? 0)[((s as any).locArgs?.[1] ?? 0)] * 4;
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_end_ts'] = ((s as any).event_vars ?? {})?.['window_start_ts'] + 4;
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['duration_ts'] = 8;
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['color'] = 13;
   // TODO-QSP: gs 'calendar_events', 'new_event', $event_vars['id']
   // TODO-QSP: end
   scene.build();
@@ -130,17 +130,17 @@ function enterDateInviteMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Grab a bite?', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['date_type'] = 'casual_meal';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['date_type'] = 'casual_meal';
     scene.text('"How about a bite to eat?"');
     qspCall(s, 'date_ev', 'date_time_picker');
   } },
     { label: 'See a movie?', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['date_type'] = 'movie_date';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['date_type'] = 'movie_date';
     scene.text('"How about a movie?"');
     qspCall(s, 'date_ev', 'date_time_picker');
   } },
     { label: 'Hang at his place?', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['date_type'] = 'netflix_chill';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['date_type'] = 'netflix_chill';
     scene.text('"Can I just come over to hang out and chill?"');
     qspCall(s, 'date_ev', 'date_time_picker');
   } },
@@ -191,7 +191,7 @@ function enterDateTimePicker(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Pick a time', handler: (st: GameState) => {
     // TODO-QSP: :date_time_loop
-    ((s as any).temp ?? {})['meet_time'] = 0;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['meet_time'] = 0;
     if (((s as any).temp ?? 0)?.['meet_time'] < ((s as any).hour ?? 0)) {
       // TODO-QSP: jump 'date_time_loop'
     } else {
@@ -229,7 +229,7 @@ function enterDateDecline(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcMealInvite(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['date_type'] = 'casual_meal';
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['date_type'] = 'casual_meal';
   scene.text('"Want to grab a bite to eat? In like, an hour?"');
   // TODO-QSP: end
   scene.actions([
@@ -253,7 +253,7 @@ function enterNpcMealInvite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcCinemaInvite(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['date_type'] = 'movie_date';
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['date_type'] = 'movie_date';
   scene.text('"Want to see a movie? Maybe in like, an hour?"');
   // TODO-QSP: end
   scene.actions([
@@ -280,7 +280,7 @@ function enterNpcCinemaInvite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcChillInvite(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp ?? {})['date_type'] = 'netflix_chill';
+  if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['date_type'] = 'netflix_chill';
   scene.text('"Want to come over to my place and chill? Maybe in like, an hour?"');
   // TODO-QSP: end
   scene.actions([
@@ -405,11 +405,11 @@ function enterExitIntoLoc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['locat'] === 'pc_home') {
       if (((s as any).date_ev_exit ?? 0)?.['loc'] === 'bedroom') {
         qspCall(s, 'date_ev', 'ending');
-        ((s as any).pcs_romance ?? {})['lover_here'] = 1;
+        if (!(s as any).pcs_romance) (s as any).pcs_romance = {}; (s as any).pcs_romance['lover_here'] = 1;
         scene.actions([{ label: 'Continue', goto: ['bedr', ''] }]);
       } else {
         if (((s as any).date_ev_exit ?? 0)?.['loc'] === 'hallway') {
-          ((s as any).pcs_romance ?? {})['lover_here'] = 1;
+          if (!(s as any).pcs_romance) (s as any).pcs_romance = {}; (s as any).pcs_romance['lover_here'] = 1;
           qspCall(s, 'date_ev', 'ending');
           scene.actions([{ label: 'Continue', goto: ['korr', ''] }]);
         }
@@ -443,20 +443,20 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
 
 function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
-  ((s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+  if (!(s as any).npc_no_booty_call) (s as any).npc_no_booty_call = {}; (s as any).npc_no_booty_call[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_sugar_daddy', ((s as any).npcID ?? 0));
-  ((s as any).npc_sugar_daddy_price ?? {})[String((s as any).npcID ?? 0)] = ((s as any).date_ev ?? {})?.['sugar_daddy_offer'] * 100;
+  if (!(s as any).npc_sugar_daddy_price) (s as any).npc_sugar_daddy_price = {}; (s as any).npc_sugar_daddy_price[String((s as any).npcID ?? 0)] = ((s as any).date_ev ?? {})?.['sugar_daddy_offer'] * 100;
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'sugar_daddy') {
     // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
-    ((s as any).date_ev ?? {})['sugar_daddy_count'] = (((s as any).date_ev ?? {})['sugar_daddy_count'] ?? 0) + (1);
+    if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['sugar_daddy_count'] = ((s as any).date_ev['sugar_daddy_count'] ?? 0) + (1);
   }
-  ((s as any).date_ev ?? {})['sugar_daddy_paid'] = 1;
-  ((s as any).date_ev ?? {})['prostitution_paid'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['sugar_daddy_paid'] = 1;
+  if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['prostitution_paid'] = 1;
   // TODO-QSP: end
   scene.build();
 }
@@ -478,29 +478,29 @@ function enterEnding(s: GameState, scene: SceneBuilder): void {
 
 function enterEndCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === ''  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'hookup') {
-    ((s as any).npc_rel_type ?? {})[String((s as any).npcID ?? 0)] = 'casual';
+    if (!(s as any).npc_rel_type) (s as any).npc_rel_type = {}; (s as any).npc_rel_type[String((s as any).npcID ?? 0)] = 'casual';
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).date_ev ?? 0)?.['prostitution_flag'] === 'prostitution'  ||  ((s as any).date_ev ?? 0)?.['prostitution'] === 1) {
-    ((s as any).npc_prostitution_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_prostitution_count ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_prostitution_count) (s as any).npc_prostitution_count = {}; (s as any).npc_prostitution_count[String((s as any).npcID ?? 0)] = ((s as any).npc_prostitution_count[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }
   if ((Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1) < 0) {
     qspCall(s, 'lover', 'add_dating', ((s as any).npcID ?? 0));
   }
   if (((s as any).date_ev ?? 0)?.['hotel_days'] > 0) {
     if (((s as any).region ?? 0) === 'pav') {
-      ((s as any).HotelRoom ?? {})['pav_hotel'] = 2;
+      if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav_hotel'] = 2;
     } else {
       if (((s as any).region ?? 0) === 'city') {
-        ((s as any).HotelRoom ?? {})['city_hotel'] = 3;
+        if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['city_hotel'] = 3;
       }
     }
-    ((s as any).hotelRoomDays ?? {})['' + String((s as any).$region || '') + '_hotel'] = ((s as any).daystart ?? 0) + ((s as any).date_ev ?? {})?.['hotel_days'];
-    ((s as any).HotelRoom ?? {})['' + String((s as any).$region || '') + '_room_service_free'] = 1;
+    if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['' + String((s as any).$region || '') + '_hotel'] = ((s as any).daystart ?? 0) + ((s as any).date_ev ?? {})?.['hotel_days'];
+    if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['' + String((s as any).$region || '') + '_room_service_free'] = 1;
   }
   if (((s as any).date_ev ?? 0)?.['locat'] === 'pc_home'  &&  ((s as any).home ?? 0)?.['current'] === 'parents_home') {
-    ((s as any).sisterQW ?? {})['sex_room'] = 1;
-    ((s as any).stat ?? {})['parents_home_sex'] = (((s as any).stat ?? {})['parents_home_sex'] ?? 0) + (1);
+    if (!(s as any).sisterQW) (s as any).sisterQW = {}; (s as any).sisterQW['sex_room'] = 1;
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['parents_home_sex'] = ((s as any).stat['parents_home_sex'] ?? 0) + (1);
   }
   if (((s as any).date_ev ?? 0)?.['break_up'] > 0) {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'fuckbuddy') {
@@ -514,8 +514,8 @@ function enterEndCode(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).date_ev ?? 0)?.['not_a_date'] === 0) {
-    ((s as any).npc_last_date ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).npc_date_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_date_count ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+    if (!(s as any).npc_last_date) (s as any).npc_last_date = {}; (s as any).npc_last_date[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+    if (!(s as any).npc_date_count) (s as any).npc_date_count = {}; (s as any).npc_date_count[String((s as any).npcID ?? 0)] = ((s as any).npc_date_count[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }
   // TODO-QSP: end
   scene.build();

@@ -103,7 +103,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).prostitute ?? 0)?.['active'] === 0) {
-    ((s as any).prostitute ?? {})['active'] = 1;
+    if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['active'] = 1;
   }
   qspCall(s, 'street_walker', 'start');
   scene.text('You check your reflection in a store window, doing a last minute check of your outfit and makeup before making your way down the sidewalk looking for a customer.');
@@ -679,7 +679,7 @@ function enterPoliceblowjob(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Finish him', handler: (st: GameState) => {
-    ((s as any).policeQW ?? {})['prostitution_bribe'] = 2;
+    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['prostitution_bribe'] = 2;
     qspCall(s, 'cum_call', 'mouth', 'a police officer');
     scene.img('images/locations/city/shared/streetwalker/sex/bj4.jpg');
     scene.text('You soon feel the hot splash of cum hitting your throat as spurt after spurt fills your mouth. He moans loudly as he fills your mouth with sperm, and you keep sucking until he stops. You sit up and show him your cum coated tongue before swallowing it. He gives you a brief smile, then quickly puts his dick away and rebuttons his pants.');
@@ -700,7 +700,7 @@ function enterPoliceblowjob(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    ((s as any).policeQW ?? {})['prostitution_bribe'] = 2;
+    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['prostitution_bribe'] = 2;
     scene.img('images/locations/shared/police/arrested.jpg');
     scene.text('"Are you trying to solicit an officer of the law?!" he angrily responds.');
     scene.text('"N-No officer! I was just thinking the two of us could have a good time…" you try once again.');
@@ -814,7 +814,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).temp_rand ?? 0) <= 7) {
-      ((s as any).policeQW ?? {})['prostitution_bribe'] = 1;
+      if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['prostitution_bribe'] = 1;
       qspCall(s, 'pain', '', 6, 'armL', 'break');
       qspCall(s, 'stat', '');
       scene.img('images/locations/shared/police/arrested.jpg');
@@ -827,7 +827,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).temp_rand ?? 0) <= 9) {
-        ((s as any).policeQW ?? {})['prostitution_bribe'] = 1;
+        if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['prostitution_bribe'] = 1;
         scene.img('images/locations/shared/police/arrested.jpg');
         scene.text('The cop sighs heavily before taking the money and counting it, occasionally glancing your way as he does. "It\'s one thing to be a whore, but to be dumb too?" he laughs cruelly as he pockets the money. You stare at him, hurt and confused before you realize that he\'s still planning to arrest you. Your first instinct is to run, but if he\'s being serious then it could mean you getting hurt.');
         scene.text('"But… But I gave you the money!" you whine in defeat, but it only makes the sadistic grin on his face widen.');
@@ -846,7 +846,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree', goto: ['street_walker', 'policesub1'] },
           { label: 'Refuse', handler: (st: GameState) => {
-    ((s as any).policeQW ?? {})['prostitution_bribe'] = 1;
+    if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['prostitution_bribe'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/police/arrested.jpg');
     scene.text('"No… No, I can\'t do that…" you tell him as you pull your hand back and pocket your money again. The officer looks disappointed, but doesn\'t seem to dwell on it. He probably has another girl like you he\'s forced into fucking him…');

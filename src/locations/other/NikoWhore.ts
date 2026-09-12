@@ -346,7 +346,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
 function enterExposed(s: GameState, scene: SceneBuilder): void {
   (s as any).school_lunch = 0;
   (s as any).NikoEv = 10;
-  ((s as any).npc_grupTipe ?? {})['A189'] = 600;
+  if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A189'] = 600;
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (10);
   qspCall(s, 'arousal', 'flash', 5, 'sub', 'humiliation', 'exhibitionism');
   qspCall(s, 'stat', '');
@@ -613,18 +613,18 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNoEscape(s: GameState, scene: SceneBuilder): void {
-  ((s as any).VKGroup ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "NikoWhore" });
-  ((s as any).VKGroup ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "NikoWhore" });
-  ((s as any).VKGroup ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "NikoWhore" });
-  ((s as any).VKGroup ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "NikoWhore" });
-  ((s as any).grupvalue ?? {})[1] = 0;
-  ((s as any).grupvalue ?? {})[2] = 0;
-  ((s as any).grupvalue ?? {})[3] = 0;
-  ((s as any).grupvalue ?? {})[4] = 0;
-  ((s as any).old_grupvalue ?? {})[1] = 0;
-  ((s as any).old_grupvalue ?? {})[2] = 0;
-  ((s as any).old_grupvalue ?? {})[3] = 0;
-  ((s as any).old_grupvalue ?? {})[4] = 0;
+  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[1] = qspUntranslated(s, "grupvalue[1]", { location: "NikoWhore" });
+  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[2] = qspUntranslated(s, "grupvalue[2]", { location: "NikoWhore" });
+  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[3] = qspUntranslated(s, "grupvalue[3]", { location: "NikoWhore" });
+  if (!(s as any).VKGroup) (s as any).VKGroup = {}; (s as any).VKGroup[4] = qspUntranslated(s, "grupvalue[4]", { location: "NikoWhore" });
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = 0;
+  if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = 0;
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[1] = 0;
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[2] = 0;
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[3] = 0;
+  if (!(s as any).old_grupvalue) (s as any).old_grupvalue = {}; (s as any).old_grupvalue[4] = 0;
   if (((s as any).grupTipe ?? 0) === 1) {
     (s as any).VKGroup = 1;
     (s as any).grupTipe = 5;
@@ -957,7 +957,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'pav', 'sex', 100);
   qspCall(s, 'fame', 'pav', 'sex', 100);
   qspCall(s, 'themes', 'indoors');
-  ((s as any).npc_grupTipe ?? {})['A189'] = 4;
+  if (!(s as any).npc_grupTipe) (s as any).npc_grupTipe = {}; (s as any).npc_grupTipe['A189'] = 4;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/hallway/wos1.jpg');

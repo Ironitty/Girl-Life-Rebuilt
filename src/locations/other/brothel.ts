@@ -219,8 +219,8 @@ function enterAbducted3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'abdrapeloop'
   }
   qspCall(s, 'arousal', 'end');
-  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
-  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/brothel/tiedtobedfuck.mp4');
   scene.text('The champagne bottle is still inside your anus like a giant buttplug, but the flow has stopped.');
@@ -242,7 +242,7 @@ function enterAbducted4(s: GameState, scene: SceneBuilder): void {
   (s as any).analPlugIn = 1;
   (s as any).pcs_hairbsh = (-1);
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
-    ((s as any).sleepVars ?? {})['notathomesleep'] = (((s as any).sleepVars ?? {})['notathomesleep'] ?? 0) + (1);
+    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['notathomesleep'] = ((s as any).sleepVars['notathomesleep'] ?? 0) + (1);
   }
   qspCall(s, 'sleep_simple', 'sleep_until', 10, 0);
   qspCall(s, 'pain', '', 3, 'armL', 'bind');
@@ -373,7 +373,7 @@ function enterAbductedHate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPassword(s: GameState, scene: SceneBuilder): void {
-  ((s as any).brothel ?? {})['step'] = 0;
+  if (!(s as any).brothel) (s as any).brothel = {}; (s as any).brothel['step'] = 0;
   scene.text('<h3>Hotel Bar</h3>');
   scene.text('<h5>Ordering a drink: The Blue Blooded Russian</h5>');
   scene.img('images/locations/shared/brothel/whisper.jpg');
@@ -453,7 +453,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The Receptionist pushes a hidden button, probably signaling the errand boy, because after a minute he arrives with the elevator.');
     scene.text(`"Go ${((s as any).pcs_firstname ?? 0)}, you are free to leave."`);
-    ((s as any).brothel_vars ?? {})['receptionist_annoy'] = 0;
+    if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['receptionist_annoy'] = 0;
     if (((s as any).job_last_work_day ?? 0)?.['highway_brothel_prostitute'] < ((s as any).daystart ?? 0)) {
       (s as any).brothelCredit = ((s as any).brothelCredit ?? 0) - (1);
     }

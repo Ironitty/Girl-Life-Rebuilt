@@ -64,7 +64,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_rand ?? 0) === 2) {
   }
-  ((s as any).temp_rand ?? {})[1] = Math.floor(Math.random() * 3) + 0;
+  if (!(s as any).temp_rand) (s as any).temp_rand = {}; (s as any).temp_rand[1] = Math.floor(Math.random() * 3) + 0;
   if (((s as any).temp_rand ?? 0)[1] === 0) {
   }
   if (((s as any).temp_rand ?? 0)[1] === 1) {
@@ -448,8 +448,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck Dan\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A10');
     (s as any).sexpartkno = 1;
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
-    ((s as any).npc_had_sex ?? {})['A10'] = 1;
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
     (s as any).dick = 17;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
@@ -468,8 +468,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck Vasily\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A11');
     (s as any).sexpartkno = 1;
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
-    ((s as any).npc_had_sex ?? {})['A11'] = 1;
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A11'] = 1;
     (s as any).dick = 15;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
@@ -488,8 +488,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck Vitek\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A9');
     (s as any).sexpartkno = 1;
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
-    ((s as any).npc_had_sex ?? {})['A9'] = 1;
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A9'] = 1;
     (s as any).dick = 18;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
@@ -506,7 +506,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'zsoft_gopskverGorSlut', 'analsex');
   } },
       { label: 'Serve all of them at once', handler: (st: GameState) => {
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (3);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (3);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).pcs_hairbsh = 0;
@@ -618,10 +618,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         { label: 'Let them do what they want', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A10');
     qspCall(s, 'stat', '');
-    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
-    ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
-    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
-    ((s as any).npc_had_sex ?? {})['A10'] = 1;
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex['A10'] = 1;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).temp_rand = Math.floor(Math.random() * 2) + 0;
@@ -759,7 +759,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (2);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (2);
     qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), '', '', 20000, 20);
     qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), '', '', 20000, 20);
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), '', '', 20000, 20);
@@ -798,7 +798,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (30);
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
     // TODO-QSP: gs'stat'
     scene.img('images/locations/pavlovsk/park/gop/sex/ev3_1.mp4');
     scene.text('Afraid to anger the man, you just nod meekly. Satisfied that you probably won\'t scream or run off, he slowly removes his hand and says: "Very good. Now come with me, I\'ll have some of what you were showing."');
@@ -1265,7 +1265,7 @@ function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Let him fuck your pussy', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
     (s as any).dick = 17;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1302,7 +1302,7 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Let him fuck your ass', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
+    if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
     (s as any).dick = 17;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;

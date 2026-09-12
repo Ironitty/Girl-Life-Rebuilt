@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bras', 'reset_BraVars');
   qspCall(s, 'panties', 'reset_PanVars');
-  ((s as any).underwear ?? {})['pair'] = 0;
+  if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 0;
   if (((s as any).loc ?? 0)('$attributes_' + ((s as any).locArgs?.[0] ?? 0))) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>', ARGS[1]
   }

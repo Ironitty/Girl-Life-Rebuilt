@@ -311,11 +311,11 @@ function enter3(s: GameState, scene: SceneBuilder): void {
         { label: 'Try to talk your way out', handler: (st: GameState) => {
     scene.text('You try to talk your way out, but they just laugh at you, pitying you for even trying. Then one of the guys forces you onto your knees as they prepare to rape you.');
     if (((s as any).mc_inventory ?? 0)?.['tech_hidden_cam'] === 1) {
-      ((s as any).mc_inventory ?? {})['tech_hidden_cam'] = 0;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_hidden_cam'] = 0;
       scene.text('One of the other guys takes your camera and smashes it against a rock');
     } else {
       scene.text('One of the other guys takes your camera and smashes it against a rock');
-      ((s as any).mc_inventory ?? {})['tech_camera'] = 0;
+      if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_camera'] = 0;
     }
     scene.actions([
       { label: 'Further', goto: ['paysex', 'start'] },
@@ -360,15 +360,15 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).peshimraperand ?? 0) < 11) {
-      ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+      if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
       (s as any).guy = ((s as any).guy ?? 0) + (3);
       scene.text('You try to run away, but you\'re not fast enough and one of them eventually catches up with you. He drags you back into the bushes and forces you onto your knees, preparing to rape you.');
       if (((s as any).mc_inventory ?? 0)?.['tech_hidden_cam'] === 1) {
-        ((s as any).mc_inventory ?? {})['tech_hidden_cam'] = 0;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_hidden_cam'] = 0;
         scene.text('The other guys soon catch up, and one of them takes your camera and smashes it against a rock');
       } else {
         scene.text('The other guys soon catch up, and one of them takes your camera and smashes it against a rock');
-        ((s as any).mc_inventory ?? {})['tech_camera'] = 0;
+        if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tech_camera'] = 0;
       }
       scene.actions([
         { label: 'Further', goto: ['paysex', 'start'] },
@@ -1021,7 +1021,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '', 0, '', Math.floor(Math.random() * 28) + 18, 'like');
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).boy ?? 0)]}`);
-    ((s as any).temp ?? {})['catcall'] = Math.floor(Math.random() * 3) + 1;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['catcall'] = Math.floor(Math.random() * 3) + 1;
     scene.text('Turning your head instinctively at the sound, you see a guy lowering his fingers from his mouth, a wide grin on his face.');
     if (((s as any).temp ?? 0)?.['catcall'] === 1) {
       scene.text('"Hey sexy! Why don\'t you come run back to my place so I can fuck your brains out!"');
@@ -1043,7 +1043,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ignore him (annoyed)', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['catcall'] = 4;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['catcall'] = 4;
     qspCall(s, 'park_walkevents', 'running_image');
     scene.text('You grit your teeth and try to ignore him, continuing to run past while he shouts lewd remarks about your body and what he\'d like to do to it. Even once he\'s far behind you, you can\'t stop thinking about it, seething internally and grinding your teeth.');
     scene.text('Fuck! Who does he think he is? Are you just a piece of meat to him? Fuck that guy and fuck everybody like him!');
@@ -1058,7 +1058,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Serious about you," he snickers before making a kissy face at you. "I'm ${((s as any).npc_firstname ?? 0)?.[String((s as any).npclastgenerated ?? 0)]}. What's your name?"`);
     scene.actions([
       { label: 'You\'re a piece of shit', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['catcall'] = 4;
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['catcall'] = 4;
     scene.text('"You\'re a real piece of shit, you know that?" you huff. "You think that girls like this kind of thing? Ugly fucks like you calling out lewd shit about their bodies?"');
     scene.text('"I don\'t think they like it, I know they <i>love</i> it. Come on, I\'m just being nice, giving you some nice compliments. No need to be such a bitch about it."');
     scene.text('"Ugh, fuck you!" You spit at his shoes and break back into a run, trying to get as far away as possible.');
@@ -1077,7 +1077,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to his place', handler: (st: GameState) => {
     qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).hookup ?? {})['pickup'] = 'park_run';
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['pickup'] = 'park_run';
   }, goto: ['sex_ev_start', 'hookup_npc_home_start'] },
       ]);
     } else {
@@ -1152,7 +1152,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 25) + 0) < 7  &&  ((s as any).cheatVars ?? 0)?.['random_rapists'] !== 1) {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).temp ?? {})['rape_type'] = 'gang';
+    if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['rape_type'] = 'gang';
     scene.img('images/shared/misc/jumped.jpg');
     scene.text('You\'re just thinking to yourself how exciting it is to bare your breasts even when no one is around when suddenly arms grip you from behind and a dirty hand clamps over your mouth. Your eyes go wide with fear as several more shapes emerge from the darkness, moving towards you.');
     scene.text('"Well well well, what do we have here?" a gravely voice says from behind you as another hand begins to paw your exposed breasts. "A little slut looking for some fun?"');
@@ -1177,7 +1177,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).daybegskver = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 25) + 0) < 7  &&  ((s as any).cheatVars ?? 0)?.['random_rapists'] !== 1) {
-      ((s as any).temp ?? {})['rape_type'] = 'gang';
+      if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['rape_type'] = 'gang';
       scene.img('images/pc/activities/exercises/running/park_jogn1.jpg');
       scene.text('About halfway through your run, you hear a branch snap to your left. You turn to see a shadow crouching in the bushes, but before you can react, arms grip you from behind and a dirty hand clamps over your mouth. Your eyes go wide with fear as several more shapes emerge from the darkness, moving towards you.');
       scene.text('"Well well well, what do we have here?" a gravely voice says from behind you. "A tasty little treat for us to enjoy?"');
