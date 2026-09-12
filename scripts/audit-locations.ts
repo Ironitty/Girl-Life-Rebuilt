@@ -315,6 +315,8 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
 
     const actMatch = line.match(/act\s+'((?:[^']|'')*)'(\s*\+\s*.*)?:/);
     if (!actMatch) continue;
+    const indent = line.length - line.trimStart().length;
+    if (indent > 0) continue;
 
     const label = unescapeQsp(actMatch[1]);
     const isDynamic = !!actMatch[2];
