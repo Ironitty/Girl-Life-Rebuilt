@@ -1167,21 +1167,6 @@ function enterHomeWorkAskKatjaNoArtem(s: GameState, scene: SceneBuilder): void {
     scene.text(`She confirms it immediately when you arrive. "Hi ${((s as any).pcs_nickname ?? 0)}! Why don't we do our homework with Artem, and maybe have some fun with him afterwards?"`);
   }
   // TODO-QSP: end
-  // TODO-QSP: If $ARGS[0] = 'home_work_ask_player_katja':
-  (s as any).minut = ((s as any).minut ?? 0) + 1;
-  qspCall(s, 'stat', '');
-  scene.img('images/characters/shared/headshots_main/big14.jpg');
-  scene.text('"Why don\'t we ask Artem to study with us today? I will be willoing to share him with you afterwards!" you ask Katja.');
-  if (((s as any).katjaQW ?? 0)?.['horny'] < 30) {
-    scene.text('"We can go do out homework with him. But I\'m not up for any funny business with him today" Katja answers.');
-  } else {
-    if (((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 31) + 30)) {
-      scene.text('"Sure, but I don\'t think I\'m up for anything more than just doing homework" Katja answers.');
-    } else {
-      scene.text('"Sure, we had fun last time, so let\'s do our homework together and see what else happens" Katja answers.');
-    }
-  }
-  // TODO-QSP: end
   scene.actions([
     { label: 'agree', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
@@ -1240,6 +1225,26 @@ function enterHomeWorkAskKatjaNoArtem(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
+  ]);
+  scene.build();
+}
+
+function enterHomeWorkAskPlayerKatja(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big14.jpg');
+  scene.text('"Why don\'t we ask Artem to study with us today? I will be willoing to share him with you afterwards!" you ask Katja.');
+  if (((s as any).katjaQW ?? 0)?.['horny'] < 30) {
+    scene.text('"We can go do out homework with him. But I\'m not up for any funny business with him today" Katja answers.');
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 31) + 30)) {
+      scene.text('"Sure, but I don\'t think I\'m up for anything more than just doing homework" Katja answers.');
+    } else {
+      scene.text('"Sure, we had fun last time, so let\'s do our homework together and see what else happens" Katja answers.');
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
     { label: 'Go ask Artem', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'live');
@@ -1926,6 +1931,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'home_work_ask_katja_no_artem':
       enterHomeWorkAskKatjaNoArtem(s, scene);
+      break;
+    case 'home_work_ask_player_katja':
+      enterHomeWorkAskPlayerKatja(s, scene);
       break;
     case 'home_work':
       enterHomeWork(s, scene);

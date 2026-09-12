@@ -5,13 +5,17 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).args ?? 0)[0] === 'pav_lake_nude_sex') {
-    scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_0.jpg');
-    scene.text('You tear your eyes from their beautiful legs and look around. You see that no one else is on the beach except you and the couple that\'s getting hot and heavy, but they\'re too into each other to pay attention to you. The girl slowly wraps her plump lips around the head of the man\'s cock as she pushes her ass into the air in a seductive pose.');
-    qspCall(s, 'arousal', 'voyeur_sex', 1);
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Continue watching', handler: (st: GameState) => {
+  scene.build();
+}
+
+function enterPavLakeNudeSex(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_0.jpg');
+  scene.text('You tear your eyes from their beautiful legs and look around. You see that no one else is on the beach except you and the couple that\'s getting hot and heavy, but they\'re too into each other to pay attention to you. The girl slowly wraps her plump lips around the head of the man\'s cock as she pushes her ass into the air in a seductive pose.');
+  qspCall(s, 'arousal', 'voyeur_sex', 1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_1.jpg');
     scene.text('The girl wraps her hand around the shaft of his engorged cock and slowly begins stroking it as she sucks and licks the head, never breaking eye contact. The man\'s abs visibly tighten as he moans in pleasure. You find yourself enthralled and unable to look away as a heat begins to build between your legs.');
     qspCall(s, 'arousal', 'voyeur_sex', 2);
@@ -87,15 +91,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'pav_lake_nude_sex2') {
-    scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_10.jpg');
-    scene.text('Another wave crashes onto the beach and flows over them, but they pay it no mind, too enraptured by each other\'s bodies to care.');
-    qspCall(s, 'arousal', 'voyeur_sex', 1);
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Further', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterPavLakeNudeSex2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_10.jpg');
+  scene.text('Another wave crashes onto the beach and flows over them, but they pay it no mind, too enraptured by each other\'s bodies to care.');
+  qspCall(s, 'arousal', 'voyeur_sex', 1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_11.jpg');
     scene.text('The man drives his cock ever deeper into her for a few more minutes before she asks him to switch positions.');
     scene.text('She stands up and walks a bit farther from the water, her legs shaking along the way. After the short respite, she drops to her knees with her back arched and ass in the air.');
@@ -162,8 +169,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  }
+  ]);
   scene.build();
 }
 
@@ -245,6 +251,12 @@ function enterPavLakeNudeForestPiss(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'pav_lake_nude_sex':
+      enterPavLakeNudeSex(s, scene);
+      break;
+    case 'pav_lake_nude_sex2':
+      enterPavLakeNudeSex2(s, scene);
+      break;
     case 'pav_lake_nude_nudist':
       enterPavLakeNudeNudist(s, scene);
       break;
@@ -261,6 +273,5 @@ export const pav_lake_nude_events: LocationDef = {
   name: 'pav_lake_nude_events',
   title: 'You tear your eyes from their beautiful legs and look around',
   region: 'pavlovsk',
-  description: ['You tear your eyes from their beautiful legs and look around. You see that no one else is on the beach except you and the couple that\'s getting hot and heavy, but they\'re too into each other to pay attention to you. The girl slowly wraps her plump lips around the head of the man\'s cock as she pushes her ass into the air in a seductive pose.'],
   enter: enter,
 };

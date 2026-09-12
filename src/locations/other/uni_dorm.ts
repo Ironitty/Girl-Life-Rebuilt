@@ -1318,19 +1318,33 @@ function enterTenthFloor(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: end
-  if (((s as any).args ?? 0)[0] === 'dorm_lounge') {
-    qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_lounge');
-    qspCall(s, 'stat', '');
-    scene.text('<center><b>Dorm Lounge</b></center>');
-    scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
-    scene.text('This is the large shared lounge for this floor. Couches and chairs clustered around a TV on the wall create a square for groups of people to sit at, with just enough space between them to allow people to enter or leave.');
-    scene.text('A vending machine charges a flat fee of 80 <b>₽</b> per item for snacks and energy drinks, likely for those cramming a late night study session.');
-    scene.text('A free <a href="exec: newspaperVars[\'dbag\'] = 0 & gs \'newspaper\', \'start\'">newspaper</a> is available.');
-    if (((s as any).money ?? 0) < 80) {
-      scene.text('You don\'t have enough money to buy anything from the vending machine.');
-    } else {
-      scene.actions([
-        { label: 'Buy a snack from the vending machine (80 <b>₽</b>)', handler: (st: GameState) => {
+  scene.actions([
+    { label: 'Go outside', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 6;
+  }, goto: ['uni_grounds', ''] },
+    { label: 'Use the elevator', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['uni_dorm', 'elevator'] },
+    { label: 'Enter the women\'s restroom', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['uni_dorm', 'womens_restroom'] },
+  ]);
+  scene.build();
+}
+
+function enterDormLounge(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_lounge');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Dorm Lounge</b></center>');
+  scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
+  scene.text('This is the large shared lounge for this floor. Couches and chairs clustered around a TV on the wall create a square for groups of people to sit at, with just enough space between them to allow people to enter or leave.');
+  scene.text('A vending machine charges a flat fee of 80 <b>₽</b> per item for snacks and energy drinks, likely for those cramming a late night study session.');
+  scene.text('A free <a href="exec: newspaperVars[\'dbag\'] = 0 & gs \'newspaper\', \'start\'">newspaper</a> is available.');
+  if (((s as any).money ?? 0) < 80) {
+    scene.text('You don\'t have enough money to buy anything from the vending machine.');
+  } else {
+    scene.actions([
+      { label: 'Buy a snack from the vending machine (80 <b>₽</b>)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).money = ((s as any).money ?? 0) - (80);
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
@@ -1351,7 +1365,7 @@ function enterTenthFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['uni_dorm', 'dorm_lounge'] },
     ]);
   } },
-        { label: 'Buy an energy drink from the vending machine (80 <b>₽</b>)', handler: (st: GameState) => {
+      { label: 'Buy an energy drink from the vending machine (80 <b>₽</b>)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).money = ((s as any).money ?? 0) - (80);
     qspCall(s, 'beverage', 'energy_drink_stats');
@@ -1361,101 +1375,99 @@ function enterTenthFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['uni_dorm', 'dorm_lounge'] },
     ]);
   } },
-      ]);
-    }
-    scene.actions([
-      { label: 'Return to the corridor', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
-      { label: 'Watch TV', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
-      { label: 'Relax', goto: ['uni_dorm', 'dorm_lounge_relax'] },
     ]);
   }
-  if (((s as any).args ?? 0)[0] === 'dorm_lounge_watch_tv') {
-    qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_lounge_watch_tv');
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'stat', '');
-    scene.text('<center><b>Dorm Lounge TV</b></center>');
-    scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
-    scene.text('You take a seat on one of the couches to watch something on the TV. There\'s not much on, but it kills a little time.');
-    scene.actions([
-      { label: 'Return to the corridor', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
-      { label: 'Keep watching', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'dorm_lounge_relax') {
-    qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_lounge_relax');
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
-    scene.text('<center><b>Dorm Lounge Relax</b></center>');
-    scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
-    scene.text('You take a seat on one of the couches and just chill out for few minutes.');
-    scene.actions([
-      { label: 'Return to the corridor', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
-      { label: 'Keep relaxing', goto: ['uni_dorm', 'dorm_lounge_relax'] },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'dorm_kitchen') {
-    qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_kitchen');
-    (s as any).food_loc = 0;
-    qspCall(s, 'kit_din', '');
-    qspCall(s, 'katja_meynold_schedule', '');
-    qspCall(s, 'stat', '');
-    scene.text('<center><b>Dorm Kitchen</b></center>');
-    scene.img('images/locations/city/island/university/dorm/dorm_kitchen.jpg');
-    scene.text('The large shared kitchen for this floor. It\'s fairly tidy, with a lot of cabinets along two of the walls, two ovens and two refrigerators, and several tables with chairs around them scattered about the room.');
-    if ((((s as any).locat ?? 0)?.['katja'] === 32  ||  ((s as any).locat ?? 0)?.['katja'] === 33)  &&  ((s as any).uni_dorm ?? 0)?.['floor'] === 'second_floor') {
-      if (((s as any).katjaQW ?? 0)?.['kitchen_day'] !== ((s as any).daystart ?? 0)) {
-        // TODO-QSP: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $start_type['magic']...
-      } else {
-        if (((s as any).locat ?? 0)?.['katja'] === 32) {
-          // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
-          scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a cute redheaded girl\', \'Katja\')+\' cooking.');
-        } else {
-          // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
-          scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a cute redheaded girl\', \'Katja\')+\' at the table eating her dinner.');
-        }
-      }
-    }
-    if (((s as any).uni_dorm ?? 0)?.['floor'] !== 'tenth_floor') {
-      qspCall(s, 'core_library', 'kitchen', 'shared');
-    } else {
-      if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
-        if ((!((s as any).edahot ?? 0))) {
-        }
-        // TODO-QSP: dynamic text: Your shelf in the refrigerator holds enough food for <b><<mc_inventory['food_bas...
-        scene.text(`Your shelf in the refrigerator holds enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot ?? 0)}`);
-      } else {
-        scene.text('<center><b>Your shelf in the refrigerator is bare. There is nothing left for you to eat.</b></center>');
-      }
-      qspCall(s, 'kit_din', 'edahota');
-      qspCall(s, 'core_library', 'kitchen', 'communal');
-    }
-    scene.actions([
-      { label: 'Return to the corridor', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
-  } },
-    ]);
-  }
+  // TODO-QSP: end
   scene.actions([
-    { label: 'Go outside', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 6;
-  }, goto: ['uni_grounds', ''] },
-    { label: 'Use the elevator', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 2;
-  }, goto: ['uni_dorm', 'elevator'] },
-    { label: 'Enter the women\'s restroom', handler: (st: GameState) => {
+    { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
-  }, goto: ['uni_dorm', 'womens_restroom'] },
+    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
+  } },
+    { label: 'Watch TV', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
+    { label: 'Relax', goto: ['uni_dorm', 'dorm_lounge_relax'] },
+  ]);
+  scene.build();
+}
+
+function enterDormLoungeWatchTv(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_lounge_watch_tv');
+  (s as any).minut = ((s as any).minut ?? 0) + 30;
+  qspCall(s, 'mood', 'raise', 'small');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Dorm Lounge TV</b></center>');
+  scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
+  scene.text('You take a seat on one of the couches to watch something on the TV. There\'s not much on, but it kills a little time.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Return to the corridor', handler: (st: GameState) => {
+    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
+  } },
+    { label: 'Keep watching', goto: ['uni_dorm', 'dorm_lounge_watch_tv'] },
+  ]);
+  scene.build();
+}
+
+function enterDormLoungeRelax(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_lounge_relax');
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  qspCall(s, 'mood', 'raise', 'tiny');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Dorm Lounge Relax</b></center>');
+  scene.img('images/locations/city/island/university/dorm/dorm_lounge.jpg');
+  scene.text('You take a seat on one of the couches and just chill out for few minutes.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Return to the corridor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
+  } },
+    { label: 'Keep relaxing', goto: ['uni_dorm', 'dorm_lounge_relax'] },
+  ]);
+  scene.build();
+}
+
+function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'uni_dorm', 'dorm_kitchen');
+  (s as any).food_loc = 0;
+  qspCall(s, 'kit_din', '');
+  qspCall(s, 'katja_meynold_schedule', '');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Dorm Kitchen</b></center>');
+  scene.img('images/locations/city/island/university/dorm/dorm_kitchen.jpg');
+  scene.text('The large shared kitchen for this floor. It\'s fairly tidy, with a lot of cabinets along two of the walls, two ovens and two refrigerators, and several tables with chairs around them scattered about the room.');
+  if ((((s as any).locat ?? 0)?.['katja'] === 32  ||  ((s as any).locat ?? 0)?.['katja'] === 33)  &&  ((s as any).uni_dorm ?? 0)?.['floor'] === 'second_floor') {
+    if (((s as any).katjaQW ?? 0)?.['kitchen_day'] !== ((s as any).daystart ?? 0)) {
+      // TODO-QSP: 'You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $start_type['magic']...
+    } else {
+      if (((s as any).locat ?? 0)?.['katja'] === 32) {
+        // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+        scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a cute redheaded girl\', \'Katja\')+\' cooking.');
+      } else {
+        // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+        scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a cute redheaded girl\', \'Katja\')+\' at the table eating her dinner.');
+      }
+    }
+  }
+  if (((s as any).uni_dorm ?? 0)?.['floor'] !== 'tenth_floor') {
+    qspCall(s, 'core_library', 'kitchen', 'shared');
+  } else {
+    if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
+      if ((!((s as any).edahot ?? 0))) {
+      }
+      // TODO-QSP: dynamic text: Your shelf in the refrigerator holds enough food for <b><<mc_inventory['food_bas...
+      scene.text(`Your shelf in the refrigerator holds enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot ?? 0)}`);
+    } else {
+      scene.text('<center><b>Your shelf in the refrigerator is bare. There is nothing left for you to eat.</b></center>');
+    }
+    qspCall(s, 'kit_din', 'edahota');
+    qspCall(s, 'core_library', 'kitchen', 'communal');
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Return to the corridor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
+  } },
   ]);
   scene.build();
 }
@@ -1807,6 +1819,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'tenth_floor':
       enterTenthFloor(s, scene);
+      break;
+    case 'dorm_lounge':
+      enterDormLounge(s, scene);
+      break;
+    case 'dorm_lounge_watch_tv':
+      enterDormLoungeWatchTv(s, scene);
+      break;
+    case 'dorm_lounge_relax':
+      enterDormLoungeRelax(s, scene);
+      break;
+    case 'dorm_kitchen':
+      enterDormKitchen(s, scene);
       break;
     case 'mens_restroom':
       enterMensRestroom(s, scene);

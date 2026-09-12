@@ -193,63 +193,72 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   // TODO-QSP: end
-  if (((s as any).args ?? 0)[0]=== 'counter') {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'anushka_konstantinov_schedule', '');
-    qspCall(s, 'stat', '');
-    if (((s as any).locat ?? 0)?.['A144'] === 9) {
-      scene.actions([{ label: 'Continue', goto: ['city_coffee_hole', 'anushka_work'] }]);
+  scene.actions([
+    { label: 'Exit restroom', goto: ['city_coffee_hole', 'inner'] },
+  ]);
+  scene.build();
+}
+
+function enterCounter(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'anushka_konstantinov_schedule', '');
+  qspCall(s, 'stat', '');
+  if (((s as any).locat ?? 0)?.['A144'] === 9) {
+    scene.actions([{ label: 'Continue', goto: ['city_coffee_hole', 'anushka_work'] }]);
+  } else {
+    (s as any).temprand = Math.floor(Math.random() * 2) + 1;
+    if (((s as any).temprand ?? 0) === 1) {
+      scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
+      scene.img('images/locations/city/island/coffee_hole/npcs/worker1.jpg');
+      scene.text('As you approach, the woman behind the counter looks up at you. She appears to be in her late twenties or maybe early thirties. She has dark hair with purple streaks, and her arms are covered in tattoos.');
+      scene.text('"Welcome to the Coffee Hole! What can I get you?" she asks in a friendly and welcoming tone. You notice she has a familiar accent; it reminds you a little of Marcus.');
+      scene.actions([
+        { label: 'Exit the cafe', goto: ['city_island', ''] },
+        { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
+        { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
+    // TODO-QSP: gs 'food_menu'
+  } },
+      ]);
     } else {
-      (s as any).temprand = Math.floor(Math.random() * 2) + 1;
-      if (((s as any).temprand ?? 0) === 1) {
-        scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
-        scene.img('images/locations/city/island/coffee_hole/npcs/worker1.jpg');
-        scene.text('As you approach, the woman behind the counter looks up at you. She appears to be in her late twenties or maybe early thirties. She has dark hair with purple streaks, and her arms are covered in tattoos.');
-        scene.text('"Welcome to the Coffee Hole! What can I get you?" she asks in a friendly and welcoming tone. You notice she has a familiar accent; it reminds you a little of Marcus.');
-        scene.actions([
-          { label: 'Exit the cafe', goto: ['city_island', ''] },
-          { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
-          { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
+      scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
+      scene.img('images/locations/city/island/coffee_hole/npcs/worker2.jpg');
+      scene.text('As you approach, the girl behind the counter looks up at you. She appears to be in her late teens or early twenties. She has short blond hair with one side shaved, her arms are covered in tattoos, and she has a large tattoo on her chest.');
+      scene.text('"Welcome to the Coffee Hole… What can I get you?" she asks in a bored and monotone voice.');
+      scene.actions([
+        { label: 'Exit the cafe', goto: ['city_island', ''] },
+        { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
+        { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: gs 'food_menu'
   } },
-        ]);
-      } else {
-        scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
-        scene.img('images/locations/city/island/coffee_hole/npcs/worker2.jpg');
-        scene.text('As you approach, the girl behind the counter looks up at you. She appears to be in her late teens or early twenties. She has short blond hair with one side shaved, her arms are covered in tattoos, and she has a large tattoo on her chest.');
-        scene.text('"Welcome to the Coffee Hole… What can I get you?" she asks in a bored and monotone voice.');
-        scene.actions([
-          { label: 'Exit the cafe', goto: ['city_island', ''] },
-          { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
-          { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gs 'food_menu'
-  } },
-        ]);
-      }
+      ]);
     }
   }
-  if (((s as any).args ?? 0)[0]=== 'anushka_work') {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like', 1, 'coffee_hole');
-    qspCall(s, 'stat', '');
-    scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
-    scene.img('images/locations/city/island/coffee_hole/npcs/nush_counter.jpg');
-    if (((s as any).anushkaQW ?? 0)?.['coffee_hole'] === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
-        scene.text('As you approach the counter, you see Anushka working. When she sees you, she gives you a friendly smile.');
-        scene.text('"Welcome to the Coffee Hole. Need your holes filled with something hot and black again?" she says with a wink, even making ordering coffee sound dirty.');
-        scene.text('You smile at her. "You are so bad!"');
-        if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 0) {
-          ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
-          scene.text('"Hey, I\'ve been meaning to ask. Which dorm are you in? Maybe I can stop by and visit some time?" you ask.');
-          scene.text('"I\'m not," she replies. "I\'ve got an apartment with the boys." She then shrugs. "Yeah, it\'s as bad as you think, but you can stop by sometime if you want."');
-          scene.text('She gives you her address and you chat about the university before you notice the line forming behind you and start looking at the menu on the wall to see if you want to order something.');
-        }
-        if (((s as any).anushkaQW ?? 0)?.['photoshoot'] >= 1  &&  ((s as any).hour ?? 0) === 22) {
-          scene.text('She shrugs. "And you love it. It\'s why you love hanging out with me."');
-          scene.text('You end up chatting about the university and her job for a while before you notice that it\'s close to closing, and the place is almost empty. Maybe she would be up for a little after-hours photo shoot with you?');
-          scene.actions([
-            { label: 'Let\'s do a photo shoot', handler: (st: GameState) => {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterAnushkaWork(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'npc_relationship', 'modify', 'A144', 'like', 1, 'coffee_hole');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
+  scene.img('images/locations/city/island/coffee_hole/npcs/nush_counter.jpg');
+  if (((s as any).anushkaQW ?? 0)?.['coffee_hole'] === 1) {
+    if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
+      scene.text('As you approach the counter, you see Anushka working. When she sees you, she gives you a friendly smile.');
+      scene.text('"Welcome to the Coffee Hole. Need your holes filled with something hot and black again?" she says with a wink, even making ordering coffee sound dirty.');
+      scene.text('You smile at her. "You are so bad!"');
+      if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 0) {
+        ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+        scene.text('"Hey, I\'ve been meaning to ask. Which dorm are you in? Maybe I can stop by and visit some time?" you ask.');
+        scene.text('"I\'m not," she replies. "I\'ve got an apartment with the boys." She then shrugs. "Yeah, it\'s as bad as you think, but you can stop by sometime if you want."');
+        scene.text('She gives you her address and you chat about the university before you notice the line forming behind you and start looking at the menu on the wall to see if you want to order something.');
+      }
+      if (((s as any).anushkaQW ?? 0)?.['photoshoot'] >= 1  &&  ((s as any).hour ?? 0) === 22) {
+        scene.text('She shrugs. "And you love it. It\'s why you love hanging out with me."');
+        scene.text('You end up chatting about the university and her job for a while before you notice that it\'s close to closing, and the place is almost empty. Maybe she would be up for a little after-hours photo shoot with you?');
+        scene.actions([
+          { label: 'Let\'s do a photo shoot', handler: (st: GameState) => {
     scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
     scene.img('images/locations/city/island/coffee_hole/npcs/nush_counter.jpg');
     scene.text('You grin at her. "We should totally do a photo shoot here."');
@@ -260,61 +269,58 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait', goto: ['city_coffee_hole', 'photo_shoot'] },
     ]);
   } },
-          ]);
-        } else {
-          scene.text('She shrugs. "And you love it. It\'s why you love hanging out with me."');
-          scene.text('You chat about the university and her job before you notice the line forming behind you and start looking at the menu on the wall to see if you want to order something.');
-        }
+        ]);
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
-          scene.text('As you approach the counter, you see Anushka working again. When she sees you, she sighs, and you think she rolls her eyes. "Welcome to the Coffee Hole. What can I get you?"');
-          scene.text('You smile at her. "So, do you like the job?"');
-          scene.text('She doesn\'t return your smile. "It\'s a job. Do you want something or not? I\'ve got work to do and can\'t stand around chatting."');
-          scene.text('You sigh. It seems she still doesn\'t like you. You look up at the menu on the wall to see if you might want to order something.');
-        } else {
-          scene.text('As you approach the counter, you see Anushka working behind it. When she sees you, she gives you a friendly smile. "Welcome to the Coffee Hole. What can I get you?"');
-          scene.text('You smile at her. "So you like working here?"');
-          scene.text('She shrugs a little. "Yeah, it\'s alright. As I said, it\'s pretty easy, close to my place, and I can study when it\'s slow. Plus, the owner, Joanna, is pretty cool and chill about what I do at work. As long as I don\'t leave a mess or ignore customers, she doesn\'t really care what I do."');
-          scene.text('You chat about the university and her job when you notice the line forming behind you. You start looking at the menu on the wall to see if you want to order something.');
-        }
+        scene.text('She shrugs. "And you love it. It\'s why you love hanging out with me."');
+        scene.text('You chat about the university and her job before you notice the line forming behind you and start looking at the menu on the wall to see if you want to order something.');
       }
     } else {
-      ((s as any).anushkaQW ?? {})['coffee_hole'] = 1;
-      if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
-        scene.text('As you approach the counter, you see your former classmate Anushka working behind it.');
-        scene.text('When she sees you, she gives you a friendly smile. "Welcome to the Coffee Hole, where we can fill your holes with something hot and black, but maybe not in the way you would like…" she says with a wink, even making ordering coffee sound dirty.');
-        scene.text('You smile at her. "Oh my god, you\'re terrible. I didn\'t know you worked here."');
-        scene.text('She shrugs. "I need some extra money coming in to help pay for stuff. This is pretty easy, close to my place, and I can study when it\'s slow."');
-        if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 0) {
-          ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
-          scene.text('"Nice. Which dorm are you in by the way? Maybe I can stop by and visit some time?" you ask.');
-          scene.text('"I\'m not," she replies. "I\'ve got an apartment with the boys." She then shrugs. "Yeah, it\'s as bad as you think, but you can stop by sometime if you want."');
-          scene.text('She gives you her address and you chat about the university before you notice the line forming behind you and start looking at the menu on the wall to see if you want to order something.');
-        }
+      if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
+        scene.text('As you approach the counter, you see Anushka working again. When she sees you, she sighs, and you think she rolls her eyes. "Welcome to the Coffee Hole. What can I get you?"');
+        scene.text('You smile at her. "So, do you like the job?"');
+        scene.text('She doesn\'t return your smile. "It\'s a job. Do you want something or not? I\'ve got work to do and can\'t stand around chatting."');
+        scene.text('You sigh. It seems she still doesn\'t like you. You look up at the menu on the wall to see if you might want to order something.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
-          scene.text('As you approach the counter, you see your classmate Anushka working behind it. When she sees you, she sighs, and you think she rolls her eyes. "Welcome to the Coffee Hole. What can I get you?"');
-          scene.text('You smile at her. "I didn\'t know you worked here."');
-          scene.text('She doesn\'t return your smile. "Well, now you do, so do you want something or not? I\'ve got work to do and can\'t stand around chatting."');
-          scene.text('You sigh. It seems she still doesn\'t like you. You look up at the menu on the wall to see if you might want to order something.');
-        } else {
-          scene.text('As you approach the counter, you see your classmate Anushka working behind it. When she sees you, she gives you a friendly smile. "Welcome to the Coffee Hole. What can I get you?"');
-          scene.text('You smile at her. "I didn\'t know you worked here."');
-          scene.text('She shrugs. "I need some extra money coming in to help pay for stuff. This is pretty easy, close to my place, and I can study when it\'s slow."');
-          scene.text('You chat about the university before you notice the line forming behind you. You start looking at the menu on the wall to see if you want to order something.');
-        }
+        scene.text('As you approach the counter, you see Anushka working behind it. When she sees you, she gives you a friendly smile. "Welcome to the Coffee Hole. What can I get you?"');
+        scene.text('You smile at her. "So you like working here?"');
+        scene.text('She shrugs a little. "Yeah, it\'s alright. As I said, it\'s pretty easy, close to my place, and I can study when it\'s slow. Plus, the owner, Joanna, is pretty cool and chill about what I do at work. As long as I don\'t leave a mess or ignore customers, she doesn\'t really care what I do."');
+        scene.text('You chat about the university and her job when you notice the line forming behind you. You start looking at the menu on the wall to see if you want to order something.');
       }
     }
-    scene.actions([
-      { label: 'Exit the cafe', goto: ['city_island', ''] },
-      { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
-      { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
+  } else {
+    ((s as any).anushkaQW ?? {})['coffee_hole'] = 1;
+    if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
+      scene.text('As you approach the counter, you see your former classmate Anushka working behind it.');
+      scene.text('When she sees you, she gives you a friendly smile. "Welcome to the Coffee Hole, where we can fill your holes with something hot and black, but maybe not in the way you would like…" she says with a wink, even making ordering coffee sound dirty.');
+      scene.text('You smile at her. "Oh my god, you\'re terrible. I didn\'t know you worked here."');
+      scene.text('She shrugs. "I need some extra money coming in to help pay for stuff. This is pretty easy, close to my place, and I can study when it\'s slow."');
+      if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 0) {
+        ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+        scene.text('"Nice. Which dorm are you in by the way? Maybe I can stop by and visit some time?" you ask.');
+        scene.text('"I\'m not," she replies. "I\'ve got an apartment with the boys." She then shrugs. "Yeah, it\'s as bad as you think, but you can stop by sometime if you want."');
+        scene.text('She gives you her address and you chat about the university before you notice the line forming behind you and start looking at the menu on the wall to see if you want to order something.');
+      }
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
+        scene.text('As you approach the counter, you see your classmate Anushka working behind it. When she sees you, she sighs, and you think she rolls her eyes. "Welcome to the Coffee Hole. What can I get you?"');
+        scene.text('You smile at her. "I didn\'t know you worked here."');
+        scene.text('She doesn\'t return your smile. "Well, now you do, so do you want something or not? I\'ve got work to do and can\'t stand around chatting."');
+        scene.text('You sigh. It seems she still doesn\'t like you. You look up at the menu on the wall to see if you might want to order something.');
+      } else {
+        scene.text('As you approach the counter, you see your classmate Anushka working behind it. When she sees you, she gives you a friendly smile. "Welcome to the Coffee Hole. What can I get you?"');
+        scene.text('You smile at her. "I didn\'t know you worked here."');
+        scene.text('She shrugs. "I need some extra money coming in to help pay for stuff. This is pretty easy, close to my place, and I can study when it\'s slow."');
+        scene.text('You chat about the university before you notice the line forming behind you. You start looking at the menu on the wall to see if you want to order something.');
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Exit the cafe', goto: ['city_island', ''] },
+    { label: 'Leave counter', goto: ['city_coffee_hole', 'inner'] },
+    { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: gs 'food_menu'
   } },
-    ]);
-  }
-  scene.actions([
-    { label: 'Exit restroom', goto: ['city_coffee_hole', 'inner'] },
   ]);
   scene.build();
 }
@@ -1060,6 +1066,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'toilet':
       enterToilet(s, scene);
+      break;
+    case 'counter':
+      enterCounter(s, scene);
+      break;
+    case 'anushka_work':
+      enterAnushkaWork(s, scene);
       break;
     case 'photo_shoot':
       enterPhotoShoot(s, scene);

@@ -399,7 +399,13 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  // TODO-QSP: If $ARGS[0] = 'highway':
+  scene.actions([
+    { label: 'Get out of the car', goto: ['car_funcs', 'goto_car'] },
+  ]);
+  scene.build();
+}
+
+function enterHighway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nroad ?? 0) > 0) {
     scene.actions([
       { label: 'Drive toward St. Petersburg', handler: (st: GameState) => {
@@ -432,7 +438,6 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Get out of the car', goto: ['car_funcs', 'goto_car'] },
     { label: 'Drive to St. Petersburg (0:<<nroad/2 + 5>>)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You drive along the Highway for <<nroad/2 + 5>> and arrive at the outskirts of S...
     scene.text(`You drive along the Highway for ${((s as any).nroad ?? 0)/2 + 5} and arrive at the outskirts of St. Petersburg.`);
@@ -1097,6 +1102,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'salon':
       enterSalon(s, scene);
+      break;
+    case 'highway':
+      enterHighway(s, scene);
       break;
     case 'other':
       enterOther(s, scene);

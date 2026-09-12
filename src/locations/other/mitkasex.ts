@@ -1063,60 +1063,63 @@ function enterGadStanCum2_2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: end
-  if (((s as any).args ?? 0)[0] === 'gadsexOral1') {
-    (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
-    (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-    if (((s as any).pcs_throat ?? 0) <= 15) {
-      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (5);
-    }
-    if (((s as any).pcs_throat ?? 0) > 15) {
-      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (10);
-    }
-    scene.img('images/locations/gadukino/sex/mitka/mitkagadsexoral1.\'+rand(1, 2)+\'.jpg');
-    // TODO-QSP: dynamic text: You kneel in front of a boy. <<$boydesc>> takes his <<dick>> cm dick, brings it ...
-    scene.text(`You kneel in front of a boy. ${((s as any).boydesc ?? 0)} takes his ${((s as any).dick ?? 0)} cm dick, brings it to your lips…`);
-    qspCall(s, 'oral', 'start');
-    // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
-    qspCall(s, 'arousal', 'bj', 5, 'sub');
-    qspCall(s, 'stat', '');
-    if (((s as any).horny_boyA ?? 0) < 100) {
-      if (((s as any).huntsexa ?? 0) === 1) {
-        scene.actions([
-          { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
-        ]);
-      }
-      if (((s as any).huntsexa ?? 0) === 2) {
-        scene.actions([
-          { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
-        ]);
-      }
-      if (((s as any).huntsexa ?? 0) === 3) {
-        scene.actions([
-          { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
-        ]);
-      }
-      if (((s as any).huntsexa ?? 0) === 4) {
-        scene.actions([
-          { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
-        ]);
-      }
-      if (((s as any).huntsexa ?? 0) === 5) {
-        scene.actions([
-          { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
-        ]);
-      }
-      if (((s as any).huntsexa ?? 0) === 6) {
-        scene.actions([
-          { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
-        ]);
-      }
-    } else {
+  scene.build();
+}
+
+function enterGadsexOral1(s: GameState, scene: SceneBuilder): void {
+  (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
+  (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+  if (((s as any).pcs_throat ?? 0) <= 15) {
+    (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (5);
+  }
+  if (((s as any).pcs_throat ?? 0) > 15) {
+    (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (10);
+  }
+  scene.img('images/locations/gadukino/sex/mitka/mitkagadsexoral1.\'+rand(1, 2)+\'.jpg');
+  // TODO-QSP: dynamic text: You kneel in front of a boy. <<$boydesc>> takes his <<dick>> cm dick, brings it ...
+  scene.text(`You kneel in front of a boy. ${((s as any).boydesc ?? 0)} takes his ${((s as any).dick ?? 0)} cm dick, brings it to your lips…`);
+  qspCall(s, 'oral', 'start');
+  // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
+  scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
+  qspCall(s, 'arousal', 'bj', 5, 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).horny_boyA ?? 0) < 100) {
+    if (((s as any).huntsexa ?? 0) === 1) {
       scene.actions([
-        { label: 'Suck on', goto: ['mitkasex', 'gadOralCum1'] },
+        { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
       ]);
     }
+    if (((s as any).huntsexa ?? 0) === 2) {
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+      ]);
+    }
+    if (((s as any).huntsexa ?? 0) === 3) {
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+      ]);
+    }
+    if (((s as any).huntsexa ?? 0) === 4) {
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+      ]);
+    }
+    if (((s as any).huntsexa ?? 0) === 5) {
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+      ]);
+    }
+    if (((s as any).huntsexa ?? 0) === 6) {
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+      ]);
+    }
+  } else {
+    scene.actions([
+      { label: 'Suck on', goto: ['mitkasex', 'gadOralCum1'] },
+    ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4559,6 +4562,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'gadStanCum2_2':
       enterGadStanCum2_2(s, scene);
+      break;
+    case 'gadsexOral1':
+      enterGadsexOral1(s, scene);
       break;
     case 'gadOralCum1':
       enterGadOralCum1(s, scene);

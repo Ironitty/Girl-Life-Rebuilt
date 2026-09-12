@@ -208,7 +208,7 @@ interface ParseResult {
 
     // Scene: if/elseif $ARGS[0] = 'x': (only at top level, not indented)
     const rawLine = lines[i];
-    const sceneMatch = trimmed.match(/^(?:if|elseif)\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/);
+    const sceneMatch = trimmed.match(/^(?:if|elseif)\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/i);
     if (sceneMatch && !rawLine.startsWith('\t') && !rawLine.startsWith(' ')) {
       if (!stopAtEnd) {
         return { nodes, endIdx: i };
@@ -222,7 +222,7 @@ interface ParseResult {
     }
 
     // Scene (multi-value): if $ARGS[0] = '' or $ARGS[0] = 'start' or $ARGS[0] = 'main': (only at top level)
-    const sceneMultiMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s+(?:or\s+\$ARGS\[0\]\s*=\s*'[^']*'\s+)*or\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/);
+    const sceneMultiMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s+(?:or\s+\$ARGS\[0\]\s*=\s*'[^']*'\s+)*or\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/i);
     if (sceneMultiMatch && !rawLine.startsWith('\t') && !rawLine.startsWith(' ')) {
       if (!stopAtEnd) {
         return { nodes, endIdx: i };
@@ -653,7 +653,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Scene
-  const sceneMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/);
+  const sceneMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/i);
   if (sceneMatch) {
     const inner = parseBlock(lines, idx + 1, unsupported);
     nodes.push({ kind: 'scene', arg: sceneMatch[1], body: inner.nodes });

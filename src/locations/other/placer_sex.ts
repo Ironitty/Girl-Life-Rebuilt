@@ -50,25 +50,28 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/placer_sex16.mp4');
   // TODO-QSP: end
-  if (((s as any).args ?? 0)[0] === 'meet') {
-    if (((s as any).placerParameter ?? 0)?.['number_of_man'] < 4  &&  ((s as any).pcs_ass ?? 0) > 14  &&  ((s as any).pcs_vag ?? 0) > 14  &&  ((s as any).mesec ?? 0) <= 0) {
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      qspCall(s, 'stat', '');
-      scene.img('images/locations/pavlovsk/park/sex/placer_sex1.jpg');
-      // TODO-QSP: dynamic text: After the guys show you around their apartment, they begin to prepare a table in...
-      scene.text(`After the guys show you around their apartment, they begin to prepare a table in the kitchen. You offer to help them and they gladly accept, and the three of you have the table ready in no time. Then one of them produces a bottle of vodka and asks: "Thanks for the help, ${((s as any).pcs_nickname ?? 0)}… would you like a drink?"`);
-      // TODO-QSP: Act 'Drink with the guys': gt 'placer_sex', 'vodka'
-      // TODO-QSP: Act 'Decline the drink': gt 'placer_sex', 'game'
-    } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      qspCall(s, 'drugs', 'alcohol', 'vodka', 3);
-      qspCall(s, 'stat', '');
-      scene.img('images/shared/sex/sleep/drunk.jpg');
-      scene.text('They can stomach their alcohol a lot better than you, and before you know it you\'re absolutely hammered. The guys look like they\'re still feeling fine.');
-      scene.text('Once they realize you\'re drunk enough for them to make their move, they begin tugging at your clothes and undress you on one of their beds. You\'re too drunk to fight them off, and just let it happen.');
-      scene.text('Once they have you naked, you hear the guys discussing among one another: "Alright, we got her here… that was easy! Whose turn is it to go first?"');
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
+  scene.build();
+}
+
+function enterMeet(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).placerParameter ?? 0)?.['number_of_man'] < 4  &&  ((s as any).pcs_ass ?? 0) > 14  &&  ((s as any).pcs_vag ?? 0) > 14  &&  ((s as any).mesec ?? 0) <= 0) {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/park/sex/placer_sex1.jpg');
+    // TODO-QSP: dynamic text: After the guys show you around their apartment, they begin to prepare a table in...
+    scene.text(`After the guys show you around their apartment, they begin to prepare a table in the kitchen. You offer to help them and they gladly accept, and the three of you have the table ready in no time. Then one of them produces a bottle of vodka and asks: "Thanks for the help, ${((s as any).pcs_nickname ?? 0)}… would you like a drink?"`);
+    // TODO-QSP: Act 'Drink with the guys': gt 'placer_sex', 'vodka'
+    // TODO-QSP: Act 'Decline the drink': gt 'placer_sex', 'game'
+  } else {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    qspCall(s, 'drugs', 'alcohol', 'vodka', 3);
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/sleep/drunk.jpg');
+    scene.text('They can stomach their alcohol a lot better than you, and before you know it you\'re absolutely hammered. The guys look like they\'re still feeling fine.');
+    scene.text('Once they realize you\'re drunk enough for them to make their move, they begin tugging at your clothes and undress you on one of their beds. You\'re too drunk to fight them off, and just let it happen.');
+    scene.text('Once they have you naked, you hear the guys discussing among one another: "Alright, we got her here… that was easy! Whose turn is it to go first?"');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
     ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
     ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -156,22 +159,26 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
       }
     }
   } },
-      ]);
-    }
+    ]);
   }
-  if (((s as any).args ?? 0)[0] === 'vodka') {
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex2.jpg');
-    scene.text('You accept the drink happily: "Sure, a drink would be nice! Thanks!"');
-    scene.text('The boys pour the vodka into some shot glasses, and you enjoy their company while you drink. They have lots of interesting stories and anecdotes to tell, and you never feel bored around them.');
-    // TODO-QSP: dynamic text: When your glasses are empty, <<$boydesc2>> looks at you and asks, with the bottl...
-    scene.text(`When your glasses are empty, ${((s as any).boydesc2 ?? 0)} looks at you and asks, with the bottle in his hand: "Ready for another round?"`);
-    if (((s as any).pantyworntype ?? 0) === 'none') {
-      qspCall(s, 'underwear', 'wear');
-      scene.text('You quickly excuse yourself: "Give me a minute!" and head for the bathroom. These guys are great! They\'re actually treating you like a lady, unlike most guys in Pavlovsk… you don\'t want to give them the wrong idea about you by accidentally flashing them your naked pussy! You quickly put on some <a href="exec: VIEW \'images/locations/pavlovsk/park/sex/placer_sex129.jpg\'">panties</a> and return to the living room.');
-    }
-    scene.actions([
-      { label: 'Have another drink', handler: (st: GameState) => {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterVodka(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'drugs', 'alcohol', 'vodka');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex2.jpg');
+  scene.text('You accept the drink happily: "Sure, a drink would be nice! Thanks!"');
+  scene.text('The boys pour the vodka into some shot glasses, and you enjoy their company while you drink. They have lots of interesting stories and anecdotes to tell, and you never feel bored around them.');
+  // TODO-QSP: dynamic text: When your glasses are empty, <<$boydesc2>> looks at you and asks, with the bottl...
+  scene.text(`When your glasses are empty, ${((s as any).boydesc2 ?? 0)} looks at you and asks, with the bottle in his hand: "Ready for another round?"`);
+  if (((s as any).pantyworntype ?? 0) === 'none') {
+    qspCall(s, 'underwear', 'wear');
+    scene.text('You quickly excuse yourself: "Give me a minute!" and head for the bathroom. These guys are great! They\'re actually treating you like a lady, unlike most guys in Pavlovsk… you don\'t want to give them the wrong idea about you by accidentally flashing them your naked pussy! You quickly put on some <a href="exec: VIEW \'images/locations/pavlovsk/park/sex/placer_sex129.jpg\'">panties</a> and return to the living room.');
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Have another drink', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka');
     scene.img('images/locations/pavlovsk/park/sex/placer_sex3.jpg');
     // TODO-QSP: dynamic text: You nod: "Absolutely!" and <<$boydesc2>> fills your glass as well as theirs.
@@ -220,20 +227,23 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      { label: 'You don\'t want to drink more', goto: ['placer_sex', 'game'] },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'piano') {
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex5.jpg');
-    // TODO-QSP: dynamic text: You're feeling too good to argue with him, and just smile at the audacity <<$boy...
-    scene.text(`You're feeling too good to argue with him, and just smile at the audacity ${((s as any).boydesc2 ?? 0)} is showing. When he realizes you're not objecting in any way, he grows even bolder and puts his hands on them. He playfully rubs and pulls your nipples, trying to tease a moan out of you.`);
-    scene.text('His friend also wants to touch you, and puts his hand on your ass as he suggests: "Maybe there are other things you could show us…"');
-    scene.text('He begins to pull away your clothes when he doesn\'t notice any direct objections from you, exposing the panties that you -luckily- just put on.');
-    qspCall(s, 'arousal', 'foreplay', 5, 'sub', 'group');
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Help him take off your clothes', handler: (st: GameState) => {
+    { label: 'You don\'t want to drink more', goto: ['placer_sex', 'game'] },
+  ]);
+  scene.build();
+}
+
+function enterPiano(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex5.jpg');
+  // TODO-QSP: dynamic text: You're feeling too good to argue with him, and just smile at the audacity <<$boy...
+  scene.text(`You're feeling too good to argue with him, and just smile at the audacity ${((s as any).boydesc2 ?? 0)} is showing. When he realizes you're not objecting in any way, he grows even bolder and puts his hands on them. He playfully rubs and pulls your nipples, trying to tease a moan out of you.`);
+  scene.text('His friend also wants to touch you, and puts his hand on your ass as he suggests: "Maybe there are other things you could show us…"');
+  scene.text('He begins to pull away your clothes when he doesn\'t notice any direct objections from you, exposing the panties that you -luckily- just put on.');
+  qspCall(s, 'arousal', 'foreplay', 5, 'sub', 'group');
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Help him take off your clothes', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex7.jpg');
     scene.text('You reach down, and the guy flinches and immediately pulls away his hand.');
     scene.text('You give him a reassuring smile and say: "Relax! I was only going to give you a hand!"');
@@ -597,40 +607,46 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'game') {
-    scene.img('images/pc/reactions/speak_to_the_hand.jpg');
-    // TODO-QSP: dynamic text: <<$boydesc2>> smiles at you: "Alright, no problem. If you don't want a drink… ho...
-    scene.text(`${((s as any).boydesc2 ?? 0)} smiles at you: "Alright, no problem. If you don't want a drink… how about a game then?"`);
-    scene.actions([
-      { label: 'Play cards', goto: ['placer_sex', 'cards'] },
-      { label: 'Play Twister', goto: ['placer_sex', 'twister'] },
-      { label: 'No games for you, go home', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterGame(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/pc/reactions/speak_to_the_hand.jpg');
+  // TODO-QSP: dynamic text: <<$boydesc2>> smiles at you: "Alright, no problem. If you don't want a drink… ho...
+  scene.text(`${((s as any).boydesc2 ?? 0)} smiles at you: "Alright, no problem. If you don't want a drink… how about a game then?"`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Play cards', goto: ['placer_sex', 'cards'] },
+    { label: 'Play Twister', goto: ['placer_sex', 'twister'] },
+    { label: 'No games for you, go home', handler: (st: GameState) => {
     qspCall(st, 'placer_sex', 'rape');
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'vodka2') {
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex25.mp4');
-    // TODO-QSP: dynamic text: The guys gawk at you with baffled expressions on their faces, and you look at th...
-    scene.text(`The guys gawk at you with baffled expressions on their faces, and you look at them with a slight blush on your cheeks. Just when you were about to ask if you should go wash up quickly, ${((s as any).boydesc2 ?? 0)} takes you by the shoulders and guides you to the couch, where his friend is slowly jerking off. His cock is quite big, and you can't wait to have it inside you.`);
-    // TODO-QSP: dynamic text: <<$boydesc2>> smiles at you and says: "You look like you need to sit down for a ...
-    scene.text(`${((s as any).boydesc2 ?? 0)} smiles at you and says: "You look like you need to sit down for a bit, ${((s as any).pcs_nickname ?? 0)}. Why don't you be a sweet girl and take a seat on my friend's lap?"`);
-    // TODO-QSP: dynamic text: You turn your back to the guy, and spread your ass cheeks slightly as you guide ...
-    scene.text(`You turn your back to the guy, and spread your ass cheeks slightly as you guide your pussy towards his large dick. ${((s as any).boydesc2 ?? 0)}'s sperm and your juices are slowly dripping out still, and his cock is soon coated with the sperm of his buddy. You close your eyes to ignore ${((s as any).boydesc2 ?? 0)}'s smirk while you slowly let yourself sink down onto his friend's cock, meant for his friend more than for you anyway.`);
-    scene.text('He doesn\'t seem to mind, though. He just groans when you sit on his lap, and bottom out on his cock.');
-    qspCall(s, 'boyStat', '', ((s as any).boy1 ?? 0));
-    (s as any).sexpartkno = 1;
-    (s as any).cumprecheck = 1;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown');
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Hold this position', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterVodka2(s: GameState, scene: SceneBuilder): void {
+  (s as any).cumspclnt = 2;
+  qspCall(s, 'cum_cleanup', '');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex25.mp4');
+  // TODO-QSP: dynamic text: The guys gawk at you with baffled expressions on their faces, and you look at th...
+  scene.text(`The guys gawk at you with baffled expressions on their faces, and you look at them with a slight blush on your cheeks. Just when you were about to ask if you should go wash up quickly, ${((s as any).boydesc2 ?? 0)} takes you by the shoulders and guides you to the couch, where his friend is slowly jerking off. His cock is quite big, and you can't wait to have it inside you.`);
+  // TODO-QSP: dynamic text: <<$boydesc2>> smiles at you and says: "You look like you need to sit down for a ...
+  scene.text(`${((s as any).boydesc2 ?? 0)} smiles at you and says: "You look like you need to sit down for a bit, ${((s as any).pcs_nickname ?? 0)}. Why don't you be a sweet girl and take a seat on my friend's lap?"`);
+  // TODO-QSP: dynamic text: You turn your back to the guy, and spread your ass cheeks slightly as you guide ...
+  scene.text(`You turn your back to the guy, and spread your ass cheeks slightly as you guide your pussy towards his large dick. ${((s as any).boydesc2 ?? 0)}'s sperm and your juices are slowly dripping out still, and his cock is soon coated with the sperm of his buddy. You close your eyes to ignore ${((s as any).boydesc2 ?? 0)}'s smirk while you slowly let yourself sink down onto his friend's cock, meant for his friend more than for you anyway.`);
+  scene.text('He doesn\'t seem to mind, though. He just groans when you sit on his lap, and bottom out on his cock.');
+  qspCall(s, 'boyStat', '', ((s as any).boy1 ?? 0));
+  (s as any).sexpartkno = 1;
+  (s as any).cumprecheck = 1;
+  qspCall(s, 'cum_manage', '');
+  qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown');
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Hold this position', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex25.jpg');
     scene.text('You don\'t move for a moment, choosing to just enjoy the fullness that the throbbing cock inside you provides.');
     scene.text('The guy begins to play a bit with your butt cheeks and exposed asshole, but other than that just waits for you to start moving.');
@@ -774,28 +790,31 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+  ]);
+  scene.build();
+}
+
+function enterTwister(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'mood', 'raise', 'small');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex94.jpg');
+  // TODO-QSP: dynamic text: You look at <<$boydesc2>> with some doubt, but say: "Twister? I haven't played t...
+  scene.text(`You look at ${((s as any).boydesc2 ?? 0)} with some doubt, but say: "Twister? I haven't played that in forever… but okay! Let's do that!"`);
+  // TODO-QSP: dynamic text: His friend shares your doubt, but <<$boydesc2>> reassures him: "Trust me! Twiste...
+  scene.text(`His friend shares your doubt, but ${((s as any).boydesc2 ?? 0)} reassures him: "Trust me! Twister is a lot of fun to play together… especially with a cute girl such as ${((s as any).pcs_nickname ?? 0)}! You can be the referee?"`);
+  // TODO-QSP: dynamic text: You blush a bit as you help the guys put the mat on the floor, and <<$boydesc2>>...
+  scene.text(`You blush a bit as you help the guys put the mat on the floor, and ${((s as any).boydesc2 ?? 0)}'s friend takes control of the spinner. For the next half hour, you have to maneuver yourself in all sorts of difficult positions around ${((s as any).boydesc2 ?? 0)} while his friend does the spinning, and have a lot of fun trying.`);
+  qspCall(s, 'arousal', 'foreplay', 30, 'unknown');
+  qspCall(s, 'stat', '');
+  if (((s as any).pantyworntype ?? 0) === 'none') {
+    // TODO-QSP: dynamic text: At some point during the game, you're constantly adjusting your clothes, despera...
+    scene.text(`At some point during the game, you're constantly adjusting your clothes, desperately trying to hide the fact that you're not wearing panties. ${((s as any).boydesc2 ?? 0)}'s face turns very flustered as he <a href="exec: VIEW 'images/locations/pavlovsk/park/sex/placer_sex95.jpg'">stares</a> at your bare pussy, and a few seconds later you can see him whisper something to his friend. Unfortunately for his friend, he's in no position to have a look.`);
   }
-  if (((s as any).args ?? 0)[0] === 'twister') {
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex94.jpg');
-    // TODO-QSP: dynamic text: You look at <<$boydesc2>> with some doubt, but say: "Twister? I haven't played t...
-    scene.text(`You look at ${((s as any).boydesc2 ?? 0)} with some doubt, but say: "Twister? I haven't played that in forever… but okay! Let's do that!"`);
-    // TODO-QSP: dynamic text: His friend shares your doubt, but <<$boydesc2>> reassures him: "Trust me! Twiste...
-    scene.text(`His friend shares your doubt, but ${((s as any).boydesc2 ?? 0)} reassures him: "Trust me! Twister is a lot of fun to play together… especially with a cute girl such as ${((s as any).pcs_nickname ?? 0)}! You can be the referee?"`);
-    // TODO-QSP: dynamic text: You blush a bit as you help the guys put the mat on the floor, and <<$boydesc2>>...
-    scene.text(`You blush a bit as you help the guys put the mat on the floor, and ${((s as any).boydesc2 ?? 0)}'s friend takes control of the spinner. For the next half hour, you have to maneuver yourself in all sorts of difficult positions around ${((s as any).boydesc2 ?? 0)} while his friend does the spinning, and have a lot of fun trying.`);
-    qspCall(s, 'arousal', 'foreplay', 30, 'unknown');
-    qspCall(s, 'stat', '');
-    if (((s as any).pantyworntype ?? 0) === 'none') {
-      // TODO-QSP: dynamic text: At some point during the game, you're constantly adjusting your clothes, despera...
-      scene.text(`At some point during the game, you're constantly adjusting your clothes, desperately trying to hide the fact that you're not wearing panties. ${((s as any).boydesc2 ?? 0)}'s face turns very flustered as he <a href="exec: VIEW 'images/locations/pavlovsk/park/sex/placer_sex95.jpg'">stares</a> at your bare pussy, and a few seconds later you can see him whisper something to his friend. Unfortunately for his friend, he's in no position to have a look.`);
-    }
-    qspCall(s, 'arousal', 'flash', 5, 'unknown');
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+  qspCall(s, 'arousal', 'flash', 5, 'unknown');
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/placer_sex96.jpg');
     // TODO-QSP: dynamic text: All this grinding and leaning against <<$boydesc2>> has the three of you all wor...
@@ -906,21 +925,24 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+  ]);
+  scene.build();
+}
+
+function enterCards(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex61.jpg');
+  scene.text('You smile at him and reply: "Cards sound like fun! Let\'s do that."');
+  if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 2) {
+    scene.text('One of the guys gets up and says: "Cards!? I don\'t want to play fucking cards, even with a charming girl such as her. Sorry guys, I\'m out of here."');
+    // TODO-QSP: dynamic text: He leaves the room, leaving you alone with just <<$boydesc2>> and his friend. Th...
+    scene.text(`He leaves the room, leaving you alone with just ${((s as any).boydesc2 ?? 0)} and his friend. They just shrug, apparently that's normal.`);
   }
-  if (((s as any).args ?? 0)[0] === 'cards') {
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex61.jpg');
-    scene.text('You smile at him and reply: "Cards sound like fun! Let\'s do that."');
-    if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 2) {
-      scene.text('One of the guys gets up and says: "Cards!? I don\'t want to play fucking cards, even with a charming girl such as her. Sorry guys, I\'m out of here."');
-      // TODO-QSP: dynamic text: He leaves the room, leaving you alone with just <<$boydesc2>> and his friend. Th...
-      scene.text(`He leaves the room, leaving you alone with just ${((s as any).boydesc2 ?? 0)} and his friend. They just shrug, apparently that's normal.`);
-    }
-    // TODO-QSP: dynamic text: <<$boydesc2>> then suggests: "Alright… what do you want to play for? Money? Or… ...
-    scene.text(`${((s as any).boydesc2 ?? 0)} then suggests: "Alright… what do you want to play for? Money? Or… you're such a beautiful girl, we could play for a favor instead?"`);
-    scene.text('You and his friend nod, that sounds like it could be fun.');
-    scene.actions([
-      { label: 'Play cards', handler: (st: GameState) => {
+  // TODO-QSP: dynamic text: <<$boydesc2>> then suggests: "Alright… what do you want to play for? Money? Or… ...
+  scene.text(`${((s as any).boydesc2 ?? 0)} then suggests: "Alright… what do you want to play for? Money? Or… you're such a beautiful girl, we could play for a favor instead?"`);
+  scene.text('You and his friend nod, that sounds like it could be fun.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Play cards', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <<$boydesc2>> quickly shuffles the deck, and deals.
@@ -964,18 +986,21 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'card_sex') {
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex78.jpg');
-    // TODO-QSP: dynamic text: The guys join you on the couch, and <<$boydesc2>> takes off your bra. He fondles...
-    scene.text(`The guys join you on the couch, and ${((s as any).boydesc2 ?? 0)} takes off your bra. He fondles your breast with one hand while he leans your head back for a deep kiss. Meanwhile, his friend puts his lips around your other nipple, and caresses it with his tongue. You feel your nipples harden against their touch in no time, and there's a large wet spot in your panties as well. Maybe ${((s as any).boydesc2 ?? 0)} was right… maybe losing that second round of cards will be the best thing that happened to you all day!`);
-    qspCall(s, 'arousal', 'foreplay', 5, 'unknown', 'sub', 'group');
-    qspCall(s, 'arousal', 'breasts', 1);
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Further', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterCardSex(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex78.jpg');
+  // TODO-QSP: dynamic text: The guys join you on the couch, and <<$boydesc2>> takes off your bra. He fondles...
+  scene.text(`The guys join you on the couch, and ${((s as any).boydesc2 ?? 0)} takes off your bra. He fondles your breast with one hand while he leans your head back for a deep kiss. Meanwhile, his friend puts his lips around your other nipple, and caresses it with his tongue. You feel your nipples harden against their touch in no time, and there's a large wet spot in your panties as well. Maybe ${((s as any).boydesc2 ?? 0)} was right… maybe losing that second round of cards will be the best thing that happened to you all day!`);
+  qspCall(s, 'arousal', 'foreplay', 5, 'unknown', 'sub', 'group');
+  qspCall(s, 'arousal', 'breasts', 1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Further', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/placer_sex79.jpg');
     // TODO-QSP: dynamic text: Then <<$boydesc2>> pulls his head away from yours, and slowly guides his hand to...
@@ -1067,16 +1092,19 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'card_stript') {
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex67.jpg');
-    // TODO-QSP: dynamic text: You sigh and resign to the fact that you owe them this favor. You look at <<$boy...
-    scene.text(`You sigh and resign to the fact that you owe them this favor. You look at ${((s as any).boydesc2 ?? 0)} and ask him: "Well, I can't do a striptease without music! How about you put on something with some bass?"`);
-    scene.text('He nods and flips through his music collection until he finds a good track for you to dance on.');
-    scene.text('You smile at him thankfully and suddenly notice their greedy looks. Oh right… this is the part where you get naked.');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterCardStript(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex67.jpg');
+  // TODO-QSP: dynamic text: You sigh and resign to the fact that you owe them this favor. You look at <<$boy...
+  scene.text(`You sigh and resign to the fact that you owe them this favor. You look at ${((s as any).boydesc2 ?? 0)} and ask him: "Well, I can't do a striptease without music! How about you put on something with some bass?"`);
+  scene.text('He nods and flips through his music collection until he finds a good track for you to dance on.');
+  scene.text('You smile at him thankfully and suddenly notice their greedy looks. Oh right… this is the part where you get naked.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex67.jpg');
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     scene.text('After listening to the track for a few seconds, you think you understand the general gist of it. You begin to sway your body to the music a bit uncomfortably, and pull your top down to expose your breasts. The guys are staring at you intently now, closely following your every move.');
@@ -1216,14 +1244,17 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'card_win') {
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex63.jpg');
-    scene.text('You tell the guys that as your favor, you want them to get nude and run down the street and back. You can see the guys reeling back a bit, and pout: "Come on, guys! I won fair and square!"');
-    scene.text('The guys reluctantly agree, and begin to undress.');
-    scene.actions([
-      { label: 'Go with them to the street', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterCardWin(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex63.jpg');
+  scene.text('You tell the guys that as your favor, you want them to get nude and run down the street and back. You can see the guys reeling back a bit, and pout: "Come on, guys! I won fair and square!"');
+  scene.text('The guys reluctantly agree, and begin to undress.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go with them to the street', handler: (st: GameState) => {
     if (((s as any).month ?? 0) >4  &&  ((s as any).month ?? 0) < 11) {
       scene.img('images/locations/pavlovsk/park/sex/placer_sex64.jpg');
     } else {
@@ -1238,20 +1269,22 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'stay_in_bed') {
-    if ((Math.floor(Math.random() * 2) + 0) === 1) {
-      qspCall(s, 'stat', '');
-      scene.img('images/locations/pavlovsk/park/sex/placer_sex47.jpg');
-      // TODO-QSP: dynamic text: Even though it's morning, you decide to just stay in bed for another while. You ...
-      scene.text(`Even though it's morning, you decide to just stay in bed for another while. You doze off again, and a few minutes later you wake up to find ${((s as any).boydesc2 ?? 0)} in bed with you.`);
-      scene.text('He smiles happily at you and says: "Good morning, beautiful! Want to have some fun to start off the day?"');
-      scene.text('You grin and think to yourself: "With you? Absolutely!" and extend your hand towards his groin, rubbing his morning wood through his boxers without saying a word.');
-      qspCall(s, 'arousal', 'hj', 5, 'unknown', 'dom');
-      qspCall(s, 'stat', '');
-      scene.actions([
-        { label: 'Lick his cock', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterStayInBed(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 2) + 0) === 1) {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/park/sex/placer_sex47.jpg');
+    // TODO-QSP: dynamic text: Even though it's morning, you decide to just stay in bed for another while. You ...
+    scene.text(`Even though it's morning, you decide to just stay in bed for another while. You doze off again, and a few minutes later you wake up to find ${((s as any).boydesc2 ?? 0)} in bed with you.`);
+    scene.text('He smiles happily at you and says: "Good morning, beautiful! Want to have some fun to start off the day?"');
+    scene.text('You grin and think to yourself: "With you? Absolutely!" and extend your hand towards his groin, rubbing his morning wood through his boxers without saying a word.');
+    qspCall(s, 'arousal', 'hj', 5, 'unknown', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lick his cock', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/placer_sex48.jpg');
     scene.text('Let\'s see if you can make him beg for it, first.');
@@ -1323,18 +1356,18 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    } else {
-      qspCall(s, 'stat', '');
-      scene.img('images/locations/pavlovsk/park/sex/placer_sex54.jpg');
-      // TODO-QSP: dynamic text: Even though it's morning, you decide to just stay in bed for another while. You ...
-      scene.text(`Even though it's morning, you decide to just stay in bed for another while. You doze off again, and a few minutes later you wake up to find two guys in bed with you. You find that they put your hands on their morning erections while you were still sleeping, and you automatically begin to stroke them. They grin and say: "Hi, ${((s as any).pcs_nickname ?? 0)}! We came to tell you good morning!"`);
-      scene.text('You grin at them and reply: "Really… you, or them?" while you nod at the cocks in your hands.');
-      scene.text('The guys blush and say in chorus: "Both!"');
-      qspCall(s, 'arousal', 'hj', 5, 'unknown', 'dom', 'group');
-      qspCall(s, 'stat', '');
-      scene.actions([
-        { label: 'Take them in your mouth', handler: (st: GameState) => {
+    ]);
+  } else {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/park/sex/placer_sex54.jpg');
+    // TODO-QSP: dynamic text: Even though it's morning, you decide to just stay in bed for another while. You ...
+    scene.text(`Even though it's morning, you decide to just stay in bed for another while. You doze off again, and a few minutes later you wake up to find two guys in bed with you. You find that they put your hands on their morning erections while you were still sleeping, and you automatically begin to stroke them. They grin and say: "Hi, ${((s as any).pcs_nickname ?? 0)}! We came to tell you good morning!"`);
+    scene.text('You grin at them and reply: "Really… you, or them?" while you nod at the cocks in your hands.');
+    scene.text('The guys blush and say in chorus: "Both!"');
+    qspCall(s, 'arousal', 'hj', 5, 'unknown', 'dom', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Take them in your mouth', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/placer_sex55.jpg');
     // TODO-QSP: dynamic text: You smile at them and lean towards <<$boydesc2>>, taking his cock into your mout...
@@ -1432,18 +1465,21 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    }
+    ]);
   }
-  if (((s as any).args ?? 0)[0] === 'sleep_sex') {
-    qspCall(s, 'boyStat', '', ((s as any).boy1 ?? 0));
-    if ((Math.floor(Math.random() * 3) + 0) > 0) {
-      scene.img('images/locations/pavlovsk/park/sex/placer_sex93.jpg');
-      scene.text('At some point, you hear something and wake up. You pretend to be asleep, while you very slightly open your eyes. You see the silhouettes of several guys in your room, it looks like they can\'t sleep and want to play with you some more. Eager to find out what they\'ll do next, you just keep pretending to asleep and wait for them to make their move.');
-      (s as any).sexunaware = 1;
-      qspCall(s, 'cum_manage', '');
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSleepSex(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', '', ((s as any).boy1 ?? 0));
+  if ((Math.floor(Math.random() * 3) + 0) > 0) {
+    scene.img('images/locations/pavlovsk/park/sex/placer_sex93.jpg');
+    scene.text('At some point, you hear something and wake up. You pretend to be asleep, while you very slightly open your eyes. You see the silhouettes of several guys in your room, it looks like they can\'t sleep and want to play with you some more. Eager to find out what they\'ll do next, you just keep pretending to asleep and wait for them to make their move.');
+    (s as any).sexunaware = 1;
+    qspCall(s, 'cum_manage', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex84.jpg');
     // TODO-QSP: dynamic text: You feel the blanket being pulled down, and seconds later someone pulls your shi...
     scene.text(`You feel the blanket being pulled down, and seconds later someone pulls your shirt off. Your ${((s as any).titsize ?? 0)} boobs are on full display now. You think to yourself: "Hmm… should I keep pretending to be asleep and see what else they do, or pretend to wake up and tell them off?"`);
@@ -1559,21 +1595,25 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        { label: 'Make the guys breakfast', goto: ['placer_sex', 'breakfast'] },
-        { label: 'Stay in bed', goto: ['placer_sex', 'stay_in_bed'] },
-      ]);
-    }
+      { label: 'Make the guys breakfast', goto: ['placer_sex', 'breakfast'] },
+      { label: 'Stay in bed', goto: ['placer_sex', 'stay_in_bed'] },
+    ]);
   }
-  if (((s as any).args ?? 0)[0] === 'breakfast_sex') {
-    qspCall(s, 'boyStat', '', ((s as any).boy2 ?? 0));
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex40.mp4');
-    scene.text('You\'re blushing from all his compliments but decide to placate him, and take off your bra. You shake your boobs seductively for him and smile: "There… does that make you happy?"');
-    scene.text('He appreciates the effort but shakes his head: "Sorry… still too many clothes!"');
-    qspCall(s, 'arousal', 'flashlite', 5);
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Take off your panties too', handler: (st: GameState) => {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBreakfastSex(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', '', ((s as any).boy2 ?? 0));
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex40.mp4');
+  scene.text('You\'re blushing from all his compliments but decide to placate him, and take off your bra. You shake your boobs seductively for him and smile: "There… does that make you happy?"');
+  scene.text('He appreciates the effort but shakes his head: "Sorry… still too many clothes!"');
+  qspCall(s, 'arousal', 'flashlite', 5);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Take off your panties too', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex37.jpg');
     scene.text('Aw hell, he\'s cute. You lean over the kitchen counter and slowly push your panties down over your hips, but leave them there. He\'s ogling your bare ass, and stutters slightly when he says: "Wh- why are you stopping? Come on, get rid of them!"');
     qspCall(s, 'arousal', 'flash', 5);
@@ -1663,16 +1703,19 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'breakfast') {
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex36.jpg');
-    scene.text('The guys have been so nice to you, you decide to do something back for them the next morning. While they\'re still asleep, you head to the kitchen in your underwear to make them some breakfast.');
-    // TODO-QSP: dynamic text: When you enter the kitchen, <<$boydesc2>> is already there. He grins at you: "Go...
-    scene.text(`When you enter the kitchen, ${((s as any).boydesc2 ?? 0)} is already there. He grins at you: "Good morning, ${((s as any).pcs_nickname ?? 0)}… why are you wearing so many clothes? You look way better naked, last night proved that! Go on… take them off!"`);
-    scene.actions([
-      { label: 'Remove your bra', goto: ['placer_sex', 'breakfast_sex'] },
-      { label: 'Tell him off', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterBreakfast(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex36.jpg');
+  scene.text('The guys have been so nice to you, you decide to do something back for them the next morning. While they\'re still asleep, you head to the kitchen in your underwear to make them some breakfast.');
+  // TODO-QSP: dynamic text: When you enter the kitchen, <<$boydesc2>> is already there. He grins at you: "Go...
+  scene.text(`When you enter the kitchen, ${((s as any).boydesc2 ?? 0)} is already there. He grins at you: "Good morning, ${((s as any).pcs_nickname ?? 0)}… why are you wearing so many clothes? You look way better naked, last night proved that! Go on… take them off!"`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Remove your bra', goto: ['placer_sex', 'breakfast_sex'] },
+    { label: 'Tell him off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex38.jpg');
     scene.text('You just smirk at the drooling guy, and say: "No way!"');
     scene.text('He grins: "Oh well, it was worth a shot. Anyway… I owe you those omelettes, right?"');
@@ -1697,103 +1740,111 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
+  ]);
+  scene.build();
+}
+
+function enterStay(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).hour ?? 0) <= 22) {
+    (s as any).hour = 23;
+    (s as any).minut = 0;
   }
-  if (((s as any).args ?? 0)[0] === 'stay') {
-    if (((s as any).hour ?? 0) <= 22) {
-      (s as any).hour = 23;
-      (s as any).minut = 0;
-    }
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
-    } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
-    }
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex29.jpg');
-    // TODO-QSP: dynamic text: The guys are happy that you decided to stay the night, and <<$boydesc2>> goes to...
-    scene.text(`The guys are happy that you decided to stay the night, and ${((s as any).boydesc2 ?? 0)} goes to another room to fetch a guitar. He's fairly good at playing it, and you all happily sing along to the songs he's plays. Afterwards, you all enjoy another glass of vodka while you exchange stories. Before you know it, it's getting late.`);
-    scene.actions([
-      { label: 'Go to bed', goto: ['placer_sex', 'sleep'] },
-    ]);
+  if (((s as any).pcs_hydra ?? 0) >= 100) {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
+  } else {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
   }
-  if (((s as any).args ?? 0)[0] === 'sleep') {
-    qspCall(s, 'shortgs', 'autosave');
-    ((s as any).sleepVars ?? {})['notathomesleep'] = 0;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex29.jpg');
+  // TODO-QSP: dynamic text: The guys are happy that you decided to stay the night, and <<$boydesc2>> goes to...
+  scene.text(`The guys are happy that you decided to stay the night, and ${((s as any).boydesc2 ?? 0)} goes to another room to fetch a guitar. He's fairly good at playing it, and you all happily sing along to the songs he's plays. Afterwards, you all enjoy another glass of vodka while you exchange stories. Before you know it, it's getting late.`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go to bed', goto: ['placer_sex', 'sleep'] },
+  ]);
+  scene.build();
+}
+
+function enterSleep(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'shortgs', 'autosave');
+  ((s as any).sleepVars ?? {})['notathomesleep'] = 0;
+  (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5);
+  (s as any).pcs_hairbsh = 0;
+  (s as any).inSleep = 1;
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex35.jpg');
+  if (((s as any).analPlugIn ?? 0) === 1) {
+    (s as any).analPlugIn = 0;
+    (s as any).analPlugOut = 0;
+    scene.text('Before going to bed, you take out your butt plug and give it a quick wash.');
+  }
+  if (((s as any).vibratorIN ?? 0) === 1) {
+    (s as any).vibratorIN = 0;
+    scene.text('Before going to bed, you take out your vibrator and give it a quick wash.');
+  }
+  if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+    (s as any).pcs_makeup = 0;
+    (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
+    scene.text('Your make-up got smeared all over your face while you slept. You realize you really should\'ve removed it before going to bed, your skin ages much faster if you don\'t take good care of it.');
+  }
+  if (((s as any).fat ?? 0) > 5  &&  ((s as any).stringimplant ?? 0) === 1) {
+    ((s as any).bodyVars ?? {})['bust_silicone'] = (((s as any).bodyVars ?? {})['bust_silicone'] ?? 0) + (1);
+    (s as any).fat = ((s as any).fat ?? 0) - (5);
+  }
+  scene.text('You have a good night\'s rest. You did not dream of anything.');
+  // TODO-QSP: :loopson
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  (s as any).stime = ((s as any).stime ?? 0) + (1);
+  if ((!((s as any).recuperation ?? 0))) {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5);
-    (s as any).pcs_hairbsh = 0;
-    (s as any).inSleep = 1;
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex35.jpg');
-    if (((s as any).analPlugIn ?? 0) === 1) {
-      (s as any).analPlugIn = 0;
-      (s as any).analPlugOut = 0;
-      scene.text('Before going to bed, you take out your butt plug and give it a quick wash.');
-    }
-    if (((s as any).vibratorIN ?? 0) === 1) {
-      (s as any).vibratorIN = 0;
-      scene.text('Before going to bed, you take out your vibrator and give it a quick wash.');
-    }
-    if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
-      (s as any).pcs_makeup = 0;
-      (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
-      scene.text('Your make-up got smeared all over your face while you slept. You realize you really should\'ve removed it before going to bed, your skin ages much faster if you don\'t take good care of it.');
-    }
-    if (((s as any).fat ?? 0) > 5  &&  ((s as any).stringimplant ?? 0) === 1) {
-      ((s as any).bodyVars ?? {})['bust_silicone'] = (((s as any).bodyVars ?? {})['bust_silicone'] ?? 0) + (1);
-      (s as any).fat = ((s as any).fat ?? 0) - (5);
-    }
-    scene.text('You have a good night\'s rest. You did not dream of anything.');
-    // TODO-QSP: :loopson
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).stime = ((s as any).stime ?? 0) + (1);
-    if ((!((s as any).recuperation ?? 0))) {
-      (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5);
-    }
-    if (((s as any).stime ?? 0) >= 60) {
-      (s as any).stime = 0;
-      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (15);
-      qspCall(s, 'stat', '');
-    }
-    if (((s as any).pcs_sleep ?? 0) >= 100) {
-      (s as any).hour = 8;
-      (s as any).minut = 0;
-      qspCall(s, 'stat', '');
-      scene.text('Once you\'re well rested, you wake up again and sit up in the bed.');
-      (s as any).inSleep = 0;
-      if ((Math.floor(Math.random() * 6) + 1) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['placer_sex', 'sleep_sex'] }]);
-      } else {
-        scene.actions([
-          { label: 'Make breakfast for the guys', goto: ['placer_sex', 'breakfast'] },
-          { label: 'Lie in bed', goto: ['placer_sex', 'stay_in_bed'] },
-        ]);
-      }
-    } else {
-      // TODO-QSP: jump 'loopson'
-    }
   }
-  if (((s as any).args ?? 0)[0] === 'rape') {
-    if ((Math.floor(Math.random() * 20) + 1)===5) {
-      qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
-      // TODO-QSP: $rapist[0] = $npclastgenerated
-      qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
-      // TODO-QSP: $rapist[1] = $npclastgenerated
-      qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
-      // TODO-QSP: $rapist[2] = $npclastgenerated
-      // TODO-QSP: $rapist[3] = $boy1
-      // TODO-QSP: $rapist[4] = $boy2
-      qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
-      // TODO-QSP: $rapist[5] = $npclastgenerated
-      scene.img('images/locations/pavlovsk/park/sex/placer_sex102.mp4');
-      // TODO-QSP: dynamic text: You were about to leave the apartment, when <<$boydesc2>> suddenly grabs you by ...
-      scene.text(`You were about to leave the apartment, when ${((s as any).boydesc2 ?? 0)} suddenly grabs you by the hair and pulls you back. He drags you towards the bed while he scolds you: "Where do you think you're going, bitch!? It's always the same with whores like you… they act all cute and sexy and say they're in for a good time, but when push comes to shove they try to chicken out!"`);
-      scene.text('You\'re shocked at his sudden change of character. He seemed like he such a cute and polite guy!');
-      scene.text('He shoves you down onto the bed, and shouts: "We\'ll have to teach this bitch a lesson about common courtesy, boys!" It\'s met with loud cheers.');
-      // TODO-QSP: dynamic text: The boys surround you. You're not sure where they all came from… maybe <<$boydes...
-      scene.text(`The boys surround you. You're not sure where they all came from… maybe ${((s as any).boydesc2 ?? 0)} signaled in some more friends while you weren't looking? Maybe he had this planned all along?`);
-      scene.text('Not paying any attention to your cries, they begin to rip your clothes off.');
+  if (((s as any).stime ?? 0) >= 60) {
+    (s as any).stime = 0;
+    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (15);
+    qspCall(s, 'stat', '');
+  }
+  if (((s as any).pcs_sleep ?? 0) >= 100) {
+    (s as any).hour = 8;
+    (s as any).minut = 0;
+    qspCall(s, 'stat', '');
+    scene.text('Once you\'re well rested, you wake up again and sit up in the bed.');
+    (s as any).inSleep = 0;
+    if ((Math.floor(Math.random() * 6) + 1) === 1) {
+      scene.actions([{ label: 'Continue', goto: ['placer_sex', 'sleep_sex'] }]);
+    } else {
       scene.actions([
-        { label: 'Cry out', handler: (st: GameState) => {
+        { label: 'Make breakfast for the guys', goto: ['placer_sex', 'breakfast'] },
+        { label: 'Lie in bed', goto: ['placer_sex', 'stay_in_bed'] },
+      ]);
+    }
+  } else {
+    // TODO-QSP: jump 'loopson'
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRape(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 20) + 1)===5) {
+    qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
+    // TODO-QSP: $rapist[0] = $npclastgenerated
+    qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
+    // TODO-QSP: $rapist[1] = $npclastgenerated
+    qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
+    // TODO-QSP: $rapist[2] = $npclastgenerated
+    // TODO-QSP: $rapist[3] = $boy1
+    // TODO-QSP: $rapist[4] = $boy2
+    qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
+    // TODO-QSP: $rapist[5] = $npclastgenerated
+    scene.img('images/locations/pavlovsk/park/sex/placer_sex102.mp4');
+    // TODO-QSP: dynamic text: You were about to leave the apartment, when <<$boydesc2>> suddenly grabs you by ...
+    scene.text(`You were about to leave the apartment, when ${((s as any).boydesc2 ?? 0)} suddenly grabs you by the hair and pulls you back. He drags you towards the bed while he scolds you: "Where do you think you're going, bitch!? It's always the same with whores like you… they act all cute and sexy and say they're in for a good time, but when push comes to shove they try to chicken out!"`);
+    scene.text('You\'re shocked at his sudden change of character. He seemed like he such a cute and polite guy!');
+    scene.text('He shoves you down onto the bed, and shouts: "We\'ll have to teach this bitch a lesson about common courtesy, boys!" It\'s met with loud cheers.');
+    // TODO-QSP: dynamic text: The boys surround you. You're not sure where they all came from… maybe <<$boydes...
+    scene.text(`The boys surround you. You're not sure where they all came from… maybe ${((s as any).boydesc2 ?? 0)} signaled in some more friends while you weren't looking? Maybe he had this planned all along?`);
+    scene.text('Not paying any attention to your cries, they begin to rip your clothes off.');
+    scene.actions([
+      { label: 'Cry out', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/placer_sex103.jpg');
     scene.text('The guys tear off your clothes in no time, and unbutton their own pants to pull out their hard cocks as you cry out for help.');
@@ -2102,22 +2153,26 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-      ]);
-    } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
-      qspCall(s, 'stat', '');
-      scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
-    }
+    ]);
+  } else {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    qspCall(s, 'stat', '');
+    scene.actions([{ label: 'Continue', goto: ['pav_residential', ''] }]);
   }
-  if (((s as any).args ?? 0)[0] === 'rape_end') {
-    scene.img('images/locations/pavlovsk/park/sex/placer_sex124.jpg');
-    scene.text('You wake up in the back seat of a car. You\'re completely naked, and covered in sperm. You idly try to wipe the sperm from your face while you slowly get up. You mutter: "Wha… what\'s happening? Where are you taking me?"');
-    // TODO-QSP: dynamic text: <<$boydesc2>> immediately pulls over and opens the door. He still has that stoic...
-    scene.text(`${((s as any).boydesc2 ?? 0)} immediately pulls over and opens the door. He still has that stoic look on his face, pretending you're not even worth talking to.`);
-    scene.text('He slaps your face quite hard, and orders you: "Shut up, bitch! I guess this is where you get the fuck out of my car."');
-    scene.text('Him and one of his friends pull you out of the car, and quickly bind your wrists together with some rope before they drag you away from the road.');
-    scene.actions([
-      { label: 'You\'re at the lake?', handler: (st: GameState) => {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRapeEnd(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex124.jpg');
+  scene.text('You wake up in the back seat of a car. You\'re completely naked, and covered in sperm. You idly try to wipe the sperm from your face while you slowly get up. You mutter: "Wha… what\'s happening? Where are you taking me?"');
+  // TODO-QSP: dynamic text: <<$boydesc2>> immediately pulls over and opens the door. He still has that stoic...
+  scene.text(`${((s as any).boydesc2 ?? 0)} immediately pulls over and opens the door. He still has that stoic look on his face, pretending you're not even worth talking to.`);
+  scene.text('He slaps your face quite hard, and orders you: "Shut up, bitch! I guess this is where you get the fuck out of my car."');
+  scene.text('Him and one of his friends pull you out of the car, and quickly bind your wrists together with some rope before they drag you away from the road.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'You\'re at the lake?', handler: (st: GameState) => {
     if (((s as any).month ?? 0)===12  ||  ((s as any).month ?? 0)===1  ||  ((s as any).month ?? 0)===2) {
       scene.img('images/locations/pavlovsk/park/sex/placer_sex125.jpg');
       scene.text('When you look around, you realize you\'re at the frozen lake near Pavlovsk. Actually… you\'re on top of it, walking over the ice. You\'re completely naked and your body is shivering in the bitter cold, but the guys don\'t care and force you to keep walking between them. It\'s not like you could resist them anyway, your wrists are still bound in front of you.');
@@ -2164,8 +2219,7 @@ function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  }
+  ]);
   scene.build();
 }
 
@@ -2557,6 +2611,60 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'din_analPlugIn_off':
       enterDinAnalPlugInOff(s, scene);
+      break;
+    case 'meet':
+      enterMeet(s, scene);
+      break;
+    case 'vodka':
+      enterVodka(s, scene);
+      break;
+    case 'piano':
+      enterPiano(s, scene);
+      break;
+    case 'game':
+      enterGame(s, scene);
+      break;
+    case 'vodka2':
+      enterVodka2(s, scene);
+      break;
+    case 'twister':
+      enterTwister(s, scene);
+      break;
+    case 'cards':
+      enterCards(s, scene);
+      break;
+    case 'card_sex':
+      enterCardSex(s, scene);
+      break;
+    case 'card_stript':
+      enterCardStript(s, scene);
+      break;
+    case 'card_win':
+      enterCardWin(s, scene);
+      break;
+    case 'stay_in_bed':
+      enterStayInBed(s, scene);
+      break;
+    case 'sleep_sex':
+      enterSleepSex(s, scene);
+      break;
+    case 'breakfast_sex':
+      enterBreakfastSex(s, scene);
+      break;
+    case 'breakfast':
+      enterBreakfast(s, scene);
+      break;
+    case 'stay':
+      enterStay(s, scene);
+      break;
+    case 'sleep':
+      enterSleep(s, scene);
+      break;
+    case 'rape':
+      enterRape(s, scene);
+      break;
+    case 'rape_end':
+      enterRapeEnd(s, scene);
       break;
     case 'sitting_park_bench':
       enterSittingParkBench(s, scene);

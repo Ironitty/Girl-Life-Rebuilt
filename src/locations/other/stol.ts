@@ -308,24 +308,6 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_bad', '');
   scene.text('You have stored your birth control in the drawer of your desk.');
   // TODO-QSP: end
-  if (((s as any).args ?? 0)[0] === 'studying') {
-    scene.img('images/locations/shared/apartment/homework.jpg');
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
-      qspCall(s, 'grades', 'optional_activity_attribute', '' + qspUntranslated(s, "ARGS[1]>", { location: "stol" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "stol" }) + '', 'yes', ((s as any).pcs_intel ?? 0));
-    } else {
-      qspCall(s, 'grades', 'optional_activity_attribute', '' + qspUntranslated(s, "ARGS[1]>", { location: "stol" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "stol" }) + '', 'no', ((s as any).pcs_intel ?? 0));
-    }
-    qspCall(s, 'stat', '');
-    if ((0 as any) < (0 as any)) {
-      scene.text('You study for half an hour, but you can tell you\'ll need to study more if you want to completely understand this week\'s material.');
-    } else {
-      scene.text('You study for half an hour and think you understand everything that was covered this week.');
-    }
-    scene.actions([
-      { label: 'Get up from your desk', goto: ['stol', '<<$ARGS[3]>>'] },
-    ]);
-  }
   scene.actions([
     { label: 'Close the drawer', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -395,6 +377,27 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
       scene.text('You have no morning after pills.');
     }
   } },
+  ]);
+  scene.build();
+}
+
+function enterStudying(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/shared/apartment/homework.jpg');
+  (s as any).minut = ((s as any).minut ?? 0) + 30;
+  if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
+    qspCall(s, 'grades', 'optional_activity_attribute', '' + qspUntranslated(s, "ARGS[1]>", { location: "stol" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "stol" }) + '', 'yes', ((s as any).pcs_intel ?? 0));
+  } else {
+    qspCall(s, 'grades', 'optional_activity_attribute', '' + qspUntranslated(s, "ARGS[1]>", { location: "stol" }) + '', '' + qspUntranslated(s, "ARGS[2]>", { location: "stol" }) + '', 'no', ((s as any).pcs_intel ?? 0));
+  }
+  qspCall(s, 'stat', '');
+  if ((0 as any) < (0 as any)) {
+    scene.text('You study for half an hour, but you can tell you\'ll need to study more if you want to completely understand this week\'s material.');
+  } else {
+    scene.text('You study for half an hour and think you understand everything that was covered this week.');
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Get up from your desk', goto: ['stol', '<<$ARGS[3]>>'] },
   ]);
   scene.build();
 }
@@ -511,6 +514,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'bc':
       enterBc(s, scene);
+      break;
+    case 'studying':
+      enterStudying(s, scene);
       break;
     case 'studying_exam':
       enterStudyingExam(s, scene);

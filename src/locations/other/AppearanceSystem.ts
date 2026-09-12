@@ -14,17 +14,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_apprnc = qspFunc(s, 'AppearanceSystem', 'CalcAppearance', ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0) + ((((s as any).glamouractive ?? 0) === 1) ? (150) : (0)));
   (s as any).pcs_hotcat = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', ((s as any).pcs_apprnc ?? 0));
   // TODO-QSP: end
-  if (((s as any).args ?? 0)[0] === 'UpdateBaseAppearance') {
-    // TODO-QSP: Base Appearance is updated once a day at midnight and called from cikl
-    // TODO-QSP: Base Appearance is calculated from:
-    // TODO-QSP: vidage, skin, body shape (fat and strength), attributes (endurance and agility)
-    (s as any).attributeBonus = qspFunc(s, 'AppearanceSystem', 'CalcAttributeBonus');
-    (s as any).skinBonus = ((s as any).pcs_skin ?? 0) / 10;
-    (s as any).bodyShapeBonus = qspFunc(s, 'AppearanceSystem', 'CalcBodyShapeBonus');
-    (s as any).visibleAgePenalty = qspFunc(s, 'AppearanceSystem', 'CalcVisibleAgePenalty');
-    (s as any).teethPenalty = qspFunc(s, 'AppearanceSystem', 'CalcTeethPenalty');
-    (s as any).pcs_apprncbase = ((s as any).skinBonus ?? 0) + ((s as any).bodyShapeBonus ?? 0) + ((s as any).attributeBonus ?? 0) - ((s as any).visibleAgePenalty ?? 0) - ((s as any).teethPenalty ?? 0) + ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0);
-  }
+  scene.build();
+}
+
+function enterUpdateBaseAppearance(s: GameState, scene: SceneBuilder): void {
+  (s as any).attributeBonus = qspFunc(s, 'AppearanceSystem', 'CalcAttributeBonus');
+  (s as any).skinBonus = ((s as any).pcs_skin ?? 0) / 10;
+  (s as any).bodyShapeBonus = qspFunc(s, 'AppearanceSystem', 'CalcBodyShapeBonus');
+  (s as any).visibleAgePenalty = qspFunc(s, 'AppearanceSystem', 'CalcVisibleAgePenalty');
+  (s as any).teethPenalty = qspFunc(s, 'AppearanceSystem', 'CalcTeethPenalty');
+  (s as any).pcs_apprncbase = ((s as any).skinBonus ?? 0) + ((s as any).bodyShapeBonus ?? 0) + ((s as any).attributeBonus ?? 0) - ((s as any).visibleAgePenalty ?? 0) - ((s as any).teethPenalty ?? 0) + ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -318,6 +318,9 @@ function enterAdjustFromBMI(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'UpdateBaseAppearance':
+      enterUpdateBaseAppearance(s, scene);
+      break;
     case 'CalcFaceBonus':
       enterCalcFaceBonus(s, scene);
       break;
