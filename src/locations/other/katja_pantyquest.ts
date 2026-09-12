@@ -93,9 +93,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+      { label: 'Leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
     ]);
   } },
     ]);
@@ -175,9 +173,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+      { label: 'Leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
     ]);
   } },
       ]);
@@ -213,9 +209,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes! This is going to be so much fun. Think about how thrilling it will to be careful so you don\'t give \' + iif(katjaQW[\'boy_block\'] = 1, \'other girls\', \'boys\') + \' a peek of your pussy!" you enthusiastically chirp.');
     scene.text('"I\'m already regretting this…" Katja groans. But she doesn\'t look upset, nor does she make any move to put her panties back on.');
     scene.actions([
-      { label: 'leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+      { label: 'leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
     ]);
   } },
     ]);
@@ -288,18 +282,14 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('But she notices you. "No, I didn\'t put my panties back on, just like you asked. This is what you want to see, isn\'t it, you pervert?" she asks mockingly while she pulls up her skirt, showing you her naked behind.');
     scene.text('After a moment, she lets her skirt fall down. "That\'s enough for voyeurs like you," she adds before continuing with her cooking.');
     scene.actions([
-      { label: 'Thank her for the wine and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+      { label: 'Thank her for the wine and leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
     ]);
   } },
         ]);
       }
     }
     scene.actions([
-      { label: 'Thank her for the wine and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+      { label: 'Thank her for the wine and leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
     ]);
   } },
           ]);
@@ -342,26 +332,20 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('But she notices you. "No, I didn\'t put my panties back on, just like you asked. This is what you want to see, isn\'t it, you pervert?" she asks mockingly while she pulls up her skirt, showing you her naked behind.');
     scene.text('After a moment, she lets her skirt fall down. "That\'s enough for voyeurs like you," she adds before continuing with her cooking.');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+      { label: 'Leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
     ]);
   } },
           ]);
         }
       }
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+        { label: 'Leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
       ]);
     }
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+    { label: 'Leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
   ]);
   scene.build();
 }
@@ -382,9 +366,7 @@ function enterKitchenShowPussy(s: GameState, scene: SceneBuilder): void {
   scene.text('She then lets her skirt fall and turns back to her cooking.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
-  } },
+    { label: 'leave', goto: ['uni_dorm', 'dorm_kitchen', 'second_floor'] },
   ]);
   scene.build();
 }

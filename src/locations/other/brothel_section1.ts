@@ -410,7 +410,7 @@ function enterSection1Pick(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brothel_vars ?? 0)?.['rage_meter'] >= 100) {
-    // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_rage'
+    scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_rage'] }]);
   }
   if ((((s as any).pain ?? 0)?.['total'] > 50  &&  ((s as any).analPlugIn ?? 0) === 1)) {
     if ((Math.floor(Math.random() * 100) + 1) <= 25) {
@@ -425,16 +425,16 @@ function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
     scene.text('So my little light bulb, ready for the next step?');
     ((s as any).brothel_vars ?? {})['rand_fin'] = 0;
     if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 1) {
-      // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_behind_anal'
+      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_anal'] }]);
     } else {
       if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 2) {
-        // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_behind_vaginal'
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_vaginal'] }]);
       } else {
         if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 3) {
-          // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_mouth'
+          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_mouth'] }]);
         } else {
           if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 4) {
-            // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_face'
+            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_face'] }]);
           }
         }
       }
@@ -748,16 +748,16 @@ function enterSection1TitsMain(s: GameState, scene: SceneBuilder): void {
     scene.text('So my walking pair of tortured tits, ready for the next step?');
     ((s as any).brothel_vars ?? {})['rand_fin'] = 0;
     if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 1) {
-      // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_behind_anal'
+      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_anal'] }]);
     } else {
       if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 2) {
-        // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_behind_vaginal'
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_vaginal'] }]);
       } else {
         if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 3) {
-          // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_mouth'
+          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_mouth'] }]);
         } else {
           if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 4) {
-            // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_face'
+            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_face'] }]);
           }
         }
       }
@@ -1215,23 +1215,23 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
 
 function enterSection1TiedMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brothel_vars ?? 0)?.['rage_meter'] >= 100) {
-    // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_rage'
+    scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_rage'] }]);
   }
   (s as any).analplay = 0;
   if (((s as any).brothel_vars ?? 0)?.['orgasm_meter'] === 100) {
     scene.text('He finally builds up the orgasm and is ready to deliver his seed!');
     ((s as any).brothel_vars ?? {})['rand_fin'] = 0;
     if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 1) {
-      // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_front_anal'
+      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_front_anal'] }]);
     } else {
       if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 2) {
-        // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_front_vaginal'
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_front_vaginal'] }]);
       } else {
         if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 3) {
-          // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_mouth'
+          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_mouth'] }]);
         } else {
           if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 4) {
-            // TODO-QSP: xgt 'brothel_section1', 'section1_end_main', 'section1_end_face'
+            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_face'] }]);
           }
         }
       }

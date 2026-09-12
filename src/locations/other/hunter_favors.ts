@@ -345,30 +345,22 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).yard_bound_temprand ?? 0) === 4) {
       scene.actions([
-        { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_favors', 'yard_bondage', 'passing_bj'
-  } },
+        { label: 'Further', goto: ['hunter_favors', 'yard_bondage', 'passing_bj'] },
       ]);
     } else {
       if (((s as any).yard_bound_temprand ?? 0) === 5) {
         scene.actions([
-          { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_favors', 'yard_bondage', 'passing_fuck'
-  } },
+          { label: 'Further', goto: ['hunter_favors', 'yard_bondage', 'passing_fuck'] },
         ]);
       } else {
         if (((s as any).yard_bound_temprand ?? 0) === 6) {
           scene.actions([
-            { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_favors', 'yard_bondage', 'clamp_fuck'
-  } },
+            { label: 'Further', goto: ['hunter_favors', 'yard_bondage', 'clamp_fuck'] },
           ]);
         } else {
           if (((s as any).yard_bound_temprand ?? 0) === 8) {
             scene.actions([
-              { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'hunter_favors', 'yard_bondage', 'unbound_fuck'
-  } },
+              { label: 'Further', goto: ['hunter_favors', 'yard_bondage', 'unbound_fuck'] },
             ]);
           } else {
             scene.actions([

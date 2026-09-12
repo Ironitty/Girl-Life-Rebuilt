@@ -688,9 +688,7 @@ function enterPoliceblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('"What? You thought that was enough? No, I\'m taking you to the station where you belong, whore," he mockingly answers as he quickly speeds down the road.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Drive to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'prst'
-  } },
+      { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
     ]);
   } },
       ]);
@@ -708,9 +706,7 @@ function enterPoliceblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('"N-No officer! I was just thinking the two of us could have a good time…" you try once again.');
     scene.text('"That\'s it! You\'re coming with me, whore!" He turns you around, cuffs you and leads you to the police car. He shoves you in the back and quickly drives off towards the police station.');
     scene.actions([
-      { label: 'Drive to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'prst'
-  } },
+      { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
     ]);
   }
   // TODO-QSP: end
@@ -744,9 +740,7 @@ function enterPolicelie(s: GameState, scene: SceneBuilder): void {
       scene.text('He shakes his head in disgust. "The only way you\'re going to learn is if you\'re punished. Turn around, hands behind your back."');
       scene.text('In a matter of seconds, you\'re cuffed and being tossed into the back seat of an unmarked police car. You sit in silence as he drives you back to the police station for booking.');
       scene.actions([
-        { label: 'Drive to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'prst'
-  } },
+        { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
       ]);
     }
   } },
@@ -782,9 +776,7 @@ function enterPoliceexp(s: GameState, scene: SceneBuilder): void {
       scene.text('Without hesitation, he has you spun around, your arm twisted behind your back as he reaches for his handcuffs. Your crying only gets louder as he drags you to his unmarked police car and shoves you in the back.');
       scene.text('On the drive to the station, he gets tired of listening to your crying and pleading and turns on the radio, drowning you out completely.');
       scene.actions([
-        { label: 'Drive to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'prst'
-  } },
+        { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
       ]);
     }
   } },
@@ -831,9 +823,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m sorry! Please, let me--" You try to plead with him, but he makes a sudden move towards you that causes you to flinch, fearing he\'s going to hit you.');
       scene.text('"Shut the hell up, slut!" He grabs your arm and twists it behind you, forcing you to turn your back to him or potentially suffer a broken limb. He slaps the cuffs around your wrists, making sure they\'re extra tight before shoving you into the back of his unmarked police car to drive you to the station.');
       scene.actions([
-        { label: 'Drive to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'prst'
-  } },
+        { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
       ]);
     } else {
       if (((s as any).temp_rand ?? 0) <= 9) {
@@ -845,9 +835,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
         scene.text('It feels like the ground is spinning beneath you. You never expected such a downright cruel reaction, and he\'s right. There\'s nothing you can do except accept your fate.');
         scene.text('Nearly in tears, you hold out your wrists and let him cuff and shove you in the back of his unmarked police car to be dropped off at the station.');
         scene.actions([
-          { label: 'Drive to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'prst'
-  } },
+          { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
         ]);
       } else {
         scene.img('images/locations/city/shared/streetwalker/police.jpg');
@@ -865,9 +853,7 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fine by me, slut. Hands behind your back," he orders and you comply.');
     scene.text('In a matter of seconds, you\'re cuffed and in the back of his unmarked car being driven to the station to be booked.');
     scene.actions([
-      { label: 'Drive to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'prst'
-  } },
+      { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
     ]);
   } },
         ]);

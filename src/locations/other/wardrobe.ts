@@ -31,7 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['wardrobe', 'main'] }]);
   } else {
     if (((s as any).wardrobeDefaultPagePref ?? 0) === 'viewClothing') {
-      // TODO-QSP: gt 'clothing_view', 'view_lists_list', 'wardrobe'
+      scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_lists_list', 'wardrobe'] }]);
     } else {
       if (((s as any).wardrobeDefaultPagePref ?? 0) !== '') {
         // TODO-QSP: gt 'wardrobe', $wardrobeDefaultPagePref

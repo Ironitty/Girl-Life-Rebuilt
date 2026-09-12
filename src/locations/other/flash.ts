@@ -469,36 +469,36 @@ function enterParkDoFlash(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) < 6) {
       if (((s as any).temp_rand ?? 0) <= 30) {
         (s as any).flash_heat_long = Math.min(100, ((s as any).flash_heat_long ?? 0) + 5);
-        // TODO-QSP: gt 'flash', 'park_bad_scenario', 'grope'
+        scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'grope'] }]);
       } else {
         if (((s as any).temp_rand ?? 0) <= 40) {
           (s as any).flash_heat_long = Math.max(0, ((s as any).flash_heat_long ?? 0) - 5);
-          // TODO-QSP: gt 'flash', 'park_bad_scenario', 'police'
+          scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'police'] }]);
         } else {
           if (((s as any).temp_rand ?? 0) <= 75) {
             (s as any).flash_heat_long = Math.max(0, ((s as any).flash_heat_long ?? 0) - 10);
-            // TODO-QSP: gt 'flash', 'park_bad_scenario', 'rapist'
+            scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'rapist'] }]);
           } else {
             (s as any).flash_heat_long = Math.max(0, ((s as any).flash_heat_long ?? 0) - 15);
-            // TODO-QSP: gt 'flash', 'park_bad_scenario', 'gangrape'
+            scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'gangrape'] }]);
           }
         }
       }
     } else {
       if (((s as any).temp_rand ?? 0) <= 25) {
         (s as any).flash_heat_long = Math.min(100, ((s as any).flash_heat_long ?? 0) + 5);
-        // TODO-QSP: gt 'flash', 'park_bad_scenario', 'comment'
+        scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'comment'] }]);
       } else {
         if (((s as any).temp_rand ?? 0) <= 50) {
           (s as any).flash_heat_long = Math.min(100, ((s as any).flash_heat_long ?? 0) + 3);
-          // TODO-QSP: gt 'flash', 'park_bad_scenario', 'grope'
+          scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'grope'] }]);
         } else {
           if (((s as any).temp_rand ?? 0) <= 80) {
             (s as any).flash_heat_long = Math.max(0, ((s as any).flash_heat_long ?? 0) - 5);
-            // TODO-QSP: gt 'flash', 'park_bad_scenario', 'police'
+            scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'police'] }]);
           } else {
             (s as any).flash_heat_long = Math.max(0, ((s as any).flash_heat_long ?? 0) - 10);
-            // TODO-QSP: gt 'flash', 'park_bad_scenario', 'rapist'
+            scene.actions([{ label: 'Continue', goto: ['flash', 'park_bad_scenario', 'rapist'] }]);
           }
         }
       }
@@ -550,23 +550,17 @@ function enterPark(s: GameState, scene: SceneBuilder): void {
 function enterParkFlashOptions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] >= 1) {
     scene.actions([
-      { label: 'Flash your butt (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'flash', 'quick_park_flash', 'butt'
-  } },
+      { label: 'Flash your butt (0:05)', goto: ['flash', 'quick_park_flash', 'butt'] },
     ]);
   }
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] >= 2) {
     scene.actions([
-      { label: 'Flash your pussy (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'flash', 'quick_park_flash', 'pussy'
-  } },
+      { label: 'Flash your pussy (0:05)', goto: ['flash', 'quick_park_flash', 'pussy'] },
     ]);
   }
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] >= 3) {
     scene.actions([
-      { label: 'Flash your pussy and tits (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'flash', 'quick_park_flash', 'full'
-  } },
+      { label: 'Flash your pussy and tits (0:05)', goto: ['flash', 'quick_park_flash', 'full'] },
     ]);
   }
   // TODO-QSP: end
@@ -574,9 +568,7 @@ function enterParkFlashOptions(s: GameState, scene: SceneBuilder): void {
     { label: 'Go back', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-    { label: 'Flash your tits (0:05)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'flash', 'quick_park_flash', 'tits'
-  } },
+    { label: 'Flash your tits (0:05)', goto: ['flash', 'quick_park_flash', 'tits'] },
   ]);
   scene.build();
 }

@@ -110,8 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Look for something to masturbate with…', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
-    // TODO-QSP: gt 'selfplay', 'veggie_mast', 'pick_veg'
-  } },
+  }, goto: ['selfplay', 'veggie_mast', 'pick_veg'] },
     ]);
   }
   scene.actions([

@@ -1201,9 +1201,7 @@ function enterWorkoutTime(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/hold.jpg');
     scene.text('Fedor gives you a warm smile as he responds, "Great, I love a girl that keeps herself in shape." you give him a grin as you respond, "Well I already know that, duhh." Fedor chuckles as he fetches your coat then walks you out of the house, toward the sports center then says, "Let me just warm up a sec." Fedor then begins punching a punching bag.');
     scene.actions([
-      { label: 'Work out with him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'FedorMisc', 'Fedor Workout', 'workout_date'
-  } },
+      { label: 'Work out with him', goto: ['FedorMisc', 'Fedor Workout', 'workout_date'] },
     ]);
   } },
     { label: 'I need to head home', goto: ['FedorEv4', 'End Date 2'] },

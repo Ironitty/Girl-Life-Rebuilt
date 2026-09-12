@@ -372,21 +372,11 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/1_openings/shared/pre_4.jpg');
     scene.text('Select your personality/social group. Your social group will have a major defining impact upon your life in school and will determine your starting friends, traits and overall look. While you can always change groups later, it takes time and effort, so choose wisely.');
     scene.actions([
-      { label: 'Popular', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'charselect', 'cool'
-  } },
-      { label: 'Jock', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'charselect', 'jock'
-  } },
-      { label: 'Nerd', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'charselect', 'nerd'
-  } },
-      { label: 'Gopnik', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'charselect', 'gopnik'
-  } },
-      { label: 'Outcast', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'charselect', 'outcast'
-  } },
+      { label: 'Popular', goto: ['intro_character_creation', 'charselect', 'cool'] },
+      { label: 'Jock', goto: ['intro_character_creation', 'charselect', 'jock'] },
+      { label: 'Nerd', goto: ['intro_character_creation', 'charselect', 'nerd'] },
+      { label: 'Gopnik', goto: ['intro_character_creation', 'charselect', 'gopnik'] },
+      { label: 'Outcast', goto: ['intro_character_creation', 'charselect', 'outcast'] },
       { label: 'Full custom setup', goto: ['intro_character_custom', 'start'] },
       { label: 'Random personality', goto: ['intro_character_creation', 'random_start'] },
     ]);
@@ -940,9 +930,7 @@ function enterModSetExitActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },
-    { label: 'Return to the <<$ARGS[1]>> options', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'charselect', '<<$ARGS[1]>>'
-  } },
+    { label: 'Return to the <<$ARGS[1]>> options', goto: ['intro_character_creation', 'charselect', '<<$ARGS[1]>>'] },
     { label: 'Return to starting options', goto: ['intro_character_creation', 'charselect'] },
   ]);
   scene.build();

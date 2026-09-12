@@ -990,8 +990,7 @@ function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Attend the Vigil', handler: (st: GameState) => {
     (st as any).VKChurchEvents = ((st as any).VKChurchEvents ?? 0) + (1);
-    // TODO-QSP: gt 'pav_church', 'vigil', 'mom'
-  } },
+  }, goto: ['pav_church', 'vigil', 'mom'] },
       ]);
     } else {
       if (((s as any).VKChurch ?? 0) === 1  ||  ((s as any).VKChurch ?? 0) === 4) {
@@ -1001,8 +1000,7 @@ function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Join the Liturgy', handler: (st: GameState) => {
     (st as any).VKChurchEvents = ((st as any).VKChurchEvents ?? 0) + (1);
-    // TODO-QSP: gt 'pav_church', 'liturgy', 'mom'
-  } },
+  }, goto: ['pav_church', 'liturgy', 'mom'] },
         ]);
       } else {
         if (((s as any).VKChurch ?? 0) === 2  ||  ((s as any).VKChurch ?? 0) === 4) {
@@ -1015,8 +1013,7 @@ function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Light a candle', handler: (st: GameState) => {
     (st as any).VKChurchEvents = ((st as any).VKChurchEvents ?? 0) + (1);
-    // TODO-QSP: gt 'pav_church', 'candle', 'mom'
-  } },
+  }, goto: ['pav_church', 'candle', 'mom'] },
           ]);
         } else {
           if (((s as any).VKChurch ?? 0) === 3  ||  ((s as any).VKChurch ?? 0) === 4) {
@@ -1026,32 +1023,23 @@ function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Pray', handler: (st: GameState) => {
     (st as any).VKChurchEvents = ((st as any).VKChurchEvents ?? 0) + (1);
-    // TODO-QSP: gt 'pav_church', 'pray', 'mom'
-  } },
+  }, goto: ['pav_church', 'pray', 'mom'] },
             ]);
           } else {
             if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >=19  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
               scene.actions([
-                { label: 'Attend vigil', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_church', 'vigil', 'mom'
-  } },
+                { label: 'Attend vigil', goto: ['pav_church', 'vigil', 'mom'] },
               ]);
             } else {
               if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
                 scene.actions([
-                  { label: 'Attend Divine Liturgy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_church' , 'liturgy', 'mom'
-  } },
+                  { label: 'Attend Divine Liturgy', goto: ['pav_church', 'liturgy', 'mom'] },
                 ]);
               }
             }
             scene.actions([
-              { label: 'Light a candle', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_church', 'candle', 'mom'
-  } },
-              { label: 'Pray', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_church', 'pray', 'mom'
-  } },
+              { label: 'Light a candle', goto: ['pav_church', 'candle', 'mom'] },
+              { label: 'Pray', goto: ['pav_church', 'pray', 'mom'] },
             ]);
           }
         }

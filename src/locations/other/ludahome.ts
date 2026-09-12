@@ -541,9 +541,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
         scene.text('You remain seated next to Olu. He keeps intently watching the game, and you often wonder if he even remembers that you\'re here. He keeps yelling at the TV regardless of whether the team he likes does well or poorly.');
         scene.actions([
           { label: 'Stop watching TV', goto: ['ludahome', 'livingroom'] },
-          { label: 'Keep watching TV (0:30)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'ludahome', 'watchtv', 'Olu'
-  } },
+          { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', 'Olu'] },
         ]);
       }
     } else {
@@ -564,9 +562,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
           scene.text('You remain seated next to your aunt and watch TV with them for another half an hour. Olu seems pretty focused on the show and doesn\'t speak. On the other hand, Luda periodically makes small talk with you about a variety of things, seemingly only half paying attention to the show.');
           scene.actions([
             { label: 'Stop watching TV', goto: ['ludahome', 'livingroom'] },
-            { label: 'Keep watching TV (0:30)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'ludahome', 'watchtv', 'OluLuda'
-  } },
+            { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', 'OluLuda'] },
           ]);
         }
       }

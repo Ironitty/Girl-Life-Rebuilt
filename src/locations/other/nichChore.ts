@@ -730,7 +730,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).nichChoreID ?? 0) === 10) {
                         scene.actions([
                           { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'cleanApartment', 'end'
+    scene.actions([{ label: 'Continue', goto: ['nichChore', 'cleanApartment', 'end'] }]);
   } },
                         ]);
                       }

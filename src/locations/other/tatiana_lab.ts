@@ -903,9 +903,7 @@ function enterEscalation1(s: GameState, scene: SceneBuilder): void {
     { label: '"I think I will pass for now"', goto: ['tatiana_lab', 'start'] },
     { label: 'One of the dildoed power-tools(Anal)', goto: ['tatiana_lab', 'teach_dildo_anal'] },
     { label: 'One of the dildoed power-tools(Vaginal)', goto: ['tatiana_lab', 'teach_dildo_vag'] },
-    { label: 'Why choose only one?(????)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'tatiana_lab', 'teach_dildo_vag', 'teach_full'
-  } },
+    { label: 'Why choose only one?(????)', goto: ['tatiana_lab', 'teach_dildo_vag', 'teach_full'] },
   ]);
   scene.build();
 }
@@ -1569,7 +1567,7 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).sucbypass = 1;
-  // TODO-QSP: gt 'tatiana_lab', 'start', 'no_time'
+  scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'start', 'no_time'] }]);
   // TODO-QSP: end
   scene.build();
 }

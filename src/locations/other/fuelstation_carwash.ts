@@ -502,18 +502,12 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).arch_vars ?? 0)?.['main_active'] === 'bimbo'  &&  ((s as any).pcs_inhib ?? 0) >= 40)  ||  ((s as any).pcs_horny ?? 0) >= 40) {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([
-        { label: 'Offer your ass instead', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'fuckAnal', 'Paid'
-  } },
+        { label: 'Offer your ass instead', goto: ['fuelstation_carwash', 'fuckAnal', 'Paid'] },
       ]);
     } else {
       scene.actions([
-        { label: 'Offer your pussy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'fuckPussy', 'Paid'
-  } },
-        { label: 'Offer your ass', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'fuckAnal', 'Paid'
-  } },
+        { label: 'Offer your pussy', goto: ['fuelstation_carwash', 'fuckPussy', 'Paid'] },
+        { label: 'Offer your ass', goto: ['fuelstation_carwash', 'fuckAnal', 'Paid'] },
       ]);
     }
   }
@@ -626,9 +620,7 @@ function enterRapePussy(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) <= Math.min(Math.max(1, ((s as any).slut_compare ?? 0)), 50)) {
       scene.text('"It would have happened sooner or later anyway, virgin slut. Now enjoy and remember this moment; I know I will!"');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'rapePussyYes', 'virgin'
-  } },
+        { label: 'Continue', goto: ['fuelstation_carwash', 'rapePussyYes', 'virgin'] },
       ]);
     } else {
       scene.text('"Girls like you should not be acting like this! Someone should have taught you a lesson a long time ago."');
@@ -638,9 +630,7 @@ function enterRapePussy(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'rapePussyYes', 'normal'
-  } },
+      { label: 'Continue', goto: ['fuelstation_carwash', 'rapePussyYes', 'normal'] },
     ]);
   }
   // TODO-QSP: end
@@ -663,9 +653,7 @@ function enterRapePussyYes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'vaginaCum', 'rape'
-  } },
+    { label: 'Continue', goto: ['fuelstation_carwash', 'vaginaCum', 'rape'] },
   ]);
   scene.build();
 }
@@ -674,15 +662,9 @@ function enterPussyEndQ(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel that the man is about to cum, so you decide to…');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Let him cum in your pussy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'vaginaCum', 'consensual'
-  } },
-    { label: 'Let him cum on your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'blowjobEndFace', 'inside'
-  } },
-    { label: 'Let him cum in your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'blowjobEndMouth', 'inside'
-  } },
+    { label: 'Let him cum in your pussy', goto: ['fuelstation_carwash', 'vaginaCum', 'consensual'] },
+    { label: 'Let him cum on your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'inside'] },
+    { label: 'Let him cum in your mouth', goto: ['fuelstation_carwash', 'blowjobEndMouth', 'inside'] },
   ]);
   scene.build();
 }
@@ -692,12 +674,8 @@ function enterAnalEndQ(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your ass', goto: ['fuelstation_carwash', 'assCum'] },
-    { label: 'Let him cum on your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'blowjobEndFace', 'inside'
-  } },
-    { label: 'Let him cum in your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'blowjobEndMouth', 'inside'
-  } },
+    { label: 'Let him cum on your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'inside'] },
+    { label: 'Let him cum in your mouth', goto: ['fuelstation_carwash', 'blowjobEndMouth', 'inside'] },
   ]);
   scene.build();
 }
@@ -752,9 +730,7 @@ function enterHandjobEndQ(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel that the man is about to cum, so you decide to take it…');
   // TODO-QSP: end
   scene.actions([
-    { label: 'On your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'blowjobEndFace', 'outside'
-  } },
+    { label: 'On your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'outside'] },
     { label: 'On your hands', goto: ['fuelstation_carwash', 'handjobEndHands'] },
   ]);
   scene.build();
@@ -785,12 +761,8 @@ function enterBlowjobEndQ(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel that the man is about to cum, so you decide to take it…');
   // TODO-QSP: end
   scene.actions([
-    { label: 'On your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'blowjobEndFace', 'outside'
-  } },
-    { label: 'In your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'blowjobEndMouth', 'outside'
-  } },
+    { label: 'On your face', goto: ['fuelstation_carwash', 'blowjobEndFace', 'outside'] },
+    { label: 'In your mouth', goto: ['fuelstation_carwash', 'blowjobEndMouth', 'outside'] },
   ]);
   scene.build();
 }
@@ -995,9 +967,7 @@ function enterPunishPussyQ(s: GameState, scene: SceneBuilder): void {
       if (((s as any).penetrate ?? 0) <= Math.min(Math.max(75, ((s as any).slut_compare ?? 0)), 100)  &&  ((s as any).penetrate ?? 0) >= 75) {
         scene.text('"This makes it even better! I haven\'t had a virgin in forever! I\'m going to enjoy your tears, slut."');
         scene.actions([
-          { label: 'Endure it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'punishPussy', 'virgin'
-  } },
+          { label: 'Endure it', goto: ['fuelstation_carwash', 'punishPussy', 'virgin'] },
         ]);
       } else {
         scene.text('"Someone should have done this a long time ago, but I\'ll spare you penetration this time!"');
@@ -1009,9 +979,7 @@ function enterPunishPussyQ(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Let\'s try what you\'ve been teasing, you ungrateful whore!"');
     scene.actions([
-      { label: 'Endure it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'fuelstation_carwash', 'punishPussy', 'normal'
-  } },
+      { label: 'Endure it', goto: ['fuelstation_carwash', 'punishPussy', 'normal'] },
     ]);
   }
   // TODO-QSP: end

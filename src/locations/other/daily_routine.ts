@@ -130,16 +130,12 @@ function enterOfferHere(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).droutine ?? 0)?.['morning_count'] > 0  &&  qspFunc(s, 'daily_routine', 'phase_available', 'morning')) {
     scene.actions([
-      { label: 'Start your morning routine', handler: (st: GameState) => {
-    // TODO-QSP: gt 'daily_routine', 'start', 'morning'
-  } },
+      { label: 'Start your morning routine', goto: ['daily_routine', 'start', 'morning'] },
     ]);
   }
   if (((s as any).droutine ?? 0)?.['evening_count'] > 0  &&  qspFunc(s, 'daily_routine', 'phase_available', 'evening')) {
     scene.actions([
-      { label: 'Start your evening routine', handler: (st: GameState) => {
-    // TODO-QSP: gt 'daily_routine', 'start', 'evening'
-  } },
+      { label: 'Start your evening routine', goto: ['daily_routine', 'start', 'evening'] },
     ]);
   }
   // TODO-QSP: end
@@ -858,12 +854,8 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Edit morning routine', handler: (st: GameState) => {
-    // TODO-QSP: gt 'daily_routine', 'manage_phase', 'morning'
-  } },
-    { label: 'Edit evening routine', handler: (st: GameState) => {
-    // TODO-QSP: gt 'daily_routine', 'manage_phase', 'evening'
-  } },
+    { label: 'Edit morning routine', goto: ['daily_routine', 'manage_phase', 'morning'] },
+    { label: 'Edit evening routine', goto: ['daily_routine', 'manage_phase', 'evening'] },
     { label: 'Availability and timing', goto: ['daily_routine', 'settings'] },
   ]);
   scene.build();

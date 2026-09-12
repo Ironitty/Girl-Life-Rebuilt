@@ -96,7 +96,7 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', ((s as any).property_sales_price ?? 0)?.[String((s as any).agentned_i ?? 0)], 'bank') === 0) {
         s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
-        // TODO-QSP: gt 'agentned', 'buy_property', '<<$property_code[agentned_i]>>'
+        scene.actions([{ label: 'Continue', goto: ['agentned', 'buy_property', '<<$property_code[agentned_i]>>'] }]);
       }
     }
     // TODO-QSP: "

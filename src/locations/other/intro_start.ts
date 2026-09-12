@@ -765,9 +765,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: A few minutes later, an excited teenage girl comes rushing down one of the dirt ...
     scene.text(`A few minutes later, an excited teenage girl comes rushing down one of the dirt roads. You double-check a picture of ${((s as any).pcs_nickname ?? 0)} on your phone, as this is the first time you've seen her with your own eyes.`);
     scene.actions([
-      { label: 'Take a look at her picture (skip customization)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', 'start', 'appearance_hub'
-  } },
+      { label: 'Take a look at her picture (skip customization)', goto: ['intro_character_creation', 'start', 'appearance_hub'] },
       { label: 'Customise <<$pcs_firstname>>', goto: ['intro_character_creation', 'start'] },
     ]);
   } },

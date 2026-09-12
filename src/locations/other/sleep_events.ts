@@ -69,7 +69,7 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-      // TODO-QSP: xgt 'sleep_events', 'event_handler2', 'priority'
+      scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_handler2', 'priority'] }]);
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
         scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_handler2'] }]);
@@ -88,14 +88,14 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
-  // TODO-QSP: xgt 'sleep_events', 'event_end', 'sleep'
+  scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', 'sleep'] }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'dream') {
-    // TODO-QSP: xgt 'sleep_events', 'continue', 'dream'
+    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'continue', 'dream'] }]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'wake') {
       // TODO-QSP: gs 'sleep_events', 'exit', ARGS[2]
@@ -105,9 +105,9 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'sleep_events', 'continue', 'no_interrupt');
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'sleep') {
-          // TODO-QSP: xgt 'sleep_events', 'continue', 'sleep'
+          scene.actions([{ label: 'Continue', goto: ['sleep_events', 'continue', 'sleep'] }]);
         } else {
-          // TODO-QSP: xgt 'sleep_events', 'continue', 'sleep'
+          scene.actions([{ label: 'Continue', goto: ['sleep_events', 'continue', 'sleep'] }]);
         }
       }
     }
@@ -164,7 +164,7 @@ function enterVibrOrgasm2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    // TODO-QSP: gt 'sleep_events', 'event_end', 'dream'
+    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', 'dream'] }]);
   } },
     { label: 'Give up trying to sleep', handler: (st: GameState) => {
     scene.img('images/shared/sex/oface/kotovfirst1.jpg');
@@ -205,7 +205,7 @@ function enterMaleDreamEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    // TODO-QSP: gt 'sleep_events', 'event_end', 'dream'
+    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', 'dream'] }]);
   } },
     { label: 'Get up', handler: (st: GameState) => {
     qspCall(s, 'sleep_events', 'event_end', 'wake');
@@ -260,7 +260,7 @@ function enterIvannaDreamOrgasm(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    // TODO-QSP: gt 'sleep_events', 'event_end', 'dream'
+    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', 'dream'] }]);
   } },
     { label: 'Get up', handler: (st: GameState) => {
     qspCall(s, 'sleep_events', 'event_end', 'wake');
@@ -389,7 +389,7 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
     { label: 'Try and go back to sleep', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (5);
-    // TODO-QSP: gt 'sleep_events', 'event_end', 'dream'
+    scene.actions([{ label: 'Continue', goto: ['sleep_events', 'event_end', 'dream'] }]);
   } },
   ]);
   scene.build();

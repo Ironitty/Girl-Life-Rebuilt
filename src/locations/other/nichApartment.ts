@@ -167,7 +167,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichWorkState ?? 0) > 0) {
       scene.actions([
         { label: 'Clean apartment', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'cleanApartment', 'start'
+    scene.actions([{ label: 'Continue', goto: ['nichChore', 'cleanApartment', 'start'] }]);
   } },
       ]);
     }

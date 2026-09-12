@@ -261,9 +261,9 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).break_rand ?? 0)[1] + (Math.floor(Math.random() * 6) + 5) < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50) {
     ((s as any).break_rand ?? {})[1] = ((s as any).daystart ?? 0);
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      // TODO-QSP: gt 'gossips', 'school', 'boys_slutrep'
+      scene.actions([{ label: 'Continue', goto: ['gossips', 'school', 'boys_slutrep'] }]);
     } else {
-      // TODO-QSP: gt 'gossips', 'school', 'girls_slutrep'
+      scene.actions([{ label: 'Continue', goto: ['gossips', 'school', 'girls_slutrep'] }]);
     }
   }
   qspCall(s, 'gschool_events', 'leave_break_events');

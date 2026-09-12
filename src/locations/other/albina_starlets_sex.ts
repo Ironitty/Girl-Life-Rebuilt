@@ -683,9 +683,7 @@ function enterWhore6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'pain', '', 1, 'asscheeks', 'slap');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Call a taxi', handler: (st: GameState) => {
-    // TODO-QSP: gt 'albina_starlets_sex', 'cab_home', 'no_clean'
-  } },
+      { label: 'Call a taxi', goto: ['albina_starlets_sex', 'cab_home', 'no_clean'] },
     ]);
   } },
     ]);

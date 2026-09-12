@@ -82,9 +82,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_2'] },
-    { label: 'Take the elevator', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_1'
-  } },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_1'] },
   ]);
   scene.build();
 }
@@ -167,9 +165,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
     ]);
   } },
-    { label: 'Take the elevator', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_2'
-  } },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_2'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -232,9 +228,7 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_4'] },
     { label: 'Apartment 13: Vasily and Sergei Shulgin', goto: ['vasilyhome', 'home'] },
-    { label: 'Take the elevator', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_3'
-  } },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_3'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -266,9 +260,7 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_5'] },
     { label: 'Apartment 21: Aunt Luda', goto: ['ludahome', 'home'] },
-    { label: 'Take the elevator', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_4'
-  } },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_4'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -295,9 +287,7 @@ function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the roof', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'roof'] },
-    { label: 'Take the elevator', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_5'
-  } },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_5'] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },

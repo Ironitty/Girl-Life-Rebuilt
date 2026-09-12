@@ -121,7 +121,7 @@ function enterBoyGoodForYouOptions(s: GameState, scene: SceneBuilder): void {
     if (((s as any).know_virgin ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       scene.text('"Yeah, you were amazing," he smiles at you. "Really good lay your first time!"');
       scene.text('Your blush deepens.');
-      // TODO-QSP: xgt 'sex_ev_virgin', 'first_time_talk', 'speaking_of'
+      scene.actions([{ label: 'Continue', goto: ['sex_ev_virgin', 'first_time_talk', 'speaking_of'] }]);
     } else {
       scene.text('"Yeah, you were amazing," he smiles at you.');
       scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);

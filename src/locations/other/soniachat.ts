@@ -1362,37 +1362,27 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) >= 5  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
       if (((s as any).rex_love ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Rex', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniachat', 'telling_marrige_dreams1', 'Rex'
-  } },
+          { label: 'Get married to Rex', goto: ['soniachat', 'telling_marrige_dreams1', 'Rex'] },
         ]);
       }
       if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
         scene.actions([
-          { label: 'Get married to Artem', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniachat', 'telling_marrige_dreams1', 'Artem'
-  } },
+          { label: 'Get married to Artem', goto: ['soniachat', 'telling_marrige_dreams1', 'Artem'] },
         ]);
       }
       if (((s as any).kotovLoveQW ?? 0) === 1) {
         scene.actions([
-          { label: 'Get married to Vitek', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniachat', 'telling_marrige_dreams1', 'Vitek'
-  } },
+          { label: 'Get married to Vitek', goto: ['soniachat', 'telling_marrige_dreams1', 'Vitek'] },
         ]);
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Fedor', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniachat', 'telling_marrige_dreams1', 'Fedor'
-  } },
+          { label: 'Get married to Fedor', goto: ['soniachat', 'telling_marrige_dreams1', 'Fedor'] },
         ]);
       }
       if (((s as any).NikoVolkovQW ?? 0) >= 5) {
         scene.actions([
-          { label: 'Get married to Niko', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniachat', 'telling_marrige_dreams1', 'Niko'
-  } },
+          { label: 'Get married to Niko', goto: ['soniachat', 'telling_marrige_dreams1', 'Niko'] },
         ]);
       }
       (s as any).i = 0;

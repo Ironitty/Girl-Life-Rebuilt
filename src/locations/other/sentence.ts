@@ -82,9 +82,7 @@ function enterPunishment(s: GameState, scene: SceneBuilder): void {
   ((s as any).policeQW ?? {})['fine_deadline'] = (((s as any).policeQW ?? {})['fine_deadline'] ?? 0) + (14);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave the court', handler: (st: GameState) => {
-    // TODO-QSP: gt 'city_center', '', 'mom_check'
-  } },
+    { label: 'Leave the court', goto: ['city_center', '', 'mom_check'] },
   ]);
   scene.build();
 }
@@ -156,9 +154,7 @@ function enterPoliceArrest2(s: GameState, scene: SceneBuilder): void {
   ((s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).policeQW ?? 0)?.['fine_deadline'], ((s as any).daystart ?? 0) + 30);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave the court', handler: (st: GameState) => {
-    // TODO-QSP: gt 'city_center', '', 'mom_check'
-  } },
+    { label: 'Leave the court', goto: ['city_center', '', 'mom_check'] },
   ]);
   scene.build();
 }

@@ -247,9 +247,7 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
           { label: 'Accept', handler: (st: GameState) => {
     scene.text('"That sounds nice," you smile at him. After sprucing yourself up a bit, you follow him back to his apartment.');
     scene.actions([
-      { label: 'Go to his place', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_hangout', 'start', 'disco'
-  } },
+      { label: 'Go to his place', goto: ['date_hangout', 'start', 'disco'] },
     ]);
   } },
         ]);
@@ -468,9 +466,7 @@ function enterCallitanight(s: GameState, scene: SceneBuilder): void {
         { label: 'Sure', handler: (st: GameState) => {
     scene.text('"That sounds nice," you smile at him. After sprucing yourself up a bit, you follow him back to his apartment.');
     scene.actions([
-      { label: 'Go to his place', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_hangout', 'start', 'disco'
-  } },
+      { label: 'Go to his place', goto: ['date_hangout', 'start', 'disco'] },
     ]);
   } },
       ]);
@@ -544,9 +540,7 @@ function enterPcAskcoffee(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "That could be nice," <<$npcdesc>> smiles and leads you back to his apartment.
       scene.text(`"That could be nice," ${((s as any).npcdesc ?? 0)} smiles and leads you back to his apartment.`);
       scene.actions([
-        { label: 'Go to <<$npcdesc>>\'s apartment', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_hangout', 'start', 'disco'
-  } },
+        { label: 'Go to <<$npcdesc>>\'s apartment', goto: ['date_hangout', 'start', 'disco'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: "Only if we get to fuck after," <<$npcdesc>> grins, leering openly at you.
@@ -560,7 +554,7 @@ function enterPcAskcoffee(s: GameState, scene: SceneBuilder): void {
         { label: 'We\'ll see', handler: (st: GameState) => {
     scene.text('"I\'m not saying no, but we\'ll have to see about it first," you reply, a wry smirk on your face.');
     scene.text('"I\'ll take those odds," he continues to grin and leads you back to his place.');
-    // TODO-QSP: gt 'date_hangout', 'start', 'disco'
+    scene.actions([{ label: 'Continue', goto: ['date_hangout', 'start', 'disco'] }]);
   } },
       ]);
     }
@@ -626,9 +620,7 @@ function enterBoysexTitsuck(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} pops your nipple into his mouth and starts sucking, rolling his tongue across the tip and around your areola. His free hand releases your other breast from ' + iif(PCloDress > 0, 'your dress ', 'your top ') + 'to palm it, gently squeezing it in a pulsing pattern while he sucks on your other tit.`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_disco_outside', 'sex_route', 'tit_suck'
-  } },
+    { label: 'Continue', goto: ['pav_disco_outside', 'sex_route', 'tit_suck'] },
   ]);
   scene.build();
 }

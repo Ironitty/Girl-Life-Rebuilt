@@ -38,7 +38,7 @@ export function inferLegacyLocationType(loc: string): string | undefined {
   return undefined;
 }
 
-export function setloc(s: GameState, loc: string, arg: string): void {
+export function setloc(s: GameState, loc: string, arg: string, arg2?: string): void {
   if (s.loc !== loc) {
     s.prevLoc = s.loc;
     s.prevArg = s.locArg;
@@ -46,6 +46,7 @@ export function setloc(s: GameState, loc: string, arg: string): void {
   s.loc = loc;
   s.menuLoc = loc;
   s.locArg = arg;
+  s.locArg2 = arg2 ?? '';
   s.menuArg = arg;
 
   const def = getLocation(loc);
@@ -58,7 +59,7 @@ export function setloc(s: GameState, loc: string, arg: string): void {
   }
 }
 
-export function goto(s: GameState, loc: string, arg: string): void {
+export function goto(s: GameState, loc: string, arg: string, arg2?: string): void {
   if (s.loc && s.loc !== loc) {
     const prevDef = getLocation(s.loc);
     if (prevDef?.exit) {
@@ -66,7 +67,7 @@ export function goto(s: GameState, loc: string, arg: string): void {
     }
   }
 
-  setloc(s, loc, arg);
+  setloc(s, loc, arg, arg2);
   s.navigationVersion++;
   const def = getLocation(loc);
   if (def) {

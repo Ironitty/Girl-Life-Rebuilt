@@ -130,12 +130,8 @@ function enterReceptionistTalkMenu(s: GameState, scene: SceneBuilder): void {
           { label: 'Can I set my schedule?', handler: (st: GameState) => {
     scene.text('"Of course. And if you schedule for next week, you\'ll get better pickings on time slots."');
     scene.actions([
-      { label: 'Set current week schedule', handler: (st: GameState) => {
-    // TODO-QSP: gt 'masseuse_work', 'set_schedule', 'this_week'
-  } },
-      { label: 'Set next week schedule', handler: (st: GameState) => {
-    // TODO-QSP: gt 'masseuse_work', 'set_schedule', 'next_week'
-  } },
+      { label: 'Set current week schedule', goto: ['masseuse_work', 'set_schedule', 'this_week'] },
+      { label: 'Set next week schedule', goto: ['masseuse_work', 'set_schedule', 'next_week'] },
     ]);
   } },
           { label: 'I want to change jobs', goto: ['masseuse_work', 'job_change'] },
@@ -757,9 +753,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Great! So would you like to set your shifts for next week then?"');
     scene.text('"Sure."');
     scene.actions([
-      { label: 'Look at the schedule', handler: (st: GameState) => {
-    // TODO-QSP: gt 'masseuse_work', 'set_schedule', 'this_week'
-  } },
+      { label: 'Look at the schedule', goto: ['masseuse_work', 'set_schedule', 'this_week'] },
     ]);
   } },
     { label: 'Why the uniform?', handler: (st: GameState) => {

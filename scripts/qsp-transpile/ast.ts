@@ -43,7 +43,7 @@ export interface QspAct {
   kind: 'act';
   label: string;
   body: QspNode[];
-  inlineGoto?: { target: string; arg: string };
+  inlineGoto?: { target: string; arg: string; arg2?: string };
   inlineStatements?: string;
 }
 
@@ -74,6 +74,7 @@ export interface QspGoto {
   kind: 'goto';
   target: string;
   arg: string;
+  arg2?: string;
 }
 
 export interface QspGsCall {

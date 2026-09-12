@@ -480,9 +480,7 @@ function enterBrushplay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     scene.actions([
-      { label: 'Keep playing with the brush', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'brushplay', 'brush_keepgoing'
-  } },
+      { label: 'Keep playing with the brush', goto: ['selfplay', 'brushplay', 'brush_keepgoing'] },
     ]);
   }
   // TODO-QSP: end
@@ -749,9 +747,7 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Keep fucking your pussy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'pussy_dildo_mast', 'vag_keepgoing'
-  } },
+      { label: 'Keep fucking your pussy', goto: ['selfplay', 'pussy_dildo_mast', 'vag_keepgoing'] },
     ]);
   } else {
     scene.actions([
@@ -1082,9 +1078,7 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Keep fucking your ass', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_dildo_mast', 'anal_keepgoing'
-  } },
+      { label: 'Keep fucking your ass', goto: ['selfplay', 'anal_dildo_mast', 'anal_keepgoing'] },
     ]);
   } else {
     scene.actions([

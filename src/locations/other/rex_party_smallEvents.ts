@@ -353,9 +353,7 @@ function enterIraLenaLivingRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Have fun', handler: (st: GameState) => {
-    // TODO-QSP: gt 'rex_party_sexEvents', 'ira_lena_fun', 'boys'
-  } },
+        { label: 'Have fun', goto: ['rex_party_sexEvents', 'ira_lena_fun', 'boys'] },
         { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
@@ -379,9 +377,7 @@ function enterIraLenaLivingRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Have a rest', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-      { label: 'Kiss', handler: (st: GameState) => {
-    // TODO-QSP: gt 'rex_party_sexEvents', 'ira_lena_fun', 'girls'
-  } },
+      { label: 'Kiss', goto: ['rex_party_sexEvents', 'ira_lena_fun', 'girls'] },
     ]);
   } },
   ]);

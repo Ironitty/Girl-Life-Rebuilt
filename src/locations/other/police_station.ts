@@ -801,52 +801,52 @@ function enterInterrogation(s: GameState, scene: SceneBuilder): void {
     if (((s as any).book_response ?? 0) === 1) {
       if (((s as any).detecrand ?? 0) >= 86) {
         ((s as any).policeQW ?? {})['detective_type'] = 'easy';
-        // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'easy'
+        scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'easy'] }]);
       } else {
         if (((s as any).detecrand ?? 0) >= 16) {
           ((s as any).policeQW ?? {})['detective_type'] = 'norm';
-          // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'text'
+          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'text'] }]);
         } else {
           ((s as any).policeQW ?? {})['detective_type'] = 'hard';
-          // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'hard'
+          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'hard'] }]);
         }
       }
     } else {
       if (((s as any).book_response ?? 0) === 2) {
         if (((s as any).detecrand ?? 0) >= 91) {
           ((s as any).policeQW ?? {})['detective_type'] = 'easy';
-          // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'easy'
+          scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'easy'] }]);
         } else {
           if (((s as any).detecrand ?? 0) >= 71) {
             ((s as any).policeQW ?? {})['detective_type'] = 'norm';
-            // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'text'
+            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'text'] }]);
           } else {
             ((s as any).policeQW ?? {})['detective_type'] = 'hard';
-            // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'hard'
+            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'hard'] }]);
           }
         }
       } else {
         if (((s as any).book_response ?? 0) === 3) {
           if (((s as any).detecrand ?? 0) >= 31) {
             ((s as any).policeQW ?? {})['detective_type'] = 'easy';
-            // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'easy'
+            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'easy'] }]);
           } else {
             if (((s as any).detecrand ?? 0) >= 11) {
               ((s as any).policeQW ?? {})['detective_type'] = 'norm';
-              // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'text'
+              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'text'] }]);
             } else {
               ((s as any).policeQW ?? {})['detective_type'] = 'hard';
-              // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'hard'
+              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'hard'] }]);
             }
           }
         } else {
           if (((s as any).book_response ?? 0) === 4) {
             ((s as any).policeQW ?? {})['detective_type'] = 'easy';
-            // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'easy'
+            scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'easy'] }]);
           } else {
             if (((s as any).book_response ?? 0) === 5) {
               ((s as any).policeQW ?? {})['detective_type'] = 'hard';
-              // TODO-QSP: gt 'court_arrest_events', 'interrogation_start', 'hard'
+              scene.actions([{ label: 'Continue', goto: ['court_arrest_events', 'interrogation_start', 'hard'] }]);
             }
           }
         }

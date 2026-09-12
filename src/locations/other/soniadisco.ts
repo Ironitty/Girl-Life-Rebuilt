@@ -268,9 +268,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      // TODO-QSP: gt 'soniadisco', 'dance', 'declineinvite'
+      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance', 'declineinvite'] }]);
     } else {
-      // TODO-QSP: gt 'soniadisco', 'dance1', 'declineinvite'
+      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1', 'declineinvite'] }]);
     }
   } },
         ]);
@@ -340,9 +340,9 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      // TODO-QSP: gt 'soniadisco', 'dance', 'declineinvite'
+      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance', 'declineinvite'] }]);
     } else {
-      // TODO-QSP: gt 'soniadisco', 'dance1', 'declineinvite'
+      scene.actions([{ label: 'Continue', goto: ['soniadisco', 'dance1', 'declineinvite'] }]);
     }
   } },
               ]);
@@ -650,9 +650,7 @@ function enterNotpressured(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+    { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
   ]);
   scene.build();
 }
@@ -681,9 +679,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -744,9 +740,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
       ]);
@@ -803,9 +797,7 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -843,9 +835,7 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -904,9 +894,7 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -938,9 +926,7 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Go after her', goto: ['soniadisco', 'chasesonia'] },
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -999,9 +985,7 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -1112,9 +1096,7 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
       ]);
@@ -1205,9 +1187,7 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth', 'A10', 1);
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Go back to the disco', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance', 'staytoend'
-  } },
+      { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
   } },
     ]);
@@ -1548,9 +1528,7 @@ function enterSoniafall(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Follow them', handler: (st: GameState) => {
-    // TODO-QSP: gt 'soniadisco', 'dance1', 'staytoend'
-  } },
+      { label: 'Follow them', goto: ['soniadisco', 'dance1', 'staytoend'] },
     ]);
   } },
     ]);

@@ -161,10 +161,10 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Blowjob', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichNicholas', 'sex', 'bj'
+    scene.actions([{ label: 'Continue', goto: ['nichNicholas', 'sex', 'bj'] }]);
   } },
       { label: 'Anal', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichNicholas', 'sex', 'anal'
+    scene.actions([{ label: 'Continue', goto: ['nichNicholas', 'sex', 'anal'] }]);
   } },
     ]);
   } else {

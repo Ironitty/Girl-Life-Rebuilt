@@ -417,9 +417,7 @@ function enterS0Facial(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Clean up and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_pavlovsk', 'end', 'clean'
-  } },
+      { label: 'Clean up and leave', goto: ['prostitution_pavlovsk', 'end', 'clean'] },
     ]);
   }
   // TODO-QSP: end
@@ -481,9 +479,7 @@ function enterS0Internal(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Clean up and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_pavlovsk', 'end', 'clean'
-  } },
+      { label: 'Clean up and leave', goto: ['prostitution_pavlovsk', 'end', 'clean'] },
     ]);
   }
   // TODO-QSP: end
@@ -635,9 +631,7 @@ function enterS1End(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Clean up and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_pavlovsk', 'end', 'clean'
-  } },
+      { label: 'Clean up and leave', goto: ['prostitution_pavlovsk', 'end', 'clean'] },
     ]);
   }
   // TODO-QSP: end
@@ -811,9 +805,7 @@ function enterS2End(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Clean up and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_pavlovsk', 'end', 'clean'
-  } },
+      { label: 'Clean up and leave', goto: ['prostitution_pavlovsk', 'end', 'clean'] },
     ]);
   }
   // TODO-QSP: end
@@ -1222,9 +1214,7 @@ function enterS5End(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Clean up and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_pavlovsk', 'end', 'clean'
-  } },
+      { label: 'Clean up and leave', goto: ['prostitution_pavlovsk', 'end', 'clean'] },
     ]);
   }
   // TODO-QSP: end
@@ -1436,9 +1426,7 @@ function enterSet_9(s: GameState, scene: SceneBuilder): void {
       scene.text('"Look at me." His voice is hoarse and sounds almost pleading. You tear your gaze away from his hard cock and look up directly into his eyes. For what feels like a whole minute there\'s only silence in the room');
       scene.text('"Thanks, I really appreciate you spending time with me," he says. "The bathroom is down the hall, you can fresh up in there."');
       scene.actions([
-        { label: 'Clean up and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_pavlovsk', 'end', 'clean'
-  } },
+        { label: 'Clean up and leave', goto: ['prostitution_pavlovsk', 'end', 'clean'] },
       ]);
     }
     (s as any).facial = ((s as any).facial ?? 0) + (1);

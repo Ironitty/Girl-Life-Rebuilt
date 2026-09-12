@@ -406,9 +406,7 @@ function enterDanceGuy(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean in and whisper in his ear. "How about we have fun at your place instead?"');
     scene.text('His eyes light up and he grabs your hand before quickly dragging you to the exit.');
     scene.actions([
-      { label: 'Go with him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'sex_ev_start', 'npc_home_start', 'hookup'
-  } },
+      { label: 'Go with him', goto: ['sex_ev_start', 'npc_home_start', 'hookup'] },
     ]);
   } },
     ]);

@@ -78,7 +78,7 @@ function enterLookClient(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
   }
   if (((s as any).prostitute ?? 0)?.['regular'] === 1) {
-    // TODO-QSP: gt 'prostitution_car_negotiation', 'client_regular', 'look_client'
+    scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular', 'look_client'] }]);
   } else {
     if (((s as any).prostitute ?? 0)?.['client_chance'] > 100  &&  ((s as any).prostitute ?? 0)?.['regular'] === 0) {
       ((s as any).prostitute ?? {})['pity_counter'] = 0;

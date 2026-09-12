@@ -142,7 +142,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Candy Crunch', handler: (st: GameState) => {
     scene.text('"I\'m always playing that candy game on my phone. It\'s so addicting, I can\'t put it down!"');
     if (((s as any).npc_snob ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';video_games;'))) + 1 > 0) {
-      // TODO-QSP: xgt 'date_boy_talk', 'video_games_talk', 'mobile_game'
+      scene.actions([{ label: 'Continue', goto: ['date_boy_talk', 'video_games_talk', 'mobile_game'] }]);
     } else {
       scene.text('"Oh, that\'s cool I guess."');
       scene.actions([
@@ -333,18 +333,14 @@ function enterLoveHairTalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Thank him', handler: (st: GameState) => {
     scene.text('"Thanks," you smile back. "It\'s always nice to be told you\'re beautiful."');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
     { label: 'Get embarrassed', handler: (st: GameState) => {
     scene.text('"Stop it!" you blush.');
     scene.text('"I mean it! Whatever barber you\'re seeing, keep seeing him."');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
   ]);
@@ -394,9 +390,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
         scene.text('He seems pleased and takes the compliment with a blush.');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+          { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
         ]);
       } else {
         scene.text('"So are you saying you\'d flash me?" he asks, almost hesitantly.');
@@ -414,9 +408,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> grins back at that. Though he does blush too.
     scene.text(`${((s as any).npcdesc ?? 0)} grins back at that. Though he does blush too.`);
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
           { label: 'Flash him now', handler: (st: GameState) => {
@@ -432,9 +424,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     scene.text('"See? You\'re so hot a girl can\'t help herself."');
     scene.text('He has trouble keeping eye contact after that.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
         ]);
@@ -453,9 +443,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     scene.text('"Definitely." You grin back at him. "Someone as hot as you can see my tits any time."');
     scene.text('"Well that explains everything then."');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
         { label: 'Flash him now', handler: (st: GameState) => {
@@ -471,9 +459,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     scene.text('"See? You\'re so hot a girl can\'t help herself."');
     scene.text('He has trouble keeping eye contact after that.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
       ]);
@@ -490,9 +476,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
       { label: 'Once or twice', handler: (st: GameState) => {
     scene.text('"Only once or twice," you snigger. "I was feeling wild and daring."');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
       { label: 'Sometimes', handler: (st: GameState) => {
@@ -503,9 +487,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well, if it was you, I don\'t remember," he grins. "To be honest, I\'m not really looking her face when that happens."');
     }
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
       { label: 'All the time', handler: (st: GameState) => {
@@ -516,9 +498,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well, if it was you, I don\'t remember," he grins. "To be honest, I\'m not really looking her face when that happens."');
     }
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
     ]);
@@ -537,9 +517,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t think there\'s a need for that." You grin at him. "Not as long as I keep fucking you."');
     scene.text('"That\'s a good plan," he grins back.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
         ]);
@@ -550,9 +528,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh no! My vision! It\'s blurring!"');
     scene.text('You both laugh at that.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
       ]);
@@ -562,9 +538,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <<$npcdesc>> smiles warmly at you and takes your hand.
         scene.text(`${((s as any).npcdesc ?? 0)} smiles warmly at you and takes your hand.`);
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+          { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
         ]);
       } else {
         if (((s as any).npc_misogynist ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {

@@ -72,7 +72,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Walk towards Pavlovsk (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'road', 'mistake_check')) {
-      // TODO-QSP: gt 'road', 'autostop_mistake', 'Pavlovsk'
+      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', 'Pavlovsk'] }]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
       scene.actions([{ label: 'Continue', goto: ['road', '<<nroad + 1>>'] }]);
@@ -84,7 +84,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Walk towards St. Petersburg (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'road', 'mistake_check')) {
-      // TODO-QSP: gt 'road', 'autostop_mistake', 'St. Petersburg'
+      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', 'St. Petersburg'] }]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
       scene.actions([{ label: 'Continue', goto: ['road', '<<nroad - 1>>'] }]);
@@ -100,7 +100,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).gorand = Math.floor(Math.random() * 100) + 1;
     (s as any).picrand = Math.floor(Math.random() * 3) + 1;
     if (qspFunc(s, 'road', 'mistake_check')) {
-      // TODO-QSP: gt 'road', 'autostop_mistake', 'Pavlovsk'
+      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', 'Pavlovsk'] }]);
     } else {
       if (((s as any).gorand ?? 0) <= 60) {
         scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
@@ -136,7 +136,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).gorand = Math.floor(Math.random() * 100) + 1;
     (s as any).picrand = Math.floor(Math.random() * 3) + 1;
     if (qspFunc(s, 'road', 'mistake_check')) {
-      // TODO-QSP: gt 'road', 'autostop_mistake', 'St. Petersburg'
+      scene.actions([{ label: 'Continue', goto: ['road', 'autostop_mistake', 'St. Petersburg'] }]);
     } else {
       if (((s as any).gorand ?? 0) <= 60) {
         scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
@@ -227,16 +227,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).prostitute ?? 0)?.['work_clothes']) {
                               if (qspFunc(s, 'car_funcs', 'is_here')  &&  ((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                 scene.actions([
-                                  { label: 'Change into your regular clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_back', 'car'
-  } },
+                                  { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'car'] },
                                 ]);
                               } else {
                                 if (((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                   scene.actions([
-                                    { label: 'Change into your regular clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_back', 'road_side'
-  } },
+                                    { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'road_side'] },
                                   ]);
                                 }
                               }
@@ -247,15 +243,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
                               if (qspFunc(s, 'car_funcs', 'is_here')) {
                                 scene.actions([
-                                  { label: 'Change to work as a prostitute', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_to_work', 'car'
-  } },
+                                  { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'car'] },
                                 ]);
                               } else {
                                 scene.actions([
-                                  { label: 'Change to work as a prostitute', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_to_work', 'road_side'
-  } },
+                                  { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'road_side'] },
                                 ]);
                               }
                             }
@@ -265,31 +257,23 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
                                 if (qspFunc(s, 'car_funcs', 'is_here')) {
                                   scene.actions([
-                                    { label: 'Change to work as a prostitute', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_to_work', 'car'
-  } },
+                                    { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'car'] },
                                   ]);
                                 } else {
                                   scene.actions([
-                                    { label: 'Change to work as a prostitute', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_to_work', 'road_side'
-  } },
+                                    { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'road_side'] },
                                   ]);
                                 }
                               } else {
                                 if (((s as any).prostitute ?? 0)?.['work_clothes']) {
                                   if (qspFunc(s, 'car_funcs', 'is_here')  &&  ((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                     scene.actions([
-                                      { label: 'Change into your regular clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_back', 'car'
-  } },
+                                      { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'car'] },
                                     ]);
                                   } else {
                                     if (((s as any).prostitute ?? 0)?.['changed_for_work']) {
                                       scene.actions([
-                                        { label: 'Change into your regular clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_back', 'road_side'
-  } },
+                                        { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'road_side'] },
                                       ]);
                                     }
                                   }
@@ -383,15 +367,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
         if (qspFunc(s, 'car_funcs', 'is_here')) {
           scene.actions([
-            { label: 'Change to work as a prostitute', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_to_work', 'car'
-  } },
+            { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'car'] },
           ]);
         } else {
           scene.actions([
-            { label: 'Change to work as a prostitute', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_to_work', 'road_side'
-  } },
+            { label: 'Change to work as a prostitute', goto: ['prostitution_functions', 'change_to_work', 'road_side'] },
           ]);
         }
       } else {
@@ -399,15 +379,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           if (((s as any).prostitute ?? 0)?.['changed_for_work']) {
             if (qspFunc(s, 'car_funcs', 'is_here')) {
               scene.actions([
-                { label: 'Change into your regular clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_back', 'car'
-  } },
+                { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'car'] },
               ]);
             } else {
               scene.actions([
-                { label: 'Change into your regular clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'prostitution_functions', 'change_back', 'road_side'
-  } },
+                { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'road_side'] },
               ]);
             }
           }

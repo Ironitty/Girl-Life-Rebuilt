@@ -1981,9 +1981,7 @@ function enterThreesomeStart(s: GameState, scene: SceneBuilder): void {
     scene.text('He grins before you take his cock back into your mouth.');
     scene.text('"I did not want to share anyway. I just wanted to be nice to my friend."');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'ermias_events', 'sex', 'skip_bj'
-  } },
+      { label: 'Continue', goto: ['ermias_events', 'sex', 'skip_bj'] },
     ]);
   } },
       ]);

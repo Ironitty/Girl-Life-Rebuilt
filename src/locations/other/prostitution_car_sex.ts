@@ -262,7 +262,7 @@ function enterRimjobDecision(s: GameState, scene: SceneBuilder): void {
 
 function enterSwitch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute ?? 0)?.['client_rimjob'] === 1) {
-    // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'rimjob'
+    scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'rimjob'] }]);
   } else {
     if (((s as any).prostitute_fetish ?? 0)?.['rimjob'] !== 'blocked') {
       ((s as any).prostitute ?? {})['rim_pity_counter'] = (((s as any).prostitute ?? {})['rim_pity_counter'] ?? 0) + (2);
@@ -270,24 +270,24 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob') {
     if (((s as any).prostitute_client_cumshot ?? 0) === 'Inside'  ||  ((s as any).prostitute ?? 0)?.['client_creampie'] === 1) {
-      // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'mouth'
+      scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'mouth'] }]);
     } else {
-      // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'facial'
+      scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'facial'] }]);
     }
   } else {
     if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
       if (((s as any).prostitute_client_cumshot ?? 0) === 'Inside'  ||  ((s as any).prostitute ?? 0)?.['client_creampie'] === 1) {
-        // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'vaginal_creampie'
+        scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'vaginal_creampie'] }]);
       } else {
         if (((s as any).prostitute_client_cumshot ?? 0) === 'Outside  ||  Condom'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
           (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 5) + 0;
           if (((s as any).prostitute_cumshot_rand ?? 0) < 3) {
-            // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'stomach'
+            scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'stomach'] }]);
           } else {
             if (((s as any).prostitute_cumshot_rand ?? 0) === 3) {
-              // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'butt'
+              scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'butt'] }]);
             } else {
-              // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'facial'
+              scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'facial'] }]);
             }
           }
         } else {
@@ -298,15 +298,15 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
     (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).prostitute_cumshot_rand ?? 0) <= 10) {
       ((s as any).prostitute ?? {})['accident'] = 1;
-      // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'vaginal_creampie'
+      scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'vaginal_creampie'] }]);
     } else {
       if (((s as any).prostitute_cumshot_rand ?? 0) > 10  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 60) {
-        // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'stomach'
+        scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'stomach'] }]);
       } else {
         if (((s as any).prostitute_cumshot_rand ?? 0) > 60  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 90) {
-          // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'butt'
+          scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'butt'] }]);
         } else {
-          // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'facial'
+          scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'facial'] }]);
         }
       }
     }
@@ -315,15 +315,15 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
     (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).prostitute_cumshot_rand ?? 0) <= 5) {
       ((s as any).prostitute ?? {})['accident'] = 1;
-      // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'vaginal_creampie'
+      scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'vaginal_creampie'] }]);
     } else {
       if (((s as any).prostitute_cumshot_rand ?? 0) > 5  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 60) {
-        // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'stomach'
+        scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'stomach'] }]);
       } else {
         if (((s as any).prostitute_cumshot_rand ?? 0) > 60  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 90) {
-          // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'butt'
+          scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'butt'] }]);
         } else {
-          // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'facial'
+          scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'facial'] }]);
         }
       }
     }
@@ -335,18 +335,18 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
         if (((s as any).prostitute_client_cumshot ?? 0) === 'Inside'  ||  ((s as any).prostitute ?? 0)?.['client_creampie'] === 1) {
-          // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'anal_creampie'
+          scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'anal_creampie'] }]);
         } else {
           if (((s as any).prostitute_client_cumshot ?? 0) === 'Outside  ||  Condom'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
             (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 6) + 0;
             if (((s as any).prostitute_cumshot_rand ?? 0) < 2) {
-              // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'stomach'
+              scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'stomach'] }]);
             } else {
               if (((s as any).prostitute_cumshot_rand ?? 0) >= 2  ||  ((s as any).prostitute_cumshot_rand ?? 0) < 5) {
-                // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'butt'
+                scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'butt'] }]);
               } else {
                 if (((s as any).prostitute_cumshot_rand ?? 0) === 5) {
-                  // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'facial'
+                  scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'facial'] }]);
                 }
               }
             }
@@ -354,15 +354,15 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
             if (((s as any).prostitute_client_cumshot ?? 0) === 'Outside'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
               (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 100) + 1;
               if (((s as any).prostitute_cumshot_rand ?? 0) <= 10) {
-                // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'anal_creampie'
+                scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'anal_creampie'] }]);
               } else {
                 if (((s as any).prostitute_cumshot_rand ?? 0) > 10  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 50) {
-                  // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'butt'
+                  scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'butt'] }]);
                 } else {
                   if (((s as any).prostitute_cumshot_rand ?? 0) > 50  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 90) {
-                    // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'stomach'
+                    scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'stomach'] }]);
                   } else {
-                    // TODO-QSP: gt 'prostitution_car_sex', 'cumshot', 'facial'
+                    scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'cumshot', 'facial'] }]);
                   }
                 }
               }
@@ -949,26 +949,26 @@ function enterRegularAnal(s: GameState, scene: SceneBuilder): void {
 function enterRegularSwitch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute_client_condom ?? 0) === 'Yes') {
     if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
-      // TODO-QSP: gt 'prostitution_car_sex', 'regular_cumshot', 'vaginal_condom'
+      scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'regular_cumshot', 'vaginal_condom'] }]);
     } else {
       if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
-        // TODO-QSP: gt 'prostitution_car_sex', 'regular_cumshot', 'anal_condom'
+        scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'regular_cumshot', 'anal_condom'] }]);
       }
     }
   } else {
     if (((s as any).prostitute_client_condom ?? 0) === '!') {
       if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
         if (((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
-          // TODO-QSP: gt 'prostitution_car_sex', 'regular_cumshot', 'mouth'
+          scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'regular_cumshot', 'mouth'] }]);
         } else {
-          // TODO-QSP: gt 'prostitution_car_sex', 'regular_cumshot', 'vaginal_creampie'
+          scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'regular_cumshot', 'vaginal_creampie'] }]);
         }
       } else {
         if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
           if (((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
-            // TODO-QSP: gt 'prostitution_car_sex', 'regular_cumshot', 'mouth'
+            scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'regular_cumshot', 'mouth'] }]);
           } else {
-            // TODO-QSP: gt 'prostitution_car_sex', 'regular_cumshot', 'anal_creampie'
+            scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'regular_cumshot', 'anal_creampie'] }]);
           }
         }
       }

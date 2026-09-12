@@ -144,7 +144,7 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 22) {
       scene.actions([{ label: 'Continue', goto: ['gad_swamp', 'stuck'] }]);
     } else {
-      // TODO-QSP: gt 'gad_forest_lost', 'wolves', 'forest_edge'
+      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', 'forest_edge'] }]);
     }
   } },
     ]);
@@ -379,7 +379,7 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom_pickers3'] }]);
   }
   if (((s as any).foresteventrand ?? 0) === 5  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))) {
-    // TODO-QSP: gt 'gad_forest_events', 'forest_hunters', 'forest_outskirts'
+    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'forest_hunters', 'forest_outskirts'] }]);
   }
   qspCall(s, 'gad_forest', 'stripping');
   qspCall(s, 'gad_forest', 'dressing');
@@ -456,7 +456,7 @@ function enterForestCenter(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom'] }]);
   }
   if (((s as any).foresteventrand ?? 0) === 5  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))) {
-    // TODO-QSP: gt 'gad_forest_events', 'forest_hunters', 'forest_center'
+    scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'forest_hunters', 'forest_center'] }]);
   }
   qspCall(s, 'gad_forest', 'stripping');
   qspCall(s, 'gad_forest', 'dressing');

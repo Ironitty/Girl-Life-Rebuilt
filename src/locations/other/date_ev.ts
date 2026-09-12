@@ -19,7 +19,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['date_movie', 'start'] }]);
   } else {
     if (((s as any).locArgs?.[2] ?? 0) === 'casual_meal') {
-      // TODO-QSP: gt 'date_casual_meal', 'start', 'separate'
+      scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'start', 'separate'] }]);
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'netflix_chill') {
         // TODO-QSP: gt 'date_chill', 'knock_start', $ARGS[1]

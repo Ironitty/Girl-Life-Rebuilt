@@ -296,7 +296,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).podozrenie = ((s as any).podozrenie ?? 0) + (1);
     scene.text('"No, you just ogle away."');
     scene.text('The bum looks at you with suspicion.');
-    // TODO-QSP: gt 'city_trashplace', 'bomzstartqwestdi', 'suspicious'
+    scene.actions([{ label: 'Continue', goto: ['city_trashplace', 'bomzstartqwestdi', 'suspicious'] }]);
   } },
         ]);
       } else {

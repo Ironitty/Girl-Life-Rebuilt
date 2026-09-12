@@ -1062,9 +1062,7 @@ function enterBartenderBjKatja(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You look at the bartender, who\'s already stuffing his dick away. He clearly doesn\'t want to be part of a lovers\' spat.');
     scene.actions([
-      { label: 'Follow Katja', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'cheating_conversation', 'bartende...
-  } },
+      { label: 'Follow Katja', goto: ['katja_nightclub_sex', 'cheating_conversation', 'bartender'] },
     ]);
   } else {
     if (((s as any).katjaQW ?? 0)?.['boy_block'] === 1) {
@@ -1889,9 +1887,7 @@ function enterPrivateBooth_FFFFYou(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'clit_finger', (-3), 'group', 'lesbian', 'self');
       qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'No more dildo', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_booth_FFFF_you_licking', ...
-  } },
+        { label: 'No more dildo', goto: ['katja_nightclub_sex', 'private_booth_FFFF_you_licking', 'after_some_dildo_in_as'] },
       ]);
     } else {
       if (((s as any).lastpainPart ?? 0) === 'asshole'  &&  ((s as any).lastpain ?? 0) > 20) {
@@ -1944,9 +1940,7 @@ function enterPrivateBooth_FFFFYou(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal_dildo', 4, ((s as any).npcID3 ?? 0), 'group', 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: '<<$npcdesc2>>\'s turn', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_booth_FFFF_girls', 'dp'
-  } },
+      { label: '<<$npcdesc2>>\'s turn', goto: ['katja_nightclub_sex', 'private_booth_FFFF_girls', 'dp'] },
     ]);
   } },
       { label: 'Tell her you don\'t want anymore', handler: (st: GameState) => {

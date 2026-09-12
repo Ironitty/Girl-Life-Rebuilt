@@ -1622,18 +1622,14 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (Math.floor(Math.random() * 11) + 5);
     scene.text('<center><b><font color="green">---------- YOU WIN! ----------</font></b></center>');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'video_gaming_stop', 'win'
-  } },
+      { label: 'Continue', goto: ['brother2', 'video_gaming_stop', 'win'] },
     ]);
   } else {
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) - (Math.floor(Math.random() * 5) + 1);
     ((s as any).brother ?? {})['Confidence'] = (((s as any).brother ?? {})['Confidence'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.text('<center><b><font color="RED">---------- YOU LOSE! ----------</font></b></center>');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'video_gaming_stop', 'lose'
-  } },
+      { label: 'Continue', goto: ['brother2', 'video_gaming_stop', 'lose'] },
     ]);
   }
   // TODO-QSP: end
@@ -2198,7 +2194,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                   ((s as any).brother ?? {})['SexQW'] = 4;
                 }
                 if (((s as any).brother ?? 0)?.['but_rub'] < 4  ||  ((s as any).brother ?? 0)?.['but_rub'] >= 4  &&  ((s as any).brother ?? 0)?.['horny'] < 10  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
-                  // TODO-QSP: gt 'brother2', 'lose_dares4', 'rub_butt_start'
+                  scene.actions([{ label: 'Continue', goto: ['brother2', 'lose_dares4', 'rub_butt_start'] }]);
                 }
                 qspCall(s, 'arousal', 'voyeur', 2, 'incest');
                 qspCall(s, 'brother_disc', 'arousal', 'light');

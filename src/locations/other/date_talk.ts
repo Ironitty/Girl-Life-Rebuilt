@@ -253,9 +253,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Yeah..." <<$npcdesc>> is grinning now. "I think I saw that really well."
     scene.text(`"Yeah..." ${((s as any).npcdesc ?? 0)} is grinning now. "I think I saw that really well."`);
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
     ]);
@@ -277,9 +275,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
       { label: 'Just wanted you to know', handler: (st: GameState) => {
     scene.text('"Just thought you should know that," you smirk.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
       { label: 'Prove it', handler: (st: GameState) => {
@@ -296,9 +292,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Yeah..." <<$npcdesc>> is grinning now. "I think I saw that really well."
     scene.text(`"Yeah..." ${((s as any).npcdesc ?? 0)} is grinning now. "I think I saw that really well."`);
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'date_talk', 'continue_rate', 'improve'
-  } },
+      { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
     ]);
@@ -1356,7 +1350,7 @@ function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Before you can talk yourself out of it, you pull down your dress, showing off yo...
       scene.text(`Before you can talk yourself out of it, you pull down your dress, showing off your ${((s as any).pcdesc_breasts ?? 0)} breasts to ${((s as any).npcdesc ?? 0)}. You manage to hold it about two seconds before quickly tugging your clothes back and looking around to see if anybody saw.`);
     }
-    // TODO-QSP: xgt 'date_talk', 'npc_flash_react', 'shy'
+    scene.actions([{ label: 'Continue', goto: ['date_talk', 'npc_flash_react', 'shy'] }]);
   } },
     ]);
   } },

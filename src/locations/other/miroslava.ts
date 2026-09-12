@@ -575,13 +575,13 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
               scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_3boys'] }]);
             } else {
               if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-                // TODO-QSP: gt 'gadukino_event', 'mira_2boys', '1'
+                scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '1'] }]);
               } else {
                 if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                  // TODO-QSP: gt 'gadukino_event', 'mira_2boys', '2'
+                  scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '2'] }]);
                 } else {
                   if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                    // TODO-QSP: gt 'gadukino_event', 'mira_2boys', '3'
+                    scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '3'] }]);
                   } else {
                     if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)) {
                       scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_mitka'] }]);

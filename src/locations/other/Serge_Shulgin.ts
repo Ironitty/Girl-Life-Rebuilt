@@ -47,9 +47,7 @@ function enterTv(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'Serge_Shulgin', 'rep');
   if (((s as any).npc_rel ?? 0)?.['A112'] > 30) {
     scene.actions([
-      { label: 'Lie down next to him and watch TV together', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'serge_tv'
-  } },
+      { label: 'Lie down next to him and watch TV together', goto: ['Serge_Shulgin', 'hide', 'serge_tv'] },
     ]);
   }
   // TODO-QSP: end
@@ -169,9 +167,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Get out of bed', goto: ['vasilyhome', 'sergey_room'] },
-        { label: 'Change the channel', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'serge_tv'
-  } },
+        { label: 'Change the channel', goto: ['Serge_Shulgin', 'hide', 'serge_tv'] },
       ]);
     }
     // TODO-QSP: end & !! --- serge_tv ---
@@ -196,22 +192,16 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).pcs_horny ?? 0) < 50) {
             scene.actions([
-              { label: 'Suggest you could make him feel good', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'sleep_nameksex_oral'
-  } },
+              { label: 'Suggest you could make him feel good', goto: ['Serge_Shulgin', 'hide', 'sleep_nameksex_oral'] },
             ]);
           } else {
             if (((s as any).pcs_horny ?? 0) < 75) {
               scene.actions([
-                { label: 'Suggest you could make him feel good', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'sleep_nameksex_rought'
-  } },
+                { label: 'Suggest you could make him feel good', goto: ['Serge_Shulgin', 'hide', 'sleep_nameksex_rought'] },
               ]);
             } else {
               scene.actions([
-                { label: 'Beg him to make you feel good', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'sleep_nameksex_lick'
-  } },
+                { label: 'Beg him to make you feel good', goto: ['Serge_Shulgin', 'hide', 'sleep_nameksex_lick'] },
               ]);
             }
           }
@@ -690,9 +680,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                   ]);
                 }
                 scene.actions([
-                  { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_Shulgin', 'hide', 'sleep_sex_lick_event1'
-  } },
+                  { label: 'Continue', goto: ['Serge_Shulgin', 'hide', 'sleep_sex_lick_event1'] },
                 ]);
               }
               scene.actions([

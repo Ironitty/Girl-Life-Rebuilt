@@ -369,15 +369,9 @@ function enterShgopsexEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).sh_bjandhj_cum ?? 0) >= 1) {
     scene.actions([
-      { label: 'In your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_swallow'
-  } },
-      { label: 'On your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_cumface'
-  } },
-      { label: 'On your body', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_cumbelly'
-  } },
+      { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_swallow'] },
+      { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_cumface'] },
+      { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_cumbelly'] },
     ]);
   } else {
     if (((s as any).sh_bjandhj_cum ?? 0) <= 0) {
@@ -385,18 +379,10 @@ function enterShgopsexEnd(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: act 'In your pussy': gt 'gopsex', 'hide', 'shgopsex_cumvag'
       }
       scene.actions([
-        { label: 'In your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_swallow'
-  } },
-        { label: 'On your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_cumface'
-  } },
-        { label: 'On your body', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_cumbelly'
-  } },
-        { label: 'In your butt', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_cumanal'
-  } },
+        { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_swallow'] },
+        { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_cumface'] },
+        { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_cumbelly'] },
+        { label: 'In your butt', goto: ['gopsex', 'hide', 'shgopsex_cumanal'] },
       ]);
     }
   }
@@ -513,12 +499,8 @@ function enterShgopsexTits(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Yes, ${((s as any).pcs_nickname ?? 0)}, you've got awesome tits!"`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Suck boobs', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_eattits'
-  } },
-    { label: 'Titty fuck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_fucktits'
-  } },
+    { label: 'Suck boobs', goto: ['gopsex', 'hide', 'shgopsex_eattits'] },
+    { label: 'Titty fuck', goto: ['gopsex', 'hide', 'shgopsex_fucktits'] },
     { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -592,15 +574,9 @@ function enterShgopsexVag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gopsex', 'hide', 'npc_orgasm');
   if (((s as any).shgopsex_count ?? 0) > 0) {
     scene.actions([
-      { label: 'Change position: missionary', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag1'
-  } },
-      { label: 'Change position: cowgirl', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag2'
-  } },
-      { label: 'Change position: screw sex', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag3'
-  } },
+      { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_vag1'] },
+      { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_vag2'] },
+      { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_vag3'] },
       { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -626,15 +602,9 @@ function enterShgopsexAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gopsex', 'hide', 'npc_orgasm');
   if (((s as any).shgopsex_count ?? 0) > 0) {
     scene.actions([
-      { label: 'Change position: missionary', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal1'
-  } },
-      { label: 'Change position: cowgirl', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal2'
-  } },
-      { label: 'Change position: screw sex', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal3'
-  } },
+      { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_anal1'] },
+      { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_anal2'] },
+      { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_anal3'] },
       { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -665,40 +635,35 @@ function enterShgopsexGroup(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck all at once', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_bja'
-  } },
+  }, goto: ['gopsex', 'hide', 'shgopsex_group_bja'] },
     ]);
   }
   if (((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((s as any).mesec ?? 0) <= 0) {
     scene.actions([
       { label: 'The pussy', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_vag'
-  } },
+  }, goto: ['gopsex', 'hide', 'shgopsex_group_vag'] },
     ]);
   }
   if (((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((s as any).mesec ?? 0) <= 0) {
     scene.actions([
       { label: 'In the pussy and ass', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_dp'
-  } },
+  }, goto: ['gopsex', 'hide', 'shgopsex_group_dp'] },
     ]);
   }
   if (((s as any).pcs_ass ?? 0) >= 20) {
     scene.actions([
       { label: 'Two cocks in the ass', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_twoanal'
-  } },
+  }, goto: ['gopsex', 'hide', 'shgopsex_group_twoanal'] },
     ]);
   }
   if (((s as any).pcs_ass ?? 0) >= 30) {
     scene.actions([
       { label: 'Three cocks in the ass', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_tripleanal'
-  } },
+  }, goto: ['gopsex', 'hide', 'shgopsex_group_tripleanal'] },
     ]);
   }
   qspCall(s, 'willpower', 'sex', 'resist', 'medium');
@@ -721,12 +686,10 @@ function enterShgopsexGroup(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Suck one by one', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_bj'
-  } },
+  }, goto: ['gopsex', 'hide', 'shgopsex_group_bj'] },
     { label: 'In the ass', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_anal'
-  } },
+  }, goto: ['gopsex', 'hide', 'shgopsex_group_anal'] },
   ]);
   scene.build();
 }
@@ -874,12 +837,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shgopsex_count ?? 0) > 0) {
                       scene.actions([
                         { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
-                        { label: 'Change position: cowgirl', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag2'
-  } },
-                        { label: 'Change position: screw sex', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag3'
-  } },
+                        { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_vag2'] },
+                        { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_vag3'] },
                         { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -900,12 +859,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).shgopsex_count ?? 0) > 0) {
                         scene.actions([
                           { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
-                          { label: 'Change position: missionary', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag1'
-  } },
-                          { label: 'Change position: screw sex', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag3'
-  } },
+                          { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_vag1'] },
+                          { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_vag3'] },
                           { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -926,12 +881,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).shgopsex_count ?? 0) > 0) {
                           scene.actions([
                             { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_vag'] },
-                            { label: 'Change position: missionary', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag1'
-  } },
-                            { label: 'Change position: cowgirl', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_vag2'
-  } },
+                            { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_vag1'] },
+                            { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_vag2'] },
                             { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -954,12 +905,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).shgopsex_count ?? 0) > 0) {
                             scene.actions([
                               { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
-                              { label: 'Change position: cowgirl', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal2'
-  } },
-                              { label: 'Change position: screw sex', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal3'
-  } },
+                              { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_anal2'] },
+                              { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_anal3'] },
                               { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -982,12 +929,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).shgopsex_count ?? 0) > 0) {
                               scene.actions([
                                 { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
-                                { label: 'Change position: missionary', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal1'
-  } },
-                                { label: 'Change position: screw sex', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal3'
-  } },
+                                { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_anal1'] },
+                                { label: 'Change position: screw sex', goto: ['gopsex', 'hide', 'shgopsex_anal3'] },
                                 { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -1010,12 +953,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).shgopsex_count ?? 0) > 0) {
                                 scene.actions([
                                   { label: 'Change position: doggie', goto: ['gopsex', 'shgopsex_anal'] },
-                                  { label: 'Change position: missionary', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal1'
-  } },
-                                  { label: 'Change position: cowgirl', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_anal2'
-  } },
+                                  { label: 'Change position: missionary', goto: ['gopsex', 'hide', 'shgopsex_anal1'] },
+                                  { label: 'Change position: cowgirl', goto: ['gopsex', 'hide', 'shgopsex_anal2'] },
                                   { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },
@@ -1093,34 +1032,18 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                             if (((s as any).locArgs?.[1] ?? 0) === 'shgopsex_group_end') {
                                               if (((s as any).sh_bjandhj_cum ?? 0) >= 1) {
                                                 scene.actions([
-                                                  { label: 'In your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_swallow'
-  } },
-                                                  { label: 'On your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_cumface'
-  } },
-                                                  { label: 'On your body', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_cumbelly'
-  } },
+                                                  { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_group_swallow'] },
+                                                  { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_group_cumface'] },
+                                                  { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_group_cumbelly'] },
                                                 ]);
                                               } else {
                                                 if (((s as any).sh_bjandhj_cum ?? 0) <= 0) {
                                                   scene.actions([
-                                                    { label: 'In your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_swallow'
-  } },
-                                                    { label: 'On your face', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_cumface'
-  } },
-                                                    { label: 'On your body', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_cumbelly'
-  } },
-                                                    { label: 'On your pussy', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_cumvag'
-  } },
-                                                    { label: 'On your ass', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_group_cumanal'
-  } },
+                                                    { label: 'In your mouth', goto: ['gopsex', 'hide', 'shgopsex_group_swallow'] },
+                                                    { label: 'On your face', goto: ['gopsex', 'hide', 'shgopsex_group_cumface'] },
+                                                    { label: 'On your body', goto: ['gopsex', 'hide', 'shgopsex_group_cumbelly'] },
+                                                    { label: 'On your pussy', goto: ['gopsex', 'hide', 'shgopsex_group_cumvag'] },
+                                                    { label: 'On your ass', goto: ['gopsex', 'hide', 'shgopsex_group_cumanal'] },
                                                   ]);
                                                 }
                                               }
@@ -2325,9 +2248,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                   }
                                 }
                                 scene.actions([
-                                  { label: 'Do a tit job or a titty fuck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_fucktits'
-  } },
+                                  { label: 'Do a tit job or a titty fuck', goto: ['gopsex', 'hide', 'shgopsex_fucktits'] },
                                   { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
   } },

@@ -29,12 +29,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).complx_rand ?? 0)[1] + (Math.floor(Math.random() * 6) + 5) < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50  &&  (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 23)) {
     ((s as any).complx_rand ?? {})[1] = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
-      // TODO-QSP: gt 'gossips', 'complex', 'girls_slutrep'
+      scene.actions([{ label: 'Continue', goto: ['gossips', 'complex', 'girls_slutrep'] }]);
     } else {
       if ((Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).hour ?? 0) < 19) {
-        // TODO-QSP: gt 'gossips', 'complex', 'old_women_slutrep'
+        scene.actions([{ label: 'Continue', goto: ['gossips', 'complex', 'old_women_slutrep'] }]);
       } else {
-        // TODO-QSP: gt 'gossips', 'complex', 'boys_slutrep'
+        scene.actions([{ label: 'Continue', goto: ['gossips', 'complex', 'boys_slutrep'] }]);
       }
     }
   }

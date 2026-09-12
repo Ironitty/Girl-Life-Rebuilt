@@ -323,7 +323,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
     (s as any).ProsMoney = ((s as any).KlientMON ?? 0);
-    // TODO-QSP: gt 'prostitute', 'work2', '<<$ARGS[1]>>'
+    scene.actions([{ label: 'Continue', goto: ['prostitute', 'work2', '<<$ARGS[1]>>'] }]);
   } },
           { label: 'Refuse', goto: ['prostitute', 'start'] },
         ]);

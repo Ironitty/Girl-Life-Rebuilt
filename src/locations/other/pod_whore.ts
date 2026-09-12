@@ -43,7 +43,7 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
         { label: '"Nope, never heard of her!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_no'
+    scene.actions([{ label: 'Continue', goto: ['pod_whore', 'hide', 'pod_client_talk_no'] }]);
   } },
       ]);
     }
@@ -54,9 +54,7 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('The man looks a tad embarrassed to bring it up, but he\'s too horny to back down now: "I hear you\'re a prostitute, who services men in the stairwell here. Is that right?"');
     if (((s as any).pcs_sleep ?? 0) < 10  ||  (!((s as any).pod_whore_client_count ?? 0))) {
       scene.actions([
-        { label: 'Decline, you\'re too tired', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_noson'
-  } },
+        { label: 'Decline, you\'re too tired', goto: ['pod_whore', 'hide', 'pod_client_talk_noson'] },
       ]);
     } else {
       qspCall(s, 'willpower', 'prostitution', 'resist', 'medium');
@@ -71,14 +69,12 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
           { label: 'Decline, you don\'t want to fuck him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_no'
+    scene.actions([{ label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_no'] }]);
   } },
         ]);
       }
       scene.actions([
-        { label: 'Give him your price list', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_price'
-  } },
+        { label: 'Give him your price list', goto: ['pod_whore', 'hide', 'pod_whore_price'] },
       ]);
     }
   } },
@@ -619,9 +615,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).temp_rand ?? 0) >= 2  &&  ((s as any).temp_rand ?? 0) <= 4) {
           scene.actions([
-            { label: 'Decline and shut the door', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_noprice'
-  } },
+            { label: 'Decline and shut the door', goto: ['pod_whore', 'hide', 'pod_whore_noprice'] },
           ]);
         }
         scene.actions([
@@ -633,9 +627,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar1') {
         scene.text('You simply give the man a questioning look, and he continues: "Some friends of mine gave me this address. They said a beautiful girl lives here, that took care of both their bodies and minds. You sure look beautiful… I thought you were the one they were talking about."');
         scene.actions([
-          { label: 'Object', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar2'
-  } },
+          { label: 'Object', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar2'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar2') {
@@ -649,12 +641,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('He looks at you defiantly and says: "Look, girl. You can\'t blame me for being confused… it even says so right there on the wall! A whore lives here!"');
           scene.actions([
-            { label: 'Scold him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar3'
-  } },
-            { label: 'Back down a little', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar5'
-  } },
+            { label: 'Scold him', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar3'] },
+            { label: 'Back down a little', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar5'] },
           ]);
         }
       }
@@ -678,9 +666,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         scene.actions([
-          { label: '"Are you sure?"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar9'
-  } },
+          { label: '"Are you sure?"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar9'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar4') {
@@ -704,14 +690,12 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
             { label: 'End the conversation [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar7'
+    scene.actions([{ label: 'Continue', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar7'] }]);
   } },
           ]);
         }
         scene.actions([
-          { label: 'Keep teasing him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar6'
-  } },
+          { label: 'Keep teasing him', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar6'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar6') {
@@ -731,14 +715,12 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
             { label: 'End the conversation [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar7'
+    scene.actions([{ label: 'Continue', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar7'] }]);
   } },
           ]);
         }
         scene.actions([
-          { label: 'Confess you\'re <<$pcs_nickname>>', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar8'
-  } },
+          { label: 'Confess you\'re <<$pcs_nickname>>', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar8'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar7') {
@@ -753,9 +735,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         scene.text(`You feel bad for the guy, and confess: "I'm sorry babe, I was just teasing you. I'm ${((s as any).pcs_nickname ?? 0)}. How can I make it up to you? All of my holes are at your disposal, I'll even give you a discount…"`);
         scene.text('He looks relieved, and it takes him a second to realize why he\'s here. Then it hits him, and he says: "Right… how much do you charge?"');
         scene.actions([
-          { label: 'Give him your price list', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_price'
-  } },
+          { label: 'Give him your price list', goto: ['pod_whore', 'hide', 'pod_whore_price'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar9') {
@@ -764,24 +744,16 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: The man looks at you with a somewhat confused look on his face: "Wait… so you're...
         scene.text(`The man looks at you with a somewhat confused look on his face: "Wait… so you're not the ${((s as any).pcs_nickname ?? 0)} that's being advertised on the walls? Are you also in the business or not?"`);
         scene.actions([
-          { label: '"Maybe…"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar10'
-  } },
-          { label: '"Just kidding!"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar11'
-  } },
+          { label: '"Maybe…"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar10'] },
+          { label: '"Just kidding!"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar11'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar10') {
         scene.text('You show the effort of quickly eyeing him top to bottom, and then smile mysteriously: "For you, sweetie? Maybe… do you like me?"');
         scene.text('The man really doesn\'t know what\'s happening any more: "Erm, do I like you? Heck yea, you\'re pretty cute… why, do you want to go out some time?"');
         scene.actions([
-          { label: '"You do look cute…"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar12'
-  } },
-          { label: '"No, I was joking!"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar13'
-  } },
+          { label: '"You do look cute…"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar12'] },
+          { label: '"No, I was joking!"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar13'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar11') {
@@ -791,9 +763,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         scene.text('You give him a friendly smile and say: "I\'m sorry, babe. Maybe I can make it up to you? I bet I could make you feel good…"');
         scene.text('You see the greedy look in his eyes, you can tell he wants you. After a second, he says: "Alright, you got me. How much do you charge?"');
         scene.actions([
-          { label: 'Give him your price list', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_price'
-  } },
+          { label: 'Give him your price list', goto: ['pod_whore', 'hide', 'pod_whore_price'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar12') {
@@ -802,9 +772,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         scene.text('You simply smile: "Oh? Where would you take me?"');
         scene.text('The man feels encouraged by you not blowing him off immediately, and suggests: "Maybe we could go for a walk? Or we could go have a drink in a cafe, or go see a movie?"');
         scene.actions([
-          { label: '"Sorry, sweetie…"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar14'
-  } },
+          { label: '"Sorry, sweetie…"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar14'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar13') {
@@ -825,9 +793,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         scene.text('You laugh out loud and tell him: "Sorry babe, I was testing you. I like you though, you\'re cute. How about I give you a discount, maybe I can make it up to you?"');
         scene.text('The man looks a tad embarrassed, but is mostly just relieved you are who he thinks you are: "Damn, you got me there! Alright then… how much do you charge?"');
         scene.actions([
-          { label: 'Give him your price list', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_price'
-  } },
+          { label: 'Give him your price list', goto: ['pod_whore', 'hide', 'pod_whore_price'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_no') {
@@ -836,12 +802,8 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         scene.text(`You shake your head: "I'm sorry, I don't know who this ${((s as any).pcs_nickname ?? 0)} is. You must be at the wrong number."`);
         scene.text('The man smiles and apologizes: "I\'m sorry, miss. Could you tell me where I could find a willing girl? I have more than enough money on me."');
         scene.actions([
-          { label: '"I don\'t know any whores!"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar4'
-  } },
-          { label: '"Money, you say?"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_bazar1'
-  } },
+          { label: '"I don\'t know any whores!"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar4'] },
+          { label: '"Money, you say?"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar1'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_noson') {
@@ -897,9 +859,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'pod_whore', 'hide', 'text_pod_whore_bj');
         qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_ev_end'
-  } },
+          { label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_ev_end'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev2') {
@@ -913,9 +873,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'gopsex', 'gg_sex_orgasm');
         qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_ev_end'
-  } },
+          { label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_ev_end'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev3') {
@@ -928,9 +886,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'pod_whore', 'hide', 'text_pod_whore_anal');
         qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_ev_end'
-  } },
+          { label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_ev_end'] },
         ]);
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev4') {
@@ -956,9 +912,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex\' + rand(8, 14) + \'.mp4');
     qspCall(s, 'pod_whore', 'hide', 'text_pod_whore_anal');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_ev_end'
-  } },
+      { label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_ev_end'] },
     ]);
   } },
     ]);
@@ -982,9 +936,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gopsex', 'gg_sex_orgasm');
     qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_ev_end'
-  } },
+      { label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_ev_end'] },
     ]);
   } },
         ]);
@@ -1005,9 +957,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'pod_whore', 'hide', 'text_pod_whore_anal');
     qspCall(s, 'gopsex', 'hide', 'accview_ggsex');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_ev_end'
-  } },
+      { label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_ev_end'] },
     ]);
   } },
         ]);
@@ -1035,10 +985,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_ev5') {
         (s as any).temp_rand = Math.floor(Math.random() * 2) + 1;
         if (((s as any).temp_rand ?? 0) === 1) {
-          // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_groupsexev1'
+          scene.actions([{ label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_groupsexev1'] }]);
         }
         if (((s as any).temp_rand ?? 0) === 2) {
-          // TODO-QSP: gt 'pod_whore', 'hide', 'pod_whore_groupsexev2'
+          scene.actions([{ label: 'Continue', goto: ['pod_whore', 'hide', 'pod_whore_groupsexev2'] }]);
         }
       }
       if (((s as any).locArgs?.[1] ?? 0) === 'pod_whore_groupsexev1') {

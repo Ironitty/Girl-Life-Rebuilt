@@ -228,7 +228,8 @@ function generateSceneBody(
           out.push(`scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, '${t}'${argPart}); } }]);`);
         } else {
           targets.add(node.target);
-          out.push(`scene.actions([{ label: 'Continue', goto: ['${node.target}', '${node.arg}'] }]);`);
+          const arg2Part = node.arg2 ? `, '${esc(node.arg2)}'` : '';
+          out.push(`scene.actions([{ label: 'Continue', goto: ['${node.target}', '${node.arg}'${arg2Part}] }]);`);
         }
         break;
       }
@@ -313,7 +314,8 @@ function generateAct(
 ): string {
   if (node.inlineGoto) {
     targets.add(node.inlineGoto.target);
-    return `{ label: '${esc(node.label)}', goto: ['${node.inlineGoto.target}', '${node.inlineGoto.arg}'] },`;
+    const arg2Part = node.inlineGoto.arg2 ? `, '${esc(node.inlineGoto.arg2)}'` : '';
+    return `{ label: '${esc(node.label)}', goto: ['${node.inlineGoto.target}', '${node.inlineGoto.arg}'${arg2Part}] },`;
   }
 
   if (node.inlineStatements) {
@@ -369,12 +371,12 @@ function translateInlineAct(
 ): string | null {
   const parts = raw.split('&').map(p => p.trim()).filter(Boolean);
   const handlerBits: string[] = [];
-  let goto: { target: string; arg: string } | null = null;
+  let goto: { target: string; arg: string; arg2?: string } | null = null;
 
   for (const part of parts) {
-    const gtMatch = part.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?$/);
+    const gtMatch = part.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
     if (gtMatch) {
-      goto = { target: gtMatch[1], arg: gtMatch[2] || '' };
+      goto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
       targets.add(gtMatch[1]);
       continue;
     }
@@ -445,7 +447,7 @@ function translateInlineAct(
     : '';
 
   const gotoCode = goto
-    ? `goto: ['${goto.target}', '${goto.arg}']`
+    ? `goto: ['${goto.target}', '${goto.arg}'${goto.arg2 ? `, '${esc(goto.arg2)}'` : ''}]`
     : '';
 
   const bits = [handlerCode, gotoCode].filter(Boolean).join(', ');

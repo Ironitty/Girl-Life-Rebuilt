@@ -100,9 +100,7 @@ function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
       if (((s as any).rex ?? 0)?.['count_run'] === 0  &&  ((s as any).PSport ?? 0) === 1) {
         if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
           scene.actions([
-            { label: 'Go for a run with him (1:00)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pet_dog', 'exercise', 'run'
-  } },
+            { label: 'Go for a run with him (1:00)', goto: ['pet_dog', 'exercise', 'run'] },
           ]);
         } else {
           // TODO-QSP: dynamic text: <br>It's too '+iif(hour < 7, 'early', 'late')+' to go for a run with him.

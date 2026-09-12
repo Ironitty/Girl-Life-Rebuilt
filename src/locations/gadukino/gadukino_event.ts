@@ -760,9 +760,7 @@ function enterGadukinoMitka(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go with him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mitkasex', 'gad1', 'A63'
-  } },
+    { label: 'Go with him', goto: ['mitkasex', 'gad1', 'A63'] },
   ]);
   scene.build();
 }
@@ -797,9 +795,7 @@ function enterGadukinoKolyamba(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go with him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mitkasex', 'gad1', 'A61'
-  } },
+    { label: 'Go with him', goto: ['mitkasex', 'gad1', 'A61'] },
   ]);
   scene.build();
 }
@@ -834,9 +830,7 @@ function enterGadukinoVasyan(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go with him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mitkasex', 'gad1', 'A62'
-  } },
+    { label: 'Go with him', goto: ['mitkasex', 'gad1', 'A62'] },
   ]);
   scene.build();
 }
@@ -938,9 +932,7 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go with him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mitkasex', 'forest1', 'A63'
-  } },
+    { label: 'Go with him', goto: ['mitkasex', 'forest1', 'A63'] },
   ]);
   scene.build();
 }
@@ -975,9 +967,7 @@ function enterMiraKolyamba(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go with him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mitkasex', 'forest1', 'A61'
-  } },
+    { label: 'Go with him', goto: ['mitkasex', 'forest1', 'A61'] },
   ]);
   scene.build();
 }
@@ -1012,9 +1002,7 @@ function enterMiraVasyan(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go with them', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mitkasex', 'forest1', 'A62'
-  } },
+    { label: 'Go with them', goto: ['mitkasex', 'forest1', 'A62'] },
   ]);
   scene.build();
 }

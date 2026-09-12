@@ -320,6 +320,7 @@ function extractQspActions(lines: string[], start: number, end: number): QspActi
         const nextTrimmed = lines[j].trim();
         if (nextTrimmed === 'end' || nextTrimmed.startsWith('end ')) break;
         if (nextTrimmed.startsWith('!!')) continue;
+        if (/^act\s+/.test(nextTrimmed)) continue;
 
         const nextGoto = nextTrimmed.match(/\bgt\s+'((?:[^']|'')*)'(?:\s*,\s*'((?:[^']|'')*)')?/);
         if (nextGoto) {
@@ -353,14 +354,16 @@ function extractTsActions(funcBody: string): TsAction[] {
 
     let goto: [string, string] | null = null;
     let gotoDynamic = false;
+    const hasHandler = /handler:\s*\(/.test(line);
+    const searchLimit = hasHandler ? 30 : 8;
 
-    for (let j = i; j < Math.min(i + 8, lines.length); j++) {
+    for (let j = i; j < Math.min(i + searchLimit, lines.length); j++) {
       const checkLine = lines[j];
 
-      if (j > i && /label:\s*'/.test(checkLine)) break;
-      if (j > i && /^\s*\]\)/.test(checkLine)) break;
+      if (j > i && /label:\s*'/.test(checkLine) && !hasHandler) break;
+      if (j > i && /^\s*\]\s*\)\s*;?\s*$/.test(checkLine) && !hasHandler) break;
 
-      const gotoMatch = checkLine.match(/goto:\s*\['((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\]/);
+      const gotoMatch = checkLine.match(/goto:\s*\['((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'(?:\s*,\s*'((?:[^'\\]|\\.)*)')?\]/);
       if (gotoMatch) {
         goto = [unescapeTs(gotoMatch[1]), unescapeTs(gotoMatch[2])];
         break;
@@ -413,7 +416,11 @@ function compareSectionActions(qspActions: QspAction[], tsActions: TsAction[]): 
       continue;
     }
 
-    const ta = tsMatch[0];
+    let ta = tsMatch[0];
+    if (qa.goto && tsMatch.length > 1) {
+      const gotoMatch = tsMatch.find(t => t.goto && t.goto[0] === qa.goto![0] && t.goto[1] === qa.goto![1]);
+      if (gotoMatch) ta = gotoMatch;
+    }
     matchedTsLabels.add(ta.label.toLowerCase());
 
     if (qa.goto && !ta.gotoDynamic) {

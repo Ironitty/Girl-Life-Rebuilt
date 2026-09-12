@@ -248,9 +248,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
       scene.text('The manager nods while the police officer approaches you resolutely, telling you to stand and turn around so he can handcuff you.');
       scene.text('You obediently turn around, and the police officer tightens his cuffs so they sit real tight. As he finishes, he grabs you by the arm and leads you away…');
       scene.actions([
-        { label: 'Go to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'shoplift'
-  } },
+        { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shoplift'] },
       ]);
     } else {
       scene.text('The door opens, and thankfully, there\'s only the security guard standing there holding a video cassette in his hand. "Sorry for the wait, it took me a while to get hold of the cassette."');
@@ -370,9 +368,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
       scene.text('You obediently turn around, and the police officer tightens his cuffs so they sit real tight. As he finishes, he grabs you by the arm and leads you away…');
       qspCall(s, 'arousal', 'end');
       scene.actions([
-        { label: 'Go to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'shplft'
-  } },
+        { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
       ]);
     } else {
       scene.text('The door opens, and thankfully, there\'s only the security guard standing there holding a video cassette in his hand. "Sorry for the wait, it took me a while to get hold of the cassette."');
@@ -455,9 +451,7 @@ function enterBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'shplft'
-  } },
+      { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
     ]);
   } },
     ]);
@@ -486,9 +480,7 @@ function enterQuiet(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'shplft'
-  } },
+      { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
     ]);
   } },
   ]);
@@ -570,9 +562,7 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     scene.text('Some minutes pass by, and you hear several voices approaching the door. As it opens up, you see the security guard standing there with a police officer. "This one?" the officer asks as he points at you. The security guard nods his head, "Yeah she\'s a real pain in the ass."');
     scene.text('The officer walks over to you, cuffs you and begins leading you away. As you\'re being led by the security guard, he flashes you a smile, mocking you.');
     scene.actions([
-      { label: 'Go to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'police_station', 'entrance', 'shplft'
-  } },
+      { label: 'Go to the police station', goto: ['police_station', 'entrance', 'shplft'] },
     ]);
   } },
     ]);
@@ -917,9 +907,7 @@ function enterBribePav(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_station', 'entrance', 'shplft'
-  } },
+      { label: 'Go to the police station', goto: ['pav_station', 'entrance', 'shplft'] },
     ]);
   } },
     ]);
@@ -956,9 +944,7 @@ function enterQuietPav(s: GameState, scene: SceneBuilder): void {
     scene.text('Without uttering a word, you turn around and let the officer cuff you. The cuffs are sitting tight, but you refuse to give the security guard the smallest satisfaction by letting him know that.');
     scene.text('The police officer chats with the security guard before leading you away to the police station…');
     scene.actions([
-      { label: 'Go to the police station', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_station', 'entrance', 'shplft'
-  } },
+      { label: 'Go to the police station', goto: ['pav_station', 'entrance', 'shplft'] },
     ]);
   } },
   ]);

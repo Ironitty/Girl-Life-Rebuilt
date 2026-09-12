@@ -120,9 +120,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Sure, <<$npc_firstname['A274']>>. I'll be beside those trees."
     scene.text(`"Sure, ${((s as any).npc_firstname ?? 0)?.['A274']}. I'll be beside those trees."`);
     scene.actions([
-      { label: 'Wait', handler: (st: GameState) => {
-    // TODO-QSP: gt 'npc_274_init', 'graveyard_memorial', 'graveyard_wait'
-  } },
+      { label: 'Wait', goto: ['npc_274_init', 'graveyard_memorial', 'graveyard_wait'] },
     ]);
   } },
     ]);

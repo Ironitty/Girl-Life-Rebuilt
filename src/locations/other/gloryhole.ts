@@ -147,9 +147,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gloryhole', 'mast', 'stage2'
-  } },
+        { label: 'Continue', goto: ['gloryhole', 'mast', 'stage2'] },
       ]);
     }
   }

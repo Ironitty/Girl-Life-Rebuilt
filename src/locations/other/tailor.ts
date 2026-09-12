@@ -55,7 +55,7 @@ function enterSetResizeOtherAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Resize your other clothes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'clothing_view', 'view_lists_list', 'resize'
+    scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_lists_list', 'resize'] }]);
   } },
   ]);
   scene.build();
