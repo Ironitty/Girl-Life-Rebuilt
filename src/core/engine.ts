@@ -25,11 +25,11 @@ export function processAction(s: GameState, action: ActionDef): Reminder[] {
 
   if (!handlerNavigated) {
     if (action.goto) {
-      goto(s, action.goto[0], action.goto[1], action.goto[2]);
+      goto(s, action.goto[0], action.goto[1], action.goto[2], action.goto[3]);
       loca(s);
     } else if (action.call) {
       pushState(s);
-      goto(s, action.call[0], action.call[1], action.call[2]);
+      goto(s, action.call[0], action.call[1], action.call[2], action.call[3]);
       loca(s);
     } else if (action.invoke) {
       invoke(s, action.invoke[0], action.invoke[1]);

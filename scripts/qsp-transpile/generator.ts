@@ -229,7 +229,8 @@ function generateSceneBody(
         } else {
           targets.add(node.target);
           const arg2Part = node.arg2 ? `, '${esc(node.arg2)}'` : '';
-          out.push(`scene.actions([{ label: 'Continue', goto: ['${node.target}', '${node.arg}'${arg2Part}] }]);`);
+          const arg3Part = node.arg3 ? `, '${esc(node.arg3)}'` : '';
+          out.push(`scene.actions([{ label: 'Continue', goto: ['${node.target}', '${node.arg}'${arg2Part}${arg3Part}] }]);`);
         }
         break;
       }
@@ -315,7 +316,8 @@ function generateAct(
   if (node.inlineGoto) {
     targets.add(node.inlineGoto.target);
     const arg2Part = node.inlineGoto.arg2 ? `, '${esc(node.inlineGoto.arg2)}'` : '';
-    return `{ label: '${esc(node.label)}', goto: ['${node.inlineGoto.target}', '${node.inlineGoto.arg}'${arg2Part}] },`;
+    const arg3Part = node.inlineGoto.arg3 ? `, '${esc(node.inlineGoto.arg3)}'` : '';
+    return `{ label: '${esc(node.label)}', goto: ['${node.inlineGoto.target}', '${node.inlineGoto.arg}'${arg2Part}${arg3Part}] },`;
   }
 
   if (node.inlineStatements) {
@@ -372,9 +374,15 @@ function translateInlineAct(
 ): string | null {
   const parts = raw.split('&').map(p => p.trim()).filter(Boolean);
   const handlerBits: string[] = [];
-  let goto: { target: string; arg: string; arg2?: string } | null = null;
+  let goto: { target: string; arg: string; arg2?: string; arg3?: string } | null = null;
 
   for (const part of parts) {
+    const gt4Match = part.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+    if (gt4Match) {
+      goto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
+      targets.add(gt4Match[1]);
+      continue;
+    }
     const gtMatch = part.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
     if (gtMatch) {
       goto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
@@ -448,7 +456,7 @@ function translateInlineAct(
     : '';
 
   const gotoCode = goto
-    ? `goto: ['${goto.target}', '${goto.arg}'${goto.arg2 ? `, '${esc(goto.arg2)}'` : ''}]`
+    ? `goto: ['${goto.target}', '${goto.arg}'${goto.arg2 ? `, '${esc(goto.arg2)}'` : ''}${goto.arg3 ? `, '${esc(goto.arg3)}'` : ''}]`
     : '';
 
   const bits = [handlerCode, gotoCode].filter(Boolean).join(', ');

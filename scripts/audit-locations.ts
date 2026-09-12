@@ -365,7 +365,7 @@ function extractTsActions(funcBody: string): TsAction[] {
       if (j > i && /label:\s*'/.test(checkLine) && !hasHandler) break;
       if (j > i && /^\s*\]\s*\)\s*;?\s*$/.test(checkLine) && !hasHandler) break;
 
-      const gotoMatch = checkLine.match(/goto:\s*\['((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'(?:\s*,\s*'((?:[^'\\]|\\.)*)')?\]/);
+      const gotoMatch = checkLine.match(/goto:\s*\['((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'(?:\s*,\s*'((?:[^'\\]|\\.)*)')?(?:\s*,\s*'((?:[^'\\]|\\.)*)')?\]/);
       if (gotoMatch) {
         goto = [unescapeTs(gotoMatch[1]), unescapeTs(gotoMatch[2])];
         break;

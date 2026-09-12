@@ -1779,9 +1779,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 1, 'lick'
-  } },
+        { label: 'Do it', goto: ['brother2', 'lose_dares3', '1', 'lick'] },
       ]);
     } else {
       qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
@@ -1791,9 +1789,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
         scene.text('"What! you perv! I\'m not-" he stops you and quickly says "What are you chicken?"');
       }
       scene.actions([
-        { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 1, 'tits'
-  } },
+        { label: 'Do it', goto: ['brother2', 'lose_dares3', '1', 'tits'] },
       ]);
     }
   } else {
@@ -1805,9 +1801,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
           scene.text('"What! you perv! Why do you want to rub my bu-" he stops you and quickly says "What are you chicken?"');
         }
         scene.actions([
-          { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 3, 'rub_butt'
-  } },
+          { label: 'Do it', goto: ['brother2', 'lose_dares3', '3', 'rub_butt'] },
         ]);
       } else {
         qspCall(s, 'willpower', 'exhib', 'resist');
@@ -1816,9 +1810,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
           scene.text('"What! you perv! I\'m not-" he stops you and quickly says "What are you chicken?"');
         }
         scene.actions([
-          { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 2, 'dance'
-  } },
+          { label: 'Do it', goto: ['brother2', 'lose_dares3', '2', 'dance'] },
         ]);
       }
     } else {
@@ -1841,9 +1833,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
             scene.text('"What! you perv! I\'m your sister that\'s… I\'m not-" he stops you and quickly says "What are you chicken?"');
           }
           scene.actions([
-            { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 3, 'hj'
-  } },
+            { label: 'Do it', goto: ['brother2', 'lose_dares3', '3', 'hj'] },
           ]);
         } else {
           if (((s as any).sex_darerand ?? 0) === 2) {
@@ -1853,9 +1843,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
               scene.text('"What! you perv! I\'m your sister that\'s… I\'m not-" he stops you and quickly says "What are you chicken?"');
             }
             scene.actions([
-              { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 3, 'bj'
-  } },
+              { label: 'Do it', goto: ['brother2', 'lose_dares3', '3', 'bj'] },
             ]);
           } else {
             if (((s as any).sex_darerand ?? 0) === 3) {
@@ -1866,9 +1854,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
                 scene.text('"What! you perv! I\'m not-" he stops you and quickly says "What are you chicken?"');
               }
               scene.actions([
-                { label: 'Do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares3', 2, 'lap'
-  } },
+                { label: 'Do it', goto: ['brother2', 'lose_dares3', '2', 'lap'] },
               ]);
             } else {
               if (((s as any).sex_darerand ?? 0) === 4) {

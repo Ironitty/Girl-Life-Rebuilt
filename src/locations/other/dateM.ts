@@ -431,7 +431,7 @@ function enterDateChoice(s: GameState, scene: SceneBuilder): void {
       { label: '"Let\'s go to the movie theater." (old content)', goto: ['dateM', 'datecinema'] },
       { label: '"Let\'s go to the movie theater." (new content)', handler: (st: GameState) => {
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
-    // TODO-QSP: gt 'date_ev', 'initiate_pre', $npcID, 'movie_date'
+    scene.actions([{ label: 'Continue', goto: ['date_ev', 'initiate_pre', 'npcID', 'movie_date'] }]);
   } },
     ]);
   }
@@ -440,7 +440,7 @@ function enterDateChoice(s: GameState, scene: SceneBuilder): void {
     { label: '"Let\'s go to a cafe" (old content)', goto: ['dateM', 'datecafe'] },
     { label: '"Let\'s go to a cafe" (new content)', handler: (st: GameState) => {
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
-    // TODO-QSP: gt 'date_ev', 'initiate_pre', $npcID, 'casual_meal'
+    scene.actions([{ label: 'Continue', goto: ['date_ev', 'initiate_pre', 'npcID', 'casual_meal'] }]);
   } },
     { label: '"Let\'s go to a bar." (old content)', goto: ['dateM', 'datebar'] },
   ]);

@@ -730,9 +730,7 @@ function enterGoToSex(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev ?? {})['npc_home_sex'] = 1;
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'sex_ev_start', 'initiate_pre', $npcID, 'npc_home'
-  } },
+    { label: 'Continue', goto: ['sex_ev_start', 'initiate_pre', 'npcID', 'npc_home'] },
   ]);
   scene.build();
 }

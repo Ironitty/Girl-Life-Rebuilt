@@ -575,6 +575,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   if (((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 1  ||  (((s as any).pfilmNOPAY ?? 0) === 0  &&  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 0)) {
     scene.actions([
       { label: 'Cancel a contract', handler: (st: GameState) => {

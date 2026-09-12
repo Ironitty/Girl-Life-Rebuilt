@@ -202,17 +202,17 @@ interface ParseResult {
       const trimmed = raw.trim();
       if (!trimmed) { i++; continue; }
 
-       // QSP block comment: !{ ... !} or !!{ ... end} (may span lines)
-        if (inBlockComment) {
-          if (trimmed.endsWith('!}') || trimmed.endsWith('!!}') || trimmed.endsWith('end}')) inBlockComment = false;
-          i++;
-          continue;
-        }
-        if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
-          if (!trimmed.endsWith('!}') && !trimmed.endsWith('end}')) inBlockComment = true;
-          i++;
-          continue;
-        }
+        // QSP block comment: !{ ... !} or !!{ ... end} or !!{ ... } (may span lines)
+         if (inBlockComment) {
+           if (trimmed.endsWith('!}') || trimmed.endsWith('!!}') || trimmed.endsWith('end}') || trimmed === '}') inBlockComment = false;
+           i++;
+           continue;
+         }
+         if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
+           if (!trimmed.endsWith('!}') && !trimmed.endsWith('end}') && trimmed !== '}') inBlockComment = true;
+           i++;
+           continue;
+         }
 
       if (stopAtEnd && (trimmed === 'end' || trimmed === 'end ')) {
         return { nodes, endIdx: i + 1 };
@@ -267,15 +267,20 @@ interface ParseResult {
       const act: QspAct = { kind: 'act', label: isCostLabel ? label : `${label} [+${truncate(dynPart, 40)}]`, body: [] };
 
       if (rest) {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
-        if (gtMatch) {
-          act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+        const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+        if (gt4Match) {
+          act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
-          if (gtVarArgMatch) {
-            act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+          if (gtMatch) {
+            act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
           } else {
-            act.inlineStatements = rest;
+            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+            if (gtVarArgMatch) {
+              act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+            } else {
+              act.inlineStatements = rest;
+            }
           }
         }
         i++;
@@ -383,6 +388,12 @@ interface ParseResult {
     }
 
     // Goto: gt 'target', 'arg' or xgt 'target', 'arg'
+    const gt4Match = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+    if (gt4Match) {
+      nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
+      i++;
+      continue;
+    }
     const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
     if (gtMatch) {
       nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
@@ -688,15 +699,20 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     const rest = actDynMatch[3].trim();
     const act: QspAct = { kind: 'act', label: `${label} [+${truncate(dynPart, 40)}]`, body: [] };
     if (rest) {
-      const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
-      if (gtMatch) {
-        act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+      const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+      if (gt4Match) {
+        act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
       } else {
-        const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
-        if (gtVarArgMatch) {
-          act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+        if (gtMatch) {
+          act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
         } else {
-          act.inlineStatements = rest;
+          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+          if (gtVarArgMatch) {
+            act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+          } else {
+            act.inlineStatements = rest;
+          }
         }
       }
       nodes.push(act);
@@ -717,15 +733,20 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
       if (gtDynTargetMatch) {
         act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
-        if (gtMatch) {
-          act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+        const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+        if (gt4Match) {
+          act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
-          if (gtVarArgMatch) {
-            act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+          if (gtMatch) {
+            act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
           } else {
-            act.inlineStatements = rest;
+            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+            if (gtVarArgMatch) {
+              act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+            } else {
+              act.inlineStatements = rest;
+            }
           }
         }
       }
@@ -792,6 +813,11 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Goto or xgt
+  const gt4Match = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+  if (gt4Match) {
+    nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
+    return { nodes, nextIdx: idx + 1 };
+  }
   const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
   if (gtMatch) {
     nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
@@ -996,26 +1022,36 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     const label = unescapeQsp(actInlineMatch[1]);
     const rest = actInlineMatch[2].trim();
     const act: QspAct = { kind: 'act', label, body: [] };
-    const gtDynTargetMatch = rest.match(/^gt\s+'([^']+)'\s*\+\s*(\$\w+)\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
-    if (gtDynTargetMatch) {
-      act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
-    } else {
-      const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
-      if (gtMatch) {
-        act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+      const gtDynTargetMatch = rest.match(/^gt\s+'([^']+)'\s*\+\s*(\$\w+)\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+      if (gtDynTargetMatch) {
+        act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
-        const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
-        if (gtVarArgMatch) {
-          act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+        const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+        if (gt4Match) {
+          act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          act.inlineStatements = rest;
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+          if (gtMatch) {
+            act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+          } else {
+            const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+            if (gtVarArgMatch) {
+              act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+            } else {
+              act.inlineStatements = rest;
+            }
+          }
         }
       }
-    }
     nodes.push(act);
     return nodes;
   }
 
+  const gt4Match = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
+  if (gt4Match) {
+    nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
+    return nodes;
+  }
   const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
   if (gtMatch) {
     nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });

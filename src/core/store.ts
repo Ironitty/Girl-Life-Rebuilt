@@ -45,6 +45,7 @@ export const initialState = {
   loc: 'start',
   locArg: '',
   locArg2: '',
+  locArg3: '',
   menuLoc: 'start',
   menuArg: '',
   prevLoc: '',

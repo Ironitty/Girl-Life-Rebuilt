@@ -4009,6 +4009,537 @@ function enterMiss3BoyTalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiss3EnjoyDesc(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
+    scene.text('You groan in pleasure, loving how roughly he\'s fucking you, hammering your pussy in all the right ways to make up for his tiny dick.');
+  } else {
+    if (((s as any).dick_desc ?? 0) === 'chode') {
+      scene.text('You groan in pleasure, loving how roughly he\'s fucking you, hammering the girth of his fat chode into your pussy, forcing you to feel its thickness between your legs.');
+    } else {
+      if (((s as any).dick_desc ?? 0) === 'skinny') {
+        scene.text('You groan in pleasure, loving how roughly he\'s fucking you, hammering your pussy in all the right places with his skinny dick.');
+      } else {
+        if (((s as any).dick_desc ?? 0) === 'normal') {
+          if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+            (s as any).pcs_makeup = 0;
+            scene.text('You groan wordlessly, loving how roughly he\'s fucking you, hammering your pussy in all the right ways. Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. Within minutes, your makeup is as fucked as you are.');
+          } else {
+            if ((!((s as any).pcs_makeup ?? 0))) {
+              scene.text('You groan wordlessly, loving how roughly he\'s fucking you, hammering your pussy in all the right ways. Tears of pleasure and pain blur your sight and beads of sweat gather on your skin and your already ruined makeup gets even worse with every passing moment.');
+            } else {
+              scene.text('Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. You love how rough he\'s treating you. His cock hammers your pussy in all the right ways and you groan in pleasure. ');
+            }
+          }
+        } else {
+          if (((s as any).dick_desc ?? 0) === 'thick') {
+            if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+              (s as any).pcs_makeup = 0;
+              scene.text('You groan wordlessly, loving the rough fucking of your pussy by his thick cock, smashing it into your pussy again and again, stretching you to your limits. Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. Within minutes, your makeup is as fucked as you are.');
+            } else {
+              if ((!((s as any).pcs_makeup ?? 0))) {
+                scene.text('You groan wordlessly, loving the rough fucking of your pussy by his thick cock, smashing it into your pussy again and again, stretching you to your limits. Tears of pleasure and pain blur your sight and beads of sweat gather on your skin and your already ruined makeup gets even worse with every passing moment.');
+              } else {
+                scene.text('Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. You love how rough he\'s treating you and the way he smashes his thick cock into you over and over again, and stretching you to your limits.');
+              }
+            }
+          } else {
+            if (((s as any).dick_desc ?? 0) === 'long') {
+              if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+                (s as any).pcs_makeup = 0;
+                // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his long cock, t...
+                scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his long cock, the way ${((s as any).npcdesc ?? 0)} bashes it against your cervix again and again, causing tears of pleasure and pain blur your sight and beads of sweat gather on your skin. Within minutes, your makeup is as fucked as you are.`);
+              } else {
+                if ((!((s as any).pcs_makeup ?? 0))) {
+                  // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his long cock, t...
+                  scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his long cock, the way ${((s as any).npcdesc ?? 0)} bashes it against your cervix again and again, causing tears of pleasure and pain blur your sight and beads of sweat gather on your skin and your already ruined makeup gets even worse with every passing moment.`);
+                } else {
+                  // TODO-QSP: dynamic text: Tears of pleasure and pain blur your sight and beads of sweat gather on your ski...
+                  scene.text(`Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. You love the rough fucking of your pussy by his long cock, the way ${((s as any).npcdesc ?? 0)} bashes it against your cervix again and again, causing tears of pleasure and pain blur your sight and beads of sweat gather on your skin.`);
+                }
+              }
+            } else {
+              if (((s as any).dick_desc ?? 0) === 'huge') {
+                if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+                  (s as any).pcs_makeup = 0;
+                  // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his huge cock, t...
+                  scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his huge cock, the way ${((s as any).npcdesc ?? 0)} fills you with every thrust, bashing it against your cervix again and again, causing tears of pleasure and pain blur your sight and beads of sweat gather on your skin. Within minutes, your makeup is as fucked as you are.`);
+                } else {
+                  if ((!((s as any).pcs_makeup ?? 0))) {
+                    // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his huge cock, t...
+                    scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his huge cock, the way ${((s as any).npcdesc ?? 0)} fills you with every thrust, bashing it against your cervix again and again, causing tears of pleasure and pain blur your sight and beads of sweat gather on your skin and your already ruined makeup gets even worse with every passing moment.`);
+                  } else {
+                    // TODO-QSP: dynamic text: Tears of pleasure and pain blur your sight and beads of sweat gather on your ski...
+                    scene.text(`Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. You love the rough fucking of your pussy by his huge cock, the way ${((s as any).npcdesc ?? 0)} fills you with every thrust, bashing it against your cervix again and again, causing tears of pleasure and pain blur your sight and beads of sweat gather on your skin.`);
+                  }
+                }
+              } else {
+                if (((s as any).dick_desc ?? 0) === 'enormous') {
+                  if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+                    (s as any).pcs_makeup = 0;
+                    // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his enormous coc...
+                    scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his enormous cock, the way ${((s as any).npcdesc ?? 0)} stretches you to your limits with every thrust and bashes it against your cervix unceasingly. Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. Within minutes, your makeup is as fucked as you are.`);
+                  } else {
+                    if ((!((s as any).pcs_makeup ?? 0))) {
+                      // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his enormous coc...
+                      scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his enormous cock, the way ${((s as any).npcdesc ?? 0)} stretches you to your limits with every thrust and bashes it against your cervix unceasingly. Tears of pleasure and pain blur your sight and beads of sweat gather on your skin and your already ruined makeup gets even worse with every passing moment.`);
+                    } else {
+                      // TODO-QSP: dynamic text: Tears of pleasure and pain blur your sight and beads of sweat gather on your ski...
+                      scene.text(`Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. You love how rough he's treating you and the way ${((s as any).npcdesc ?? 0)}'s enormous cock stretches you to your limits with every thrust and bashes it against your cervix unceasingly.`);
+                    }
+                  }
+                } else {
+                  if (((s as any).dick_desc ?? 0) === 'lengthy') {
+                    if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+                      (s as any).pcs_makeup = 0;
+                      // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his exceptionall...
+                      scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his exceptionally lengthy cock, the way ${((s as any).npcdesc ?? 0)} bashes it against your cervix again and again, so hard you wonder if you'll be bruised in the morning as tears of pleasure and pain blur your sight and beads of sweat gather on your skin. Within minutes, your makeup is as fucked as you are.`);
+                    } else {
+                      if ((!((s as any).pcs_makeup ?? 0))) {
+                        // TODO-QSP: dynamic text: You groan wordlessly, loving the rough fucking of your pussy by his exceptionall...
+                        scene.text(`You groan wordlessly, loving the rough fucking of your pussy by his exceptionally lengthy cock, the way ${((s as any).npcdesc ?? 0)} bashes it against your cervix again and again, so hard you wonder if you'll be bruised in the morning as tears of pleasure and pain blur your sight and beads of sweat gather on your skin and your already ruined makeup gets even worse with every passing moment.`);
+                      } else {
+                        // TODO-QSP: dynamic text: Tears of pleasure and pain blur your sight and beads of sweat gather on your ski...
+                        scene.text(`Tears of pleasure and pain blur your sight and beads of sweat gather on your skin. You love the rough fucking of your pussy by his exceptionally lengthy cock, the way ${((s as any).npcdesc ?? 0)} bashes it against your cervix again and again, so hard you wonder if you'll be bruised in the morning.`);
+                      }
+                    }
+                  } else {
+                    if (((s as any).dick_desc ?? 0) === 'gigantic') {
+                      // TODO-QSP: dynamic text: You groan in pleasure beneath <<$npcdesc>>. You love the way he's fucking you an...
+                      scene.text(`You groan in pleasure beneath ${((s as any).npcdesc ?? 0)}. You love the way he's fucking you and the way his gigantic cock fills you up and bounces off your cervix, eyes watering as a strangely pleasurable soreness builds inside you with every collision.`);
+                    } else {
+                      if (((s as any).dick_desc ?? 0) === 'monstrous') {
+                        // TODO-QSP: dynamic text: You groan in pleasure beneath <<$npcdesc>>. You love the way he's fucking you an...
+                        scene.text(`You groan in pleasure beneath ${((s as any).npcdesc ?? 0)}. You love the way he's fucking you and the way his monstrous cock threatens to tear you in half and impale you with every thrust, agony and pleasure mixing in the most intoxicating of ways.`);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterMiss3BoyDirtyTalk1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterMiss3_1Desc(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
+      // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+      scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, managing to even make his tiny dick hurt you in all the <i>best</i> ways.`);
+    } else {
+      if (((s as any).dick_desc ?? 0) === 'chode') {
+        // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+        scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, forcing his fat chode into your pussy to hurt you in all the <i>best</i> ways.`);
+      } else {
+        if (((s as any).dick_desc ?? 0) === 'skinny') {
+          // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+          scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, stabbing into you with his skinny dick to hurt you in all the <i>best</i> ways.`);
+        } else {
+          if (((s as any).dick_desc ?? 0) === 'normal') {
+            // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+            scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, hurting in all the <i>best</i> ways.`);
+          } else {
+            if (((s as any).dick_desc ?? 0) === 'thick') {
+              // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+              scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, splitting your pussy with his thick cock and hurting you in all the <i>best</i> ways.`);
+            } else {
+              if (((s as any).dick_desc ?? 0) === 'long') {
+                // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+                scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with his long cock and hurting you in all the <i>best</i> ways.`);
+              } else {
+                if (((s as any).dick_desc ?? 0) === 'huge') {
+                  // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+                  scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with his huge cock and hurting you in all the <i>best</i> ways.`);
+                } else {
+                  if (((s as any).dick_desc ?? 0) === 'enormous') {
+                    // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+                    scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix and threatening to tear your pussy in half with his enormous cock and hurting you in all the <i>best</i> ways.`);
+                  } else {
+                    if (((s as any).dick_desc ?? 0) === 'lengthy') {
+                      // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+                      scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with the entire length of his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm cock and hurting you in all the <i>best</i> ways.`);
+                    } else {
+                      if (((s as any).dick_desc ?? 0) === 'gigantic') {
+                        // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+                        scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, hammering your cervix with his gigantic cock, forcing its entire ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm length inside and hurting you in all the <i>best</i> ways.`);
+                      } else {
+                        if (((s as any).dick_desc ?? 0) === 'monstrous') {
+                          // TODO-QSP: dynamic text: Tears begin to well up in your eyes as you half whimper and half moan in half pa...
+                          scene.text(`Tears begin to well up in your eyes as you half whimper and half moan in half pain and half pleasure. ${((s as any).npcdesc ?? 0)} keeps a firm hold on your hair and pulls hard with every thrust, forcing in the entire ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm length of his monstrous cock inside you, hammering your cervix and threatening to tear your pussy in half and hurting you in all the <i>best</i> ways.`);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    scene.text('Wet sloppy claps squelch from your pussy as he relentlessly pounds you into the mattress and your eyes roll back in your head.');
+  } else {
+    if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
+      // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+      scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and his fucking is so violent that even his tiny dick is making you break out in a sweat.`);
+    } else {
+      if (((s as any).dick_desc ?? 0) === 'chode') {
+        // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+        scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and his fucking is so violent that the fat girth of his chode being force inside you is making you break out in a sweat.`);
+      } else {
+        if (((s as any).dick_desc ?? 0) === 'skinny') {
+          // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+          scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and his fucking is so violent that even his skinny dick is making you break out in a sweat.`);
+        } else {
+          if (((s as any).dick_desc ?? 0) === 'normal') {
+            // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+            scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and his fucking is so violent that you're already starting to break out in a sweat.`);
+          } else {
+            if (((s as any).dick_desc ?? 0) === 'thick') {
+              // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+              scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and you break out in a sweat, his thick cock threatens to tear you in half with every thrust.`);
+            } else {
+              if (((s as any).dick_desc ?? 0) === 'long') {
+                // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+                scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and you break out in a sweat, his long cock bashes against your cervix with every thrust.`);
+              } else {
+                if (((s as any).dick_desc ?? 0) === 'huge') {
+                  // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+                  scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and you break out in a sweat, his huge cock fills your entire pussy and bashes against your cervix with every thrust.`);
+                } else {
+                  if (((s as any).dick_desc ?? 0) === 'enormous') {
+                    // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+                    scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and you break out in a sweat, his enormous cock batters your cervix, threatening to tear you in half with every thrust.`);
+                  } else {
+                    if (((s as any).dick_desc ?? 0) === 'lengthy') {
+                      // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+                      scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and you break out in a sweat, his ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm cock bashing against your cervix, trying to force its way past with every thrust.`);
+                    } else {
+                      if (((s as any).dick_desc ?? 0) === 'gigantic') {
+                        // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+                        scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and you break out in a sweat, his gigantic ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm cock filling you up and bashing against your cervix with its weight, trying to force its way past with every thrust.`);
+                      } else {
+                        if (((s as any).dick_desc ?? 0) === 'monstrous') {
+                          // TODO-QSP: dynamic text: The bed creaks underneath you and your breasts jiggle violently with every thrus...
+                          scene.text(`The bed creaks underneath you and your breasts jiggle violently with every thrust. ${((s as any).npcdesc ?? 0)}'s hips slam against your thighs and you break out in a sweat, his monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm cock trying to force its way into your cervix and split you in half with every thrust.`);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    scene.text('And you are loving <i>every second</i> of it.');
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterMiss3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['moan'] === 1) {
+    scene.text('<i>"Mm~! Mm! Nnm~! Nngh~!"</i>');
+    if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
+      // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+      scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding your pussy. His tiny dick somehow slams into you with such force that it leaves you breathless. And it feels <i>amazing</i>.`);
+    } else {
+      if (((s as any).dick_desc ?? 0) === 'chode') {
+        // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+        scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding you. His fat chode slams into you with such force that your pussy feels stretched even by its meager length, leaving you breathless. And its <i>amazing</i>.`);
+      } else {
+        if (((s as any).dick_desc ?? 0) === 'skinny') {
+          // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+          scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding your pussy. His skinny dick somehow slams into you with such force that it leaves you breathless. And it feels <i>amazing</i>.`);
+        } else {
+          if (((s as any).dick_desc ?? 0) === 'normal') {
+            // TODO-QSP: dynamic text: Only the softest moans are able to escape your lips as <<$npcdesc>> keeps poundi...
+            scene.text(`Only the softest moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding your pussy. His dick slams into you with such force that it leaves you breathless. And it feels <i>amazing</i>.`);
+          } else {
+            if (((s as any).dick_desc ?? 0) === 'thick') {
+              // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+              scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding you. His cock slams into you, it stretches your pussy around his thick girth and leaves you breathless. And its <i>amazing</i>.`);
+            } else {
+              if (((s as any).dick_desc ?? 0) === 'long') {
+                // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+                scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding your pussy. His cock slams into you, bumping up against your cervix with its generous length and leaves you breathless. And its <i>amazing</i>.`);
+              } else {
+                if (((s as any).dick_desc ?? 0) === 'huge') {
+                  // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+                  scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding your pussy. His cock slams into you, filling you up and bumping up against your cervix with its huge size, leaving you breathless. And its <i>amazing</i>.`);
+                } else {
+                  if (((s as any).dick_desc ?? 0) === 'enormous') {
+                    // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+                    scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding you. His cock slams into you, impaling your pussy with its girth and bumping up against your cervix with its enormous size, leaving you breathless. And its <i>amazing</i>.`);
+                  } else {
+                    if (((s as any).dick_desc ?? 0) === 'lengthy') {
+                      // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+                      scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding your pussy. His cock slams into you, relentlessly smashing against your cervix with its insane ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
+                    } else {
+                      if (((s as any).dick_desc ?? 0) === 'gigantic') {
+                        // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+                        scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding your pussy. His cock slams into you, filling you up and relentlessly smashing against your cervix with its gigantic ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
+                      } else {
+                        if (((s as any).dick_desc ?? 0) === 'monstrous') {
+                          // TODO-QSP: dynamic text: Only the tiniest squeaks of moans are able to escape your lips as <<$npcdesc>> k...
+                          scene.text(`Only the tiniest squeaks of moans are able to escape your lips as ${((s as any).npcdesc ?? 0)} keeps pounding you. His cock slams into you, painfully splitting your pussy with it's absurd girth and relentlessly smashing against your cervix with its montrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm length, literally forcing the breath from your lungs. And its <i>amazing</i>.`);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['moan'] === 2) {
+      scene.text('"<i>Ah~! Yes~! Mmm~!</i>"');
+      if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
+        // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you with his tiny dick. Your moan...
+        scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you with his tiny dick. Your moans seem to egg him on, making him fuck you harder. In turn, it makes you moan even louder. And you're loving every second of it.`);
+      } else {
+        if (((s as any).dick_desc ?? 0) === 'chode') {
+          // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you with his fat chode. Your moan...
+          scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you with his fat chode. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. And you're loving every second of it.`);
+        } else {
+          if (((s as any).dick_desc ?? 0) === 'skinny') {
+            // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you with his skinny dick. Your mo...
+            scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you with his skinny dick. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. And you're loving every second of it.`);
+          } else {
+            if (((s as any).dick_desc ?? 0) === 'normal') {
+              // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you with his dick. Your moans see...
+              scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you with his dick. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. And you're loving every second of it.`);
+            } else {
+              if (((s as any).dick_desc ?? 0) === 'thick') {
+                // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, splitting your pussy with hi...
+                scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you, splitting your pussy with his thick cock. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. And you're loving every second of it.`);
+              } else {
+                if (((s as any).dick_desc ?? 0) === 'long') {
+                  // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, impaling your pussy and bump...
+                  scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you, impaling your pussy and bumping up against your cervix with his long cock. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. And you're loving every second of it.`);
+                } else {
+                  if (((s as any).dick_desc ?? 0) === 'huge') {
+                    // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, impaling your pussy and bump...
+                    scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you, impaling your pussy and bumping up against your cervix with his huge cock. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. And you're loving every second of it.`);
+                  } else {
+                    if (((s as any).dick_desc ?? 0) === 'enormous') {
+                      // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, splitting your pussy and bum...
+                      scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you, splitting your pussy and bumping up against your cervix with his enormous cock. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. And you're loving every second of it.`);
+                    } else {
+                      if (((s as any).dick_desc ?? 0) === 'lengthy') {
+                        // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, battering your cervix with h...
+                        scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you, battering your cervix with his insanely long ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
+                      } else {
+                        if (((s as any).dick_desc ?? 0) === 'gigantic') {
+                          // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, battering your cervix with h...
+                          scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you, battering your cervix with his gigantic ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
+                        } else {
+                          if (((s as any).dick_desc ?? 0) === 'monstrous') {
+                            // TODO-QSP: dynamic text: You moan loudly as <<$npcdesc>> keeps pounding you, splitting your pussy with hi...
+                            scene.text(`You moan loudly as ${((s as any).npcdesc ?? 0)} keeps pounding you, splitting your pussy with his absurd girth and battering your cervix with his monstrous ${((s as any).npc_dick ?? 0)?.[String((s as any).npcID ?? 0)]}cm cock. Every thrust increases the soreness and the pleasure. Your moans seem to egg him on, making him fuck you harder and in turn, it only makes you moan even louder. A part of you wonders if you're going to have a bruised uterus after this. Sex has never hurt so good.`);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterMiss3_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'cock') {
+    if ((Math.floor(Math.random() * 3) + 1) === 1) {
+      // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Fuck~!" you pant. "Your cock is so fucking hard inside me~! Oh fu...
+    } else {
+      if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
+        // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "...
+      } else {
+        if (((s as any).dick_desc ?? 0) === 'chode') {
+          // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "...
+        } else {
+          if (((s as any).dick_desc ?? 0) === 'skinny') {
+            // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "...
+          } else {
+            if (((s as any).dick_desc ?? 0) === 'normal') {
+              // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Yes! Yes! Just like that!" you scream at the top of your lungs. "...
+            } else {
+              if (((s as any).dick_desc ?? 0) === 'thick') {
+                if (((s as any).pcs_vag ?? 0) <= 10) {
+                  // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You'...
+                } else {
+                  // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> Your...
+                }
+              } else {
+                if (((s as any).dick_desc ?? 0) === 'long') {
+                  // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You'...
+                } else {
+                  if (((s as any).dick_desc ?? 0) === 'huge') {
+                    // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "You''re so big! Y...
+                  } else {
+                    if (((s as any).dick_desc ?? 0) === 'enormous') {
+                      if (((s as any).pcs_vag ?? 0) <= 10) {
+                        // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You'...
+                      } else {
+                        // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> You'...
+                      }
+                    } else {
+                      if (((s as any).dick_desc ?? 0) === 'lengthy') {
+                        // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> I fe...
+                      } else {
+                        if (((s as any).dick_desc ?? 0) === 'gigantic') {
+                          // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "Oh <i>fuck!</i> Y...
+                        } else {
+                          if (((s as any).dick_desc ?? 0) === 'monstrous') {
+                            // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"OH FUCK!" you scream at the top of your lungs. "<i>Fuck!</i> I fe...
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'arousal') {
+      if (((s as any).pcs_horny ?? 0) >= 70) {
+        if ((Math.floor(Math.random() * 2) + 0) === 1) {
+          // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Yes~! Fuck~! Yes~!" you scream. "I love getting pounded~! You''re...
+        } else {
+          // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Oh <i>fuck</i>~!" you scream. "I''m so fucking wet~! I''m gonna c...
+        }
+      } else {
+        if ((Math.floor(Math.random() * 2) + 0) === 1) {
+          // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Ungh~! Don''t stop~!" you scream. "Smash my sloppy wet pussy~!"',...
+        } else {
+          // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"My pussy can''t get enough of you~!" you scream. "I need more~! M...
+        }
+      }
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'technique') {
+        if (((s as any).pcs_horny ?? 0) >= 70) {
+          if ((Math.floor(Math.random() * 2) + 0) === 1) {
+            // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Yes~! Fuck~! Yes~!" you scream. "Pound my fucking pussy~! Don''t ...
+          } else {
+            // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Oh <i>fuck</i>~!" you scream. "I''m so fucking wet~! I''m gonna c...
+          }
+        } else {
+          if ((Math.floor(Math.random() * 2) + 0) === 1) {
+            // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"Ungh~! Don''t stop~!" you scream. "Fuck my fucking brains out~!"'...
+          } else {
+            // TODO-QSP: iif(stat['no_sex_swearing'] = 0, '"I love having you between my legs," you moan. "You''re making me ...
+          }
+        }
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['dirty_talk'] === 'dirty_girl') {
+          if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
+            // TODO-QSP: dynamic text: "Who's pussy is this?" <<$npcdesc>> growls as he smashes his cock into you like ...
+            scene.text(`"Who's pussy is this?" ${((s as any).npcdesc ?? 0)} growls as he smashes his cock into you like a battering ram.`);
+            scene.text('"Yours~!" you whimper, squirming beneath him.');
+          } else {
+            if (((s as any).pcs_horny ?? 0) >= 70) {
+              if ((Math.floor(Math.random() * 1) + 1) === 1) {
+                scene.text('"Yes~! Fuck my sloppy pussy~!" you scream. "Make this dirty little slut cum all over your cock~!"');
+              } else {
+                scene.text('"Oh shit~! Imgonnacum~!" you scream. "You\'re gonna make this filthy whore cum~!"');
+              }
+            } else {
+              if ((Math.floor(Math.random() * 2) + 0) === 1) {
+                scene.text('"Ungh~! Fuck my dirty cunt~!" you scream. "Fuck me like the filthy whore I am~!"');
+              } else {
+                scene.text('"Make this pussy yours~!" you scream. "Own this pussy with your cock~!"');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterMiss3_2SensationDesc(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {
+    // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+    scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his tiny dick violently violating your pussy.`);
+  } else {
+    if (((s as any).dick_desc ?? 0) === 'chode') {
+      // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+      scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his fat chode violently violating your pussy.`);
+    } else {
+      if (((s as any).dick_desc ?? 0) === 'skinny') {
+        // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+        scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his skinny dick violently violating your pussy.`);
+      } else {
+        if (((s as any).dick_desc ?? 0) === 'normal') {
+          // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+          scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his dick violently violating your pussy.`);
+        } else {
+          if (((s as any).dick_desc ?? 0) === 'thick') {
+            // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+            scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his thick cock violently stretching out your pussy.`);
+          } else {
+            if (((s as any).dick_desc ?? 0) === 'long') {
+              // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+              scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his long cock repeatedly knocking on your cervix as it violently penetrates you over and over again.`);
+            } else {
+              if (((s as any).dick_desc ?? 0) === 'huge') {
+                // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+                scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the sensation of the huge cock inside you repeatedly knocking on your cervix as it violently violates your pussy.`);
+              } else {
+                if (((s as any).dick_desc ?? 0) === 'enormous') {
+                  // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+                  scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his enormous cock knock against your cervix while it threatens to tear you in half.`);
+                } else {
+                  if (((s as any).dick_desc ?? 0) === 'lengthy') {
+                    // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+                    scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his insanely long cock smash into your cervix over and over and over again in the most blissful agony you've ever experienced.`);
+                  } else {
+                    if (((s as any).dick_desc ?? 0) === 'gigantic') {
+                      // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+                      scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his gigantic cock fill your pussy, smashing into your cervix over and over and over again in the most blissful agony you've ever experienced.`);
+                    } else {
+                      if (((s as any).dick_desc ?? 0) === 'monstrous') {
+                        // TODO-QSP: dynamic text: You pant heavily as <<$npcdesc>> keeps pounding you. Your eyes roll back in your...
+                        scene.text(`You pant heavily as ${((s as any).npcdesc ?? 0)} keeps pounding you. Your eyes roll back in your head and all you can do is gasp for breath and lose yourself in the feeling of his monstrous cock smash into your cervix while it threatens to tear you in half in the most blissful agony you've ever experienced.`);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  // TODO-QSP: --- sex_ev_miss ---------------------------------
   scene.build();
 }
 
@@ -4179,6 +4710,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'miss3_enjoy_desc':
       enterMiss3EnjoyDesc(s, scene);
+      break;
+    case 'miss3_boy_dirty_talk1':
+      enterMiss3BoyDirtyTalk1(s, scene);
+      break;
+    case 'miss3.1_desc':
+      enterMiss3_1Desc(s, scene);
+      break;
+    case 'miss3.2_moan_desc':
+      enterMiss3_2MoanDesc(s, scene);
+      break;
+    case 'miss3.2_dirty_talk':
+      enterMiss3_2DirtyTalk(s, scene);
+      break;
+    case 'miss3.2_sensation_desc':
+      enterMiss3_2SensationDesc(s, scene);
       break;
     default:
       enterDefault(s, scene);

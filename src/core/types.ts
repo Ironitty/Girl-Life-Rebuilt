@@ -1,7 +1,7 @@
 type Navigation =
-  | { goto: [string, string, string?]; call?: never; invoke?: never }
-  | { call: [string, string, string?]; goto?: never; invoke?: never }
-  | { invoke: [string, string, string?]; goto?: never; call?: never }
+  | { goto: [string, string, string?, string?]; call?: never; invoke?: never }
+  | { call: [string, string, string?, string?]; goto?: never; invoke?: never }
+  | { invoke: [string, string, string?, string?]; goto?: never; call?: never }
   | { goto?: never; call?: never; invoke?: never };
 
 export type ActionDef = {
@@ -84,6 +84,7 @@ export interface GameState {
   loc: string;
   locArg: string;
   locArg2: string;
+  locArg3: string;
   menuLoc: string;
   menuArg: string;
   prevLoc: string;

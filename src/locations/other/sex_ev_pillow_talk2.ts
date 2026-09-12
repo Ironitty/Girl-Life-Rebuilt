@@ -2250,8 +2250,127 @@ function enterTalkLateForSchool2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: end
+  scene.build();
+}
+
+function enterForgotBcTalk1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['forgot_bc'] === 1  &&  ((s as any).sex_ev ?? 0)?.['forgot_bc_chat'] === 0  &&  ((s as any).sex_ev ?? 0)?.['boy_in_shower'] !== 1) {
+    scene.actions([
+      { label: 'Tell <<$npcdesc>> you forgot your birth control', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    scene.text('"I have something to confess," you say. "I forgot to take my birth control last night..."');
+    qspCall(s, 'sex_ev_talk', 'forgot_bc_talk');
+  } },
+    ]);
+  }
   // TODO-QSP: end
+  scene.build();
+}
+
+function enterMorningSleepFuckOkay(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['type'] === 'hookup') {
+    qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
+  } else {
+    scene.text('"Is that permission for me to do it again next time you sleep over?"');
+    scene.actions([
+      { label: 'No', handler: (st: GameState) => {
+    scene.text('"No," you roll your eyes. "It was fine this time, but you should still wait till I wake up."');
+    qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+      { label: 'Yes', handler: (st: GameState) => {
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
+    scene.text('"Sure," you smirk wryly. "Why not?"');
+    qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+      { label: 'Do whatever you want to me', handler: (st: GameState) => {
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
+    scene.text('"You can do whatever you want to me," you say with a smouldering look. ');
+    qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
+  } },
+    ]);
+  }
   // TODO-QSP: end
+  scene.build();
+}
+
+function enterNewWithYouBoy(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['new_with_you'] = 1;
+  ((s as any).sex_ev ?? {})['how_was_day'] = 1;
+  scene.img('images/shared/sex/after/pillow_talk1.jpg');
+  // TODO-QSP: dynamic text: "So, anything new going on with you?" <<$npcdesc>> asks.
+  scene.text(`"So, anything new going on with you?" ${((s as any).npcdesc ?? 0)} asks.`);
+  qspCall(s, 'sex_ev_pillow_talk2', 'share_life_menu');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Nothing new', handler: (st: GameState) => {
+    scene.text('"Not really," you shrug. "Same old same old."');
+  }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
+  ]);
+  scene.build();
+}
+
+function enterHowWasDayBoy(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['new_with_you'] = 1;
+  ((s as any).sex_ev ?? {})['how_was_day'] = 1;
+  scene.img('images/shared/sex/after/pillow_talk1.jpg');
+  // TODO-QSP: dynamic text: "How was your day?" <<$npcdesc>> asks.
+  scene.text(`"How was your day?" ${((s as any).npcdesc ?? 0)} asks.`);
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'It was fine', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_pillow_talk2', 'share_life_menu');
+  } },
+    { label: 'It was good', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_pillow_talk2', 'share_life_menu');
+  } },
+    { label: 'It was bad', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_pillow_talk2', 'share_life_menu');
+  } },
+    { label: 'It was okay', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_pillow_talk2', 'share_life_menu');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterShareLifeMenu(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sex_ev_pillow_talk2', 'share_life_single');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Move on', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
+  } },
+  ]);
+  scene.build();
+}
+
+function enterShareLifeSingle(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).pcs_lover ?? 0) + ((s as any).pcs_girlfriends ?? 0) === 0) {
+    scene.actions([
+      { label: 'Single now', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Broke up with...', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'My boyfriend', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "I broke up with my boyfriend," you tell <<$npcdesc>>. "So I guess I'm single no...
+    scene.text(`"I broke up with my boyfriend," you tell ${((s as any).npcdesc ?? 0)}. "So I guess I'm single now."`);
+    if (((s as any).npc_know_have_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_know_have_boyfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    }
+    qspCall(s, 'sex_ev_stats', 'single_know');
+  } },
+      { label: 'My girlfriend', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: "I broke up with my boyfriend," you tell <<$npcdesc>>. "So I guess I'm single no...
+    scene.text(`"I broke up with my boyfriend," you tell ${((s as any).npcdesc ?? 0)}. "So I guess I'm single now."`);
+    if (((s as any).npc_know_have_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_know_have_boyfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    }
+    qspCall(s, 'sex_ev_stats', 'single_know');
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
   // TODO-QSP: end
   scene.build();
 }
@@ -2409,6 +2528,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'talk_late_for_school2':
       enterTalkLateForSchool2(s, scene);
+      break;
+    case 'forgot_bc_talk1':
+      enterForgotBcTalk1(s, scene);
+      break;
+    case 'morning_sleep_fuck_okay':
+      enterMorningSleepFuckOkay(s, scene);
+      break;
+    case 'new_with_you_boy':
+      enterNewWithYouBoy(s, scene);
+      break;
+    case 'how_was_day_boy':
+      enterHowWasDayBoy(s, scene);
+      break;
+    case 'share_life_menu':
+      enterShareLifeMenu(s, scene);
+      break;
+    case 'share_life_single':
+      enterShareLifeSingle(s, scene);
       break;
     case 'sugar_daddy_talk':
       enterSugarDaddyTalk(s, scene);
