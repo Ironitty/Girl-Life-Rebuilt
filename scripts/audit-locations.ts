@@ -250,7 +250,7 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
   const lines = qspSrc.split('\n');
   const sections = new Map<string, QspAction[]>();
 
-  const sectionStarts: { label: string; line: number }[] = [];
+  const sectionStarts: { label: string; line: number; isOneline: boolean }[] = [];
   let inBlockComment = false;
   for (let i = 0; i < lines.length; i++) {
     const raw = lines[i];
@@ -265,7 +265,8 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
     if (m) {
       const isMulti = /or\s+\$ARGS\[0\]/.test(raw) || /or\s+\$loc_arg/.test(raw);
       const label = isMulti ? '' : unescapeQsp(m[1]);
-      sectionStarts.push({ label, line: i });
+      const isOneline = /\S/.test(trimmed.split(/:\s*/).slice(1).join(':') || '');
+      sectionStarts.push({ label, line: i, isOneline });
     }
   }
 
@@ -283,7 +284,8 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
   for (let i = 0; i < sectionStarts.length; i++) {
     const start = sectionStarts[i].line;
     const end = i + 1 < sectionStarts.length ? sectionStarts[i + 1].line : lines.length;
-    const actions = extractQspActions(lines, start, end);
+    const sectionEnd = sectionStarts[i].isOneline ? start + 1 : end;
+    const actions = extractQspActions(lines, start, sectionEnd);
     const label = sectionStarts[i].label;
     if (!sections.has(label)) {
       sections.set(label, actions);
