@@ -50,7 +50,7 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_2'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_1'] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_1\''] },
   ]);
   scene.build();
 }
@@ -69,7 +69,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the third floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_3'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_2'] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_2\''] },
   ]);
   scene.build();
 }
@@ -88,7 +88,7 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_4'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_3'] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_3\''] },
   ]);
   scene.build();
 }
@@ -114,7 +114,7 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fifth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'etaj_5'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_4'] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_4\''] },
   ]);
   scene.build();
 }
@@ -133,7 +133,7 @@ function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the roof', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_complexb3', 'roof'] },
-    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', 'etaj_5'] },
+    { label: 'Take the elevator', goto: ['pav_complexb3', 'lift', '\'etaj_5\''] },
   ]);
   scene.build();
 }

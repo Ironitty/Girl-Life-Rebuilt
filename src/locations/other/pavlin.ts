@@ -2102,7 +2102,7 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     (s as any).unintendedabort = 1;
     (s as any).knowpregloss = 2;
     if (((s as any).broodcurse ?? 0) > 0) {
-      // TODO-QSP: gt 'gameover', 'force', 13
+      scene.actions([{ label: 'Continue', goto: ['gameover', 'force', '13'] }]);
     }
     qspCall(s, 'stat', '');
     scene.actions([

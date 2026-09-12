@@ -519,9 +519,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
                   scene.text('After you are done cleaning up the table you go to Gala as requested.');
                   scene.text('"Slave, today we make a little trip. There is somebody I want you to meet."');
                   scene.actions([
-                    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 1
-  } },
+                    { label: 'Continue', goto: ['nichGala', 'slaveDoc', '1'] },
                   ]);
                 } else {
                   if (((s as any).nichAfterBFEvent ?? 0) === 220) {

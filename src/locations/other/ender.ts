@@ -18,9 +18,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
     scene.text('You fall to the floor and feel your consciousness slipping away.');
     return;
     scene.actions([
-      { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'tg_adult_shared', 3
-  } },
+      { label: 'Further', goto: ['intro_start', 'tg_adult_shared', '3'] },
     ]);
   } else {
     if (((s as any).fightEnding ?? 0) === 2) {
@@ -871,9 +869,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
     scene.text('You fall to the floor and feel your consciousness slipping away.');
     return;
     scene.actions([
-      { label: 'Further', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'tg_adult_shared', 3
-  } },
+      { label: 'Further', goto: ['intro_start', 'tg_adult_shared', '3'] },
     ]);
   } else {
     if (((s as any).fightEnding ?? 0) === 2) {

@@ -230,8 +230,7 @@ function enterLockerfemale(s: GameState, scene: SceneBuilder): void {
       if (((s as any).PSwim ?? 0) === 1) {
       }
     }
-    // TODO-QSP: gt 'changingroom', 1
-  } },
+  }, goto: ['changingroom', '', '1'] },
     ]);
   }
   if ((((s as any).pcs_makeup ?? 0) === 1  ||  ((s as any).cosmetic_tattoo ?? 0) > 0)  &&  ((s as any).PSwim ?? 0) === 1) {

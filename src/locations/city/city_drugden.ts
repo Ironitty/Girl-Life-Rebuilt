@@ -452,9 +452,7 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     scene.text('The brothel owner is starting to lose his patience with you. Even his customers, who already have fairly low standards, no longer seem to be very interested in you. Lucky for you, some them of them can\'t afford any better.');
     scene.text('Occasionally, when you get ready to offer your broken down holes to yet another customer, you wonder… Was there anything you could\'ve done differently?');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gameover', 'force', 8
-  } },
+      { label: 'Continue', goto: ['gameover', 'force', '8'] },
     ]);
   } },
     ]);

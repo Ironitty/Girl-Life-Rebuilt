@@ -1689,18 +1689,14 @@ function enterAskedstrip(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Agree to strip', handler: (st: GameState) => {
-    // TODO-QSP: gt 'artem_dorm', 'stripagree', 1
-  } },
+      { label: 'Agree to strip', goto: ['artem_dorm', 'stripagree', '1'] },
     ]);
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Agree to strip', handler: (st: GameState) => {
-    // TODO-QSP: gt 'artem_dorm', 'stripagree', 0
-  } },
+    { label: 'Agree to strip', goto: ['artem_dorm', 'stripagree', '0'] },
   ]);
   scene.build();
 }

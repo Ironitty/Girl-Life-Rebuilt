@@ -241,9 +241,7 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
     scene.text('While you\'re still worrying over this, you suddenly feel your stepfather\'s hot, hard dick enter your pussy, and nothing else seems to matter.');
     scene.text('He moves slowly and gently at first, but after a few seconds, he abruptly shifts forward and buries himself balls-deep. Your eyes roll back into your head from the sharp spike of pleasure.');
     scene.actions([
-      { label: 'Giggle deliriously', handler: (st: GameState) => {
-    // TODO-QSP: gt 'vanrPar', 'stepdad_sex_vag', 1
-  } },
+      { label: 'Giggle deliriously', goto: ['vanrPar', 'stepdad_sex_vag', '1'] },
     ]);
   } },
     ]);
@@ -268,9 +266,7 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He moves slowly and gently at first, but after a few seconds, he abruptly shifts forward and buries himself balls-deep, making your eyes roll back into your head from the sharp spike of pleasure.');
     scene.text('It\'s not his style to be so rough, but when he forcefully enters you, it feels so good that you don\'t even think of protesting.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'vanrPar', 'stepdad_sex_vag', 2
-  } },
+      { label: 'Continue', goto: ['vanrPar', 'stepdad_sex_vag', '2'] },
     ]);
   } },
     ]);
@@ -289,9 +285,7 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Please, Daddy! <i>Please!</i>"');
     scene.text('"You want it that badly, Sunshine?" he pants.');
     scene.actions([
-      { label: 'Yes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'vanrPar', 'stepdad_sex_vag', 3
-  } },
+      { label: 'Yes', goto: ['vanrPar', 'stepdad_sex_vag', '3'] },
     ]);
   } },
     { label: 'Fuck my ass!', handler: (st: GameState) => {

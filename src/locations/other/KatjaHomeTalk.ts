@@ -2350,7 +2350,7 @@ function enterArtemOpneRelationship(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      // TODO-QSP: gt 'KatjaHomeTalk', 'Marcus_discussion', 1
+      scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'Marcus_discussion', '1'] }]);
     }
   } },
         ]);

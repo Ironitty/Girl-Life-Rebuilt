@@ -452,9 +452,7 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       scene.actions([
-        { label: 'Continue teasing Sergey', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_izdev
-  } },
+        { label: 'Continue teasing Sergey', goto: ['Serge_kuh', 'rand_kuh_izdev'] },
       ]);
     }
   } },
@@ -729,9 +727,7 @@ function enterIzdev3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za6-6.jpg');
     scene.text('"I\'d even let you fuck my ass, uncle Sergey", you confess. "You can do anything you want to me…"');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -781,9 +777,7 @@ function enterIzdev4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Uncle Sergey, you never answered my question", you remark, and get up from the counter and turn your back to him again. "Is this dress too short, yes or no?"');
     scene.text('You move to turn your head, to see if he\'s looking. Before you can, you already feel his hand on your buttocks.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -845,9 +839,7 @@ function enterIzdev5(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to just go for broke now, and turn around and spread your ass cheeks. You ask him sweetly: "Do you like my asshole, uncle Sergey? I\'m not very experienced yet there, but I\'m trying to learn. Maybe you can help me?"');
     scene.text('Sergey can\'t hold back any longer, and you feel him slapping your ass cheek as he moves to stand next to you.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -898,9 +890,7 @@ function enterIzdev6(s: GameState, scene: SceneBuilder): void {
     scene.text('"You know, while I\'m helping you… I bet I could help you with that too!" you offer.');
     scene.text('That was the final straw for Sergey, and he stands next to you almost immediately, his hands eagerly pawing your naked ass.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -957,9 +947,7 @@ function enterIzdev7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za11-7.jpg');
     scene.text('You forget about your dress and just pose for Sergey, who is upon you in an instant. From the large bulge in his pants, you can tell your teasing definitely had an effect on him!');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -1250,9 +1238,7 @@ function enterIzdev10(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -1311,9 +1297,7 @@ function enterIzdev11(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'dom');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -1376,9 +1360,7 @@ function enterIzdev12(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Do you want to see my cunny, uncle Sergey? Just come over and have a look!" you...
     scene.text(`"Do you want to see my cunny, uncle Sergey? Just come over and have a look!" you tease him. Sergey walks over to you in a few brisk paces, with a decisive look in his eyes. He roughly pulls you up from the ground and grunts in your ear: "I'm going to do more than just look, ${((s as any).pcs_nickname ?? 0)}… much more."`);
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -1688,9 +1670,7 @@ function enterIzdev16(s: GameState, scene: SceneBuilder): void {
     scene.text('You lower yourself to your knees and show him what it\'d look like when you mop the floor like this. "See? My shirt would just get in the way!" you complain.');
     scene.text('Sergey can\'t take any more of your teasing, and roughly puts his hands under your armpits, pulling you up to your feet.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);
@@ -1743,9 +1723,7 @@ function enterIzdev17(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'Serge_kuh', $rand_kuh_sex
-  } },
+      { label: 'Continue', goto: ['Serge_kuh', 'rand_kuh_sex'] },
     ]);
   } },
     ]);

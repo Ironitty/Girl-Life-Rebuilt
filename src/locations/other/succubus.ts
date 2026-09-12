@@ -67,9 +67,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       (s as any).suceatinit = 1;
       (s as any).succonfail = 0;
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'succubus', $scsubloc
-  } },
+        { label: 'Continue', goto: ['succubus', 'scsubloc'] },
       ]);
     }
   }

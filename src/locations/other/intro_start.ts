@@ -137,9 +137,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a seat on a large stone in the ruins and take a breath. You\'re starting to get hungry, and stomp your foot in frustration. The floor suddenly gives way and you desperately try to hold on to something, but everything in reach comes loose and falls down the hole with you. You feel slightly dazed, but after a quick check you seem to be uninjured. You seem to be in an underground chamber of some sort and looking up, you see that climbing out is not an option.');
     scene.text('You spot an old gate, but it\'s either locked or rusted shut. The only way out seems to be the tunnel on the other side of the chamber. You pull out your phone and turn on the flashlight before heading into the tunnel.');
     scene.actions([
-      { label: 'Follow the tunnel', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'magic_shared', 1
-  } },
+      { label: 'Follow the tunnel', goto: ['intro_start', 'magic_shared', '1'] },
     ]);
   } },
     ]);
@@ -161,9 +159,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
     scene.text('You take the amulet in your hands and notice it\'s much lighter than it looks and is unusually warm for a piece of metal. It\'s shaped like an antique oil lamp and… is that a penis?');
     scene.text('As you\'re about to pocket it, the amulet grows even hotter and zaps you, forcing you to drop it. You decide that it\'s best to try and find a way out.');
     scene.actions([
-      { label: 'Find a way out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'magic_shared', 2
-  } },
+      { label: 'Find a way out', goto: ['intro_start', 'magic_shared', '2'] },
     ]);
   } },
     ]);
@@ -184,9 +180,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ah, you\'re awake!" she chirps. "We found you half-dead, you know. You almost didn\'t make it. You shouldn\'t be fondling ancient amulets you know nothing about."');
     scene.text('"I did some research on what happened to you. Turns out the Amulet of Power passed to you, which should only happen if touched by a male mage. Unfortunately, I\'ve got some bad news for you. Reinhold, a really powerful mage, has been tracking down this amulet for a while now and if he realizes that the amulet\'s power has passed to you, he might think you pose a risk."');
     scene.actions([
-      { label: 'What\'s going on?', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'magic_shared', 3
-  } },
+      { label: 'What\'s going on?', goto: ['intro_start', 'magic_shared', '3'] },
     ]);
   } },
     ]);
@@ -215,9 +209,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
     scene.text('The girl smiles. "Me? I\'m Tatiana, a young mage with a keen interest in magical phenomenon. I specialize in the treatment of mutations, and magic relating to the body. I have little combat skill, so I rely on the services of Gustav to provide some muscle. He\'s a Mutant due to magical exposure. It gives him unmatched physical strength and he is a great tracker."');
     scene.text('"The two of us run a detective agency for cover and money, but our real objective is studying magic and its effects."');
     scene.actions([
-      { label: 'What do you want from me?', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'magic_shared', 4
-  } },
+      { label: 'What do you want from me?', goto: ['intro_start', 'magic_shared', '4'] },
     ]);
   } },
     ]);
@@ -246,9 +238,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
       scene.text('"Lay low for now. Get on with your life. We\'ll contact you if anything comes up. Gustav here will drop you off at your apartment. Don\'t worry, I already let your parents and grandparents know you decided to head back to your apartment in Pavlovsk."');
     }
     scene.actions([
-      { label: 'Follow Gustav', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'magic_shared', 5
-  } },
+      { label: 'Follow Gustav', goto: ['intro_start', 'magic_shared', '5'] },
     ]);
   } },
     ]);
@@ -338,9 +328,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
     scene.text('"Firstly we need to talk to…" you start to say, but are quickly interrupted by your boss.');
     scene.text('"Mikhail, do you realize what\'s at stake here? We\'re near the end of our credit line, we still have unfinalized agreements on the project\'s contract, and we already have guys digging the pit. If we can\'t build on the site, that could bankrupt the company. This mysterious structure must be addressed immediately and I have to hold the fort here and keep a lid on things."');
     scene.actions([
-      { label: 'Doesn\'t look like you have a choice', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'tg_adult_shared', 1
-  } },
+      { label: 'Doesn\'t look like you have a choice', goto: ['intro_start', 'tg_adult_shared', '1'] },
     ]);
   } },
     ]);
@@ -418,9 +406,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
     scene.text('"We must have been down there longer than I thought," Igor says. "There\'s nothing we can do here until the morning. You should go to the hotel."');
     scene.text('With a hasty goodbye to Igor, you make your way back to your car. <i>Damn</i>, you think. <i>Tomorrow\'s going to be a stressful day.</i>');
     scene.actions([
-      { label: 'Go to the hotel', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'tg_adult_shared', 2
-  } },
+      { label: 'Go to the hotel', goto: ['intro_start', 'tg_adult_shared', '2'] },
     ]);
   } },
     ]);
@@ -692,9 +678,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/1_openings/4_csb/4.jpg');
     scene.text('Your reputation was in tatters and no girl would give you the time of day, let alone agree to sleep with you. Out of horny desperation and loneliness, you turn to the Internet to make friends. While on a forum for a mobile game, you happened to meet a girl from the nearby town of Pavlovsk. You both liked the game and quickly hit it off, talking almost every day.');
     scene.actions([
-      { label: 'Her name was…', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'sg_tg', 1
-  } },
+      { label: 'Her name was…', goto: ['intro_start', 'sg_tg', '1'] },
     ]);
   } },
     ]);
@@ -721,12 +705,8 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You spent the next few weeks messaging back and forth. <<$pcs_nickname>> told yo...
       scene.text(`You spent the next few weeks messaging back and forth. ${((s as any).pcs_nickname ?? 0)} told you all about her life, as well as her likes and dislikes.`);
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'sg_tg', 2
-  } },
-        { label: 'Re-enter her name(s)', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_start', 'sg_tg', 1
-  } },
+        { label: 'Continue', goto: ['intro_start', 'sg_tg', '2'] },
+        { label: 'Re-enter her name(s)', goto: ['intro_start', 'sg_tg', '1'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -765,7 +745,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: A few minutes later, an excited teenage girl comes rushing down one of the dirt ...
     scene.text(`A few minutes later, an excited teenage girl comes rushing down one of the dirt roads. You double-check a picture of ${((s as any).pcs_nickname ?? 0)} on your phone, as this is the first time you've seen her with your own eyes.`);
     scene.actions([
-      { label: 'Take a look at her picture (skip customization)', goto: ['intro_character_creation', 'start', 'appearance_hub'] },
+      { label: 'Take a look at her picture (skip customization)', goto: ['intro_character_creation', 'start', '\'appearance_hub\''] },
       { label: 'Customise <<$pcs_firstname>>', goto: ['intro_character_creation', 'start'] },
     ]);
   } },

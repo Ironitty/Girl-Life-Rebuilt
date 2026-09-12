@@ -46,47 +46,47 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).clientask ?? 0) >= 81  &&  ((s as any).clientask ?? 0) <= 90) {
           if (((s as any).clientask ?? 0) === 81) {
             if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50  &&  ((s as any).pcs_ass ?? 0) > 25) {
-              // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 81
+              scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '81'] }]);
             }
           } else {
             if (((s as any).clientask ?? 0) === 82) {
               if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 26  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).sub ?? 0) > 25  &&  ((s as any).pcs_vag ?? 0) > 10  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-                // TODO-QSP: gt 'komp_cam_MFC_requests_two', 82
+                scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '82'] }]);
               }
             } else {
               if (((s as any).clientask ?? 0) === 83) {
                 if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).pcs_vag ?? 0) > 20) {
-                  // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 83
+                  scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '83'] }]);
                 }
               } else {
                 if (((s as any).clientask ?? 0) === 84) {
                   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).camGirl ?? 0)?.['MFC_fame'] >= 25  &&  ((s as any).pcs_vag ?? 0) + ((s as any).pcs_ass ?? 0) >= 30  &&  ((s as any).alko ?? 0) >= 4) {
-                    // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 84
+                    scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '84'] }]);
                   }
                 } else {
                   if (((s as any).clientask ?? 0) === 85) {
                     if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50  &&  ((s as any).pcs_vag ?? 0) + ((s as any).pcs_ass ?? 0) > 0  &&  ((s as any).alko ?? 0) >= 4) {
-                      // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 85
+                      scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '85'] }]);
                     }
                   } else {
                     if (((s as any).clientask ?? 0) === 86) {
                       if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 35  &&  ((s as any).pcs_vag ?? 0) >= 25  &&  ((s as any).alko ?? 0) >= 4) {
-                        // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 86
+                        scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '86'] }]);
                       }
                     } else {
                       if (((s as any).clientask ?? 0) === 87) {
                         if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 50  &&  ((s as any).pcs_vag ?? 0) >= 35) {
-                          // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 87
+                          scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '87'] }]);
                         }
                       } else {
                         if (((s as any).clientask ?? 0) === 88) {
                           if (((s as any).camGirl ?? 0)?.['MFC_fame'] < 50) {
-                            // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 88
+                            scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '88'] }]);
                           }
                         } else {
                           if (((s as any).clientask ?? 0) === 89) {
                             if (((s as any).camGirl ?? 0)?.['MFC_fame'] >= 15  &&  ((s as any).pcs_ass ?? 0) >= 15) {
-                              // TODO-QSP: xgt 'komp_cam_MFC_requests_two', 89
+                              scene.actions([{ label: 'Continue', goto: ['komp_cam_MFC_requests_two', '', '89'] }]);
                             }
                           }
                         }

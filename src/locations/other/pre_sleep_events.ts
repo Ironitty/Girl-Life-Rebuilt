@@ -44,7 +44,7 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-      scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler2', 'priority'] }]);
+      scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler2', '\'priority\''] }]);
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
         scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler2'] }]);
@@ -104,11 +104,11 @@ function enterMagbEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
-    // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 100
+    scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '100'] }]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
       qspCall(s, 'pre_sleep_events', 'exit');
-      // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 1000
+      scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '1000'] }]);
     }
   }
   // TODO-QSP: end

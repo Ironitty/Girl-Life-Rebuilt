@@ -49,7 +49,7 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
           scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'grade_check'] }]);
         } else {
           if (((s as any).week ?? 0) > 1  &&  (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).nerd_game ?? 0)?.['stage'] > 0  ||  (Math.floor(Math.random() * (((s as any).npc_rel ?? 0)?.['A152'] - 80 + 1)) + (80)) > 95)  &&  ((s as any).nerd_game ?? 0)?.['invite_day'] < ((s as any).daystart ?? 0) - ((s as any).week ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', 'morning'] }]);
+            scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', '\'morning\''] }]);
           } else {
             qspCall(s, 'gschool_gossip', 'morning');
             qspCall(s, 'gschool_lessons', 'uniform_check');
@@ -285,7 +285,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).week ?? 0) > 1  &&  (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).nerd_game ?? 0)?.['stage'] > 0  ||  (Math.floor(Math.random() * (((s as any).npc_rel ?? 0)?.['A152'] - 80 + 1)) + (80)) > 95)  &&  ((s as any).nerd_game ?? 0)?.['invite_day'] < ((s as any).daystart ?? 0) - ((s as any).week ?? 0)) {
-            scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', 'short_break'] }]);
+            scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', '\'short_break\''] }]);
           }
         }
         scene.actions([

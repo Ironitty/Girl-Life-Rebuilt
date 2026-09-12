@@ -130,8 +130,8 @@ function enterReceptionistTalkMenu(s: GameState, scene: SceneBuilder): void {
           { label: 'Can I set my schedule?', handler: (st: GameState) => {
     scene.text('"Of course. And if you schedule for next week, you\'ll get better pickings on time slots."');
     scene.actions([
-      { label: 'Set current week schedule', goto: ['masseuse_work', 'set_schedule', 'this_week'] },
-      { label: 'Set next week schedule', goto: ['masseuse_work', 'set_schedule', 'next_week'] },
+      { label: 'Set current week schedule', goto: ['masseuse_work', 'set_schedule', '\'this_week\''] },
+      { label: 'Set next week schedule', goto: ['masseuse_work', 'set_schedule', '\'next_week\''] },
     ]);
   } },
           { label: 'I want to change jobs', goto: ['masseuse_work', 'job_change'] },
@@ -753,7 +753,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Great! So would you like to set your shifts for next week then?"');
     scene.text('"Sure."');
     scene.actions([
-      { label: 'Look at the schedule', goto: ['masseuse_work', 'set_schedule', 'this_week'] },
+      { label: 'Look at the schedule', goto: ['masseuse_work', 'set_schedule', '\'this_week\''] },
     ]);
   } },
     { label: 'Why the uniform?', handler: (st: GameState) => {
@@ -2395,40 +2395,35 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Get light cosmetic tattoo - <<$func(\'money\', \'string_price\', salon_rate)>>', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).salon_rate ?? 0));
-    // TODO-QSP: gt 'salon', 'cosmetic_tattoo_operation', 1
-  } },
+  }, goto: ['salon', 'cosmetic_tattoo_operation', '1'] },
           ]);
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 2) {
           scene.actions([
             { label: 'Get vibrant cosmetic tattoo - <<$func(\'money\', \'string_price\', salon_rate)>>', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).salon_rate ?? 0));
-    // TODO-QSP: gt 'salon', 'cosmetic_tattoo_operation', 2
-  } },
+  }, goto: ['salon', 'cosmetic_tattoo_operation', '2'] },
           ]);
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 3) {
           scene.actions([
             { label: 'Get sultry cosmetic tattoo - <<$func(\'money\', \'string_price\', salon_rate)>>', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).salon_rate ?? 0));
-    // TODO-QSP: gt 'salon', 'cosmetic_tattoo_operation', 3
-  } },
+  }, goto: ['salon', 'cosmetic_tattoo_operation', '3'] },
           ]);
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 4) {
           scene.actions([
             { label: 'Get professional cosmetic tattoo - <<$func(\'money\', \'string_price\', salon_rate)>>', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).salon_rate ?? 0));
-    // TODO-QSP: gt 'salon', 'cosmetic_tattoo_operation', 4
-  } },
+  }, goto: ['salon', 'cosmetic_tattoo_operation', '4'] },
           ]);
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 5) {
           scene.actions([
             { label: 'Get celebrity(bimbo) cosmetic tattoo - <<$func(\'money\', \'string_price\', salon_rate)>>', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).salon_rate ?? 0));
-    // TODO-QSP: gt 'salon', 'cosmetic_tattoo_operation', 5
-  } },
+  }, goto: ['salon', 'cosmetic_tattoo_operation', '5'] },
           ]);
         }
       } else {

@@ -224,10 +224,10 @@ function enterRedeemSalary(s: GameState, scene: SceneBuilder): void {
 function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     if (((s as any).nichGalaOpponent ?? 0) === 30  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).nichDebug ?? 0) === 1) {
-      // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 1000
+      scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '1000'] }]);
     } else {
       if (((s as any).nichGalaContractTaras ?? 0) === 1  &&  ((s as any).nichGalaContractTarasLast ?? 0) + (Math.floor(Math.random() * 8) + 3) <= ((s as any).daystart ?? 0)) {
-        // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 100
+        scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '100'] }]);
       }
     }
   } else {

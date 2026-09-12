@@ -31,7 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['wardrobe', 'main'] }]);
   } else {
     if (((s as any).wardrobeDefaultPagePref ?? 0) === 'viewClothing') {
-      scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_lists_list', 'wardrobe'] }]);
+      scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_lists_list', '\'wardrobe\''] }]);
     } else {
       if (((s as any).wardrobeDefaultPagePref ?? 0) !== '') {
         // TODO-QSP: gt 'wardrobe', $wardrobeDefaultPagePref
@@ -437,17 +437,13 @@ function enterDefaultActions(s: GameState, scene: SceneBuilder): void {
     { label: 'Select outfit to wear', handler: (st: GameState) => {
     qspCall(s, 'wardrobe', 'default_actions_wear');
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wardrobeDefaultPagePref
-  } },
+      { label: 'Return', goto: ['wardrobe', 'wardrobeDefaultPagePref'] },
     ]);
   } },
     { label: 'Choose another page', handler: (st: GameState) => {
     qspCall(s, 'wardrobe', 'default_actions_page');
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wardrobeDefaultPagePref
-  } },
+      { label: 'Return', goto: ['wardrobe', 'wardrobeDefaultPagePref'] },
     ]);
   } },
     { label: 'Rename this set', handler: (st: GameState) => {
@@ -848,9 +844,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
     scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit out of your wardrobe you remember you don't own that piece of clothing anymore. Maybe you should buy it again? Guess you will have to find something else to wear.`);
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wloc
-  } },
+      { label: 'Return', goto: ['wardrobe', 'wloc'] },
     ]);
   } else {
     if (((s as any).temp_clo_not_wear_reason ?? 0) === 'is_lost') {
@@ -858,9 +852,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
       scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit out of your wardrobe you remember that you lost that piece of clothing. Maybe you can find the missing clothes somewhere? Guess you will have to find something else to wear.`);
       scene.actions([
-        { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wloc
-  } },
+        { label: 'Return', goto: ['wardrobe', 'wloc'] },
       ]);
     } else {
       if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_in_wardrobe') {
@@ -868,9 +860,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
         scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit out of your wardrobe you notice that it's not there. You should move it back into your wardrobe from your storage or unwanted pile.`);
         scene.actions([
-          { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wloc
-  } },
+          { label: 'Return', goto: ['wardrobe', 'wloc'] },
         ]);
       } else {
         if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_strength') {
@@ -946,9 +936,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                   scene.text(`You can't wear this outfit because ${((s as any).temp_clo_not_wear_reason ?? 0)}, but the text for this has not be written.`);
                   scene.text('Please contact a developer');
                   scene.actions([
-                    { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wloc
-  } },
+                    { label: 'Return', goto: ['wardrobe', 'wloc'] },
                   ]);
                 } else {
                   scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -960,9 +948,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                     scene.text(`Your put on your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit without any problems.`);
                   }
                   scene.actions([
-                    { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wloc
-  } },
+                    { label: 'Return', goto: ['wardrobe', 'wloc'] },
                   ]);
                 }
               }

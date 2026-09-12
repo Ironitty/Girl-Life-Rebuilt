@@ -21,22 +21,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'random_start'] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'nerdinfo') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'nerd'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'nerd\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'jockinfo') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'jock'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'jock\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'popularinfo') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'cool'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'cool\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'gopnikinfo') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'gopnik'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'gopnik\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'outcastinfo') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'outcast'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'outcast\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'nerd') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'nerd'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'nerd\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'nerdqueen') {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'nerdqueen'
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'chessplayer'
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'jock') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'jock'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'jock\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'volleyball') {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'volleyball'
@@ -66,7 +66,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'football'
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'cool') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'cool'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'cool\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'socialite') {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'socialite'
@@ -81,7 +81,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'bimbo'
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'gopnik') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'gopnik'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'gopnik\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'gopnikstart') {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'gopnikstart'
@@ -96,7 +96,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'alternative'
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'outcast') {
-    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', 'outcast'] }]);
+    scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'group_desc', '\'outcast\''] }]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 'friendless') {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'friendless'

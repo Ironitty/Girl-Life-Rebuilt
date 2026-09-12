@@ -480,7 +480,7 @@ function enterBrushplay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     scene.actions([
-      { label: 'Keep playing with the brush', goto: ['selfplay', 'brushplay', 'brush_keepgoing'] },
+      { label: 'Keep playing with the brush', goto: ['selfplay', 'brushplay', '\'brush_keepgoing\''] },
     ]);
   }
   // TODO-QSP: end
@@ -747,7 +747,7 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Keep fucking your pussy', goto: ['selfplay', 'pussy_dildo_mast', 'vag_keepgoing'] },
+      { label: 'Keep fucking your pussy', goto: ['selfplay', 'pussy_dildo_mast', '\'vag_keepgoing\''] },
     ]);
   } else {
     scene.actions([
@@ -1078,7 +1078,7 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Keep fucking your ass', goto: ['selfplay', 'anal_dildo_mast', 'anal_keepgoing'] },
+      { label: 'Keep fucking your ass', goto: ['selfplay', 'anal_dildo_mast', '\'anal_keepgoing\''] },
     ]);
   } else {
     scene.actions([
@@ -1738,9 +1738,7 @@ function enterFingering3(s: GameState, scene: SceneBuilder): void {
     (s as any).vaginaTemp = ((s as any).vaginaTemp ?? 0) + (1);
     scene.text('You shove four of your fingers inside your tight pussy, and feel it stretch out way more than is comfortable. It\'s actually rather painful.');
     scene.actions([
-      { label: 'Go back to using two fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'fingering2', 2
-  } },
+      { label: 'Go back to using two fingers', goto: ['selfplay', 'fingering2', '2'] },
     ]);
   } else {
     if (((s as any).pcs_vag ?? 0) < 15  ||  qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
@@ -2014,9 +2012,7 @@ function enterAnalFingering(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     scene.actions([
-      { label: 'Keep fingering your ass', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering', 1
-  } },
+      { label: 'Keep fingering your ass', goto: ['selfplay', 'anal_fingering', '1'] },
       { label: 'Add a second finger', goto: ['selfplay', 'anal_fingering2'] },
       { label: 'Choose a different way to masturbate', goto: ['selfplay', 'start'] },
     ]);
@@ -2082,9 +2078,7 @@ function enterAnalFingering2(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
           scene.text('When you slide in the second finger, you feel a sharp pain in your anus. You may have tried too much, too fast.');
           scene.actions([
-            { label: 'Go back to using just one finger', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering', 2
-  } },
+            { label: 'Go back to using just one finger', goto: ['selfplay', 'anal_fingering', '2'] },
           ]);
         }
       }
@@ -2101,9 +2095,7 @@ function enterAnalFingering2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     if (((s as any).pcs_ass ?? 0) < 25) {
       scene.actions([
-        { label: 'Keep fucking your ass with two fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering2', 1
-  } },
+        { label: 'Keep fucking your ass with two fingers', goto: ['selfplay', 'anal_fingering2', '1'] },
       ]);
     }
     scene.actions([
@@ -2148,9 +2140,7 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
           scene.text('Fucking your already sore asshole with three fingers was a bad idea. It hurts a lot and you feel like you damaged it further.');
           scene.actions([
-            { label: 'Go back to using two fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering2', 2
-  } },
+            { label: 'Go back to using two fingers', goto: ['selfplay', 'anal_fingering2', '2'] },
           ]);
         }
       }
@@ -2177,9 +2167,7 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
           scene.text('When you slide in three fingers, you feel a sharp pain in your anus. You may have tried too much, too fast.');
           scene.actions([
-            { label: 'Go back to using two fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering2', 2
-  } },
+            { label: 'Go back to using two fingers', goto: ['selfplay', 'anal_fingering2', '2'] },
           ]);
         }
       }
@@ -2196,9 +2184,7 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)  &&  ((s as any).agape ?? 0) < 3) {
     if (((s as any).pcs_ass ?? 0) < 30) {
       scene.actions([
-        { label: 'Keep fucking your ass with three fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering3', 1
-  } },
+        { label: 'Keep fucking your ass with three fingers', goto: ['selfplay', 'anal_fingering3', '1'] },
       ]);
     }
     scene.actions([
@@ -2244,9 +2230,7 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'mood', 'lower', 'small');
           scene.text('Fucking your already sore asshole with four fingers was a bad idea. It hurts a lot and you feel like you damaged it further.');
           scene.actions([
-            { label: 'Go back to using three fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering3', 2
-  } },
+            { label: 'Go back to using three fingers', goto: ['selfplay', 'anal_fingering3', '2'] },
           ]);
         }
       }
@@ -2273,9 +2257,7 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
           scene.text('When you slide in four fingers, you feel a sharp pain in your anus. You may have tried too much, too fast.');
           scene.actions([
-            { label: 'Go back to using three fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering3', 2
-  } },
+            { label: 'Go back to using three fingers', goto: ['selfplay', 'anal_fingering3', '2'] },
           ]);
         }
       }
@@ -2292,9 +2274,7 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     if (((s as any).pcs_ass ?? 0) < 35) {
       scene.actions([
-        { label: 'Keep fucking your ass with four fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering4', 1
-  } },
+        { label: 'Keep fucking your ass with four fingers', goto: ['selfplay', 'anal_fingering4', '1'] },
       ]);
     }
     scene.actions([
@@ -2332,9 +2312,7 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'mood', 'lower', 'small');
         scene.text('You keep trying to shove your hand up your ass, hoping it will feel good despite the pain you\'re feeling. It doesn\'t seem to be working.');
         scene.actions([
-          { label: 'Go back to using four fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering4', 2
-  } },
+          { label: 'Go back to using four fingers', goto: ['selfplay', 'anal_fingering4', '2'] },
         ]);
       }
     }
@@ -2356,9 +2334,7 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'mood', 'lower', 'small');
         scene.text('You bring all five your fingers together to form a cone shape and start pushing them in. It takes a lot of effort but when you push your hand into your asshole, you feel a sharp pain in your anus. You may have tried too much, too fast.');
         scene.actions([
-          { label: 'Go back to using four fingers', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fingering4', 2
-  } },
+          { label: 'Go back to using four fingers', goto: ['selfplay', 'anal_fingering4', '2'] },
         ]);
       }
     }
@@ -2383,9 +2359,7 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Keep fisting yourself', handler: (st: GameState) => {
-    // TODO-QSP: gt 'selfplay', 'anal_fisting', 1
-  } },
+      { label: 'Keep fisting yourself', goto: ['selfplay', 'anal_fisting', '1'] },
     ]);
   }
   // TODO-QSP: end

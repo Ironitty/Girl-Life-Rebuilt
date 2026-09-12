@@ -25,7 +25,7 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'forest_outskirts'
   }
   if (((s as any).foresteventrand ?? 0) <= (8-(((s as any).bonfire ?? 0)*5))  &&  (((s as any).hour ?? 0) < 6  ||  ((s as any).hour ?? 0) > 22)) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', 'forest_outskirts'] }]);
+    scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', '\'forest_outskirts\''] }]);
   }
   qspCall(s, 'gad_forest_lost', 'wander');
   qspCall(s, 'gad_forest_lost', 'picking');
@@ -48,7 +48,7 @@ function enterForestCenter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'forest_center'
   }
   if (((s as any).foresteventrand ?? 0) <= (8-(((s as any).bonfire ?? 0)*2))  &&  (((s as any).hour ?? 0) < 6  ||  ((s as any).hour ?? 0) > 22)) {
-    scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', 'forest_center'] }]);
+    scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', '\'forest_center\''] }]);
   }
   qspCall(s, 'gad_forest_lost', 'wander');
   qspCall(s, 'gad_forest_lost', 'picking');
@@ -116,9 +116,7 @@ function enterWander(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('After half an hour wandering around, you feel like all you\'ve accomplished is walking in circles.');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest_lost', $forest_args1
-  } },
+          { label: 'Continue', goto: ['gad_forest_lost', 'forest_args1'] },
         ]);
       }
     } else {
@@ -348,9 +346,7 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Explore the forest', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest_lost', $forest_args1
-  } },
+    { label: 'Explore the forest', goto: ['gad_forest_lost', 'forest_args1'] },
   ]);
   scene.build();
 }
@@ -430,9 +426,7 @@ function enterPicking(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest_lost', $forest_args1
-  } },
+      { label: 'Continue', goto: ['gad_forest_lost', 'forest_args1'] },
     ]);
   } },
     ]);

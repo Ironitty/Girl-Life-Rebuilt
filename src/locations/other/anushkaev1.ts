@@ -133,9 +133,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
     scene.text('You laugh, but don\'t respond. The two of you just lie against each other for a few minutes before she finally gets up and starts cleaning up and getting dressed. You get up and do the same.');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Let her', handler: (st: GameState) => {
@@ -174,9 +172,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -204,9 +200,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -455,9 +449,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -485,9 +477,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -521,9 +511,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
       scene.text('A little disappointed she doesn\'t want to play, you just nod. "Yeah, I guess I should…"');
     }
     scene.actions([
-      { label: 'Look around some more', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Look around some more', goto: ['$returnLoc', 'anushroom'] },
     ]);
   }
   // TODO-QSP: end
@@ -558,9 +546,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you lay side by side naked for some time, nearly falling asleep in the silence, before you both begin to stir and get cleaned up and dressed.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Make her eat you out', handler: (st: GameState) => {
@@ -583,9 +569,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('Finally, she crawls up to lie beside you and leans over to give you a kiss, giving you a taste of your pussy. After a brief kiss, the two of you lie side by side for a few minutes before she gets up and starts to get cleaned up and dressed, and you do the same.');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -629,9 +613,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('Finally, she crawls up to lie beside you and leans over to give you a kiss, giving you a taste of your pussy. After a brief kiss, the two of you lie side by side for a few minutes before she gets up and starts to get cleaned up and dressed, and you do the same.');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -642,9 +624,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you lay side by side naked for some time, nearly falling asleep in the silence, before you both begin to stir and get cleaned up and dressed.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -693,9 +673,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Make her eat you out', handler: (st: GameState) => {
@@ -729,9 +707,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -769,9 +745,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Make her eat you out', handler: (st: GameState) => {
@@ -808,9 +782,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -859,9 +831,7 @@ function enterStraponCowgirlMagic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'magicd_vaginal', 1, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -881,9 +851,7 @@ function enterStraponCowgirlMagic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'magicd_vaginal', 3, 'lesbian', 'dom');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Slip it in her ass', handler: (st: GameState) => {
@@ -931,9 +899,7 @@ function enterStraponCowgirlMagic(s: GameState, scene: SceneBuilder): void {
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -972,9 +938,7 @@ function enterStraponCowgirlMagic(s: GameState, scene: SceneBuilder): void {
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -1063,9 +1027,7 @@ function enterDomnushDoggy(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Fuck her ass', goto: ['anushkaev1', 'domnush_fuckass1'] },
@@ -1112,9 +1074,7 @@ function enterStraponDoggyMagic(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Fuck her ass', goto: ['anushkaev1', 'domnush_fuckass_magic1'] },
@@ -1185,9 +1145,7 @@ function enterDomnushFuckassAfterglow1(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+    { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
   ]);
   scene.build();
 }
@@ -1237,9 +1195,7 @@ function enterDomnushFuckassMagic1(s: GameState, scene: SceneBuilder): void {
     scene.text('You giggle loudly, then turn your head to give her a kiss on the lips. "Yes, I\'m happy."');
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -1392,9 +1348,7 @@ function enterDomnushFuckassLubedMagic(s: GameState, scene: SceneBuilder): void 
     scene.text('You giggle loudly, then turn your head to give her a kiss on the lips. "Yes, I\'m happy."');
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -1471,9 +1425,7 @@ function enterDomnushFuckassAfterglow2(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+    { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
   ]);
   scene.build();
 }
@@ -1547,9 +1499,7 @@ function enterDomnushFuckassNolubeMagic(s: GameState, scene: SceneBuilder): void
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed, cleaning up after your love making, if you can call that while sex ride love making.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -1599,9 +1549,7 @@ function enterDomnushFuckassNolubeMagic(s: GameState, scene: SceneBuilder): void
     scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed, cleaning up after your love making, if you can call that while sex ride love making.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -1849,9 +1797,7 @@ function enterCouchStrapFinish(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you watch some cheesy American action movie and chat about how great it will be when you\'re on your own, not having your parents or other people around telling you what to do. You barely pay attention to the movie as you talk. After a few hours, you hear keys in the lock of the door. "Shit, they\'re home already. Come on, let\'s go." she says and gets up and heads to her room\'+iif(anushkaQW[\'strapon_anal_pain\'] = 1, \'though she is walking a little gingerly, her ass still recovering.\', \'.\')+\'');
     // TODO-QSP: 'Her brothers then come running in and to their room, followed by Valeria complaining about where th...
     scene.actions([
-      { label: 'Follow Anushka to her room', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Follow Anushka to her room', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
   ]);
@@ -2016,9 +1962,7 @@ function enterCouchStrapFinishMagicRemove(s: GameState, scene: SceneBuilder): vo
     scene.text('The two of you watch some cheesy American action movie and chat about how great it will be when you\'re on your own, not having your parents or other people around telling you what to do. You barely pay attention to the movie as you talk. After a few hours, you hear keys in the lock of the door. "Shit, they\'re home already. Come on, let\'s go." she says and gets up and heads to her room\'+iif(anushkaQW[\'strapon_anal_pain\'] = 1, \'though she is walking a little gingerly, her ass still recovering.\', \'.\')+\'');
     // TODO-QSP: 'Her brothers then come running in and to their room, followed by Valeria complaining about where th...
     scene.actions([
-      { label: 'Follow Anushka to her room', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Follow Anushka to her room', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
   ]);
@@ -2084,9 +2028,7 @@ function enterCouchStraponGet(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/home/tv/tv_watch_1.jpg');
     scene.text('The two of you watch some cheesy American action movie and chat about how nice it will be when you are on your own, not having your parents or other people around telling you what to do. You barely pay attention to the movie as you talk. After a few hours, you hear keys in the lock of the door. "Shit, they\'re home already. Come on, let\'s go." she says and gets up and heads to her room just as her brothers come running in and to their room, followed by Valeria complaining about where they ate. Ed then walks by and gives you a slight nod before going into the kitchen.');
     scene.actions([
-      { label: 'Follow Anushka to her room', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Follow Anushka to her room', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);

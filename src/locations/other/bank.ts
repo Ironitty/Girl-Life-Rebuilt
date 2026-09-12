@@ -194,7 +194,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'See about increasing your credit limit', handler: (st: GameState) => {
     if (((s as any).region ?? 0) === 'city') {
-      scene.actions([{ label: 'Continue', goto: ['bank', 'loan_officer', 'start'] }]);
+      scene.actions([{ label: 'Continue', goto: ['bank', 'loan_officer', '\'start\''] }]);
     } else {
       // TODO-QSP: delact $selact
       scene.text('You approach the teller. "Hello. I\'d like to talk to someone about increasing my credit limit."');
@@ -375,7 +375,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 15, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Take it', goto: ['bank', 'loan_officer', 'sex_finish'] },
+      { label: 'Take it', goto: ['bank', 'loan_officer', '\'sex_finish\''] },
     ]);
   } },
     ]);
@@ -396,7 +396,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 15, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Taking it like a bitch', goto: ['bank', 'loan_officer', 'sex_finish'] },
+      { label: 'Taking it like a bitch', goto: ['bank', 'loan_officer', '\'sex_finish\''] },
     ]);
   } },
     ]);

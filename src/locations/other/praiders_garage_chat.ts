@@ -115,9 +115,7 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     scene.text('He\'s clearly not understanding. Just before his hand ends up touching you, you slam your foot against his and he pulls his hand way with a huge smile. "Hey, no need for that! We both know you want it, but if you need to pretend you don\'t, then I get it." He leans back in close, almost touching you. "You\'ll be wet and begging for it soon enough…" He then gets up and walks over to grab a beer.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
         ]);
@@ -148,9 +146,7 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     scene.text('You nearly give in, but grab his hand and push it away from your crotch. "Maybe some other time," you mutter before quickly getting up and walking away to rejoin the rest of the party.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       ]);
@@ -181,9 +177,7 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 2, 'exhibitionism');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       ]);
@@ -224,9 +218,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Must be great for the band dynamic as the two of you go back and forth then…" you reply.');
     scene.text('He snorts a laugh. "The rest know how it is. There wouldn\'t be a band without me, so it works out." He then gets up and walks over to grab a beer.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
@@ -252,9 +244,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('You don\'t feel like getting into it with him, so you just let him keep going. He\'s soon talking about one of the after parties they had.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Anushka is a slut?', handler: (st: GameState) => {
@@ -266,9 +256,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.text('You roll your eyes slightly, but he doesn\'t seem to notice as he keeps talking. "Anyway, she\'s a party slut who just likes to be fucked, which is great for the band. We can market that shit."');
     scene.text('He then goes on to talk about all his great marketing plans, which are mostly just exploiting Anushka or painting himself as some sort of rock god that girls can rub one off to while listening to their music. He goes on and on for some time until things wind down.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -286,9 +274,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('You don\'t feel like getting into it with him, so you just let him keep going. He\'s soon talking about one of the after parties they had.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Anushka is a slut?', handler: (st: GameState) => {
@@ -300,9 +286,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.text('You roll your eyes slightly, but he doesn\'t seem to notice as he keeps talking. "Anyway, she\'s a party slut who just likes to be fucked, which is great for the band. We can market that shit."');
     scene.text('He then goes on to talk about all his great marketing plans, which are mostly just exploiting Anushka or painting himself as some sort of rock god that girls can rub one off to while listening to their music. He goes on and on for some time until things wind down.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -338,9 +322,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well… I…" You\'re not sure what to say.');
     scene.text('"What?" He gives you a slightly confused stare, wondering why you\'re hesitating. "I give her a good fucking more than any other bitch, so what more could she want? Sure she complains that I\'m too rough sometimes, but like all bitches, she loves it. Why else would she keep coming back for more?" he asks, seeming to actually believe what he\'s saying. He then gets up and walks over to grab a beer.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -365,9 +347,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('You don\'t feel like getting into it with him, so you just let him keep going. He\'s soon talking about one of the after parties they had.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Anushka is a slut?', handler: (st: GameState) => {
@@ -379,9 +359,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.text('You roll your eyes slightly, but he doesn\'t seem to notice as he keeps talking. "Anyway, she\'s a party slut who just likes to be fucked, which is great for the band. We can market that shit."');
     scene.text('He then goes on to talk about all his great marketing plans, which are mostly just exploiting Anushka or painting himself as some sort of rock god that girls can rub one off to while listening to their music. He goes on and on for some time until things wind down.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -463,9 +441,7 @@ function enterChatAnushka1(s: GameState, scene: SceneBuilder): void {
     scene.text('"If it wasn\'t for Arkadi, we\'d probably still be sitting in this garage doing fuck all except getting wasted and high," Anushka tells you as she glances over at Arkadi talking with the other guys. She watches him with an admiring gaze, a small smile playing across her lips. "Plus, you know, he\'s a good fuck." She turns back to you and her small smile is now a devious grin. You both laugh, but she isn\'t done yet. "Seriously, he does this thing with his tongue that could make you cum in seconds. Oh fuck, just thinking about it makes me wet!"');
     scene.text('You go on to talk about boys and sex.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about the previous drummer', handler: (st: GameState) => {
@@ -473,9 +449,7 @@ function enterChatAnushka1(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to ask about the old drummer. "I heard Arkadi wasn\'t your first drummer. I always thought it was just you guys from the beginning?" you reply, but Anushka shakes her head.');
     scene.text('"No, we had another dude on drums and he was a fucking tool. When I joined the band, he wouldn\'t shut the fuck up about me being a girl trying to "play with the big boys". Honestly, I could ignore the shit at first, but then he started talking about how I was just here to be their personal fuck toy." She gags slightly. "I was ready to kick his teeth down his throat, but Rad and Val saved his sorry ass by kicking him out the band." She then tells you a few stories about him and he sounds like a misogynistic asshole.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
@@ -489,9 +463,7 @@ function enterChatAnushka1(s: GameState, scene: SceneBuilder): void {
     scene.text('Anushka laughs. "Fuck, I wish I was his pimp. The way girls line up to fuck him, I\'d be rich!"');
     scene.text('You go on to talk about boys and sex.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Radomir', handler: (st: GameState) => {
@@ -524,9 +496,7 @@ function enterChatAnushka1(s: GameState, scene: SceneBuilder): void {
     scene.text('As you look at her, she finally lets out a giggle. "It\'s pretty big, but you\'re right. Nothing is as big as his ego. If his dick was, he wouldn\'t be able to walk."');
     scene.text('You laugh at her response before she continues. "I know I shouldn\'t let it bother me anymore. The past is the past, but the fact he still isn\'t sorry for cheating on me… Fuck it, I need another beer." She gets up to grab another beer before you can say anything else to her.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -544,9 +514,7 @@ function enterChatAnushka1(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod, but know that something is bothering her. "Well if you want…"');
     scene.text('She interrupts you before you can finish. "I don\'t want to talk about it!" she snaps and you notice several people glance over. She sighs. "Sorry, I just don\'t want to talk about it. I need another beer." She gets up without another word to grab another beer.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       ]);
@@ -686,9 +654,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('You decide that you\'ve heard enough and change the subject. The two of you are soon talking about the band.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Press the issue', handler: (st: GameState) => {
@@ -706,9 +672,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('You decide that you\'ve heard enough and change the subject. The two of you are soon talking about the band.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Tell me more', handler: (st: GameState) => {
@@ -719,9 +683,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
       scene.text('"No one wants to talk about it…" you inform him.');
       scene.text('He shrugs and gets up. "Not my problem." He then walks off and you\'re soon engaged in a group discussion about something that happened at school.');
       scene.actions([
-        { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+        { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: He sighs. "Look, it isn't really my story to tell. You seem like a cool chick an...
@@ -788,9 +750,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.text('"You really think he would do that?!" you loudly reply.');
     scene.text('"Without even blinking. He has a massive ego and thinks it\'s all about him." He looks towards Radomir. "Worse case, Nush can take over lead vocals and we can get another guitar player."');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Arkadi', handler: (st: GameState) => {
@@ -800,9 +760,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Really? I didn\'t actually think you two would hang that much," you comment.');
     scene.text('"Yeah? Arkadi is pretty cool and we usually party a lot, so we \'bonded\'," he says with finger quotes. "So yeah, he\'s probably the one I\'m closest to in the band. Plus we often talk about how best to keep Rad and Nush focused on the band instead of their own drama."');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
@@ -830,9 +788,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.text('Valentin laughs. "I have. She\'s cool with hanging out, partying or even fucking…" He then goes quiet. "But she\'s also made it pretty clear that she\'s not looking for anything more than friends with benefits, despite how she constantly chases after Rad." He shakes his head. "I think she\'s still in love with him."');
     scene.text('You glance over and it just so happens that Radomir and Anushka are sitting with each other, getting friendly. "Yeah… Well maybe she\'ll change her mind some day?" you reply, but he changes the subject.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Don\'t encourage him', handler: (st: GameState) => {
@@ -842,9 +798,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.text('"My advice? Let her live her life. You can\'t wait for her to change, so you got focus on you," you tell him in encouragement.');
     scene.text('He nods. "Yeah, you\'re right. It\'s not like I don\'t get to fuck her already," he says with a laugh, making light of the whole situation. He then changes the subject.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -858,9 +812,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why wouldn\'t he play in a band with a girl?" you ask.');
     scene.text('Valentin just shrugs. "He seemed to think girls can\'t play or sing, despite all the girl bands out there. Anyway, he bitched and caused problems all the time and finally demanded that either she went or he did. Rad and I told him to fuck off and he left. End of story. In the end, it was the best thing we ever did. We got Arkadi to replace him and we\'re far better for it." You can tell he doesn\'t want to elaborate on it further, so you change the subject and talk about other stuff.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
   ]);
@@ -889,9 +841,7 @@ function enterRadcheated(s: GameState, scene: SceneBuilder): void {
     scene.text('He sighs. "Honestly? I don\'t think so, at least not completely. She fell for him hard since he was her first in every sense of the word. I\'m not sure if she\'ll ever completely get over him. Most of us always have a special place in our heart for our first love. If she would stop hooking up with him and just be friends or bandmates, she might but…" He trails off before shrugging. "Anyway, that\'s the whole story about why they are the way they are."');
     scene.text('You think about it, and this does explain a lot. While you\'re thinking, Valentin starts chatting to some girl that sits next to him and starts asking him about the band while flirting with him. He\'s only too happy to reciprocate, leaving you to join in the group discussion going on nearby.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -973,9 +923,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     scene.text('You think a moment. "Who\'s causing the drama?"');
     scene.text('He gives you a dumbfounded glare. "Who fucking else? Rad and Nush! There\'s always drama when they get in one of their moods, or when Rad decides to fuck around and focus on pussy instead of music. If we\'re going to make it, they need to focus, you know?" He seems to be in a bad mood now and barely responds to anything you say.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Radomir', handler: (st: GameState) => {
@@ -986,9 +934,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     scene.text('"The guy\'s talented and he knows it, but that\'s the problem. He refuses to work on improving, happy to skate by on his natural talent instead of perfecting it. He only wants to fuck around as if he won\'t get to do that later on. Hell, he\'ll get to fuck better looking hoes than the trash that walks around here, no offense…" he says as he grabs a beer.');
     scene.text('Flabbergasted by his comment, you manage to blurt out a response. "N-None taken. I hope you can convince him somehow…" He gets up and walks over to grab a beer and doesn\'t come back to sit next to you.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
@@ -1002,9 +948,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     scene.text('Arkadi interrupts you as you\'re about to finish your train of thought. "Don\'t you dare say anything about it or I\'ll fucking hurt you! I\'m not kidding." In mere seconds, Arkadi has changed back to his regular self. His look suggests he\'s serious, which leaves you baffled why he would care. You change the subject and he seems to calm down.');
     scene.text('He lets out a laugh. "The band don\'t need more drama, so let it be." Just as quickly, he\'s back to being friendly. You talk a bit more about some of the things him and Valentin get up to outside of the band.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
@@ -1018,9 +962,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Can\'t you say something to her?" you ask.');
     scene.text('"She doesn\'t listen to reason. I\'ve even threatened her, but she still goes back to her old ways. It\'s getting quite annoying and she needs to make up her damn mind about what she wants to do!"');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'What\'s Radomir and Anushka\'s deal?', handler: (st: GameState) => {
@@ -1039,9 +981,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('You agree with him. You don\'t really want to know more about their relationship either, so you change the subject.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Press him for more information', handler: (st: GameState) => {
@@ -1049,9 +989,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     scene.text('"What more can you tell me?" you ask curiously.');
     scene.text('He shakes his head. "I\'m not getting involved. I just wish they would stop with the drama." Noticing your look, he sighs. "You should ask Val instead, he\'ll probably tell you more. This all started before I joined, so I don\'t know all the details and I honestly don\'t want to know." He nods towards Valentin before getting up and walking away, obviously not wanting to talk about it any longer.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1063,9 +1001,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     scene.text('"You would\'ve beat him up?!" you gasp.');
     scene.text('"Yeah, not because of Nush, she can handle herself, but simply for the kid being a big ass bitch. Stupid people like that need to have the stupid beat out of them until they wise up or shut up," he says while cracking his knuckles. He then gets up and walks over to get a beer, leaving you sitting alone. You join in some group conversations for the rest of the evening.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
   ]);
@@ -1142,16 +1078,12 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Is that why they broke up?" you ask.');
       scene.text('She shakes her head. "No, it tore her up. I spent the whole weekend at her place while she cried about it. She eventually forgave him, but it didn\'t stop the asshole from cheating on her and then he had the balls to break up with her. Some lame ass excuse about how it was best for the band. She can do so much better than that asshole." She continues talking about Radomir being a bastard. She really doesn\'t like him and seems to have plenty to say on the topic.');
       scene.actions([
-        { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+        { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
       ]);
     } else {
       scene.text('You think about pressing her, but she seems to notice and gives you a look that suggests it would be unwise, so you drop and instead change the subject, which turns out to be mostly her complaining about how most guys are assholes who just want to fuck you and don\'t give a shit about you.');
       scene.actions([
-        { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+        { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
       ]);
     }
   } },
@@ -1170,9 +1102,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh yeah? Why do you think that?"');
     scene.text('She glances at you as if it should be obvious. "Because Rad\'s Rad. Why else?" She starts talking to some of the other people nearby and you end up talking with them as well. It seems like she doesn\'t want to elaborate further.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
@@ -1188,9 +1118,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
     scene.text('"So they used to date?" you ask.');
     scene.text('"Yeah…" she mumbles before suddenly standing up. "I need another beer." She walks over and grabs another beer before talking to some guy at the cooler. You end up talking to some of the other people sitting near you.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
@@ -1205,9 +1133,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Really? Valentin\'s got the hots for Nush?"');
     scene.text('She nods and goes on to tell you how obvious it is that he likes her and how the only person that doesn\'t seem to notice is Anushka.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Arkadi', handler: (st: GameState) => {
@@ -1217,9 +1143,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
     scene.text('"You like hanging out with him? Ever talked with him about stuff? You know, the usual stuff," you continue.');
     scene.text('"Oh, I see. Yeah he\'s cool to hang out with sometimes. He has lots of cool stories from before he moved to Pavlovsk. And he\'s pretty funny too." She starts smiling. "Sometimes, I just want to smack him on the head when he starts rambling about how much better the city is than Pavlovsk. You\'re stuck here now, so shut the hell up and deal with it, you know?" She talks about a time she and the band went to the city and how he showed them some cool little spots.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Radomir', handler: (st: GameState) => {
@@ -1231,9 +1155,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
     scene.text('"So stay away from Radomir, that\'s what you\'re saying?" you carefully ask.');
     scene.text('"Yes, very much so. Unless you want to be treated like a piece of meat." You both start laughing and share stories about the various lame attempts guys have made to pick you up.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about the previous drummer', handler: (st: GameState) => {
@@ -1243,9 +1165,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re a little taken aback. "Only that he left because Anushka joined the band."');
     scene.text('"Yeah. He left because his \'manhood\' got hurt at the idea that Nush could rock out better than any of the guys can. It\'s good that he left and Nush remained since they\'re much better now than they would\'ve been with that loser," she frowns and starts talking about what a loser the previous drummer was.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
   ]);
@@ -1305,9 +1225,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big21.jpg');
     scene.text('You decide not to push it and drop it. You just make small talk about school and the band instead.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Correct them', handler: (st: GameState) => {
@@ -1324,9 +1242,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big21.jpg');
     scene.text('You decide to just drop it and let them argue as you enjoy the rest of the after party.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'Then what?', handler: (st: GameState) => {
@@ -1352,9 +1268,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.text('Lera gives Lena a slight side glance. "Love is love. We can\'t control what the heart wants, but I think she\'s finally getting over him. She\'s starting to act different around him and telling him to fuck off more."');
     scene.text('They launch into a debate about it, so you decide to just leave them to it.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1375,9 +1289,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think Lena likes hanging out here because Vitek, Vasily and Dan don\'t come around here. Ain\'t that right?" Lera adds.');
     scene.text('"It\'s nice to get a break from the three stooges," Lena laughs as she grabs another beer and the three of you start chatting about a variety of topics.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
@@ -1392,9 +1304,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.text('Lena has a smug smile on her face, clearly loving Lera\'s attention. "Not at all. I wouldn\'t mind strapping one on and taking it to her actually. Maybe I\'ll see which one of you I can make squeal the loudest."');
     scene.text('You\'re quickly forgotten about as the two of them get lost in their own perverted world.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
@@ -1416,18 +1326,14 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.text('Lera gives you and Lena an annoyed glare. "Can we stop talking about him cumming in my mouth?"');
     scene.text('Lena just laughs and gives you a pretty graphic and detailed recounting of their threesome.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
         { label: 'None of your business', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big20.jpg');
     scene.text('"Come on, it wasn\'t that bad! Plus you liked it when we shared it with a kiss." Lena just laughs and gives you a pretty graphic and detailed recounting of their threesome.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       ]);
@@ -1435,9 +1341,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
       ((s as any).gopnikbandQW ?? {})['val_lena_lera_3some'] = 1;
       scene.text('Lera blushes a little before Lena gives you a pretty graphic and detailed recounting of their threesome.');
       scene.actions([
-        { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+        { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
       ]);
     }
   } },
@@ -1449,9 +1353,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.text('Lena sighs. "I guess you\'re right, but there\'s something about drummers and the way they behave; so raw and animalistic. It makes me all warm inside…"');
     scene.text('The conversation then turns into what each of you find sexually stimulating. Lena seems to like animalistic behavior as she put it and seems mostly drawn to muscular rough bad boys while Lera seems to like to get wild, cut loose and have fun. Although she doesn\'t say it, the way she talks makes it pretty clear that she\'s into girls.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Radomir', handler: (st: GameState) => {
@@ -1464,9 +1366,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
     scene.text('Lera shakes her head. You\'re not convinced she likes guys, but likely hooks up with them to make Lena happy. "He\'s an asshole and he treats every girl like shit! What could you see in him?" she asks, obviously not seeing the appeal.');
     scene.text('Lena shrugs. "He\'s a cute bad boy and the lead singer of a band. What more is there?" They start bickering about guys and you tune them out as you look around at what\'s going on.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
   ]);
@@ -1492,9 +1392,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('You give him a skeptical look. "That\'s it?"');
     scene.text('He nods. "Yes, that\'s it. We\'re just friends with benefits." He changes the subject and talks about the music the band played earlier.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1512,9 +1410,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile. "So, you got a thing for Nush?"');
     scene.text('He laughs, seeing what you did. "Maybe a little. I mean she\'s hot, fun, smart and a blast to hang out with. A guy could do a lot worse, though I don\'t think she\'s looking for anything serious anymore. Maybe that will change."');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1556,9 +1452,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('He shakes his head. "I got suspended of course and by the time I got back to school, he had convinced everyone that I was just upset because my girlfriend was all over him and sleeping around and I got pissed about it. No one believed my side of things. She lived in Pushkin and never came over here again. She wouldn\'t talk about it anyway." He sighs, looking a little sad. "The only people that seemed to at least partially believe me were the gopniks and they mostly high fived me for beating the shit out of Dimka. So I decided that whatever their faults they had, at least they were honest about who they were and wouldn\'t stab you in the back. So I started hanging out with them."');
     scene.text('You nod and the two of you talk more about how he started hanging out with the gopniks and how he changed his look.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       ]);
@@ -1568,9 +1462,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big155.jpg');
     scene.text('You decide not to push it and drop it. You just make small talk about school and the band instead.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1584,9 +1476,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, I know you only recently started hanging out with the gopniks. Has it been hard?" you ask.');
     scene.text('He shrugs. "Sometimes, but at least they\'re honest. Anyway, I like these guys the most, so I hang out with them fairly often." He then changes the topic.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
@@ -1617,9 +1507,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('He starts to open his mouth, but stops and looks across the room. He\'s looking at Anushka, who\'s looking at the two of you, almost like she knew you guys were talking about her. "Ask me some other time, or if you want real information on it, ask anyone in the band. They would know more than me."');
     scene.text('You decide to drop it and just talk to him about the band\'s music, which he is happy to engage in. You talk for some time before the party starts to wind down a little.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       ]);
@@ -1629,9 +1517,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big155.jpg');
     scene.text('You decide to drop it and just talk to him about the band\'s music, which he is happy to engage in. You talk for some time before the party starts to wind down a little.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
       { label: 'You guys ever hook up?', handler: (st: GameState) => {
@@ -1644,9 +1530,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('"Have you seen her? Besides, I think she\'s about ready. We\'ve been flirting more and more. Next time we party, I\'m going to make my move."');
     scene.text('You just nod, not sure what more to say to him. The two of you end up talking about some of the stuff Anushka has gotten up to at school.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1659,9 +1543,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('He nods his head. "He comes over sometimes, or we just go out on the town, getting wasted. I can honestly say he\'s been the most welcoming of the gopniks and treats me like one of them."');
     scene.text('He ends up telling you a few funny stories of him and Val out and about around town.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Arkadi', handler: (st: GameState) => {
@@ -1674,9 +1556,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('He laughs. "Yeah, I think that\'s the main reason most of them hang out with me. Maybe I\'ll invite you to my next one."');
     scene.text('You nod. "That would be cool." The two of you talk about other stuff, but he never directly invites you.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Radomir', handler: (st: GameState) => {
@@ -1688,9 +1568,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
     scene.text('"What happened?" you ask.');
     scene.text('"What?" He seems surprised by the question. "Oh nothing, it\'s just the way he treats girls. He has no respect for them. He can be charming when he wants to, but once he has his way with them, he tosses them aside like garbage without a care in the world. It just pisses me off is all." He seems to not want to talk about it anymore. You wonder if it\'s because Radomir reminds him of Dimka.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
   ]);
@@ -1740,9 +1618,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Not at all?" you reply.');
     scene.text('Roman shakes his head. "Well, I\'ve heard that Rad popped her cherry and when he was done with her, he tossed her aside, but still fucks her on the side. I mean I would\'ve done the same thing. The chick is a whore and is only good for fucking… Just like all girls…" he says as he looks at you like a piece of meat.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1760,9 +1636,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"That\'s… Really disturbing…" you reply before quickly moving away.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
@@ -1771,9 +1645,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh? You don\'t hang too much with him?" you ask.');
     scene.text('"Not really. I\'ve seen him around town and school, but we don\'t deal too much with each other, which I like. That\'s why I find him okay; he doesn\'t bother me and I don\'t bother him. Just how it\'s supposed to be."');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Arkadi', handler: (st: GameState) => {
@@ -1783,9 +1655,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     scene.text('"So you guys just go out and pick fights with people?" you ask.');
     scene.text('"Hell yeah! I live for that shit!" His eyes are shining with pride. "I love seeing blood splatter everywhere, especially if it\'s a punk that challenges me and I can sense the weakness in him. There\'s no better feeling. And it really helps that Arkadi can carry himself in a fight so I don\'t have to think about him while we\'re swinging."');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about Radomir', handler: (st: GameState) => {
@@ -1794,9 +1664,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     scene.text('"One of these days what?" you ask.');
     scene.text('"I\'m going to beat the shit out of him and show him what being a gopnik is all about, not some pussy pretending to be bad…" he quietly replies and hits his fist against his palm over and over. You take the chance to move away.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about the previous drummer', handler: (st: GameState) => {
@@ -1804,9 +1672,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     scene.text('"So you know anything about the former drummer?" you curiously ask.');
     scene.text('"No. I know he left because of some bullshit and never returned. That\'s all I know about it and to be honest don\'t bother me more about it because I don\'t care!" he sternly replies.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     { label: 'Ask about the band', handler: (st: GameState) => {
@@ -1817,9 +1683,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "What's with all these questions, <<$pcs_nickname>>? I don't know and I don't re...
     scene.text(`"What's with all these questions, ${((s as any).pcs_nickname ?? 0)}? I don't know and I don't really care, okay?! So either change the subject or I'll shut you up with my cock!" He starts laughing.`);
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
   ]);
@@ -1832,9 +1696,7 @@ function enterChatNiko(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
     scene.text('As you approach Niko, he immediately notices you before placing his leg on the seat next to him. "Fuck off! We have nothing to talk about."');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } else {
     if (((s as any).NikoDate ?? 0) > 0  &&  ((s as any).NikoPayback ?? 0) === 0  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  &&  (!((s as any).NikoPayback ?? 0))) {
@@ -1926,9 +1788,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1950,9 +1810,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
       scene.text('He shakes his head. "Of course not! I always take good care of the good ones, and I bet you\'re exactly that."');
     }
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1967,9 +1825,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     scene.text('"That seems a bit hostile. Is there a story of yours in the city?" you respond.');
     scene.text('"There\'s nothing to tell. Cities are big and full of assholes. If you go there, then keep your wallet close, because everyone is looking to take something from you."');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -1991,9 +1847,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
       scene.text('"She fucks most of them, but thinks she\'s too good for me. The cocky little bitch will learn eventually," he says as he angrily slams his beer on the table.');
     }
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -2011,9 +1865,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko shakes his head. "Nah, and I don\'t ask her about it. None of my business, and I have no interest in getting involved in shit like that. I prefer the level headed women, like you."');
     scene.text('He then gives you a wink before returning to his drink.');
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -2037,9 +1889,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
       scene.text('Niko chuckles at your sarcastic response. "I\'m just stating how much I care about women. I don\'t block them from doing whatever their heart desires. I\'m a gentle, caring lover. Spend more time with me and you\'ll see that."');
     }
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -2075,9 +1925,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
       scene.text('He brings his face closer to yours. "Give me a chance and find out."');
     }
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
     ]);
@@ -2256,9 +2104,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Hang out', handler: (st: GameState) => {
-    // TODO-QSP: gt 'praiders_garage', $hangout_rand
-  } },
+      { label: 'Hang out', goto: ['praiders_garage', 'hangout_rand'] },
     ]);
   } },
   ]);

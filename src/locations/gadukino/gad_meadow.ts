@@ -108,7 +108,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 scene.actions([
-                  { label: 'Exercise nude', goto: ['gad_meadow', 'workout', 'nude'] },
+                  { label: 'Exercise nude', goto: ['gad_meadow', 'workout', '\'nude\''] },
                 ]);
               }
             }

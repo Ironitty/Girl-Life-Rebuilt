@@ -304,7 +304,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['clothing_QV', 'clothing_list', '<<$ward_list_store>>'] },
+    { label: 'Return', goto: ['clothing_QV', 'clothing_list', '\'<<$ward_list_store>>\''] },
   ]);
   scene.build();
 }

@@ -120,12 +120,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterMatch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_health ?? 0) <= 0) {
     scene.text('<b><font color = red>You lost by TKO</font></b>');
-    scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'lossKO'] }]);
+    scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'lossKO\''] }]);
   } else {
     if (((s as any).temp_kickboxVars ?? 0)?.['npc_health'] <= 0) {
       // TODO-QSP: dynamic text: <b><font color = green><<$boydesc>> lost by TKO</font></b>
       scene.text(`<b><font color = green>${((s as any).boydesc ?? 0)} lost by TKO</font></b>`);
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'winKO'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'winKO\''] }]);
     }
   }
   if (((s as any).temp_kickboxVars ?? 0)?.['round'] >= 1) {
@@ -146,21 +146,21 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     scene.text('You go for the quick jab and step forward.');
     qspCall(s, 'kickboxing_funcs', 'attack', 'player', 'jab');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'winKO'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'winKO\''] }]);
     }
   }, goto: ['havana_kickboxing', 'sta'] },
         { label: 'Power punch', handler: (st: GameState) => {
     scene.text('You attempt a powerful punch.');
     qspCall(s, 'kickboxing_funcs', 'attack', 'player', 'punch');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'winKO'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'winKO\''] }]);
     }
   }, goto: ['havana_kickboxing', 'sta'] },
         { label: 'Big kick', handler: (st: GameState) => {
     scene.text('You try a powerful kick.');
     qspCall(s, 'kickboxing_funcs', 'attack', 'player', 'kick');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'winKO'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'winKO\''] }]);
     }
   }, goto: ['havana_kickboxing', 'sta'] },
       ]);
@@ -173,7 +173,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).boydesc ?? 0)} deals a quick jab, stepping forward.`);
     qspCall(s, 'kickboxing_funcs', 'attack', 'enemy', 'jab');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'lossKO'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'lossKO\''] }]);
     }
   }, goto: ['havana_kickboxing', 'sta'] },
         ]);
@@ -184,7 +184,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).boydesc ?? 0)} applies a power punch.`);
     qspCall(s, 'kickboxing_funcs', 'attack', 'enemy', 'punch');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'lossKO'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'lossKO\''] }]);
     }
   }, goto: ['havana_kickboxing', 'sta'] },
           ]);
@@ -194,7 +194,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).boydesc ?? 0)} goes for a kick.`);
     qspCall(s, 'kickboxing_funcs', 'attack', 'enemy', 'kick');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'lossKO'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'lossKO\''] }]);
     }
   }, goto: ['havana_kickboxing', 'sta'] },
           ]);
@@ -226,13 +226,13 @@ function enterSta(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_kickboxVars ?? 0)?.['fight_type'] === 0) {
         if (((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] > ((s as any).temp_kickboxVars ?? 0)?.['npc_points']) {
-          scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'win'] }]);
+          scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'win\''] }]);
         } else {
           if (((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] < ((s as any).temp_kickboxVars ?? 0)?.['npc_points']) {
-            scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'loss'] }]);
+            scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'loss\''] }]);
           } else {
             if (((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] === ((s as any).temp_kickboxVars ?? 0)?.['npc_points']) {
-              scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'draw'] }]);
+              scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'draw\''] }]);
             }
           }
         }
@@ -241,13 +241,13 @@ function enterSta(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Go to the middle of the ring', handler: (st: GameState) => {
     if (((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] > ((s as any).temp_kickboxVars ?? 0)?.['npc_points']) {
-      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'win'] }]);
+      scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'win\''] }]);
     } else {
       if (((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] < ((s as any).temp_kickboxVars ?? 0)?.['npc_points']) {
-        scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'loss'] }]);
+        scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'loss\''] }]);
       } else {
         if (((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] === ((s as any).temp_kickboxVars ?? 0)?.['npc_points']) {
-          scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', 'draw'] }]);
+          scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'draw\''] }]);
         }
       }
     }

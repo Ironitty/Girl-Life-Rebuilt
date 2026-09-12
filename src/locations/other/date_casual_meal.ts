@@ -210,7 +210,7 @@ function enterArriveSeparate(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
         scene.actions([
           { label: 'Have a smoke', goto: ['date_casual_meal', 'wait_date_smoke'] },
-          { label: 'Smoke and phone', goto: ['date_casual_meal', 'wait_date_smoke', 'phone'] },
+          { label: 'Smoke and phone', goto: ['date_casual_meal', 'wait_date_smoke', '\'phone\''] },
         ]);
       }
       scene.actions([

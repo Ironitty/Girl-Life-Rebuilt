@@ -66,9 +66,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Head cleared', handler: (st: GameState) => {
-    // TODO-QSP: gt 'treeCircle', $EntryPoint
-  } },
+      { label: 'Head cleared', goto: ['treeCircle', 'EntryPoint'] },
     ]);
   } },
     ]);

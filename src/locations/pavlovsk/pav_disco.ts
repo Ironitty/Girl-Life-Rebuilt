@@ -675,7 +675,7 @@ function enterDanceReact(s: GameState, scene: SceneBuilder): void {
         scene.text('<i>Ugh, this guy is so boring,</i> you think, watching him bounce up and down next to you. <i>Couldn\'t he have found his own place to dance?</i>');
       }
     }
-    scene.actions([{ label: 'Continue', goto: ['pav_disco', 'dance_boy2', 'boring_react'] }]);
+    scene.actions([{ label: 'Continue', goto: ['pav_disco', 'dance_boy2', '\'boring_react\''] }]);
   } },
     { label: 'Enjoy dancing with him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
@@ -695,7 +695,7 @@ function enterDanceReact(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'stat', '');
-    scene.actions([{ label: 'Continue', goto: ['pav_disco', 'dance_boy2', 'enjoy_react'] }]);
+    scene.actions([{ label: 'Continue', goto: ['pav_disco', 'dance_boy2', '\'enjoy_react\''] }]);
   } },
   ]);
   scene.build();
@@ -858,7 +858,7 @@ function enterInviteOutside(s: GameState, scene: SceneBuilder): void {
             scene.text(`"${((s as any).pcs_firstname ?? 0)}, but people call me ${((s as any).pcs_nickname ?? 0)}," you reply.`);
             scene.text('His face is flushed with excitement as he asks you to leave with him to get some fresh air and talk outside.');
             scene.actions([
-              { label: 'Go outside', goto: ['pav_disco_sex', 'outside', 'aggressiv'] },
+              { label: 'Go outside', goto: ['pav_disco_sex', 'outside', '\'aggressiv\''] },
             ]);
           } else {
             scene.text('The guy constantly grabs your ass, breasts and tries kissing you, clearly feeling rather excited. Every time you press up against him, you feel something hard in his pants.');
@@ -866,7 +866,7 @@ function enterInviteOutside(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'foreplay', 5);
             qspCall(s, 'stat', '');
             scene.actions([
-              { label: 'Go outside', goto: ['pav_disco_sex', 'outside', 'aggressiv'] },
+              { label: 'Go outside', goto: ['pav_disco_sex', 'outside', '\'aggressiv\''] },
             ]);
           }
         } else {
@@ -964,7 +964,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     scene.text('He pulls his cock out of his pants and looks at you expectantly.');
     qspCall(s, 'pav_disco_sex', 'decline', 250);
     scene.actions([
-      { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', 'paid'] },
+      { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', '\'paid\''] },
     ]);
   } else {
     if ((((s as any).gdk_nice_guy ?? 0) === 1  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 200  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250)  ||  (((s as any).gdk_nice_guy ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 130  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 150)) {
@@ -974,7 +974,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pav_disco_sex', 'decline', 200);
       qspCall(s, 'pav_disco_sex', 'handjob');
       scene.actions([
-        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', 'unpaid'] },
+        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', '\'unpaid\''] },
       ]);
     } else {
       if ((!(Math.floor(Math.random() * 4) + 0))) {
@@ -989,7 +989,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pav_disco_sex', 'decline', 130);
       qspCall(s, 'pav_disco_sex', 'handjob');
       scene.actions([
-        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', 'unpaid'] },
+        { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', '\'unpaid\''] },
       ]);
     }
   }
@@ -1072,7 +1072,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> looks a little confused but gives you <<$func('money', 'string_prof...
     scene.text(`${((s as any).npcdesc ?? 0)} looks a little confused but gives you ${qspFunc(s, 'money', 'string_profit', 200)}.`);
     scene.actions([
-      { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', 'paid'] },
+      { label: 'Squat down before him', goto: ['pav_disco_sex', 'blowjob', '\'paid\''] },
     ]);
   } },
       ]);

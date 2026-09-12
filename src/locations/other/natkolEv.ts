@@ -87,9 +87,7 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: act 'Continue': gs 'natkolEv', 'softsex'
     }
     scene.actions([
-      { label: 'Let Kolka cum', handler: (st: GameState) => {
-    // TODO-QSP: gt 'natkolEv', 'kolkacum', 0
-  } },
+      { label: 'Let Kolka cum', goto: ['natkolEv', 'kolkacum', '0'] },
     ]);
   } },
       { label: 'Make them 69', handler: (st: GameState) => {

@@ -54,7 +54,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lover', 'lover_events');
   if (((s as any).dimaRevChoice ?? 0) === 5  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  (!((s as any).dimaTrain ?? 0))) {
-    // TODO-QSP: gt 'dimaRevenge', dimaRevenge
+    scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).monthKidalo ?? 0) !== ((s as any).month ?? 0)) {
     if ((!((s as any).kidaloa ?? 0))) {

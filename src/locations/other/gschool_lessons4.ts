@@ -112,9 +112,7 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dimaRevenge ?? 0) === 1) {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'dimaRevenge', 1
-  } },
+      { label: 'Continue', goto: ['dimaRevenge', '', '1'] },
     ]);
   } else {
     qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
@@ -506,9 +504,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
   scene.text('"Class is starting, now take a seat!" she repeats loudly in Russian and the groups reluctantly scatter as everyone settles into their seats.');
   if (((s as any).dimaRevenge ?? 0) === 1) {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'dimaRevenge', 1
-  } },
+      { label: 'Continue', goto: ['dimaRevenge', '', '1'] },
     ]);
   } else {
     qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));

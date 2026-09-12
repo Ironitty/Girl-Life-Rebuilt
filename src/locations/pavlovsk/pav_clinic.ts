@@ -220,7 +220,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).Gspravka ?? 0) < 3  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
     scene.actions([
-      { label: 'Ask for a referral from Dr. Petrovich', goto: ['pav_clinic', 'Petrovich1', 'referral_only'] },
+      { label: 'Ask for a referral from Dr. Petrovich', goto: ['pav_clinic', 'Petrovich1', '\'referral_only\''] },
     ]);
   }
   if (((s as any).therapistQW ?? 0)?.['met'] > 0) {
@@ -1155,7 +1155,7 @@ function enterSpravkaArrange(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
     if (((s as any).Venera ?? 0) > 0) {
-      scene.actions([{ label: 'Continue', goto: ['pav_clinic', 'gynoblow', 'referral_blow'] }]);
+      scene.actions([{ label: 'Continue', goto: ['pav_clinic', 'gynoblow', '\'referral_blow\''] }]);
     }
     if ((!((s as any).gpoli_doctorhavesex ?? 0))) {
       (s as any).gpoli_doctorhavesex = 1;

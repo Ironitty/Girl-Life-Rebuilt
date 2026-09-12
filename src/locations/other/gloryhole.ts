@@ -147,7 +147,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Continue', goto: ['gloryhole', 'mast', 'stage2'] },
+        { label: 'Continue', goto: ['gloryhole', 'mast', '\'stage2\''] },
       ]);
     }
   }

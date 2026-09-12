@@ -208,12 +208,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'lover_events');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Walk to the main road to Pavlovsk (0:15)', goto: ['city_industrial', 'exit', 'pavlovsk'] },
-    { label: 'Walk to the Red Light District (0:05)', goto: ['city_industrial', 'exit', 'redlight'] },
-    { label: 'Walk to the central park (1:00)', goto: ['city_industrial', 'exit', 'citypark'] },
-    { label: 'Walk to the industrial train station (0:15)', goto: ['city_industrial', 'exit', 'train'] },
-    { label: 'Walk to the Metro (0:05)', goto: ['city_industrial', 'exit', 'metro'] },
-    { label: 'Walk to the canals (0:15)', goto: ['city_industrial', 'exit', 'canals'] },
+    { label: 'Walk to the main road to Pavlovsk (0:15)', goto: ['city_industrial', 'exit', '\'pavlovsk\''] },
+    { label: 'Walk to the Red Light District (0:05)', goto: ['city_industrial', 'exit', '\'redlight\''] },
+    { label: 'Walk to the central park (1:00)', goto: ['city_industrial', 'exit', '\'citypark\''] },
+    { label: 'Walk to the industrial train station (0:15)', goto: ['city_industrial', 'exit', '\'train\''] },
+    { label: 'Walk to the Metro (0:05)', goto: ['city_industrial', 'exit', '\'metro\''] },
+    { label: 'Walk to the canals (0:15)', goto: ['city_industrial', 'exit', '\'canals\''] },
   ]);
   scene.build();
 }

@@ -105,9 +105,7 @@ function enterToiletsMen(s: GameState, scene: SceneBuilder): void {
   scene.text('WIP - no content. ');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'city_mariinsky', $marreturn
-  } },
+    { label: 'Leave', goto: ['city_mariinsky', 'marreturn'] },
   ]);
   scene.build();
 }
@@ -123,9 +121,7 @@ function enterToiletsWomen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'publicpan');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'city_mariinsky', $marreturn
-  } },
+    { label: 'Leave', goto: ['city_mariinsky', 'marreturn'] },
   ]);
   scene.build();
 }

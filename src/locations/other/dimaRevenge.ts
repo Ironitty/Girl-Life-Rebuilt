@@ -10,17 +10,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimaRevenge ?? 0) === 3) {
-    // TODO-QSP: gt 'dimaRevenge', 3
+    scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '3'] }]);
   } else {
     if (((s as any).dimaRevenge ?? 0) === 4) {
       if ((!((s as any).dimaRevChoice ?? 0))) {
-        // TODO-QSP: gt 'dimaRevenge', 4
+        scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '4'] }]);
       } else {
         if (((s as any).dimaRevChoice ?? 0) === 2) {
           // TODO-QSP: gt 'dimaRevenge', 4, 'lunch'
         } else {
           if (((s as any).dimaRevChoice ?? 0) === 3) {
-            // TODO-QSP: gt 'dimaRevenge', 4
+            scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '4'] }]);
           }
         }
       }
@@ -33,7 +33,7 @@ function enterDimaRevengeEventCheck(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: gt 'dimaRevenge', 5, 'afterlunch'
           } else {
             if (((s as any).dimaRevChoice ?? 0) === 6) {
-              // TODO-QSP: gt 'dimaRevenge', 5
+              scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '5'] }]);
             }
           }
         }

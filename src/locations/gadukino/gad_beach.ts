@@ -59,9 +59,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'outfit', 'recover_lost_outfit', 'VillageRiver', 1);
     }
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
     ]);
@@ -75,9 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'strip_all', 'VillageRiver');
     scene.text('Without hesitation, you take off all your clothes and neatly fold them before putting them down on a pile. Without your clothes holding you back, you can go for a nice swim in the river or lie down in the sand and sunbathe.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
       ]);
@@ -99,17 +95,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PSwim ?? 0) === 1) {
       scene.text('You need to dress in regular clothes first.');
       scene.actions([
-        { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+        { label: 'Return', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         scene.text('You need to put some clothes on first.');
         scene.actions([
-          { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+          { label: 'Return', goto: ['gad_beach', 'start', '1'] },
         ]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -181,9 +173,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+          { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
         ]);
       } else {
         scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex19.jpg');
@@ -198,13 +188,11 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1, '', '', 20);
         qspCall(s, 'arousal', 'end');
         scene.actions([
-          { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+          { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
         ]);
       }
     } else {
-      // TODO-QSP: gt 'gad_beach', 'start', 1
+      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
     }
   } },
     ]);
@@ -266,12 +254,10 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
       scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+        { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
-      // TODO-QSP: gt 'gad_beach', 'start', 1
+      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
     }
   } },
     ]);
@@ -302,9 +288,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('You are sunbathing by the river when Mira comes along. You smile, and she undresses and lays her towel next to yours.');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+        { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -350,12 +334,10 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
       qspCall(s, 'arousal', 'end');
       scene.actions([
-        { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+        { label: 'Get dressed', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
-      // TODO-QSP: gt 'gad_beach', 'start', 1
+      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
     }
   } },
         ]);
@@ -404,9 +386,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+        { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
       if (((s as any).temp_rand ?? 0) === 1  &&  qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 15  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
@@ -415,12 +395,10 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'voyeur_sex', 30, 'gangbang', 'dom');
         qspCall(s, 'arousal', 'end');
         scene.actions([
-          { label: 'Finish', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+          { label: 'Finish', goto: ['gad_beach', 'start', '1'] },
         ]);
       } else {
-        // TODO-QSP: gt 'gad_beach', 'start', 1
+        scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
       }
     }
   } },
@@ -447,9 +425,7 @@ function enterMiraLeaves(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, I have to go home, " Mira said and began gathering her stuff.`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+    { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
   ]);
   scene.build();
 }
@@ -464,7 +440,7 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['swimday'] === ((s as any).daystart ?? 0)) {
-      // TODO-QSP: gt 'gad_beach', 'start', 1
+      scene.actions([{ label: 'Continue', goto: ['gad_beach', 'start', '1'] }]);
     } else {
       scene.img('images/characters/gadukino/mira/mirariver.jpg');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, why are you moping about on the shore? Get in the water and ...
@@ -506,9 +482,7 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get out of the water', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Get out of the water', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
     ]);
@@ -556,9 +530,7 @@ function enterGetChanged(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get out of the water', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Get out of the water', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
       ]);
@@ -581,9 +553,7 @@ function enterSecondThoughts(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+    { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
   ]);
   scene.build();
 }
@@ -648,9 +618,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
       }
     }
   } },
-    { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+    { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
   ]);
   scene.build();
 }
@@ -707,9 +675,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
     ]);
@@ -753,9 +719,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
     ]);
@@ -803,9 +767,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
     ]);
@@ -815,9 +777,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+    { label: 'Leave', goto: ['gad_beach', 'start', '1'] },
   ]);
   scene.build();
 }

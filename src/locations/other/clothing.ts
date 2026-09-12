@@ -1423,7 +1423,7 @@ function enterClothwidth(s: GameState, scene: SceneBuilder): void {
     if (((s as any).Enable_clothwidth ?? 0) !== 0) {
       (s as any).Enable_clothwidth = 0;
     }
-    scene.actions([{ label: 'Continue', goto: ['clothing', 'clothing_list', '<<$ward_list_store>>'] }]);
+    scene.actions([{ label: 'Continue', goto: ['clothing', 'clothing_list', '\'<<$ward_list_store>>\''] }]);
   } },
   ]);
   scene.build();

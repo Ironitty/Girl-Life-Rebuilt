@@ -767,9 +767,7 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     { label: 'Your Clothes', goto: ['wardrobe', 'main'] },
-    { label: 'Your sets', handler: (st: GameState) => {
-    // TODO-QSP: gt 'wardrobe', $wloc
-  } },
+    { label: 'Your sets', goto: ['wardrobe', 'wloc'] },
   ]);
   scene.build();
 }

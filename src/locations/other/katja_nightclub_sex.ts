@@ -21,9 +21,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
   scene.text('The cocktails arrive before you and Katja finish your introduction, and you start sipping your drinks as you continue chatting.');
   if ((Math.floor(Math.random() * 4) + 0) > 0) {
     scene.actions([
-      { label: 'Enjoy your drinks', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 0
-  } },
+      { label: 'Enjoy your drinks', goto: ['katja_nightclub_sex', 'private_room2', '0'] },
     ]);
   } else {
     if (((s as any).katjaQW ?? 0)?.['coke_stage'] === -1) {
@@ -74,9 +72,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks, but that\'s not for me," you say, and Katja quickly and vehemently shakes her head when he tries to hand her the tube.');
     scene.text('"Well, more for me then," he says and does a few more lines before packing the drugs away.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 1
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '1'] },
     ]);
   } },
         ]);
@@ -123,9 +119,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('"See? I told you it would feel great!" you say.');
     scene.text('She just replies with a dreamy stare before she starts giggling, which turns into a laugh that lasts for some time.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 3
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '3'] },
     ]);
   } },
       ]);
@@ -136,9 +130,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "It's fine if you don't want to do it," you say. She seems relieved and <<$npcde...
     scene.text(`"It's fine if you don't want to do it," you say. She seems relieved and ${((s as any).npcdesc ?? 0)} doesn't say anything as he cleans up the drugs.`);
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 2
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '2'] },
     ]);
   } },
     ]);
@@ -166,9 +158,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks, but that\'s not for me," you say, and Katja also quickly shakes her head when he tries to hand her the tube.');
     scene.text('"Well, more for me then," he says and does a few more of the lines before packing the drugs away.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 1
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '1'] },
     ]);
   } },
           ]);
@@ -212,9 +202,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Then at the same time, you sniff your lines. Katja '+iif(katjaQW['coke_stage'] = 2, 'has gotten use...
     scene.text('After a moment, it hits you both. You feel wonderful while Katja just sits there with wide-open eyes. Then she starts giggling, which turns into a laugh that lasts for some time.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 3
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '3'] },
     ]);
   } },
           ]);
@@ -229,9 +217,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You snort the first line and then the second as Katja watches with wide-open eye...
     scene.text(`You snort the first line and then the second as Katja watches with wide-open eyes. After a short moment, it hits you and you feel the full effect of the drug as ${((s as any).npcdesc ?? 0)} takes the tube and cleans up the drugs.`);
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 2
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '2'] },
     ]);
   } },
         ]);
@@ -287,9 +273,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Well, more for me then," <<$npcdesc>> says and does a few more lines before pac...
     scene.text(`"Well, more for me then," ${((s as any).npcdesc ?? 0)} says and does a few more lines before packing the drugs away.`);
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 1
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '1'] },
     ]);
   } },
       ]);
@@ -305,9 +289,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('She sniffs the line with no problem and just sits up waiting for the the drugs to hit her.');
     scene.text('After a moment, it does and she just sits there with wide-open eyes before she starts giggling, which turns into a laugh that lasts for some time.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 2
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '2'] },
     ]);
   } },
     ]);
@@ -328,9 +310,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('You put your tubes to your nostrils and lower your heads to the table to sniff your line. Katja does it with great enthusiasm.');
     scene.text('After a moment, it hits you both. You feel wonderful while Katja just sits there with wide-open eyes. She starts giggling, which turns into a laugh that lasts for some time.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 3
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '3'] },
     ]);
   } },
           ]);
@@ -407,9 +387,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Well, more for me then," <<$npcdesc>> says and does a few more lines before pac...
     scene.text(`"Well, more for me then," ${((s as any).npcdesc ?? 0)} says and does a few more lines before packing the drugs away. Katja looks longingly at them as he does.`);
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 1
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '1'] },
     ]);
   } },
         ]);
@@ -426,9 +404,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('She sniffs the line like a pro and sits up, waiting for the drugs to hit her.');
     scene.text('After a moment, it does and she sits there with wide-open eyes before she starts giggling, which turns into a laugh that lasts for some time.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 2
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '2'] },
     ]);
   } },
     ]);
@@ -449,9 +425,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
     scene.text('You both put your tubes to your nostrils and lower your heads to the table to sniff your lines. Katja does it like it\'s something she does all the time.');
     scene.text('After a moment, it hits you both. You feel wonderful while Katja just sits there with wide-open eyes before she starts giggling, which turns into a laugh that lasts for some time.');
     scene.actions([
-      { label: 'Continue talking', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_nightclub_sex', 'private_room2', 3
-  } },
+      { label: 'Continue talking', goto: ['katja_nightclub_sex', 'private_room2', '3'] },
     ]);
   } },
           ]);
@@ -1062,7 +1036,7 @@ function enterBartenderBjKatja(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You look at the bartender, who\'s already stuffing his dick away. He clearly doesn\'t want to be part of a lovers\' spat.');
     scene.actions([
-      { label: 'Follow Katja', goto: ['katja_nightclub_sex', 'cheating_conversation', 'bartender'] },
+      { label: 'Follow Katja', goto: ['katja_nightclub_sex', 'cheating_conversation', '\'bartender\''] },
     ]);
   } else {
     if (((s as any).katjaQW ?? 0)?.['boy_block'] === 1) {
@@ -1887,7 +1861,7 @@ function enterPrivateBooth_FFFFYou(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'clit_finger', (-3), 'group', 'lesbian', 'self');
       qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'No more dildo', goto: ['katja_nightclub_sex', 'private_booth_FFFF_you_licking', 'after_some_dildo_in_as'] },
+        { label: 'No more dildo', goto: ['katja_nightclub_sex', 'private_booth_FFFF_you_licking', '\'after_some_dildo_in_as\''] },
       ]);
     } else {
       if (((s as any).lastpainPart ?? 0) === 'asshole'  &&  ((s as any).lastpain ?? 0) > 20) {
@@ -1940,7 +1914,7 @@ function enterPrivateBooth_FFFFYou(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal_dildo', 4, ((s as any).npcID3 ?? 0), 'group', 'lesbian', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: '<<$npcdesc2>>\'s turn', goto: ['katja_nightclub_sex', 'private_booth_FFFF_girls', 'dp'] },
+      { label: '<<$npcdesc2>>\'s turn', goto: ['katja_nightclub_sex', 'private_booth_FFFF_girls', '\'dp\''] },
     ]);
   } },
       { label: 'Tell her you don\'t want anymore', handler: (st: GameState) => {

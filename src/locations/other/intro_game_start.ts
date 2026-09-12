@@ -101,7 +101,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      // TODO-QSP: gt 'intro_sg', 'quick_start', start_location
+      scene.actions([{ label: 'Continue', goto: ['intro_sg', 'quick_start', 'start_location'] }]);
     } else {
       if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
         scene.actions([{ label: 'Continue', goto: ['uni_grounds', ''] }]);

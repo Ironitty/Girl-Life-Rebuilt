@@ -20,15 +20,15 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).policeQW ?? 0)?.['tot_court_dates_missed'] + ((s as any).policeQW ?? 0)?.['tot_fines_deadlines_missed']) > 30  &&  ((s as any).policeQW ?? 0)?.['tot_arrested'] > 10) {
       ((s as any).policeQW ?? {})['tot_arrested'] = (((s as any).policeQW ?? {})['tot_arrested'] ?? 0) + (1);
       if (((s as any).policeQW ?? 0)?.['arrest_gameover_flag'] === 1) {
-        // TODO-QSP: gt 'sentence', 'police_arrest', 2
+        scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest', '2'] }]);
       } else {
         ((s as any).policeQW ?? {})['arrest_gameover_flag'] = 1;
-        // TODO-QSP: gt 'sentence', 'police_arrest', 1
+        scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest', '1'] }]);
       }
     } else {
       if ((((s as any).policeQW ?? 0)?.['missed_court_dates'] + ((s as any).policeQW ?? 0)?.['missed_fine_deadlines']) > 3) {
         ((s as any).policeQW ?? {})['tot_arrested'] = (((s as any).policeQW ?? {})['tot_arrested'] ?? 0) + (1);
-        // TODO-QSP: gt 'sentence', 'police_arrest', 0
+        scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest', '0'] }]);
       }
     }
   }

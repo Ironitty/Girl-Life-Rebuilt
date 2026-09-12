@@ -1731,9 +1731,7 @@ function enterTwoGuysAnalSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'cuni_give', 3, ((s as any).npcID3 ?? 0), 'group', 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get down on your knees', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_city_sex', 'two_guys_cumming', 1
-  } },
+      { label: 'Get down on your knees', goto: ['katja_city_sex', 'two_guys_cumming', '1'] },
     ]);
   } },
   ]);
@@ -1862,9 +1860,7 @@ function enterTwoGuysKatjaDp(s: GameState, scene: SceneBuilder): void {
       ((s as any).npc_ass ?? {})['A14'] = (((s as any).npc_ass ?? {})['A14'] ?? 0) + (1);
     }
     scene.actions([
-      { label: 'Get down on your knees', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_city_sex', 'two_guys_cumming', 2
-  } },
+      { label: 'Get down on your knees', goto: ['katja_city_sex', 'two_guys_cumming', '2'] },
     ]);
   } },
   ]);

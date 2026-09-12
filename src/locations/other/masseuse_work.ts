@@ -2162,7 +2162,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
     scene.text('"Great! So would you like to set your shifts for next week then?"');
     scene.text('"Sure."');
     scene.actions([
-      { label: 'Look at the schedule', goto: ['masseuse_work', 'set_schedule', 'this_week'] },
+      { label: 'Look at the schedule', goto: ['masseuse_work', 'set_schedule', '\'this_week\''] },
     ]);
   } },
     { label: 'Why the uniform?', handler: (st: GameState) => {
@@ -2671,7 +2671,7 @@ function enterRehire2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sure," you say.');
     scene.text('"Here\'s what we have available right now..."');
     scene.actions([
-      { label: 'Take a look', goto: ['masseuse_work', 'set_schedule', 'this_week'] },
+      { label: 'Take a look', goto: ['masseuse_work', 'set_schedule', '\'this_week\''] },
     ]);
   } },
     ]);
@@ -2695,7 +2695,7 @@ function enterRehire2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sure," you say.');
     scene.text('"Here\'s what we have available right now..."');
     scene.actions([
-      { label: 'Take a look', goto: ['masseuse_work', 'set_schedule', 'this_week'] },
+      { label: 'Take a look', goto: ['masseuse_work', 'set_schedule', '\'this_week\''] },
     ]);
   } },
     ]);

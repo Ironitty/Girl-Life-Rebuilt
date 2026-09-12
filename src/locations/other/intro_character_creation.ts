@@ -303,9 +303,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>You are not welcome back home and have to live with 3 boys.</center>');
     (s as any).start_location = 3;
     scene.actions([
-      { label: 'Confirm location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', $temp_dest
-  } },
+      { label: 'Confirm location', goto: ['intro_character_creation', 'temp_dest'] },
       { label: 'Change location', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
   } },
@@ -320,9 +318,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>A provincial town in a rural area of Russia, which looks much like all the other towns in the region. Population: 15,000.</center>');
     (s as any).start_location = 0;
     scene.actions([
-      { label: 'Confirm location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', $temp_dest
-  } },
+      { label: 'Confirm location', goto: ['intro_character_creation', 'temp_dest'] },
       { label: 'Change location', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
   } },
@@ -334,9 +330,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>A small tourist town famous for the palaces of Catherine and Paval. It is joined to Pavlovsk and most facilities are there.</center>');
     (s as any).start_location = 2;
     scene.actions([
-      { label: 'Confirm location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', $temp_dest
-  } },
+      { label: 'Confirm location', goto: ['intro_character_creation', 'temp_dest'] },
       { label: 'Change location', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
   } },
@@ -353,9 +347,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>A small farming village with just as many rickety old wooden houses dotting the landscape as ruins. The village has seen better days.</center>');
     (s as any).start_location = 1;
     scene.actions([
-      { label: 'Confirm location', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_character_creation', $temp_dest
-  } },
+      { label: 'Confirm location', goto: ['intro_character_creation', 'temp_dest'] },
       { label: 'Change location', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
   } },
@@ -372,11 +364,11 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/1_openings/shared/pre_4.jpg');
     scene.text('Select your personality/social group. Your social group will have a major defining impact upon your life in school and will determine your starting friends, traits and overall look. While you can always change groups later, it takes time and effort, so choose wisely.');
     scene.actions([
-      { label: 'Popular', goto: ['intro_character_creation', 'charselect', 'cool'] },
-      { label: 'Jock', goto: ['intro_character_creation', 'charselect', 'jock'] },
-      { label: 'Nerd', goto: ['intro_character_creation', 'charselect', 'nerd'] },
-      { label: 'Gopnik', goto: ['intro_character_creation', 'charselect', 'gopnik'] },
-      { label: 'Outcast', goto: ['intro_character_creation', 'charselect', 'outcast'] },
+      { label: 'Popular', goto: ['intro_character_creation', 'charselect', '\'cool\''] },
+      { label: 'Jock', goto: ['intro_character_creation', 'charselect', '\'jock\''] },
+      { label: 'Nerd', goto: ['intro_character_creation', 'charselect', '\'nerd\''] },
+      { label: 'Gopnik', goto: ['intro_character_creation', 'charselect', '\'gopnik\''] },
+      { label: 'Outcast', goto: ['intro_character_creation', 'charselect', '\'outcast\''] },
       { label: 'Full custom setup', goto: ['intro_character_custom', 'start'] },
       { label: 'Random personality', goto: ['intro_character_creation', 'random_start'] },
     ]);
@@ -930,7 +922,7 @@ function enterModSetExitActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },
-    { label: 'Return to the <<$ARGS[1]>> options', goto: ['intro_character_creation', 'charselect', '<<$ARGS[1]>>'] },
+    { label: 'Return to the <<$ARGS[1]>> options', goto: ['intro_character_creation', 'charselect', '\'<<$ARGS[1]>>\''] },
     { label: 'Return to starting options', goto: ['intro_character_creation', 'charselect'] },
   ]);
   scene.build();

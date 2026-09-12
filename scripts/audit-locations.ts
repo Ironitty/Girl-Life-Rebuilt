@@ -308,9 +308,9 @@ function extractQspActions(lines: string[], start: number, end: number): QspActi
     let goto: [string, string] | null = null;
     let gotoDynamic = false;
 
-    const gotoMatch = restOfLine.match(/\bgt\s+'((?:[^']|'')*)'(?:\s*,\s*'((?:[^']|'')*)')?/);
+    const gotoMatch = restOfLine.match(/\bgt\s+'((?:[^']|'')*)'(?:\s*\+\s*\$\w+)?(?:\s*,\s*(?:'((?:[^']|'')*)'|(\$\w+|\w+)))?/);
     if (gotoMatch) {
-      goto = [unescapeQsp(gotoMatch[1]), unescapeQsp(gotoMatch[2] || '')];
+      goto = [unescapeQsp(gotoMatch[1]), unescapeQsp(gotoMatch[2] || '') || (gotoMatch[3] || '').replace(/^\$/, '')];
     } else if (/\bgt\s+\$|\bgt\s+[a-z_]/.test(restOfLine)) {
       gotoDynamic = true;
     }
@@ -322,9 +322,9 @@ function extractQspActions(lines: string[], start: number, end: number): QspActi
         if (nextTrimmed.startsWith('!!')) continue;
         if (/^act\s+/.test(nextTrimmed)) continue;
 
-        const nextGoto = nextTrimmed.match(/\bgt\s+'((?:[^']|'')*)'(?:\s*,\s*'((?:[^']|'')*)')?/);
+        const nextGoto = nextTrimmed.match(/\bgt\s+'((?:[^']|'')*)'(?:\s*\+\s*\$\w+)?(?:\s*,\s*(?:'((?:[^']|'')*)'|(\$\w+|\w+)))?/);
         if (nextGoto) {
-          goto = [unescapeQsp(nextGoto[1]), unescapeQsp(nextGoto[2] || '')];
+          goto = [unescapeQsp(nextGoto[1]), unescapeQsp(nextGoto[2] || '') || (nextGoto[3] || '').replace(/^\$/, '')];
           break;
         }
         if (/\bgt\s+\$|\bgt\s+[a-z_]/.test(nextTrimmed)) {

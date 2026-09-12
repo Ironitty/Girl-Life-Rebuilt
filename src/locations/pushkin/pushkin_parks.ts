@@ -48,7 +48,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin', ''] },
     { label: 'Walk around the park (1 hour)', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      // TODO-QSP: gt 'kseniyaQW', 'event1', 1
+      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event1', '1'] }]);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'mood', 'raise', 'tiny');
@@ -103,7 +103,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flash your tits', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      // TODO-QSP: gt 'kseniyaQW', 'event1', 1
+      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event1', '1'] }]);
     }
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'flash', 'tits', 'outdoors', 5);
@@ -118,7 +118,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flash your pussy', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      // TODO-QSP: gt 'kseniyaQW', 'event1', 1
+      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event1', '1'] }]);
     }
     qspCall(s, 'flash', 'pussy', 'outdoors', 5);
     qspCall(s, 'stat', '');

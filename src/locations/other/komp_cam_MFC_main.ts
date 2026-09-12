@@ -84,7 +84,7 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
       scene.text(`You casually chat with the ${((s as any).camGirl ?? 0)?.['MFC_Viewers']} viewers currently in your chatroom. Once you turn on your webcam, things will probably get busier.`);
     }
     scene.actions([
-      { label: 'Turn on your webcam', goto: ['komp_cam_MFC_main', 'waitclients', 'start'] },
+      { label: 'Turn on your webcam', goto: ['komp_cam_MFC_main', 'waitclients', '\'start\''] },
       { label: 'Collect your earnings and leave', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'stop_camming');
   }, goto: ['komp_cam_MFC_main', 'start'] },

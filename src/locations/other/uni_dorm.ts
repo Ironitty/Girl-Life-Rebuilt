@@ -370,7 +370,7 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');
           scene.text('You knock on the door, but no one answers. Noticing what time it is, you realize that Katja is likely in the shared kitchen.');
           scene.actions([
-            { label: 'Check if Katja is in the kitchen', goto: ['katja_pantyquest', 'kitchen', 'from_room'] },
+            { label: 'Check if Katja is in the kitchen', goto: ['katja_pantyquest', 'kitchen', '\'from_room\''] },
           ]);
         } else {
           scene.img('images/locations/city/island/university/dorm/dorm_hall.jpg');

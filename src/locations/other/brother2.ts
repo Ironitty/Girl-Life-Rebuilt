@@ -1540,8 +1540,7 @@ function enterVideoGaming(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 51) + 25);
-    // TODO-QSP: gt 'brother2', 'video_gaming_start', 3
-  } },
+  }, goto: ['brother2', 'video_gaming_start', '3'] },
     ]);
   }
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
@@ -1557,20 +1556,17 @@ function enterVideoGaming(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 25) + 1);
-    // TODO-QSP: gt 'brother2', 'video_gaming_start', 2
-  } },
+  }, goto: ['brother2', 'video_gaming_start', '2'] },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: '<i>Play for fun</i>', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 6) + 0);
-    // TODO-QSP: gt 'brother2', 'video_gaming_start', 1
-  } },
+  }, goto: ['brother2', 'video_gaming_start', '1'] },
     { label: '<i>Take it easy on your brother</i>', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'gaiming', Math.floor(Math.random() * 6) + 0);
-    // TODO-QSP: gt 'brother2', 'video_gaming_start', 0
-  } },
+  }, goto: ['brother2', 'video_gaming_start', '0'] },
   ]);
   scene.build();
 }
@@ -1622,14 +1618,14 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (Math.floor(Math.random() * 11) + 5);
     scene.text('<center><b><font color="green">---------- YOU WIN! ----------</font></b></center>');
     scene.actions([
-      { label: 'Continue', goto: ['brother2', 'video_gaming_stop', 'win'] },
+      { label: 'Continue', goto: ['brother2', 'video_gaming_stop', '\'win\''] },
     ]);
   } else {
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) - (Math.floor(Math.random() * 5) + 1);
     ((s as any).brother ?? {})['Confidence'] = (((s as any).brother ?? {})['Confidence'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     scene.text('<center><b><font color="RED">---------- YOU LOSE! ----------</font></b></center>');
     scene.actions([
-      { label: 'Continue', goto: ['brother2', 'video_gaming_stop', 'lose'] },
+      { label: 'Continue', goto: ['brother2', 'video_gaming_stop', '\'lose\''] },
     ]);
   }
   // TODO-QSP: end
@@ -1707,9 +1703,7 @@ function enterVideoGamingStop(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).game_dare ?? 0) >= 1) {
       scene.actions([
-        { label: '"OK whats my dare?"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares2', game_dare
-  } },
+        { label: '"OK whats my dare?"', goto: ['brother2', 'lose_dares2', 'game_dare'] },
       ]);
     }
   }
@@ -1747,9 +1741,7 @@ function enterFlashDare(s: GameState, scene: SceneBuilder): void {
 function enterLoseDares1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).game_dare ?? 0) !== 0) {
     scene.actions([
-      { label: '"OK whats my dare?"', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brother2', 'lose_dares2', game_dare
-  } },
+      { label: '"OK whats my dare?"', goto: ['brother2', 'lose_dares2', 'game_dare'] },
     ]);
   }
   // TODO-QSP: end
@@ -2194,7 +2186,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                   ((s as any).brother ?? {})['SexQW'] = 4;
                 }
                 if (((s as any).brother ?? 0)?.['but_rub'] < 4  ||  ((s as any).brother ?? 0)?.['but_rub'] >= 4  &&  ((s as any).brother ?? 0)?.['horny'] < 10  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
-                  scene.actions([{ label: 'Continue', goto: ['brother2', 'lose_dares4', 'rub_butt_start'] }]);
+                  scene.actions([{ label: 'Continue', goto: ['brother2', 'lose_dares4', '\'rub_butt_start\''] }]);
                 }
                 qspCall(s, 'arousal', 'voyeur', 2, 'incest');
                 qspCall(s, 'brother_disc', 'arousal', 'light');

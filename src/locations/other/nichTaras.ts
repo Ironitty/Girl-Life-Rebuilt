@@ -184,7 +184,7 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
     (s as any).nichAbdStage = 100;
     (s as any).nichTarasLeave = ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) + 20;
     (s as any).nichTarasReturn = Math.floor(Math.random() * 5) + 19;
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', 'wash'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
   } },
                   ]);
                 }
@@ -213,7 +213,7 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
     scene.text('"Who are you? Why are you here?"');
     scene.text('"I… I… I am nothing but my Masters little slut. I am here to serve him." a tear rolls down her cheek as she says these lines which are obviously not her own thoughts.');
     scene.text('<i>She doesn\'t seem to be ready to talk about this topic. Maybe you should ask her again at another time.</i>');
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', 'talkEnd'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'talkEnd\''] }]);
   } },
       ]);
     }
@@ -489,7 +489,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
           (s as any).nichKatinkaPresent = 1;
           scene.actions([
             { label: 'Get washed', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', 'wash'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
   } },
           ]);
         } else {
@@ -554,7 +554,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
               (s as any).nichKatinkaPresent = 1;
               scene.actions([
                 { label: 'Get washed', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', 'wash'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
   } },
               ]);
             }
@@ -667,7 +667,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       (s as any).nichKatinkaPresent = 1;
       scene.actions([
         { label: 'Get washed', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', 'wash'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTaras', 'katinka', '\'wash\''] }]);
   } },
       ]);
     }
@@ -719,9 +719,7 @@ function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
     scene.text('It smells sweetish… and you begin to black out.');
     (s as any).nichTarasAbduction = 50;
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichTaras', 'vanAbduct', 1
-  } },
+      { label: 'Continue', goto: ['nichTaras', 'vanAbduct', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {

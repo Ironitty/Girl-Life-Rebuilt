@@ -198,28 +198,28 @@ function enterDimDrugs(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 420) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gt 'gschool_coolkid_chats', 'dimka_pay', 1
+      scene.actions([{ label: 'Continue', goto: ['gschool_coolkid_chats', 'dimka_pay', '1'] }]);
     }
   } },
       { label: 'Buy enough for 2 lines [+$func(\'money\', \'get_cost_string\', 840)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 840) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gt 'gschool_coolkid_chats', 'dimka_pay', 2
+      scene.actions([{ label: 'Continue', goto: ['gschool_coolkid_chats', 'dimka_pay', '2'] }]);
     }
   } },
       { label: 'Buy enough for 5 lines [+$func(\'money\', \'get_cost_string\', 1680)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1680) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gt 'gschool_coolkid_chats', 'dimka_pay', 5
+      scene.actions([{ label: 'Continue', goto: ['gschool_coolkid_chats', 'dimka_pay', '5'] }]);
     }
   } },
       { label: 'Buy enough for 10 lines [+$func(\'money\', \'get_cost_string\', 3720)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3720) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      // TODO-QSP: gt 'gschool_coolkid_chats', 'dimka_pay', 10
+      scene.actions([{ label: 'Continue', goto: ['gschool_coolkid_chats', 'dimka_pay', '10'] }]);
     }
   } },
       { label: 'Change your mind', goto: ['gschool_lessons', 'short_break'] },

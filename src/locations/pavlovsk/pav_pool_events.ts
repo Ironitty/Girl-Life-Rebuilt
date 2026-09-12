@@ -163,9 +163,7 @@ function enterNakedMirror(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_pool', 'mirror', 1
-  } },
+    { label: 'Continue', goto: ['pav_pool', 'mirror', '1'] },
   ]);
   scene.build();
 }
@@ -200,9 +198,7 @@ function enterNakedLocker(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_pool', 'lockerfemale', 1
-  } },
+    { label: 'Continue', goto: ['pav_pool', 'lockerfemale', '1'] },
   ]);
   scene.build();
 }

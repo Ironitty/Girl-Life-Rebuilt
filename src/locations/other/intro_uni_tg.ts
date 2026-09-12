@@ -13,7 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTatianaPRE(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: gt 'intro_start', 'tg_adult_shared', 3
+  scene.actions([{ label: 'Continue', goto: ['intro_start', 'tg_adult_shared', '3'] }]);
   // TODO-QSP: end
   scene.build();
 }

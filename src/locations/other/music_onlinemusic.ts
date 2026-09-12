@@ -95,7 +95,7 @@ function enterRecordSong(s: GameState, scene: SceneBuilder): void {
   (s as any).will_cost = (((s as any).will_cost ?? 0) * 2) - (((s as any).pcs_perform ?? 0));
   if (((s as any).will_cost ?? 0) <= 0) {
     scene.actions([
-      { label: 'Upload music', goto: ['music_onlinemusic', 'uploadmusic', 'recording'] },
+      { label: 'Upload music', goto: ['music_onlinemusic', 'uploadmusic', '\'recording\''] },
     ]);
   } else {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -107,7 +107,7 @@ function enterRecordSong(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'willpower', 'pay', 'self');
       scene.actions([
-        { label: 'Upload music [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['music_onlinemusic', 'uploadmusic', 'recording'] },
+        { label: 'Upload music [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['music_onlinemusic', 'uploadmusic', '\'recording\''] },
       ]);
     }
   }

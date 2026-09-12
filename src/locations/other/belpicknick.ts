@@ -691,9 +691,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('Siple looks at your face in disgust. "That looks fucking disgusting… there\'s no way you\'re getting in our car. Find your own way home, slut!"');
     scene.text('The guys get in the car and drive off, leaving you alone in the woods. You take a moment to clean yourself up at least a little and put your clothes back on, before you start wandering. You have no clue where you are. Luckily you hear a road in the distance, and decide to head in that direction… once you find the road, you can hopefully find your way home from there.');
     scene.actions([
-      { label: 'Go to the road', handler: (st: GameState) => {
-    // TODO-QSP: gt 'belpicknick', 'leave', 1
-  } },
+      { label: 'Go to the road', goto: ['belpicknick', 'leave', '1'] },
     ]);
   }
   // TODO-QSP: end

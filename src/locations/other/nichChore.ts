@@ -236,18 +236,12 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
       if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0) {
         if (((s as any).nichTimeDiligent ?? 0) > 0) {
           scene.actions([
-            { label: '(<<nichTimeDiligent>> minutes) Clean diligently', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'work', 3
-  } },
+            { label: '(<<nichTimeDiligent>> minutes) Clean diligently', goto: ['nichChore', 'work', '3'] },
           ]);
         }
         scene.actions([
-          { label: '(<<nichtTimeQuick>> minutes) Clean quickly', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'work', 1
-  } },
-          { label: '(<<nichTimeNormal>> minutes) Clean normally', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichChore', 'work', 2
-  } },
+          { label: '(<<nichtTimeQuick>> minutes) Clean quickly', goto: ['nichChore', 'work', '1'] },
+          { label: '(<<nichTimeNormal>> minutes) Clean normally', goto: ['nichChore', 'work', '2'] },
         ]);
       }
     }
@@ -730,7 +724,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).nichChoreID ?? 0) === 10) {
                         scene.actions([
                           { label: 'Finish', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichChore', 'cleanApartment', 'end'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichChore', 'cleanApartment', '\'end\''] }]);
   } },
                         ]);
                       }

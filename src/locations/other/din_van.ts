@@ -781,7 +781,7 @@ function enterWearpan(s: GameState, scene: SceneBuilder): void {
       { label: 'Wear panties (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_grid', 'bathroom'] }]);
+    scene.actions([{ label: 'Continue', goto: ['panty_view', 'view_grid', '\'bathroom\''] }]);
   } },
     ]);
   }
@@ -790,7 +790,7 @@ function enterWearpan(s: GameState, scene: SceneBuilder): void {
       { label: 'Wear a bra (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    scene.actions([{ label: 'Continue', goto: ['bra_view', 'view_grid', 'bathroom'] }]);
+    scene.actions([{ label: 'Continue', goto: ['bra_view', 'view_grid', '\'bathroom\''] }]);
   } },
     ]);
   }
@@ -912,12 +912,12 @@ function enterPublicpan(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'prostitution_functions', 'work_clothes');
     if (((s as any).prostitute ?? 0)?.['work_clothes'] === 0  &&  ((s as any).prostitute ?? 0)?.['outfit_is_set']) {
       scene.actions([
-        { label: 'Change into prostitute outfit', goto: ['prostitution_functions', 'change_to_work', 'restroom'] },
+        { label: 'Change into prostitute outfit', goto: ['prostitution_functions', 'change_to_work', '\'restroom\''] },
       ]);
     } else {
       if (((s as any).prostitute ?? 0)?.['work_clothes']  &&  ((s as any).prostitute ?? 0)?.['changed_for_work']) {
         scene.actions([
-          { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', 'restroom'] },
+          { label: 'Change into your regular clothes', goto: ['prostitution_functions', 'change_back', '\'restroom\''] },
         ]);
       }
     }

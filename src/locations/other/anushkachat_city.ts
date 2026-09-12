@@ -328,7 +328,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Get pleasured', goto: ['anushkaev3', 'getpleasured', 'city'] },
+      { label: 'Get pleasured', goto: ['anushkaev3', 'getpleasured', '\'city\''] },
     ]);
   } },
     ]);

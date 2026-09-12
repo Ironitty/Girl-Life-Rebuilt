@@ -324,7 +324,7 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
       scene.text('He wastes no time and quickly has his dick out, positioned to penetrate your pussy.');
       scene.actions([
         { label: 'Get fucked by Dr. Pavlov', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['therapist', 'fuck', 'kneel'] }]);
+    scene.actions([{ label: 'Continue', goto: ['therapist', 'fuck', '\'kneel\''] }]);
   } },
       ]);
     } else {
@@ -334,7 +334,7 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
         scene.text('He wastes no time and quickly has his dick out, positioned to penetrate your pussy.');
         scene.actions([
           { label: 'Get fucked by Dr. Pavlov', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['therapist', 'fuck', 'back'] }]);
+    scene.actions([{ label: 'Continue', goto: ['therapist', 'fuck', '\'back\''] }]);
   } },
         ]);
       } else {
@@ -343,7 +343,7 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
         scene.text('He wastes no time and quickly has his dick out, ready to penetrate your pussy.');
         scene.actions([
           { label: 'Get fucked by Dr. Pavlov', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['therapist', 'fuck', 'ride'] }]);
+    scene.actions([{ label: 'Continue', goto: ['therapist', 'fuck', '\'ride\''] }]);
   } },
         ]);
       }
@@ -866,7 +866,7 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
     (s as any).hypnoStripped = 0;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', 'remove your clothing'] }]);
+    scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', '\'remove your clothing\''] }]);
   } },
     ]);
   }
@@ -1123,7 +1123,7 @@ function enterSecondHypnoStage(s: GameState, scene: SceneBuilder): void {
         { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', 'kiss him'] }]);
+    scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', '\'kiss him\''] }]);
   } },
       ]);
     }
@@ -1203,7 +1203,7 @@ function enterThirdHypnoStage(s: GameState, scene: SceneBuilder): void {
         { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', 'suck his cock'] }]);
+    scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', '\'suck his cock\''] }]);
   } },
       ]);
     }

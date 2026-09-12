@@ -231,9 +231,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Will you also join me?"');
     scene.text('She moves over to the stereo and puts on some music. She begins dancing in the middle of the room.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_vika_events', 'play_game_wish1', 16
-  } },
+      { label: 'Continue', goto: ['mey_vika_events', 'play_game_wish1', '16'] },
     ]);
   } else {
     if (((s as any).zz_stage ?? 0) < 34) {
@@ -1064,9 +1062,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.text('You arrive at the beach seeing more people than usual and lots of children running around. Vicky frowns…');
     scene.text('"Where the hell are we going to find a spot. You can neither breathe nor fart… I would like to sunbathe, and take a dip in the lake… Well, at least we brought some beers with us…"');
     scene.actions([
-      { label: 'Go to the remote beach', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_vika_events', 'beach_event0', 1
-  } },
+      { label: 'Go to the remote beach', goto: ['mey_vika_events', 'beach_event0', '1'] },
     ]);
   } else {
     ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
@@ -1089,9 +1085,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_vika_events', 'beach_event0', 1
-  } },
+      { label: 'Continue', goto: ['mey_vika_events', 'beach_event0', '1'] },
     ]);
   } },
         { label: 'Tan', handler: (st: GameState) => {
@@ -1746,8 +1740,7 @@ function enterBathQw0(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a bath', handler: (st: GameState) => {
     ((s as any).mey_vika ?? {})['bath_qw'] = 1;
     ((s as any).mey_vika ?? {})['bath_qw_day'] = ((s as any).daystart ?? 0);
-    // TODO-QSP: gt 'mey_vika_events', 'bath_common', 1
-  } },
+  }, goto: ['mey_vika_events', 'bath_common', '1'] },
     ]);
   }
   // TODO-QSP: end
@@ -1771,9 +1764,7 @@ function enterBathQw1(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? 0)}! No excuses you're taking a bath now! Come with me!"`);
   if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
     scene.actions([
-      { label: 'Take a bath', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_vika_events', 'bath_common', 1
-  } },
+      { label: 'Take a bath', goto: ['mey_vika_events', 'bath_common', '1'] },
     ]);
   }
   // TODO-QSP: end

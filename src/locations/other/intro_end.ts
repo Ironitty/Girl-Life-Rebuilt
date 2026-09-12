@@ -149,9 +149,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The workers' shift has long since finished, so sneaking out isn't too hard. The ...
     scene.text(`The workers' shift has long since finished, so sneaking out isn't too hard. The site is on the highway, so hopefully you can make it back before ${((s as any).pcs_nickname ?? 0)}'s family starts worrying. As you start walking back with her, you feel a sudden rush of heat and find yourself falling…`);
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'sg_tg', 1
-  } },
+      { label: 'Continue', goto: ['intro_end', 'sg_tg', '1'] },
     ]);
   } },
     ]);
@@ -282,9 +280,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Whining about the situation isn't going to change it, so you resolve to deal wit...
     scene.text(`Whining about the situation isn't going to change it, so you resolve to deal with it one day at a time, living your new life as ${((s as any).pcs_firstname ?? 0)} "${((s as any).pcs_nickname ?? 0)}" ${((s as any).pcs_lastname ?? 0)}.`);
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'sg_tg', 2
-  } },
+      { label: 'Continue', goto: ['intro_end', 'sg_tg', '2'] },
     ]);
   } },
     ]);
@@ -446,9 +442,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     scene.text('Diane laughs. "That <b>was</b> a long time ago. So this is your sister? Nice to meet you. You\'re going to have a lot of fun here. Let\'s get you your dorm keys and get you set up!"');
     scene.text('"By the way, what are you studying?"');
     scene.actions([
-      { label: 'Get your key', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 1
-  } },
+      { label: 'Get your key', goto: ['intro_end', 'uni_shared', '1'] },
     ]);
   } },
     ]);
@@ -467,12 +461,10 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Teaching', handler: (st: GameState) => {
     qspCall(s, 'uni_admin', 'courses', 'enroll_teaching', 1);
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+  }, goto: ['intro_end', 'uni_shared', '2'] },
         { label: 'Nursing', handler: (st: GameState) => {
     qspCall(s, 'uni_admin', 'courses', 'enroll_nursing', 1);
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+  }, goto: ['intro_end', 'uni_shared', '2'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -490,14 +482,10 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_elective_computer', 1);
     scene.text('You decide to enroll in the computer class for the first and second semester of this year.');
     scene.actions([
-      { label: 'Consider other elective classes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Consider other elective classes', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
-      { label: 'Don\'t enroll in the computer class', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Don\'t enroll in the computer class', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
           ]);
@@ -513,14 +501,10 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_elective_art', 1);
     scene.text('You decide to enroll in the art class for the first and second semester of this year.');
     scene.actions([
-      { label: 'Consider other elective classes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Consider other elective classes', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
-      { label: 'Don\'t enroll in the art class', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Don\'t enroll in the art class', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
           ]);
@@ -536,14 +520,10 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_elective_psychology', 1);
     scene.text('You decide to enroll in the psychology class for the first and second semester of this year.');
     scene.actions([
-      { label: 'Consider other elective classes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Consider other elective classes', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
-      { label: 'Don\'t enroll in the psychology class', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Don\'t enroll in the psychology class', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
           ]);
@@ -559,14 +539,10 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_elective_african', 1);
     scene.text('You decide to enroll in the African studies class for the first and second semester of this year.');
     scene.actions([
-      { label: 'Consider other elective classes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Consider other elective classes', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
-      { label: 'Don\'t enroll in the African studies class', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Don\'t enroll in the African studies class', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
           ]);
@@ -582,22 +558,16 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_elective_asian', 1);
     scene.text('You decide to enroll in the Asian studies class for the first and second semester of this year.');
     scene.actions([
-      { label: 'Consider other elective classes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Consider other elective classes', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
-      { label: 'Don\'t enroll in the Asian studies class', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 2
-  } },
+      { label: 'Don\'t enroll in the Asian studies class', goto: ['intro_end', 'uni_shared', '2'] },
     ]);
   } },
           ]);
         }
         scene.actions([
-          { label: 'Don\'t enroll in any more elective classes', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 3
-  } },
+          { label: 'Don\'t enroll in any more elective classes', goto: ['intro_end', 'uni_shared', '3'] },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {
@@ -639,9 +609,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Everything will be fine, ${((s as any).npc_nickname ?? 0)?.['A29']}. You got me here, but I'll do the rest."`);
     scene.text('She gives you a hug before going to stand over at your pile of stuff to keep an eye on it.');
     scene.actions([
-      { label: 'Go on tour', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 4
-  } },
+      { label: 'Go on tour', goto: ['intro_end', 'uni_shared', '4'] },
     ]);
   } },
         { label: 'Snap at her', handler: (st: GameState) => {
@@ -651,9 +619,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Just stop, ${((s as any).npc_nickname ?? 0)?.['A29']}! I'm an adult now, and I'll do whatever I want with whoever I want!"`);
     scene.text('Her eyes flash in anger, but she doesn\'t say anything. She goes and stands next to your pile to keep an eye on it.');
     scene.actions([
-      { label: 'Go on tour', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 4
-  } },
+      { label: 'Go on tour', goto: ['intro_end', 'uni_shared', '4'] },
     ]);
   } },
       ]);
@@ -666,9 +632,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I know, I know. Don't worry so much, ${((s as any).npc_nickname ?? 0)?.['A29']}! You got me here. I'll do the rest."`);
     scene.text('She gives you a hug before going to stand over your pile of stuff to keep an eye on it.');
     scene.actions([
-      { label: 'Go on a tour', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'uni_shared', 4
-  } },
+      { label: 'Go on a tour', goto: ['intro_end', 'uni_shared', '4'] },
     ]);
   } },
     ]);
@@ -810,9 +774,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`By the time you're done, Kolka and Vladimir have started bringing boxes in. "Your ${((s as any).npc_nickname ?? 0)?.['A29']} is staying outside to keep an eye on your stuff. I don't think she likes the neighborhood much," he says with a shrug.`);
     scene.text('You and Anya pick up the boxes they set down and take them to the rooms they were labeled for while your brother and stepfather bring it all inside.');
     scene.actions([
-      { label: 'Greet your <<$npc_nickname[\'A29\']>>', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'city_shared', 1
-  } },
+      { label: 'Greet your <<$npc_nickname[\'A29\']>>', goto: ['intro_end', 'city_shared', '1'] },
     ]);
   } },
     ]);
@@ -835,9 +797,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Everything will be fine, ${((s as any).npc_nickname ?? 0)?.['A29']}. I'll look into university prices and decide then."`);
     scene.text('She gives you a hug before going to the kitchen to start preparing lunch.');
     scene.actions([
-      { label: 'Have lunch', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'city_shared', 2
-  } },
+      { label: 'Have lunch', goto: ['intro_end', 'city_shared', '2'] },
     ]);
   } },
         { label: 'Snap at her', handler: (st: GameState) => {
@@ -847,9 +807,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Just stop, ${((s as any).npc_nickname ?? 0)?.['A29']}! I'm an adult now, and I'll do whatever I want with whoever I want!"`);
     scene.text('Her eyes flash in anger, but she doesn\'t say anything. She then heads into the kitchen to prepare lunch.');
     scene.actions([
-      { label: 'Have lunch', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'city_shared', 2
-  } },
+      { label: 'Have lunch', goto: ['intro_end', 'city_shared', '2'] },
     ]);
   } },
         { label: 'Appreciate her concern', handler: (st: GameState) => {
@@ -859,9 +817,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I know, but don't worry so much, ${((s as any).npc_nickname ?? 0)?.['A29']}. I'll be very careful, I promise. It's only for a few months."`);
     scene.text('She gives you a hug before going to the kitchen to prepare lunch.');
     scene.actions([
-      { label: 'Have lunch', handler: (st: GameState) => {
-    // TODO-QSP: gt 'intro_end', 'city_shared', 2
-  } },
+      { label: 'Have lunch', goto: ['intro_end', 'city_shared', '2'] },
     ]);
   } },
       ]);

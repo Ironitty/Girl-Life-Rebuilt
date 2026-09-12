@@ -1028,18 +1028,18 @@ function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >=19  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
               scene.actions([
-                { label: 'Attend vigil', goto: ['pav_church', 'vigil', 'mom'] },
+                { label: 'Attend vigil', goto: ['pav_church', 'vigil', '\'mom\''] },
               ]);
             } else {
               if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
                 scene.actions([
-                  { label: 'Attend Divine Liturgy', goto: ['pav_church', 'liturgy', 'mom'] },
+                  { label: 'Attend Divine Liturgy', goto: ['pav_church', 'liturgy', '\'mom\''] },
                 ]);
               }
             }
             scene.actions([
-              { label: 'Light a candle', goto: ['pav_church', 'candle', 'mom'] },
-              { label: 'Pray', goto: ['pav_church', 'pray', 'mom'] },
+              { label: 'Light a candle', goto: ['pav_church', 'candle', '\'mom\''] },
+              { label: 'Pray', goto: ['pav_church', 'pray', '\'mom\''] },
             ]);
           }
         }

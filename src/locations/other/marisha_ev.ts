@@ -40,9 +40,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     scene.text('She continues to watch the boys walk off as you approach but before you can get close, she notices you walking toward her and quickly darts away, obviously not wanting to talk.');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gschool_grounds', $loc_arg
-  } },
+      { label: 'Leave', goto: ['gschool_grounds', 'loc_arg'] },
     ]);
   } },
     { label: 'Ignore her', handler: (st: GameState) => {

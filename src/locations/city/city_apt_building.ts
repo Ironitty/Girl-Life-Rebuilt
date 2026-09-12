@@ -55,7 +55,7 @@ function enterFloor_1(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_2'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_1'] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_1\''] },
   ]);
   scene.build();
 }
@@ -79,7 +79,7 @@ function enterFloor_2(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the third floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_3', 'from_second_floor'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_2'] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_2\''] },
   ]);
   scene.build();
 }
@@ -110,7 +110,7 @@ function enterFloor_3(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_4'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_3'] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_3\''] },
   ]);
   scene.build();
 }
@@ -134,7 +134,7 @@ function enterFloor_4(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the fifth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_5'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_4'] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_4\''] },
   ]);
   scene.build();
 }
@@ -158,7 +158,7 @@ function enterFloor_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the roof', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'roof'] },
-    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_5'] },
+    { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_5\''] },
     { label: 'Apartment 49: Your home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['korr', ''] },
@@ -283,11 +283,11 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
   scene.text('The elevator in the apartment building was renovated at some point, but is still fairly old. It\'s in good working order though.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', 'from_lift'] },
-    { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', 'from_lift'] },
-    { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', 'from_lift'] },
-    { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', 'from_lift'] },
-    { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', 'from_lift'] },
+    { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', '\'from_lift\''] },
+    { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', '\'from_lift\''] },
+    { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', '\'from_lift\''] },
+    { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', '\'from_lift\''] },
+    { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', '\'from_lift\''] },
   ]);
   scene.build();
 }
@@ -457,10 +457,10 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/apartment/stairs/lift.jpg');
     scene.text('You get back in the elevator and decide to take it to another floor.');
     scene.actions([
-      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', 'from_lift'] },
-      { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', 'from_lift'] },
-      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', 'from_lift'] },
-      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', 'from_lift'] },
+      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', '\'from_lift\''] },
+      { label: 'Push button: Floor 3', goto: ['city_apt_building', 'floor_3', '\'from_lift\''] },
+      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', '\'from_lift\''] },
+      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', '\'from_lift\''] },
     ]);
   } },
       ]);
@@ -501,7 +501,7 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_2'] },
-      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_1'] },
+      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_1\''] },
     ]);
   } },
   ]);
@@ -792,10 +792,10 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/apartment/stairs/lift.jpg');
     scene.text('<center>You get back in the elevator and decide to take it to another floor.');
     scene.actions([
-      { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', 'from_lift'] },
-      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', 'from_lift'] },
-      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', 'from_lift'] },
-      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', 'from_lift'] },
+      { label: 'Push button: Floor 1', goto: ['city_apt_building', 'floor_1', '\'from_lift\''] },
+      { label: 'Push button: Floor 2', goto: ['city_apt_building', 'floor_2', '\'from_lift\''] },
+      { label: 'Push button: Floor 4', goto: ['city_apt_building', 'floor_4', '\'from_lift\''] },
+      { label: 'Push button: Floor 5', goto: ['city_apt_building', 'floor_5', '\'from_lift\''] },
     ]);
   } },
       ]);
@@ -836,7 +836,7 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
       { label: 'Go up to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_apt_building', 'floor_4'] },
-      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', 'floor_3'] },
+      { label: 'Take the elevator', goto: ['city_apt_building', 'lift', '\'floor_3\''] },
     ]);
   } },
   ]);

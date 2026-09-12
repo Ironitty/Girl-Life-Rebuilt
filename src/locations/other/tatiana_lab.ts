@@ -343,9 +343,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
         (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
         return;
         scene.actions([
-          { label: 'Ask her to tell you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'succubus', 'tatianaask', 1
-  } },
+          { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '1'] },
         ]);
       } else {
         if (((s as any).sucpcinfo ?? 0) === 5) {
@@ -354,9 +352,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
           (s as any).sucinfoday = ((s as any).daystart ?? 0) + 17 + (Math.floor(Math.random() * 8) + 0);
           return;
           scene.actions([
-            { label: 'Ask her to tell you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'succubus', 'tatianaask', 2
-  } },
+            { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '2'] },
           ]);
         } else {
           if (((s as any).sucpcinfo ?? 0) === 6) {
@@ -365,9 +361,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
             (s as any).sucinfoday = ((s as any).daystart ?? 0) + 9000000;
             return;
             scene.actions([
-              { label: 'Ask her to tell you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'succubus', 'tatianaask', 3
-  } },
+              { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '3'] },
             ]);
           }
         }
@@ -903,7 +897,7 @@ function enterEscalation1(s: GameState, scene: SceneBuilder): void {
     { label: '"I think I will pass for now"', goto: ['tatiana_lab', 'start'] },
     { label: 'One of the dildoed power-tools(Anal)', goto: ['tatiana_lab', 'teach_dildo_anal'] },
     { label: 'One of the dildoed power-tools(Vaginal)', goto: ['tatiana_lab', 'teach_dildo_vag'] },
-    { label: 'Why choose only one?(????)', goto: ['tatiana_lab', 'teach_dildo_vag', 'teach_full'] },
+    { label: 'Why choose only one?(????)', goto: ['tatiana_lab', 'teach_dildo_vag', '\'teach_full\''] },
   ]);
   scene.build();
 }
@@ -1298,9 +1292,7 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
         (s as any).sucpcinfo = 5;
         (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
         scene.actions([
-          { label: 'Ask her to tell you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'succubus', 'tatianaask', 1
-  } },
+          { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '1'] },
         ]);
       } else {
         if (((s as any).sucpcinfo ?? 0) === 5) {
@@ -1309,9 +1301,7 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
           (s as any).sucpcinfo = 6;
           (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
           scene.actions([
-            { label: 'Ask her to tell you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'succubus', 'tatianaask', 2
-  } },
+            { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '2'] },
           ]);
         } else {
           scene.text('No, I haven\'t.');
@@ -1567,7 +1557,7 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).sucbypass = 1;
-  scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'start', 'no_time'] }]);
+  scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'start', '\'no_time\''] }]);
   // TODO-QSP: end
   scene.build();
 }

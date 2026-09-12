@@ -912,7 +912,7 @@ function enterAbortion(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
   if (((s as any).broodcurse ?? 0) > 0) {
-    // TODO-QSP: gt 'gameover', 'force', 13
+    scene.actions([{ label: 'Continue', goto: ['gameover', 'force', '13'] }]);
   }
   // TODO-QSP: end
   scene.build();

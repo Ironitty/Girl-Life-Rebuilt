@@ -109,12 +109,8 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
     scene.text('2. Expose the plan: Tell Gala everything you know. Taras will be extremely annoyed and you don\'t know how Gala might react.');
     scene.text('3. Ignore the plan: Do nothing and maybe act later.');
     scene.actions([
-      { label: 'Follow plan', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'tarasPlan', 0
-  } },
-      { label: 'Expose plan', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'tarasPlan', 100
-  } },
+      { label: 'Follow plan', goto: ['nichGala', 'tarasPlan', '0'] },
+      { label: 'Expose plan', goto: ['nichGala', 'tarasPlan', '100'] },
       { label: 'Ignore plan', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'return');
   } },
@@ -368,25 +364,19 @@ function enterContractOfferSign(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_stren ?? 0) >= 50) {
       scene.text('You struggle for what feels at least half an hour. Your <b>high strength</b> allows you to stay in your awkward position without being strangled too much.');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveIntro', 1
-  } },
+        { label: 'Continue', goto: ['nichGala', 'slaveIntro', '1'] },
       ]);
     } else {
       if (((s as any).pcs_vital ?? 0) >= 60) {
         scene.text('You struggle for what feels at least half an hour. As your legs grow tired you get strangled more and more. Your <b>high endurance</b> allows you to stay awake anyways.');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveIntro', 1
-  } },
+          { label: 'Continue', goto: ['nichGala', 'slaveIntro', '1'] },
         ]);
       } else {
         scene.text('You struggle for what feels like an eternity. As your legs grow tired you get strangled more and more. Finally you can\'t force yourself up anymore. You start to panic as you realize that you are going to choke.');
         scene.text('Everything goes dark. The last thing you see is that Gala slowly stands up from her seat and walks over to you.');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveIntro', 2
-  } },
+          { label: 'Continue', goto: ['nichGala', 'slaveIntro', '2'] },
         ]);
       }
     }
@@ -417,9 +407,7 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('Gala then wraps your hands in pieces of clothes and secures them with tape, preventing you from reaching your nipples and removing the clamps.');
     scene.text('Then she disconnects you from the chain that leads connects you to the ceiling and lets you fall on your side.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveIntro', 10
-  } },
+      { label: 'Continue', goto: ['nichGala', 'slaveIntro', '10'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -434,9 +422,7 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
       scene.text('It takes a few minutes for your screams to become silent sobs. Your nipples still hurt badly but since your blood can\'t flow freely there they become increasingly numb.');
       scene.text('You then see Gala stepping over your body and placing. Her shoes are directly in front of your face. Apparently she was standing behind you the whole time.');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveIntro', 10
-  } },
+        { label: 'Continue', goto: ['nichGala', 'slaveIntro', '10'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 10) {
@@ -456,9 +442,7 @@ function enterSlaveIntro(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveIntro', 20
-  } },
+          { label: 'Continue', goto: ['nichGala', 'slaveIntro', '20'] },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 20) {
@@ -499,9 +483,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + (30);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Go inside', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 2
-  } },
+      { label: 'Go inside', goto: ['nichGala', 'slaveDoc', '2'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -516,9 +498,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + (5);
       qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Comply', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 3
-  } },
+        { label: 'Comply', goto: ['nichGala', 'slaveDoc', '3'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 3) {
@@ -534,9 +514,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + (2);
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Wait', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 4
-  } },
+          { label: 'Wait', goto: ['nichGala', 'slaveDoc', '4'] },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 4) {
@@ -550,9 +528,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
           (s as any).minut = ((s as any).minut ?? 0) + (10);
           qspCall(s, 'stat', '');
           scene.actions([
-            { label: 'Next', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 5
-  } },
+            { label: 'Next', goto: ['nichGala', 'slaveDoc', '5'] },
           ]);
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 5) {
@@ -581,14 +557,12 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
             (s as any).minut = ((s as any).minut ?? 0) + (10);
             qspCall(s, 'stat', '');
             scene.actions([
-              { label: 'Next', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 6
-  } },
+              { label: 'Next', goto: ['nichGala', 'slaveDoc', '6'] },
             ]);
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 6) {
               if ((!((s as any).preg ?? 0))) {
-                // TODO-QSP: gt 'nichGala', 'slaveDoc', 8
+                scene.actions([{ label: 'Continue', goto: ['nichGala', 'slaveDoc', '8'] }]);
               }
               scene.img('images/characters/city/gala/slave/doctorEx.jpg');
               scene.text('The doctor points at your belly.');
@@ -607,15 +581,11 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
               scene.text('"You will understand that that\'s the best for you in time."');
               if (((s as any).nichCheat ?? 0) > 0) {
                 scene.actions([
-                  { label: 'Cheat: Stay pregnant', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 8
-  } },
+                  { label: 'Cheat: Stay pregnant', goto: ['nichGala', 'slaveDoc', '8'] },
                 ]);
               }
               scene.actions([
-                { label: 'Next', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 7
-  } },
+                { label: 'Next', goto: ['nichGala', 'slaveDoc', '7'] },
               ]);
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 7) {
@@ -634,9 +604,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
                 (s as any).minut = ((s as any).minut ?? 0) + (30);
                 qspCall(s, 'stat', '');
                 scene.actions([
-                  { label: 'Next', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 8
-  } },
+                  { label: 'Next', goto: ['nichGala', 'slaveDoc', '8'] },
                 ]);
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 8) {
@@ -647,9 +615,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
                   (s as any).minut = ((s as any).minut ?? 0) + (5);
                   qspCall(s, 'stat', '');
                   scene.actions([
-                    { label: 'Next', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 9
-  } },
+                    { label: 'Next', goto: ['nichGala', 'slaveDoc', '9'] },
                   ]);
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 9) {
@@ -670,9 +636,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
                     (s as any).minut = ((s as any).minut ?? 0) + (10);
                     qspCall(s, 'stat', '');
                     scene.actions([
-                      { label: 'Next', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveDoc', 10
-  } },
+                      { label: 'Next', goto: ['nichGala', 'slaveDoc', '10'] },
                     ]);
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === 10) {
@@ -714,7 +678,7 @@ function enterSlaveDoc(s: GameState, scene: SceneBuilder): void {
 function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     if ((!((s as any).nichGalaImplantLevel ?? 0))) {
-      // TODO-QSP: gt 'nichGala', 'slaveImplant', 1
+      scene.actions([{ label: 'Continue', goto: ['nichGala', 'slaveImplant', '1'] }]);
     } else {
       (s as any).nichTempDayDifference = ((s as any).daystart ?? 0) - ((s as any).nichGalaImplantDay ?? 0);
       if (((s as any).nichTempDayDifference ?? 0) <= 4) {
@@ -729,16 +693,16 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).nichGalaImplantLevel ?? 0) === 1) {
-        // TODO-QSP: gt 'nichGala', 'slaveImplant', 10
+        scene.actions([{ label: 'Continue', goto: ['nichGala', 'slaveImplant', '10'] }]);
       } else {
         if (((s as any).nichGalaImplantLevel ?? 0) === 2) {
-          // TODO-QSP: gt 'nichGala', 'slaveImplant', 50
+          scene.actions([{ label: 'Continue', goto: ['nichGala', 'slaveImplant', '50'] }]);
         } else {
           if (((s as any).nichGalaImplantLevel ?? 0) === 3) {
             if ((!((s as any).nichGalaTattoo ?? 0))) {
-              // TODO-QSP: gt 'nichGala', 'slaveImplant', 100
+              scene.actions([{ label: 'Continue', goto: ['nichGala', 'slaveImplant', '100'] }]);
             } else {
-              // TODO-QSP: gt 'nichGala', 'slaveImplant', 120
+              scene.actions([{ label: 'Continue', goto: ['nichGala', 'slaveImplant', '120'] }]);
             }
           }
         }
@@ -821,9 +785,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
             (s as any).nichGalaImplantDay = ((s as any).daystart ?? 0);
             qspCall(s, 'stat', '');
             scene.actions([
-              { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveImplant', 101
-  } },
+              { label: 'Continue', goto: ['nichGala', 'slaveImplant', '101'] },
             ]);
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 101) {
@@ -883,9 +845,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                 (s as any).minut = ((s as any).minut ?? 0) + 30;
                 qspCall(s, 'stat', '');
                 scene.actions([
-                  { label: 'Obey', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveImplant', 121
-  } },
+                  { label: 'Obey', goto: ['nichGala', 'slaveImplant', '121'] },
                 ]);
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 121) {
@@ -1015,9 +975,7 @@ function enterSlaveImplant(s: GameState, scene: SceneBuilder): void {
                                 (s as any).minut = ((s as any).minut ?? 0) + 60;
                                 qspCall(s, 'stat', '');
                                 scene.actions([
-                                  { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveImplant', 129
-  } },
+                                  { label: 'Continue', goto: ['nichGala', 'slaveImplant', '129'] },
                                 ]);
                               } else {
                                 if (((s as any).locArgs?.[1] ?? 0) === 129) {
@@ -1125,9 +1083,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think it\'s best if the two of you get to know each other."');
     scene.text('You hear her leaving the room.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveTarasIntro', 1
-  } },
+      { label: 'Continue', goto: ['nichGala', 'slaveTarasIntro', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -1138,9 +1094,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       qspCall(s, 'stat', '');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveTarasIntro', 2
-  } },
+        { label: 'Continue', goto: ['nichGala', 'slaveTarasIntro', '2'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -1163,9 +1117,7 @@ function enterSlaveTarasIntro(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'nichGala', 'slaveTarasIntro', 3
-  } },
+          { label: 'Continue', goto: ['nichGala', 'slaveTarasIntro', '3'] },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {

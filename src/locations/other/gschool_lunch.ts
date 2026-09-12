@@ -120,7 +120,7 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).week ?? 0) > 1  &&  (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).nerd_game ?? 0)?.['stage'] > 0  ||  (Math.floor(Math.random() * (((s as any).npc_rel ?? 0)?.['A152'] - 80 + 1)) + (80)) > 95)  &&  ((s as any).nerd_game ?? 0)?.['invite_day'] < ((s as any).daystart ?? 0) - ((s as any).week ?? 0)) {
-      scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', 'lunch'] }]);
+      scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', '\'lunch\''] }]);
     } else {
       if (((s as any).bella_goth ?? 0) === 0  &&  (((s as any).arch_vars ?? 0)?.['main_active'] === 'goth'  &&  ((s as any).PCloGoth ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) === 7)) {
         (s as any).bella_goth = 1;
@@ -137,7 +137,7 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
       scene.text(`<br>"Hi Nat, did you happen to see Dimka?" "Hey ${((s as any).pcs_nickname ?? 0)}, he was here earlier, speaking with Lena and Lera."`);
     }
     if (((s as any).dimaRevenge ?? 0) === 2) {
-      // TODO-QSP: gt 'dimaRevenge', 2
+      scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '2'] }]);
     } else {
       if (((s as any).NikoVolkovQW ?? 0) === 0  &&  ((s as any).NikoLuv ?? 0) >= 4) {
         scene.actions([{ label: 'Continue', goto: ['NikoEv', 'Date Intro'] }]);

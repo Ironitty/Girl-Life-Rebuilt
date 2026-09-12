@@ -84,7 +84,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: '<center>Change log</center>', goto: ['start', 'version'] },
-    { label: '<center>New Features</center>', goto: ['feature_updates', 'show', 'start'] },
+    { label: '<center>New Features</center>', goto: ['feature_updates', 'show', '\'start\''] },
     { label: '<center>Manage mods</center>', handler: (st: GameState) => {
     (st as any).settingmode = 2;
   }, goto: ['$menu_settings', 'mods'] },

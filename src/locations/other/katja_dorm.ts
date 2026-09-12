@@ -564,7 +564,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
               { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
             ]);
           } else {
@@ -586,7 +586,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
     ]);
   } },
@@ -607,7 +607,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
     ]);
   } },
@@ -627,7 +627,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
     ]);
   } },
@@ -693,7 +693,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
                 { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
               ]);
             } else {
@@ -713,7 +713,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
     ]);
   } },
@@ -734,7 +734,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
     ]);
   } },
@@ -754,7 +754,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
     ]);
   } },
@@ -845,7 +845,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
           { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_pussy_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'pussy'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'pussy\''] }]);
   } },
         ]);
       } else {
@@ -1041,7 +1041,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
             { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
           ]);
         } else {
@@ -1061,7 +1061,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
     ]);
   } },
@@ -1080,7 +1080,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
     ]);
   } },
@@ -1098,7 +1098,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
     ]);
   } },
@@ -1141,7 +1141,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
               { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
             ]);
           } else {
@@ -1159,7 +1159,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
     ]);
   } },
@@ -1178,7 +1178,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
     ]);
   } },
@@ -1196,7 +1196,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
       { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
     ]);
   } },
@@ -1279,7 +1279,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katja_dorm', 'lazar_agree'] },
           { label: 'Refuse', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['lazer_anal_talk'] = 2;
-    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', 'anal'] }]);
+    scene.actions([{ label: 'Continue', goto: ['katja_dorm', 'lazar_refuse', '\'anal\''] }]);
   } },
         ]);
       }

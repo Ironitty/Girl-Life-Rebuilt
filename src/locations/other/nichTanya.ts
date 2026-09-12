@@ -2206,7 +2206,7 @@ function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
     scene.text('"Really? Given the way we met each other I would not have thought that you are a prude." she winks at you.');
     scene.actions([
       { label: 'Look for another uniform', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTanya', 'shoppingUniform', 'return'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTanya', 'shoppingUniform', '\'return\''] }]);
   } },
     ]);
   } },
@@ -2230,7 +2230,7 @@ function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you, Tanya. But maybe we should continue looking for something else."');
     scene.actions([
       { label: 'Look for another uniform', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTanya', 'shoppingUniform', 'return'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTanya', 'shoppingUniform', '\'return\''] }]);
   } },
     ]);
   } },
@@ -2250,7 +2250,7 @@ function enterShoppingUniform(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Look for another uniform', handler: (st: GameState) => {
-    scene.actions([{ label: 'Continue', goto: ['nichTanya', 'shoppingUniform', 'return'] }]);
+    scene.actions([{ label: 'Continue', goto: ['nichTanya', 'shoppingUniform', '\'return\''] }]);
   } },
       ]);
     }

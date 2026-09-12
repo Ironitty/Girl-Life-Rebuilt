@@ -269,10 +269,10 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).hunterVars ?? 0)?.['collective_opinion'] > 35) {
-        scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'shooting_practice', 'practice'] }]);
+        scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'shooting_practice', '\'practice\''] }]);
       } else {
         if (((s as any).hunterVars ?? 0)?.['sexual_comfort'] > 20) {
-          scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'shooting_practice', 'andrei_request'] }]);
+          scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'shooting_practice', '\'andrei_request\''] }]);
         } else {
           scene.img('images/locations/gadukino/hunters/andrei_shooting.jpg');
           scene.text('You try to get Andrei\'s attention, but he ignores you. Finally, when you keep trying, he waves his hand to gesture for you to go away.');
@@ -317,7 +317,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 3);
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', 'practice'] },
+      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', '\'practice\''] },
     ]);
   } },
             ]);
@@ -333,7 +333,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', 'practice'] },
+      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', '\'practice\''] },
     ]);
   } },
               ]);
@@ -350,7 +350,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flash', 10, 'exhibitionism');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', 'practice'] },
+      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', '\'practice\''] },
     ]);
   } },
                 ]);
@@ -368,7 +368,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth_swallow', 'A172', 1);
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', 'practice'] },
+      { label: 'Further', goto: ['gad_swamp_yard', 'shooting_practice', '\'practice\''] },
     ]);
   } },
                   ]);

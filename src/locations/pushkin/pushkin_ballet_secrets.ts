@@ -100,8 +100,8 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   scene.text('There is a <a href="exec: gt \'beverage\', \'watercooler\'">drinking fountain</a> near the doors to the gym hall to refill your water bottle.');
   if (((s as any).apparel ?? 0)?.['status'] !== 'nude') {
     scene.actions([
-      { label: 'Leave the studio', goto: ['pushkin_ballet_secrets', 'exit', 'pushkin'] },
-      { label: 'Return to shop', goto: ['pushkin_ballet_secrets', 'exit', 'shop'] },
+      { label: 'Leave the studio', goto: ['pushkin_ballet_secrets', 'exit', '\'pushkin\''] },
+      { label: 'Return to shop', goto: ['pushkin_ballet_secrets', 'exit', '\'shop\''] },
     ]);
   }
   if (((s as any).balletqw ?? 0)?.['membership'] === 0  ||  ((s as any).balletqw ?? 0)?.['membership'] < ((s as any).daystart ?? 0)) {

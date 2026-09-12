@@ -50,7 +50,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).gopdeath ?? 0) === 1  &&  ((s as any).vsehsdaladay ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: gt 'gameover', 'force', 6
+    scene.actions([{ label: 'Continue', goto: ['gameover', 'force', '6'] }]);
   }
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 16  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');

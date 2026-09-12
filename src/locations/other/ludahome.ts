@@ -541,7 +541,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
         scene.text('You remain seated next to Olu. He keeps intently watching the game, and you often wonder if he even remembers that you\'re here. He keeps yelling at the TV regardless of whether the team he likes does well or poorly.');
         scene.actions([
           { label: 'Stop watching TV', goto: ['ludahome', 'livingroom'] },
-          { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', 'Olu'] },
+          { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', '\'Olu\''] },
         ]);
       }
     } else {
@@ -562,7 +562,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
           scene.text('You remain seated next to your aunt and watch TV with them for another half an hour. Olu seems pretty focused on the show and doesn\'t speak. On the other hand, Luda periodically makes small talk with you about a variety of things, seemingly only half paying attention to the show.');
           scene.actions([
             { label: 'Stop watching TV', goto: ['ludahome', 'livingroom'] },
-            { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', 'OluLuda'] },
+            { label: 'Keep watching TV (0:30)', goto: ['ludahome', 'watchtv', '\'OluLuda\''] },
           ]);
         }
       }
@@ -639,9 +639,7 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
     scene.text(`After a while, they start talking about other things, so you can finally join in. However, your ${((s as any).npc_nickname ?? 0)?.['A29']} still occasionally cuts you off, perhaps afraid you'll shatter the illusion she's building up of your family.`);
     scene.actions([
       { label: 'Get up from the table', goto: ['ludahome', 'kitchen'] },
-      { label: 'Keep chatting', handler: (st: GameState) => {
-    // TODO-QSP: gt 'ludahome', 'luda_mom_talk', 1
-  } },
+      { label: 'Keep chatting', goto: ['ludahome', 'luda_mom_talk', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -666,9 +664,7 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
         scene.text(`You remain seated at the table with your ${((s as any).npc_nickname ?? 0)?.['A29']} and Aunt, mostly listening to them talk but occasionally taking part, at least when your mother doesn't interrupt you trying to impress your aunt. They seem to get along better than you thought, given how rarely Luda comes down to your apartment. You briefly wonder why that is. Does your ${((s as any).npc_nickname ?? 0)?.['A29']} always make excuses so Luda can't see or overhear something less perfect than the picture she paints?`);
         scene.actions([
           { label: 'Get up from the table', goto: ['ludahome', 'kitchen'] },
-          { label: 'Keep chatting', handler: (st: GameState) => {
-    // TODO-QSP: gt 'ludahome', 'luda_mom_talk', 1
-  } },
+          { label: 'Keep chatting', goto: ['ludahome', 'luda_mom_talk', '1'] },
         ]);
       }
     }

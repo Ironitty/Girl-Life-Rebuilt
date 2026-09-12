@@ -10,13 +10,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['gameover'] === 0) {
-    scene.actions([{ label: 'Continue', goto: ['gameover', 'screen', '<<ARGS[1]>>'] }]);
+    scene.actions([{ label: 'Continue', goto: ['gameover', 'screen', '\'<<ARGS[1]>>\''] }]);
   }
   scene.build();
 }
 
 function enterForce(s: GameState, scene: SceneBuilder): void {
-  scene.actions([{ label: 'Continue', goto: ['gameover', 'screen', '<<ARGS[1]>>'] }]);
+  scene.actions([{ label: 'Continue', goto: ['gameover', 'screen', '\'<<ARGS[1]>>\''] }]);
   // TODO-QSP: end
   scene.build();
 }

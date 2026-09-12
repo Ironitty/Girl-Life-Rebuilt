@@ -218,21 +218,21 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
 
 function enterChatWithHunters(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['sexual_comfort'] > 40  &&  ((s as any).alko ?? 0) > 4  &&  ((s as any).clothingworntype ?? 0) !== 'nude'  &&  (Math.floor(Math.random() * 5) + 1) === 1) {
-    scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', 'entertainment'] }]);
+    scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', '\'entertainment\''] }]);
   } else {
     if (((s as any).boy_talk ?? 0) === 0  &&  ((s as any).hunterVars ?? 0)?.['drink'] === 1  &&  (Math.floor(Math.random() * 10) + 1) === 1) {
-      scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', 'boy_talk'] }]);
+      scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', '\'boy_talk\''] }]);
     } else {
       if (((s as any).boy_talk ?? 0) === 1  &&  ((s as any).virginity_talk ?? 0) === 0  &&  ((s as any).hunterVars ?? 0)?.['drink'] === 1  &&  (Math.floor(Math.random() * 10) + 1) === 1) {
-        scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', 'virginity_talk'] }]);
+        scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', '\'virginity_talk\''] }]);
       } else {
         if (((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 9) + 1) === 1) {
-          scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', 'pantiless_flash'] }]);
+          scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', '\'pantiless_flash\''] }]);
         } else {
           if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
-            scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', 'nude'] }]);
+            scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', '\'nude\''] }]);
           } else {
-            scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', 'generic'] }]);
+            scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'chat_with_hunters_theme', '\'generic\''] }]);
           }
         }
       }
@@ -548,7 +548,7 @@ function enterJoinDrinking(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Ask again and flash your tits [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'flash_tits'] },
+          { label: 'Ask again and flash your tits [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'flash_tits\''] },
         ]);
       }
       scene.actions([
@@ -599,7 +599,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
         scene.text('After thinking for a moment, Andrei asks "How about you dance by the fire a bit?"');
         scene.text('"Just express how free you are unrestricted by civilization or some other artsy fartsy crap. We will even clap you a tempo!" says Andrei"');
         scene.actions([
-          { label: 'Dance naked by the bonfire', goto: ['hunter_interactions', 'booze_dare', 'nude_dance'] },
+          { label: 'Dance naked by the bonfire', goto: ['hunter_interactions', 'booze_dare', '\'nude_dance\''] },
         ]);
       } else {
         scene.text('"How about you show us your panties" says Andrei. "Wondering what color your underwear is, just scientific curiosity that\'s all"');
@@ -612,7 +612,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             scene.actions([
-              { label: 'Show him your panties [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'flash_thong'] },
+              { label: 'Show him your panties [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'flash_thong\''] },
             ]);
           }
         } else {
@@ -629,8 +629,8 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
             ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (1);
             scene.text('You tell Andrei that you are not wearing any panties with a blush. "I do not believe you" he says with a smirk. "We need empirical proof. Solid evidence or nothing."');
             scene.actions([
-              { label: 'Show them your unclad ass [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'flash_ass'] },
-              { label: 'Let them see your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'flash_pussy'] },
+              { label: 'Show them your unclad ass [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'flash_ass\''] },
+              { label: 'Let them see your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'flash_pussy\''] },
             ]);
           }
         }
@@ -650,7 +650,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.actions([
-            { label: 'Strip off your clothes [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'strip_outfit'] },
+            { label: 'Strip off your clothes [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'strip_outfit\''] },
           ]);
         }
       } else {
@@ -665,7 +665,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
             ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (1);
             scene.text('"Your dare is to get rid of those panties" says Sergei plainly.');
             scene.actions([
-              { label: 'Take off your panties [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'strip_panties'] },
+              { label: 'Take off your panties [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'strip_panties\''] },
             ]);
           }
         } else {
@@ -673,7 +673,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
           scene.text('"Did you ever think about becoming a model?" asks Igor.');
           scene.text('Before you answer he adds "Let\'s do an erotic nude pose. Why don\'t you go lay prostrate there with your butt towards us? Maybe emphasize your butt a bit? I think it will look really sexy"');
           scene.actions([
-            { label: 'Dare to be an erotic model', goto: ['hunter_interactions', 'booze_dare', 'present_pussy'] },
+            { label: 'Dare to be an erotic model', goto: ['hunter_interactions', 'booze_dare', '\'present_pussy\''] },
           ]);
         }
       }
@@ -696,7 +696,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             scene.actions([
-              { label: 'Oblige him [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'present_tits'] },
+              { label: 'Oblige him [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'present_tits\''] },
             ]);
           }
         } else {
@@ -710,7 +710,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             scene.actions([
-              { label: 'Give them a teaser [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'masturbate_1'] },
+              { label: 'Give them a teaser [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'masturbate_1\''] },
             ]);
           }
         }
@@ -730,7 +730,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.actions([
-            { label: 'Kneel down in front of Sergei [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'blow_clothed'] },
+            { label: 'Kneel down in front of Sergei [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'blow_clothed\''] },
           ]);
         }
       } else {
@@ -751,14 +751,14 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               scene.actions([
-                { label: 'Lay down on the blanket [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', 'blanket_fuck'] },
+                { label: 'Lay down on the blanket [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['hunter_interactions', 'booze_dare', '\'blanket_fuck\''] },
               ]);
             }
           } else {
             ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (2);
             scene.text('"Seeing you prance around naked is getting me real hot and bothered" says Andrei. "I need you to relieve me, I want to fuck that little pussy of yours"');
             scene.actions([
-              { label: 'Approach Andrei on his chair', goto: ['hunter_interactions', 'booze_dare', 'chair_fuck'] },
+              { label: 'Approach Andrei on his chair', goto: ['hunter_interactions', 'booze_dare', '\'chair_fuck\''] },
             ]);
           }
         }
@@ -854,7 +854,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You are stripped down to your panties, everything else bared.');
       scene.actions([
-        { label: 'Take off your panties too', goto: ['hunter_interactions', 'booze_dare', 'strip_panties'] },
+        { label: 'Take off your panties too', goto: ['hunter_interactions', 'booze_dare', '\'strip_panties\''] },
       ]);
     }
     scene.actions([
@@ -952,7 +952,7 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Find a more comfortable position to continue', handler: (st: GameState) => {
     ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (4);
-    scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'booze_dare', 'masturbate_2'] }]);
+    scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'booze_dare', '\'masturbate_2\''] }]);
   } },
     ]);
   } },
@@ -1251,7 +1251,7 @@ function enterShootingBet(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk away', goto: ['gad_swamp_yard', 'start'] },
     ]);
   } },
-          { label: 'Let him lead you to the trees', goto: ['hunter_favors', 'yard_bondage', 'lost_bet'] },
+          { label: 'Let him lead you to the trees', goto: ['hunter_favors', 'yard_bondage', '\'lost_bet\''] },
         ]);
       } else {
         scene.text('"I want you to lose the clothes for today and tomorrow. Be more in touch with nature and all that. You can put em back on the day after of course"');
@@ -1294,9 +1294,9 @@ function enterShootingBet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     if (((s as any).tirand ?? 0) > 70) {
-      scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'shooting_bet', 'win'] }]);
+      scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'shooting_bet', '\'win\''] }]);
     } else {
-      scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'shooting_bet', 'lose'] }]);
+      scene.actions([{ label: 'Continue', goto: ['hunter_interactions', 'shooting_bet', '\'lose\''] }]);
     }
   } },
   ]);
@@ -1333,7 +1333,7 @@ function enterAndreiQuickFuck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'gad_swamp_woods') {
-      scene.actions([{ label: 'Continue', goto: ['gad_swamp_woods', 'shooting_practice', 'practice'] }]);
+      scene.actions([{ label: 'Continue', goto: ['gad_swamp_woods', 'shooting_practice', '\'practice\''] }]);
     } else {
       if (((s as any).loc ?? 0) === 'gad_swamp_yard') {
         scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
@@ -1597,7 +1597,7 @@ function enterNighttimeGangbang(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'right_in_the_babymaker', 'A173', 1);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Take care of Sergei', goto: ['hunter_interactions', 'nighttime_gangbang', 'finish'] },
+      { label: 'Take care of Sergei', goto: ['hunter_interactions', 'nighttime_gangbang', '\'finish\''] },
     ]);
   } },
       { label: 'No, pull out! No!', handler: (st: GameState) => {
@@ -1605,7 +1605,7 @@ function enterNighttimeGangbang(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'labia', 'A173', 1);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Take care of Sergei', goto: ['hunter_interactions', 'nighttime_gangbang', 'finish'] },
+      { label: 'Take care of Sergei', goto: ['hunter_interactions', 'nighttime_gangbang', '\'finish\''] },
     ]);
   } },
     ]);

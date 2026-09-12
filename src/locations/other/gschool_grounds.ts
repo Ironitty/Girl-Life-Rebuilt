@@ -252,10 +252,10 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).suspended ?? 0)?.['on'] !== 1  &&  (!((s as any).kanikuli ?? 0))) {
     if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  (!((s as any).dimaRevChoice ?? 0))) {
-      // TODO-QSP: gt 'dimaRevenge', dimaRevenge
+      scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
     } else {
       if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 1) {
-        // TODO-QSP: gt 'dimaRevenge', dimaRevenge
+        scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
       } else {
         if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  ((s as any).dimaRevChoice ?? 0) === 1) {
           // TODO-QSP: gt 'dimaRevenge', 5, 'before'
@@ -264,7 +264,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: gt 'dimaRevenge', 6, 'before'
           } else {
             if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 1) {
-              // TODO-QSP: gt 'dimaRevenge', dimaRevenge
+              scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
             } else {
               if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 2) {
                 // TODO-QSP: gt 'dimaRevenge', dimaRevenge, 'day4jockbefore'
@@ -276,7 +276,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: gt 'dimaRevenge', 5, 'day5jockafter'
                   } else {
                     if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  ((s as any).dimaRevChoice ?? 0) === 3) {
-                      // TODO-QSP: gt 'dimaRevenge', dimaRevenge
+                      scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
                     } else {
                       if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 4) {
                         // TODO-QSP: gt 'dimaRevenge', dimaRevenge, 'after'
@@ -288,16 +288,16 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: gt 'dimaRevenge', 5, 'after'
                           } else {
                             if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 4  &&  ((s as any).dimaRevengedaystart ?? 0) >= ((s as any).daystart ?? 0)) {
-                              // TODO-QSP: gt 'dimaRevenge', 6
+                              scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '6'] }]);
                             } else {
                               if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 5  &&  ((s as any).dimaRevChoice ?? 0) === 5) {
                                 // TODO-QSP: gt 'dimaRevenge', dimaRevenge, 'before'
                               } else {
                                 if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 5) {
-                                  // TODO-QSP: gt 'dimaRevenge', 5
+                                  scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', '5'] }]);
                                 } else {
                                   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 6) {
-                                    // TODO-QSP: gt 'dimaRevenge', dimaRevenge
+                                    scene.actions([{ label: 'Continue', goto: ['dimaRevenge', '', 'dimaRevenge'] }]);
                                   }
                                 }
                               }

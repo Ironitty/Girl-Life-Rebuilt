@@ -410,7 +410,7 @@ function enterSection1Pick(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brothel_vars ?? 0)?.['rage_meter'] >= 100) {
-    scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_rage'] }]);
+    scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_rage\''] }]);
   }
   if ((((s as any).pain ?? 0)?.['total'] > 50  &&  ((s as any).analPlugIn ?? 0) === 1)) {
     if ((Math.floor(Math.random() * 100) + 1) <= 25) {
@@ -425,16 +425,16 @@ function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
     scene.text('So my little light bulb, ready for the next step?');
     ((s as any).brothel_vars ?? {})['rand_fin'] = 0;
     if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_anal'] }]);
+      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_behind_anal\''] }]);
     } else {
       if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 2) {
-        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_vaginal'] }]);
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_behind_vaginal\''] }]);
       } else {
         if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 3) {
-          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_mouth'] }]);
+          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_mouth\''] }]);
         } else {
           if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 4) {
-            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_face'] }]);
+            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_face\''] }]);
           }
         }
       }
@@ -445,9 +445,9 @@ function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
       if ((!((s as any).analPlugIn ?? 0))) {
-        // TODO-QSP: gt 'brothel_section1', 'section1_electro_buttplug', 2
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_electro_buttplug', '2'] }]);
       } else {
-        // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 2
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_electro_main', '2'] }]);
       }
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -482,13 +482,13 @@ function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
                 scene.text('<center><b>No please, everything but THAT! Pleeaase!</b></center>');
               }
             }
-            // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 5
+            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_electro_main', '5'] }]);
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 5) {
               scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_electro_electrocute_more'] }]);
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 6) {
-                // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 7
+                scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_electro_main', '7'] }]);
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) >= 7) {
                   scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_electro_electrocute_max'] }]);
@@ -518,9 +518,7 @@ function enterSection1ElectroAsshigh(s: GameState, scene: SceneBuilder): void {
   scene.text('You are bound, lying on your chest. Master raises your ass high in the air, forcing you in an awkward position with both your holes on display, while tying you so you cannot move at all.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 1
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_electro_main', '1'] },
   ]);
   scene.build();
 }
@@ -562,9 +560,7 @@ function enterSection1ElectroButtplug(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 2
-  } },
+      { label: 'Continue', goto: ['brothel_section1', 'section1_electro_main', '2'] },
     ]);
   }
   // TODO-QSP: end
@@ -650,9 +646,7 @@ function enterSection1ElectroElectrodes(s: GameState, scene: SceneBuilder): void
   scene.text('The sensation fades away in a few seconds, leaving a feeling of something being stuck to your bottom parts.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 3
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_electro_main', '3'] },
   ]);
   scene.build();
 }
@@ -674,12 +668,10 @@ function enterSection1ElectroElectrocute(s: GameState, scene: SceneBuilder): voi
   scene.actions([
     { label: 'Tell him you hate it and want him to stop', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_dislike');
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 4
-  } },
+  }, goto: ['brothel_section1', 'section1_electro_main', '4'] },
     { label: 'Tell him you love it', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_like');
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 4
-  } },
+  }, goto: ['brothel_section1', 'section1_electro_main', '4'] },
   ]);
   scene.build();
 }
@@ -701,12 +693,10 @@ function enterSection1ElectroElectrocuteMore(s: GameState, scene: SceneBuilder):
   scene.actions([
     { label: 'Tell him you hate it and want him to stop', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_dislike');
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 6
-  } },
+  }, goto: ['brothel_section1', 'section1_electro_main', '6'] },
     { label: 'Tell him you love it', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_like');
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 6
-  } },
+  }, goto: ['brothel_section1', 'section1_electro_main', '6'] },
   ]);
   scene.build();
 }
@@ -732,12 +722,10 @@ function enterSection1ElectroElectrocuteMax(s: GameState, scene: SceneBuilder): 
   scene.actions([
     { label: 'Cry that you hate it and want him to stop', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_dislike');
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 7
-  } },
+  }, goto: ['brothel_section1', 'section1_electro_main', '7'] },
     { label: 'Cry that you love it', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_like');
-    // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 7
-  } },
+  }, goto: ['brothel_section1', 'section1_electro_main', '7'] },
   ]);
   scene.build();
 }
@@ -748,16 +736,16 @@ function enterSection1TitsMain(s: GameState, scene: SceneBuilder): void {
     scene.text('So my walking pair of tortured tits, ready for the next step?');
     ((s as any).brothel_vars ?? {})['rand_fin'] = 0;
     if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_anal'] }]);
+      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_behind_anal\''] }]);
     } else {
       if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 2) {
-        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_behind_vaginal'] }]);
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_behind_vaginal\''] }]);
       } else {
         if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 3) {
-          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_mouth'] }]);
+          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_mouth\''] }]);
         } else {
           if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 4) {
-            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_face'] }]);
+            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_face\''] }]);
           }
         }
       }
@@ -796,7 +784,7 @@ function enterSection1TitsMain(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 2
+      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '2'] }]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
         scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_tits_pull_nipples'] }]);
@@ -815,7 +803,7 @@ function enterSection1TitsMain(s: GameState, scene: SceneBuilder): void {
                   scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_tits_nails_needles'] }]);
                 } else {
                   ((s as any).brothel_vars ?? {})['orgasm_meter'] = 100;
-                  // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 7
+                  scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '7'] }]);
                 }
               }
             }
@@ -843,9 +831,7 @@ function enterSection1TitsHangNeck(s: GameState, scene: SceneBuilder): void {
   scene.text('To your horror he snaps the rope around your neck as if he\'s going to hang you!');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '1'] },
   ]);
   scene.build();
 }
@@ -863,9 +849,7 @@ function enterSection1TitsWhip(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"Oww! Oww! Nooo! Owww! Not… Any… More… Please… Oww…"</b></center>');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '1'] },
   ]);
   scene.build();
 }
@@ -883,9 +867,7 @@ function enterSection1TitsCane(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"Oww! Oww! Nooo! Owww! Not… Any… More… Please… Oww…"</b></center>');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '1'] },
   ]);
   scene.build();
 }
@@ -904,9 +886,7 @@ function enterSection1TitsPinch(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"Oww! Oww! Nooo! Owww!"</b></center>');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '1'] },
   ]);
   scene.build();
 }
@@ -925,9 +905,7 @@ function enterSection1TitsPunch(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"Oww! Oww! Nooo! Owww!"</b></center>');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '1'] },
   ]);
   scene.build();
 }
@@ -947,9 +925,7 @@ function enterSection1TitsPullNipples(s: GameState, scene: SceneBuilder): void {
   scene.text('"Nice! Do you think this will make your nipples longer, slut? Or will those shrink again? Let\'s see!"');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 3
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '3'] },
   ]);
   scene.build();
 }
@@ -971,9 +947,7 @@ function enterSection1TitsBind(s: GameState, scene: SceneBuilder): void {
   scene.text('"Shut up slut!"');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 4
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '4'] },
   ]);
   scene.build();
 }
@@ -992,9 +966,7 @@ function enterSection1TitsPinchBound(s: GameState, scene: SceneBuilder): void {
   scene.text('Your tits are already so full that you feel as they should rupture any second, and by trying to catch the nipples, the client causes you extremely unpleasant sensations!');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 5
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '5'] },
   ]);
   scene.build();
 }
@@ -1016,9 +988,7 @@ function enterSection1TitsHangTits(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"AYYYEEEEEEEEEEEE!</b></center>');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 6
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '6'] },
   ]);
   scene.build();
 }
@@ -1033,9 +1003,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
     scene.text('<center><b>"You can\'t be serious! This IS against the rules, let me out!"</b></center>');
     scene.text('"Not if you agree with it. So what will it be?"');
     scene.actions([
-      { label: 'No way, you\'ll never do that', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 1
-  } },
+      { label: 'No way, you\'ll never do that', goto: ['brothel_section1', 'section1_tits_nails_needles', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -1044,24 +1012,16 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
       scene.text('<center><b>"Wh… what bonus?"</b></center>');
       scene.text(`"Ah, let's say ${qspFunc(s, 'money', 'string_profit', 1000)}?"`);
       scene.actions([
-        { label: 'Say you\'ll do it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 2
-  } },
-        { label: 'Say you\'ll do it for <<$func(\'money\', \'string_profit\', 2000)>>', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 3
-  } },
-        { label: 'No way, you\'ll never do that', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 10
-  } },
+        { label: 'Say you\'ll do it', goto: ['brothel_section1', 'section1_tits_nails_needles', '2'] },
+        { label: 'Say you\'ll do it for <<$func(\'money\', \'string_profit\', 2000)>>', goto: ['brothel_section1', 'section1_tits_nails_needles', '3'] },
+        { label: 'No way, you\'ll never do that', goto: ['brothel_section1', 'section1_tits_nails_needles', '10'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
         scene.text('"A whore is a whore I see. Now let us begin!"');
         qspCall(s, 'jobs', 'bonus_pay', 'highway_brothel_prostitute', 1000);
         scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 4
-  } },
+          { label: 'Continue', goto: ['brothel_section1', 'section1_tits_nails_needles', '4'] },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {
@@ -1069,18 +1029,14 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
             scene.text('"I agree bitch! Twice more money for you, twice more pain for your tits! Now let us begin!');
             qspCall(s, 'jobs', 'bonus_pay', 'highway_brothel_prostitute', 2000);
             scene.actions([
-              { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 4
-  } },
+              { label: 'Continue', goto: ['brothel_section1', 'section1_tits_nails_needles', '4'] },
             ]);
           } else {
             scene.text('"What? Who do you think I am, slut? A fucking monger?"');
             scene.text('<center><b>"I… No! I didn\'t mean…"</b></center>');
             scene.text('"Shut up slave! You will agree to it for free, NOW!"');
             scene.actions([
-              { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 10
-  } },
+              { label: 'Continue', goto: ['brothel_section1', 'section1_tits_nails_needles', '10'] },
             ]);
           }
         } else {
@@ -1103,9 +1059,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
             scene.text('"Yes, no more. No more needles. Now to the nails!"');
             qspCall(s, 'piercing_management', 'pierce');
             scene.actions([
-              { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 5
-  } },
+              { label: 'Continue', goto: ['brothel_section1', 'section1_tits_nails_needles', '5'] },
             ]);
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 5) {
@@ -1124,9 +1078,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
               scene.text('<center><b>"Owwwwwwwwwwwwwwwwww"</b></center>');
               scene.text('He puts the nails to your tits and starts nailing them to the plank.');
               scene.actions([
-                { label: 'Endure', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 6
-  } },
+                { label: 'Endure', goto: ['brothel_section1', 'section1_tits_nails_needles', '6'] },
               ]);
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 6) {
@@ -1148,7 +1100,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 10) {
                   if (((s as any).caneFeetCount ?? 0) >= 3) {
-                    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 20
+                    scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_tits_nails_needles', '20'] }]);
                   } else {
                     if ((!((s as any).caneFeetCount ?? 0))) {
                       (s as any).caneFeetCount = ((s as any).caneFeetCount ?? 0) + (1);
@@ -1161,12 +1113,8 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
                       scene.text('<center><b>"Oww! Oww! Oww! Oww! Oww!"</b></center>');
                       scene.text('"So slave, what do you say now? Should I continue with this, or do you agree with my offer?"');
                       scene.actions([
-                        { label: 'Say you agree', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 4
-  } },
-                        { label: 'Say you still don\'t agree', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 10
-  } },
+                        { label: 'Say you agree', goto: ['brothel_section1', 'section1_tits_nails_needles', '4'] },
+                        { label: 'Say you still don\'t agree', goto: ['brothel_section1', 'section1_tits_nails_needles', '10'] },
                       ]);
                     } else {
                       (s as any).caneFeetCount = ((s as any).caneFeetCount ?? 0) + (1);
@@ -1181,12 +1129,8 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
                       scene.text('<center><b>"Oww! Oww! Oww! Oww! Oww!"</b></center>');
                       scene.text('"So slave, what do you say now? Should I continue with this, or do you agree with my offer?"');
                       scene.actions([
-                        { label: 'Say you agree', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 4
-  } },
-                        { label: 'Say you still don\'t agree', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_nails_needles', 10
-  } },
+                        { label: 'Say you agree', goto: ['brothel_section1', 'section1_tits_nails_needles', '4'] },
+                        { label: 'Say you still don\'t agree', goto: ['brothel_section1', 'section1_tits_nails_needles', '10'] },
                       ]);
                     }
                   }
@@ -1196,9 +1140,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
                     scene.text('"Fucking bitch! Now let me at least punish you how I can!"');
                     ((s as any).brothel_vars ?? {})['orgasm_meter'] = 100;
                     scene.actions([
-                      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 7
-  } },
+                      { label: 'Continue', goto: ['brothel_section1', 'section1_tits_main', '7'] },
                     ]);
                   }
                 }
@@ -1215,23 +1157,23 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
 
 function enterSection1TiedMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brothel_vars ?? 0)?.['rage_meter'] >= 100) {
-    scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_rage'] }]);
+    scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_rage\''] }]);
   }
   (s as any).analplay = 0;
   if (((s as any).brothel_vars ?? 0)?.['orgasm_meter'] === 100) {
     scene.text('He finally builds up the orgasm and is ready to deliver his seed!');
     ((s as any).brothel_vars ?? {})['rand_fin'] = 0;
     if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 1) {
-      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_front_anal'] }]);
+      scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_front_anal\''] }]);
     } else {
       if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 2) {
-        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_front_vaginal'] }]);
+        scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_front_vaginal\''] }]);
       } else {
         if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 3) {
-          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_mouth'] }]);
+          scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_mouth\''] }]);
         } else {
           if (((s as any).brothel_vars ?? 0)?.['rand_fin'] === 4) {
-            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', 'section1_end_face'] }]);
+            scene.actions([{ label: 'Continue', goto: ['brothel_section1', 'section1_end_main', '\'section1_end_face\''] }]);
           }
         }
       }
@@ -1294,9 +1236,7 @@ function enterSection1TiedLieBack(s: GameState, scene: SceneBuilder): void {
   scene.text('You do as ordered…');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 1
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '1'] },
   ]);
   scene.build();
 }
@@ -1316,9 +1256,7 @@ function enterSection1TiedOnBack(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'bound');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1343,9 +1281,7 @@ function enterSection1TiedMouth(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'humiliation');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1373,9 +1309,7 @@ function enterSection1TiedAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'sub');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1403,9 +1337,7 @@ function enterSection1TiedVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1428,9 +1360,7 @@ function enterSection1TiedTease(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'humiliation');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1461,9 +1391,7 @@ function enterSection1TiedAnalfisting(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1488,9 +1416,7 @@ function enterSection1TiedVibrate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1518,9 +1444,7 @@ function enterSection1TiedWhip(s: GameState, scene: SceneBuilder): void {
   scene.text('Then suddenly he starts to punish the most sensitive part of your young body, giving you no mercy.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
-  } },
+    { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
   ]);
   scene.build();
 }
@@ -1587,9 +1511,7 @@ function enterSection1EndBehindVaginal(s: GameState, scene: SceneBuilder): void 
     scene.text('He puts his hands on your asscheeks, spreading them wide to get a better look on both your holes…');
     scene.text('You start to shake as you know what\'s coming…');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_behind_vaginal', 1
-  } },
+      { label: 'Continue', goto: ['brothel_section1', 'section1_end_behind_vaginal', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -1624,9 +1546,7 @@ function enterSection1EndBehindVaginal(s: GameState, scene: SceneBuilder): void 
         }
       }
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_behind_vaginal', 2
-  } },
+        { label: 'Continue', goto: ['brothel_section1', 'section1_end_behind_vaginal', '2'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -1634,9 +1554,7 @@ function enterSection1EndBehindVaginal(s: GameState, scene: SceneBuilder): void 
         scene.text('"Now bitch I\'m gonna ride you hard and deep!"');
         scene.text('With these words the Client increases his pace, fucking your poor pussy violently, roughly and very, very deep…');
         scene.actions([
-          { label: 'Endure it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_behind_vaginal', 3
-  } },
+          { label: 'Endure it', goto: ['brothel_section1', 'section1_end_behind_vaginal', '3'] },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {
@@ -1674,9 +1592,7 @@ function enterSection1EndBehindAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('He puts his hands on your asscheeks, spreading them wide to get better look on both your holes…');
     scene.text('You start to shake as you know what\'s coming…');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_behind_anal', 1
-  } },
+      { label: 'Continue', goto: ['brothel_section1', 'section1_end_behind_anal', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -1721,9 +1637,7 @@ function enterSection1EndBehindAnal(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_behind_anal', 2
-  } },
+        { label: 'Continue', goto: ['brothel_section1', 'section1_end_behind_anal', '2'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -1731,9 +1645,7 @@ function enterSection1EndBehindAnal(s: GameState, scene: SceneBuilder): void {
         scene.text('"Now bitch I\'m gonna ride you hard and deep!"');
         scene.text('With these words the Client increases his pace, fucking your poor anus violently, roughly and very, very deep…');
         scene.actions([
-          { label: 'Endure it', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_behind_anal', 3
-  } },
+          { label: 'Endure it', goto: ['brothel_section1', 'section1_end_behind_anal', '3'] },
         ]);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {
@@ -1802,9 +1714,7 @@ function enterSection1EndMouth(s: GameState, scene: SceneBuilder): void {
     scene.text('He starts to caress your face… unable to move, you just hold still and endure his touches…');
     scene.text('You start to shake as you know what\'s coming…');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_mouth', 1
-  } },
+      { label: 'Continue', goto: ['brothel_section1', 'section1_end_mouth', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -1812,9 +1722,7 @@ function enterSection1EndMouth(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'As you were afraid of, the Client takes his cock and thrusts it in your mouth: ' + $func('wrap', 'b...
       scene.text('Unable to even react or moan, you are plugged with his meat, choking and dribbling all around…');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_mouth', 2
-  } },
+        { label: 'Continue', goto: ['brothel_section1', 'section1_end_mouth', '2'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -1843,9 +1751,7 @@ function enterSection1EndFace(s: GameState, scene: SceneBuilder): void {
     scene.text('He starts to caress your face… unable to move, you just hold still and endure his touches…');
     scene.text('You start to shake as you know what\'s coming…');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_face', 1
-  } },
+      { label: 'Continue', goto: ['brothel_section1', 'section1_end_face', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -1853,9 +1759,7 @@ function enterSection1EndFace(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'As you were afraid of, the Client takes his cock and thrusts it in your mouth: ' + $func('wrap', 'b...
       scene.text('Unable to even react or moan, you are plugged with his meat, choking and dribbling all around…');
       scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end_face', 2
-  } },
+        { label: 'Continue', goto: ['brothel_section1', 'section1_end_face', '2'] },
       ]);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
@@ -1893,9 +1797,7 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>"Please, someone get me out of here!"</b></center>');
     scene.text('After a few minutes and some struggling, the receptionist finally enters the playroom.');
     scene.actions([
-      { label: 'Ask him to release you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end', 1
-  } },
+      { label: 'Ask him to release you', goto: ['brothel_section1', 'section1_end', '1'] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -1911,17 +1813,13 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'pain', '', 5, 'asshole', 'stretch');
         qspCall(s, 'stat', '');
         scene.actions([
-          { label: 'Yell at him to untie you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end', 2
-  } },
+          { label: 'Yell at him to untie you', goto: ['brothel_section1', 'section1_end', '2'] },
         ]);
       } else {
         scene.img('images/locations/shared/brothel/receptionistgaze.jpg');
         scene.text('You can read obvious disgust from his face. You rather not try to guess what he thinks about you… The feel of his gaze on your bare body is frightening you even more than you already are…');
         scene.actions([
-          { label: 'Beg him to finally untie you', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end', 2
-  } },
+          { label: 'Beg him to finally untie you', goto: ['brothel_section1', 'section1_end', '2'] },
         ]);
       }
     } else {
@@ -1930,9 +1828,7 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
         scene.text('Finally he reaches out to you and starts with the untying, letting you go.');
         if (((s as any).analPlugIn ?? 0) === 1) {
           scene.actions([
-            { label: 'Get up', handler: (st: GameState) => {
-    // TODO-QSP: gt 'brothel_section1', 'section1_end', 3
-  } },
+            { label: 'Get up', goto: ['brothel_section1', 'section1_end', '3'] },
           ]);
         } else {
           qspCall(s, 'arousal', 'end');

@@ -295,9 +295,9 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   if (((s as any).FedorLove ?? 0) < 0) {
-    // TODO-QSP: gt 'FedorMisc', 'Fedor Hate', 1
+    scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Hate', '1'] }]);
   } else {
-    // TODO-QSP: gt 'FedorMisc', 'Fedor Chat', 1
+    scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Chat', '1'] }]);
   }
   // TODO-QSP: end
   scene.build();

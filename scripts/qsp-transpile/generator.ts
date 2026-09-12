@@ -341,9 +341,10 @@ function generateAct(
   let gotoCode = '';
   const gotoIdx = bodyLines.findIndex(l => l.startsWith('scene.actions([{ label:'));
   if (gotoIdx >= 0) {
-    const m = bodyLines[gotoIdx].match(/goto: \['([^']*)'\s*,\s*'([^']*)'\]/);
+    const m = bodyLines[gotoIdx].match(/goto: \['([^']*)'\s*,\s*'([^']*)'(?:\s*,\s*'([^']*)')?\]/);
     if (m) {
-      gotoCode = `goto: ['${m[1]}', '${m[2]}']`;
+      const arg2Part = m[3] ? `, '${m[3]}'` : '';
+      gotoCode = `goto: ['${m[1]}', '${m[2]}'${arg2Part}]`;
       bodyLines.splice(gotoIdx, 1);
     }
   }

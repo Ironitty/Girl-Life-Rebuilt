@@ -82,7 +82,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_2'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_1'] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_1\''] },
   ]);
   scene.build();
 }
@@ -165,7 +165,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pod_ezd', 'etaj_2'] },
     ]);
   } },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_2'] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_2\''] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -228,7 +228,7 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_4'] },
     { label: 'Apartment 13: Vasily and Sergei Shulgin', goto: ['vasilyhome', 'home'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_3'] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_3\''] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -260,7 +260,7 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'etaj_5'] },
     { label: 'Apartment 21: Aunt Luda', goto: ['ludahome', 'home'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_4'] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_4\''] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -287,7 +287,7 @@ function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
     { label: 'Go up to the roof', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pod_ezd', 'roof'] },
-    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', 'etaj_5'] },
+    { label: 'Take the elevator', goto: ['pod_ezd', 'lift', '\'etaj_5\''] },
     { label: '<b>Leave and go to the courtyard</b>', handler: (st: GameState) => {
     qspCall(st, 'pod_ezd', 'leave_building');
   } },
@@ -1153,9 +1153,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
   scene.text('The guys greet you, having seen you around before, and offer you a cigarette.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Decline and leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', $smoke_loc
-  } },
+    { label: 'Decline and leave', goto: ['pod_ezd', 'smoke_loc'] },
     { label: 'Take the cigarette', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'drugs', 'smoke', 'borrowed');
@@ -1164,9 +1162,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
       scene.text('You gladly accept and spend the next five minutes smoking a cigarette with them, talking about trivial things.');
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', $smoke_loc
-  } },
+        { label: 'Leave', goto: ['pod_ezd', 'smoke_loc'] },
       ]);
     } else {
       if (((s as any).fame ?? 0)?.['pav_sex'] < ((s as any).fame ?? 0)?.['pav_prostitute']) {
@@ -1218,17 +1214,13 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     scene.text('"If I start screaming right now, and accuse you of rape, everyone in the entire housing block will come to see what is happening. Who do you think they\'re going to believe, me or you?"');
     scene.text('The guys realize they overplayed their hand, and the guy with his pants down quickly pulls them back up. "Okay okay, we\'re sorry! We were just messing around!" they say, and quickly walk away before you can get another word in.');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', $smoke_loc
-  } },
+      { label: 'Leave', goto: ['pod_ezd', 'smoke_loc'] },
     ]);
   } },
           ]);
         }
         scene.actions([
-          { label: 'Leave before they get any ideas', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', $smoke_loc
-  } },
+          { label: 'Leave before they get any ideas', goto: ['pod_ezd', 'smoke_loc'] },
           { label: 'Keep smoking', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 2);
   }, goto: ['pod_ezd', 'sex_ev<<rand(1,3)>>'] },
@@ -1243,9 +1235,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     scene.text('You decline, but you stay for a while talking about trivial things.');
     if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
       scene.actions([
-        { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', $smoke_loc
-  } },
+        { label: 'Leave', goto: ['pod_ezd', 'smoke_loc'] },
       ]);
     } else {
       if (((s as any).fame ?? 0)?.['pav_sex'] < ((s as any).fame ?? 0)?.['pav_prostitute']) {
@@ -1299,9 +1289,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     scene.text('"If I start screaming right now, and accuse you of rape, everyone in the entire housing block will come to see what is happening. Who do you think they\'re going to believe, me or you?"');
     scene.text('The guys realize they overplayed their hand, and the guy with his pants down quickly pulls them back up. "Okay okay, we\'re sorry! We were just messing around!" they say, and quickly walk away before you can get another word in.');
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pod_ezd', $smoke_loc
-  } },
+      { label: 'Leave', goto: ['pod_ezd', 'smoke_loc'] },
     ]);
   } },
           ]);

@@ -168,9 +168,7 @@ function enterClothesStart1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Let's go to <<$store_choice>>," Katja says.
     scene.text(`"Let's go to ${((s as any).store_choice ?? 0)}," Katja says.`);
     scene.actions([
-      { label: 'Go to <<$store_choice>>', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_city', $store_choice
-  } },
+      { label: 'Go to <<$store_choice>>', goto: ['katja_city', 'store_choice'] },
     ]);
   } else {
     scene.text('"Where do you want to go?" Katja asks.');
@@ -201,9 +199,7 @@ function enterClothesStart2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Let's go to <<$store_choice>>," Katja says.
       scene.text(`"Let's go to ${((s as any).store_choice ?? 0)}," Katja says.`);
       scene.actions([
-        { label: 'Go to <<$store_choice>>', handler: (st: GameState) => {
-    // TODO-QSP: gt 'katja_city', $store_choice
-  } },
+        { label: 'Go to <<$store_choice>>', goto: ['katja_city', 'store_choice'] },
       ]);
     } else {
       scene.text('"Where do you want to go?" Katja asks.');

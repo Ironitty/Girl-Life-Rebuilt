@@ -66,9 +66,7 @@ function enterGetpleasured(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', (-2), 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -99,9 +97,7 @@ function enterButtplug(s: GameState, scene: SceneBuilder): void {
     scene.text('She laughs, walks over and takes it from you before putting it back in the drawer and closing it. "Well maybe you should buy one then, huh?"');
     scene.text('A little disappointed she doesn\'t want to play, you just nod. "Yeah, I guess I should…"');
     scene.actions([
-      { label: 'Look around some more.', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Look around some more.', goto: ['$returnLoc', 'anushroom'] },
     ]);
   }
   // TODO-QSP: end
@@ -160,9 +156,7 @@ function enterButtplug1(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
       { label: 'Get her strap-on out of the nightstand', handler: (st: GameState) => {
@@ -231,9 +225,7 @@ function enterBedstrapongive(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -281,9 +273,7 @@ function enterBedstraponget(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -316,9 +306,7 @@ function enterBedstraponget(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -368,9 +356,7 @@ function enterBedstrapongetanal(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);
@@ -416,9 +402,7 @@ function enterBedstrapongiveanal(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     qspCall(s, 'arousal', 'end');
     scene.actions([
-      { label: 'Get dressed', handler: (st: GameState) => {
-    // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
-  } },
+      { label: 'Get dressed', goto: ['$returnLoc', 'anushroom'] },
     ]);
   } },
     ]);

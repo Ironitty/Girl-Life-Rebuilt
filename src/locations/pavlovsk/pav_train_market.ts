@@ -61,11 +61,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pavtrain_book ?? 0) === 1) {
       // TODO-QSP: act 'Go to the book stall': minut += 5
-      // TODO-QSP: gt 'pav_train_market', 3
+      scene.actions([{ label: 'Continue', goto: ['pav_train_market', '', '3'] }]);
     }
     if (((s as any).pavmarket_porn ?? 0) === 1) {
       // TODO-QSP: act 'Go to the porn stall': minut += 5
-      // TODO-QSP: gt 'pav_train_market', 4
+      scene.actions([{ label: 'Continue', goto: ['pav_train_market', '', '4'] }]);
     }
     if (((s as any).arturKnow ?? 0) === 1  &&  (!((s as any).arturQW ?? 0))) {
       scene.actions([
@@ -433,9 +433,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('You try not to look into the eyes of the salesman as you count the money and hand it over before quickly grabbing the cards and shoving them in your purse.');
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -455,9 +453,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('You try your best not to look into the eyes of the salesman as you count the money and hand it over before taking the magazine and quickly hiding it in your purse.');
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -476,9 +472,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You pick up one of the magazines and flip through the pages. The magazine is full of images of men engaging in various sexual acts with either half-naked or fully naked girls, most of whom look close to your own age. You feel yourself getting aroused as you continue flipping through the pages.');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
-      { label: 'Look for something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+      { label: 'Look for something else', goto: ['pav_train_market', '', '4'] },
       { label: 'Ask for the price', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -488,9 +482,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('He smiles at you. "All magazines are \' + $func(\'money\', \'string_price\', 400) + \' each."');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
-      { label: 'Look for something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+      { label: 'Look for something else', goto: ['pav_train_market', '', '4'] },
       { label: 'Buy a magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
@@ -504,9 +496,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('You try not to look into the man\'s eyes as you hand him the money. You then take the magazine and quickly hide it.');
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -525,9 +515,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You pick up one of the magazines and flip through the pages. The magazine is full of images of men engaging in various sexual acts with either half-naked or fully naked girls, most of whom look close to your own age. You feel yourself getting aroused as you continue flipping through the pages.');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
-      { label: 'Look for something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+      { label: 'Look for something else', goto: ['pav_train_market', '', '4'] },
       { label: 'Buy magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
@@ -541,9 +529,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('You try not to look into the man\'s eyes as you hand him the money. You then take the magazine and quickly hide it.');
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -559,9 +545,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('You pick up one of the magazines and flip through the pages. The magazine is full of images of men engaging in various sexual acts with either half-naked or fully naked girls, most of whom look close to your own age. You feel yourself getting aroused as you continue flipping through the pages.');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
-      { label: 'Look for something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+      { label: 'Look for something else', goto: ['pav_train_market', '', '4'] },
       { label: 'Buy magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
@@ -575,9 +559,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       scene.text('You try not to look into the man\'s eyes as you hand him the money. You then take the magazine and quickly hide it.');
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -589,9 +571,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
-      { label: 'Look for something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+      { label: 'Look for something else', goto: ['pav_train_market', '', '4'] },
     ]);
   } },
       ]);
@@ -624,9 +604,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -651,9 +629,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -677,9 +653,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -703,9 +677,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -730,9 +702,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -759,9 +729,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -789,9 +757,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Leave', goto: ['pav_train_market', 'start'] },
-        { label: 'Buy something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+        { label: 'Buy something else', goto: ['pav_train_market', '', '4'] },
       ]);
     }
   } },
@@ -800,9 +766,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
-      { label: 'Look for something else', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_train_market', 4
-  } },
+      { label: 'Look for something else', goto: ['pav_train_market', '', '4'] },
     ]);
   } },
     ]);

@@ -496,9 +496,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/forest/mitkanudeforest.jpg');
     scene.text('You pretend not to notice the hunters and walk right past them, swaying your hips pointedly to maximize the effect. Looking around, you see that the impact has exceeded your expectations. The men have been stopped in their tracks and are staring at you…');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
-  } },
+      { label: 'Continue', goto: ['gad_forest', 'ReturnAdr'] },
     ]);
   } },
       { label: 'Hide', handler: (st: GameState) => {
@@ -507,18 +505,14 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/forest/hiding_woods.jpg');
     scene.text('They haven\'t noticed you yet, so you quickly hide from sight in a nearby bush. You wait until you can no longer hear them talking to continue on your way.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
-  } },
+      { label: 'Continue', goto: ['gad_forest', 'ReturnAdr'] },
     ]);
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave them alone', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
-  } },
+    { label: 'Leave them alone', goto: ['gad_forest', 'ReturnAdr'] },
     { label: 'Approach the hunters', handler: (st: GameState) => {
     if (((s as any).hunterVars ?? 0)?.['were_met'] === 0) {
       ((s as any).hunterVars ?? {})['were_met'] = 1;
@@ -542,9 +536,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}, it's time for us to go," said Andrei.`);
         scene.text('"If you want, we will show you our camp," he added after a short pause. "From there, we have made a path back to the village. We can show it to you if you come with us. Or you can stay with us for a bit if you want."');
         scene.actions([
-          { label: 'Stay in the forest', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
-  } },
+          { label: 'Stay in the forest', goto: ['gad_forest', 'ReturnAdr'] },
           { label: 'Go with them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
@@ -566,9 +558,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         scene.text('"I think it\'s about time I left", you reply.');
         scene.text('You quickly move away from them, only slowing once you can no longer hear them talking.');
         scene.actions([
-          { label: 'Go back to the forest', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
-  } },
+          { label: 'Go back to the forest', goto: ['gad_forest', 'ReturnAdr'] },
         ]);
       }
     } else {
@@ -580,9 +570,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, it's time for us to go," said Andrei. "You should pay ...
         scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}, it's time for us to go," said Andrei. "You should pay us another visit sometime, okay?"`);
         scene.actions([
-          { label: 'Stay in the forest', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
-  } },
+          { label: 'Stay in the forest', goto: ['gad_forest', 'ReturnAdr'] },
           { label: 'Go with them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },

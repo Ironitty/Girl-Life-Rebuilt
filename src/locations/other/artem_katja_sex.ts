@@ -816,18 +816,14 @@ function enterFirstTimeKatjaTitjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'titjob', 2);
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Ride Artem', handler: (st: GameState) => {
-    // TODO-QSP: gt 'artem_katja_sex', 'first_time_ride', 1
-  } },
+      { label: 'Ride Artem', goto: ['artem_katja_sex', 'first_time_ride', '1'] },
     ]);
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Ride Artem', handler: (st: GameState) => {
-    // TODO-QSP: gt 'artem_katja_sex', 'first_time_ride', 1
-  } },
+    { label: 'Ride Artem', goto: ['artem_katja_sex', 'first_time_ride', '1'] },
   ]);
   scene.build();
 }

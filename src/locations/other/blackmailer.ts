@@ -956,7 +956,7 @@ function enterPhotoDream1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['stage'] === 1) {
     ((s as any).blackmailQW ?? {})['stage'] = 2;
     scene.actions([
-      { label: 'Continue sleeping', goto: ['sleep_events', 'event_end', 'sleep'] },
+      { label: 'Continue sleeping', goto: ['sleep_events', 'event_end', '\'sleep\''] },
     ]);
   } else {
     qspCall(s, 'dream_events', 'event_end');
@@ -1049,7 +1049,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.text('The laughter around you grows, you are surrounded by a sea of people holding your picture and laughing at you.');
     scene.text('Wading through the ocean of polaroids, you are ever confronted with the fact that you have lost the respect of your former friends.');
     scene.actions([
-      { label: 'Continue sleeping', goto: ['sleep_events', 'event_end', 'sleep'] },
+      { label: 'Continue sleeping', goto: ['sleep_events', 'event_end', '\'sleep\''] },
     ]);
   } },
       ]);
@@ -1080,7 +1080,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I didn\'t know that you were such a whore!", "That\'s really her, what a slut!", "Maybe she\'ll let us fuck her too!"');
     scene.text('You run outside into the raging storm, the insults piercing through, chasing you.');
     scene.actions([
-      { label: 'Continue sleeping', goto: ['sleep_events', 'event_end', 'sleep'] },
+      { label: 'Continue sleeping', goto: ['sleep_events', 'event_end', '\'sleep\''] },
     ]);
   } },
     ]);
@@ -1246,7 +1246,7 @@ function enterParkRepeat(s: GameState, scene: SceneBuilder): void {
         } else {
           ((s as any).blackmailQW ?? {})['worn_costume'] = 1;
         }
-        // TODO-QSP: gt 'blackmailer', 'park_repeat_hide', 1
+        scene.actions([{ label: 'Continue', goto: ['blackmailer', 'park_repeat_hide', '1'] }]);
       }
     }
   } },

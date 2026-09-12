@@ -104,8 +104,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get into the truck', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    // TODO-QSP: gt 'furisex', 0
-  } },
+  }, goto: ['furisex', '', '0'] },
     ]);
   } },
       ]);
@@ -238,9 +237,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/highway/furi.jpg');
     scene.text('You nod meekly and his grin widens. Without saying anything, you step up to the passenger side and he flicks away his cigarette to climb into the driver\'s seat.');
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
           ]);
@@ -252,9 +249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yup!" you say smiling and matter-of-fact-ly. "Care for another blowjob today?"');
     scene.text('He flicks his cigarette away and climbs into the driver\'s seat, you following into the passenger\'s.');
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
             ]);
@@ -266,9 +261,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"There sure is. But with your mouth, not your hand," he says, climbing into the driver\'s seat.');
     scene.text('"Of course!" you smile, pulling yourself into the passenger\'s seat beside him. "Why would I use anything else?"');
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
             ]);
@@ -299,9 +292,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
             { label: 'That\'s me!', handler: (st: GameState) => {
@@ -326,9 +317,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
           ]);
@@ -358,9 +347,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
               { label: 'That\'s me!', handler: (st: GameState) => {
@@ -385,9 +372,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
             ]);
@@ -419,9 +404,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   ]);
                 }
                 scene.actions([
-                  { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+                  { label: 'Get into the truck', goto: ['furisex', '', '100'] },
                 ]);
               } else {
                 scene.actions([
@@ -447,9 +430,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
                   { label: 'That\'s me!', handler: (st: GameState) => {
@@ -474,9 +455,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+      { label: 'Get into the truck', goto: ['furisex', '', '100'] },
     ]);
   } },
                 ]);
@@ -502,9 +481,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 ]);
               }
               scene.actions([
-                { label: 'Get into the truck', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 100
-  } },
+                { label: 'Get into the truck', goto: ['furisex', '', '100'] },
               ]);
             }
           }

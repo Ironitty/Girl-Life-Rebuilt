@@ -619,9 +619,7 @@ function enterOlegDick(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'pav_shared_apt', $loc_arg
-  } },
+      { label: 'Continue', goto: ['pav_shared_apt', 'loc_arg'] },
     ]);
   }
   // TODO-QSP: end

@@ -74,9 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal_dildo', 90, 'sub', 'lesbian', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Rudely tell her to get lost', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gameover', 'force', 7
-  } },
+      { label: 'Rudely tell her to get lost', goto: ['gameover', 'force', '7'] },
       { label: 'Kiss her pussy through her panties', handler: (st: GameState) => {
     (s as any).mentovka = 1;
     scene.img('images/locations/city/industrial/police/sex/c8.jpg');

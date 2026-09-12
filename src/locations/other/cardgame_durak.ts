@@ -188,17 +188,14 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', ((s as any).temp_will_difficulty ?? 0));
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'cardgame_durak', 'card_game_durak_play', 1
-  } },
+  }, goto: ['cardgame_durak', 'card_game_durak_play', '1'] },
           ]);
         }
         scene.actions([
           { label: 'Deal and take it easy', handler: (st: GameState) => {
     // TODO-QSP: gt 'cardgame_durak', 'card_game_durak_play', -1
   } },
-          { label: 'Deal', handler: (st: GameState) => {
-    // TODO-QSP: gt 'cardgame_durak', 'card_game_durak_play', 0
-  } },
+          { label: 'Deal', goto: ['cardgame_durak', 'card_game_durak_play', '0'] },
         ]);
       } else {
         scene.actions([

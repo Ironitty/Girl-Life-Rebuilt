@@ -444,9 +444,7 @@ function enterFedorDate2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'I can\'t right now', goto: ['FedorEv', 'No Date'] },
-    { label: 'I would love to', handler: (st: GameState) => {
-    // TODO-QSP: gt 'FedorEv', $place
-  } },
+    { label: 'I would love to', goto: ['FedorEv', 'place'] },
   ]);
   scene.build();
 }

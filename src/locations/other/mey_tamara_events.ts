@@ -111,9 +111,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You ring on the bell to the Meynold residence.');
       scene.text('The door opens and you can see Katja and Vicky standing there with their mother.');
       scene.actions([
-        { label: 'Ring the doorbell', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_tamara_events', 'next_meet', 1
-  } },
+        { label: 'Ring the doorbell', goto: ['mey_tamara_events', 'next_meet', '1'] },
       ]);
     } else {
       if (((s as any).zz_stage ?? 0) < 8) {
@@ -688,9 +686,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well, fuck!" you think angrily. "They\'re either ugly or taken!"');
       scene.text('All of a sudden you notice something very interesting… A man in his thirties having a rowdy discussion with his girlfriend. You can see him getting upset when his girlfriend says something quite upsetting. She starts pushing him away, wanting him to leave her alone. As he moves away she mocks him with a foul gesture. Sensing blood, you head in his direction…');
       scene.actions([
-        { label: 'Approach him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'mey_tamara_events', 'party4', 17
-  } },
+        { label: 'Approach him', goto: ['mey_tamara_events', 'party4', '17'] },
       ]);
     } else {
       if (((s as any).zz_stage ?? 0) === 17) {

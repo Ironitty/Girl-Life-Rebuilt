@@ -29,10 +29,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
       } else {
         (s as any).swamp_stuck = 0;
-        scene.actions([{ label: 'Continue', goto: ['gad_swamp', 'stuck', 'swamp'] }]);
+        scene.actions([{ label: 'Continue', goto: ['gad_swamp', 'stuck', '\'swamp\''] }]);
       }
     } else {
-      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', 'swamp'] }]);
+      scene.actions([{ label: 'Continue', goto: ['gad_forest_lost', 'wolves', '\'swamp\''] }]);
     }
   } },
     ]);

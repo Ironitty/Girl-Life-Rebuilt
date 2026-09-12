@@ -296,9 +296,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
     scene.text('You decided to go with Mira to the village beach, and all the way, she goes, merrily chattering and telling stories.');
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Continue', goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
                     { label: 'Refuse', handler: (st: GameState) => {
@@ -575,13 +573,13 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
               scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_3boys'] }]);
             } else {
               if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)) {
-                scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '1'] }]);
+                scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '\'1\''] }]);
               } else {
                 if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                  scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '2'] }]);
+                  scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '\'2\''] }]);
                 } else {
                   if (((s as any).GadBoy ?? 0)?.['kolyamba_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).GadBoy ?? 0)?.['vasyan_day'] !== ((s as any).daystart ?? 0)) {
-                    scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '3'] }]);
+                    scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_2boys', '\'3\''] }]);
                   } else {
                     if (((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)) {
                       scene.actions([{ label: 'Continue', goto: ['gadukino_event', 'mira_mitka'] }]);
@@ -776,9 +774,7 @@ function enterOfferGoRiver(s: GameState, scene: SceneBuilder): void {
       ((s as any).MiraVars ?? {})['follower'] = 1;
       ((s as any).MiraVars ?? {})['follow_time'] = 2;
       scene.actions([
-        { label: 'Go to the river', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+        { label: 'Go to the river', goto: ['gad_beach', 'start', '1'] },
       ]);
     }
   }

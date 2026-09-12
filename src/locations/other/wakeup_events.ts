@@ -58,7 +58,7 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 10) {
     if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-      scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler2', 'priority'] }]);
+      scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler2', '\'priority\''] }]);
     } else {
       if (Object.keys((s as any).sleep_events ?? {}).length > 0) {
         scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler2'] }]);
@@ -84,7 +84,7 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
-    scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler2', 'priority'] }]);
+    scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler2', '\'priority\''] }]);
   }
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler'] }]);
   // TODO-QSP: end

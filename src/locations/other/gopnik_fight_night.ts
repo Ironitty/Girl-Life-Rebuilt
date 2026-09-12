@@ -132,9 +132,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     scene.text('Vitek walks out to stand between both of you. "Okay, you guys know the rules. I would say have a clean fight, but fuck that. Beat the shit out of each other and may the best bitch win!"');
     scene.text('This gets laughs from many of the guys and a few of the girls, but some of the other girls just roll their eyes. He then steps away and the other girl closes in; you hear a few cheering for her while some of your friends cheer for you.');
     scene.actions([
-      { label: 'Start', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gopnik_fight_night', 'start_fight', 1
-  } },
+      { label: 'Start', goto: ['gopnik_fight_night', 'start_fight', '1'] },
     ]);
   } },
   ]);

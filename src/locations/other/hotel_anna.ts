@@ -14,34 +14,34 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterMeeting(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorevnaBDSM ?? 0) === 5) {
-    // TODO-QSP: gt 'hotel_anna', 1
+    scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '1'] }]);
   } else {
     if (((s as any).IgorevnaBDSM ?? 0) === 6) {
-      // TODO-QSP: gt 'hotel_anna', 2
+      scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '2'] }]);
     } else {
       if (((s as any).IgorevnaBDSM ?? 0) === 7) {
-        // TODO-QSP: gt 'hotel_anna', 3
+        scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '3'] }]);
       } else {
         if (((s as any).IgorevnaBDSM ?? 0) === 8) {
-          // TODO-QSP: gt 'hotel_anna', 4
+          scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '4'] }]);
         } else {
           if (((s as any).IgorevnaBDSM ?? 0) === 9) {
-            // TODO-QSP: gt 'hotel_anna', 5
+            scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '5'] }]);
           } else {
             if (((s as any).IgorevnaBDSM ?? 0) === 10) {
-              // TODO-QSP: gt 'hotel_anna', 6
+              scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '6'] }]);
             } else {
               if (((s as any).IgorevnaBDSM ?? 0) === 11) {
-                // TODO-QSP: gt 'hotel_anna', 7
+                scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '7'] }]);
               } else {
                 if (((s as any).IgorevnaBDSM ?? 0) === 12) {
-                  // TODO-QSP: gt 'hotel_anna', 8
+                  scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '8'] }]);
                 } else {
                   if (((s as any).IgorevnaBDSM ?? 0) === 13) {
-                    // TODO-QSP: gt 'hotel_anna', 9
+                    scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '9'] }]);
                   } else {
                     if (((s as any).IgorevnaBDSM ?? 0) >= 14) {
-                      // TODO-QSP: gt 'hotel_anna', 10
+                      scene.actions([{ label: 'Continue', goto: ['hotel_anna', '', '10'] }]);
                     }
                   }
                 }

@@ -929,8 +929,8 @@ function enterNushlivroom(s: GameState, scene: SceneBuilder): void {
       scene.text('You give her a grin. "I was thinking about fucking you with it, or maybe having you fuck me with it? With nobody home, it would be a crime to waste the freedom it gives us."');
       scene.text('She gets flushed, and you can tell she is turned on. "Yeah? Well hand it over and I\'ll fuck your tight little asshole until you scream for me."');
       scene.actions([
-        { label: 'Fuck her', goto: ['anushkaev1', 'couch_strapon_give', 'city'] },
-        { label: 'Give her the strap-on', goto: ['anushkaev1', 'couch_strapon_get', 'city'] },
+        { label: 'Fuck her', goto: ['anushkaev1', 'couch_strapon_give', '\'city\''] },
+        { label: 'Give her the strap-on', goto: ['anushkaev1', 'couch_strapon_get', '\'city\''] },
       ]);
     } else {
       scene.text('Anushka reaches up and takes the strap-on from you. She takes a look at it then gives the straps a few good tugs while she checks the size of the dildo. "Pretty nice one. It\'s a quality dildo and sturdy harness. You made a good choice," she says as she hands it back to you and turns her attention back to the movie. Taking the hint that she doesn\'t want to play, you put the strap-on away and join her in watching the TV.');

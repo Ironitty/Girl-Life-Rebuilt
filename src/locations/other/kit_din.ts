@@ -283,18 +283,18 @@ function enterEdagotpk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'large_meal') {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.actions([
-      { label: 'Eat cooked food (0:20)', goto: ['kit_din', 'edahotd', 'large_meal'] },
+      { label: 'Eat cooked food (0:20)', goto: ['kit_din', 'edahotd', '\'large_meal\''] },
     ]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'small_meal') {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
       scene.actions([
-        { label: 'Eat cooked food (0:10)', goto: ['kit_din', 'edahotd', 'small_meal'] },
+        { label: 'Eat cooked food (0:10)', goto: ['kit_din', 'edahotd', '\'small_meal\''] },
       ]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 25;
       scene.actions([
-        { label: 'Eat cooked food (0:15)', goto: ['kit_din', 'edahotd', 'medium_meal'] },
+        { label: 'Eat cooked food (0:15)', goto: ['kit_din', 'edahotd', '\'medium_meal\''] },
       ]);
     }
   }
@@ -695,9 +695,9 @@ function enterCookMealDo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  ((s as any).edahot ?? 0) === 0  &&  (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  ||  ((s as any).loc ?? 0) === 'uni_dorm')) {
     scene.text('What kind of meal would you like to prepare?');
     scene.actions([
-      { label: 'Prepare a light meal (0:20)', goto: ['kit_din', 'cook_meal_pk', 'small_meal'] },
-      { label: 'Prepare a normal meal (0:25)', goto: ['kit_din', 'cook_meal_pk', 'medium_meal'] },
-      { label: 'Prepare a hearty meal (0:30)', goto: ['kit_din', 'cook_meal_pk', 'large_meal'] },
+      { label: 'Prepare a light meal (0:20)', goto: ['kit_din', 'cook_meal_pk', '\'small_meal\''] },
+      { label: 'Prepare a normal meal (0:25)', goto: ['kit_din', 'cook_meal_pk', '\'medium_meal\''] },
+      { label: 'Prepare a hearty meal (0:30)', goto: ['kit_din', 'cook_meal_pk', '\'large_meal\''] },
     ]);
   } else {
     if (((s as any).edahot ?? 0) > 0) {
@@ -769,17 +769,17 @@ function enterEatMealDo(s: GameState, scene: SceneBuilder): void {
     if (((s as any).edahot ?? 0) > 0) {
       (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
       scene.actions([
-        { label: 'Eat the warm meal - light portion (0:10)', goto: ['kit_din', 'eat_warm_pk', 'small_meal'] },
-        { label: 'Eat the warm meal - normal portion (0:15)', goto: ['kit_din', 'eat_warm_pk', 'medium_meal'] },
-        { label: 'Eat the warm meal - hearty portion (0:20)', goto: ['kit_din', 'eat_warm_pk', 'large_meal'] },
+        { label: 'Eat the warm meal - light portion (0:10)', goto: ['kit_din', 'eat_warm_pk', '\'small_meal\''] },
+        { label: 'Eat the warm meal - normal portion (0:15)', goto: ['kit_din', 'eat_warm_pk', '\'medium_meal\''] },
+        { label: 'Eat the warm meal - hearty portion (0:20)', goto: ['kit_din', 'eat_warm_pk', '\'large_meal\''] },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  ||  ((s as any).loc ?? 0) === 'uni_dorm')) {
       (s as any).eat_opt_count = ((s as any).eat_opt_count ?? 0) + (1);
       scene.actions([
-        { label: 'Cook and eat - light (0:30)', goto: ['kit_din', 'eat_cooked_pk', 'small_meal'] },
-        { label: 'Cook and eat - normal (0:40)', goto: ['kit_din', 'eat_cooked_pk', 'medium_meal'] },
-        { label: 'Cook and eat - hearty (0:50)', goto: ['kit_din', 'eat_cooked_pk', 'large_meal'] },
+        { label: 'Cook and eat - light (0:30)', goto: ['kit_din', 'eat_cooked_pk', '\'small_meal\''] },
+        { label: 'Cook and eat - normal (0:40)', goto: ['kit_din', 'eat_cooked_pk', '\'medium_meal\''] },
+        { label: 'Cook and eat - hearty (0:50)', goto: ['kit_din', 'eat_cooked_pk', '\'large_meal\''] },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['food_diet'] > 0) {

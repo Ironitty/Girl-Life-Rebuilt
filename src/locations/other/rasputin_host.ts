@@ -85,8 +85,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'rasputin_host', 'start', 1
-  } },
+  }, goto: ['rasputin_host', 'start', '1'] },
     ]);
   } },
     { label: 'About buying a ticket', handler: (st: GameState) => {
@@ -206,8 +205,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia you will think on it more, she shrugs off and waits for your response.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    // TODO-QSP: gt 'rasputin_host', 'start', 1
-  } },
+  }, goto: ['rasputin_host', 'start', '1'] },
     ]);
   } },
   ]);

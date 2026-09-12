@@ -12,17 +12,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('The driver climbs into his seat and starts the engine. The two of you drive off, and chat casually for fifteen minutes.');
     scene.text('Then, the driver spots another roadside parking lot and stops his truck.');
     scene.actions([
-      { label: 'Look at the driver', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 1
-  } },
+      { label: 'Look at the driver', goto: ['furisex', '', '1'] },
     ]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 1) {
     scene.text('When you look at the driver questioningly, he has a greedy grin on his face. He says: "Now, it\'s time for you to fulfill your part of the deal. Undress and go to my sleeping compartment, I want to look at your naked body while you blow me."');
     scene.actions([
-      { label: 'Do as he says', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 2
-  } },
+      { label: 'Do as he says', goto: ['furisex', '', '2'] },
     ]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 2) {
@@ -40,30 +36,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: 'Put on the condom with your hands', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 3
-  } },
-      { label: 'Put on the condom with your mouth', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 4
-  } },
+      { label: 'Put on the condom with your hands', goto: ['furisex', '', '3'] },
+      { label: 'Put on the condom with your mouth', goto: ['furisex', '', '4'] },
     ]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 3) {
     scene.img('images/locations/highway/sex/condomput.jpg');
     scene.text('You quickly take the condom out of its wrapper and roll it down the man\'s erection.');
     scene.actions([
-      { label: 'Suck his dick', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 5
-  } },
+      { label: 'Suck his dick', goto: ['furisex', '', '5'] },
     ]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 4) {
     scene.img('images/locations/highway/sex/condomput2.jpg');
     scene.text('You quickly take the condom out of its wrapper and place it between your lips. It takes you a while to put the condom on his penis using only your mouth, but eventually you manage. The truck driver laughs when he sees you struggle at first, but you can tell he\'s impressed when you actually succeed.');
     scene.actions([
-      { label: 'Suck his dick', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 5
-  } },
+      { label: 'Suck his dick', goto: ['furisex', '', '5'] },
     ]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 5) {
@@ -75,9 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 15, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
-      { label: 'Put your clothes back on', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 6
-  } },
+      { label: 'Put your clothes back on', goto: ['furisex', '', '6'] },
     ]);
   }
   if (((s as any).locArgs?.[0] ?? 0) === 6) {
@@ -116,17 +102,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: 'Blow him', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 101
-  } },
+        { label: 'Blow him', goto: ['furisex', '', '101'] },
       ]);
     } else {
       scene.text('The driver climbs into his seat and starts the engine. The two of you drive off, and chat casually for a few minutes.');
       scene.text('Then he nods at his groin, and says: "I believe you owe me something! I don\'t have much time, so just do it while I\'m driving. Oh, and take off your clothes. I want to look at your tits while you suck me off."');
       scene.actions([
-        { label: 'Do as he says', handler: (st: GameState) => {
-    // TODO-QSP: gt 'furisex', 101
-  } },
+        { label: 'Do as he says', goto: ['furisex', '', '101'] },
       ]);
     }
   }

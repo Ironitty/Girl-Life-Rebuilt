@@ -255,11 +255,16 @@ interface ParseResult {
       const act: QspAct = { kind: 'act', label: isCostLabel ? label : `${label} [+${truncate(dynPart, 40)}]`, body: [] };
 
       if (rest) {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
+        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
         if (gtMatch) {
           act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
         } else {
-          act.inlineStatements = rest;
+          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+          if (gtVarArgMatch) {
+            act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+          } else {
+            act.inlineStatements = rest;
+          }
         }
         i++;
       } else {
@@ -279,11 +284,21 @@ interface ParseResult {
       const rest = actInlineMatch[2].trim();
       const act: QspAct = { kind: 'act', label, body: [] };
 
-      const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
-      if (gtMatch) {
-        act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+      const gtDynTargetMatch = rest.match(/^gt\s+'([^']+)'\s*\+\s*(\$\w+)\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+      if (gtDynTargetMatch) {
+        act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
-        act.inlineStatements = rest;
+        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+        if (gtMatch) {
+          act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+        } else {
+          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+          if (gtVarArgMatch) {
+            act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+          } else {
+            act.inlineStatements = rest;
+          }
+        }
       }
 
       nodes.push(act);
@@ -356,7 +371,7 @@ interface ParseResult {
     }
 
     // Goto: gt 'target', 'arg' or xgt 'target', 'arg'
-    const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
+    const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
     if (gtMatch) {
       nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
       i++;
@@ -661,11 +676,16 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     const rest = actDynMatch[3].trim();
     const act: QspAct = { kind: 'act', label: `${label} [+${truncate(dynPart, 40)}]`, body: [] };
     if (rest) {
-      const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
+      const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
       if (gtMatch) {
         act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
       } else {
-        act.inlineStatements = rest;
+        const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+        if (gtVarArgMatch) {
+          act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+        } else {
+          act.inlineStatements = rest;
+        }
       }
       nodes.push(act);
       return { nodes, nextIdx: idx + 1 };
@@ -681,12 +701,22 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     const label = unescapeQsp(actInlineMatch[1]);
     const rest = actInlineMatch[2].trim();
     const act: QspAct = { kind: 'act', label, body: [] };
-    const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
-    if (gtMatch) {
-      act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
-    } else {
-      act.inlineStatements = rest;
-    }
+      const gtDynTargetMatch = rest.match(/^gt\s+'([^']+)'\s*\+\s*(\$\w+)\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+      if (gtDynTargetMatch) {
+        act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
+      } else {
+        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+        if (gtMatch) {
+          act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+        } else {
+          const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
+          if (gtVarArgMatch) {
+            act.inlineGoto = { target: gtVarArgMatch[1], arg: gtVarArgMatch[2].replace(/^\$/, ''), arg2: undefined };
+          } else {
+            act.inlineStatements = rest;
+          }
+        }
+      }
     nodes.push(act);
     return { nodes, nextIdx: idx + 1 };
   }
@@ -750,7 +780,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Goto or xgt
-  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
+  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
   if (gtMatch) {
     nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
     return { nodes, nextIdx: idx + 1 };
@@ -949,7 +979,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
+  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
   if (gtMatch) {
     nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
     return nodes;

@@ -290,7 +290,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Go for a walk (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      // TODO-QSP: gt 'kseniyaQW', 'event1', 1
+      scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event1', '1'] }]);
     }
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] > 0  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['Vicky'] === 11) {
       qspCall(s, 'mey_vika_events', 'park_meet');

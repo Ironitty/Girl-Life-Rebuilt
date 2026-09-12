@@ -626,9 +626,7 @@ function enterEventBathehorse2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     scene.text('You cannot wear regular clothes to wash Desperado.');
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Return', goto: ['gad_beach', 'start', '1'] },
     ]);
   } else {
     if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).npc_rel ?? 0)?.['A60'] > 0) {
@@ -662,8 +660,7 @@ function enterEventBathehorse2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get out of the water', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+  }, goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
       ]);
@@ -696,8 +693,7 @@ function enterEventBathehorse2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get out of the water', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+  }, goto: ['gad_beach', 'start', '1'] },
     ]);
   } },
     ]);
@@ -710,17 +706,13 @@ function enterEventBathehorse3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1) {
     scene.text('You need to dress in regular clothes first.');
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+      { label: 'Return', goto: ['gad_beach', 'start', '1'] },
     ]);
   } else {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.text('You need to put some clothes on first.');
       scene.actions([
-        { label: 'Return', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gad_beach', 'start', 1
-  } },
+        { label: 'Return', goto: ['gad_beach', 'start', '1'] },
       ]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 30;

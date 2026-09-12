@@ -292,9 +292,7 @@ function enterStrapon(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Back', handler: (st: GameState) => {
-    // TODO-QSP: gt 'stol', $stol_loc_temp
-  } },
+    { label: 'Back', goto: ['stol', 'stol_loc_temp'] },
   ]);
   scene.build();
 }

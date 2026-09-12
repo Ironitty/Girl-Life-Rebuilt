@@ -404,9 +404,7 @@ function enterVen3(s: GameState, scene: SceneBuilder): void {
   scene.text('He scoops you up in his arms and carries your limp body back to his office. "Yet another overdose victim, so sad…" he mumbles to himself once the door is closed.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: gt 'gameover', 'force', 9
-  } },
+    { label: 'Continue', goto: ['gameover', 'force', '9'] },
   ]);
   scene.build();
 }
