@@ -60,8 +60,10 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/sex/placer_sex1.jpg');
     // TODO-QSP: dynamic text: After the guys show you around their apartment, they begin to prepare a table in...
     scene.text(`After the guys show you around their apartment, they begin to prepare a table in the kitchen. You offer to help them and they gladly accept, and the three of you have the table ready in no time. Then one of them produces a bottle of vodka and asks: "Thanks for the help, ${((s as any).pcs_nickname ?? 0)}… would you like a drink?"`);
-    // TODO-QSP: Act 'Drink with the guys': gt 'placer_sex', 'vodka'
-    // TODO-QSP: Act 'Decline the drink': gt 'placer_sex', 'game'
+    scene.actions([
+      { label: 'Drink with the guys', goto: ['placer_sex', 'vodka'] },
+      { label: 'Decline the drink', goto: ['placer_sex', 'game'] },
+    ]);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'drugs', 'alcohol', 'vodka', 3);

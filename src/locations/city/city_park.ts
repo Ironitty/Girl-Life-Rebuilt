@@ -690,12 +690,16 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 23) + 18);
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
       if (((s as any).succubusQW ?? 0) === 14) {
-        // TODO-QSP: Act 'Lure him in and feed (this can take a lot of time)':
-        scene.text('You wait until he has dragged you almost to the bushes before turning on him.');
         scene.actions([
-          { label: 'Continue', goto: ['succubus', 'RapistFight'] },
+          { label: 'Lure him in and feed (this can take a lot of time)', handler: (st: GameState) => {
+    scene.text('You wait until he has dragged you almost to the bushes before turning on him.');
+    scene.actions([
+      { label: 'Continue', goto: ['succubus', 'RapistFight'] },
+    ]);
+  } },
         ]);
       }
+      return;
       scene.actions([
         { label: 'Fight', handler: (st: GameState) => {
     qspCall(s, 'fight', 'initFight');
@@ -703,9 +707,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
   }, goto: ['fight', 'start'] },
       ]);
     }
-    return;
   }
-  // TODO-QSP: end
   if (((s as any).pcs_inhib ?? 0) >= 35  ||  (((s as any).pcs_inhib ?? 0) >= 25  &&  ((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0)) {
     scene.actions([
       { label: 'Expose your breasts', handler: (st: GameState) => {

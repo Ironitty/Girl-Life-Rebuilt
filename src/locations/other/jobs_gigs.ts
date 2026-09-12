@@ -253,7 +253,8 @@ function enterDelEvt(s: GameState, scene: SceneBuilder): void {
     scene.text(`Index: ${((s as any).evt_idx ?? 0)}`);
     // TODO-QSP: dynamic text: Desc: <<$evt_desc[evt_idx]>>
     scene.text(`Desc: ${((s as any).evt_desc ?? 0)?.[String((s as any).evt_idx ?? 0)]}`);
-    // TODO-QSP: Act 'Confirm?':
+    scene.actions([
+      { label: 'Confirm?', handler: (st: GameState) => {
     scene.text('Are you sure?');
     scene.actions([
       { label: 'Deleting', handler: (st: GameState) => {
@@ -264,10 +265,12 @@ function enterDelEvt(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Cancel', goto: ['journal_work', 'start'] },
     ]);
+  } },
+    ]);
+  } else {
+    // TODO-QSP: dynamic text: <<evt_idx>> - Invalid record - please check your index
+    scene.text(`${((s as any).evt_idx ?? 0)} - Invalid record - please check your index`);
   }
-  // TODO-QSP: dynamic text: <<evt_idx>> - Invalid record - please check your index
-  scene.text(`${((s as any).evt_idx ?? 0)} - Invalid record - please check your index`);
-  // TODO-QSP: end
   // TODO-QSP: end
   scene.build();
 }

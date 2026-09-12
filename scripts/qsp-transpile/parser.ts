@@ -247,7 +247,7 @@ interface ParseResult {
     }
 
     // Act block: act 'label':
-    const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/);
+    const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/i);
     if (actBlockMatch) {
       const label = unescapeQsp(actBlockMatch[1]);
       const inner = parseBlock(lines, i + 1, unsupported);
@@ -258,7 +258,7 @@ interface ParseResult {
     }
 
     // Act with dynamic label: act 'Label' + $func('mod', 'func'): rest
-    const actDynMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*\+\s*(.+?)\s*:\s*(.*)$/);
+    const actDynMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*\+\s*(.+?)\s*:\s*(.*)$/i);
     if (actDynMatch) {
       const label = unescapeQsp(actDynMatch[1]);
       const dynPart = actDynMatch[2].trim();
@@ -295,7 +295,7 @@ interface ParseResult {
     }
 
     // Act inline: act 'label': gt 'target', 'arg'
-    const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/);
+    const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/i);
     if (actInlineMatch) {
       const label = unescapeQsp(actInlineMatch[1]);
       const rest = actInlineMatch[2].trim();
@@ -684,7 +684,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Act block
-  const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/);
+  const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/i);
   if (actBlockMatch) {
     const inner = parseBlock(lines, idx + 1, unsupported);
     nodes.push({ kind: 'act', label: unescapeQsp(actBlockMatch[1]), body: inner.nodes });
@@ -692,7 +692,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Act with dynamic label
-  const actDynMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*\+\s*(.+?)\s*:\s*(.*)$/);
+  const actDynMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*\+\s*(.+?)\s*:\s*(.*)$/i);
   if (actDynMatch) {
     const label = unescapeQsp(actDynMatch[1]);
     const dynPart = actDynMatch[2].trim();
@@ -724,7 +724,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   }
 
   // Act inline
-  const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/);
+  const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/i);
   if (actInlineMatch) {
     const label = unescapeQsp(actInlineMatch[1]);
     const rest = actInlineMatch[2].trim();
@@ -1017,7 +1017,7 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     return nodes;
   }
 
-  const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/);
+  const actInlineMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*(.+)$/i);
   if (actInlineMatch) {
     const label = unescapeQsp(actInlineMatch[1]);
     const rest = actInlineMatch[2].trim();
