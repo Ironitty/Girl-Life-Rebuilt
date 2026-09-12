@@ -134,6 +134,7 @@ export const initialState = {
   MiraVars: {},
   npc_drunk: {},
   model: {},
+  transportVars: { trainpass_day: 0, buspass_day: 0 },
 
   succublvl: 0,
   succubusflag: 0,
